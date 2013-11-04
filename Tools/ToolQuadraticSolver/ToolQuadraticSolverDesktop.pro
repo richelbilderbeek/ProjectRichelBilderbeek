@@ -1,39 +1,20 @@
 QT += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+
+include(ToolQuadraticSolverDesktop.pri)
+
 TEMPLATE = app
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace
-
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    qtmain.cpp \
-    qtquadraticsolvermaindialog.cpp \
-    qtquadraticsolvermenudialog.cpp \
-    quadraticsolvermaindialog.cpp \
-    quadraticsolvermenudialog.cpp
-
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    qtquadraticsolvermaindialog.h \
-    qtquadraticsolvermenudialog.h \
-    quadraticsolvermaindialog.h \
-    quadraticsolvermenudialog.h
-
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtquadraticsolvermaindialog.ui \
-    qtquadraticsolvermenudialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+SOURCES += qtmain.cpp
 
 #
 #
@@ -61,3 +42,4 @@ win32 {
   INCLUDEPATH += \
     ../../Libraries/boost_1_54_0
 }
+

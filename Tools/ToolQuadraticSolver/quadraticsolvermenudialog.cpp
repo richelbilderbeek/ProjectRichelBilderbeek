@@ -20,9 +20,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "quadraticsolvermenudialog.h"
 
+#include "quadraticsolvermaindialog.h"
 #include "trace.h"
 
-const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout()
+int ribi::QuadraticSolverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    QuadraticSolverMainDialog d;
+    d.Execute();
+    return 0;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +51,35 @@ const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::QuadraticSolverMenuDialog::GetVersion()
+const ribi::Help ribi::QuadraticSolverMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::QuadraticSolverMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramQuadraticSolver
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::QuadraticSolverMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-xx-xx: version 1.0: initial version in C++ Builder",

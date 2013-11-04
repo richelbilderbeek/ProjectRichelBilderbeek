@@ -79,6 +79,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "openquestiondialog.h"
 #include "pylosmenudialog.h"
 #include "qmakewatchermenudialog.h"
+#include "randomcodemenudialog.h"
 #include "qrcfile.h"
 #include "perfectelasticcollisionmenudialog.h"
 #include "qtcreatorprofile.h"
@@ -110,6 +111,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testfunctionparsermenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testqrcfilemenudialog.h"
+#include "quadraticsolvermenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtcreatorprofilemenudialog.h"
 #include "testquestionmenudialog.h"
@@ -172,6 +174,8 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new PerfectElasticCollisionMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
     { const MenuType p { new PicToCodeMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
     { const MenuType p { new PrimeExpertMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new QuadraticSolverMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new RandomCodeMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
 
 
     sm_map_to_menu = m;
@@ -305,7 +309,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
   a.AddLibrary("Pylos version: " + PylosMenuDialog::GetVersion());
-  a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog::GetVersion());
+  a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Question version: " + Question::GetVersion());

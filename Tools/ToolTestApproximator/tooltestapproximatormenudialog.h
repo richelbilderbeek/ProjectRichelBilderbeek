@@ -1,22 +1,22 @@
 #ifndef TOOLTESTAPPROXIMATORMENUDIALOG_H
 #define TOOLTESTAPPROXIMATORMENUDIALOG_H
 
-#include <string>
-#include <vector>
+#include "menudialog.h"
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#include "about.h"
-#pragma GCC diagnostic pop
 
 namespace ribi {
 
 ///GUI independent ToolTestApproximator menu dialog
-struct ToolTestApproximatorMenuDialog
+struct ToolTestApproximatorMenuDialog : public MenuDialog
 {
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ribi

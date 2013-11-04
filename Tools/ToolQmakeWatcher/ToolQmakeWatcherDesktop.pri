@@ -1,11 +1,16 @@
+include(ToolQmakeWatcherConsole.pri)
+
 INCLUDEPATH += \
     ../../Tools/ToolQmakeWatcher
 
 SOURCES += \
-    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.cpp
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermaindialog.cpp \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolQmakeWatcher/qmakewatchermenudialog.h
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermaindialog.h \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolQmakeWatcher/Licence.txt
+FORMS    += \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermaindialog.ui \
+    ../../Tools/ToolQmakeWatcher/qtqmakewatchermenudialog.ui

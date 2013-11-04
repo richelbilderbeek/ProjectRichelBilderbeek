@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "sitemapgeneratormenudialog.h"
 
-const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() noexcept
+const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,19 +37,19 @@ const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::SitemapGeneratorMenuDialog::GetVersion() noexcept
+const std::string ribi::SitemapGeneratorMenuDialog::GetVersion() const noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-08-08: version 1.0: initial version");
-  v.push_back("2011-09-15: version 1.1: improved code");
-  v.push_back("2012-06-20: version 1.2: improved code");
-  v.push_back("2012-12-15: version 1.3: made global functions static member functions, use of QtHideAndShowDialog, added some graphics to menu");
-  return v;
+  return {
+    "2010-08-08: version 1.0: initial version",
+    "2011-09-15: version 1.1: improved code",
+    "2012-06-20: version 1.2: improved code",
+    "2012-12-15: version 1.3: made global functions static member functions, use of QtHideAndShowDialog, added some graphics to menu"
+  };
 }
 
 

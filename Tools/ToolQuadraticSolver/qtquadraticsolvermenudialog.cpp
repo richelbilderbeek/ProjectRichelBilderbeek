@@ -31,7 +31,7 @@ void ribi::QtQuadraticSolverMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtQuadraticSolverMenuDialog::on_button_about_clicked()
 {
-  About a = QuadraticSolverMenuDialog::GetAbout();
+  About a = QuadraticSolverMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());

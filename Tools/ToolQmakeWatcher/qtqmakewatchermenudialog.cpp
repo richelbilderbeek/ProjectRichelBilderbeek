@@ -55,14 +55,12 @@ void ribi::QtQmakeWatcherMenuDialog::keyPressEvent(QKeyEvent * event) noexcept
 
 void ribi::QtQmakeWatcherMenuDialog::on_button_about_clicked() noexcept
 {
-  ribi::About a = ribi::QmakeWatcherMenuDialog::GetAbout();
+  ribi::About a = ribi::QmakeWatcherMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   ribi::QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtQmakeWatcherMenuDialog::on_button_quit_clicked() noexcept

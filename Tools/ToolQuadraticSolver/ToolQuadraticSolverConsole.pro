@@ -1,26 +1,26 @@
+# Go ahead and use Qt.Core: it is about as platform-independent as
+# the STL and Boost
 QT += core
-QT -= gui
+
+# Go ahead and use Qt.Gui: it is about as platform-independent as
+# the STL and Boost. It is needed for QImage
+QT += gui
+
+# Don't define widgets: it would defy the purpose of this console
+# application to work non-GUI
+#greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+CONFIG   += console
+CONFIG   -= app_bundle
 TEMPLATE = app
+SOURCES += main.cpp
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppTrace
-
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    quadraticsolvermenudialog.cpp \
-    main.cpp \
-    quadraticsolvermaindialog.cpp
-
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    quadraticsolvermenudialog.h \
-    quadraticsolvermaindialog.h
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    Licence.txt
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+include(ToolQuadraticSolverConsole.pri)
 
 #
 #

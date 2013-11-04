@@ -21,21 +21,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTSTATEOBSERVERMENUDIALOG_H
 #define TESTSTATEOBSERVERMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
+
 
 namespace ribi {
 
-struct StateObserverMenuDialog
+struct StateObserverMenuDialog : public MenuDialog
 {
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its About information
-  static const About GetAbout() noexcept;
-
-  ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ribi

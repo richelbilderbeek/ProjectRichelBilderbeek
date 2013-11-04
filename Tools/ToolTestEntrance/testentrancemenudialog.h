@@ -21,26 +21,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTENTRANCEMENUDIALOG_H
 #define TESTENTRANCEMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 namespace ToolTestEntrance {
 
 ///The GUI independent part of the menu
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Get this class its version
-  static const std::string GetVersion();
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Get this class its version history
-  static const std::vector<std::string> GetVersionHistory();
-
-  ///Get this class its About
-  static const About GetAbout();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ToolTestEntrance

@@ -20,11 +20,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include <iostream>
+
 #include "qmakewatchermenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::QmakeWatcherMenuDialog::GetAbout() noexcept
+int ribi::QmakeWatcherMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::QmakeWatcherMenuDialog::GetAbout() const noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
@@ -42,14 +56,38 @@ const ribi::About ribi::QmakeWatcherMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::QmakeWatcherMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::QmakeWatcherMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::QmakeWatcherMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramQmakeWatcher
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::QmakeWatcherMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QmakeWatcherMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::QmakeWatcherMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-09-20: version 1.0: initial version, conformized for ProjectRichelBilderbeek"
+    "2013-11-04: version 1.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }

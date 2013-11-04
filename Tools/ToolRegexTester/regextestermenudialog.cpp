@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "regextestermenudialog.h"
 
-const ribi::About ribi::RegexTesterMenuDialog::GetAbout() noexcept
+const ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -36,18 +36,18 @@ const ribi::About ribi::RegexTesterMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::RegexTesterMenuDialog::GetVersion() noexcept
+const std::string ribi::RegexTesterMenuDialog::GetVersion() const noexcept
 {
   return "1.7";
 }
 
-const std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::RegexTesterMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-08-19: Version 1.3: Qt GUI application");
-  v.push_back("2012-01-07: Version 1.4: port to Wt and console application");
-  v.push_back("2012-09-24: Version 1.5: added Qt and C++11 versions");
-  v.push_back("2013-03-20: Version 1.6: added TR1 version, added replace");
-  v.push_back("2013-07-16: Version 1.7: added Boost.Xpressive");
-  return v;
+  return {
+    "2010-08-19: Version 1.3: Qt GUI application",
+    "2012-01-07: Version 1.4: port to Wt and console application",
+    "2012-09-24: Version 1.5: added Qt and C++11 versions",
+    "2013-03-20: Version 1.6: added TR1 version, added replace",
+    "2013-07-16: Version 1.7: added Boost.Xpressive"
+  };
 }
