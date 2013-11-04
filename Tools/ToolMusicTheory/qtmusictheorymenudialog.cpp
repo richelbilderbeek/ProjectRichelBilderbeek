@@ -49,18 +49,15 @@ ribi::QtMusicTheoryMenuDialog::~QtMusicTheoryMenuDialog() noexcept
 
 void ribi::QtMusicTheoryMenuDialog::on_button_about_clicked()
 {
-  About a = MusicTheoryMenuDialog::GetAbout();
+  About a = MusicTheoryMenuDialog().GetAbout();
   a.AddLibrary("QtChordEdge version: " + QtChordEdge::GetVersion());
   a.AddLibrary("QtChordVertex version: " + QtChordVertex::GetVersion());
   a.AddLibrary("QtChordRelationsWidget version: " + QtChordRelationsWidget::GetVersion());
   a.AddLibrary("QtMultiScaleChordRelationsWidget version: " + QtMultiScaleChordRelationsWidget::GetVersion());
   QtAboutDialog d(a);
-
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtMusicTheoryMenuDialog::on_button_quit_clicked()
@@ -70,20 +67,12 @@ void ribi::QtMusicTheoryMenuDialog::on_button_quit_clicked()
 
 void ribi::QtMusicTheoryMenuDialog::on_button_start_singlescale_clicked()
 {
-  //Make a screenshot
-  QPixmap::grabWidget(this,this->window()->rect()).save("ToolMusicTheoryMenuDialog.png");
-
   QtMusicTheorySingleScaleDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
-
 
 void ribi::QtMusicTheoryMenuDialog::on_button_start_multiscale_clicked()
 {
   QtMusicTheoryMultiScaleDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }

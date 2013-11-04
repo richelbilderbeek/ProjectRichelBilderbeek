@@ -9,8 +9,8 @@ HEADERS += \
     ../../Tools/ToolMazeCreator/qtmazecreatormaindialog.h \
 
 FORMS    += \
-    qtmazecreatormaindialog.ui \
-    qtmazecreatormenudialog.ui
+    ../../Tools/ToolMazeCreator/qtmazecreatormaindialog.ui \
+    ../../Tools/ToolMazeCreator/qtmazecreatormenudialog.ui
 
 RESOURCES += \
-    mazecreator.qrc
+    ../../Tools/ToolMazeCreator/ToolMazeCreator.qrc

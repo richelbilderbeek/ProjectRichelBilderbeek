@@ -28,14 +28,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtperfectelasticcollisionmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtPerfectElasticCollisionMenuDialog)
+ribi::QtPerfectElasticCollisionMenuDialog::QtPerfectElasticCollisionMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtPerfectElasticCollisionMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
 ribi::QtPerfectElasticCollisionMenuDialog::~QtPerfectElasticCollisionMenuDialog() noexcept
@@ -45,20 +45,16 @@ ribi::QtPerfectElasticCollisionMenuDialog::~QtPerfectElasticCollisionMenuDialog(
 
 void ribi::QtPerfectElasticCollisionMenuDialog::on_button_start_clicked()
 {
-  this->hide();
   QtPerfectElasticCollisionMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtPerfectElasticCollisionMenuDialog::on_button_about_clicked()
 {
-  this->hide();
-  About a = PerfectElasticCollisionMenuDialog::GetAbout();
+  About a = PerfectElasticCollisionMenuDialog().GetAbout();
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked() noexcept
@@ -66,6 +62,7 @@ void ribi::QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked() noexcep
   close();
 }
 
+#ifndef NDEBUG
 void ribi::QtPerfectElasticCollisionMenuDialog::Test()
 {
   {
@@ -77,3 +74,4 @@ void ribi::QtPerfectElasticCollisionMenuDialog::Test()
     QtPerfectElasticCollisionMainDialog d;
   }
 }
+#endif

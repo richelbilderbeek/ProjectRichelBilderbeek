@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PerfectElasticCollision, tool to investigate a perfect elastic collision
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From hhtp://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm
 //---------------------------------------------------------------------------
-
-
 #include "perfectelasticcollisionmenudialog.h"
 
 #include <cstdlib>
@@ -27,7 +25,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
-const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() noexcept
+int ribi::PerfectElasticCollisionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << this->GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -42,16 +52,40 @@ const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::PerfectElasticCollisionMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::PerfectElasticCollisionMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2010-08-14: version 1.0: initial version.");
-  v.push_back("2012-03-07: version 1.1: added versioning. Added menu screen.");
-  return v;
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramPerfectElasticCollision
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+const std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2010-08-14: version 1.0: initial version",
+    "2012-03-07: version 1.1: added versioning. Added menu screen",
+    "2013-11-04: version 1.2: conformized to ProjectRichelBilderbeekConsole",
+  };
 }
 

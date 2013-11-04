@@ -45,17 +45,13 @@ ribi::QtPicToCodeMenuDialog::~QtPicToCodeMenuDialog() noexcept
 void ribi::QtPicToCodeMenuDialog::on_button_start_clicked()
 {
   QtPicToCodeMainDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtPicToCodeMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(PicToCodeMenuDialog::GetAbout());
-  this->hide();
-  d.exec();
-  this->show();
+  QtAboutDialog d(PicToCodeMenuDialog().GetAbout());
+  this->ShowChild(&d);
 }
 
 void ribi::QtPicToCodeMenuDialog::on_button_quit_clicked()

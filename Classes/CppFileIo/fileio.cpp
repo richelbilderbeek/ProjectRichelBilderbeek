@@ -81,24 +81,39 @@ const std::vector<std::string> ribi::fileio::FileToVector(const std::string& fil
 
 const std::string ribi::fileio::GetExtension(const std::string& filename)
 {
-  const boost::xpressive::sregex rex
+  return GetExtensionWithDot(filename);
+}
+
+const std::string ribi::fileio::GetExtensionNoDot(const std::string& filename)
+{
+  static const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
-      "(.*)?(\\.[A-Za-z]*)" );
+      "(.*)?(\\.)([A-Za-z]*)?" );
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what, rex ) )
   {
-    return what[2];
+    return what[3];
   }
 
   return "";
+}
+
+const std::string ribi::fileio::GetExtensionWithDot(const std::string& filename)
+{
+  return
+    ( std::count(filename.begin(),filename.end(),'.')
+    ? std::string(".")
+    : std::string("")
+    )
+    + GetExtensionNoDot(filename);
 }
 
 const std::string ribi::fileio::GetFileBasename(const std::string& filename)
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
-      "((.*)(/|\\\\))?([A-Za-z0-9]*)((\\.)([A-Za-z0-9]*))?" );
+      "((.*)(/|\\\\))?([A-Za-z0-9_]*)((\\.)([A-Za-z0-9]*))?" );
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what, rex ) )
@@ -233,6 +248,7 @@ void ribi::fileio::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::fileio::Test");
   //CopyFile
   for (int i=0; i!=2; ++i)
   {
@@ -292,7 +308,13 @@ void ribi::fileio::Test() noexcept
   //GetFileBasename
   {
     assert(GetFileBasename("") == std::string(""));
+    assert(GetFileBasename("tmp") == std::string("tmp"));
+    assert(GetFileBasename("tmp.") == std::string("tmp"));
+    assert(GetFileBasename("tmp.x") == std::string("tmp"));
     assert(GetFileBasename("tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("tmp.text") == std::string("tmp"));
+    assert(GetFileBasename("tmp.longextension") == std::string("tmp"));
+    assert(GetFileBasename("input_triangle.txt") == std::string("input_triangle"));
     assert(GetFileBasename("tmp") == std::string("tmp"));
     assert(GetFileBasename("MyFolder/tmp") == std::string("tmp"));
     assert(GetFileBasename("MyFolder/tmp.txt") == std::string("tmp"));
@@ -308,6 +330,56 @@ void ribi::fileio::Test() noexcept
       == std::string("GameK3OpEenRij"));
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek")
       == std::string("ProjectRichelBilderbeek"));
+  }
+  //GetExtension
+  {
+    assert(GetExtensionNoDot("") == std::string(""));
+    assert(GetExtensionNoDot("tmp") == std::string(""));
+    assert(GetExtensionNoDot("tmp.") == std::string(""));
+    assert(GetExtensionNoDot("tmp.x") == std::string("x"));
+    assert(GetExtensionNoDot("tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("tmp.text") == std::string("text"));
+    assert(GetExtensionNoDot("tmp.longextension") == std::string("longextension"));
+    assert(GetExtensionNoDot("input_triangle.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("tmp") == std::string(""));
+    assert(GetExtensionNoDot("MyFolder/tmp") == std::string(""));
+    assert(GetExtensionNoDot("MyFolder/tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("MyFolder\\tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp") == std::string(""));
+    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("MyFolder/MyFolder\\tmp.txt") == std::string("txt"));
+
+    assert(GetExtensionWithDot("") == std::string(""));
+    assert(GetExtensionWithDot("tmp") == std::string(""));
+    assert(GetExtensionWithDot("tmp.") == std::string("."));
+    assert(GetExtensionWithDot("tmp.x") == std::string(".x"));
+    assert(GetExtensionWithDot("tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("tmp.text") == std::string(".text"));
+    assert(GetExtensionWithDot("tmp.longextension") == std::string(".longextension"));
+    assert(GetExtensionWithDot("input_triangle.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("tmp") == std::string(""));
+    assert(GetExtensionWithDot("MyFolder/tmp") == std::string(""));
+    assert(GetExtensionWithDot("MyFolder/tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("MyFolder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp") == std::string(""));
+    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
+
+    assert(GetExtension("") == std::string(""));
+    assert(GetExtension("tmp") == std::string(""));
+    assert(GetExtension("tmp.") == std::string("."));
+    assert(GetExtension("tmp.x") == std::string(".x"));
+    assert(GetExtension("tmp.txt") == std::string(".txt"));
+    assert(GetExtension("tmp.text") == std::string(".text"));
+    assert(GetExtension("tmp.longextension") == std::string(".longextension"));
+    assert(GetExtension("input_triangle.txt") == std::string(".txt"));
+    assert(GetExtension("tmp") == std::string(""));
+    assert(GetExtension("MyFolder/tmp") == std::string(""));
+    assert(GetExtension("MyFolder/tmp.txt") == std::string(".txt"));
+    assert(GetExtension("MyFolder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtension("MyFolder/MyFolder/tmp") == std::string(""));
+    assert(GetExtension("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
+    assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
   }
   //GetPath
   {
@@ -384,5 +456,6 @@ void ribi::fileio::Test() noexcept
     assert(!IsRegularFile(filename_from));
     assert( IsRegularFile(filename_to));
   }
+  TRACE("Finished ribi::fileio::Test successfully");
 }
 #endif

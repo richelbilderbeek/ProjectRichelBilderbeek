@@ -1,20 +1,17 @@
-QT += core gui
-
-CONFIG += console
-CONFIG -= app_bundle
+QT       += core gui
+CONFIG   += console
+CONFIG   -= app_bundle
 TEMPLATE = app
 
+SOURCES += main.cpp
+
 include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppEncranger/CppEncranger.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppLoopReader/CppLoopReader.pri)
 include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
-include(../../Tools/ToolMultiEncranger/ToolMultiEncrangerConsole.pri)
+include(../../Tools/ToolPerfectElasticCollision/ToolPerfectElasticCollisionConsole.pri)
 
-SOURCES += main.cpp
 
 #
 #

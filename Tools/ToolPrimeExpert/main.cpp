@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-MultiEncranger, encryption and de-encryption tool
-Copyright (C) 2010-2011  Richel Bilderbeek
+PrimeExpert, tool to test if a number is prime
+Copyright (C) 2008-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -12,23 +12,22 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
-
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolMultiEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolPrimeExpert.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "toolmultiencrangermenudialog.h"
+#include "toolprimeexpertmenudialog.h"
 #pragma GCC diagnostic pop
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
   const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  ribi::ToolMultiEncrangerMenuDialog d;
-  d.Execute(args);
+  ribi::PrimeExpertMenuDialog d;
+  return d.Execute(args);
 }
 

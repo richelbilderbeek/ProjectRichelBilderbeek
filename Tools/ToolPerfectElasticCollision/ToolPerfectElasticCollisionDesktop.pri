@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolPerfectElasticCollision
+include(../../Tools/ToolPerfectElasticCollision/ToolPerfectElasticCollisionConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.cpp
+    ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmaindialog.cpp \
+    ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmenudialog.cpp
 
-HEADERS += \
-    ../../Tools/ToolPerfectElasticCollision/perfectelasticcollisionmenudialog.h
+HEADERS  += \
+    ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmaindialog.h \
+    ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmenudialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolPerfectElasticCollision/Licence.txt
+FORMS    += \
+    ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmaindialog.ui \
+    ../../Tools/ToolPerfectElasticCollision/qtperfectelasticcollisionmenudialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolPerfectElasticCollision/ToolPerfectElasticCollision.qrc

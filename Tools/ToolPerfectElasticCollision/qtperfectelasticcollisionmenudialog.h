@@ -45,16 +45,16 @@ public:
 private slots:
 
   void on_button_start_clicked();
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked() noexcept;
 
 private:
   Ui::QtPerfectElasticCollisionMenuDialog *ui;
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test();
+  #endif
 };
 
 } //~namespace ribi

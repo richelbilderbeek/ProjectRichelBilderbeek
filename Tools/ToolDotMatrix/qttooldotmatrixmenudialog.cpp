@@ -37,7 +37,7 @@ void ribi::QtDotMatrixMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtDotMatrixMenuDialog::on_button_about_clicked()
 {
-  About a = ToolDotMatrixMenuDialog::GetAbout();
+  About a = ToolDotMatrixMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());

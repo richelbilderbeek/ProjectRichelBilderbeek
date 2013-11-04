@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 PerfectElasticCollision, tool to investigate a perfect elastic collision
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2013 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,25 +20,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef PERFECTELASTICCOLLISIONMENUDIALOG_H
 #define PERFECTELASTICCOLLISIONMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <string>
-#include <vector>
-//---------------------------------------------------------------------------
-#include "about.h"
-//---------------------------------------------------------------------------
+
+#include "menudialog.h"
 
 namespace ribi {
 
 ///PerfectElasticCollisionMenuDialog contains the PerfectElasticCollision menu dialog
-struct PerfectElasticCollisionMenuDialog
+struct  PerfectElasticCollisionMenuDialog : public MenuDialog
 {
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
 };
-//---------------------------------------------------------------------------
-///From http://www.richelbilderbeek.nl/CppIntToStr.htm
-const std::string IntToStr(const int x);
 
 } //~namespace ribi
 

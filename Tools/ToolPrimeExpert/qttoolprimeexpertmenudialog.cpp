@@ -32,7 +32,7 @@ void ribi::QtToolPrimeExpertMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtToolPrimeExpertMenuDialog::on_button_about_clicked()
 {
-  About a = PrimeExpertMenuDialog::GetAbout();
+  About a = PrimeExpertMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());

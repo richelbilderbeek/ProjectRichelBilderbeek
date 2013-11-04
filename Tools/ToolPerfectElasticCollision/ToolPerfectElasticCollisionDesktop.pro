@@ -1,20 +1,18 @@
-QT += core gui
-
-CONFIG += console
-CONFIG -= app_bundle
+QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TEMPLATE = app
 
 include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppEncranger/CppEncranger.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppLoopReader/CppLoopReader.pri)
 include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
-include(../../Tools/ToolMultiEncranger/ToolMultiEncrangerConsole.pri)
+include(../../Tools/ToolPerfectElasticCollision/ToolPerfectElasticCollisionDesktop.pri)
 
-SOURCES += main.cpp
+SOURCES += qtmain.cpp
+
 
 #
 #

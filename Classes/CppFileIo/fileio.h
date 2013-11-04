@@ -39,9 +39,15 @@ bool FilesAreIdentical(
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
 const std::vector<std::string> FileToVector(const std::string& filename);
 
-//Returns the extension of a filename
+///Returns the extension of a filename
 //From http://www.richelbilderbeek.nl/CppGetExtension.htm
 const std::string GetExtension(const std::string& filename);
+
+///Returns the extension of a filename, without a trailing dot
+const std::string GetExtensionNoDot(const std::string& filename);
+
+///Returns the extension of a filename, with a trailing dot
+const std::string GetExtensionWithDot(const std::string& filename);
 
 ///Obtain the basename of a file, e.g. '/Folder/temp.txt' -> 'temp'
 ///Replacement of boost::filesystem::basename

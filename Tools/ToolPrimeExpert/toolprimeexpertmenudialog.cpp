@@ -1,12 +1,28 @@
 #include "toolprimeexpertmenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 
-const ribi::About ribi::PrimeExpertMenuDialog::GetAbout()
+int ribi::PrimeExpertMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << this->GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::PrimeExpertMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "PrimeExpert",
-    "solver of quadratic equations",
+    "prime look-up table",
     "the 11th of Oktober 2013",
     "2008-2013",
     "http://www.richelbilderbeek.nl/ToolPrimeExpert.htm",
@@ -16,16 +32,41 @@ const ribi::About ribi::PrimeExpertMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::PrimeExpertMenuDialog::GetVersion()
+const ribi::Help ribi::PrimeExpertMenuDialog::GetHelp() const noexcept
 {
-  return "2.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    }
+    ,
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::PrimeExpertMenuDialog::GetVersionHistory()
+const boost::shared_ptr<const ribi::Program> ribi::PrimeExpertMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramPrimeExpert
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::PrimeExpertMenuDialog::GetVersion() const noexcept
+{
+  return "2.2";
+}
+
+const std::vector<std::string> ribi::PrimeExpertMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-07-12: Version 1.0: initial version in C++ Builder",
     "2011-02-26: Version 2.0: port to Qt Creator",
-    "2013-10-11: Version 2.1: conformized for ProjectRichelBilderbeek"
+    "2013-10-11: Version 2.1: conformized for ProjectRichelBilderbeek",
+    "2013-11-04: Version 2.2: conformized for ProjectRichelBilderbeekConsole",
   };
 }

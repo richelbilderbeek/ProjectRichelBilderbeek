@@ -35,14 +35,12 @@ void ribi::QtToolMultiEncrangerMenuDialog::keyPressEvent(QKeyEvent * event) noex
 
 void ribi::QtToolMultiEncrangerMenuDialog::on_button_about_clicked() noexcept
 {
-  ribi::About a = ribi::ToolMultiEncrangerMenuDialog::GetAbout();
+  ribi::About a = ribi::ToolMultiEncrangerMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   ribi::QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtToolMultiEncrangerMenuDialog::on_button_quit_clicked() noexcept

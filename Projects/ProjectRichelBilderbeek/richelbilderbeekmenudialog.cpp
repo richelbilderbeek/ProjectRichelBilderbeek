@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "dialwidget.h"
 #include "encranger.h"
 #include "exercise.h"
+#include "toolprimeexpertmenudialog.h"
 #include "fixedlagsmootherkalmanfilter.h"
 #include "fuzzy_equal_to.h"
 #include "fuzzy_equal_to.h"
@@ -65,6 +66,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multiapproximator.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
+#include "pictocodemenudialog.h"
 #include "multivector.h"
 #include "musicchord.h"
 #include "musicnote.h"
@@ -78,6 +80,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmenudialog.h"
 #include "qmakewatchermenudialog.h"
 #include "qrcfile.h"
+#include "perfectelasticcollisionmenudialog.h"
 #include "qtcreatorprofile.h"
 #include "question.h"
 #include "questiondialog.h"
@@ -100,6 +103,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
 #include "steadystatekalmanfilterparameters.h"
+#include "toolmultiencrangermenudialog.h"
 #include "stopwatch.h"
 #include "testdialmenudialog.h"
 #include "testexercisemenudialog.h"
@@ -113,6 +117,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "tictactoe.h"
+#include "musictheorymenudialog.h"
 #include "tictactoemenudialog.h"
 #include "toolgaborfiltermenudialog.h"
 #include "togglebutton.h"
@@ -162,6 +167,13 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }
     { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
     { const MenuType p { new MazeCreatorMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new ToolMultiEncrangerMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new MusicTheoryMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new PerfectElasticCollisionMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new PicToCodeMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+    { const MenuType p { new PrimeExpertMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
+
+
     sm_map_to_menu = m;
   }
   assert(!sm_map_to_menu.empty());

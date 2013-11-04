@@ -35,17 +35,17 @@ HEADERS += \
     ../../Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.h
 
 FORMS += \
-    qtfixedlagsmootherkalmanfiltercalculationdialog.ui \
-    qtkalmanfiltercalculationdialog.ui \
-    qtkalmanfilterdialog.ui \
-    qtkalmanfilterermaindialog.ui \
-    qtkalmanfilterermenudialog.ui \
-    qtkalmanfiltererparameterdialog.ui \
-    qtkalmanfilterexamplesdialog.ui \
-    qtkalmanfilterexperimentdialog.ui \
-    qtstandardkalmanfiltercalculationdialog.ui \
-    qtsteadystatekalmanfiltercalculationdialog.ui \
-    qtwhitenoisesystemparametersdialog.ui
+    ../../Tools/ToolKalmanFilterer/qtfixedlagsmootherkalmanfiltercalculationdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfiltercalculationdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfilterdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfilterermaindialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfilterermenudialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfiltererparameterdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfilterexamplesdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtkalmanfilterexperimentdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtstandardkalmanfiltercalculationdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtsteadystatekalmanfiltercalculationdialog.ui \
+    ../../Tools/ToolKalmanFilterer/qtwhitenoisesystemparametersdialog.ui
 
 RESOURCES += \
     ../../Tools/ToolKalmanFilterer/ToolKalmanFilterer.qrc

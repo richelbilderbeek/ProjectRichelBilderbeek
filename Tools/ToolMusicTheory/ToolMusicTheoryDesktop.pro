@@ -1,66 +1,19 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppMusic/CppMusic.pri)
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+include(../../Tools/ToolMusicTheory/ToolMusicTheoryDesktop.pri)
+
 TEMPLATE = app
 
-INCLUDEPATH +=  \
-    ../../Classes/CppAbout \
-    ../../Classes/CppMusic \
-    ../../Classes/CppQtCreatorProFile \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace
-
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppMusic/musicchord.cpp \
-    ../../Classes/CppMusic/musicnote.cpp \
-    ../../Classes/CppMusic/musicscale.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    musictheorymenudialog.cpp \
-    qtchordedge.cpp \
-    qtchordrelationswidget.cpp \
-    qtchordvertex.cpp \
-    qtmain.cpp \
-    qtmultiscalechordrelationswidget.cpp \
-    qtmusictheorymenudialog.cpp \
-    qtmusictheorymultiscaledialog.cpp \
-    qtmusictheorysinglescaledialog.cpp
-
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppMusic/musicchord.h \
-    ../../Classes/CppMusic/musicnote.h \
-    ../../Classes/CppMusic/musicscale.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    musictheorymenudialog.h \
-    qtchordedge.h \
-    qtchordrelationswidget.h \
-    qtchordvertex.h \
-    qtmultiscalechordrelationswidget.h \
-    qtmusictheorymenudialog.h \
-    qtmusictheorymultiscaledialog.h \
-    qtmusictheorysinglescaledialog.h
-
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtmusictheorymenudialog.ui \
-    qtmusictheorymultiscaledialog.ui \
-    qtmusictheorysinglescaledialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppMusic/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    crosscompiletowindows.sh
-
-RESOURCES += \
-    ToolMusicTheory.qrc
+SOURCES += qtmain.cpp
 
 
 #

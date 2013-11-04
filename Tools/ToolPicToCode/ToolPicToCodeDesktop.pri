@@ -1,13 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolPicToCode
+include(../../Tools/ToolPicToCode/ToolPicToCodeConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolPicToCode/pictocodemaindialog.cpp \
-    ../../Tools/ToolPicToCode/pictocodemenudialog.cpp
+    ../../Tools/ToolPicToCode/qtpictocodemaindialog.cpp \
+    ../../Tools/ToolPicToCode/qtpictocodemenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolPicToCode/pictocodemaindialog.h \
-    ../../Tools/ToolPicToCode/pictocodemenudialog.h
+    ../../Tools/ToolPicToCode/qtpictocodemaindialog.h \
+    ../../Tools/ToolPicToCode/qtpictocodemenudialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolPicToCode/Licence.txt
+FORMS += \
+    ../../Tools/ToolPicToCode/qtpictocodemaindialog.ui \
+    ../../Tools/ToolPicToCode/qtpictocodemenudialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolPicToCode/ToolPicToCode.qrc
