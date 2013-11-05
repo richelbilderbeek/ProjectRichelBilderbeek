@@ -20,26 +20,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef TESTPYLOSMAINDIALOG_H
 #define TESTPYLOSMAINDIALOG_H
-//---------------------------------------------------------------------------
-#include <string>
-#include <vector>
-//---------------------------------------------------------------------------
-#include "about.h"
-//---------------------------------------------------------------------------
+
+#include "menudialog.h"
 
 namespace ribi {
 
-struct TestPylosMenuDialog
+struct TestPylosMenuDialog : public MenuDialog
 {
-  ///Obtain the About information of this class
-  static const About GetAbout() noexcept;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ribi

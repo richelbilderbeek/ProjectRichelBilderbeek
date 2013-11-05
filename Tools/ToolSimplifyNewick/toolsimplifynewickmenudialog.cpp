@@ -20,9 +20,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "toolsimplifynewickmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "newickvector.h"
 
-const ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() noexcept
+int ribi::ToolSimplifyNewickMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +52,35 @@ const ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::ToolSimplifyNewickMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::ToolSimplifyNewickMenuDialog::GetHelp() const noexcept
 {
-  return "3.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::ToolSimplifyNewickMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::ToolSimplifyNewickMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramSimplifyNewick
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ToolSimplifyNewickMenuDialog::GetVersion() const noexcept
+{
+  return "3.1";
+}
+
+const std::vector<std::string> ribi::ToolSimplifyNewickMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-12: version 1.0: initial version",
@@ -50,5 +88,6 @@ const std::vector<std::string> ribi::ToolSimplifyNewickMenuDialog::GetVersionHis
     "2010-09-16: version 1.2: simplification is frequency dependent. For example: (100,2) will be simplified to (99,2) 50x more often than to (100,1)",
     "2011-05-07: version 2.0: use NewickVector instead of BinaryNewickVector, replace custom about and whats new dialog by QtAboutDialog",
     "2013-09-19: version 3.0: conformized for ProjectRichelBilderbeek",
+    "2013-11-05: version 3.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }

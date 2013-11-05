@@ -1,13 +1,14 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestQuestion
+include(../../Tools/ToolTestQuestion/ToolTestQuestionConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolTestQuestion/testquestionmaindialog.cpp \
-    ../../Tools/ToolTestQuestion/testquestionmenudialog.cpp
+    ../../Tools/ToolTestQuestion/qttestquestionmenudialog.cpp \
+    ../../Tools/ToolTestQuestion/qttestquestionmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestQuestion/testquestionmaindialog.h \
-    ../../Tools/ToolTestQuestion/testquestionmenudialog.h
+    ../../Tools/ToolTestQuestion/qttestquestionmenudialog.h \
+    ../../Tools/ToolTestQuestion/qttestquestionmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestQuestion/Licence.txt
+FORMS += \
+    ../../Tools/ToolTestQuestion/qttestquestionmenudialog.ui \
+    ../../Tools/ToolTestQuestion/qttestquestionmaindialog.ui
+

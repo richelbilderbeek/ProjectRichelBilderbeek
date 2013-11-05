@@ -1,13 +1,13 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestShape
+include(../../Tools/ToolTestShape/ToolTestShapeConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolTestShape/testshapemaindialog.cpp \
-    ../../Tools/ToolTestShape/testshapemenudialog.cpp
+    ../../Tools/ToolTestShape/qttestshapemenudialog.cpp \
+    ../../Tools/ToolTestShape/qttestshapemaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestShape/testshapemaindialog.h \
-    ../../Tools/ToolTestShape/testshapemenudialog.h
+    ../../Tools/ToolTestShape/qttestshapemenudialog.h \
+    ../../Tools/ToolTestShape/qttestshapemaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestShape/Licence.txt
+FORMS += \
+    ../../Tools/ToolTestShape/qttestshapemenudialog.ui \
+    ../../Tools/ToolTestShape/qttestshapemaindialog.ui

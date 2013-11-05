@@ -21,29 +21,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTOPENQUESTIONMENUDIALOG_H
 #define TESTOPENQUESTIONMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///The logic behind the menu dialog
-struct TestOpenQuestionMenuDialog
+struct TestOpenQuestionMenuDialog : public MenuDialog
 {
   ///Creates the resources needed
   TestOpenQuestionMenuDialog();
 
-  ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call TestOpenQuestionMenuDialog its constructor: this is where
-  ///the resources needed are created
-  const About GetAbout() const;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version
-  static const std::string GetVersion();
-
-  ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ribi

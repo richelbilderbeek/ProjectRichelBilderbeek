@@ -20,9 +20,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testdialmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "dial.h"
 
-const ribi::About ribi::TestDialMenuDialog::GetAbout() noexcept
+int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +52,35 @@ const ribi::About ribi::TestDialMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestDialMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestDialMenuDialog::GetHelp() const noexcept
 {
-  return "2.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestDialMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestDial
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestDialMenuDialog::GetVersion() const noexcept
+{
+  return "2.2";
+}
+
+const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version, web version not yet working",
@@ -50,7 +88,8 @@ const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() noe
     "2011-06-27: Version 1.2: split up logic and graphics of user interfaces",
     "2011-07-16: Version 1.3: updated to new Dial version",
     "2011-08-07: Version 2.0: conformized architure for MysteryMachine",
-    "2011-08-31: Version 2.1: added more testing option, added image to Welcome page of website version"
+    "2011-08-31: Version 2.1: added more testing option, added image to Welcome page of website version",
+    "2013-11-05: version 2.2: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

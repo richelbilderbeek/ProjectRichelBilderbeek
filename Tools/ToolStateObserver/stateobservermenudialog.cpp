@@ -20,6 +20,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "stateobservermenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
@@ -30,7 +33,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "multialphafilter.h"
 #include "multiintegerstateobserver.h"
 
-const ribi::About ribi::StateObserverMenuDialog::GetAbout() noexcept
+int ribi::StateObserverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::StateObserverMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -53,17 +68,41 @@ const ribi::About ribi::StateObserverMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::StateObserverMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::StateObserverMenuDialog::GetHelp() const noexcept
 {
-  return "1.2";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::StateObserverMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramStateObserver
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::StateObserverMenuDialog::GetVersion() const noexcept
+{
+  return "1.3";
+}
+
+const std::vector<std::string> ribi::StateObserverMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-05-25: version 1.0: initial version",
     "2013-06-04: version 1.1: added more state observers, allow plotting of subset of state observers",
     "2013-06-17: version 1.1: improved menu screen",
     "2013-07-12: version 1.2: transitioned to Qt5 and Boost 1.54.0",
+    "2013-11-05: version 1.3: conformized for ProjectRichelBilderbeekConsole"
   };
 }

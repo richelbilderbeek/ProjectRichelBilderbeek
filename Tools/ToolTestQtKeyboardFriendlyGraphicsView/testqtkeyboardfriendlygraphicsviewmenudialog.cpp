@@ -18,13 +18,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestKeyboardFriendlyGraphicsView.htm
 //---------------------------------------------------------------------------
-
-
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
+
+#include <cassert>
+#include <iostream>
 
 #include "trace.h"
 
-const ribi::About ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout() noexcept
+int ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,17 +53,41 @@ const ribi::About ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout() n
   return a;
 }
 
-const std::string ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetHelp() const noexcept
 {
-  return "0.3";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-13: version 0.1: initial version");
-  v.push_back("2012-12-17: version 0.2: initial release, added about sceen, adding items, showing help");
-  v.push_back("2012-12-19: version 0.3: improved looks, added QtArrowItem, QtPathArrowItem, QtRoundedTextRect");
-  return v;
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtKeyboardFriendlyGraphicsView
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersion() const noexcept
+{
+  return "0.4";
+}
+
+const std::vector<std::string> ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2012-12-13: version 0.1: initial version",
+    "2012-12-17: version 0.2: initial release, added about sceen, adding items, showing help",
+    "2012-12-19: version 0.3: improved looks, added QtArrowItem, QtPathArrowItem, QtRoundedTextRect",
+    "2013-11-05: version 0.4: conformized for ProjectRichelBilderbeekConsole"
+  };
 }
 

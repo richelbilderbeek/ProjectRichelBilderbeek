@@ -18,9 +18,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelbilderbeekNlSitemapGenerator.htm
 //---------------------------------------------------------------------------
-
-
 #include "sitemapgeneratormenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
+
+int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
 
 const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
 {
@@ -37,6 +51,29 @@ const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
   return a;
 }
 
+const ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramRichelBilderbeekNlSitemapGenerator
+  };
+  assert(p);
+  return p;
+}
+
 const std::string ribi::SitemapGeneratorMenuDialog::GetVersion() const noexcept
 {
   return "1.3";
@@ -51,7 +88,3 @@ const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHisto
     "2012-12-15: version 1.3: made global functions static member functions, use of QtHideAndShowDialog, added some graphics to menu"
   };
 }
-
-
-
-

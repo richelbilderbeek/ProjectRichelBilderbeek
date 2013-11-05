@@ -18,9 +18,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRegexTester.htm
 //---------------------------------------------------------------------------
-
-
 #include "regextestermenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
+int ribi::RegexTesterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
 
 const ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
 {
@@ -34,6 +47,29 @@ const ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   return a;
+}
+
+const ribi::Help ribi::RegexTesterMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::RegexTesterMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramRegexTester
+  };
+  assert(p);
+  return p;
 }
 
 const std::string ribi::RegexTesterMenuDialog::GetVersion() const noexcept

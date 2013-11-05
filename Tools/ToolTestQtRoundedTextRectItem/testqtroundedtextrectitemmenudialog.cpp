@@ -22,10 +22,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "testqtroundedtextrectitemmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout() noexcept
+int ribi::TestQtRoundedTextRectItemMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -41,16 +56,40 @@ const ribi::About ribi::TestQtRoundedTextRectItemMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestQtRoundedTextRectItemMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestQtRoundedTextRectItemMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQtRoundedTextRectItemMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedTextRectItemMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-21: version 1.0: initial version");
-  v.push_back("2012-12-31: version 1.1: added menu");
-  return v;
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtRoundedTextRectItem
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestQtRoundedTextRectItemMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+const std::vector<std::string> ribi::TestQtRoundedTextRectItemMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2012-12-21: version 1.0: initial version",
+    "2012-12-31: version 1.1: added menu",
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
+  };
 }
 

@@ -23,12 +23,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testopenquestionmenudialog.h"
 
+#include <cassert>
+#include <iostream>
 #include <stdexcept>
-
-#include <boost/foreach.hpp>
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "fileio.h"
 #include "trace.h"
 
 #include <QFile>
@@ -37,15 +38,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
 {
   const std::vector<std::string> files = { "Question.png" };
-  BOOST_FOREACH(const std::string& filename,files)
+  for(const std::string& filename: files)
   {
-    if (!QFile::exists(filename.c_str()))
+    if (!fileio::IsRegularFile(filename))
     {
       QFile f( (std::string(":/images/") + filename).c_str() );
-        f.copy(filename.c_str());
+      f.copy(filename.c_str());
     }
-    assert(QFile::exists(filename.c_str()));
-    if (QFile::exists(filename.c_str()))
+    assert(fileio::IsRegularFile(filename));
+    if (!fileio::IsRegularFile(filename))
     {
       const std::string s = "TestOpenQuestionMenuDialog: file not found: " + filename;
       throw std::logic_error(s.c_str());
@@ -53,7 +54,19 @@ ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
   }
 }
 
-const ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const
+int ribi::TestOpenQuestionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -70,15 +83,38 @@ const ribi::About ribi::TestOpenQuestionMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestOpenQuestionMenuDialog::GetVersion()
+const ribi::Help ribi::TestOpenQuestionMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::TestOpenQuestionMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestOpenQuestion
+  };
+  assert(p);
+  return p;
+}
+const std::string ribi::TestOpenQuestionMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-20: Version 1.0: initial version"
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

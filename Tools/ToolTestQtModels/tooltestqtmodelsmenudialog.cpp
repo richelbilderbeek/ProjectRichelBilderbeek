@@ -18,13 +18,26 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtModels.htm
 //---------------------------------------------------------------------------
-
-
 #include "tooltestqtmodelsmenudialog.h"
+
+#include <cassert>
+#include <iostream>
 
 #include "trace.h"
 
-const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() noexcept
+int ribi::ToolTestQtModelsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,15 +52,39 @@ const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::ToolTestQtModelsMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::ToolTestQtModelsMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::ToolTestQtModelsMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2013-05-15: version 1.0: initial version");
-  v.push_back("2013-06-27: version 1.1: added QtUblasVectorIntModel");
-  return v;
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtModels
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ToolTestQtModelsMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+const std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2013-05-15: version 1.0: initial version",
+    "2013-06-27: version 1.1: added QtUblasVectorIntModel",
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
+  };
 }

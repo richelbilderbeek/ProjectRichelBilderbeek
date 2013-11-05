@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-TestLed, tool to test the Led class
-Copyright (C) 2011 Richel Bilderbeek
+TestOpenQuestion, tool to test the Question and QuestionDialog classes
+Copyright (C) 2011-2012 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,27 +16,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolTestLed.htm
+//From http://www.richelbilderbeek.nl/ToolTestOpenQuestion.htm
 //---------------------------------------------------------------------------
-#ifndef TESTLEDDIALOG_H
-#define TESTLEDDIALOG_H
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "testopenquestionmenudialog.h"
+#pragma GCC diagnostic pop
 
-#include "menudialog.h"
-
-namespace ribi {
-
-struct TestLedMenuDialog : public MenuDialog
+int main(int argc, char *argv[])
 {
-  const About GetAbout() const noexcept;
-  const Help GetHelp() const noexcept;
-  const boost::shared_ptr<const Program> GetProgram() const noexcept;
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  ribi::TestOpenQuestionMenuDialog d;
+  return d.Execute(args);
+}
 
-  private:
-  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
-};
-
-} //~namespace ribi
-
-#endif // TESTLEDDIALOG_H

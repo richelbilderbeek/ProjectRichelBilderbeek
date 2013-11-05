@@ -21,21 +21,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef TESTQTCREATORPROFILEMENUDIALOG_H
 #define TESTQTCREATORPROFILEMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
-struct TestQtCreatorProFileMenuDialog
+struct TestQtCreatorProFileMenuDialog : public MenuDialog
 {
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its About information
-  static const About GetAbout() noexcept;
-
-  ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace ribi

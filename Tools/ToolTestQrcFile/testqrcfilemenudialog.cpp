@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testqrcfilemenudialog.h"
 
 #include <cassert>
+#include <iostream>
 
 #include <QFile>
 
@@ -31,7 +32,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() noexcept
+int ribi::TestQrcFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -48,16 +61,40 @@ const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestQrcFileMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestQrcFileMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestQrcFileMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQrcFile
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestQrcFileMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-06-13: version 1.0: initial version",
-    "2013-05-20: version 1.1: some GUI modifications"
+    "2013-05-20: version 1.1: some GUI modifications",
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

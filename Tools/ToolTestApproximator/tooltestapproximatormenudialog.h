@@ -6,7 +6,6 @@
 
 namespace ribi {
 
-///GUI independent ToolTestApproximator menu dialog
 struct ToolTestApproximatorMenuDialog : public MenuDialog
 {
   const About GetAbout() const noexcept;

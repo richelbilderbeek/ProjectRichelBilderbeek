@@ -20,9 +20,24 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 // ---------------------------------------------------------------------------
 #include "testqtarrowitemsmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 
-const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout() noexcept
+int ribi::TestQtArrowItemsMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -38,15 +53,39 @@ const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestQtArrowItemsMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestQtArrowItemsMenuDialog::GetHelp() const noexcept
 {
-  return "1.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestQtArrowItemsMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtArrowItems
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestQtArrowItemsMenuDialog::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-12-07: version 0.1: initial version",
-    "2013-01-01: version 1.0: added menu"
+    "2013-01-01: version 1.0: added menu",
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }

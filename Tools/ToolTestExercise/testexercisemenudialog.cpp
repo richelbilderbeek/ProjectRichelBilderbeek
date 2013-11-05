@@ -22,6 +22,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "testexercisemenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "exercise.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
@@ -32,7 +35,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TestExerciseMenuDialog::GetAbout() const
+int ribi::TestExerciseMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestExerciseMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,14 +69,37 @@ const ribi::About ribi::TestExerciseMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestExerciseMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestExerciseMenuDialog::GetHelp() const noexcept
 {
-  return "1.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestExerciseMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestExercise
+  };
+  assert(p);
+  return p;
+}
+const std::string ribi::TestExerciseMenuDialog::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::TestExerciseMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2011-09-26: Version 1.0: initial version"
+    "2011-09-26: Version 1.0: initial version",
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }

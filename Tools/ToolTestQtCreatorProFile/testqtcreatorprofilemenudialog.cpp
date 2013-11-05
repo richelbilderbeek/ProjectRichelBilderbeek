@@ -22,11 +22,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "testqtcreatorprofilemenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 #include "qtcreatorprofile.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() noexcept
+int ribi::TestQtCreatorProFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -42,17 +57,41 @@ const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestQtCreatorProFileMenuDialog::GetHelp() const noexcept
 {
-  return "1.2";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestQtCreatorProFileMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtCreatorProFile
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestQtCreatorProFileMenuDialog::GetVersion() const noexcept
+{
+  return "1.3";
+}
+
+const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial version, called TestProFile",
     "2012-02-27: version 1.1: initial version with About information",
-    "2013-05-18: version 1.2: renamed this tool to TestQtCreatorProFile"
+    "2013-05-18: version 1.2: renamed this tool to TestQtCreatorProFile",
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

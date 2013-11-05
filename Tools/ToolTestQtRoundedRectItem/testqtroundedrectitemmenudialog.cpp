@@ -1,8 +1,23 @@
 #include "testqtroundedrectitemmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
 
-const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() noexcept
+int ribi::TestQtRoundedRectItemMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -18,16 +33,40 @@ const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestQtRoundedRectItemMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestQtRoundedRectItemMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestQtRoundedRectItemMenuDialog::GetProgram() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-21: version 1.0: initial version");
-  v.push_back("2012-05-20: version 1.1: added menu");
-  return v;
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQtRoundedRectItem
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestQtRoundedRectItemMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+const std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersionHistory() const noexcept
+{
+  return {
+    "2012-12-21: version 1.0: initial version",
+    "2012-05-20: version 1.1: added menu",
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
+  };
 }
 

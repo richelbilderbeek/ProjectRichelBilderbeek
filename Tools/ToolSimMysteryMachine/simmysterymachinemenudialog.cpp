@@ -22,6 +22,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "simmysterymachinemenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "dial.h"
 #include "dialwidget.h"
 #include "led.h"
@@ -33,7 +36,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() noexcept
+int ribi::SimMysteryMachineMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -57,12 +72,35 @@ const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::SimMysteryMachineMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::SimMysteryMachineMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::SimMysteryMachineMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramSimMysteryMachine
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::SimMysteryMachineMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version (web application version not working yet)",

@@ -23,12 +23,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testmultiplechoicequestionmenudialog.h"
 
+#include <cassert>
+#include <iostream>
 #include <stdexcept>
-
-#include <boost/foreach.hpp>
 
 #include <QFile>
 
+#include "fileio.h"
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
 #include "trace.h"
@@ -38,20 +39,33 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog()
 {
   const std::vector<std::string> files = { "Question.png" };
-  BOOST_FOREACH(const std::string& filename,files)
+  for(const std::string& filename: files)
   {
-    if (!QFile::exists(filename.c_str()))
+
+    if (!fileio::IsRegularFile(filename))
     {
       QFile f( (std::string(":/images/") + filename).c_str() );
         f.copy(filename.c_str());
     }
-    assert(QFile::exists(filename.c_str()));
-    if (QFile::exists(filename.c_str()))
+    if (!fileio::IsRegularFile(filename))
     {
       const std::string s = "TestMultipleChoiceQuestionMenuDialog: file not found: " + filename;
       throw std::logic_error(s.c_str());
     }
+    assert(fileio::IsRegularFile(filename));
   }
+}
+
+int ribi::TestMultipleChoiceQuestionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
 }
 
 const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const noexcept
@@ -71,12 +85,34 @@ const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const n
   return a;
 }
 
-const std::string ribi::TestMultipleChoiceQuestionMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestMultipleChoiceQuestionMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::TestMultipleChoiceQuestionMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestMultipleChoiceQuestion
+  };
+  assert(p);
+  return p;
+}
+const std::string ribi::TestMultipleChoiceQuestionMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestMultipleChoiceQuestionMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::TestMultipleChoiceQuestionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-20: Version 1.0: initial version"

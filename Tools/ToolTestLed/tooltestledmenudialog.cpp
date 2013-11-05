@@ -20,10 +20,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "tooltestledmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "led.h"
 #include "ledwidget.h"
 
-const ribi::About ribi::TestLedMenuDialog::GetAbout() noexcept
+int ribi::TestLedMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,18 +54,42 @@ const ribi::About ribi::TestLedMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestLedMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestLedMenuDialog::GetHelp() const noexcept
 {
-  return "1.3";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestLedMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestLed
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestLedMenuDialog::GetVersion() const noexcept
+{
+  return "1.4";
+}
+
+const std::vector<std::string> ribi::TestLedMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version, web version not yet working",
     "2011-04-11: Version 1.1: got web version to work, added more About info",
     "2011-07-02: Version 1.2: added menu",
-    "2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version"
+    "2011-09-08: Version 1.3: added Welcome screen picture and increased testing in website version",
+    "2013-11-05: version 1.4: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

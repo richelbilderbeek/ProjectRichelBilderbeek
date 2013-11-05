@@ -25,6 +25,11 @@ void ribi::fileio::CopyFile(
   {
     throw std::logic_error("Copying to an existing file is not allowed");
   }
+  if (IsRegularFile(fileNameTo))
+  {
+    //DeleteFile ensures a correct deletion
+    DeleteFile(fileNameTo);
+  }
   std::ifstream in (fileNameFrom.c_str());
   std::ofstream out(fileNameTo.c_str());
   out << in.rdbuf();
@@ -35,7 +40,24 @@ void ribi::fileio::CopyFile(
 void ribi::fileio::DeleteFile(const std::string& filename)
 {
   std::remove(filename.c_str());
-  assert(!IsRegularFile(filename));
+  if (IsRegularFile(filename))
+  {
+    #ifdef _WIN32
+    const std::string cmd = "attrib -r " + filename;
+    std::system(cmd.c_str());
+    std::remove(filename.c_str());
+    #endif
+  }
+
+  #ifndef NDEBUG
+  if (IsRegularFile(filename))
+  {
+    const std::string s = "Failed to delete " + filename;
+    TRACE(s);
+  }
+  #endif
+  assert(!IsRegularFile(filename)
+    && "File must not exist anymore");
 }
 
 bool ribi::fileio::FilesAreIdentical(
@@ -43,11 +65,17 @@ bool ribi::fileio::FilesAreIdentical(
   const std::string& filename_b)
 {
   #ifndef NDEBUG
-  if (!IsRegularFile(filename_a)) TRACE(filename_a);
-  if (!IsRegularFile(filename_b)) TRACE(filename_b);
+  if (!IsRegularFile(filename_a))
+  {
+    TRACE(filename_a);
+  }
+  if (!IsRegularFile(filename_b))
+  {
+    TRACE(filename_b);
+  }
   #endif
-  assert(IsRegularFile(filename_a));
-  assert(IsRegularFile(filename_b));
+  assert(IsRegularFile(filename_a) && "File must exist to be compared");
+  assert(IsRegularFile(filename_b) && "File must exist to be compared");
   const std::vector<std::string> v { FileToVector(filename_a) };
   const std::vector<std::string> w { FileToVector(filename_b) };
   return v == w;
@@ -223,6 +251,11 @@ void ribi::fileio::RenameFile(
   if (rename_mode == RenameMode::prevent_overwrite && IsRegularFile(to))
   {
     throw std::logic_error("Renaming to an existing file is not allowed");
+  }
+  if (IsRegularFile(to))
+  {
+    //DeleteFile ensures a correct deletion
+    DeleteFile(to);
   }
   const int result = std::rename(from.c_str(),to.c_str());
   if (result == 0)

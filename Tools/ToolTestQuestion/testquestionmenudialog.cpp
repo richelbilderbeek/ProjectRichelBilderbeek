@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testquestionmenudialog.h"
 
+#include <cassert>
+#include <iostream>
 #include <stdexcept>
 
 #include <boost/foreach.hpp>
@@ -58,7 +60,19 @@ ribi::TestQuestionMenuDialog::TestQuestionMenuDialog()
   }
 }
 
-const ribi::About ribi::TestQuestionMenuDialog::GetAbout() const
+int ribi::TestQuestionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestQuestionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -79,17 +93,41 @@ const ribi::About ribi::TestQuestionMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestQuestionMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestQuestionMenuDialog::GetHelp() const noexcept
 {
-  return "3.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestQuestionMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestQuestion
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestQuestionMenuDialog::GetVersion() const noexcept
+{
+  return "3.1";
+}
+
+const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-28: Version 1.0: initial version",
     "2011-09-16: Version 2.0: show QuestionDialog from std::string in website version",
     "2012-12-23: Version 2.1: finished desktop application",
-    "2013-08-20: Version 3.0: major architectural rewrite"
+    "2013-08-20: Version 3.0: major architectural rewrite",
+    "2013-11-05: version 3.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }

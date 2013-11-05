@@ -11,3 +11,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestShape/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestShape/ToolTestShape.qrc

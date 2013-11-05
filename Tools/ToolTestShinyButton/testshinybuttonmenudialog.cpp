@@ -20,13 +20,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testshinybuttonmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "rainbow.h"
 #include "rectangle.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "trace.h"
 
-const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() noexcept
+int ribi::TestShinyButtonMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -46,16 +61,40 @@ const ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestShinyButtonMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestShinyButtonMenuDialog::GetHelp() const noexcept
 {
-  return "2.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestShinyButtonMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestShinyButton
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestShinyButtonMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",
     "2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version",
     "2012-02-13: Version 2.0: created a desktop version of TestShinyButton",
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }

@@ -20,7 +20,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "testfunctionparsermenudialog.h"
 
-const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() noexcept
+#include <cassert>
+#include <iostream>
+
+int ribi::TestFunctionParserMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,18 +54,41 @@ const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TestFunctionParserMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestFunctionParserMenuDialog::GetHelp() const noexcept
 {
-  return "2.3";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestFunctionParserMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestFunctionParser
+  };
+  assert(p);
+  return p;
+}
+const std::string ribi::TestFunctionParserMenuDialog::GetVersion() const noexcept
+{
+  return "2.4";
+}
+
+const std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-02-02: Version 1.0: initial C++ Builder desktop version",
     "2011-06-24: Version 2.0: port to Qt Creator desktop version",
     "2011-06-24: Version 2.1: added web version",
     "2011-08-31: Version 2.2: added image to Welcome to web version",
-    "2013-04-22: Version 2.3: added image to Welcome to desktop version"
+    "2013-04-22: Version 2.3: added image to Welcome to desktop version",
+    "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole"
   };
 }

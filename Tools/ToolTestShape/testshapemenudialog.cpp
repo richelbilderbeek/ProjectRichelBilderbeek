@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testshapemenudialog.h"
 
+#include <cassert>
+#include <iostream>
 #include <boost/foreach.hpp>
 
 #include "shape.h"
@@ -32,6 +34,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 
 #pragma GCC diagnostic pop
+
+int ribi::TestShapeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
 
 ribi::TestShapeMenuDialog::TestShapeMenuDialog()
 {
@@ -50,7 +64,7 @@ ribi::TestShapeMenuDialog::TestShapeMenuDialog()
   }
 }
 
-const ribi::About ribi::TestShapeMenuDialog::GetAbout() const
+const ribi::About ribi::TestShapeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -69,16 +83,40 @@ const ribi::About ribi::TestShapeMenuDialog::GetAbout() const
   return a;
 }
 
-const std::string ribi::TestShapeMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TestShapeMenuDialog::GetHelp() const noexcept
 {
-  return "2.0";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory() noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestShapeMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestShape
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestShapeMenuDialog::GetVersion() const noexcept
+{
+  return "2.1";
+}
+
+const std::vector<std::string> ribi::TestShapeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-28: Version 1.0: initial version",
-    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget"
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget",
+    "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
 

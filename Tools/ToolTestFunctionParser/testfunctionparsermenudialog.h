@@ -23,7 +23,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "menudialog.h"
 
-
 namespace ribi {
 
 struct TestFunctionParserMenuDialog : public MenuDialog

@@ -1,11 +1,27 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "tooltestsimplelinearregressionmenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "simplelinearregression.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
+int ribi::ToolTestSimpleLinearRegressionMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -21,15 +37,39 @@ const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersion()
+const ribi::Help ribi::ToolTestSimpleLinearRegressionMenuDialog::GetHelp() const noexcept
 {
-  return "1.1";
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
 }
 
-const std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory()
+const boost::shared_ptr<const ribi::Program> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramTestSimpleLinearRegression
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersion() const noexcept
+{
+  return "1.2";
+}
+
+const std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-27: version 1.0: initial version",
-    "2013-08-28: version 1.1: isolated and templated SimpleLinearRegression class"
+    "2013-08-28: version 1.1: isolated and templated SimpleLinearRegression class",
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
   };
 }
