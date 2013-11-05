@@ -1,3 +1,8 @@
+include(../../DesktopApplication.pri)
+include(../../Libraries/BigInteger.pri)
+include(../../Libraries/Boost.pri)
+include(../../Libraries/Fparser.pri)
+
 include(../../Classes/CppAbout/CppAbout.pri)
 include(../../Classes/CppApproximator/CppApproximator.pri)
 include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
@@ -159,85 +164,4 @@ include(../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pr
 QT += core gui svg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
-
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-
 SOURCES += qtmain.cpp
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Big integer
-#
-#
-INCLUDEPATH += \
-    ../../Libraries/bigint-2010.04.30
-
-HEADERS += \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh \
-    ../../Libraries/bigint-2010.04.30/BigInteger.hh \
-    ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.hh \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh \
-    ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh
-
-SOURCES += \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
-    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-
-#
-#
-# Warp's function parser
-#
-#
-INCLUDEPATH += \
-  ../../Libraries/fparser4.5.1
-
-HEADERS += \
-  ../../Libraries/fparser4.5.1/extrasrc/fpaux.hh \
-  ../../Libraries/fparser4.5.1/extrasrc/fptypes.hh \
-  ../../Libraries/fparser4.5.1/fparser_gmpint.hh \
-  ../../Libraries/fparser4.5.1/fparser.hh \
-  ../../Libraries/fparser4.5.1/fparser_mpfr.hh \
-  ../../Libraries/fparser4.5.1/fpconfig.hh
-
-SOURCES += \
-  ../../Libraries/fparser4.5.1/fparser.cc \
-  ../../Libraries/fparser4.5.1/fpoptimizer.cc
-
-
-OTHER_FILES += \
-  ../../Libraries/fparser4.5.1/extrasrc/fp_identifier_parser.inc \
-  ../../Libraries/fparser4.5.1/extrasrc/fp_opcode_add.inc
