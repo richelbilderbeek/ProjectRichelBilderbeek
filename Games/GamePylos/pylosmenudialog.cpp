@@ -20,7 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "pylosmenudialog.h"
 
-#include <cstdlib>
+#include <cassert>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -32,7 +32,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #include "pylosplayer.h"
 
-const ribi::About ribi::PylosMenuDialog::GetAbout() noexcept
+int ribi::PylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::PylosMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -51,12 +63,35 @@ const ribi::About ribi::PylosMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::PylosMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::PylosMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::PylosMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramPylos
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::PylosMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::PylosMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::PylosMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-22: version 1.0: initial release version",

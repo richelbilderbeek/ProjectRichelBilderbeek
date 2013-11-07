@@ -20,12 +20,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "maziakmenudialog.h"
 
-#include <cstdlib>
+#include <cassert>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
 
-const ribi::About ribi::MaziakMenuDialog::GetAbout() noexcept
+int ribi::MaziakMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::MaziakMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,12 +52,35 @@ const ribi::About ribi::MaziakMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::MaziakMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::MaziakMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::MaziakMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramMaziak
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::MaziakMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::MaziakMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::MaziakMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-03-06: version 2.1: Conformized architecture and naming for ProjectRichelBilderbeek.",

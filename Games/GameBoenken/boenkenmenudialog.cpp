@@ -19,11 +19,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/GameBoenken.htm
 //---------------------------------------------------------------------------
-
-
 #include "boenkenmenudialog.h"
 
-const ribi::About ribi::Boenken::MenuDialog::GetAbout() noexcept
+#include <cassert>
+#include <iostream>
+
+int ribi::Boenken::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::Boenken::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -37,12 +50,35 @@ const ribi::About ribi::Boenken::MenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::Boenken::MenuDialog::GetVersion() noexcept
+const ribi::Help ribi::Boenken::MenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::Boenken::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramBoenken
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::Boenken::MenuDialog::GetVersion() const noexcept
 {
   return "4.1";
 }
 
-const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2000-xx-xx: version 0.0: wrote QBASIC version of Boenken",

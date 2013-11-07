@@ -1,14 +1,14 @@
 INCLUDEPATH += \
-    ../../Games/GameBeerWanter
+    ../../Games/GameConnectThree
 
 SOURCES += \
     ../../Games/GameConnectThree/connectthreemenudialog.cpp \
     ../../Games/GameConnectThree/connectthreeresources.cpp
 
 HEADERS  += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-    ../../Games/GameBeerWanter/beerwantermenudialog.h
+    ../../Games/GameConnectThree/connectthreemenudialog.h \
+    ../../Games/GameConnectThree/connectthreeresources.h
 
 OTHER_FILES += \
-    ../../Games/GameBeerWanter/Licence.txt
+    ../../Games/GameConnectThree/Licence.txt
 

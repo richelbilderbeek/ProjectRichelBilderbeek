@@ -22,25 +22,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef BOENKENMENUDIALOG_H
 #define BOENKENMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 namespace Boenken {
 
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Obtain the about information of this class
-  static const About GetAbout() noexcept;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace Boenken

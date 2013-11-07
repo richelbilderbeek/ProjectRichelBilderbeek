@@ -21,10 +21,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "tictactoemenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "tictactoe.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::TicTacToeMenuDialog::GetAbout() noexcept
+int ribi::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +55,35 @@ const ribi::About ribi::TicTacToeMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::TicTacToeMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::TicTacToeMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramTicTacToe
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TicTacToeMenuDialog::GetVersion() const noexcept
 {
   return "1.5";
 }
 
-const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-24: Version 1.0: initial version",

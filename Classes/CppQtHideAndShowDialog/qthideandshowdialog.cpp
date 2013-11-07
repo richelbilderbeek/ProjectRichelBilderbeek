@@ -89,7 +89,8 @@ void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)
 {
   assert(dialog);
   this->setEnabled(false);
-  QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));
+  //QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));
+  QObject::connect(dialog,&QtHideAndShowDialog::close_me,this,&QtHideAndShowDialog::close_child);
   m_show_child = true;
   while (m_show_child)
   {

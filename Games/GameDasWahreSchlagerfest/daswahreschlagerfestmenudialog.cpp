@@ -20,12 +20,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "daswahreschlagerfestmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 ribi::DasWahreSchlagerfestMenuDialog::DasWahreSchlagerfestMenuDialog()
 {
 
 }
 
-const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() noexcept
+int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
 {
   return About(
     "Richel Bilderbeek",
@@ -38,12 +53,35 @@ const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() noexcept
     GetVersionHistory());
 }
 
-const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramDasWahreSchlagerfest
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2003-09-30: version 1.1: Windows-only version",

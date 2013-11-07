@@ -36,7 +36,8 @@ ribi::QtBoenkenArenaDialog::QtBoenkenArenaDialog(QWidget *parent) noexcept :
     ui(new Ui::QtBoenkenArenaDialog)
 {
   ui->setupUi(this);
-  QObject::connect(ui->button_done,SIGNAL(clicked()),this,SLOT(close()));
+  QObject::connect(
+    ui->button_done,&QPushButton::clicked,this,&QtBoenkenArenaDialog::close);
 }
 
 ribi::QtBoenkenArenaDialog::~QtBoenkenArenaDialog() noexcept

@@ -1,11 +1,24 @@
 #include "k3opeenrijmenudialog.h"
 
 #include <cassert>
+#include <iostream>
 
 #include "connectthree.h"
 #include "connectthreewidget.h"
 
-const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() noexcept
+int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -22,12 +35,35 @@ const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::K3OpEenRijMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::K3OpEenRijMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::K3OpEenRijMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramK3OpEenRij
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::K3OpEenRijMenuDialog::GetVersion() const noexcept
 {
   return "6.0";
 }
 
-const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-01-03: version 3.0: initial C++ Builder verion",

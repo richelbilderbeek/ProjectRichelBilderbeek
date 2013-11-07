@@ -21,6 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "rubiksclockmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "about.h"
 #include "dial.h"
 #include "dialwidget.h"
@@ -33,7 +36,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "togglebuttonwidget.h"
 #include "trace.h"
 
-const ribi::About ribi::RubiksClockMenuDialog::GetAbout() noexcept
+int ribi::RubiksClockMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::RubiksClockMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -58,12 +73,35 @@ const ribi::About ribi::RubiksClockMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::RubiksClockMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::RubiksClockMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::RubiksClockMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramRubiksClock
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::RubiksClockMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::RubiksClockMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::RubiksClockMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-12-19: Version 1.0: initial Windows-only version using C++ Builder",

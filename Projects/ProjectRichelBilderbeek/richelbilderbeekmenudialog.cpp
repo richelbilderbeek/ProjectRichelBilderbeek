@@ -32,13 +32,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
+#include "boenkenmenudialog.h"
 #include "codetohtmlmenudialog.h"
 #include "connectthree.h"
+#include "connectthreemenudialog.h"
 #include "connectthreewidget.h"
 #include "copy_if.h"
 #include "counter.h"
 #include "createglossarymenudialog.h"
 #include "createqtprojectzipfilemenudialog.h"
+#include "daswahreschlagerfestmenudialog.h"
 #include "dial.h"
 #include "dialwidget.h"
 #include "encranger.h"
@@ -48,9 +51,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
 #include "hometrainermenudialog.h"
-#include "hometrainermenudialog.h"
 #include "htmlpage.h"
 #include "ipaddress.h"
+#include "k3opeenrijmenudialog.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterermenudialog.h"
 #include "laggedwhitenoisesystem.h"
@@ -61,6 +64,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "manydigitnewick.h"
 #include "matrix.h"
 #include "mazecreatormenudialog.h"
+#include "maziakmenudialog.h"
 #include "multialphafilter.h"
 #include "multiapproximator.h"
 #include "multiplechoicequestion.h"
@@ -101,10 +105,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
-#include "simmysterymachinemenudialog.h"
 #include "sitemapgeneratormenudialog.h"
 #include "sortedbinarynewickvector.h"
-#include "stateobservermenudialog.h"
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
 #include "steadystatekalmanfilterparameters.h"
@@ -116,26 +118,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testgroupwidgetmenudialog.h"
 #include "testmultiplechoicequestionmenudialog.h"
 #include "testnewickvectordialog.h"
-#include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testpylosmenudialog.h"
 #include "testqrcfilemenudialog.h"
-#include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
-#include "testqtarrowitemsmenudialog.h"
-#include "testqtcreatorprofilemenudialog.h"
 #include "testqtcreatorprofilemenudialog.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
 #include "testqtroundededitrectitemmenudialog.h"
 #include "testqtroundedrectitemmenudialog.h"
 #include "testqtroundedtextrectitemmenudialog.h"
 #include "testquestionmenudialog.h"
-#include "testquestionmenudialog.h"
-#include "testshapemenudialog.h"
 #include "testshapemenudialog.h"
 #include "testshinybuttonmenudialog.h"
-#include "testshinybuttonmenudialog.h"
-#include "testtogglebuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "tictactoe.h"
 #include "tictactoemenudialog.h"
@@ -154,13 +148,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tooltestledmenudialog.h"
 #include "tooltestledmenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
-#include "tooltestmultiapproximatormenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
-#include "tooltestsimplelinearregressionmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"
 #include "trace.h"
 #include "twodigitnewick.h"
-
 #pragma GCC diagnostic pop
 
 boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>>
@@ -240,7 +231,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
   a.AddLibrary("Approximator version: " + Approximator<double,double>::GetVersion());
   a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog().GetVersion());
-  a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog::GetVersion());
+  a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog().GetVersion());
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
   a.AddLibrary("CodeToHtml version: " + CodeToHtmlMenuDialog().GetVersion());
@@ -290,7 +281,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("NewickVector version: " + NewickVector::GetVersion());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
-  a.AddLibrary("Pylos version: " + PylosMenuDialog::GetVersion());
+  a.AddLibrary("Pylos version: " + PylosMenuDialog().GetVersion());
   a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
@@ -302,7 +293,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("RegexTester version: " + RegexTesterMenuDialog().GetVersion());
   a.AddLibrary("RichelBilderbeekProgram version: " + Program::GetVersion());
   a.AddLibrary("RubiksClock (class) version: " + RubiksClock::GetVersion());
-  a.AddLibrary("RubiksClock (game) version: " + RubiksClockMenuDialog::GetVersion());
+  a.AddLibrary("RubiksClock (game) version: " + RubiksClockMenuDialog().GetVersion());
   a.AddLibrary("RubiksClockDialversion: " + RubiksClockDial::GetVersion());
   a.AddLibrary("RubiksClockDialWidget version: " + RubiksClockDialWidget::GetVersion());
   a.AddLibrary("RubiksClockWidget version: " + RubiksClockWidget::GetVersion());
@@ -329,7 +320,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("TestShinyButton version: " + TestShinyButtonMenuDialog().GetVersion());
   a.AddLibrary("TestSimpleLinearRegression version: " + ToolTestSimpleLinearRegressionMenuDialog().GetVersion());
   a.AddLibrary("TestToggleButton version: " + TestToggleButtonMenuDialog().GetVersion());
-  a.AddLibrary("TicTacToe (game) version: " + TicTacToeMenuDialog::GetVersion());
+  a.AddLibrary("TicTacToe (game) version: " + TicTacToeMenuDialog().GetVersion());
   a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
@@ -353,50 +344,62 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     //One could extract it from the MenuType, but this would activate its tests
     //Therefore, add it in this way
     { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
+    { const MenuType p { new BeerWanterMenuDialog }; m.insert(ValueType(ProgramType::beerWanter,p)); }
+    { const MenuType p { new Boenken::MenuDialog }; m.insert(ValueType(ProgramType::boenken,p)); }
     { const MenuType p { new CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
+    { const MenuType p { new ConnectThreeMenuDialog }; m.insert(ValueType(ProgramType::connectThree,p)); }
     { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }
     { const MenuType p { new CreateQtProjectZipFile::MenuDialog }; m.insert(ValueType(ProgramType::createQtProjectZipFile,p)); }
-    { const MenuType p { new ToolDotMatrixMenuDialog }; m.insert(ValueType(ProgramType::dotMatrix,p)); }
-    { const MenuType p { new ToolEncrangerMenuDialog }; m.insert(ValueType(ProgramType::encranger,p)); }
-    { const MenuType p { new ToolGaborFilterMenuDialog }; m.insert(ValueType(ProgramType::gaborFilter,p)); }
+    { const MenuType p { new DasWahreSchlagerfestMenuDialog }; m.insert(ValueType(ProgramType::dasWahreSchlagerfest,p)); }
     { const MenuType p { new GrayCoderMenuDialog }; m.insert(ValueType(ProgramType::grayCoder,p)); }
     { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }
+    { const MenuType p { new K3OpEenRijMenuDialog }; m.insert(ValueType(ProgramType::k3OpEenRij,p)); }
     { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
     { const MenuType p { new MazeCreatorMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
-    { const MenuType p { new ToolMultiEncrangerMenuDialog }; m.insert(ValueType(ProgramType::multiEncranger ,p)); }
+    { const MenuType p { new MaziakMenuDialog }; m.insert(ValueType(ProgramType::maziak,p)); }
     { const MenuType p { new MusicTheoryMenuDialog }; m.insert(ValueType(ProgramType::musicTheory,p)); }
     { const MenuType p { new PerfectElasticCollisionMenuDialog }; m.insert(ValueType(ProgramType::perfectElasticCollision,p)); }
     { const MenuType p { new PicToCodeMenuDialog }; m.insert(ValueType(ProgramType::picToCode,p)); }
     { const MenuType p { new PrimeExpertMenuDialog }; m.insert(ValueType(ProgramType::primeExpert,p)); }
+    { const MenuType p { new PylosMenuDialog }; m.insert(ValueType(ProgramType::pylos,p)); }
     { const MenuType p { new QuadraticSolverMenuDialog }; m.insert(ValueType(ProgramType::quadraticSolver,p)); }
     { const MenuType p { new RandomCodeMenuDialog }; m.insert(ValueType(ProgramType::randomCode,p)); }
     { const MenuType p { new RegexTesterMenuDialog }; m.insert(ValueType(ProgramType::regexTester,p)); }
+    { const MenuType p { new RubiksClockMenuDialog }; m.insert(ValueType(ProgramType::rubiksClock,p)); }
     { const MenuType p { new SimMysteryMachineMenuDialog }; m.insert(ValueType(ProgramType::simMysteryMachine,p)); }
-    { const MenuType p { new ToolSimplifyNewickMenuDialog }; m.insert(ValueType(ProgramType::simplifyNewick,p)); }
     { const MenuType p { new StateObserverMenuDialog }; m.insert(ValueType(ProgramType::stateObserver,p)); }
-    { const MenuType p { new ToolTestApproximatorMenuDialog }; m.insert(ValueType(ProgramType::stateObserver,p)); }
-    { const MenuType p { new ToolTestCanvasMenuDialog }; m.insert(ValueType(ProgramType::testCanvas,p)); }
     { const MenuType p { new TestDialMenuDialog }; m.insert(ValueType(ProgramType::testDial,p)); }
     { const MenuType p { new TestExerciseMenuDialog }; m.insert(ValueType(ProgramType::testExercise,p)); }
     { const MenuType p { new TestFunctionParserMenuDialog }; m.insert(ValueType(ProgramType::testFunctionParser,p)); }
     { const MenuType p { new TestGroupWidgetMenuDialog }; m.insert(ValueType(ProgramType::testGroupWidget,p)); }
+    { const MenuType p { new TestKeyboardFriendlyGraphicsViewMenuDialog }; m.insert(ValueType(ProgramType::testQtKeyboardFriendlyGraphicsView,p)); }
     { const MenuType p { new TestLedMenuDialog }; m.insert(ValueType(ProgramType::testLed,p)); }
-    { const MenuType p { new ToolTestMultiApproximatorMenuDialog }; m.insert(ValueType(ProgramType::testMultiApproximator,p)); }
     { const MenuType p { new TestMultipleChoiceQuestionMenuDialog }; m.insert(ValueType(ProgramType::testMultipleChoiceQuestion,p)); }
     { const MenuType p { new TestOpenQuestionMenuDialog }; m.insert(ValueType(ProgramType::testOpenQuestion,p)); }
     { const MenuType p { new TestPylosMenuDialog }; m.insert(ValueType(ProgramType::testPylos,p)); }
     { const MenuType p { new TestQrcFileMenuDialog }; m.insert(ValueType(ProgramType::testQrcFile,p)); }
     { const MenuType p { new TestQtArrowItemsMenuDialog }; m.insert(ValueType(ProgramType::testQrcFile,p)); }
     { const MenuType p { new TestQtCreatorProFileMenuDialog }; m.insert(ValueType(ProgramType::testQrcFile,p)); }
-    { const MenuType p { new TestKeyboardFriendlyGraphicsViewMenuDialog }; m.insert(ValueType(ProgramType::testQtKeyboardFriendlyGraphicsView,p)); }
-    { const MenuType p { new ToolTestQtModelsMenuDialog }; m.insert(ValueType(ProgramType::testQtModels,p)); }
     { const MenuType p { new TestQtRoundedEditRectItemMenuDialog }; m.insert(ValueType(ProgramType::testQtRoundedEditRectItem,p)); }
     { const MenuType p { new TestQtRoundedRectItemMenuDialog }; m.insert(ValueType(ProgramType::testQtRoundedRectItem,p)); }
     { const MenuType p { new TestQtRoundedTextRectItemMenuDialog }; m.insert(ValueType(ProgramType::testQtRoundedTextRectItem,p)); }
     { const MenuType p { new TestQuestionMenuDialog }; m.insert(ValueType(ProgramType::testQuestion,p)); }
     { const MenuType p { new TestShapeMenuDialog }; m.insert(ValueType(ProgramType::testShape,p)); }
     { const MenuType p { new TestShinyButtonMenuDialog }; m.insert(ValueType(ProgramType::testShinyButton,p)); }
+    { const MenuType p { new TicTacToeMenuDialog }; m.insert(ValueType(ProgramType::ticTacToe,p)); }
+    { const MenuType p { new ToolDotMatrixMenuDialog }; m.insert(ValueType(ProgramType::dotMatrix,p)); }
+    { const MenuType p { new ToolEncrangerMenuDialog }; m.insert(ValueType(ProgramType::encranger,p)); }
+    { const MenuType p { new ToolGaborFilterMenuDialog }; m.insert(ValueType(ProgramType::gaborFilter,p)); }
+    { const MenuType p { new ToolMultiEncrangerMenuDialog }; m.insert(ValueType(ProgramType::multiEncranger ,p)); }
+    { const MenuType p { new ToolSimplifyNewickMenuDialog }; m.insert(ValueType(ProgramType::simplifyNewick,p)); }
+    { const MenuType p { new ToolTestApproximatorMenuDialog }; m.insert(ValueType(ProgramType::stateObserver,p)); }
+    { const MenuType p { new ToolTestCanvasMenuDialog }; m.insert(ValueType(ProgramType::testCanvas,p)); }
+    { const MenuType p { new ToolTestMultiApproximatorMenuDialog }; m.insert(ValueType(ProgramType::testMultiApproximator,p)); }
+    { const MenuType p { new ToolTestQtModelsMenuDialog }; m.insert(ValueType(ProgramType::testQtModels,p)); }
     { const MenuType p { new ToolTestSimpleLinearRegressionMenuDialog }; m.insert(ValueType(ProgramType::testSimpleLinearRegression,p)); }
+
+
+
     sm_map_to_menu = m;
   }
   assert(!sm_map_to_menu.empty());

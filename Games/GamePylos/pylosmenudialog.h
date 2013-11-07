@@ -21,28 +21,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef PYLOSMENUDIALOG_H
 #define PYLOSMENUDIALOG_H
 
-#include <string>
-#include <vector>
-
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 ///PylosMenuDialog contains the BeerWanter menu dialog
-struct PylosMenuDialog
+struct PylosMenuDialog : public MenuDialog
 {
-  ///Obtain this class its about information
-  static const About GetAbout() noexcept;
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
-
-///From http://www.richelbilderbeek.nl/CppIntToStr.htm
-const std::string IntToStr(const int x);
 
 } //~namespace ribi
 

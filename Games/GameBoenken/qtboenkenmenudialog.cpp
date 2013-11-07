@@ -260,23 +260,17 @@ const std::vector<boost::shared_ptr<ribi::Boenken::SpriteNonMoving> > ribi::QtBo
 
 void ribi::QtBoenkenMenuDialog::onControlsClick()
 {
-  this->hide();
-  this->m_controls->exec();
-  this->show();
+  this->ShowChild(m_controls.get());
 }
 
 void ribi::QtBoenkenMenuDialog::onPlayersClick()
 {
-  this->hide();
-  this->m_players->exec();
-  this->show();
+  this->ShowChild(m_players.get());
 }
 
 void ribi::QtBoenkenMenuDialog::onArenaClick()
 {
-  this->hide();
-  this->m_arena->exec();
-  this->show();
+  this->ShowChild(m_arena.get());
 }
 
 void ribi::QtBoenkenMenuDialog::onStartClick()
@@ -324,11 +318,9 @@ void ribi::QtBoenkenMenuDialog::onTrainClick()
 
 void ribi::QtBoenkenMenuDialog::onAboutClick()
 {
-  About a = Boenken::MenuDialog::GetAbout();
+  About a = Boenken::MenuDialog().GetAbout();
   QtAboutDialog d(a);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtBoenkenMenuDialog::Test()

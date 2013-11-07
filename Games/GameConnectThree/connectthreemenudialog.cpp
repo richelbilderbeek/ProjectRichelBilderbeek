@@ -27,9 +27,22 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthreewidget.h"
 
 #include <cassert>
+#include <iostream>
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() noexcept
+int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -46,22 +59,45 @@ const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::ConnectThreeMenuDialog::GetVersion() noexcept
+const ribi::Help ribi::ConnectThreeMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::ConnectThreeMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramConnectThree
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ConnectThreeMenuDialog::GetVersion() const noexcept
 {
   return "6.5";
 }
 
-const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2007-xx-xx: version 1.0: initial version as part of K3OpEenRij");
-  v.push_back("2011-01-10: version 5.0: initial Qt4 version");
-  v.push_back("2011-01-11: version 5.2: support that the game can end in a draw");
-  v.push_back("2011-04-22: version 6.0: major architectural changes");
-  v.push_back("2011-04-24: version 6.1: fixed a bug that showed when deploying to my WtWebsite");
-  v.push_back("2011-04-25: version 6.2: hopefully fixed the bug as in 6.1, fixed desktop version");
-  v.push_back("2013-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0");
-  v.push_back("2013-07-21: version 6.4: improved looks");
-  v.push_back("2013-08-06: version 6.5: facilitate K3OpEenRij using ConnectThree classes");
-  return v;
+  return {
+    "2007-xx-xx: version 1.0: initial version as part of K3OpEenRij",
+    "2011-01-10: version 5.0: initial Qt4 version",
+    "2011-01-11: version 5.2: support that the game can end in a draw",
+    "2011-04-22: version 6.0: major architectural changes",
+    "2011-04-24: version 6.1: fixed a bug that showed when deploying to my WtWebsite",
+    "2011-04-25: version 6.2: hopefully fixed the bug as in 6.1, fixed desktop version",
+    "2013-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0",
+    "2013-07-21: version 6.4: improved looks",
+    "2013-08-06: version 6.5: facilitate K3OpEenRij using ConnectThree classes"
+  };
 }
