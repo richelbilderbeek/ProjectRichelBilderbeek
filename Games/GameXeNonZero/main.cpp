@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "gamexenonzerodialog.h"
+#include "xenonzerodialog.h"
 
 int main()
 {

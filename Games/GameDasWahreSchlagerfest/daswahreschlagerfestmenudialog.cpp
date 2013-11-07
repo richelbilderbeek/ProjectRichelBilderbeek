@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Das Wahre Schlagerfest, a simple game
+Das Wahre Schlagerfest, a truely fun game
 Copyright (C) 2003-2012 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcep
   return About(
     "Richel Bilderbeek",
     "Das Wahre Schlagerfest",
-    "a simple game",
+    "a truely fun game",
     "the 9th of August 2012",
     "2003-2012",
     "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm",

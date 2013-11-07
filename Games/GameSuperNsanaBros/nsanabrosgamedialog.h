@@ -1,19 +1,22 @@
 #ifndef NSANABROSGAMEDIALOG_H
 #define NSANABROSGAMEDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///NsanaBrosGameDialog manages all NsanaBrosGameWidgets
-struct NsanaBrosGameDialog : public boost::noncopyable
+struct NsanaBrosGameDialog
 {
   NsanaBrosGameDialog(const NsanaBrosOptions * const options);
+  NsanaBrosGameDialog(const NsanaBrosGameDialog&) = delete;
+  NsanaBrosGameDialog& operator=(const NsanaBrosGameDialog&) = delete;
 
   private:
-  ~NsanaBrosGameDialog() {}
+  ~NsanaBrosGameDialog() noexcept;
   friend void boost::checked_delete<>(NsanaBrosGameDialog *);
 
 
@@ -22,5 +25,7 @@ struct NsanaBrosGameDialog : public boost::noncopyable
   const NsanaBrosOptions * const m_options;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSGAMEDIALOG_H

@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-///PylosMenuDialog contains the BeerWanter menu dialog
+///PylosMenuDialog contains the Pylos menu dialog
 struct PylosMenuDialog : public MenuDialog
 {
   const About GetAbout() const noexcept;

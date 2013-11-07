@@ -6,7 +6,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-#include "gamexenonzerospritetype.h"
+#include "xenonzerospritetype.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {

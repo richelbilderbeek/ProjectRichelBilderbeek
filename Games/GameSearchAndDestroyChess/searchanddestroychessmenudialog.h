@@ -12,19 +12,14 @@ struct MenuDialog : public ::ribi::MenuDialog
   ///Creates the resources needed
   MenuDialog();
 
-  ///Obtain the about information
-  ///
-  ///\note
-  ///This is a non-static method, to ensure users of this class
-  ///call MenuDialog its constructor: this is where
-  ///the resources needed are created
   const About GetAbout() const noexcept;
-
-  ///Obtain the version
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
   const std::string GetVersion() const noexcept;
-
-  ///Obtain the version history
   const std::vector<std::string> GetVersionHistory() const noexcept;
+
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   private:
   #ifndef NDEBUG

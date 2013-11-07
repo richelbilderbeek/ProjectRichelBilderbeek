@@ -1,6 +1,6 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "gamexenonzerosprite.h"
+#include "xenonzerosprite.h"
 
 #include <cassert>
 #pragma GCC diagnostic pop

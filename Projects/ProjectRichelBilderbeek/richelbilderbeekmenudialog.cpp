@@ -23,13 +23,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "richelbilderbeekmenudialog.h"
 
-
 #include "about.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
 #include "alphafilter.h"
+#include "aminoacidfightermenudialog.h"
 #include "approximator.h"
 #include "asciiartermenudialog.h"
+#include "athleticlandmenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
 #include "boenkenmenudialog.h"
@@ -56,6 +57,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "k3opeenrijmenudialog.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterermenudialog.h"
+#include "knokfightermenudialog.h"
 #include "laggedwhitenoisesystem.h"
 #include "lazy_init.h"
 #include "led.h"
@@ -65,6 +67,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "matrix.h"
 #include "mazecreatormenudialog.h"
 #include "maziakmenudialog.h"
+#include "metzndrieenmenudialog.h"
 #include "multialphafilter.h"
 #include "multiapproximator.h"
 #include "multiplechoicequestion.h"
@@ -78,10 +81,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "mysterymachinewidget.h"
 #include "newick.h"
 #include "newickvector.h"
+#include "nsanabrosmenudialog.h"
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "paperrockscissorsmenudialog.h"
 #include "perfectelasticcollisionmenudialog.h"
 #include "pictocodemenudialog.h"
+#include "pokevolleymenudialog.h"
+#include "pongmenudialog.h"
 #include "pylosmenudialog.h"
 #include "qmakewatchermenudialog.h"
 #include "qrcfile.h"
@@ -93,6 +100,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "randomcode.h"
 #include "randomcodemenudialog.h"
 #include "regextestermenudialog.h"
+#include "reversimenudialog.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
 #include "rubiksclock.h"
@@ -100,17 +108,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockmenudialog.h"
 #include "rubiksclockwidget.h"
+#include "searchanddestroychessmenudialog.h"
 #include "shape.h"
 #include "shapewidget.h"
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
+#include "simpredatormenudialog.h"
 #include "sitemapgeneratormenudialog.h"
 #include "sortedbinarynewickvector.h"
+#include "spaceharrymenudialog.h"
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
 #include "steadystatekalmanfilterparameters.h"
 #include "stopwatch.h"
+#include "tankbattalionmenudialog.h"
 #include "testdialmenudialog.h"
 #include "testdialmenudialog.h"
 #include "testexercisemenudialog.h"
@@ -143,14 +155,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolprimeexpertmenudialog.h"
 #include "toolsimplifynewickmenudialog.h"
 #include "tooltestapproximatormenudialog.h"
-#include "tooltestapproximatormenudialog.h"
 #include "tooltestcanvasmenudialog.h"
-#include "tooltestledmenudialog.h"
 #include "tooltestledmenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"
 #include "trace.h"
+#include "troncollectionmenudialog.h"
 #include "twodigitnewick.h"
 #pragma GCC diagnostic pop
 
@@ -343,7 +354,9 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     //That is what the ValueType is for:
     //One could extract it from the MenuType, but this would activate its tests
     //Therefore, add it in this way
+    { const MenuType p { new AminoAcidFighterMenuDialog }; m.insert(ValueType(ProgramType::aminoAcidFighter,p)); }
     { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
+    { const MenuType p { new AthleticLandMenuDialog }; m.insert(ValueType(ProgramType::athleticLand,p)); }
     { const MenuType p { new BeerWanterMenuDialog }; m.insert(ValueType(ProgramType::beerWanter,p)); }
     { const MenuType p { new Boenken::MenuDialog }; m.insert(ValueType(ProgramType::boenken,p)); }
     { const MenuType p { new CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
@@ -354,6 +367,22 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new GrayCoderMenuDialog }; m.insert(ValueType(ProgramType::grayCoder,p)); }
     { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }
     { const MenuType p { new K3OpEenRijMenuDialog }; m.insert(ValueType(ProgramType::k3OpEenRij,p)); }
+    { const MenuType p { new KnokfighterMenuDialog }; m.insert(ValueType(ProgramType::knokfighter,p)); }
+    { const MenuType p { new MetZnDrieenMenuDialog }; m.insert(ValueType(ProgramType::metZnDrieen,p)); }
+
+    { const MenuType p { new PaperRockScissorsMenuDialog }; m.insert(ValueType(ProgramType::paperRockScissors,p)); }
+    { const MenuType p { new PokeVolleyMenuDialog }; m.insert(ValueType(ProgramType::pokeVolley,p)); }
+    { const MenuType p { new PongMenuDialog }; m.insert(ValueType(ProgramType::pong,p)); }
+
+    { const MenuType p { new ReversiMenuDialog }; m.insert(ValueType(ProgramType::reversi,p)); }
+    { const MenuType p { new sadc::MenuDialog }; m.insert(ValueType(ProgramType::searchAndDestroyChess,p)); }
+
+    { const MenuType p { new SimPredatorMenuDialog }; m.insert(ValueType(ProgramType::simPredator,p)); }
+    { const MenuType p { new SpaceHarryMenuDialog }; m.insert(ValueType(ProgramType::spaceHarry,p)); }
+    { const MenuType p { new NsanaBrosMenuDialog }; m.insert(ValueType(ProgramType::superNsanaBros,p)); }
+    { const MenuType p { new TankBattalionMenuDialog }; m.insert(ValueType(ProgramType::tankBattalion,p)); }
+    { const MenuType p { new TronCollectionMenuDialog }; m.insert(ValueType(ProgramType::tronCollection,p)); }
+
     { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
     { const MenuType p { new MazeCreatorMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
     { const MenuType p { new MaziakMenuDialog }; m.insert(ValueType(ProgramType::maziak,p)); }
@@ -397,8 +426,6 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new ToolTestMultiApproximatorMenuDialog }; m.insert(ValueType(ProgramType::testMultiApproximator,p)); }
     { const MenuType p { new ToolTestQtModelsMenuDialog }; m.insert(ValueType(ProgramType::testQtModels,p)); }
     { const MenuType p { new ToolTestSimpleLinearRegressionMenuDialog }; m.insert(ValueType(ProgramType::testSimpleLinearRegression,p)); }
-
-
 
     sm_map_to_menu = m;
   }

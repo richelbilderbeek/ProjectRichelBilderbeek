@@ -5,6 +5,9 @@
 //#include <set>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/logic/tribool.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -12,8 +15,10 @@
 #include "chesscolor.h"
 #include "chessmove.h"
 //#include "chesspiece.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
+
 namespace Chess {
 
 struct Piece;

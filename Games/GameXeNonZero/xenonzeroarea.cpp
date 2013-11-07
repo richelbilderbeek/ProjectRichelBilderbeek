@@ -1,4 +1,4 @@
-#include "gamexenonzeroarea.h"
+#include "xenonzeroarea.h"
 
 #include <cassert>
 #include <iostream>
@@ -6,7 +6,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "gamexenonzerosprite.h"
+#include "xenonzerosprite.h"
 #pragma GCC diagnostic pop
 
 ribi::xnz::Area::Area(const int width,const int height)

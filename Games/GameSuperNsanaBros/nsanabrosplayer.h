@@ -1,14 +1,16 @@
 #ifndef NSANABROSPLAYER_H
 #define NSANABROSPLAYER_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/scoped_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
+
+namespace ribi {
+
 ///NsanaBrosPlayer is the main player.
 struct NsanaBrosPlayer : public boost::noncopyable
 {
@@ -37,7 +39,9 @@ struct NsanaBrosPlayer : public boost::noncopyable
   static const double m_dy_jump;
   static const double m_dx_walk;
 };
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const NsanaBrosPlayer * const p);
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSPLAYER_H

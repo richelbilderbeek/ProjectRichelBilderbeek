@@ -1,4 +1,8 @@
-#include "nsanabrosstlheader.h"
+#include "nsanabrosmenudialog.h"
+#include "nsanabrosoptions.h"
+#include "nsanabrosoptionsdialog.h"
+#include "nsanabrosgamedialog.h"
+#include "nsanabrosgamearea2dwidget.h"
 
 ribi::NsanaBrosMenuDialog::NsanaBrosMenuDialog()
   : m_game(0),
@@ -7,6 +11,11 @@ ribi::NsanaBrosMenuDialog::NsanaBrosMenuDialog()
   m_game.reset(
     new NsanaBrosGameDialog(
       m_options->GetOptions()));
+}
+
+ribi::NsanaBrosMenuDialog::~NsanaBrosMenuDialog() noexcept
+{
+
 }
 
 const ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
@@ -23,7 +32,7 @@ const ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const NsanaBrosOptionsDialog * ribi::NsanaBrosMenuDialog::GetOptionsDialog() const
+const ribi::NsanaBrosOptionsDialog * ribi::NsanaBrosMenuDialog::GetOptionsDialog() const
 {
   return m_options.get();
 }
@@ -41,7 +50,7 @@ const std::vector<std::string> ribi::NsanaBrosMenuDialog::GetVersionHistory() co
   };
 }
 
-boost::shared_ptr<NsanaBrosOptionsDialog> ribi::NsanaBrosMenuDialog::UseOptionsDialog()
+boost::shared_ptr<ribi::NsanaBrosOptionsDialog> ribi::NsanaBrosMenuDialog::UseOptionsDialog()
 {
   return m_options;
 }

@@ -1,16 +1,19 @@
 #ifndef NSANABROSOPTIONSDIALOG_H
 #define NSANABROSOPTIONSDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
-struct NsanaBrosOptionsDialog : public boost::noncopyable
+
+namespace ribi {
+
+struct NsanaBrosOptionsDialog
 {
   NsanaBrosOptionsDialog();
+  NsanaBrosOptionsDialog(const NsanaBrosOptionsDialog&) = delete;
+  NsanaBrosOptionsDialog& operator=(const NsanaBrosOptionsDialog&) = delete;
 
   const NsanaBrosOptions * GetOptions() const;
   //boost::shared_ptr<NsanaBrosOptions> UseOptions();
@@ -22,5 +25,7 @@ struct NsanaBrosOptionsDialog : public boost::noncopyable
 
   boost::shared_ptr<NsanaBrosOptions> m_options;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSOPTIONSDIALOG_H

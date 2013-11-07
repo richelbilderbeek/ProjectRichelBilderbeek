@@ -1,15 +1,15 @@
-//---------------------------------------------------------------------------
+#include "nsanabrosplayer.h"
 #include <cassert>
 #include <iostream>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlheader.h"
-//---------------------------------------------------------------------------
+
 ///m_dy_jump denotes the change in the vertical direction when a player presses jump
-const double NsanaBrosPlayer::m_dy_jump = 0.25;
+const double ribi::NsanaBrosPlayer::m_dy_jump = 0.25;
 ///m_dx_walk denotes the change in the horizontal direction when a player walks
-const double NsanaBrosPlayer::m_dx_walk  = 0.25;
-//---------------------------------------------------------------------------
-NsanaBrosPlayer::NsanaBrosPlayer()
+const double ribi::NsanaBrosPlayer::m_dx_walk  = 0.25;
+
+ribi::NsanaBrosPlayer::NsanaBrosPlayer()
   : m_sprite(
       new NsanaBrosSprite(
         (NsanaBrosGame::GetWidth() / 2.0) - 0.5,
@@ -26,39 +26,39 @@ NsanaBrosPlayer::NsanaBrosPlayer()
 {
 
 }
-//---------------------------------------------------------------------------
-double NsanaBrosPlayer::GetHeight() const
+
+double ribi::NsanaBrosPlayer::GetHeight() const
 {
   return GetSprite()->GetHeight();
 }
-//---------------------------------------------------------------------------
-const NsanaBrosSprite * NsanaBrosPlayer::GetSprite() const
+
+const NsanaBrosSprite * ribi::NsanaBrosPlayer::GetSprite() const
 {
   return m_sprite.get();
 }
-//---------------------------------------------------------------------------
-double NsanaBrosPlayer::GetWidth() const
+
+double ribi::NsanaBrosPlayer::GetWidth() const
 {
   return GetSprite()->GetWidth();
 }
-//---------------------------------------------------------------------------
-double NsanaBrosPlayer::GetX() const
+
+double ribi::NsanaBrosPlayer::GetX() const
 {
   return GetSprite()->GetX();
 }
-//---------------------------------------------------------------------------
-double NsanaBrosPlayer::GetY() const
+
+double ribi::NsanaBrosPlayer::GetY() const
 {
   return GetSprite()->GetY();
 }
-//---------------------------------------------------------------------------
+
 ///Move translates the player's coordinats
-void NsanaBrosPlayer::Move()
+void ribi::NsanaBrosPlayer::Move()
 {
   Translate(m_dx,m_dy);
 }
-//---------------------------------------------------------------------------
-void NsanaBrosPlayer::RespondToKeys(const NsanaBrosKeys * const keys)
+
+void ribi::NsanaBrosPlayer::RespondToKeys(const NsanaBrosKeys * const keys)
 {
   switch (keys->GetHorizontal())
   {
@@ -79,24 +79,24 @@ void NsanaBrosPlayer::RespondToKeys(const NsanaBrosKeys * const keys)
     case  1: break;
   }
 }
-//---------------------------------------------------------------------------
-void NsanaBrosPlayer::SetDx(const double dx)
+
+void ribi::NsanaBrosPlayer::SetDx(const double dx)
 {
   assert(dx > -10.0 && dx < 10.0);
   m_dx = dx;
 }
-//---------------------------------------------------------------------------
-void NsanaBrosPlayer::SetDy(const double dy)
+
+void ribi::NsanaBrosPlayer::SetDy(const double dy)
 {
   assert(dy > -10.0 && dy < 10.0);
   m_dy = dy;
 }
-//---------------------------------------------------------------------------
-void NsanaBrosPlayer::Translate(const double dx, const double dy)
+
+void ribi::NsanaBrosPlayer::Translate(const double dx, const double dy)
 {
   m_sprite->Translate(dx,dy);
 }
-//---------------------------------------------------------------------------
+
 std::ostream& operator<<(std::ostream& os, const NsanaBrosPlayer * const p)
 {
   os << p->GetSprite() << '\n'
@@ -104,4 +104,4 @@ std::ostream& operator<<(std::ostream& os, const NsanaBrosPlayer * const p)
      << " x " << p->GetDy();
   return os;
 }
-//---------------------------------------------------------------------------
+

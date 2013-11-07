@@ -23,7 +23,7 @@ const ribi::About ribi::AminoAcidFighterMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "AminoAcidFighter",
-    "a simple game",
+    "",
     "",
     "",
     "http://www.richelbilderbeek.nl/GameAminoAcidFighter.htm",

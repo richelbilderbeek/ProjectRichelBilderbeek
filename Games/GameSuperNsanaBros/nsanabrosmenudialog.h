@@ -1,6 +1,7 @@
 #ifndef NSANABROSMENUDIALOG_H
 #define NSANABROSMENUDIALOG_H
 
+#include <boost/scoped_ptr.hpp>
 #include "menudialog.h"
 #include "nsanabrosstlfwdheader.h"
 
@@ -11,6 +12,8 @@ struct NsanaBrosMenuDialog : public MenuDialog
   NsanaBrosMenuDialog();
 
   const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
@@ -18,12 +21,13 @@ struct NsanaBrosMenuDialog : public MenuDialog
   boost::shared_ptr<NsanaBrosOptionsDialog> UseOptionsDialog();
 
   private:
-  ~NsanaBrosMenuDialog() {}
+  ~NsanaBrosMenuDialog() noexcept;
   friend void boost::checked_delete<>(NsanaBrosMenuDialog *);
+
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   boost::scoped_ptr<NsanaBrosGameDialog> m_game;
   boost::shared_ptr<NsanaBrosOptionsDialog> m_options;
-
 };
 
 } //~namespace ribi

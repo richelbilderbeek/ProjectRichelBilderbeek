@@ -21,6 +21,8 @@
 #include "nsanabrosstlfwdheader.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
+
 struct NsanaBrosGame : public boost::noncopyable
 {
   NsanaBrosGame();
@@ -50,6 +52,7 @@ struct NsanaBrosGame : public boost::noncopyable
 
   static const std::vector<boost::shared_ptr<NsanaBrosSprite> > CreateTestSprites();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
 
 #endif // NSANABROSGAME_H
