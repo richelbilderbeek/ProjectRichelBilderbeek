@@ -1,14 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GameBeerWanter
+    ../../Games/GamePokeVolley
 
 SOURCES += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
-    ../../Games/GameBeerWanter/beerwantermenudialog.cpp
+    ../../Games/GamePokeVolley/pokevolleymenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-    ../../Games/GameBeerWanter/beerwantermenudialog.h
+    ../../Games/GamePokeVolley/pokevolleymenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GameBeerWanter/Licence.txt
+    ../../Games/GamePokeVolley/Licence.txt
 

@@ -1,21 +1,19 @@
 #ifndef NSANABROSMENUDIALOG_H
 #define NSANABROSMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <string>
-#include <vector>
-//---------------------------------------------------------------------------
-#include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
-#include <boost/scoped_ptr.hpp>
-#include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
-#include "about.h"
-//---------------------------------------------------------------------------
+
+#include "menudialog.h"
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
-struct NsanaBrosMenuDialog : public boost::noncopyable
+
+namespace ribi {
+
+struct NsanaBrosMenuDialog : public MenuDialog
 {
   NsanaBrosMenuDialog();
+
+  const About GetAbout() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
+
   const NsanaBrosOptionsDialog * GetOptionsDialog() const;
   boost::shared_ptr<NsanaBrosOptionsDialog> UseOptionsDialog();
 
@@ -26,11 +24,8 @@ struct NsanaBrosMenuDialog : public boost::noncopyable
   boost::scoped_ptr<NsanaBrosGameDialog> m_game;
   boost::shared_ptr<NsanaBrosOptionsDialog> m_options;
 
-  public:
-
-  static const About GetAbout();
-  static const std::string GetVersion();
-  static const std::vector<std::string> GetVersionHistory();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSMENUDIALOG_H

@@ -3,6 +3,10 @@
 #include <algorithm>
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+
 #ifdef SADC_USE_THREADS
 #include <thread>
 #endif
@@ -11,10 +15,9 @@
 #include "trace.h"
 
 #include <QFile>
+#pragma GCC diagnostic pop
 
-namespace SearchAndDestroyChess {
-
-MenuDialog::MenuDialog()
+ribi::sadc::MenuDialog::MenuDialog()
 {
   /*
   const std::vector<std::string> filenames = Chess::Resources::GetFilenames();
@@ -36,7 +39,7 @@ MenuDialog::MenuDialog()
   */
 }
 
-const About MenuDialog::GetAbout() const
+const ribi::About ribi::sadc::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -53,21 +56,21 @@ const About MenuDialog::GetAbout() const
   return a;
 }
 
-const std::string MenuDialog::GetVersion()
+const std::string ribi::sadc::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::sadc::MenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-06-28: Version 1.0: initial version");
-  v.push_back("2013-02-24: Version 1.1: testing done in seperate thread");
-  return v;
+  return {
+    "2011-06-28: Version 1.0: initial version",
+    "2013-02-24: Version 1.1: testing done in seperate thread"
+  };
 }
 
-
-void MenuDialog::Test()
+#ifndef NDEBUG
+void ribi::sadc::MenuDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -88,6 +91,4 @@ void MenuDialog::Test()
   t.detach();
   #endif
 }
-
-} //~ namespace SearchAndDestroyChess
-
+#endif

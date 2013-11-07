@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GamePylos
+    ../../Games/GameSearchAndDestroyChess
 
 SOURCES += \
-    ../../Games/GamePylos/pylosmenudialog.cpp
+    ../../Games/GameSearchAndDestroyChess/searchanddestroychessmenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GamePylos/pylosmenudialog.h
+    ../../Games/GameSearchAndDestroyChess/searchanddestroychessmenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GamePylos/Licence.txt
+    ../../Games/GameSearchAndDestroyChess/Licence.txt
 

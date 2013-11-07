@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GamePylos
+    ../../Games/GameSpaceHarry
 
 SOURCES += \
-    ../../Games/GamePylos/pylosmenudialog.cpp
+    ../../Games/GameSpaceHarry/spaceharrymenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GamePylos/pylosmenudialog.h
+    ../../Games/GameSpaceHarry/spaceharrymenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GamePylos/Licence.txt
+    ../../Games/GameSpaceHarry/Licence.txt
 

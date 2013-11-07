@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GamePylos
+    ../../Games/GameSuperNsanaBros
 
 SOURCES += \
-    ../../Games/GamePylos/pylosmenudialog.cpp
+    ../../Games/GameSuperNsanaBros/nsanabrosmenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GamePylos/pylosmenudialog.h
+    ../../Games/GameSuperNsanaBros/nsanabrosmenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GamePylos/Licence.txt
+    ../../Games/GameSuperNsanaBros/Licence.txt
 

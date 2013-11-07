@@ -1,14 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GameBeerWanter
+    ../../Games/GamePong
 
 SOURCES += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
-    ../../Games/GameBeerWanter/beerwantermenudialog.cpp
+    ../../Games/GamePong/pongmenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-    ../../Games/GameBeerWanter/beerwantermenudialog.h
+    ../../Games/GamePong/pongmenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GameBeerWanter/Licence.txt
+    ../../Games/GamePong/Licence.txt
 

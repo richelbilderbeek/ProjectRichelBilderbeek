@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GamePylos
+    ../../Games/GameReversi
 
 SOURCES += \
-    ../../Games/GamePylos/pylosmenudialog.cpp
+    ../../Games/GameReversi/reversimenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GamePylos/pylosmenudialog.h
+    ../../Games/GameReversi/reversimenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GamePylos/Licence.txt
+    ../../Games/GameReversi/Licence.txt
 

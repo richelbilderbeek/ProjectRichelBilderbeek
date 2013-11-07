@@ -1,14 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GameBeerWanter
+    ../../Games/GamePaperRockScissors
 
 SOURCES += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
-    ../../Games/GameBeerWanter/beerwantermenudialog.cpp
+    ../../Games/GamePaperRockScissors/paperrockscissorsmenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-    ../../Games/GameBeerWanter/beerwantermenudialog.h
+    ../../Games/GamePaperRockScissors/paperrockscissorsmenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GameBeerWanter/Licence.txt
+    ../../Games/GamePaperRockScissors/Licence.txt
 

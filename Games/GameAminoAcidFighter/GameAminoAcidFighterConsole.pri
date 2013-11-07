@@ -1,14 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GameBeerWanter
+    ../../Games/GameAminoAcidFighter
 
 SOURCES += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
-    ../../Games/GameBeerWanter/beerwantermenudialog.cpp
+    ../../Games/GameAminoAcidFighter/aminoacidfightermenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-    ../../Games/GameBeerWanter/beerwantermenudialog.h
+    ../../Games/GameAminoAcidFighter/aminoacidfightermenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GameBeerWanter/Licence.txt
+    ../../Games/GameAminoAcidFighter/Licence.txt
 

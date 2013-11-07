@@ -1,14 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GameBeerWanter
+    ../../Games/GameXeNonZero
 
 SOURCES += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
-    ../../Games/GameBeerWanter/beerwantermenudialog.cpp
+    ../../Games/GameXeNonZero/xenonzeromenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-    ../../Games/GameBeerWanter/beerwantermenudialog.h
+    ../../Games/GameXeNonZero/xenonzeromenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GameBeerWanter/Licence.txt
+    ../../Games/GameXeNonZero/Licence.txt
 

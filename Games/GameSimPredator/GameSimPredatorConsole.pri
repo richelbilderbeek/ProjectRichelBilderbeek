@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GamePylos
+    ../../Games/GameSimPredator
 
 SOURCES += \
-    ../../Games/GamePylos/pylosmenudialog.cpp
+    ../../Games/GameSimPredator/simpredatormenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GamePylos/pylosmenudialog.h
+    ../../Games/GameSimPredator/simpredatormenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GamePylos/Licence.txt
+    ../../Games/GameSimPredator/Licence.txt
 

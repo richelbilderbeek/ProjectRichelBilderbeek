@@ -1,22 +1,26 @@
 #ifndef NSANABROSGAME_H
 #define NSANABROSGAME_H
-//---------------------------------------------------------------------------
+
 #include <set>
 #include <vector>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/timer.hpp>
-//---------------------------------------------------------------------------
+
 //#include "nsanabroskeys.h"
 //#include "nsanabrosplayer.h"
 //#include "nsanabrosscreen.h"
-//---------------------------------------------------------------------------
+
 #include "nsanabrosstlfwdheader.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 struct NsanaBrosGame : public boost::noncopyable
 {
   NsanaBrosGame();
