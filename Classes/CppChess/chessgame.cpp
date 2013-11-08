@@ -5,9 +5,9 @@
 #include <iostream>
 #include <stdexcept>
 
-//#include <boost/bind.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/foreach.hpp>
-//#include <boost/lambda/lambda.hpp>
 
 #include "chessbitboard.h"
 #include "chessboard.h"
@@ -21,9 +21,12 @@
 #include "chessscore.h"
 #include "chesssquare.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::Game::Game()
-  : m_board(BoardFactory::Create())
+  : m_board(BoardFactory::Create()),
+    m_moves{},
+    m_score{}
 {
   #ifndef NDEBUG
   Test();
@@ -65,36 +68,36 @@ int ribi::Chess::Game::CanDoGameUntil(const std::vector<std::string>& moves)
   for (int i=0; i!=n_moves; ++i)
   {
     const std::string s = moves[i];
-    if (!game.CanDoMove(*MoveFactory::Create(s))) return i;
-    game.DoMove(*Chess::MoveFactory::Create(s));
+    if (!game.CanDoMove(MoveFactory::Create(s))) return i;
+    game.DoMove(Chess::MoveFactory::Create(s));
   }
   return n_moves;
 }
 
-bool ribi::Chess::Game::CanDoMove(const Move& move) const
+bool ribi::Chess::Game::CanDoMove(const boost::shared_ptr<const Move> move) const
 {
   return m_board->CanDoMove(move,GetActivePlayer());
 }
 
-void ribi::Chess::Game::DoMove(const Move& move)
+void ribi::Chess::Game::DoMove(const boost::shared_ptr<const Move> move)
 {
   //assert(CanDoMove(move));
   assert(!m_score);
   m_moves.push_back(move);
-  if (move.From())
+  if (move->From())
   {
-    PiecePtr p = GetPiece(*move.From());
+    PiecePtr p = GetPiece(move->From());
     assert(p);
     assert(p->CanDoMove(move));
     p->DoMove(move);
   }
-  else if (move.Score())
+  else if (move->Score())
   {
-    m_score = move.Score();
+    m_score = move->Score();
   }
 }
 
-const ribi::Chess::Game::PiecePtr ribi::Chess::Game::GetPiece(const Square& square) const
+const ribi::Chess::Game::PiecePtr ribi::Chess::Game::GetPiece(const boost::shared_ptr<const Square> square) const
 {
   return m_board->GetPiece(square);
 }
@@ -121,10 +124,9 @@ const std::string ribi::Chess::Game::GetVersion()
 
 const std::vector<std::string> ribi::Chess::Game::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2012-06-16: version 0.1: initial seperation from Chess::Board");
-  return v;
+  return {
+    "2012-06-16: version 0.1: initial seperation from Chess::Board"
+  };
 }
 
 const ribi::Chess::BitBoard ribi::Chess::Game::GetVisibleSquares() const

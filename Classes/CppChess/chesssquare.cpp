@@ -1,16 +1,16 @@
-
+#include <algorithm>
 #include <cassert>
 #include <iostream>
-
-#ifndef NDEBUG
-#include <algorithm>
 #include <vector>
-#endif
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
 #include "chesssquare.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::Square::Square(const Chess::File& x, const Chess::Rank& y)
   : m_file(x), m_rank(y)
@@ -78,10 +78,10 @@ void ribi::Chess::Square::Test()
         Chess::Square t("a1");
         Chess::Square u(t);
         Chess::Square v("a2");
-        assert(IsEqual(s,t));
-        assert(IsEqual(t,u));
-        assert(!IsEqual(s,v));
-        assert(!IsEqual(u,v));
+        assert(s == t);
+        assert(t == u);
+        assert(s != v);
+        assert(u != v);
       }
 
       {
@@ -202,7 +202,7 @@ std::ostream& ribi::Chess::operator<<(std::ostream& os, const Square& s)
   return os;
 }
 
-bool ribi::Chess::IsEqual(const Square& lhs, const Square& rhs)
+bool ribi::Chess::operator==(const Square& lhs, const Square& rhs)
 {
   return lhs.GetFile() == rhs.GetFile()
     && lhs.GetRank() == rhs.GetRank();

@@ -119,7 +119,7 @@ bool ribi::Chess::Board::CanDoCastling(const Castling castling, const Player pla
   return true;
 }
 
-bool ribi::Chess::Board::CanDoMove(const Move& move, const Player player) const
+bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, const Player player) const
 {
   if (move.Score())
   {
@@ -543,7 +543,7 @@ void ribi::Chess::Board::DoCastling(const Castling castling, const Player player
   }
 }
 
-void ribi::Chess::Board::DoMove(const Move& move,const Player player)
+void ribi::Chess::Board::DoMove(const boost::shared_ptr<const Move> move,const Player player)
 {
   assert(CanDoMove(move,player));
   if (!move.From() && move.To())
@@ -581,7 +581,9 @@ void ribi::Chess::Board::DoMove(const Move& move,const Player player)
   }
 }
 
-bool ribi::Chess::Board::EmptyBetween(const Square& a, const Square& b) const
+bool ribi::Chess::Board::EmptyBetween(
+  const boost::shared_ptr<const Square> a,
+  const boost::shared_ptr<const Square> b) const noexcept
 {
   const int dx = a.GetFile().ToInt() - b.GetFile().ToInt();
   const int dy = a.GetRank().ToInt() - b.GetRank().ToInt();
@@ -615,7 +617,8 @@ bool ribi::Chess::Board::EmptyBetween(const Square& a, const Square& b) const
 //  return (m_moves.size() % 2 ? Color::black : Color::white);
 //}
 
-const ribi::Chess::Board::PiecePtr ribi::Chess::Board::GetPiece(const Square& square)
+const ribi::Chess::Board::PiecePtr
+  ribi::Chess::Board::GetPiece(const boost::shared_ptr<const Square> square)
 {
   const auto i = std::find_if(m_pieces.begin(),m_pieces.end(),
     [&square](const PiecePtr& p)
@@ -628,7 +631,8 @@ const ribi::Chess::Board::PiecePtr ribi::Chess::Board::GetPiece(const Square& sq
   else { assert(*i); return *i; }
 }
 
-const ribi::Chess::Board::ConstPiecePtr ribi::Chess::Board::GetPiece(const Square& square) const
+const ribi::Chess::Board::ConstPiecePtr
+  ribi::Chess::Board::GetPiece(const boost::shared_ptr<const Square> square) const
 {
   const auto i = std::find_if(m_pieces.begin(),m_pieces.end(),
     [&square](const PiecePtr& p)

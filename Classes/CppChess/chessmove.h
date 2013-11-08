@@ -3,11 +3,14 @@
 
 #include <iosfwd>
 #include <memory>
-#include <boost/regex_fwd.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <boost/xpressive/xpressive_fwd.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
 #include "chesssquare.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {
@@ -18,7 +21,7 @@ struct Move
   ///Move(const char * const s) : Move(std::string(s)) {}
 
   ///Obtain the square the piece is moving from
-  const boost::shared_ptr<Square>& From() const { return m_from; }
+  const boost::shared_ptr<const Square> From() const noexcept { return m_from; }
 
   ///Obtain the Move in the notational form it was contructed with
   const std::string& GetStr() const { return m_str; }
@@ -84,13 +87,13 @@ struct Move
   static const boost::shared_ptr<Chess::Square> ParseTo(const std::string& s);
 
   ///Obtain the piece type
-  const boost::shared_ptr<Chess::Piece>& Piece() const { return m_piece; };
+  const boost::shared_ptr<Chess::Piece> Piece() const { return m_piece; };
 
   ///Obtain the piece type promoted to
-  const boost::shared_ptr<Chess::Piece>& PiecePromotion() const { return m_piece_promotion; };
+  const boost::shared_ptr<Chess::Piece> PiecePromotion() const { return m_piece_promotion; };
 
   ///Obtain the score
-  const boost::shared_ptr<Chess::Score>& Score() const { return m_score; };
+  const boost::shared_ptr<Chess::Score> Score() const { return m_score; };
 
 
   #ifndef NDEBUG
@@ -101,7 +104,7 @@ struct Move
   #endif
 
   ///Obtain the square the piece is moving to
-  const boost::shared_ptr<Square>& To() const { return m_to; }
+  const boost::shared_ptr<const Square> To() const noexcept { return m_to; }
 
   ///Convert a Move to its long notational form
   const std::string ToStr() const;
@@ -126,7 +129,7 @@ struct Move
   const std::string m_str;
   const boost::shared_ptr<Chess::Square> m_to;
   #else
-  boost::shared_ptr<Square> m_from;
+  boost::shared_ptr<const Square> m_from;
   bool m_is_capture;
   bool m_is_castling;
   bool m_is_check;
@@ -140,13 +143,13 @@ struct Move
   ///The Move in the same notational form as given in the contructor
   std::string m_str;
 
-  boost::shared_ptr<Chess::Square> m_to;
+  boost::shared_ptr<const Chess::Square> m_to;
   #endif
   ///Obtain all matches of regex in a certain string
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   static const std::vector<std::string> GetRegexMatches(
     const std::string& s,
-    const boost::regex& r);
+    const boost::xpressive::sregex& r);
 
   friend void boost::checked_delete<>(Move *);
 

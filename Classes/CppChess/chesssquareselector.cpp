@@ -2,6 +2,10 @@
 #include <cassert>
 #include <memory>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
 #include "chessboard.h"
@@ -14,15 +18,18 @@
 #include "chessmove.h"
 #include "chesswidget.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::SquareSelector::SquareSelector()
-  : m_cursor(GetInitialSquare())
+  : m_signal_changed{},
+    m_cursor(GetInitialSquare()),
+    m_selected{}
 {
   assert(m_cursor);
 }
 
 void ribi::Chess::SquareSelector::Click(
-  const Chess::Square& square,
+  const boost::shared_ptr<const Square> square,
   const bool can_select_square)
 {
   assert(m_cursor);
@@ -30,14 +37,15 @@ void ribi::Chess::SquareSelector::Click(
   //No square selected: set cursor and selector on selected piece
   if (!m_selected)
   {
-    m_cursor.reset(new Square(square));
+    m_cursor = square;
     if (can_select_square)
     {
-      m_selected.reset(new Square(square));
+      m_selected = square;
     }
     else
     {
-      m_selected.reset(0);
+      const boost::shared_ptr<const Square> no_selection;
+      m_selected = no_selection;
     }
     m_signal_changed();
   }
@@ -48,8 +56,9 @@ void ribi::Chess::SquareSelector::Click(
     //The selected piece is unselected: set cursor on unselected square, set selector to null
     if (*m_cursor == *m_selected)
     {
-      m_cursor.reset(new Square(square));
-      m_selected.reset(0);
+      m_cursor = square;
+      const boost::shared_ptr<const Square> no_selection;
+      m_selected = no_selection;
       m_signal_changed();
     }
     else
@@ -58,8 +67,9 @@ void ribi::Chess::SquareSelector::Click(
       //Don't care if move is valid:
       //- if move is valid,   piece   is moved and selector is removed
       //- if move is invalid, nothing is moved and selector is removed
-      m_cursor.reset(new Square(square));
-      m_selected.reset(0);
+      m_cursor = square;
+      const boost::shared_ptr<const Square> no_selection;
+      m_selected = no_selection;
     }
   }
   assert(m_cursor);
@@ -82,7 +92,8 @@ void ribi::Chess::SquareSelector::DoSelect()
     //The selected piece is unselected
     if (*m_cursor == *m_selected)
     {
-      m_selected.reset(0);
+      const boost::shared_ptr<const Square> no_selection;
+      m_selected = no_selection;
       m_signal_changed();
     }
     else
@@ -99,16 +110,21 @@ boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSq
   return SquareFactory::Create<Square>(s);
 }
 
-const std::string ribi::Chess::SquareSelector::GetVersion()
+const std::string ribi::Chess::SquareSelector::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory()
+const boost::shared_ptr<const ribi::Chess::Square> ribi::Chess::SquareSelector::GetSelected() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return m_selected;
+}
+
+const std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory() noexcept
+{
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }
 
 void ribi::Chess::SquareSelector::MoveDown()
@@ -116,7 +132,14 @@ void ribi::Chess::SquareSelector::MoveDown()
   assert(m_cursor);
   if (m_cursor->GetRank().ToInt() != 7)
   {
-    m_cursor.reset(new Square(m_cursor->GetFile(),m_cursor->GetRank().ToInt() + 1));
+    const boost::shared_ptr<const Square> square {
+      SquareFactory::Create(
+        File(m_cursor->GetFile().ToInt() + 0),
+        Rank(m_cursor->GetRank().ToInt() + 1)
+      )
+    };
+    m_cursor = square;
+
     this->m_signal_changed();
   }
 }
@@ -126,7 +149,13 @@ void ribi::Chess::SquareSelector::MoveLeft()
   assert(m_cursor);
   if (m_cursor->GetFile().ToInt() != 0)
   {
-    m_cursor.reset(new Square(m_cursor->GetFile().ToInt() - 1,m_cursor->GetRank()));
+    const boost::shared_ptr<const Square> square {
+      SquareFactory::Create(
+        File(m_cursor->GetFile().ToInt() - 1),
+        Rank(m_cursor->GetRank().ToInt() + 0)
+      )
+    };
+    m_cursor = square;
     this->m_signal_changed();
   }
 }
@@ -136,7 +165,13 @@ void ribi::Chess::SquareSelector::MoveRight()
   assert(m_cursor);
   if (m_cursor->GetFile().ToInt() != 7)
   {
-    m_cursor.reset(new Square(m_cursor->GetFile().ToInt() + 1,m_cursor->GetRank()));
+    const boost::shared_ptr<const Square> square {
+      SquareFactory::Create(
+        File(m_cursor->GetFile().ToInt() + 1),
+        Rank(m_cursor->GetRank().ToInt() + 0)
+      )
+    };
+    m_cursor = square;
     this->m_signal_changed();
   }
 }
@@ -147,7 +182,13 @@ void ribi::Chess::SquareSelector::MoveUp()
   assert(m_cursor);
   if (m_cursor->GetRank().ToInt() != 0)
   {
-    m_cursor.reset(new Square(m_cursor->GetFile(),m_cursor->GetRank().ToInt() - 1));
+    const boost::shared_ptr<const Square> square {
+      SquareFactory::Create(
+        File(m_cursor->GetFile().ToInt() + 0),
+        Rank(m_cursor->GetRank().ToInt() - 1)
+      )
+    };
+    m_cursor = square;
     this->m_signal_changed();
   }
 }

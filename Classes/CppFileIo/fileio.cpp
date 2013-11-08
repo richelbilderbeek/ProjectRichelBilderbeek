@@ -37,6 +37,20 @@ void ribi::fileio::CopyFile(
   in.close();
 }
 
+void ribi::fileio::CreateFolder(const std::string& folder)
+{
+  assert(!IsFolder(folder)
+    && "Can only create folders that do not exist yes");
+  const std::string cmd = "mkdir " + folder;
+  const int error = std::system(cmd.c_str());
+  #ifndef NDEBUG
+  if (error) { TRACE(cmd); }
+  #endif
+  assert(!error && "Assume mkdir works under both Windows and Linux");
+  if (error) throw std::runtime_error("CreateFolder failed");
+  assert(IsFolder(folder) && "it should work");
+}
+
 void ribi::fileio::DeleteFile(const std::string& filename)
 {
   std::remove(filename.c_str());
@@ -58,6 +72,23 @@ void ribi::fileio::DeleteFile(const std::string& filename)
   #endif
   assert(!IsRegularFile(filename)
     && "File must not exist anymore");
+}
+
+void ribi::fileio::DeleteFolder(const std::string& folder)
+{
+  assert(IsFolder(folder)
+    && "Can only delete folders that do exist");
+  const std::string cmd = "rmdir " + folder;
+  const int error = std::system(cmd.c_str());
+  assert(!error && "Assume rmdir works under both Windows and Linux");
+  if (error)
+  {
+    throw std::runtime_error("DeleteFolder failed by system call");
+  }
+  if (IsFolder(folder))
+  {
+    throw std::runtime_error("DeleteFolder failed in deleting the folder");
+  }
 }
 
 bool ribi::fileio::FilesAreIdentical(
@@ -84,7 +115,10 @@ bool ribi::fileio::FilesAreIdentical(
 const std::vector<std::string> ribi::fileio::FileToVector(const std::string& filename)
 {
   #ifndef NDEBUG
-  if (!IsRegularFile(filename)) TRACE(filename);
+  if (!IsRegularFile(filename))
+  {
+    TRACE(filename);
+  }
   #endif
   assert(IsRegularFile(filename));
   assert(!IsFolder(filename));
@@ -141,7 +175,7 @@ const std::string ribi::fileio::GetFileBasename(const std::string& filename)
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
-      "((.*)(/|\\\\))?([A-Za-z0-9_]*)((\\.)([A-Za-z0-9]*))?" );
+      "((.*)(/|\\\\))?([A-Za-z0-9_-]*)((\\.)([A-Za-z0-9]*))?" );
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what, rex ) )
@@ -203,15 +237,46 @@ const std::string ribi::fileio::GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
+const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
+{
+  const int a = folder.rfind("\\",folder.size());
+  const int b = folder.rfind("/",folder.size());
+  const int i = std::max(a,b);
+  assert(i < static_cast<int>(folder.size()));
+  return
+    i == static_cast<int>(std::string::npos)
+    ? std::string("")
+    : folder.substr(0,i);
+}
+
+const std::string ribi::fileio::GetTempFolderName()
+{
+  //Limit the number of searches, to prevent the program from freezing
+  //It might occur that the first random names are taken, because
+  //of working without a randomize timer first
+  for (int i=0; i!=1000; ++i)
+  {
+    std::stringstream s;
+    s << "tmpfoldername"
+      << std::rand()
+      << std::rand()
+      << std::rand()
+      << std::rand();
+    if (!IsFolder(s.str())) return s.str();
+  }
+  throw std::runtime_error("Could not find a temporary folder name");
+}
+
 const std::string ribi::fileio::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ribi::fileio::GetVersionHistory() noexcept
 {
   return {
-    "2013-10-14: Version 1.0: initial version"
+    "2013-10-14: Version 1.0: initial version",
+    "2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions"
   };
 }
 
@@ -246,6 +311,12 @@ void ribi::fileio::RenameFile(
   const std::string& to,
   const RenameMode rename_mode)
 {
+  #ifndef NDEBUG
+  if (!IsRegularFile(from))
+  {
+    TRACE(from);
+  }
+  #endif
   assert(IsRegularFile(from) && "Cannot rename a non-existing file");
   assert(from != to && "Cannot rename to the same filename");
   if (rename_mode == RenameMode::prevent_overwrite && IsRegularFile(to))
@@ -318,6 +389,36 @@ void ribi::fileio::Test() noexcept
     assert(!IsRegularFile(filename));
     assert(!IsRegularFile(filename_copy));
   }
+  //GetTempFolderName, CreateFolder and DeleteFolder
+  {
+    //Depth 1
+    {
+      const std::string f { GetTempFolderName() };
+      assert(!IsFolder(f) && "A temporary folder name must not exist");
+      CreateFolder(f);
+      assert(IsFolder(f));
+      DeleteFolder(f);
+      assert(!IsFolder(f));
+    }
+    //Depth 2
+    {
+      const std::string super_folder { GetTempFolderName() };
+      assert(!IsFolder(super_folder) && "A temporary folder name must not exist");
+      CreateFolder(super_folder);
+      assert(IsFolder(super_folder));
+      {
+        const std::string f { GetTempFolderName() };
+        assert(!IsFolder(f) && "A temporary folder name must not exist");
+        CreateFolder(f);
+        assert(IsFolder(f));
+        DeleteFolder(f);
+        assert(!IsFolder(f));
+      }
+      assert(IsFolder(super_folder));
+      DeleteFolder(super_folder);
+      assert(!IsFolder(super_folder));
+    }
+  }
   //FilesAreIdentical
   {
     const std::vector<std::string> filenames { "tmp_a.txt", "tmp_b.txt", "tmp_c.txt" };
@@ -355,6 +456,8 @@ void ribi::fileio::Test() noexcept
     assert(GetFileBasename("MyFolder/MyFolder/tmp") == std::string("tmp"));
     assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == std::string("tmp"));
     assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/My-Folder\\tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("MyFolder/My_Folder\\tmp.txt") == std::string("tmp"));
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameConnectThree")
       == std::string("GameConnectThree"));
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameAminoAcidFighter")
@@ -381,6 +484,8 @@ void ribi::fileio::Test() noexcept
     assert(GetExtensionNoDot("MyFolder/MyFolder/tmp") == std::string(""));
     assert(GetExtensionNoDot("MyFolder/MyFolder/tmp.txt") == std::string("txt"));
     assert(GetExtensionNoDot("MyFolder/MyFolder\\tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("MyFolder/My-Folder\\tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("MyFolder/My_Folder\\tmp.txt") == std::string("txt"));
 
     assert(GetExtensionWithDot("") == std::string(""));
     assert(GetExtensionWithDot("tmp") == std::string(""));
@@ -397,6 +502,8 @@ void ribi::fileio::Test() noexcept
     assert(GetExtensionWithDot("MyFolder/MyFolder/tmp") == std::string(""));
     assert(GetExtensionWithDot("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
     assert(GetExtensionWithDot("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("MyFolder/My-Folder/tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("MyFolder/My_Folder\\tmp.txt") == std::string(".txt"));
 
     assert(GetExtension("") == std::string(""));
     assert(GetExtension("tmp") == std::string(""));
@@ -413,11 +520,48 @@ void ribi::fileio::Test() noexcept
     assert(GetExtension("MyFolder/MyFolder/tmp") == std::string(""));
     assert(GetExtension("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
     assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtension("MyFolder/My_Folder/tmp.txt") == std::string(".txt"));
+    assert(GetExtension("MyFolder/My-Folder\\tmp.txt") == std::string(".txt"));
   }
   //GetPath
   {
-    assert(GetPath("C:\\any_path\\any_file.cpp")=="C:\\any_path");
+    assert(GetPath("/anypath/anyfile.cpp")=="/anypath");
+    assert(GetPath("/any-path/any-file.cpp")=="/any-path");
+    assert(GetPath("/any-path/any_file.cpp")=="/any-path");
+    assert(GetPath("/any_path/any-file.cpp")=="/any_path");
     assert(GetPath("/any_path/any_file.cpp")=="/any_path");
+    assert(GetPath("C:\\any-path\\any-file.cpp")=="C:\\any-path");
+    assert(GetPath("C:\\any-path\\any_file.cpp")=="C:\\any-path");
+    assert(GetPath("C:\\any-path\\anyfile.cpp")=="C:\\any-path");
+    assert(GetPath("C:\\any_path\\any-file.cpp")=="C:\\any_path");
+    assert(GetPath("C:\\any_path\\any_file.cpp")=="C:\\any_path");
+    assert(GetPath("C:\\any_path\\anyfile.cpp")=="C:\\any_path");
+    assert(GetPath("C:\\anypath\\anyfile.cpp")=="C:\\anypath");
+
+  }
+  //GetSuperFolder
+  {
+    assert(GetSuperFolder("C:\\A\\B")=="C:\\A");
+    assert(GetSuperFolder("C:\\A\\B\\C")=="C:\\A\\B");
+    assert(GetSuperFolder("C:\\")=="C:");
+    assert(GetSuperFolder("C:")=="");
+    assert(GetSuperFolder("/A/B")=="/A");
+    assert(GetSuperFolder("/A/B/C")=="/A/B");
+    assert(GetSuperFolder("/A")=="");
+    assert(GetSuperFolder("C:\\AnySuperFolder\\AnyFolder")=="C:\\AnySuperFolder");
+    assert(GetSuperFolder("C:\\AnySuperFolder\\Any_Folder")=="C:\\AnySuperFolder");
+    assert(GetSuperFolder("C:\\AnySuperFolder\\Any-Folder")=="C:\\AnySuperFolder");
+    assert(GetSuperFolder("C:\\Any_Super_Folder\\Any_Folder")=="C:\\Any_Super_Folder");
+    assert(GetSuperFolder("C:\\Any_Super_Folder\\Any-Folder")=="C:\\Any_Super_Folder");
+    assert(GetSuperFolder("C:\\Any-Super-Folder\\Any_Folder")=="C:\\Any-Super-Folder");
+    assert(GetSuperFolder("C:\\Any-Super-Folder\\Any-Folder")=="C:\\Any-Super-Folder");
+    assert(GetSuperFolder("/AnySuperFolder/AnyFolder")=="/AnySuperFolder");
+    assert(GetSuperFolder("/AnySuperFolder/Any_Folder")=="/AnySuperFolder");
+    assert(GetSuperFolder("/AnySuperFolder/Any-Folder")=="/AnySuperFolder");
+    assert(GetSuperFolder("/Any_Super_Folder/Any_Folder")=="/Any_Super_Folder");
+    assert(GetSuperFolder("/Any_Super_Folder/Any-Folder")=="/Any_Super_Folder");
+    assert(GetSuperFolder("/Any-Super-Folder/Any_Folder")=="/Any-Super-Folder");
+    assert(GetSuperFolder("/Any-Super-Folder/Any-Folder")=="/Any-Super-Folder");
   }
   //IsRegularFile
   {
@@ -439,14 +583,6 @@ void ribi::fileio::Test() noexcept
 
       assert(!IsRegularFile(filename));
     }
-    {
-      //Create a folder
-      const int mkdir_error = std::system("mkdir tmp");
-      assert(!mkdir_error);
-      assert(!IsRegularFile("tmp"));
-      const int rmdir_error = std::system("rmdir tmp");
-      assert(!rmdir_error);
-    }
   }
   //RemovePath
   {
@@ -461,6 +597,10 @@ void ribi::fileio::Test() noexcept
     assert(RemovePath("Another\\MyFolder/x.txt") == std::string("x.txt"));
     assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == std::string("x.txt"));
     assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == std::string("x.txt"));
+    assert(RemovePath("Yet\\An-other\\MyFolder/x.txt") == std::string("x.txt"));
+    assert(RemovePath("Yet\\An_other\\MyFolder/x.txt") == std::string("x.txt"));
+    assert(RemovePath("Yet\\Another\\MyFolder/x_y.txt") == std::string("x_y.txt"));
+    assert(RemovePath("Yet\\Another\\MyFolder/x-y.txt") == std::string("x-y.txt"));
   }
   //RenameFile
   {

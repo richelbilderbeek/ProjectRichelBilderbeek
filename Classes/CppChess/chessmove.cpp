@@ -1,18 +1,22 @@
-
 #include <cassert>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
-#include <boost/regex.hpp>
+#include <boost/xpressive/xpressive.hpp>
 
 #include "chesscastling.h"
 #include "chessmove.h"
 #include "chessmoves.h"
 #include "chesspiece.h"
 #include "chesspiecefactory.h"
+#include "chessmovefactory.h"
 #include "chesssquarefactory.h"
 #include "chessscore.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::Move::Move(const std::string& s)
   : m_from(ParseFrom(s)),
@@ -46,7 +50,7 @@ ribi::Chess::Move::Move(const std::string& s)
 
   if (m_is_en_passant && !m_is_capture) throw std::logic_error("Chess::ribi::Chess::Move::Move exception: every en passant capture is a capture");
 
-  if (boost::regex_search(s,boost::regex("e.p.")) && !m_is_en_passant)
+  if (boost::xpressive::regex_search(s,boost::xpressive::sregex::compile("e.p.")) && !m_is_en_passant)
   {
     const std::string error = "Chess::ribi::Chess::Move::Move exception: move is an invalid en passant move: " + s;
     throw std::logic_error(error.c_str());
@@ -59,7 +63,7 @@ ribi::Chess::Move::Move(const std::string& s)
       throw std::logic_error("Chess::ribi::Chess::Move::Move exception: m_piece cannot be initialized in a castling move");
     }
     if (m_score) throw std::logic_error("Chess::ribi::Chess::Move::Move exception: m_piece cannot be initialized in a score move");
-    const bool valid = m_piece->CanDoMove(*this);
+    const bool valid = m_piece->CanDoMove(MoveFactory::DeepCopy(*this));
     if (!valid)
     {
       const std::string t = "Move " + s + " invalid for " + m_piece->GetName();
@@ -68,37 +72,33 @@ ribi::Chess::Move::Move(const std::string& s)
   }
 }
 
-const std::vector<std::string> ribi::Chess::Move::GetRegexMatches(
+const std::vector<std::string>
+  ribi::Chess::Move::GetRegexMatches(
   const std::string& s,
-  const boost::regex& r)
+  const boost::xpressive::sregex& r)
 {
   std::vector<std::string> v;
-
-  std::string::const_iterator start = s.begin();
-  const std::string::const_iterator end = s.end();
-  boost::match_results<std::string::const_iterator> what;
-  boost::match_flag_type flags = boost::match_default;
-  while(boost::regex_search(start, end, what, r, flags))
+  boost::xpressive::sregex_iterator cur(s.begin(),s.end(),r);
+  boost::xpressive::sregex_iterator end;
+  for( ; cur != end; ++cur )
   {
-    const std::string x = what.str();
-    v.push_back(x);
-    start = what[0].second;
-    flags |= boost::match_prev_avail;
-    flags |= boost::match_not_bob;
+    const boost::xpressive::smatch& what = *cur;
+    v.push_back(what[0]);
   }
   return v;
 }
 
 const std::string ribi::Chess::Move::GetVersion()
 {
-  return "1.0";
+  return "1.1";
 }
 
 const std::vector<std::string> ribi::Chess::Move::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+    "2013-11-08: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+  };
 }
 
 bool ribi::Chess::Move::IsCastling() const
@@ -110,7 +110,8 @@ bool ribi::Chess::Move::IsCastling() const
 const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseFrom(const std::string& s)
 {
   boost::shared_ptr<Chess::Square> square;
-  const std::vector<std::string> v = GetRegexMatches(s,boost::regex("[a-h][1-8]"));
+  static const boost::xpressive::sregex r { boost::xpressive::sregex::compile("[a-h][1-8]") };
+  const std::vector<std::string> v = GetRegexMatches(s,r);
   #ifndef NDEBUG
   if (!(v.size() <= 2)) { TRACE(s); }
   #endif
@@ -127,7 +128,10 @@ bool ribi::Chess::Move::ParseIsCapture(const std::string& s)
 {
   //if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParseIsCapture exception: move must not be empty");
   //return boost::regex_match(s,boost::regex("[a-h]\\d?x.*"));
-  return boost::regex_match(s,boost::regex("(B|K|N|Q|R)?([a-h])?([1-8])?x[a-h][1-8](e.p.)?(\\+|\\#)?"));
+  static const boost::xpressive::sregex r {
+    boost::xpressive::sregex::compile("(B|K|N|Q|R)?([a-h])?([1-8])?x[a-h][1-8](e.p.)?(\\+|\\#)?")
+  };
+  return boost::xpressive::regex_match(s,r);
 }
 
 bool ribi::Chess::Move::ParseIsCastling(const std::string& s)
@@ -151,7 +155,11 @@ bool ribi::Chess::Move::ParseIsCheckmate(const std::string& s)
 
 bool ribi::Chess::Move::ParseIsEnPassant(const std::string& s)
 {
-  if (!boost::regex_match(s,boost::regex("([a-h][4-5])x[a-h][3-6]e.p.(\\+|\\#)?"))) return false;
+  static const boost::xpressive::sregex r {
+    boost::xpressive::sregex::compile("([a-h][4-5])x[a-h][3-6]e.p.(\\+|\\#)?")
+  };
+
+  if (!boost::xpressive::regex_match(s,r)) return false;
   const boost::shared_ptr<Chess::Square> from = ParseFrom(s);
   const boost::shared_ptr<Chess::Square> to = ParseTo(s);
   assert(from);
@@ -165,7 +173,10 @@ bool ribi::Chess::Move::ParseIsEnPassant(const std::string& s)
 
 bool ribi::Chess::Move::ParseIsPromotion(const std::string& s)
 {
-  return boost::regex_match(s,boost::regex("([a-h][1-8](x|\\s)?)?[a-h][1|8][B|N|Q|R](\\+|\\#)?"));
+  static const boost::xpressive::sregex r {
+    boost::xpressive::sregex::compile("([a-h][1-8](x|\\s)?)?[a-h][1|8][B|N|Q|R](\\+|\\#)?")
+  };
+  return boost::xpressive::regex_match(s,r);
 }
 
 const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const std::string& s)
@@ -201,8 +212,12 @@ const boost::shared_ptr<ribi::Chess::Score> ribi::Chess::Move::ParseScore(const 
 
 const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseTo(const std::string& s)
 {
+  static const boost::xpressive::sregex r {
+    boost::xpressive::sregex::compile("[a-h][1-8]")
+  };
+
   boost::shared_ptr<Chess::Square> square;
-  const std::vector<std::string> v = GetRegexMatches(s,boost::regex("[a-h][1-8]"));
+  const std::vector<std::string> v = GetRegexMatches(s,r);
   if (!v.empty())
   {
     assert(v.size() <= 2);
@@ -263,7 +278,7 @@ bool ribi::Chess::operator==(const Move& lhs, const Move& rhs)
   if (lhs.m_from)
   {
     assert(rhs.m_from);
-    if (!IsEqual(*lhs.m_from,*rhs.m_from)) return false;
+    if (*lhs.m_from != *rhs.m_from) return false;
   }
   if (lhs.m_is_capture  != rhs.m_is_capture) return false;
   if (lhs.m_is_castling != rhs.m_is_castling) return false;

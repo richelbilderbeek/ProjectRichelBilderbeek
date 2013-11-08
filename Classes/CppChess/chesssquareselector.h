@@ -1,6 +1,10 @@
 #ifndef CHESSSQUARESELECTOR_H
 #define CHESSSQUARESELECTOR_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
 
@@ -8,6 +12,7 @@
 #include "chessfwd.h"
 //#include "chesssquare.h"
 
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {
@@ -20,7 +25,7 @@ struct SquareSelector
 
   ///Respond to a click on a certain square
   void Click(
-    const Chess::Square& square,
+    const boost::shared_ptr<const Square> square,
     const bool can_select_square);
 
   ///Select the square the cursor is on
@@ -30,16 +35,16 @@ struct SquareSelector
   static boost::shared_ptr<Square> GetInitialSquare();
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the location of the cursor
   const boost::shared_ptr<const Square> GetCursor() const { return m_cursor; }
 
   ///Obtain the location of the cursor
-  const boost::scoped_ptr<Square>& GetSelected() const { return m_selected; }
+  const boost::shared_ptr<const Square> GetSelected() const noexcept;
 
   ///Try to move the cursor down
   void MoveDown();
@@ -68,10 +73,10 @@ struct SquareSelector
 
   ///The Square the cursor is.
   ///There will always be a cursor somewhere
-  const boost::shared_ptr<Square> m_cursor;
+  boost::shared_ptr<const Square> m_cursor;
 
   ///The selected Square, if any
-  boost::scoped_ptr<Square> m_selected;
+  boost::shared_ptr<const Square> m_selected;
 
   friend void boost::checked_delete<>(SquareSelector* x);
 };

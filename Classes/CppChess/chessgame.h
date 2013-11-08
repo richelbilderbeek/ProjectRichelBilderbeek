@@ -43,14 +43,14 @@ struct Game
   //Game(const Game& other);
 
   ///Check if a Move is valid to play in the current context
-  bool CanDoMove(const Move& move) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const;
 
   ///Check if this game can be played
   static bool CanDoGame(const std::vector<std::string>& moves);
   static int CanDoGameUntil(const std::vector<std::string>& moves);
 
   ///Do a Move that is valid to play in the current context
-  void DoMove(const Move& move);
+  void DoMove(const boost::shared_ptr<const Move> move);
 
   //bool IsVisible(const Square& s);
 
@@ -72,7 +72,7 @@ struct Game
 
   ///Find a Piece at a certain Square.
   ///If there is no Piece at that Square, an empty Piece is returned
-  const PiecePtr GetPiece(const Square& square) const;
+  const PiecePtr GetPiece(const boost::shared_ptr<const Square> square) const;
 
   ///Obtain the version of this class
   static const std::string GetVersion();
@@ -104,10 +104,10 @@ struct Game
   ///The Chess::Board used for the Game
   const boost::shared_ptr<Chess::Board> m_board;
 
+  std::vector<boost::shared_ptr<const Chess::Move> > m_moves;
+
   ///The Score if the game has ended by agreement (instead of by checkmate)
   boost::shared_ptr<Chess::Score> m_score;
-
-  std::vector<Chess::Move> m_moves;
 
   friend bool operator==(const Game& lhs, const Game& rhs);
 };
@@ -115,7 +115,7 @@ struct Game
 bool operator==(const Game& lhs, const Game& rhs);
 bool operator!=(const Game& lhs, const Game& rhs);
 
-} //~ namespace Chess
+} //~namespace Chess
 } //~namespace ribi
 
 #endif // CHESSGAME_H

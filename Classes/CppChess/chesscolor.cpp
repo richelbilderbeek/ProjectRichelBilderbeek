@@ -19,6 +19,7 @@ const std::string ribi::Chess::ColorToStr(const Color c)
     case Color::blue         : return "blue";
   }
   assert(!"Should not get here");
+  throw std::logic_error("Chess::ColorToStr: unimplemented Color");
 }
 
 ribi::Chess::Player ribi::Chess::ColorToPlayer(const Color c)
@@ -43,10 +44,10 @@ const std::string ribi::Chess::ColorVersion::GetVersion()
 
 const std::vector<std::string> ribi::Chess::ColorVersion::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  v.push_back("2012-02-07: version 1.1: added colors red, green and blue for selection");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version",
+    "2012-02-07: version 1.1: added colors red, green and blue for selection"
+  };
 }
 
 std::ostream& ribi::Chess::operator<<(std::ostream& os, const Color c)

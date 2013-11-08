@@ -1,36 +1,54 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "chesspiecefactory.h"
 
+#include "chessmove.h"
+#include "chessmovefactory.h"
 #include "chesspiece.h"
+#include "chesssquarefactory.h"
+#pragma GCC diagnostic pop
 
-boost::shared_ptr<Piece> ribi::Chess::PieceFactory::Create(const char namechar,const Color color,const Square& square)
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
+  const char namechar,
+  const Color color,
+  const boost::shared_ptr<const Square> square) noexcept
 {
+  assert(square);
   boost::shared_ptr<Piece> p;
-  switch(c)
+  switch(namechar)
   {
-    case 'B': p.reset(new Chess::PieceBishop(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'K': p.reset(new Chess::PieceKing(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'N': p.reset(new Chess::PieceKnight(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'Q': p.reset(new Chess::PieceQueen(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'R': p.reset(new Chess::PieceRook(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case '.': p.reset(new Chess::PiecePawn(Chess::Color::indeterminate,ParseFrom(s))); break;
+    case 'B': p.reset(new Chess::PieceBishop(color,square)); break;
+    case 'K': p.reset(new Chess::PieceKing(color,square)); break;
+    case 'N': p.reset(new Chess::PieceKnight(color,square)); break;
+    case 'Q': p.reset(new Chess::PieceQueen(color,square)); break;
+    case 'R': p.reset(new Chess::PieceRook(color,square)); break;
+    case '.': p.reset(new Chess::PiecePawn(color,square)); break;
     default: assert(!"Should not get here");
   }
   assert(p);
   return p;
 }
 
-boost::shared_ptr<Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::string& s)
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::string& s)
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory::CreateFromMove exception: move must not be empty");
+  const boost::shared_ptr<Move> move {
+    MoveFactory::Create(s)
+  };
+  boost::shared_ptr<const Square> square {
+    move->To()
+  };
+  if (!square) square = move->From();
 
+  boost::shared_ptr<Piece> piece;
   const char c = s[0];
   switch(c)
   {
-    case 'B': p.reset(new Chess::PieceBishop(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'K': p.reset(new Chess::PieceKing(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'N': p.reset(new Chess::PieceKnight(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'Q': p.reset(new Chess::PieceQueen(Chess::Color::indeterminate,ParseFrom(s))); break;
-    case 'R': p.reset(new Chess::PieceRook(Chess::Color::indeterminate,ParseFrom(s))); break;
+    case 'B': piece.reset(new Chess::PieceBishop(Chess::Color::indeterminate,square)); break;
+    case 'K': piece.reset(new Chess::PieceKing(Chess::Color::indeterminate,square)); break;
+    case 'N': piece.reset(new Chess::PieceKnight(Chess::Color::indeterminate,square)); break;
+    case 'Q': piece.reset(new Chess::PieceQueen(Chess::Color::indeterminate,square)); break;
+    case 'R': piece.reset(new Chess::PieceRook(Chess::Color::indeterminate,square)); break;
     case 'a':
     case 'b':
     case 'c':
@@ -39,11 +57,12 @@ boost::shared_ptr<Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::st
     case 'f':
     case 'g':
     case 'h':
-      p.reset(new Chess::PiecePawn(Chess::Color::indeterminate,ParseFrom(s))); break;
+      piece.reset(new Chess::PiecePawn(Chess::Color::indeterminate,square)); break;
   }
+  return piece;
 }
 
-boost::shared_ptr<Piece> ribi::Chess::PieceFactory::CreateFromPromotion(const std::string& s)
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromotion(const std::string& s)
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory::CreateFromPromotion exception: move must not be empty");
 

@@ -6,12 +6,12 @@
 #include "chesscastling.h"
 #include "trace.h"
 
-bool CanStrToCastling(const std::string& s)
+bool ribi::Chess::CanStrToCastling(const std::string& s)
 {
-  return boost::regex_match(s,GetCastlingRegex());
+  return boost::xpressive::regex_match(s,GetCastlingRegex());
 }
 
-const std::string CastlingToStr(const Castling castling)
+const std::string ribi::Chess::CastlingToStr(const Castling castling)
 {
   switch (castling)
   {
@@ -22,12 +22,15 @@ const std::string CastlingToStr(const Castling castling)
   throw std::logic_error("Unknown Castling");
 }
 
-const boost::regex GetCastlingRegex()
+const boost::xpressive::sregex ribi::Chess::GetCastlingRegex()
 {
-  return boost::regex("(0|O)-(0|O)(-(0|O))?(\\+|\\#)?");
+  static const boost::xpressive::sregex r {
+    boost::xpressive::sregex::compile("(0|O)-(0|O)(-(0|O))?(\\+|\\#)?")
+  };
+  return r;
 }
 
-Castling StrToCastling(const std::string& s)
+ribi::Chess::Castling ribi::Chess::StrToCastling(const std::string& s)
 {
   assert(CanStrToCastling(s));
   if (s.substr(0,3) == "O-O"   || s.substr(0,3) == "0-0"  ) return Castling::kingside;

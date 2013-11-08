@@ -188,6 +188,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetInvalidPawnMoves(const Che
      "a2 a3", "a2 a4", "a7 a8Q", "a8Q", "e4 e5", "h5xg6e.p."
   };
   assert(!"Should not get here");
+  throw std::vector<std::string>();
 }
 
 const std::vector<std::string> ribi::Chess::Moves::GetInvalidPromotionMoves()
@@ -341,6 +342,7 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidPawnMoves(const Chess
     "a2 a1Q", "a1Q", "a3", "a4", "a7 a6", "a7 a5", "e4 e3"
   };
   assert(!"Should not get here");
+  return std::vector<std::string>();
 }
 
 const std::vector<std::string> ribi::Chess::Moves::GetValidPromotionMoves()
@@ -410,14 +412,14 @@ const std::vector<std::string> ribi::Chess::Moves::GetValidRookMoves()
   };
 }
 
-const std::string ribi::Chess::Moves::GetVersion()
+const std::string ribi::Chess::Moves::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Moves::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Moves::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version"
+  };
 }

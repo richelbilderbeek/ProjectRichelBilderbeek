@@ -60,9 +60,8 @@ struct Square
 };
 
 std::ostream& operator<<(std::ostream& os, const Chess::Square& s);
-bool operator==(const Chess::Square& lhs, const Chess::Square& rhs); //FORBID
-bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs); //FORBID
-bool IsEqual(const Chess::Square& lhs, const Chess::Square& rhs);
+bool operator==(const Chess::Square& lhs, const Chess::Square& rhs);
+bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs);
 
 } //~namespace Chess
 } //~namespace ribi

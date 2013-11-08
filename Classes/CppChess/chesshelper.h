@@ -1,9 +1,14 @@
 #ifndef CHESSHELPER_H
 #define CHESSHELPER_H
 
-#include <boost/shared_ptr.hpp>
 #include <set>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 

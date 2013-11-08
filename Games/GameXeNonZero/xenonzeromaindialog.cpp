@@ -1,6 +1,6 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "gamexenonzerodialog.h"
+#include "xenonzeromaindialog.h"
 
 #include <string>
 #include <iostream>
@@ -11,7 +11,7 @@
 
 #include <cassert>
 
-#include "gamexenonzerosprite.h"
+#include "xenonzerosprite.h"
 #pragma GCC diagnostic pop
 
 ribi::xnz::Dialog::Dialog()

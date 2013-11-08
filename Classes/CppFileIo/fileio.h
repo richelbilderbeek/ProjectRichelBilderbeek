@@ -11,6 +11,10 @@ namespace fileio {
 enum class CopyMode   { allow_overwrite, prevent_overwrite };
 enum class RenameMode { allow_overwrite, prevent_overwrite };
 
+///Creates a folder
+///Will abort if it already exists
+void CreateFolder(const std::string& folder);
+
 ///Copy a file. If prevent_overwrite is set to true, a file
 ///cannot be copied over an existing target. If prevent_overwrite
 ///is set to false, a file can be copied over an existing target,
@@ -24,6 +28,10 @@ void CopyFile(
 ///Delete a file
 //From http://www.richelbilderbeek.nl/CppDeleteFile.htm
 void DeleteFile(const std::string& filename);
+
+///Deletes a folder
+///Will throw an exception if this fails
+void DeleteFolder(const std::string& folder);
 
 ///Checks if two files are identical
 ///Will throw std::bad_alloc if at least one of the files is
@@ -65,6 +73,15 @@ const std::vector<std::string> GetFilesInFolderByRegex(
 ///From http://www.richelbilderbeek.nl/CppGetPath.htm
 const std::string GetPath(const std::string& filename);
 
+///Returns the superfolder from a path
+///For example: '/A/B/C' its superfolder is '/A/B'
+const std::string GetSuperFolder(const std::string& folder);
+
+///Obtain the name of a folder that does not exist
+///Will throw a std::runtime_error in the unlikely
+///case it fails after one thousand times
+const std::string GetTempFolderName();
+
 ///Obtain the version
 const std::string GetVersion() noexcept;
 
@@ -78,6 +95,7 @@ bool IsFolder(const std::string& filename) noexcept;
 ///Determines if a filename is a regular file
 ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
 bool IsRegularFile(const std::string& filename) noexcept;
+
 
 ///Removes the path of a filename
 ///From http://www.richelbilderbeek.nl/CppRemovePath.htm

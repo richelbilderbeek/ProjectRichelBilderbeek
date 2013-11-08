@@ -1,9 +1,12 @@
 #ifndef CHESSSQUAREFACTORY_H
 #define CHESSSQUAREFACTORY_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {

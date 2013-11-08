@@ -6,8 +6,8 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 
-#include "gamexenonzerofwd.h"
-#include "gamexenonzeroarea.h"
+#include "xenonzerofwd.h"
+#include "xenonzeroarea.h"
 
 namespace ribi {
 

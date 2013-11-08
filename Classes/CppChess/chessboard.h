@@ -5,6 +5,9 @@
 #include <set>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/logic/tribool.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -12,6 +15,7 @@
 #include "chesscolor.h"
 #include "chessmove.h"
 //#include "chesspiece.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {
@@ -39,12 +43,12 @@ struct Board
   ///Check if a Move is valid to play in the current context
   ///Player must be indicated, because without castling would be ambigious
   ///Note that e2-e4 is only valid for the white player
-  bool CanDoMove(const Move& move, const Player player) const;
+  bool CanDoMove(const boost::shared_ptr<const Move> move, const Player player) const;
 
   ///Do a Move that is valid to play in the current context
   ///Player must be indicated, because without castling would be ambigious
   ///Note that e2-e4 is only valid for the white player
-  void DoMove(const Move& move, const Player player);
+  void DoMove(const boost::shared_ptr<const Move> move, const Player player);
 
   //bool IsVisible(const Square& s);
 
@@ -66,11 +70,11 @@ struct Board
 
   ///Find a Piece at a certain Square.
   ///If there is no Piece at that Square, an empty Piece is returned
-  const PiecePtr GetPiece(const Square& square);
+  const PiecePtr GetPiece(const boost::shared_ptr<const Square> square);
 
   ///Find a Piece at a certain Square.
   ///If there is no Piece at that Square, an empty Piece is returned
-  const ConstPiecePtr GetPiece(const Square& square) const;
+  const ConstPiecePtr GetPiece(const boost::shared_ptr<const Square> square) const;
 
   ///Obtain all read-only Piece instances
   const ConstPieces GetPieces() const;
@@ -123,7 +127,7 @@ struct Board
 
   ///Check if all squares between two Squares are empty (e
   ///Squares must be on one line
-  bool EmptyBetween(const Square& a, const Square& b) const;
+  bool EmptyBetween(const boost::shared_ptr<const Square> a, const boost::shared_ptr<const Square> b) const noexcept;
 
   ///Checks if the Move is valid in this situation
   ///??? REPLACE BY USING CANDOMOVE
