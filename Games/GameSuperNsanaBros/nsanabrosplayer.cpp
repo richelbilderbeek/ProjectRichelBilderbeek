@@ -32,9 +32,9 @@ double ribi::NsanaBrosPlayer::GetHeight() const
   return GetSprite()->GetHeight();
 }
 
-const NsanaBrosSprite * ribi::NsanaBrosPlayer::GetSprite() const
+boost::shared_ptr<const ribi::NsanaBrosSprite> ribi::NsanaBrosPlayer::GetSprite() const
 {
-  return m_sprite.get();
+  return m_sprite;
 }
 
 double ribi::NsanaBrosPlayer::GetWidth() const
@@ -58,7 +58,7 @@ void ribi::NsanaBrosPlayer::Move()
   Translate(m_dx,m_dy);
 }
 
-void ribi::NsanaBrosPlayer::RespondToKeys(const NsanaBrosKeys * const keys)
+void ribi::NsanaBrosPlayer::RespondToKeys(const boost::shared_ptr<const NsanaBrosKeys> keys)
 {
   switch (keys->GetHorizontal())
   {
@@ -97,11 +97,11 @@ void ribi::NsanaBrosPlayer::Translate(const double dx, const double dy)
   m_sprite->Translate(dx,dy);
 }
 
-std::ostream& operator<<(std::ostream& os, const NsanaBrosPlayer * const p)
+std::ostream& ribi::operator<<(std::ostream& os, const NsanaBrosPlayer& p)
 {
-  os << p->GetSprite() << '\n'
-     << "Speed vector: " << p->GetDx()
-     << " x " << p->GetDy();
+  os << p.GetSprite() << '\n'
+     << "Speed vector: " << p.GetDx()
+     << " x " << p.GetDy();
   return os;
 }
 

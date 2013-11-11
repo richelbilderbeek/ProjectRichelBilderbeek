@@ -290,14 +290,14 @@ bool ribi::Chess::operator==(const Move& lhs, const Move& rhs)
   if (lhs.m_piece)
   {
     assert(rhs.m_piece);
-    if (!IsEqual(*lhs.m_piece,*rhs.m_piece)) return false;
+    if (*lhs.m_piece != *rhs.m_piece) return false;
   }
 
   if (static_cast<bool>(lhs.m_piece_promotion) != static_cast<bool>(rhs.m_piece_promotion)) return false;
   if (lhs.m_piece_promotion)
   {
     assert(rhs.m_piece_promotion);
-    if (!IsEqual(*lhs.m_piece_promotion,*rhs.m_piece_promotion)) return false;
+    if (*lhs.m_piece_promotion != *rhs.m_piece_promotion) return false;
   }
 
   if (static_cast<bool>(lhs.m_score) != static_cast<bool>(rhs.m_score)) return false;

@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/qtkeyboardfriendlygraphicsview.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtKeyboardFriendlyGraphicsView/Licence.txt
 

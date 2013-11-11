@@ -28,6 +28,7 @@ enum class Player;
 struct Rank;
 struct Score;
 struct Square;
+struct SquareFactory;
 struct SquareSelector;
 
 } //~namespace Chess

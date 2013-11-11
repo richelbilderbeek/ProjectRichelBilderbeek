@@ -141,7 +141,7 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() co
 {
   const Color color = this->GetColor();
   assert(this->GetSquare());
-  const boost::shared_ptr<Square> square = SquareFactory::DeepCopy(*this->GetSquare());
+  const boost::shared_ptr<Square> square = SquareFactory::DeepCopy(this->GetSquare());
   assert(square);
   const boost::shared_ptr<Piece> p(new PieceBishop(color,square));
   assert(p);
@@ -919,4 +919,9 @@ bool ribi::Chess::operator==(const Piece& lhs, const Piece& rhs)
     }
   }
   return true;
+}
+
+bool ribi::Chess::operator!=(const Piece& lhs, const Piece& rhs)
+{
+  return !(lhs == rhs);
 }

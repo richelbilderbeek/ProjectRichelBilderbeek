@@ -130,7 +130,7 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
     = Newick::GetSimplerNewicksFrequencyPairs(m_newick->Peek());
   //Collect cooeficients
   std::vector<double> coefficients;
-  BOOST_FOREACH(const NewickFrequencyPair& p,simpler)
+  for(const NewickFrequencyPair& p: simpler)
   {
     const int f = p.second;
     coefficients.push_back(f == 1
@@ -140,7 +140,7 @@ void ribi::TestNewickVectorDialog::AnalyseCalculation() noexcept
   assert(coefficients.size() == simpler.size());
   //Collect probabilities
   std::vector<double> probabilities;
-  BOOST_FOREACH(const NewickFrequencyPair& p,simpler)
+  for(const NewickFrequencyPair& p: simpler)
   {
     const NewickVector n(p.first);
     probabilities.push_back(n.CalculateProbability(n.ToStr(),m_theta));
@@ -262,7 +262,7 @@ void ribi::TestNewickVectorDialog::AnalyseRootBranches() noexcept
       = Newick::GetRootBranches(m_newick->Peek());
     try
     {
-      BOOST_FOREACH(const std::vector<int>& c,b)
+      for(const std::vector<int>& c: b)
       {
         Newick::CheckNewick(c);
         text+=std::string("  ") + Newick::NewickToString(c);
@@ -283,7 +283,7 @@ void ribi::TestNewickVectorDialog::AnalyseSimplerNewicks() noexcept
   const std::vector<NewickFrequencyPair> simpler
     = Newick::GetSimplerNewicksFrequencyPairs(m_newick->Peek());
   std::string text = "Simpler Newicks:\n";
-  BOOST_FOREACH(const NewickFrequencyPair& simple_pair,simpler)
+  for(const NewickFrequencyPair& simple_pair: simpler)
   {
     const std::vector<int>& simple = simple_pair.first;
     const int f = simple_pair.second;

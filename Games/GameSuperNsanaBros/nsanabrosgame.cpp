@@ -3,23 +3,29 @@
 #include <cassert>
 #include <iostream>
 
-#include <boost/foreach.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
+
+#include "nsanabrossprite.h"
 #include "nsanabrosstlheader.h"
+#pragma GCC diagnostic pop
 
 const double ribi::NsanaBrosGame::m_width  = 20.0;
 const double ribi::NsanaBrosGame::m_height = 16.0;
 const double ribi::NsanaBrosGame::m_dy_gravity = 0.01;
 
 ribi::NsanaBrosGame::NsanaBrosGame()
-  : m_keys(new NsanaBrosKeys),
+  : m_signal_repaint{},
+    m_keys(new NsanaBrosKeys),
     m_player(new NsanaBrosPlayer),
     m_sprites(CreateTestSprites())
 {
 
 }
 
-const std::vector<boost::shared_ptr<NsanaBrosSprite> > ribi::NsanaBrosGame::CreateTestSprites()
+const std::vector<boost::shared_ptr<ribi::NsanaBrosSprite> > ribi::NsanaBrosGame::CreateTestSprites()
 {
   const std::vector<boost::shared_ptr<NsanaBrosSprite> > v
   = {
@@ -54,23 +60,23 @@ int ribi::NsanaBrosGame::GetWidth()
   return m_width;
 }
 
-const NsanaBrosKeys * ribi::NsanaBrosGame::GetKeys() const
+const boost::shared_ptr<const ribi::NsanaBrosKeys> ribi::NsanaBrosGame::GetKeys() const
 {
   //delete m_keys.get(); //Should not compile
-  return m_keys.get();
+  return m_keys;
 }
 
-const NsanaBrosPlayer * ribi::NsanaBrosGame::GetPlayer() const
+const boost::shared_ptr<const ribi::NsanaBrosPlayer> ribi::NsanaBrosGame::GetPlayer() const
 {
-  return m_player.get();
+  return m_player;
 }
 
-const std::vector<const NsanaBrosSprite*> ribi::NsanaBrosGame::GetSprites() const
+const std::vector<boost::shared_ptr<const ribi::NsanaBrosSprite> > ribi::NsanaBrosGame::GetSprites() const
 {
-  std::vector<const NsanaBrosSprite*> v;
-  BOOST_FOREACH(const boost::shared_ptr<NsanaBrosSprite>& s,m_sprites)
+  std::vector<boost::shared_ptr<const NsanaBrosSprite> > v;
+  for(const boost::shared_ptr<const NsanaBrosSprite> s: m_sprites)
   {
-    v.push_back(s.get());
+    v.push_back(s);
   }
   //v[0]->Translate(1.0,1.0); //Should not compile
   //delete v[0]; //Should not compile
@@ -102,12 +108,12 @@ void ribi::NsanaBrosGame::OnTimer()
   //Bounce into walls, etc...
   bool is_falling = true;
   {
-    const std::vector<const NsanaBrosSprite*> sprites = GetSprites();
+    const std::vector<boost::shared_ptr<const NsanaBrosSprite> > sprites = GetSprites();
     bool done = false;
     while (!done)
     {
       done = true;
-      BOOST_FOREACH(const NsanaBrosSprite* sprite, sprites)
+      for(const boost::shared_ptr<const NsanaBrosSprite> sprite: sprites)
       {
         if (
           sprite->GetCollisionVectorFromPoint(

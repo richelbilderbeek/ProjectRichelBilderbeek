@@ -207,3 +207,8 @@ bool ribi::Chess::operator==(const Square& lhs, const Square& rhs)
   return lhs.GetFile() == rhs.GetFile()
     && lhs.GetRank() == rhs.GetRank();
 }
+
+bool ribi::Chess::operator!=(const Square& lhs, const Square& rhs)
+{
+  return !(lhs == rhs);
+}

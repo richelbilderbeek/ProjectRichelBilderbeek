@@ -73,8 +73,6 @@ struct BinaryNewickVector
   const BinaryNewickVector TermIsOne(const int i) const;
 
   public:
-
-
   static double CalculateProbability(
     const std::string& newick_str,
     const double theta);

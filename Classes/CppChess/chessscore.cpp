@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cassert>
 #include <string>
+#include <stdexcept>
 #include <vector>
 #include "trace.h"
 
@@ -104,6 +105,7 @@ const std::string ribi::Chess::Score::ToStr() const
   if (m_is_draw) return "1/2-1/2";
   if (m_is_white_winner) return "1-0";
   assert(!"Should not get here");
+  throw std::logic_error("Cannot create score");
 }
 
 std::ostream& ribi::Chess::operator<<(std::ostream& os, const Score& s)

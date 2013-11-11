@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/numeric/conversion/cast.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 
 #include "BigIntegerLibrary.hh"
@@ -147,7 +147,7 @@ double ribi::NewickVector::CalculateProbabilityInternal(
       typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
       const std::vector<NewickFrequencyPair> newick_freqs
         = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
-      BOOST_FOREACH(const NewickFrequencyPair& p,newick_freqs)
+      for(const NewickFrequencyPair& p: newick_freqs)
       {
         const int frequency = p.second;
         assert(frequency > 0);
@@ -452,7 +452,7 @@ void ribi::NewickVector::Test() noexcept
       assert(Newick::IsTrinaryNewick(n));
       const std::vector<std::vector<int> > ns = Newick::GetSimplerNewicks(n);
       #ifdef DEBUG_BO_2_3_4_BC
-      BOOST_FOREACH(const std::vector<int>& v, ns)
+      for(const std::vector<int>& v: ns)
       {
         TRACE(Newick::NewickToString(v));
       }
@@ -563,7 +563,7 @@ void ribi::NewickVector::Test() noexcept
       //#define DEBUG_BO_1_BO_1_1_BC_1
       #ifdef  DEBUG_BO_1_BO_1_1_BC_1
       TRACE(boost::lexical_cast<std::string>(ns.size()));
-      BOOST_FOREACH(const std::vector<int>& v, ns)
+      for(const std::vector<int>& v: ns)
       {
         TRACE(Newick::NewickToString(v));
       }
@@ -597,7 +597,7 @@ void ribi::NewickVector::Test() noexcept
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       TRACE(std::string("I must be accepted: ") + s);
       //Check if valid newicks (as std::string) are marked as valid
@@ -654,7 +654,7 @@ void ribi::NewickVector::Test() noexcept
         const std::vector<std::vector<int> > simpler
           = Newick::GetSimplerNewicks(
             Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int> simple,simpler)
+        for(const std::vector<int> simple: simpler)
         {
           assert(Newick::IsNewick(simple));
           Newick::CheckNewick(simple);
@@ -667,7 +667,7 @@ void ribi::NewickVector::Test() noexcept
         const std::vector<std::vector<int> > b
             = Newick::GetRootBranches(
               Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int>& c,b)
+        for(const std::vector<int>& c: b)
         {
           assert(Newick::IsNewick(c));
         }
@@ -678,7 +678,7 @@ void ribi::NewickVector::Test() noexcept
   //Check if ill-formed Newicks are rejected
   {
     const std::vector<std::string> v = Newick::CreateInvalidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       TRACE(std::string("I must be rejected: ") + s);
       assert(!Newick::IsNewick(s));
@@ -688,7 +688,7 @@ void ribi::NewickVector::Test() noexcept
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       TRACE(std::string("I must be accepted: ") + s);
       //Check if valid newicks (as std::string) are marked as valid
@@ -746,7 +746,7 @@ void ribi::NewickVector::Test() noexcept
         const std::vector<std::vector<int> > simpler
           = Newick::GetSimplerBinaryNewicks(
             Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int> simple,simpler)
+        for(const std::vector<int> simple: simpler)
         {
           assert(Newick::IsNewick(simple));
           Newick::CheckNewick(simple);
@@ -823,7 +823,7 @@ void ribi::NewickVector::Test() noexcept
   {
     const std::vector<boost::tuple<std::string,double,double> > v
       = Newick::GetKnownProbabilities();
-    BOOST_FOREACH(const auto& t, v)
+    for(const auto& t:  v)
     {
       const std::string newick_str = boost::get<0>(t);
       const double theta = boost::get<1>(t);

@@ -10,8 +10,8 @@ SOURCES += \
 HEADERS  += \
     ../../Games/GameXeNonZero/xenonzeroarea.h \
     ../../Games/GameXeNonZero/xenonzerosprite.h \
-    ../../Games/GameXeNonZero/xenonzeromenudialog. \
-    ../../Games/GameXeNonZero/xenonzeromaingamedialog.h
+    ../../Games/GameXeNonZero/xenonzeromenudialog.h \
+    ../../Games/GameXeNonZero/xenonzeromaindialog.h
 
 OTHER_FILES += \
     ../../Games/GameXeNonZero/Licence.txt

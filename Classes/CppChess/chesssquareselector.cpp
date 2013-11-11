@@ -107,7 +107,7 @@ void ribi::Chess::SquareSelector::DoSelect()
 boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSquare()
 {
   const std::string s { "c3" };
-  return SquareFactory::Create<Square>(s);
+  return SquareFactory::Create(s);
 }
 
 const std::string ribi::Chess::SquareSelector::GetVersion() noexcept

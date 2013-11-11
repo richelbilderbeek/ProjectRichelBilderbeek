@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "newickvector.h"
@@ -187,7 +187,7 @@ void ribi::ManyDigitNewick::Test() noexcept
   const double theta = 10.0;
   ribi::ManyDigitNewick::SetTheta(theta);
   const std::vector<std::string> v = Newick::CreateValidNewicks();
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if ( Newick::CalcComplexity(Newick::StringToNewick(s))
       >  BigInteger(10000) )

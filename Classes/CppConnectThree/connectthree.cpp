@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <ctime>
 
-#include <boost/foreach.hpp>
+
 #include <boost/scoped_ptr.hpp>
 #pragma GCC diagnostic pop
 
@@ -274,7 +274,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoOther(
   {
     //Get anti-human moves
     Moves v;
-    BOOST_FOREACH(const Move& m, moves)
+    for(const Move& m: moves)
     {
       assert(CanDoMove(m));
       //Player is human
@@ -297,7 +297,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckTwoOther(
     //Get moves anti-next-player
     const int next_player_index = GetNextPlayer();
     Moves v;
-    BOOST_FOREACH(const Move& m, moves)
+    for(const Move& m: moves)
     {
       assert(CanDoMove(m));
       if (boost::tuples::get<2>(m) == next_player_index)
@@ -518,7 +518,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckOneOther(
   {
     //Get anti-human moves
     Moves w;
-    BOOST_FOREACH(const Move& m, v)
+    for(const Move& m: v)
     {
       assert(CanDoMove(m));
       if (is_player_human[boost::tuples::get<2>(m)])
@@ -541,7 +541,7 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CheckOneOther(
     //Get moves anti-next-player
     const int next_player_index = GetNextPlayer();
     Moves w;
-    BOOST_FOREACH(const Move& m, v)
+    for(const Move& m: v)
     {
       assert(CanDoMove(m));
       if (boost::tuples::get<2>(m) == next_player_index)

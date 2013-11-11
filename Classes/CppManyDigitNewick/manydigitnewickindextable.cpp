@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 ///CanGetData returns is GetData can be called with success

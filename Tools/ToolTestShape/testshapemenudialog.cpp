@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
-#include <boost/foreach.hpp>
+
 
 #include "shape.h"
 #include "shapewidget.h"
@@ -53,7 +53,7 @@ ribi::TestShapeMenuDialog::TestShapeMenuDialog()
   {
     GetFilenameImageWelcome()
   };
-  BOOST_FOREACH(const std::string& filename,files)
+  for(const std::string& filename: files)
   {
     if (!QFile::exists(filename.c_str()))
     {

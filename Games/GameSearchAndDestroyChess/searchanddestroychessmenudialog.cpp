@@ -39,6 +39,19 @@ ribi::sadc::MenuDialog::MenuDialog()
   */
 }
 
+int ribi::sadc::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+
 const ribi::About ribi::sadc::MenuDialog::GetAbout() const noexcept
 {
   About a(
@@ -55,6 +68,30 @@ const ribi::About ribi::sadc::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
+
+const ribi::Help ribi::sadc::MenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::sadc::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramSearchAndDestroyChess
+  };
+  assert(p);
+  return p;
+}
+
 
 const std::string ribi::sadc::MenuDialog::GetVersion() const noexcept
 {

@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppQtQuadBezierArrowItem
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtQuadBezierArrowItem/qtquadbezierarrowitem.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtQuadBezierArrowItem/qtquadbezierarrowitem.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtQuadBezierArrowItem/Licence.txt
 

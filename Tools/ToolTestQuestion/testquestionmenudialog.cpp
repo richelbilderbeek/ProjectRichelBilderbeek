@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
-#include <boost/foreach.hpp>
+
 
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
@@ -44,7 +44,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::TestQuestionMenuDialog::TestQuestionMenuDialog()
 {
   const std::vector<std::string> files = { "question.png" };
-  BOOST_FOREACH(const std::string& filename,files)
+  for(const std::string& filename: files)
   {
     if (!QFile::exists(filename.c_str()))
     {

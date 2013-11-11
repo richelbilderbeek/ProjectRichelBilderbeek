@@ -36,35 +36,35 @@ void ribi::Chess::Board::Test()
         assert(b);
         boost::shared_ptr<Chess::Board> c(BoardFactory::DeepCopy(*b));
         assert(c);
-        assert(IsEqual(*b,*c));
+        assert(*b == *c);
         c->DoMove(MoveFactory::Create("e2 e4"),Player::white);
-        assert(!IsEqual(*b,*c));
+        assert(*b != *c);
         const boost::shared_ptr<Chess::Board> d(c);
-        assert( IsEqual(*c,*d));
-        assert(!IsEqual(*b,*d));
+        assert(*c == *d);
+        assert(*b != *d);
       }
       {
         FTRACE("Test Board operator== with fresh boards");
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         boost::shared_ptr<Chess::Board> c(BoardFactory::Create());
-        assert(IsEqual(*b,*c));
+        assert((*b == *c));
         c->DoMove(MoveFactory::Create("e2 e4"),Player::white);
-        assert(!IsEqual(*b,*c));
+        assert((*b != *c));
         const boost::shared_ptr<Chess::Board> d(c);
-        assert(IsEqual(*c,*d));
-        assert(!IsEqual(*b,*d));
+        assert((*c == *d));
+        assert((*b != *d));
       }
 
       {
         FTRACE("Test Board operator== with fresh boards");
         const boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         boost::shared_ptr<Chess::Board> c(BoardFactory::Create());
-        assert(IsEqual(*b,*c));
+        assert((*b == *c));
         c->DoMove(MoveFactory::Create("e2 e4"),Player::white);
-        assert(!IsEqual(*b,*c));
+        assert((*b != *c));
         const boost::shared_ptr<Chess::Board> d(c);
-        assert(IsEqual(*c,*d));
-        assert(!IsEqual(*b,*d));
+        assert((*c == *d));
+        assert((*b != *d));
       }
 
       {
@@ -72,78 +72,78 @@ void ribi::Chess::Board::Test()
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         assert(!b->CanDoMove(MoveFactory::Create("Ra8 a6"),Player::black));
         assert(!b->CanDoMove(MoveFactory::Create("Ra8 a6"),Player::white));
-        assert(b->GetMoves(*SquareFactory::Create("a1")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("b1")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("c1")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("d1")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("e1")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("f1")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("g1")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("h1")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("a2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("b2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("c2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("d2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("e2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("f2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("g2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("h2")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("a8")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("b8")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("c8")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("d8")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("e8")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("f8")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("g8")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("h8")).size() == 0);
-        assert(b->GetMoves(*SquareFactory::Create("a7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("b7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("c7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("d7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("e7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("f7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("g7")).size() == 2);
-        assert(b->GetMoves(*SquareFactory::Create("h7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("a1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b1")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("e1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("g1")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("b2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("d2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("e2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("f2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("g2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("a8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b8")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("e8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("g8")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("b7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("d7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("e7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("f7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("g7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h7")).size() == 2);
       }
       {
         FTRACE("Test GetVisibleSquares in the initial position");
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
         const BitBoard c = b->GetVisibleSquares(Player::white);
 
-        assert(c.Get(*SquareFactory::Create("a1"))); assert(c.Get(*SquareFactory::Create("a2"))); assert(c.Get(*SquareFactory::Create("a3"))); assert(c.Get(*SquareFactory::Create("a4")));
-        assert(c.Get(*SquareFactory::Create("b1"))); assert(c.Get(*SquareFactory::Create("b2"))); assert(c.Get(*SquareFactory::Create("b3"))); assert(c.Get(*SquareFactory::Create("b4")));
-        assert(c.Get(*SquareFactory::Create("c1"))); assert(c.Get(*SquareFactory::Create("c2"))); assert(c.Get(*SquareFactory::Create("c3"))); assert(c.Get(*SquareFactory::Create("c4")));
-        assert(c.Get(*SquareFactory::Create("d1"))); assert(c.Get(*SquareFactory::Create("d2"))); assert(c.Get(*SquareFactory::Create("d3"))); assert(c.Get(*SquareFactory::Create("d4")));
-        assert(c.Get(*SquareFactory::Create("e1"))); assert(c.Get(*SquareFactory::Create("e2"))); assert(c.Get(*SquareFactory::Create("e3"))); assert(c.Get(*SquareFactory::Create("e4")));
-        assert(c.Get(*SquareFactory::Create("f1"))); assert(c.Get(*SquareFactory::Create("f2"))); assert(c.Get(*SquareFactory::Create("f3"))); assert(c.Get(*SquareFactory::Create("f4")));
-        assert(c.Get(*SquareFactory::Create("g1"))); assert(c.Get(*SquareFactory::Create("g2"))); assert(c.Get(*SquareFactory::Create("g3"))); assert(c.Get(*SquareFactory::Create("g4")));
-        assert(c.Get(*SquareFactory::Create("h1"))); assert(c.Get(*SquareFactory::Create("h2"))); assert(c.Get(*SquareFactory::Create("h3"))); assert(c.Get(*SquareFactory::Create("h4")));
-        assert(!c.Get(*SquareFactory::Create("a5"))); assert(!c.Get(*SquareFactory::Create("a6"))); assert(!c.Get(*SquareFactory::Create("a7"))); assert(!c.Get(*SquareFactory::Create("a8")));
-        assert(!c.Get(*SquareFactory::Create("b5"))); assert(!c.Get(*SquareFactory::Create("b6"))); assert(!c.Get(*SquareFactory::Create("b7"))); assert(!c.Get(*SquareFactory::Create("b8")));
-        assert(!c.Get(*SquareFactory::Create("c5"))); assert(!c.Get(*SquareFactory::Create("c6"))); assert(!c.Get(*SquareFactory::Create("c7"))); assert(!c.Get(*SquareFactory::Create("c8")));
-        assert(!c.Get(*SquareFactory::Create("d5"))); assert(!c.Get(*SquareFactory::Create("d6"))); assert(!c.Get(*SquareFactory::Create("d7"))); assert(!c.Get(*SquareFactory::Create("d8")));
-        assert(!c.Get(*SquareFactory::Create("e5"))); assert(!c.Get(*SquareFactory::Create("e6"))); assert(!c.Get(*SquareFactory::Create("e7"))); assert(!c.Get(*SquareFactory::Create("e8")));
-        assert(!c.Get(*SquareFactory::Create("f5"))); assert(!c.Get(*SquareFactory::Create("f6"))); assert(!c.Get(*SquareFactory::Create("f7"))); assert(!c.Get(*SquareFactory::Create("f8")));
-        assert(!c.Get(*SquareFactory::Create("g5"))); assert(!c.Get(*SquareFactory::Create("g6"))); assert(!c.Get(*SquareFactory::Create("g7"))); assert(!c.Get(*SquareFactory::Create("g8")));
-        assert(!c.Get(*SquareFactory::Create("h5"))); assert(!c.Get(*SquareFactory::Create("h6"))); assert(!c.Get(*SquareFactory::Create("h7"))); assert(!c.Get(*SquareFactory::Create("h8")));
+        assert(c.Get(SquareFactory::Create("a1"))); assert(c.Get(SquareFactory::Create("a2"))); assert(c.Get(SquareFactory::Create("a3"))); assert(c.Get(SquareFactory::Create("a4")));
+        assert(c.Get(SquareFactory::Create("b1"))); assert(c.Get(SquareFactory::Create("b2"))); assert(c.Get(SquareFactory::Create("b3"))); assert(c.Get(SquareFactory::Create("b4")));
+        assert(c.Get(SquareFactory::Create("c1"))); assert(c.Get(SquareFactory::Create("c2"))); assert(c.Get(SquareFactory::Create("c3"))); assert(c.Get(SquareFactory::Create("c4")));
+        assert(c.Get(SquareFactory::Create("d1"))); assert(c.Get(SquareFactory::Create("d2"))); assert(c.Get(SquareFactory::Create("d3"))); assert(c.Get(SquareFactory::Create("d4")));
+        assert(c.Get(SquareFactory::Create("e1"))); assert(c.Get(SquareFactory::Create("e2"))); assert(c.Get(SquareFactory::Create("e3"))); assert(c.Get(SquareFactory::Create("e4")));
+        assert(c.Get(SquareFactory::Create("f1"))); assert(c.Get(SquareFactory::Create("f2"))); assert(c.Get(SquareFactory::Create("f3"))); assert(c.Get(SquareFactory::Create("f4")));
+        assert(c.Get(SquareFactory::Create("g1"))); assert(c.Get(SquareFactory::Create("g2"))); assert(c.Get(SquareFactory::Create("g3"))); assert(c.Get(SquareFactory::Create("g4")));
+        assert(c.Get(SquareFactory::Create("h1"))); assert(c.Get(SquareFactory::Create("h2"))); assert(c.Get(SquareFactory::Create("h3"))); assert(c.Get(SquareFactory::Create("h4")));
+        assert(!c.Get(SquareFactory::Create("a5"))); assert(!c.Get(SquareFactory::Create("a6"))); assert(!c.Get(SquareFactory::Create("a7"))); assert(!c.Get(SquareFactory::Create("a8")));
+        assert(!c.Get(SquareFactory::Create("b5"))); assert(!c.Get(SquareFactory::Create("b6"))); assert(!c.Get(SquareFactory::Create("b7"))); assert(!c.Get(SquareFactory::Create("b8")));
+        assert(!c.Get(SquareFactory::Create("c5"))); assert(!c.Get(SquareFactory::Create("c6"))); assert(!c.Get(SquareFactory::Create("c7"))); assert(!c.Get(SquareFactory::Create("c8")));
+        assert(!c.Get(SquareFactory::Create("d5"))); assert(!c.Get(SquareFactory::Create("d6"))); assert(!c.Get(SquareFactory::Create("d7"))); assert(!c.Get(SquareFactory::Create("d8")));
+        assert(!c.Get(SquareFactory::Create("e5"))); assert(!c.Get(SquareFactory::Create("e6"))); assert(!c.Get(SquareFactory::Create("e7"))); assert(!c.Get(SquareFactory::Create("e8")));
+        assert(!c.Get(SquareFactory::Create("f5"))); assert(!c.Get(SquareFactory::Create("f6"))); assert(!c.Get(SquareFactory::Create("f7"))); assert(!c.Get(SquareFactory::Create("f8")));
+        assert(!c.Get(SquareFactory::Create("g5"))); assert(!c.Get(SquareFactory::Create("g6"))); assert(!c.Get(SquareFactory::Create("g7"))); assert(!c.Get(SquareFactory::Create("g8")));
+        assert(!c.Get(SquareFactory::Create("h5"))); assert(!c.Get(SquareFactory::Create("h6"))); assert(!c.Get(SquareFactory::Create("h7"))); assert(!c.Get(SquareFactory::Create("h8")));
         b->DoMove(MoveFactory::Create("e2 e3"),Player::white);
         const BitBoard d = b->GetVisibleSquares(Player::black);
-        assert(d.Get(*SquareFactory::Create("a5"))); assert(d.Get(*SquareFactory::Create("a6"))); assert(d.Get(*SquareFactory::Create("a7"))); assert(d.Get(*SquareFactory::Create("a8")));
-        assert(d.Get(*SquareFactory::Create("b5"))); assert(d.Get(*SquareFactory::Create("b6"))); assert(d.Get(*SquareFactory::Create("b7"))); assert(d.Get(*SquareFactory::Create("b8")));
-        assert(d.Get(*SquareFactory::Create("c5"))); assert(d.Get(*SquareFactory::Create("c6"))); assert(d.Get(*SquareFactory::Create("c7"))); assert(d.Get(*SquareFactory::Create("c8")));
-        assert(d.Get(*SquareFactory::Create("d5"))); assert(d.Get(*SquareFactory::Create("d6"))); assert(d.Get(*SquareFactory::Create("d7"))); assert(d.Get(*SquareFactory::Create("d8")));
-        assert(d.Get(*SquareFactory::Create("e5"))); assert(d.Get(*SquareFactory::Create("e6"))); assert(d.Get(*SquareFactory::Create("e7"))); assert(d.Get(*SquareFactory::Create("e8")));
-        assert(d.Get(*SquareFactory::Create("f5"))); assert(d.Get(*SquareFactory::Create("f6"))); assert(d.Get(*SquareFactory::Create("f7"))); assert(d.Get(*SquareFactory::Create("f8")));
-        assert(d.Get(*SquareFactory::Create("g5"))); assert(d.Get(*SquareFactory::Create("g6"))); assert(d.Get(*SquareFactory::Create("g7"))); assert(d.Get(*SquareFactory::Create("g8")));
-        assert(d.Get(*SquareFactory::Create("h5"))); assert(d.Get(*SquareFactory::Create("h6"))); assert(d.Get(*SquareFactory::Create("h7"))); assert(d.Get(*SquareFactory::Create("h8")));
-        assert(!d.Get(*SquareFactory::Create("a1"))); assert(!d.Get(*SquareFactory::Create("a2"))); assert(!d.Get(*SquareFactory::Create("a3"))); assert(!d.Get(*SquareFactory::Create("a4")));
-        assert(!d.Get(*SquareFactory::Create("b1"))); assert(!d.Get(*SquareFactory::Create("b2"))); assert(!d.Get(*SquareFactory::Create("b3"))); assert(!d.Get(*SquareFactory::Create("b4")));
-        assert(!d.Get(*SquareFactory::Create("c1"))); assert(!d.Get(*SquareFactory::Create("c2"))); assert(!d.Get(*SquareFactory::Create("c3"))); assert(!d.Get(*SquareFactory::Create("c4")));
-        assert(!d.Get(*SquareFactory::Create("d1"))); assert(!d.Get(*SquareFactory::Create("d2"))); assert(!d.Get(*SquareFactory::Create("d3"))); assert(!d.Get(*SquareFactory::Create("d4")));
-        assert(!d.Get(*SquareFactory::Create("e1"))); assert(!d.Get(*SquareFactory::Create("e2"))); assert(!d.Get(*SquareFactory::Create("e3"))); assert(!d.Get(*SquareFactory::Create("e4")));
-        assert(!d.Get(*SquareFactory::Create("f1"))); assert(!d.Get(*SquareFactory::Create("f2"))); assert(!d.Get(*SquareFactory::Create("f3"))); assert(!d.Get(*SquareFactory::Create("f4")));
-        assert(!d.Get(*SquareFactory::Create("g1"))); assert(!d.Get(*SquareFactory::Create("g2"))); assert(!d.Get(*SquareFactory::Create("g3"))); assert(!d.Get(*SquareFactory::Create("g4")));
-        assert(!d.Get(*SquareFactory::Create("h1"))); assert(!d.Get(*SquareFactory::Create("h2"))); assert(!d.Get(*SquareFactory::Create("h3"))); assert(!d.Get(*SquareFactory::Create("h4")));
+        assert(d.Get(SquareFactory::Create("a5"))); assert(d.Get(SquareFactory::Create("a6"))); assert(d.Get(SquareFactory::Create("a7"))); assert(d.Get(SquareFactory::Create("a8")));
+        assert(d.Get(SquareFactory::Create("b5"))); assert(d.Get(SquareFactory::Create("b6"))); assert(d.Get(SquareFactory::Create("b7"))); assert(d.Get(SquareFactory::Create("b8")));
+        assert(d.Get(SquareFactory::Create("c5"))); assert(d.Get(SquareFactory::Create("c6"))); assert(d.Get(SquareFactory::Create("c7"))); assert(d.Get(SquareFactory::Create("c8")));
+        assert(d.Get(SquareFactory::Create("d5"))); assert(d.Get(SquareFactory::Create("d6"))); assert(d.Get(SquareFactory::Create("d7"))); assert(d.Get(SquareFactory::Create("d8")));
+        assert(d.Get(SquareFactory::Create("e5"))); assert(d.Get(SquareFactory::Create("e6"))); assert(d.Get(SquareFactory::Create("e7"))); assert(d.Get(SquareFactory::Create("e8")));
+        assert(d.Get(SquareFactory::Create("f5"))); assert(d.Get(SquareFactory::Create("f6"))); assert(d.Get(SquareFactory::Create("f7"))); assert(d.Get(SquareFactory::Create("f8")));
+        assert(d.Get(SquareFactory::Create("g5"))); assert(d.Get(SquareFactory::Create("g6"))); assert(d.Get(SquareFactory::Create("g7"))); assert(d.Get(SquareFactory::Create("g8")));
+        assert(d.Get(SquareFactory::Create("h5"))); assert(d.Get(SquareFactory::Create("h6"))); assert(d.Get(SquareFactory::Create("h7"))); assert(d.Get(SquareFactory::Create("h8")));
+        assert(!d.Get(SquareFactory::Create("a1"))); assert(!d.Get(SquareFactory::Create("a2"))); assert(!d.Get(SquareFactory::Create("a3"))); assert(!d.Get(SquareFactory::Create("a4")));
+        assert(!d.Get(SquareFactory::Create("b1"))); assert(!d.Get(SquareFactory::Create("b2"))); assert(!d.Get(SquareFactory::Create("b3"))); assert(!d.Get(SquareFactory::Create("b4")));
+        assert(!d.Get(SquareFactory::Create("c1"))); assert(!d.Get(SquareFactory::Create("c2"))); assert(!d.Get(SquareFactory::Create("c3"))); assert(!d.Get(SquareFactory::Create("c4")));
+        assert(!d.Get(SquareFactory::Create("d1"))); assert(!d.Get(SquareFactory::Create("d2"))); assert(!d.Get(SquareFactory::Create("d3"))); assert(!d.Get(SquareFactory::Create("d4")));
+        assert(!d.Get(SquareFactory::Create("e1"))); assert(!d.Get(SquareFactory::Create("e2"))); assert(!d.Get(SquareFactory::Create("e3"))); assert(!d.Get(SquareFactory::Create("e4")));
+        assert(!d.Get(SquareFactory::Create("f1"))); assert(!d.Get(SquareFactory::Create("f2"))); assert(!d.Get(SquareFactory::Create("f3"))); assert(!d.Get(SquareFactory::Create("f4")));
+        assert(!d.Get(SquareFactory::Create("g1"))); assert(!d.Get(SquareFactory::Create("g2"))); assert(!d.Get(SquareFactory::Create("g3"))); assert(!d.Get(SquareFactory::Create("g4")));
+        assert(!d.Get(SquareFactory::Create("h1"))); assert(!d.Get(SquareFactory::Create("h2"))); assert(!d.Get(SquareFactory::Create("h3"))); assert(!d.Get(SquareFactory::Create("h4")));
       }
 
       {
@@ -168,41 +168,41 @@ void ribi::Chess::Board::Test()
             }
           );
         }
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b1")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b1")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c1")).size() == 0);
         assert(!b->CanDoMove(MoveFactory::Create("Qd1 d8"),Player::white));
         assert(!b->CanDoMove(MoveFactory::Create("Qd1 d7"),Player::white));
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g1")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("e1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("g1")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("b2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("d2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("e2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("f2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("g2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("a8")).size() == 0);
         /*
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g7")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("c8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("e8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("g8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("h8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("c7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("e7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("g7")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("h7")).size() == 0);
         */
         assert(b->GetMoves(Player::white).size() == 20);
 
@@ -237,9 +237,9 @@ void ribi::Chess::Board::Test()
         FTRACE("Test a Pawn on the board at e2");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("e2")),
-          PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("d3")),
-          PieceFactory::CreatePawn(Color::black,Chess::SquareFactory::Create("f3"))
+          PieceFactory::Create('.',Color::white,"e2"),
+          PieceFactory::Create('.',Color::white,"d3"),
+          PieceFactory::Create('.',Color::black,"f3")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert( b->CanDoMove(MoveFactory::Create("e2 e3"),Player::white));
@@ -252,8 +252,8 @@ void ribi::Chess::Board::Test()
         FTRACE("Test a Pawn on the board at e2, blocked by an opponent");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("e2")),
-          PieceFactory::CreatePawn(Color::black,Chess::SquareFactory::Create("e3"))
+          PieceFactory::Create('.',Color::white,"e2"),
+          PieceFactory::Create('.',Color::black,"e3")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert(!b->CanDoMove(MoveFactory::Create("e2 e3"),Player::white));
@@ -264,8 +264,8 @@ void ribi::Chess::Board::Test()
         FTRACE("Test a Pawn on the board at h4, blocked by an opponent");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("h4")),
-          PieceFactory::CreatePawn(Color::black,Chess::SquareFactory::Create("h5"))
+          PieceFactory::Create('.',Color::white,"h4"),
+          PieceFactory::Create('.',Color::black,"h5")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert(!b->CanDoMove(MoveFactory::Create("h4 h5"),Player::white));
@@ -275,9 +275,9 @@ void ribi::Chess::Board::Test()
         FTRACE("Test a Knight on the board at d4");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::CreateKnight(Color::white,Chess::SquareFactory::Create("d4")),
-          PieceFactory::CreatePawn(Color::white,Chess::SquareFactory::Create("c6")),
-          PieceFactory::CreatePawn(Color::black,Chess::SquareFactory::Create("e6"))
+          PieceFactory::Create('N',Color::white,"d4"),
+          PieceFactory::Create('.',Color::white,"c6"),
+          PieceFactory::Create('.',Color::black,"e6")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert( b->CanDoMove(MoveFactory::Create("Nd4 b5"),Player::white));
@@ -310,22 +310,22 @@ void ribi::Chess::Board::Test()
             }
           );
         }
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b8")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g8")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h8")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g7")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("a8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b8")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("e8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("g8")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h8")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("b7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("d7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("e7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("f7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("g7")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h7")).size() == 2);
         assert(b->GetMoves(Player::black).size() == 20);
         assert(!b->IsCheck(Player::black));
         assert(!b->IsCheckmate(Player::black));
@@ -357,22 +357,22 @@ void ribi::Chess::Board::Test()
             }
           );
         }
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b1")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d1")).size() == 4);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e1")).size() == 1);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f1")).size() == 5);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g1")).size() == 3);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h1")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("a2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("b2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("c2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("d2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("e4")).size() == 0);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("f2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("g2")).size() == 2);
-        assert(b->GetMoves(*Chess::SquareFactory::Create("h2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("a1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("b1")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("d1")).size() == 4);
+        assert(b->GetMoves(SquareFactory::Create("e1")).size() == 1);
+        assert(b->GetMoves(SquareFactory::Create("f1")).size() == 5);
+        assert(b->GetMoves(SquareFactory::Create("g1")).size() == 3);
+        assert(b->GetMoves(SquareFactory::Create("h1")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("a2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("b2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("c2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("d2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("e4")).size() == 0);
+        assert(b->GetMoves(SquareFactory::Create("f2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("g2")).size() == 2);
+        assert(b->GetMoves(SquareFactory::Create("h2")).size() == 2);
         assert(b->GetMoves(Player::white).size() == 29);
         assert(!b->IsCheck(Player::white));
         assert(!b->IsCheckmate(Player::white));
@@ -385,13 +385,13 @@ void ribi::Chess::Board::Test()
         assert(!b->GetPiece(SquareFactory::Create("e4")));
         b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
         const boost::shared_ptr<Chess::Board> c(b);
-        assert(IsEqual(*b,*c));
+        assert(*b == *c);
         assert(!b->GetPiece(SquareFactory::Create("e2")));
         assert( b->GetPiece(SquareFactory::Create("e4")));
         assert(!c->GetPiece(SquareFactory::Create("e2")));
         assert( c->GetPiece(SquareFactory::Create("e4")));
         b->DoMove(MoveFactory::Create("e7 e5"),Player::black);
-        assert(!IsEqual(*b,*c));
+        assert(*b != *c);
         assert( b->GetPiece(SquareFactory::Create("e5")));
         assert(!b->GetPiece(SquareFactory::Create("e7")));
         assert(!c->GetPiece(SquareFactory::Create("e5")));
@@ -429,38 +429,38 @@ void ribi::Chess::Board::Test()
           =
           {
 
-            PieceFactory::CreateRook(Color::white,"a1"),
-            PiecePtr(new PieceKnight(Color::white,Chess::SquareFactory::Create("c3")))),
-            PiecePtr(new PieceBishop(Color::white,Chess::SquareFactory::Create("c1")))),
-            PiecePtr(new PieceQueen(Color::white,Chess::SquareFactory::Create("d1")))),
-            PiecePtr(new PieceKing(Color::white,Chess::SquareFactory::Create("e1")))),
-            PiecePtr(new PieceBishop(Color::white,Chess::SquareFactory::Create("b5")))),
-            PiecePtr(new PieceKnight(Color::white,Chess::SquareFactory::Create("g1")))),
-            PiecePtr(new PieceRook(Color::white,Chess::SquareFactory::Create("h1")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("a2")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("b2")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("c2")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("d2")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("e4")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("f2")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("g2")))),
-            PieceFactory::CreatePawn((Color::white,Chess::SquareFactory::Create("h2")))),
-            PiecePtr(new PieceRook(Color::black,Chess::SquareFactory::Create("a8")))),
-            PiecePtr(new PieceKnight(Color::black,Chess::SquareFactory::Create("b8")))),
-            PiecePtr(new PieceBishop(Color::black,Chess::SquareFactory::Create("c8")))),
-            PiecePtr(new PieceQueen(Color::black,Chess::SquareFactory::Create("d8")))),
-            PiecePtr(new PieceKing(Color::black,Chess::SquareFactory::Create("e8")))),
-            PiecePtr(new PieceBishop(Color::black,Chess::SquareFactory::Create("f8")))),
-            PiecePtr(new PieceKnight(Color::black,Chess::SquareFactory::Create("g8")))),
-            PiecePtr(new PieceRook(Color::black,Chess::SquareFactory::Create("h8")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("a7")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("b7")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("c5")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("d6")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("e7")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("f7")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("g7")))),
-            PieceFactory::CreatePawn((Color::black,Chess::SquareFactory::Create("h7"))))
+            PieceFactory::Create('R',Color::white,"a1"),
+            PieceFactory::Create('N',Color::white,"c3"),
+            PieceFactory::Create('B',Color::white,"c1"),
+            PieceFactory::Create('Q',Color::white,"d1"),
+            PieceFactory::Create('K',Color::white,"e1"),
+            PieceFactory::Create('B',Color::white,"b5"),
+            PieceFactory::Create('N',Color::white,"g1"),
+            PieceFactory::Create('R',Color::white,"h1"),
+            PieceFactory::Create('.',Color::white,"a2"),
+            PieceFactory::Create('.',Color::white,"b2"),
+            PieceFactory::Create('.',Color::white,"c2"),
+            PieceFactory::Create('.',Color::white,"d2"),
+            PieceFactory::Create('.',Color::white,"e4"),
+            PieceFactory::Create('.',Color::white,"f2"),
+            PieceFactory::Create('.',Color::white,"g2"),
+            PieceFactory::Create('.',Color::white,"h2"),
+            PieceFactory::Create('R',Color::black,"a8"),
+            PieceFactory::Create('N',Color::black,"b8"),
+            PieceFactory::Create('B',Color::black,"c8"),
+            PieceFactory::Create('Q',Color::black,"d8"),
+            PieceFactory::Create('K',Color::black,"e8"),
+            PieceFactory::Create('B',Color::black,"f8"),
+            PieceFactory::Create('N',Color::black,"g8"),
+            PieceFactory::Create('R',Color::black,"h8"),
+            PieceFactory::Create('.',Color::black,"a7"),
+            PieceFactory::Create('.',Color::black,"b7"),
+            PieceFactory::Create('.',Color::black,"c5"),
+            PieceFactory::Create('.',Color::black,"d6"),
+            PieceFactory::Create('.',Color::black,"e7"),
+            PieceFactory::Create('.',Color::black,"f7"),
+            PieceFactory::Create('.',Color::black,"g7"),
+            PieceFactory::Create('.',Color::black,"h7")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
         assert( b->EmptyBetween(SquareFactory::Create("b5"),SquareFactory::Create("e8")));
@@ -474,10 +474,10 @@ void ribi::Chess::Board::Test()
         const Pieces pieces
           =
           {
-            boost::shared_ptr<Piece>(new PieceKing(Color::white,Chess::SquareFactory::Create("a1")))),
-            boost::shared_ptr<Piece>(new PieceKing(Color::black,Chess::SquareFactory::Create("h8")))),
-            boost::shared_ptr<Piece>(new PieceRook(Color::white,Chess::SquareFactory::Create("a8")))),
-            boost::shared_ptr<Piece>(new PieceRook(Color::black,Chess::SquareFactory::Create("h1"))))
+            PieceFactory::Create('K',Color::white,"a1"),
+            PieceFactory::Create('K',Color::black,"h8"),
+            PieceFactory::Create('R',Color::white,"a8"),
+            PieceFactory::Create('R',Color::black,"h1")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
         assert(b->IsCheck(Player::white));
@@ -486,12 +486,12 @@ void ribi::Chess::Board::Test()
       {
         FTRACE("Test IsCheck by playing");
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create());
-        b->DoMove(*MoveFactory::Create("e2 e4"),Player::white);
-        b->DoMove(*MoveFactory::Create("d7 d6"),Player::black);
+        b->DoMove(MoveFactory::Create("e2 e4"),Player::white);
+        b->DoMove(MoveFactory::Create("d7 d6"),Player::black);
         FTRACE("Test that the move ending is check can be done");
-        assert(b->CanDoMove(*MoveFactory::Create("Bf1 b5+"),Player::white));
+        assert(b->CanDoMove(MoveFactory::Create("Bf1 b5+"),Player::white));
         FTRACE("Do the move ending is check");
-        b->DoMove(*MoveFactory::Create("Bf1 b5+"),Player::white);
+        b->DoMove(MoveFactory::Create("Bf1 b5+"),Player::white);
         FTRACE("Test that the board detects check");
         assert(b->IsCheck(Player::black));
       }
@@ -520,9 +520,9 @@ void ribi::Chess::Board::Test()
             {
               try
               {
-                Move move(s);
-                if (b->CanDoMove(*Chess::MoveFactory::Create(s),Player::white)) { TRACE(s); }
-                assert(!b->CanDoMove(*Chess::MoveFactory::Create(s),Player::white));
+                const boost::shared_ptr<const Move> move { MoveFactory::Create(s) };
+                if (b->CanDoMove(Chess::MoveFactory::Create(s),Player::white)) { TRACE(s); }
+                assert(!b->CanDoMove(Chess::MoveFactory::Create(s),Player::white));
               }
               catch (std::exception& e)
               {
@@ -562,9 +562,9 @@ void ribi::Chess::Board::Test()
           std::for_each(v.begin(),v.end(),
             [&b,&player](const std::string& s)
             {
-              if (!b->CanDoMove(*Chess::MoveFactory::Create(s),player)) { TRACE(s); }
-              assert(b->CanDoMove(*Chess::MoveFactory::Create(s),player));
-              b->DoMove(Chess::Move(s),player);
+              if (!b->CanDoMove(Chess::MoveFactory::Create(s),player)) { TRACE(s); }
+              assert(b->CanDoMove(Chess::MoveFactory::Create(s),player));
+              b->DoMove(MoveFactory::Create(s),player);
               player = (player == Player::white ? Player::black : Player::white);
             }
           );
@@ -582,9 +582,9 @@ void ribi::Chess::Board::Test()
           {
             const std::string s = v[i];
             TRACE(b);
-            if (!b->CanDoMove(*Chess::MoveFactory::Create(s),player)) { TRACE(s);  }
-            assert(b->CanDoMove(*Chess::MoveFactory::Create(s),player));
-            b->DoMove(Chess::Move(s),player);
+            if (!b->CanDoMove(Chess::MoveFactory::Create(s),player)) { TRACE(s);  }
+            assert(b->CanDoMove(Chess::MoveFactory::Create(s),player));
+            b->DoMove(MoveFactory::Create(s),player);
             player = (player == Player::white ? Player::black : Player::white);
           }
         }

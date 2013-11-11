@@ -1,11 +1,17 @@
 #ifndef NSANABROSOPTIONS_H
 #define NSANABROSOPTIONS_H
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
-//#include <boost/noncopyable.hpp>
-//---------------------------------------------------------------------------
+//
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 ///NsanaBrosOptions contains the options
-struct NsanaBrosOptions // : public boost::noncopyable
+struct NsanaBrosOptions
 {
   NsanaBrosOptions();
 
@@ -22,5 +28,7 @@ struct NsanaBrosOptions // : public boost::noncopyable
   bool m_show_keys;
 
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSOPTIONS_H

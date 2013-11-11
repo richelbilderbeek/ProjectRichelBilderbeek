@@ -13,6 +13,18 @@ ribi::NsanaBrosMenuDialog::NsanaBrosMenuDialog()
       m_options->GetOptions()));
 }
 
+int ribi::NsanaBrosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
 ribi::NsanaBrosMenuDialog::~NsanaBrosMenuDialog() noexcept
 {
 
@@ -30,6 +42,29 @@ const ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   return a;
+}
+
+const ribi::Help ribi::NsanaBrosMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::NsanaBrosMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramSuperNsanaBros
+  };
+  assert(p);
+  return p;
 }
 
 const ribi::NsanaBrosOptionsDialog * ribi::NsanaBrosMenuDialog::GetOptionsDialog() const

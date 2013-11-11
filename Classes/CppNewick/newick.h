@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/tuple/tuple.hpp>
 
@@ -369,7 +369,7 @@ namespace Newick
         typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
         const std::vector<NewickFrequencyPair> newick_freqs
           = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
-        BOOST_FOREACH(const NewickFrequencyPair& p,newick_freqs)
+        for(const NewickFrequencyPair& p: newick_freqs)
         {
           const int frequency = p.second;
           assert(frequency > 0);

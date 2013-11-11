@@ -1,12 +1,14 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppQtChess
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtChess/qtchessresources.cpp \
+    ../../Classes/CppQtChess/qtchessboardwidget.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtChess/qtchessresources.h \
+    ../../Classes/CppQtChess/qtchessboardwidget.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtChess/Licence.txt
 

@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stack>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "newick.h"
@@ -366,7 +366,7 @@ const ribi::TwoDigitNewick ribi::TwoDigitNewickIndexer::CreateTwoDigitNewickDeri
   assert(!m_newicks.Empty(y));
   //\todo: Find out why 'const TwoDigitNewickDerivativesData&' does not work
   const TwoDigitNewick v_derived = m_newicks.GetNewick(y);
-  BOOST_FOREACH(const TwoDigitNewickDerivative& i,v_derived.GetDerivatives())
+  for(const TwoDigitNewickDerivative& i: v_derived.GetDerivatives())
   {
     assert(i.m_derived_index < m_newicks.Size()
       && "TwoDigitNewickDerivative index must be smaller than the number of derivatives");
@@ -410,7 +410,7 @@ const ribi::TwoDigitNewick
     assert(!m_newicks.Empty(x));
     //\todo: Find out why 'const TwoDigitNewickDerivativesData&' does not work
     const TwoDigitNewick v_derived = m_newicks.GetNewick(x);
-    BOOST_FOREACH(const TwoDigitNewickDerivative& i,v_derived.GetDerivatives())
+    for(const TwoDigitNewickDerivative& i: v_derived.GetDerivatives())
     {
       //dsaz = delta sum above zero
       const int dsaz = GetDeltaSumAboveZero(i.m_value_changed);
@@ -440,7 +440,7 @@ const ribi::TwoDigitNewick
     assert(!m_newicks.Empty(y));
     //\todo: Find out why 'const TwoDigitNewickDerivativesData&' does not work
     const TwoDigitNewick v_derived = m_newicks.GetNewick(y);
-    BOOST_FOREACH(const TwoDigitNewickDerivative& i,v_derived.GetDerivatives())
+    for(const TwoDigitNewickDerivative& i: v_derived.GetDerivatives())
     {
       //dsaz = delta sum above zero
       const int dsaz = GetDeltaSumAboveZero(i.m_value_changed);
@@ -583,7 +583,7 @@ void ribi::TwoDigitNewickIndexer::TryToCalculateNewNewick(const int i)
   }
   const std::vector<TwoDigitNewickDerivative> derivatives = n.GetDerivatives();
   //Check if of all derivates the probability is known
-  BOOST_FOREACH(const TwoDigitNewickDerivative& derivative, derivatives)
+  for(const TwoDigitNewickDerivative& derivative: derivatives)
   {
     if (!GetNewick(derivative.m_derived_index).IsProbabilityKnown())
     {
@@ -596,7 +596,7 @@ void ribi::TwoDigitNewickIndexer::TryToCalculateNewNewick(const int i)
   //The denominator is that of the focal Newick,
   //and not its derivative(s)
   const double denominator = GetNewick(i).GetDenominator();
-  BOOST_FOREACH(const TwoDigitNewickDerivative& derivative, derivatives)
+  for(const TwoDigitNewickDerivative& derivative: derivatives)
   {
     assert(GetNewick(derivative.m_derived_index).IsProbabilityKnown());
 

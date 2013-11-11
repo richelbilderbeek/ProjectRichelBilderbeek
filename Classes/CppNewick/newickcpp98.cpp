@@ -530,7 +530,7 @@ void ribi::NewickCpp98::Test()
   //Check if well-formed Newicks are accepted
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       #ifdef TRACE_REJECTED_NEWICKS
       const std::string debug = "I must be accepted: " + s;
@@ -546,7 +546,7 @@ void ribi::NewickCpp98::Test()
   {
     #ifndef NDEBUG
     const std::vector<std::string> v = Newick::CreateInvalidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       #ifdef TRACE_REJECTED_NEWICKS
       const std::string debug = "I must be rejected: " + s;
@@ -714,7 +714,7 @@ void ribi::NewickCpp98::Test()
   //Compare C++98 and C++0x version
   {
     const std::vector<std::string> v = Newick::CreateValidBinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert(Newick::GetRootBranches(n) == NewickCpp98::GetRootBranches(n));
@@ -724,7 +724,7 @@ void ribi::NewickCpp98::Test()
   //Check if binary and trinary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidBinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert(Newick::IsBinaryNewick(n));
@@ -733,7 +733,7 @@ void ribi::NewickCpp98::Test()
   //Check if unary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidUnaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert( Newick::GetLeafMaxArity(n)<=1);
@@ -745,7 +745,7 @@ void ribi::NewickCpp98::Test()
   //Check if binary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidBinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       const std::vector<int> n = Newick::StringToNewick(s);
       assert( Newick::GetLeafMaxArity(n)<=2);
@@ -757,7 +757,7 @@ void ribi::NewickCpp98::Test()
   //Check if trinary Newicks are detected correctly
   {
     const std::vector<std::string> v = Newick::CreateValidTrinaryNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       //TRACE(s);
       const std::vector<int> n = Newick::StringToNewick(s);
@@ -958,7 +958,7 @@ void ribi::NewickCpp98::Test()
   {
     const std::vector<std::string> newicks
       = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& newick_str,newicks)
+    for(const std::string& newick_str: newicks)
     {
       const std::vector<int> newick
         = Newick::StringToNewick(newick_str);

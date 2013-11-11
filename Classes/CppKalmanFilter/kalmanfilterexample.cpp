@@ -9,7 +9,7 @@
 
 #include <memory>
 
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/ublas/io.hpp>
 #include "matrix.h"
@@ -1299,7 +1299,7 @@ const std::string ribi::kalman::KalmanFilterExample::DisplayAsUblasVector(const 
 {
   std::stringstream s;
   s << "[" << v.size() << "](";
-  BOOST_FOREACH(const std::string& str, v) { s << str << ","; }
+  for(const std::string& str: v) { s << str << ","; }
   //Replace trailing comma with a closing bracket
   std::string str = s.str();
   str[str.size() - 1] = ')';

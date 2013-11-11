@@ -8,7 +8,7 @@
 #include "chesssquarefactory.h"
 #pragma GCC diagnostic pop
 
-boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   const char namechar,
   const Color color,
   const boost::shared_ptr<const Square> square) noexcept
@@ -27,6 +27,19 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   }
   assert(p);
   return p;
+}
+
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
+  const char namechar,
+  const Color color,
+  const std::string& square_str)
+{
+  const boost::shared_ptr<const Square> square {
+    SquareFactory::Create(square_str)
+  };
+  assert(square);
+  boost::shared_ptr<Piece> p;
+  return Create(namechar,color,square);
 }
 
 const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::string& s)
@@ -79,4 +92,20 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromo
   }
   assert(p);
   return p;
+}
+
+const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::DeepCopy(
+  const boost::shared_ptr<const Piece> s) noexcept
+{
+  const boost::shared_ptr<ribi::Chess::Piece> t {
+    PieceFactory::Create(
+      s->GetNameChar(),
+      s->GetColor(),
+      s->GetSquare()
+    )
+  };
+  assert(t);
+  assert(*s == *t && "Must be a copy");
+  assert(s != t && "Must be a deep copy");
+  return t;
 }

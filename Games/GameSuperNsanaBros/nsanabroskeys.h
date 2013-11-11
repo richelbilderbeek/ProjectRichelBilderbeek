@@ -1,13 +1,19 @@
 #ifndef NSANABROSKEYS_H
 #define NSANABROSKEYS_H
-//---------------------------------------------------------------------------
+
 #include <set>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
-struct NsanaBrosKeys : public boost::noncopyable
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
+struct NsanaBrosKeys
 {
   NsanaBrosKeys();
 
@@ -49,5 +55,7 @@ struct NsanaBrosKeys : public boost::noncopyable
 
   void Update();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // NSANABROSKEYS_H

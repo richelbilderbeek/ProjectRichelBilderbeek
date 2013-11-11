@@ -1,12 +1,18 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppQtPylos
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtPylos/qtpyloswidget.cpp \
+    ../../Classes/CppQtPylos/qtpylossprites.cpp \
+    ../../Classes/CppQtPylos/qtpylosgamewidget.cpp \
+    ../../Classes/CppQtPylos/qtpylosboardwidget.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtPylos/qtpyloswidget.h \
+    ../../Classes/CppQtPylos/qtpylossprites.h \
+    ../../Classes/CppQtPylos/qtpylosgamewidget.h \
+    ../../Classes/CppQtPylos/qtpylosboardwidget.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtPylos/Licence.txt
 

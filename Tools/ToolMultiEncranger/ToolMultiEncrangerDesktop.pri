@@ -13,4 +13,4 @@ FORMS    += \
     ../../Tools/ToolMultiEncranger/qttoolmultiencrangermenudialog.ui
 
 RESOURCES += \
-    ToolMultiEncranger.qrc
+    ../../Tools/ToolMultiEncranger/ToolMultiEncranger.qrc

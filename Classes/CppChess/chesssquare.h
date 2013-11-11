@@ -7,6 +7,7 @@
 #include "chesscolor.h"
 #include "chessfile.h"
 #include "chessrank.h"
+#include "chessfwd.h"
 
 namespace ribi {
 namespace Chess {
@@ -57,6 +58,7 @@ struct Square
 
   ~Square() {}
   friend void boost::checked_delete<>(Square *);
+  friend class SquareFactory;
 };
 
 std::ostream& operator<<(std::ostream& os, const Chess::Square& s);

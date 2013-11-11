@@ -5,7 +5,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/noncopyable.hpp>
+
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 
@@ -89,7 +89,6 @@ struct Piece
   ///The piece its location
   boost::shared_ptr<const Square> m_square;
 
-  friend bool IsEqual(const Piece& lhs, const Piece& rhs);
   friend void boost::checked_delete<>(Piece *);
 };
 
@@ -312,6 +311,7 @@ struct PieceRook : public Piece
 
 
 bool operator==(const Piece& lhs, const Piece& rhs);
+bool operator!=(const Piece& lhs, const Piece& rhs);
 std::ostream& operator<<(std::ostream& os, const Piece& piece);
 
 } //~namespace Chess

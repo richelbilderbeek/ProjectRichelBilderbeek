@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <sstream>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #pragma GCC diagnostic pop
@@ -71,7 +71,7 @@ int ribi::TwoDigitNewickIndexTable::GetIndex(const int x, const int y) const
 int ribi::TwoDigitNewickIndexTable::GetNumAllocated() const
 {
   int n_allocated = 0;
-  BOOST_FOREACH(const std::vector<int>& v,m_v)
+  for(const std::vector<int>& v: m_v)
   {
     n_allocated+=boost::numeric_cast<int>(v.size());
   }
@@ -82,7 +82,7 @@ int ribi::TwoDigitNewickIndexTable::GetNumAllocated() const
 int ribi::TwoDigitNewickIndexTable::GetNumUsed() const
 {
   int n_non_zero = 0;
-  BOOST_FOREACH(const std::vector<int>& v,m_v)
+  for(const std::vector<int>& v: m_v)
   {
     n_non_zero +=std::count_if(v.begin(),v.end(),
       std::bind2nd(std::greater<int>(),0));

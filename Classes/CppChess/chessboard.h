@@ -63,7 +63,7 @@ struct Board
 
   ///Collect all moves that are possible for a Piece at a certain Square.
   ///If there is no Piece at that Square, no Moves are returned
-  const std::vector<boost::shared_ptr<Move> > GetMoves(const Square& square) const;
+  const std::vector<boost::shared_ptr<Move> > GetMoves(const boost::shared_ptr<const Square> square) const;
 
   ///Collect all moves that are possible
   const std::vector<boost::shared_ptr<Move> > GetMoves(const Player player) const;
@@ -120,7 +120,9 @@ struct Board
 
   ///Given a Move with a certain destination, deduce all Moves (with a starting position added)
   ///that have the same destination
-  const std::vector<boost::shared_ptr<Move> > CompleteMove(const Move& move, const Player player) const;
+  const std::vector<boost::shared_ptr<const Move> > CompleteMove(
+    const boost::shared_ptr<const Move> move,
+    const Player player) const;
 
   static const std::vector<boost::shared_ptr<Square > > CreateSquaresBetweenKingAndRook(
     const Player player,const Castling castling);
@@ -144,12 +146,10 @@ struct Board
   friend void boost::checked_delete<>(Board *);
 };
 
-bool IsEqual(const Board& lhs, const Board& rhs);
-bool IsEqual(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs);
+bool AreEqual(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs);
 
-bool operator==(const Board& lhs, const Board& rhs); //FORBID
-bool operator!=(const Board& lhs, const Board& rhs); //FORBID
-bool operator==(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs); //FORBID
+bool operator==(const Board& lhs, const Board& rhs);
+bool operator!=(const Board& lhs, const Board& rhs);
 
 
 std::ostream& operator<<(std::ostream& os, const Board& board);

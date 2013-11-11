@@ -28,7 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stack>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "newick.h"
@@ -115,7 +115,7 @@ ribi::ManyDigitNewickIndexer::ManyDigitNewickIndexer(
     int saz = 0;
     int sao = 0;
     #ifndef DEBUG_SKIP_SAZ_AND_SAO
-    BOOST_FOREACH(const int value,values)
+    for(const int value: values)
     {
       TRACE(boost::lexical_cast<std::string>(value));
       assert(value < 2 || this->GetNewick(value).IsComplete());
@@ -263,7 +263,7 @@ const ribi::ManyDigitNewick ribi::ManyDigitNewickIndexer::CreateManyDigitDerivat
     const ManyDigitNewick n = m_newicks.GetNewick( indices[i]);
     //Of this single/loose Newick, obtain its derivatives
     //and chain those with the other members of the complete Newick/Coordinat
-    BOOST_FOREACH(const ManyDigitNewickDerivative& d,n.GetDerivatives())
+    for(const ManyDigitNewickDerivative& d: n.GetDerivatives())
     {
       #ifndef DEBUG_SKIP_SAZ_AND_SAO
       //dsaz = delta sum above zero
@@ -695,7 +695,7 @@ void ribi::ManyDigitNewickIndexer::TryToCalculateNewNewick(const int i)
   }
   const std::vector<Derivative> derivatives = n.GetDerivatives();
   //Check if of all derivates the probability is known
-  BOOST_FOREACH(const Derivative& derivative, derivatives)
+  for(const Derivative& derivative: derivatives)
   {
     if (!GetNewick(derivative.m_derived_index).IsProbabilityKnown())
     {
@@ -708,7 +708,7 @@ void ribi::ManyDigitNewickIndexer::TryToCalculateNewNewick(const int i)
   //The denominator is that of the focal Newick,
   //and not its derivative(s)
   const double denominator = GetNewick(i).GetDenominator();
-  BOOST_FOREACH(const Derivative& derivative, derivatives)
+  for(const Derivative& derivative: derivatives)
   {
     assert(GetNewick(derivative.m_derived_index).IsProbabilityKnown());
 

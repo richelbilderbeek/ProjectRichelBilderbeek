@@ -153,7 +153,7 @@ struct Move
 
   friend void boost::checked_delete<>(Move *);
 
-  //friend class MoveFactory;
+  friend class MoveFactory;
   friend bool operator==(const Move& lhs, const Move& rhs);
 
 };

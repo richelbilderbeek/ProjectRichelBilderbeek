@@ -2,6 +2,8 @@
 #include <cmath>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QDesktopWidget>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsScene>
@@ -10,6 +12,7 @@
 
 #include "qtaminoacidfightermaindialog.h"
 #include "ui_qtaminoacidfightermaindialog.h"
+#pragma GCC diagnostic pop
 
 ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *parent)
   : QDialog(parent),

@@ -34,7 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <vector>
 
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -126,7 +126,7 @@ double ribi::Newick::CalcDenominator(const std::vector<int>& v,const double thet
 {
   int sum_above_zero = 0;
   int sum_above_one  = 0;
-  BOOST_FOREACH(const int& i,v)
+  for(const int& i: v)
   {
     if (i > 0) sum_above_zero+= i;
     if (i > 1) sum_above_one += i;
@@ -159,7 +159,7 @@ const BigInteger ribi::Newick::CalcNumOfCombinationsBinary(const std::vector<int
 
   //Obtain factorialated positives
   BigInteger denominator = 1;
-  BOOST_FOREACH(const int& i, v)
+  for(const int& i: v)
   {
     if (i<=0) continue;
     const BigInteger i_temp = FactorialBigInt(i);
@@ -858,7 +858,7 @@ const std::vector<int> ribi::Newick::GetDepth(const std::vector<int>& n)
   assert(IsNewick(n));
   std::vector<int> v;
   int depth = -1;
-  BOOST_FOREACH(const int& x,n)
+  for(const int& x: n)
   {
     if (x == Newick::bracket_open) ++depth;
     v.push_back(depth);
@@ -1968,7 +1968,7 @@ const std::vector<int> ribi::Newick::StringToNewick(const std::string& newick)
   std::vector<int> v;
   int value = 0;
 
-  BOOST_FOREACH(const char i,newick)
+  for(const char i: newick)
   {
     if (i == '(')
     {

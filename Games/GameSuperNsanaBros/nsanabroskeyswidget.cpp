@@ -1,5 +1,5 @@
 #include "nsanabrosstlheader.h"
 
-NsanaBrosKeysWidget::NsanaBrosKeysWidget()
+ribi::NsanaBrosKeysWidget::NsanaBrosKeysWidget()
 {
 }

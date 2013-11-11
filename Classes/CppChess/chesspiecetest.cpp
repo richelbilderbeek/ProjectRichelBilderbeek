@@ -50,7 +50,7 @@ void ribi::Chess::Piece::Test()
         assert(p);
         const boost::shared_ptr<Piece> q = PieceFactory::Create('B',Color::white,t);
         assert(q);
-        assert(IsEqual(*p,*q));
+        assert(*p == *q);
 
       }
       ribi::Chess::PieceBishop::Test();

@@ -3,7 +3,7 @@
 #include "multialphafilter.h"
 
 #include <cassert>
-#include <boost/foreach.hpp>
+
 
 #pragma GCC diagnostic pop
 
@@ -21,7 +21,7 @@ const std::vector<boost::shared_ptr<ribi::AlphaFilter> > ribi::MultiAlphaFilter:
 {
   std::vector<boost::shared_ptr<AlphaFilter> > v;
 
-  BOOST_FOREACH(const double alpha, alphas)
+  for(const double alpha: alphas)
   {
     boost::shared_ptr<AlphaFilter> filter(new AlphaFilter(alpha,dt));
     assert(filter);

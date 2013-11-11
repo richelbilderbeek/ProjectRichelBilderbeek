@@ -36,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 #include <boost/numeric/conversion/cast.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 
 #include "BigIntegerLibrary.hh"
@@ -145,7 +145,7 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
         typedef std::pair<std::vector<int>,int> NewickFrequencyPair;
         const std::vector<NewickFrequencyPair> newick_freqs
           = Newick::GetSimplerNewicksFrequencyPairs(n.Peek());
-        BOOST_FOREACH(const NewickFrequencyPair& p,newick_freqs)
+        for(const NewickFrequencyPair& p: newick_freqs)
         {
           const int frequency = p.second;
           assert(frequency > 0);
@@ -224,14 +224,14 @@ const std::string ribi::BinaryNewickVector::GetVersion() noexcept
 
 const std::vector<std::string> ribi::BinaryNewickVector::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2009-06-01: Version 1.0: Initial version");
-  v.push_back("2010-08-10: Version 1.1: Major architectural revision");
-  v.push_back("2011-02-20: Version 1.2: Removed helper functions from global namespace");
-  v.push_back("2011-02-22: Version 2.0: Changed file management");
-  v.push_back("2011-03-01: Version 3.0: major rewrite of algorithms");
-  v.push_back("2011-04-08: Version 3.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake");
-  return v;
+  return {
+    "2009-06-01: Version 1.0: Initial version",
+    "2010-08-10: Version 1.1: Major architectural revision",
+    "2011-02-20: Version 1.2: Removed helper functions from global namespace",
+    "2011-02-22: Version 2.0: Changed file management",
+    "2011-03-01: Version 3.0: major rewrite of algorithms",
+    "2011-04-08: Version 3.1: fixed error forgiven by G++, but fatal for i686-pc-mingw32-qmake"
+  };
 }
 
  bool ribi::BinaryNewickVector::IsCloseBracketRight(const int pos) const
@@ -431,7 +431,7 @@ void ribi::BinaryNewickVector::Test() noexcept
   //Check that well-formed Newicks are confirmed valid
   {
     const std::vector<std::string> v = Newick::CreateValidNewicks();
-    BOOST_FOREACH(const std::string& s,v)
+    for(const std::string& s: v)
     {
       TRACE(std::string("I must be accepted: ") + s);
       //Check if valid newicks (as std::string) are marked as valid
@@ -493,7 +493,7 @@ void ribi::BinaryNewickVector::Test() noexcept
         const std::vector<std::vector<int> > simpler
           = Newick::GetSimplerBinaryNewicks(
             Newick::StringToNewick(s));
-        BOOST_FOREACH(const std::vector<int> simple,simpler)
+        for(const std::vector<int> simple: simpler)
         {
           assert(Newick::IsNewick(simple));
           Newick::CheckNewick(simple);

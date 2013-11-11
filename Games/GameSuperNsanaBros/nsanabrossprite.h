@@ -1,15 +1,22 @@
 #ifndef NSANABROSSPRITE_H
 #define NSANABROSSPRITE_H
-//---------------------------------------------------------------------------
+
 #include <iosfwd>
-//---------------------------------------------------------------------------
+#include <utility>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
-#include <boost/noncopyable.hpp>
-//---------------------------------------------------------------------------
+#include <boost/shared_ptr.hpp>
+#pragma GCC diagnostic pop
+
+namespace ribi {
+
 ///An NsanaBrosSprite is a sprite, that is
 ///any visual element to be displayed on screen
 ///(either 1D or 2D)
-struct NsanaBrosSprite : public boost::noncopyable
+struct NsanaBrosSprite
 {
   NsanaBrosSprite(
     const double x = 0.0,
@@ -19,6 +26,8 @@ struct NsanaBrosSprite : public boost::noncopyable
     const int red = 0,
     const int green = 0,
     const int blue = 0);
+  NsanaBrosSprite(const NsanaBrosSprite&) = delete;
+  NsanaBrosSprite& operator=(const NsanaBrosSprite&) = delete;
 
   double GetBottom() const { return m_y + m_height; }
   double GetHeight() const { return m_height; }
@@ -34,7 +43,7 @@ struct NsanaBrosSprite : public boost::noncopyable
   //bool IsInRect(const double x, const double y) const;
   void Translate(const double dx, const double dy);
 
-  const std::pair<double,double> GetCollisionVector(const NsanaBrosSprite* sprite) const;
+  const std::pair<double,double> GetCollisionVector(const boost::shared_ptr<const NsanaBrosSprite> sprite) const;
   const std::pair<double,double> GetCollisionVectorFromPoint(const double x, const double y) const;
 
   private:
@@ -57,7 +66,9 @@ struct NsanaBrosSprite : public boost::noncopyable
   static bool IsInRect(const double x, const double y, const NsanaBrosSprite& r);
 
 };
-//---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const NsanaBrosSprite * const s);
-//---------------------------------------------------------------------------
+
+std::ostream& operator<<(std::ostream& os, const NsanaBrosSprite& s);
+
+} //~namespace ribi
+
 #endif // NSANABROSSPRITE_H

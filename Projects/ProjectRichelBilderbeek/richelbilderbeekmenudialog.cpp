@@ -65,6 +65,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "loopreader.h"
 #include "manydigitnewick.h"
 #include "matrix.h"
+#include "xenonzeromenudialog.h"
 #include "mazecreatormenudialog.h"
 #include "maziakmenudialog.h"
 #include "metzndrieenmenudialog.h"
@@ -147,6 +148,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+
 #include "tooldotmatrixmenudialog.h"
 #include "toolencrangermenudialog.h"
 #include "toolgaborfiltermenudialog.h"
@@ -382,6 +384,7 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new NsanaBrosMenuDialog }; m.insert(ValueType(ProgramType::superNsanaBros,p)); }
     { const MenuType p { new TankBattalionMenuDialog }; m.insert(ValueType(ProgramType::tankBattalion,p)); }
     { const MenuType p { new TronCollectionMenuDialog }; m.insert(ValueType(ProgramType::tronCollection,p)); }
+    { const MenuType p { new XeNonZeroMenuDialog }; m.insert(ValueType(ProgramType::xeNonZero,p)); }
 
     { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
     { const MenuType p { new MazeCreatorMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }

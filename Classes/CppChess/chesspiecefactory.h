@@ -12,11 +12,12 @@ namespace Chess {
 
 struct PieceFactory
 {
-  static boost::shared_ptr<Piece> Create(
+  static const boost::shared_ptr<Piece> Create(
     const char namechar,
     const Color color,
     const boost::shared_ptr<const Square> square) noexcept;
-  static boost::shared_ptr<Piece> Create(
+
+  static const boost::shared_ptr<Piece> Create(
     const char namechar,
     const Color color,
     const std::string& square);
@@ -25,19 +26,7 @@ struct PieceFactory
 
   static boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s);
 
-  static boost::shared_ptr<PieceBishop> CreateBishop(const Color color,const boost::shared_ptr<Square>& square) noexcept;
-  static boost::shared_ptr<PieceBishop> CreateBishop(const Color color,const std::string& square);
-
-  static boost::shared_ptr<PieceKnight> CreateKnight(const Color color,const boost::shared_ptr<Square>& square) noexcept;
-  static boost::shared_ptr<PieceKnight> CreateKnight(const Color color,const std::string& square);
-
-  static boost::shared_ptr<PiecePawn> CreatePawn(const Color color,const boost::shared_ptr<Square>& square) noexcept;
-  static boost::shared_ptr<PiecePawn> CreatePawn(const Color color,const std::string& square);
-
-  static boost::shared_ptr<PieceRook> CreateRook(const Color color,const std::string& square);
-  static boost::shared_ptr<PieceRook> CreateRook(const Color color,const boost::shared_ptr<Square>& square) noexcept;
-
-  static boost::shared_ptr<Piece> DeepCopy(const Piece& piece);
+  static const boost::shared_ptr<Piece> DeepCopy(const boost::shared_ptr<const Piece> piece) noexcept;
 };
 
 } //~namespace Chess

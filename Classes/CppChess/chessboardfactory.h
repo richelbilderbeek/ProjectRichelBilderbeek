@@ -1,10 +1,14 @@
 #ifndef CHESSBOARDFACTORY_H
 #define CHESSBOARDFACTORY_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
 #include "chessboard.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace Chess {

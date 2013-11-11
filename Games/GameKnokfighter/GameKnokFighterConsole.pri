@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Games/GameKnokFighter
+    ../../Games/GameKnokfighter
 
 SOURCES += \
-    ../../Games/GameKnokFighter/knokfightermenudialog.cpp
+    ../../Games/GameKnokfighter/knokfightermenudialog.cpp
 
 HEADERS  += \
-    ../../Games/GameKnokFighter/knokfightermenudialog.h
+    ../../Games/GameKnokfighter/knokfightermenudialog.h
 
 OTHER_FILES += \
-    ../../Games/GameKnokFighter/Licence.txt
+    ../../Games/GameKnokfighter/Licence.txt
 

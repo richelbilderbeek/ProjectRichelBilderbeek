@@ -4,9 +4,13 @@
 #include <cassert>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::Chess::Rank::Rank(const std::string& y)
   : m_rank(y)

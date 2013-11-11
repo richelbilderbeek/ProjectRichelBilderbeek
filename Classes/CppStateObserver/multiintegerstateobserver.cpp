@@ -3,7 +3,7 @@
 #include "multiintegerstateobserver.h"
 
 #include <cassert>
-#include <boost/foreach.hpp>
+
 
 #pragma GCC diagnostic pop
 

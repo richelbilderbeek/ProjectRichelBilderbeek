@@ -114,13 +114,14 @@ void ribi::Chess::BoardWidget::Click(const boost::shared_ptr<const Chess::Square
   m_signal_graphic_changed();
 }
 
-/*
-void ribi::Chess::BoardWidget::DoMove(
-  const boost::shared_ptr<const Square>, const Chess::Square&)
-{
 
+void ribi::Chess::BoardWidget::DoMove(
+  const boost::shared_ptr<const Square>,
+  const boost::shared_ptr<const Square>)
+{
+  assert(!"TODO");
 }
-*/
+
 
 void ribi::Chess::BoardWidget::SetActivePlayer(const Player player)
 {

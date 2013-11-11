@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <stdexcept>
 
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "fileio.h"
@@ -53,7 +53,7 @@ ribi::Exercise::Exercise(const std::string& filename)
     ribi::fileio::FileToVector(filename)
   };
   m_questions.reserve(v.size());
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     try
     {

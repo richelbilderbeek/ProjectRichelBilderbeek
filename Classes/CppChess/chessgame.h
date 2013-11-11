@@ -65,7 +65,7 @@ struct Game
 
   ///Collect all moves that are possible for a Piece at a certain Square.
   ///If there is no Piece at that Square, no Moves are returned
-  const std::vector<boost::shared_ptr<Move> > GetMoves(const Square& square) const;
+  const std::vector<boost::shared_ptr<Move> > GetMoves(const boost::shared_ptr<const Square> square) const;
 
   ///Collect all moves that are possible
   const std::vector<boost::shared_ptr<Move> > GetMoves() const;

@@ -1,15 +1,20 @@
-//---------------------------------------------------------------------------
+#include "nsanabrossprite.h"
+
 #include <cassert>
 #include <cmath>
 #include <cstdlib>
 #include <iostream>
 #include <numeric>
-//---------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+#include "nsanabroskeys.h"
 #include "nsanabrosstlheader.h"
-//---------------------------------------------------------------------------
-NsanaBrosSprite::NsanaBrosSprite(
+#pragma GCC diagnostic pop
+
+ribi::NsanaBrosSprite::NsanaBrosSprite(
   const double x,
   const double y,
   const double width,
@@ -32,11 +37,11 @@ NsanaBrosSprite::NsanaBrosSprite(
   assert(GetBlue() >=   0);
   assert(GetBlue()  < 256);
 }
-//---------------------------------------------------------------------------
+
 ///GetCollisionVector returns the smallest translation vector
 ///needed to end a collision with this sprite. A
 ///translation vector of (0,0) denotes no collision.
-const std::pair<double,double> NsanaBrosSprite::GetCollisionVectorFromPoint(const double x, const double y) const
+const std::pair<double,double> ribi::NsanaBrosSprite::GetCollisionVectorFromPoint(const double x, const double y) const
 {
   const double right  = m_x + m_width;
   const double bottom = m_y + m_height;
@@ -63,11 +68,12 @@ const std::pair<double,double> NsanaBrosSprite::GetCollisionVectorFromPoint(cons
   }
   return std::make_pair(0.0,0.0);
 }
-//---------------------------------------------------------------------------
+
 ///GetCollisionVector returns the smallest translation vector
 ///needed to end a collision with this sprite. A
 ///translation vector of (0,0) denotes no collision.
-const std::pair<double,double> NsanaBrosSprite::GetCollisionVector(const NsanaBrosSprite* sprite) const
+const std::pair<double,double> ribi::NsanaBrosSprite::GetCollisionVector(
+  const boost::shared_ptr<const NsanaBrosSprite> sprite) const
 {
   const std::pair<double,double> p1 = GetCollisionVectorFromPoint(sprite->GetLeft() ,sprite->GetTop());
   const std::pair<double,double> p2 = GetCollisionVectorFromPoint(sprite->GetLeft() ,sprite->GetBottom());
@@ -77,17 +83,17 @@ const std::pair<double,double> NsanaBrosSprite::GetCollisionVector(const NsanaBr
     p1.first  + p2.first  + p3.first  + p4.first,
     p1.second + p2.second + p3.second + p4.second);
 }
-//---------------------------------------------------------------------------
 
-bool NsanaBrosSprite::IsInRect(const double x, const double y, const NsanaBrosSprite& r)
+
+bool ribi::NsanaBrosSprite::IsInRect(const double x, const double y, const NsanaBrosSprite& r)
 {
   return x >= r.GetX()
       && x  < r.GetX() + r.GetWidth()
       && y >= r.GetY()
       && y  < r.GetY() + r.GetHeight();
 }
-//---------------------------------------------------------------------------
-void NsanaBrosSprite::BothMoveAway(NsanaBrosSprite& r1, NsanaBrosSprite& r2)
+
+void ribi::NsanaBrosSprite::BothMoveAway(NsanaBrosSprite& r1, NsanaBrosSprite& r2)
 {
   int dx1 = 0;
   int dy1 = 0;
@@ -141,8 +147,8 @@ void NsanaBrosSprite::BothMoveAway(NsanaBrosSprite& r1, NsanaBrosSprite& r2)
     boost::numeric_cast<double>(dy2));
 
 }
-//---------------------------------------------------------------------------
-void NsanaBrosSprite::MoveAway(const NsanaBrosSprite& r1, NsanaBrosSprite& r2)
+
+void ribi::NsanaBrosSprite::MoveAway(const NsanaBrosSprite& r1, NsanaBrosSprite& r2)
 {
   int dx2 = 0;
   int dy2 = 0;
@@ -184,34 +190,34 @@ void NsanaBrosSprite::MoveAway(const NsanaBrosSprite& r1, NsanaBrosSprite& r2)
     boost::numeric_cast<double>(dx2),
     boost::numeric_cast<double>(dy2));
 }
-//---------------------------------------------------------------------------
+
 ///Translate translates the sprite's coordinats
-void NsanaBrosSprite::Translate(const double dx, const double dy)
+void ribi::NsanaBrosSprite::Translate(const double dx, const double dy)
 {
   m_x += dx;
   m_y += dy;
 }
-//---------------------------------------------------------------------------
-std::ostream& operator<<(std::ostream& os, const NsanaBrosSprite * const s)
+
+std::ostream& ribi::operator<<(std::ostream& os, const NsanaBrosSprite& s)
 {
   os
     << "Coordinat: ("
-    << s->GetLeft()
+    << s.GetLeft()
     << ","
-    << s->GetTop()
+    << s.GetTop()
     << ")\n"
     << "Size: "
-    << s->GetWidth()
+    << s.GetWidth()
     << " x "
-    << s->GetHeight()
+    << s.GetHeight()
     << "\n"
     << "Color: ("
-    << s->GetRed()
+    << s.GetRed()
     << ","
-    << s->GetGreen()
+    << s.GetGreen()
     << ","
-    << s->GetBlue()
+    << s.GetBlue()
     << ")\n";
   return os;
 }
-//---------------------------------------------------------------------------
+

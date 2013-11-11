@@ -7,7 +7,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/foreach.hpp>
+
 
 #include "chessbitboard.h"
 #include "chessboard.h"
@@ -112,7 +112,7 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetM
   return m_board->GetMoves(GetActivePlayer());
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves(const Square& square) const
+const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetMoves(const boost::shared_ptr<const Square> square) const
 {
   return m_board->GetMoves(square);
 }
@@ -179,8 +179,7 @@ bool ribi::Chess::operator==(const Game& lhs, const Game& rhs)
   {
     if (*lhs.Score() != *rhs.Score()) return false;
   }
-  return IsEqual(*lhs.m_board,*rhs.m_board);
-  return true;
+  return *lhs.m_board == *rhs.m_board;
 }
 
 bool ribi::Chess::operator!=(const Game& lhs, const Game& rhs)
