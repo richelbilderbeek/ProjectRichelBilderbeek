@@ -33,7 +33,7 @@ struct Rainbow
     const double x,
     double& r,
     double& g,
-    double& b);
+    double& b) noexcept;
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;

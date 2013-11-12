@@ -1,16 +1,19 @@
 include(../../Games/GameBeerWanter/GameBeerWanterConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameBeerWanter
+SOURCES += \
+    ../../Games/GameBeerWanter/qtbeerwanterwidget.cpp \
+    ../../Games/GameBeerWanter/qtbeerwantermenudialog.cpp \
+    ../../Games/GameBeerWanter/qtbeerwantermaindialog.cpp
 
-SOURCES +=
-#    ../../Games/GameBeerWanter/beerwantermaindialog.cpp \
-#    ../../Games/GameBeerWanter/beerwantermenudialog.cpp
+HEADERS  += \
+    ../../Games/GameBeerWanter/qtbeerwanterwidget.h \
+    ../../Games/GameBeerWanter/qtbeerwantermenudialog.h \
+    ../../Games/GameBeerWanter/qtbeerwantermaindialog.h
 
-HEADERS  +=
-#    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-#    ../../Games/GameBeerWanter/beerwantermenudialog.h
+FORMS += \
+    ../../Games/GameBeerWanter/qtbeerwantermenudialog.ui \
+    ../../Games/GameBeerWanter/qtbeerwantermaindialog.ui
 
-OTHER_FILES +=
-#    ../../Games/GameBeerWanter/Licence.txt
+RESOURCES += \
+    ../../Games/GameBeerWanter/beerwanter.qrc
 

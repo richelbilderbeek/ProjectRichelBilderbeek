@@ -52,14 +52,12 @@ void ribi::QtRandomCodeMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtRandomCodeMenuDialog::on_button_about_clicked()
 {
-  About a = RandomCodeMenuDialog::GetAbout();
+  About a = RandomCodeMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtRandomCodeMenuDialog::on_button_quit_clicked()
@@ -70,7 +68,6 @@ void ribi::QtRandomCodeMenuDialog::on_button_quit_clicked()
 void ribi::QtRandomCodeMenuDialog::on_button_start_clicked()
 {
   QtRandomCodeMainDialog d;
-  //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 

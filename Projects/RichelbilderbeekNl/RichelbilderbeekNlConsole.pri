@@ -1,0 +1,2 @@
+INCLUDEPATH +=  \
+  ../../Projects/RichelbilderbeekNl

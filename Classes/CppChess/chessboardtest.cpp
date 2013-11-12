@@ -14,6 +14,7 @@
 #include "chessscore.h"
 #include "trace.h"
 
+#ifndef NDEBUG
 void ribi::Chess::Board::Test()
 {
   //Testing boost::shared_ptr<Chess::Board> exactly once
@@ -595,3 +596,4 @@ void ribi::Chess::Board::Test()
   t.detach();
   #endif
 }
+#endif

@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestQrcFile
+include(../../Tools/ToolTestQrcFile/ToolTestQrcFileConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc
+
+FORMS += \
+    ../../Tools/ToolTestQrcFile/qttestqrcfilemenudialog.ui \
+    ../../Tools/ToolTestQrcFile/qttestqrcfilemaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.cpp
+    ../../Tools/ToolTestQrcFile/qttestqrcfilemenudialog.cpp \
+    ../../Tools/ToolTestQrcFile/qttestqrcfilemaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestQrcFile/testqrcfilemenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolTestQrcFile/Licence.txt
+    ../../Tools/ToolTestQrcFile/qttestqrcfilemenudialog.h \
+    ../../Tools/ToolTestQrcFile/qttestqrcfilemaindialog.h

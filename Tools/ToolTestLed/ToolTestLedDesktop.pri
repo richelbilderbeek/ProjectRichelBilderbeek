@@ -1,11 +1,14 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestLed
+include(../../Tools/ToolTestLed/ToolTestLedConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolTestLed/ToolTestLed.qrc
+
+FORMS += \
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestLed/tooltestledmenudialog.cpp
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestLed/tooltestledmenudialog.h
+    ../../Tools/ToolTestLed/qttooltestledmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestLed/Licence.txt

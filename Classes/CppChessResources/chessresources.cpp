@@ -1,22 +1,22 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include "chessresources.h"
 
 #include <algorithm>
 #include <cassert>
 #include <thread>
 
-#include <boost/filesystem.hpp>
+
 #include <boost/scoped_ptr.hpp>
 
 #include "chesscolor.h"
 #include "chesspiece.h"
 #include "chesssquare.h"
+#include "fileio.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
-namespace Chess {
-
-//Resources * Resources::m_instance = 0;
-
-const std::string Resources::Find(
+const std::string ribi::Chess::Resources::Find(
   const boost::shared_ptr<const Chess::Piece>& piece,
   const Chess::Color selection_color,
   const bool big)
@@ -59,13 +59,13 @@ const std::string Resources::Find(
   filename+=".png";
 
   assert(!filename.empty() && "Assume there is a graphic for the piece");
-  if (!boost::filesystem::exists(filename)) { TRACE(filename); }
-  assert(boost::filesystem::exists(filename));
+  if (!ribi::fileio::IsRegularFile(filename)) { TRACE(filename); }
+  assert(ribi::fileio::IsRegularFile(filename));
   return filename;
 }
 
-const std::string Resources::Find(
-  const Chess::Square& square,
+const std::string ribi::Chess::Resources::Find(
+  const boost::shared_ptr<const Square> square,
   const Chess::Color selection_color)
 {
   #ifndef NDEBUG
@@ -75,9 +75,9 @@ const std::string Resources::Find(
   std::string filename;
 
   //The square
-  assert(square.GetColor() != Color::indeterminate);
-  if (square.GetColor() == Color::black) filename+="ds";
-  if (square.GetColor() == Color::white) filename+="ls";
+  assert(square->GetColor() != Color::indeterminate);
+  if (square->GetColor() == Color::black) filename+="ds";
+  if (square->GetColor() == Color::white) filename+="ls";
 
   //The selection color
   assert(selection_color != Color::black);
@@ -90,12 +90,12 @@ const std::string Resources::Find(
   filename+=".png";
 
   assert(!filename.empty() && "Assume there is a graphic for the piece");
-  if (!boost::filesystem::exists(filename)) { TRACE(filename); }
-  assert(boost::filesystem::exists(filename));
+  if (!ribi::fileio::IsRegularFile(filename)) { TRACE(filename); }
+  assert(ribi::fileio::IsRegularFile(filename));
   return filename;
 }
 
-const std::vector<std::string> Resources::GetFilenames()
+const std::vector<std::string> ribi::Chess::Resources::GetFilenames()
 {
   #ifndef NDEBUG
   //Test(); //Cannot do this: QtResources calls this member function to create the resources
@@ -175,22 +175,21 @@ const std::vector<std::string> Resources::GetFilenames()
   return filenames;
 }
 
-const std::string Resources::GetVersion()
+const std::string ribi::Chess::Resources::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> Resources::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::Resources::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2012-01-25: version 1.0: initial version");
-  v.push_back("2012-02-07: version 1.1: added resources for selection");
-  return v;
+  return {
+    "2012-01-25: version 1.0: initial version",
+    "2012-02-07: version 1.1: added resources for selection"
+  };
 }
 
 /*
-Resources * Resources::Get()
+Resources * ribi::Chess::Resources::Get()
 {
   if (m_instance == 0)
   {
@@ -200,7 +199,7 @@ Resources * Resources::Get()
 }
 */
 
-void Resources::Test()
+void ribi::Chess::Resources::Test()
 {
   {
     static bool is_tested = false;
@@ -211,21 +210,15 @@ void Resources::Test()
     []
     {
       const std::vector<std::string> filenames = GetFilenames();
-
-      std::for_each(filenames.begin(),filenames.end(),
-        [](const std::string& s)
+      for (const std::string& s: filenames)
+      {
+        if (!ribi::fileio::IsRegularFile(s))
         {
-          if (!boost::filesystem::exists(s))
-          {
-            TRACE(s);
-          }
-          assert(boost::filesystem::exists(s));
+          TRACE(s);
         }
-      );
+        assert(ribi::fileio::IsRegularFile(s));
+      }
     }
   );
   t.join();
 }
-
-} //~namespace Chess
-

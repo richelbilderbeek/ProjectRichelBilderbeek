@@ -58,13 +58,11 @@ void ribi::QtSitemapGeneratorMenuDialog::on_button_start_clicked()
 
 void ribi::QtSitemapGeneratorMenuDialog::on_button_about_clicked()
 {
-  About about = SitemapGeneratorMenuDialog::GetAbout();
+  About about = SitemapGeneratorMenuDialog().GetAbout();
   about.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
 
   QtAboutDialog d(about);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtSitemapGeneratorMenuDialog::on_button_quit_clicked()

@@ -1,11 +1,19 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestApproximator
+include(../../Tools/ToolTestApproximator/ToolTestApproximatorConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolTestApproximator/ToolTestApproximator.qrc
+
+FORMS += \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.ui \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.ui \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatormenudialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.cpp
+    ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.cpp \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.cpp \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatormenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestApproximator/tooltestapproximatormenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolTestApproximator/Licence.txt
+    ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.h \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.h \
+    ../../Tools/ToolTestApproximator/qttooltestapproximatormenudialog.h

@@ -43,19 +43,15 @@ ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noex
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
 {
   QtDasWahreSchlagerfestMainDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
 {
-  QtAboutDialog d(DasWahreSchlagerfestMenuDialog::GetAbout());
+  QtAboutDialog d(DasWahreSchlagerfestMenuDialog().GetAbout());
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept

@@ -1,7 +1,7 @@
 
 #include <cassert>
-#include <exception>
 #include <iostream>
+#include <stdexcept>
 
 #include "chesscolor.h"
 #include "chessplayer.h"

@@ -1,14 +1,23 @@
 include(../../Games/GamePylos/GamePylosConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GamePylos
+SOURCES += \
+    ../../Games/GamePylos/qtpyloswondialog.cpp \
+    ../../Games/GamePylos/qtpylosmenudialog.cpp \
+    ../../Games/GamePylos/qtpylosmaindialog.cpp \
+    ../../Games/GamePylos/qtpylosinstructionsdialog.cpp
 
-SOURCES +=
-#    ../../Games/GamePylos/pylosmenudialog.cpp
+HEADERS  += \
+    ../../Games/GamePylos/qtpyloswondialog.h \
+    ../../Games/GamePylos/qtpylosmenudialog.h \
+    ../../Games/GamePylos/qtpylosmaindialog.h \
+    ../../Games/GamePylos/qtpylosinstructionsdialog.h
 
-HEADERS  +=
-#    ../../Games/GamePylos/pylosmenudialog.h
+RESOURCES += \
+    ../../Games/GamePylos/GamePylos.qrc
 
-OTHER_FILES +=
-#    ../../Games/GamePylos/Licence.txt
+FORMS += \
+    ../../Games/GamePylos/qtpyloswondialog.ui \
+    ../../Games/GamePylos/qtpylosmenudialog.ui \
+    ../../Games/GamePylos/qtpylosmaindialog.ui \
+    ../../Games/GamePylos/qtpylosinstructionsdialog.ui
 

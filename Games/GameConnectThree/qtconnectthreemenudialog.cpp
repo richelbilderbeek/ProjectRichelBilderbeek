@@ -67,21 +67,17 @@ void ribi::QtConnectThreeMenuDialog::on_button_start_clicked() noexcept
   QtConnectThreeGameDialog d(m_resources, nullptr,this->m_select->GetIsPlayerHuman());
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtConnectThreeMenuDialog::on_button_about_clicked() noexcept
 {
-  About about = ConnectThreeMenuDialog::GetAbout();
+  About about = ConnectThreeMenuDialog().GetAbout();
   about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   QtAboutDialog d(about);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept

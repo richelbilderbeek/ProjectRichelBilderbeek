@@ -67,16 +67,13 @@ ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog() noexcept
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_start_clicked() noexcept
 {
-  this->hide();
   QtSimMysteryMachineMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked() noexcept
 {
-  this->hide();
-  About a = SimMysteryMachineMenuDialog::GetAbout();
+  About a = SimMysteryMachineMenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtLedWidget version: " + QtLedWidget::GetVersion());
   a.AddLibrary("QtMysteryMachineWidget version: " + QtMysteryMachineWidget::GetVersion());
@@ -84,8 +81,7 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_about_clicked() noexcept
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked() noexcept
@@ -95,17 +91,13 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_quit_clicked() noexcept
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_instructions_clicked() noexcept
 {
-  this->hide();
   QtSimMysteryMachineInstructionsDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked() noexcept
 {
-  this->hide();
   QtSimMysteryMachineRealMachineDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 

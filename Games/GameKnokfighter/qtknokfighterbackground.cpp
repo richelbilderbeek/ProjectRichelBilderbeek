@@ -1,8 +1,12 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QColor>
 #include <QPixmap>
 #include <QGraphicsScene>
 #include "qtknokfighterbackground.h"
 #include "rainbow.h"
+#pragma GCC diagnostic pop
 
 ribi::QtKnokfighterBackground::QtKnokfighterBackground(
   const int width, const int height,

@@ -5,6 +5,7 @@
 #include "chessfwd.h"
 #include "chesscolor.h"
 
+namespace ribi {
 namespace Chess {
 
 ///Resources contains the resources filenames
@@ -15,10 +16,15 @@ struct Resources
   virtual ~Resources() {}
 
   ///Find the filename for this piece
-  static const std::string Find(const boost::shared_ptr<const Chess::Piece>& piece, const Chess::Color selection_color = Color::indeterminate, const bool big = false);
+  static const std::string Find(
+    const boost::shared_ptr<const Chess::Piece>& piece,
+    const Chess::Color selection_color = Color::indeterminate,
+    const bool big = false);
 
   ///Find the filename for this square
-  static const std::string Find(const Chess::Square& square, const Chess::Color selection_color = Color::indeterminate);
+  static const std::string Find(
+    const boost::shared_ptr<const Square> square,
+    const Chess::Color selection_color = Color::indeterminate);
 
   ///Find the filename for this selected piece
   //const std::string FindSelected(const boost::shared_ptr<const Chess::Piece>& piece) const;
@@ -47,5 +53,6 @@ struct Resources
 };
 
 } //~ namespace Chess
+} //~namespace ribi
 
 #endif // CHESSRESOURCES_H

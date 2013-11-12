@@ -1,31 +1,21 @@
-//---------------------------------------------------------------------------
-#include "dialoggame.h"
-#include "qtgamewidget.h"
-#include "ui_dialoggame.h"
-//---------------------------------------------------------------------------
-DialogGame::DialogGame(QWidget *parent)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "qttankbattaliongamedialog.h"
+#include "qttankbattaliongamewidget.h"
+#include "ui_qttankbattaliongamedialog.h"
+#pragma GCC diagnostic pop
+
+QtTankBattalionGameDialog::QtTankBattalionGameDialog(QWidget *parent)
   : QDialog(parent),
     m_game(new QtGameWidget),
-    ui(new Ui::DialogGame)
+    ui(new Ui::QtTankBattalionGameDialog)
 {
   ui->setupUi(this);
   ui->layout->addWidget(m_game.get());
 }
-//---------------------------------------------------------------------------
-DialogGame::~DialogGame()
+
+QtTankBattalionGameDialog::~QtTankBattalionGameDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void DialogGame::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-//---------------------------------------------------------------------------

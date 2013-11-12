@@ -1,11 +1,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtgamexenonzeromaindialog.h"
+#include "qtxenonzeromaindialog.h"
 
 #include <cassert>
 
-#include "gamexenonzerodialog.h"
-#include "ui_qtgamexenonzeromaindialog.h"
+#include "xenonzeromaindialog.h"
+#include "ui_qtxenonzeromaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)

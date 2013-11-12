@@ -75,11 +75,9 @@ void ribi::QtRandomCodeMainDialog::on_button_generate_clicked()
 
 void ribi::QtRandomCodeMainDialog::on_button_about_clicked()
 {
-  About about = RandomCodeMenuDialog::GetAbout();
+  About about = RandomCodeMenuDialog().GetAbout();
   //about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   QtAboutDialog d(about);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 

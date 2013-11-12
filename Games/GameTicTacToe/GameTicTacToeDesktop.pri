@@ -1,14 +1,20 @@
 include(../../Games/GameTicTacToe/GameTicTacToeConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameTicTacToe
+SOURCES += \
+    ../../Games/GameTicTacToe/qttictactoewinnerdialog.cpp \
+    ../../Games/GameTicTacToe/qttictactoemenudialog.cpp \
+    ../../Games/GameTicTacToe/qttictactoegamedialog.cpp
 
-SOURCES +=
-#    ../../Games/GameTicTacToe/tictactoemenudialog.cpp
+HEADERS  += \
+    ../../Games/GameTicTacToe/qttictactoewinnerdialog.h \
+    ../../Games/GameTicTacToe/qttictactoemenudialog.h \
+    ../../Games/GameTicTacToe/qttictactoegamedialog.h
 
-HEADERS  +=
-#    ../../Games/GameTicTacToe/tictactoemenudialog.h
+FORMS += \
+    ../../Games/GameTicTacToe/qttictactoewinnerdialog.ui \
+    ../../Games/GameTicTacToe/qttictactoemenudialog.ui \
+    ../../Games/GameTicTacToe/qttictactoegamedialog.ui
 
-OTHER_FILES +=
-#    ../../Games/GameTicTacToe/Licence.txt
+RESOURCES += \
+    ../../Games/GameTicTacToe/GameTicTacToe.qrc
 

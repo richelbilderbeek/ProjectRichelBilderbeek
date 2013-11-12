@@ -1,8 +1,12 @@
 #ifndef QTKNOKFIGHTERMAINDIALOG_H
 #define QTKNOKFIGHTERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <QGraphicsView>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 struct QKeyEvent;
@@ -16,8 +20,10 @@ class QtKnokfighterMainDialog : public QGraphicsView
 {
   Q_OBJECT
   public:
-    explicit QtKnokfighterMainDialog(QWidget *parent = 0);
-    
+  explicit QtKnokfighterMainDialog(QWidget *parent = 0);
+  QtKnokfighterMainDialog(const QtKnokfighterMainDialog&) = delete;
+  QtKnokfighterMainDialog& operator=(const QtKnokfighterMainDialog&) = delete;
+
   signals:
     
   public slots:

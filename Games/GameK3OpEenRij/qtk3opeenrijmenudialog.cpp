@@ -48,7 +48,7 @@ void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
     QtK3OpEenRijInstructionsDialog d;
   }
   {
-    About about = K3OpEenRijMenuDialog::GetAbout();
+    About about = K3OpEenRijMenuDialog().GetAbout();
     QtAboutDialog d(about);
   }
 }
@@ -56,14 +56,12 @@ void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
 
 void ribi::QtK3OpEenRijMenuDialog::on_button_about_clicked() noexcept
 {
-  About about = K3OpEenRijMenuDialog::GetAbout();
+  About about = K3OpEenRijMenuDialog().GetAbout();
   about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
   QtAboutDialog d(about);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtK3OpEenRijMenuDialog::on_button_instructions_clicked() noexcept

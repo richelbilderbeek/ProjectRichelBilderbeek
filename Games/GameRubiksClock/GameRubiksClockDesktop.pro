@@ -1,109 +1,31 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppDial \
-    ../../Classes/CppDialWidget \
-    ../../Classes/CppRectangle \
-    ../../Classes/CppRubiksClock \
-    ../../Classes/CppRubiksClockWidget \
-    ../../Classes/CppToggleButton \
-    ../../Classes/CppToggleButtonWidget \
-    ../../Classes/CppTrace \
-    ../../Classes/CppWidget \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtDialWidget \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppQtRubiksClockWidget \
-    ../../Classes/CppQtToggleButtonWidget
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppDial/dial.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtDialWidget/qtdialwidget.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    ../../Classes/CppQtRubiksClockWidget/qtrubiksclockwidget.cpp \
-    ../../Classes/CppQtToggleButtonWidget/qttogglebuttonwidget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppRubiksClock/rubiksclock.cpp \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdial.cpp \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.cpp \
-    ../../Classes/CppRubiksClockWidget/rubiksclockwidget.cpp \
-    ../../Classes/CppToggleButton/togglebutton.cpp \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    qtmain.cpp \
-    qtrubiksclockmaindialog.cpp \
-    qtrubiksclockmenudialog.cpp \
-    rubiksclockmenudialog.cpp
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppDial/dial.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtDialWidget/qtdialwidget.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppQtRubiksClockWidget/qtrubiksclockwidget.h \
-    ../../Classes/CppQtToggleButtonWidget/qttogglebuttonwidget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppRubiksClock/rubiksclock.h \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdial.h \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.h \
-    ../../Classes/CppRubiksClockWidget/rubiksclockwidget.h \
-    ../../Classes/CppToggleButton/togglebutton.h \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppWidget/widget.h \
-    qtrubiksclockmaindialog.h \
-    qtrubiksclockmenudialog.h \
-    rubiksclockmenudialog.h
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppRubiksClock/CppRubiksClock.pri)
+include(../../Classes/CppRubiksClockWidget/CppRubiksClockWidget.pri)
+include(../../Classes/CppToggleButton/CppToggleButton.pri)
+include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
 
-RESOURCES += \
-    GameRubiksClock.qrc
+include(../../Classes/CppQtDialWidget/CppQtDialWidget.pri)
+include(../../Classes/CppQtRubiksClockWidget/CppQtRubiksClockWidget.pri)
+include(../../Classes/CppQtToggleButtonWidget/CppQtToggleButtonWidget.pri)
 
-OTHER_FILES += \
-    GameRubiksClockWelcome.png \
-    ../../Classes/CppQtDialWidget/Licence.txt \
-    ../../Classes/CppQtToggleButtonWidget/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt
+include(GameRubiksClockDesktop.pri)
 
-FORMS += \
-    qtrubiksclockmenudialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtrubiksclockmaindialog.ui
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+SOURCES += qtmain.cpp

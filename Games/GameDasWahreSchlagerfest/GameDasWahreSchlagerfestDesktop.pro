@@ -1,70 +1,18 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-TEMPLATE = app
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    daswahreschlagerfestmenudialog.cpp \
-    daswahreschlagerfestwidget.cpp \
-    qtdaswahreschlagerfestmaindialog.cpp \
-    qtdaswahreschlagerfestmenudialog.cpp \
-    qtdaswahreschlagerfestwidget.cpp \
-    qtmain.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    daswahreschlagerfestwidget.h \
-    qtdaswahreschlagerfestmaindialog.h \
-    qtdaswahreschlagerfestmenudialog.h \
-    qtdaswahreschlagerfestwidget.h \
-    daswahreschlagerfestmenudialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
+include(GameDasWahreSchlagerfestDesktop.pri)
 
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtdaswahreschlagerfestmaindialog.ui \
-    qtdaswahreschlagerfestmenudialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
-
-RESOURCES += \
-    GameDasWahreSchlagerfest.qrc
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+SOURCES += qtmain.cpp

@@ -40,10 +40,10 @@ ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *p
   ui->graphicsView->setScene(m_scene);
 
   //Connect and start a timer
-  QObject::connect(m_timer,SIGNAL(timeout()),this,SLOT(onTick()));
-  QObject::connect(ui->check_auto_rotate,SIGNAL(clicked()),this,SLOT(onCheck()));
-  QObject::connect(ui->button_left,SIGNAL(clicked()),this,SLOT(onButtonLeft()));
-  QObject::connect(ui->button_right,SIGNAL(clicked()),this,SLOT(onButtonRight()));
+  QObject::connect(m_timer,&QTimer::timeout,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onTick);
+  QObject::connect(ui->check_auto_rotate,&QCheckBox::clicked,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onCheck);
+  QObject::connect(ui->button_left,&QPushButton::clicked,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onButtonLeft);
+  QObject::connect(ui->button_right,&QPushButton::clicked,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onButtonRight);
 
 
   //Start the timer
@@ -62,7 +62,6 @@ ribi::aaf::QtAminoAcidFighterMainDialog::~QtAminoAcidFighterMainDialog()
   delete m_sprite;
 }
 
-//Sets the scale of the maze
 void ribi::aaf::QtAminoAcidFighterMainDialog::resizeEvent(QResizeEvent*)
 {
   const int size = std::max(

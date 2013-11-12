@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PongMainDialog</class>
- <widget class="QDialog" name="PongMainDialog">
+ <class>QtPongMainDialog</class>
+ <widget class="QDialog" name="QtPongMainDialog">
   <property name="windowModality">
    <enum>Qt::WindowModal</enum>
   </property>
@@ -23,7 +23,16 @@
    <bool>true</bool>
   </property>
   <layout class="QGridLayout" name="layout">
-   <property name="margin">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
     <number>0</number>
    </property>
    <property name="spacing">

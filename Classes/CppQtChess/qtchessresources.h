@@ -5,9 +5,9 @@
 #include "chessfwd.h"
 #include "chessresources.h"
 
-namespace Chess { struct Piece; }
 namespace Qt { struct QPixmap; }
 
+namespace ribi {
 namespace Chess {
 
 ///QtResources uses Qt for generating the chess resources
@@ -33,6 +33,7 @@ struct QtResources : public Chess::Resources
   boost::shared_ptr<Qt::QPixmap> m_square_white;
 };
 
-} //~ namespace Chess
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // QTCHESSRESOURCES_H

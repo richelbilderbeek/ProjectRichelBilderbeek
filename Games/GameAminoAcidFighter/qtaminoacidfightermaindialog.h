@@ -1,7 +1,11 @@
 #ifndef QTAMINOACIDFIGHTERMAINDIALOG_H
 #define QTAMINOACIDFIGHTERMAINDIALOG_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDialog>
+#pragma GCC diagnostic pop
 
 struct QGraphicsScene;
 struct QGraphicsPixmapItem;

@@ -1,12 +1,18 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
 
 #include <boost/cast.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "worldtype.h"
+#pragma GCC diagnostic pop
+
+namespace ribi {
 
 struct Player
 {
@@ -84,5 +90,7 @@ struct ClassicPlayer : public Player
   int m_y;
   int m_direction;
 };
+
+} //~namespace ribi
 
 #endif // PLAYER_H

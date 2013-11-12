@@ -154,20 +154,19 @@ void ribi::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
 
 void ribi::QtPylosMenuDialog::OnAbout()
 {
-  About a = PylosMenuDialog::GetAbout();
+  About a = PylosMenuDialog().GetAbout();
   a.AddLibrary("QtPylosBoardWidget version: " + QtPylosBoardWidget::GetVersion());
   a.AddLibrary("QtPylosGameWidget version: " + QtPylosGameWidget::GetVersion());
   a.AddLibrary("Pylos::QtSprites version: " + Pylos::QtSprites::GetVersion());
   a.AddLibrary("QtPylosWidget version: " + QtPylosWidget::GetVersion());
   QtAboutDialog d(a);
-
-  d.exec();
+  this->ShowChild(&d);
 }
 
 void ribi::QtPylosMenuDialog::OnInstructions()
 {
   QtPylosInstructionsDialog d;
-  d.exec();
+  this->ShowChild(&d);
 }
 
 void ribi::QtPylosMenuDialog::OnStart()
@@ -183,9 +182,7 @@ void ribi::QtPylosMenuDialog::OnStart()
   //Create the game dialog
   //note: p is deleted by DialogMain
   QtPylosMainDialog d(p);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 

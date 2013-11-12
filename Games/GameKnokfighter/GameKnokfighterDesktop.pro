@@ -1,38 +1,20 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
-INCLUDEPATH += \
-    ../../Classes/CppRainbow \
-    ../../Classes/CppTrace
+include(../../DesktopApplication.pri)
 
-SOURCES += \
-    qtmain.cpp \
-    qtknokfighterbackground.cpp \
-    qtknokfightermaindialog.cpp \
-    qtknokfighterplayer.cpp \
-    ../../Classes/CppRainbow/rainbow.cpp
-#    knokfighterplayer.cpp \
-#    knokighterkey.cpp \
-#    knokfighterkey.cpp
-#    knokfighterplayerstate.cpp \
-#   knokfighterattack.cbpp
+include(../../Libraries/Boost.pri)
 
-HEADERS  += \
-    qtknokfighterbackground.h \
-    qtknokfightermaindialog.h \
-    qtknokfighterplayer.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppRainbow/rainbow.h
-#    knokfighterplayer.h \
-#    knokighterkey.h \
-#    knokfighterkey.h
-#   knokfighterplayerstate.h \
-#   knokfighterattack.h
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-RESOURCES += \
-    GameKnokkfighter.qrc
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-OTHER_FILES += \
-    ../../Classes/CppTrace/Licence.txt \
-    ../../Classes/CppRainbow/Licence.txt
+include(../../Classes/CppRainbow/CppRainbow.pri)
+
+include(GameKnokfighterDesktop.pri)
+
+SOURCES += qtmain.cpp

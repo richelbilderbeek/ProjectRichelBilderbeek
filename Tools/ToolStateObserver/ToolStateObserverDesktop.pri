@@ -1,13 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolStateObserver
+include(../../Tools/ToolStateObserver/ToolStateObserverConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolStateObserver/ToolStateObserver.qrc
+
+FORMS += \
+    ../../Tools/ToolStateObserver/qtstateobservermenudialog.ui \
+    ../../Tools/ToolStateObserver/qtstateobservermaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolStateObserver/noisefunctionparser.cpp \
-    ../../Tools/ToolStateObserver/stateobservermenudialog.cpp
+    ../../Tools/ToolStateObserver/qtstateobservermenudialog.cpp \
+    ../../Tools/ToolStateObserver/qtstateobservermaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolStateObserver/noisefunctionparser.h \
-    ../../Tools/ToolStateObserver/stateobservermenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolStateObserver/Licence.txt
+    ../../Tools/ToolStateObserver/qtstateobservermenudialog.h \
+    ../../Tools/ToolStateObserver/qtstateobservermaindialog.h

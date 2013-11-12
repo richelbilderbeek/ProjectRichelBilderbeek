@@ -27,7 +27,7 @@ ribi::QtToolSimplifyNewickMenuDialog::~QtToolSimplifyNewickMenuDialog() noexcept
 
 void ribi::QtToolSimplifyNewickMenuDialog::on_button_about_clicked() noexcept
 {
-  QtAboutDialog d(ToolSimplifyNewickMenuDialog::GetAbout());
+  QtAboutDialog d(ToolSimplifyNewickMenuDialog().GetAbout());
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);

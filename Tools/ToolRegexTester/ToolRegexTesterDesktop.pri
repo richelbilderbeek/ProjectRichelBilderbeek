@@ -1,23 +1,17 @@
-INCLUDEPATH += \
-    ../../Tools/ToolRegexTester
+include(../../Tools/ToolRegexTester/ToolRegexTesterConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolRegexTester/ToolRegexTester.qrc
+
+FORMS += \
+    ../../Tools/ToolRegexTester/qtregextesterremovedialog.ui \
+    ../../Tools/ToolRegexTester/qtregextestermenudialog.ui \
+    ../../Tools/ToolRegexTester/qtregextestermaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.cpp \
-    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.cpp \
-    ../../Tools/ToolRegexTester/regextestercpp11maindialog.cpp \
-    ../../Tools/ToolRegexTester/regextestermaindialog.cpp \
-    ../../Tools/ToolRegexTester/regextestermenudialog.cpp \
-    ../../Tools/ToolRegexTester/regextesterqtmaindialog.cpp \
-    ../../Tools/ToolRegexTester/regextestertr1maindialog.cpp
+    ../../Tools/ToolRegexTester/qtregextestermenudialog.cpp \
+    ../../Tools/ToolRegexTester/qtregextestermaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolRegexTester/regextesterboostregexmaindialog.h \
-    ../../Tools/ToolRegexTester/regextesterboostxpressivemaindialog.h \
-    ../../Tools/ToolRegexTester/regextestercpp11maindialog.h \
-    ../../Tools/ToolRegexTester/regextestermaindialog.h \
-    ../../Tools/ToolRegexTester/regextestermenudialog.h \
-    ../../Tools/ToolRegexTester/regextesterqtmaindialog.h \
-    ../../Tools/ToolRegexTester/regextestertr1maindialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolRegexTester/Licence.txt
+    ../../Tools/ToolRegexTester/qtregextestermenudialog.h \
+    ../../Tools/ToolRegexTester/qtregextestermaindialog.h

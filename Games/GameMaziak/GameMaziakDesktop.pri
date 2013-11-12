@@ -1,14 +1,27 @@
 include(../../Games/GameMaziak/GameMaziakConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameMaziak
+SOURCES += \
+    ../../Games/GameMaziak/qtmaziakmenudialog.cpp \
+    ../../Games/GameMaziak/qtmaziakmaindialog.cpp \
+    ../../Games/GameMaziak/qtmaziakinstructionsdialog.cpp \
+    ../../Games/GameMaziak/qtmaziakgamewondialog.cpp \
+    ../../Games/GameMaziak/qtmaziakgameoverdialog.cpp
 
-SOURCES +=
-#    ../../Games/GameMaziak/maziakmenudialog.cpp
+HEADERS  += \
+    ../../Games/GameMaziak/qtmaziakmenudialog.h \
+    ../../Games/GameMaziak/qtmaziakmaindialog.h \
+    ../../Games/GameMaziak/qtmaziakinstructionsdialog.h \
+    ../../Games/GameMaziak/qtmaziakgamewondialog.h \
+    ../../Games/GameMaziak/qtmaziakgameoverdialog.h
 
-HEADERS  +=
-#    ../../Games/GameMaziak/maziakmenudialog.h
 
-OTHER_FILES +=
-#    ../../Games/GameMaziak/Licence.txt
+FORMS += \
+    ../../Games/GameMaziak/qtmaziakmenudialog.ui \
+    ../../Games/GameMaziak/qtmaziakmaindialog.ui \
+    ../../Games/GameMaziak/qtmaziakinstructionsdialog.ui \
+    ../../Games/GameMaziak/qtmaziakgamewondialog.ui \
+    ../../Games/GameMaziak/qtmaziakgameoverdialog.ui
+
+RESOURCES += \
+    ../../Games/GameMaziak/GameMaziak.qrc
 

@@ -1,13 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolAsciiArter
+include(../../Tools/ToolAsciiArter/ToolAsciiArterConsole.pri)
+
+FORMS += \
+    ../../Tools/ToolAsciiArter/qtasciiartermenudialog.ui \
+    ../../Tools/ToolAsciiArter/qtasciiartermaindialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolAsciiArter/ToolAsciiArter.qrc
 
 SOURCES += \
-    ../../Tools/ToolAsciiArter/asciiartermaindialog.cpp \
-    ../../Tools/ToolAsciiArter/asciiartermenudialog.cpp
+    ../../Tools/ToolAsciiArter/qtasciiartermenudialog.cpp \
+    ../../Tools/ToolAsciiArter/qtasciiartermaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolAsciiArter/asciiartermaindialog.h \
-    ../../Tools/ToolAsciiArter/asciiartermenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolAsciiArter/Licence.txt
+    ../../Tools/ToolAsciiArter/qtasciiartermenudialog.h \
+    ../../Tools/ToolAsciiArter/qtasciiartermaindialog.h

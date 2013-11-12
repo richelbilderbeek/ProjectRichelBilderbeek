@@ -150,6 +150,7 @@ const boost::shared_ptr<ribi::Chess::Score>& ribi::Chess::Game::Score() const
   return m_score;
 }
 
+#ifndef NDEBUG
 void ribi::Chess::Game::Test()
 {
   {
@@ -170,6 +171,7 @@ void ribi::Chess::Game::Test()
   t.detach();
   #endif
 }
+#endif
 
 bool ribi::Chess::operator==(const Game& lhs, const Game& rhs)
 {

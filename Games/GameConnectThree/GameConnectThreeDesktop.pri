@@ -1,16 +1,24 @@
 include(../../Games/GameConnectThree/GameConnectThreeConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameBeerWanter
+SOURCES += \
+    ../../Games/GameConnectThree/qtshowwinnerdialog.cpp \
+    ../../Games/GameConnectThree/qtselectplayerwidget.cpp \
+    ../../Games/GameConnectThree/qtconnectthreeresources.cpp \
+    ../../Games/GameConnectThree/qtconnectthreemenudialog.cpp \
+    ../../Games/GameConnectThree/qtconnectthreegamedialog.cpp
 
-SOURCES +=
-#    ../../Games/GameConnectThree/connectthreemenudialog.cpp \
-#    ../../Games/GameConnectThree/connectthreeresources.cpp
+HEADERS  += \
+    ../../Games/GameConnectThree/qtshowwinnerdialog.h \
+    ../../Games/GameConnectThree/qtselectplayerwidget.h \
+    ../../Games/GameConnectThree/qtconnectthreeresources.h \
+    ../../Games/GameConnectThree/qtconnectthreemenudialog.h \
+    ../../Games/GameConnectThree/qtconnectthreegamedialog.h
 
-HEADERS  +=
-#    ../../Games/GameBeerWanter/beerwantermaindialog.h \
-#    ../../Games/GameBeerWanter/beerwantermenudialog.h
+FORMS += \
+    ../../Games/GameConnectThree/qtshowwinnerdialog.ui \
+    ../../Games/GameConnectThree/qtconnectthreemenudialog.ui \
+    ../../Games/GameConnectThree/qtconnectthreegamedialog.ui
 
-OTHER_FILES +=
-#    ../../Games/GameBeerWanter/Licence.txt
+RESOURCES += \
+    ../../Games/GameConnectThree/GameConnectThree.qrc
 

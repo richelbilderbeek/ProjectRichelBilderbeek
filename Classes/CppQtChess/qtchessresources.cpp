@@ -2,27 +2,30 @@
 #include <cassert>
 #include <iostream>
 
-#include <boost/filesystem.hpp>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 
 #include <QFile>
-
+#include "fileio.h"
 #include "chessresources.h"
 #include "qtchessresources.h"
 //#include "trace.h"
+#pragma GCC diagnostic pop
 
-namespace Chess {
 
-QtResources::QtResources()
+ribi::Chess::QtResources::QtResources()
+  : m_square_black{},
+    m_square_white{}
 {
   const std::vector<std::string> v = Resources::GetFilenames();
   std::for_each(v.begin(),v.end(),
     [](const std::string& s)
     {
-      if (!boost::filesystem::exists(s))
+      if (!fileio::IsRegularFile(s))
       {
         QFile f( (std::string(":/images/") + s).c_str() );
         f.copy(s.c_str());
-        if (!boost::filesystem::exists(s.c_str()))
+        if (!fileio::IsRegularFile(s))
         {
           const std::string error = "File not found: " + s;
           std::cerr << error << '\n';
@@ -30,7 +33,7 @@ QtResources::QtResources()
           std::cout << error << '\n';
         }
       }
-      assert(boost::filesystem::exists(s.c_str()));
+      assert(fileio::IsRegularFile(s));
     }
   );
 
@@ -39,17 +42,14 @@ QtResources::QtResources()
   #endif
 }
 
-const std::string QtResources::GetVersion()
+const std::string ribi::Chess::QtResources::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtResources::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::QtResources::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-27: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-27: version 1.0: initial version"
+  };
 }
-
-} //~ namespace Chess
-

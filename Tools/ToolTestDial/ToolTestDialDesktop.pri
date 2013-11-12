@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestDial
+include(../../Tools/ToolTestDial/ToolTestDialConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolTestDial/ToolTestDial.qrc \
+
+FORMS += \
+    ../../Tools/ToolTestDial/qttestdialmenudialog.ui \
+    ../../Tools/ToolTestDial/qttestdialmaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestDial/testdialmenudialog.cpp
+    ../../Tools/ToolTestDial/qttestdialmenudialog.cpp \
+    ../../Tools/ToolTestDial/qttestdialmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestDial/testdialmenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolTestDial/Licence.txt
+    ../../Tools/ToolTestDial/qttestdialmenudialog.h \
+    ../../Tools/ToolTestDial/qttestdialmaindialog.h

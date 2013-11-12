@@ -1,14 +1,18 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TEMPLATE = app
-SOURCES += main.cpp\
-        dialoggame.cpp \
-    qtgamewidget.cpp \
-    tankbattalion.cpp
-HEADERS  += dialoggame.h \
-    qtgamewidget.h \
-    tankbattalion.h
-FORMS    += dialoggame.ui
+include(../../DesktopApplication.pri)
 
-RESOURCES += \
-    qtresources.qrc
+include(../../Libraries/Boost.pri)
+
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
+
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+
+include(GameTankBattalionDesktop.pri)
+
+SOURCES += qtmain.cpp

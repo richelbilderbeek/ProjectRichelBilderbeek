@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtasciiartermenudialog.h"
 #include "qtbeerwantermenudialog.h"
+#include "qtrichelbilderbeekmenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "qtconnectthreemenudialog.h"
@@ -164,6 +165,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pokeVolley: break;
     case ProgramType::pong: break;
     case ProgramType::primeExpert: p = new QtToolPrimeExpertMenuDialog;  break;
+    case ProgramType::projectRichelBilderbeek: new QtRichelBilderbeekMenuDialog; break;
     case ProgramType::pylos: p = new QtPylosMenuDialog; break;
     case ProgramType::qmakeWatcher: new QtQmakeWatcherMenuDialog; break;
     case ProgramType::quadraticSolver: new QtQuadraticSolverMenuDialog; break;

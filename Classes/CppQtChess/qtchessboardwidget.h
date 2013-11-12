@@ -26,6 +26,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
 
 #include <QWidget>
@@ -34,6 +37,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chesssquare.h"         //For MOC
 #include "chesssquareselector.h" //For MOC
 #include "qtchessresources.h"    //For MOC
+#pragma GCC diagnostic pop
+
+namespace ribi {
+namespace Chess {
 
 ///QtChessBoardWidget displays a Chess::Board (with a ChessBoardWidget in between)
 struct QtChessBoardWidget : public QWidget
@@ -106,5 +113,8 @@ struct QtChessBoardWidget : public QWidget
   ///Respond to mouse click
   //void OnClicked(const Wt::WMouseEvent& e);
 };
+
+} //~namespace Chess
+} //~namespace ribi
 
 #endif // QTCHESSBOARDWIDGET_H

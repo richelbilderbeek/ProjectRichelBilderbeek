@@ -1,6 +1,9 @@
 #include <cassert>
 #include <cstdlib>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 
 #include <QGraphicsScene>
@@ -10,14 +13,17 @@
 #include <QPixmap>
 #include <QTimer>
 
-#include "dialoggame.h"
-#include "player.h"
-#include "ui_dialoggame.h"
-#include "worldtype.h"
+#include "qttroncollectiongamedialog.h"
 
-DialogGame::DialogGame(QWidget *parent, const std::vector<boost::shared_ptr<Player> >& players)
+#include "player.h"
+#include "ui_qttroncollectiongamedialog.h"
+#include "worldtype.h"
+#pragma GCC diagnostic pop
+
+ribi::QtTronCollectionGameDialog::QtTronCollectionGameDialog(
+  QWidget *parent, const std::vector<boost::shared_ptr<Player> > players)
   : QDialog(parent, Qt::Window),
-    ui(new Ui::DialogGame),
+    ui(new Ui::QtTronCollectionGameDialog),
     m_timer(new QTimer(this)),
     m_pixmap(0),
     m_width(320),
@@ -31,29 +37,17 @@ DialogGame::DialogGame(QWidget *parent, const std::vector<boost::shared_ptr<Play
   m_timer->start(20);
 }
 
-DialogGame::~DialogGame()
+ribi::QtTronCollectionGameDialog::~QtTronCollectionGameDialog()
 {
   delete ui;
 }
 
-void DialogGame::changeEvent(QEvent *e)
-{
-  QDialog::changeEvent(e);
-  switch (e->type()) {
-  case QEvent::LanguageChange:
-    ui->retranslateUi(this);
-    break;
-  default:
-    break;
-  }
-}
-
-void DialogGame::resizeEvent(QResizeEvent*)
+void ribi::QtTronCollectionGameDialog::resizeEvent(QResizeEvent*)
 {
 
 }
 
-void DialogGame::paintEvent(QPaintEvent *)
+void ribi::QtTronCollectionGameDialog::paintEvent(QPaintEvent *)
 {
   static bool must_init = true;
 
@@ -110,7 +104,7 @@ void DialogGame::paintEvent(QPaintEvent *)
   }
 }
 
-const std::vector<boost::shared_ptr<Player> > CreatePlayers()
+const std::vector<boost::shared_ptr<ribi::Player> > ribi::QtTronCollectionGameDialog::CreatePlayers()
 {
   std::vector<boost::shared_ptr<Player> > v;
   {

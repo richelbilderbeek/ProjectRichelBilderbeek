@@ -1,11 +1,17 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestFunctionParser
+include(../../Tools/ToolTestFunctionParser/ToolTestFunctionParserConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolTestFunctionParser/ToolTestFunctionParser.qrc
+
+FORMS += \
+    ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.ui \
+    ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.cpp
+    ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.cpp \
+    ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestFunctionParser/testfunctionparsermenudialog.h
+    ../../Tools/ToolTestFunctionParser/qttestfunctionparsermenudialog.h \
+    ../../Tools/ToolTestFunctionParser/qttestfunctionparsermaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestFunctionParser/Licence.txt

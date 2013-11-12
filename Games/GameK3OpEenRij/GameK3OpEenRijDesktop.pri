@@ -1,14 +1,21 @@
 include(../../Games/GameK3OpEenRij/GameK3OpEenRijConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameK3OpEenRij
+SOURCES += \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijselectplayerwidget.cpp \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijresources.cpp \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijmenudialog.cpp \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijinstructionsdialog.cpp
 
-SOURCES +=
-#    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.cpp
+HEADERS  += \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijselectplayerwidget.h \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijresources.h \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijmenudialog.h \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijinstructionsdialog.h
 
-HEADERS  +=
-#    ../../Games/GameK3OpEenRij/k3opeenrijmenudialog.h
+RESOURCES += \
+    ../../Games/GameK3OpEenRij/GameK3OpEenRij.qrc
 
-OTHER_FILES +=
-#    ../../Games/GameK3OpEenRij/Licence.txt
+FORMS += \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijmenudialog.ui \
+    ../../Games/GameK3OpEenRij/qtk3opeenrijinstructionsdialog.ui
 

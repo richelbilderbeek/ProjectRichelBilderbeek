@@ -37,10 +37,13 @@ ribi::Chess::File::File(const int x)
   Test();
   #endif
   if (x < 0 || x > 7) throw std::logic_error("X coordinats go from 0 to and including 7");
+
+  #ifndef NDEBUG
   const char c = m_s[0];
   assert(m_s.size() == 1);
   assert(c >= 'a');
   assert(c <= 'h');
+  #endif
 }
 
 const std::string ribi::Chess::File::GetVersion()

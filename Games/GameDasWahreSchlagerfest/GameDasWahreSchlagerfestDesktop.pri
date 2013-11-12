@@ -1,16 +1,19 @@
 include(../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfestConsole.pri)
 
-INCLUDEPATH +=
-#    ../../Games/GameDasWahreSchlagerfest
+SOURCES += \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestwidget.cpp \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmenudialog.cpp \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmaindialog.cpp
 
-SOURCES +=
-#    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.cpp \
-#    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.cpp
+HEADERS  += \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestwidget.h \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmenudialog.h \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmaindialog.h
 
-HEADERS  +=
-#    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestmenudialog.h \
-#    ../../Games/GameDasWahreSchlagerfest/daswahreschlagerfestwidget.h
+FORMS += \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmenudialog.ui \
+    ../../Games/GameDasWahreSchlagerfest/qtdaswahreschlagerfestmaindialog.ui
 
-OTHER_FILES +=
-#    ../../Games/GameDasWahreSchlagerfest/Licence.txt
+RESOURCES += \
+    ../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc
 

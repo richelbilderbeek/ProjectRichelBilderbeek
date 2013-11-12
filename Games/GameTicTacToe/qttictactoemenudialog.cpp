@@ -44,19 +44,15 @@ ribi::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog() noexcept
 void ribi::QtTicTacToeMenuDialog::on_button_start_clicked()
 {
   QtTicTacToeGameDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTicTacToeMenuDialog::on_button_about_clicked()
 {
-  About a = TicTacToeMenuDialog::GetAbout();
+  About a = TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
   QtAboutDialog d(a);
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTicTacToeMenuDialog::on_button_quit_clicked()

@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtsearchanddestroychessmenudialog.h"
 
 #include <future>
@@ -6,8 +9,9 @@
 #include "qtaboutdialog.h"
 #include "qtsearchanddestroychessgamedialog.h"
 #include "ui_qtsearchanddestroychessmenudialog.h"
+#pragma GCC diagnostic pop
 
-QtSearchAndDestroyChessMenuDialog::QtSearchAndDestroyChessMenuDialog(QWidget *parent) :
+ribi::sadc::QtSearchAndDestroyChessMenuDialog::QtSearchAndDestroyChessMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSearchAndDestroyChessMenuDialog)
 {
@@ -19,30 +23,30 @@ QtSearchAndDestroyChessMenuDialog::QtSearchAndDestroyChessMenuDialog(QWidget *pa
   //TODO: Add transparency to the resources
 }
 
-QtSearchAndDestroyChessMenuDialog::~QtSearchAndDestroyChessMenuDialog()
+ribi::sadc::QtSearchAndDestroyChessMenuDialog::~QtSearchAndDestroyChessMenuDialog()
 {
   delete ui;
 }
 
-void QtSearchAndDestroyChessMenuDialog::on_button_start_clicked()
+void ribi::sadc::QtSearchAndDestroyChessMenuDialog::on_button_start_clicked()
 {
   QtSearchAndDestroyChessGameDialog d;
   ShowChild(&d);
 }
 
-void QtSearchAndDestroyChessMenuDialog::on_button_about_clicked()
+void ribi::sadc::QtSearchAndDestroyChessMenuDialog::on_button_about_clicked()
 {
-  const About a = SearchAndDestroyChess::MenuDialog().GetAbout();
+  const About a = sadc::MenuDialog().GetAbout();
   QtAboutDialog d(a);
-  d.exec();
+  ShowChild(&d);
 }
 
-void QtSearchAndDestroyChessMenuDialog::on_button_quit_clicked()
+void ribi::sadc::QtSearchAndDestroyChessMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void QtSearchAndDestroyChessMenuDialog::Test()
+void ribi::sadc::QtSearchAndDestroyChessMenuDialog::Test()
 {
   {
     static bool is_tested = false;

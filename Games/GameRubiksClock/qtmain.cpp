@@ -46,5 +46,5 @@ int main(int argc, char *argv[])
 
   ribi::QtRubiksClockMenuDialog d;
   d.show();
-  a.exec();
+  return a.exec();
 }

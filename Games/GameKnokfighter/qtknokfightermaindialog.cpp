@@ -1,10 +1,17 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "qtknokfightermaindialog.h"
+
+#include <cassert>
+
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QTimer>
 #include "qtknokfighterbackground.h"
-#include "qtknokfightermaindialog.h"
 #include "qtknokfighterplayer.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
   QGraphicsView(parent),

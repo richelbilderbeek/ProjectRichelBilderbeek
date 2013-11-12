@@ -33,7 +33,7 @@ void ribi::Rainbow::GetRgb(
   const double x,
   double& r,
   double& g,
-  double& b)
+  double& b) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
 
@@ -44,9 +44,9 @@ void ribi::Rainbow::GetRgb(
     ? std::cos(x * 1.5 * pi)
     : -std::sin(x * 1.5 * pi)
     ) );
-  const double f_g = std::max(0.0, std::sin( x * 1.5 * pi ) );
-  const double f_b = std::max(0.0, -std::cos( x * 1.5 * pi ) );
-  const double max = std::max(f_r, std::max(f_g,f_b));
+  const double f_g = std::max(0.0,  std::sin( x * 1.5 * pi ));
+  const double f_b = std::max(0.0, -std::cos( x * 1.5 * pi ));
+  const double max = std::max(f_r,  std::max(f_g,f_b       ));
   assert(max!=0.0);
 
   r = f_r / max;
@@ -61,9 +61,9 @@ const std::string ribi::Rainbow::GetVersion() noexcept
 
 const std::vector<std::string> ribi::Rainbow::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-08-31: Version 1.0: initial version");
-  v.push_back("2011-09-22: Version 1.1: added infrared and ultraviolet");
-  return v;
+  return {
+    "2011-08-31: Version 1.0: initial version",
+    "2011-09-22: Version 1.1: added infrared and ultraviolet"
+  };
 }
 

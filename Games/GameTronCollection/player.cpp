@@ -1,3 +1,3 @@
 #include "player.h"
 
-boost::shared_ptr<WorldType> Player::m_world;
+boost::shared_ptr<WorldType> ribi::Player::m_world;

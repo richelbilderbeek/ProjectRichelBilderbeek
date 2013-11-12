@@ -6,7 +6,7 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "gamexenonzerofwd.h"
+#include "xenonzerofwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {

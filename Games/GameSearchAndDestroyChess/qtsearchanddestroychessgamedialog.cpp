@@ -1,10 +1,14 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtsearchanddestroychessgamedialog.h"
 
 #include <future>
 
 #include "ui_qtsearchanddestroychessgamedialog.h"
+#pragma GCC diagnostic pop
 
-QtSearchAndDestroyChessGameDialog::QtSearchAndDestroyChessGameDialog(QWidget *parent) :
+ribi::QtSearchAndDestroyChessGameDialog::QtSearchAndDestroyChessGameDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSearchAndDestroyChessGameDialog)
 {
@@ -14,12 +18,12 @@ QtSearchAndDestroyChessGameDialog::QtSearchAndDestroyChessGameDialog(QWidget *pa
   #endif
 }
 
-QtSearchAndDestroyChessGameDialog::~QtSearchAndDestroyChessGameDialog()
+ribi::QtSearchAndDestroyChessGameDialog::~QtSearchAndDestroyChessGameDialog()
 {
   delete ui;
 }
 
-void QtSearchAndDestroyChessGameDialog::Test()
+void ribi::QtSearchAndDestroyChessGameDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -29,7 +33,7 @@ void QtSearchAndDestroyChessGameDialog::Test()
   std::thread t(
     []
     {
-      QtChessBoardWidget();
+      ribi::Chess::QtChessBoardWidget();
     }
   );
   t.join();

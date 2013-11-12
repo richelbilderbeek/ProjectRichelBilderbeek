@@ -1,4 +1,8 @@
 #include <cmath>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QBrush>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -6,15 +10,16 @@
 #include <QTimer>
 #include <QVBoxLayout>
 
-#include "pongmaindialog.h"
-#include "ui_pongmaindialog.h"
+#include "qtpongmaindialog.h"
+#include "ui_qtpongmaindialog.h"
+#pragma GCC diagnostic pop
 
-PongMainDialog::PongMainDialog(QWidget *parent) :
-  QDialog(parent),
-  ui(new Ui::PongMainDialog),
-  m_background(new PongBackground),
-  m_ball(new PongBall),
-  m_players( { new PongPlayer, new PongPlayer } )
+ribi::QtPongMainDialog::QtPongMainDialog(QWidget *parent)
+  : QDialog(parent),
+    ui(new Ui::QtPongMainDialog),
+    m_background(new PongBackground),
+    m_ball(new PongBall),
+    m_players( { new PongPlayer, new PongPlayer } )
 {
   ui->setupUi(this);
   const int w = this->width();
@@ -57,12 +62,12 @@ PongMainDialog::PongMainDialog(QWidget *parent) :
   timer->start(20);
 }
 
-PongMainDialog::~PongMainDialog()
+ribi::QtPongMainDialog::~QtPongMainDialog()
 {
   delete ui;
 }
 
-void PongMainDialog::keyPressEvent(QKeyEvent * e)
+void ribi::QtPongMainDialog::keyPressEvent(QKeyEvent * e)
 {
   int player = -1;
   double dy = 0.0;
@@ -78,7 +83,7 @@ void PongMainDialog::keyPressEvent(QKeyEvent * e)
   m_players[player]->SetDy(dy);
 }
 
-void PongMainDialog::resizeEvent(QResizeEvent *)
+void ribi::QtPongMainDialog::resizeEvent(QResizeEvent *)
 {
   m_background->SetGeometry(this->width(),this->height());
   m_ball->SetArenaRect(this->width(),this->height());

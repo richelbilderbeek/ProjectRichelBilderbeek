@@ -1,85 +1,23 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-TEMPLATE = app
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppConnectThree \
-    ../../Classes/CppConnectThreeWidget \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtConnectThreeWidget \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppTrace
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppConnectThree/connectthree.cpp \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.cpp \
-    connectthreemenudialog.cpp \
-    connectthreeresources.cpp \
-    qtconnectthreegamedialog.cpp \
-    qtconnectthreemenudialog.cpp \
-    qtconnectthreeresources.cpp \
-    qtmain.cpp \
-    qtselectplayerwidget.cpp \
-    qtshowwinnerdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS  += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppConnectThree/connectthree.h \
-    ../../Classes/CppConnectThreeWidget/connectthreewidget.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtConnectThreeWidget/qtconnectthreewidget.h \
-    ../../Classes/CppTrace/trace.h \
-    connectthreemenudialog.h \
-    connectthreeresources.h \
-    qtconnectthreegamedialog.h \
-    qtconnectthreemenudialog.h \
-    qtconnectthreeresources.h \
-    qtselectplayerwidget.h \
-    qtshowwinnerdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h
+include(../../Classes/CppConnectThree/CppConnectThree.pri)
+include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
 
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qtconnectthreegamedialog.ui \
-    qtconnectthreemenudialog.ui \
-    qtshowwinnerdialog.ui
+include(../../Classes/CppQtConnectThreeWidget/CppQtConnectThreeWidget.pri)
 
-RESOURCES += \
-    GameConnectThree.qrc
+include(GameConnectThreeDesktop.pri)
 
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+SOURCES += qtmain.cpp

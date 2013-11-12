@@ -1,12 +1,14 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppQtRichelBilderbeekGalleryDialog
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtRichelBilderbeekGalleryDialog/qtrichelbilderbeekgallerydialog.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtRichelBilderbeekGalleryDialog/qtrichelbilderbeekgallerydialog.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtRichelBilderbeekGalleryDialog/Licence.txt
 
+FORMS += \
+    ../../Classes/CppQtRichelBilderbeekGalleryDialog/qtrichelbilderbeekgallerydialog.ui

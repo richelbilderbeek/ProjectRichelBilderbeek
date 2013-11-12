@@ -1,4 +1,3 @@
-
 #include <algorithm>
 #include <cassert>
 #include <iostream>
@@ -7,8 +6,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lexical_cast.hpp>
 #include <boost/multi_array.hpp>
-//
 
 #include "chessbitboard.h"
 #include "chessboard.h"
@@ -161,7 +160,9 @@ bool ribi::Chess::Board::CanDoMove(const boost::shared_ptr<const Move> move, con
     if (valid.size() > 1)
     {
       FTRACE("Multiple moves possible to reach the destination square");
+      #ifndef NTRACE_BILDERBIKKEL
       std::for_each(valid.begin(),valid.end(),[](const boost::shared_ptr<const Move> m) { TRACE(m); } );
+      #endif
       return false;
     }
     //There is exactly one Move found: test the complete move

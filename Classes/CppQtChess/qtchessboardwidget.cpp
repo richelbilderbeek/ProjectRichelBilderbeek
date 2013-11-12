@@ -18,12 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppQtChessBoardWidget.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtchessboardwidget.h"
 
 #include <future>
 #include <iostream>
 #include <boost/bind.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QBitmap>
@@ -35,18 +37,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chessmove.h"
 #include "chessresources.h"
 #include "chesssquare.h"
+#include "chesssquarefactory.h"
 #include "chesssquareselector.h"
 #include "chesswidget.h"
+#include "fileio.h"
+#include "chessboardfactory.h"
 #include "qtchessresources.h"
 #include "trace.h"
 #include "widget.h"
+#pragma GCC diagnostic pop
 
-QtChessBoardWidget::QtChessBoardWidget(QWidget *parent)
+ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(QWidget *parent)
   : QWidget(parent),
+    m_signal_changed{},
     m_resources(new Chess::QtResources),
-    m_widget(new Chess::BoardWidget(
-      boost::shared_ptr<Chess::Board>(new Chess::Board(Chess::Board::GetInitialSetup())),
-      Rect(0,0,400,400)))
+    m_widget(new BoardWidget(BoardFactory::Create(),Rect(0,0,400,400)))
 {
   #ifndef NDEBUG
   Test();
@@ -55,48 +60,48 @@ QtChessBoardWidget::QtChessBoardWidget(QWidget *parent)
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtChessBoardWidget::DoRepaint,
+      &ribi::Chess::QtChessBoardWidget::DoRepaint,
       this));
 
   m_widget->m_signal_graphic_changed.connect(
     boost::bind(
-      &QtChessBoardWidget::DoRepaint,
+      &ribi::Chess::QtChessBoardWidget::DoRepaint,
       this));
 
   resize(200,200);
 }
 
-QtChessBoardWidget::QtChessBoardWidget(
+ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(
   const int width, const int height,
   QWidget *parent)
   : QWidget(parent),
+    m_signal_changed{},
     m_resources(new Chess::QtResources),
     m_widget(new Chess::BoardWidget(
-      boost::shared_ptr<Chess::Board>(new Chess::Board(Chess::Board::GetInitialSetup())),
-      Rect(0,0,width,height)))
+      BoardFactory::Create(),Rect(0,0,width,height)))
 {
   assert(m_widget);
 
   //m_widget->GetMachine()->GetDialBack()->GetDial()->m_signal_position_changed.connect(boost::bind(
-  //  &QtChessBoardWidget::DoRepaint,this));
+  //  &ribi::Chess::QtChessBoardWidget::DoRepaint,this));
   //m_widget->GetMachine()->GetDialFront()->GetDial()->m_signal_position_changed.connect(boost::bind(
-  //  &QtChessBoardWidget::DoRepaint,this));
+  //  &ribi::Chess::QtChessBoardWidget::DoRepaint,this));
   //m_widget->GetMachine()->GetToggleButton()->GetToggleButton()->m_signal_toggled.connect(boost::bind(
-  //  &QtChessBoardWidget::DoRepaint,this));
+  //  &ribi::Chess::QtChessBoardWidget::DoRepaint,this));
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &QtChessBoardWidget::DoRepaint,
+      &ribi::Chess::QtChessBoardWidget::DoRepaint,
       this));
 
   resize(width,height);
 }
 
-void QtChessBoardWidget::DoRepaint()
+void ribi::Chess::QtChessBoardWidget::DoRepaint()
 {
   this->repaint();
 }
 
-void QtChessBoardWidget::DrawChessBoard(
+void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
   QPainter& painter,
   const Chess::BoardWidget * const widget)
 {
@@ -117,20 +122,20 @@ void QtChessBoardWidget::DrawChessBoard(
   const int square_h = h / 8;
 
 
-  const boost::scoped_ptr<Chess::Square>& selected = widget->GetSelector()->GetSelected();
+  const boost::shared_ptr<const Chess::Square> selected = widget->GetSelector()->GetSelected();
   if (selected)
   {
     TRACE_FUNC();
     const int x_co = selected->GetFile().ToInt() * square_w;
     const int y_co = selected->GetRank().ToInt() * square_h;
-    if (widget->GetBoard()->GetPiece(*selected.get()))
+    if (widget->GetBoard()->GetPiece(selected))
     {
       const std::string filename = Chess::Resources::Find(
-        widget->GetBoard()->GetPiece(*selected.get()),
+        widget->GetBoard()->GetPiece(selected),
         Chess::SquareSelector::m_selected_color,
         true);
       TRACE(filename);
-      assert(boost::filesystem::exists(filename));
+      assert(fileio::IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -141,49 +146,50 @@ void QtChessBoardWidget::DrawChessBoard(
 
     //Draw the possible moves
 
-    const std::vector<Chess::Move> moves = widget->GetBoard()->GetMoves(*selected.get());
-    std::for_each(moves.begin(),moves.end(),
-      [&painter,square_w,square_h,widget](const Chess::Move& move)
+    const std::vector<boost::shared_ptr<Move> > moves = widget->GetBoard()->GetMoves(selected);
+    for(const boost::shared_ptr<Move> move: moves)
+    {
+      if (move->To())
       {
-        if (move.To())
+        const int x_co = move->To()->GetFile().ToInt() * square_w;
+        const int y_co = move->To()->GetRank().ToInt() * square_h;
+        if (widget->GetBoard()->GetPiece(move->To()))
         {
-          const int x_co = move.To()->GetFile().ToInt() * square_w;
-          const int y_co = move.To()->GetRank().ToInt() * square_h;
-          if (widget->GetBoard()->GetPiece(*move.To().get()))
-          {
-            const std::string filename = Chess::Resources::Find(
-              widget->GetBoard()->GetPiece(*move.To().get()),
+          const std::string filename = Chess::Resources::Find(
+            widget->GetBoard()->GetPiece(move->To()),
+            Chess::SquareSelector::m_moves_color);
+          assert(fileio::IsRegularFile(filename));
+          const QPixmap p(filename.c_str());
+          painter.drawPixmap(x_co,y_co,square_w,square_h,p);
+        }
+        else
+        {
+          const boost::shared_ptr<Square> square {
+            SquareFactory::Create(move->To()->GetFile(),move->To()->GetRank())
+          };
+          const std::string filename
+            = Chess::Resources::Find(
+              square,
               Chess::SquareSelector::m_moves_color);
-            assert(boost::filesystem::exists(filename));
-            const QPixmap p(filename.c_str());
-            painter.drawPixmap(x_co,y_co,square_w,square_h,p);
-          }
-          else
-          {
-            const std::string filename
-              = Chess::Resources::Find(
-                Chess::Square(move.To()->GetFile().ToInt(),move.To()->GetRank().ToInt()),
-                Chess::SquareSelector::m_moves_color);
-            assert(boost::filesystem::exists(filename));
-            const QPixmap p(filename.c_str());
-            painter.drawPixmap(x_co,y_co,square_w,square_h,p);
-          }
+          assert(fileio::IsRegularFile(filename));
+          const QPixmap p(filename.c_str());
+          painter.drawPixmap(x_co,y_co,square_w,square_h,p);
         }
       }
-    );
+    }
   }
   //Draw cursor
-  const boost::scoped_ptr<const Chess::Square>& cursor = widget->GetSelector()->GetCursor();
+  const boost::shared_ptr<const Chess::Square> cursor = widget->GetSelector()->GetCursor();
   assert(cursor);
   {
     const int x_co = cursor->GetFile().ToInt() * square_w;
     const int y_co = cursor->GetRank().ToInt() * square_h;
-    if (widget->GetBoard()->GetPiece(*cursor.get()))
+    if (widget->GetBoard()->GetPiece(cursor))
     {
-      const std::string filename = Chess::Resources::Find(widget->GetBoard()->GetPiece(*cursor.get()),
+      const std::string filename = Chess::Resources::Find(widget->GetBoard()->GetPiece(cursor),
         Chess::SquareSelector::m_cursor_color,
         selected && *selected == *cursor );
-      assert(boost::filesystem::exists(filename));
+      assert(fileio::IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -191,16 +197,16 @@ void QtChessBoardWidget::DrawChessBoard(
     {
       const std::string filename
         = Chess::Resources::Find(
-          *cursor,
+          cursor,
           Chess::SquareSelector::m_cursor_color);
-      assert(boost::filesystem::exists(filename));
+      assert(fileio::IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
   }
 }
 
-void QtChessBoardWidget::DrawChessBoard(
+void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
   QPainter& painter,
   const int left, const int top,
   const int width, const int height,
@@ -215,33 +221,36 @@ void QtChessBoardWidget::DrawChessBoard(
     {
       const int x_co = x * square_w;
       const int y_co = y * square_h;
-      if (board->GetPiece(Chess::Square(x,y)))
+      const boost::shared_ptr<Square> square {
+        SquareFactory::Create(File(x),Rank(y))
+      };
+      if (board->GetPiece(square))
       {
-        const QPixmap p(r.Find(board->GetPiece(Chess::Square(x,y))).c_str());
+        const QPixmap p(r.Find(board->GetPiece(square)).c_str());
         painter.drawPixmap(left + x_co,top + y_co,square_w,square_h,p);
       }
       else
       {
-        const QPixmap p(r.Find(Chess::Square(x,y)).c_str());
+        const QPixmap p(r.Find(square).c_str());
         painter.drawPixmap(left + x_co,top + y_co,square_w,square_h,p);
       }
     }
   }
 }
 
-const std::string QtChessBoardWidget::GetVersion()
+const std::string ribi::Chess::QtChessBoardWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> QtChessBoardWidget::GetVersionHistory()
+const std::vector<std::string> ribi::Chess::QtChessBoardWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-26: version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-26: version 1.0: initial version"
+  };
 }
 
-void QtChessBoardWidget::keyPressEvent(QKeyEvent * e)
+void ribi::Chess::QtChessBoardWidget::keyPressEvent(QKeyEvent * e)
 {
   TRACE_FUNC();
   switch (e->key())
@@ -254,25 +263,25 @@ void QtChessBoardWidget::keyPressEvent(QKeyEvent * e)
   }
 }
 
-void QtChessBoardWidget::mousePressEvent(QMouseEvent * e)
+void ribi::Chess::QtChessBoardWidget::mousePressEvent(QMouseEvent * e)
 {
   m_widget->ClickPixel(e->x(),e->y());
   //m_widget->Click(e->x(),e->y());
 }
 
-void QtChessBoardWidget::paintEvent(QPaintEvent *)
+void ribi::Chess::QtChessBoardWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   DrawChessBoard( painter,this->m_widget.get());
 }
 
-void QtChessBoardWidget::resizeEvent(QResizeEvent *)
+void ribi::Chess::QtChessBoardWidget::resizeEvent(QResizeEvent *)
 {
   m_widget->SetGeometry(Rect(0,0,width(),height()));
 }
 
 
-void QtChessBoardWidget::Test()
+void ribi::Chess::QtChessBoardWidget::Test()
 {
   {
     static bool is_tested = false;

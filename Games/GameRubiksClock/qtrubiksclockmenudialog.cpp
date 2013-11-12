@@ -55,7 +55,7 @@ void ribi::QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
 
 void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
 {
-  About a = RubiksClockMenuDialog::GetAbout();
+  About a = RubiksClockMenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtRubiksClockWidget version: " + QtRubiksClockWidget::GetVersion());
@@ -63,9 +63,7 @@ void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtRubiksClockMenuDialog::on_button_quit_clicked()

@@ -1,18 +1,21 @@
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
-//---------------------------------------------------------------------------
+
 #include <QImage>
 #include <QPainter>
-//---------------------------------------------------------------------------
-#include "qtgamewidget.h"
-//---------------------------------------------------------------------------
+
+#include "qttankbattaliongamewidget.h"
+#pragma GCC diagnostic pop
+
 QtGameWidget::QtGameWidget(QWidget *parent)
  : QWidget(parent),
    m_sprites(CreateSprites())
 {
 
 }
-//---------------------------------------------------------------------------
+
 const QtGameWidget::SpriteMap QtGameWidget::CreateSprites() const
 {
   SpriteMap m;
@@ -23,7 +26,7 @@ const QtGameWidget::SpriteMap QtGameWidget::CreateSprites() const
   m[TankBattalion::player_up] = boost::shared_ptr<QImage>(new QImage(":/images/PlayerUp.png"));
   return m;
 }
-//---------------------------------------------------------------------------
+
 const boost::shared_ptr<QImage> QtGameWidget::GetImage(const TankBattalion::SpriteType& s) const
 {
   const SpriteMap::const_iterator i
@@ -31,7 +34,7 @@ const boost::shared_ptr<QImage> QtGameWidget::GetImage(const TankBattalion::Spri
   assert(i!=m_sprites.end());
   return i->second;
 }
-//---------------------------------------------------------------------------
+
 void QtGameWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
@@ -52,4 +55,3 @@ void QtGameWidget::paintEvent(QPaintEvent *)
     QRect(0,0,scale_x * 16.0, scale_y * 16.0),
     *GetImage(TankBattalion::player_left).get());
 }
-//---------------------------------------------------------------------------

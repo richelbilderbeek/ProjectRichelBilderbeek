@@ -1,29 +1,30 @@
-#ifndef DIALOGGAME_H
-#define DIALOGGAME_H
-//---------------------------------------------------------------------------
+#ifndef QTTANKBATTALIONGAMEDIALOG
+#define QTTANKBATTALIONGAMEDIALOG
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
-//---------------------------------------------------------------------------
+
 #include <QDialog>
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 namespace Ui {
-  class DialogGame;
+  class QtTankBattalionGameDialog;
 }
 struct QtGameWidget;
-//---------------------------------------------------------------------------
-class DialogGame : public QDialog
+
+class QtTankBattalionGameDialog : public QDialog
 {
   Q_OBJECT
 
 public:
-  explicit DialogGame(QWidget *parent = 0);
-  ~DialogGame();
-
-protected:
-  void changeEvent(QEvent *e);
+  explicit QtTankBattalionGameDialog(QWidget *parent = 0);
+  ~QtTankBattalionGameDialog();
 
 private:
   boost::shared_ptr<QtGameWidget> m_game;
-  Ui::DialogGame *ui;
+  Ui::QtTankBattalionGameDialog *ui;
 };
-//---------------------------------------------------------------------------
-#endif // DIALOGGAME_H
+
+#endif // QTTANKBATTALIONGAMEDIALOG

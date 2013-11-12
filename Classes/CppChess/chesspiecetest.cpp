@@ -27,6 +27,7 @@ bool IsPresent(boost::shared_ptr<T> p,const std::vector<boost::shared_ptr<U> > v
   ) > 0;
 }
 
+#ifndef NDEBUG
 void ribi::Chess::Piece::Test()
 {
   //Testing Chess::Piece exactly once
@@ -65,6 +66,7 @@ void ribi::Chess::Piece::Test()
   t.detach();
   #endif
 }
+
 
 void ribi::Chess::PieceBishop::Test()
 {
@@ -881,3 +883,4 @@ void ribi::Chess::PieceRook::Test()
   t.detach();
   #endif
 }
+#endif

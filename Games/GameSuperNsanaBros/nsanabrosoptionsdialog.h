@@ -20,7 +20,7 @@ struct NsanaBrosOptionsDialog
 
   const boost::shared_ptr<const NsanaBrosOptions> GetOptions() const;
   //boost::shared_ptr<NsanaBrosOptions> UseOptions();
-  void SetOptions(const NsanaBrosOptions& options);
+  //void SetOptions(const NsanaBrosOptions& options);
 
   private:
   ~NsanaBrosOptionsDialog() {}

@@ -1,11 +1,4 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestExercise
+include(../../Tools/ToolTestExercise/ToolTestExerciseConsole.pri)
 
-SOURCES += \
-    ../../Tools/ToolTestExercise/testexercisemenudialog.cpp
-
-HEADERS += \
-    ../../Tools/ToolTestExercise/testexercisemenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolTestExercise/Licence.txt
+RESOURCES += \
+    ../../Tools/ToolTestExercise/ToolTestExercise.qrc

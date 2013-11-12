@@ -1,4 +1,8 @@
 #include "nsanabrosmenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "nsanabrosoptions.h"
 #include "nsanabrosoptionsdialog.h"
 #include "nsanabrosgamedialog.h"

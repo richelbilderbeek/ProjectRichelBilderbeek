@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator
+include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGeneratorConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGenerator.qrc
+
+FORMS += \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormenudialog.ui \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.cpp
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormenudialog.cpp \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/sitemapgeneratormenudialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/Licence.txt
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormenudialog.h \
+    ../../Tools/ToolRichelbilderbeekNlSitemapGenerator/qtsitemapgeneratormaindialog.h

@@ -1,17 +1,19 @@
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/bind.hpp>
-#include <boost/foreach.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <QKeyEvent>
 #include <QPainter>
 #include <QPaintEvent>
 #include <QTimer>
-//---------------------------------------------------------------------------
+
 #include "nsanabrosqtheader.h"
 #include "qtnsanabrosgamearea2dwidget.h"
-//---------------------------------------------------------------------------
-QtNsanaBrosGameArea2dWidget::QtNsanaBrosGameArea2dWidget(
+#pragma GCC diagnostic pop
+
+ribi::QtNsanaBrosGameArea2dWidget::QtNsanaBrosGameArea2dWidget(
   NsanaBrosGame * const game,
   QWidget *parent)
   : QWidget(parent),
@@ -22,12 +24,12 @@ QtNsanaBrosGameArea2dWidget::QtNsanaBrosGameArea2dWidget(
   {
     m_game->m_signal_repaint.connect(
       boost::bind(
-        &QtNsanaBrosGameArea2dWidget::Repaint,
+        &ribi::QtNsanaBrosGameArea2dWidget::Repaint,
         this));
   }
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosGameArea2dWidget::paintEvent(QPaintEvent *)
+
+void ribi::QtNsanaBrosGameArea2dWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
 
@@ -44,10 +46,10 @@ void QtNsanaBrosGameArea2dWidget::paintEvent(QPaintEvent *)
   p.drawRect(this->rect());
 
   //Obtain all background sprites
-  const std::vector<const NsanaBrosSprite*> sprites = m_game->GetSprites();
+  const std::vector<boost::shared_ptr<const NsanaBrosSprite> > sprites = m_game->GetSprites();
   //Obtain player sprite
 
-  BOOST_FOREACH(const NsanaBrosSprite* sprite, sprites)
+  for(const boost::shared_ptr<const NsanaBrosSprite> sprite: sprites)
   {
     const int x1
       = boost::numeric_cast<int>(
@@ -66,12 +68,8 @@ void QtNsanaBrosGameArea2dWidget::paintEvent(QPaintEvent *)
     p.drawRect(x1,y1,width,height);
   }
 }
-//---------------------------------------------------------------------------
-void QtNsanaBrosGameArea2dWidget::Repaint()
+
+void ribi::QtNsanaBrosGameArea2dWidget::Repaint()
 {
   this->repaint();
 }
-//---------------------------------------------------------------------------
-
-
-

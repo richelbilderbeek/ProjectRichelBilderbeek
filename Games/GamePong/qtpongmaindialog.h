@@ -3,10 +3,15 @@
 
 #include <cassert>
 #include <cmath>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDialog>
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
 #include <QPen>
+#pragma GCC diagnostic pop
 
 ///PongBackground is a resizable background used in Pong
 struct PongBackground : public QGraphicsPixmapItem
@@ -38,7 +43,9 @@ struct PongPlayer : public QGraphicsRectItem
   PongPlayer(
     QGraphicsItem * parent = 0)
     : QGraphicsRectItem(parent),
-      m_dy(0.0)
+      m_dy(0.0),
+      m_maxx(0),
+      m_maxy(0)
   {
     this->setBrush(QBrush(QColor(0,0,0)));
     this->setPen(QPen(QColor(128,128,128)));
@@ -121,19 +128,22 @@ struct PongBall : public QGraphicsPixmapItem
 
 
 namespace Ui {
-class PongMainDialog;
+class QtPongMainDialog;
 }
 
-class PongMainDialog : public QDialog
+namespace ribi {
+class QtPongMainDialog : public QDialog
 {
   Q_OBJECT
     
 public:
-  explicit PongMainDialog(QWidget *parent = 0);
-  ~PongMainDialog();
+  explicit QtPongMainDialog(QWidget *parent = 0);
+  QtPongMainDialog(const QtPongMainDialog&) = delete;
+  QtPongMainDialog& operator=(const QtPongMainDialog&) = delete;
+  ~QtPongMainDialog();
     
 private:
-  Ui::PongMainDialog *ui;
+  Ui::QtPongMainDialog *ui;
 
   PongBackground * const m_background;
   PongBall * const m_ball;
@@ -143,5 +153,6 @@ protected:
   void resizeEvent(QResizeEvent *);
 
 };
+} //~namespace ribi
 
 #endif // PONGMAINDIALOG_H

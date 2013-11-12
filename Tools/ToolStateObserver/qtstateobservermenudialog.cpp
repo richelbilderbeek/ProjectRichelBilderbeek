@@ -32,14 +32,12 @@ void ribi::QtStateObserverMenuDialog::on_button_start_clicked() noexcept
 
 void ribi::QtStateObserverMenuDialog::on_button_about_clicked() noexcept
 {
-  this->hide();
-  About a = StateObserverMenuDialog::GetAbout();
+  About a = StateObserverMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtStateObserverMenuDialog::on_button_quit_clicked() noexcept

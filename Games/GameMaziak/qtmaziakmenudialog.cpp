@@ -248,18 +248,14 @@ void ribi::QtMaziakMenuDialog::onStart()
 void ribi::QtMaziakMenuDialog::onInstructions()
 {
   boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
-  this->hide();
-  d->exec();
-  this->show();
+  this->ShowChild(d.get());
 }
 
 void ribi::QtMaziakMenuDialog::onAbout()
 {
-  About a = MaziakMenuDialog::GetAbout();
+  About a = MaziakMenuDialog().GetAbout();
   boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
-  this->hide();
-  d->exec();
-  this->show();
+  this->ShowChild(d.get());
 }
 
 int ribi::QtMaziakMenuDialog::getMazeSize() const

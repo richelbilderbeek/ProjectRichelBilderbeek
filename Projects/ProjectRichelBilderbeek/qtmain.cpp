@@ -20,6 +20,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
 
 #include <iostream>
@@ -46,4 +47,5 @@ int main(int argc, char *argv[])
   {
     std::cerr << "Unknown exception" << std::endl;
   }
+  return 1;
 }

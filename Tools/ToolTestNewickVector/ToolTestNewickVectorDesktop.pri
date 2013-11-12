@@ -1,12 +1,13 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestNewickVector
+include(../../Tools/ToolTestNewickVector/ToolTestNewickVectorConsole.pri)
+
+RESOURCES += \
+    ../../Tools/ToolTestNewickVector/ToolTestNewickVector.qrc
+
+FORMS += \
+    ../../Tools/ToolTestNewickVector/qttestnewickvectordialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestNewickVector/testnewickvectordialog.cpp
+    ../../Tools/ToolTestNewickVector/qttestnewickvectordialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h \
-    ../../Tools/ToolTestNewickVector/testnewickvectordialog.h
-
-OTHER_FILES += \
-    ../../Tools/ToolTestNewickVector/Licence.txt
+    ../../Tools/ToolTestNewickVector/qttestnewickvectordialog.h

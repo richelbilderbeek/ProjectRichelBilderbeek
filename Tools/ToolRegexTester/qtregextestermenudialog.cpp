@@ -60,12 +60,10 @@ ribi::QtRegexTesterMenuDialog::~QtRegexTesterMenuDialog() noexcept
 
 void ribi::QtRegexTesterMenuDialog::on_button_about_clicked()
 {
-  const About a = RegexTesterMenuDialog::GetAbout();
-  this->hide();
+  const About a = RegexTesterMenuDialog().GetAbout();
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtRegexTesterMenuDialog::on_button_quit_clicked()

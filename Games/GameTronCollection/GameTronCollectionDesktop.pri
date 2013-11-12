@@ -1,12 +1,10 @@
-INCLUDEPATH += \
-    ../../Games/GameTronCollection
+include(../../Games/GameTronCollection/GameTronCollectionConsole.pri)
 
 SOURCES += \
-    ../../Games/GameTronCollection/troncollectionmenudialog.cpp
+    ../../Games/GameTronCollection/qttroncollectiongamedialog.cpp
 
-HEADERS  += \
-    ../../Games/GameTronCollection/troncollectionmenudialog.h
+FORMS += \
+    ../../Games/GameTronCollection/qttroncollectiongamedialog.ui
 
-OTHER_FILES += \
-    ../../Games/GameTronCollection/Licence.txt
-
+HEADERS += \
+    ../../Games/GameTronCollection/qttroncollectiongamedialog.h

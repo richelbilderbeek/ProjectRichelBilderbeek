@@ -24,9 +24,9 @@ struct NsanaBrosMenuDialog : public MenuDialog
   const NsanaBrosOptionsDialog * GetOptionsDialog() const;
   boost::shared_ptr<NsanaBrosOptionsDialog> UseOptionsDialog();
 
-  private:
   ~NsanaBrosMenuDialog() noexcept;
-  friend void boost::checked_delete<>(NsanaBrosMenuDialog *);
+  //friend void boost::checked_delete<>(NsanaBrosMenuDialog *);
+  private:
 
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
