@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFOAM</title>
+  <meta name="description" content="Tool OpenFOAM"/>
+  <meta name="keywords" content="Tool OpenFOAM"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Tools.htm">Tool</a>) <a href="ToolOpenFoam.htm">OpenFOAM</a></h1>
+<p>&nbsp;</p>
+<p>
+  <a href="ToolOpenFoam.htm">OpenFOAM</a> is 'a <a href="Cpp.htm">C++</a> 
+  <a href="Tools.htm">tool</a>box for the development of customized numerical solvers, 
+  and pre-/post-processing utilities for the solution of continuum mechanics problems, 
+  including computational fluid dynamics (CFD)' [1]
+</p>
+<p>&nbsp;</p>
+<p>
+  This page contains my notes about <a href="ToolOpenFoam.htm">OpenFOAM</a>.
+  <a href="ToolOpenFoam.htm">OpenFOAM</a> is originally developed under 
+  <a href="CppLinux.htm">Linux</a>, my need is to get it working under
+  <a href="CppWindows.htm">Windows</a>.
+</p>
+<p>
+  I downloaded a Windows installer of <a href="ToolOpenFoam.htm">OpenFOAM</a> version 1.5 from 
+  <a href="http://sourceforge.net/projects/openfoam-mswin">the Sourceforge project 'openfoam-mswin'</a>,
+  which worked conveniently.
+</p>
+<p>
+  <a href="ToolOpenFoam.htm">OpenFOAM</a> collaborates with other tools:
+</p>
+<p>&nbsp;</p>
+<ul>
+  <li>
+    OpenFOAM designer (<a href="OpenFoamDesigner.png">main screen screenshot (png)</a>,
+    <a href="OpenFoamDesigner.png">about screen screenshot (png)</a>)
+    (executable at C:\cfd\OpenFOAM-1.5\bin\ofdesign.exe)
+  </li>
+  <li>
+    ParaView (<a href="ParaView.png">screenshot (png)</a>
+    (executable at "C:\Program Files\ParaView 4.0.1\bin\paraview.exe")
+  </li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>OpenFOAM designer: not a valid case</h2>
+<p>&nbsp;</p>
+<p>
+  In OpenFOAM designer, I do 'File | Open case', then paste the following two paths:
+</p>
+<ul>
+  <li>C:\cfd\OpenFOAM-1.5\templates\icoFoam\cavity</li>
+  <li>D:\Airbearing\cpp\build-MeshCreator-Desktop_Qt_5_1_1_MinGW_32bit-Debug</li>
+</ul>
+<p>
+  The second path results in this error:
+</p>
+<p>
+  <img src="OpenFoamDesignerNotAvalidCase.png" alt="OpenFOAM Designer: not a valid case"/>
+</p>
+<p>
+  The folder structure of the working case is as follows:
+  <ul>
+    <li>(no files in case folder itself)</li>
+    <li>0/p</li>
+    <li>0/U</li>
+    <li>constant/transportProperties</li>
+    <li>constant/polyMesh/blockMeshDict</li>
+    <li>system/controlDict</li>
+    <li>system/fvSchemes</li>
+    <li>system/fvSolution</li>
+
+  </ul>
+</p>
+<p>&nbsp;</p>
+<p>
+  The folder structure of the defective case is as follows:
+  <ul>
+    <li>(no files in case folder itself)</li>
+    <li>0 (empty folder)</li>
+    <li>constant/polyMesh/boundary</li>
+    <li>constant/polyMesh/faces</li>
+    <li>constant/polyMesh/neighbour</li>
+    <li>constant/polyMesh/nodes</li>
+    <li>constant/polyMesh/owner</li>
+    <li>system (empty folder)</li>
+  </ul>
+</p>
+<p>&nbsp;</p>
+<p>
+  Copying the following file made the case working:
+  <ul>  
+    <li>system/controlDict</li>
+</p>
+<p>
+  Not necessarily needed are:
+  <ul>  
+    <li>0/p</li>
+    <li>0/U</li>
+    <li>constant/transportProperties</li>
+    <li>system/fvSchemes</li>
+    <li>system/fvSolution</li>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>icoFoam: cannot find file "points" in directory "constant\polyMesh"</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="icoFoam: cannot find file 'points' in directory 'constant\polyMesh'" border = "1"><tr><td><code>
+/*---------------------------------------------------------------------------*\</br>
+| =========                 |                                                 |</br>
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |</br>
+|  \\    /   O peration     | Version:  1.5                                   |</br>
+|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |</br>
+|    \\/     M anipulation  |                                                 |</br>
+\*---------------------------------------------------------------------------*/</br>
+Exec   : c:\cfd\OpenFOAM-1.5\bin\icoFoam</br>
+Date   : Nov 14 2013</br>
+Time   : 11:07:42</br>
+Host   : hostname</br>
+PID    : 2328</br>
+Case   : D:\Airbearing\cpp\build-MeshCreator-Desktop_Qt_5_1_1_MinGW_32bit-Debug</br>
+nProcs : 1</br>
+</br>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //</br>
+Create time</br>
+</br>
+Create mesh for time = 0</br>
+</br>
+Programme terminated with errors: exit code 1, status 0.</br>
+Error messages:</br>
+</br>
+</br>
+Cannot find file "points" in directory "constant\polyMesh"</br>
+</br>
+    From function Time::findInstance(const word&amp; dir, const word&amp; name)</br>
+    in file C:\tmp\OpenFOAM-1.5\src\OpenFOAM\db\Time\findInstance.C at line 133.</br>
+</br>
+FOAM exiting</br>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>
+  Indeed, 'points' is absent. I used 'find . | egrep "points"' to find an example file in the tutorials.
+  I discovered I possessed a similar file called 'nodes', so I renamed 'nodes' to 'points'. Works!
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>icoFoam: cannot open file 'system\fvSchemes'</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="icoFoam: cannot open file 'system\fvSchemes'" border = "1"><tr><td><code>
+/*---------------------------------------------------------------------------*\<br/>
+| =========                 |                                                 |<br/>
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |<br/>
+|  \\    /   O peration     | Version:  1.5                                   |<br/>
+|   \\  /    A nd           | Web:      http://www.OpenFOAM.org               |<br/>
+|    \\/     M anipulation  |                                                 |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+Exec   : c:\cfd\OpenFOAM-1.5\bin\icoFoam<br/>
+Date   : Nov 14 2013<br/>
+Time   : 11:41:44<br/>
+Host   : hostname<br/>
+PID    : 2728<br/>
+Case   : D:\Airbearing\cpp\build-MeshCreator-Desktop_Qt_5_1_1_MinGW_32bit-Debug<br/>
+nProcs : 1<br/>
+<br/>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //<br/>
+Create time<br/>
+<br/>
+Create mesh for time = 0<br/>
+<br/>
+Programme terminated with errors: exit code 1, status 0.<br/>
+Error messages:<br/>
+<br/>
+<br/>
+cannot open file<br/>
+<br/>
+file: D:\Airbearing\cpp\build-MeshCreator-Desktop_Qt_5_1_1_MinGW_32bit-Debug\system\fvSchemes at line 0.<br/>
+<br/>
+    From function regIOobject::readStream(const word&amp;)<br/>
+    in file C:\tmp\OpenFOAM-1.5\src\OpenFOAM\db\regIOobject\regIOobjectRead.C at line 66.<br/>
+<br/>
+FOAM exiting<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+
+
+<p>&nbsp;</p>
+<h2>External links</h2>
+<ul>
+  <li><a href="http://www.openfoam.org">OpenFOAM homepage</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/OpenFOAM">OpenFOAM wikipedia page</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppReferences.htm">References</a></h2>
+<p>&nbsp;</p>
+<ol>
+  <li><a href="https://en.wikipedia.org/wiki/OpenFOAM">OpenFOAM wikipedia page</a> as of 2013-11-14</li>
+</ol>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
