@@ -37,7 +37,7 @@ void ribi::QtToolTestCanvasMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtToolTestCanvasMenuDialog::on_button_about_clicked()
 {
-  About a = ToolTestCanvasMenuDialog::GetAbout();
+  About a = ToolTestCanvasMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());

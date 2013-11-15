@@ -1,11 +1,17 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestQtArrowItems
+include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsConsole.pri)
 
-SOURCES += \
-    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.cpp
+RESOURCES += \
+    ../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItems.qrc
 
 HEADERS += \
-    ../../Tools/ToolTestQtArrowItems/testqtarrowitemsmenudialog.h
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.h \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestQtArrowItems/Licence.txt
+SOURCES += \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.cpp \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.cpp
+
+FORMS += \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmenudialog.ui \
+    ../../Tools/ToolTestQtArrowItems/qttestqtarrowitemsmaindialog.ui
+

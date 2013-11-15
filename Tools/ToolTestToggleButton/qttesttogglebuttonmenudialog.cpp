@@ -46,20 +46,17 @@ ribi::QtTestToggleButtonMenuDialog::~QtTestToggleButtonMenuDialog() noexcept
 void ribi::QtTestToggleButtonMenuDialog::on_button_start_clicked()
 {
   QtTestToggleButtonMainDialog d;
-  hide();
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestToggleButtonMenuDialog::on_button_about_clicked()
 {
   hide();
-  About a = TestToggleButtonMenuDialog::GetAbout();
+  About a = TestToggleButtonMenuDialog().GetAbout();
   a.AddLibrary("QtToggleButtonWidget version: " + QtToggleButtonWidget::GetVersion());
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestToggleButtonMenuDialog::on_button_quit_clicked()

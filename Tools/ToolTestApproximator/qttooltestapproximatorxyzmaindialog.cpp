@@ -13,7 +13,7 @@
 
 #if QWT_VERSION >= 0x060000
 #ifdef _WIN32
-#include <qwt_point_data.h>
+//#include <qwt_point_data.h>
 #endif
 #endif
 

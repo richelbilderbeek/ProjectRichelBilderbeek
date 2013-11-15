@@ -1,11 +1,17 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestToggleButton
-
-SOURCES += \
-    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.cpp
+include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestToggleButton/testtogglebuttonmenudialog.h
+    ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.h \
+    ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestToggleButton/Licence.txt
+SOURCES += \
+    ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.cpp \
+    ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.cpp
+
+FORMS += \
+    ../../Tools/ToolTestToggleButton/qttesttogglebuttonmenudialog.ui \
+    ../../Tools/ToolTestToggleButton/qttesttogglebuttonmaindialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolTestToggleButton/ToolTestToggleButton.qrc
+

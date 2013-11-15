@@ -53,7 +53,7 @@ void ribi::QtTestQtRoundedTextRectItemMenuDialog::keyPressEvent(QKeyEvent * even
 
 void ribi::QtTestQtRoundedTextRectItemMenuDialog::on_button_about_clicked()
 {
-  About a = TestQtRoundedTextRectItemMenuDialog::GetAbout();
+  About a = TestQtRoundedTextRectItemMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());
   a.AddLibrary("QtRoundedRectItem version: " + QtRoundedRectItem::GetVersion());
@@ -61,9 +61,7 @@ void ribi::QtTestQtRoundedTextRectItemMenuDialog::on_button_about_clicked()
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQtRoundedTextRectItemMenuDialog::on_button_quit_clicked()

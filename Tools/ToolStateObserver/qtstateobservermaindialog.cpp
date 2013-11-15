@@ -23,8 +23,8 @@
 #include "slidingmodeobserver.h"
 #include "ui_qtstateobservermaindialog.h"
 
-#ifdef _WIN32
-#include "qwt_point_data.h"
+#if QWT_VERSION >= 0x060100
+#include <qwt_point_data.h>
 #endif
 
 #pragma GCC diagnostic pop

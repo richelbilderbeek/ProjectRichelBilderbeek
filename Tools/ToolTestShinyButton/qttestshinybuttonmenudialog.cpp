@@ -56,20 +56,17 @@ ribi::QtTestShinyButtonMenuDialog::~QtTestShinyButtonMenuDialog() noexcept
 
 void ribi::QtTestShinyButtonMenuDialog::OnButtonStartClicked()
 {
-  this->hide();
   QtTestShinyButtonMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestShinyButtonMenuDialog::OnButtonAboutClicked()
 {
   this->hide();
-  About a = TestShinyButtonMenuDialog::GetAbout();
+  About a = TestShinyButtonMenuDialog().GetAbout();
   a.AddLibrary("QtShinyButtonWidget version: " + QtShinyButtonWidget::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestShinyButtonMenuDialog::OnButtonQuitClicked()

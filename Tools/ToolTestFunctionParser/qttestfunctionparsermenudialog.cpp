@@ -50,13 +50,11 @@ void ribi::QtTestFunctionParserMenuDialog::on_button_start_clicked() noexcept
 
 void ribi::QtTestFunctionParserMenuDialog::on_button_about_clicked() noexcept
 {
-  About a = TestFunctionParserMenuDialog::GetAbout();
+  About a = TestFunctionParserMenuDialog().GetAbout();
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  hide();
-  d.exec();
-  show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestFunctionParserMenuDialog::on_button_quit_clicked() noexcept

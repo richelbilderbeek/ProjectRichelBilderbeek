@@ -14,5 +14,3 @@ FORMS += \
 
 RESOURCES += \
     ../../Tools/ToolCodeToHtml/ToolCodeToHtml.qrc
-
-OTHER_FILES +=

@@ -233,7 +233,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 26th of October 2013",
+    "the 15th of November 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersion(),
@@ -534,7 +534,7 @@ const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersi
     "2013-07-11: Version 1.09: transition phase to Qt5, still supports Qt4",
     "2013-09-19: Version 1.10: added K3OpEenRij, SimplifyNewick, TestApproximator, TestMultiApproximator, TestSimpleLinearRegression, compiles with -Weffc++, added noexcept specifications, use of .pri file",
     "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion",
-    "2013-11-26: Version 1.12: improved console application interface"
+    "2013-11-15: Version 1.12: improved console application interface, use of .pri files"
   };
 }
 

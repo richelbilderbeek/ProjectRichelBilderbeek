@@ -47,33 +47,25 @@ ribi::QtTestPylosMenuDialog::~QtTestPylosMenuDialog() noexcept
 void ribi::QtTestPylosMenuDialog::on_button_test_board_clicked()
 {
   QtTestPylosTestBoardDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestPylosMenuDialog::on_button_test_game_clicked()
 {
   QtTestPylosTestGameDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestPylosMenuDialog::on_button_show_game_tests_clicked()
 {
   QtTestPylosGameTestsDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestPylosMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(TestPylosMenuDialog::GetAbout());
-  this->hide();
-  d.exec();
-  this->show();
+  QtAboutDialog d(TestPylosMenuDialog().GetAbout());
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestPylosMenuDialog::on_button_quit_clicked()
@@ -84,8 +76,6 @@ void ribi::QtTestPylosMenuDialog::on_button_quit_clicked()
 void ribi::QtTestPylosMenuDialog::on_button_random_play_clicked()
 {
   QtTestPylosRandomPlayDialog d;
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 

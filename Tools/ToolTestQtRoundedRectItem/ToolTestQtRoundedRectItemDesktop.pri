@@ -1,12 +1,18 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestQtRoundedRectItem
-
-SOURCES += \
-    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.cpp
-
+include(../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItemConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestQtRoundedRectItem/testqtroundedrectitemmenudialog.h
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemwidget.h \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.h \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestQtRoundedRectItem/Licence.txt
+SOURCES += \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemwidget.cpp \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.cpp \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.cpp
+
+FORMS += \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmenudialog.ui \
+    ../../Tools/ToolTestQtRoundedRectItem/qttestqtroundedrectitemmaindialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolTestQtRoundedRectItem/ToolTestQtRoundedRectItem.qrc

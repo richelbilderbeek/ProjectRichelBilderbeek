@@ -51,14 +51,12 @@ void ribi::QtTestQtArrowItemsMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtTestQtArrowItemsMenuDialog::on_button_about_clicked()
 {
-  About a = TestQtArrowItemsMenuDialog::GetAbout();
+  About a = TestQtArrowItemsMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQtArrowItemsMenuDialog::on_button_quit_clicked()

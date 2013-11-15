@@ -10,10 +10,8 @@
 #include <qwt_plot_grid.h>
 #include <qwt_plot_zoomer.h>
 
-#if QWT_VERSION >= 0x060000
-#ifdef _WIN32
+#if QWT_VERSION >= 0x060100
 #include <qwt_point_data.h>
-#endif
 #endif
 
 #include "ui_qttooltestapproximatorxymaindialog.h"

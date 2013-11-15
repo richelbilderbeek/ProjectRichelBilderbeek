@@ -36,14 +36,12 @@ void ribi::QtToolTestMultiApproximatorMenuDialog::keyPressEvent(QKeyEvent * even
 
 void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_about_clicked() noexcept
 {
-  About a = ToolTestMultiApproximatorMenuDialog::GetAbout();
+  About a = ToolTestMultiApproximatorMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtToolTestMultiApproximatorMenuDialog::on_button_quit_clicked() noexcept

@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestShinyButton
-
-SOURCES += \
-    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.cpp
+include(../../Tools/ToolTestShinyButton/ToolTestShinyButtonConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestShinyButton/testshinybuttonmenudialog.h
+    ../../Tools/ToolTestShinyButton/qttestshinybuttonmenudialog.h \
+    ../../Tools/ToolTestShinyButton/qttestshinybuttonmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestShinyButton/Licence.txt
+SOURCES += \
+    ../../Tools/ToolTestShinyButton/qttestshinybuttonmenudialog.cpp \
+    ../../Tools/ToolTestShinyButton/qttestshinybuttonmaindialog.cpp
+
+FORMS += \
+    ../../Tools/ToolTestShinyButton/qttestshinybuttonmenudialog.ui \
+    ../../Tools/ToolTestShinyButton/qttestshinybuttonmaindialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolTestShinyButton/ToolTestShinyButton.qrc

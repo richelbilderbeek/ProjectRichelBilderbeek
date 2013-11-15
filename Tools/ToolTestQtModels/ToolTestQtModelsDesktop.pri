@@ -1,11 +1,14 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestQtModels
-
-SOURCES += \
-    ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.cpp
+include(../../Tools/ToolTestQtModels/ToolTestQtModelsConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.h
+    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.h \
+    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestQtModels/Licence.txt
+SOURCES += \
+    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.cpp \
+    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.cpp
+
+FORMS += \
+    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.ui \
+    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.ui
+

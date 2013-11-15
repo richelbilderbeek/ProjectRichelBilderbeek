@@ -1,9 +1,11 @@
 INCLUDEPATH += \
     ../../Tools/ToolRichelBilderbeekGallery
 
-SOURCES +=
+SOURCES += \
+    ../../Tools/ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.cpp
 
-HEADERS +=
+HEADERS += \
+    ../../Tools/ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolRichelBilderbeekGallery/Licence.txt
