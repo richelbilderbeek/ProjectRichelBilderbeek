@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtboenkengame.h"
 
-#include <boost/foreach.hpp>
+
 
 #include <QPainter>
 
@@ -83,14 +83,14 @@ const std::vector<ribi::Boenken::SpriteMoving*> ribi::Boenken::Game::CollectMovi
   std::vector<boost::shared_ptr<SpriteBall  > > balls)
 {
   std::vector<SpriteMoving*> v;
-  BOOST_FOREACH(boost::shared_ptr<SpritePlayer> i,players)
+  for(boost::shared_ptr<SpritePlayer> i: players)
   {
     assert(i);
     SpriteMoving * const s = i.get();
     assert(s);
     v.push_back(s);
   }
-  BOOST_FOREACH(boost::shared_ptr<SpriteBall> i,balls)
+  for(boost::shared_ptr<SpriteBall> i: balls)
   {
     assert(i);
     SpriteMoving * const s = i.get();
@@ -106,21 +106,21 @@ const std::vector<ribi::Boenken::Sprite*> ribi::Boenken::Game::CollectSprites(
   std::vector<boost::shared_ptr<SpriteNonMoving> > obstacles)
 {
   std::vector<Sprite*> v;
-  BOOST_FOREACH(boost::shared_ptr<SpritePlayer> i,players)
+  for(boost::shared_ptr<SpritePlayer> i: players)
   {
     assert(i);
     Sprite * const s = i.get();
     assert(s);
     v.push_back(s);
   }
-  BOOST_FOREACH(boost::shared_ptr<SpriteBall> i,balls)
+  for(boost::shared_ptr<SpriteBall> i: balls)
   {
     assert(i);
     Sprite * const s = i.get();
     assert(s);
     v.push_back(s);
   }
-  BOOST_FOREACH(boost::shared_ptr<SpriteNonMoving> i,obstacles)
+  for(boost::shared_ptr<SpriteNonMoving> i: obstacles)
   {
     assert(i);
     Sprite * const s = i.get();
@@ -132,7 +132,7 @@ const std::vector<ribi::Boenken::Sprite*> ribi::Boenken::Game::CollectSprites(
 
 void ribi::Boenken::Game::drawPlayers(QPainter& painter) const
 {
-  BOOST_FOREACH(const Sprite * const s,m_sprites)
+  for(const Sprite * const s: m_sprites)
   {
     s->Draw(painter);
   }
@@ -219,7 +219,7 @@ void ribi::Boenken::Game::Test()
 void ribi::Boenken::Game::tick()
 {
   ///Move all moving sprites
-  BOOST_FOREACH(SpriteMoving* const s,m_moving_sprites)
+  for(SpriteMoving* const s: m_moving_sprites)
   {
     assert(s);
     s->Move();
@@ -227,9 +227,9 @@ void ribi::Boenken::Game::tick()
 
   ///Check all moving sprite collisions with moving sprites
   {
-    BOOST_FOREACH(SpriteMoving* const s1,m_moving_sprites)
+    for(SpriteMoving* const s1: m_moving_sprites)
     {
-      BOOST_FOREACH(SpriteMoving* const s2,m_moving_sprites)
+      for(SpriteMoving* const s2: m_moving_sprites)
       {
         assert(s1);
         assert(s2);
@@ -241,9 +241,9 @@ void ribi::Boenken::Game::tick()
 
   ///Check all moving sprite collisions with non-moving sprites
   {
-    BOOST_FOREACH(boost::shared_ptr<SpriteNonMoving>& s1,m_obstacles)
+    for(boost::shared_ptr<SpriteNonMoving>& s1: m_obstacles)
     {
-      BOOST_FOREACH(SpriteMoving* const s2,m_moving_sprites)
+      for(SpriteMoving* const s2: m_moving_sprites)
       {
         SpriteNonMoving::Collision(s1.get(),s2);
       }

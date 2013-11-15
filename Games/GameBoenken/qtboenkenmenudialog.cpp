@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/foreach.hpp>
+
 #include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/timer.hpp>
@@ -305,7 +305,7 @@ void ribi::QtBoenkenMenuDialog::onTrainClick()
   for (int i=0; i!=1000; ++i)
   {
     d.show();
-    BOOST_FOREACH(const boost::shared_ptr<Boenken::SpritePlayer>& p,players)
+    for(const boost::shared_ptr<Boenken::SpritePlayer>& p: players)
     {
       p->Accelerate();
       p->TurnRight();

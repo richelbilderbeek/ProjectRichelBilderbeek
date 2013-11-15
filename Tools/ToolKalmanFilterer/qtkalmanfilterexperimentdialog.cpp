@@ -10,7 +10,7 @@
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/foreach.hpp>
+
 #include <boost/numeric/ublas/functional.hpp>
 #include <boost/numeric/ublas/matrix.hpp>
 #include <boost/numeric/ublas/vector.hpp>
@@ -495,7 +495,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::Test()
     const std::vector<boost::shared_ptr<KalmanFilterExample> > examples
       = KalmanFilterExample::CreateExamples();
     int cnt = 1;
-    BOOST_FOREACH(const boost::shared_ptr<KalmanFilterExample>& example, examples)
+    for(const boost::shared_ptr<KalmanFilterExample>& example: examples)
     {
       assert(model);
       assert(example);

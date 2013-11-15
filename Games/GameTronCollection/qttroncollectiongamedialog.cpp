@@ -4,7 +4,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/foreach.hpp>
+
 
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
@@ -80,7 +80,7 @@ void ribi::QtTronCollectionGameDialog::paintEvent(QPaintEvent *)
   {
     QImage image = m_pixmap->toImage();
 
-    BOOST_FOREACH(boost::shared_ptr<Player> player, m_players)
+    for(boost::shared_ptr<Player> player: m_players)
     {
       //Move players
       player->Advance();

@@ -42,25 +42,21 @@ ribi::QtTestQrcFileMenuDialog::~QtTestQrcFileMenuDialog() noexcept
 
 void ribi::QtTestQrcFileMenuDialog::on_button_start_clicked()
 {
-  this->hide();
   QtTestQrcFileMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQrcFileMenuDialog::on_button_about_clicked()
 {
   this->hide();
-  About a = TestQrcFileMenuDialog::GetAbout();
+  About a = TestQrcFileMenuDialog().GetAbout();
   //a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
   //a.AddLibrary("QtRichelBilderbeekResources version: " + RichelBilderbeek::QtResources::GetVersion());
   QtAboutDialog d(a);
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQrcFileMenuDialog::on_button_quit_clicked()
 {
   close();
 }
-

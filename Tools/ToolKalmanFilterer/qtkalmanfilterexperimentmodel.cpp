@@ -4,7 +4,7 @@
 #include "qtkalmanfilterexperimentmodel.h"
 
 #include <cassert>
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 #include <boost/algorithm/string/trim.hpp>
@@ -950,7 +950,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::ReadKalmanFilterType(const std
   if (s.find("Kalman filter type") != std::string::npos)
   {
     const std::vector<KalmanFilterType> v = KalmanFilterTypes::GetAllTypes();
-    BOOST_FOREACH(const KalmanFilterType type, v)
+    for(const KalmanFilterType type: v)
     {
       if (s.find(KalmanFilterTypes::ToStr(type)) != std::string::npos)
       {
@@ -1137,7 +1137,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::ReadWhiteNoiseSystemType(const
   if (s.find("White noise system type") != std::string::npos)
   {
     const std::vector<WhiteNoiseSystemType> v = WhiteNoiseSystemTypes::GetAllTypes();
-    BOOST_FOREACH(const WhiteNoiseSystemType type, v)
+    for(const WhiteNoiseSystemType type: v)
     {
       if (s.find(WhiteNoiseSystemTypes::ToStr(type)) != std::string::npos)
       {

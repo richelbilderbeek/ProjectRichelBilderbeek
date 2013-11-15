@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "testshapemaindialog.h"
 
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -45,8 +45,7 @@ ribi::QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
   Test();
   #endif
   int i=0;
-  BOOST_FOREACH(boost::shared_ptr<ShapeWidget>& widget,
-    m_dialog->GetShapes())
+  for(boost::shared_ptr<ShapeWidget>& widget: m_dialog->GetShapes())
   {
     boost::shared_ptr<QtShapeWidget> w(new QtShapeWidget(widget));
 

@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -109,7 +109,7 @@ void ribi::QtPicToCodeMainDialog::on_button_convert_clicked()
     );
 
   ui->edit_code->clear();
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     ui->edit_code->appendPlainText(s.c_str());
   }

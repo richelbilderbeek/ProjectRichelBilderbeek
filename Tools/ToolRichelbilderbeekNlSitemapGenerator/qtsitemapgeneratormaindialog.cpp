@@ -30,7 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include <boost/foreach.hpp>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/xpressive/xpressive.hpp>
 
@@ -73,7 +73,7 @@ const std::vector<std::string> ribi::QtSitemapGeneratorMainDialog::GetHtmlFilesI
   std::vector<std::string> w;
 
   //Copy all filenames matching the regex in the resulting std::vector
-  BOOST_FOREACH(const std::string& s, v)
+  for(const std::string& s: v)
   {
     if (boost::xpressive::regex_match(s,cpp_file_regex)) w.push_back(s);
   }
@@ -375,7 +375,7 @@ void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
   {
     //Convert short filenames to full filenames
     std::vector<std::string> files_full;
-    BOOST_FOREACH(const std::string& line, files_raw)
+    for(const std::string& line: files_raw)
     {
       files_full.push_back("http://www.richelbilderbeek.nl/" + line);
     }
@@ -438,7 +438,7 @@ void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
 
   {
     const std::vector<std::string> output(ribi::fileio::FileToVector("output.txt"));
-    BOOST_FOREACH(const std::string& s,output)
+    for(const std::string& s: output)
     {
       ui->text_output->appendPlainText(
         QString(" ") + QString(s.c_str()));

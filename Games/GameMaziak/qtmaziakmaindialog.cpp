@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 #include <vector>
-#include <boost/foreach.hpp>
+
 #include <boost/scoped_ptr.hpp>
 
 #include <QDesktopWidget>
@@ -213,7 +213,7 @@ void ribi::QtMaziakMainDialog::onTimerPressKey()
   if (mFighting > 0) return;
   if (mKeys.empty()) { mMoveNow = none; }
 
-  BOOST_FOREACH(WORD key, mKeys)
+  for(WORD key: mKeys)
   {
     //Check the keys pressed
     switch (key)
@@ -703,7 +703,7 @@ void ribi::QtMaziakMainDialog::createMaze(const int sz)
 bool ribi::IsSquare(const std::vector<std::vector<ribi::QtMaziakMainDialog::MazeSquare> >& v)
 {
   assert(!v.empty());
-  BOOST_FOREACH(std::vector<ribi::QtMaziakMainDialog::MazeSquare> row, v)
+  for(std::vector<ribi::QtMaziakMainDialog::MazeSquare> row: v)
   {
     if (row.size()!=v.size()) return false;
   }
@@ -714,7 +714,7 @@ bool ribi::IsSquare(const std::vector<std::vector<ribi::QtMaziakMainDialog::Maze
 bool ribi::IsSquare(const std::vector<std::vector<int> >& v)
 {
   assert(!v.empty());
-  BOOST_FOREACH(std::vector<int> row, v)
+  for(std::vector<int> row: v)
   {
     if (row.size()!=v.size()) return false;
   }

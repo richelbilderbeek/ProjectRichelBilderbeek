@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <string>
 
-#include <boost/foreach.hpp>
+
 
 #include <QTimer>
 
@@ -94,7 +94,7 @@ void ribi::QtTestNewickVectorDialog::Display() noexcept
   ui->edit_text->clear();
   const std::vector<std::string>& text = m_dialog->GetText();
   ui->edit_text->clear();
-  BOOST_FOREACH(const std::string& s,text)
+  for(const std::string& s: text)
   {
     ui->edit_text->appendPlainText(s.c_str());
   }

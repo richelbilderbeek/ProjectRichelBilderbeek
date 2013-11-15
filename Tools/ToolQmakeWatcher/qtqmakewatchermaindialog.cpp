@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <string>
 
-#include <boost/foreach.hpp>
+
 
 #include <QDesktopWidget>
 #include <QFile>
@@ -93,7 +93,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   {
     ui->edit_makefile->clear();
     const std::vector<std::string> v(ribi::fileio::FileToVector("Makefile"));
-    BOOST_FOREACH(const std::string& s, v)
+    for(const std::string& s: v)
     {
       ui->edit_makefile->appendPlainText(QString(s.c_str()));
     }
@@ -102,7 +102,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   {
     ui->edit_diff->clear();
     const std::vector<std::string> v(ribi::fileio::FileToVector("tmp.txt"));
-    BOOST_FOREACH(const std::string& s, v)
+    for(const std::string& s: v)
     {
       std::string t = s;
       if (!s.empty() && s[0] == '>')

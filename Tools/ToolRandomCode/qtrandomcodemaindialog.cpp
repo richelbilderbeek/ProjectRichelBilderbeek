@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include <boost/foreach.hpp>
+
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
@@ -67,7 +67,7 @@ void ribi::QtRandomCodeMainDialog::on_button_generate_clicked()
 {
   const std::vector<std::string> v = RandomCode::CreateRandomCode();
   ui->textEdit->clear();
-  BOOST_FOREACH(const std::string& s, v)
+  for(const std::string& s: v)
   {
     ui->textEdit->append(s.c_str());
   }

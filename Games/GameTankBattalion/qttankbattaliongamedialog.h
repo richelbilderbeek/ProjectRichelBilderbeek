@@ -20,6 +20,8 @@ class QtTankBattalionGameDialog : public QDialog
 
 public:
   explicit QtTankBattalionGameDialog(QWidget *parent = 0);
+  QtTankBattalionGameDialog(const QtTankBattalionGameDialog&) = delete;
+  QtTankBattalionGameDialog& operator=(const QtTankBattalionGameDialog&) = delete;
   ~QtTankBattalionGameDialog();
 
 private:

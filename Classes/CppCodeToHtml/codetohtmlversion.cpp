@@ -86,7 +86,7 @@ const std::string Version::GetLubuntuVersion()
     }
   }
   //Analyze std::vector
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if (s.size() > 15
       && s.substr(0,15)=="DISTRIB_RELEASE")
@@ -124,7 +124,7 @@ const std::string Version::GetLubuntuVersionCodename()
     }
   }
   //Analyze std::vector
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if (s.size() > 16
       && s.substr(0,16)=="DISTRIB_CODENAME")
@@ -201,7 +201,7 @@ const std::string Version::GetUbuntuVersion()
     }
   }
   //Analyze std::vector
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if (s.size() > 15
       && s.substr(0,15)=="DISTRIB_RELEASE")
@@ -237,7 +237,7 @@ const std::string Version::GetUbuntuVersionCodename()
     }
   }
   //Analyze std::vector
-  BOOST_FOREACH(const std::string& s,v)
+  for(const std::string& s: v)
   {
     if (s.size() > 16
       && s.substr(0,16)=="DISTRIB_CODENAME")
