@@ -28,10 +28,10 @@ ribi::Rect::Rect(
     const int any_y,
     const int any_w,
     const int any_h)
-  : x(any_x),
-    y(any_y),
-    w(any_w),
-    h(any_h)
+  : m_x(any_x),
+    m_y(any_y),
+    m_w(any_w),
+    m_h(any_h)
 {
   if (any_w < 0.0) throw std::logic_error("Cannot create Rect with negative width");
   if (any_h < 0.0) throw std::logic_error("Cannot create Rect with negative height");
@@ -49,21 +49,27 @@ const std::vector<std::string> ribi::Rect::GetVersionHistory() noexcept
   };
 }
 
+void ribi::Rect::Translate(const int dx, const int dy) noexcept
+{
+  this->m_x += dx;
+  this->m_y += dy;
+}
+
 std::ostream& ribi::operator<<(std::ostream& os,const Rect& rect) noexcept
 {
   os
     << "<Rect>"
     << "<x>"
-      << rect.x
+      << rect.m_x
     << "</x>"
     << "<y>"
-      << rect.y
+      << rect.m_y
     << "</y>"
     << "<w>"
-      << rect.w
+      << rect.m_w
     << "</w>"
     << "<h>"
-      << rect.h
+      << rect.m_h
     << "</h>"
     << "</Rect>";
   return os;
@@ -72,10 +78,10 @@ std::ostream& ribi::operator<<(std::ostream& os,const Rect& rect) noexcept
 bool ribi::operator==(const Rect& lhs, const Rect& rhs) noexcept
 {
   return
-       lhs.x == rhs.x
-    && lhs.y == rhs.y
-    && lhs.w == rhs.w
-    && lhs.h == rhs.h;
+       lhs.m_x == rhs.m_x
+    && lhs.m_y == rhs.m_y
+    && lhs.m_w == rhs.m_w
+    && lhs.m_h == rhs.m_h;
 }
 
 bool ribi::operator!=(const Rect& lhs, const Rect& rhs) noexcept

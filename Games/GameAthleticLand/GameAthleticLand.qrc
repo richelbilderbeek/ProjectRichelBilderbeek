@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/GameAthleticLand\image">
+        <file>Apple.png</file>
+        <file>Background1.png</file>
+        <file>Ball.png</file>
+        <file>MainCharHangLeft.png</file>
+        <file>MainCharHangRight.png</file>
+        <file>MainCharHangRightSmall.png</file>
+        <file>MainCharJumpLeft.png</file>
+        <file>MainCharJumpRight.png</file>
+        <file>MainCharJumpRightSmall.png</file>
+        <file>MainCharStandLeft.png</file>
+        <file>MainCharStandRight.png</file>
+        <file>MainCharStandRightSmall.png</file>
+        <file>MainCharWalkLeft1.png</file>
+        <file>MainCharWalkLeft2.png</file>
+        <file>MainCharWalkRight.png</file>
+        <file>MainCharWalkRight1.png</file>
+        <file>MainCharWalkRight1Small.png</file>
+        <file>MainCharWalkRight2Small.png</file>
+        <file>Puddle.png</file>
+        <file>Rock.png</file>
+        <file>Trampoline.png</file>
+    </qresource>
+</RCC>

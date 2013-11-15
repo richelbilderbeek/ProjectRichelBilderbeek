@@ -10,9 +10,10 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
+include(../../Classes/CppRectangle/CppRectangle.pri)
+
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
 include(GameAthleticLandDesktop.pri)
 
-SOURCES += qtmain.cpp \
-
+SOURCES += qtmain.cpp

@@ -98,13 +98,13 @@ struct Rect
     const int any_h = 0);
 
   ///Obtain the x coordinat of the rectangle its bottom side
-  int GetBottom() const noexcept { return y + h; }
+  int GetBottom() const noexcept { return m_y + m_h; }
 
   ///Obtain the y coordinat of the rectangle its right side
-  int GetRight() const noexcept { return x + w; }
+  int GetRight() const noexcept { return m_x + m_w; }
 
   ///Obtain the rectangle its height
-  int GetHeight() const noexcept { return h; }
+  int GetHeight() const noexcept { return m_h; }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -112,26 +112,30 @@ struct Rect
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  ///Obtain the rectangle its width
-  int GetWidth() const noexcept { return w; }
+  int GetLeft() const noexcept { return GetX(); }
 
+  ///Obtain the rectangle its width
+  int GetWidth() const noexcept { return m_w; }
 
   ///Obtain the x coordinat of the rectangle its left side
-  int GetX() const noexcept { return x; }
+  int GetX() const noexcept { return m_x; }
 
   ///Obtain the y coordinat of the rectangle its top side
-  int GetY() const noexcept { return y; }
+  int GetY() const noexcept { return m_y; }
+  int GetTop() const noexcept { return GetX(); }
 
   bool IsIn(const int any_x, const int any_y) const noexcept
   {
-    return any_x > x && any_y > y && any_x < GetRight() && any_y < GetBottom();
+    return any_x > m_x && any_y > m_y && any_x < GetRight() && any_y < GetBottom();
   }
 
+  void Translate(const int dx, const int dy) noexcept;
+
   private:
-  int x;
-  int y;
-  int w;
-  int h;
+  int m_x;
+  int m_y;
+  int m_w;
+  int m_h;
 
   friend bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
   friend std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
