@@ -1,8 +1,10 @@
-include(../../DesktopApplication.pri)
+#Don't enable Effective C++ warnings when using Qwt
+include(../../DesktopApplicationNoWeffcpp.pri)
 include(../../Libraries/BigInteger.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
-include(../../Libraries/QwtPlot.pri)
+include(../../Libraries/Qwt.pri)
+
 
 include(../../Classes/CppAbout/CppAbout.pri)
 include(../../Classes/CppApproximator/CppApproximator.pri)
@@ -129,6 +131,7 @@ include(../../Games/GameTankBattalion/GameTankBattalionDesktop.pri)
 include(../../Games/GameTicTacToe/GameTicTacToeDesktop.pri)
 include(../../Games/GameTronCollection/GameTronCollectionDesktop.pri)
 include(../../Games/GameXeNonZero/GameXeNonZeroDesktop.pri)
+include(../../Projects/ProjectBrainweaver/ProjectBrainweaverDesktop.pri)
 include(../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pri)
 include(../../Projects/RichelbilderbeekNl/RichelbilderbeekNlDesktop.pri)
 include(../../Tools/ToolAsciiArter/ToolAsciiArterDesktop.pri)
@@ -156,6 +159,7 @@ include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekN
 include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineDesktop.pri)
 include(../../Tools/ToolSimplifyNewick/ToolSimplifyNewickDesktop.pri)
 include(../../Tools/ToolStateObserver/ToolStateObserverDesktop.pri)
+include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
 include(../../Tools/ToolTestApproximator/ToolTestApproximatorDesktop.pri)
 include(../../Tools/ToolTestCanvas/ToolTestCanvasDesktop.pri)
 include(../../Tools/ToolTestDial/ToolTestDialDesktop.pri)

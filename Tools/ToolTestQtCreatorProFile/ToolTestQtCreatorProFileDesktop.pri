@@ -1,11 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestQtCreatorProFile
-
-SOURCES += \
-    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.cpp
+include(../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFileConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestQtCreatorProFile/testqtcreatorprofilemenudialog.h
+    ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemenudialog.h \
+    ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemaindialog.h
 
-OTHER_FILES += \
-    ../../Tools/ToolTestQtCreatorProFile/Licence.txt
+SOURCES += \
+    ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemenudialog.cpp \
+    ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemaindialog.cpp
+
+FORMS += \
+    ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemenudialog.ui \
+    ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemaindialog.ui
+
+RESOURCES += \
+    ../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFile.qrc

@@ -72,7 +72,7 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::keyPressEvent(QKeyEvent
 
 void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
 {
-  About about = TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout();
+  About about = TestKeyboardFriendlyGraphicsViewMenuDialog().GetAbout();
   about.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
   about.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   about.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
@@ -84,9 +84,7 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::ShowAbout()
   about.AddLibrary("QtRoundedTextRectItem version: " + QtRoundedTextRectItem::GetVersion());
   QtAboutDialog d(about);
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit()

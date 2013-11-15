@@ -1,10 +1,10 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "toolstylesheetsettermaindialog.h"
+#include "qttoolstylesheetsettermaindialog.h"
 
 #include <QKeyEvent>
 
-#include "ui_toolstylesheetsettermaindialog.h"
+#include "ui_qttoolstylesheetsettermaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::ToolStyleSheetSetterMainDialog::ToolStyleSheetSetterMainDialog(

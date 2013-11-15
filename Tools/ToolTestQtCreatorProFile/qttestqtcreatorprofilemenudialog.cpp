@@ -42,22 +42,18 @@ ribi::QtTestQtCreatorProFileMenuDialog::~QtTestQtCreatorProFileMenuDialog() noex
 
 void ribi::QtTestQtCreatorProFileMenuDialog::on_button_start_clicked()
 {
-  this->hide();
   QtTestQtCreatorProFileMainDialog d;
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQtCreatorProFileMenuDialog::on_button_about_clicked()
 {
-  this->hide();
-  About a = TestQtCreatorProFileMenuDialog::GetAbout();
+  About a = TestQtCreatorProFileMenuDialog().GetAbout();
   //a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
   //a.AddLibrary("QtRichelBilderbeekResources version: " + RichelBilderbeek::QtResources::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestQtCreatorProFileMenuDialog::on_button_quit_clicked()

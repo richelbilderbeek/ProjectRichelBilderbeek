@@ -1,12 +1,9 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
-
-SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppQtScopedDisable
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppQtScopedDisable/qtscopeddisable.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppQtScopedDisable/Licence.txt
 

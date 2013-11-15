@@ -23,8 +23,13 @@ class QtAminoAcidFighterMainDialog : public QDialog
 
 public:
   explicit QtAminoAcidFighterMainDialog(QWidget *parent = 0);
+<<<<<<< HEAD
   QtAminoAcidFighterMainDialog(const QtAminoAcidFighterMainDialog&);
   QtAminoAcidFighterMainDialog operator=(const QtAminoAcidFighterMainDialog&);
+=======
+  QtAminoAcidFighterMainDialog(const QtAminoAcidFighterMainDialog&) = delete;
+  QtAminoAcidFighterMainDialog& operator=(const QtAminoAcidFighterMainDialog&) = delete;
+>>>>>>> 72dc2cc2513f4d68edad78fda1f5b48d89c718fb
   ~QtAminoAcidFighterMainDialog();
 
 private:

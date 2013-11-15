@@ -11,7 +11,7 @@
 #include <qwt_plot_grid.h>
 #include <qwt_plot_zoomer.h>
 
-#if QWT_VERSION >= 0x060000
+#if QWT_VERSION != 0x060001
 #ifdef _WIN32
 #include <qwt_point_data.h>
 #endif
