@@ -1,58 +1,55 @@
+INCLUDEPATH += \
+  ../../Projects/ProjectBrainweaver
+
+
 SOURCES += \
-    pvdbcenternode.cpp \
-    pvdbcenternodefactory.cpp \
-    pvdbcluster.cpp \
-    pvdbclusterfactory.cpp \
-    pvdbcompetency.cpp \
-    pvdbconcept.cpp \
-    pvdbconceptfactory.cpp \
-    pvdbconceptmap.cpp \
-    pvdbconceptmapfactory.cpp \
-    pvdbedge.cpp \
-    pvdbedgefactory.cpp \
-    pvdbexample.cpp \
-    pvdbexamplefactory.cpp \
-    pvdbexamples.cpp \
-    pvdbexamplesfactory.cpp \
-    pvdbfile.cpp \
-    pvdbfilefactory.cpp \
-    pvdbhelper.cpp \
-    pvdbmenudialog.cpp \
-    pvdbnode.cpp \
-    pvdbnodefactory.cpp \
-    pvdbrating.cpp \
-    test_pvdbcluster.cpp \
-    test_pvdbconcept.cpp \
-    test_pvdbconceptmap.cpp \
-    test_qtpvdbconceptmapdialog.cpp \
-    test_qtpvdbconceptmapeditwidget.cpp \
-    test_qtpvdbconceptmapratewidget.cpp \
-    test_qtpvdbconceptmapwidget.cpp
+    ../../Projects/ProjectBrainweaver/pvdbcenternode.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbcenternodefactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbcluster.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbclusterfactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbcompetency.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbconcept.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbconceptfactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbconceptmap.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbconceptmapfactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbedge.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbedgefactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbexample.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbexamplefactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbexamples.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbexamplesfactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbfile.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbfilefactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbhelper.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbmenudialog.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbnode.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbnodefactory.cpp \
+    ../../Projects/ProjectBrainweaver/pvdbrating.cpp \
+    ../../Projects/ProjectBrainweaver/test_pvdbcluster.cpp \
+    ../../Projects/ProjectBrainweaver/test_pvdbconcept.cpp \
+    ../../Projects/ProjectBrainweaver/test_pvdbconceptmap.cpp
 
 HEADERS  += \
-    pvdbcenternode.h \
-    pvdbcenternodefactory.h \
-    pvdbcluster.h \
-    pvdbclusterfactory.h \
-    pvdbcompetency.h \
-    pvdbconcept.h \
-    pvdbconceptfactory.h \
-    pvdbconceptmap.h \
-    pvdbconceptmapfactory.h \
-    pvdbedge.h \
-    pvdbedgefactory.h \
-    pvdbexample.h \
-    pvdbexamplefactory.h \
-    pvdbexamples.h \
-    pvdbexamplesfactory.h \
-    pvdbfile.h \
-    pvdbfilefactory.h \
-    pvdbfwd.h \
-    pvdbhelper.h \
-    pvdbmenudialog.h \
-    pvdbnode.h \
-    pvdbnodefactory.h \
-    pvdbrating.h
-
-OTHER_FILES += \
-    BrainweaverTest.py
+    ../../Projects/ProjectBrainweaver/pvdbcenternode.h \
+    ../../Projects/ProjectBrainweaver/pvdbcenternodefactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbcluster.h \
+    ../../Projects/ProjectBrainweaver/pvdbclusterfactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbcompetency.h \
+    ../../Projects/ProjectBrainweaver/pvdbconcept.h \
+    ../../Projects/ProjectBrainweaver/pvdbconceptfactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbconceptmap.h \
+    ../../Projects/ProjectBrainweaver/pvdbconceptmapfactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbedge.h \
+    ../../Projects/ProjectBrainweaver/pvdbedgefactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbexample.h \
+    ../../Projects/ProjectBrainweaver/pvdbexamplefactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbexamples.h \
+    ../../Projects/ProjectBrainweaver/pvdbexamplesfactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbfile.h \
+    ../../Projects/ProjectBrainweaver/pvdbfilefactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbfwd.h \
+    ../../Projects/ProjectBrainweaver/pvdbhelper.h \
+    ../../Projects/ProjectBrainweaver/pvdbmenudialog.h \
+    ../../Projects/ProjectBrainweaver/pvdbnode.h \
+    ../../Projects/ProjectBrainweaver/pvdbnodefactory.h \
+    ../../Projects/ProjectBrainweaver/pvdbrating.h

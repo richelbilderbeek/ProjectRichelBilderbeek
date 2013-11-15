@@ -52,7 +52,7 @@
 #include "qtpvdbtestnodeitemdialog.h"
 #include "qtpvdbviewfilesdialog.h"
 #include "qtpvdbviewtestsdialog.h"
-#include "toolstylesheetsettermaindialog.h"
+#include "qttoolstylesheetsettermaindialog.h"
 #include "qtpvdbtestedgeitemdialog.h"
 
 #include "qttestqtarrowitemsmenudialog.h"

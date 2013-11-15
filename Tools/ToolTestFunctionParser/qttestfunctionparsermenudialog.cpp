@@ -54,11 +54,7 @@ void ribi::QtTestFunctionParserMenuDialog::on_button_about_clicked() noexcept
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-<<<<<<< HEAD
   ShowChild(&d);
-=======
-  this->ShowChild(&d);
->>>>>>> 72dc2cc2513f4d68edad78fda1f5b48d89c718fb
 }
 
 void ribi::QtTestFunctionParserMenuDialog::on_button_quit_clicked() noexcept

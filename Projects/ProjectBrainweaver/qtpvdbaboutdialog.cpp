@@ -21,7 +21,7 @@
 
 const boost::shared_ptr<ribi::QtAboutDialog> ribi::pvdb::QtPvdbAboutDialog::Get()
 {
-  About about = pvdb::MenuDialog::GetAbout();
+  About about = pvdb::MenuDialog().GetAbout();
   about.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
   about.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   about.AddLibrary("QtKeyboardFriendlyGraphicsView version: " + QtKeyboardFriendlyGraphicsView::GetVersion());

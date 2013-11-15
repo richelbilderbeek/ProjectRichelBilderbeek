@@ -53,10 +53,6 @@ void ribi::QtTestDialMenuDialog::on_button_start_clicked() noexcept
 
 void ribi::QtTestDialMenuDialog::on_button_about_clicked() noexcept
 {
-<<<<<<< HEAD
-  hide();
-=======
->>>>>>> 72dc2cc2513f4d68edad78fda1f5b48d89c718fb
   About a = TestDialMenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   QtAboutDialog d(a);

@@ -53,6 +53,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
 #include "qtrubiksclockmenudialog.h"
+#include "qtpvdbmenudialog.h"
 #include "qtsimmysterymachinemenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
@@ -108,7 +109,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::beerWanter: p = new QtBeerWanterMenuDialog; break;
     case ProgramType::bochum: break;
     case ProgramType::boenken: p = new QtBoenkenMenuDialog; break;
-    case ProgramType::brainweaver: break;
+    case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
     case ProgramType::bristol: break;
     case ProgramType::chrisWiley: break;
     case ProgramType::codeToHtml: p = new QtCodeToHtmlMenuDialog; break;

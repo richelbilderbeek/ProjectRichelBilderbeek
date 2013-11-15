@@ -505,7 +505,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowGraph(const boost::shared_ptr
     assert(i < vs.size());
     const std::vector<double>& v = vs[i];
     assert(n_timesteps == boost::numeric_cast<int>(v.size()));
-    #if QWT_VERSION >= 0x060100
+    #if QWT_VERSION >= 0x060100 || !WIN32
     curves[i]->setData(new QwtPointArrayData(&time_series[0],&v[0],time_series.size()));
     #else
     curves[i]->setData(&time_series[0],&v[0],time_series.size());

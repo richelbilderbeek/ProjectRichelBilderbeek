@@ -2,11 +2,26 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "pvdbmenudialog.h"
 
+#include <cassert>
+#include <iostream>
+
 #include "fuzzy_equal_to.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const ribi::About ribi::pvdb::MenuDialog::GetAbout()
+int ribi::pvdb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
@@ -22,12 +37,35 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::pvdb::MenuDialog::GetVersion()
+const ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const Program> p {
+    new ProgramBrainweaver
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
   return "0.40";
 }
 
-const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-06-17: Version 0.01: concept version of ProjectVanDenBogaart, using 'IronHide' style",

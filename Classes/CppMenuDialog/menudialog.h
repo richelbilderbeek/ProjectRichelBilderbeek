@@ -53,7 +53,6 @@ struct MenuDialog
   ///Here the program itself is called.
   ///Returns the error code to give back to the operatings system
   ///Make it a non-const member function: a menu is allowed to have state
-
   virtual int ExecuteSpecific(const std::vector<std::string>& argv) noexcept = 0;
 
 };

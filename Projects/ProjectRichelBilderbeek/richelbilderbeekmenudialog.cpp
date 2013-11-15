@@ -121,6 +121,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "spaceharrymenudialog.h"
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
+#include "pvdbmenudialog.h"
 #include "steadystatekalmanfilterparameters.h"
 #include "stopwatch.h"
 #include "tankbattalionmenudialog.h"
@@ -247,6 +248,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("BeerWanter version: " + BeerWanterMenuDialog().GetVersion());
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
+  a.AddLibrary("Brainweaver version: " + pvdb::MenuDialog().GetVersion());
   a.AddLibrary("CodeToHtml version: " + CodeToHtmlMenuDialog().GetVersion());
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
@@ -361,6 +363,7 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new AthleticLandMenuDialog }; m.insert(ValueType(ProgramType::athleticLand,p)); }
     { const MenuType p { new BeerWanterMenuDialog }; m.insert(ValueType(ProgramType::beerWanter,p)); }
     { const MenuType p { new Boenken::MenuDialog }; m.insert(ValueType(ProgramType::boenken,p)); }
+    { const MenuType p { new ribi::pvdb::MenuDialog }; m.insert(ValueType(ProgramType::brainweaver,p)); }
     { const MenuType p { new CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
     { const MenuType p { new ConnectThreeMenuDialog }; m.insert(ValueType(ProgramType::connectThree,p)); }
     { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }

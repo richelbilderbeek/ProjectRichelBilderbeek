@@ -2,7 +2,8 @@ unix {
   exists(/usr/include/qwt-qt4) {
     message(Linux: Qwt: use qwt-qt4)
     INCLUDEPATH += /usr/include/qwt-qt4
-    LIBS += -lqwt-qt4
+    #LIBS += -lqwt-qt4
+    LIBS += -lqwt
   }
 
   exists(/usr/include/qwt) {
@@ -15,8 +16,8 @@ unix {
 
 
 unix {
-  INCLUDEPATH += /usr/include/qwt-qt4
-  LIBS += -lqwt-qt4
+  INCLUDEPATH += /usr/include/qwt
+  LIBS += -lqwt
 }
 
 win32 {

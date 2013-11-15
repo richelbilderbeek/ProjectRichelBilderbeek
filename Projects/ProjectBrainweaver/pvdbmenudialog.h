@@ -8,25 +8,23 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include <boost/shared_ptr.hpp>
-
-#include "about.h"
+#include "menudialog.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace pvdb {
 
 ///The GUI independent version of Project Van Den Bogaart its menu dialog
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Obtain the version of this class
-  static const std::string GetVersion();
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
-
-  ///Obtain the About information of this class
-  static const About GetAbout();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace pvdb
