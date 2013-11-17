@@ -30,7 +30,7 @@
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
@@ -46,11 +46,11 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -80,56 +80,6 @@
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;BasicDemo.h<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary=".cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">/*</a><br/>
-Bullet Continuous Collision Detection and Physics <a href="CppLibrary.htm">Library</a><br/>
-Copyright (c) 2003-2007 Erwin Coumans&nbsp;&nbsp;http://continuousphysics.com/Bullet/<br/>
-<br/>
-This software is provided 'as-is', without <a href="CppAny.htm">any</a> express or implied warranty.<br/>
-In no event will the authors be held liable <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a> damages arising from the use of <b><a href="CppThis.htm">this</a></b> software.<br/>
-Permission is granted to <a href="CppAny.htm">any</a>one to use <b><a href="CppThis.htm">this</a></b> software <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a> purpose, <br/>
-including commercial <a href="CppApplication.htm">application</a>s, and to alter it and redistribute it freely, <br/>
-subject to the following restrictions:<br/>
-<br/>
-1. The origin of <b><a href="CppThis.htm">this</a></b> software must not be misrepresented; you must not claim that you wrote the original software. If you use <b><a href="CppThis.htm">this</a></b> software in a product, an acknowledgment in the product <a href="CppDocumentation.htm">documentation</a> would be appreciated but is not required.<br/>
-2. Altered source <a href="CppVersion.htm">version</a>s must be plainly marked as such, and must not be misrepresented as being the original software.<br/>
-3. This notice may not be removed or altered from <a href="CppAny.htm">any</a> source distribution.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "BasicDemo.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "GlutStuff.h"<br/>
-<a href="CppInclude.htm">#include</a> "Bullet3Dynamics/b3CpuRigidBodyPipeline.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "btBulletDynamicsCommon.h"<br/>
-<a href="CppInclude.htm">#include</a> "Bullet3Common/b3HashMap.h"<br/>
-<br/>
-<br/>
-	<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>,<b><a href="CppChar.htm">char</a></b>** <a href="CppArgc.htm">argv</a>)<br/>
-{<br/>
-<br/>
-	BasicDemo ccdDemo;<br/>
-	ccdDemo.initPhysics();<br/>
-<br/>
-<br/>
-<a href="CppIfdef.htm">#ifdef</a> CHECK_MEMORY_LEAKS<br/>
-	ccdDemo.exitPhysics();<br/>
-<a href="CppPreElse.htm">#else</a><br/>
-	<b><a href="CppReturn.htm">return</a></b> glutmain(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>,1024,600,"Bullet Physics Demo. http://bulletphysics.org",&amp;ccdDemo);<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-	<br/>
-	<a href="CppComment.htm">//</a><b><a href="CppDefault.htm">default</a></b> glut doesn't <b><a href="CppReturn.htm">return</a></b> from mainloop<br/>
-	<b><a href="CppReturn.htm">return</a></b> 0;<br/>
-}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -543,6 +493,56 @@ In file included from ..\..\<a href="CppLibrary.htm">Libraries</a>\bullet3\src\B
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; srcFileHandle <a href="CppOperatorAssign.htm">=</a> CreateFile(relativeFileName,GENERIC_READ,0,0,OPEN_EXISTING,<a href="CppCfile.htm">FILE</a>_ATTRIBUTE_NORMAL,0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^<br/>
 <a href="CppComment.htm">*/</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main_2.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="main_2.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+Bullet Continuous Collision Detection and Physics <a href="CppLibrary.htm">Library</a><br/>
+Copyright (c) 2003-2007 Erwin Coumans&nbsp;&nbsp;http://continuousphysics.com/Bullet/<br/>
+<br/>
+This software is provided 'as-is', without <a href="CppAny.htm">any</a> express or implied warranty.<br/>
+In no event will the authors be held liable <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a> damages arising from the use of <b><a href="CppThis.htm">this</a></b> software.<br/>
+Permission is granted to <a href="CppAny.htm">any</a>one to use <b><a href="CppThis.htm">this</a></b> software <b><a href="CppFor.htm">for</a></b> <a href="CppAny.htm">any</a> purpose, <br/>
+including commercial <a href="CppApplication.htm">application</a>s, and to alter it and redistribute it freely, <br/>
+subject to the following restrictions:<br/>
+<br/>
+1. The origin of <b><a href="CppThis.htm">this</a></b> software must not be misrepresented; you must not claim that you wrote the original software. If you use <b><a href="CppThis.htm">this</a></b> software in a product, an acknowledgment in the product <a href="CppDocumentation.htm">documentation</a> would be appreciated but is not required.<br/>
+2. Altered source <a href="CppVersion.htm">version</a>s must be plainly marked as such, and must not be misrepresented as being the original software.<br/>
+3. This notice may not be removed or altered from <a href="CppAny.htm">any</a> source distribution.<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "BasicDemo.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "GlutStuff.h"<br/>
+<a href="CppInclude.htm">#include</a> "Bullet3Dynamics/b3CpuRigidBodyPipeline.h"<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "btBulletDynamicsCommon.h"<br/>
+<a href="CppInclude.htm">#include</a> "Bullet3Common/b3HashMap.h"<br/>
+<br/>
+<br/>
+	<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>,<b><a href="CppChar.htm">char</a></b>** <a href="CppArgc.htm">argv</a>)<br/>
+{<br/>
+<br/>
+	BasicDemo ccdDemo;<br/>
+	ccdDemo.initPhysics();<br/>
+<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> CHECK_MEMORY_LEAKS<br/>
+	ccdDemo.exitPhysics();<br/>
+<a href="CppPreElse.htm">#else</a><br/>
+	<b><a href="CppReturn.htm">return</a></b> glutmain(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>,1024,600,"Bullet Physics Demo. http://bulletphysics.org",&amp;ccdDemo);<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+	<br/>
+	<a href="CppComment.htm">//</a><b><a href="CppDefault.htm">default</a></b> glut doesn't <b><a href="CppReturn.htm">return</a></b> from mainloop<br/>
+	<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

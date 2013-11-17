@@ -35,7 +35,7 @@
 </ul>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
 <ul>
-  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.04 (raring)</li>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
@@ -51,14 +51,14 @@
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
-  <li><a href="CppGpp.htm">G++</a> 4.7.3</li>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
 </ul>
 <p><a href="CppLibrary.htm">Libraries</a> used:</p>
 <ul>
-  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.49</li>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.53</li>
   <li><img src="PicQt.png" alt="Qt"/> <a href="CppQt.htm">Qt</a>: version 5.1.1 (32 bit)</li>
-  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.3</li>
-  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.2.2</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+  <li><img src="PicWt.png" alt="Wt"/> <a href="CppWt.htm">Wt</a>: version 3.3.0</li>
 </ul>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -281,6 +281,53 @@ unix:&nbsp;&nbsp;<a href="CppQmakeLibs.htm">LIBS</a> += <a href="CppRegex.htm">-
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppLoopReader.htm">CppLoopReader</a>/<a href="CppLoopReader.htm">loopreader</a>.h<br/>
 OTHER_FILES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;wt.css<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>ToolTestNewickVectorConsole.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolTestNewickVectorConsole.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a><br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/test<a href="CppNewickVector.htm">newickvector</a>dialog.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/test<a href="CppNewickVector.htm">newickvector</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/test<a href="CppNewickVector.htm">newickvector</a>dialog.h<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>ToolTestNewickVectorDesktop.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="ToolTestNewickVectorDesktop.pri" border = "1"><tr><td><code>
+include(../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>Console.pri)<br/>
+<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>.qrc<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/qttest<a href="CppNewickVector.htm">newickvector</a>dialog.ui<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/qttest<a href="CppNewickVector.htm">newickvector</a>dialog.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolTestNewickVector.htm">ToolTestNewickVector</a>/qttest<a href="CppNewickVector.htm">newickvector</a>dialog.h<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -608,7 +655,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
+<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
 <br/>
@@ -673,7 +720,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; text <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;GetText();<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,text)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s: text)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_text-&gt;appendPlainText(s.c_str());<br/>
 &nbsp;&nbsp;}<br/>
@@ -877,6 +924,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewickVector.htm">newickvector</a>dialog.h"<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <br/>
@@ -981,7 +1031,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppGetSimplerNewicks.htm">GetSimplerNewicks</a>FrequencyPairs(m_<a href="CppNewick.htm">newick</a>-&gt;Peek());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Collect cooeficients<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; coefficients;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppNewick.htm">Newick</a>FrequencyPair&amp; p,simpler)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppNewick.htm">Newick</a>FrequencyPair&amp; p: simpler)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> f <a href="CppOperatorAssign.htm">=</a> p.second;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;coefficients.push_back(f <a href="CppOperatorEqual.htm">==</a> 1<br/>
@@ -991,7 +1041,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(coefficients.size() <a href="CppOperatorEqual.htm">==</a> simpler.size());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Collect probabilities<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; probabilities;<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppNewick.htm">Newick</a>FrequencyPair&amp; p,simpler)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppNewick.htm">Newick</a>FrequencyPair&amp; p: simpler)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppNewickVector.htm">NewickVector</a> n(p.first);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;probabilities.push_back(n.CalculateProbability(n.ToStr(),m_theta));<br/>
@@ -1113,7 +1163,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppGetRootBranches.htm">GetRootBranches</a>(m_<a href="CppNewick.htm">newick</a>-&gt;Peek());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; c,b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; c: b)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppNewick.htm">Newick</a>::<a href="CppCheckNewick.htm">CheckNewick</a>(c);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppString.htm">std::string</a>("&nbsp;&nbsp;") <a href="CppOperatorPlus.htm">+</a> <a href="CppNewick.htm">Newick</a>::<a href="CppNewickToString.htm">NewickToString</a>(c);<br/>
@@ -1134,7 +1184,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppNewick.htm">Newick</a>FrequencyPair&gt; simpler<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppGetSimplerNewicks.htm">GetSimplerNewicks</a>FrequencyPairs(m_<a href="CppNewick.htm">newick</a>-&gt;Peek());<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> text <a href="CppOperatorAssign.htm">=</a> "Simpler <a href="CppNewick.htm">Newick</a>s:\n";<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppNewick.htm">Newick</a>FrequencyPair&amp; simple_pair,simpler)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppNewick.htm">Newick</a>FrequencyPair&amp; simple_pair: simpler)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; simple <a href="CppOperatorAssign.htm">=</a> simple_pair.first;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> f <a href="CppOperatorAssign.htm">=</a> simple_pair.second;<br/>

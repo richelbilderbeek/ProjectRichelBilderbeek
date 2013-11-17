@@ -394,37 +394,156 @@ Visiestuk eigen energiegebruik en duurzaamheid
 \end_layout
 
 \begin_layout Standard
-Ik vind het moeilijk om mijn eigen energiegebruik en duurzaamheid te beschouwen,
- daar ik daarvoor te weinig gegevens heb.
- Ik zou gemakkelijk kunnen zeggen: ik gebruik weinig energie, want ik ga
- op de fiets naar het werk.
- Maar dit is in mijn ogen te kort door de bocht: misschien dat het grootste
- gedeelte van mijn energieverbruik in iets anders zit, waardoor het procentueel
- weinig uitmaakt of ik per fiets of met de auto naar mijn werk zou gaan.
- Maar ik weet weinig zeker waarin het grootste gedeelte van mijn energieverbruik
- zit: ik gok dat dit zit in de verwarming van mijn kamer.
- Omdat mijn kamer zestien vierkante meter is, verwacht ik dat -ondanks dat
- ik enkelglas ramen heb- dat ik vergeleken met de gemiddelde, groter wonende,
- Nederlander minder energie verbruik, ook mede dankzijn een moderne CV ketel.
- Maar op globaal niveau verwacht ik dat ik meer energie verbruik dan de
- gemiddelde Enuit, terwijl een leek zou kunnen denken dat juist zij veel
- energie zouden kunnen verbruiken voor de verwarming van hun iglo's (mocht
- diezelfde leek verder denken, dan hoop ik dat hij/zij inziet dat het onhandig
- is om een huis van ijs te verwarmen).
- 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename MtEnergieBesparenvanenergieNl.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Energiebalans per Nederlander.
+ Bron: http://www.besparenvanenergie.nl/energiebalans_per_Nederlander.php
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:EnergiebalansPerNederlander"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Wel kan ik met zekerheid het volgende stellen: ik vind het geen nut hebben
- energie te verspillen en daarom probeer ik dit zo weinig mogelijk te doen.
+Als ik kijk naar figuur 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:EnergiebalansPerNederlander"
+
+\end_inset
+
+ (afgeleid van door het CBS verstrekte jaarcijfers over het totale energieverbru
+ik in Nederland in 2007) dan zie ik dat 27% van het energiegebruik van de
+ gemiddelde Nederlander door zijn/haar auto wordt gebruikt.
+ Dit is de op-een-na grootste energiegebruiker.
+ De op-twee-na grootste energieverbruiker is verwarming en warm water.
+ Daar mijn kamer waarschijnlijk kleiner is (16 m
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+) dan de gemiddelde Nederlander, verwacht ik ook hier onder het gemiddelde
+ te zitten.
+ Met deze kennis schat ik dat ik ongeveer een kwart minder energie verbruik
+ dan de gemiddelde Nederlander.
 \end_layout
 
 \begin_layout Standard
-Bovenstaand verhaal kan ik in dezelfde lijn herhalen voor duurzaamheid.
- Ook hier heb ik te weinig gegevens voor.
- Wel kan ik ook hier met zekerheid zeggen dat ik -voor zover ik dit kan
- beoordelen- het geen nut vind hebben om onduurzaam te leven.
- Op mijn manier uit zich dat door vooral tweedehands spullen te kopen.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename MtEnergyEnergyConsumptionPerCapita2003.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Energiegebruik-per-capita"
+
+\end_inset
+
+Energiegebruik per capita, bron: http://en.wikipedia.org/wiki/File:Energy-consumpt
+ion-per-capita-2003.png, 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Als ik het energiegebruik van de gemiddelde Nederlander vergelijk met die
+ van andere landen, dan blijk ook ik een relatief grote energieverbruiker
+ te zijn.
+ Zie figuur 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Energiegebruik-per-capita"
+
+\end_inset
+
+, een kaart gemaakt uit data van de International Energy Agency Statistics
+ Division data uit 2006.
+ Omdat voor de data achter dit figuur betaald moet worden, heb ik helaas
+ niet het percentiel waarin de gemiddelde Nederlander zit uit kunnen rekenen,
+ noch mogelijke verklaringen voor deze waarden.
+\end_layout
+
+\begin_layout Standard
+Op individueel niveau vind ik het geen nut hebben energie te verspillen
+ en daarom probeer ik dit zo weinig mogelijk te doen.
+ Ik ben hier wellicht niet uniek in: ik vermoed dat niemand het nuttig vind
+ energie te verspillen.
+ Maar bij mij ligt de weging van energiezuinigigheid hoger: mocht ik een
+ auto kopen, dan kies ik de energiezuinigste, in plaats van de sportiefste.
+\end_layout
+
+\begin_layout Standard
+Duurzaamheid is een wat lastiger in getallen uit te drukken concept.
+ Een van mijn persoonlijke definities is: 'Duurzaamheid is de tijdsduur
+ waarin een samenleving op dezelfde manier door kan gaan in het gebruik
+ van haar omgeving'.
+ Ik hecht er zelf waarde aan dat de mensheid zich kan ontwikkelen, zonder
+ crises, waardoor ik duurzaamheid belangrijk vind.
+ Een van mijn regels is: 'Leef op zo een manier, dat als elk mens zo zou
+ leven, hun kinderen het minstens net zo goed zouden kunnen hebben'.
+ Dit probeer ik te bereiken door klein te wonen, weinig bezit te hebben
+ en nieuw bezit tweedehands te kopen.
+ Maar misschien mijn procentueel grootste bijdrage is door het geboortecijfer
+ van Nederland te beperken door geen vader te worden: dat is al minstens
+ een energieverbruiker minder.
 \end_layout
 
 \begin_layout Section
@@ -432,7 +551,189 @@ Visiestuk fossiele brandstoffen, kernenergie en alternatieve brandstoffen
 \end_layout
 
 \begin_layout Standard
+Ik geloof dat ontwikkelingslanden fossiele brandstoffen nodig hebben als
+ opstap om geavanceerder te worden: het is gemakkelijker een kolencentrale
+ te bouwen dan een kerncentrale: dankzij de kolencentrales kunnen de fabrieken
+ om kerncentrales te bouwen van stroom worden voorzien.
+ De bijdrage van kolencentrales aan het broeikaseffect zal ik niet ontkennen,
+ maar zie dit meer als een uitdaging dan als een probleem: koolstofdioxide
+ in de lucht kun je ook zien als een gemakkelijk te verkrijgen koolstofbron.
+ Datgeen dat deze koolstofdioxide kan fixeren, levert een complexer eindproduct
+ op, misschien in de vorm van biomassa (bij bijvoorbeeld planten) of koolwaterst
+offen (bij chemische reacties).
+ Ik lees regelmatig in de wetenschappelijke tijdschriften dat ontwikkeldere
+ landen methodes onderzoeken om de gevolgen van kolencentrales te verlagen
+ en misschien is dat ook wel onze plicht: ook wij hadden vroeger (en hebben
+ nog steeds) kolencentrales.
+ Het is in mijn ogen onze plicht om op landelijk niveau een negatieve CO
+\begin_inset script subscript
 
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ uitstoot te hebben, opdat we de gevolgen van zich ontwikkelende landen
+ helpen te verzachten.
+ Natuurlijk zijn er meer manieren om te helpen, maar ik vind het werken
+ vanuit het eigen land het meest elegant: hiermee accepteer je dat landen
+ zich mogen ontwikkelen, maar neem je ook de verantwoordelijkheid als technologi
+sch geavanceerd land om de hele wereld leefbaar te houden.
+\end_layout
+
+\begin_layout Standard
+Bovenstaande redenatie is volgens mij redelijk gangbaar, maar ik ben sterker
+ tegen fossiele brandstoffen van het aldoor geschetste, voor een wat minder
+ gangbare reden, namelijk een van mijn persoonlijke definities van de deugd
+ schoonheid.
+ Ik vind zaken van een hogere complexiteit in de regel een hogere schoonheid
+ bezitten.
+ Het is ook gemakkelijker om iets stuk te maken dan iets op te bouwen.
+ Dus: het is gemakkelijker om schoonheid te verlagen dan haar te verhogen.
+ Dat maakt schoonheid in mijn ogen een kostbaar goed, omdat de dynamiek
+ ervan in het voordeel van de lelijkheid ligt.
+ Als ik dit argument doortrek naar moleculair niveau, dan is een verbranding
+ een reactie zonder schoonheid: de diverse en complexe moleculen van de
+ fossiele brandstof worden kapot gemaakt tot de doorsnee verbrandingsgassen.
+\end_layout
+
+\begin_layout Standard
+Naast de schoonheid ervan, zie ik ook rationeel goede argumenten voor kernenergi
+e.
+ Ik snap de nadelen van kernsplijting met uranium en ben er desondanks een
+ groot voorstander van.
+ Ik denk dat de grootste gevaren van deze vorm van kernenergie vooral liggen
+ bij de sensatiewaarde ervan die de media gebruikt om het gewone volk ermee
+ te prikkelen.
+ Zo zorgt de media ervoor dat er geen nieuwe kerncentrales worden gebouwd,
+ waardoor oude in bedrijf blijven.
+ Terwijl de veiligheid van kerncentrales steeds meer is toegenomen! Hierdoor
+ blijven de gevaarlijke centrales actief (die wellicht het beeld zullen
+ gaan bevestigen dat kernsplijting met uranium gevaarlijk is), terwijl de
+ tegenvoorbeelden (die laten zien dat kernsplijting door uranium veilig
+ is) niet gebouwd zullen worden.
+ Ik ben blijkbaar bezorgder om de effecten van de media op het gewone volk,
+ dan het proces zelf.
+ Ik kan niet ontkennen dat het lang radioactieve plutonium een vervelend
+ afvalproduct is, maar ik zie de wetenschap hier wel met een oplossing voor
+ komen (mijn -misschien slechte- idee is om het radioactieve plutonium naar
+ het vloeibare magma van de aardkern te sturen: hier kan het zich verdunnen
+ tot onschuldige concentraties, ver van de mensheid af).
+ 
+\end_layout
+
+\begin_layout Standard
+Mijn bezorgheid om de effecten van de media is meer dan reeds beschreven,
+ omdat diezelfde media de ontwikkeling van schonere vormen van kernenergie
+ in de weg zouden kunnen staan.
+ De vormen die ik wil beschijven zijn de splijting van thorium en kernfusie.
+\end_layout
+
+\begin_layout Standard
+Het mooie aan kernsplijting is de grote hoeveelheid energie die ermee wordt
+ gewonnen: massa is een vorm van energie van een erg hoge concentratie.
+ Een gevaar is dat deze grote hoeveelheid energie de controle op het proces
+ ontregeld.
+ Bij kernsplijting van uranium uit zich dit in een meltdown, waar Chernobyl
+ een goed voorbeeld van is.
+ De weg naar de eerste ontregeling naar meltdown toe is bij uranium een
+ zichzelf versterkende: als er een klein beetje meer energie wordt omgezet
+ dan de koeling kan verwerken, neemt vanaf dan de ontregeling sneller toe:
+ het is een autokatalytische catastrofe.
+\end_layout
+
+\begin_layout Standard
+Bij kernsplijting met thorium speelt deze zichzelf versterkende ontregeling
+ niet, omdat de ontregeling gemakkelijk tegen te gaan is: stop de toevoer
+ van thorium en de ontregeling dooft uit.
+ Kernsplijting met thorium lijkt hierdoor inherent veilig te zijn.
+ Daarnaast hebben de eindproducten van de kernsplijting (gewogen) gemiddeld
+ een kortere radioactiviteitsduur.
+ 
+\end_layout
+
+\begin_layout Standard
+Kernfusie is niet alleen net zo controleerbaar als kernsplijting van thorium,
+ maar heeft ook nog eens enkel ongevaarlijke eindproducten, namelijk het
+ edelgas helium, de waterstofisotoop tritium, en de kleine atomen lithium
+ en beryllium.
+ Het eindproduct hangt af van de kernfusiereactie, waarbij ik hier enkel
+ de eindproducten noem van reacties met als beginstoffen deuterium, tritium,
+ helium en lithium.
+ Ik focus op deze reacties, omdat dit de kernfusiereacties zijn die we zelf
+ het eerst zullen kunnen uitvoeren: bij zwaardere atomen als grondstof,
+ worden de randvoorwaarden voor een succesvolle kernfusie technologisch
+ moeilijker.
+ 
+\end_layout
+
+\begin_layout Standard
+Van alternatieve brandstoffen ben ik persoonlijk niet onder de indruk: in
+ mijn ogen verwelken de voordelen ervan onder de potentie en schoonheid
+ van kernenergie.
+ Dat wil niet zeggen dat ik tegenstander ben van alternatieve energiebronnen:
+ ik zie aardolie liever verwerkt worden in een zonnepaneel, dan verbrand
+ worden.
+ 
+\end_layout
+
+\begin_layout Standard
+Van alle vormen van alternatieve energie, zal ik mij beperken tot zonneenergie.
+ Dit doe ik omdat -voor zover ik dit juist kan beoordelen- ik het gevoel
+ heb dat dit de meest geschikte kandidaat is als duurzame alternatieve energiebr
+on.
+ Dit gevoel heb ik, omdat andere vormen van alternatieve energie vooral
+ en/of enkel op Aarde kunnen worden gewonnen, terwijl zonneenergie in het
+ hele universum gewonnen kan worden: dat is dus op oneindig zoveel plaatsen
+ meer!
+\end_layout
+
+\begin_layout Standard
+Een reden dat ik desondanks nog niet onder de indruk ben van zonneenergie
+ is, omdat het rendement ervan in mijn ogen nog te laag is.
+ Dit rendement is in mijn ogen te laag, zo lang er competitie is met aardolie.
+ Oftewel: ik vind het rendement van zonneenergie hoog, als deze de concurrentie
+ (fossiele brandstoffen) ontbetwist verslaat.
+ Een ander nadeel van zonneenergie vind ik dat het nog vooral op onhandige
+ plaatsen wordt gewonnen, namelijk vooral op het aardoppervlak.
+ Dit heeft meerdere nadelen, onder andere dat de helft van het jaar het
+ donker is, en als het dag is, er onderdelen in de dampkring zijn die de
+ energie van de zon reflecteren danwel absorberen.
+ De plek om zonneenergie te winnen is in mijn ogen buiten de atmosfeer,
+ in de vorm van bijvoorbeeld een Dysonbol: een verzameling zonnepanelen
+ die zwermt rondt de energiebron, de zon.
+ Het concept van de Dysonbol kan zeker op mijn sympathie rekenen, maar helaas
+ kan ik niet ontkennen dat we nog niet technologisch ontwikkeld genoeg zijn
+ om dit werkelijkheid te maken.
+\end_layout
+
+\begin_layout Standard
+Samenvattend is mijn visie dat de meerdere vormen van energiebronnen hun
+ plaats hebben, soms als opstapje naar een efficientere vorm.
+ Fossiele brandstoffen zijn in mijn ogen een van de meest ruwe vormen en
+ een opstap naar kernenergie en alternatieve energiebronnen.
+ Kernenergie zie ik als een mogelijk eindstation: de mensheid kan nu redelijk
+ veilig en efficient uranium splijten, maar zal hopelijk de stap nemen naar
+ het splijten van thorium en parallel hieraan het fuseren van (steeds grotere)
+ atoomkernen.
+ Parallel aan kernenergie zei ik ook de ontwikkeling gaan van alternatieve
+ energiebronnen, waarvan ik vooral zonneenergie een grote kanshebber zie
+ zijn, vanaf het moment dat haar rendement onomweerlegbaar hoog is en we
+ technologisch geavanceerd genoeg zijn om megastructuren als een Dysonbol
+ te bouwen.
+\end_layout
+
+\begin_layout Standard
+Mijn grootste angst is echter niet de gevaren die al deze vormen van energie
+ met zich meebrengen, maar de effecten van de media op het gewone volk,
+ die de ontwikkeling ervan in de weg staan.
+ Ik gun het de mensheid om van haar fouten te leren, inplaats van risico
+ vermijdend gedrag aan te wenden, dit laatste gesteund door de sensatiedrang
+ van de media.
+ De rol van scholing in kernenergie, klassikaal danwel individueel, is in
+ mijn ogen dan een kans die de geschoolde mens op zich zal kunnen nemen
+ om de mensheid verder te helpen in haar ontwikkeling.
 \end_layout
 
 \end_body

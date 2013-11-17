@@ -33,6 +33,31 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2>CppChessResources.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="CppChessResources.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppChess.htm">CppChess</a>Resources<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppChess.htm">CppChess</a>Resources/<a href="CppChess.htm">chess</a>resources.cpp<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppChess.htm">CppChess</a>Resources/<a href="CppChess.htm">chess</a>resources.h<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppChess.htm">CppChess</a>Resources/Licence.txt<br/>
+<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppChess.htm">CppChess</a>Resources/<a href="CppChess.htm">chess</a>resources.qrc<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <h2>chessresources.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
@@ -44,6 +69,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>fwd.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>color.h"<br/>
 <br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppChess.htm">Chess</a> {<br/>
 <br/>
 <a href="CppComment.htm">///</a>Resources contains the resources filenames<br/>
@@ -54,10 +80,15 @@
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Resources() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Find the filename <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> piece<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Find(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Piece&gt;&amp; piece, <b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Color selection_color <a href="CppOperatorAssign.htm">=</a> Color::<a href="CppIndeterminate.htm">indeterminate</a>, <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> big <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Find(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Piece&gt;&amp; piece,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Color selection_color <a href="CppOperatorAssign.htm">=</a> Color::<a href="CppIndeterminate.htm">indeterminate</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> big <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Find the filename <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> square<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Find(<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Square&amp; square, <b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Color selection_color <a href="CppOperatorAssign.htm">=</a> Color::<a href="CppIndeterminate.htm">indeterminate</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Find(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Square&gt; square,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Color selection_color <a href="CppOperatorAssign.htm">=</a> Color::<a href="CppIndeterminate.htm">indeterminate</a>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Find the filename <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> selected piece<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> FindSelected(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Piece&gt;&amp; piece) <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -86,6 +117,7 @@
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~ <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppChess.htm">Chess</a><br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CHESS<a href="CppQmakeResources.htm">RESOURCES</a>_H<br/>
 </code></td></tr></table>
@@ -99,25 +131,25 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="chessresources.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>resources.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppThreadH.htm">thread</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/filesystem.hpp&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>color.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>piece.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>square.h"<br/>
+<a href="CppInclude.htm">#include</a> "fileio.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppChess.htm">Chess</a> {<br/>
-<br/>
-<a href="CppComment.htm">//</a>Resources * Resources::<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Resources::Find(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::Find(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Piece&gt;&amp; piece,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Color selection_color,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> big)<br/>
@@ -160,13 +192,13 @@
 &nbsp;&nbsp;filename<a href="CppOperatorPlusAssign.htm">+=</a>".png";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!filename.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume there is a graphic <b><a href="CppFor.htm">for</a></b> the piece");<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename)) { <a href="CppTRACE.htm">TRACE</a>(filename); }<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppRibi.htm">ribi</a>::fileio::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename)) { <a href="CppTRACE.htm">TRACE</a>(filename); }<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::fileio::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Resources::Find(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Square&amp; square,<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::Find(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Square&gt; square,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppChess.htm">Chess</a>::Color selection_color)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -176,9 +208,9 @@
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The square<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(square.GetColor() <a href="CppOperatorNotEqual.htm">!=</a> Color::<a href="CppIndeterminate.htm">indeterminate</a>);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (square.GetColor() <a href="CppOperatorEqual.htm">==</a> Color::black) filename<a href="CppOperatorPlusAssign.htm">+=</a>"ds";<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (square.GetColor() <a href="CppOperatorEqual.htm">==</a> Color::white) filename<a href="CppOperatorPlusAssign.htm">+=</a>"ls";<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(square-&gt;GetColor() <a href="CppOperatorNotEqual.htm">!=</a> Color::<a href="CppIndeterminate.htm">indeterminate</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (square-&gt;GetColor() <a href="CppOperatorEqual.htm">==</a> Color::black) filename<a href="CppOperatorPlusAssign.htm">+=</a>"ds";<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (square-&gt;GetColor() <a href="CppOperatorEqual.htm">==</a> Color::white) filename<a href="CppOperatorPlusAssign.htm">+=</a>"ls";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The selection color<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(selection_color <a href="CppOperatorNotEqual.htm">!=</a> Color::black);<br/>
@@ -191,12 +223,12 @@
 &nbsp;&nbsp;filename<a href="CppOperatorPlusAssign.htm">+=</a>".png";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!filename.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume there is a graphic <b><a href="CppFor.htm">for</a></b> the piece");<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename)) { <a href="CppTRACE.htm">TRACE</a>(filename); }<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(filename));<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppRibi.htm">ribi</a>::fileio::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename)) { <a href="CppTRACE.htm">TRACE</a>(filename); }<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::fileio::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Resources::GetFilenames()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::GetFilenames()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test(); <a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> <b><a href="CppThis.htm">this</a></b>: <a href="CppQt.htm">Qt</a>Resources calls <b><a href="CppThis.htm">this</a></b> <a href="CppMemberFunction.htm">member function</a> to create the resources<br/>
@@ -276,22 +308,21 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filenames;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Resources::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Resources::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("YYYY-MM-DD: <a href="CppVersion.htm">version</a> X.Y: [description]");<br/>
-&nbsp;&nbsp;v.push_back("2012-01-25: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
-&nbsp;&nbsp;v.push_back("2012-02-07: <a href="CppVersion.htm">version</a> 1.1: added resources <b><a href="CppFor.htm">for</a></b> selection");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-01-25: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2012-02-07: <a href="CppVersion.htm">version</a> 1.1: added resources <b><a href="CppFor.htm">for</a></b> selection"<br/>
+&nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>
-Resources * Resources::Get()<br/>
+Resources * <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::Get()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppInstance.htm">m_instance</a> <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
@@ -301,7 +332,7 @@ Resources * Resources::Get()<br/>
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> Resources::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::Resources::Test()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -312,23 +343,18 @@ Resources * Resources::Get()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; filenames <a href="CppOperatorAssign.htm">=</a> GetFilenames();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(filenames.begin(),filenames.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s: filenames)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppRibi.htm">ribi</a>::fileio::<a href="CppIsRegularFile.htm">IsRegularFile</a>(s))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFilesystem.htm">boost::filesystem</a>::exists(s))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesystem.htm">boost::filesystem</a>::exists(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::fileio::<a href="CppIsRegularFile.htm">IsRegularFile</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
 }<br/>
-<br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppChess.htm">Chess</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
