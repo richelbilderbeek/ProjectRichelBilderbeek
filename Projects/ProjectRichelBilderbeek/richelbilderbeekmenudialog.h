@@ -39,7 +39,7 @@ namespace ribi {
 struct Program;
 
 ///The GUI independent version of Project Richel Bilderbeek its menu dialog
-struct ProjectRichelBilderbeekMenuDialog : public MenuDialog
+struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
 {
   ProjectRichelBilderbeekMenuDialog();
   ~ProjectRichelBilderbeekMenuDialog() noexcept {}

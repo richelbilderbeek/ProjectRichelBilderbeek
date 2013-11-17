@@ -27,7 +27,13 @@ struct NoMovePattern : public MovementPattern
 
 struct ComplexMovePattern : public MovementPattern
 {
-  ComplexMovePattern() : m_cur_index(0) {}
+  ComplexMovePattern()
+  :
+    m_cur_index(0),
+    m_movements{}
+  {
+
+  }
 
   void AddStraightLineMovement(double& x,double& y,const int cnt,const double dx, const double dy);
   void AddTeleportMovement(double& x,double& y,const double dest_x, const double dest_y);
@@ -37,8 +43,8 @@ struct ComplexMovePattern : public MovementPattern
   void Restart() { m_cur_index = 0; }
 
   private:
-  std::vector<boost::shared_ptr<Movement> > m_movements;
   int m_cur_index;
+  std::vector<boost::shared_ptr<Movement> > m_movements;
 };
 
 } //~namespace ribi

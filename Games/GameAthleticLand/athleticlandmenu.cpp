@@ -1,14 +1,7 @@
+#include "athleticlandgame.h"
+#include "athleticlandmenu.h"
 
-
-#include <vcl.h>
-
-
-#include "UnitFormGame.h"
-#include "UnitFormMenu.h"
-
-
-#pragma resource "*.dfm"
-TFormMenu *FormMenu;
+/*
 
 __fastcall TFormMenu::TFormMenu(TComponent* Owner)
         : TForm(Owner)
@@ -35,3 +28,4 @@ void __fastcall TFormMenu::PanelQuitClick(TObject *Sender)
 }
 
 
+*/

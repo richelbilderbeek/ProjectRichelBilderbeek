@@ -1,0 +1,439 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Energie
+\end_layout
+
+\begin_layout Author
+Richèl Bilderbeek
+\end_layout
+
+\begin_layout Section
+Begrippen
+\end_layout
+
+\begin_layout Subsection
+Energie
+\end_layout
+
+\begin_layout Standard
+Energie is een abstract iets waarmee je iets kunt laten gebeuren.
+ Met 'een abstract iets' bedoel ik dat je energie niet kunt zien of aanraken,
+ je kunt het enkel beschrijven aan wat het kan.
+ Met 'iets waarmee je iets kunt laten gebeuren' bedoel ik bijvoorbeeld dat
+ energie voorwerpen kan laten bewegen; algemener bedoel ik dat energie kan
+ omgezet worden in andere vormen van energie: een beweging is bijvoorbeeld
+ een vorm van kinetische energie.
+ De eenheid van energie is Joule.
+\end_layout
+
+\begin_layout Subsection
+Vermogen
+\end_layout
+
+\begin_layout Standard
+Het vermogen van iets, bijvoorbeeld een machine, is de hoeveelheid energie
+ die deze om kan zetten per tijdseenheid.
+ Zo zal een lamp met een hoger vermogen meer licht produceren dan eenzelfde
+ type met een lager vermogen.
+ De eenheid van vermogen is Watt, danwel Joule per seconde.
+\end_layout
+
+\begin_layout Subsection
+Arbeid
+\end_layout
+
+\begin_layout Standard
+Arbeid is de hoeveelheid energie die gebruikt is om een verplaatsing te
+ bewerkstelligen.
+ Dit is het product van een kracht en een afstand.
+ Als er met een constante kracht van 100 Newton een voorwerp 10 meter wordt
+ verplaatst, dan is er een arbeid van 1000 Joule verricht.
+\end_layout
+
+\begin_layout Subsection
+Rendement
+\end_layout
+
+\begin_layout Standard
+Bij elke energie-omzetting, wordt niet alle toegevoerde energie omgezet
+ naar de gewenste vorm van energie.
+ Het rendement van een energie-omzetting is de fractie van de bronenergie
+ die omgezet wordt naar de doelenergie.
+ Een lamp zou je bijvoorbeeld kunnen zien als een omzetter van electrische
+ energie naar licht energie.
+ Als een lamp 100 Watt aan electriciteit(senergie) verbruikt en dit omzet
+ in 90 Watt in licht(energie), dan is het rendement van de lamp 90%, danwel
+ 0,9.
+ De rest van de electriciteitsenergie is omgezet naar bijvoorbeeld warmte.
+\end_layout
+
+\begin_layout Subsection
+Calorische waarde
+\end_layout
+
+\begin_layout Standard
+De calorische waarde van een stof is de hoeveelheid energie die kan worden
+ gewonnen bij de verbranding ervan.
+ Zo is verbrandingswaarde van een Snickers 1200 Joule.
+ Merk op dat met 'verbranding' zowel de vorm met vuur kan worden bedoeld,
+ maar ook de reactie met zuurstof in de cellen van een organisme.
+\end_layout
+
+\begin_layout Subsection
+Energiesoorten
+\end_layout
+
+\begin_layout Standard
+Een energiesoort is een verschijningsvorm van energie.
+ Er zijn er velen.
+ Voorbeelden zijn kinetische energie (ook wel bewegingsenergie genoemd),
+ electrische energie, licht energie, potentiële energie (de energie opgeslagen
+ door zwaartekracht te overwinnen), massa (jawel, massa kan omgezet worden
+ naar energie, bijvoorbeeld in kernreactors), thermische energie.
+ 
+\end_layout
+
+\begin_layout Subsection
+Potentiële energie
+\end_layout
+
+\begin_layout Standard
+Potentiële energie is de energie die is opgeslagen in een voorwerp door
+ het overwinnen van zwaartekracht.
+ Iets wat opgetild wordt, slaat potentiele energie om en zet deze energie
+ om in bewegingsenergie als deze wordt laten vallen.
+\end_layout
+
+\begin_layout Subsection
+Kinetische energie
+\end_layout
+
+\begin_layout Standard
+Kinetische energie wordt ook wel bewegingsenergie genoemd.
+ Het is de energie die is opgeslagen in de beweging van een voorwerp.
+ Een stilstaand voorwerp heeft geen kinetische energie.
+\end_layout
+
+\begin_layout Subsection
+Wet van behoud van energie
+\end_layout
+
+\begin_layout Standard
+De wet van behoud van energie houdt in dat het zo is dat energie niet verloren
+ kan gaan, enkel kan worden omgezet in een of meerdere vormen.
+ In het universum komt geen energie bij, noch gaat er energie verloren.
+\end_layout
+
+\begin_layout Subsection
+Mechanische energie
+\end_layout
+
+\begin_layout Standard
+Mechanische energie is de som van de kinetische en potentiele energie van
+ een voorwerp.
+ Een voorwerp dat bijvoorbeeld wordt laten vallen in een vacuum, heeft vanaf
+ het moment van loslaten tot het moment van de grond aanraken dezelfde mechanisc
+he energie.
+\end_layout
+
+\begin_layout Section
+Som
+\end_layout
+
+\begin_layout Subsection
+a
+\end_layout
+
+\begin_layout Standard
+m = 4,6 kg
+\end_layout
+
+\begin_layout Standard
+x = 5,0 m
+\end_layout
+
+\begin_layout Standard
+Ep = m .
+ g .
+ h = 4,6 kg .
+ 9,81 m/s
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ .
+ 5,0 m = 225,63 J
+\end_layout
+
+\begin_layout Standard
+Ek = 0,5 .
+ m .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+225,63 J = 0,5 .
+ 4,6 kg .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v = 9,9 m/s
+\end_layout
+
+\begin_layout Subsection
+b
+\end_layout
+
+\begin_layout Standard
+m = 4,6 kg
+\end_layout
+
+\begin_layout Standard
+x = 20,0 m
+\end_layout
+
+\begin_layout Standard
+Ep = m .
+ g .
+ h = 4,6 kg .
+ 9,81 m/s
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ .
+ 20,0 m = 902,52 J
+\end_layout
+
+\begin_layout Standard
+Ek = 0,5 .
+ m .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+902,52 J = 0,5 .
+ 4,6 kg .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v = 20 m/s
+\end_layout
+
+\begin_layout Subsection
+c
+\end_layout
+
+\begin_layout Standard
+m = 4,6 kg
+\end_layout
+
+\begin_layout Standard
+x = 25,0 m
+\end_layout
+
+\begin_layout Standard
+Ep = m .
+ g .
+ h = 4,6 kg .
+ 9,81 m/s
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ .
+ 25,0 m = 1128,15 J
+\end_layout
+
+\begin_layout Standard
+Ek = 0,5 .
+ m .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+1128,15 J = 0,5 .
+ 4,6 kg .
+ v
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+v = 22 m/s
+\end_layout
+
+\begin_layout Section
+Visiestuk eigen energiegebruik en duurzaamheid
+\end_layout
+
+\begin_layout Standard
+Ik vind het moeilijk om mijn eigen energiegebruik en duurzaamheid te beschouwen,
+ daar ik daarvoor te weinig gegevens heb.
+ Ik zou gemakkelijk kunnen zeggen: ik gebruik weinig energie, want ik ga
+ op de fiets naar het werk.
+ Maar dit is in mijn ogen te kort door de bocht: misschien dat het grootste
+ gedeelte van mijn energieverbruik in iets anders zit, waardoor het procentueel
+ weinig uitmaakt of ik per fiets of met de auto naar mijn werk zou gaan.
+ Maar ik weet weinig zeker waarin het grootste gedeelte van mijn energieverbruik
+ zit: ik gok dat dit zit in de verwarming van mijn kamer.
+ Omdat mijn kamer zestien vierkante meter is, verwacht ik dat -ondanks dat
+ ik enkelglas ramen heb- dat ik vergeleken met de gemiddelde, groter wonende,
+ Nederlander minder energie verbruik, ook mede dankzijn een moderne CV ketel.
+ Maar op globaal niveau verwacht ik dat ik meer energie verbruik dan de
+ gemiddelde Enuit, terwijl een leek zou kunnen denken dat juist zij veel
+ energie zouden kunnen verbruiken voor de verwarming van hun iglo's (mocht
+ diezelfde leek verder denken, dan hoop ik dat hij/zij inziet dat het onhandig
+ is om een huis van ijs te verwarmen).
+ 
+\end_layout
+
+\begin_layout Standard
+Wel kan ik met zekerheid het volgende stellen: ik vind het geen nut hebben
+ energie te verspillen en daarom probeer ik dit zo weinig mogelijk te doen.
+\end_layout
+
+\begin_layout Standard
+Bovenstaand verhaal kan ik in dezelfde lijn herhalen voor duurzaamheid.
+ Ook hier heb ik te weinig gegevens voor.
+ Wel kan ik ook hier met zekerheid zeggen dat ik -voor zover ik dit kan
+ beoordelen- het geen nut vind hebben om onduurzaam te leven.
+ Op mijn manier uit zich dat door vooral tweedehands spullen te kopen.
+\end_layout
+
+\begin_layout Section
+Visiestuk fossiele brandstoffen, kernenergie en alternatieve brandstoffen
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document

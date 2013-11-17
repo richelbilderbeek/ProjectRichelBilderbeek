@@ -12,5 +12,3 @@ FORMS += \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmenudialog.ui \
     ../../Tools/ToolTestOpenQuestion/qttestopenquestionmaindialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestion.qrc

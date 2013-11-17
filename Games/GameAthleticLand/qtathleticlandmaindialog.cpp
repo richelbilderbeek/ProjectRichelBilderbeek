@@ -5,14 +5,14 @@
 #include "ui_qtathleticlandmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtAthleticLandMainDialog::QtAthleticLandMainDialog(QWidget *parent)
+ribi::athl::QtAthleticLandMainDialog::QtAthleticLandMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtAthleticLandMainDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtAthleticLandMainDialog::~QtAthleticLandMainDialog()
+ribi::athl::QtAthleticLandMainDialog::~QtAthleticLandMainDialog()
 {
   delete ui;
 }

@@ -1,13 +1,11 @@
+#include "athleticlandplayerstate.h"
 
-
-
-
+#include <QPixmap>
 
 #include "athleticlandsprites.h"
 #include "athleticlandplayer.h"
-#include "athleticlandplayerstate.h"
 
-PlayerState::PlayerState(Player& player)
+ribi::athl::PlayerState::PlayerState(Player& player)
   : m_player(player),
     m_sprite(0),
     m_walk_speed(7.5),
@@ -18,97 +16,97 @@ PlayerState::PlayerState(Player& player)
 
 }
 
-const int PlayerState::GetHeight() const
+int ribi::athl::PlayerState::GetHeight() const
 {
   assert(m_sprite);
-  return m_sprite->Picture->Bitmap->Height;
+  return m_sprite->height();
 }
 
-const int PlayerState::GetWidth() const
+int ribi::athl::PlayerState::GetWidth() const
 {
   assert(m_sprite);
-  return m_sprite->Picture->Bitmap->Width;
+  return m_sprite->width();
 }
 
-PlayerJump::PlayerJump(Player& player)
+ribi::athl::PlayerJump::PlayerJump(Player& player)
   : PlayerState(player),
-    m_jump_left(FormSprites->ImageMainCharJumpLeft),
-    m_jump_right(FormSprites->ImageMainCharJumpRight),
-    m_dx(0.0), m_dy(0.0)
+    m_dx(0.0), m_dy(0.0),
+    m_jump_left{}, //(FormSprites->ImageMainCharJumpLeft),
+    m_jump_right{} //(FormSprites->ImageMainCharJumpRight),
 {
 
 }
 
-void PlayerJump::EndJump()
+void ribi::athl::PlayerJump::EndJump()
 {
   m_player.SetStateStand(m_dx >= 0.0);
 }
 
-PlayerLeft::PlayerLeft(Player& player)
+ribi::athl::PlayerLeft::PlayerLeft(Player& player)
   : PlayerState(player),
-    m_walk_left_1(FormSprites->ImageMainCharWalkLeft1),
-    m_walk_left_2(FormSprites->ImageMainCharWalkLeft2)
+    m_walk_left_1{}, //(FormSprites->ImageMainCharWalkLeft1),
+    m_walk_left_2{} //(FormSprites->ImageMainCharWalkLeft2)
 {
 
 }
 
-void PlayerLeft::PressKeyRight()
+void ribi::athl::PlayerLeft::PressKeyRight()
 {
   m_player.SetStateRight();
 }
 
-void PlayerLeft::PressKeyJump()
+void ribi::athl::PlayerLeft::PressKeyJump()
 {
   m_player.SetStateJump(-m_walk_speed);
 }
 
-void PlayerLeft::PressNoKey()
+void ribi::athl::PlayerLeft::PressNoKey()
 {
   m_player.SetStateStand(false);
 }
 
-PlayerRight::PlayerRight(Player& player)
+ribi::athl::PlayerRight::PlayerRight(Player& player)
   : PlayerState(player),
-    m_walk_right_1(FormSprites->ImageMainCharWalkRight1),
-    m_walk_right_2(FormSprites->ImageMainCharWalkRight2)
+    m_walk_right_1{}, //(FormSprites->ImageMainCharWalkRight1),
+    m_walk_right_2{} //(FormSprites->ImageMainCharWalkRight2)
 {
 
 }
 
-void PlayerRight::PressKeyLeft()
+void ribi::athl::PlayerRight::PressKeyLeft()
 {
   m_player.SetStateLeft();
 }
 
-void PlayerRight::PressKeyJump()
+void ribi::athl::PlayerRight::PressKeyJump()
 {
   m_player.SetStateJump(m_walk_speed);
 }
 
-void PlayerRight::PressNoKey()
+void ribi::athl::PlayerRight::PressNoKey()
 {
   m_player.SetStateStand(true);
 }
 
-PlayerStand::PlayerStand(Player& player)
+ribi::athl::PlayerStand::PlayerStand(Player& player)
   : PlayerState(player),
-    m_stand_left(FormSprites->ImageMainCharStandLeft),
-    m_stand_right(FormSprites->ImageMainCharStandRight)
+    m_stand_left{}, //(FormSprites->ImageMainCharStandLeft),
+    m_stand_right{} //(FormSprites->ImageMainCharStandRight)
 {
 
 }
 
-void PlayerStand::PressKeyLeft()
+void ribi::athl::PlayerStand::PressKeyLeft()
 {
   m_player.SetStateLeft();
 }
 
-void PlayerStand::PressKeyRight()
+void ribi::athl::PlayerStand::PressKeyRight()
 {
   m_player.SetStateRight();
 }
 
-void PlayerStand::PressKeyJump()
+void ribi::athl::PlayerStand::PressKeyJump()
 {
   m_player.SetStateJump( m_face_right ? 0.0001 : -0.0001);
 }

@@ -155,7 +155,6 @@ include(../../Tools/ToolTestShinyButton/ToolTestShinyButtonConsole.pri)
 include(../../Tools/ToolTestSimpleLinearRegression/ToolTestSimpleLinearRegressionConsole.pri)
 include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonConsole.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickConsole.pri)
-include(ProjectRichelBilderbeekConsole.pri)
 
 SOURCES += main.cpp
 

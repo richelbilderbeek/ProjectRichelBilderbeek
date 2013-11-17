@@ -15,7 +15,7 @@
 #pragma GCC diagnostic pop
 
 ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *parent)
-  : QDialog(parent),
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtAminoAcidFighterMainDialog),
     m_timer(new QTimer(this)),
     m_scene(new QGraphicsScene(this)),

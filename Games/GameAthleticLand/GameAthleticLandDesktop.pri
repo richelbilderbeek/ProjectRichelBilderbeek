@@ -30,7 +30,7 @@ HEADERS += \
     ../../Games/GameAthleticLand/athleticlandmovement.h \
     ../../Games/GameAthleticLand/athleticlandmovementpattern.h \
     ../../Games/GameAthleticLand/athleticlandplayer.h \
-    ../../Games/GameAthleticLand/athleticlandlayerstate.h \
+    ../../Games/GameAthleticLand/athleticlandplayerstate.h \
     ../../Games/GameAthleticLand/athleticlandsprite.h
 
 FORMS += \

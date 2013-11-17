@@ -4,13 +4,12 @@
 #include <boost/shared_ptr.hpp>
 #include "rectangle.h"
 #include "athleticlandfwd.h"
-struct QPixmap;
 
 namespace ribi {
 namespace athl {
 struct Sprite
 {
-  Sprite(QPixmap * const image);
+  Sprite(const std::string& filename);
   Sprite(const Sprite&) = delete;
   Sprite& operator=(const Sprite&) = delete;
   virtual ~Sprite() {}
@@ -24,7 +23,7 @@ struct Sprite
   void OnCollide(Player& p);
   bool InSprite(const int x, const int y) const;
   const Rect GetRect() const;
-  QPixmap * m_image; //TImage to be drawn
+  boost::shared_ptr<QPixmap> m_image;
   const int m_width;
   const int m_height;
   boost::shared_ptr<CollisionBehaviour> m_collision_behaviour;
@@ -32,8 +31,8 @@ struct Sprite
 
 struct MovingSprite : public Sprite
 {
-  MovingSprite(const int x, const int y,QPixmap * const image)
-  : Sprite(image),
+  MovingSprite(const int x, const int y,const std::string& filename)
+  : Sprite(filename),
     m_movement_pattern{},
     m_x(static_cast<double>(x)),
     m_y(static_cast<double>(y))
@@ -54,8 +53,8 @@ struct MovingSprite : public Sprite
 
 struct NonMovingSprite : public Sprite
 {
-  NonMovingSprite(const int x, const int y,QPixmap * const image)
-    : Sprite(image),
+  NonMovingSprite(const int x, const int y,const std::string& filename)
+    : Sprite(filename),
       m_x(x),
       m_y(y)
   {

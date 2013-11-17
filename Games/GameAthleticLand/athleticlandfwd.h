@@ -1,6 +1,8 @@
 #ifndef ATHLETICLANDFWD_H
 #define ATHLETICLANDFWD_H
 
+struct QPixmap;
+
 namespace ribi {
 
 struct Rect;

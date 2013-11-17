@@ -20,14 +20,14 @@ struct Movement
 {
   virtual ~Movement() {}
   virtual void Move() = 0;
-  virtual const bool IsDone() const = 0;
+  virtual bool IsDone() const = 0;
   virtual void Restart() = 0;
 };
 
 struct NeverMovement : public Movement
 {
   void Move() {}
-  const bool IsDone() const { return false; }
+  bool IsDone() const { return false; }
   void Restart();
 };
 
@@ -57,7 +57,7 @@ struct StraightLineMovement : public Movement
     ++m_cnt;
     if (m_cnt == m_max_cnt) m_cnt = 0; //Movement has ended, prepare for next time
   }
-  const bool IsDone() const
+  bool IsDone() const
   {
     return (m_cnt == 0);
   }
@@ -95,7 +95,7 @@ struct TeleportMovement : public Movement
     m_x=m_target_x;
     m_y=m_target_y;
   }
-  const bool IsDone() const
+  bool IsDone() const
   {
     return true; //Assume only one teleport, so after each Move IsDone returns true
   }
@@ -121,7 +121,7 @@ struct WaitMovement : public Movement
     ++m_cnt;
     if (m_cnt == m_max_cnt) m_cnt = 0; //Movement has ended, prepare for next time
   }
-  const bool IsDone() const //Assumes Move is called before IsDone
+  bool IsDone() const //Assumes Move is called before IsDone
   {
     return (m_cnt == 0);
   }

@@ -4,7 +4,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <QDialog>
+#include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
 struct QGraphicsScene;
@@ -17,7 +17,7 @@ namespace Ui {
 namespace ribi {
 namespace aaf {
 
-class QtAminoAcidFighterMainDialog : public QDialog
+class QtAminoAcidFighterMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 

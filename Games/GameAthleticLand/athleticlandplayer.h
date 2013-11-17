@@ -49,14 +49,14 @@ struct Player
 
   private:
   PlayerState * m_cur_state;
+  bool m_has_died;
   double m_x;
   double m_y;
-  bool m_has_died;
   //States
-  boost::shared_ptr<PlayerLeft> m_state_left;
-  boost::shared_ptr<PlayerRight> m_state_right;
-  boost::shared_ptr<PlayerJump> m_state_jump;
-  boost::shared_ptr<PlayerStand> m_state_stand;
+  //boost::shared_ptr<PlayerLeft> m_state_left;
+  //boost::shared_ptr<PlayerRight> m_state_right;
+  //boost::shared_ptr<PlayerJump> m_state_jump;
+  //boost::shared_ptr<PlayerStand> m_state_stand;
 };
 
 } //~namespace ribi

@@ -1,24 +1,26 @@
+#include "athleticlandsprite.h"
+
 #include <cassert>
 //#include <numeric>
 #include <cmath>
 
+#include <QPixmap>
 #include "athleticlandcollisionbehaviour.h"
 #include "athleticlandsprites.h"
 #include "athleticlandmovementpattern.h"
 #include "athleticlandplayer.h"
-#include "athleticlandsprite.h"
 
-Sprite::Sprite(QPixmap * const image)
-  : m_image(image),
-    m_width(image->Picture->Bitmap->Width),
-    m_height(image->Picture->Bitmap->Height)
+ribi::athl::Sprite::Sprite(const std::string& filename)
+  : m_image(new QPixmap(filename.c_str())),
+    m_width{}, //(image->Picture->Bitmap->Width),
+    m_height{} //(image->Picture->Bitmap->Height)
 {
-  assert(image);
-  assert(m_width == m_image->Picture->Bitmap->Width);
-  assert(m_height == m_image->Picture->Bitmap->Height);
+  //assert(m_image);
+  //assert(m_width == m_image->Picture->Bitmap->Width);
+  //assert(m_height == m_image->Picture->Bitmap->Height);
 }
 
-const bool Sprite::DoesCollide(const Player& p) const
+bool ribi::athl::Sprite::DoesCollide(const Player& p) const
 {
   //Is one of the sprites' corners in Player?
   const int s_x1  = static_cast<int>(GetX());
@@ -42,51 +44,51 @@ const bool Sprite::DoesCollide(const Player& p) const
     || (s_x2 > p_x1 && s_x2 < p_x2 && s_y2 > p_y1 && s_y2 < p_y2) );
 }
 
-void Sprite::OnCollide(Player& p)
+void ribi::athl::Sprite::OnCollide(Player& p)
 {
   if (m_collision_behaviour) m_collision_behaviour->OnCollision(p);
 }
 
-const Rect Sprite::GetRect() const
+const ribi::Rect ribi::athl::Sprite::GetRect() const
 {
   const int x1 = static_cast<int>(GetX());
   const int y1 = static_cast<int>(GetY());
   const int x2 = x1 + m_width;
   const int y2 = y1 + m_height;
-  return TRect(x1,y1,x2,y2);
+  return ribi::Rect(x1,y1,x2,y2);
 }
 
-void MovingSprite::Draw(QPixmap * const canvas) const
+void ribi::athl::MovingSprite::Draw(QPixmap * const /*canvas*/) const
 {
-  const int x = static_cast<int>(m_x);
-  const int y = static_cast<int>(m_y);
-  canvas->Draw(x,y,m_image->Picture->Graphic);
+  //const int x = static_cast<int>(m_x);
+  //const int y = static_cast<int>(m_y);
+  //canvas->Draw(x,y,m_image->Picture->Graphic);
 }
 
-void MovingSprite::Move()
+void ribi::athl::MovingSprite::Move()
 {
-  assert(m_movement_pattern);
+  //assert(m_movement_pattern);
   m_movement_pattern->Move();
 }
 
-void MovingSprite::Restart()
+void ribi::athl::MovingSprite::Restart()
 {
   m_movement_pattern->Restart();
 }
 
-void NonMovingSprite::Draw(QPixmap * const canvas) const
+void ribi::athl::NonMovingSprite::Draw(QPixmap * const /*canvas*/) const
 {
-  canvas->Draw(m_x,m_y,m_image->Picture->Graphic);
+  //canvas->Draw(m_x,m_y,m_image->Picture->Graphic);
 }
 
-RockSprite::RockSprite(const int x, const int y)
-  : NonMovingSprite(x,y,FormSprites->ImageRock)
+ribi::athl::RockSprite::RockSprite(const int x, const int y)
+  : NonMovingSprite(x,y,"" /*FormSprites->ImageRock*/)
 {
   m_collision_behaviour.reset(new LethalCollision);
 }
 
-RollingBallSprite::RollingBallSprite(const int x, const int y, const double dx)
-  : MovingSprite(x,y,FormSprites->ImageBall),
+ribi::athl::RollingBallSprite::RollingBallSprite(const int x, const int y, const double dx)
+  : MovingSprite(x,y,"" /*FormSprites->ImageBall*/),
     m_dx(dx)
 {
   m_movement_pattern.reset(new ComplexMovePattern);

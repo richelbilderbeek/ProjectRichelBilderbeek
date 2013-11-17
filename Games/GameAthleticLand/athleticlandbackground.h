@@ -12,10 +12,10 @@ namespace athl {
 struct Background : public NonMovingSprite
 {
   Background(
-    QPixmap * const image,
+    const std::string& filename,
     const int walk_height,
     const int right_x)
-  : NonMovingSprite(0,0,image),
+  : NonMovingSprite(0,0,filename),
     m_walk_height(walk_height),
     m_right_x(right_x)
   {
@@ -29,10 +29,10 @@ struct Background : public NonMovingSprite
 
 struct BackgroundAlForest : public Background
 {
-  BackgroundAlForest(QPixmap * const image);
+  BackgroundAlForest();
 };
 
-const boost::shared_ptr<Background> CreateBackgroundAlForest(QPixmap * const image);
+const boost::shared_ptr<Background> CreateBackgroundAlForest();
 
 } //~namespace ribi
 } //~namespace athl

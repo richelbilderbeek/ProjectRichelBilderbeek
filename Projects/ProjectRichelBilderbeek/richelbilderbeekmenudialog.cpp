@@ -168,7 +168,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "twodigitnewick.h"
 #pragma GCC diagnostic pop
 
-boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>>
+boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog> >
   ribi::ProjectRichelBilderbeekMenuDialog::sm_map_to_menu {};
 
 ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()

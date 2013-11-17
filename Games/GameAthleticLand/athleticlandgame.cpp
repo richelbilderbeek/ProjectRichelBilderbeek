@@ -1,16 +1,9 @@
-
-
-#include <vcl.h>
-
-
 #include "athleticlandbackground.h"
-#include "UnitCreateAreas.h"
-#include "UnitFormGame.h"
+#include "athleticlandcreateareas.h"
+#include "athleticlandgame.h"
 #include "athleticlandplayer.h"
 
-
-#pragma resource "*.dfm"
-TFormGame *FormGame;
+/*
 
 __fastcall TFormGame::TFormGame(TComponent* Owner)
   : TForm(Owner),
@@ -99,3 +92,4 @@ void __fastcall TFormGame::FormKeyUp(TObject *Sender, WORD &Key,
   m_keys.erase(Key);
 }
 
+*/

@@ -4,7 +4,7 @@
 
 #include "athleticlandmovement.h"
 #include "athleticlandmovementpattern.h"
-
+/*
 
 
 
@@ -116,3 +116,5 @@ int main(int argc, char* argv[])
   TestUnitMovementPattern();
 
 }
+
+*/

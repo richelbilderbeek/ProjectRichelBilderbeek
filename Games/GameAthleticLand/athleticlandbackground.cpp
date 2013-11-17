@@ -1,8 +1,8 @@
 #include "athleticlandbackground.h"
 #include "athleticlandsprites.h"
 
-ribi::athl::BackgroundAlForest::BackgroundAlForest(QPixmap * const image)
-  : Background(image,
+ribi::athl::BackgroundAlForest::BackgroundAlForest()
+  : Background(":/GameAthleticLand/Background1.png",
     256, //walk_y
     400  //right_x
     )
