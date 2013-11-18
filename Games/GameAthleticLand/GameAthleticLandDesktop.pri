@@ -8,14 +8,15 @@ SOURCES += \
     ../../Games/GameAthleticLand/athleticlandcreateareas.cpp \
     ../../Games/GameAthleticLand/athleticlandgame.cpp \
     ../../Games/GameAthleticLand/athleticlandmenu.cpp \
-    ../../Games/GameAthleticLand/athleticlandsprites.cpp \
     ../../Games/GameAthleticLand/athleticlandloopreader.cpp \
-    ../../Games/GameAthleticLand/athleticlandmain.cpp \
+    ../../Games/GameAthleticLand/athleticlandmainwidget.cpp \
     ../../Games/GameAthleticLand/athleticlandmovement.cpp \
     ../../Games/GameAthleticLand/athleticlandmovementpattern.cpp \
     ../../Games/GameAthleticLand/athleticlandplayer.cpp \
     ../../Games/GameAthleticLand/athleticlandplayerstate.cpp \
-    ../../Games/GameAthleticLand/athleticlandsprite.cpp
+    ../../Games/GameAthleticLand/athleticlandsprite.cpp \
+    qtathleticlandmainwidget.cpp \
+    qtathleticlandresources.cpp
 
 HEADERS += \
     ../../Games/GameAthleticLand/qtathleticlandmaindialog.h \
@@ -25,13 +26,14 @@ HEADERS += \
     ../../Games/GameAthleticLand/athleticlandcreateareas.h \
     ../../Games/GameAthleticLand/athleticlandgame.h \
     ../../Games/GameAthleticLand/athleticlandmenu.h \
-    ../../Games/GameAthleticLand/athleticlandsprites.h \
     ../../Games/GameAthleticLand/athleticlandloopreader.h \
     ../../Games/GameAthleticLand/athleticlandmovement.h \
     ../../Games/GameAthleticLand/athleticlandmovementpattern.h \
     ../../Games/GameAthleticLand/athleticlandplayer.h \
     ../../Games/GameAthleticLand/athleticlandplayerstate.h \
-    ../../Games/GameAthleticLand/athleticlandsprite.h
+    ../../Games/GameAthleticLand/athleticlandsprite.h \
+    qtathleticlandmainwidget.h \
+    qtathleticlandresources.h
 
 FORMS += \
     ../../Games/GameAthleticLand/qtathleticlandmaindialog.ui

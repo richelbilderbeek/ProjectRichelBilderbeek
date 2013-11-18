@@ -9,6 +9,7 @@
 namespace ribi {
 namespace athl {
 
+/*
 struct Background : public NonMovingSprite
 {
   Background(
@@ -33,6 +34,7 @@ struct BackgroundAlForest : public Background
 };
 
 const boost::shared_ptr<Background> CreateBackgroundAlForest();
+*/
 
 } //~namespace ribi
 } //~namespace athl

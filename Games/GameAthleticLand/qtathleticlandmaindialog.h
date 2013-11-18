@@ -17,6 +17,8 @@ namespace Ui {
 namespace ribi {
 namespace athl {
 
+struct QtAthleticLandMainWidget;
+
 class QtAthleticLandMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
@@ -29,6 +31,9 @@ public:
 
 private:
   Ui::QtAthleticLandMainDialog *ui;
+  void keyPressEvent(QKeyEvent *event);
+
+  QtAthleticLandMainWidget * const m_main_widget;
 };
 
 } //~namespace aaf

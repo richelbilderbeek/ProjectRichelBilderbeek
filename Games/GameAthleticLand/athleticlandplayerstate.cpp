@@ -1,10 +1,14 @@
 #include "athleticlandplayerstate.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QPixmap>
 
-#include "athleticlandsprites.h"
 #include "athleticlandplayer.h"
+#pragma GCC diagnostic pop
 
+/*
 ribi::athl::PlayerState::PlayerState(Player& player)
   : m_player(player),
     m_sprite(0),
@@ -90,6 +94,7 @@ void ribi::athl::PlayerRight::PressNoKey()
 
 ribi::athl::PlayerStand::PlayerStand(Player& player)
   : PlayerState(player),
+    m_face_right{true},
     m_stand_left{}, //(FormSprites->ImageMainCharStandLeft),
     m_stand_right{} //(FormSprites->ImageMainCharStandRight)
 {
@@ -112,3 +117,4 @@ void ribi::athl::PlayerStand::PressKeyJump()
 }
 
 
+*/

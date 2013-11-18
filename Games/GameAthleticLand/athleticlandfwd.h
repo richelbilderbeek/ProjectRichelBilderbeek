@@ -14,7 +14,6 @@ struct ComplexMovePattern;
 struct MovementPattern;
 struct Player;
 
-
 } //~namespace athl
 } //~namespace ribi
 

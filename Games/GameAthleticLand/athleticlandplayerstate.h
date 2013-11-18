@@ -9,6 +9,13 @@
 namespace ribi {
 namespace athl {
 
+enum class State
+{
+  stand_left,
+  stand_right
+};
+
+/*
 struct Player;
 
 struct PlayerState
@@ -79,7 +86,7 @@ struct PlayerLeft : public PlayerState
   {
     m_sprite = m_walk_left_1;
   }
-  void Tick(const double /*x*/, const double /*y*/)
+  void Tick(const double x, const double y)
   {
     //m_x-=m_walk_speed;
     //m_sprite = m_sprite == m_walk_left_2 ? m_walk_left_1 : m_walk_left_2;
@@ -104,7 +111,7 @@ struct PlayerRight : public PlayerState
   {
     m_sprite = m_walk_right_1;
   }
-  void Tick(const double /*x*/, const double /*y*/)
+  void Tick(const double x, const double y)
   {
     //m_x+ = m_walk_speed;
     m_sprite = (m_sprite == m_walk_right_2 ? m_walk_right_1 : m_walk_right_2);
@@ -130,7 +137,7 @@ struct PlayerStand : public PlayerState
     m_face_right = face_right;
     m_sprite = m_face_right ? m_stand_right : m_stand_left;
   }
-  void Tick(double& /*x*/, double& /*y*/) {}
+  void Tick(double& x, double& y) {}
 
   private:
 
@@ -138,6 +145,7 @@ struct PlayerStand : public PlayerState
   const boost::shared_ptr<QPixmap> m_stand_left;
   const boost::shared_ptr<QPixmap> m_stand_right;
 };
+*/
 
 } //~namespace ribi
 } //~namespace athl

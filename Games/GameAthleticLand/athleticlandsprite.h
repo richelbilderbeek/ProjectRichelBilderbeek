@@ -7,6 +7,8 @@
 
 namespace ribi {
 namespace athl {
+
+/*
 struct Sprite
 {
   Sprite(const std::string& filename);
@@ -23,10 +25,10 @@ struct Sprite
   void OnCollide(Player& p);
   bool InSprite(const int x, const int y) const;
   const Rect GetRect() const;
+  boost::shared_ptr<CollisionBehaviour> m_collision_behaviour;
+  const int m_height;
   boost::shared_ptr<QPixmap> m_image;
   const int m_width;
-  const int m_height;
-  boost::shared_ptr<CollisionBehaviour> m_collision_behaviour;
 };
 
 struct MovingSprite : public Sprite
@@ -83,6 +85,7 @@ struct RollingBallSprite : public MovingSprite
 
 
 //const boost::shared_ptr<Sprite> CreateRollingBallSprite(const double speed);
+*/
 
 } //~namespace ribi
 } //~namespace athl

@@ -4,16 +4,22 @@
 //#include <numeric>
 #include <cmath>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QPixmap>
 #include "athleticlandcollisionbehaviour.h"
-#include "athleticlandsprites.h"
+#include "qtathleticlandresources.h"
 #include "athleticlandmovementpattern.h"
 #include "athleticlandplayer.h"
+#pragma GCC diagnostic pop
 
+/*
 ribi::athl::Sprite::Sprite(const std::string& filename)
-  : m_image(new QPixmap(filename.c_str())),
-    m_width{}, //(image->Picture->Bitmap->Width),
-    m_height{} //(image->Picture->Bitmap->Height)
+  : m_collision_behaviour{},
+    m_height{}, //(image->Picture->Bitmap->Height)
+    m_image(new QPixmap(filename.c_str())),
+    m_width{} //(image->Picture->Bitmap->Width),
 {
   //assert(m_image);
   //assert(m_width == m_image->Picture->Bitmap->Width);
@@ -58,7 +64,7 @@ const ribi::Rect ribi::athl::Sprite::GetRect() const
   return ribi::Rect(x1,y1,x2,y2);
 }
 
-void ribi::athl::MovingSprite::Draw(QPixmap * const /*canvas*/) const
+void ribi::athl::MovingSprite::Draw(QPixmap * const canvas) const
 {
   //const int x = static_cast<int>(m_x);
   //const int y = static_cast<int>(m_y);
@@ -76,19 +82,19 @@ void ribi::athl::MovingSprite::Restart()
   m_movement_pattern->Restart();
 }
 
-void ribi::athl::NonMovingSprite::Draw(QPixmap * const /*canvas*/) const
+void ribi::athl::NonMovingSprite::Draw(QPixmap * const canvas) const
 {
   //canvas->Draw(m_x,m_y,m_image->Picture->Graphic);
 }
 
 ribi::athl::RockSprite::RockSprite(const int x, const int y)
-  : NonMovingSprite(x,y,"" /*FormSprites->ImageRock*/)
+  : NonMovingSprite(x,y,"")
 {
   m_collision_behaviour.reset(new LethalCollision);
 }
 
 ribi::athl::RollingBallSprite::RollingBallSprite(const int x, const int y, const double dx)
-  : MovingSprite(x,y,"" /*FormSprites->ImageBall*/),
+  : MovingSprite(x,y,""),
     m_dx(dx)
 {
   m_movement_pattern.reset(new ComplexMovePattern);
@@ -102,8 +108,4 @@ ribi::athl::RollingBallSprite::RollingBallSprite(const int x, const int y, const
 
 }
 
-
-
-
-
-
+*/

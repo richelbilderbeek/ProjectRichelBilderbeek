@@ -1,6 +1,7 @@
 #include "athleticlandbackground.h"
-#include "athleticlandsprites.h"
+#include "qtathleticlandresources.h"
 
+/*
 ribi::athl::BackgroundAlForest::BackgroundAlForest()
   : Background(":/GameAthleticLand/Background1.png",
     256, //walk_y
@@ -14,3 +15,4 @@ const boost::shared_ptr<ribi::athl::Background> ribi::athl::CreateBackgroundAlFo
 {
   return boost::shared_ptr<Background>(new BackgroundAlForest);
 }
+*/

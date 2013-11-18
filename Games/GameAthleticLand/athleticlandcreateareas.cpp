@@ -2,7 +2,7 @@
 #include "athleticlandcreateareas.h"
 #include "athleticlandsprite.h"
 
-
+/*
 const std::vector<ribi::athl::Area> ribi::athl::CreateAreas()
 {
   std::vector<Area> v;
@@ -22,7 +22,4 @@ const std::vector<ribi::athl::Area> ribi::athl::CreateAreas()
   }
   return v;
 }
-
-
-
-
+*/

@@ -18,6 +18,7 @@
 #include "athleticlandsprite.h"
 #pragma GCC diagnostic pop
 
+/*
 boost::shared_ptr<ribi::athl::Player> ribi::athl::Area::m_player;
 
 ribi::athl::Area::Area(const boost::shared_ptr<Background> background)
@@ -88,7 +89,7 @@ void ribi::athl::Area::Tick()
   m_player->Tick();
 }
 
-void ribi::athl::Area::InitBuffer(QPixmap * const /*buffer*/) const
+void ribi::athl::Area::InitBuffer(QPixmap * const buffer) const
 {
   //const int width  = m_background->m_width;
   //const int height = m_background->m_height;
@@ -148,6 +149,7 @@ void ribi::athl::Area::AddRollingBall()
   m_sprites.push_back(s);
 }
 
+*/
 
 
 
