@@ -21,20 +21,42 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef SITEMAPGENERATORMENUDIALOG_H
 #define SITEMAPGENERATORMENUDIALOG_H
 
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/signals2.hpp>
 #include "menudialog.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
 struct SitemapGeneratorMenuDialog : public MenuDialog
 {
+  SitemapGeneratorMenuDialog();
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
+  boost::signals2::signal<void(const std::string)> m_signal_log;
+
   private:
+
+  static const std::vector<std::string> AddHeader(const std::vector<std::string>& files) noexcept;
+
+  static const std::vector<std::string> CreateConfigXml(
+    const std::string& local_website_path,
+    const std::string& urllist_path) noexcept;
+
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  //Returns date in YYYY-MM-DD format
+  //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
+  static const std::string GetDateIso8601() noexcept;
+
+  static const std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
 };
 
 } //~namespace ribi

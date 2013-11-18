@@ -1,4 +1,4 @@
-include(../../ConsoleApplication.pri)
+include(../../DesktopApplication.pri)
 
 include(../../Libraries/Boost.pri)
 
@@ -10,10 +10,9 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
-include(ToolCreateQtProjectZipFileConsole.pri)
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-include(../../Classes/CppQrcFile/CppQrcFile.pri)
-include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
+include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGeneratorDesktop.pri)
 
-SOURCES += main.cpp
-
+SOURCES += qtmain.cpp

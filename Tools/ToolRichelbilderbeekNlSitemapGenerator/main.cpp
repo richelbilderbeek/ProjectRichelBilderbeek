@@ -18,45 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRichelbilderbeekNlSitemapGenerator.htm
 //---------------------------------------------------------------------------
-#ifndef SITEMAPGENERATORMAINDIALOG_H
-#define SITEMAPGENERATORMAINDIALOG_H
+#include "sitemapgeneratormenudialog.h"
 
-#include "qthideandshowdialog.h"
-
-namespace Ui {
-  class QtSitemapGeneratorMainDialog;
+int main(int argc, char *argv[])
+{
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  ribi::SitemapGeneratorMenuDialog d;
+  return d.Execute(args);
 }
 
-namespace ribi {
-
-class QtSitemapGeneratorMainDialog : public QtHideAndShowDialog
-{
-  Q_OBJECT
-
-public:
-  explicit QtSitemapGeneratorMainDialog(QWidget *parent = 0);
-  QtSitemapGeneratorMainDialog(const QtSitemapGeneratorMainDialog&);
-  QtSitemapGeneratorMainDialog& operator=(const QtSitemapGeneratorMainDialog&);
-  ~QtSitemapGeneratorMainDialog() noexcept;
-
-protected:
-  void keyPressEvent(QKeyEvent * e);
-
-private:
-  Ui::QtSitemapGeneratorMainDialog *ui;
-
-private slots:
-  void on_button_start_clicked();
-
-  //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-  static const std::string GetCurrentFolder();
-
-  //From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-  static const std::string GetCurrentFolder(const std::string& s);
-
-  void OnLogMessage(const std::string& msg) noexcept;
-};
-
-} //~namespace ribi
-
-#endif // SITEMAPGENERATORMAINDIALOG_H

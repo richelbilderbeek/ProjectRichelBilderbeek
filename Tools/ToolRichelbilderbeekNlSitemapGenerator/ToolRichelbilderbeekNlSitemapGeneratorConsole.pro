@@ -10,10 +10,6 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
-include(ToolCreateQtProjectZipFileConsole.pri)
-
-include(../../Classes/CppQrcFile/CppQrcFile.pri)
-include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
+include(../../Tools/ToolRichelbilderbeekNlSitemapGenerator/ToolRichelbilderbeekNlSitemapGeneratorConsole.pri)
 
 SOURCES += main.cpp
-

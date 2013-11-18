@@ -24,7 +24,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "createglossarymaindialog.h"
 #include "htmlpage.h"
-#include "hometrainerresources.h"
 #include "richelbilderbeekprogram.h"
 #include "trace.h"
 

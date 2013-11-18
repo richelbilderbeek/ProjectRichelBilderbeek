@@ -18,8 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCreateGlossary.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <iostream>
 #include "createglossarymaindialog.h"
+#include "fileio.h"
+#pragma GCC diagnostic pop
 
 int main(int, char * argv[])
 {
@@ -27,6 +31,6 @@ int main(int, char * argv[])
   ribi::CreateGlossaryMainDialog();
 
   std::cout << "Successfully created glossaries in folder "
-    << ribi::CreateGlossaryMainDialog::GetPath(argv[0]) << "\n";
+    << ribi::fileio::GetPath(argv[0]) << "\n";
 }
 

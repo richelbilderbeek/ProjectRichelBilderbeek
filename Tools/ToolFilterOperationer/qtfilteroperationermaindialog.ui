@@ -1,20 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>QtFilterOperationerMainDialog</class>
- <widget class="QDialog" name="QtFilterOperationerMainDialog" >
-  <property name="geometry" >
+ <widget class="QDialog" name="QtFilterOperationerMainDialog">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>570</width>
+    <height>478</height>
    </rect>
   </property>
-  <property name="windowTitle" >
-   <string>QtFilterOperationerMainDialog</string>
+  <property name="windowTitle">
+   <string>Dialog</string>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_original">
+      <attribute name="title">
+       <string>&amp;1. Original</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>&amp;Load original</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>original image</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_filter">
+      <attribute name="title">
+       <string>&amp;2. Filter</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="tab_result">
+      <attribute name="title">
+       <string>&amp;3. Result</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>&amp;Generate result</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="result">
+         <property name="text">
+          <string>Result</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
  <resources/>
  <connections/>
 </ui>
