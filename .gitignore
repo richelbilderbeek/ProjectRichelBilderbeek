@@ -995,6 +995,10 @@ Projects/RichelbilderbeekNl/ToolTicTacToeValuer.htm
 Projects/RichelbilderbeekNl/ToolTimePoll.htm
 Projects/RichelbilderbeekNl/ToolUbuntuOneWatcher.htm
 Projects/RichelbilderbeekNl/ToolVisualAbc.htm
-
 /Libraries/osintstalker/
 /Libraries/pygraphml/
+Test/OpenFoamExample1/constant/polyMesh/boundary
+Test/OpenFoamExample1/constant/polyMesh/faces
+Test/OpenFoamExample1/constant/polyMesh/neighbour
+Test/OpenFoamExample1/constant/polyMesh/owner
+Test/OpenFoamExample1/constant/polyMesh/points
