@@ -7465,6 +7465,38 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
       }
     }
   );
+
+  m.push_back(
+    { "ToolOpenFoamExample1",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample1.htm\">OpenFOAM example1</a> is an ",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> example that demonstrates",
+        "  the minimum requirements to create a (uniform) mesh of a cube using the tool blockMesh.exe",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  blockMesh needs two files: constant/PolyMesh/blockMeshDict and system/controlDict",
+        "  (no idea where it needs the second file for).",
+        "  The file case.foam is an empty file, needed by ParaView to accept this folder.",
+        "  See the files for comments",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  After calling blockMesh.exe, the files 'boundary', 'faces', 'neighbour', 'owner' and 'points'",
+        "  are created, in the folder 'constants/polyMesh'. ParaView can be be used to open 'case.foam' and"
+        "  display the resulting mesh. Click on 'Properties | Apply' on the left, to view the mesh."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolOpenFoamExample1.zip\">Download all files of OpenFOAM example 1 (zip)</a></li>",
+        "  <li><a href=\"ToolOpenFoamExample1.txt\">View the output given by blockMesh.exe (txt)</a></li>",
+        "  <li><a href=\"ToolOpenFoamExample1.png\">View the resulting mesh as displayed by ParaView (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "ProjectBochum",
       {
