@@ -1015,4 +1015,9 @@ Test/ToolOpenFoamExample3/constant/polyMesh/owner
 Test/ToolOpenFoamExample3/constant/polyMesh/points
 Test/ToolOpenFoamExample3/0/alpha1	
 Test/ToolOpenFoamExample3/0.*
-
+Test/ToolOpenFoamExample5/constant/polyMesh/boundary
+Test/ToolOpenFoamExample5/constant/polyMesh/faces
+Test/ToolOpenFoamExample5/constant/polyMesh/neighbour
+Test/ToolOpenFoamExample5/constant/polyMesh/owner
+Test/ToolOpenFoamExample5/constant/polyMesh/points
+Test/ToolOpenFoamExample5/0.*

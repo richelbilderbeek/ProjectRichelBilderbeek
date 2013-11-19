@@ -7497,6 +7497,35 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
     }
   );
 
+
+
+
+
+  m.push_back(
+    { "ToolOpenFoamExample5",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample5.htm\">OpenFOAM example 5</a> is an ",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> example that tries to do the same",
+        "  as OpenFOAM's first tutorial, under Windows",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  After running ToolOpenFoamExample5.bat, it can be be observed that no pressure",
+        "  gradient is created. <a href=\"ToolOpenFoamExample6.htm\">OpenFOAM example 6</a>"
+        "  tries to get the same result as the OpenFOAM tutorial."
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolOpenFoamExample5.zip\">Download all input files of OpenFOAM example 1 (zip)</a></li>",
+        "  <li><a href=\"ToolOpenFoamExample5.txt\">View the output given by ToolOpenFoamExample5.bat (txt)</a></li>",
+        "  <li><a href=\"ToolOpenFoamExample5.png\">View the result as displayed by ParaView (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "ProjectBochum",
       {

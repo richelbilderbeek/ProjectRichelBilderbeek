@@ -54,24 +54,22 @@ Replacements::Replacements(
 
   {
     ///Check against recurring replacements
-    std::for_each(replacements.begin(),replacements.end(),
-      [](const std::pair<std::string,std::string>& p)
+    for(const std::pair<std::string,std::string>& p: replacements)
+    {
+      if(!(
+        std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
+        == p.second.end()))
       {
-        if(!(
-          std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
-          == p.second.end()))
-        {
-          TRACE("Recurring replacement detected:")
-          TRACE(p.first);
-          TRACE(p.second);
-          TRACE("Add $ symbols in the second part, so that the first part is not a subsequence of it")
-        }
-
-        assert(
-          std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
-          == p.second.end());
+        TRACE("Recurring replacement detected:")
+        TRACE(p.first);
+        TRACE(p.second);
+        TRACE("Add $ symbols in the second part, so that the first part is not a subsequence of it")
       }
-    );
+
+      assert(
+        std::search(p.second.begin(),p.second.end(),p.first.begin(),p.first.end())
+        == p.second.end());
+    }
   }
 
   {
@@ -142,7 +140,7 @@ const std::vector<std::pair<std::string,std::string> >
   std::vector<std::pair<std::string,std::string> > v;
   //Initial
   {
-    std::vector<std::pair<std::string,std::string> > w
+    const std::vector<std::pair<std::string,std::string> > w
       = CreateInitialReplacements();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -181,7 +179,6 @@ const std::vector<std::pair<std::string,std::string> >
 
 const std::vector<std::pair<std::string,std::string> > Replacements::CreateEndReplacements()
 {
-  //C++11 initializer list
   return
   {
   //2
@@ -198,7 +195,6 @@ const std::vector<std::pair<std::string,std::string> > Replacements::CreateEndRe
 
 const std::vector<std::pair<std::string,std::string> > Replacements::CreateInitialReplacements()
 {
-  //C++11 initializer list
   return
   {
     //symbol replacements that will mess up the markup if placed in bottom

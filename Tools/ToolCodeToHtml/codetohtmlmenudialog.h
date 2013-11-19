@@ -45,6 +45,11 @@ struct CodeToHtmlMenuDialog : public MenuDialog
   /// Source type: folder, content type: C++   -> C++ webpage with tech info
   /// Source type: folder, content type: foam  -> OpenFOAM webpage
   /// Source type: text  , content type: C++   -> C++ code snippet without tech info
+  ///
+  ///- cpp_folder
+  ///- cpp_snippet
+  ///- txt_folder
+  ///- txt_snippet
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   #ifndef NDEBUG
