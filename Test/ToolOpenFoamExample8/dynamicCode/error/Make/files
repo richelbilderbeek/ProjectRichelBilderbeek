@@ -1,0 +1,7 @@
+/* dynamicCode:
+ * SHA1 = e92448da6ae10bc777e0869670f72a48fd0673f1
+ */
+functionObjectTemplate.C
+FilterFunctionObjectTemplate.C
+
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/liberror_e92448da6ae10bc777e0869670f72a48fd0673f1
