@@ -40,8 +40,9 @@ struct Dialog
   explicit Dialog(
     const PageType page_type,
     const std::string& source,
-    const ContentType content_type,
-    const TechInfoType tech_info);
+    const ContentType content_type
+    //,const TechInfoType tech_info
+  );
 
   ///Convert a source (which can be a project file or code snippet text to an HTML page
   const std::vector<std::string> ToHtml() const;
@@ -55,7 +56,7 @@ struct Dialog
   const boost::scoped_ptr<const Info> m_info;
   const PageType m_page_type;
   const std::string m_source;
-  const TechInfoType m_tech_info;
+  //const TechInfoType m_tech_info;
 
   ///Extract the page name, from, for example
   /// '/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml'

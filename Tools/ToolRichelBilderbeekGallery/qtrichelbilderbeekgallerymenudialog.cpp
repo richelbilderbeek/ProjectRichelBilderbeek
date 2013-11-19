@@ -22,6 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtrichelbilderbeekgallerymenudialog.h"
 
+#include <cassert>
 #include <fstream>
 
 #include <QApplication>
@@ -32,20 +33,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPixmap>
 
 #include "about.h"
+#include "fileio.h"
 #include "qtaboutdialog.h"
-#include "qtrichelbilderbeekgallerydialog.h"
+#include "qtrichelbilderbeekgallerymenudialog.h"
 //#include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekgallerymenudialog.h"
 #include "ui_qtrichelbilderbeekgallerymenudialog.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtRichelBilderbeekGalleryMenuDialog)
+ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtRichelBilderbeekGalleryMenuDialog)
 {
   #ifndef NDEBUG
-  GalleryMenuDialog::Test();
+  //GalleryMenuDialog::Test();
   #endif
   ui->setupUi(this);
 }
@@ -55,7 +57,7 @@ ribi::QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog(
   delete ui;
 }
 
-
+/*
 const std::string ribi::QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
@@ -64,6 +66,7 @@ const std::string ribi::QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::
   assert(i < static_cast<int>(filename.size()));
   return filename.substr(0,i);
 }
+*/
 
 void ribi::QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
 {
@@ -73,14 +76,14 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_about_clicked()
 {
   this->hide();
-  About a = GalleryMenuDialog::GetAbout();
-  a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
+  About a = GalleryMenuDialog().GetAbout();
+  a.AddLibrary("QtRichelBilderbeekGalleryDialog version: "
+    + QtRichelBilderbeekGalleryMenuDialog::GetVersion());
   //a.AddLibrary("QtRichelBilderbeekResources version: " + QtResources::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
   d.setStyleSheet(this->styleSheet());
-  d.exec();
-  this->show();
+  this->ShowChild(&d);
 }
 
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_quit_clicked()
@@ -90,43 +93,41 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_quit_clicked()
 
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
 {
-  QtRichelBilderbeekGalleryDialog d;
+  QtRichelBilderbeekGalleryMainDialog d;
   ShowChild(&d);
 }
-
-
 
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
 {
   {
-    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlClassGallery();
+    const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlClassGallery();
     std::ofstream f("CppClassGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlGameGallery();
+    const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlGameGallery();
     std::ofstream f("GameGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlProjectGallery();
+    const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlProjectGallery();
     std::ofstream f("ProjectGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlToolGallery();
+    const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlToolGallery();
     std::ofstream f("ToolGallery.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   {
-    const std::vector<std::string> v = GalleryMenuDialog::CreateHtmlStatus();
+    const std::vector<std::string> v = GalleryMenuDialog().CreateHtmlStatus();
     std::ofstream f("CppRichelBilderbeekStatus.htm");
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   }
   QMessageBox box;
   box.setWindowIcon(this->windowIcon());
   box.setStyleSheet(this->styleSheet());
-  const std::string s = GetPath( qApp->arguments()[0].toStdString() );
+  const std::string s = fileio::GetPath( qApp->arguments()[0].toStdString() );
   box.setWindowTitle( this->windowTitle() );
   box.setText( (std::string("HTML pages have been created in folder ") + s).c_str());
   box.exec();

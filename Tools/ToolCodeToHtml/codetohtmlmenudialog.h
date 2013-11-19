@@ -42,6 +42,9 @@ struct CodeToHtmlMenuDialog : public MenuDialog
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
+  /// Source type: folder, content type: C++   -> C++ webpage with tech info
+  /// Source type: folder, content type: foam  -> OpenFOAM webpage
+  /// Source type: text  , content type: C++   -> C++ code snippet without tech info
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   #ifndef NDEBUG

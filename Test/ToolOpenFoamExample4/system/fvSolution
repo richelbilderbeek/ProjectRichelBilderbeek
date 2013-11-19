@@ -1,0 +1,51 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+
+solvers
+{
+  p
+  {
+    solver          PCG;
+    preconditioner  DIC;
+    tolerance       1e-06;
+    relTol          0.01;
+    pRefValue  0.0;
+    pRefPoint (0.01 0.01 0.01);
+  }
+}
+
+potentialFlow
+{
+  nNonOrthogonalCorrectors 3;
+}
+
+//pRefValue  0;
+//pRefCell   0;
+
+
+//pRefValue  0;
+//pRefPoint 0;
+
+//PIMPLE
+//{
+//  pRefCell   100;
+//  pRefValue  0;
+//}
+
+//PIMPLE
+//{
+//  pRefValue  0.0;
+//  pRefPoint (0.01 0.01 0.01);
+//}
+
+//PIMPLE
+//{
+//  pRefCell  0;
+//}
+

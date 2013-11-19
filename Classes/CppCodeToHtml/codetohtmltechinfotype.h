@@ -21,8 +21,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef CODETOHTMLTECHINFOTYPE_H
 #define CODETOHTMLTECHINFOTYPE_H
 
+/*
+
 #include <string>
 #include <vector>
+
 
 namespace c2h {
 
@@ -34,5 +37,7 @@ const std::vector<TechInfoType> GetAllTechInfoTypes();
 TechInfoType StrToTechInfoType(const std::string& s);
 
 } //~namespace CodeToHtml
+
+*/
 
 #endif // CODETOHTMLTECHINFOTYPE_H

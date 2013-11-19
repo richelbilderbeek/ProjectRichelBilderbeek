@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
   START_TRACE();
-  ribi::RichelBilderbeek::GalleryMenuDialog::Test();
+  //ribi::GalleryMenuDialog::Test();
   ribi::QtRichelBilderbeekGalleryMenuDialog w;
   w.show();
   return a.exec();

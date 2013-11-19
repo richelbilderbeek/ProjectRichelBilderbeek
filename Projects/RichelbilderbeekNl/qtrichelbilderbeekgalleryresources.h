@@ -59,7 +59,7 @@ struct QtResources
 
   ///Determines if a filename is a regular file
   ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename) noexcept;
+  //static bool IsRegularFile(const std::string& filename) noexcept;
 
 };
 

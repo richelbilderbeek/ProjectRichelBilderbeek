@@ -47,7 +47,7 @@ const std::string c2h::Header::CreateFilename(
       case PageType::cpp:   return "CppXXX.htm";
       case PageType::music: return "SongXXX.htm";
       case PageType::text:  return "CppXXX.htm";
-      case PageType::tool:  return "ToolXXX.htm";
+      case PageType::foam:  return "FoamXXX.htm";
     }
     assert(!"Should not get here");
     throw std::logic_error("c2h::Header::CreateFilename");
@@ -70,7 +70,7 @@ const std::string c2h::Header::CreateTitle(
       case PageType::cpp:
       case PageType::music:
       case PageType::text:
-      case PageType::tool:
+      case PageType::foam:
        return "XXX";
     }
     assert(!"Should not get here");
@@ -105,16 +105,21 @@ const std::vector<std::string> c2h::Header::ToHtml() const
       v.push_back("  <meta name=\"description\" content=\"C++ " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"C++ " + m_title + " code snippet\"/>");
     break;
+    case PageType::foam:
+      v.push_back("  <title>XXX</title>");
+      v.push_back("  <meta name=\"description\" content=\"OpenFOAM " + m_title + "\"/>");
+      v.push_back("  <meta name=\"keywords\" content=\"OpenFOAM " + m_title + " \"/>");
+    break;
     case PageType::music:
       v.push_back("  <title>" + m_title + "</title>");
       v.push_back("  <meta name=\"description\" content=\"Song " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"Richel Bilderbeek Music Song " + m_title + " free legal\"/>");
     break;
-    case PageType::tool:
-      v.push_back("  <title>XXX</title>");
-      v.push_back("  <meta name=\"description\" content=\"C++ Tool " + m_title + "\"/>");
-      v.push_back("  <meta name=\"keywords\" content=\"C++ Tool " + m_title + " GPL open source freeware\"/>");
-    break;
+    //case PageType::tool:
+    //  v.push_back("  <title>XXX</title>");
+    //  v.push_back("  <meta name=\"description\" content=\"C++ Tool " + m_title + "\"/>");
+    //  v.push_back("  <meta name=\"keywords\" content=\"C++ Tool " + m_title + " GPL open source freeware\"/>");
+    //break;
     default:
       assert(!"Should not get here");
     break;
@@ -130,12 +135,15 @@ const std::vector<std::string> c2h::Header::ToHtml() const
     case PageType::text:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
+    case PageType::foam:
+      v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
+      break;
     case PageType::music:
       v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
       break;
-    case PageType::tool:
-      v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-      break;
+    //case PageType::tool:
+    //  v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
+    //  break;
     default:
       assert(!"Should not get here");
     break;
@@ -153,12 +161,15 @@ const std::vector<std::string> c2h::Header::ToHtml() const
     case PageType::text:
       v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
+    case PageType::foam:
+      v.push_back("<h1>(<a href=\"ToolOpenFoam.htm\">OpenFOAM</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
+      break;
     case PageType::music:
       v.push_back("<h1>(<a href=\"Music.htm\">Music</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    case PageType::tool:
-      v.push_back("<h1>(<a href=\"Tools.htm\">Tool</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
-      break;
+    //case PageType::tool:
+    //  v.push_back("<h1>(<a href=\"Tools.htm\">Tool</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
+    //  break;
     default:
       assert(!"Should not get here");
     break;

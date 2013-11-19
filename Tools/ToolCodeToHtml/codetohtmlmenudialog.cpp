@@ -174,6 +174,7 @@ int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   }
 
   //Check tech_info parameter
+  /*
   {
     if (!c2h::CanStrToTechInfoType(tech_info_str))
     {
@@ -193,6 +194,7 @@ int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
     }
   }
   std::cout << "Tech info: '" << tech_info_str << "' (OK)" << std::endl;
+  */
 
   ///Find source
   if (std::count(v.begin(),v.end(),std::string("--source")))
@@ -257,7 +259,7 @@ int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
 
   const c2h::PageType page_type = c2h::StrToPageType(page_type_str);
   const c2h::ContentType content_type = c2h::StrToContentType(content_type_str);
-  const c2h::TechInfoType tech_info = c2h::StrToTechInfoType(tech_info_str);
+  //const c2h::TechInfoType tech_info = c2h::StrToTechInfoType(tech_info_str);
 
   try
   {
@@ -268,8 +270,9 @@ int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
       new const c2h::Dialog(
         page_type,
         source,
-        content_type,
-        tech_info)
+        content_type
+        //,tech_info
+      )
     };
     const std::vector<std::string> v = c->ToHtml();
     const std::string output_filename = ribi::fileio::GetFileBasename(source) + ".htm";
@@ -317,7 +320,7 @@ const ribi::Help ribi::CodeToHtmlMenuDialog::GetHelp() const noexcept
     "CodeToHtmlConsole",
     "Program to train exercises",
     {
-      Help::Option('p',"--page_type","page type (used in header and footer): cpp (*), text. music, tool"),
+      Help::Option('p',"--page_type","page type (used in header and footer): cpp (*), foam, text, music, tool"),
       Help::Option('t',"--tech_info","header and footer type: auto, no, yes (*)"),
       Help::Option('s',"--source","source of the content: a (.pro) filename or foldername"),
       Help::Option('c',"--content_type","content type: cpp")

@@ -34,7 +34,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekprogramstatus.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
+ribi::GalleryMenuDialog::GalleryMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -60,17 +67,15 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
 
   const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
-  std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<Program>& p)
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramClass*>(p.get()))
     {
-      if (dynamic_cast<ProgramClass*>(p.get()))
-      {
-        //Add HTML
-        std::vector<std::string> w = ToHtml(*p.get());
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
+      //Add HTML
+      std::vector<std::string> w = ToHtml(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
-  );
+  }
 
   v.push_back("</div>");
 
@@ -85,7 +90,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -110,17 +115,15 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery()
 
   const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
-  std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<Program>& p)
+  for(const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramGame*>(p.get()))
     {
-      if (dynamic_cast<ProgramGame*>(p.get()))
-      {
-        //Add HTML
-        std::vector<std::string> w = ToHtml(*p.get());
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
+      //Add HTML
+      std::vector<std::string> w = ToHtml(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
-  );
+  }
 
   v.push_back("</div>");
 
@@ -135,7 +138,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery()
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -162,17 +165,15 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery
 
   const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
-  std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<Program>& p)
+  for(const boost::shared_ptr<Program>& p: ps)
+  {
+    if (dynamic_cast<ProgramProject*>(p.get()))
     {
-      if (dynamic_cast<ProgramProject*>(p.get()))
-      {
-        //Add HTML
-        std::vector<std::string> w = ToHtml(*p.get());
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
+      //Add HTML
+      std::vector<std::string> w = ToHtml(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
-  );
+  }
 
   v.push_back("</div>");
 
@@ -188,7 +189,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus() const noexcept
 {
   std::vector<std::string> v;
 
@@ -265,7 +266,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus()
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery()
+const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -292,17 +293,15 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery()
 
   const std::vector<boost::shared_ptr<Program> > ps = Program::GetAllPrograms();
 
-  std::for_each(ps.begin(),ps.end(),
-    [&v](const boost::shared_ptr<Program>& p)
+  for (const boost::shared_ptr<Program> p: ps)
+  {
+    if (dynamic_cast<ProgramTool*>(p.get()))
     {
-      if (dynamic_cast<ProgramTool*>(p.get()))
-      {
-        //Add HTML
-        std::vector<std::string> w = ToHtml(*p.get());
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
+      //Add HTML
+      std::vector<std::string> w = ToHtml(*p.get());
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
-  );
+  }
 
   v.push_back("</div>");
 
@@ -318,7 +317,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery()
   return v;
 }
 
-const ribi::About ribi::GalleryMenuDialog::GetAbout() noexcept
+const ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -334,19 +333,20 @@ const ribi::About ribi::GalleryMenuDialog::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::GalleryMenuDialog::GetVersion() noexcept
+const std::string ribi::GalleryMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::GalleryMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-02-20: Version 1.0: initial version"
   };
 }
 
-void ribi::GalleryMenuDialog::Test()
+#ifndef NDEBUG
+void ribi::GalleryMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -355,15 +355,16 @@ void ribi::GalleryMenuDialog::Test()
   }
   //Just do everything
   {
-    CreateHtmlClassGallery();
-    CreateHtmlGameGallery();
-    CreateHtmlProjectGallery();
-    CreateHtmlStatus();
-    CreateHtmlToolGallery();
+    GalleryMenuDialog().CreateHtmlClassGallery();
+    GalleryMenuDialog().CreateHtmlGameGallery();
+    GalleryMenuDialog().CreateHtmlProjectGallery();
+    GalleryMenuDialog().CreateHtmlStatus();
+    GalleryMenuDialog().CreateHtmlToolGallery();
   }
 }
+#endif
 
-const std::vector<std::string> ribi::GalleryMenuDialog::ToHtml(const Program& p)
+const std::vector<std::string> ribi::GalleryMenuDialog::ToHtml(const Program& p) const noexcept
 {
   std::vector<std::string> v;
   {

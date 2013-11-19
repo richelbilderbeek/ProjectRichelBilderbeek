@@ -50,14 +50,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 c2h::Dialog::Dialog(
   const PageType page_type,
   const std::string& source,
-  const ContentType content_type,
-  const TechInfoType tech_info)
+  const ContentType content_type
+  //,const TechInfoType tech_info
+  )
   :
     m_content_type { content_type },
     m_info { new Info },
     m_page_type { page_type },
-    m_source { source },
-    m_tech_info { tech_info }
+    m_source { source }
+    //,m_tech_info { tech_info }
 {
   #ifndef NDEBUG
   Test();
@@ -279,42 +280,27 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
     const std::vector<std::string> w = m_info->ToHtml(page_name);
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
-  //Technical info
+  //Technical info: display only if source is a C++ folder
+  if (m_page_type == PageType::cpp && ribi::fileio::IsFolder(this->m_source))
   {
-    TechInfoType t = m_tech_info;
-    if (m_tech_info == TechInfoType::automatic)
+    //Add tech info
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    v.push_back("<p>&nbsp;</p>");
+    std::vector<std::string> pro_files {
+      GetProFilesInFolder(m_source)
+    };
+    for (std::string& pro_file: pro_files)
     {
-      if (m_page_type == PageType::cpp
-        || m_content_type == ContentType::cpp)
-      {
-        t = TechInfoType::yes;
-      }
+      pro_file = m_source + "/" + pro_file;
+      assert(ribi::fileio::IsRegularFile(pro_file));
     }
-    if (t == TechInfoType::yes)
-    {
-      //Add tech info
-      v.push_back("<p>&nbsp;</p>");
-      v.push_back("<p>&nbsp;</p>");
-      v.push_back("<p>&nbsp;</p>");
-      v.push_back("<p>&nbsp;</p>");
-      v.push_back("<p>&nbsp;</p>");
-      std::vector<std::string> pro_files {
-        GetProFilesInFolder(m_source)
-      };
-      for (std::string& pro_file: pro_files)
-      {
-        pro_file = m_source + "/" + pro_file;
-        assert(ribi::fileio::IsRegularFile(pro_file));
-      }
 
-      const boost::scoped_ptr<const TechInfo> info(new TechInfo(pro_files));
-      const std::vector<std::string> w = info->ToHtml();
-      std::copy(w.begin(),w.end(),std::back_inserter(v));
-    }
-    else
-    {
-      //Display no technical information
-    }
+    const boost::scoped_ptr<const TechInfo> info(new TechInfo(pro_files));
+    const std::vector<std::string> w = info->ToHtml();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   //Source
   {

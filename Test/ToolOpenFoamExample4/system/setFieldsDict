@@ -1,0 +1,31 @@
+FoamFile
+{
+  version     2.0;
+  format      ascii;
+  class       dictionary;
+  location    "system";
+  object      setFieldsDict;
+}
+
+//The default kinematic pressure is zero
+defaultFieldValues
+(
+  volScalarFieldValue p 0
+);
+
+//Create one special region  
+regions
+(
+  //The region has the shape of a box, in this case a cube
+  boxToCell
+  {
+    box (0.45 0.45 0.45) (0.55 0.55 0.55);
+
+    //The kinematic pressure within the box is one
+    fieldValues
+    (
+      volScalarFieldValue p 1
+    );
+  }
+);
+   

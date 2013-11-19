@@ -39,12 +39,15 @@ const std::vector<std::string> c2h::Footer::ToHtml() const
     case PageType::text:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
+    case PageType::foam:
+      v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
+      break;
     case PageType::music:
       v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
       break;
-    case PageType::tool:
-      v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-      break;
+    //case PageType::tool:
+    //  v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
+    //  break;
     default:
       assert(!"Should not get here");
     break;

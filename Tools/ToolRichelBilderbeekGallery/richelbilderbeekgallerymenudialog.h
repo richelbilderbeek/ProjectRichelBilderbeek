@@ -29,29 +29,34 @@ struct Program;
 
 struct GalleryMenuDialog
 {
+  GalleryMenuDialog();
+
   ///Create the page CppClassGallery.htm
-  static const std::vector<std::string> CreateHtmlClassGallery();
+  const std::vector<std::string> CreateHtmlClassGallery() const noexcept;
 
   ///Create the page GameGallery.htm
-  static const std::vector<std::string> CreateHtmlGameGallery();
+  const std::vector<std::string> CreateHtmlGameGallery() const noexcept;
 
   ///Create the page ProjectGallery.htm
-  static const std::vector<std::string> CreateHtmlProjectGallery();
+  const std::vector<std::string> CreateHtmlProjectGallery() const noexcept;
 
   ///Create the page CppRichelBilderbeekStatus.htm
-  static const std::vector<std::string> CreateHtmlStatus();
+  const std::vector<std::string> CreateHtmlStatus() const noexcept;
 
   ///Create the page ToolGallery.htm
-  static const std::vector<std::string> CreateHtmlToolGallery();
+  const std::vector<std::string> CreateHtmlToolGallery() const noexcept;
 
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  const About GetAbout() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Test this class
-  static void Test();
 
   private:
+
+  #ifndef NDEBUG
+  ///Test this class
+  static void Test() noexcept;
+  #endif
 
   ///Converts a program to a gallery item
   ///Example:
@@ -63,7 +68,7 @@ struct GalleryMenuDialog
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
-  static const std::vector<std::string> ToHtml(const Program& p);
+  const std::vector<std::string> ToHtml(const Program& p) const noexcept;
 };
 
 } //~namespace ribi

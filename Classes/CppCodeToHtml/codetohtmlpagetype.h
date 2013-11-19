@@ -28,10 +28,18 @@ namespace c2h {
 
 ///The different page types
 ///-cpp: C++
+///-foam: OpenFOAM
 ///-text: plain text
 ///-music: music
-///-tool: tool
-enum class PageType { cpp, text, music, tool };
+///(-tool: tool)
+enum class PageType
+{
+  cpp,
+  foam,
+  text,
+  music
+  //,tool
+};
 
 bool CanStrToPageType(const std::string& s);
 const std::string PageTypeToStr(const PageType t);

@@ -44,9 +44,10 @@ const std::string PageTypeToStr(const PageType t)
   switch (t)
   {
     case PageType::cpp: return "cpp";
+    case PageType::foam: return "foam";
     case PageType::text: return "text";
     case PageType::music: return "music";
-    case PageType::tool: return "tool";
+    //case PageType::tool: return "tool";
   }
   assert(!"Should not get here");
   throw std::logic_error("c2h::PageTypeToStr");
@@ -57,18 +58,19 @@ const std::vector<PageType> GetAllPageTypes()
   return
   {
     PageType::cpp,
+    PageType::foam,
     PageType::text,
-    PageType::music,
-    PageType::tool
+    PageType::music
+    //,PageType::tool
   };
 }
 
 PageType StrToPageType(const std::string& s)
 {
   if (s == "cpp") return PageType::cpp;
-  if (s == "text") return PageType::cpp;
-  if (s == "music") return PageType::cpp;
-  if (s == "tool") return PageType::cpp;
+  if (s == "foam") return PageType::foam;
+  if (s == "music") return PageType::music;
+  if (s == "text") return PageType::text;
   throw std::logic_error("Invalid string in StrToCodeToHtmlPageType");
 }
 

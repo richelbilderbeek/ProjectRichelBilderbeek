@@ -55,7 +55,7 @@ private:
 
   ///Returns the path of a filename
   ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  static const std::string GetPath(const std::string& filename);
+  //static const std::string GetPath(const std::string& filename);
 };
 
 } //~namespace ribi

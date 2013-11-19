@@ -115,7 +115,8 @@ c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const noexcept
   if (s == "C++") return c2h::PageType::cpp;
   if (s == "Music") return c2h::PageType::music;
   if (s == "Text") return c2h::PageType::text;
-  if (s == "Tool") return c2h::PageType::tool;
+  //if (s == "Tool") return c2h::PageType::tool;
+  if (s == "OpenFOAM") return c2h::PageType::foam;
   assert(!"Should not get here");
   throw std::logic_error("QtCodeToHtmlMainDialog::GetPageType");
 }
@@ -130,6 +131,7 @@ c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const noexcept
   throw std::logic_error("QtCodeToHtmlMainDialog::GetContentType");
 }
 
+/*
 c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const noexcept
 {
   const std::string s = ui->box_tech_info->currentText().toStdString();
@@ -139,6 +141,7 @@ c2h::TechInfoType ribi::QtCodeToHtmlMainDialog::GetTechInfo() const noexcept
   assert(!"Should not get here");
   throw std::logic_error("QtCodeToHtmlMainDialog::GetTechInfo");
 }
+*/
 
 void ribi::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
@@ -162,8 +165,8 @@ void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
       new c2h::Dialog(
         GetPageType(),
         source,
-        GetContentType(),
-        GetTechInfo()
+        GetContentType()
+        //,GetTechInfo()
       )
     };
     const std::vector<std::string> v = d->ToHtml();
@@ -184,8 +187,8 @@ void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
       new c2h::Dialog(
         GetPageType(),
         source,
-        GetContentType(),
-        GetTechInfo()
+        GetContentType()
+        //,GetTechInfo()
       )
     };
     const std::vector<std::string> v = d->ToHtml();

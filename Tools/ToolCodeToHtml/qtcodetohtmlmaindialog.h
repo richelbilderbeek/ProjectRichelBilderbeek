@@ -70,7 +70,7 @@ private slots:
   c2h::PageType GetPageType() const noexcept;
 
   ///Obtain the selected technical info type
-  c2h::TechInfoType GetTechInfo() const noexcept;
+  //c2h::TechInfoType GetTechInfo() const noexcept;
 
   ///Obtain the selected source type
   c2h::ContentType GetContentType() const noexcept;
