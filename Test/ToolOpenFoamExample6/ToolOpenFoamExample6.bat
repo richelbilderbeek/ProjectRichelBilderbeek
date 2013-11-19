@@ -1,5 +1,5 @@
 blockMesh.exe
-icoFoam.exe
+solidDisplacementFoam.exe
 
 rem Why no .exe???
 paraFoam
