@@ -39,8 +39,8 @@ vertices
 
 blocks
 (
-    hex (0 3  2  1 4 7 6 5) inlet  ( 20 20 20)  simpleGrading (1 1 1)
-    hex (8 10 14 9 11 13 15 12) outlet (20 20 20)  simpleGrading (1 1 1)
+    hex (4 7 6 5 0 3  2  1 ) inlet  ( 20 20 20)  simpleGrading (1 1 1)
+    hex (11 13 15 12 8 10 14 9 ) outlet (20 20 20)  simpleGrading (1 1 1)
 );
 
 edges
@@ -111,7 +111,7 @@ boundary
 
     sides
     {
-        type symmetry_wall;
+        type symmetryPlane;
         faces
         (
             (8 9 12 11)
