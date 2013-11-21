@@ -1,0 +1,131 @@
+
+D:\Projects\Test\ToolOpenFoamExample8>blockMesh.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : blockMesh.exe
+Date   : Nov 21 2013
+Time   : 09:57:16
+Host   : "AIRBEAR-W7-I5"
+PID    : 5064
+Case   : D:/Projects/Test/ToolOpenFoamExample8
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating block mesh from
+    "D:/Projects/Test/ToolOpenFoamExample8/constant/polyMesh/blockMeshDict"
+Creating curved edges
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+--> FOAM Warning : 
+    From function polyMesh::polyMesh(... construct from shapes...)
+    in file meshes/polyMesh/polyMeshFromShapeMesh.C at line 888
+    Found 20 undefined faces in mesh; adding to default patch.
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 12
+		Number of boundary faces : 36
+		Number of defined boundary faces : 36
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 1
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (-2 0 -0.5) (2 2 0.5)
+  nPoints: 4222
+  nCells: 2000
+  nFaces: 8110
+  nInternalFaces: 3890
+----------------
+Patches
+----------------
+  patch 0 (start: 3890 size: 60) name: down
+  patch 1 (start: 3950 size: 30) name: right
+  patch 2 (start: 3980 size: 60) name: up
+  patch 3 (start: 4040 size: 30) name: left
+  patch 4 (start: 4070 size: 40) name: cylinder
+  patch 5 (start: 4110 size: 4000) name: defaultFaces
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample8>xcopy 0.org /I 0 
+0.org\p
+0.org\U
+2 File(s) copied
+
+D:\Projects\Test\ToolOpenFoamExample8>potentialFoam.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : potentialFoam.exe
+Date   : Nov 21 2013
+Time   : 09:57:16
+Host   : "AIRBEAR-W7-I5"
+PID    : 5868
+Case   : D:/Projects/Test/ToolOpenFoamExample8
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading field p
+
+Reading field U
+
+
+Calculating potential flow
+DICPCG:  Solving for p, Initial residual = 1, Final residual = 7.87068e-007, No Iterations 76
+DICPCG:  Solving for p, Initial residual = 0.0126096, Final residual = 7.71198e-007, No Iterations 64
+DICPCG:  Solving for p, Initial residual = 0.0025829, Final residual = 9.49278e-007, No Iterations 59
+DICPCG:  Solving for p, Initial residual = 0.000902306, Final residual = 8.48077e-007, No Iterations 57
+continuity error = 3.37204e-005
+Interpolated U error = 1.20218e-005
+ExecutionTime = 0.108 s  ClockTime = 0 s
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample8>rem Why no .exe??? 
+
+D:\Projects\Test\ToolOpenFoamExample8>paraFoam
