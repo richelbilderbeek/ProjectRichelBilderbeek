@@ -33,7 +33,9 @@ namespace c2h {
 enum class SnippetType
 {
   cpp,
-  text
+  text,
+
+  n_snippets //Used for debugging
 };
 
 

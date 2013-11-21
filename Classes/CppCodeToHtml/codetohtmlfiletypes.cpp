@@ -23,11 +23,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <stdexcept>
 
-bool ribi::c2h::CanStrToContentType(const std::string& s) noexcept
+#include "codetohtmlfiletype.h"
+
+bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) noexcept
 {
   try
   {
-    StrToContentType(s);
+    StrToFileType(s);
     return true;
   }
   catch (std::logic_error&)
@@ -36,57 +38,57 @@ bool ribi::c2h::CanStrToContentType(const std::string& s) noexcept
   }
 }
 
-const std::string ribi::c2h::ContentTypeToStr(const ContentType t)
+const std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
 {
   switch (t)
   {
-    case ContentType::code_snippet: return "code_snippet";
-    case ContentType::cpp: return "cpp";
-    case ContentType::pri: return "pri";
-    case ContentType::pro: return "pro";
-    case ContentType::py: return "py";
-    case ContentType::sh: return "sh";
-    case ContentType::txt: return "txt";
-    case ContentType::other: return "other";
-    case ContentType::n_types:
-      assert(!"Should not use ContentType::n_types");
-      throw std::logic_error("Must not use ContentType::n_types");
+    //case FileType::code_snippet: return "code_snippet";
+    case FileType::cpp: return "cpp";
+    case FileType::pri: return "pri";
+    case FileType::pro: return "pro";
+    case FileType::py: return "py";
+    case FileType::sh: return "sh";
+    case FileType::txt: return "txt";
+    //case FileType::other: return "other";
+    case FileType::n_types:
+      assert(!"Should never use FileType::n_types");
+      throw std::logic_error("Must never use FileType::n_types");
   }
   assert(!"Should not get here");
-  throw std::logic_error("c2h::ContentTypeToStr");
+  throw std::logic_error("c2h::FileTypeToStr");
 }
 
-const std::vector<ContentType> GetAllContentTypes() noexcept
+const std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() noexcept
 {
-  const std::vector<ContentType> v {
-    ContentType::code_snippet,
-    ContentType::cpp,
-    ContentType::pri,
-    ContentType::pro,
-    ContentType::py,
-    ContentType::sh,
-    ContentType::txt,
-    ContentType::other
+  const std::vector<FileType> v {
+    //FileType::code_snippet,
+    FileType::cpp,
+    FileType::pri,
+    FileType::pro,
+    FileType::py,
+    FileType::sh,
+    FileType::txt
+    //FileType::other
   };
-  assert(static_cast<int>(v.size()) == static_cast<int>(ContentType::n_types));
+  assert(static_cast<int>(v.size()) == static_cast<int>(FileType::n_types));
   return v;
 }
 
-ribi::c2h::ContentType ribi::c2h::StrToContentType(const std::string& s)
+ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
 {
-  if (s == "code_snippet") return ContentType::code_snippet;
-  if (s == "cpp") return ContentType::cpp;
-  if (s == "pri") return ContentType::pri;
-  if (s == "pro") return ContentType::pro;
-  if (s == "py") return ContentType::py;
-  if (s == "sh") return ContentType::sh;
-  if (s == "txt") return ContentType::txt;
-  if (s == "other") return ContentType::other;
+  //if (s == "code_snippet") return FileType::code_snippet;
+  if (s == "cpp") return FileType::cpp;
+  if (s == "pri") return FileType::pri;
+  if (s == "pro") return FileType::pro;
+  if (s == "py") return FileType::py;
+  if (s == "sh") return FileType::sh;
+  if (s == "txt") return FileType::txt;
+  //if (s == "other") return FileType::other;
   if (s == "n_types")
   {
-    assert(!"Should not use ContentType::n_types");
-    throw std::logic_error("Must not use ContentType::n_types");
+    assert(!"Should not use FileType::n_types");
+    throw std::logic_error("Must not use FileType::n_types");
   }
-  throw std::logic_error("Invalid string in StrToContentType");
+  throw std::logic_error("Invalid string in StrToFileType");
 }
 

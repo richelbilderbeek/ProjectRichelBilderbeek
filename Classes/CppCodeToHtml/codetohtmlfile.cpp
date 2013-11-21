@@ -126,6 +126,9 @@ const std::vector<std::string> ribi::c2h::File::CreateHtml(
     case FileType::txt:
       v.push_back(std::string("<h2>") + m_filename + std::string("</h2>"));
     break;
+    case FileType::n_types:
+      assert(!"Should never use FileType::n_types");
+      throw std::logic_error("Should never use FileType::n_types");
   }
 
   //Add end of heading and start of code

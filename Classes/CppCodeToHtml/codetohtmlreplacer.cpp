@@ -1,5 +1,10 @@
 #include "codetohtmlreplacer.h"
 
+#include <cassert>
+
+#include "codetohtmlreplacements.h"
+#include "trace.h"
+
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_cpp {};
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_pro {};
 boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::Replacer::m_replacements_txt {};
@@ -10,7 +15,7 @@ const ribi::c2h::Replacements& ribi::c2h::Replacer::GetReplacementsCpp()
   {
     m_replacements_cpp.reset(
       new Replacements(
-        ribi::c2h::File::CreateCppReplacements()));
+        ribi::c2h::Replacer::CreateCppReplacements()));
   }
   assert(m_replacements_cpp);
   return *m_replacements_cpp;
@@ -74,7 +79,7 @@ const std::string ribi::c2h::Replacer::ReplaceAll(
 }
 
 #ifndef NDEBUG
-void ribi::c2h::Replacer::Test()
+void ribi::c2h::Replacer::Test() noexcept
 {
   {
     static bool is_tested = false;

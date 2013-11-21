@@ -32,7 +32,9 @@ enum class FileType
   pro,          //.pro file
   py,           //.py file
   sh,           //.sh file
-  txt           //.txt file or other files
+  txt,          //.txt file or other files
+
+  n_types       //Used for debugging
 };
 
 } //~namespace c2h

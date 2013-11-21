@@ -1036,3 +1036,7 @@ Test/ToolOpenFoamExample7/constant/polyMesh/neighbour
 Test/ToolOpenFoamExample7/constant/polyMesh/owner
 Test/ToolOpenFoamExample7/constant/polyMesh/points
 Test/ToolOpenFoamExample8/dynamicCode/error/
+Test/ToolOpenFoamExample11/0.*
+Test/ToolOpenFoamExample11/1/
+Test/ToolOpenFoamExample12/0.*
+Test/ToolOpenFoamExample12/1/

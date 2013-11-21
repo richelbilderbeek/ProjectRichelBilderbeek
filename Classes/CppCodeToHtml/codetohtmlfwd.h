@@ -11,6 +11,7 @@ namespace ribi {
 namespace c2h {
 
 enum class FileType;
+enum class SnippetType;
 struct Replacements;
 struct Replacer;
 

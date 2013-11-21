@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFOAM</title>
+  <meta name="description" content="Tool OpenFOAM"/>
+  <meta name="keywords" content="Tool OpenFOAM rhosimplefoam: cannot find equation relaxation factor for 'pEqn' or a suitable default value"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1><a href="ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoConvergenceCriteriaFound.htm">rhosimplecfoam: crash at timestep 1, SIMPLE: no convergence criteria found</a></h1>
+<p>&nbsp;</p>
+<p>
+  An <a href="ToolOpenFoam.htm">OpenFOAM</a> error.
+</p>
+<p>&nbsp;</p>
+
+
+
+
+
+
+
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoConverge
+nceCriteriaFound>ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoConverge
+nceCriteriaFound.bat
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoConverge
+nceCriteriaFound>blockMesh.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : blockMesh.exe
+Date   : Nov 21 2013
+Time   : 15:30:50
+Host   : "AIRBEAR-W7-I5"
+PID    : 988
+Case   : D:/Projects/Test/ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleN
+oConvergenceCriteriaFound
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMas
+ter
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating block mesh from
+    "D:/Projects/Test/ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoCon
+vergenceCriteriaFound/constant/polyMesh/blockMeshDict"
+Creating curved edges
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+--> FOAM Warning :
+    From function polyMesh::polyMesh(... construct from shapes...)
+    in file meshes/polyMesh/polyMeshFromShapeMesh.C at line 888
+    Found 6 undefined faces in mesh; adding to default patch.
+
+Check topology
+
+        Basic statistics
+                Number of internal faces : 0
+                Number of boundary faces : 12
+                Number of defined boundary faces : 12
+                Number of undefined boundary faces : 0
+        Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 0.001
+
+Adding cell zones
+    0   inlet
+    1   outlet
+
+Writing cell zones as cellSets
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (0 -0.0433013 -0.005) (0.05 0.0433013 0.015)
+  nPoints: 18522
+  nCells: 16000
+  nFaces: 50400
+  nInternalFaces: 45600
+----------------
+Patches
+----------------
+  patch 0 (start: 45600 size: 400) name: Default_Boundary_Region
+  patch 1 (start: 46000 size: 400) name: inlet
+  patch 2 (start: 46400 size: 800) name: outlet
+  patch 3 (start: 47200 size: 800) name: sides
+  patch 4 (start: 48000 size: 2400) name: defaultFaces
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoConverge
+nceCriteriaFound>rhoSimplecFoam.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : rhoSimplecFoam.exe
+Date   : Nov 21 2013
+Time   : 15:30:51
+Host   : "AIRBEAR-W7-I5"
+PID    : 5512
+Case   : D:/Projects/Test/ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleN
+oConvergenceCriteriaFound
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMas
+ter
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+SIMPLE: no convergence criteria found. Calculations will run for 1 steps.
+
+Reading thermophysical properties
+
+Selecting thermodynamics package hPsiThermo<pureMixture<sutherlandTransport<spec
+ieThermo<hConstThermo<perfectGas>>>>>
+Reading field U
+
+Reading/calculating face flux field phi
+
+Creating turbulence model
+
+Selecting RAS turbulence model kEpsilon
+kEpsilonCoeffs
+{
+    Cmu             0.09;
+    C1              1.44;
+    C2              1.92;
+    C3              -0.33;
+    sigmak          1;
+    sigmaEps        1.3;
+    Prt             1;
+}
+
+
+Starting time loop
+
+Time = 0.01
+
+GAMG:  Solving for p, Initial residual = 1, Final residual = 0.0183489, No Itera
+tions 1
+time step continuity errors : sum local = 565.605, global = -563.076, cumulative
+ = -563.076
+rho max/min : 0.864484 0.382345
+GAMG:  Solving for h, Initial residual = 1, Final residual = 0.00575689, No Iter
+ations 1
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplecFoamCrashAtTimestep1SimpleNoConverge
+nceCriteriaFound>
+
+
+
+
+
+
+
+
+
+
+
+Solution:
+
+Unknown
+
+
+
+
+
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

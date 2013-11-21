@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "codetohtmldialog.h"
-#include "codetohtmltechinfotype.h"
+//#include "codetohtmltechinfotype.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -382,7 +382,8 @@ const std::vector<std::string> ribi::CodeToHtmlMenuDialog::GetVersionHistory() c
     "2013-09-05: version 2.7: transition to namespace ribi",
     "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
     "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
-    "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek"
+    "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
+    "201x-xx-xx: version 3.0: improved interface and architecture"
   };
   return v;
 }

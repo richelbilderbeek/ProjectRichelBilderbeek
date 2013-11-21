@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "codetohtmlfwd.h"
 
 namespace ribi {
 namespace c2h {

@@ -23,7 +23,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <stdexcept>
 
-bool CanStrToSnippetType(const std::string& s)
+#include "codetohtmlsnippettype.h"
+
+bool ribi::c2h::SnippetTypes::CanStrToSnippetType(const std::string& s)
 {
   try
   {
@@ -36,37 +38,41 @@ bool CanStrToSnippetType(const std::string& s)
   }
 }
 
-const std::string SnippetTypeToStr(const SnippetType t)
+const std::string ribi::c2h::SnippetTypes::SnippetTypeToStr(const SnippetType t)
 {
   switch (t)
   {
     case SnippetType::cpp: return "cpp";
-    case SnippetType::foam: return "foam";
+    //case SnippetType::foam: return "foam";
     case SnippetType::text: return "text";
-    case SnippetType::music: return "music";
+    //case SnippetType::music: return "music";
     //case SnippetType::tool: return "tool";
+    case SnippetType::n_snippets:
+      assert(!"Never use SnippetType::n_snippets");
+      throw std::logic_error("Never use SnippetType::n_snippets");
   }
   assert(!"Should not get here");
   throw std::logic_error("c2h::SnippetTypeToStr");
 }
 
-const std::vector<SnippetType> GetAllSnippetTypes()
+const std::vector<ribi::c2h::SnippetType> ribi::c2h::SnippetTypes::GetAllSnippetTypes()
 {
-  return
-  {
+  const std::vector<SnippetType> v {
     SnippetType::cpp,
-    SnippetType::foam,
+    //SnippetType::foam,
     SnippetType::text,
-    SnippetType::music
+    //SnippetType::music
     //,SnippetType::tool
   };
+  assert(static_cast<int>(v.size()) == static_cast<int>(SnippetType::n_snippets));
+  return v;
 }
 
-SnippetType StrToSnippetType(const std::string& s)
+ribi::c2h::SnippetType ribi::c2h::SnippetTypes::StrToSnippetType(const std::string& s)
 {
   if (s == "cpp") return SnippetType::cpp;
-  if (s == "foam") return SnippetType::foam;
-  if (s == "music") return SnippetType::music;
+  //if (s == "foam") return SnippetType::foam;
+  //if (s == "music") return SnippetType::music;
   if (s == "text") return SnippetType::text;
   throw std::logic_error("Invalid string in StrToCodeToHtmlSnippetType");
 }

@@ -96,6 +96,9 @@ const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   {
     case SnippetType::cpp : file_type = FileType::cpp; break;
     case SnippetType::text: file_type = FileType::txt; break;
+    case SnippetType::n_snippets:
+      assert("Never use SnippetType::n_snippets");
+      throw std::logic_error("Never use SnippetType::n_snippets");
   }
   return Replacer::ToHtml(code,file_type);
 }

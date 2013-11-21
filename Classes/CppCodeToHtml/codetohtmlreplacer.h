@@ -67,6 +67,9 @@ struct Replacer
     const std::string& replaceWhat,
     const std::string& replaceWithWhat);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi
