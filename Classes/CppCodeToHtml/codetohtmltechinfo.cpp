@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
+ribi::c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
   :
     m_application_types{},
     m_compilers{},
@@ -121,7 +121,7 @@ c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
 
 }
 
-const std::vector<std::string> c2h::TechInfo::ToHtml() const
+const std::vector<std::string> ribi::c2h::TechInfo::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<h2>Technical facts</h2>");

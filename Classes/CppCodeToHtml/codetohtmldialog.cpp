@@ -36,18 +36,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include "codetohtmlcontent.h"
+#include "codetohtmlfile.h"
 #include "codetohtmldialog.h"
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
 #include "codetohtmlinfo.h"
 #include "codetohtmltechinfo.h"
+#include "codetohtmlreplacer.h"
 #include "codetohtmlversion.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-c2h::Dialog::Dialog(
+/*
+ribi::c2h::Dialog::Dialog(
   const PageType page_type,
   const std::string& source,
   const ContentType content_type
@@ -78,13 +80,27 @@ c2h::Dialog::Dialog(
   assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
     && "Source can be a file or a path");
 }
+*/
 
-c2h::Dialog::~Dialog() noexcept
+ribi::c2h::Dialog::~Dialog() noexcept
 {
 
 }
 
-const std::string c2h::Dialog::ExtractPageName(const std::string& s) noexcept
+const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
+  const std::vector<std::string>& code,
+  const SnippetType snippet_type) noexcept
+{
+  FileType file_type = FileType::txt;
+  switch (snippet_type)
+  {
+    case SnippetType::cpp : file_type = FileType::cpp; break;
+    case SnippetType::text: file_type = FileType::txt; break;
+  }
+  return Replacer::ToHtml(code,file_type);
+}
+
+const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
 {
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml/
@@ -161,8 +177,70 @@ const std::string c2h::Dialog::ExtractPageName(const std::string& s) noexcept
   return t;
 }
 
+const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
+  const std::string& filename,
+  const FileType file_type) noexcept
+{
+  const std::vector<std::string> v {
+    ribi::fileio::FileToVector(filename)
+  };
+  return Replacer::ToHtml(v,file_type);
+}
+
+/*
+const std::vector<std::string> ribi::c2h::Dialog::ProFileToHtml(const std::string& filename) noexcept
+{
+  assert(ribi::fileio::GetExtension(filename) == ".pro");
+  boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
+
+  std::vector<std::string> v;
+  {
+    const boost::shared_ptr<Header> h {
+      new Header(
+        PageType::cpp,
+        ribi::fileio::GetFileBasename(filename)
+      )
+    };
+    const std::vector<std::string> w = h->ToHtml();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  {
+    assert(ribi::fileio::IsRegularFile(filename));
+    boost::shared_ptr<TechInfo> i(new TechInfo( { filename } ));
+    const std::vector<std::string> w = i->ToHtml();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  //Obtain all files with a full path
+  {
+    const boost::shared_ptr<ribi::QtCreatorProFileZipScript> script(
+      new ribi::QtCreatorProFileZipScript(pro_file));
+
+    const auto files = script->GetFilenames();
+    std::for_each(files.begin(),files.end(),
+      [&v](const std::string& filename)
+      {
+        const boost::scoped_ptr<const File> content {
+          new File(
+            filename,
+            ribi::fileio::FileToVector(filename)
+          )
+        };
+        const std::vector<std::string> w = content->GetHtml();
+        std::copy(w.begin(),w.end(),std::back_inserter(v));
+      }
+    );
+  }
+  {
+    const boost::shared_ptr<Footer> f(new Footer(PageType::cpp));
+    const std::vector<std::string> w = f->ToHtml();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
+*/
+
 #ifndef NDEBUG
-void c2h::Dialog::Test()
+void ribi::c2h::Dialog::Test()
 {
   {
     static bool is_tested = false;
@@ -263,7 +341,8 @@ void c2h::Dialog::Test()
 }
 #endif
 
-const std::vector<std::string> c2h::Dialog::ToHtml() const
+/*
+const std::vector<std::string> ribi::c2h::Dialog::ToHtml() const
 {
   std::vector<std::string> v;
 
@@ -331,3 +410,4 @@ const std::vector<std::string> c2h::Dialog::ToHtml() const
   #endif
   return v;
 }
+*/

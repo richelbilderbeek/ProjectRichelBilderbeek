@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-Replacements::Replacements(
+ribi::c2h::Replacements::Replacements(
   const std::vector<std::pair<std::string,std::string> >& replacements)
   : m_replacements(CreateAllReplacements(replacements))
 {
@@ -134,7 +134,7 @@ Replacements::Replacements(
 }
 
 const std::vector<std::pair<std::string,std::string> >
-  Replacements::CreateAllReplacements(
+  ribi::c2h::Replacements::CreateAllReplacements(
     const std::vector<std::pair<std::string,std::string> >& replacements)
 {
   std::vector<std::pair<std::string,std::string> > v;
@@ -177,7 +177,7 @@ const std::vector<std::pair<std::string,std::string> >
   return v;
 }
 
-const std::vector<std::pair<std::string,std::string> > Replacements::CreateEndReplacements()
+const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateEndReplacements()
 {
   return
   {
@@ -193,7 +193,7 @@ const std::vector<std::pair<std::string,std::string> > Replacements::CreateEndRe
   };
 }
 
-const std::vector<std::pair<std::string,std::string> > Replacements::CreateInitialReplacements()
+const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacements::CreateInitialReplacements()
 {
   return
   {
@@ -205,5 +205,3 @@ const std::vector<std::pair<std::string,std::string> > Replacements::CreateIniti
     { ">","[GREATER_THAN]" }
   };
 }
-
-

@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFOAM</title>
+  <meta name="description" content="Tool OpenFOAM"/>
+  <meta name="keywords" content="Tool OpenFOAM rhosimplefoam: cannot find equation relaxation factor for 'pEqn' or a suitable default value"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h2><a href="ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxationFactorForPeqnOrAsuitableDefaultValue.htm">rhosimplefoam: cannot find equation relaxation factor for 'pEqn' or a suitable default value</a></h2>
+<p>&nbsp;</p>
+<p>
+  An <a href="ToolOpenFoam.htm">OpenFOAM</a> error.
+</p>
+<p>&nbsp;</p>
+
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxationFacto
+rForPeqnOrAsuitableDefaultValue>ToolOpenFoamErrorRhosimplefoamCannotFindEquation
+RelaxationFactorForPeqnOrAsuitableDefaultValue.bat
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxationFacto
+rForPeqnOrAsuitableDefaultValue>blockMesh.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : blockMesh.exe
+Date   : Nov 21 2013
+Time   : 11:34:20
+Host   : "AIRBEAR-W7-I5"
+PID    : 4656
+Case   : D:/Projects/Test/ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxa
+tionFactorForPeqnOrAsuitableDefaultValue
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMas
+ter
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating block mesh from
+    "D:/Projects/Test/ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxation
+FactorForPeqnOrAsuitableDefaultValue/constant/polyMesh/blockMeshDict"
+Creating curved edges
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+
+Check topology
+
+        Basic statistics
+                Number of internal faces : 3
+                Number of boundary faces : 18
+                Number of defined boundary faces : 18
+                Number of undefined boundary faces : 0
+        Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 0.001
+
+Adding cell zones
+    0   inlet
+    1   outlet
+    2   bend1
+    3   bend2
+
+Writing cell zones as cellSets
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (-0.5 -0.075 -0.025) (0.075 0.075 0.025)
+  nPoints: 123921
+  nCells: 112000
+  nFaces: 347600
+  nInternalFaces: 324400
+----------------
+Patches
+----------------
+  patch 0 (start: 324400 size: 22400) name: Default_Boundary_Region
+  patch 1 (start: 346800 size: 400) name: inlet
+  patch 2 (start: 347200 size: 400) name: outlet
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxationFacto
+rForPeqnOrAsuitableDefaultValue>rhoSimpleFoam.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : rhoSimpleFoam.exe
+Date   : Nov 21 2013
+Time   : 11:34:23
+Host   : "AIRBEAR-W7-I5"
+PID    : 5848
+Case   : D:/Projects/Test/ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxa
+tionFactorForPeqnOrAsuitableDefaultValue
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMas
+ter
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+SIMPLE: no convergence criteria found. Calculations will run for 500 steps.
+
+Reading thermophysical properties
+
+Selecting thermodynamics package hPsiThermo<pureMixture<sutherlandTransport<spec
+ieThermo<hConstThermo<perfectGas>>>>>
+Reading field U
+
+Reading/calculating face flux field phi
+
+Creating turbulence model
+
+Selecting RAS turbulence model kEpsilon
+kEpsilonCoeffs
+{
+    Cmu             0.09;
+    C1              1.44;
+    C2              1.92;
+    C3              -0.33;
+    sigmak          1;
+    sigmaEps        1.3;
+    Prt             1;
+}
+
+
+Starting time loop
+
+Time = 1
+
+GAMG:  Solving for Ux, Initial residual = 1, Final residual = 0.0173468, No Iter
+ations 1
+GAMG:  Solving for Uy, Initial residual = 1, Final residual = 0.071383, No Itera
+tions 1
+GAMG:  Solving for Uz, Initial residual = 1, Final residual = 0.0302412, No Iter
+ations 1
+GAMG:  Solving for h, Initial residual = 0.573166, Final residual = 0.524621, No
+ Iterations 1000
+
+
+--> FOAM FATAL IO ERROR:
+Cannot find equation relaxation factor for 'pEqn' or a suitable default value.
+
+file: D:/Projects/Test/ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxatio
+nFactorForPeqnOrAsuitableDefaultValue/system/fvSolution::relaxationFactors::equa
+tions from line 68 to line 71.
+
+    From function Foam::solution::eqnRelaxationFactor(const word&)
+    in file matrices/solution/solution.C at line 327.
+
+FOAM exiting
+
+
+D:\Projects\Test\ToolOpenFoamErrorRhosimplefoamCannotFindEquationRelaxationFacto
+rForPeqnOrAsuitableDefaultValue>
+
+
+
+
+
+
+
+
+Solution
+
+In system/fvSolution change this:
+
+relaxationFactors
+{
+    fields
+    {
+        p               1;
+        rho             1;
+    }
+    equations
+    {
+        U               0.9;
+        h               0.8;
+        k               0.9;
+        epsilon         0.9;
+    }
+}
+
+to 
+
+
+
+relaxationFactors
+{
+    fields
+    {
+        p               1;
+        rho             1;
+    }
+    equations
+    {
+        U               0.9;
+        h               0.8;
+        k               0.9;
+        epsilon         0.9;
+		pEqn			0.3;
+    }
+}
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

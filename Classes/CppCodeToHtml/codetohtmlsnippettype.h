@@ -21,9 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef CODETOHTMLSNIPPETTYPE_H
 #define CODETOHTMLSNIPPETTYPE_H
 
-#include <string>
-#include <vector>
-
 namespace ribi {
 namespace c2h {
 
@@ -39,12 +36,6 @@ enum class SnippetType
   text
 };
 
-/*
-bool CanStrToPageType(const std::string& s);
-const std::string PageTypeToStr(const SnippetType t);
-const std::vector<SnippetType> GetAllPageTypes();
-SnippetType StrToPageType(const std::string& s);
-*/
 
 } //~namespace c2h
 } //~namespace ribi

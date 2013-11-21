@@ -1,0 +1,72 @@
+//---------------------------------------------------------------------------
+/*
+CodeToHtml, converts C++ code to HTML
+Copyright (C) 2010-2013  Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
+//---------------------------------------------------------------------------
+#include "codetohtmlsnippettypes.h"
+
+#include <cassert>
+#include <stdexcept>
+
+bool CanStrToSnippetType(const std::string& s)
+{
+  try
+  {
+    StrToSnippetType(s);
+    return true;
+  }
+  catch (std::logic_error&)
+  {
+    return false;
+  }
+}
+
+const std::string SnippetTypeToStr(const SnippetType t)
+{
+  switch (t)
+  {
+    case SnippetType::cpp: return "cpp";
+    case SnippetType::foam: return "foam";
+    case SnippetType::text: return "text";
+    case SnippetType::music: return "music";
+    //case SnippetType::tool: return "tool";
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("c2h::SnippetTypeToStr");
+}
+
+const std::vector<SnippetType> GetAllSnippetTypes()
+{
+  return
+  {
+    SnippetType::cpp,
+    SnippetType::foam,
+    SnippetType::text,
+    SnippetType::music
+    //,SnippetType::tool
+  };
+}
+
+SnippetType StrToSnippetType(const std::string& s)
+{
+  if (s == "cpp") return SnippetType::cpp;
+  if (s == "foam") return SnippetType::foam;
+  if (s == "music") return SnippetType::music;
+  if (s == "text") return SnippetType::text;
+  throw std::logic_error("Invalid string in StrToCodeToHtmlSnippetType");
+}

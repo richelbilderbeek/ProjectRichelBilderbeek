@@ -18,15 +18,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
+#include "codetohtmlreplacer.h"
 
-
-#include "codetohtmlcontent.h"
+#include <cassert>
 
 #include "trace.h"
 
-const std::vector<std::pair<std::string,std::string> > c2h::Content::CreateCppReplacements() noexcept
+const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::CreateCppReplacements() noexcept
 {
-  std::vector<std::pair<std::string,std::string> > v { Content::CreateProReplacements() };
+  std::vector<std::pair<std::string,std::string> > v { Replacer::CreateProReplacements() };
   const std::vector<std::pair<std::string,std::string> > w
   {
     { "---------------------------------------------------------------------------","$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$-$" },

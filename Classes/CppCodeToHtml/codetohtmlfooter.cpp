@@ -24,33 +24,26 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-c2h::Footer::Footer(const PageType page_type)
-  : m_page_type(page_type)
+ribi::c2h::Footer::Footer()
 {
-
+  #ifndef NDEBUG
+  //Test();
+  #endif
 }
 
-const std::vector<std::string> c2h::Footer::ToHtml() const
+const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) const
 {
   std::vector<std::string> v;
-  switch (m_page_type)
+  switch (page_type)
   {
-    case PageType::cpp:
-    case PageType::text:
+    case FooterType::cpp:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
-    case PageType::foam:
-      v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
-      break;
-    case PageType::music:
-      v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
-      break;
-    //case PageType::tool:
-    //  v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-    //  break;
-    default:
-      assert(!"Should not get here");
-    break;
+
+    //v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
+    //v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
+    //v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
+
   }
   v.push_back("<p><a href=\"index.htm\">Go back to Richel Bilderbeek's homepage</a>.</p>");
   v.push_back("<p>&nbsp;</p>");

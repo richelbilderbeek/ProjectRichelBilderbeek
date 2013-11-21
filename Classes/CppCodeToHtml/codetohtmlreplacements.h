@@ -28,13 +28,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include "codetohtmlfiletype.h"
+#include "codetohtmlfwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace c2h {
 
 ///\brief
-///Contains all code replacements
+///A low-level class that contains all code replacements
+///Use Replacer for actual code replacements
 ///
 ///All code replacements have the following order:
 ///-m_initial_replacements: converts '&' to '[AMPERSAND]'
@@ -44,16 +47,19 @@ namespace c2h {
 ///m_all_replacements contains all replacements as a single std::vector
 struct Replacements
 {
-  Replacements(const std::vector<std::pair<std::string,std::string> >& replacements);
   Replacements(const Replacements&) = delete;
   Replacements& operator=(const Replacements&) = delete;
 
   const std::vector<std::pair<std::string,std::string> >& Get() const { return m_replacements; }
 
   private:
+  friend struct Replacer;
+  Replacements(const std::vector<std::pair<std::string,std::string> >& replacements);
+
   ~Replacements() noexcept {}
   friend void boost::checked_delete<>(Replacements*);
   friend void boost::checked_delete<>(const Replacements*);
+
 
   ///The replacements
   const std::vector<std::pair<std::string,std::string> > m_replacements;

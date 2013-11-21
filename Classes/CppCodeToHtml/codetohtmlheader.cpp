@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "fileio.h"
 
+/*
 ribi::c2h::Header::Header(
   const HeaderType page_type,
   const std::string& filename)
@@ -35,6 +36,7 @@ ribi::c2h::Header::Header(
 {
 
 }
+*/
 
 const std::string ribi::c2h::Header::CreateFilename(
   const HeaderType page_type,
@@ -44,10 +46,10 @@ const std::string ribi::c2h::Header::CreateFilename(
   {
     switch (page_type)
     {
-      case HeaderType::cpp:   return "CppXXX.htm";
-      case HeaderType::music: return "SongXXX.htm";
-      case HeaderType::text:  return "CppXXX.htm";
-      case HeaderType::foam:  return "FoamXXX.htm";
+      case HeaderType::cpp:   return "Cpp.htm";
+      //case HeaderType::music: return "SongXXX.htm";
+      //case HeaderType::text:  return "CppXXX.htm";
+      //case HeaderType::foam:  return "FoamXXX.htm";
     }
     assert(!"Should not get here");
     throw std::logic_error("ribi::c2h::Header::CreateFilename");
@@ -68,9 +70,9 @@ const std::string ribi::c2h::Header::CreateTitle(
     switch (page_type)
     {
       case HeaderType::cpp:
-      case HeaderType::music:
-      case HeaderType::text:
-      case HeaderType::foam:
+      //case HeaderType::music:
+      //case HeaderType::text:
+      //case HeaderType::foam:
        return "XXX";
     }
     assert(!"Should not get here");
@@ -89,22 +91,29 @@ const std::string ribi::c2h::Header::CreateTitle(
   }
 }
 
-const std::vector<std::string> ribi::c2h::Header::ToHtml() const
+const std::vector<std::string> ribi::c2h::Header::ToHtml(
+  const HeaderType header_type,
+  const std::string& filename
+  ) const noexcept
 {
+  const std::string m_filename { CreateFilename(header_type,filename) };
+  const std::string m_title { CreateTitle(header_type,filename) };
+
   std::vector<std::string> v;
   v.push_back("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"");
   v.push_back("\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
   v.push_back("<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">");
   v.push_back("<head>");
   v.push_back("  <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/>");
-  switch (m_page_type)
+  switch (header_type)
   {
-    case HeaderType::text:
+    //case HeaderType::text:
     case HeaderType::cpp:
       v.push_back("  <title>" + m_title + "</title>");
       v.push_back("  <meta name=\"description\" content=\"C++ " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"C++ " + m_title + " code snippet\"/>");
     break;
+    /*
     case HeaderType::foam:
       v.push_back("  <title>XXX</title>");
       v.push_back("  <meta name=\"description\" content=\"OpenFOAM " + m_title + "\"/>");
@@ -123,18 +132,20 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml() const
     default:
       assert(!"Should not get here");
     break;
+    */
   }
   v.push_back("  <link rel=\"stylesheet\" href=\"Richelbilderbeek.css\" type=\"text/css\"/>");
   v.push_back("</head>");
   v.push_back("<!-- End of head, start of body -->");
   v.push_back("<body>");
   v.push_back("<p><a href=\"index.htm\">Go back to Richel Bilderbeek's homepage</a>.</p>");
-  switch (m_page_type)
+  switch (header_type)
   {
     case HeaderType::cpp:
-    case HeaderType::text:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
+    /*
+    case HeaderType::text:
     case HeaderType::foam:
       v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
       break;
@@ -147,6 +158,7 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml() const
     default:
       assert(!"Should not get here");
     break;
+    */
   }
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
@@ -155,12 +167,13 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml() const
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<!-- Page header -->");
 
-  switch (m_page_type)
+  switch (header_type)
   {
     case HeaderType::cpp:
-    case HeaderType::text:
       v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
+    /*
+    case HeaderType::text:
     case HeaderType::foam:
       v.push_back("<h1>(<a href=\"ToolOpenFoam.htm\">OpenFOAM</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
@@ -173,6 +186,7 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml() const
     default:
       assert(!"Should not get here");
     break;
+    */
   }
   v.push_back("<p>&nbsp;</p>");
   return v;

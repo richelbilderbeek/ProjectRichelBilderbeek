@@ -28,7 +28,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtmlfiletype.h"
 #include "codetohtmlsnippettype.h"
-#include "codetohtmltechinfotype.h"
 #include "codetohtmlfoldertype.h"
 
 namespace ribi {
@@ -36,50 +35,55 @@ namespace c2h {
 
 struct Info;
 
-///CodeToHtmlDialog is the GUI independent UI of CodeToHtml
+///c2h::Dialog is the GUI independent UI of CodeToHtml
+///It provides a higher-level interface than Replacer:
+///where Replacer can convert text, Dialog converts
+///- code snippets
+///- files
+///- folders
 struct Dialog
 {
-  explicit Dialog(
-    const PageType page_type,
-    const std::string& source,
-    const FileType content_type
-  );
+  //explicit Dialog(
+  //  const PageType page_type,
+  //  const std::string& source,
+  //  const FileType content_type
+  //);
 
   ///Convert a file to an HTML page
-  const std::vector<std::string> FileToHtml(
+  static const std::vector<std::string> FileToHtml(
     const std::string& file_name,
     const FileType file_type
-    ) const;
+    ) noexcept;
 
   ///Convert a folder to an HTML page
-  const std::vector<std::string> FolderToHtml(
+  ///This will call
+  ///- ProFolderToHtml
+  ///- FoamFolderToHtml
+  ///- TextFolderToHtml
+  static const std::vector<std::string> FolderToHtml(
     const std::string& folder_name,
     const FolderType folder_type
-    ) const;
+    ) noexcept;
 
   ///Convert a snippet to an HTML page
-  const std::vector<std::string> SnippetToHtml(
-    const std::string& folder_name,
-    const SnippetType folder_type
-    ) const;
-
-
+  static const std::vector<std::string> SnippetToHtml(
+    const std::vector<std::string>& code,
+    const SnippetType snippet_type
+  ) noexcept;
 
   private:
   ~Dialog() noexcept;
   friend void boost::checked_delete<>(Dialog*);
   friend void boost::checked_delete<>(const Dialog*);
 
-  const FileType m_content_type;
-  const boost::scoped_ptr<const Info> m_info;
-  const PageType m_page_type;
-  const std::string m_source;
-  //const TechInfoType m_tech_info;
-
   ///Extract the page name, from, for example
   /// '/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml'
   /// to 'ToolCodeToHtml'
   static const std::string ExtractPageName(const std::string& s) noexcept;
+
+  ///Converts a .pro file to HTML
+  ///NOT IMPRESSED BY ITS USEFULLNESS
+  //static const std::vector<std::string> ProFileToHtml(const std::string& filename) noexcept;
 
   #ifndef NDEBUG
   ///Test this class

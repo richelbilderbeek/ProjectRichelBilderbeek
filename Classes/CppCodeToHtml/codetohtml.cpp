@@ -35,9 +35,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDir>
 #include <QFile>
 
-#include "codetohtmlcontent.h"
+#include "codetohtmlfile.h"
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
+#include "codetohtmlreplacer.h"
 #include "codetohtmlsnippettype.h"
 #include "codetohtmltechinfo.h"
 #include "fileio.h"
@@ -209,32 +210,10 @@ void ribi::c2h::Test()
 }
 #endif
 
-const std::vector<std::string> ribi::c2h::ConvertCodeSnippet(
-  const std::vector<std::string>& code,
-  const SnippetType snippet_type)
-{
-  FileType file_type = FileType::other;
-  switch (snippet_type)
-  {
-    case SnippetType::cpp : file_type = FileType::cpp; break;
-    case SnippetType::text: file_type = FileType::txt; break;
-  }
 
-  const boost::shared_ptr<File> file(new File(code,file_type));
-  return file->GetHtml();
-}
 
-const std::vector<std::string> ribi::c2h::ConvertFile(
-  const std::string& filename,
-  const FileType content_type)
-{
-  const std::vector<std::string> v {
-    ribi::fileio::FileToVector(filename)
-  };
-  const boost::shared_ptr<File> content(new File(filename,v,content_type));
-  return content->GetHtml();
-}
 
+/*
 const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& foldername)
 {
   std::vector<std::string> v;
@@ -245,28 +224,29 @@ const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& folder
     {
       const std::string filename_full = foldername + "/" + filename;
       assert(ribi::fileio::IsRegularFile(filename_full));
-      const boost::shared_ptr<File> content {
-        new File(
-          filename,
-          ribi::fileio::FileToVector(filename_full)
-        )
+      const std::vector<std::string> w {
+        Replacer::ToHtml(ribi::fileio::FileToVector(filename_full),
+        ?FileType::txt?)
       };
-      const std::vector<std::string> w = content->GetHtml();
+
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
   }
   return v;
 }
+*/
 
+/*
 const std::vector<std::string> ribi::c2h::ConvertFolder(
   const std::string& foldername,
-  const PageType page_type)
+  const FolderType folder_type)
 {
   std::vector<std::string> v;
   {
+    HeaderType header_type = ?HeaderType::cpp?;
     const boost::shared_ptr<Header> h {
       new Header(
-        page_type,
+        folder_type,
         ribi::fileio::GetFileBasename(foldername))
     };
     const std::vector<std::string> w = h->ToHtml();
@@ -301,62 +281,15 @@ const std::vector<std::string> ribi::c2h::ConvertFolder(
     );
   }
   {
-    const boost::shared_ptr<Footer> c(new Footer(page_type));
+    const boost::shared_ptr<Footer> c(new Footer(folder_type));
     const std::vector<std::string> w = c->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
 }
+*/
 
-const std::vector<std::string> ribi::c2h::ConvertProject(const std::string& filename)
-{
-  assert(ribi::fileio::GetExtension(filename) == ".pro");
-  boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
 
-  std::vector<std::string> v;
-  {
-    const boost::shared_ptr<Header> h {
-      new Header(
-        PageType::cpp,
-        ribi::fileio::GetFileBasename(filename)
-      )
-    };
-    const std::vector<std::string> w = h->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  {
-    assert(ribi::fileio::IsRegularFile(filename));
-    boost::shared_ptr<TechInfo> i(new TechInfo( { filename } ));
-    const std::vector<std::string> w = i->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  //Obtain all files with a full path
-  {
-    const boost::shared_ptr<ribi::QtCreatorProFileZipScript> script(
-      new ribi::QtCreatorProFileZipScript(pro_file));
-
-    const auto files = script->GetFilenames();
-    std::for_each(files.begin(),files.end(),
-      [&v](const std::string& filename)
-      {
-        const boost::scoped_ptr<const File> content {
-          new File(
-            filename,
-            ribi::fileio::FileToVector(filename)
-          )
-        };
-        const std::vector<std::string> w = content->GetHtml();
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-    );
-  }
-  {
-    const boost::shared_ptr<Footer> f(new Footer(PageType::cpp));
-    const std::vector<std::string> w = f->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  return v;
-}
 
 
 

@@ -33,7 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-c2h::Info::Info()
+ribi::c2h::Info::Info()
   : m_page_info(CreatePageInfo())
     //m_page_name(GetFileBasename(source))
 {
@@ -47,7 +47,7 @@ c2h::Info::Info()
   }
 }
 
-const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo()
+const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo()
 {
   //Do not create this map from a single huge initializer list: the compiler will choke on it after about 5000 lines
   typedef std::string Key;
@@ -12798,7 +12798,7 @@ const std::map<std::string,std::vector<std::string> > c2h::Info::CreatePageInfo(
   return n;
 }
 
-const std::string c2h::Info::GetTime() noexcept
+const std::string ribi::c2h::Info::GetTime() noexcept
 {
   const std::time_t t = std::time(0);
   const std::string s = std::ctime( &t);
@@ -12806,12 +12806,12 @@ const std::string c2h::Info::GetTime() noexcept
 }
 
 
-const std::string c2h::Info::GetVersion() noexcept
+const std::string ribi::c2h::Info::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> c2h::Info::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 {
   return {
     "2013-09-20: version 1.0: initial versioning, added tests",
@@ -12820,14 +12820,14 @@ const std::vector<std::string> c2h::Info::GetVersionHistory() noexcept
 }
 
 #ifndef NDEBUG
-void c2h::Info::Test()
+void ribi::c2h::Info::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting c2h::Info::Test");
+  TRACE("Starting ribi::c2h::Info::Test");
   {
     const c2h::Info t;
     #ifndef _WIN32
@@ -12863,7 +12863,7 @@ void c2h::Info::Test()
       {
         TRACE("ERROR: invalid HTML in the following c2h::info page");
         TRACE(p.first);
-        TRACE("SOLUTION: Clean HTML in c2h::Info::CreatePageInfo");
+        TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
 
         if (p.first == std::string("ZZZ_I_MUST_FAIL")) continue;
       }
@@ -12872,12 +12872,12 @@ void c2h::Info::Test()
     #endif
     assert(!t.ToHtml("").empty());
   }
-  TRACE("Finished c2h::Info::Test successfully");
+  TRACE("Finished ribi::c2h::Info::Test successfully");
 
 }
 #endif
 
-const std::vector<std::string> c2h::Info::ToHtml(const std::string page_name) const
+const std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
 {
   assert(page_name.find('/') == std::string::npos
     && "A c2h::Info page must not contain a slash");

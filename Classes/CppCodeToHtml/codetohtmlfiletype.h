@@ -21,9 +21,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #ifndef CODETOHTMLFILETYPE_H
 #define CODETOHTMLFILETYPE_H
 
-#include <string>
-#include <vector>
-
 namespace ribi {
 namespace c2h {
 
@@ -35,14 +32,8 @@ enum class FileType
   pro,          //.pro file
   py,           //.py file
   sh,           //.sh file
-  txt,          //.txt file
-  other         //File with another extension
+  txt           //.txt file or other files
 };
-
-bool CanStrToContentType(const std::string& s) noexcept;
-const std::string ContentTypeToStr(const FileType t);
-const std::vector<FileType> GetAllContentTypes() noexcept;
-FileType StrToContentType(const std::string& s);
 
 } //~namespace c2h
 } //~namespace ribi

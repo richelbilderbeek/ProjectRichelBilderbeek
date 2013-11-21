@@ -38,18 +38,19 @@ namespace c2h {
 ///Defines the header of the resulting HTML page
 struct Header
 {
-  explicit Header(
-    const HeaderType page_type,
-    const std::string& filename);
+  Header() {}
 
   ///Convert this header to HTML
-  const std::vector<std::string> ToHtml() const;
+  const std::vector<std::string> ToHtml(
+    const HeaderType page_type,
+    const std::string& filename
+    ) const noexcept;
 
   ///Obtain the HTML page its filename
-  const std::string& GetFilename() const { return m_filename; }
+  //const std::string& GetFilename() const { return m_filename; }
 
   ///Obtain the HTML page its filename
-  HeaderType GetHeaderType() const { return m_header_type; }
+  //HeaderType GetHeaderType() const { return m_header_type; }
 
   private:
   ~Header() noexcept {}
@@ -57,13 +58,13 @@ struct Header
   friend void boost::checked_delete<>(const Header*);
 
   ///The HTML filename of the header
-  const std::string m_filename;
+  //const std::string m_filename;
 
   ///The page type of the CodeToHtmlHeader
-  HeaderType m_header_type;
+  //HeaderType m_header_type;
 
   ///The title of the header
-  const std::string m_title;
+  //const std::string m_title;
 
   static const std::string CreateFilename(
     const HeaderType page_type,

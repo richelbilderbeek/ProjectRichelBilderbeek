@@ -32,9 +32,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlfoldertype.h"
 #pragma GCC diagnostic pop
 
-///c2h contains the CodeToHtml functions
 namespace ribi {
 namespace c2h {
+
   #ifndef NDEBUG
   ///Test these functions
   void Test();
@@ -48,9 +48,10 @@ namespace c2h {
   ///Convert a file
   const std::vector<std::string> ConvertFile(
     const std::string& filename,
-    const FileType content_type);
+    const FileType file_type);
 
   ///Convert all file in a folder/directory, without adding header, technical info or footer
+  /*
   const std::vector<std::string> ConvertFiles(
     const std::string& foldername);
 
@@ -58,6 +59,7 @@ namespace c2h {
   const std::vector<std::string> ConvertFolder(
     const std::string& foldername,
     const FolderType page_type);
+  */
 
   ///Convert a .pro file
   const std::vector<std::string> ConvertProject(const std::string& filename);

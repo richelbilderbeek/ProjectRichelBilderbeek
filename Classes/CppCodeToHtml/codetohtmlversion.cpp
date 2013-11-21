@@ -45,14 +45,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #pragma GCC diagnostic pop
 
-const std::string Version::GetBoostVersion()
+const std::string ribi::c2h::Version::GetBoostVersion()
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string Version::GetGccVersion()
+const std::string ribi::c2h::Version::GetGccVersion()
 {
   return
       boost::lexical_cast<std::string>(__GNUC__)
@@ -63,7 +63,7 @@ const std::string Version::GetGccVersion()
 }
 
 #ifndef _WIN32
-const std::string Version::GetLubuntuVersion()
+const std::string ribi::c2h::Version::GetLubuntuVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -101,7 +101,7 @@ const std::string Version::GetLubuntuVersion()
 #endif
 
 #ifndef _WIN32
-const std::string Version::GetLubuntuVersionCodename()
+const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -138,13 +138,13 @@ const std::string Version::GetLubuntuVersionCodename()
 }
 #endif
 
-const std::string Version::GetQtVersion()
+const std::string ribi::c2h::Version::GetQtVersion()
 {
   return QT_VERSION_STR;
 }
 
 #ifndef _WIN32
-const std::string Version::GetQtCreatorVersion()
+const std::string ribi::c2h::Version::GetQtCreatorVersion()
 {
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const int error = std::system("qtcreator -version 2> tmp.txt");
@@ -172,13 +172,13 @@ const std::string Version::GetQtCreatorVersion()
 }
 #endif
 
-const std::string Version::GetStlVersion()
+const std::string ribi::c2h::Version::GetStlVersion()
 {
   return __VERSION__;
 }
 
 #ifndef _WIN32
-const std::string Version::GetUbuntuVersion()
+const std::string ribi::c2h::Version::GetUbuntuVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -216,7 +216,7 @@ const std::string Version::GetUbuntuVersion()
 #endif
 
 #ifndef _WIN32
-const std::string Version::GetUbuntuVersionCodename()
+const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary filename
@@ -251,7 +251,7 @@ const std::string Version::GetUbuntuVersionCodename()
 }
 #endif
 
-const std::string Version::GetVirtualBoxVersion()
+const std::string ribi::c2h::Version::GetVirtualBoxVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary file
@@ -273,7 +273,7 @@ const std::string Version::GetVirtualBoxVersion()
   return "unknown";
 }
 
-const std::string Version::GetWineVersion()
+const std::string ribi::c2h::Version::GetWineVersion()
 {
   const std::string filename = std::tmpnam(0);
   //Save info to temporary file
@@ -298,7 +298,7 @@ const std::string Version::GetWineVersion()
   return "unknown";
 }
 
-const std::string Version::GetWtVersion()
+const std::string ribi::c2h::Version::GetWtVersion()
 {
   #ifndef _WIN32
   return WT_VERSION_STR;

@@ -3,7 +3,6 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtml.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlcontent.cpp \
     ../../Classes/CppCodeToHtml/codetohtmldialog.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlheader.cpp \
@@ -13,15 +12,14 @@ SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtmlreplacementspro.cpp \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlversion.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlfoldertype.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlsnippettype.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlfiletype.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlfootertype.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlheadertype.cpp
+    ../../Classes/CppCodeToHtml/codetohtmlfile.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlreplacer.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlfiletypes.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlsnippettypes.cpp
 
 HEADERS  += \
     ../../Classes/CppCodeToHtml/codetohtml.h \
-    ../../Classes/CppCodeToHtml/codetohtmlcontent.h \
     ../../Classes/CppCodeToHtml/codetohtmlcreateemptypagedialog.h \
     ../../Classes/CppCodeToHtml/codetohtmldialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.h \
@@ -34,7 +32,12 @@ HEADERS  += \
     ../../Classes/CppCodeToHtml/codetohtmlsnippettype.h \
     ../../Classes/CppCodeToHtml/codetohtmlfiletype.h \
     ../../Classes/CppCodeToHtml/codetohtmlfootertype.h \
-    ../../Classes/CppCodeToHtml/codetohtmlheadertype.h
+    ../../Classes/CppCodeToHtml/codetohtmlheadertype.h \
+    ../../Classes/CppCodeToHtml/codetohtmlfile.h \
+    ../../Classes/CppCodeToHtml/codetohtmlreplacer.h \
+    ../../Classes/CppCodeToHtml/codetohtmlfwd.h \
+    ../../Classes/CppCodeToHtml/codetohtmlfiletypes.h \
+    ../../Classes/CppCodeToHtml/codetohtmlsnippettypes.h
 
 OTHER_FILES += \
     ../../Classes/CppCodeToHtml/Licence.txt
