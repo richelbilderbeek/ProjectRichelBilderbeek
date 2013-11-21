@@ -18,34 +18,33 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTMLPAGETYPE_H
-#define CODETOHTMLPAGETYPE_H
+#ifndef CODETOHTMLFILETYPE_H
+#define CODETOHTMLFILETYPE_H
 
 #include <string>
 #include <vector>
 
+namespace ribi {
 namespace c2h {
 
-///The different page types
-///-cpp: C++
-///-foam: OpenFOAM
-///-text: plain text
-///-music: music
-///(-tool: tool)
-enum class PageType
+///The type of file
+enum class FileType
 {
-  cpp,
-  foam,
-  text,
-  music
-  //,tool
+  cpp,          //.cpp file
+  pri,          //.pri file
+  pro,          //.pro file
+  py,           //.py file
+  sh,           //.sh file
+  txt,          //.txt file
+  other         //File with another extension
 };
 
-bool CanStrToPageType(const std::string& s);
-const std::string PageTypeToStr(const PageType t);
-const std::vector<PageType> GetAllPageTypes();
-PageType StrToPageType(const std::string& s);
+bool CanStrToContentType(const std::string& s) noexcept;
+const std::string ContentTypeToStr(const FileType t);
+const std::vector<FileType> GetAllContentTypes() noexcept;
+FileType StrToContentType(const std::string& s);
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
-#endif // CODETOHTMLPAGETYPE_H
+#endif // CODETOHTMLFILETYPE_H

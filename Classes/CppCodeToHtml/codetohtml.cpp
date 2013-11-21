@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtmlcontent.h"
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
-#include "codetohtmlpagetype.h"
+#include "codetohtmlsnippettype.h"
 #include "codetohtmltechinfo.h"
 #include "fileio.h"
 #include "qtcreatorprofile.h"
@@ -48,7 +48,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 #ifndef _WIN32
-bool c2h::IsCleanHtml(const std::vector<std::string>& html)
+bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
 {
   assert(IsTidyInstalled());
 
@@ -111,7 +111,7 @@ bool c2h::IsCleanHtml(const std::vector<std::string>& html)
 #endif
 
 #ifndef _WIN32
-bool c2h::IsTidyInstalled()
+bool ribi::c2h::IsTidyInstalled()
 {
   const std::string temp_filename_tidy = "tmp_tidy_output.txt";
 
@@ -132,50 +132,21 @@ bool c2h::IsTidyInstalled()
 }
 #endif
 
-const std::vector<std::string> c2h::GetProFilesInFolder(
+const std::vector<std::string> ribi::c2h::GetProFilesInFolder(
   const std::string& folder)
 {
   return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 
 #ifndef NDEBUG
-void c2h::Test()
+void ribi::c2h::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  //Test for correct replacements
-  {
-    const std::vector<std::pair<std::string,std::string> > v {
-      { "C++ Builder", R"(<a href="CppBuilder.htm">C++ Builder</a>)" },
-      { "BeerWanter", R"(<a href="GameBeerWanter.htm">BeerWanter</a>)" },
-      { "int main()", R"(<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>())" },
-      { "boenken", R"(<a href="GameBoenken.htm">boenken</a>)" },
-      { "; ++i)", R"(; <a href="CppOperatorIncrement.htm">++</a>i))" },
-      { "C++11", R"(<a href="Cpp11.htm">C++11</a>)" },
-      { "C++0x", R"(<a href="Cpp0x.htm">C++0x</a>)" },
-      { "C++", R"(<a href="Cpp.htm">C++</a>)" },
-      { "++", R"(<a href="CppOperatorIncrement.htm">++</a>)" },
-      { "--", R"(<a href="CppOperatorDecrement.htm">--</a>)" }
-    };
-    std::for_each(v.begin(),v.end(),
-      [](const std::pair<std::string,std::string>& p)
-      {
-        const std::string& s = p.first;
-        const std::string t = Content::MultiReplace(s,Content::GetReplacementsCpp().Get());
-        const std::string expected = p.second;
-        if (t != expected)
-        {
-          TRACE("ERROR");
-          TRACE(expected);
-          TRACE(t);
-        }
-        assert(t == expected);
-      }
-    );
-  }
+
   //Test SortedFiles
   {
     const std::vector<std::string> result
@@ -238,27 +209,33 @@ void c2h::Test()
 }
 #endif
 
-const std::vector<std::string> c2h::ConvertCodeSnippet(
+const std::vector<std::string> ribi::c2h::ConvertCodeSnippet(
   const std::vector<std::string>& code,
-  const ContentType content_type)
+  const SnippetType snippet_type)
 {
+  FileType file_type = FileType::other;
+  switch (snippet_type)
+  {
+    case SnippetType::cpp : file_type = FileType::cpp; break;
+    case SnippetType::text: file_type = FileType::txt; break;
+  }
 
-  const boost::shared_ptr<Content> content(new Content("",code,content_type));
-  return content->ToHtml();
+  const boost::shared_ptr<File> file(new File(code,file_type));
+  return file->GetHtml();
 }
 
-const std::vector<std::string> c2h::ConvertFile(
+const std::vector<std::string> ribi::c2h::ConvertFile(
   const std::string& filename,
-  const ContentType content_type)
+  const FileType content_type)
 {
   const std::vector<std::string> v {
     ribi::fileio::FileToVector(filename)
   };
-  const boost::shared_ptr<Content> content(new Content(filename,v,content_type));
-  return content->ToHtml();
+  const boost::shared_ptr<File> content(new File(filename,v,content_type));
+  return content->GetHtml();
 }
 
-const std::vector<std::string> c2h::ConvertFiles(const std::string& foldername)
+const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& foldername)
 {
   std::vector<std::string> v;
   {
@@ -268,20 +245,20 @@ const std::vector<std::string> c2h::ConvertFiles(const std::string& foldername)
     {
       const std::string filename_full = foldername + "/" + filename;
       assert(ribi::fileio::IsRegularFile(filename_full));
-      const boost::shared_ptr<Content> content {
-        new Content(
+      const boost::shared_ptr<File> content {
+        new File(
           filename,
           ribi::fileio::FileToVector(filename_full)
         )
       };
-      const std::vector<std::string> w = content->ToHtml();
+      const std::vector<std::string> w = content->GetHtml();
       std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
   }
   return v;
 }
 
-const std::vector<std::string> c2h::ConvertFolder(
+const std::vector<std::string> ribi::c2h::ConvertFolder(
   const std::string& foldername,
   const PageType page_type)
 {
@@ -313,12 +290,12 @@ const std::vector<std::string> c2h::ConvertFolder(
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        const boost::shared_ptr<Content> content {
-          new Content(
+        const boost::shared_ptr<File> content {
+          new File(
             filename,
             ribi::fileio::FileToVector(filename))
         };
-        const std::vector<std::string> w = content->ToHtml();
+        const std::vector<std::string> w = content->GetHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
     );
@@ -331,7 +308,7 @@ const std::vector<std::string> c2h::ConvertFolder(
   return v;
 }
 
-const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
+const std::vector<std::string> ribi::c2h::ConvertProject(const std::string& filename)
 {
   assert(ribi::fileio::GetExtension(filename) == ".pro");
   boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
@@ -362,13 +339,13 @@ const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        const boost::scoped_ptr<const Content> content {
-          new Content(
+        const boost::scoped_ptr<const File> content {
+          new File(
             filename,
             ribi::fileio::FileToVector(filename)
           )
         };
-        const std::vector<std::string> w = content->ToHtml();
+        const std::vector<std::string> w = content->GetHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
     );
@@ -385,7 +362,7 @@ const std::vector<std::string> c2h::ConvertProject(const std::string& filename)
 
 
 
-const std::vector<std::string> c2h::GetSortedFilesInFolder(const std::string& folder)
+const std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> files {
     FilterFiles(
@@ -396,7 +373,7 @@ const std::vector<std::string> c2h::GetSortedFilesInFolder(const std::string& fo
   return files;
 }
 
-const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& files)
+const std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files)
 {
   std::vector<std::string> v;
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
@@ -418,7 +395,7 @@ const std::vector<std::string> c2h::FilterFiles(const std::vector<std::string>& 
 }
 
 
-const std::vector<std::string> c2h::SortFiles(std::vector<std::string> files)
+const std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
 {
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)

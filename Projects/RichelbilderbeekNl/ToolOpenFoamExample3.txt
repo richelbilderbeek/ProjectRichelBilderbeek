@@ -1,0 +1,385 @@
+
+D:\Projects\Test\ToolOpenFoamExample3>blockMesh.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : blockMesh.exe
+Date   : Nov 21 2013
+Time   : 09:45:09
+Host   : "AIRBEAR-W7-I5"
+PID    : 3644
+Case   : D:/Projects/Test/ToolOpenFoamExample3
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating block mesh from
+    "D:/Projects/Test/ToolOpenFoamExample3/constant/polyMesh/blockMeshDict"
+Creating curved edges
+Creating topology blocks
+Creating topology patches
+
+Reading patches section
+
+Creating block mesh topology
+
+Reading physicalType from existing boundary file
+
+Default patch type set to empty
+--> FOAM Warning : 
+    From function polyMesh::polyMesh(... construct from shapes...)
+    in file meshes/polyMesh/polyMeshFromShapeMesh.C at line 888
+    Found 6 undefined faces in mesh; adding to default patch.
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 0
+		Number of boundary faces : 6
+		Number of defined boundary faces : 6
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 1
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (0 0 0) (1 1 1)
+  nPoints: 1331
+  nCells: 1000
+  nFaces: 3300
+  nInternalFaces: 2700
+----------------
+Patches
+----------------
+  patch 0 (start: 2700 size: 600) name: defaultFaces
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample3>copy 0\alpha1.org 0\alpha1 
+        1 file(s) copied.
+
+D:\Projects\Test\ToolOpenFoamExample3>setFields.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : setFields.exe
+Date   : Nov 21 2013
+Time   : 09:45:09
+Host   : "AIRBEAR-W7-I5"
+PID    : 4476
+Case   : D:/Projects/Test/ToolOpenFoamExample3
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading setFieldsDict
+
+Setting field default values
+    Setting internal values of volScalarField alpha1
+
+Setting field region values
+    Adding cells with center within box (0.45 0.45 0.45) (0.55 0.55 0.55)
+    Setting internal values of volScalarField alpha1
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample3>interFoam.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : interFoam.exe
+Date   : Nov 21 2013
+Time   : 09:45:09
+Host   : "AIRBEAR-W7-I5"
+PID    : 5016
+Case   : D:/Projects/Test/ToolOpenFoamExample3
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+PIMPLE: Operating solver in PISO mode
+
+Reading field p_rgh
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Reading transportProperties
+
+Selecting incompressible transport model Newtonian
+Selecting incompressible transport model Newtonian
+Selecting turbulence model type laminar
+
+Reading g
+Calculating field g.h
+
+No field sources present
+
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+DICPCG:  Solving for pcorr, Initial residual = 0, Final residual = 0, No Iterations 0
+time step continuity errors : sum local = 0, global = 0, cumulative = 0
+Courant Number mean: 0 max: 0
+
+Starting time loop
+
+Courant Number mean: 0 max: 0
+Interface Courant Number mean: 0 max: 0
+deltaT = 0.12
+Time = 0.12
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 1
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 1
+DICPCG:  Solving for p_rgh, Initial residual = 1, Final residual = 0.0293159, No Iterations 3
+time step continuity errors : sum local = 0.0321757, global = -8.64075e-019, cumulative = -8.64075e-019
+DICPCG:  Solving for p_rgh, Initial residual = 0.0144674, Final residual = 0.000427483, No Iterations 5
+time step continuity errors : sum local = 0.00102657, global = -1.66353e-019, cumulative = -1.03043e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.000467663, Final residual = 9.04805e-008, No Iterations 21
+time step continuity errors : sum local = 1.98476e-007, global = -2.28478e-020, cumulative = -1.05328e-018
+ExecutionTime = 0.055 s  ClockTime = 0 s
+
+Courant Number mean: 0.0670671 max: 2.33135
+Interface Courant Number mean: 0 max: 0
+deltaT = 0.0257362
+Time = 0.145736
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.757282
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.618998
+DICPCG:  Solving for p_rgh, Initial residual = 0.444376, Final residual = 0.0132624, No Iterations 2
+time step continuity errors : sum local = 0.000311964, global = -2.32395e-020, cumulative = -1.07652e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.012545, Final residual = 0.000287414, No Iterations 6
+time step continuity errors : sum local = 8.37059e-006, global = -3.94219e-020, cumulative = -1.11594e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.000337579, Final residual = 7.52266e-008, No Iterations 22
+time step continuity errors : sum local = 1.86576e-009, global = -2.62647e-020, cumulative = -1.1422e-018
+ExecutionTime = 0.079 s  ClockTime = 1 s
+
+Courant Number mean: 0.00512835 max: 0.150755
+Interface Courant Number mean: 0.00128233 max: 0.150755
+deltaT = 0.0308834
+Time = 0.17662
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.583036
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.550328
+DICPCG:  Solving for p_rgh, Initial residual = 0.160184, Final residual = 0.00337537, No Iterations 6
+time step continuity errors : sum local = 9.26031e-005, global = 2.32286e-021, cumulative = -1.13988e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00325653, Final residual = 6.41366e-005, No Iterations 14
+time step continuity errors : sum local = 1.82276e-006, global = 2.92196e-021, cumulative = -1.13696e-018
+DICPCG:  Solving for p_rgh, Initial residual = 6.40883e-005, Final residual = 5.83093e-008, No Iterations 20
+time step continuity errors : sum local = 1.66048e-009, global = -4.09852e-021, cumulative = -1.14106e-018
+ExecutionTime = 0.105 s  ClockTime = 1 s
+
+Courant Number mean: 0.00102843 max: 0.0131249
+Interface Courant Number mean: 0.000168581 max: 0.0127053
+deltaT = 0.0370601
+Time = 0.21368
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.550265
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0355523, Final residual = 0.00160791, No Iterations 2
+time step continuity errors : sum local = 6.27933e-005, global = 3.43325e-022, cumulative = -1.14071e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00162647, Final residual = 5.75267e-005, No Iterations 6
+time step continuity errors : sum local = 2.3255e-006, global = 1.06498e-021, cumulative = -1.13965e-018
+DICPCG:  Solving for p_rgh, Initial residual = 6.02722e-005, Final residual = 5.92273e-008, No Iterations 20
+time step continuity errors : sum local = 2.28239e-009, global = 1.24683e-021, cumulative = -1.1384e-018
+ExecutionTime = 0.13 s  ClockTime = 1 s
+
+Courant Number mean: 0.00127836 max: 0.0154653
+Interface Courant Number mean: 0.000163847 max: 0.0154653
+deltaT = 0.0444721
+Time = 0.258152
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -2.97159e-050  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.016691, Final residual = 0.000667052, No Iterations 2
+time step continuity errors : sum local = 3.44159e-005, global = -2.03422e-021, cumulative = -1.14043e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.000669891, Final residual = 1.73829e-005, No Iterations 6
+time step continuity errors : sum local = 9.35157e-007, global = -2.02766e-021, cumulative = -1.14246e-018
+DICPCG:  Solving for p_rgh, Initial residual = 1.8205e-005, Final residual = 7.51197e-008, No Iterations 18
+time step continuity errors : sum local = 3.86009e-009, global = -1.07375e-020, cumulative = -1.1532e-018
+ExecutionTime = 0.156 s  ClockTime = 1 s
+
+Courant Number mean: 0.0017906 max: 0.0218468
+Interface Courant Number mean: 0.000240506 max: 0.0218468
+deltaT = 0.0533665
+Time = 0.311518
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -4.35291e-054  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -3.14941e-049  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0210879, Final residual = 0.000782618, No Iterations 2
+time step continuity errors : sum local = 5.34746e-005, global = 7.50797e-022, cumulative = -1.15245e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.000785363, Final residual = 1.83788e-005, No Iterations 6
+time step continuity errors : sum local = 1.37059e-006, global = -7.72792e-022, cumulative = -1.15322e-018
+DICPCG:  Solving for p_rgh, Initial residual = 2.01333e-005, Final residual = 7.72195e-008, No Iterations 18
+time step continuity errors : sum local = 5.25733e-009, global = -3.05397e-021, cumulative = -1.15628e-018
+ExecutionTime = 0.181 s  ClockTime = 1 s
+
+Courant Number mean: 0.00249557 max: 0.0305435
+Interface Courant Number mean: 0.000370634 max: 0.0305435
+deltaT = 0.0640398
+Time = 0.375558
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -3.14941e-049  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 0  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0281298, Final residual = 0.00100162, No Iterations 2
+time step continuity errors : sum local = 9.04739e-005, global = -7.73822e-021, cumulative = -1.16401e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00100588, Final residual = 2.3861e-005, No Iterations 6
+time step continuity errors : sum local = 2.32935e-006, global = 1.04744e-020, cumulative = -1.15354e-018
+DICPCG:  Solving for p_rgh, Initial residual = 2.59048e-005, Final residual = 4.49279e-008, No Iterations 19
+time step continuity errors : sum local = 4.06233e-009, global = -1.65376e-020, cumulative = -1.17008e-018
+ExecutionTime = 0.208 s  ClockTime = 1 s
+
+Courant Number mean: 0.00348423 max: 0.0424262
+Interface Courant Number mean: 0.000586081 max: 0.0424262
+deltaT = 0.0768478
+Time = 0.452406
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -1.83898e-047  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -3.05424e-049  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0377498, Final residual = 0.00133931, No Iterations 2
+time step continuity errors : sum local = 0.000160381, global = 8.53476e-021, cumulative = -1.16154e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00133993, Final residual = 3.11407e-005, No Iterations 6
+time step continuity errors : sum local = 3.99927e-006, global = 8.00067e-021, cumulative = -1.15354e-018
+DICPCG:  Solving for p_rgh, Initial residual = 3.34265e-005, Final residual = 6.38391e-008, No Iterations 19
+time step continuity errors : sum local = 7.68226e-009, global = 5.98501e-021, cumulative = -1.14756e-018
+ExecutionTime = 0.234 s  ClockTime = 1 s
+
+Courant Number mean: 0.0048924 max: 0.0582338
+Interface Courant Number mean: 0.000789187 max: 0.0582338
+deltaT = 0.0922174
+Time = 0.544623
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -2.35669e-060  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -1.02768e-044  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0478427, Final residual = 0.00176165, No Iterations 2
+time step continuity errors : sum local = 0.000285175, global = 4.47675e-021, cumulative = -1.14308e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00174709, Final residual = 4.08891e-005, No Iterations 6
+time step continuity errors : sum local = 7.11719e-006, global = -1.65414e-021, cumulative = -1.14473e-018
+DICPCG:  Solving for p_rgh, Initial residual = 4.36288e-005, Final residual = 8.31507e-008, No Iterations 19
+time step continuity errors : sum local = 1.36425e-008, global = -1.52849e-020, cumulative = -1.16002e-018
+ExecutionTime = 0.261 s  ClockTime = 1 s
+
+Courant Number mean: 0.00686498 max: 0.0787521
+Interface Courant Number mean: 0.00115483 max: 0.0787521
+deltaT = 0.110661
+Time = 0.655284
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -5.77262e-059  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -1.73935e-058  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0561951, Final residual = 0.00223007, No Iterations 2
+time step continuity errors : sum local = 0.000504992, global = 2.01234e-021, cumulative = -1.15801e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.0021863, Final residual = 5.15212e-005, No Iterations 6
+time step continuity errors : sum local = 1.26306e-005, global = -2.61379e-020, cumulative = -1.18414e-018
+DICPCG:  Solving for p_rgh, Initial residual = 5.4727e-005, Final residual = 9.79208e-008, No Iterations 19
+time step continuity errors : sum local = 2.27136e-008, global = -1.32961e-021, cumulative = -1.18547e-018
+ExecutionTime = 0.286 s  ClockTime = 1 s
+
+Courant Number mean: 0.00962892 max: 0.104406
+Interface Courant Number mean: 0.00156392 max: 0.104406
+deltaT = 0.132793
+Time = 0.788077
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -1.86103e-057  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = -9.6186e-057  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0603794, Final residual = 0.00267592, No Iterations 2
+time step continuity errors : sum local = 0.000868354, global = -6.75583e-021, cumulative = -1.19223e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00260049, Final residual = 6.17522e-005, No Iterations 6
+time step continuity errors : sum local = 2.16783e-005, global = 2.77768e-020, cumulative = -1.16445e-018
+DICPCG:  Solving for p_rgh, Initial residual = 6.49852e-005, Final residual = 7.48036e-008, No Iterations 20
+time step continuity errors : sum local = 2.49137e-008, global = -2.02281e-020, cumulative = -1.18468e-018
+ExecutionTime = 0.313 s  ClockTime = 1 s
+
+Courant Number mean: 0.0134948 max: 0.135753
+Interface Courant Number mean: 0.00210713 max: 0.135753
+deltaT = 0.159352
+Time = 0.947429
+
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 3.11279e-072  Max(alpha1) = 0.550204
+MULES: Solving for alpha1
+Phase-1 volume fraction = 0.004  Min(alpha1) = 4.42112e-071  Max(alpha1) = 0.550204
+DICPCG:  Solving for p_rgh, Initial residual = 0.0636656, Final residual = 0.00122475, No Iterations 3
+time step continuity errors : sum local = 0.000571581, global = 7.18009e-020, cumulative = -1.11288e-018
+DICPCG:  Solving for p_rgh, Initial residual = 0.00119635, Final residual = 4.01524e-005, No Iterations 6
+time step continuity errors : sum local = 2.05891e-005, global = 1.1848e-019, cumulative = -9.94401e-019
+DICPCG:  Solving for p_rgh, Initial residual = 4.31033e-005, Final residual = 7.81583e-008, No Iterations 19
+time step continuity errors : sum local = 3.7328e-008, global = 4.03969e-020, cumulative = -9.54004e-019
+ExecutionTime = 0.338 s  ClockTime = 1 s
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample3>parafoam

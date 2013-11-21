@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
 namespace c2h {
 
 ///Defines the header of the resulting HTML page
@@ -70,6 +71,7 @@ struct TechInfo
   std::set<Standard> m_standards;
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLTECHNICALINFO_H

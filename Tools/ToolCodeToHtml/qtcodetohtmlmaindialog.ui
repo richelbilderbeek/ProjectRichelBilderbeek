@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>561</width>
-    <height>529</height>
+    <width>368</width>
+    <height>522</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -39,73 +39,16 @@ QPlainTextEdit { font: 10px }
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_page_type">
-     <property name="text">
-      <string>Page type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <widget class="QComboBox" name="box_header">
-     <item>
-      <property name="text">
-       <string>C++</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Music</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>OpenFOAM</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Text</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_content_type">
-     <property name="text">
-      <string>Content type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QComboBox" name="box_source">
-     <item>
-      <property name="text">
-       <string>C++</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Project file</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Text</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2">
+   <item row="1" column="0" colspan="2">
     <widget class="QTabWidget" name="tab_source">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_source_snippet">
       <attribute name="title">
@@ -113,6 +56,84 @@ QPlainTextEdit { font: 10px }
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Replacements</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>C++</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Text</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>155</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Header and footer</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="comboBox_2">
+         <item>
+          <property name="text">
+           <string>None</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>C++</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Music</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tools</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>155</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0" colspan="3">
         <widget class="QPlainTextEdit" name="edit_source_snippet">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -143,10 +164,36 @@ int main()
      </widget>
      <widget class="QWidget" name="tab_source_file">
       <attribute name="title">
-       <string>&amp;2. File or folder</string>
+       <string>&amp;2. Folder</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <item>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_replacements_folder">
+         <property name="text">
+          <string>Folder content</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="box_replacements">
+         <item>
+          <property name="text">
+           <string>C++ project</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>OpenFoam project</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Text files collection</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="3">
         <widget class="QLineEdit" name="edit_source">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
@@ -163,7 +210,7 @@ int main()
      </widget>
     </widget>
    </item>
-   <item row="4" column="0" colspan="2">
+   <item row="3" column="0" colspan="2">
     <widget class="QTabWidget" name="tab_widget">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -257,7 +304,7 @@ int main()
      </widget>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2">
+   <item row="2" column="0" colspan="2">
     <widget class="QPushButton" name="button_convert">
      <property name="text">
       <string>&amp;Convert</string>

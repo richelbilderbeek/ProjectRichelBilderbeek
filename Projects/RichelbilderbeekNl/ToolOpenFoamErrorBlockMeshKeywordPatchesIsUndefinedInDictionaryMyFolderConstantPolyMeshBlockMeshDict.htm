@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFOAM</title>
+  <meta name="description" content="Tool OpenFOAM"/>
+  <meta name="keywords" content="Tool OpenFOAM blockMesh keyword patches is undefined in dictionary MyFolder\constant\polyMesh\blockMeshDict"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h2><a href="ToolOpenFoamErrorBlockMeshKeywordPatchesIsUndefinedInDictionaryMyFolderConstantPolyMeshBlockMeshDict.htm">blockMesh: keyword patches is undefined in dictionary "MyFolder\constant\polyMesh\blockMeshDict"</a></h2>
+<p>&nbsp;</p>
+<p>
+  An <a href="ToolOpenFoam.htm">OpenFOAM</a> error.
+</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="blockMesh: keyword patches is undefined in dictionary 'MyFolder\constant\polyMesh\blockMeshDict'" border = "1"><tr><td><code>
+/*---------------------------------------------------------------------------*\<br/>
+| =========&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+| \\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;F ield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OpenFOAM: The Open Source CFD Toolbox&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp; O peration&nbsp;&nbsp;&nbsp;&nbsp; | Version:&nbsp;&nbsp;1.5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp; \\&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;A nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.OpenFOAM.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;&nbsp;&nbsp;\\/&nbsp;&nbsp;&nbsp;&nbsp; M anipulation&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+Exec&nbsp;&nbsp; : c:\cfd\OpenFOAM-1.5\bin\blockMesh<br/>
+Date&nbsp;&nbsp; : Nov 15 2013<br/>
+Time&nbsp;&nbsp; : 10:21:36<br/>
+Host&nbsp;&nbsp; : hostname<br/>
+PID&nbsp;&nbsp;&nbsp;&nbsp;: 2792<br/>
+Case&nbsp;&nbsp; : C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\tutorials\incompressible\channelFoam\channel395<br/>
+nProcs : 1<br/>
+<br/>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //<br/>
+Create time<br/>
+<br/>
+--&gt; FOAM Warning : <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;From function IOstream::compressionEnum(const word&amp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;in file C:\tmp\OpenFOAM-1.5\src\OpenFOAM\db\IOstreams\IOstreams\IOstream.C at line 73<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bad compression specifier 'off', use 'compressed' or 'uncompressed'.&nbsp;&nbsp;Defaulting to uncompressed<br/>
+<br/>
+Reading block mesh description dictionary<br/>
+<br/>
+Creating block mesh<br/>
+<br/>
+Creating blockCorners<br/>
+<br/>
+Creating curved edges<br/>
+<br/>
+Creating blocks<br/>
+<br/>
+Creating patches<br/>
+Programme terminated with errors: exit code 1, status 0.<br/>
+Error messages:<br/>
+<br/>
+<br/>
+keyword patches is undefined in dictionary "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\tutorials\incompressible\channelFoam\channel395\constant\polyMesh\blockMeshDict"<br/>
+<br/>
+file: C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\tutorials\incompressible\channelFoam\channel395\constant\polyMesh\blockMeshDict from line 17 to line 113.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;From function dictionary::lookupEntry(const word&amp; keyword) const<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;in file C:\tmp\OpenFOAM-1.5\src\OpenFOAM\db\dictionary\dictionary.C at line 213.<br/>
+<br/>
+FOAM exiting<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>
+  The solution is to add to blockMeshDict the following lines:
+</p>
+<!-- start of code -->
+<table summary=".txt" border = "1"><tr><td><code>
+patches<br/>
+(<br/>
+<br/>
+);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

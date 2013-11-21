@@ -18,26 +18,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#ifndef CODETOHTMLTECHINFOTYPE_H
-#define CODETOHTMLTECHINFOTYPE_H
-
-/*
+#ifndef CODETOHTMLSNIPPETTYPE_H
+#define CODETOHTMLSNIPPETTYPE_H
 
 #include <string>
 #include <vector>
 
-
+namespace ribi {
 namespace c2h {
 
-enum class TechInfoType { automatic, no, yes};
+///The different page types
+///-cpp: C++
+///-foam: OpenFOAM
+///-text: plain text
+///-music: music
+///(-tool: tool)
+enum class SnippetType
+{
+  cpp,
+  text
+};
 
-bool CanStrToTechInfoType(const std::string& s);
-const std::string TechInfoTypeToStr(const TechInfoType t);
-const std::vector<TechInfoType> GetAllTechInfoTypes();
-TechInfoType StrToTechInfoType(const std::string& s);
-
-} //~namespace CodeToHtml
-
+/*
+bool CanStrToPageType(const std::string& s);
+const std::string PageTypeToStr(const SnippetType t);
+const std::vector<SnippetType> GetAllPageTypes();
+SnippetType StrToPageType(const std::string& s);
 */
 
-#endif // CODETOHTMLTECHINFOTYPE_H
+} //~namespace c2h
+} //~namespace ribi
+
+#endif // CODETOHTMLSNIPPETTYPE_H

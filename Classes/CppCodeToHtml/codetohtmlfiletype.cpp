@@ -18,7 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#include "codetohtmlcontenttype.h"
+#include "codetohtmlfiletype.h"
 
 #include <cassert>
 #include <stdexcept>

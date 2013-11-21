@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFOAM</title>
+  <meta name="description" content="Tool OpenFOAM"/>
+  <meta name="keywords" content="Tool OpenFOAM potentialFoam Unable to set reference cell for field p"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1><a href="ToolOpenFoamErrorPotentialFoamUnableToSetReferenceCellForFieldP.htm">potentialFoam: Unable to set reference cell for field p</a></h1>
+<p>&nbsp;</p>
+<p>
+  An <a href="ToolOpenFoam.htm">OpenFOAM</a> error.
+</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="potentialFoam: Unable to set reference cell for field p" border = "1"><tr><td><code>
+D:\Projects\Test\ToolOpenFoamExample4&gt;potentialfoam<br/>
+/*---------------------------------------------------------------------------*\<br/>
+| =========&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+| \\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;F ield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OpenFOAM: The Open Source CFD Toolbox&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp; O peration&nbsp;&nbsp;&nbsp;&nbsp; | Version:&nbsp;&nbsp;2.1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp; \\&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;A nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;www.OpenFOAM.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+|&nbsp;&nbsp;&nbsp;&nbsp;\\/&nbsp;&nbsp;&nbsp;&nbsp; M anipulation&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+/*&nbsp;&nbsp; Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt&nbsp;&nbsp; *\<br/>
+|&nbsp;&nbsp;Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+Build&nbsp;&nbsp;: 2.1-88b2f2ae3a0b<br/>
+Exec&nbsp;&nbsp; : potentialfoam<br/>
+Date&nbsp;&nbsp; : Nov 19 2013<br/>
+Time&nbsp;&nbsp; : 09:31:32<br/>
+Host&nbsp;&nbsp; : "AIRBEAR-W7-I5"<br/>
+PID&nbsp;&nbsp;&nbsp;&nbsp;: 5424<br/>
+Case&nbsp;&nbsp; : D:/Projects/Test/ToolOpenFoamExample4<br/>
+nProcs : 1<br/>
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).<br/>
+fileModificationChecking : Monitoring run-time modified files using timeStampMas<br/>
+ter<br/>
+allowSystemOperations : Disallowing user-supplied system call operations<br/>
+<br/>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //<br/>
+Create time<br/>
+<br/>
+Create mesh for time = 0<br/>
+<br/>
+Reading field p<br/>
+<br/>
+Reading field U<br/>
+<br/>
+<br/>
+<br/>
+--&gt; FOAM FATAL IO ERROR:<br/>
+Unable to set reference cell for field p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Please supply either pRefCell or pRefPoint<br/>
+<br/>
+<br/>
+file: D:/Projects/Test/ToolOpenFoamExample4/system/fvSolution::potentialFlow from line 23 to line 23.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;From function void Foam::setRefCell<br/>
+(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const volScalarField&amp;,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const volScalarField&amp;,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const dictionary&amp;,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;label&amp; scalar&amp;,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;bool<br/>
+)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;in file cfdTools/general/findRefCell/findRefCell.C at line 125.<br/>
+<br/>
+FOAM exiting<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>
+  Solution: to system/fvSolution add:
+</p>
+<!-- start of code -->
+<table summary="Solution for potentialFoam: Unable to set reference cell for field p" border = "1"><tr><td><code>
+PIMPLE<br/>
+{<br/>
+&nbsp;&nbsp;pRefCell&nbsp;&nbsp;0;<br/>
+&nbsp;&nbsp;pRefValue 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Tools.htm">Go back to Richel Bilderbeek's tools</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

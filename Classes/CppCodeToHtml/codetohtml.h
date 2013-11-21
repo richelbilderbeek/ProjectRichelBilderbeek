@@ -27,11 +27,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
-#include "codetohtmlcontenttype.h"
-#include "codetohtmlpagetype.h"
+#include "codetohtmlfiletype.h"
+#include "codetohtmlsnippettype.h"
+#include "codetohtmlfoldertype.h"
 #pragma GCC diagnostic pop
 
 ///c2h contains the CodeToHtml functions
+namespace ribi {
 namespace c2h {
   #ifndef NDEBUG
   ///Test these functions
@@ -41,12 +43,12 @@ namespace c2h {
   ///Convert a code snippet
   const std::vector<std::string> ConvertCodeSnippet(
     const std::vector<std::string>& code,
-    const ContentType content_type);
+    const SnippetType snippet_type);
 
   ///Convert a file
   const std::vector<std::string> ConvertFile(
     const std::string& filename,
-    const ContentType content_type);
+    const FileType content_type);
 
   ///Convert all file in a folder/directory, without adding header, technical info or footer
   const std::vector<std::string> ConvertFiles(
@@ -55,7 +57,7 @@ namespace c2h {
   ///Convert a folder/directory with adding header, technical info or footer
   const std::vector<std::string> ConvertFolder(
     const std::string& foldername,
-    const PageType page_type);
+    const FolderType page_type);
 
   ///Convert a .pro file
   const std::vector<std::string> ConvertProject(const std::string& filename);
@@ -86,5 +88,6 @@ namespace c2h {
   const std::vector<std::string> GetSortedFilesInFolder(const std::string& folder);
 
 } //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTML_H

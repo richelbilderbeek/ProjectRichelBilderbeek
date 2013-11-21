@@ -24,6 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+namespace c2h {
+
 namespace Version
 {
 
@@ -84,7 +87,9 @@ const std::string GetWineVersion();
 ///GetWtVersion returns the version of the currently installed Wt library
 ///From http://www.richelbilderbeek.nl/CppGetWtVersion.htm
 const std::string GetWtVersion();
-
 }
+
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLVERSION_H

@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtml.h"
 
+namespace ribi {
 namespace c2h {
 
 ///Defines the info of the resulting HTML page
@@ -70,6 +71,7 @@ struct Info
 
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLINFO_H

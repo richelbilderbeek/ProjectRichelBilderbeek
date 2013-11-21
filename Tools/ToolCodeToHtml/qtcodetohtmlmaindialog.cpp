@@ -124,9 +124,9 @@ c2h::PageType ribi::QtCodeToHtmlMainDialog::GetPageType() const noexcept
 c2h::ContentType ribi::QtCodeToHtmlMainDialog::GetContentType() const noexcept
 {
   const std::string s = ui->box_source->currentText().toStdString();
-  if (s == "C++") return c2h::ContentType::cpp;
-  if (s == "Text") return c2h::ContentType::txt;
-  if (s == "Project file") return c2h::ContentType::pro;
+  if (s == "C++") return c2h::FileType::cpp;
+  if (s == "Text") return c2h::FileType::txt;
+  if (s == "Project file") return c2h::FileType::pro;
   assert(!"Should not get here");
   throw std::logic_error("QtCodeToHtmlMainDialog::GetContentType");
 }
@@ -155,7 +155,7 @@ void ribi::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
     //Convert code snippet
     const std::string source
       = std::string(std::tmpnam(0))
-      + (GetContentType() == c2h::ContentType::cpp ? ".cpp" : ".txt");
+      + (GetContentType() == c2h::FileType::cpp ? ".cpp" : ".txt");
     {
       const std::vector<std::string> v = EditToVector(ui->edit_source_snippet);
       std::ofstream f(source.c_str());

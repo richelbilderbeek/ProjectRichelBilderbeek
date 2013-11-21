@@ -24,6 +24,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+namespace c2h {
+
 struct CodeToHtmlCreateEmptyPageDialog
 {
   explicit CodeToHtmlCreateEmptyPageDialog(const bool add_tech_info = true);
@@ -34,5 +37,8 @@ struct CodeToHtmlCreateEmptyPageDialog
   ///Add the technical info?
   bool m_add_tech_info;
 };
+
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLCREATEEMPTYPAGEDIALOG_H

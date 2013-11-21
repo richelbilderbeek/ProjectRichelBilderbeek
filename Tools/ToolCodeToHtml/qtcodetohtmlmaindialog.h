@@ -28,8 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 //#include "about.h"
 //#include "codetohtml.h"
-#include "codetohtmlcontenttype.h"
-#include "codetohtmlpagetype.h"
+#include "codetohtmlfiletype.h"
+#include "codetohtmlsnippettype.h"
 #include "codetohtmltechinfotype.h"
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
@@ -73,7 +73,7 @@ private slots:
   //c2h::TechInfoType GetTechInfo() const noexcept;
 
   ///Obtain the selected source type
-  c2h::ContentType GetContentType() const noexcept;
+  c2h::FileType GetContentType() const noexcept;
 
   ///Respond to click on Convert button
   void on_button_convert_clicked() noexcept;

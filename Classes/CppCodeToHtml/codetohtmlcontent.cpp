@@ -39,23 +39,30 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #define PROGRAM_HANGS
 
-boost::scoped_ptr<const Replacements> c2h::Content::m_replacements_cpp {};
-boost::scoped_ptr<const Replacements> c2h::Content::m_replacements_pro {};
-boost::scoped_ptr<const Replacements> c2h::Content::m_replacements_txt {};
+boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::File::m_replacements_cpp {};
+boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::File::m_replacements_pro {};
+boost::scoped_ptr<const ribi::c2h::Replacements> ribi::c2h::File::m_replacements_txt {};
 
-c2h::Content::Content(
-  const std::string& filename,
-  const std::vector<std::string>& content)
-    : m_content_type(DeduceContentType(filename)),
-      m_contents(content),
-      m_filename(ribi::fileio::GetFileBasename(filename) + ribi::fileio::GetExtension(filename))
+ribi::c2h::File::File(const std::string& filename)
+    : m_html(CreateHtml(filename,DeduceContentType(filename)))
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-c2h::Content::Content(
+ribi::c2h::File::File(
+  const std::string& filename,
+  const FileType content_type)
+    : m_html(CreateHtml(filename,content_type))
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+/*
+ribi::c2h::File::Content(
   const std::string& filename,
   const std::vector<std::string>& content,
   const ContentType content_type)
@@ -67,68 +74,69 @@ c2h::Content::Content(
   Test();
   #endif
 }
+*/
 
-c2h::ContentType c2h::Content::DeduceContentType(const std::string& filename)
+c2h::ContentType ribi::c2h::File::DeduceFileType(const std::string& filename)
 {
   boost::xpressive::smatch what;
 
   if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(pri)\\>") ) )
   {
-    return ContentType::pri;
+    return FileType::pri;
   }
   if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(pro)\\>") ) )
   {
-    return ContentType::pro;
+    return FileType::pro;
   }
   else if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(c|cpp|h|hpp)\\>") ) )
   {
-    return ContentType::cpp;
+    return FileType::cpp;
   }
   else if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(sh)\\>") ) )
   {
-    return ContentType::sh;
+    return FileType::sh;
   }
   else if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(txt)\\>") ) )
   {
-    return ContentType::txt;
+    return FileType::txt;
   }
   else if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(py)\\>") ) )
   {
-    return ContentType::py;
+    return FileType::py;
   }
-  return ContentType::other;
+  return FileType::other;
 }
 
-const Replacements& c2h::Content::GetReplacementsCpp()
+const Replacements& ribi::c2h::File::GetReplacementsCpp()
 {
   if (!m_replacements_cpp)
   {
     m_replacements_cpp.reset(
       new Replacements(
-        c2h::Content::CreateCppReplacements()));
+        ribi::c2h::File::CreateCppReplacements()));
   }
   assert(m_replacements_cpp);
   return *m_replacements_cpp;
 }
 
-const Replacements& c2h::Content::GetReplacementsPro()
+const Replacements& ribi::c2h::File::GetReplacementsPro()
 {
   if (!m_replacements_pro)
   {
     m_replacements_pro.reset(
       new Replacements(
-        c2h::Content::CreateProReplacements()));
+        ribi::c2h::File::CreateProReplacements()));
   }
   assert(m_replacements_pro);
   return *m_replacements_pro;
 }
-const Replacements& c2h::Content::GetReplacementsTxt()
+const Replacements& ribi::c2h::File::GetReplacementsTxt()
 {
   if (!m_replacements_txt)
   {
@@ -140,33 +148,30 @@ const Replacements& c2h::Content::GetReplacementsTxt()
   return *m_replacements_txt;
 }
 
-const std::vector<std::string> c2h::Content::ToHtml() const
+const std::vector<std::string> ribi::c2h::File::ToHtml() const
 {
   std::vector<std::string> v;
   switch(m_content_type)
   {
-    case ContentType::code_snippet:
-    case ContentType::cpp:
+    case FileType::code_snippet:
+    case FileType::cpp:
     {
       v.push_back(
         std::string("<h2>") + m_filename + std::string("</h2>"));
       v.push_back("<p>&nbsp;</p>");
       v.push_back("<!-- start of code -->");
       v.push_back("<table summary=\"" + m_filename + "\" border = \"1\"><tr><td><code>");
-      //v.push_back("<table border = \"1\"><tr><td><code>");
       const auto r = GetReplacementsCpp().Get();
       std::transform(m_contents.begin(),m_contents.end(),
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return c2h::Content::MultiReplace(s,r) + "<br/>";
+          return ribi::c2h::File::MultiReplace(s,r) + "<br/>";
         }
       );
-      //const std::vector<std::string> w = MultiReplace(m_contents,m_replacements_cpp.m_all_replacements);
-      //std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
     break;
-    case ContentType::pro:
+    case FileType::pro:
     {
       v.push_back(
         std::string("<h2><a href=\"CppQtProjectFile.htm\">Qt project file</a>: ")
@@ -180,12 +185,12 @@ const std::vector<std::string> c2h::Content::ToHtml() const
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return c2h::Content::MultiReplace(s,r) + "<br/>";
+          return ribi::c2h::File::MultiReplace(s,r) + "<br/>";
         }
       );
     }
     break;
-    case ContentType::pri:
+    case FileType::pri:
     {
       v.push_back(
         std::string("<h2>")
@@ -198,14 +203,14 @@ const std::vector<std::string> c2h::Content::ToHtml() const
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return c2h::Content::MultiReplace(s,r) + "<br/>";
+          return ribi::c2h::File::MultiReplace(s,r) + "<br/>";
         }
       );
     }
     break;
-    case ContentType::py:
-    case ContentType::sh:
-    case ContentType::txt:
+    case FileType::py:
+    case FileType::sh:
+    case FileType::txt:
     {
       v.push_back(
         std::string("<h2>") + m_filename + std::string("</h2>"));
@@ -218,18 +223,18 @@ const std::vector<std::string> c2h::Content::ToHtml() const
         std::back_inserter(v),
         [this,r](const std::string& s)
         {
-          return c2h::Content::MultiReplace(s,r) + "<br/>";
+          return ribi::c2h::File::MultiReplace(s,r) + "<br/>";
         }
       );
       //const std::vector<std::string> w = MultiReplace(m_contents,m_replacements_txt.m_all_replacements);
       //std::copy(w.begin(),w.end(),std::back_inserter(v));
     }
     break;
-    case ContentType::other:
+    case FileType::other:
       return v;
-    case ContentType::n_types:
-      assert(!"Should not use ContentType::n_types");
-      throw std::logic_error("Must not use ContentType::n_types");
+    case FileType::n_types:
+      assert(!"Should not use FileType::n_types");
+      throw std::logic_error("Must not use FileType::n_types");
   }
   //Remove empty lines
   while (v.back() == "<br/>") v.pop_back();
@@ -244,7 +249,7 @@ const std::vector<std::string> c2h::Content::ToHtml() const
   return v;
 }
 
-const std::string c2h::Content::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
+const std::string ribi::c2h::File::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
 {
   TRACE(line);
   std::string s(line);
@@ -263,7 +268,7 @@ const std::string c2h::Content::MultiReplace(const std::string& line, const std:
 }
 
 //From http://www.richelbilderbeek.nl/CppReplaceAll.htm
-const std::string c2h::Content::ReplaceAll(
+const std::string ribi::c2h::File::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
   const std::string& replaceWithWhat)
@@ -278,39 +283,69 @@ const std::string c2h::Content::ReplaceAll(
 }
 
 #ifndef NDEBUG
-void c2h::Content::Test()
+void ribi::c2h::File::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting c2h::Content::Test");
+  TRACE("Starting ribi::c2h::File::Test");
   //Be gentle
-  assert(DeduceContentType("tmp.pro") == ContentType::pro);
-  assert(DeduceContentType("tmp.c"  ) == ContentType::cpp);
-  assert(DeduceContentType("tmp.cpp") == ContentType::cpp);
-  assert(DeduceContentType("tmp.h"  ) == ContentType::cpp);
-  assert(DeduceContentType("tmp.hpp") == ContentType::cpp);
-  assert(DeduceContentType("tmp.sh" ) == ContentType::sh);
-  assert(DeduceContentType("tmp.txt") == ContentType::txt);
-  assert(DeduceContentType("tmp.py" ) == ContentType::py);
-  assert(DeduceContentType("tmp.xyz") == ContentType::other);
+  assert(DeduceFileType("tmp.pro") == FileType::pro);
+  assert(DeduceFileType("tmp.c"  ) == FileType::cpp);
+  assert(DeduceFileType("tmp.cpp") == FileType::cpp);
+  assert(DeduceFileType("tmp.h"  ) == FileType::cpp);
+  assert(DeduceFileType("tmp.hpp") == FileType::cpp);
+  assert(DeduceFileType("tmp.sh" ) == FileType::sh);
+  assert(DeduceFileType("tmp.txt") == FileType::txt);
+  assert(DeduceFileType("tmp.py" ) == FileType::py);
+  assert(DeduceFileType("tmp.xyz") == FileType::other);
   //Be nasty
-  assert(DeduceContentType("cpp.pro") == ContentType::pro);
-  assert(DeduceContentType("h.c"    ) == ContentType::cpp);
-  assert(DeduceContentType("hpp.cpp") == ContentType::cpp);
-  assert(DeduceContentType("sh.h"   ) == ContentType::cpp);
-  assert(DeduceContentType("txt.hpp") == ContentType::cpp);
-  assert(DeduceContentType("py.sh"  ) == ContentType::sh);
-  assert(DeduceContentType("xyz.txt") == ContentType::txt);
-  assert(DeduceContentType("pro.py" ) == ContentType::py);
-  assert(DeduceContentType("c.xyz"  ) == ContentType::other);
+  assert(DeduceFileType("cpp.pro") == FileType::pro);
+  assert(DeduceFileType("h.c"    ) == FileType::cpp);
+  assert(DeduceFileType("hpp.cpp") == FileType::cpp);
+  assert(DeduceFileType("sh.h"   ) == FileType::cpp);
+  assert(DeduceFileType("txt.hpp") == FileType::cpp);
+  assert(DeduceFileType("py.sh"  ) == FileType::sh);
+  assert(DeduceFileType("xyz.txt") == FileType::txt);
+  assert(DeduceFileType("pro.py" ) == FileType::py);
+  assert(DeduceFileType("c.xyz"  ) == FileType::other);
 
   assert(!GetReplacementsCpp().Get().empty());
   assert(!GetReplacementsPro().Get().empty());
   assert(!GetReplacementsTxt().Get().empty());
 
-  TRACE("Finished c2h::Content::Test successfully");
+  //Test for correct replacements
+  {
+    const std::vector<std::pair<std::string,std::string> > v {
+      { "C++ Builder", "(<a href=\"CppBuilder.htm\">C++ Builder</a>)" },
+      { "BeerWanter", "(<a href=\"GameBeerWanter.htm\">BeerWanter</a>)" },
+      { "int main()", "(<b><a href=\"CppInt.htm\">int</a></b> <a href=\"CppMain.htm\">main</a>())" },
+      { "boenken", "(<a href=\"GameBoenken.htm\">boenken</a>)" },
+      { "; ++i)", "(; <a href=\"CppOperatorIncrement.htm\">++</a>i))" },
+      { "C++11", "(<a href=\"Cpp11.htm\">C++11</a>)" },
+      { "C++0x", "(<a href=\"Cpp0x.htm\">C++0x</a>)" },
+      { "C++", "(<a href=\"Cpp.htm\">C++</a>)" },
+      { "++", "(<a href=\"CppOperatorIncrement.htm\">++</a>)" },
+      { "--", "(<a href=\"CppOperatorDecrement.htm\">--</a>)" }
+    };
+    std::for_each(v.begin(),v.end(),
+      [](const std::pair<std::string,std::string>& p)
+      {
+        const std::string& s = p.first;
+        const std::string t = MultiReplace(s,GetReplacementsCpp().Get());
+        const std::string expected = p.second;
+        if (t != expected)
+        {
+          TRACE("ERROR");
+          TRACE(expected);
+          TRACE(t);
+        }
+        assert(t == expected);
+      }
+    );
+  }
+  TRACE("Finished ribi::c2h::File::Test successfully");
 }
 #endif

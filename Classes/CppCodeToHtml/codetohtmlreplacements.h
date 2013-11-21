@@ -30,6 +30,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+namespace c2h {
+
 ///\brief
 ///Contains all code replacements
 ///
@@ -52,7 +55,7 @@ struct Replacements
   friend void boost::checked_delete<>(Replacements*);
   friend void boost::checked_delete<>(const Replacements*);
 
-  ///The important replacements
+  ///The replacements
   const std::vector<std::pair<std::string,std::string> > m_replacements;
 
   static const std::vector<std::pair<std::string,std::string> > CreateAllReplacements(
@@ -69,5 +72,8 @@ namespace ReplacementsDeleter
       boost::checked_delete(p);
     };
 }
+
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLREPLACEMENTS_H

@@ -26,8 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "fileio.h"
 
-c2h::Header::Header(
-  const PageType page_type,
+ribi::c2h::Header::Header(
+  const HeaderType page_type,
   const std::string& filename)
   : m_filename(CreateFilename(page_type,filename)),
     m_page_type(page_type),
@@ -36,21 +36,21 @@ c2h::Header::Header(
 
 }
 
-const std::string c2h::Header::CreateFilename(
-  const PageType page_type,
+const std::string ribi::c2h::Header::CreateFilename(
+  const HeaderType page_type,
   const std::string& filename_original)
 {
   if (filename_original.empty())
   {
     switch (page_type)
     {
-      case PageType::cpp:   return "CppXXX.htm";
-      case PageType::music: return "SongXXX.htm";
-      case PageType::text:  return "CppXXX.htm";
-      case PageType::foam:  return "FoamXXX.htm";
+      case HeaderType::cpp:   return "CppXXX.htm";
+      case HeaderType::music: return "SongXXX.htm";
+      case HeaderType::text:  return "CppXXX.htm";
+      case HeaderType::foam:  return "FoamXXX.htm";
     }
     assert(!"Should not get here");
-    throw std::logic_error("c2h::Header::CreateFilename");
+    throw std::logic_error("ribi::c2h::Header::CreateFilename");
   }
   else
   {
@@ -59,22 +59,22 @@ const std::string c2h::Header::CreateFilename(
   }
 }
 
-const std::string c2h::Header::CreateTitle(
-  const PageType page_type,
+const std::string ribi::c2h::Header::CreateTitle(
+  const HeaderType page_type,
   const std::string& filename)
 {
   if (filename.empty())
   {
     switch (page_type)
     {
-      case PageType::cpp:
-      case PageType::music:
-      case PageType::text:
-      case PageType::foam:
+      case HeaderType::cpp:
+      case HeaderType::music:
+      case HeaderType::text:
+      case HeaderType::foam:
        return "XXX";
     }
     assert(!"Should not get here");
-    throw std::logic_error("c2h::Header::CreateTitle");
+    throw std::logic_error("ribi::c2h::Header::CreateTitle");
   }
   else
   {
@@ -89,7 +89,7 @@ const std::string c2h::Header::CreateTitle(
   }
 }
 
-const std::vector<std::string> c2h::Header::ToHtml() const
+const std::vector<std::string> ribi::c2h::Header::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"");
@@ -99,23 +99,23 @@ const std::vector<std::string> c2h::Header::ToHtml() const
   v.push_back("  <meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\"/>");
   switch (m_page_type)
   {
-    case PageType::text:
-    case PageType::cpp:
+    case HeaderType::text:
+    case HeaderType::cpp:
       v.push_back("  <title>" + m_title + "</title>");
       v.push_back("  <meta name=\"description\" content=\"C++ " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"C++ " + m_title + " code snippet\"/>");
     break;
-    case PageType::foam:
+    case HeaderType::foam:
       v.push_back("  <title>XXX</title>");
       v.push_back("  <meta name=\"description\" content=\"OpenFOAM " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"OpenFOAM " + m_title + " \"/>");
     break;
-    case PageType::music:
+    case HeaderType::music:
       v.push_back("  <title>" + m_title + "</title>");
       v.push_back("  <meta name=\"description\" content=\"Song " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"Richel Bilderbeek Music Song " + m_title + " free legal\"/>");
     break;
-    //case PageType::tool:
+    //case HeaderType::tool:
     //  v.push_back("  <title>XXX</title>");
     //  v.push_back("  <meta name=\"description\" content=\"C++ Tool " + m_title + "\"/>");
     //  v.push_back("  <meta name=\"keywords\" content=\"C++ Tool " + m_title + " GPL open source freeware\"/>");
@@ -131,17 +131,17 @@ const std::vector<std::string> c2h::Header::ToHtml() const
   v.push_back("<p><a href=\"index.htm\">Go back to Richel Bilderbeek's homepage</a>.</p>");
   switch (m_page_type)
   {
-    case PageType::cpp:
-    case PageType::text:
+    case HeaderType::cpp:
+    case HeaderType::text:
       v.push_back("<p><a href=\"Cpp.htm\">Go back to Richel Bilderbeek's C++ page</a>.</p>");
       break;
-    case PageType::foam:
+    case HeaderType::foam:
       v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
       break;
-    case PageType::music:
+    case HeaderType::music:
       v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
       break;
-    //case PageType::tool:
+    //case HeaderType::tool:
     //  v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
     //  break;
     default:
@@ -157,17 +157,17 @@ const std::vector<std::string> c2h::Header::ToHtml() const
 
   switch (m_page_type)
   {
-    case PageType::cpp:
-    case PageType::text:
+    case HeaderType::cpp:
+    case HeaderType::text:
       v.push_back("<h1>(<a href=\"Cpp.htm\">C++</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    case PageType::foam:
+    case HeaderType::foam:
       v.push_back("<h1>(<a href=\"ToolOpenFoam.htm\">OpenFOAM</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    case PageType::music:
+    case HeaderType::music:
       v.push_back("<h1>(<a href=\"Music.htm\">Music</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    //case PageType::tool:
+    //case HeaderType::tool:
     //  v.push_back("<h1>(<a href=\"Tools.htm\">Tool</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
     //  break;
     default:

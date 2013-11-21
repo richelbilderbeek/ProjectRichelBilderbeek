@@ -26,10 +26,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/scoped_ptr.hpp>
 
-#include "codetohtmlcontenttype.h"
-#include "codetohtmlpagetype.h"
+#include "codetohtmlfiletype.h"
+#include "codetohtmlsnippettype.h"
 #include "codetohtmltechinfotype.h"
+#include "codetohtmlfoldertype.h"
 
+namespace ribi {
 namespace c2h {
 
 struct Info;
@@ -40,19 +42,35 @@ struct Dialog
   explicit Dialog(
     const PageType page_type,
     const std::string& source,
-    const ContentType content_type
-    //,const TechInfoType tech_info
+    const FileType content_type
   );
 
-  ///Convert a source (which can be a project file or code snippet text to an HTML page
-  const std::vector<std::string> ToHtml() const;
+  ///Convert a file to an HTML page
+  const std::vector<std::string> FileToHtml(
+    const std::string& file_name,
+    const FileType file_type
+    ) const;
+
+  ///Convert a folder to an HTML page
+  const std::vector<std::string> FolderToHtml(
+    const std::string& folder_name,
+    const FolderType folder_type
+    ) const;
+
+  ///Convert a snippet to an HTML page
+  const std::vector<std::string> SnippetToHtml(
+    const std::string& folder_name,
+    const SnippetType folder_type
+    ) const;
+
+
 
   private:
   ~Dialog() noexcept;
   friend void boost::checked_delete<>(Dialog*);
   friend void boost::checked_delete<>(const Dialog*);
 
-  const ContentType m_content_type;
+  const FileType m_content_type;
   const boost::scoped_ptr<const Info> m_info;
   const PageType m_page_type;
   const std::string m_source;
@@ -70,6 +88,7 @@ struct Dialog
 
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLDIALOG_H

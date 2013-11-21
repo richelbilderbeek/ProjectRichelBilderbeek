@@ -28,16 +28,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
-
-#include "codetohtmlpagetype.h"
+#include "codetohtmlfootertype.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
 namespace c2h {
 
 ///Defines the header of the resulting HTML page
 struct Footer
 {
-  explicit Footer(const PageType page_type);
+  explicit Footer(const FooterType page_type);
 
   const std::vector<std::string> ToHtml() const;
 
@@ -46,9 +46,10 @@ struct Footer
   friend void boost::checked_delete<>(Footer*);
   friend void boost::checked_delete<>(const Footer*);
 
-  const PageType m_page_type;
+  const FooterType m_page_type;
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLFOOTER_H

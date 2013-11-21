@@ -1,0 +1,123 @@
+
+D:\Projects\Test\ToolOpenFoamExample9>blockMesh.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : blockMesh.exe
+Date   : Nov 21 2013
+Time   : 08:06:40
+Host   : "AIRBEAR-W7-I5"
+PID    : 5484
+Case   : D:/Projects/Test/ToolOpenFoamExample9
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Creating block mesh from
+    "D:/Projects/Test/ToolOpenFoamExample9/constant/polyMesh/blockMeshDict"
+Creating curved edges
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 18
+		Number of boundary faces : 42
+		Number of defined boundary faces : 42
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 0.001
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (-0.0206 -0.0254 -0.0005) (0.29 0.0254 0.0005)
+  nPoints: 25012
+  nCells: 12225
+  nFaces: 49180
+  nInternalFaces: 24170
+----------------
+Patches
+----------------
+  patch 0 (start: 24170 size: 30) name: inlet
+  patch 1 (start: 24200 size: 57) name: outlet
+  patch 2 (start: 24257 size: 223) name: upperWall
+  patch 3 (start: 24480 size: 250) name: lowerWall
+  patch 4 (start: 24730 size: 24450) name: frontAndBack
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample9>xcopy 0.org /I 0 
+0.org\p
+0.org\U
+2 File(s) copied
+
+D:\Projects\Test\ToolOpenFoamExample9>potentialFoam.exe
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : potentialFoam.exe
+Date   : Nov 21 2013
+Time   : 08:06:40
+Host   : "AIRBEAR-W7-I5"
+PID    : 3716
+Case   : D:/Projects/Test/ToolOpenFoamExample9
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+Reading field p
+
+Reading field U
+
+
+Calculating potential flow
+DICPCG:  Solving for p, Initial residual = 1, Final residual = 9.29383e-007, No Iterations 221
+continuity error = 1.62622e-005
+Interpolated U error = 0.000110442
+ExecutionTime = 0.51 s  ClockTime = 1 s
+
+End
+
+
+D:\Projects\Test\ToolOpenFoamExample9>rem Why no .exe??? 
+
+D:\Projects\Test\ToolOpenFoamExample9>paraFoam

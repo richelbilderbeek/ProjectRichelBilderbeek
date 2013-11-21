@@ -18,13 +18,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-#include "codetohtmlpagetype.h"
+#include "codetohtmlsnippettype.h"
 
+/*
 #include <cassert>
 #include <stdexcept>
-
-
-namespace c2h {
 
 bool CanStrToPageType(const std::string& s)
 {
@@ -73,6 +71,4 @@ PageType StrToPageType(const std::string& s)
   if (s == "text") return PageType::text;
   throw std::logic_error("Invalid string in StrToCodeToHtmlPageType");
 }
-
-} //~namespace CodeToHtml
-
+*/

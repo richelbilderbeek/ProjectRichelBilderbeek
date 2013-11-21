@@ -30,65 +30,38 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 
 #include "codetohtml.h"
-#include "codetohtmlcontenttype.h"
+#include "codetohtmlfiletype.h"
 #include "codetohtmlreplacements.h"
 #pragma GCC diagnostic pop
 
+namespace ribi {
 namespace c2h {
 
-///Content contains a piece of content like
+///File (previous name: Content) contains a piece of content like
 ///C++ source code, a text file, a .pro file, a .sh file
-struct Content
+struct File
 {
-  Content(
+  ///Convert a file to its HTML equivalent
+  ///Deduce the content type from the filename
+  File(const std::string& filename);
+
+  ///Convert a file to its HTML equivalent
+  ///The content type is given manually
+  File(
     const std::string& filename,
-    const std::vector<std::string>& content);
+    const FileType content_type
+  );
 
-  Content(
-    const std::string& filename,
-    const std::vector<std::string>& content,
-    const ContentType content_type);
-
-  ///Get the C++ replacements
-  ///Lazily create these
-  static const Replacements& GetReplacementsCpp();
-
-  ///Get the .pro file replacements
-  ///Lazily create these
-  static const Replacements& GetReplacementsPro();
-
-  ///Get the text file replacements
-  ///Lazily create these
-  static const Replacements& GetReplacementsTxt();
-
-  ///Replace all instances in a std::string by the replacements
-  static const std::string MultiReplace(
-    const std::string& line,
-    const std::vector<std::pair<std::string,std::string> >& replacements);
-
-  ///Convert the content to HTML
-  const std::vector<std::string> ToHtml() const;
-
-  ///Set the content type
-  //void SetContentType(const ContentType t) { m_content_type = t; }
+  ///Get the HTML version of the file.
+  ///The content is created by CreateHtml
+  const std::vector<std::string>& GetHtml() const { return m_html; }
 
   private:
-  ~Content() noexcept {}
-  friend void boost::checked_delete<>(Content*);
-  friend void boost::checked_delete<>(const Content*);
+  ~File() noexcept {}
+  friend void boost::checked_delete<>(File*);
+  friend void boost::checked_delete<>(const File*);
 
-  ///\brief
-  ///The type of content
-  ///
-  ///m_content_type is deduced automatically from the filename extension,
-  ///but this can be overridden by SetContentType
-  ContentType m_content_type;
-
-  ///The contents
-  const std::vector<std::string> m_contents;
-
-  ///The filename of the contents file
-  const std::string m_filename;
+  const std::vector<std::string> m_html;
 
   ///The C++ replacements
   static boost::scoped_ptr<const Replacements> m_replacements_cpp;
@@ -107,10 +80,32 @@ struct Content
   ///a Qt project file is converted to HTML
   static const std::vector<std::pair<std::string,std::string> > CreateProReplacements() noexcept;
 
+  ///Create the HTML of the file
+  static const std::vector<std::string> CreateHtml(
+    const std::string& filename,
+    const FileType content_type);
+
   ///Deduce the content type from a filename
-  static ContentType DeduceContentType(const std::string& filename);
+  static FileType DeduceFileType(const std::string& filename);
 
+  ///Get the C++ replacements
+  ///Lazily create these
+  static const Replacements& GetReplacementsCpp();
 
+  ///Get the .pro file replacements
+  ///Lazily create these
+  static const Replacements& GetReplacementsPro();
+
+  ///Get the text file replacements
+  ///Lazily create these
+  static const Replacements& GetReplacementsTxt();
+
+  ///Replace all instances in a std::string by the replacements
+  static const std::string MultiReplace(
+    const std::string& line,
+    const std::vector<std::pair<std::string,std::string> >& replacements);
+
+  ///Replace all occurrences of replaceWhat by replaceWithWhat in a string
   static const std::string ReplaceAll(
     std::string s,
     const std::string& replaceWhat,
@@ -121,6 +116,7 @@ struct Content
   #endif
 };
 
-} //~namespace CodeToHtml
+} //~namespace c2h
+} //~namespace ribi
 
 #endif // CODETOHTMLCONTENT_H

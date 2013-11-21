@@ -140,12 +140,12 @@ int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
     {
       std::cout << "Parameter 'content_type' set to incorrect value of '" << content_type_str << "'\n";
       std::cout << "Possible values:\n";
-      const std::vector<c2h::ContentType> v = c2h::GetAllContentTypes();
+      const std::vector<c2h::FileType> v = c2h::GetAllContentTypes();
       std::transform(
         v.begin(),
         v.end(),
         std::ostream_iterator<std::string>(std::cout,"\n"),
-        [](const c2h::ContentType t)
+        [](const c2h::FileType t)
         {
           return c2h::ContentTypeToStr(t);
         }
@@ -258,7 +258,7 @@ int ribi::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
     && "Source can be a file or a path");
 
   const c2h::PageType page_type = c2h::StrToPageType(page_type_str);
-  const c2h::ContentType content_type = c2h::StrToContentType(content_type_str);
+  const c2h::FileType content_type = c2h::StrToContentType(content_type_str);
   //const c2h::TechInfoType tech_info = c2h::StrToTechInfoType(tech_info_str);
 
   try
