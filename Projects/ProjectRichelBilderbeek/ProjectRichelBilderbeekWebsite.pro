@@ -2,7 +2,7 @@ include(../../WebApplication.pri)
 include(../../Libraries/BigInteger.pri)
 include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
-include(../../Libraries/QwtPlot.pri)
+include(../../Libraries/Qwt.pri)
 include(../../Libraries/Wt.pri)
 
 include(../../Classes/CppAbout/CppAbout.pri)

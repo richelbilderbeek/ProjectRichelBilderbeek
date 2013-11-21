@@ -218,7 +218,12 @@ void c2h::Dialog::Test()
     const std::string filename = "../ToolCodeToHtml/qtmain.cpp";
     if (ribi::fileio::IsRegularFile(filename))
     {
-      Dialog d(PageType::cpp,filename,ContentType::cpp,TechInfoType::automatic);
+      Dialog d(
+        PageType::cpp,
+        filename,
+        ContentType::cpp
+        //,TechInfoType::automatic
+      );
       const std::vector<std::string> v = d.ToHtml();
       assert(IsCleanHtml(v) && "Assume tidy HTML");
     }
@@ -236,7 +241,12 @@ void c2h::Dialog::Test()
     const std::string path = "../ToolCodeToHtml";
     if (ribi::fileio::IsFolder(path))
     {
-      Dialog d(PageType::cpp,path,ContentType::cpp,TechInfoType::automatic);
+      Dialog d(
+        PageType::cpp,
+        path,
+        ContentType::cpp
+        //,TechInfoType::automatic
+      );
       const std::vector<std::string> v = d.ToHtml();
       assert(IsCleanHtml(v) && "Assume tidy HTML");
     }
