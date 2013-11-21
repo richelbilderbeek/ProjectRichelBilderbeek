@@ -1,0 +1,127 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1.x                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.001;
+
+vertices					
+(					
+  (	9.375	0	15	) // point	0
+  (	12.5	3.125	15	) // point	1
+  (	15.625	0	15	) // point	2
+  (	12.5	-3.125	15	) // point	3
+  (	9.375	0	0	) // point	4
+  (	12.5	3.125	0	) // point	5
+  (	15.625	0	0	) // point	6
+  (	12.5	-3.125	0	) // point	7
+  (	0	0	0	) // point	8
+  (	25	43.3012701892219	0	) // point	9
+  (	25	-43.3012701892219	0	) // point	10
+  (	0	0	-5	) // point	11
+  (	25	43.3012701892219	-5	) // point	12
+  (	25	-43.3012701892219	-5	) // point	13
+
+  (50	0	0	) // point	14 //Perhaps needs four vertices per face?
+  (50	0	-5	) // point	15 //Perhaps needs four vertices per face?
+);					
+
+blocks
+(
+    hex (4 7 6 5 0 3  2  1 ) inlet  ( 20 20 20)  simpleGrading (1 1 1)
+    hex (11 13 15 12 8 10 14 9 ) outlet (20 20 20)  simpleGrading (1 1 1)
+);
+
+edges
+(
+  //Cylinder top
+  line 0 1 //Curve these later, e.g. 'arc  0  1  ( 17.678  17.678  25)'
+  line 1 2
+  line 2 3
+  line 3 0
+  //Cylinder bottom
+  line 4 5
+  line 5 6
+  line 6 7
+  line 7 4
+  //Cylinder vertical
+  line 0 4
+  line 1 5
+  line 2 6
+  line 3 7
+  //Pie top
+  line 8 9
+  line 9 14
+  line 14 10
+  line 10 8
+  //Pie bottom
+  line 11 12
+  line 12 15
+  line 15 13
+  line 13 11
+  //Pie vertical
+  line 8 11
+  line 9 12
+  line 10 13
+  line 14 15
+);
+
+boundary
+(
+	//faces must be traversed clockwise when looking from inside
+
+    // is there no way of defining all my 'defaultFaces' to be 'wall'?
+    Default_Boundary_Region
+    {
+        type wall;
+        faces
+        (
+            //bottom
+            ( 11 12 15 13)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (9 14 15 12)
+            (10 13 15 14)
+        );
+    }
+
+    sides
+    {
+        type symmetryPlane;
+        faces
+        (
+            (8 9 12 11)
+            (8 11 13 10)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //
