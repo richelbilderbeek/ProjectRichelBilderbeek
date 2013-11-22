@@ -28,7 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
-#include "codetohtmlpagetype.h"
+#include "codetohtmlfile.h"
 #include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
@@ -45,14 +45,9 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
 {
   std::vector<std::string> v;
 
-  const c2h::PageType page_type = c2h::PageType::cpp;
-
   //Add header
   {
-    const boost::scoped_ptr<const c2h::Header> h {
-      new const c2h::Header(page_type,"CppClassGallery.htm")
-    };
-    v = h->ToHtml();
+    v = c2h::Header::ToHtml(c2h::HeaderType::cpp,"CppClassGallery.htm");
   }
 
   v.push_back("<p>My <a href=\"CppClassGallery.htm\">class gallery</a> shows the <a href=\"CppClass.htm\">classes</a> I've made.");
@@ -81,10 +76,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
 
   //Add footer
   {
-    const boost::scoped_ptr<const c2h::Footer> f {
-      new c2h::Footer(page_type)
-    };
-    std::vector<std::string> w = f->ToHtml();
+    const std::vector<std::string> w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
@@ -94,14 +86,9 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() 
 {
   std::vector<std::string> v;
 
-  const c2h::PageType page_type = c2h::PageType::cpp;
-
   //Add header
   {
-    const boost::scoped_ptr<const c2h::Header> h {
-      new const c2h::Header(c2h::PageType::cpp,"GameGallery.htm")
-    };
-    v = h->ToHtml();
+    v = c2h::Header::ToHtml(c2h::HeaderType::cpp,"GameGallery.htm");
   }
   v.push_back("<p>My <a href=\"GameGallery.htm\">game gallery</a> shows the <a href=\"Games.htm\">games</a> I've made.");
   v.push_back("I also have a <a href=\"CppClassGallery.htm\">class gallery</a>, <a href=\"ProjectGallery.htm\">project gallery</a> and <a href=\"ToolGallery.htm\">tool gallery</a>.</p>");
@@ -129,10 +116,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() 
 
   //Add footer
   {
-    const boost::scoped_ptr<const c2h::Footer> f {
-      new c2h::Footer(page_type)
-    };
-    std::vector<std::string> w = f->ToHtml();
+    const std::vector<std::string> w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
@@ -142,15 +126,9 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery
 {
   std::vector<std::string> v;
 
-  const c2h::PageType page_type = c2h::PageType::cpp;
-
-
   //Add header
   {
-    const boost::scoped_ptr<const c2h::Header> h {
-      new const c2h::Header(c2h::PageType::cpp,"ProjectGallery.htm")
-    };
-    v = h->ToHtml();
+    v = c2h::Header::ToHtml(c2h::HeaderType::cpp,"ProjectGallery.htm");
   }
 
   v.push_back("<p>My <a href=\"ProjectGallery.htm\">project gallery</a> shows the <a href=\"Projects.htm\">projects</a> I've worked on.");
@@ -179,10 +157,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery
 
   //Add footer
   {
-    const boost::scoped_ptr<const c2h::Footer> f {
-      new c2h::Footer(page_type)
-    };
-    std::vector<std::string> w = f->ToHtml();
+    const std::vector<std::string> w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 
@@ -193,15 +168,9 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus() const
 {
   std::vector<std::string> v;
 
-  const c2h::PageType page_type = c2h::PageType::cpp;
-
-
   //Add header
   {
-    const boost::scoped_ptr<const c2h::Header> h {
-      new const c2h::Header(c2h::PageType::cpp,"CppRichelBilderbeekStatus.htm")
-    };
-    v = h->ToHtml();
+    v = c2h::Header::ToHtml(c2h::HeaderType::cpp,"CppRichelBilderbeekStatus.htm");
   }
 
   QtResources r;
@@ -256,10 +225,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus() const
 
   //Add footer
   {
-    const boost::scoped_ptr<const c2h::Footer> f {
-      new c2h::Footer(page_type)
-    };
-    std::vector<std::string> w = f->ToHtml();
+    const std::vector<std::string> w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 
@@ -270,15 +236,9 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() 
 {
   std::vector<std::string> v;
 
-  const c2h::PageType page_type = c2h::PageType::cpp;
-
-
   //Add header
   {
-    const boost::scoped_ptr<const c2h::Header> h {
-      new const c2h::Header(c2h::PageType::cpp,"ToolGallery.htm")
-    };
-    v = h->ToHtml();
+    v = c2h::Header::ToHtml(c2h::HeaderType::cpp,"ToolGallery.htm");
   }
 
   v.push_back("<p>My <a href=\"ToolGallery.htm\">tool gallery</a> shows the <a href=\"Tools.htm\">tools</a> I've made.");
@@ -307,10 +267,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() 
 
   //Add footer
   {
-    const boost::scoped_ptr<const c2h::Footer> f {
-      new c2h::Footer(page_type)
-    };
-    std::vector<std::string> w = f->ToHtml();
+    const std::vector<std::string> w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
 

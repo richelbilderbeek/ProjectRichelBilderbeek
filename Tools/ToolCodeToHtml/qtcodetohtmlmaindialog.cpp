@@ -176,7 +176,9 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_button_convert_clicked() noexcept
     else
     {
       assert(ribi::fileio::IsFolder(source));
-      const std::vector<std::string> v { Dialog::FolderToHtml(source) };
+      const std::vector<std::string> v {
+        Dialog::FolderToHtml(source)
+      };
       Display(v);
     }
 

@@ -33,8 +33,8 @@ void ribi::athl::Player::PressKeyLeft()
 
 void ribi::athl::Player::PressKeyRight()
 {
-    case State::stand_right: m_x += 0.01; break;
-    case State::stand_left: m_state = State::stand_left;
+    //case State::stand_right: m_x += 0.01; break;
+    //case State::stand_left: m_state = State::stand_left;
 }
 
 void ribi::athl::Player::PressKeyJump()

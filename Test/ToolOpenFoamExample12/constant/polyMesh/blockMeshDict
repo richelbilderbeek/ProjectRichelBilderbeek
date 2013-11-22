@@ -14,90 +14,82 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-convertToMeters 0.001;
+convertToMeters 1.0;
 
 vertices					
 (					
-  (	9.375	0	15	) // point	0
-  (	12.5	3.125	15	) // point	1
-  (	15.625	0	15	) // point	2
-  (	12.5	-3.125	15	) // point	3
-  (	9.375	0	0	) // point	4
-  (	12.5	3.125	0	) // point	5
-  (	15.625	0	0	) // point	6
-  (	12.5	-3.125	0	) // point	7
-  (	0	0	0	) // point	8
-  (	25	43.3012701892219	0	) // point	9
-  (	25	-43.3012701892219	0	) // point	10
-  (	0	0	-5	) // point	11
-  (	25	43.3012701892219	-5	) // point	12
-  (	25	-43.3012701892219	-5	) // point	13
+  ( 1  1  2) // 0
+  ( 1 -1  2) // 1
+  (-1 -1  2) // 2
+  (-1  1  2) // 3
 
-  (50	0	0	) // point	14 //Perhaps needs four vertices per face?
-  (50	0	-5	) // point	15 //Perhaps needs four vertices per face?
+  ( 1  1  0) // 4
+  ( 1 -1  0) // 5
+  (-1 -1  0) // 6
+  (-1  1  0) // 7
+
+  ( 1  1 -1) // 8
+  ( 1 -1 -1) // 9
+  (-1 -1 -1) //10
+  (-1  1 -1) //11
+
+  ( 3  3  0) //12 
+  ( 3 -3  0) //13
+  (-3 -3  0) //14
+  (-3  3  0) //15
+  ( 3  3 -1) //16
+  ( 3 -3 -1) //17
+  (-3 -3 -1) //18
+  (-3  3 -1) //19
 );					
 
 blocks
 (
-    //hex (4 7 6 5 0 3  2  1 ) inlet  ( 20 20 20)  simpleGrading (1 1 1)
-    //hex (11 13 15 12 8 10 14 9 ) outlet (20 20 20)  simpleGrading (1 1 1)
-    hex (0 1 2 3 4 5 6 7) inlet  ( 20 20 20)  simpleGrading (1 1 1)
-    hex (8 9 14 10 11 12 15 13) outlet (20 20 20)  simpleGrading (1 1 1)
+    hex ( 6  5  4  7  2  1  0  3) (10 10 10) simpleGrading (1 1 1) //0: inlet
+    hex (10  9  8 11  6  5  4  7) (10 10 10) simpleGrading (1 1 1) //1: below inlet
+    hex (11  8 16 19  7  4 12 15) (10 10 10) simpleGrading (1 1 1) //2: outlet back
+    hex ( 9 17 16  8  5 13 12  4) (10 10 10) simpleGrading (1 1 1) //3: outlet right
+    hex (18 17  9 10 14 13  5  6) (10 10 10) simpleGrading (1 1 1) //4: outlet front
+    hex (18 10 11 19 14  6  7 15) (10 10 10) simpleGrading (1 1 1) //5: outlet left
 );
 
+//No edges needed: all are automatically defined as lines in blocks
 edges
 (
-  //Cylinder top
-  line 0 1 //Curve these later, e.g. 'arc  0  1  ( 17.678  17.678  25)'
-  line 1 2
-  line 2 3
-  line 3 0
-  //Cylinder bottom
-  line 4 5
-  line 5 6
-  line 6 7
-  line 7 4
-  //Cylinder vertical
-  line 0 4
-  line 1 5
-  line 2 6
-  line 3 7
-  //Pie top
-  line 8 9
-  line 9 14
-  line 14 10
-  line 10 8
-  //Pie bottom
-  line 11 12
-  line 12 15
-  line 15 13
-  line 13 11
-  //Pie vertical
-  line 8 11
-  line 9 12
-  line 10 13
-  line 14 15
 );
 
 boundary
 (
-	//faces must be traversed clockwise when looking from inside
-
-    // is there no way of defining all my 'defaultFaces' to be 'wall'?
+        // is there no way of defining all my 'defaultFaces' to be 'wall'?
     Default_Boundary_Region
     {
         type wall;
         faces
         (
-			//Sides of inlet
+			//Inlet sides
 			(0 1 5 4)
 			(0 4 7 3)
-			(3 7 6 2)
+            (3 7 6 2)
 			(1 2 6 5)
-            //top of outlet
-            ( 8 9 14 10)
-            //bottom of outlet
-            ( 11 12 15 13)
+            //top of outlet back
+            (4 12 15 7)
+            //top of outlet right
+			(4 5 13 12)
+            //top of outlet front
+			(5 6 14 13)
+            //top of outlet left
+			(6 7 15 14)
+
+            //bottom of outlet back
+			(8 11 19 16)
+            //bottom of outlet right
+			(8 16 17 9)
+            //bottom of outlet front
+			(9 17 18 10)
+            //bottom of outlet left
+			(10 18 19 11)
+            //bottom of below inlet
+			(8 9 10 11)
         );
     }
     inlet
@@ -108,7 +100,7 @@ boundary
 			//Top
             (0 3 2 1)
 			//Bottom
-			(4 7 6 5) 
+			//(4 7 6 5) 
         );
     }
     outlet
@@ -116,41 +108,25 @@ boundary
         type patch;
         faces
         (
-            (9 14 15 12)
-            (10 13 15 14)
+            (12 13 17 16)
+            (13 14 18 17)
         );
     }
 
     sides
     {
         type symmetryPlane;
+		//type wall;
         faces
         (
-            (8 9 12 11)
-            (8 11 13 10)
+            (12 16 19 15)
+            (14 15 19 18)
         );
     }
 );
 
+mergePatchPairs
+(
+);
 
-//list of patch descriptions
-//patches
-//(
-//    //bottom of inlet
-//    wall
-//    inlet_bottom
-//    (
-//        (5 6 7 4) 
-//    )
-//    //Top of outlet
-//    wall
-//    outlet_top
-//    (
-//        (8 9 14 10) 
-//    )
-//);
-
-//mergePatchPairs 
-//(
-//	(inlet_bottom outlet_top)
-//);
+// ************************************************************************* //

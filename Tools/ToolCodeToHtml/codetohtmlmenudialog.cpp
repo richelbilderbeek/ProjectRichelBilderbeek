@@ -155,7 +155,7 @@ const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 17th of September 2013",
+    "the 22nd of November 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
@@ -196,7 +196,7 @@ const boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::Ge
 
 const std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
-  return "2.10";
+  return "3.0";
 }
 
 const std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
@@ -238,7 +238,7 @@ const std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistor
     "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
     "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
     "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
-    "201x-xx-xx: version 3.0: improved interface and architecture"
+    "2013-11-22: version 3.0: improved interface and architecture"
   };
   return v;
 }

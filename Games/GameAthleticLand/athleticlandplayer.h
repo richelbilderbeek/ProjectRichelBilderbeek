@@ -34,7 +34,7 @@ struct Player
   //void SetToStartingPosition(const Background* const background);
   //void RespondToBackground(const Background* const background);
 
-  const State GetState() const noexcept { return m_state; }
+  State GetState() const noexcept { return m_state; }
   double GetX() const noexcept { return m_x; }
   double GetY() const noexcept { return m_y; }
   //int GetHeight() const;

@@ -23,26 +23,26 @@ FoamFile
     Default_Boundary_Region
     {
         type            wall;
-        nFaces          2400;
-        startFace       45600;
+        nFaces          1300;
+        startFace       17100;
     }
     inlet
     {
         type            patch;
-        nFaces          800;
-        startFace       48000;
+        nFaces          100;
+        startFace       18400;
     }
     outlet
     {
         type            patch;
-        nFaces          800;
-        startFace       48800;
+        nFaces          200;
+        startFace       18500;
     }
     sides
     {
         type            symmetryPlane;
-        nFaces          800;
-        startFace       49600;
+        nFaces          200;
+        startFace       18700;
     }
 )
 

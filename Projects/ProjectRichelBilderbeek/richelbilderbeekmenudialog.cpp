@@ -43,6 +43,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "createglossarymenudialog.h"
 #include "createqtprojectzipfilemenudialog.h"
 #include "daswahreschlagerfestmenudialog.h"
+#include "richelbilderbeekprogramtypes.h"
 #include "dial.h"
 #include "dialwidget.h"
 #include "encranger.h"
@@ -249,7 +250,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("Big Integer Library (by Matt McCutchen) version: 2010.04.30");
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
   a.AddLibrary("Brainweaver version: " + pvdb::MenuDialog().GetVersion());
-  a.AddLibrary("CodeToHtml version: " + CodeToHtmlMenuDialog().GetVersion());
+  a.AddLibrary("CodeToHtml version: " + c2h::CodeToHtmlMenuDialog().GetVersion());
   a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
   a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
@@ -361,10 +362,11 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new AminoAcidFighterMenuDialog }; m.insert(ValueType(ProgramType::aminoAcidFighter,p)); }
     { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
     { const MenuType p { new AthleticLandMenuDialog }; m.insert(ValueType(ProgramType::athleticLand,p)); }
+    { const MenuType p; m.insert(ValueType(ProgramType::athleticLandVcl,p)); }
     { const MenuType p { new BeerWanterMenuDialog }; m.insert(ValueType(ProgramType::beerWanter,p)); }
     { const MenuType p { new Boenken::MenuDialog }; m.insert(ValueType(ProgramType::boenken,p)); }
     { const MenuType p { new ribi::pvdb::MenuDialog }; m.insert(ValueType(ProgramType::brainweaver,p)); }
-    { const MenuType p { new CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
+    { const MenuType p { new c2h::CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
     { const MenuType p { new ConnectThreeMenuDialog }; m.insert(ValueType(ProgramType::connectThree,p)); }
     { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }
     { const MenuType p { new CreateQtProjectZipFile::MenuDialog }; m.insert(ValueType(ProgramType::createQtProjectZipFile,p)); }
@@ -435,7 +437,20 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
 
     sm_map_to_menu = m;
   }
+
+  #ifndef NDEBUG
+  for (const ProgramType program_type: ProgramTypes::GetAll())
+  {
+    if (sm_map_to_menu.left.find(program_type) == sm_map_to_menu.left.end())
+    {
+      TRACE("ERROR: ProgramType missing");
+      TRACE(ProgramTypes::ProgramTypeToEnumName(program_type));
+    }
+  }
+  #endif
   assert(!sm_map_to_menu.empty());
+  assert(static_cast<int>(sm_map_to_menu.left.size()) == static_cast<int>(ProgramType::n_types)
+    && "All types must be present");
   #ifndef NDEBUG
   /*
   This test would defy the whole purpose of lazy initialization in debug mode

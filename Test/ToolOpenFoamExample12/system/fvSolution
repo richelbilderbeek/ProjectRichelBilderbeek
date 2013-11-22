@@ -70,7 +70,7 @@ relaxationFactors
         h               0.8;
         k               0.9;
         epsilon         0.9;
-		//pEqn			0.3;
+		pEqn			0.3;
     }
 }
 

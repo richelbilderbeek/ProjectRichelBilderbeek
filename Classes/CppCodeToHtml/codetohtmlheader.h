@@ -40,7 +40,7 @@ struct Header
 {
   ///Convert this header to HTML
   static const std::vector<std::string> ToHtml(
-    const HeaderType page_type,
+    const HeaderType header_type,
     const std::string& filename
     ) noexcept;
 

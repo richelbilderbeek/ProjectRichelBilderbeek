@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cstdlib>
 #include <fstream>
 #include <iterator>
+#include <iostream>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -102,7 +103,30 @@ const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
       assert("Never use SnippetType::n_snippets");
       throw std::logic_error("Never use SnippetType::n_snippets");
   }
-  return Replacer::ToHtml(code,file_type);
+  //Convert to HTML, no <code> nor <br/> added yet
+  const std::vector<std::string> v {
+    Replacer::ToHtml(code,file_type)
+  };
+
+  std::vector<std::string> w;
+  w.push_back("<p>&nbsp;</p>");
+  w.push_back("<!-- start of code -->");
+  w.push_back("<table summary=\"snippet\" border = \"1\"><tr><td><code>");
+  std::transform(v.begin(),v.end(),std::back_inserter(w),
+    [](const std::string& s)
+    {
+      return s + std::string("<br/>");
+    }
+  );
+
+  w.push_back("</code></td></tr></table>");
+  w.push_back("<!-- end of the code -->");
+  w.push_back("<p>&nbsp;</p>");
+  w.push_back("<p>&nbsp;</p>");
+  w.push_back("<p>&nbsp;</p>");
+  w.push_back("<p>&nbsp;</p>");
+  w.push_back("<p>&nbsp;</p>");
+  return w;
 }
 
 const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
@@ -281,11 +305,30 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
-    const std::vector<std::string> files = GetSortedFilesInFolder(foldername);
+    const std::vector<std::string> files_no_path {
+      GetSortedFilesInFolder(foldername)
+    };
+    std::vector<std::string> files;
+    std::transform(files_no_path.begin(),files_no_path.end(),std::back_inserter(files),
+      [foldername](const std::string& s)
+      {
+        const std::string t {
+          foldername + fileio::GetPathSeperator() + s
+        };
+        if (!ribi::fileio::IsRegularFile(t))
+        {
+          TRACE("ERROR"); TRACE(s); TRACE(foldername); TRACE(t);
+        }
+        assert(ribi::fileio::IsRegularFile(t));
+        return t;
+      }
+    );
+
     std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
+        assert(ribi::fileio::IsRegularFile(filename));
         const boost::shared_ptr<File> content {
           new File(filename)
         };
