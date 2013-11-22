@@ -57,8 +57,10 @@ const std::string GetExtensionNoDot(const std::string& filename);
 ///Returns the extension of a filename, with a trailing dot
 const std::string GetExtensionWithDot(const std::string& filename);
 
-///Obtain the basename of a file, e.g. '/Folder/temp.txt' -> 'temp'
-///Replacement of boost::filesystem::basename
+///Obtain the basename of a file or folder
+///MyFolder/MyFile.txt - > MyFile
+///MyFolder/MySubFolder -> MySubFolder
+///GetFileBasename is a replacement of boost::filesystem::basename
 ///From http://www.richelbilderbeek.nl/CppGetFileBasename.htm
 const std::string GetFileBasename(const std::string& filename);
 
@@ -76,6 +78,11 @@ const std::string GetPath(const std::string& filename);
 ///Returns the superfolder from a path
 ///For example: '/A/B/C' its superfolder is '/A/B'
 const std::string GetSuperFolder(const std::string& folder);
+
+///Obtain the name of a file that does not exist
+///Will throw a std::runtime_error in the unlikely
+///case it fails after one thousand times
+const std::string GetTempFileName();
 
 ///Obtain the name of a folder that does not exist
 ///Will throw a std::runtime_error in the unlikely

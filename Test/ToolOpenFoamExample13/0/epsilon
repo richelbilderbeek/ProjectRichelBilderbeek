@@ -1,49 +1,52 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.1                                   |
+|  \\    /   O peration     | Version:  2.1.x                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
-/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
-|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
 \*---------------------------------------------------------------------------*/
 FoamFile
 {
     version     2.0;
     format      ascii;
-    class       polyBoundaryMesh;
-    location    "constant/polyMesh";
-    object      boundary;
+    class       volScalarField;
+    location    "0";
+    object      epsilon;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-4
-(
+dimensions      [0 2 -3 0 0 0 0];
+
+internalField   uniform 200;
+
+boundaryField
+{
     Default_Boundary_Region
     {
-        type            wall;
-        nFaces          2400;
-        startFace       45600;
+        type            compressible::epsilonWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 200;
     }
     inlet
     {
-        type            patch;
-        nFaces          800;
-        startFace       48000;
+        type            compressible::turbulentMixingLengthDissipationRateInlet;
+        mixingLength    0.005;
+        value           uniform 200;
     }
     outlet
     {
-        type            patch;
-        nFaces          800;
-        startFace       48800;
+        type            inletOutlet;
+        inletValue      uniform 200;
+        value           uniform 200;
     }
+    //Modified by Richel Bilderbeek
     sides
     {
         type            symmetryPlane;
-        nFaces          800;
-        startFace       49600;
     }
-)
+}
+
 
 // ************************************************************************* //

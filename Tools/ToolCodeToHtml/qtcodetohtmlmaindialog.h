@@ -26,11 +26,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-//#include "about.h"
-//#include "codetohtml.h"
 #include "codetohtmlfiletype.h"
 #include "codetohtmlsnippettype.h"
-#include "codetohtmltechinfotype.h"
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -41,6 +38,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace c2h {
 
 class QtCodeToHtmlMainDialog : public QtHideAndShowDialog
 {
@@ -67,13 +65,13 @@ private:
 private slots:
 
   ///Obtain the selected header type
-  c2h::PageType GetPageType() const noexcept;
+  //c2h::PageType GetPageType() const noexcept;
 
   ///Obtain the selected technical info type
   //c2h::TechInfoType GetTechInfo() const noexcept;
 
   ///Obtain the selected source type
-  c2h::FileType GetContentType() const noexcept;
+  //c2h::FileType GetContentType() const noexcept;
 
   ///Respond to click on Convert button
   void on_button_convert_clicked() noexcept;
@@ -89,6 +87,7 @@ private slots:
 
 };
 
+} //~namespace c2h
 } //~namespace ribi
 
 #endif // QTCODETOHTMLMAINDIALOG_H

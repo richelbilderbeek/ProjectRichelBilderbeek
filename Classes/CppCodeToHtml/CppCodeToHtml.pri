@@ -16,7 +16,8 @@ SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtmlfile.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacer.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlfiletypes.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlsnippettypes.cpp
+    ../../Classes/CppCodeToHtml/codetohtmlsnippettypes.cpp \
+    ../../Classes/CppCodeToHtml/codetohtmlfoldertypes.cpp
 
 HEADERS  += \
     ../../Classes/CppCodeToHtml/codetohtml.h \
@@ -37,7 +38,8 @@ HEADERS  += \
     ../../Classes/CppCodeToHtml/codetohtmlreplacer.h \
     ../../Classes/CppCodeToHtml/codetohtmlfwd.h \
     ../../Classes/CppCodeToHtml/codetohtmlfiletypes.h \
-    ../../Classes/CppCodeToHtml/codetohtmlsnippettypes.h
+    ../../Classes/CppCodeToHtml/codetohtmlsnippettypes.h \
+    ../../Classes/CppCodeToHtml/codetohtmlfoldertypes.h
 
 OTHER_FILES += \
     ../../Classes/CppCodeToHtml/Licence.txt

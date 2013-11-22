@@ -1040,3 +1040,13 @@ Test/ToolOpenFoamExample11/0.*
 Test/ToolOpenFoamExample11/1/
 Test/ToolOpenFoamExample12/0.*
 Test/ToolOpenFoamExample12/1/
+Test/ToolOpenFoamExample12/constant/polyMesh/boundary
+Test/ToolOpenFoamExample12/constant/polyMesh/faces
+Test/ToolOpenFoamExample12/constant/polyMesh/neighbour
+Test/ToolOpenFoamExample12/constant/polyMesh/owner
+Test/ToolOpenFoamExample12/constant/polyMesh/points
+Test/ToolOpenFoamExample13/constant/polyMesh/boundary
+Test/ToolOpenFoamExample13/constant/polyMesh/faces
+Test/ToolOpenFoamExample13/constant/polyMesh/neighbour
+Test/ToolOpenFoamExample13/constant/polyMesh/owner
+Test/ToolOpenFoamExample13/constant/polyMesh/points

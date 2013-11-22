@@ -38,13 +38,11 @@ namespace c2h {
 ///Defines the header of the resulting HTML page
 struct Header
 {
-  Header() {}
-
   ///Convert this header to HTML
-  const std::vector<std::string> ToHtml(
+  static const std::vector<std::string> ToHtml(
     const HeaderType page_type,
     const std::string& filename
-    ) const noexcept;
+    ) noexcept;
 
   ///Obtain the HTML page its filename
   //const std::string& GetFilename() const { return m_filename; }

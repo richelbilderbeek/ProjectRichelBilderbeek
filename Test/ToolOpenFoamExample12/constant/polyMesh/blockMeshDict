@@ -39,8 +39,10 @@ vertices
 
 blocks
 (
-    hex (4 7 6 5 0 3  2  1 ) inlet  ( 20 20 20)  simpleGrading (1 1 1)
-    hex (11 13 15 12 8 10 14 9 ) outlet (20 20 20)  simpleGrading (1 1 1)
+    //hex (4 7 6 5 0 3  2  1 ) inlet  ( 20 20 20)  simpleGrading (1 1 1)
+    //hex (11 13 15 12 8 10 14 9 ) outlet (20 20 20)  simpleGrading (1 1 1)
+    hex (0 1 2 3 4 5 6 7) inlet  ( 20 20 20)  simpleGrading (1 1 1)
+    hex (8 9 14 10 11 12 15 13) outlet (20 20 20)  simpleGrading (1 1 1)
 );
 
 edges
@@ -87,7 +89,14 @@ boundary
         type wall;
         faces
         (
-            //bottom
+			//Sides of inlet
+			(0 1 5 4)
+			(0 4 7 3)
+			(3 7 6 2)
+			(1 2 6 5)
+            //top of outlet
+            ( 8 9 14 10)
+            //bottom of outlet
             ( 11 12 15 13)
         );
     }
@@ -96,7 +105,10 @@ boundary
         type patch;
         faces
         (
+			//Top
             (0 3 2 1)
+			//Bottom
+			(4 7 6 5) 
         );
     }
     outlet
@@ -120,8 +132,25 @@ boundary
     }
 );
 
-mergePatchPairs
-(
-);
 
-// ************************************************************************* //
+//list of patch descriptions
+//patches
+//(
+//    //bottom of inlet
+//    wall
+//    inlet_bottom
+//    (
+//        (5 6 7 4) 
+//    )
+//    //Top of outlet
+//    wall
+//    outlet_top
+//    (
+//        (8 9 14 10) 
+//    )
+//);
+
+//mergePatchPairs 
+//(
+//	(inlet_bottom outlet_top)
+//);

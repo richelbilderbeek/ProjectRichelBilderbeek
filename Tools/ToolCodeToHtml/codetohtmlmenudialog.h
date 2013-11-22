@@ -24,10 +24,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-#include "about.h"
 #include "menudialog.h"
+#include "codetohtmlfwd.h"
 
 namespace ribi {
+namespace c2h {
 
 ///GUI independent CodeToHtml menu dialog
 struct CodeToHtmlMenuDialog : public MenuDialog
@@ -42,14 +43,6 @@ struct CodeToHtmlMenuDialog : public MenuDialog
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
-  /// Source type: folder, content type: C++   -> C++ webpage with tech info
-  /// Source type: folder, content type: foam  -> OpenFOAM webpage
-  /// Source type: text  , content type: C++   -> C++ code snippet without tech info
-  ///
-  ///- cpp_folder
-  ///- cpp_snippet
-  ///- txt_folder
-  ///- txt_snippet
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   #ifndef NDEBUG
@@ -57,6 +50,7 @@ struct CodeToHtmlMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace c2h
 } //~namespace ribi
 
 #endif // CODETOHTMLMENUDIALOG_H

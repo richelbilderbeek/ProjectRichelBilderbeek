@@ -18,12 +18,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "codetohtmlfiletypes.h"
 
 #include <cassert>
 #include <stdexcept>
 
+#include <boost/xpressive/xpressive.hpp>
+
 #include "codetohtmlfiletype.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) noexcept
 {
@@ -36,6 +43,48 @@ bool ribi::c2h::FileTypes::CanStrToFileType(const std::string& s) noexcept
   {
     return false;
   }
+}
+
+ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& filename)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+
+  boost::xpressive::smatch what;
+
+  if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(pri)\\>") ) )
+  {
+    return FileType::pri;
+  }
+  if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(pro)\\>") ) )
+  {
+    return FileType::pro;
+  }
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(c|cpp|h|hpp)\\>") ) )
+  {
+    return FileType::cpp;
+  }
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(sh)\\>") ) )
+  {
+    return FileType::sh;
+  }
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(txt)\\>") ) )
+  {
+    return FileType::txt;
+  }
+  else if( boost::xpressive::regex_match( filename, what,
+    boost::xpressive::sregex::compile( ".*\\.(py)\\>") ) )
+  {
+    return FileType::py;
+  }
+  //return FileType::other;
+  return FileType::txt;
 }
 
 const std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
@@ -92,3 +141,35 @@ ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
   throw std::logic_error("Invalid string in StrToFileType");
 }
 
+#ifndef NDEBUG
+void ribi::c2h::FileTypes::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::c2h::FileTypes::Test");
+  //Be gentle
+  assert(DeduceFileType("tmp.pro") == FileType::pro);
+  assert(DeduceFileType("tmp.c"  ) == FileType::cpp);
+  assert(DeduceFileType("tmp.cpp") == FileType::cpp);
+  assert(DeduceFileType("tmp.h"  ) == FileType::cpp);
+  assert(DeduceFileType("tmp.hpp") == FileType::cpp);
+  assert(DeduceFileType("tmp.sh" ) == FileType::sh);
+  assert(DeduceFileType("tmp.txt") == FileType::txt);
+  assert(DeduceFileType("tmp.py" ) == FileType::py);
+  assert(DeduceFileType("tmp.xyz") == FileType::txt);
+  //Be nasty
+  assert(DeduceFileType("cpp.pro") == FileType::pro);
+  assert(DeduceFileType("h.c"    ) == FileType::cpp);
+  assert(DeduceFileType("hpp.cpp") == FileType::cpp);
+  assert(DeduceFileType("sh.h"   ) == FileType::cpp);
+  assert(DeduceFileType("txt.hpp") == FileType::cpp);
+  assert(DeduceFileType("py.sh"  ) == FileType::sh);
+  assert(DeduceFileType("xyz.txt") == FileType::txt);
+  assert(DeduceFileType("pro.py" ) == FileType::py);
+  assert(DeduceFileType("c.xyz"  ) == FileType::txt);
+  TRACE("Finished ribi::c2h::FileTypes::Test successfully");
+}
+#endif

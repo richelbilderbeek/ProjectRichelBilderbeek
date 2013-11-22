@@ -31,6 +31,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace c2h {
 
 class QtCodeToHtmlMenuDialog : public QtHideAndShowDialog
 {
@@ -58,6 +59,7 @@ private slots:
   #endif
 };
 
+} //~namespace c2h
 } //~namespace ribi
 
 #endif // QTCODETOHTMLMENUDIALOG_H

@@ -241,51 +241,7 @@ const std::vector<std::string> ribi::c2h::ConvertFolder(
   const std::string& foldername,
   const FolderType folder_type)
 {
-  std::vector<std::string> v;
-  {
-    HeaderType header_type = ?HeaderType::cpp?;
-    const boost::shared_ptr<Header> h {
-      new Header(
-        folder_type,
-        ribi::fileio::GetFileBasename(foldername))
-    };
-    const std::vector<std::string> w = h->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  {
-    const std::vector<std::string> pro_files {
-      GetProFilesInFolder(foldername)
-    };
-    #ifndef NDEBUG
-    for (const std::string& pro_file: pro_files) { assert(ribi::fileio::IsRegularFile(pro_file)); }
-    #endif
 
-    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(pro_files));
-    const std::vector<std::string> w = techInfo->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  {
-    const std::vector<std::string> files = GetSortedFilesInFolder(foldername);
-    std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
-    std::for_each(files.begin(),files.end(),
-      [&v](const std::string& filename)
-      {
-        const boost::shared_ptr<File> content {
-          new File(
-            filename,
-            ribi::fileio::FileToVector(filename))
-        };
-        const std::vector<std::string> w = content->GetHtml();
-        std::copy(w.begin(),w.end(),std::back_inserter(v));
-      }
-    );
-  }
-  {
-    const boost::shared_ptr<Footer> c(new Footer(folder_type));
-    const std::vector<std::string> w = c->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  return v;
 }
 */
 

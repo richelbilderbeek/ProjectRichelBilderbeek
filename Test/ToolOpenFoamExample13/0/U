@@ -9,43 +9,40 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    location    "system";
-    object      controlDict;
+    class       volVectorField;
+    object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     rhoSimplecFoam;
+dimensions      [0 1 -1 0 0 0 0];
 
-startFrom       startTime;
+internalField   uniform (0 0 0);
 
-startTime       0;
-
-stopAt          endTime;
-
-endTime         10.0;
-
-deltaT          1.0;
-
-writeControl    timeStep;
-
-writeInterval   1;
-
-purgeWrite      0;
-
-writeFormat     ascii;
-
-writePrecision  6;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-graphFormat     raw;
-
-runTimeModifiable true;
+boundaryField
+{
+    Default_Boundary_Region
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    inlet
+    {
+        type            flowRateInletVelocity;
+        flowRate        constant 0.5; //0.75;
+        value           uniform (0 0 0);
+    }
+    outlet
+    {
+        type            inletOutlet;
+        value           uniform (0 0 0);
+        inletValue      uniform (0 0 0);
+    }
+	//Modified by Richel Bilderbeek
+    sides
+    {
+        type            symmetryPlane;
+    }
+}
 
 
 // ************************************************************************* //

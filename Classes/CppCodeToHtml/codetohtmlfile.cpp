@@ -28,13 +28,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <fileio.h>
 #include <iostream>
 
-#include <boost/xpressive/xpressive.hpp>
 
 #include "codetohtml.h"
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
 #include "codetohtmlreplacements.h"
 #include "codetohtmlreplacer.h"
+#include "codetohtmlfiletypes.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -42,7 +42,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 ribi::c2h::File::File(const std::string& filename)
-    : m_html(CreateHtml(filename,DeduceFileType(filename)))
+    : m_html(CreateHtml(filename,FileTypes::DeduceFileType(filename)))
 {
   #ifndef NDEBUG
   Test();
@@ -58,47 +58,6 @@ ribi::c2h::File::File(
   Test();
   #endif
 }
-
-ribi::c2h::FileType ribi::c2h::File::DeduceFileType(const std::string& filename)
-{
-  boost::xpressive::smatch what;
-
-  if( boost::xpressive::regex_match( filename, what,
-    boost::xpressive::sregex::compile( ".*\\.(pri)\\>") ) )
-  {
-    return FileType::pri;
-  }
-  if( boost::xpressive::regex_match( filename, what,
-    boost::xpressive::sregex::compile( ".*\\.(pro)\\>") ) )
-  {
-    return FileType::pro;
-  }
-  else if( boost::xpressive::regex_match( filename, what,
-    boost::xpressive::sregex::compile( ".*\\.(c|cpp|h|hpp)\\>") ) )
-  {
-    return FileType::cpp;
-  }
-  else if( boost::xpressive::regex_match( filename, what,
-    boost::xpressive::sregex::compile( ".*\\.(sh)\\>") ) )
-  {
-    return FileType::sh;
-  }
-  else if( boost::xpressive::regex_match( filename, what,
-    boost::xpressive::sregex::compile( ".*\\.(txt)\\>") ) )
-  {
-    return FileType::txt;
-  }
-  else if( boost::xpressive::regex_match( filename, what,
-    boost::xpressive::sregex::compile( ".*\\.(py)\\>") ) )
-  {
-    return FileType::py;
-  }
-  //return FileType::other;
-  return FileType::txt;
-}
-
-
-
 
 const std::vector<std::string> ribi::c2h::File::CreateHtml(
   const std::string& m_filename,
@@ -160,7 +119,7 @@ const std::vector<std::string> ribi::c2h::File::CreateHtml(
 }
 
 #ifndef NDEBUG
-void ribi::c2h::File::Test()
+void ribi::c2h::File::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -168,64 +127,6 @@ void ribi::c2h::File::Test()
     is_tested = true;
   }
   TRACE("Starting ribi::c2h::File::Test");
-  //Be gentle
-  assert(DeduceFileType("tmp.pro") == FileType::pro);
-  assert(DeduceFileType("tmp.c"  ) == FileType::cpp);
-  assert(DeduceFileType("tmp.cpp") == FileType::cpp);
-  assert(DeduceFileType("tmp.h"  ) == FileType::cpp);
-  assert(DeduceFileType("tmp.hpp") == FileType::cpp);
-  assert(DeduceFileType("tmp.sh" ) == FileType::sh);
-  assert(DeduceFileType("tmp.txt") == FileType::txt);
-  assert(DeduceFileType("tmp.py" ) == FileType::py);
-  assert(DeduceFileType("tmp.xyz") == FileType::txt);
-  //Be nasty
-  assert(DeduceFileType("cpp.pro") == FileType::pro);
-  assert(DeduceFileType("h.c"    ) == FileType::cpp);
-  assert(DeduceFileType("hpp.cpp") == FileType::cpp);
-  assert(DeduceFileType("sh.h"   ) == FileType::cpp);
-  assert(DeduceFileType("txt.hpp") == FileType::cpp);
-  assert(DeduceFileType("py.sh"  ) == FileType::sh);
-  assert(DeduceFileType("xyz.txt") == FileType::txt);
-  assert(DeduceFileType("pro.py" ) == FileType::py);
-  assert(DeduceFileType("c.xyz"  ) == FileType::txt);
-
-
-  //Test for correct replacements
-  /*
-  assert(!GetReplacementsCpp().Get().empty());
-  assert(!GetReplacementsPro().Get().empty());
-  assert(!GetReplacementsTxt().Get().empty());
-
-  {
-    const std::vector<std::pair<std::string,std::string> > v {
-      { "C++ Builder", "(<a href=\"CppBuilder.htm\">C++ Builder</a>)" },
-      { "BeerWanter", "(<a href=\"GameBeerWanter.htm\">BeerWanter</a>)" },
-      { "int main()", "(<b><a href=\"CppInt.htm\">int</a></b> <a href=\"CppMain.htm\">main</a>())" },
-      { "boenken", "(<a href=\"GameBoenken.htm\">boenken</a>)" },
-      { "; ++i)", "(; <a href=\"CppOperatorIncrement.htm\">++</a>i))" },
-      { "C++11", "(<a href=\"Cpp11.htm\">C++11</a>)" },
-      { "C++0x", "(<a href=\"Cpp0x.htm\">C++0x</a>)" },
-      { "C++", "(<a href=\"Cpp.htm\">C++</a>)" },
-      { "++", "(<a href=\"CppOperatorIncrement.htm\">++</a>)" },
-      { "--", "(<a href=\"CppOperatorDecrement.htm\">--</a>)" }
-    };
-    std::for_each(v.begin(),v.end(),
-      [](const std::pair<std::string,std::string>& p)
-      {
-        const std::string& s = p.first;
-        const std::string t = MultiReplace(s,GetReplacementsCpp().Get());
-        const std::string expected = p.second;
-        if (t != expected)
-        {
-          TRACE("ERROR");
-          TRACE(expected);
-          TRACE(t);
-        }
-        assert(t == expected);
-      }
-    );
-  }
-  */
   TRACE("Finished ribi::c2h::File::Test successfully");
 }
 #endif

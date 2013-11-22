@@ -43,26 +43,31 @@ struct Info;
 ///- folders
 struct Dialog
 {
-  //explicit Dialog(
-  //  const PageType page_type,
-  //  const std::string& source,
-  //  const FileType content_type
-  //);
+  ///Convert a file to an HTML page
+  ///The file type will be deduced from the file name
+  static const std::vector<std::string> FileToHtml(
+    const std::string& file_name) noexcept;
 
   ///Convert a file to an HTML page
-  static const std::vector<std::string> FileToHtml(
-    const std::string& file_name,
-    const FileType file_type
-    ) noexcept;
+  ///The supplied file type will have precedence over
+  ///deducing the file type
+  //static const std::vector<std::string> FileToHtml(
+  //  const std::string& file_name,
+  //  const FileType file_type
+  //  ) noexcept;
 
   ///Convert a folder to an HTML page
   ///This will call
   ///- ProFolderToHtml
   ///- FoamFolderToHtml
   ///- TextFolderToHtml
+  //static const std::vector<std::string> FolderToHtml(
+  //  const std::string& folder_name,
+  //  const FolderType folder_type
+  //  ) noexcept;
+
   static const std::vector<std::string> FolderToHtml(
-    const std::string& folder_name,
-    const FolderType folder_type
+    const std::string& folder_name
     ) noexcept;
 
   ///Convert a snippet to an HTML page

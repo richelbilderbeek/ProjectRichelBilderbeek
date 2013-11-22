@@ -33,17 +33,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+/*
 void OnAbort(int)
 {
   std::cerr << "Application called OnAbort" << std::endl;
   std::exit(1);
 }
+*/
 
 int main(int argc, char *argv[])
 {
   //Connect the abort signal to the OnAbort, to obtain informative
   //screen output with 'Projects | Run | Run in terminal' unchecked
-  std::signal(SIGABRT,OnAbort);
+  //std::signal(SIGABRT,OnAbort);
 
   QApplication a(argc, argv);
   try
@@ -54,12 +56,12 @@ int main(int argc, char *argv[])
     #endif
 
     #ifndef NDEBUG
+    ribi::fileio::Test();
     assert( ribi::fileio::IsRegularFile(argv[0]));
     assert(!ribi::fileio::IsFolder(argv[0]));
-    c2h::Test();
     #endif
 
-    ribi::QtCodeToHtmlMenuDialog w;
+    ribi::c2h::QtCodeToHtmlMenuDialog w;
     w.show();
     return a.exec();
   }

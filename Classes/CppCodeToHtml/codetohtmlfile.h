@@ -68,12 +68,8 @@ struct File
     const std::string& filename,
     const FileType content_type) noexcept;
 
-  ///Deduce the content type from a filename
-  static FileType DeduceFileType(const std::string& filename);
-
-
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

@@ -36,10 +36,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include "codetohtmlfile.h"
+#include "codetohtmlfiletypes.h"
 #include "codetohtmldialog.h"
 #include "codetohtmlfooter.h"
 #include "codetohtmlheader.h"
+#include "codetohtmlfoldertypes.h"
 #include "codetohtmlinfo.h"
 #include "codetohtmltechinfo.h"
 #include "codetohtmlreplacer.h"
@@ -181,6 +182,18 @@ const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexc
 }
 
 const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
+  const std::string& filename) noexcept
+{
+  const std::vector<std::string> v {
+    ribi::fileio::FileToVector(filename)
+  };
+  const FileType file_type = FileTypes::DeduceFileType(filename);
+  return Replacer::ToHtml(v,file_type);
+}
+
+
+/*
+const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   const std::string& filename,
   const FileType file_type) noexcept
 {
@@ -189,7 +202,56 @@ const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   };
   return Replacer::ToHtml(v,file_type);
 }
+*/
 
+const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
+  const std::string& foldername) noexcept
+{
+  const FolderType folder_type = FolderTypes::DeduceFolderType(foldername);
+
+  std::vector<std::string> v;
+  {
+    HeaderType header_type = HeaderType::cpp;
+    const std::vector<std::string> w {
+      Header::ToHtml(header_type,foldername)
+    };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  {
+    const std::vector<std::string> pro_files {
+      GetProFilesInFolder(foldername)
+    };
+    #ifndef NDEBUG
+    for (const std::string& pro_file: pro_files) { assert(ribi::fileio::IsRegularFile(pro_file)); }
+    #endif
+
+    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(pro_files));
+    const std::vector<std::string> w = techInfo->ToHtml();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  {
+    const std::vector<std::string> files = GetSortedFilesInFolder(foldername);
+    std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::for_each(files.begin(),files.end(),
+      [&v](const std::string& filename)
+      {
+        const boost::shared_ptr<File> content {
+          new File(
+            filename,
+            ribi::fileio::FileToVector(filename))
+        };
+        const std::vector<std::string> w = content->GetHtml();
+        std::copy(w.begin(),w.end(),std::back_inserter(v));
+      }
+    );
+  }
+  {
+    const boost::shared_ptr<Footer> c(new Footer(folder_type));
+    const std::vector<std::string> w = c->ToHtml();
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
+}
 /*
 const std::vector<std::string> ribi::c2h::Dialog::ProFileToHtml(const std::string& filename) noexcept
 {

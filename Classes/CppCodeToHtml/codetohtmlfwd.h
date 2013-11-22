@@ -10,7 +10,10 @@
 namespace ribi {
 namespace c2h {
 
+struct Dialog;
+struct File;
 enum class FileType;
+enum class FolderType;
 enum class SnippetType;
 struct Replacements;
 struct Replacer;

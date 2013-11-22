@@ -94,7 +94,7 @@ const std::string ribi::c2h::Header::CreateTitle(
 const std::vector<std::string> ribi::c2h::Header::ToHtml(
   const HeaderType header_type,
   const std::string& filename
-  ) const noexcept
+  ) noexcept
 {
   const std::string m_filename { CreateFilename(header_type,filename) };
   const std::string m_title { CreateTitle(header_type,filename) };
