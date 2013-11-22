@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/checked_delete.hpp>
+//#include <boost/checked_delete.hpp>
 #include "codetohtmlfootertype.h"
 #pragma GCC diagnostic pop
 
@@ -37,15 +37,12 @@ namespace c2h {
 ///Defines the header of the resulting HTML page
 struct Footer
 {
-  Footer();
-  const std::vector<std::string> ToHtml(const FooterType page_type) const;
+  static const std::vector<std::string> ToHtml(const FooterType page_type) noexcept;
 
-  private:
-  ~Footer() noexcept {}
-  friend void boost::checked_delete<>(Footer*);
-  friend void boost::checked_delete<>(const Footer*);
-
-  //const FooterType m_page_type;
+  //private:
+  //~Footer() noexcept {}
+  //friend void boost::checked_delete<>(Footer*);
+  //friend void boost::checked_delete<>(const Footer*);
 };
 
 } //~namespace c2h

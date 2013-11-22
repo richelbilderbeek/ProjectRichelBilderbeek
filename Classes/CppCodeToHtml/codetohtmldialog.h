@@ -86,6 +86,21 @@ struct Dialog
   /// to 'ToolCodeToHtml'
   static const std::string ExtractPageName(const std::string& s) noexcept;
 
+  static const std::vector<std::string> FoamFolderToHtml(
+    const std::string& folder_name
+    ) noexcept;
+
+  static const std::vector<std::string> GetProFilesInFolder(
+    const std::string& folder);
+
+  static const std::vector<std::string> ProFolderToHtml(
+    const std::string& folder_name
+    ) noexcept;
+
+  static const std::vector<std::string> TextFolderToHtml(
+    const std::string& folder_name
+    ) noexcept;
+
   ///Converts a .pro file to HTML
   ///NOT IMPRESSED BY ITS USEFULLNESS
   //static const std::vector<std::string> ProFileToHtml(const std::string& filename) noexcept;

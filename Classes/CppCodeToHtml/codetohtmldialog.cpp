@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/xpressive/xpressive.hpp>
 #include <boost/algorithm/string.hpp>
 
+#include "codetohtmlfile.h"
 #include "codetohtmlfiletypes.h"
 #include "codetohtmldialog.h"
 #include "codetohtmlfooter.h"
@@ -207,8 +208,38 @@ const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
 const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
   const std::string& foldername) noexcept
 {
+  assert(fileio::IsFolder(foldername));
   const FolderType folder_type = FolderTypes::DeduceFolderType(foldername);
+  switch(folder_type)
+  {
+    case FolderType::foam:
+      return FoamFolderToHtml(foldername);
+    case FolderType::pro:
+      return ProFolderToHtml(foldername);
+    case FolderType::txt:
+      return TextFolderToHtml(foldername);
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("ribi::c2h::Dialog::FolderToHtml");
+}
 
+const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
+  const std::string& /* foldername */) noexcept
+{
+  assert(!"TODO");
+  throw std::logic_error("TODO");
+}
+
+const std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(
+  const std::string& folder)
+{
+  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
+}
+
+
+const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
+  const std::string& foldername) noexcept
+{
   std::vector<std::string> v;
   {
     HeaderType header_type = HeaderType::cpp;
@@ -218,11 +249,31 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   {
-    const std::vector<std::string> pro_files {
+    const std::vector<std::string> pro_files_no_path {
       GetProFilesInFolder(foldername)
     };
+    std::vector<std::string> pro_files;
+    std::transform(
+      pro_files_no_path.begin(),
+      pro_files_no_path.end(),
+      std::back_inserter(pro_files),
+      [foldername](const std::string& s)
+      {
+        const std::string t {
+          foldername
+          + ribi::fileio::GetPathSeperator()
+          + s
+        };
+        return t;
+      }
+    );
+
     #ifndef NDEBUG
-    for (const std::string& pro_file: pro_files) { assert(ribi::fileio::IsRegularFile(pro_file)); }
+    for (const std::string& pro_file: pro_files)
+    {
+      if (!ribi::fileio::IsRegularFile(pro_file)) { TRACE(pro_file); }
+      assert(ribi::fileio::IsRegularFile(pro_file));
+    }
     #endif
 
     const boost::shared_ptr<TechInfo> techInfo(new TechInfo(pro_files));
@@ -236,9 +287,7 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
       [&v](const std::string& filename)
       {
         const boost::shared_ptr<File> content {
-          new File(
-            filename,
-            ribi::fileio::FileToVector(filename))
+          new File(filename)
         };
         const std::vector<std::string> w = content->GetHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
@@ -246,12 +295,19 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
     );
   }
   {
-    const boost::shared_ptr<Footer> c(new Footer(folder_type));
-    const std::vector<std::string> w = c->ToHtml();
+    const std::vector<std::string> w { Footer::ToHtml(FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
 }
+
+const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
+  const std::string& /* foldername */) noexcept
+{
+  assert(!"TODO");
+  throw std::logic_error("TODO");
+}
+
 /*
 const std::vector<std::string> ribi::c2h::Dialog::ProFileToHtml(const std::string& filename) noexcept
 {
@@ -352,6 +408,30 @@ void ribi::c2h::Dialog::Test()
 
   assert(ExtractPageName("/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml")
     == std::string("ToolCodeToHtml"));
+
+  //GetProFiles
+  {
+    //Always first remove the temp file
+    std::remove("tmp23465278.pro");
+
+    const std::size_t n = GetProFilesInFolder("").size();
+    {
+      std::ofstream f("tmp23465278.pro");
+      f << "tmp";
+      f.close();
+    }
+    const std::size_t p = GetProFilesInFolder("").size();
+    if (n != p - 1)
+    {
+      TRACE(n);
+      TRACE(p);
+      for (std::string s: GetProFilesInFolder("")) TRACE(s);
+    }
+    assert(n == p - 1);
+    std::remove("tmp23465278.pro");
+    const std::size_t q = GetProFilesInFolder("").size();
+    assert(n == q);
+  }
 
   //Check if CodeToHtml creates a clean HTML file when it converts itself
   #ifndef _WIN32

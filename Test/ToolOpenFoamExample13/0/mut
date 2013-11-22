@@ -42,7 +42,12 @@ boundaryField
     //Modified by Richel Bilderbeek
     sides
     {
-        type            symmetryPlane;
+    //    type            symmetryPlane;
+        type            mutkWallFunction;
+        Cmu             0.09;
+        kappa           0.41;
+        E               9.8;
+        value           uniform 0;
     }
 }
 

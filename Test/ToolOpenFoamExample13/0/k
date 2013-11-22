@@ -41,7 +41,9 @@ boundaryField
     //Modified by Richel Bilderbeek
     sides
     {
-        type            symmetryPlane;
+    //    type            symmetryPlane;
+        type            compressible::kqRWallFunction;
+        value           uniform 1;
     }
 }
 

@@ -24,15 +24,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-ribi::c2h::Footer::Footer()
+const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) noexcept
 {
   #ifndef NDEBUG
   //Test();
   #endif
-}
-
-const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) const
-{
   std::vector<std::string> v;
   switch (page_type)
   {

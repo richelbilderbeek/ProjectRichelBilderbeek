@@ -10,7 +10,7 @@ namespace c2h {
 
 struct FolderTypes
 {
-  static FolderType DeduceFolderType(const std::string& folder_name) noexcept;
+  static FolderType DeduceFolderType(const std::string& folder_name);
 };
 
 } //~namespace ribi

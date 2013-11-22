@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/checked_delete.hpp>
+//#include <boost/checked_delete.hpp>
 
 #include "codetohtmlheadertype.h"
 #pragma GCC diagnostic pop
@@ -51,9 +51,9 @@ struct Header
   //HeaderType GetHeaderType() const { return m_header_type; }
 
   private:
-  ~Header() noexcept {}
-  friend void boost::checked_delete<>(Header*);
-  friend void boost::checked_delete<>(const Header*);
+  //~Header() noexcept {}
+  //friend void boost::checked_delete<>(Header*);
+  //friend void boost::checked_delete<>(const Header*);
 
   ///The HTML filename of the header
   //const std::string m_filename;

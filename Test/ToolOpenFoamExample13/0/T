@@ -41,7 +41,8 @@ boundaryField
     //Modified by Richel Bilderbeek
     sides
     {
-        type            symmetryPlane;
+    //    type            symmetryPlane;
+        type            zeroGradient;
     }
 }
 

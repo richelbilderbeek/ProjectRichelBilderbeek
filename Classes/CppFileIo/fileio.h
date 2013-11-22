@@ -75,6 +75,12 @@ const std::vector<std::string> GetFilesInFolderByRegex(
 ///From http://www.richelbilderbeek.nl/CppGetPath.htm
 const std::string GetPath(const std::string& filename);
 
+///Returns the path seperator depending on the operating system
+///For Linux, this is a slash
+///For Windows, this is a backslash
+///From http://www.richelbilderbeek.nl/CppGetPathSeperator.htm
+const std::string GetPathSeperator() noexcept;
+
 ///Returns the superfolder from a path
 ///For example: '/A/B/C' its superfolder is '/A/B'
 const std::string GetSuperFolder(const std::string& folder);

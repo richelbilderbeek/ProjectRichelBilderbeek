@@ -5,10 +5,15 @@ namespace ribi {
 namespace c2h {
 
 ///The type of folder content:
-///-cpp: a C++ project
-///-foam: an OpenFOAM project
-///-txt: a collection of text files
-enum class FolderType { cpp, foam, txt };
+
+
+
+enum class FolderType
+{
+  foam, ///an OpenFOAM project
+  pro,  ///a Qt Creator project
+  txt   ///a collection of text files
+};
 
 } //~namespace ribi
 } //~namespace c2h

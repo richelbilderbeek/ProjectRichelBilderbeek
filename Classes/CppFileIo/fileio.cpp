@@ -237,6 +237,15 @@ const std::string ribi::fileio::GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
+const std::string ribi::fileio::GetPathSeperator() noexcept
+{
+  #ifndef WIN32
+  return "\\";
+  #else
+  return "/";
+  #endif
+}
+
 const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
 {
   const int a = folder.rfind("\\",folder.size());

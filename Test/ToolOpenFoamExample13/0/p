@@ -16,7 +16,7 @@ FoamFile
 
 dimensions      [1 -1 -2 0 0 0 0];
 
-internalField   uniform 100000;
+internalField   uniform 110000;
 
 boundaryField
 {
@@ -26,21 +26,22 @@ boundaryField
     }
     inlet
     {
-        //type            zeroGradient;
-        type            mixed;
-        refValue        uniform 500000;
+        type            zeroGradient;
+        //type            mixed;
+        refValue        uniform 110000;
         refGradient     uniform 0;
         valueFraction   uniform 0.3;
     }
     outlet
     {
-        type            fixedValue;
-        value           uniform 100000;
+        //type            fixedValue;
+        //value           uniform 110000;
 
-        //type            mixed;
-        //refValue        uniform 110000;
-        //refGradient     uniform 0;
-        //valueFraction   uniform 1;
+        type            mixed;
+        refValue        uniform 110000;
+        refGradient     uniform 0;
+        valueFraction   uniform 1;
+
         //type            transonicOutletPressure;
         //U               U;
         //phi             phi;
@@ -51,7 +52,8 @@ boundaryField
     //Modified by Richel Bilderbeek
     sides
     {
-        type            symmetryPlane;
+        //type            symmetryPlane;
+        type            zeroGradient;
     }
  }
 

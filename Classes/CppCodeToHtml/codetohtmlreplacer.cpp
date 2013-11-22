@@ -125,3 +125,37 @@ void ribi::c2h::Replacer::Test() noexcept
   TRACE("Finished ribi::c2h::Replacer::Test successfully");
 }
 #endif
+
+const std::vector<std::string> ribi::c2h::Replacer::ToHtml(
+  const std::vector<std::string>& text,
+  const FileType file_type
+  ) noexcept
+{
+  std::function<const Replacements&()> get_replacements;
+  switch (file_type)
+  {
+    case FileType::cpp:
+      get_replacements = &ribi::c2h::Replacer::GetReplacementsCpp;
+      break;
+    case FileType::py:
+    case FileType::sh:
+    case FileType::txt:
+      get_replacements = &ribi::c2h::Replacer::GetReplacementsTxt;
+      break;
+    case FileType::pri:
+    case FileType::pro:
+      get_replacements = &ribi::c2h::Replacer::GetReplacementsPro;
+      break;
+    case FileType::n_types:
+      assert(!"Never use FileType::n_types");
+      throw std::logic_error("Never use FileType::n_types");
+  }
+
+  std::vector<std::string> v { text };
+  for (std::string& s: v)
+  {
+    s = MultiReplace(s,get_replacements().Get());
+  }
+  return v;
+}
+

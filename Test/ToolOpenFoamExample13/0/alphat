@@ -14,6 +14,7 @@ FoamFile
     object      alphat;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
 dimensions      [1 -1 -1 0 0 0 0];
 
 internalField   uniform 0;
@@ -39,7 +40,10 @@ boundaryField
     //Modified by Richel Bilderbeek
     sides
     {
-        type            symmetryPlane;
+    //    type            symmetryPlane;
+        type            alphatWallFunction;
+        Prt             0.85;
+        value           uniform 0;
     }
 }
 

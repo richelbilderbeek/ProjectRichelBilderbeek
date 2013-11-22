@@ -67,8 +67,8 @@ namespace c2h {
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
   const std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
 
-  const std::vector<std::string> GetProFilesInFolder(
-    const std::string& folder);
+  //const std::vector<std::string> GetProFilesInFolder(
+  //  const std::string& folder);
 
 
   #ifndef _WIN32

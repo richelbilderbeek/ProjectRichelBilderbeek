@@ -133,11 +133,6 @@ bool ribi::c2h::IsTidyInstalled()
 }
 #endif
 
-const std::vector<std::string> ribi::c2h::GetProFilesInFolder(
-  const std::string& folder)
-{
-  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
-}
 
 #ifndef NDEBUG
 void ribi::c2h::Test()
@@ -184,34 +179,8 @@ void ribi::c2h::Test()
     assert(v == result);
   }
 
-  //GetProFiles
-  {
-    //Always first remove the temp file
-    std::remove("tmp23465278.pro");
-
-    const std::size_t n = GetProFilesInFolder("").size();
-    {
-      std::ofstream f("tmp23465278.pro");
-      f << "tmp";
-      f.close();
-    }
-    const std::size_t p = GetProFilesInFolder("").size();
-    if (n != p - 1)
-    {
-      TRACE(n);
-      TRACE(p);
-      for (std::string s: GetProFilesInFolder("")) TRACE(s);
-    }
-    assert(n == p - 1);
-    std::remove("tmp23465278.pro");
-    const std::size_t q = GetProFilesInFolder("").size();
-    assert(n == q);
-  }
 }
 #endif
-
-
-
 
 /*
 const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& foldername)
@@ -235,21 +204,6 @@ const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& folder
   return v;
 }
 */
-
-/*
-const std::vector<std::string> ribi::c2h::ConvertFolder(
-  const std::string& foldername,
-  const FolderType folder_type)
-{
-
-}
-*/
-
-
-
-
-
-
 
 const std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
 {

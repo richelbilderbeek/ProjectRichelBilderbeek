@@ -37,8 +37,6 @@ divSchemes
 
     div(phid,p)         Gauss upwind;
     div(phi,K)          Gauss upwind;
-
-    //div((phi|interpolate(rho)),p)          Gauss upwind; //NEW
 }
 
 laplacianSchemes
@@ -49,7 +47,7 @@ laplacianSchemes
 interpolationSchemes
 {
     default         linear;
-    UD              upwind phid;
+    //UD              upwind phid;
 }
 
 snGradSchemes

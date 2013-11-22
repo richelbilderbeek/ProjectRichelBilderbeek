@@ -10,6 +10,7 @@ moc_*
 qrc_*
 tmp*.txt
 \#*
+*.bak
 *.pro.user
 *.pro.autosave
 *.autosave
