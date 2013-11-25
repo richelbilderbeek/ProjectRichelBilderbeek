@@ -52,9 +52,9 @@ void ribi::athl::QtAthleticLandMainWidget::paintEvent(QPaintEvent *)
   const double player_x
     = static_cast<double>(this->width()) * m_player->GetX();
   const double player_height
-    = static_cast<double>(resources.GetPlayer().height()) * scale_x;
+    = static_cast<double>(resources.GetPlayer(state).height()) * scale_x;
   const double player_width
-    = static_cast<double>(resources.GetPlayer().width()) * scale_y;
+    = static_cast<double>(resources.GetPlayer(state).width()) * scale_y;
 
   p.drawPixmap(
     player_x,
@@ -63,9 +63,4 @@ void ribi::athl::QtAthleticLandMainWidget::paintEvent(QPaintEvent *)
     player_height,
     resources.GetPlayer(m_player->GetState())
   );
-}
-
-void ribi::athl::QtAthleticLandMainWidget::resizeEvent(QResizeEvent *)
-{
-
 }

@@ -120,12 +120,12 @@ void ribi::QtTestMultipleChoiceQuestionMainDialog::Test()
   }
   TRACE("Starting ribi::QtTestMultipleChoiceQuestionMainDialog::Test");
   QtTestMultipleChoiceQuestionMainDialog d;
-  d.SetQuestion("-,1+1=,2");
+  d.SetQuestion("-,1+1=,2,1,3"); //Valid: multiple choice question
   assert(d.GetDialog());
   d.SetQuestion("nonsense");
-  assert(!d.GetDialog());
+  assert(!d.GetDialog() && "A single word cannot be parsed as a multiple choice question");
   d.SetQuestion("-,1+1=,2");
-  assert(d.GetDialog());
+  assert(!d.GetDialog() && "Open questions cannot be parsed as multiple choice question");
   d.SetQuestion("more nonsense");
   assert(!d.GetDialog());
   TRACE("Finished ribi::QtTestMultipleChoiceQuestionMainDialog::Test successfully");

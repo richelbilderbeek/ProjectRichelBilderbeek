@@ -64,12 +64,28 @@ const std::string GetExtensionWithDot(const std::string& filename);
 ///From http://www.richelbilderbeek.nl/CppGetFileBasename.htm
 const std::string GetFileBasename(const std::string& filename);
 
+///Obtain all files in a folder.
+///This does not include those in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
 const std::vector<std::string> GetFilesInFolder(const std::string& folder);
+
+///Obtain all files in a folder including thos in a subfolder
+//From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
+const std::vector<std::string> GetFilesInFolderRecursive(const std::string& folder);
 
 const std::vector<std::string> GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str);
+
+///Obtain all folder in a folder.
+///This does not include those in a subfolder
+//From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
+const std::vector<std::string> GetFoldersInFolder(const std::string& folder);
+
+///Obtain all folder in a folder.
+///This does include those in a subfolder
+//From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
+const std::vector<std::string> GetFoldersInFolderRecursive(const std::string& folder);
 
 ///Returns the path of a filename
 ///From http://www.richelbilderbeek.nl/CppGetPath.htm

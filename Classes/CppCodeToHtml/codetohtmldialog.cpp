@@ -248,10 +248,65 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
 }
 
 const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
-  const std::string& /* foldername */) noexcept
+  const std::string& foldername) noexcept
 {
-  assert(!"TODO");
-  throw std::logic_error("TODO");
+  std::vector<std::string> v;
+  //Header
+  {
+    HeaderType header_type = HeaderType::foam;
+    const std::vector<std::string> w {
+      Header::ToHtml(header_type,foldername)
+    };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  //Body
+  {
+    const std::vector<std::string> files_no_path {
+      fileio::GetFilesInFolderRecursive(foldername)
+    };
+    std::vector<std::string> files;
+    std::transform(
+      files_no_path.begin(),
+      files_no_path.end(),
+      std::back_inserter(files),
+      [foldername](const std::string& s)
+      {
+        const std::string t {
+          foldername
+          + ribi::fileio::GetPathSeperator()
+          + s
+        };
+        return t;
+      }
+    );
+
+    #ifndef NDEBUG
+    for (const std::string& file: files)
+    {
+      if (!ribi::fileio::IsRegularFile(file)) { TRACE(file); }
+      assert(ribi::fileio::IsRegularFile(file));
+    }
+    #endif
+
+    std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::for_each(files.begin(),files.end(),
+      [&v](const std::string& filename)
+      {
+        assert(ribi::fileio::IsRegularFile(filename));
+        const boost::shared_ptr<File> content {
+          new File(filename,FileType::txt)
+        };
+        const std::vector<std::string> w = content->GetHtml();
+        std::copy(w.begin(),w.end(),std::back_inserter(v));
+      }
+    );
+  }
+  //Footer
+  {
+    const std::vector<std::string> w { Footer::ToHtml(FooterType::foam) };
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
+  return v;
 }
 
 const std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(

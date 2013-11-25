@@ -21,7 +21,6 @@ SOURCES += \
 
 HEADERS  += \
     ../../Classes/CppCodeToHtml/codetohtml.h \
-    ../../Classes/CppCodeToHtml/codetohtmlcreateemptypagedialog.h \
     ../../Classes/CppCodeToHtml/codetohtmldialog.h \
     ../../Classes/CppCodeToHtml/codetohtmlfooter.h \
     ../../Classes/CppCodeToHtml/codetohtmlheader.h \

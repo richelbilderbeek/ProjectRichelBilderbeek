@@ -360,16 +360,24 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     //One could extract it from the MenuType, but this would activate its tests
     //Therefore, add it in this way
     { const MenuType p { new AminoAcidFighterMenuDialog }; m.insert(ValueType(ProgramType::aminoAcidFighter,p)); }
-    { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
     { const MenuType p { new AthleticLandMenuDialog }; m.insert(ValueType(ProgramType::athleticLand,p)); }
     { const MenuType p; m.insert(ValueType(ProgramType::athleticLandVcl,p)); }
+    { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
+    { const MenuType p; m.insert(ValueType(ProgramType::barbaImage,p)); }
     { const MenuType p { new BeerWanterMenuDialog }; m.insert(ValueType(ProgramType::beerWanter,p)); }
+    { const MenuType p; m.insert(ValueType(ProgramType::bochum,p)); }
     { const MenuType p { new Boenken::MenuDialog }; m.insert(ValueType(ProgramType::boenken,p)); }
     { const MenuType p { new ribi::pvdb::MenuDialog }; m.insert(ValueType(ProgramType::brainweaver,p)); }
+    { const MenuType p; m.insert(ValueType(ProgramType::bristol,p)); }
+    { const MenuType p; m.insert(ValueType(ProgramType::chrisWiley,p)); }
     { const MenuType p { new c2h::CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
     { const MenuType p { new ConnectThreeMenuDialog }; m.insert(ValueType(ProgramType::connectThree,p)); }
+    { const MenuType p; m.insert(ValueType(ProgramType::corridor,p)); }
     { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }
     { const MenuType p { new CreateQtProjectZipFile::MenuDialog }; m.insert(ValueType(ProgramType::createQtProjectZipFile,p)); }
+
+    { const MenuType p; m.insert(ValueType(ProgramType::crossPoll,p)); }
+
     { const MenuType p { new DasWahreSchlagerfestMenuDialog }; m.insert(ValueType(ProgramType::dasWahreSchlagerfest,p)); }
     { const MenuType p { new GrayCoderMenuDialog }; m.insert(ValueType(ProgramType::grayCoder,p)); }
     { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }

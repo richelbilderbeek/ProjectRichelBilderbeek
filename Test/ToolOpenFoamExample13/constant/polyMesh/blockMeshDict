@@ -1,10 +1,22 @@
-/*--------------------------------*- C++ -*----------------------------------*\
-| =========                 |                                                 |
-| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  2.1.x                                 |
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
-|    \\/     M anipulation  |                                                 |
-\*---------------------------------------------------------------------------*/
+// The object is a bit like a hovercraft:
+// high pressure is supplied at the top inlet tube,
+// which then flows below the object
+//
+//
+//Isometric sketch:
+//
+//
+//         +---+
+//        /   /|----+
+//       +---+ |   /| 
+//      /|   | +  / |
+//     / |   |/  /  +
+//    /  +---+  /  /
+//   /         /  /
+//  +---------+  /
+//  |         | /
+//  +---------+
+
 FoamFile
 {
     version     2.0;
@@ -12,9 +24,67 @@ FoamFile
     class       dictionary;
     object      blockMeshDict;
 }
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 convertToMeters 0.1;
+
+//Isometric sketch:
+//
+//
+//         3---0
+//        /   /|----12
+//       2---1 |   /| 
+//      /|   | 4  / |
+//     / |   |/  /  16
+//    /  6---5  /  /
+//   /         /  /
+// 14---------13 /
+//  |         | /
+// 18---------17
+//
+//
+//Side:
+//
+//    +--+     top layer
+//    |  |
+// +--+--+--+  middle layer
+// |        |
+// +--------+  bottom layer
+//
+//Layers:
+//
+//Top layer:
+//
+//  
+//  
+//    3--0  
+//    |  |  
+//    |  |  
+//    2--1  
+//  
+//  
+//
+//
+//Middle layer:
+//
+// 15------12
+// |        |
+// |  7--4  |
+// |  |  |  |
+// |  |  |  |
+// |  6--5  |
+// |        |
+// 14------13
+//
+//Bottom layer:
+//
+// 19------16
+// |        |
+// | 11--8  |
+// |  |  |  |
+// |  |  |  |
+// | 10--9  |
+// |        |
+// 18------17
 
 vertices					
 (					
@@ -42,6 +112,54 @@ vertices
   (-3 -3 -1) //18
   (-3  3 -1) //19
 );					
+
+//Side:
+//
+//    +--+     top layer
+//    |  |
+// +--+--+--+  middle layer
+// |  |  |  |
+// +--------+  bottom layer
+//
+//Layers:
+//
+//Top layer:
+//
+//  
+//  
+//    +--+ The block below this section is called 'inlet'
+//    |  | 
+//    |  |  
+//    +--+  
+//  
+//  
+//
+//
+//Middle layer:
+//
+// +--------+ The block above the middle section is called 'inlet'
+// |\      /| The block below the middle section is called 'below inlet'
+// | \    / | The block below the upper  section is called 'outlet back'
+// |  +--+  | The block below the right  section is called 'outlet right'
+// |  |  |  | The block below the bottom section is called 'outlet front'
+// |  |  |  | The block below the left   section is called 'outlet left'
+// |  +--+  |
+// | /    \ |
+// |/      \|
+// +--------+
+//
+//Bottom layer:
+//
+// +--------+ The block above the middle section is called 'below inlet'
+// |\      /| The block above the upper  section is called 'outlet back'
+// | \    / | The block above the right  section is called 'outlet right'
+// |  +--+  | The block above the bottom section is called 'outlet front'
+// |  |  |  | The block above the left   section is called 'outlet left'
+// |  |  |  |
+// |  +--+  |
+// | /    \ |
+// |/      \|
+// +--------+
 
 blocks
 (

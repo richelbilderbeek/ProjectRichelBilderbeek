@@ -188,6 +188,14 @@ const std::string ribi::fileio::GetFileBasename(const std::string& filename)
 
 const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string& folder)
 {
+  #ifndef NDEBUG
+  if (!IsFolder(folder))
+  {
+    TRACE("ERROR");
+    TRACE(folder);
+  }
+  #endif
+  assert(IsFolder(folder));
   QDir dir(folder.c_str());
   dir.setFilter(QDir::Files);
   const QFileInfoList list = dir.entryInfoList();
@@ -203,11 +211,98 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string&
   return v;
 }
 
+const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std::string& root_folder)
+{
+  assert(IsFolder(root_folder));
+
+  //Files in root_folder
+  std::vector<std::string> v;
+  {
+    const std::vector<std::string> files_here {
+      GetFilesInFolder(root_folder)
+    };
+    //Copy the files and folders with path added
+    std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
+      [root_folder](const std::string& filename)
+      {
+        const std::string filename_here {
+          root_folder + GetPathSeperator() + filename
+        };
+        assert(IsRegularFile(filename_here));
+        return filename_here;
+      }
+    );
+  }
+  //Folders in root_folder
+  std::vector<std::string> folders_todo;
+  {
+    const std::vector<std::string> folders_here {
+      GetFoldersInFolder(root_folder)
+    };
+    std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
+      [root_folder](const std::string& foldername)
+      {
+        const std::string folder_here {
+          root_folder + GetPathSeperator() + foldername
+        };
+        assert(IsFolder(folder_here));
+        return folder_here;
+      }
+    );
+  }
+
+  //Search through all sub folders
+  while (!folders_todo.empty())
+  {
+    TRACE(folders_todo.size());
+    const std::string folder_todo {
+      folders_todo.back() //Read from the back, so push_back can be used
+    };
+    TRACE(folder_todo);
+    const std::vector<std::string> files_here {
+      GetFilesInFolder(folder_todo)
+    };
+
+    const std::vector<std::string> folders_here {
+      GetFoldersInFolder(folder_todo)
+    };
+
+    //Copy the files and folders with path added
+    std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
+      [folder_todo](const std::string& filename)
+      {
+        const std::string file_here {
+          folder_todo + GetPathSeperator() + filename
+        };
+        assert(IsRegularFile(file_here));
+        return file_here;
+      }
+    );
+    std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
+      [folder_todo](const std::string& foldername)
+      {
+        assert(!foldername.empty());
+        const std::string subfolder_name {
+          folder_todo + GetPathSeperator() + foldername
+        };
+        assert(subfolder_name != folder_todo);
+        return subfolder_name;
+      }
+    );
+    //Done with this folder
+    folders_todo.pop_back();
+    assert( (folders_todo.empty() || folders_todo.back() != folder_todo)
+      && "Next folder must not be the one that is just processed");
+  }
+  return v;
+}
+
 const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str)
 {
   //Get all filenames
+  assert(IsFolder(folder));
   const std::vector<std::string> v = GetFilesInFolder(folder);
 
   //Create the regex
@@ -226,6 +321,32 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
   );
 
   return w;
+}
+
+const std::vector<std::string> ribi::fileio::GetFoldersInFolder(const std::string& folder)
+{
+  assert(IsFolder(folder));
+  QDir dir(folder.c_str());
+  dir.setFilter(QDir::Dirs | QDir::NoDotAndDotDot   );
+  const QFileInfoList list = dir.entryInfoList();
+
+  //Convert QFileInfoList to std::vector<std::string> of filenames
+  std::vector<std::string> v;
+  const int size = list.size();
+  for (int i = 0; i != size; ++i)
+  {
+    const std::string folder_name = list.at(i).fileName().toStdString();
+    assert(!folder_name.empty());
+    v.push_back(folder_name);
+  }
+  #ifndef NDEBUG
+  for (const std::string s: v)
+  {
+    assert(std::count(v.begin(),v.end(),s) == 1
+      && "Every folder name is unique");
+  }
+  #endif
+  return v;
 }
 
 const std::string ribi::fileio::GetPath(const std::string& filename)
@@ -550,6 +671,80 @@ void ribi::fileio::Test() noexcept
     assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
     assert(GetExtension("MyFolder/My_Folder/tmp.txt") == std::string(".txt"));
     assert(GetExtension("MyFolder/My-Folder\\tmp.txt") == std::string(".txt"));
+  }
+  //GetFilesInFolderRecursive
+  {
+    //Use the following structure:
+    // - local.txt
+    // - my_folder1/in_folder1.txt
+    // - my_folder1/in_folder2.txt
+    // - my_folder2/in_folder1.txt
+    // - my_folder2/in_folder2.txt
+    // - my_folder/my_subfolder/in_subfolder.txt
+    const std::string local_filename { "local.txt" };
+    const std::string folder_name1 { "my_folder1" };
+    const std::string folder_name2 { "my_folder2" };
+    const std::string in_folder_filename1 { "in_folder.txt1" };
+    const std::string in_folder_filename2 { "in_folder.txt2" };
+    const std::string subfolder_name1 { "my_subfolder1" };
+    const std::string subfolder_name2 { "my_subfolder2" };
+    const std::string in_subfolder_filename1 { "in_subfolder1.txt" };
+    const std::string in_subfolder_filename2 { "in_subfolder2.txt" };
+    //Folder creation
+    for (const std::string folder_name:
+      {
+        folder_name1,
+        folder_name1 + GetPathSeperator() + subfolder_name1,
+        folder_name1 + GetPathSeperator() + subfolder_name2,
+        folder_name2,
+        folder_name2 + GetPathSeperator() + subfolder_name1,
+        folder_name2 + GetPathSeperator() + subfolder_name2,
+      }
+    )
+    {
+      if (!IsFolder(folder_name))
+      {
+        const std::string cmd = "mkdir " + folder_name;
+        const int error = std::system(cmd.c_str());
+        assert(!error);
+      }
+      assert(IsFolder(folder_name));
+    }
+    //File creation
+    for (const std::string filename:
+      {
+        local_filename,
+        folder_name1 + GetPathSeperator() + in_folder_filename1,
+        folder_name1 + GetPathSeperator() + in_folder_filename2,
+        folder_name2 + GetPathSeperator() + in_folder_filename1,
+        folder_name2 + GetPathSeperator() + in_folder_filename2,
+        folder_name1 + GetPathSeperator() + subfolder_name1 + GetPathSeperator() + in_subfolder_filename1,
+        folder_name1 + GetPathSeperator() + subfolder_name1 + GetPathSeperator() + in_subfolder_filename2,
+        folder_name1 + GetPathSeperator() + subfolder_name2 + GetPathSeperator() + in_subfolder_filename1,
+        folder_name1 + GetPathSeperator() + subfolder_name2 + GetPathSeperator() + in_subfolder_filename2,
+        folder_name2 + GetPathSeperator() + subfolder_name1 + GetPathSeperator() + in_subfolder_filename1,
+        folder_name2 + GetPathSeperator() + subfolder_name1 + GetPathSeperator() + in_subfolder_filename2,
+        folder_name2 + GetPathSeperator() + subfolder_name2 + GetPathSeperator() + in_subfolder_filename1,
+        folder_name2 + GetPathSeperator() + subfolder_name2 + GetPathSeperator() + in_subfolder_filename2,
+      }
+    )
+    {
+      if (!IsRegularFile(filename))
+      {
+        std::ofstream f(filename.c_str());
+      }
+      assert(IsRegularFile(filename));
+    }
+
+    //Reading of the files and folders created
+    const std::vector<std::string> v {
+      GetFilesInFolderRecursive(folder_name1)
+    };
+    std::cout << "Files found: " << std::endl;
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
+    assert(v.size() == 6);
+
+    //Clean up
   }
   //GetPath
   {

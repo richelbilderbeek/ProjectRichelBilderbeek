@@ -90,6 +90,7 @@ const std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > ribi::QtCreatorPro
 
 const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& source_folder)
 {
+  assert(fileio::IsFolder(source_folder));
 
   const std::vector<std::string> pro_filenames = GetProFilesInFolder(source_folder);
 
@@ -222,6 +223,7 @@ const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
 
 const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
 {
+  assert(fileio::IsFolder(folder));
   return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 

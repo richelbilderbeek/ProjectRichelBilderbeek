@@ -21,7 +21,7 @@ struct QtAthleticLandMainWidget : public QWidget
 
   private:
   void paintEvent(QPaintEvent *);
-  void resizeEvent(QResizeEvent *);
+  //void resizeEvent(QResizeEvent *);
 
   const boost::shared_ptr<Player> m_player;
 };

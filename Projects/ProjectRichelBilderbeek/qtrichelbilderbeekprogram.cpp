@@ -112,7 +112,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
     case ProgramType::bristol: break;
     case ProgramType::chrisWiley: break;
-    case ProgramType::codeToHtml: p = new QtCodeToHtmlMenuDialog; break;
+    case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;
     case ProgramType::createGlossary: p = new QtCreateGlossaryMenuDialog; break;

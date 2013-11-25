@@ -113,13 +113,11 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
   if (ribi::fileio::IsFolder(source))
   {
     std::cout << "Source is directory: yes" << std::endl;
-    //return ExecuteFolder(source);
   }
   else
   {
     assert(ribi::fileio::IsRegularFile(source));
     std::cout << "Source is directory: no" << std::endl;
-    //return ExecuteFile(source);
   }
 
   const std::function<const std::vector<std::string>(const std::string&)> f {

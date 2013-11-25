@@ -279,8 +279,11 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
       for (const std::string& s:
         {
           "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
-          "E:/Projects/Tools/ToolCodeToHtml",
-          "../../Tools/ToolCodeToHtml"
+          "D:/Projects/Tools/ToolCodeToHtml",
+          "../../Tools/ToolCodeToHtml",
+          "..\\..\\Tools\\ToolCodeToHtml",
+          "../../Test/ToolOpenFoamExample1",
+          "..\\..\\Test\\ToolOpenFoamExample1"
         }
       )
       {

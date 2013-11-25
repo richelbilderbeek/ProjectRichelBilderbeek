@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "qtaboutdialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
+#include "qtrichelbilderbeekgallerydialog.h"
 //#include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekgallerymenudialog.h"
 #include "ui_qtrichelbilderbeekgallerymenudialog.h"
@@ -93,7 +94,7 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_quit_clicked()
 
 void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_start_clicked()
 {
-  QtRichelBilderbeekGalleryMainDialog d;
+  QtRichelBilderbeekGalleryDialog d;
   ShowChild(&d);
 }
 

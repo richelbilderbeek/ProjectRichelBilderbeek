@@ -46,8 +46,8 @@ const std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilena
   };
 }
 
-const QPixmap& ribi::athl::GetPlayer(const State state) const noexcept
+const QPixmap& ribi::athl::QtAthleticLandResources::GetPlayer(const State state) const noexcept
 {
   assert(m_player.find(state) != m_player.end());
-  return m_player.find(state);
+  return (*m_player.find(state)).second;
 }

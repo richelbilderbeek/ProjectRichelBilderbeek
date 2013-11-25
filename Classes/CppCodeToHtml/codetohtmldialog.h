@@ -48,24 +48,8 @@ struct Dialog
   static const std::vector<std::string> FileToHtml(
     const std::string& file_name) noexcept;
 
-  ///Convert a file to an HTML page
-  ///The supplied file type will have precedence over
-  ///deducing the file type
-  //static const std::vector<std::string> FileToHtml(
-  //  const std::string& file_name,
-  //  const FileType file_type
-  //  ) noexcept;
-
   ///Convert a folder to an HTML page
-  ///This will call
-  ///- ProFolderToHtml
-  ///- FoamFolderToHtml
-  ///- TextFolderToHtml
-  //static const std::vector<std::string> FolderToHtml(
-  //  const std::string& folder_name,
-  //  const FolderType folder_type
-  //  ) noexcept;
-
+  ///The project type will be deduced from the folder its content
   static const std::vector<std::string> FolderToHtml(
     const std::string& folder_name
     ) noexcept;

@@ -13,6 +13,8 @@ include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
+include(../../Classes/CppQtRichelBilderbeekGalleryDialog/CppQtRichelBilderbeekGalleryDialog.pri)
+
 include(../../Classes/CppCodeToHtml/CppCodeToHtml.pri)
 include(../../Classes/CppQrcFile/CppQrcFile.pri)
 include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
@@ -20,3 +22,5 @@ include(../../Projects/RichelbilderbeekNl/RichelbilderbeekNlDesktop.pri)
 include(../../Tools/ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pri)
 
 SOURCES += qtmain.cpp
+
+

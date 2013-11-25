@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef LOOPREADER_H
 #define LOOPREADER_H
 
+#include <cassert>
 #include <string>
 #include <vector>
 
@@ -34,37 +35,41 @@ template <class Iterator>
 struct LoopReader
 {
   explicit LoopReader(const Iterator begin, const Iterator end)
-    : begin_(begin),
-      end_(end),
-      read_(begin)
+    : m_begin(begin),
+      m_end(end),
+      m_cur(begin)
   {
-
+    assert(m_begin != m_end);
   }
-  const Iterator Read() const { return read_; }
+  const Iterator Read() const noexcept { return m_cur; }
 
-  void Next()
+  void Next() noexcept
   {
-    ++read_;
-    if (read_ == end_) read_ = begin_;
-  }
-
-  static const std::string GetVersion()
-  {
-    return "1.1";
+    assert(m_cur != m_end);
+    ++m_cur;
+    if (m_cur == m_end) m_cur = m_begin;
   }
 
-  static const std::vector<std::string> GetVersionHistory()
+  static const std::string GetVersion() noexcept
   {
-    std::vector<std::string> v;
-    v.push_back("2009-08-26: Version 1.0: initial version");
-    v.push_back("2011-03-06: Version 1.1: added GetVersion and GetVersionHistory methods");
-    return v;
+    return "1.2";
+  }
+
+  static const std::vector<std::string> GetVersionHistory() noexcept
+  {
+    return {
+      "2009-08-26: Version 1.0: initial version",
+      "2011-03-06: Version 1.1: added GetVersion and GetVersionHistory member functions",
+      "2013-11-25: Version 1.2: added some asserts, added noexcept"
+    };
   }
 
   private:
-  const Iterator begin_;
-  const Iterator end_;
-  Iterator read_;
+  const Iterator m_begin;
+  const Iterator m_end;
+
+  //The current address to read
+  Iterator m_cur;
 };
 
 } //~namespace ribi

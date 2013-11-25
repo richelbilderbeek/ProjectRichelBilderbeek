@@ -149,6 +149,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::Test() noexcept
   for (const std::string& pro_filename: pro_filenames)
   {
     if (!fileio::IsRegularFile(pro_filename)) continue;
+    if (!fileio::IsFolder(pro_filename)) continue;
     const CreateQtProjectZipFileMainDialog d(pro_filename);
     assert(!d.GetScript().empty());
   }
