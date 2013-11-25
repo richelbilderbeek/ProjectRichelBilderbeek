@@ -12838,10 +12838,7 @@ void ribi::c2h::Info::Test()
 
       //Add header
       {
-        const boost::scoped_ptr<const Header> header {
-          new Header(PageType::cpp,"")
-        };
-        const std::vector<std::string> w = header->ToHtml();
+        const std::vector<std::string> w { Header::ToHtml(HeaderType::cpp,"TestTitle") };
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
       //Text about this page (if known)
@@ -12851,10 +12848,7 @@ void ribi::c2h::Info::Test()
       }
       //Add footer
       {
-        const boost::scoped_ptr<const Footer> footer{
-          new Footer(PageType::cpp)
-        };
-        const std::vector<std::string> w = footer->ToHtml();
+        const std::vector<std::string> w = Footer::ToHtml(FooterType::cpp);
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
 

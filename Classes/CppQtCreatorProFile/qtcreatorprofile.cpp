@@ -287,7 +287,6 @@ void ribi::QtCreatorProFile::Test()
     assert(p.GetTemplate().count("app"));
     //TRACE("Test QtCreatorProFile::operator<<");
     {
-      //std::cout << p << '\n';
       std::stringstream ss;
       ss << p << '\n';
     }
@@ -379,7 +378,6 @@ void ribi::QtCreatorProFile::Test()
 
     //Test operator<<
     {
-      //std::cout << p << '\n';
       std::stringstream ss;
       ss << p << '\n';
     }

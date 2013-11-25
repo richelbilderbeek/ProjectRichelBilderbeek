@@ -89,7 +89,6 @@ const std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
   const QTextDocument * const doc = edit->document();
   if (!doc) return v;
   const int n_lines = doc->lineCount();
-  //std::clog << "Source text contains " << n_lines << " line(s)\n";
   for (int i=0; i!=n_lines; ++i)
   {
     const QTextBlock block = doc->findBlockByNumber(i);
@@ -102,8 +101,6 @@ const std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
     }
     assert(block.isValid());
     const QString line = block.text();
-    //std::clog << "Line " << i << "/" << n_lines
-    //  << " has text '" << line.toStdString() << "'\n";
     v.push_back(line.toStdString());
   }
   return v;
@@ -283,7 +280,8 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
           "../../Tools/ToolCodeToHtml",
           "..\\..\\Tools\\ToolCodeToHtml",
           "../../Test/ToolOpenFoamExample1",
-          "..\\..\\Test\\ToolOpenFoamExample1"
+          "..\\..\\Test\\ToolOpenFoamExample1",
+          "/home/richel/ProjectRichelBilderbeek/Test/ToolOpenFoamExample1"
         }
       )
       {

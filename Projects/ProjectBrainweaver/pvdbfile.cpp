@@ -22,6 +22,7 @@
 #include "pvdbconcept.h"
 #include "pvdbconceptmapfactory.h"
 #include "pvdbconceptmap.h"
+#include "fileio.h"
 #include "pvdbfilefactory.h"
 #include "pvdbhelper.h"
 #include "pvdbnode.h"
@@ -135,7 +136,7 @@ const std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
 
 const std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 {
-  assert(QFile::exists(filename.c_str()));
+  assert(fileio::IsRegularFile(filename.c_str()));
   std::string s;
   std::ifstream in(filename.c_str());
   while (!in.eof())
@@ -198,8 +199,8 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
     const std::vector<std::string> v = pvdb::GetRegexMatches(s,QRegExp("(<question>.*</question>)"));
     if (v.empty())
     {
-      TRACE("BREAK");
       TRACE(s);
+      TRACE("Sometimes, this happens at the first startup and ");
     }
     assert(!v.empty());
     assert(v.size() == 1);
@@ -470,7 +471,7 @@ void ribi::pvdb::File::Test()
     {
       //Testing filenames start at 1
       const std::string filename = boost::lexical_cast<std::string>(i + 1) + ".cmp";
-      if (!QFile::exists(filename.c_str()))
+      if (!fileio::IsRegularFile(filename))
       {
         //Copy the file from Qt resources to local file
         {
@@ -479,7 +480,7 @@ void ribi::pvdb::File::Test()
           qtfile.copy(filename.c_str());
           qtfile.close();
         }
-        if (!QFile::exists(filename.c_str()))
+        if (!fileio::IsRegularFile(filename))
         {
           //TRACE("First filename not found: ");
           //TRACE(filename);
@@ -511,11 +512,11 @@ void ribi::pvdb::File::Test()
         assert(file.size() > 0);
         file.close();
 
-        assert(QFile::exists(filename.c_str()));
+        assert(fileio::IsRegularFile(filename));
         ribi::pvdb::File::Load(filename);
         std::remove(filename.c_str());
 
-        assert(!QFile::exists(filename.c_str()));
+        assert(!fileio::IsRegularFile(filename));
       }
     }
   }

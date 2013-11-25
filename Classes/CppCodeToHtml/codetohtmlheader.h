@@ -51,6 +51,7 @@ struct Header
   //HeaderType GetHeaderType() const { return m_header_type; }
 
   private:
+  Header() = delete;
   //~Header() noexcept {}
   //friend void boost::checked_delete<>(Header*);
   //friend void boost::checked_delete<>(const Header*);

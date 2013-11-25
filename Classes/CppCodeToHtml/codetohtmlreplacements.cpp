@@ -108,7 +108,6 @@ ribi::c2h::Replacements::Replacements(
     for (auto i=m_replacements.begin();i!=end;++i)
     {
       const std::string s = (*i).second;
-      //if (s.find("any")!=std::string::npos) { std::clog << "any_ found!\n"; }
       if (skip.count(s) == 1) continue;
       assert(skip.count(s) == 0);
       for (auto j=m_replacements.begin();j!=end;++j)

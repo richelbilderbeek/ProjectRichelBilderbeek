@@ -67,7 +67,6 @@ const ribi::c2h::Replacements& ribi::c2h::Replacer::GetReplacementsTxt()
 
 const std::string ribi::c2h::Replacer::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
 {
-  TRACE(line);
   std::string s(line);
   #ifdef DEBUG_PROGRAM_HANGS
   { const std::string debug_str = "Before: " + s; TRACE(debug_str); }

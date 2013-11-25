@@ -188,7 +188,6 @@ const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& folder
   std::vector<std::string> v;
   {
     const std::vector<std::string> files = GetSortedFilesInFolder(foldername);
-    std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     for(const std::string& filename: files)
     {
       const std::string filename_full = foldername + "/" + filename;

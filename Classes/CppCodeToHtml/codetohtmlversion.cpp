@@ -65,7 +65,7 @@ const std::string ribi::c2h::Version::GetGccVersion()
 #ifndef _WIN32
 const std::string ribi::c2h::Version::GetLubuntuVersion()
 {
-  const std::string filename = std::tmpnam(0);
+  const std::string filename { fileio::GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
@@ -103,7 +103,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersion()
 #ifndef _WIN32
 const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
 {
-  const std::string filename = std::tmpnam(0);
+  const std::string filename { fileio::GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
@@ -180,7 +180,7 @@ const std::string ribi::c2h::Version::GetStlVersion()
 #ifndef _WIN32
 const std::string ribi::c2h::Version::GetUbuntuVersion()
 {
-  const std::string filename = std::tmpnam(0);
+  const std::string filename { fileio::GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
@@ -218,7 +218,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersion()
 #ifndef _WIN32
 const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
 {
-  const std::string filename = std::tmpnam(0);
+  const std::string filename { fileio::GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd = "cat /etc/*-release > " + filename;
@@ -253,7 +253,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
 
 const std::string ribi::c2h::Version::GetVirtualBoxVersion()
 {
-  const std::string filename = std::tmpnam(0);
+  const std::string filename { fileio::GetTempFileName() };
   //Save info to temporary file
   {
     const std::string cmd
@@ -275,7 +275,7 @@ const std::string ribi::c2h::Version::GetVirtualBoxVersion()
 
 const std::string ribi::c2h::Version::GetWineVersion()
 {
-  const std::string filename = std::tmpnam(0);
+  const std::string filename { fileio::GetTempFileName() };
   //Save info to temporary file
   {
     const std::string cmd

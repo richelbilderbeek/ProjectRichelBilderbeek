@@ -250,6 +250,10 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
 const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
   const std::string& foldername) noexcept
 {
+  assert(fileio::IsFolder(foldername));
+  assert(foldername.back() != '\\');
+  assert(foldername.back() != '/');
+
   std::vector<std::string> v;
   //Header
   {
@@ -276,6 +280,10 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
           + ribi::fileio::GetPathSeperator()
           + s
         };
+        #ifndef NDEBUG
+        if(!ribi::fileio::IsRegularFile(t)) { TRACE(foldername); }
+        #endif
+        assert(ribi::fileio::IsRegularFile(t));
         return t;
       }
     );
@@ -288,7 +296,6 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
     }
     #endif
 
-    std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
@@ -379,7 +386,6 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
       }
     );
 
-    std::copy(files.begin(),files.end(),std::ostream_iterator<std::string>(std::cout,"\n"));
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
@@ -539,13 +545,7 @@ void ribi::c2h::Dialog::Test()
     const std::string filename = "../ToolCodeToHtml/qtmain.cpp";
     if (ribi::fileio::IsRegularFile(filename))
     {
-      Dialog d(
-        PageType::cpp,
-        filename,
-        ContentType::cpp
-        //,TechInfoType::automatic
-      );
-      const std::vector<std::string> v = d.ToHtml();
+      const std::vector<std::string> v { Dialog::FileToHtml(filename) };
       assert(IsCleanHtml(v) && "Assume tidy HTML");
     }
     else
@@ -562,13 +562,7 @@ void ribi::c2h::Dialog::Test()
     const std::string path = "../ToolCodeToHtml";
     if (ribi::fileio::IsFolder(path))
     {
-      Dialog d(
-        PageType::cpp,
-        path,
-        ContentType::cpp
-        //,TechInfoType::automatic
-      );
-      const std::vector<std::string> v = d.ToHtml();
+      const std::vector<std::string> v { Dialog::FolderToHtml(path) };
       assert(IsCleanHtml(v) && "Assume tidy HTML");
     }
     else

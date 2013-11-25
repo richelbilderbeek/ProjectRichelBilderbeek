@@ -16,26 +16,6 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-/*
-const std::vector<std::string> ribi::pvdb::FileToVector(const std::string& filename)
-{
-  #ifndef NDEBUG
-  pvdb::TestHelperFunctions();
-  #endif
-
-  assert(QFile::exists(filename.c_str()));
-  std::vector<std::string> v;
-  std::ifstream in(filename.c_str());
-  std::string s;
-  for (int i=0; !in.eof(); ++i)
-  {
-    std::getline(in,s);
-    v.push_back(s);
-  }
-  return v;
-}
-*/
-
 double ribi::pvdb::GetDistance(const double delta_x, const double delta_y)
 {
   #ifndef NDEBUG

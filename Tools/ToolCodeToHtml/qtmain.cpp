@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
   {
     START_TRACE();
     #ifndef _WIN32
-    assert(c2h::IsTidyInstalled() && "I really want to be sure that tidy is installed");
+    assert(ribi::c2h::IsTidyInstalled() && "I really want to be sure that tidy is installed");
     #endif
 
     #ifndef NDEBUG
