@@ -188,13 +188,6 @@ const std::string ribi::fileio::GetFileBasename(const std::string& filename)
 
 const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string& folder)
 {
-  #ifndef NDEBUG
-  if (!IsFolder(folder))
-  {
-    TRACE("ERROR");
-    TRACE(folder);
-  }
-  #endif
   assert(IsFolder(folder));
   QDir dir(folder.c_str());
   dir.setFilter(QDir::Files);
