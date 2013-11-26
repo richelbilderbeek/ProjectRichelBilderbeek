@@ -277,6 +277,9 @@ void ribi::c2h::QtCodeToHtmlMainDialog::Test() noexcept
         {
           "/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml",
           "D:/Projects/Tools/ToolCodeToHtml",
+          "D:\\Projects\\Tools\\ToolCodeToHtml",
+          "D:/Projects/Test/ToolOpenFoamExample1",
+          "D:\\Projects\\Test\\ToolOpenFoamExample1",
           "../../Tools/ToolCodeToHtml",
           "..\\..\\Tools\\ToolCodeToHtml",
           "../../Test/ToolOpenFoamExample1",

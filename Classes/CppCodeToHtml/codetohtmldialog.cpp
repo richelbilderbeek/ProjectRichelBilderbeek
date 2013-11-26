@@ -275,13 +275,24 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
       std::back_inserter(files),
       [foldername](const std::string& s)
       {
+        //If the path is already complete, return it
+        if (ribi::fileio::IsRegularFile(s))
+        {
+          return s;
+        }
+        //Prepend the folder name
         const std::string t {
           foldername
           + ribi::fileio::GetPathSeperator()
           + s
         };
         #ifndef NDEBUG
-        if(!ribi::fileio::IsRegularFile(t)) { TRACE(foldername); }
+        if(!ribi::fileio::IsRegularFile(t))
+        {
+          TRACE(foldername);
+          TRACE(s);
+          TRACE(t);
+        }
         #endif
         assert(ribi::fileio::IsRegularFile(t));
         return t;

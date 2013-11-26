@@ -153,12 +153,13 @@ const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
-    "the 22nd of November 2013",
+    "the 26th of November 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
     GetVersionHistory()
   };
+  a.AddLibrary("FileIo version: " + fileio::GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -172,15 +173,9 @@ const ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-      //Help::Option('i',"--file_type","file type: cpp, text"),
-      //Help::Option('s',"--source","source of the content: a filename or foldername (flag is optional)"),
-      //Help::Option('o',"--folder_type","folder type: cpp, foam")
     },
     {
-      //"CodeToHtmlConsole --source main.cpp --file_type cpp",
-      //"CodeToHtmlConsole --source main.cpp",
       "CodeToHtmlConsole main.cpp",
-      //"CodeToHtmlConsole --source GameBeerWanter --folder_type cpp"
     }
   );
 }
@@ -236,7 +231,7 @@ const std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistor
     "2013-09-17: version 2.8: compile with -Weffc++, fixed bug due to this, removed recursive replacements, cleaned info, do tests at run-time, added reading .pri files"
     "2013-09-26: version 2.9: use of boost::checked_delete on all classes, removed use of Boost.Program_options"
     "2013-10-25: version 2.10: console application callable from ProjectRichelBilderbeek",
-    "2013-11-22: version 3.0: improved interface and architecture"
+    "2013-11-26: version 3.0: improved interface and architecture, support for OpenFOAM projects"
   };
   return v;
 }
