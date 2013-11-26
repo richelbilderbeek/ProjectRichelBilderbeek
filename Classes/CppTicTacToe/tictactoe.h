@@ -99,10 +99,10 @@ struct TicTacToe
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the winner.
-  ///* TicTacToe::player1   : player1 has won.
-  ///* TicTacToe::player2   : player2 has won.
-  ///* TicTacToe::draw      : draw.
-  ///* TicTacToe::no_winner : no winner.
+  /// * TicTacToe::player1   : player1 has won.
+  /// * TicTacToe::player2   : player2 has won.
+  /// * TicTacToe::draw      : draw.
+  /// * TicTacToe::no_winner : no winner.
   ///The constant TicTacToe::empty should _not_ be returned.
   int GetWinner() const;
 

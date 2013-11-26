@@ -49,7 +49,7 @@ class QtOpenQuestionDialog : public QtQuestionDialog
 public:
   explicit QtOpenQuestionDialog(QWidget *parent = 0);
 
-  ///Will trrow if the QuestionDialog is not an OpenQuestionDialog
+  ///Will throw if the QuestionDialog is not an OpenQuestionDialog
   explicit QtOpenQuestionDialog(
     const boost::shared_ptr<OpenQuestionDialog> dialog,
     QWidget *parent = 0);
@@ -61,10 +61,6 @@ public:
 
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
-
-  ///Set the Question
-  ///Will throw if the question type does not match the dialog its type
-  //void SetQuestion(const boost::shared_ptr<const Question> question);
 
 private slots:
   void on_button_submit_clicked() noexcept;

@@ -81,23 +81,6 @@ const std::vector<std::string> ribi::Pylos::QtSprites::GetVersionHistory() noexc
   };
 }
 
-/*
-void ribi::Pylos::QtSprites::SetBoardSize(const int board_width, const int board_height)
-{
-  m_board_width  = board_width;
-  m_board_height = board_height;
-  GenerateSprites();
-}
-
-///SetColorScheme sets the color scheme of the Sprites.
-///This redraws all the sprites.
-void ribi::Pylos::QtSprites::SetColorScheme(const boost::array<int,6> colors)
-{
-  m_colors = colors;
-  GenerateSprites();
-}
-*/
-
 QPixmap ribi::Pylos::DrawBoardBottom(
   const int width,
   const int height,

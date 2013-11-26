@@ -124,12 +124,3 @@ const std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
     "2013-11-19: Version 1.2: use of ribi::fileio"
   };
 }
-
-/*
-bool ribi::QtResources::IsRegularFile(const std::string& filename) noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
-}
-*/

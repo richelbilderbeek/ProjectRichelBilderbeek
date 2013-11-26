@@ -244,25 +244,23 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
     );
   }
 
-  for (const std::string& result_first: v) { TRACE(result_first); }
-  for (const std::string& folder_to_first: folders_todo) { TRACE(folder_to_first); }
-
-
   //Search through all sub folders
   while (!folders_todo.empty())
   {
-    TRACE(folders_todo.size());
     const std::string folder_todo {
       folders_todo.back() //Read from the back, so push_back can be used
     };
     //Done with this folder
     folders_todo.pop_back();
+
+    #ifndef NDEBUG
     if(!(folders_todo.empty() || folders_todo.back() != folder_todo))
     {
       TRACE("ERROR");
       for (const std::string& todo: folders_todo) { TRACE(todo); }
       for (const std::string& result: v) { TRACE(result); }
     }
+    #endif
     assert( (folders_todo.empty() || folders_todo.back() != folder_todo)
       && "Next folder must not be the one that is just processed");
 
@@ -286,7 +284,6 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
         const std::string file_here {
           folder_todo + GetPathSeperator() + filename
         };
-        TRACE(file_here);
         assert(IsRegularFile(file_here));
         return file_here;
       }
@@ -298,7 +295,6 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
         const std::string subfolder_name {
           folder_todo + GetPathSeperator() + foldername
         };
-        TRACE(subfolder_name);
         assert(subfolder_name != folder_todo);
         return subfolder_name;
       }

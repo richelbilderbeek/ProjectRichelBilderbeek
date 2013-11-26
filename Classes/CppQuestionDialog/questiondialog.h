@@ -61,9 +61,6 @@ struct QuestionDialog
   ///See if the submitted answer is correct
   bool IsAnswerCorrect() const;
 
-  ///(Re)set the Question
-  //void SetQuestion(const boost::shared_ptr<const Question> question);
-
   ///Try to submit an answer
   ///For an open question, s will be the anwer
   ///For a multiple choice question, s will be the index of the answer

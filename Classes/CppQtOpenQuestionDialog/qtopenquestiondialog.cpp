@@ -31,23 +31,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-/*
-ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(QWidget *parent)
-  : QtQuestionDialog(
-      boost::shared_ptr<QuestionDialog>(
-        new OpenQuestionDialog(
-          boost::shared_ptr<OpenQuestion>(
-            new OpenQuestion("*","*",{"*"} )))),
-    parent),
-    ui(new Ui::QtOpenQuestionDialog)
-{
-  assert(m_dialog);
-  assert(GetDialog());
-
-  ui->setupUi(this);
-}
-*/
-
 ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
   const boost::shared_ptr<OpenQuestionDialog> dialog,
   QWidget *parent)
@@ -57,10 +40,8 @@ ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
 {
   assert(m_dialog);
   assert(GetDialog());
-  assert(!m_dialog->m_signal_submitted.empty());
 
   ui->setupUi(this);
-  //SetQuestion(dialog->GetQuestion());
 
   const boost::shared_ptr<const OpenQuestion> question {
     m_dialog->GetOpenQuestion()
@@ -99,33 +80,6 @@ const std::vector<std::string> ribi::QtOpenQuestionDialog::GetVersionHistory() n
     "2011-06-28: version 1.0: initial version"
   };
 }
-
-/*
-void ribi::QtOpenQuestionDialog::SetQuestion(
-  const boost::shared_ptr<const Question> question)
-{
-  m_dialog->SetQuestion(question);
-
-  if (QFile::exists(question->GetFilename().c_str()))
-  {
-    ui->image->setPixmap(QPixmap(question->GetFilename().c_str()));
-  }
-
-  const OpenQuestion * const q
-    = dynamic_cast<const OpenQuestion *>(question.get());
-  if (!q)
-  {
-    throw std::logic_error(
-      "Only OpenQuestions may be passed to QtOpenQuestionDialog");
-  }
-  assert(q && "Only OpenQuestions may be passed to QtOpenQuestionDialog");
-
-  ui->stackedWidget->setCurrentWidget(ui->page_question);
-  ui->label_question->setText(question->GetQuestion().c_str());
-  ui->label_question_again->setText(question->GetQuestion().c_str());
-  ui->label_answer->setText(q->GetCorrectAnswers()[0].c_str());
-}
-*/
 
 void ribi::QtOpenQuestionDialog::on_button_submit_clicked() noexcept
 {

@@ -50,14 +50,6 @@ ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *pare
   ui->led_3->GetWidget()->GetLed()->SetColor(  0,255,  0);
   ui->led_4->GetWidget()->GetLed()->SetColor(  0,  0,255);
   ui->led_5->GetWidget()->GetLed()->SetColor(  0,  0,  0);
-  /*
-  const int size = ui->button_about->height() + 8;
-  ui->led_1->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_2->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_3->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_4->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  ui->led_5->GetWidget()->SetGeometry(Rect(0,0,size,size));
-  */
 }
 
 ribi::QtSimMysteryMachineMenuDialog::~QtSimMysteryMachineMenuDialog() noexcept

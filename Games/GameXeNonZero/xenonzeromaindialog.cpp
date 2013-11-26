@@ -170,22 +170,6 @@ void ribi::xnz::Dialog::DrawSprites()
     / static_cast<double>(mSpritePlayer->GetMaxHealth() ) );
 }
 
-/*
-void SpriteDrawer::operator()(boost::shared_ptr<Sprite>& s) const
-{
-  mArea->Draw(s->GetX(), s->GetY(), s->GetGraphic());
-}
-*/
-
-/*
-const std::string AskUserInput()
-{
-  std::string s;
-  std::getline(std::cin,s);
-  return s;
-}
-*/
-
 std::ostream& ribi::xnz::operator<<(std::ostream& os, const Dialog& s)
 {
   os << s.GetArea();

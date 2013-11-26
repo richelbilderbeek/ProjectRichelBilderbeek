@@ -70,17 +70,6 @@ struct Replacements
   static const std::vector<std::pair<std::string,std::string> > CreateInitialReplacements();
 };
 
-/*
-namespace ReplacementsDeleter
-{
-  const auto deleter
-    = [](const Replacements * const p)
-    {
-      boost::checked_delete(p);
-    };
-}
-*/
-
 } //~namespace c2h
 } //~namespace ribi
 

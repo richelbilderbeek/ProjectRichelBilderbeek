@@ -58,17 +58,6 @@ ribi::QtRichelBilderbeekGalleryMenuDialog::~QtRichelBilderbeekGalleryMenuDialog(
   delete ui;
 }
 
-/*
-const std::string ribi::QtRichelBilderbeekGalleryMenuDialog::GetPath(const std::string& filename)
-{
-  const int a = filename.rfind("\\",filename.size());
-  const int b = filename.rfind("/",filename.size());
-  const int i = std::max(a,b);
-  assert(i < static_cast<int>(filename.size()));
-  return filename.substr(0,i);
-}
-*/
-
 void ribi::QtRichelBilderbeekGalleryMenuDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) close();

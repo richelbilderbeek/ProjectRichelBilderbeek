@@ -49,15 +49,6 @@ ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   //Generate sprites when needed
   {
     Pylos::QtSprites s(256,256);
-    /*
-    s.Get(Pylos::QtSprites::board_hole).save("sprite_hole.png");
-    s.Get(Pylos::QtSprites::player1).save("sprite_player1.png");
-    s.Get(Pylos::QtSprites::player2).save("sprite_player2.png");
-    s.Get(Pylos::QtSprites::player1_remove).save("sprite_player1_remove.png");
-    s.Get(Pylos::QtSprites::player2_remove).save("sprite_player2_remove.png");
-    s.Get(Pylos::QtSprites::player1_select).save("sprite_player1_select.png");
-    s.Get(Pylos::QtSprites::player2_select).save("sprite_player2_select.png");
-    */
   }
 
 }

@@ -233,28 +233,6 @@ const std::string ribi::Program::GetFilenameBase() const noexcept
   return s + GetScreenName();
 }
 
-/*
-const std::string ribi::Program::GetFilenameConsole() const noexcept
-{
-  return GetFilenameBase() + "Console.png";
-}
-
-const std::string ribi::Program::GetFilenameDesktop() const noexcept
-{
-  return GetFilenameBase() + "Desktop.png";
-}
-
-const std::string ribi::Program::GetFilenameDesktopWindowsOnly() const noexcept
-{
-  return GetFilenameBase() + "DesktopWindowsOnly.png";
-}
-
-const std::string ribi::Program::GetFilenameWeb() const noexcept
-{
-  return GetFilenameBase() + "Web.png";
-}
-*/
-
 const std::string ribi::Program::GetTypeName() const noexcept
 {
   return ProgramTypes::ProgramTypeToEnumName(this->GetType());

@@ -106,40 +106,6 @@ const std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
   return v;
 }
 
-/*
-c2h::PageType ribi::c2h::QtCodeToHtmlMainDialog::GetPageType() const noexcept
-{
-  const std::string s = ui->box_header->currentText().toStdString();
-  if (s == "C++") return c2h::PageType::cpp;
-  if (s == "Music") return c2h::PageType::music;
-  if (s == "Text") return c2h::PageType::text;
-  //if (s == "Tool") return c2h::PageType::tool;
-  if (s == "OpenFOAM") return c2h::PageType::foam;
-  assert(!"Should not get here");
-  throw std::logic_error("QtCodeToHtmlMainDialog::GetPageType");
-}
-
-c2h::ContentType ribi::c2h::QtCodeToHtmlMainDialog::GetContentType() const noexcept
-{
-  const std::string s = ui->box_source->currentText().toStdString();
-  if (s == "C++") return c2h::FileType::cpp;
-  if (s == "Text") return c2h::FileType::txt;
-  if (s == "Project file") return c2h::FileType::pro;
-  assert(!"Should not get here");
-  throw std::logic_error("QtCodeToHtmlMainDialog::GetContentType");
-}
-
-c2h::TechInfoType ribi::c2h::QtCodeToHtmlMainDialog::GetTechInfo() const noexcept
-{
-  const std::string s = ui->box_tech_info->currentText().toStdString();
-  if (s == "Auto") return c2h::TechInfoType::automatic;
-  if (s == "No") return c2h::TechInfoType::no;
-  if (s == "Yes") return c2h::TechInfoType::yes;
-  assert(!"Should not get here");
-  throw std::logic_error("QtCodeToHtmlMainDialog::GetTechInfo");
-}
-*/
-
 void ribi::c2h::QtCodeToHtmlMainDialog::keyPressEvent(QKeyEvent * event) noexcept
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }

@@ -51,40 +51,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-/*
-ribi::c2h::Dialog::Dialog(
-  const PageType page_type,
-  const std::string& source,
-  const ContentType content_type
-  //,const TechInfoType tech_info
-  )
-  :
-    m_content_type { content_type },
-    m_info { new Info },
-    m_page_type { page_type },
-    m_source { source }
-    //,m_tech_info { tech_info }
-{
-  #ifndef NDEBUG
-  Test();
-  #endif
-  assert(m_info);
-
-  //Check source
-  if(!( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))))
-  {
-    TRACE("ERROR");
-    TRACE(source);
-    const std::string error = "Source '" + source
-      + "' is neither a folder nor a file";
-    throw std::runtime_error(error.c_str());
-  }
-
-  assert( (ribi::fileio::IsFolder(source) || ribi::fileio::IsRegularFile(source))
-    && "Source can be a file or a path");
-}
-*/
-
 ribi::c2h::Dialog::~Dialog() noexcept
 {
 

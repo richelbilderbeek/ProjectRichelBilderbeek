@@ -98,12 +98,6 @@ void ribi::QtPylosWidget::DrawRemove(QPainter& painter, const Pylos::Coordinat& 
     p.first  - (m_sprites->GetMarbleWidth()  / 2),
     p.second - (m_sprites->GetMarbleHeight() / 2),
     m_sprites->Get(sprite));
-  /*
-  painter.drawPixmap(
-      c.GetX() * m_sprites->GetMarbleWidth()  + (c.GetLayer() * (m_sprites->GetMarbleWidth()  / 2)),
-      c.GetY() * m_sprites->GetMarbleHeight() + (c.GetLayer() * (m_sprites->GetMarbleHeight() / 2)),
-      m_sprites->Get(sprite));
-  */
 }
 
 void ribi::QtPylosWidget::DrawSelect(QPainter& painter)
@@ -119,12 +113,6 @@ void ribi::QtPylosWidget::DrawSelect(QPainter& painter)
     c.first  - (m_sprites->GetMarbleWidth()  / 2),
     c.second - (m_sprites->GetMarbleHeight() / 2),
     m_sprites->Get(sprite));
-  /*
-  painter.drawPixmap(
-    m_select.GetX() * m_sprites->GetMarbleWidth()  + (m_select.GetLayer() * (m_sprites->GetMarbleWidth()  / 2)),
-    m_select.GetY() * m_sprites->GetMarbleHeight() + (m_select.GetLayer() * (m_sprites->GetMarbleHeight() / 2)),
-    m_sprites->Get(sprite));
-  */
 }
 
 const std::vector<ribi::Pylos::Coordinat> ribi::QtPylosWidget::GetCoordinats(
@@ -329,16 +317,6 @@ void ribi::QtPylosWidget::MouseMoveRemoval(
 {
 
   //Selector must be set to removable marbles
-  /*
-  //Check lowest Pylos level first, otherwise (0,0,0) cannot be selected when (1,0,0) can be
-  for (int layer=0; layer!=4; ++layer)
-  {
-    const int x = (mouse_x - ((m_sprites->GetMarbleWidth()  / 2) *layer)) / m_sprites->GetMarbleWidth();
-    const int y = (mouse_y - ((m_sprites->GetMarbleHeight() / 2) *layer)) / m_sprites->GetMarbleHeight();
-
-    if (!Pylos::Coordinat::IsValid(layer,x,y)) continue;
-    Pylos::Coordinat c(layer,x,y);
-  */
   const std::vector<Pylos::Coordinat> v = GetCoordinats(mouse_x,mouse_y);
   std::for_each(v.begin(),v.end(),
     [this](const Pylos::Coordinat& c)
@@ -373,15 +351,6 @@ void ribi::QtPylosWidget::MouseMoveSelect(
   //- movable marbles
   //- spots to place a new marble
   //Check lowest Pylos level first, otherwise (0,0,0) cannot be selected when (1,0,0) can be
-  /*
-  for (int layer=0; layer!=4; ++layer)
-  {
-    const int x = (mouse_x - ((m_sprites->GetMarbleWidth()  / 2) * layer)) / m_sprites->GetMarbleWidth();
-    const int y = (mouse_y - ((m_sprites->GetMarbleHeight() / 2) * layer)) / m_sprites->GetMarbleHeight();
-
-    if (!Pylos::Coordinat::IsValid(layer,x,y)) continue;
-    Pylos::Coordinat c(layer,x,y);
-  */
   const std::vector<Pylos::Coordinat> v = GetCoordinats(mouse_x,mouse_y);
   std::for_each(v.begin(),v.end(),
     [this](const Pylos::Coordinat& c)
@@ -467,12 +436,6 @@ void ribi::QtPylosWidget::paintEvent(QPaintEvent *)
           p.first  - (m_sprites->GetMarbleWidth()  / 2),
           p.second - (m_sprites->GetMarbleHeight() / 2),
           m_sprites->Get(sprite));
-        /*
-        painter.drawPixmap(
-          x * m_sprites->GetMarbleWidth()  + (layer * (m_sprites->GetMarbleWidth()  / 2)),
-          y * m_sprites->GetMarbleHeight() + (layer * (m_sprites->GetMarbleHeight() / 2)),
-          m_sprites->Get(sprite));
-        */
 
         //Draw remove
         {

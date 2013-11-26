@@ -334,9 +334,9 @@ const ribi::ConnectThree::Move ribi::ConnectThree::CreateInvalidMove() noexcept
 }
 
 ///GetAllPossibleMoves returns all possible moves.
-///* boost::get<0>: x coordinat
-///* boost::get<1>: y coordinat
-///* boost::get<2>: player that would dislike this move
+//boost::get<0>: x coordinat
+//boost::get<1>: y coordinat
+//boost::get<2>: player that would dislike this move
 const ribi::ConnectThree::Moves
   ribi::ConnectThree::GetAllPossibleMoves() const noexcept
 {

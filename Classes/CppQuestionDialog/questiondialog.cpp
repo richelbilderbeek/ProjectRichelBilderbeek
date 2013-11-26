@@ -153,23 +153,6 @@ void ribi::QuestionDialog::SetIsCorrect(const bool is_correct)
   m_signal_submitted(IsAnswerCorrect());
 }
 
-/*
-void ribi::QuestionDialog::SetQuestion(const boost::shared_ptr<const Question> question)
-{
-  if (!question)
-  {
-    throw std::logic_error("Cannot set a nullptr as a question in QuestionDialog::SetQuestion");
-  }
-
-  assert(question);
-  if (question && question.get() != GetQuestion().get())
-  {
-    m_question = question;
-    m_is_correct.clear();
-    assert(!HasSubmitted());
-  }
-}
-*/
 
 #ifndef NDEBUG
 void ribi::QuestionDialog::Test() noexcept

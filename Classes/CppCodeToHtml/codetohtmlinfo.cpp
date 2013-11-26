@@ -9503,21 +9503,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
   m.push_back(
-    { "ToolCallstackCounter",
+    { "CppCallStackCounter",
       {
-        "<p><a href=\"ToolCallstackCounter.htm\">CallstackCounter</a> is a <a href=\"Cpp.htm\">C++</a> <a href=\"Tools.htm\">tool</a> <a href=\"CppClass.htm\">class</a> to track the size of the call stack.</p>",
+        "<p><a href=\"CppCallStackCounter.htm\">CallstackCounter</a> is a <a href=\"Cpp.htm\">C++</a> <a href=\"Tools.htm\">tool</a> <a href=\"CppClass.htm\">class</a> to track the size of the call stack.</p>",
         "<p>&nbsp;</p>",
-        "<p>Construct <a href=\"ToolCallstackCounter.htm\">CallstackCounter</a> in the functions you want to track. This must be done before the first return statement. You can obtain the history from any <a href=\"ToolCallstackCounter.htm\">CallstackCounter</a> in any function.</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Downloads</h2>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"ToolCallstackCounterSource_1_1.zip\">Download the 'CallstackCounter' source code (version 1.1)(zip)</a></li>",
-        "</ul>",
+        "<p>Construct <a href=\"CppCallStackCounter.htm\">CallstackCounter</a> in the functions you want to track. This must be done before the first return statement. You can obtain the history from any <a href=\"CppCallStackCounter.htm\">CallstackCounter</a> in any function.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -9526,8 +9516,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<h2>Older downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolCallstackCounterSource_1_0.zip\">Download the 'CallstackCounter' source code (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolCallstackCounterSource_1_0.htm\">View the C++ Builder source code of 'CallstackCounter' as a web page (version 1.0)(htm)</a></li>",
+        "  <li><a href=\"CppCallStackCounterSource_1_0.zip\">Download the 'CallstackCounter' source code (version 1.0)(zip)</a></li>",
+        "  <li><a href=\"CppCallStackCounterSource_1_0.htm\">View the C++ Builder source code of 'CallstackCounter' as a web page (version 1.0)(htm)</a></li>",
         "</ul>"
       }
     }

@@ -19,9 +19,9 @@ ribi::NsanaBrosKeys::NsanaBrosKeys()
 
 ///GetHortizonal returns the direction in the
 ///horizontal direction:
-///*-1: left key pressed
-///*+0: no left or right key pressed
-///*+1: right key pressed
+/// * -1: left key pressed
+/// * +0: no left or right key pressed
+/// * +1: right key pressed
 int ribi::NsanaBrosKeys::GetHorizontal() const
 {
   return m_dx;
@@ -29,9 +29,9 @@ int ribi::NsanaBrosKeys::GetHorizontal() const
 
 ///GetVertical returns the direction in the
 ///vertical direction:
-///*-1: up key pressed
-///*+0: no up or down key pressed
-///*+1: down key pressed
+/// * -1: up key pressed
+/// * +0: no up or down key pressed
+/// * +1: down key pressed
 int ribi::NsanaBrosKeys::GetVertical() const
 {
   return m_dy;

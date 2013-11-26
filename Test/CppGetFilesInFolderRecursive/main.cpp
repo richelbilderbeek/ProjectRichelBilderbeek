@@ -49,10 +49,22 @@ const std::vector<std::string> GetFoldersInFolder(const std::string& folder)
   return v;
 }
 
+bool IsFolder(const std::string& filename) noexcept
+{
+  return QDir(filename.c_str()).exists();
+}
+
+bool IsRegularFile(const std::string& filename) noexcept
+{
+  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
+}
+
 ///Obtain all files in a folder including thos in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
 const std::vector<std::string> GetFilesInFolderRecursive(const std::string& root_folder)
 {
+  assert(IsFolder(root_folder));
+
   //Files in root_folder
   std::vector<std::string> v;
   {
@@ -63,7 +75,11 @@ const std::vector<std::string> GetFilesInFolderRecursive(const std::string& root
     std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
       [root_folder](const std::string& filename)
       {
-        return root_folder + GetPathSeperator() + filename;
+        const std::string filename_here {
+          root_folder + GetPathSeperator() + filename
+        };
+        assert(IsRegularFile(filename_here));
+        return filename_here;
       }
     );
   }
@@ -76,7 +92,11 @@ const std::vector<std::string> GetFilesInFolderRecursive(const std::string& root
     std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
       [root_folder](const std::string& foldername)
       {
-        return root_folder + GetPathSeperator() + foldername;
+        const std::string folder_here {
+          root_folder + GetPathSeperator() + foldername
+        };
+        assert(IsFolder(folder_here));
+        return folder_here;
       }
     );
   }
@@ -87,6 +107,12 @@ const std::vector<std::string> GetFilesInFolderRecursive(const std::string& root
     const std::string folder_todo {
       folders_todo.back() //Read from the back, so push_back can be used
     };
+    //Done with this folder
+    folders_todo.pop_back();
+
+    assert( (folders_todo.empty() || folders_todo.back() != folder_todo)
+      && "Next folder must not be the one that is just processed");
+
     const std::vector<std::string> files_here {
       GetFilesInFolder(folder_todo)
     };
@@ -99,29 +125,26 @@ const std::vector<std::string> GetFilesInFolderRecursive(const std::string& root
     std::transform(files_here.begin(),files_here.end(),std::back_inserter(v),
       [folder_todo](const std::string& filename)
       {
-        return folder_todo + GetPathSeperator() + filename;
+        const std::string file_here {
+          folder_todo + GetPathSeperator() + filename
+        };
+        assert(IsRegularFile(file_here));
+        return file_here;
       }
     );
     std::transform(folders_here.begin(),folders_here.end(),std::back_inserter(folders_todo),
       [folder_todo](const std::string& foldername)
       {
-        return folder_todo + GetPathSeperator() + foldername;
+        assert(!foldername.empty());
+        const std::string subfolder_name {
+          folder_todo + GetPathSeperator() + foldername
+        };
+        assert(subfolder_name != folder_todo);
+        return subfolder_name;
       }
     );
-    //Done with this folder
-    folders_todo.pop_back();
   }
   return v;
-}
-
-bool IsFolder(const std::string& filename) noexcept
-{
-  return QDir(filename.c_str()).exists();
-}
-
-bool IsRegularFile(const std::string& filename) noexcept
-{
-  return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
 int main()
@@ -137,17 +160,20 @@ int main()
   const std::string in_subfolder_filename { "in_subfolder.txt" };
   //File and folder creation
   {
+    if (!IsRegularFile(local_filename))
     {
       const std::string filename { local_filename };
       std::ofstream f(filename.c_str());
     }
     assert(IsRegularFile(local_filename));
+    if (!IsFolder(folder_name))
     {
       const std::string cmd = "mkdir " + folder_name;
       const int error = std::system(cmd.c_str());
       assert(!error || "Folder might already exist");
     }
     assert(IsFolder(folder_name));
+    if (!IsRegularFile(folder_name + GetPathSeperator() + in_folder_filename))
     {
       const std::string filename {
           folder_name + GetPathSeperator()
@@ -156,6 +182,8 @@ int main()
       std::ofstream f(filename.c_str());
     }
     assert(IsRegularFile(folder_name + GetPathSeperator() + in_folder_filename));
+
+    if (!IsFolder(folder_name + GetPathSeperator() + subfolder_name))
     {
       const std::string cmd = "mkdir " + folder_name + GetPathSeperator() + subfolder_name;
       const int error = std::system(cmd.c_str());
@@ -163,6 +191,14 @@ int main()
     }
     assert(IsFolder(folder_name + GetPathSeperator() + subfolder_name));
     assert(GetFoldersInFolder(folder_name).size() == 1);
+
+
+    if(!
+      IsRegularFile(folder_name
+        + GetPathSeperator() + subfolder_name
+        + GetPathSeperator() + in_subfolder_filename
+        )
+      )
     {
       const std::string filename {
           folder_name + GetPathSeperator()

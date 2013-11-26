@@ -26,19 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "newickvector.h"
 
 /*
-const std::string AskUserForString()
-{
-  std::string s;
-  std::getline(std::cin,s);
-  return s;
-}
-
-//From http://www.richelbilderbeek.nl/CppStrToLower.htm
-const std::string ribi::ToolSimplifyNewickMainDialog::StrToLower(std::string s)
-{
-  std::transform(s.begin(), s.end(), s.begin(),std::ptr_fun<int,int>(std::tolower));
-  return s;
-}
 
 const std::vector<std::string> ribi::ToolSimplifyNewickMainDialog::GetBadlyFormedNewicks()
 {

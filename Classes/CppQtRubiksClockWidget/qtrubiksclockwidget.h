@@ -104,56 +104,6 @@ public:
   void OnResize();
 };
 
-
-/*
-
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Graphics.hpp>
-
-#include "UnitRubiksClock.h"
-
-class TFormRubiksClockMain : public TForm
-{
-__published:	// IDE-managed Components
-        TImage *ImageClockFront;
-        TImage *ImageClockBack;
-        TPanel *Panel1;
-        TButton *ButtonAbout;
-        TButton *ButtonShuffle;
-        void __fastcall FormResize(TObject *Sender);
-        void __fastcall ImageClockFrontMouseDown(TObject *Sender,
-          TMouseButton Button, TShiftState Shift, int X, int Y);
-        void __fastcall ImageClockBackMouseDown(TObject *Sender,
-          TMouseButton Button, TShiftState Shift, int X, int Y);
-        void __fastcall ButtonAboutClick(TObject *Sender);
-        void __fastcall ButtonShuffleClick(TObject *Sender);
-private:	// User declarations
-  RubiksClock mClock;
-  void DrawScreen();
-public:		// User declarations
-        __fastcall TFormRubiksClockMain(TComponent* Owner);
-};
-
-extern PACKAGE TFormRubiksClockMain *FormRubiksClockMain;
-
-void DrawRubiksClock(
-  const RubiksClockTimes& times,
-  const RubiksClockPegs& pegs,
-  const TColor colorCasing,
-  const TColor colorClock,
-  TImage * const image);
-
-void PaintVcl(TImage * const image,
-  const unsigned char red,
-  const unsigned char green,
-  const unsigned char blue  );
-
-*/
-
 } //~namespace ribi
 
 #endif // QTRUBIKSCLOCKWIDGET_H

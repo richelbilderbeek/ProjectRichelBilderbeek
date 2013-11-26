@@ -35,22 +35,9 @@ ribi::AsciiArterMainDialog::AsciiArterMainDialog(
   const std::string& filename,
   const int n_cols)
   : m_asciiart{ CreateAsciiArt(filename,n_cols) }
-    //m_width{n_cols}
 {
-  //SetImage(filename);
-}
 
-/*
-bool ribi::AsciiArterMainDialog::CanConvert() const
-{
-  return !m_image.empty() && m_width > 5;
 }
-
-void ribi::AsciiArterMainDialog::Convert()
-{
-  m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
-}
-*/
 
 const std::vector<std::vector<double> >
   ribi::AsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
@@ -104,17 +91,3 @@ const std::vector<std::string> ribi::AsciiArterMainDialog::CreateAsciiArt(
 
   return AsciiArter::ImageToAscii(image,n_cols);
 }
-
-/*
-void ribi::AsciiArterMainDialog::SetWidth(const int width)
-{
-  assert(width > 5);
-  m_width = width;
-
-  //Update ascii art
-  if (CanConvert())
-  {
-    m_asciiart = m_asciiarter->ImageToAscii(m_image,m_width);
-  }
-}
-*/
