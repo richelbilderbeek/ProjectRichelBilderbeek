@@ -64,6 +64,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::grayCoder: p.reset(new ProgramGrayCoder); break;
     case ProgramType::gtst: p.reset(new ProgramGtst); break;
     case ProgramType::histogramEqualizationer: p.reset(new ProgramHistogramEqualizationer); break;
+    case ProgramType::histogramEqualizationerVcl: p.reset(new ProgramHistogramEqualizationerVcl); break;
     case ProgramType::hometrainer: p.reset(new ProgramHometrainer); break;
     case ProgramType::imageRotaterClx: p.reset(new ProgramImageRotaterClx); break;
     case ProgramType::imageRotaterVcl: p.reset(new ProgramImageRotaterVcl); break;

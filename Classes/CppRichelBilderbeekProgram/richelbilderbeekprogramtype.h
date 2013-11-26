@@ -57,6 +57,7 @@ enum class ProgramType
   grayCoder,
   gtst,
   histogramEqualizationer,
+  histogramEqualizationerVcl,
   hometrainer,
   imageRotaterClx,
   imageRotaterVcl,

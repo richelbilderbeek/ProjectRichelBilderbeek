@@ -39,6 +39,13 @@ void ribi::fileio::CopyFile(
 
 void ribi::fileio::CreateFolder(const std::string& folder)
 {
+  #ifndef NDEBUG
+  if(IsFolder(folder))
+  {
+    TRACE("ERROR");
+    TRACE(folder);
+  }
+  #endif
   assert(!IsFolder(folder)
     && "Can only create folders that do not exist yes");
   const std::string cmd = "mkdir " + folder;

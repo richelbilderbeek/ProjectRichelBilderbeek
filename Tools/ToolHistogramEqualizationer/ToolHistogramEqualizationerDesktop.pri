@@ -1,16 +1,16 @@
-include(../../Tools/ToolGaborFilter/ToolGaborFilterConsole.pri)
+include(../../Tools/ToolHistogramEqualizationer/ToolHistogramEqualizationerConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.cpp \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.cpp
+    ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermaindialog.cpp \
+    ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.h \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.h
+    ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermaindialog.h \
+    ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermenudialog.h
 
 FORMS += \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.ui \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.ui
+    ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermenudialog.ui \
+    ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermaindialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolGaborFilter/ToolGaborFilter.qrc
+#RESOURCES += \
+#    ../../Tools/ToolHistogramEqualizationer/ToolHistogramEqualizationer.qrc

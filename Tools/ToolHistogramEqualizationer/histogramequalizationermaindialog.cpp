@@ -18,96 +18,34 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolHistogramEqualizationer.htm
 //---------------------------------------------------------------------------
+#include "histogramequalizationermaindialog.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
 #include <vector>
 #include <boost/scoped_ptr.hpp>
 
-#include "UnitFormHistogramEqualizationer.h"
-#include "UnitFormHistogramEqualizationerAbout.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
 
-TFormHistogramEqualizationer *FormHistogramEqualizationer;
-
-__fastcall TFormHistogramEqualizationer::TFormHistogramEqualizationer(TComponent* Owner)
-        : TForm(Owner)
+QPixmap ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const QPixmap& source) noexcept
 {
-  ImageOriginal->Stretch = false;
-  ImageGrey->Stretch = false;
-  ImageResult->Stretch = false;
-  ImageOriginal->AutoSize = true;
-  ImageGrey->AutoSize = true;
-  ImageResult->AutoSize = true;
-}
 
-void __fastcall TFormHistogramEqualizationer::ButtonLoadClick(TObject *Sender)
-{
-  if (OpenDialog1->Execute() == false) return;
-
-  ImageOriginal->Picture->LoadFromFile(OpenDialog1->FileName);
-
-  if(ImageOriginal==0 || ImageOriginal->Picture->Bitmap==0)
-  {
-     ShowMessage("Unable to load image");
-     return;
-  }
-  if (ImageOriginal->Picture->Bitmap->PixelFormat != pf24bit)
-  {
-     ShowMessage("Image must be a 24-bit bitmap. Please load another image");
-     return;
-  }
-
-
-  DoHistogramEqualization(ImageOriginal,ImageResult);
-  ConvertToGrey(ImageOriginal,ImageGrey);
-  ImageOriginal->Visible = true;
-  ImageGrey->Visible = true;
-  ImageResult->Visible = true;
-  ButtonSaveGrey->Visible = true;
-  ButtonSaveResult->Visible = true;
-  ++PageControl1->ActivePageIndex;
-}
-
-void __fastcall TFormHistogramEqualizationer::ButtonSaveGreyClick(
-      TObject *Sender)
-{
-  if (SaveDialog1->Execute() == false) return;
-  ImageGrey->Picture->SaveToFile(SaveDialog1->FileName);
-}
-
-void __fastcall TFormHistogramEqualizationer::ButtonSaveResultClick(
-      TObject *Sender)
-{
-  if (SaveDialog1->Execute() == false) return;
-  ImageResult->Picture->SaveToFile(SaveDialog1->FileName);
-}
-
-void __fastcall TFormHistogramEqualizationer::ButtonAboutClick(
-      TObject *Sender)
-{
-  boost::scoped_ptr<TFormHistogramEqualizationerAbout> form(
-    new TFormHistogramEqualizationerAbout(0) );
-
-  form->ShowModal();
-}
-
-//From http://www.richelbilderbeek.nl/CppDoHistogramEqualization.htm
-void DoHistogramEqualization(const TImage * const source, TImage * const target)
-{
-  assert(source!=0 && "Source image is NULL");
-  assert(target!=0 && "Target image is NULL");
-  assert(source->Picture->Bitmap!=0 && "Source bitmap is NULL");
-  assert(target->Picture->Bitmap!=0 && "Target bitmap is NULL");
-  assert(source->Picture->Bitmap->PixelFormat == pf24bit && "Source bitmap must be 24 bit");
-  assert(target->Picture->Bitmap->PixelFormat == pf24bit && "Target bitmap must be 24 bit");
-  //Get the width and height from the source
-  const int width  = source->Picture->Bitmap->Width;
-  const int height = source->Picture->Bitmap->Height;
-  //Set the target's width and height
-  target->Picture->Bitmap->Width  = width;
-  target->Picture->Bitmap->Height = height;
+  assert(!source.isNull() && "Source image must not be empty");
+  QImage image { source.toImage() };
+  const int n { image.bitPlaneCount() / 8};
+  assert(n == 3 || n == 4);
+  //Get the width and height
+  assert(image.width() == source.width());
+  assert(image.height() == source.height());
+  const int width  = source.width();
+  const int height = source.height();
 
   const int surface = width * height;
   const int nGreyValues = 256; //There are 256 different pixel intensities
-  const std::vector<int> histogram = GetImageHistogram(source);
+  const std::vector<int> histogram = GetImageHistogram(image);
   assert(nGreyValues==static_cast<int>(histogram.size()));
   const std::vector<int> cumulativeHistogram = GetCumulativeHistogram(histogram);
   assert(nGreyValues==static_cast<int>(cumulativeHistogram.size()));
@@ -129,30 +67,30 @@ void DoHistogramEqualization(const TImage * const source, TImage * const target)
 
   for (int y=0; y!=height; ++y)
   {
-    const unsigned char * lineSource
-      = static_cast<const unsigned char *>(
-        source->Picture->Bitmap->ScanLine[y]);
-    unsigned char * lineTarget
-      = static_cast<unsigned char *>(
-        target->Picture->Bitmap->ScanLine[y]);
+    unsigned char * const line
+      = image.scanLine(y);
     for (int x=0; x!=width; ++x)
     {
       const int greyOriginal
-        = (lineSource[x*3+0] + lineSource[x*3+1] + lineSource[x*3+2]) / 3;
+        = (line[(x*n)+0] + line[(x*n)+1] + line[(x*n)+2]) / 3;
       assert(greyOriginal >=   0);
       assert(greyOriginal  < 256);
       const int greyNew = rescaledHistogram[greyOriginal];
       assert(greyNew >= 0);
       assert(greyNew  < 256);
 
-      lineTarget[x*3+0]=greyNew; //Blue
-      lineTarget[x*3+1]=greyNew; //Green
-      lineTarget[x*3+2]=greyNew; //Red
+      line[(x*n)+0]=greyNew; //Blue
+      line[(x*n)+1]=greyNew; //Green
+      line[(x*n)+2]=greyNew; //Red
     }
   }
+
+  QPixmap target { QPixmap::fromImage(image) };
+  return target;
 }
 
 //From http://www.richelbilderbeek.nl/CppConvertToGrey.htm
+/*
 void ConvertToGrey(const TImage * const source, TImage * const target)
 {
   assert(source!=0 && "Source image is NULL");
@@ -188,46 +126,35 @@ void ConvertToGrey(const TImage * const source, TImage * const target)
     }
   }
 }
+*/
 
-//From htpp://www.richelbilderbeek.nl/CppGetImageHistogram.htm
-const std::vector<int> GetImageHistogram(const TImage * const image)
+const std::vector<int> ribi::HistogramEqualizationerMainDialog::GetImageHistogram(const QImage& image) noexcept
 {
-  assert(image!=0 && "Image is NULL");
-  assert(image->Picture->Bitmap!=0 && "Image bitmap is NULL");
-  assert(image->Picture->Bitmap->PixelFormat == pf24bit && "Image bitmap must be 24 bit");
+  assert(!image.isNull() && "Image must not be null");
   //Get the width and height from the source
-  const int width  = image->Picture->Bitmap->Width;
-  const int height = image->Picture->Bitmap->Height;
+  const int width  = image.width();
+  const int height = image.height();
+  const int n { image.bitPlaneCount() / 8};
+  assert(n == 3 || n == 4);
 
   std::vector<int> histogram(256,0); //There are 256 different color values
 
   for (int y=0; y!=height; ++y)
   {
-    const unsigned char * line
-      = static_cast<const unsigned char *>(
-        image->Picture->Bitmap->ScanLine[y]);
+    const unsigned char * const line = image.scanLine(y);
     for (int x=0; x!=width; ++x)
     {
-      const int grey
-        = (line[x*3+0] + line[x*3+1] + line[x*3+2]) / 3;
+      const int grey {
+        ( static_cast<int>(line[(x*n)+0])
+        + static_cast<int>(line[(x*n)+1])
+        + static_cast<int>(line[(x*n)+2])
+        )
+        / 3
+      };
       assert(grey >= 0 && grey < 256);
       ++histogram[grey];
     }
   }
   return histogram;
 }
-
-//From htpp://www.richelbilderbeek.nl/CppGetCumulativeHistogram.htm
-template <class T> const std::vector<T> GetCumulativeHistogram(const std::vector<T>& histogram)
-{
-  std::vector<T> v(histogram.begin(),histogram.end() );
-  const int size = v.size();
-  for (int i=1; i!=size; ++i)
-  {
-    v[i] += v[i-1];
-  }
-  return v;
-}
-
-
 

@@ -2,7 +2,9 @@ INCLUDEPATH += \
     ../../Tools/ToolHistogramEqualizationer
 
 HEADERS += \
-    ../../Tools/ToolHistogramEqualizationer/histogramequalizationermaindialog.h
+    ../../Tools/ToolHistogramEqualizationer/histogramequalizationermaindialog.h \
+    histogramequalizationermenudialog.h
 
 SOURCES += \
-    ../../Tools/ToolHistogramEqualizationer/histogramequalizationermaindialog.cpp
+    ../../Tools/ToolHistogramEqualizationer/histogramequalizationermaindialog.cpp \
+    histogramequalizationermenudialog.cpp

@@ -1,0 +1,95 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "qthistogramequalizationermaindialog.h"
+
+#include <boost/lexical_cast.hpp>
+#include <boost/math/constants/constants.hpp>
+#include <QFileDialog>
+#include <QLabel>
+#include "histogramequalizationermaindialog.h"
+#include "ui_qthistogramequalizationermaindialog.h"
+
+#pragma GCC diagnostic pop
+
+ribi::QtHistogramEqualizationerMainDialog::QtHistogramEqualizationerMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
+    ui(new Ui::QtHistogramEqualizationerMainDialog),
+    m_source(nullptr),
+    m_target(nullptr)
+{
+  ui->setupUi(this);
+
+}
+
+ribi::QtHistogramEqualizationerMainDialog::~QtHistogramEqualizationerMainDialog() noexcept
+{
+  delete ui;
+}
+
+void ribi::QtHistogramEqualizationerMainDialog::on_button_load_clicked()
+{
+  const std::string filename {
+    QFileDialog::getOpenFileName(0,"Please select a file").toStdString()
+  };
+  if (filename.empty()) return;
+
+  //Check if the pixmap is valid
+  {
+    const QPixmap pixmap(filename.c_str());
+    if (pixmap.isNull()) return;
+  }
+
+  //Clean source
+  {
+    if (ui->contents_load->layout())
+    {
+      delete m_source;
+      m_source = nullptr;
+      delete ui->contents_load->layout();
+    }
+    assert(!ui->contents_load->layout());
+
+    QVBoxLayout * const layout = new QVBoxLayout;
+    ui->contents_load->setLayout(layout);
+    m_source = new QLabel;
+    layout->addWidget(m_source);
+
+    const QPixmap pixmap(filename.c_str());
+    assert(!pixmap.isNull());
+    m_source->setPixmap(pixmap);
+  }
+  //Refresh target
+  {
+    if (ui->contents_save->layout())
+    {
+      delete m_target;
+      m_target = nullptr;
+      delete ui->contents_save->layout();
+    }
+    assert(!ui->contents_save->layout());
+
+    QVBoxLayout * const layout = new QVBoxLayout;
+    ui->contents_save->setLayout(layout);
+    m_target = new QLabel;
+    layout->addWidget(m_target);
+
+    const QPixmap source(filename.c_str());
+    assert(!source.isNull());
+    const QPixmap target {
+      HistogramEqualizationerMainDialog::DoHistogramEqualization(source)
+    };
+    assert(!target.isNull());
+    m_target->setPixmap(target);
+  }
+}
+
+void ribi::QtHistogramEqualizationerMainDialog::on_button_save_clicked()
+{
+  const std::string filename {
+    QFileDialog::getSaveFileName(0,"Please name the target file").toStdString()
+  };
+  if (filename.empty()) return;
+
+  m_target->pixmap()->save(filename.c_str());
+}
