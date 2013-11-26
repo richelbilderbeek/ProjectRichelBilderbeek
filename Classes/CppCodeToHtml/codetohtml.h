@@ -50,26 +50,11 @@ namespace c2h {
     const std::string& filename,
     const FileType file_type);
 
-  ///Convert all file in a folder/directory, without adding header, technical info or footer
-  /*
-  const std::vector<std::string> ConvertFiles(
-    const std::string& foldername);
-
-  ///Convert a folder/directory with adding header, technical info or footer
-  const std::vector<std::string> ConvertFolder(
-    const std::string& foldername,
-    const FolderType page_type);
-  */
-
   ///Convert a .pro file
   const std::vector<std::string> ConvertProject(const std::string& filename);
 
   ///Filter files: only let .pro, .h, .hpp, . cpp, .c and .sh files pass
   const std::vector<std::string> FilterFiles(const std::vector<std::string>& files);
-
-  //const std::vector<std::string> GetProFilesInFolder(
-  //  const std::string& folder);
-
 
   #ifndef _WIN32
   ///Tests if the HTML is clean, this will be checked by the tool 'tidy'

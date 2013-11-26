@@ -24,10 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace c2h {
 
-///The type of folder content:
-
-
-
+///The type of folder content
 enum class FolderType
 {
   foam, ///an OpenFOAM project

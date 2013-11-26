@@ -216,19 +216,6 @@ const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   return Replacer::ToHtml(v,file_type);
 }
 
-
-/*
-const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
-  const std::string& filename,
-  const FileType file_type) noexcept
-{
-  const std::vector<std::string> v {
-    ribi::fileio::FileToVector(filename)
-  };
-  return Replacer::ToHtml(v,file_type);
-}
-*/
-
 const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
   const std::string& foldername) noexcept
 {
@@ -289,9 +276,8 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
         #ifndef NDEBUG
         if(!ribi::fileio::IsRegularFile(t))
         {
-          TRACE(foldername);
-          TRACE(s);
-          TRACE(t);
+          TRACE("ERROR");
+          TRACE(foldername); TRACE(s); TRACE(t);
         }
         #endif
         assert(ribi::fileio::IsRegularFile(t));
@@ -417,63 +403,83 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
 }
 
 const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
-  const std::string& /* foldername */) noexcept
+  const std::string& foldername ) noexcept
 {
-  assert(!"TODO");
-  throw std::logic_error("TODO");
-}
-
-/*
-const std::vector<std::string> ribi::c2h::Dialog::ProFileToHtml(const std::string& filename) noexcept
-{
-  assert(ribi::fileio::GetExtension(filename) == ".pro");
-  boost::shared_ptr<ribi::QtCreatorProFile> pro_file(new ribi::QtCreatorProFile(filename));
+  assert(fileio::IsFolder(foldername));
+  assert(foldername.back() != '\\');
+  assert(foldername.back() != '/');
 
   std::vector<std::string> v;
+  //Header
   {
-    const boost::shared_ptr<Header> h {
-      new Header(
-        PageType::cpp,
-        ribi::fileio::GetFileBasename(filename)
-      )
+    HeaderType header_type = HeaderType::cpp;
+    const std::vector<std::string> w {
+      Header::ToHtml(header_type,foldername)
     };
-    const std::vector<std::string> w = h->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
+  //Body
   {
-    assert(ribi::fileio::IsRegularFile(filename));
-    boost::shared_ptr<TechInfo> i(new TechInfo( { filename } ));
-    const std::vector<std::string> w = i->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  //Obtain all files with a full path
-  {
-    const boost::shared_ptr<ribi::QtCreatorProFileZipScript> script(
-      new ribi::QtCreatorProFileZipScript(pro_file));
+    const std::vector<std::string> files_no_path {
+      fileio::GetFilesInFolderRecursive(foldername)
+    };
+    std::vector<std::string> files;
+    std::transform(
+      files_no_path.begin(),
+      files_no_path.end(),
+      std::back_inserter(files),
+      [foldername](const std::string& s)
+      {
+        //If the path is already complete, return it
+        if (ribi::fileio::IsRegularFile(s))
+        {
+          return s;
+        }
+        //Prepend the folder name
+        const std::string t {
+          foldername
+          + ribi::fileio::GetPathSeperator()
+          + s
+        };
+        #ifndef NDEBUG
+        if(!ribi::fileio::IsRegularFile(t))
+        {
+          TRACE("ERROR");
+          TRACE(foldername); TRACE(s); TRACE(t);
+        }
+        #endif
+        assert(ribi::fileio::IsRegularFile(t));
+        return t;
+      }
+    );
 
-    const auto files = script->GetFilenames();
+    #ifndef NDEBUG
+    for (const std::string& file: files)
+    {
+      if (!ribi::fileio::IsRegularFile(file)) { TRACE(file); }
+      assert(ribi::fileio::IsRegularFile(file));
+    }
+    #endif
+
     std::for_each(files.begin(),files.end(),
       [&v](const std::string& filename)
       {
-        const boost::scoped_ptr<const File> content {
-          new File(
-            filename,
-            ribi::fileio::FileToVector(filename)
-          )
+        assert(ribi::fileio::IsRegularFile(filename));
+        const boost::shared_ptr<File> content {
+          new File(filename,FileType::txt)
         };
         const std::vector<std::string> w = content->GetHtml();
         std::copy(w.begin(),w.end(),std::back_inserter(v));
       }
     );
   }
+  //Footer
   {
-    const boost::shared_ptr<Footer> f(new Footer(PageType::cpp));
-    const std::vector<std::string> w = f->ToHtml();
+    const std::vector<std::string> w { Footer::ToHtml(FooterType::cpp) };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   return v;
 }
-*/
 
 #ifndef NDEBUG
 void ribi::c2h::Dialog::Test()
@@ -588,74 +594,3 @@ void ribi::c2h::Dialog::Test()
   #endif
 }
 #endif
-
-/*
-const std::vector<std::string> ribi::c2h::Dialog::ToHtml() const
-{
-  std::vector<std::string> v;
-
-  //Add header
-  {
-    const boost::scoped_ptr<const Header> header(new Header(m_page_type,m_source));
-    const std::vector<std::string> w = header->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  //Text about this page (if known)
-  {
-    //Find the page name:
-    //m_source can be something like this:
-    // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
-    // ../ToolCodeToHtml/qtmain.cpp
-    //page_name must be
-    // ToolCodeToHtml
-    const std::string page_name = ExtractPageName(m_source);
-    assert(page_name.find('/') == std::string::npos
-      && "A c2h::Info page must not contain a slash");
-    assert(page_name.find('\\') == std::string::npos
-      && "A c2h::Info page must not contain a backslash");
-
-    const std::vector<std::string> w = m_info->ToHtml(page_name);
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  //Technical info: display only if source is a C++ folder
-  if (m_page_type == PageType::cpp && ribi::fileio::IsFolder(this->m_source))
-  {
-    //Add tech info
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    v.push_back("<p>&nbsp;</p>");
-    std::vector<std::string> pro_files {
-      GetProFilesInFolder(m_source)
-    };
-    for (std::string& pro_file: pro_files)
-    {
-      pro_file = m_source + "/" + pro_file;
-      assert(ribi::fileio::IsRegularFile(pro_file));
-    }
-
-    const boost::scoped_ptr<const TechInfo> info(new TechInfo(pro_files));
-    const std::vector<std::string> w = info->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  //Source
-  {
-    const std::vector<std::string> w
-      = !ribi::fileio::IsFolder(m_source)
-     ? c2h::ConvertFile(m_source,m_content_type)
-     : c2h::ConvertFiles(m_source) ;
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  //Add footer
-  {
-    const boost::scoped_ptr<Footer> footer(new Footer(m_page_type));
-    const std::vector<std::string> w = footer->ToHtml();
-    std::copy(w.begin(),w.end(),std::back_inserter(v));
-  }
-  #ifndef _WIN32
-  assert(IsCleanHtml(v));
-  #endif
-  return v;
-}
-*/

@@ -27,7 +27,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-//#include <boost/checked_delete.hpp>
 #include "codetohtmlfootertype.h"
 #pragma GCC diagnostic pop
 

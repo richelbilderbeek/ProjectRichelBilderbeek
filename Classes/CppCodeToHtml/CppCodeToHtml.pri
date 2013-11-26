@@ -12,7 +12,6 @@ SOURCES += \
     ../../Classes/CppCodeToHtml/codetohtmlreplacementspro.cpp \
     ../../Classes/CppCodeToHtml/codetohtmltechinfo.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlversion.cpp \
-    ../../Classes/CppCodeToHtml/codetohtmlsnippettype.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlfile.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlreplacer.cpp \
     ../../Classes/CppCodeToHtml/codetohtmlfiletypes.cpp \

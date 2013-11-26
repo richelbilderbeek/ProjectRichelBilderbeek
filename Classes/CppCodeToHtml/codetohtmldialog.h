@@ -61,6 +61,7 @@ struct Dialog
   ) noexcept;
 
   private:
+  Dialog() = delete;
   ~Dialog() noexcept;
   friend void boost::checked_delete<>(Dialog*);
   friend void boost::checked_delete<>(const Dialog*);
@@ -85,12 +86,7 @@ struct Dialog
     const std::string& folder_name
     ) noexcept;
 
-  ///Converts a .pro file to HTML
-  ///NOT IMPRESSED BY ITS USEFULLNESS
-  //static const std::vector<std::string> ProFileToHtml(const std::string& filename) noexcept;
-
   #ifndef NDEBUG
-  ///Test this class
   static void Test();
   #endif
 

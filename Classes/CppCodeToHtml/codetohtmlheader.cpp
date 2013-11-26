@@ -26,18 +26,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "fileio.h"
 
-/*
-ribi::c2h::Header::Header(
-  const HeaderType page_type,
-  const std::string& filename)
-  : m_filename(CreateFilename(page_type,filename)),
-    m_page_type(page_type),
-    m_title(CreateTitle(page_type,filename))
-{
-
-}
-*/
-
 const std::string ribi::c2h::Header::CreateFilename(
   const HeaderType page_type,
   const std::string& filename_original)
@@ -116,21 +104,6 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml(
       v.push_back("  <meta name=\"description\" content=\"OpenFOAM " + m_title + "\"/>");
       v.push_back("  <meta name=\"keywords\" content=\"OpenFOAM " + m_title + " \"/>");
     break;
-    /*
-    case HeaderType::music:
-      v.push_back("  <title>" + m_title + "</title>");
-      v.push_back("  <meta name=\"description\" content=\"Song " + m_title + "\"/>");
-      v.push_back("  <meta name=\"keywords\" content=\"Richel Bilderbeek Music Song " + m_title + " free legal\"/>");
-    break;
-    //case HeaderType::tool:
-    //  v.push_back("  <title>XXX</title>");
-    //  v.push_back("  <meta name=\"description\" content=\"C++ Tool " + m_title + "\"/>");
-    //  v.push_back("  <meta name=\"keywords\" content=\"C++ Tool " + m_title + " GPL open source freeware\"/>");
-    //break;
-    default:
-      assert(!"Should not get here");
-    break;
-    */
   }
   v.push_back("  <link rel=\"stylesheet\" href=\"Richelbilderbeek.css\" type=\"text/css\"/>");
   v.push_back("</head>");
@@ -145,18 +118,6 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml(
     case HeaderType::foam:
       v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
       break;
-    /*
-    case HeaderType::text:
-    case HeaderType::music:
-      v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
-      break;
-    //case HeaderType::tool:
-    //  v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-    //  break;
-    default:
-      assert(!"Should not get here");
-    break;
-    */
   }
   v.push_back("<p>&nbsp;</p>");
   v.push_back("<p>&nbsp;</p>");
@@ -173,18 +134,6 @@ const std::vector<std::string> ribi::c2h::Header::ToHtml(
     case HeaderType::foam:
       v.push_back("<h1>(<a href=\"ToolOpenFoam.htm\">OpenFOAM</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
       break;
-    /*
-    case HeaderType::text:
-    case HeaderType::music:
-      v.push_back("<h1>(<a href=\"Music.htm\">Music</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
-      break;
-    //case HeaderType::tool:
-    //  v.push_back("<h1>(<a href=\"Tools.htm\">Tool</a>) <a href=\"" + m_filename + "\">" + m_title + "</a></h1>");
-    //  break;
-    default:
-      assert(!"Should not get here");
-    break;
-    */
   }
   v.push_back("<p>&nbsp;</p>");
   return v;

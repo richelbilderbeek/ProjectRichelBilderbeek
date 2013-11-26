@@ -56,15 +56,6 @@ struct Header
   //friend void boost::checked_delete<>(Header*);
   //friend void boost::checked_delete<>(const Header*);
 
-  ///The HTML filename of the header
-  //const std::string m_filename;
-
-  ///The page type of the CodeToHtmlHeader
-  //HeaderType m_header_type;
-
-  ///The title of the header
-  //const std::string m_title;
-
   static const std::string CreateFilename(
     const HeaderType page_type,
     const std::string& filename);

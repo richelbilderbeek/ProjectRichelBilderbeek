@@ -53,9 +53,6 @@ struct Info
   ///For every page name (the key), contains the HTML info (the value)
   const std::map<std::string,std::vector<std::string> > m_page_info;
 
-  ///The name of the page, extracted from the .pro filename or folder name
-  //const std::string m_page_name;
-
   ///Create, for every page name (the key), the HTML info (the value)
   ///The purpose of this is to be able to check every HTML info
   ///for validity

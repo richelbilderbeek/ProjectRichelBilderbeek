@@ -182,28 +182,6 @@ void ribi::c2h::Test()
 }
 #endif
 
-/*
-const std::vector<std::string> ribi::c2h::ConvertFiles(const std::string& foldername)
-{
-  std::vector<std::string> v;
-  {
-    const std::vector<std::string> files = GetSortedFilesInFolder(foldername);
-    for(const std::string& filename: files)
-    {
-      const std::string filename_full = foldername + "/" + filename;
-      assert(ribi::fileio::IsRegularFile(filename_full));
-      const std::vector<std::string> w {
-        Replacer::ToHtml(ribi::fileio::FileToVector(filename_full),
-        ?FileType::txt?)
-      };
-
-      std::copy(w.begin(),w.end(),std::back_inserter(v));
-    }
-  }
-  return v;
-}
-*/
-
 const std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> files {

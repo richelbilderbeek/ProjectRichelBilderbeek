@@ -18,8 +18,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolCodeToHtml.htm
 //---------------------------------------------------------------------------
-
-
 #include "codetohtmlfooter.h"
 
 #include <cassert>
@@ -38,10 +36,6 @@ const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_t
     case FooterType::foam:
       v.push_back("<p><a href=\"ToolOpenFoam.htm\">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>");
       break;
-
-    //v.push_back("<p><a href=\"Music.htm\">Go back to Richel Bilderbeek's music page</a>.</p>");
-    //v.push_back("<p><a href=\"Tools.htm\">Go back to Richel Bilderbeek's tools</a>.</p>");
-
   }
   v.push_back("<p><a href=\"index.htm\">Go back to Richel Bilderbeek's homepage</a>.</p>");
   v.push_back("<p>&nbsp;</p>");
