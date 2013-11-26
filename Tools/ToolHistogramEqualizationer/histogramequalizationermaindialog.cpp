@@ -72,7 +72,10 @@ QPixmap ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const Q
     for (int x=0; x!=width; ++x)
     {
       const int greyOriginal
-        = (line[(x*n)+0] + line[(x*n)+1] + line[(x*n)+2]) / 3;
+        = (line[(x*n)+0]
+        +  line[(x*n)+1]
+        +  line[(x*n)+2]
+        ) / 3;
       assert(greyOriginal >=   0);
       assert(greyOriginal  < 256);
       const int greyNew = rescaledHistogram[greyOriginal];
