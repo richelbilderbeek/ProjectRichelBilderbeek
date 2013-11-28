@@ -23,9 +23,9 @@ const ribi::About ribi::AthleticLandMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "AthleticLand",
-    "",
-    "",
-    "",
+    "MSX game clone",
+    "2013-11-07",
+    "2013-xxxx",
     "http://www.richelbilderbeek.nl/GameAthleticLand.htm",
     GetVersion(),
     GetVersionHistory());

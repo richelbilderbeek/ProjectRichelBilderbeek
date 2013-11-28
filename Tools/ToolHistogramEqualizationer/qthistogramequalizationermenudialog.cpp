@@ -6,18 +6,22 @@
 #include "histogramequalizationermenudialog.h"
 #include "qthistogramequalizationermaindialog.h"
 #include "ui_qthistogramequalizationermenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtHistogramEqualizationerMenuDialog::QtHistogramEqualizationerMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtHistogramEqualizationerMenuDialog)
 {
-    ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
+  ui->setupUi(this);
 }
 
 ribi::QtHistogramEqualizationerMenuDialog::~QtHistogramEqualizationerMenuDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }
 
 void ribi::QtHistogramEqualizationerMenuDialog::on_button_start_clicked()
@@ -36,3 +40,17 @@ void ribi::QtHistogramEqualizationerMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
+
+#ifndef NDEBUG
+void ribi::QtHistogramEqualizationerMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtHistogramEqualizationerMenuDialog::Test");
+  QtHistogramEqualizationerMainDialog();
+  TRACE("Finished ribi::QtHistogramEqualizationerMenuDialog::Test successfully");
+}
+#endif

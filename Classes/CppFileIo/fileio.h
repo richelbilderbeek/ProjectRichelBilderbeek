@@ -3,12 +3,12 @@
 
 #include <string>
 #include <vector>
+#include "fileiofwd.h"
+#include "filecopymode.h"
 
 namespace ribi {
-
 namespace fileio {
 
-enum class CopyMode   { allow_overwrite, prevent_overwrite };
 enum class RenameMode { allow_overwrite, prevent_overwrite };
 
 ///Creates a folder

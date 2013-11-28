@@ -12,6 +12,7 @@ include(../../Classes/CppTrace/CppTrace.pri)
 
 include(../../Classes/CppRectangle/CppRectangle.pri)
 
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
 include(GameAthleticLandDesktop.pri)

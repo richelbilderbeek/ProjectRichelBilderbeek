@@ -3,8 +3,11 @@ INCLUDEPATH += \
 
 HEADERS += \
     ../../Tools/ToolHistogramEqualizationer/histogramequalizationermaindialog.h \
-    histogramequalizationermenudialog.h
+    ../../Tools/ToolHistogramEqualizationer/histogramequalizationermenudialog.h
 
 SOURCES += \
     ../../Tools/ToolHistogramEqualizationer/histogramequalizationermaindialog.cpp \
-    histogramequalizationermenudialog.cpp
+    ../../Tools/ToolHistogramEqualizationer/histogramequalizationermenudialog.cpp
+
+RESOURCES += \
+    ../../Tools/ToolHistogramEqualizationer/ToolHistogramEqualizationer.qrc

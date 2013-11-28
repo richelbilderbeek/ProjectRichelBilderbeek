@@ -15,7 +15,8 @@ SOURCES += \
     ../../Games/GameAthleticLand/athleticlandplayerstate.cpp \
     ../../Games/GameAthleticLand/athleticlandsprite.cpp \
     ../../Games/GameAthleticLand/qtathleticlandmainwidget.cpp \
-    ../../Games/GameAthleticLand/qtathleticlandresources.cpp
+    ../../Games/GameAthleticLand/qtathleticlandresources.cpp \
+    ../../Games/GameAthleticLand/qtathleticlandmenudialog.cpp
 
 HEADERS += \
     ../../Games/GameAthleticLand/qtathleticlandmaindialog.h \
@@ -31,10 +32,12 @@ HEADERS += \
     ../../Games/GameAthleticLand/athleticlandplayerstate.h \
     ../../Games/GameAthleticLand/athleticlandsprite.h \
     ../../Games/GameAthleticLand/qtathleticlandmainwidget.h \
-    ../../Games/GameAthleticLand/qtathleticlandresources.h
+    ../../Games/GameAthleticLand/qtathleticlandresources.h \
+    ../../Games/GameAthleticLand/qtathleticlandmenudialog.h
 
 FORMS += \
-    ../../Games/GameAthleticLand/qtathleticlandmaindialog.ui
+    ../../Games/GameAthleticLand/qtathleticlandmaindialog.ui \
+    ../../Games/GameAthleticLand/qtathleticlandmenudialog.ui
 
 RESOURCES += \
     ../../Games/GameAthleticLand/GameAthleticLand.qrc

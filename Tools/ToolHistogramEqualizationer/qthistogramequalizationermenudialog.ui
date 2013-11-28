@@ -16,11 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>GaborFilter</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <string>HistogramEqualizationer</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

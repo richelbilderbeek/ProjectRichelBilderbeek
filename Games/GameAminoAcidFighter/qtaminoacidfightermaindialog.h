@@ -11,24 +11,24 @@ struct QGraphicsScene;
 struct QGraphicsPixmapItem;
 
 namespace Ui {
-  class QtAminoAcidFighterMainDialog;
+  class QtAafMainDialog;
 }
 
 namespace ribi {
 namespace aaf {
 
-class QtAminoAcidFighterMainDialog : public QtHideAndShowDialog
+class QtAafMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtAminoAcidFighterMainDialog(QWidget *parent = 0);
-  QtAminoAcidFighterMainDialog(const QtAminoAcidFighterMainDialog&) = delete;
-  QtAminoAcidFighterMainDialog& operator=(const QtAminoAcidFighterMainDialog&) = delete;
-  ~QtAminoAcidFighterMainDialog();
+  explicit QtAafMainDialog(QWidget *parent = 0);
+  QtAafMainDialog(const QtAafMainDialog&) = delete;
+  QtAafMainDialog& operator=(const QtAafMainDialog&) = delete;
+  ~QtAafMainDialog();
 
 private:
-  Ui::QtAminoAcidFighterMainDialog *ui;
+  Ui::QtAafMainDialog *ui;
   QTimer * const m_timer;
   QGraphicsScene * const m_scene;
   QGraphicsPixmapItem * const m_sprite;

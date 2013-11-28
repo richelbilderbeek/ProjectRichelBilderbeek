@@ -2,19 +2,79 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtfilteroperationermaindialog.h"
+
+#include <cassert>
+
+#include <QFileDialog>
+#include <QLabel>
+
+#include "matrix.h"
+#include "qtublasmatrixdoublemodel.h"
 #include "ui_qtfilteroperationermaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtFilterOperationerMainDialog::QtFilterOperationerMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtFilterOperationerMainDialog)
+    ui(new Ui::QtFilterOperationerMainDialog),
+    m_model{new QtUblasMatrixDoubleModel},
+    m_source{nullptr}
 {
   ui->setupUi(this);
+
+  ui->filter->setModel(m_model);
+  {
+    const boost::numeric::ublas::matrix<double> m {
+      Matrix::CreateMatrix(3,4,
+        {
+          -1.0, -1.0, -1.0,
+           0.0,  0.0,  0.0,
+           1.0,  1.0,  1.0
+        }
+      )
+    };
+    m_model->SetRawData(m);
+
+  }
+  OnAnyChange();
 }
 
 ribi::QtFilterOperationerMainDialog::~QtFilterOperationerMainDialog()
 {
   delete ui;
+}
+
+void ribi::QtFilterOperationerMainDialog::on_button_load_clicked()
+{
+  const std::string filename {
+    QFileDialog::getOpenFileName(0,"Please select a file").toStdString()
+  };
+  if (filename.empty()) return;
+
+  //Check if the pixmap is valid
+  {
+    const QPixmap pixmap(filename.c_str());
+    if (pixmap.isNull()) return;
+  }
+
+
+  //Load source target
+  {
+    if (ui->content_source->layout())
+    {
+      delete m_source;
+      m_source = nullptr;
+      delete ui->content_source->layout();
+    }
+    assert(!ui->content_source->layout());
+
+    QVBoxLayout * const layout = new QVBoxLayout;
+    ui->content_source->setLayout(layout);
+    m_source = new QLabel;
+    layout->addWidget(m_source);
+    m_source->setPixmap(QPixmap(filename.c_str()));
+    assert(m_source);
+    assert(!m_source->pixmap()->isNull());
+  }
 }
 
 /*
@@ -450,3 +510,14 @@ const double GetAverageGreyness(const TImage * const image)
 
 
 */
+
+
+void ribi::QtFilterOperationerMainDialog::on_box_filter_rows_valueChanged(const QString &)
+{
+  OnAnyChange();
+}
+
+void ribi::QtFilterOperationerMainDialog::on_box_filter_cols_valueChanged(const QString &)
+{
+  OnAnyChange();
+}

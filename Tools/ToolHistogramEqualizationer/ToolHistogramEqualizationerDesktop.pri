@@ -11,6 +11,3 @@ HEADERS += \
 FORMS += \
     ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermenudialog.ui \
     ../../Tools/ToolHistogramEqualizationer/qthistogramequalizationermaindialog.ui
-
-#RESOURCES += \
-#    ../../Tools/ToolHistogramEqualizationer/ToolHistogramEqualizationer.qrc

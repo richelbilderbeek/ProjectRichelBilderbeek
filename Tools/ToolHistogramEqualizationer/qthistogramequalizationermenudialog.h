@@ -14,23 +14,24 @@ namespace ribi {
 
 class QtHistogramEqualizationerMenuDialog : public QtHideAndShowDialog
 {
-    Q_OBJECT
-    
+  Q_OBJECT
+
 public:
-    explicit QtHistogramEqualizationerMenuDialog(QWidget *parent = 0);
-    QtHistogramEqualizationerMenuDialog(const QtHistogramEqualizationerMenuDialog&) = delete;
-    QtHistogramEqualizationerMenuDialog& operator=(const QtHistogramEqualizationerMenuDialog&) = delete;
-    ~QtHistogramEqualizationerMenuDialog() noexcept;
-    
+  explicit QtHistogramEqualizationerMenuDialog(QWidget *parent = 0);
+  QtHistogramEqualizationerMenuDialog(const QtHistogramEqualizationerMenuDialog&) = delete;
+  QtHistogramEqualizationerMenuDialog& operator=(const QtHistogramEqualizationerMenuDialog&) = delete;
+  ~QtHistogramEqualizationerMenuDialog() noexcept;
+
 private slots:
-    void on_button_start_clicked();
-
-    void on_button_about_clicked();
-
-    void on_button_quit_clicked();
+  void on_button_about_clicked();
+  void on_button_quit_clicked();
+  void on_button_start_clicked();
 
 private:
-    Ui::QtHistogramEqualizationerMenuDialog *ui;
+  Ui::QtHistogramEqualizationerMenuDialog *ui;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -35,8 +35,6 @@ QPixmap ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const Q
 
   assert(!source.isNull() && "Source image must not be empty");
   QImage image { source.toImage() };
-  const int n { image.bitPlaneCount() / 8};
-  assert(n == 3 || n == 4);
   //Get the width and height
   assert(image.width() == source.width());
   assert(image.height() == source.height());
@@ -67,24 +65,18 @@ QPixmap ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const Q
 
   for (int y=0; y!=height; ++y)
   {
-    unsigned char * const line
-      = image.scanLine(y);
     for (int x=0; x!=width; ++x)
     {
-      const int greyOriginal
-        = (line[(x*n)+0]
-        +  line[(x*n)+1]
-        +  line[(x*n)+2]
-        ) / 3;
-      assert(greyOriginal >=   0);
-      assert(greyOriginal  < 256);
-      const int greyNew = rescaledHistogram[greyOriginal];
+      const QRgb rgb { image.pixel(x,y) };
+      const int grey {
+        ( qRed(rgb) + qGreen(rgb) + qBlue(rgb) ) / 3
+      };
+      assert(grey >=   0);
+      assert(grey  < 256);
+      const int greyNew = rescaledHistogram[grey];
       assert(greyNew >= 0);
       assert(greyNew  < 256);
-
-      line[(x*n)+0]=greyNew; //Blue
-      line[(x*n)+1]=greyNew; //Green
-      line[(x*n)+2]=greyNew; //Red
+      image.setPixel(x,y,qRgb(greyNew,greyNew,greyNew));
     }
   }
 
@@ -137,20 +129,21 @@ const std::vector<int> ribi::HistogramEqualizationerMainDialog::GetImageHistogra
   //Get the width and height from the source
   const int width  = image.width();
   const int height = image.height();
-  const int n { image.bitPlaneCount() / 8};
-  assert(n == 3 || n == 4);
 
   std::vector<int> histogram(256,0); //There are 256 different color values
 
   for (int y=0; y!=height; ++y)
   {
-    const unsigned char * const line = image.scanLine(y);
     for (int x=0; x!=width; ++x)
     {
+      const QRgb rgb {
+        image.pixel(x,y)
+      };
       const int grey {
-        ( static_cast<int>(line[(x*n)+0])
-        + static_cast<int>(line[(x*n)+1])
-        + static_cast<int>(line[(x*n)+2])
+        (
+          qRed(rgb)
+        + qGreen(rgb)
+        + qBlue(rgb)
         )
         / 3
       };

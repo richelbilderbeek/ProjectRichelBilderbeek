@@ -1,8 +1,13 @@
+INCLUDEPATH += \
+    ../../Tools/ToolFilterOperationer
+
 SOURCES += \
-    filteroperationermaindialog.cpp
+    ../../Tools/ToolFilterOperationer/filteroperationermaindialog.cpp \
+    filteroperationermenudialog.cpp
 
 OTHER_FILES += \
-    Licence.txt
+    ../../Tools/ToolFilterOperationer/Licence.txt
 
 HEADERS += \
-    filteroperationermaindialog.h
+    ../../Tools/ToolFilterOperationer/filteroperationermaindialog.h \
+    filteroperationermenudialog.h

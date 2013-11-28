@@ -14,9 +14,9 @@
 #include "ui_qtaminoacidfightermaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *parent)
+ribi::aaf::QtAafMainDialog::QtAafMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtAminoAcidFighterMainDialog),
+    ui(new Ui::QtAafMainDialog),
     m_timer(new QTimer(this)),
     m_scene(new QGraphicsScene(this)),
     m_sprite(new QGraphicsPixmapItem),
@@ -40,10 +40,10 @@ ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *p
   ui->graphicsView->setScene(m_scene);
 
   //Connect and start a timer
-  QObject::connect(m_timer,&QTimer::timeout,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onTick);
-  QObject::connect(ui->check_auto_rotate,&QCheckBox::clicked,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onCheck);
-  QObject::connect(ui->button_left,&QPushButton::clicked,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onButtonLeft);
-  QObject::connect(ui->button_right,&QPushButton::clicked,this,&ribi::aaf::QtAminoAcidFighterMainDialog::onButtonRight);
+  QObject::connect(m_timer,&QTimer::timeout,this,&ribi::aaf::QtAafMainDialog::onTick);
+  QObject::connect(ui->check_auto_rotate,&QCheckBox::clicked,this,&ribi::aaf::QtAafMainDialog::onCheck);
+  QObject::connect(ui->button_left,&QPushButton::clicked,this,&ribi::aaf::QtAafMainDialog::onButtonLeft);
+  QObject::connect(ui->button_right,&QPushButton::clicked,this,&ribi::aaf::QtAafMainDialog::onButtonRight);
 
 
   //Start the timer
@@ -56,13 +56,13 @@ ribi::aaf::QtAminoAcidFighterMainDialog::QtAminoAcidFighterMainDialog(QWidget *p
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::aaf::QtAminoAcidFighterMainDialog::~QtAminoAcidFighterMainDialog()
+ribi::aaf::QtAafMainDialog::~QtAafMainDialog()
 {
   delete ui;
   delete m_sprite;
 }
 
-void ribi::aaf::QtAminoAcidFighterMainDialog::resizeEvent(QResizeEvent*)
+void ribi::aaf::QtAafMainDialog::resizeEvent(QResizeEvent*)
 {
   const int size = std::max(
     m_sprite->pixmap().width(),
@@ -75,7 +75,7 @@ void ribi::aaf::QtAminoAcidFighterMainDialog::resizeEvent(QResizeEvent*)
   m_sprite->setScale(scale);
 }
 
-void ribi::aaf::QtAminoAcidFighterMainDialog::keyPressEvent(QKeyEvent* e)
+void ribi::aaf::QtAafMainDialog::keyPressEvent(QKeyEvent* e)
 {
   switch (e->key())
   {
@@ -90,13 +90,13 @@ void ribi::aaf::QtAminoAcidFighterMainDialog::keyPressEvent(QKeyEvent* e)
   }
 }
 
-void ribi::aaf::QtAminoAcidFighterMainDialog::onTick()
+void ribi::aaf::QtAafMainDialog::onTick()
 {
   m_angle+=1.0;
   m_sprite->setRotation(m_angle);
 }
 
-void ribi::aaf::QtAminoAcidFighterMainDialog::onCheck()
+void ribi::aaf::QtAafMainDialog::onCheck()
 {
   if (ui->check_auto_rotate->isChecked())
     m_timer->start();
@@ -104,13 +104,13 @@ void ribi::aaf::QtAminoAcidFighterMainDialog::onCheck()
     m_timer->stop();
 }
 
-void ribi::aaf::QtAminoAcidFighterMainDialog::onButtonLeft()
+void ribi::aaf::QtAafMainDialog::onButtonLeft()
 {
   m_angle-=1.0;
   m_sprite->setRotation(m_angle);
 }
 
-void ribi::aaf::QtAminoAcidFighterMainDialog::onButtonRight()
+void ribi::aaf::QtAafMainDialog::onButtonRight()
 {
   m_angle+=1.0;
   m_sprite->setRotation(m_angle);

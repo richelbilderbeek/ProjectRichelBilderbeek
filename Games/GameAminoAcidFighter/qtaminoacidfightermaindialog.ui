@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtAminoAcidFighterMainDialog</class>
- <widget class="QDialog" name="QtAminoAcidFighterMainDialog">
+ <class>QtAafMainDialog</class>
+ <widget class="QDialog" name="QtAafMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,6 +9,9 @@
     <width>400</width>
     <height>300</height>
    </rect>
+  </property>
+  <property name="windowTitle">
+   <string>AminoAcidFighter</string>
   </property>
   <property name="windowIcon">
    <iconset resource="GameAminoAcidFighter.qrc">

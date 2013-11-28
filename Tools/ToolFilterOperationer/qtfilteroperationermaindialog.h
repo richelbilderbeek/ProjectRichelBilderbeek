@@ -11,7 +11,12 @@ namespace Ui {
   class QtFilterOperationerMainDialog;
 }
 
+struct QPixmap;
+struct QLabel;
+
 namespace ribi {
+
+struct QtUblasMatrixDoubleModel;
 
 class QtFilterOperationerMainDialog : public QtHideAndShowDialog
 {
@@ -23,9 +28,20 @@ public:
   QtFilterOperationerMainDialog& operator=(const QtFilterOperationerMainDialog&) = delete;
   ~QtFilterOperationerMainDialog();
 
+private slots:
+  void on_button_load_clicked();
+
+  void on_box_filter_rows_valueChanged(const QString &arg1);
+
+  void on_box_filter_cols_valueChanged(const QString &arg1);
+
 private:
   Ui::QtFilterOperationerMainDialog *ui;
 
+  QtUblasMatrixDoubleModel * const m_model;
+  QLabel * m_source;
+
+  void OnAnyChange();
 /*
 
 //VCL dependent

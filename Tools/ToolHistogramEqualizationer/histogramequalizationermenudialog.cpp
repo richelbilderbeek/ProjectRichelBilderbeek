@@ -3,9 +3,6 @@
 #include <cassert>
 #include <iostream>
 
-#include "gaborfilter.h"
-#include "gaborfilterwidget.h"
-
 int ribi::HistogramEqualizationerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
@@ -14,20 +11,19 @@ int ribi::HistogramEqualizationerMenuDialog::ExecuteSpecific(const std::vector<s
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  GaborFilterWidget w;
-  std::cout << w << '\n';
-  return 0;
+  assert(!"TODO");
+  return 1;
 }
 
 const ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
-    "GaborFilter",
-    "tool to demonstrate Gabor filtering",
-    "the 7th of July 2012",
-    "2012",
-    "http://www.richelbilderbeek.nl/HistogramEqualizationer.htm",
+    "HistogramEqualization",
+    "tool to perform a histogram equalization",
+    "the 28th of November 2013",
+    "2008-2013",
+    "http://www.richelbilderbeek.nl/ToolHistogramEqualizationer.htm",
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
@@ -65,7 +61,7 @@ const std::string ribi::HistogramEqualizationerMenuDialog::GetVersion() const no
 const std::vector<std::string> ribi::HistogramEqualizationerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2010-xx-xx: version 1.0: initial Windows-only version",
-    "2012-07-07: version 2.0: port to Qt"
+    "2008-07-11: version 1.0: initial Windows-only version",
+    "2013-11-28: version 2.0: port to Qt"
   };
 }

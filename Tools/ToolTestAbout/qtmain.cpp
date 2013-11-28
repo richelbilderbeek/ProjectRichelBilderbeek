@@ -18,44 +18,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestAbout.htm
 //---------------------------------------------------------------------------
-#ifndef QTTESTABOUTMAINDIALOG_H
-#define QTTESTABOUTMAINDIALOG_H
-
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qthideandshowdialog.h"
+#include <QApplication>
+#include "qttestaboutmenudialog.h"
 #pragma GCC diagnostic pop
 
-namespace Ui {
-  class QtTestAboutMainDialog;
-}
-
-namespace ribi {
-
-class QtTestAboutMainDialog : public QtHideAndShowDialog
+int main(int argc, char *argv[])
 {
-  Q_OBJECT
-
-public:
-  explicit QtTestAboutMainDialog(QWidget *parent = 0) noexcept;
-  QtTestAboutMainDialog(const QtTestAboutMainDialog&) = delete;
-  QtTestAboutMainDialog& operator=(const QtTestAboutMainDialog&) = delete;
-  ~QtTestAboutMainDialog() noexcept;
-
-private slots:
-  void on_button_about_clicked() noexcept;
-  void on_button_quit_clicked() noexcept;
-
-private:
-  Ui::QtTestAboutMainDialog *ui;
-
-  ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-};
-
-} //~namespace ribi
-
-#endif // QTTESTABOUTMAINDIALOG_H
+  QApplication a(argc, argv);
+  ribi::QtTestAboutMenuDialog w;
+  w.show();
+  return a.exec();
+}

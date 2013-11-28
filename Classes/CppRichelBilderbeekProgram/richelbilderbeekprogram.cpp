@@ -58,6 +58,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::everythingToPiecesShooter: p.reset(new ProgramEverythingToPiecesShooter); break;
     case ProgramType::fakeEvy: p.reset(new ProgramFakeEvy); break;
     case ProgramType::filterOperationer: p.reset(new ProgramFilterOperationer); break;
+    case ProgramType::filterOperationerVcl: p.reset(new ProgramFilterOperationerVcl); break;
     case ProgramType::fryskLeareLieder: p.reset(new ProgramFryskLeareLieder); break;
     case ProgramType::functionPlotter: p.reset(new ProgramFunctionPlotter); break;
     case ProgramType::gaborFilter: p.reset(new ProgramGaborFilter); break;
@@ -93,6 +94,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::perfectElasticCollision: p.reset(new ProgramPerfectElasticCollision); break;
     case ProgramType::picToCode: p.reset(new ProgramPicToCode); break;
     case ProgramType::pixelator: p.reset(new ProgramPixelator); break;
+    case ProgramType::pixelatorVcl: p.reset(new ProgramPixelatorVcl); break;
     case ProgramType::pokeVolley: p.reset(new ProgramPokeVolley); break;
     case ProgramType::pong: p.reset(new ProgramPong); break;
     case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;
@@ -179,7 +181,8 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testToggleButton: p.reset(new ProgramTestToggleButton); break;
     case ProgramType::testTwoDigitNewick: p.reset(new ProgramTestTwoDigitNewick); break;
     case ProgramType::thorVeen: p.reset(new ProgramThorVeen); break;
-    case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;
+    case ProgramType::thresholdFilterer: p.reset(new ProgramTestAbout); break;
+    case ProgramType::thresholdFiltererVcl: p.reset(new ProgramThresholdFiltererVcl); break;
     case ProgramType::ticTacToe: p.reset(new ProgramTicTacToe); break;
     case ProgramType::ticTacToeLearner: p.reset(new ProgramTicTacToeLearner); break;
     case ProgramType::ticTacToeValuer: p.reset(new ProgramTicTacToeValuer); break;

@@ -445,15 +445,30 @@ struct ProgramFilterOperationer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFilterOperationer_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "FilterOperationer"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }
   ProgramType GetType() const noexcept { return ProgramType::filterOperationer; }
   const std::string GetUrl() const noexcept { return "ToolFilterOperationer.htm"; }
+};
+
+struct ProgramFilterOperationerVcl : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFilterOperationer_1_0.png"; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "FilterOperationer (VCL)"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
+  ProgramType GetType() const noexcept { return ProgramType::filterOperationerVcl; }
+  const std::string GetUrl() const noexcept { return "ToolFilterOperationerVcl.htm"; }
 };
 
 struct ProgramFryskLeareLieder : public ProgramTool
@@ -970,15 +985,30 @@ struct ProgramPixelator : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPixelator_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "Pixelator"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::pixelator; }
   const std::string GetUrl() const noexcept { return "ToolPixelator.htm"; }
+};
+
+struct ProgramPixelatorVcl : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolPixelator_1_0.png"; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "Pixelator (VCL)"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
+  ProgramType GetType() const noexcept { return ProgramType::pixelator; }
+  const std::string GetUrl() const noexcept { return "ToolPixelatorVcl.htm"; }
 };
 
 struct ProgramPokeVolley : public ProgramGame
@@ -2293,15 +2323,30 @@ struct ProgramThresholdFilterer : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolThresholdFilterer_1_0.png"; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "ThresholdFilterer"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::thresholdFilterer; }
   const std::string GetUrl() const noexcept { return "ToolThresholdFilterer.htm"; }
+};
+
+struct ProgramThresholdFiltererVcl : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolThresholdFilterer_1_0.png"; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "ThresholdFilterer (VCL)"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
+  ProgramType GetType() const noexcept { return ProgramType::thresholdFiltererVcl; }
+  const std::string GetUrl() const noexcept { return "ToolThresholdFiltererVcl.htm"; }
 };
 
 struct ProgramTicTacToe : public ProgramGame

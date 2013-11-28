@@ -11,6 +11,7 @@
 #include <QDir>
 #include <QFile>
 
+#include "filecopymode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

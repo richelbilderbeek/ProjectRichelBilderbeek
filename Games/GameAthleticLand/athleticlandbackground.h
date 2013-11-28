@@ -1,7 +1,5 @@
-
-
-#ifndef UnitBackgroundH
-#define UnitBackgroundH
+#ifndef ATHLETICLANDBACKGROUND_H
+#define ATHLETICLANDBACKGROUND_H
 
 #include "athleticlandfwd.h"
 #include "athleticlandsprite.h"

@@ -1,9 +1,11 @@
 INCLUDEPATH += \
     ../../Tools/ToolTestAbout
 
-SOURCES +=
+SOURCES += \
+    ../../Tools/ToolTestAbout/testaboutmenudialog.cpp
 
-HEADERS +=
+HEADERS += \
+    ../../Tools/ToolTestAbout/testaboutmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolTestAbout/Licence.txt
