@@ -24,11 +24,15 @@ include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
 include(../../Classes/CppQtScopedDisable/CppQtScopedDisable.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppXml/CppXml.pri)
+
+#Specific
+include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemDesktop.pri)
 include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemDesktop.pri)
 
+#Desktop
 include(ProjectBrainweaverDesktop.pri)
 
 SOURCES += qtmain_developer.cpp

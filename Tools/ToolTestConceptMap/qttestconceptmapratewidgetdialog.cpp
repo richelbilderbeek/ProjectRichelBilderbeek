@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbtestconceptmapratewidgetdialog.h"
+#include "qttestconceptmapratewidgetdialog.h"
 
 #include <cassert>
 #include <cstdlib>
@@ -11,34 +11,34 @@
 
 #include <QKeyEvent>
 
-#include "pvdbcompetency.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
-#include "pvdbexample.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "pvdbexamples.h"
-#include "pvdbnodefactory.h"
-#include "pvdbnode.h"
-#include "qtpvdbbrushfactory.h"
-#include "qtpvdbconceptmapratewidget.h"
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbeditconceptitem.h"
-#include "qtpvdbnodeitem.h"
-#include "qtpvdbrateconceptitem.h"
+#include "conceptmapcompetency.h"
+#include "conceptmapconcept.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
+#include "conceptmapexample.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "conceptmapexamples.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapnode.h"
+#include "qtbrushfactory.h"
+#include "qtconceptmapratewidget.h"
+#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplayconceptitem.h"
+#include "qteditconceptitem.h"
+#include "qtconceptmapnodeitem.h"
+#include "qtrateconceptitem.h"
 #include "trace.h"
 #include "ui_qtpvdbtestconceptmapratewidgetdialog.h"
 #pragma GCC diagnostic pop
 
 
-ribi::pvdb::QtTestConceptMapRateWidgetDialog::QtTestConceptMapRateWidgetDialog(QWidget *parent) :
+ribi::cmap::QtTestConceptMapRateWidgetDialog::QtTestConceptMapRateWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestConceptMapRateWidgetDialog),
   m_concept_map(
     new QtConceptMapRateWidget(
-      ribi::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
     )
   )
 
@@ -51,12 +51,12 @@ ribi::pvdb::QtTestConceptMapRateWidgetDialog::QtTestConceptMapRateWidgetDialog(Q
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-ribi::pvdb::QtTestConceptMapRateWidgetDialog::~QtTestConceptMapRateWidgetDialog() noexcept
+ribi::cmap::QtTestConceptMapRateWidgetDialog::~QtTestConceptMapRateWidgetDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::pvdb::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
+void ribi::cmap::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
 {
 
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
@@ -76,16 +76,16 @@ void ribi::pvdb::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
         qtitem->GetConcept()->SetRatingSpecificity(-1 + (std::rand() % 4));
         const auto v = qtitem->GetConcept()->GetExamples()->Get();
         std::for_each(v.begin(),v.end(),
-          [](const boost::shared_ptr<pvdb::Example>& example)
+          [](const boost::shared_ptr<cmap::Example>& example)
           {
             if ( (std::rand() >> 4) % 2)
             {
-              const std::vector<pvdb::Competency> w = pvdb::GetAllCompetencies();
+              const std::vector<cmap::Competency> w = cmap::GetAllCompetencies();
               example->SetCompetency(w[ std::rand() % w.size() ]);
             }
             else
             {
-              example->SetCompetency(pvdb::Competency::uninitialized);
+              example->SetCompetency(cmap::Competency::uninitialized);
             }
           }
         );
@@ -97,7 +97,7 @@ void ribi::pvdb::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
   m_concept_map->GetScene()->update();
 }
 
-void ribi::pvdb::QtTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
+void ribi::cmap::QtTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
   if (e->modifiers() & Qt::AltModifier && e->key() == Qt::Key_1)
@@ -107,18 +107,18 @@ void ribi::pvdb::QtTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
   }
 }
 
-void ribi::pvdb::QtTestConceptMapRateWidgetDialog::Test()
+void ribi::cmap::QtTestConceptMapRateWidgetDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::pvdb::QtTestConceptMapRateWidgetDialog::Test started");
+  TRACE("ribi::cmap::QtTestConceptMapRateWidgetDialog::Test started");
   //Doing random stuff
   {
     QtTestConceptMapRateWidgetDialog d;
     for (int i=0; i!=100; ++i) d.DoSomethingRandom();
   }
-  TRACE("ribi::pvdb::QtTestConceptMapRateWidgetDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestConceptMapRateWidgetDialog::Test finished successfully");
 }

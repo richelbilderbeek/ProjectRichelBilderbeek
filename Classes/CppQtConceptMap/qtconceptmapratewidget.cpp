@@ -2,30 +2,30 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtconceptmapratewidget.h"
 
 #include <boost/lambda/lambda.hpp>
 
-#include "pvdbconceptfactory.h"
-#include "pvdbconceptmap.h"
-#include "pvdbedge.h"
-#include "pvdbhelper.h"
-#include "pvdbconcept.h"
-#include "pvdbexamples.h"
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbnodeitem.h"
-#include "pvdbedgefactory.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbnode.h"
-#include "pvdbnodefactory.h"
-#include "qtpvdbcenternodeitem.h"
-#include "qtpvdbedgeitem.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmap.h"
+#include "conceptmapedge.h"
+#include "conceptmaphelper.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexamples.h"
+#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapnodeitem.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmapfactory.h"
+#include "conceptmapnode.h"
+#include "conceptmapnodefactory.h"
+#include "qtconceptmapcenternodeitem.h"
+#include "qtedgeitem.h"
 #include "qtquadbezierarrowitem.h"
-#include "qtpvdbrateexamplesdialog.h"
-#include "qtpvdbexamplesitem.h"
-#include "qtpvdbrateconceptitem.h"
+#include "qtrateexamplesdialog.h"
+#include "qtexamplesitem.h"
+#include "qtrateconceptitem.h"
 #include "qtscopeddisable.h"
-#include "qtpvdbrateconceptdialog.h"
+#include "qtrateconceptdialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -46,10 +46,10 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-ribi::pvdb::QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
+ribi::cmap::QtConceptMapRateWidget::QtConceptMapRateWidget(
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
-  : QtPvdbConceptMapWidget(concept_map,parent),
+  : QtConceptMapWidget(concept_map,parent),
     m_signal_request_rate_concept_dialog{}
 {
   #ifndef NDEBUG
@@ -65,17 +65,17 @@ ribi::pvdb::QtPvdbConceptMapRateWidget::QtPvdbConceptMapRateWidget(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
-void ribi::pvdb::QtPvdbConceptMapRateWidget::AddEdge(
-  const boost::shared_ptr<ribi::pvdb::Edge> edge)
+void ribi::cmap::QtConceptMapRateWidget::AddEdge(
+  const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
-  QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
+  QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
+  QtConceptMapNodeItem * const to   = FindQtNode(edge->GetTo());
   assert(to);
   assert(from != to);
-  QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
+  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(
     edge,
     qtconcept,
     from,
@@ -93,15 +93,15 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::AddEdge(
 
   //General
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
 
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
 
   //Specific: disable changing arrow heads
   qtedge->GetArrow()->setEnabled(false);
@@ -125,31 +125,31 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)
+ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   const boost::shared_ptr<QtPvdbRateConceptItem> qtconcept(new QtPvdbRateConceptItem(node->GetConcept()));
   assert(qtconcept);
-  QtPvdbNodeItem * const qtnode = new QtPvdbNodeItem(node,qtconcept);
+  QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
   assert(qtnode);
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
-   boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtnode->m_signal_request_scene_update.connect(
-    boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
 
   //Specific: inform an Observer that the Node requests its Concept being rated
   qtnode->m_signal_node_requests_rate_concept.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept,
+      &ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   //Specific: inform an Observer that the Node requests its Examples being rated
   qtnode->m_signal_node_requests_rate_examples.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples,
+      &ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtnode->scene());
@@ -165,12 +165,12 @@ ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapRateWidget::AddNode(con
   assert(qtnode->pos().y() == node->GetY());
 
   //Cannot test this: during construction not all nodes are put in
-  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
+  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
 
   return qtnode;
 }
 
-void ribi::pvdb::QtPvdbConceptMapRateWidget::CleanMe()
+void ribi::cmap::QtConceptMapRateWidget::CleanMe()
 {
   //Prepare cleaning the scene
   assert(GetExamplesItem());
@@ -185,11 +185,11 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::CleanMe()
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
-    QtPvdbExamplesItem * const item = new QtPvdbExamplesItem;
+    QtConceptMapExamplesItem * const item = new QtConceptMapExamplesItem;
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbConceptMapRateWidget::OnRequestSceneUpdate,this));
+        &ribi::cmap::QtConceptMapRateWidget::OnRequestSceneUpdate,this));
     item->setVisible(false);
     assert(!item->scene());
     this->scene()->addItem(item);
@@ -198,47 +198,47 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbConceptMapRateWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapRateWidget::CreateNewDerived() const
 {
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = ribi::pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+    = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t(concept_map));
+  std::unique_ptr<QtConceptMapWidget> p(new This_t(concept_map));
   return p;
 }
 #endif
 
-const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::QtPvdbConceptMapRateWidget::CreateSubConceptMap(QtPvdbNodeItem * const item)
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateWidget::CreateSubConceptMap(QtConceptMapNodeItem * const item)
 {
   assert(item);
   //Collect all nodes first
-  const std::vector<QtPvdbEdgeItem*> qtedges = FindEdges(item);
-  std::vector<boost::shared_ptr<ribi::pvdb::Node> > nodes;
+  const std::vector<QtConceptMapEdgeItem*> qtedges = FindEdges(item);
+  std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   //assert(focal_concept);
-  const boost::shared_ptr<ribi::pvdb::Node> focal_node = item->GetNode(); //FIX?
+  const boost::shared_ptr<ribi::cmap::Node> focal_node = item->GetNode(); //FIX?
   assert(focal_node);
   nodes.push_back(focal_node);
 
   assert(nodes[0]->GetConcept() == item->GetNode()->GetConcept());
 
-  std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges;
+  std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges;
 
   const int sz = static_cast<int>(qtedges.size());
   for (int i=0; i!=sz; ++i)
   {
-    QtPvdbEdgeItem* const qtedge = qtedges[i];
+    QtConceptMapEdgeItem* const qtedge = qtedges[i];
     assert(qtedge);
     assert(qtedge->GetFrom());
     assert(qtedge->GetTo());
     assert(qtedge->GetArrow());
     assert(qtedge->GetArrow()->GetFromItem());
-    assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetFromItem()));
-    assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetFromItem())->GetNode());
-    assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetFromItem())->GetNode()->GetConcept());
-    assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetToItem()));
-    assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode());
-    assert(dynamic_cast<const QtPvdbNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode()->GetConcept());
-    const boost::shared_ptr<ribi::pvdb::Node> other_node
+    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetFromItem()));
+    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetFromItem())->GetNode());
+    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetFromItem())->GetNode()->GetConcept());
+    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetToItem()));
+    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode());
+    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode()->GetConcept());
+    const boost::shared_ptr<ribi::cmap::Node> other_node
       = qtedge->GetFrom()->GetNode() == focal_node
       ? qtedge->GetTo()->GetNode()
       : qtedge->GetFrom()->GetNode();
@@ -247,7 +247,7 @@ const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::QtPvdbConceptMapRate
     nodes.push_back(other_node);
     assert(qtedge);
     assert(qtedge->GetEdge());
-    const boost::shared_ptr<ribi::pvdb::Edge> edge(pvdb::EdgeFactory::Create(
+    const boost::shared_ptr<ribi::cmap::Edge> edge(cmap::EdgeFactory::Create(
       qtedge->GetEdge()->GetConcept(),
       qtedge->GetEdge()->GetX(),
       qtedge->GetEdge()->GetY(),
@@ -260,7 +260,7 @@ const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::QtPvdbConceptMapRate
     assert(edge);
     edges.push_back(edge);
   }
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(pvdb::ConceptMapFactory::Create(nodes,edges));
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(cmap::ConceptMapFactory::Create(nodes,edges));
   assert(concept_map);
   assert(focal_node == concept_map->GetNodes().at(0));
 
@@ -273,25 +273,25 @@ const boost::shared_ptr<ribi::pvdb::ConceptMap> ribi::pvdb::QtPvdbConceptMapRate
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbConceptMapRateWidget::DoRandomStuff()
+void ribi::cmap::QtConceptMapRateWidget::DoRandomStuff()
 {
   assert(!"TODO");
 }
 #endif
 
 
-void ribi::pvdb::QtPvdbConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::cmap::QtConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
+  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapItem*>(item));
   scene()->update();
 }
 
-void ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNodeItem * const item)
+void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtConceptMapNodeItem * const item)
 {
   assert(item);
   assert(item->GetNode()->GetConcept());
   //Concept map must be edited, so item changes with it
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
+  const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
   assert(sub_concept_map);
   assert(sub_concept_map->GetNodes().at(0));
   assert(sub_concept_map->GetNodes().at(0)->GetConcept());
@@ -314,7 +314,7 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateConcept(QtPvdbNod
   this->OnItemRequestsUpdate(item);
 }
 
-void ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNodeItem * const item)
+void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtConceptMapNodeItem * const item)
 {
   assert(item);
   if (item->GetConcept()->GetExamples()->Get().empty())
@@ -323,8 +323,8 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::OnNodeRequestsRateExamples(QtPvdbNo
   }
   //Start edit
   {
-    QtScopedDisable<QtPvdbConceptMapRateWidget> disable(this);
-    const boost::shared_ptr<ribi::pvdb::Concept> concept = item->GetConcept();
+    QtScopedDisable<QtConceptMapRateWidget> disable(this);
+    const boost::shared_ptr<ribi::cmap::Concept> concept = item->GetConcept();
     assert(concept);
     assert(item->GetConcept().get() == concept.get());
     assert(item->GetConcept() == concept);

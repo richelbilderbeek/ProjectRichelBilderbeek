@@ -2,36 +2,36 @@
 #define QTPVDBCONCEPTMAPEDITWIDGET_H
 
 
-#include "pvdbfwd.h"
+#include "conceptmapfwd.h"
 
-#include "qtpvdbconceptmapwidget.h"
+#include "qtconceptmapwidget.h"
 
 namespace ribi {
 
-namespace pvdb {
+namespace cmap {
 
-///QtPvdbConceptMapWidget for creation and editing of a ConceptMap
-struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
+///QtConceptMapWidget for creation and editing of a ConceptMap
+struct QtConceptMapEditWidget : public QtConceptMapWidget
 {
-  typedef QtPvdbConceptMapEditWidget This_t;
-  QtPvdbConceptMapEditWidget(
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
+  typedef QtConceptMapEditWidget This_t;
+  QtConceptMapEditWidget(
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtPvdbConceptMapEditWidget() noexcept;
-  QtPvdbConceptMapEditWidget(const QtPvdbConceptMapEditWidget& other) = delete;
-  QtPvdbConceptMapEditWidget& operator=(const QtPvdbConceptMapEditWidget& other) = delete;
+  ~QtConceptMapEditWidget() noexcept;
+  QtConceptMapEditWidget(const QtConceptMapEditWidget& other) = delete;
+  QtConceptMapEditWidget& operator=(const QtConceptMapEditWidget& other) = delete;
 
   #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
-  std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
+  std::unique_ptr<QtConceptMapWidget> CreateNewDerived() const;
   #endif
 
   ///Delete an EdgeConcept
-  void DeleteEdge(QtPvdbEdgeItem * const edge);
+  void DeleteEdge(QtConceptMapEdgeItem * const edge);
 
   ///Delete a Node
-  void DeleteNode(QtPvdbNodeItem * const node);
+  void DeleteNode(QtConceptMapNodeItem * const node);
 
   #ifndef NDEBUG
   ///Do something random
@@ -39,7 +39,7 @@ struct QtPvdbConceptMapEditWidget : public QtPvdbConceptMapWidget
   #endif
 
   ///Signal emitted when a concept map item requests to be edited
-  boost::signals2::signal<void(QtPvdbConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
+  boost::signals2::signal<void(QtConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
 
 protected:
 
@@ -61,27 +61,27 @@ private:
   QtPvdbToolsItem * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  void AddEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge);
+  void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
 
   ///Add a new edge
-  void AddEdge(QtPvdbNodeItem * const from, QtPvdbNodeItem* const to);
+  void AddEdge(QtConceptMapNodeItem * const from, QtConceptMapNodeItem* const to);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtPvdbNodeItem * AddNode(const boost::shared_ptr<ribi::pvdb::Node> node);
+  QtConceptMapNodeItem * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
 
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
   ///Obtain the read-and-write Qt edge items
-  ///The read-only Qt edge items is already supplied by QtPvdbConceptMapWidget
-  const std::vector<QtPvdbEdgeItem *> GetQtEdges();
+  ///The read-only Qt edge items is already supplied by QtConceptMapWidget
+  const std::vector<QtConceptMapEdgeItem *> GetQtEdges();
 
   ///Obtain the read-and-write Qt node items
-  ///The read-only Qt node items is already supplied by QtPvdbConceptMapWidget
-  const std::vector<QtPvdbNodeItem *> GetQtNodes();
+  ///The read-only Qt node items is already supplied by QtConceptMapWidget
+  const std::vector<QtConceptMapNodeItem *> GetQtNodes();
 
   ///Called when an item wants to be edited
-  void OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem * const item);
+  void OnConceptMapItemRequestsEdit(QtConceptMapItem * const item);
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted
@@ -96,7 +96,7 @@ private:
   static void Test();
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 
 } //~namespace ribi
 

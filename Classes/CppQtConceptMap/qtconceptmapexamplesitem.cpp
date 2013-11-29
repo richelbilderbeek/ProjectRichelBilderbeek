@@ -2,23 +2,23 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbexamplesitem.h"
+#include "qtconceptmapexamplesitem.h"
 
 #include <QFont>
 #include <QPainter>
 
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "qtpvdbconceptmapitem.h"
-#include "pvdbconcept.h"
-#include "qtpvdbconceptitem.h"
-#include "pvdbhelper.h"
-#include "qtpvdbedgeitem.h"
-#include "qtpvdbbrushfactory.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "qtconceptmapitem.h"
+#include "conceptmapconcept.h"
+#include "qtconceptmapitem.h"
+#include "conceptmaphelper.h"
+#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbExamplesItem::QtPvdbExamplesItem(
+ribi::cmap::QtConceptMapExamplesItem::QtConceptMapExamplesItem(
   QGraphicsItem* parent)
   : QtRoundedEditRectItem(
       { "..." },
@@ -37,13 +37,13 @@ ribi::pvdb::QtPvdbExamplesItem::QtPvdbExamplesItem(
   //this->SetBuddyItem(concept);
 }
 
-void ribi::pvdb::QtPvdbExamplesItem::OnItemUpdated()
+void ribi::cmap::QtConceptMapExamplesItem::OnItemUpdated()
 {
   this->update();
   this->m_signal_request_scene_update();
 }
 
-void ribi::pvdb::QtPvdbExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ribi::cmap::QtConceptMapExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
   this->SetExamples(this->m_item->GetConcept()->GetExamples());
 
@@ -57,7 +57,7 @@ void ribi::pvdb::QtPvdbExamplesItem::paint(QPainter *painter, const QStyleOption
   QtRoundedEditRectItem::paint(painter,option,widget);
 }
 
-void ribi::pvdb::QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* const item)
+void ribi::cmap::QtConceptMapExamplesItem::SetBuddyItem(const QtConceptMapItem* const item)
 {
   if (m_item != item)
   {
@@ -66,7 +66,7 @@ void ribi::pvdb::QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* co
     {
       m_item->m_signal_item_has_updated.connect(
         boost::bind(
-          &ribi::pvdb::QtPvdbExamplesItem::OnItemUpdated,this
+          &ribi::cmap::QtConceptMapExamplesItem::OnItemUpdated,this
         )
       );
       this->SetExamples(item->GetConcept()->GetExamples());
@@ -84,10 +84,10 @@ void ribi::pvdb::QtPvdbExamplesItem::SetBuddyItem(const QtPvdbConceptMapItem* co
   }
 }
 
-void ribi::pvdb::QtPvdbExamplesItem::SetExamples(const boost::shared_ptr<const pvdb::Examples>& examples)
+void ribi::cmap::QtConceptMapExamplesItem::SetExamples(const boost::shared_ptr<const cmap::Examples>& examples)
 {
   std::vector<std::string> v;
-  for (const boost::shared_ptr<const pvdb::Example> example: examples->Get())
+  for (const boost::shared_ptr<const cmap::Example> example: examples->Get())
   {
     const std::string s { example->GetText() };
     const std::size_t wordwrap_length = 40;

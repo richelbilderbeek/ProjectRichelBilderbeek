@@ -2,17 +2,17 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbconceptmapitem.h"
+#include "qtconceptmapconceptmapitem.h"
 
 #include <QCursor>
 
-#include "pvdbconcept.h"
-#include "pvdbexamples.h"
-#include "qtpvdbconceptitem.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexamples.h"
+#include "qtconceptmapconceptitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-void ribi::pvdb::QtPvdbConceptMapItem::OnConceptRequestsEdit()
+void ribi::cmap::QtConceptMapItem::OnConceptRequestsEdit()
 {
   assert(this);
   assert(this->GetConcept());
@@ -21,7 +21,7 @@ void ribi::pvdb::QtPvdbConceptMapItem::OnConceptRequestsEdit()
   m_signal_conceptmapitem_requests_edit(this);
 }
 
-void ribi::pvdb::QtPvdbConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }

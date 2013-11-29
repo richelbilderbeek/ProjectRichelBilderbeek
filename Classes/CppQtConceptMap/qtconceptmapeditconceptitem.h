@@ -6,21 +6,21 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
-#include "qtpvdbconceptitem.h"
-#include "pvdbfwd.h"
+#include "qtconceptmapitem.h"
+#include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace pvdb {
+namespace cmap {
 
 ///Displays a Concept that might be edited
-struct QtPvdbEditConceptItem : public QtPvdbConceptItem
+struct QtPvdbEditConceptItem : public QtConceptMapItem
 {
   //concept will be modified
-  explicit QtPvdbEditConceptItem(const boost::shared_ptr<ribi::pvdb::Concept> concept);
+  explicit QtPvdbEditConceptItem(const boost::shared_ptr<ribi::cmap::Concept> concept);
   ~QtPvdbEditConceptItem() noexcept;
   ///Signalled when the user wants to edit
-  boost::signals2::signal<void (QtPvdbConceptItem *)> m_signal_request_edit;
+  boost::signals2::signal<void (QtConceptMapItem *)> m_signal_request_edit;
 
 protected:
   void keyPressEvent(QKeyEvent *event) noexcept;
@@ -34,7 +34,7 @@ private:
   void UpdateBrushesAndPens() noexcept {}
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTPVDBEDITCONCEPTITEM_H

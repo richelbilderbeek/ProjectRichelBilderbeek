@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbedgeitem.h"
+#include "qtconceptmapedgeitem.h"
 
 #include <cassert>
 
@@ -13,24 +13,24 @@
 #include <QKeyEvent>
 #include <QPainter>
 
-#include "pvdbconcept.h"
-#include "pvdbedge.h"
-#include "pvdbedgefactory.h"
-#include "pvdbhelper.h"
-#include "pvdbnode.h"
-#include "pvdbnodefactory.h"
-#include "qtpvdbbrushfactory.h"
-#include "qtpvdbconceptitem.h"
-#include "qtpvdbnodeitem.h"
+#include "conceptmapconcept.h"
+#include "conceptmapedge.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmaphelper.h"
+#include "conceptmapnode.h"
+#include "conceptmapnodefactory.h"
+#include "qtconceptmapbrushfactory.h"
+#include "qtconceptmapitem.h"
+#include "qtconceptmapnodeitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
-    const boost::shared_ptr<ribi::pvdb::Edge> edge,
-    const boost::shared_ptr<QtPvdbConceptItem> concept_item,
-    QtPvdbNodeItem* const from,
-    QtPvdbNodeItem* const to)
+ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
+    const boost::shared_ptr<ribi::cmap::Edge> edge,
+    const boost::shared_ptr<QtConceptMapItem> concept_item,
+    QtConceptMapNodeItem* const from,
+    QtConceptMapNodeItem* const to)
   : m_arrow{},
     m_concept_item(concept_item),
     m_contour_pen(QPen(QColor(255,255,255))),
@@ -89,8 +89,8 @@ ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
   this->setRect(m_concept_item->boundingRect()); //NEW
   this->update();
 
-  assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
+  assert( ( m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
+    || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect() )
     && "Bounding rects of edge and concept item might differ");
 
   //Qt things
@@ -99,29 +99,29 @@ ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
   //Signals
   m_arrow->m_signal_item_updated.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbEdgeItem::OnItemHasUpdated,this));
+      &ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated,this));
 
   m_edge->m_signal_edge_changed.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbEdgeItem::OnEdgeChanged,this,boost::lambda::_1));
+      &ribi::cmap::QtConceptMapEdgeItem::OnEdgeChanged,this,boost::lambda::_1));
 
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbEdgeItem::OnItemHasUpdated,this));
+      &ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated,this));
 
   m_concept_item->m_signal_request_scene_update.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbEdgeItem::OnRequestSceneUpdate,this));
+      &ribi::cmap::QtConceptMapEdgeItem::OnRequestSceneUpdate,this));
 
   m_concept_item->m_signal_position_changed.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbEdgeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
+      &ribi::cmap::QtConceptMapEdgeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
   if (QtPvdbEditConceptItem * edit_concept = dynamic_cast<QtPvdbEditConceptItem*>(concept_item.get()))
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
-        &QtPvdbConceptMapItem::OnConceptRequestsEdit,
+        &QtConceptMapItem::OnConceptRequestsEdit,
         this
       )
     );
@@ -131,20 +131,20 @@ ribi::pvdb::QtPvdbEdgeItem::QtPvdbEdgeItem(
   assert(this->m_arrow->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
-QRectF ribi::pvdb::QtPvdbEdgeItem::boundingRect() const
+QRectF ribi::cmap::QtConceptMapEdgeItem::boundingRect() const
 {
-  assert((m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-      || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect())
+  assert((m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
+      || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect())
     && "Bounding rects should be synced, but this member function is used to sync them,"
     && "so this must be checked on a higher level");
 
-  return QtPvdbConceptMapItem::boundingRect() //2013-07-06: Bypassed going via m_concept_item
+  return QtConceptMapItem::boundingRect() //2013-07-06: Bypassed going via m_concept_item
     .united(m_arrow->boundingRect().translated(-this->pos()));
   //return m_concept_item->boundingRect()
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::DisableAll()
+void ribi::cmap::QtConceptMapEdgeItem::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
@@ -154,7 +154,7 @@ void ribi::pvdb::QtPvdbEdgeItem::DisableAll()
   this->m_arrow->setVisible(false);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::EnableAll()
+void ribi::cmap::QtConceptMapEdgeItem::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
@@ -164,26 +164,26 @@ void ribi::pvdb::QtPvdbEdgeItem::EnableAll()
   this->m_arrow->setVisible(true);
 }
 
-const boost::shared_ptr<const ribi::pvdb::Concept> ribi::pvdb::QtPvdbEdgeItem::GetConcept() const
+const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtConceptMapEdgeItem::GetConcept() const
 {
-  const boost::shared_ptr<const ribi::pvdb::Concept> p = m_edge->GetConcept();
+  const boost::shared_ptr<const ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::QtPvdbEdgeItem::GetConcept()
+const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapEdgeItem::GetConcept()
 {
-  const boost::shared_ptr<ribi::pvdb::Concept> p = m_edge->GetConcept();
+  const boost::shared_ptr<ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const std::string ribi::pvdb::QtPvdbEdgeItem::GetName() const
+const std::string ribi::cmap::QtConceptMapEdgeItem::GetName() const
 {
   return m_edge->GetConcept()->GetName();
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::focusInEvent(QFocusEvent*)
+void ribi::cmap::QtConceptMapEdgeItem::focusInEvent(QFocusEvent*)
 {
   //Lose focus of arrow
   m_arrow->SetPen(QPen(QColor(0,0,0)));
@@ -191,14 +191,14 @@ void ribi::pvdb::QtPvdbEdgeItem::focusInEvent(QFocusEvent*)
   assert(!m_concept_item->hasFocus());
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::focusOutEvent(QFocusEvent*)
+void ribi::cmap::QtConceptMapEdgeItem::focusOutEvent(QFocusEvent*)
 {
   m_arrow->SetPen(QPen(QColor(0,0,0)));
   m_concept_item->SetContourPen(m_contour_pen); //Updates itself
   assert(!m_concept_item->hasFocus());
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapEdgeItem::keyPressEvent(QKeyEvent *event)
 {
   assert(m_arrow);
   assert(m_edge);
@@ -218,10 +218,10 @@ void ribi::pvdb::QtPvdbEdgeItem::keyPressEvent(QKeyEvent *event)
     assert(m_edge->HasHeadArrow() == m_arrow->HasHead());
     assert(m_edge->HasTailArrow() == m_arrow->HasTail());
   }
-  QtPvdbConceptMapItem::keyPressEvent(event);
+  QtConceptMapItem::keyPressEvent(event);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::cmap::QtConceptMapEdgeItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {  
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -261,10 +261,10 @@ void ribi::pvdb::QtPvdbEdgeItem::mousePressEvent(QGraphicsSceneMouseEvent *event
       return;
     }
   }
-  QtPvdbConceptMapItem::mousePressEvent(event);
+  QtConceptMapItem::mousePressEvent(event);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
+void ribi::cmap::QtConceptMapEdgeItem::OnEdgeChanged(const cmap::Edge * const edge)
 {
   assert(m_arrow);
   assert(m_edge);
@@ -293,13 +293,13 @@ void ribi::pvdb::QtPvdbEdgeItem::OnEdgeChanged(const pvdb::Edge * const edge)
 
   this->setRect(m_concept_item->boundingRect());
 
-  assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
+  assert( ( m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
+    || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect() )
     && "Bounding rects of edge and concept item might differ");
 
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::OnItemHasUpdated()
+void ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated()
 {
   this->SetName(m_concept_item->GetName());
 
@@ -307,23 +307,23 @@ void ribi::pvdb::QtPvdbEdgeItem::OnItemHasUpdated()
       && m_edge->GetConcept()->GetName() == m_concept_item->GetName()
       && "Names/texts must be in sync after");
 
-  //this->setRect(QtPvdbConceptMapItem::boundingRect());
+  //this->setRect(QtConceptMapItem::boundingRect());
   this->setRect(m_concept_item->boundingRect());
-  assert( ( m_concept_item->boundingRect() == QtPvdbConceptMapItem::boundingRect()
-    || m_concept_item->boundingRect() != QtPvdbConceptMapItem::boundingRect() )
+  assert( ( m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
+    || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect() )
     && "Bounding rects might differ between edge and concept item");
 
   this->update();
   this->m_signal_item_has_updated(this);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::OnRequestSceneUpdate()
+void ribi::cmap::QtConceptMapEdgeItem::OnRequestSceneUpdate()
 {
   this->m_signal_request_scene_update();
 }
 
 
-void ribi::pvdb::QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::cmap::QtConceptMapEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   m_concept_item->SetName(this->GetConcept()->GetName());
 
@@ -363,12 +363,12 @@ void ribi::pvdb::QtPvdbEdgeItem::paint(QPainter* painter, const QStyleOptionGrap
   }
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept) //NEW 2013-01-07
+void ribi::cmap::QtConceptMapEdgeItem::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) //NEW 2013-01-07
 {
   this->m_edge->SetConcept(concept);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::SetHasHeadArrow(const bool has_head_arrow)
+void ribi::cmap::QtConceptMapEdgeItem::SetHasHeadArrow(const bool has_head_arrow)
 {
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -380,7 +380,7 @@ void ribi::pvdb::QtPvdbEdgeItem::SetHasHeadArrow(const bool has_head_arrow)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::SetHasTailArrow(const bool has_tail_arrow)
+void ribi::cmap::QtConceptMapEdgeItem::SetHasTailArrow(const bool has_tail_arrow)
 {
   assert(m_arrow);
   assert(m_edge);
@@ -394,12 +394,12 @@ void ribi::pvdb::QtPvdbEdgeItem::SetHasTailArrow(const bool has_tail_arrow)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::SetName(const std::string& name)
+void ribi::cmap::QtConceptMapEdgeItem::SetName(const std::string& name)
 {
   m_edge->GetConcept()->SetName(name);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::SetX(const double x)
+void ribi::cmap::QtConceptMapEdgeItem::SetX(const double x)
 {
   if ( x != this->pos().x()
     || x != this->GetEdge()->GetX()
@@ -423,7 +423,7 @@ void ribi::pvdb::QtPvdbEdgeItem::SetX(const double x)
   assert(std::abs(x - this->GetConceptItem()->pos().x()) < 0.000001);
 }
 
-void ribi::pvdb::QtPvdbEdgeItem::SetY(const double y)
+void ribi::cmap::QtConceptMapEdgeItem::SetY(const double y)
 {
   if ( y != this->pos().y()
     || y != this->GetEdge()->GetY()
@@ -442,14 +442,14 @@ void ribi::pvdb::QtPvdbEdgeItem::SetY(const double y)
   assert(std::abs(y - this->GetConceptItem()->pos().y()) < 0.000001);
 }
 
-QPainterPath ribi::pvdb::QtPvdbEdgeItem::shape() const
+QPainterPath ribi::cmap::QtConceptMapEdgeItem::shape() const
 {
   return m_concept_item->shape()
     .united(m_arrow->shape().translated(-this->pos()));
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbEdgeItem::Test()
+void ribi::cmap::QtConceptMapEdgeItem::Test()
 {
   {
     static bool is_tested = false;
@@ -458,21 +458,21 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
   }
   //Test SetX and SetY being in sync
   {
-    const boost::shared_ptr<ribi::pvdb::Node> node_from = pvdb::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<ribi::pvdb::Node> node_to = pvdb::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
-    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
-    const boost::shared_ptr<QtPvdbNodeItem> qtnode_from(new QtPvdbNodeItem(node_from,qtconcept_item_from));
-    const boost::shared_ptr<QtPvdbNodeItem> qtnode_to(new QtPvdbNodeItem(node_to,qtconcept_item_to));
-    const std::size_t n_edges = pvdb::EdgeFactory::GetTests(node_from,node_to).size();
+    const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
+    const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
-      const std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges = pvdb::EdgeFactory::GetTests(node_from,node_to);
-      boost::shared_ptr<ribi::pvdb::Edge> edge = edges[edge_index];
+      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
+      boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
-      boost::shared_ptr<QtPvdbEdgeItem> qtedge(
-        new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
+        new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());
@@ -581,21 +581,21 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
   }
   //Test text on edge being in sync
   {
-    const boost::shared_ptr<ribi::pvdb::Node> node_from = pvdb::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<ribi::pvdb::Node> node_to = pvdb::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
-    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
-    const boost::shared_ptr<QtPvdbNodeItem> qtnode_from(new QtPvdbNodeItem(node_from,qtconcept_item_from));
-    const boost::shared_ptr<QtPvdbNodeItem> qtnode_to(new QtPvdbNodeItem(node_to,qtconcept_item_to));
-    const std::size_t n_edges = pvdb::EdgeFactory::GetTests(node_from,node_to).size();
+    const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
+    const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
-      const std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges = pvdb::EdgeFactory::GetTests(node_from,node_to);
-      boost::shared_ptr<ribi::pvdb::Edge> edge = edges[edge_index];
+      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
+      boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
-      boost::shared_ptr<QtPvdbEdgeItem> qtedge(
-        new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
+        new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());
       assert(edge == qtedge->GetEdge());
@@ -675,21 +675,21 @@ void ribi::pvdb::QtPvdbEdgeItem::Test()
 
   //Test boundingRects being in sync
   {
-    const boost::shared_ptr<ribi::pvdb::Node> node_from = pvdb::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<ribi::pvdb::Node> node_to = pvdb::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
-    const boost::shared_ptr<QtPvdbConceptItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
-    const boost::shared_ptr<QtPvdbNodeItem> qtnode_from(new QtPvdbNodeItem(node_from,qtconcept_item_from));
-    const boost::shared_ptr<QtPvdbNodeItem> qtnode_to(new QtPvdbNodeItem(node_to,qtconcept_item_to));
-    const std::size_t n_edges = pvdb::EdgeFactory::GetTests(node_from,node_to).size();
+    const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
+    const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
-      const std::vector<boost::shared_ptr<ribi::pvdb::Edge> > edges = pvdb::EdgeFactory::GetTests(node_from,node_to);
-      boost::shared_ptr<ribi::pvdb::Edge> edge = edges[edge_index];
+      const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
+      boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtPvdbConceptItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
-      boost::shared_ptr<QtPvdbEdgeItem> qtedge(
-        new QtPvdbEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
+        new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       //const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());

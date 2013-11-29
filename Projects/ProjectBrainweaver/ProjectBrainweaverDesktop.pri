@@ -41,9 +41,6 @@ SOURCES += \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentmenudialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentstartcompletedialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapdisplaywidgetdialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapeditwidgetdialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapratewidgetdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbtoolsitem.cpp \
@@ -51,11 +48,7 @@ SOURCES += \
     ../../Projects/ProjectBrainweaver/qtpvdbviewtestsdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbtestcreatesubconceptmapdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbrateconcepttallydialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbfiledialog.cpp \
-    ../../Projects/ProjectBrainweaver/test_qtpvdbconceptmapdialog.cpp \
-    ../../Projects/ProjectBrainweaver/test_qtpvdbconceptmapeditwidget.cpp \
-    ../../Projects/ProjectBrainweaver/test_qtpvdbconceptmapratewidget.cpp \
-    ../../Projects/ProjectBrainweaver/test_qtpvdbconceptmapwidget.cpp
+    ../../Projects/ProjectBrainweaver/qtpvdbfiledialog.cpp
 
 HEADERS  += \
     ../../Projects/ProjectBrainweaver/qtpvdbaboutdialog.h \
@@ -99,9 +92,6 @@ HEADERS  += \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentmenudialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentstartcompletedialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.h \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapdisplaywidgetdialog.h \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapeditwidgetdialog.h \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapratewidgetdialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbtestcreatesubconceptmapdialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.h \
@@ -129,9 +119,6 @@ FORMS    += \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentmenudialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentstartcompletedialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.ui \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapdisplaywidgetdialog.ui \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapeditwidgetdialog.ui \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptmapratewidgetdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbviewfilesdialog.ui \

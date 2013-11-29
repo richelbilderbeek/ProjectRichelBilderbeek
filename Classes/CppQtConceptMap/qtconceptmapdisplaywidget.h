@@ -7,31 +7,31 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 
-#include "qtpvdbconceptmapwidget.h"
+#include "qtconceptmapwidget.h"
 
-#include "pvdbfwd.h"
+#include "conceptmapfwd.h"
 
-#include "pvdbnode.h"
-#include "pvdbedge.h"
+#include "conceptmapnode.h"
+#include "conceptmapedge.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace pvdb {
+namespace cmap {
 
-///QtPvdbConceptMapWidget for creation and editing of a ConceptMap
-struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
+///QtConceptMapWidget for creation and editing of a ConceptMap
+struct QtConceptMapDisplayWidget : public QtConceptMapWidget
 {
-  typedef QtPvdbConceptMapDisplayWidget This_t;
+  typedef QtConceptMapDisplayWidget This_t;
 
-  QtPvdbConceptMapDisplayWidget(
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
+  QtConceptMapDisplayWidget(
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtPvdbConceptMapDisplayWidget() noexcept {}
+  ~QtConceptMapDisplayWidget() noexcept {}
 
   #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
-  std::unique_ptr<QtPvdbConceptMapWidget> CreateNewDerived() const;
+  std::unique_ptr<QtConceptMapWidget> CreateNewDerived() const;
 
   ///Do something random
   void DoRandomStuff();
@@ -40,10 +40,10 @@ struct QtPvdbConceptMapDisplayWidget : public QtPvdbConceptMapWidget
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
-  void AddEdge(const boost::shared_ptr<ribi::pvdb::Edge> edge);
+  void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtPvdbNodeItem * AddNode(const boost::shared_ptr<ribi::pvdb::Node> node);
+  QtConceptMapNodeItem * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
 
   void CleanMe();
 
@@ -58,7 +58,7 @@ private:
   static void Test() {}
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTPVDBCONCEPTMAPDISPLAYWIDGET_H

@@ -2,18 +2,18 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbeditconceptitem.h"
+#include "qtconceptmapeditconceptitem.h"
 
 #include <QKeyEvent>
 
-#include "pvdbconcept.h"
-#include "pvdbconceptfactory.h"
-#include "qtpvdbbrushfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapconceptfactory.h"
+#include "qtconceptmapbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<ribi::pvdb::Concept> concept)
-  : QtPvdbConceptItem(concept),
+ribi::cmap::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<ribi::cmap::Concept> concept)
+  : QtConceptMapItem(concept),
     m_signal_request_edit{}
 {
   #ifndef NDEBUG
@@ -25,23 +25,23 @@ ribi::pvdb::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr
   this->setBrush(QtPvdbBrushFactory::CreateGrayGradientBrush()); //NEW 2013-04-09
 
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtPvdbEditConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   //GetConcept()->m_signal_rating_complexity_changed.connect(
-  //  boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //  boost::bind(&ribi::cmap::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
   //GetConcept()->m_signal_rating_concreteness_changed.connect(
-  //  boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //  boost::bind(&ribi::cmap::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
   //GetConcept()->m_signal_rating_specificity_changed.connect(
-  //  boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //  boost::bind(&ribi::cmap::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
 }
 
-ribi::pvdb::QtPvdbEditConceptItem::~QtPvdbEditConceptItem() noexcept
+ribi::cmap::QtPvdbEditConceptItem::~QtPvdbEditConceptItem() noexcept
 {
   GetConcept()->m_signal_name_changed.disconnect(
-    boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::OnConceptNameChanged,this));
+    boost::bind(&ribi::cmap::QtPvdbEditConceptItem::OnConceptNameChanged,this));
 }
 
-void ribi::pvdb::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
+void ribi::cmap::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {
@@ -54,14 +54,14 @@ void ribi::pvdb::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbEditConceptItem::Test() noexcept
+void ribi::cmap::QtPvdbEditConceptItem::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pvdb::QtPvdbEditConceptItem::Test()");
+  TRACE("Starting ribi::cmap::QtPvdbEditConceptItem::Test()");
   ///Test SetText
   {
     const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
@@ -84,7 +84,7 @@ void ribi::pvdb::QtPvdbEditConceptItem::Test() noexcept
     };
     for (const auto s: v) { a.SetName(s); } //SetName tests GetName
   }
-  TRACE("Successfully finished ribi::pvdb::QtPvdbEditConceptItem::Test()");
+  TRACE("Successfully finished ribi::cmap::QtPvdbEditConceptItem::Test()");
 }
 #endif
 

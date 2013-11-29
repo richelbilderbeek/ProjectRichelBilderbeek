@@ -2,24 +2,24 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbrateconceptitem.h"
+#include "qtconceptmaprateconceptitem.h"
 
 #include <cstdlib>
 
 #include <QKeyEvent>
 
-#include "pvdbhelper.h"
-#include "pvdbexample.h"
-#include "pvdbconcept.h"
-#include "pvdbexamples.h"
-#include "pvdbconceptfactory.h"
-#include "pvdbcompetency.h"
-#include "qtpvdbbrushfactory.h"
+#include "conceptmaphelper.h"
+#include "conceptmapexample.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexamples.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapcompetency.h"
+#include "qtconceptmapbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept)
-  : QtPvdbConceptItem(concept),
+ribi::cmap::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept)
+  : QtConceptMapItem(concept),
     m_signal_request_rate_concept{},
     m_signal_request_rate_examples{}
 {
@@ -33,29 +33,29 @@ ribi::pvdb::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::pvdb::QtPvdbRateConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtPvdbRateConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   GetConcept()->m_signal_examples_changed.connect( //FIX 2013-01-06 22:32
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_concreteness_changed.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_specificity_changed.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
@@ -63,32 +63,32 @@ ribi::pvdb::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr
 }
 
 
-ribi::pvdb::QtPvdbRateConceptItem::~QtPvdbRateConceptItem() noexcept
+ribi::cmap::QtPvdbRateConceptItem::~QtPvdbRateConceptItem() noexcept
 {
   //2013-08-25
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-void ribi::pvdb::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())
@@ -103,14 +103,14 @@ void ribi::pvdb::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbRateConceptItem::Test()
+void ribi::cmap::QtPvdbRateConceptItem::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::pvdb::QtPvdbRateConceptItem::Test started");
+  TRACE("ribi::cmap::QtPvdbRateConceptItem::Test started");
   //Check brush comparison
   {
     assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateYellowGradientBrush());
@@ -137,11 +137,11 @@ void ribi::pvdb::QtPvdbRateConceptItem::Test()
     };
     for (const auto s: v) { a.SetName(s); } //SetName tests GetName
   }
-  TRACE("ribi::pvdb::QtPvdbRateConceptItem::Test finished successfully");
+  TRACE("ribi::cmap::QtPvdbRateConceptItem::Test finished successfully");
 }
 #endif
 
-void ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens()
+void ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens()
 {
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
@@ -179,15 +179,15 @@ void ribi::pvdb::QtPvdbRateConceptItem::UpdateBrushesAndPens()
   }
   else
   {
-    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst(GetConcept()->GetExamples()->Get());
+    const std::vector<boost::shared_ptr<const cmap::Example> > v = AddConst(GetConcept()->GetExamples()->Get());
     const int n_examples = boost::numeric_cast<int>(v.size());
     const int n_judged
       = std::count_if(v.begin(),v.end(),
-        [](const boost::shared_ptr<const pvdb::Example>& p)
+        [](const boost::shared_ptr<const cmap::Example>& p)
         {
           assert(p);
-          const pvdb::Competency this_competency = p->GetCompetency();
-          return this_competency != pvdb::Competency::uninitialized;
+          const cmap::Competency this_competency = p->GetCompetency();
+          return this_competency != cmap::Competency::uninitialized;
         }
       );
     if (n_judged == 0)

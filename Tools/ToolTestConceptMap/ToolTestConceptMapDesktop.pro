@@ -22,7 +22,11 @@ include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Classes/CppXml/CppXml.pri)
 #Desktop
-include(../../Classes/CppConceptMap/CppQtConceptMap.pri)
+include(../../Classes/CppQtRoundedEditRectItem/CppQtRoundedEditRectItem.pri)
+include(../../Classes/CppQtRoundedTextRectItem/CppQtRoundedTextRectItem.pri)
+include(../../Classes/CppQtRoundedRectItem/CppQtRoundedRectItem.pri)
+include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)
+include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
 include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
 
 SOURCES += qtmain.cpp

@@ -6,29 +6,29 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/signals2.hpp>
-#include "pvdbfwd.h"
+#include "qtconceptmapfwd.h"
 #include "qtroundededitrectitem.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace pvdb {
+namespace cmap {
 
 ///Either a Node or Edge of a ConceptMap
 ///QtRoundedTextRectItem: single line
 ///QtRoundedEditRectItem: multiple lines
-struct QtPvdbConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
+struct QtConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
 {
-  virtual ~QtPvdbConceptMapItem() noexcept {}
+  virtual ~QtConceptMapItem() noexcept {}
 
   virtual void DisableAll() = 0;
   virtual void EnableAll() = 0;
 
   ///Obtain the Concept from either a Node or an Edge
-  virtual const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const = 0;
-  virtual const boost::shared_ptr<      ribi::pvdb::Concept>  GetConcept()       = 0;
+  virtual const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const = 0;
+  virtual const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()       = 0;
 
-  virtual const boost::shared_ptr<const QtPvdbConceptItem> GetConceptItem() const = 0;
-  virtual const boost::shared_ptr<      QtPvdbConceptItem> GetConceptItem()       = 0;
+  virtual const boost::shared_ptr<const QtConceptMapItem> GetConceptItem() const = 0;
+  virtual const boost::shared_ptr<      QtConceptMapItem> GetConceptItem()       = 0;
 
   ///Set the name of the concept
   virtual void SetName(const std::string& name) = 0;
@@ -43,8 +43,8 @@ struct QtPvdbConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual void SetY(const double y) = 0;
 
   ///A more specific signal: a Concept requests an edit, this is passed to
-  ///OnConceptRequestsEdit, which lets this QtPvdbConceptMapItem request for an edit
-  boost::signals2::signal<void(QtPvdbConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
+  ///OnConceptRequestsEdit, which lets this QtConceptMapItem request for an edit
+  boost::signals2::signal<void(QtConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
 
   ///Slot for a Concept its signal to be edited, all it does is add the ConceptMapItem
   ///the Concept is a member of
@@ -59,11 +59,11 @@ struct QtPvdbConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 
   private:
-  virtual void SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept) = 0;
+  virtual void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) = 0;
 
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 
 } //~namespace ribi
 

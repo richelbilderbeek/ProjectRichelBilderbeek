@@ -2,33 +2,33 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbconceptmapeditwidget.h"
+#include "qtconceptmapeditwidget.h"
 
 #include <boost/lambda/lambda.hpp>
 
 #include <QGraphicsItem>
 #include <QKeyEvent>
 
-#include "pvdbconceptfactory.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
-#include "pvdbedgefactory.h"
-#include "pvdbedge.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "pvdbhelper.h"
-#include "pvdbnodefactory.h"
-#include "pvdbnode.h"
-#include "qtpvdbcenternodeitem.h"
-#include "qtpvdbconcepteditdialog.h"
-#include "qtpvdbconceptmapitem.h"
-#include "qtpvdbedgeitem.h"
-#include "qtpvdbexamplesitem.h"
-#include "qtpvdbitemhighlighter.h"
-#include "qtpvdbnewarrow.h"
-#include "qtpvdbnodeitem.h"
-#include "qtpvdbtoolsitem.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmapedge.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "conceptmaphelper.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapnode.h"
+#include "qtconceptmapcenternodeitem.h"
+#include "qtconcepteditdialog.h"
+#include "qtconceptmapitem.h"
+#include "qtedgeitem.h"
+#include "qtexamplesitem.h"
+#include "qtitemhighlighter.h"
+#include "qtnewarrow.h"
+#include "qtconceptmapnodeitem.h"
+#include "qttoolsitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
@@ -51,10 +51,10 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-ribi::pvdb::QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map,
+ribi::cmap::QtConceptMapEditWidget::QtConceptMapEditWidget(
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
-  : QtPvdbConceptMapWidget(concept_map,parent),
+  : QtConceptMapWidget(concept_map,parent),
     m_signal_conceptmapitem_requests_edit{},
     m_arrow(nullptr),
     m_highlighter(new QtPvdbItemHighlighter(0)),
@@ -78,14 +78,14 @@ ribi::pvdb::QtPvdbConceptMapEditWidget::QtPvdbConceptMapEditWidget(
   assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
   assert(concept_map->IsValid());
   const auto nodes = concept_map->GetNodes();
-  const auto items = Collect<QtPvdbNodeItem>(this->scene());
+  const auto items = Collect<QtConceptMapNodeItem>(this->scene());
   const std::size_t n_items = items.size();
   const std::size_t n_nodes = nodes.size();
   assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
   #endif
 }
 
-ribi::pvdb::QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget() noexcept
+ribi::cmap::QtConceptMapEditWidget::~QtConceptMapEditWidget() noexcept
 {
   m_tools = nullptr;
   assert(m_highlighter);
@@ -93,17 +93,17 @@ ribi::pvdb::QtPvdbConceptMapEditWidget::~QtPvdbConceptMapEditWidget() noexcept
   m_arrow = nullptr;
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(
-  const boost::shared_ptr<ribi::pvdb::Edge> edge)
+void ribi::cmap::QtConceptMapEditWidget::AddEdge(
+  const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
-  QtPvdbNodeItem * const from = FindQtNode(edge->GetFrom());
+  QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtPvdbNodeItem * const to   = FindQtNode(edge->GetTo());
+  QtConceptMapNodeItem * const to   = FindQtNode(edge->GetTo());
   assert(to);
   assert(from != to);
-  QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(
+  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(
     edge,
     qtconcept,
     from,
@@ -119,16 +119,16 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(
 
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
 
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtedge->scene());
@@ -140,7 +140,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(
     edge) == 1 && "Assume edge is already in the concept map");
   //this->GetConceptMap()->AddEdge(edge);
 
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -149,7 +149,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_from, QtPvdbNodeItem* const qt_to)
+void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt_from, QtConceptMapNodeItem* const qt_to)
 {
   assert(qt_from);
   assert(qt_to);
@@ -159,9 +159,9 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_f
   assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_from) && "Cannot select a ToolsItem");
   //Does this edge already exists? If yes, modify it
   {
-    const std::vector<QtPvdbEdgeItem*> edges = Collect<QtPvdbEdgeItem>(scene());
+    const std::vector<QtConceptMapEdgeItem*> edges = Collect<QtConceptMapEdgeItem>(scene());
     const auto iter = std::find_if(edges.begin(),edges.end(),
-      [qt_from,qt_to](const QtPvdbEdgeItem* const other_edge)
+      [qt_from,qt_to](const QtConceptMapEdgeItem* const other_edge)
       {
         return
             (other_edge->GetArrow()->GetFromItem() == qt_from && other_edge->GetArrow()->GetToItem() == qt_to  )
@@ -170,7 +170,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_f
     );
     if (iter != edges.end())
     {
-      QtPvdbEdgeItem * const qtedge = *iter;
+      QtConceptMapEdgeItem * const qtedge = *iter;
       assert(qtedge);
       assert(qtedge->GetEdge()->GetFrom() != qtedge->GetEdge()->GetTo());
       assert(qtedge->GetArrow()->GetFromItem() != qtedge->GetArrow()->GetToItem());
@@ -182,18 +182,18 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_f
   }
 
   //Edge does not exist yet, create a new one
-  const std::vector<QtPvdbNodeItem*> qtnodes = Collect<QtPvdbNodeItem>(scene());
-  const boost::shared_ptr<ribi::pvdb::Concept> concept(pvdb::ConceptFactory::Create());
+  const std::vector<QtConceptMapNodeItem*> qtnodes = Collect<QtConceptMapNodeItem>(scene());
+  const boost::shared_ptr<ribi::cmap::Concept> concept(cmap::ConceptFactory::Create());
   assert(concept);
   const bool head_arrow = true;
   const bool tail_arrow = false;
-  const boost::shared_ptr<ribi::pvdb::Node> from = qt_from->GetNode();
+  const boost::shared_ptr<ribi::cmap::Node> from = qt_from->GetNode();
   assert(from);
-  const boost::shared_ptr<ribi::pvdb::Node> to = qt_to->GetNode();
+  const boost::shared_ptr<ribi::cmap::Node> to = qt_to->GetNode();
   assert(to);
   assert(from != to);
-  const boost::shared_ptr<ribi::pvdb::Edge> edge(
-    pvdb::EdgeFactory::Create(
+  const boost::shared_ptr<ribi::cmap::Edge> edge(
+    cmap::EdgeFactory::Create(
       concept,
       (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
       (qt_from->pos().y() + qt_to->pos().y()) / 2.0,
@@ -206,7 +206,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_f
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
 
-  QtPvdbEdgeItem * const qtedge = new QtPvdbEdgeItem(edge,qtconcept,qt_from,qt_to);
+  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(edge,qtconcept,qt_from,qt_to);
 
   //Edges connected to the center node do not show their concepts
   if (IsCenterNode(qt_from) || IsCenterNode(qt_to))
@@ -217,16 +217,16 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_f
 
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
 
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
 
@@ -235,35 +235,35 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::AddEdge(QtPvdbNodeItem * const qt_f
 
   this->GetConceptMap()->AddEdge(edge);
 
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 
   this->scene()->update();
 }
 
-ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapEditWidget::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)
+ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapEditWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
   const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(node->GetConcept()));
   assert(node);
-  QtPvdbNodeItem * const qtnode = new QtPvdbNodeItem(node,qtconcept);
+  QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
-   boost::bind(&QtPvdbConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtnode->m_signal_request_scene_update.connect(
-    boost::bind(&QtPvdbConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
 
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtnode->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtnode->scene());
@@ -279,13 +279,13 @@ ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapEditWidget::AddNode(con
   assert(qtnode->pos().y() == node->GetY());
   //Cannot check this: during construction the concept map has multiple nodes, that can only be
   //added one by one
-  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
   //  && "GUI and non-GUI concept map must match");
 
   return qtnode;
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::CleanMe()
+void ribi::cmap::QtConceptMapEditWidget::CleanMe()
 {
   //Prepare cleaning the scene
   assert(GetExamplesItem());
@@ -306,12 +306,12 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::CleanMe()
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
-    QtPvdbExamplesItem * const item = new QtPvdbExamplesItem;
+    QtConceptMapExamplesItem * const item = new QtConceptMapExamplesItem;
     assert(item);
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbConceptMapEditWidget::OnRequestSceneUpdate,this));
+        &ribi::cmap::QtConceptMapEditWidget::OnRequestSceneUpdate,this));
     item->setVisible(false);
     assert(!item->scene());
     this->scene()->addItem(item);
@@ -323,7 +323,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::CleanMe()
     m_tools = new QtPvdbToolsItem;
     m_tools->m_signal_clicked.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbConceptMapEditWidget::OnToolsClicked,
+        &ribi::cmap::QtConceptMapEditWidget::OnToolsClicked,
         this));
     assert(!m_tools->scene());
     this->scene()->addItem(m_tools);
@@ -331,17 +331,17 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbConceptMapEditWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapEditWidget::CreateNewDerived() const
 {
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-    = ribi::pvdb::ConceptMapFactory::DeepCopy(this->GetConceptMap());
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+    = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtPvdbConceptMapWidget> p(new This_t(concept_map));
+  std::unique_ptr<QtConceptMapWidget> p(new This_t(concept_map));
   return p;
 }
 #endif
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const qtedge)
+void ribi::cmap::QtConceptMapEditWidget::DeleteEdge(QtConceptMapEdgeItem * const qtedge)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -359,13 +359,13 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteEdge(QtPvdbEdgeItem * const q
   const int n_items_after = this->scene()->items().count();
   assert(n_items_after + 1 == n_items_before);
   //Cannot do the check below: in DeleteNode multiple edges are deleted
-  //assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
   //  && "GUI and non-GUI concept map must match");
   #endif
 }
 
 #ifdef BELIEF_THIS_IS_A_GOOD_MEMBER_FUNCTION_20130629_723648723687
-void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteLeftovers()
+void ribi::cmap::QtConceptMapEditWidget::DeleteLeftovers()
 {
   //assert(m_edge_concepts.size() == m_arrows.size());
   bool done = true;
@@ -374,18 +374,18 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteLeftovers()
     done = true;
     //Delete edges without to/from nodes
     {
-      const std::vector<QtPvdbEdgeItem*> qtedge = Collect<QtPvdbEdgeItem>(scene());
+      const std::vector<QtConceptMapEdgeItem*> qtedge = Collect<QtConceptMapEdgeItem>(scene());
       for (int i = 0; i!=static_cast<int>(qtedge.size()); ++i)
       {
         assert(i >= 0 && i < static_cast<int>(qtedge.size()));
         //An edge can be deleted if its 'to' or 'from' is absent
-        QtPvdbEdgeItem * const edge = qtedge[i];
+        QtConceptMapEdgeItem * const edge = qtedge[i];
         assert(edge->GetFrom());
         assert(edge->GetTo());
         assert(edge->GetFrom() != edge->GetTo());
-        const std::vector<QtPvdbNodeItem*> qtnodes = Collect<QtPvdbNodeItem>(scene());
+        const std::vector<QtConceptMapNodeItem*> qtnodes = Collect<QtConceptMapNodeItem>(scene());
         if (std::count_if(qtnodes.begin(),qtnodes.end(),
-          [edge](const QtPvdbNodeItem * node)
+          [edge](const QtConceptMapNodeItem * node)
           {
             return edge->GetArrow()->GetToItem() == node || edge->GetArrow()->GetFromItem() == node;
           }
@@ -400,13 +400,13 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteLeftovers()
     if (done) break;
   }
 
-  assert(Collect<QtPvdbNodeItem>(this->scene()) == this->GetQtNodes());
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtConceptMapNodeItem>(this->scene()) == this->GetQtNodes());
+  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 #endif
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const qtnode)
+void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtConceptMapNodeItem * const qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -414,11 +414,11 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const q
 
   //Delete the edges connected to this node
   {
-    const std::vector<QtPvdbEdgeItem *> qtedges = this->GetQtEdges();
+    const std::vector<QtConceptMapEdgeItem *> qtedges = this->GetQtEdges();
     const std::size_t sz = qtedges.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
-      QtPvdbEdgeItem * const qtedge = qtedges[i];
+      QtConceptMapEdgeItem * const qtedge = qtedges[i];
       assert(qtedge);
       if (qtedge->GetFrom() == qtnode || qtedge->GetTo() == qtnode)
       {
@@ -435,30 +435,30 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::DeleteNode(QtPvdbNodeItem * const q
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
   assert(n_items_before - n_items_after >= 1 && "At least one item is deleted: one node and x edges");
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
   #endif
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbConceptMapEditWidget::DoRandomStuff()
+void ribi::cmap::QtConceptMapEditWidget::DoRandomStuff()
 {
   //this->mouseDoubleClickEvent(0); //CAUSES ACCESS VIOLATION
 
-  const boost::shared_ptr<ribi::pvdb::Concept> concept1(pvdb::ConceptFactory::Create("...", { {} } ) );
-  const boost::shared_ptr<ribi::pvdb::Node> node1(pvdb::NodeFactory::Create(concept1));
+  const boost::shared_ptr<ribi::cmap::Concept> concept1(cmap::ConceptFactory::Create("...", { {} } ) );
+  const boost::shared_ptr<ribi::cmap::Node> node1(cmap::NodeFactory::Create(concept1));
   this->GetConceptMap()->AddNode(node1);
-  QtPvdbNodeItem * const qtnode1 = AddNode(node1);
+  QtConceptMapNodeItem * const qtnode1 = AddNode(node1);
 
-  const boost::shared_ptr<ribi::pvdb::Concept> concept2(pvdb::ConceptFactory::Create("...", { {} } ) );
-  const boost::shared_ptr<ribi::pvdb::Node> node2(pvdb::NodeFactory::Create(concept2));
+  const boost::shared_ptr<ribi::cmap::Concept> concept2(cmap::ConceptFactory::Create("...", { {} } ) );
+  const boost::shared_ptr<ribi::cmap::Node> node2(cmap::NodeFactory::Create(concept2));
   this->GetConceptMap()->AddNode(node2);
-  QtPvdbNodeItem * const qtnode2 = AddNode(node2);
+  QtConceptMapNodeItem * const qtnode2 = AddNode(node2);
 
   assert(qtnode1->GetNode() != qtnode2->GetNode());
   this->AddEdge(qtnode1,qtnode2);
 
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 #endif
@@ -466,20 +466,20 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::DoRandomStuff()
 
 
 
-const std::vector<ribi::pvdb::QtPvdbEdgeItem *> ribi::pvdb::QtPvdbConceptMapEditWidget::GetQtEdges()
+const std::vector<ribi::cmap::QtConceptMapEdgeItem *> ribi::cmap::QtConceptMapEditWidget::GetQtEdges()
 {
-  const std::vector<QtPvdbEdgeItem *> qtedges
-    = Collect<QtPvdbEdgeItem>(this->scene());
+  const std::vector<QtConceptMapEdgeItem *> qtedges
+    = Collect<QtConceptMapEdgeItem>(this->scene());
   //Cannot do the check below: in DeleteNode multiple edges are deleted
   //assert(qtedges.size() == GetConceptMap()->GetNodes().size()
   //    && "GUI and non-GUI must contain an equal amount of edges");
   return qtedges;
 }
 
-const std::vector<ribi::pvdb::QtPvdbNodeItem *> ribi::pvdb::QtPvdbConceptMapEditWidget::GetQtNodes()
+const std::vector<ribi::cmap::QtConceptMapNodeItem *> ribi::cmap::QtConceptMapEditWidget::GetQtNodes()
 {
-  const std::vector<QtPvdbNodeItem *> qtnodes
-    = Collect<QtPvdbNodeItem>(this->scene());
+  const std::vector<QtConceptMapNodeItem *> qtnodes
+    = Collect<QtConceptMapNodeItem>(this->scene());
   if (qtnodes.size() != GetConceptMap()->GetNodes().size())
   {
     TRACE(qtnodes.size());
@@ -491,7 +491,7 @@ const std::vector<ribi::pvdb::QtPvdbNodeItem *> ribi::pvdb::QtPvdbConceptMapEdit
   return qtnodes;
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noexcept
+void ribi::cmap::QtConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noexcept
 {
   switch (event->key())
   {
@@ -506,19 +506,19 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noe
           [this](QGraphicsItem* const item)
           {
             //Delete a Node Concept
-            if (QtPvdbNodeItem * const node = dynamic_cast<QtPvdbNodeItem *>(item))
+            if (QtConceptMapNodeItem * const node = dynamic_cast<QtConceptMapNodeItem *>(item))
             {
               if (!IsCenterNode(node)) //Cannot delete center node
               {
-                const std::vector<QtPvdbNodeItem*> node_concepts = Collect<QtPvdbNodeItem>(scene());
+                const std::vector<QtConceptMapNodeItem*> node_concepts = Collect<QtConceptMapNodeItem>(scene());
                 assert(std::count(node_concepts.begin(),node_concepts.end(),node) == 1);
                 DeleteNode(node);
               }
             }
             //Delete an Edge Concept
-            if (QtPvdbEdgeItem* const edge = dynamic_cast<QtPvdbEdgeItem*>(item))
+            if (QtConceptMapEdgeItem* const edge = dynamic_cast<QtConceptMapEdgeItem*>(item))
             {
-              const std::vector<QtPvdbEdgeItem*> edge_concepts = Collect<QtPvdbEdgeItem>(scene());
+              const std::vector<QtConceptMapEdgeItem*> edge_concepts = Collect<QtConceptMapEdgeItem>(scene());
               assert(std::count(edge_concepts.begin(),edge_concepts.end(),edge) == 1);
               assert(scene()->items().contains(edge));
               DeleteEdge(edge);
@@ -546,29 +546,29 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noe
     }
     break;
   }
-  QtPvdbConceptMapWidget::keyPressEvent(event);
+  QtConceptMapWidget::keyPressEvent(event);
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
+void ribi::cmap::QtConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  const boost::shared_ptr<ribi::pvdb::Concept> concept(
-    ribi::pvdb::ConceptFactory::Create("..."));
-  const boost::shared_ptr<ribi::pvdb::Node> node(pvdb::NodeFactory::Create(concept));
+  const boost::shared_ptr<ribi::cmap::Concept> concept(
+    ribi::cmap::ConceptFactory::Create("..."));
+  const boost::shared_ptr<ribi::cmap::Node> node(cmap::NodeFactory::Create(concept));
   assert(node);
   assert(GetConceptMap());
   GetConceptMap()->AddNode(node);
 
-  QtPvdbNodeItem * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
+  QtConceptMapNodeItem * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
 
   assert(qtnode);
   const QPointF new_point = mapToScene(event->pos());
   qtnode->SetPos(new_point.x(),new_point.y());
 
-  assert(Collect<QtPvdbNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
+void ribi::cmap::QtConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
 {
   if (m_arrow)
   {
@@ -576,7 +576,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
     m_arrow->SetHeadPos(pos.x(),pos.y());
 
     //Move the item under the arrow
-    QtPvdbNodeItem* const item_below = GetItemBelowCursor(mapToScene(event->pos()));
+    QtConceptMapNodeItem* const item_below = GetItemBelowCursor(mapToScene(event->pos()));
 
     m_highlighter->SetItem(item_below); //item_below is allowed to be nullptr
   }
@@ -584,10 +584,10 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
   {
     m_highlighter->SetItem(nullptr); //item_below is allowed to be nullptr
   }
-  QtPvdbConceptMapWidget::mouseMoveEvent(event);
+  QtConceptMapWidget::mouseMoveEvent(event);
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
+void ribi::cmap::QtConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
 {
   assert(m_highlighter);
   if (m_arrow) //&& m_highlighter->GetItem())
@@ -602,7 +602,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
     m_highlighter->SetItem(nullptr);
   }
 
-  QtPvdbConceptMapWidget::mousePressEvent(event);
+  QtConceptMapWidget::mousePressEvent(event);
 
   //If nothing is selected, hide the Examples
   if (!GetScene()->focusItem() && !this->GetScene()->selectedItems().count())
@@ -613,11 +613,11 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
   }
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item)
+void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptMapItem* const item)
 {
 
   //assert(item->GetConcept());
-  //const boost::shared_ptr<ribi::pvdb::Concept> new_concept = ribi::pvdb::ConceptFactory::DeepCopy(item->GetConcept());
+  //const boost::shared_ptr<ribi::cmap::Concept> new_concept = ribi::cmap::ConceptFactory::DeepCopy(item->GetConcept());
   //assert(new_concept);
 
   assert(this);
@@ -626,7 +626,7 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdb
   //m_signal_conceptmapitem_requests_edit(item);
 
   {
-    QtScopedDisable<QtPvdbConceptMapWidget> disable(this);
+    QtScopedDisable<QtConceptMapWidget> disable(this);
     QtPvdbConceptEditDialog d(item->GetConcept());
     d.exec();
   }
@@ -640,14 +640,14 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtPvdb
   this->OnItemRequestsUpdate(item);
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::cmap::QtConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  m_tools->SetBuddyItem(dynamic_cast<const QtPvdbNodeItem*>(item));
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtPvdbConceptMapItem*>(item));
+  m_tools->SetBuddyItem(dynamic_cast<const QtConceptMapNodeItem*>(item));
+  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapItem*>(item));
   scene()->update();
 }
 
-void ribi::pvdb::QtPvdbConceptMapEditWidget::OnToolsClicked()
+void ribi::cmap::QtConceptMapEditWidget::OnToolsClicked()
 {
   const QPointF cursor_pos_approx(
     m_tools->GetBuddyItem()->pos().x(),

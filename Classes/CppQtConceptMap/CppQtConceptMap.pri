@@ -1,46 +1,35 @@
 INCLUDEPATH += \
-    ../../Classes/CppConceptMap
+    ../../Classes/CppQtConceptMap
 
 
 OTHER_FILES += \
-    ../../Classes/CppConceptMap/Licence.txt
-
-HEADERS += \
-    ../../Classes/CppConceptMap/conceptmapfwd.h \
-    ../../Classes/CppConceptMap/conceptmapcenternode.h \
-    ../../Classes/CppConceptMap/conceptmapcenternodefactory.h \
-    ../../Classes/CppConceptMap/conceptmapcompetency.h \
-    ../../Classes/CppConceptMap/conceptmapconcept.h \
-    ../../Classes/CppConceptMap/conceptmapconceptfactory.h \
-    ../../Classes/CppConceptMap/conceptmap.h \
-    ../../Classes/CppConceptMap/conceptmapfactory.h \
-    ../../Classes/CppConceptMap/conceptmapedgefactory.h \
-    ../../Classes/CppConceptMap/conceptmapexample.h \
-    ../../Classes/CppConceptMap/conceptmapexamplefactory.h \
-    ../../Classes/CppConceptMap/conceptmapexamples.h \
-    ../../Classes/CppConceptMap/conceptmapexamplesfactory.h \
-    ../../Classes/CppConceptMap/conceptmapnode.h \
-    ../../Classes/CppConceptMap/conceptmapnodefactory.h \
-    ../../Classes/CppConceptMap/conceptmaphelper.h \
-    ../../Classes/CppConceptMap/conceptmapedge.h
+    ../../Classes/CppQtConceptMap/Licence.txt
 
 SOURCES += \
-    ../../Classes/CppConceptMap/conceptmapcenternode.cpp \
-    ../../Classes/CppConceptMap/conceptmapcenternodefactory.cpp \
-    ../../Classes/CppConceptMap/conceptmapcompetency.cpp \
-    ../../Classes/CppConceptMap/conceptmapconcept.cpp \
-    ../../Classes/CppConceptMap/conceptmapconceptfactory.cpp \
-    ../../Classes/CppConceptMap/conceptmap.cpp \
-    ../../Classes/CppConceptMap/conceptmapfactory.cpp \
-    ../../Classes/CppConceptMap/conceptmapedge.cpp \
-    ../../Classes/CppConceptMap/conceptmapedgefactory.cpp \
-    ../../Classes/CppConceptMap/conceptmapexample.cpp \
-    ../../Classes/CppConceptMap/conceptmapexamplefactory.cpp \
-    ../../Classes/CppConceptMap/conceptmapexamples.cpp \
-    ../../Classes/CppConceptMap/conceptmapexamplesfactory.cpp \
-    ../../Classes/CppConceptMap/conceptmapnode.cpp \
-    ../../Classes/CppConceptMap/conceptmapnodefactory.cpp \
-    ../../Classes/CppConceptMap/conceptmaphelper.cpp \
-    ../../Classes/CppConceptMap/conceptmaptestconceptmap.cpp \
-    ../../Classes/CppConceptMap/conceptmaptestconcept.cpp
+    ../../Classes/CppQtConceptMap/qtconceptmapdisplaywidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapeditwidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapratewidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapwidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapedgeitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapdisplayconceptitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapeditconceptitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmaprateconceptitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapcenternodeitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapnodeitem.cpp
 
+HEADERS += \
+    ../../Classes/CppQtConceptMap/qtconceptmapdisplaywidget.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapeditwidget.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapratewidget.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapwidget.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapedgeitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapdisplayconceptitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapeditconceptitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmaprateconceptitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapcenternodeitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapnodeitem.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapfwd.h

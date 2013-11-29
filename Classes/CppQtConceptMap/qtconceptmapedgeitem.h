@@ -2,29 +2,29 @@
 #define QTPVDBEDGEITEM_H
 
 #include <boost/shared_ptr.hpp>
-#include "qtpvdbeditconceptitem.h"
-#include "qtpvdbconceptmapitem.h"
+#include "qtconceptmapeditconceptitem.h"
+#include "qtconceptmapitem.h"
 
-#include "pvdbfwd.h"
+#include "qtconceptmapfwd.h"
 
 namespace ribi {
 
-namespace pvdb {
+namespace cmap {
 
-///The QtPvdbEdgeItem is a QtPvdbEditConceptItem that
+///The QtConceptMapEdgeItem is a QtPvdbEditConceptItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
-struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
+struct QtConceptMapEdgeItem : public QtConceptMapItem
 {
 
-  QtPvdbEdgeItem(
-    const boost::shared_ptr<ribi::pvdb::Edge> edge,
-    const boost::shared_ptr<QtPvdbConceptItem> concept_item,
-    QtPvdbNodeItem* const from,
-    QtPvdbNodeItem* const to);
-  QtPvdbEdgeItem(const QtPvdbEdgeItem&) = delete;
-  QtPvdbEdgeItem& operator=(const QtPvdbEdgeItem&) = delete;
-  ~QtPvdbEdgeItem() noexcept {}
+  QtConceptMapEdgeItem(
+    const boost::shared_ptr<ribi::cmap::Edge> edge,
+    const boost::shared_ptr<QtConceptMapItem> concept_item,
+    QtConceptMapNodeItem* const from,
+    QtConceptMapNodeItem* const to);
+  QtConceptMapEdgeItem(const QtConceptMapEdgeItem&) = delete;
+  QtConceptMapEdgeItem& operator=(const QtConceptMapEdgeItem&) = delete;
+  ~QtConceptMapEdgeItem() noexcept {}
 
   QRectF boundingRect() const final;
 
@@ -34,27 +34,27 @@ struct QtPvdbEdgeItem : public QtPvdbConceptMapItem
   const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
   const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }
 
-  const boost::shared_ptr<const ribi::pvdb::Concept>  GetConcept() const;
-  const boost::shared_ptr<      ribi::pvdb::Concept>  GetConcept()      ;
+  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
+  const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
 
-  const boost::shared_ptr<const QtPvdbConceptItem> GetConceptItem() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtPvdbConceptItem> GetConceptItem()       final { return m_concept_item; }
+  const boost::shared_ptr<const QtConceptMapItem> GetConceptItem() const final { return m_concept_item; }
+  const boost::shared_ptr<      QtConceptMapItem> GetConceptItem()       final { return m_concept_item; }
 
-  const boost::shared_ptr<const pvdb::Edge>  GetEdge() const { return m_edge; }
-  const boost::shared_ptr<      pvdb::Edge>& GetEdge()       { return m_edge; }
+  const boost::shared_ptr<const cmap::Edge>  GetEdge() const { return m_edge; }
+  const boost::shared_ptr<      cmap::Edge>& GetEdge()       { return m_edge; }
 
   ///The node item the arrow originates from
-  const QtPvdbNodeItem * GetFrom() const { return m_from; }
-        QtPvdbNodeItem * GetFrom()       { return m_from; }
+  const QtConceptMapNodeItem * GetFrom() const { return m_from; }
+        QtConceptMapNodeItem * GetFrom()       { return m_from; }
 
   ///Get the name of the relation
   const std::string GetName() const;
 
   ///The node item the arrow targets
-  const QtPvdbNodeItem * GetTo() const { return m_to; }
-        QtPvdbNodeItem * GetTo()       { return m_to; }
+  const QtConceptMapNodeItem * GetTo() const { return m_to; }
+        QtConceptMapNodeItem * GetTo()       { return m_to; }
 
-  void SetConcept(const boost::shared_ptr<ribi::pvdb::Concept> concept);
+  void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept);
 
   void SetHasHeadArrow(const bool has_head_arrow);
   void SetHasTailArrow(const bool has_tail_arrow);
@@ -86,22 +86,22 @@ private:
   boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
 
   ///The Strategy for displaying the Concept
-  const boost::shared_ptr<QtPvdbConceptItem> m_concept_item;
+  const boost::shared_ptr<QtConceptMapItem> m_concept_item;
 
   const QPen m_contour_pen;
   const QPen m_focus_pen;
 
   ///The edge
-  const boost::shared_ptr<ribi::pvdb::Edge> m_edge;
+  const boost::shared_ptr<ribi::cmap::Edge> m_edge;
 
   ///The node item the arrow originates from
-  QtPvdbNodeItem * const m_from;
+  QtConceptMapNodeItem * const m_from;
 
   ///The node item the arrow targets
-  QtPvdbNodeItem * const m_to;
+  QtConceptMapNodeItem * const m_to;
 
   ///Called whenever the edge changes
-  void OnEdgeChanged(const pvdb::Edge * const edge);
+  void OnEdgeChanged(const cmap::Edge * const edge);
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();
@@ -113,7 +113,7 @@ private:
   #endif
 };
 
-} //~namespace pvdb
+} //~namespace cmap
 
 } //~namespace ribi
 

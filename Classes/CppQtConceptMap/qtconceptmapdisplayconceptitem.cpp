@@ -2,25 +2,25 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbdisplayconceptitem.h"
+#include "qtconceptmapdisplayconceptitem.h"
 
 #include <cstdlib>
 #include <sstream>
 
 #include <QKeyEvent>
 
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "pvdbhelper.h"
-#include "pvdbconcept.h"
-#include "pvdbcompetency.h"
-#include "pvdbconceptfactory.h"
-#include "qtpvdbbrushfactory.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "conceptmaphelper.h"
+#include "conceptmapconcept.h"
+#include "conceptmapcompetency.h"
+#include "conceptmapconceptfactory.h"
+#include "qtconceptmapbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shared_ptr<ribi::pvdb::Concept>& concept)
-  : QtPvdbConceptItem(concept)
+ribi::cmap::QtConceptMapDisplayConceptItem::QtConceptMapDisplayConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept)
+  : QtConceptMapItem(concept)
 {
   #ifndef NDEBUG
   Test();
@@ -32,40 +32,40 @@ ribi::pvdb::QtPvdbDisplayConceptItem::QtPvdbDisplayConceptItem(const boost::shar
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::pvdb::QtPvdbDisplayConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtConceptMapDisplayConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   GetConcept()->m_signal_examples_changed.connect( //FIX 2013-01-06 22:32
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_concreteness_changed.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_specificity_changed.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem() noexcept
+ribi::cmap::QtConceptMapDisplayConceptItem::~QtConceptMapDisplayConceptItem() noexcept
 {
   GetConcept()->m_signal_examples_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
@@ -75,43 +75,43 @@ ribi::pvdb::QtPvdbDisplayConceptItem::~QtPvdbDisplayConceptItem() noexcept
   //which results in a segmentation fault
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
-        &ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbDisplayConceptItem::Test() noexcept
+void ribi::cmap::QtConceptMapDisplayConceptItem::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::pvdb::QtPvdbDisplayConceptItem::Test()");
-  TRACE("Successfully finished ribi::pvdb::QtPvdbDisplayConceptItem::Test()");
+  TRACE("Starting ribi::cmap::QtConceptMapDisplayConceptItem::Test()");
+  TRACE("Successfully finished ribi::cmap::QtConceptMapDisplayConceptItem::Test()");
 }
 #endif
 
 
-void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens() noexcept
+void ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens() noexcept
 {
-  //TRACE("Start of void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
+  //TRACE("Start of void ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens()");
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
 
@@ -148,15 +148,15 @@ void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens() noexcept
   }
   else
   {
-    const std::vector<boost::shared_ptr<const pvdb::Example> > v = AddConst(GetConcept()->GetExamples()->Get());
+    const std::vector<boost::shared_ptr<const cmap::Example> > v = AddConst(GetConcept()->GetExamples()->Get());
     const int n_examples = boost::numeric_cast<int>(v.size());
     const int n_judged
       = std::count_if(v.begin(),v.end(),
-        [](const boost::shared_ptr<const pvdb::Example>& p)
+        [](const boost::shared_ptr<const cmap::Example>& p)
         {
           assert(p);
-          const pvdb::Competency this_competency = p->GetCompetency();
-          return this_competency != pvdb::Competency::uninitialized;
+          const cmap::Competency this_competency = p->GetCompetency();
+          return this_competency != cmap::Competency::uninitialized;
         }
       );
     if (n_judged == 0)
@@ -201,5 +201,5 @@ void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens() noexcept
     this->m_signal_item_has_updated(this); //Obligatory
     this->m_signal_request_scene_update(); //Obligatory
   }
-  //TRACE("End of void ribi::pvdb::QtPvdbDisplayConceptItem::UpdateBrushesAndPens()");
+  //TRACE("End of void ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens()");
 }
