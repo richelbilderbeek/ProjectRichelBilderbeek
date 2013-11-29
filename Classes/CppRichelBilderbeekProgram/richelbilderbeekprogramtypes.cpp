@@ -123,6 +123,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::testBroadcastServer,std::string("testBroadcastServer")));
   m.insert(Pair(ProgramType::testCanvas,std::string("testCanvas")));
   m.insert(Pair(ProgramType::testChess,std::string("testChess")));
+  m.insert(Pair(ProgramType::testConceptMap,std::string("testConceptMap")));
   m.insert(Pair(ProgramType::testDial,std::string("testDial")));
   m.insert(Pair(ProgramType::testEntrance,std::string("testEntrance")));
   m.insert(Pair(ProgramType::testExercise,std::string("testExercise")));
@@ -307,6 +308,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::testBroadcastServer,std::string("Test BroadcastServer")));
   m.insert(Pair(ProgramType::testCanvas,std::string("Test Canvas")));
   m.insert(Pair(ProgramType::testChess,std::string("Test Chess")));
+  m.insert(Pair(ProgramType::testConceptMap,std::string("Test ConceptMap")));
   m.insert(Pair(ProgramType::testDial,std::string("Test Dial")));
   m.insert(Pair(ProgramType::testEntrance,std::string("Test Entrance")));
   m.insert(Pair(ProgramType::testExercise,std::string("Test Exercise")));

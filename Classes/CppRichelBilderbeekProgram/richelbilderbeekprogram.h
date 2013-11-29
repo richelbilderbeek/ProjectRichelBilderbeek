@@ -1645,6 +1645,21 @@ struct ProgramTestChess : public ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestChess.htm"; }
 };
 
+struct ProgramTestConceptMap : public ProgramClass
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "TestConceptMap"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }
+  ProgramType GetType() const noexcept { return ProgramType::testConceptMap; }
+  const std::string GetUrl() const noexcept { return "ToolTestConceptMap.htm"; }
+};
+
 struct ProgramTestDial : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }

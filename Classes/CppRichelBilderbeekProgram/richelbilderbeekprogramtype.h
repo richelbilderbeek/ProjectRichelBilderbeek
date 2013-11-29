@@ -130,6 +130,7 @@ enum class ProgramType
   testBroadcastServer,
   testCanvas,
   testChess,
+  testConceptMap,
   testDial,
   testEntrance,
   testExercise,
