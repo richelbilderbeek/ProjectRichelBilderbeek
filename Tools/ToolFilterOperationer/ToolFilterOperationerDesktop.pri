@@ -2,12 +2,12 @@ include(../../Tools/ToolFilterOperationer/ToolFilterOperationerConsole.pri)
 
 HEADERS += \
     ../../Tools/ToolFilterOperationer/qtfilteroperationermaindialog.h \
-    qtfilteroperationermenudialog.h
+    ../../Tools/ToolFilterOperationer/qtfilteroperationermenudialog.h
 
 SOURCES += \
     ../../Tools/ToolFilterOperationer/qtfilteroperationermaindialog.cpp \
-    qtfilteroperationermenudialog.cpp
+    ../../Tools/ToolFilterOperationer/qtfilteroperationermenudialog.cpp
 
 FORMS += \
     ../../Tools/ToolFilterOperationer/qtfilteroperationermaindialog.ui \
-    qtfilteroperationermenudialog.ui
+    ../../Tools/ToolFilterOperationer/qtfilteroperationermenudialog.ui

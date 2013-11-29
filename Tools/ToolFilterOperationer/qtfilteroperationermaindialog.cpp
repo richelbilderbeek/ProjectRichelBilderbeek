@@ -8,15 +8,18 @@
 #include <QFileDialog>
 #include <QLabel>
 
+#include "filteroperationermaindialog.h"
 #include "matrix.h"
 #include "qtublasmatrixdoublemodel.h"
 #include "ui_qtfilteroperationermaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtFilterOperationerMainDialog::QtFilterOperationerMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtFilterOperationerMainDialog),
     m_model{new QtUblasMatrixDoubleModel},
+    m_result{nullptr},
     m_source{nullptr}
 {
   ui->setupUi(this);
@@ -24,7 +27,7 @@ ribi::QtFilterOperationerMainDialog::QtFilterOperationerMainDialog(QWidget *pare
   ui->filter->setModel(m_model);
   {
     const boost::numeric::ublas::matrix<double> m {
-      Matrix::CreateMatrix(3,4,
+      Matrix::CreateMatrix(3,3,
         {
           -1.0, -1.0, -1.0,
            0.0,  0.0,  0.0,
@@ -33,9 +36,11 @@ ribi::QtFilterOperationerMainDialog::QtFilterOperationerMainDialog(QWidget *pare
       )
     };
     m_model->SetRawData(m);
-
   }
-  OnAnyChange();
+
+  QPixmap p(":/filteroperationer/images/ToolFilterOperationerTest.png");
+  assert(!p.isNull());
+  ShowLoadedPixmap(p);
 }
 
 ribi::QtFilterOperationerMainDialog::~QtFilterOperationerMainDialog()
@@ -54,9 +59,13 @@ void ribi::QtFilterOperationerMainDialog::on_button_load_clicked()
   {
     const QPixmap pixmap(filename.c_str());
     if (pixmap.isNull()) return;
+    ShowLoadedPixmap(pixmap);
   }
 
+}
 
+void ribi::QtFilterOperationerMainDialog::ShowLoadedPixmap(const QPixmap& pixmap)
+{
   //Load source target
   {
     if (ui->content_source->layout())
@@ -71,43 +80,13 @@ void ribi::QtFilterOperationerMainDialog::on_button_load_clicked()
     ui->content_source->setLayout(layout);
     m_source = new QLabel;
     layout->addWidget(m_source);
-    m_source->setPixmap(QPixmap(filename.c_str()));
+    m_source->setPixmap(pixmap);
     assert(m_source);
     assert(!m_source->pixmap()->isNull());
   }
 }
 
 /*
-
-__fastcall TFormFilterOperationer::TFormFilterOperationer(TComponent* Owner)
-        : TForm(Owner)
-{
-  //A vertical edge detection filter
-  StringGridFilter->Cells[0][0] = -1.0;
-  StringGridFilter->Cells[1][0] =  0.0;
-  StringGridFilter->Cells[2][0] =  1.0;
-  StringGridFilter->Cells[0][1] = -1.0;
-  StringGridFilter->Cells[1][1] =  0.0;
-  StringGridFilter->Cells[2][1] =  1.0;
-  StringGridFilter->Cells[0][2] = -1.0;
-  StringGridFilter->Cells[1][2] =  0.0;
-  StringGridFilter->Cells[2][2] =  1.0;
-}
-
-void __fastcall TFormFilterOperationer::ButtonLoadClick(TObject *Sender)
-{
-  if (OpenDialog1->Execute()==false) return;
-  ImageSource->Picture->LoadFromFile(OpenDialog1->FileName);
-  ImageSource->Visible = true;
-  OnStringGridFilterChange(0);
-  ++PageControl->ActivePageIndex;
-}
-
-void __fastcall TFormFilterOperationer::OnStringGridFilterChange2(
-      TObject *Sender, WORD &Key, TShiftState Shift)
-{
-  OnStringGridFilterChange(0);
-}
 
 void __fastcall TFormFilterOperationer::OnStringGridFilterChange(
       TObject *Sender)
@@ -514,10 +493,52 @@ const double GetAverageGreyness(const TImage * const image)
 
 void ribi::QtFilterOperationerMainDialog::on_box_filter_rows_valueChanged(const QString &)
 {
-  OnAnyChange();
+  //
 }
 
 void ribi::QtFilterOperationerMainDialog::on_box_filter_cols_valueChanged(const QString &)
 {
-  OnAnyChange();
+  //
 }
+
+void ribi::QtFilterOperationerMainDialog::on_button_do_clicked()
+{
+  const QPixmap& p { *m_source->pixmap() };
+  const boost::numeric::ublas::matrix<double> m {
+    m_model->GetRawData()
+  };
+  const QPixmap q {
+    FilterOperationerMainDialog::DoFilterOperation(p,m)
+  };
+
+  //Load source target
+  if (ui->content_result->layout())
+  {
+    delete m_result;
+    m_result = nullptr;
+    delete ui->content_result->layout();
+  }
+  assert(!ui->content_result->layout());
+
+  QVBoxLayout * const layout = new QVBoxLayout;
+  ui->content_result->setLayout(layout);
+  m_result = new QLabel;
+  layout->addWidget(m_result);
+  m_result->setPixmap(q);
+  assert(m_result);
+  assert(!m_result->pixmap()->isNull());
+}
+
+#ifndef NDEBUG
+void ribi::QtFilterOperationerMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtFilterOperationerMainDialog::Test");
+
+  TRACE("Finished ribi::QtFilterOperationerMainDialog::Test successfully");
+}
+#endif

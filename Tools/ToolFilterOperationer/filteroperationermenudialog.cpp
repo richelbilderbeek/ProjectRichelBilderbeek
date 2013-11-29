@@ -27,6 +27,8 @@ const ribi::About ribi::FilterOperationerMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
+  a.AddLibrary("Test image from http://sipi.usc.edu");
+
   return a;
 }
 
@@ -61,7 +63,7 @@ const std::string ribi::FilterOperationerMenuDialog::GetVersion() const noexcept
 const std::vector<std::string> ribi::FilterOperationerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2008-07-11: version 1.0: initial Windows-only version",
-    "2013-11-28: version 2.0: port to Qt"
+    "2008-xx-17: version 1.0: initial Windows-only version",
+    "2013-11-29: version 2.0: port to Qt"
   };
 }

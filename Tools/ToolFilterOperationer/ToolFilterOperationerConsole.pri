@@ -3,11 +3,14 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Tools/ToolFilterOperationer/filteroperationermaindialog.cpp \
-    filteroperationermenudialog.cpp
+    ../../Tools/ToolFilterOperationer/filteroperationermenudialog.cpp
 
 OTHER_FILES += \
     ../../Tools/ToolFilterOperationer/Licence.txt
 
 HEADERS += \
     ../../Tools/ToolFilterOperationer/filteroperationermaindialog.h \
-    filteroperationermenudialog.h
+    ../../Tools/ToolFilterOperationer/filteroperationermenudialog.h
+
+RESOURCES += \
+    ../../Tools/ToolFilterOperationer/ToolFilterOperationer.qrc

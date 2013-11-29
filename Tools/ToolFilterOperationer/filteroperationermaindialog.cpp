@@ -1,3 +1,5 @@
+#include "filteroperationermaindialog.h"
+
 #include <cmath>
 #include <algorithm>
 #include <functional>
@@ -5,8 +7,38 @@
 #include <sstream>
 #include <cassert>
 
-#include "filteroperationermaindialog.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/numeric/ublas/matrix.hpp>
+#pragma GCC diagnostic pop
 
+const QPixmap ribi::FilterOperationerMainDialog::DoFilterOperation(
+  const QPixmap& source,
+  const boost::numeric::ublas::matrix<double>& filter)
+{
+  const std::vector<std::vector<int> > v {
+    PixmapToVector(source)
+  };
+
+  const std::vector<std::vector<double> > w {
+    MatrixToVector(filter)
+  };
+
+  const std::vector<std::vector<int> > x {
+    DoFilterOperation(
+      v, //y-x-ordered
+      w //y-x-ordered
+    )
+  };
+
+  const QImage image {
+    VectorToImage(x)
+  };
+
+  QPixmap result { QPixmap::fromImage(image) };
+  return result;
+}
 
 
 //Return a y-x-ordered 2D std::vector with the intensitief of grey
@@ -155,3 +187,76 @@ const std::pair<double,double> ribi::FilterOperationerMainDialog::GetFilterRange
   return range;
 }
 
+const std::vector<std::vector<int> > ribi::FilterOperationerMainDialog::ImageToVector(const QImage& image)
+{
+  const int height = image.height();
+  const int width = image.width();
+  std::vector<std::vector<int> > v(height,std::vector<int>(width));
+
+  for (int y=0; y!=height; ++y)
+  {
+    assert(y < static_cast<int>(v.size()));
+    for (int x=0; x!=width; ++x)
+    {
+      const QRgb rgb {
+        image.pixel(x,y)
+      };
+      const int g { (qRed(rgb) + qBlue(rgb) + qGreen(rgb)) / 3 };
+      assert(g >= 0);
+      assert(g < 256);
+      assert(x < static_cast<int>(v[y].size()));
+      v[y][x] = g;
+    }
+  }
+  return v;
+}
+
+const std::vector<std::vector<double> >
+  ribi::FilterOperationerMainDialog::MatrixToVector(
+  const boost::numeric::ublas::matrix<double>& m)
+{
+  const int height = m.size1();
+  const int width = m.size2();
+  std::vector<std::vector<double> > v(height,std::vector<double>(width));
+  for (int y=0; y!=height; ++y)
+  {
+    assert(y < static_cast<int>(v.size()));
+    for (int x=0; x!=width; ++x)
+    {
+      assert(x < static_cast<int>(v[y].size()));
+      v[y][x] = m(y,x);
+    }
+  }
+  return v;
+}
+
+const std::vector<std::vector<int> > ribi::FilterOperationerMainDialog::PixmapToVector(const QPixmap& pixmap)
+{
+  return ImageToVector(pixmap.toImage());
+}
+
+const QImage ribi::FilterOperationerMainDialog::VectorToImage(
+  const std::vector<std::vector<int> >& v)
+{
+  assert(!v.empty());
+  assert(!v[0].empty());
+  const int height = static_cast<int>(v.size());
+  const int width  = static_cast<int>(v[0].size());
+
+  QImage image(width,height,QImage::Format_RGB32);
+
+  for (int y=0; y!=height; ++y)
+  {
+    assert(y < static_cast<int>(v.size()));
+    assert(v[y].size() == v[0].size()
+      && "must be a rectangular 2D vector");
+    for (int x=0; x!=width; ++x)
+    {
+      assert(x < static_cast<int>(v[y].size()));
+      const int grey { v[y][x] };
+      QRgb rgb{ qRgb(grey,grey,grey) };
+      image.setPixel(x,y,rgb);
+    }
+  }
+  return image;
+}
