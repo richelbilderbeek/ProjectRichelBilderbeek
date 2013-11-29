@@ -10269,20 +10269,20 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
   m.push_back(
-    { "ToolHistogramEqualizationer", //|| m_page_name == "CppHistogramEqualizationer",
+    { "ToolHistogramEqualizationer",
       {
         "<p><a href=\"Tools.htm\">Tool</a> to perform a <a href=\"CppDoHistogramEqualization.htm\">histogram equalization</a> on an image.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppHistogramEqualizationer.htm\">HistogramEqualizationer</a> uses the functions ",
+        "<p><a href=\"ToolHistogramEqualizationer.htm\">HistogramEqualizationer</a> uses the functions ",
         "<a href=\"CppDoHistogramEqualization.htm\">DoHistogramEqualization</a> and <a href=\"CppConvertToGrey.htm\">ConvertToGrey</a>.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppHistogramEqualizationer.htm\">HistogramEqualizationer</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ",
+        "<p><a href=\"ToolHistogramEqualizationer.htm\">HistogramEqualizationer</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ",
         "<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library.</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppHistogramEqualizationerScreenshot.png\">View a screenshot of HistogramEqualizationer'</a></li>",
-        "  <li><a href=\"CppHistogramEqualizationerExe.zip\">Download the 'HistogramEqualizationer' Windows executable (zip)</a></li>",
-        "  <li><a href=\"CppHistogramEqualizationerSource.zip\">Download the 'HistogramEqualizationer' source code (zip)</a></li>",
+        "  <li><a href=\"ToolHistogramEqualizationerScreenshot.png\">View a screenshot of HistogramEqualizationer'</a></li>",
+        "  <li><a href=\"ToolHistogramEqualizationerExe.zip\">Download the 'HistogramEqualizationer' Windows executable (zip)</a></li>",
+        "  <li><a href=\"ToolHistogramEqualizationerSource.zip\">Download the 'HistogramEqualizationer' source code (zip)</a></li>",
         "</ul>",
       }
     }
@@ -10594,28 +10594,81 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolImageRotater",
       {
-        "<p>Finally, after 17 years of trying once-in-a-while, I've managed to create a simple tool",
-        "to rotate an image under any angle. The heart of the code is in the function <a",
-        "href=\"CppRotate.htm\">Rotate</a>.</p>",
+        "<p>",
+        "  Finally, after 17 years of trying once-in-a-while, I've managed to create a",
+        "  simple <a href=\"Tools.htm\">tool</a> to rotate an image under any angle.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>There are two editions: the CLX and VCL edition, using the CLX and VCL libraries respectively.</p>",
-        "<p>&nbsp;</p>",
-        "<p>The CLX version of <a href=\"ToolImageRotater.htm\">Image Rotater</a> was my first tool of which I both present the",
-        "(Windows) executable and the source code. The source code is licenced under GPL 3.0.</p>",
+        "<p>",
+        "  There are multiple editions:",
+        "</p>",
+        "<ul>",
+        "  <li><a href=\"ToolImageRotater.htm\">ImageRotater</a></li>",
+        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a><li>",
+        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a><li>",
+        "</ul>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolImageRotaterClx_1_0.png\">View a screenshot of Image Rotater (CLX edition)(png)</a></li>",
-        "  <li><a href=\"ToolImageRotaterVcl_1_0.png\">View a screenshot of Image Rotater (VCL edition)(png)</a></li>",
-        "  <li><a href=\"ToolImageRotaterClxExe.zip\">Download the 'Image Rotater (CLX edition)' Windows executable (zip)</a></li>",
-        "  <li><a href=\"ToolImageRotaterVclExe.zip\">Download the 'Image Rotater (VCL edition)' Windows executable (zip)</a></li>",
-        "  <li><a href=\"ToolImageRotaterClxSource.zip\">Download the 'Image Rotater (CLX edition)' source code (zip)</a></li>",
-        "  <li><a href=\"ToolImageRotaterVclSource.zip\">Download the 'Image Rotater (VCL edition)' source code (zip)</a></li>",
+        "  <li><a href=\"ToolImageRotater_2_0.png\">View a screenshot of Image Rotater (png)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.</p>",
       }
     }
   );
+  m.push_back(
+    { "ToolImageRotaterVcl",
+      {
+        "<p>",
+        "  Finally, after 17 years of trying once-in-a-while, I've managed to create a",
+        "  simple <a href=\"Tools.htm\">tool</a> to rotate an image under any angle.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  There are multiple editions:",
+        "</p>",
+        "<ul>",
+        "  <li><a href=\"ToolImageRotater.htm\">ImageRotater</a></li>",
+        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a><li>",
+        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a><li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolImageRotaterClx_1_0.png\">View a screenshot of Image Rotater (CLX edition)(png)</a></li>",
+        "  <li><a href=\"ToolImageRotaterClxExe.zip\">Download the 'Image Rotater (CLX edition)' Windows executable (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.</p>",
+      }
+    }
+  );
+  m.push_back(
+    { "ToolImageRotaterVcl",
+      {
+        "<p>",
+        "  Finally, after 17 years of trying once-in-a-while, I've managed to create a",
+        "  simple <a href=\"Tools.htm\">tool</a> to rotate an image under any angle.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  There are multiple editions:",
+        "</p>",
+        "<ul>",
+        "  <li><a href=\"ToolImageRotater.htm\">ImageRotater</a></li>",
+        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a><li>",
+        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a><li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolImageRotaterVcl_1_0.png\">View a screenshot of Image Rotater (VCL edition)(png)</a></li>",
+        "  <li><a href=\"ToolImageRotaterVclExe.zip\">Download the 'Image Rotater (VCL edition)' Windows executable (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.</p>",
+      }
+    }
+  );
+
   m.push_back(
     { "ToolItsBelcampo",
       {

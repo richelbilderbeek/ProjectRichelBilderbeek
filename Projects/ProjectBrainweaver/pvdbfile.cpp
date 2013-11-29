@@ -67,15 +67,7 @@ ribi::pvdb::File::File(
 {
   #ifndef NDEBUG
   Test();
-  if (!(!concept_map || this->GetQuestion() == concept_map->GetQuestion()))
-  {
-    if (concept_map)
-    {
-      TRACE(this->GetQuestion());
-      TRACE(concept_map->GetQuestion());
-    }
-  }
-  assert(!concept_map || this->GetQuestion() == concept_map->GetQuestion());
+  //assert(!concept_map || this->GetQuestion() == concept_map->GetQuestion()); //BUG20131129
   #endif
 }
 
@@ -263,6 +255,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTes
         assert(!concept_map->GetNodes().empty());
         question = concept_map->GetNodes()[0]->GetConcept()->GetName();
       }
+      //assert(!concept_map || question == concept_map->GetQuestion()); //BUG20131129
       boost::shared_ptr<pvdb::File> file(new File(
         about,
         assessor_name,
@@ -387,7 +380,7 @@ void ribi::pvdb::File::SetCluster(const boost::shared_ptr<pvdb::Cluster>& cluste
 
 void ribi::pvdb::File::SetQuestion(const std::string& question)
 {
-  assert(question.size() > 1);
+  assert(question.size() > 0);
   m_question = question;
   this->AutoSave();
 }
@@ -504,7 +497,6 @@ void ribi::pvdb::File::Test()
           | QFile::ExeOther
           );
         assert(success);
-        if (!success) { std::clog << "ribi::pvdb::File::Test(): Warning: !succes\n"; }
         file.open(QFile::ReadWrite);
         assert(file.isOpen());
         assert(file.isReadable());

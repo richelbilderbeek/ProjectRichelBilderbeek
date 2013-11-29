@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-int ribi::ImagerotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::ImageRotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
@@ -15,7 +15,7 @@ int ribi::ImagerotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>
   return 1;
 }
 
-const ribi::About ribi::ImagerotaterMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -30,7 +30,7 @@ const ribi::About ribi::ImagerotaterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ImagerotaterMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -44,7 +44,7 @@ const ribi::Help ribi::ImagerotaterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ImagerotaterMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramGaborFilter
@@ -53,12 +53,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ImagerotaterMenuDialog::GetPr
   return p;
 }
 
-const std::string ribi::ImagerotaterMenuDialog::GetVersion() const noexcept
+const std::string ribi::ImageRotaterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ImagerotaterMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::ImageRotaterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial Windows-only version",

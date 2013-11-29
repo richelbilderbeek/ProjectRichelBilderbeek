@@ -32,7 +32,7 @@ void ribi::QtImageRotaterMenuDialog::on_button_start_clicked()
 
 void ribi::QtImageRotaterMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(ImagerotaterMenuDialog().GetAbout());
+  QtAboutDialog d(ImageRotaterMenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 

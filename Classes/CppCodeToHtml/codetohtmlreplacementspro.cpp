@@ -23,6 +23,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+/*
+
+
+*/
+
 ///CreateProFileReplacements creates the replacements when
 ///a Qt project file is converted to HTML
 const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::CreateProReplacements() noexcept
@@ -35,6 +40,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     //37
     { "ToolTestQtKeyboardFriendlyGraphicsView","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew</a>" },
     //36
+
     //35
     //34
     { "testqtkeyboardfriendlygraphicsview","<a href=\"T$oolT$estQ$tK$eyboardF$riendlyG$raphicsV$iew.htm\">t$estq$tk$eyboardf$riendlyg$raphicsv$iew</a>" },
@@ -57,6 +63,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolTestMultipleChoiceQuestion","<a href=\"T$oolT$estM$ultipleC$hoiceQ$uestion.htm\">T$oolT$estM$ultipleC$hoiceQ$uestion</a>" },
     { "ToolTestSimpleLinearRegression","<a href=\"T$oolT$estS$impleL$inearR$egression.htm\">T$oolT$estS$impleL$inearR$egression</a>" },
     { "wtmultiplechoicequestiondialog","<a href=\"C$ppW$tM$ultipleC$hoiceQ$uestionD$ialog.htm\">w$tm$ultiplec$hoiceq$uestiond$ialog</a>" },
+    { "ToolHistogramEqualizationerClx","<a href=\"T$oolH$istogramE$qualizationerC$lx.htm\">T$oolH$istogramE$qualizationerC$lx</a>" },
+    { "ToolHistogramEqualizationerVcl","<a href=\"T$oolH$istogramE$qualizationerV$cl.htm\">T$oolH$istogramE$qualizationerV$cl</a>" },
     //29
     { "ToolTestQtRoundedEditRectItem","<a href=\"T$oolT$estQ$tR$oundedE$ditR$ectI$tem.htm\">T$oolT$estQ$tR$oundedE$ditR$ectI$tem</a>" },
     { "ToolTestQtRoundedTextRectItem","<a href=\"T$oolT$estQ$tR$oundedT$extR$ectI$tem.htm\">T$oolT$estQ$tR$oundedT$extR$ectI$tem</a>" },
@@ -68,9 +76,12 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppSortedBinaryNewickVector","<a href=\"C$ppS$ortedB$inaryN$ewickV$ector.htm\">C$ppS$ortedB$inaryN$ewickV$ector</a>" },
     { "ToolPerfectElasticCollision","<a href=\"T$oolP$erfectE$lasticC$ollision.htm\">T$oolP$erfectE$lasticC$ollision</a>" },
     { "ToolRichelBilderbeekGallery","<a href=\"T$oolR$ichelB$ilderbeekG$allery.htm\">T$oolR$ichelB$ilderbeekG$allery</a>" },
+    { "ToolHistogramEqualizationer","<a href=\"T$oolH$istogramE$qualizationer.htm\">T$oolH$istogramE$qualizationer</a>" },
     //26
     { "CppRichelBilderbeekProgram","<a href=\"C$ppR$ichelB$ilderbeekP$rogram.htm\">C$ppR$ichelB$ilderbeekP$rogram</a>" },
     { "ToolCreateQtProjectZipFile","<a href=\"T$oolC$reateQ$tP$rojectZ$ipF$ile.htm\">T$oolC$reateQ$tP$rojectZ$ipF$ile</a>" },
+    { "HistogramEqualizationerClx","<a href=\"T$oolH$istogramE$qualizationerC$lx.htm\">H$istogramE$qualizationerC$lx</a>" },
+    { "HistogramEqualizationerVcl","<a href=\"T$oolH$istogramE$qualizationerV$cl.htm\">H$istogramE$qualizationerV$cl</a>" },
     //25
     { "CppMultipleChoiceQuestion","<a href=\"C$ppM$ultipleC$hoiceQ$uestion.htm\">C$ppM$ultipleC$hoiceQ$uestion</a>" },
     { "CppQtMysteryMachineWidget","<a href=\"C$ppQ$tM$ysteryM$achin$eW$idget.htm\">C$ppQ$tM$ysteryM$achin$eW$idget</a>" },
@@ -105,6 +116,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "sortedbinarynewickvector","<a href=\"C$ppS$ortedB$inaryN$ewickV$ector.htm\">s$ortedb$inaryn$ewickv$ector</a>" },
     { "wttestentrancemaindialog","<a href=\"T$oolT$estE$ntrance.htm\">w$tt$este$ntrancem$aind$ialog</a>" },
     { "wttestentrancemenudialog","<a href=\"T$oolT$estE$ntrance.htm\">w$tt$este$ntrancem$enud$ialog</a>" },
+    { "ToolThresholdFiltererVcl","<a href=\"T$oolT$hresholdF$iltererVcl.htm\">T$oolT$hresholdF$iltererV$cl</a>" },
+    { "ToolFilterOperationerVcl","<a href=\"T$oolF$ilterO$perationerVcl.htm\">T$oolF$ilterO$perationerV$cl</a>" },
     //23
     { "-lboost_program_options","<a href=\"C$ppP$rogram_o$ptions.htm\">-l$b$oost_p$rogram_o$ptions</a>" },
     { "CppQtConnectThreeWidget","<a href=\"C$ppQ$tC$onnectT$hreeW$idget.htm\">C$ppQ$tC$onnectT$hreeW$idget</a>" },
@@ -123,6 +136,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtbroadcastserverclient","<a href=\"C$ppW$tB$roadc$astS$erverC$lient.htm\">w$tb$roadc$asts$erverc$lient</a>" },
     { "wtrubiksclockmaindialog","<a href=\"G$ameR$ubiksC$lock.htm\">w$tr$ubiksc$lockm$aind$ialog</a>" },
     { "wtrubiksclockmenudialog","<a href=\"G$ameR$ubiksC$lock.htm\">w$tr$ubiksc$lockm$enud$ialog</a>" },
+    { "HistogramEqualizationer","<a href=\"T$oolH$istogramE$qualizationer.htm\">H$istogramE$qualizationer</a>" },
   //22
     { "createqtprojectzipfile","<a href=\"T$oolC$reateQ$tP$rojectZ$ipF$ile.htm\">c$reateq$tp$rojectz$ipf$ile</a>" },
     { "multiplechoicequestion","<a href=\"C$ppM$ultipleC$hoiceQ$uestion.htm\">m$ultiplec$hoiceq$uestion</a>" },
@@ -158,6 +172,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "qtroundedtextrectitem","<a href=\"C$ppQ$tR$oundedT$extR$ectI$tem.htm\">q$tr$oundedt$extr$ecti$tem</a>" },
     { "rubiksclockmenudialog","<a href=\"G$ameR$ubiksC$lock.htm\">r$ubiksc$lockm$enud$ialog</a>" },
     { "testtimedserverpusher","<a href=\"T$oolT$estT$imedS$erverP$usher.htm\">t$estt$imeds$erverp$usher</a>" },
+    { "ToolThresholdFilterer","<a href=\"T$oolT$hresholdF$ilterer.htm\">T$oolT$hresholdF$ilterer</a>" },
+    { "ToolFilterOperationer","<a href=\"T$oolF$ilterO$perationer.htm\">T$oolF$ilterOp$erationer</a>" },
   //20
     { "CppGaborFilterWidget","<a href=\"C$ppG$aborF$ilterW$idg$et.htm\">C$ppG$aborF$ilterW$idg$et</a>" },
     { "CppMultiApproximator","<a href=\"C$ppM$ultiA$pproximator.htm\">C$ppM$ultiA$pproximator</a>" },
@@ -189,6 +205,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtconnectthreewidget","<a href=\"C$ppW$tC$onnectT$hreeW$idget.htm\">w$tc$onnectt$hreew$idget</a>" },
     { "wtopenquestiondialog","<a href=\"C$ppW$tO$penQ$uestionD$ialog.htm\">w$to$penq$uestiond$ialog</a>" },
     { "wtserverpusherclient","<a href=\"C$ppW$tS$erverP$usherC$lient.htm\">w$ts$erverp$usherc$lient</a>" },
+    { "ThresholdFiltererVcl","<a href=\"T$oolT$hresholdF$iltererVcl.htm\">T$hresholdF$iltererV$cl</a>" },
+    { "FilterOperationerVcl","<a href=\"T$oolF$ilterO$perationerVcl.htm\">F$ilterO$perationerV$cl</a>" },
   //19
     { "CppQtCreatorProFile","<a href=\"C$ppQ$tC$reatorP$roF$ile.htm\">C$ppQ$tC$reatorP$roF$ile</a>" },
     { "CppQtDisplayPosItem","<a href=\"C$ppQ$tD$isplayP$osI$tem.htm\">C$ppQ$tD$isplayP$osI$tem</a>" },
@@ -269,6 +287,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtbroadcastserver","<a href=\"C$ppW$tB$roadc$astS$erver.htm\">w$tb$roadc$asts$erver</a>" },
     { "wttictactoewidget","<a href=\"C$ppW$tT$icTacToeW$idget.htm\">w$tt$ictactoew$idget</a>" },
     { "wttestshinybutton","<a href=\"T$oolT$estS$hinyB$utton.htm\">w$tt$ests$hinyb$utton</a>" },
+    { "ThresholdFilterer","<a href=\"T$oolT$hresholdF$ilterer.htm\">T$hresholdF$ilterer</a>" },
+    { "FilterOperationer","<a href=\"T$oolF$ilterO$perationer.htm\">F$ilterOp$erationer</a>" },
   //16
     { "CppDesignPattern","<a href=\"C$ppD$esignP$attern.htm\">C$ppD$esignP$attern</a>" },
     { "CppQtAboutDialog","<a href=\"C$ppQ$tA$boutD$ialog.htm\">C$ppQ$tA$boutD$ialog</a>" },

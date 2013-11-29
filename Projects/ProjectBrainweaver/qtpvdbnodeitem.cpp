@@ -216,6 +216,7 @@ void ribi::pvdb::QtPvdbNodeItem::OnItemRequestsRateExamples()
 
 void ribi::pvdb::QtPvdbNodeItem::OnNodeChanged(const pvdb::Node * node)
 {
+  assert(node);
   //Keep the coordinats synced
   this->SetPos(node->GetX(),node->GetY());
 }

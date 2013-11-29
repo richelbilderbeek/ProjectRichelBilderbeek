@@ -31,13 +31,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-double ribi::ImagerotaterMainDialog::GetAngle(const double dx, const double dy)
+double ribi::ImageRotaterMainDialog::GetAngle(const double dx, const double dy)
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan2(dx,dy));
 }
 
-QRgb ribi::ImagerotaterMainDialog::GetPixel(
+QRgb ribi::ImageRotaterMainDialog::GetPixel(
   const QImage& image,
   const double x,
   const double y)
@@ -53,7 +53,7 @@ QRgb ribi::ImagerotaterMainDialog::GetPixel(
   return GetPixel(image,x_tl,y_tl,left,top);
 }
 
-QRgb ribi::ImagerotaterMainDialog::GetPixel(
+QRgb ribi::ImageRotaterMainDialog::GetPixel(
   const QImage& image,
   const int x_tl,
   const int y_tl,
@@ -97,7 +97,7 @@ QRgb ribi::ImagerotaterMainDialog::GetPixel(
   );
 }
 
-void ribi::ImagerotaterMainDialog::Rotate(
+void ribi::ImageRotaterMainDialog::Rotate(
   const QPixmap& pixmapOriginal,
   QPixmap& pixmapResult,
   const double angle)
@@ -143,7 +143,7 @@ void ribi::ImagerotaterMainDialog::Rotate(
 
 
 
-void ribi::ImagerotaterMainDialog::Translate(
+void ribi::ImageRotaterMainDialog::Translate(
   const double dx1,
   const double dy1,
   const double dAngle,

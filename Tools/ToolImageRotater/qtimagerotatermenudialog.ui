@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>imagerotater</string>
+   <string>ImageRotater</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

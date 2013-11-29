@@ -32,7 +32,7 @@ struct QImage;
 
 namespace ribi {
 
-struct ImagerotaterMainDialog
+struct ImageRotaterMainDialog
 {
   ///Draw an image to another image under a certain angle
   ///adding black where there is nothing to draw

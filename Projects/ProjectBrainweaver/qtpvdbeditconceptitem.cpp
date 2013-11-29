@@ -35,6 +35,11 @@ ribi::pvdb::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr
   //  boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
 }
 
+ribi::pvdb::QtPvdbEditConceptItem::~QtPvdbEditConceptItem() noexcept
+{
+  GetConcept()->m_signal_name_changed.disconnect(
+    boost::bind(&ribi::pvdb::QtPvdbEditConceptItem::OnConceptNameChanged,this));
+}
 
 void ribi::pvdb::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
 {

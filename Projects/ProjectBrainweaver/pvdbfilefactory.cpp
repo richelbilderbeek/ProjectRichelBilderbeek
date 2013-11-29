@@ -40,7 +40,8 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(cons
     assert(IsEqual(*concept_map,*file->GetConceptMap()));
   }
 
-  const boost::shared_ptr<pvdb::File> p(
+ //assert(!concept_map || file->GetQuestion() == concept_map->GetQuestion()); //BUG20131129
+ const boost::shared_ptr<pvdb::File> p(
     new File(
       file->GetAbout(),
       file->GetAssessorName(),

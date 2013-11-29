@@ -57,9 +57,9 @@ const std::string ribi::QtLabeledQuadBezierArrowItem::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtLabeledQuadBezierArrowItem::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2013-01-01: version 1.0: initial version");
-  return v;
+  return {
+    "2013-01-01: version 1.0: initial version"
+  };
 }
 
 void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)

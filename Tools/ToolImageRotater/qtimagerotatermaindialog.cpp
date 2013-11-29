@@ -16,13 +16,15 @@
 ribi::QtImageRotaterMainDialog::QtImageRotaterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtImageRotaterMainDialog),
-    m_source{},
+    m_source(":/imagerotater/images/ToolImageRotaterTest.png"),
     m_target(nullptr)
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
+  assert(!m_source.isNull());
+  OnAnyChange();
 }
 
 ribi::QtImageRotaterMainDialog::~QtImageRotaterMainDialog() noexcept
@@ -70,11 +72,12 @@ void ribi::QtImageRotaterMainDialog::OnAnyChange()
     QVBoxLayout * const layout = new QVBoxLayout;
     ui->contents->setLayout(layout);
     m_target = new QLabel;
+    m_target->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(m_target);
 
     assert(!m_source.isNull());
     QPixmap target(m_source.width(),m_source.height());
-    ImagerotaterMainDialog::Rotate(
+    ImageRotaterMainDialog::Rotate(
       m_source,
       target,
       GetAngle()
@@ -103,10 +106,10 @@ void ribi::QtImageRotaterMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtImageRotaterMainDialog::Test");
-  const QPixmap source(":/imagerotater/images/ToolimagerotaterTest.png");
+  const QPixmap source(":/imagerotater/images/ToolImageRotaterTest.png");
   assert(!source.isNull());
   QPixmap target(source.width(), source.height());
-  ImagerotaterMainDialog::Rotate(
+  ImageRotaterMainDialog::Rotate(
     source,
     target,
     0.235

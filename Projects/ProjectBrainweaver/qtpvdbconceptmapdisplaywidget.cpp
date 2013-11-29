@@ -101,8 +101,20 @@ void ribi::pvdb::QtPvdbConceptMapDisplayWidget::AddEdge(
     edge) == 1 && "Assume edge is already in the concept map");
   //this->GetConceptMap()->AddEdge(edge);
 
+  #ifndef NDEBUG
+  if(qtedge->pos().x() != edge->GetX())
+  {
+    TRACE(qtedge->pos().x());
+    TRACE(edge->GetX());
+  }
   assert(qtedge->pos().x() == edge->GetX());
+  if(qtedge->pos().y() != edge->GetY())
+  {
+    TRACE(qtedge->pos().y());
+    TRACE(edge->GetY());
+  }
   assert(qtedge->pos().y() == edge->GetY());
+  #endif
 }
 
 ribi::pvdb::QtPvdbNodeItem * ribi::pvdb::QtPvdbConceptMapDisplayWidget::AddNode(const boost::shared_ptr<ribi::pvdb::Node> node)

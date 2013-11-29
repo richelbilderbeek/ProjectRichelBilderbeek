@@ -6,7 +6,7 @@
 namespace ribi {
 
 ///GUI independent imagerotater menu dialog
-struct ImagerotaterMenuDialog : public MenuDialog
+struct ImageRotaterMenuDialog : public MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
