@@ -64,7 +64,7 @@
           <item>
            <widget class="QLabel" name="label_focal_question">
             <property name="text">
-             <string>FOCUS VRAAG: ?</string>
+             <string>FOCUS: ?</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>

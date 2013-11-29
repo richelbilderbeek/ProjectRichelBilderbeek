@@ -504,7 +504,7 @@ const boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDi
 
 const std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersion() const noexcept
 {
-  return "1.12";
+  return "1.13";
 }
 
 const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistory() const noexcept

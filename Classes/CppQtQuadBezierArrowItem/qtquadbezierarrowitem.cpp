@@ -360,13 +360,13 @@ const std::string ribi::QtQuadBezierArrowItem::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-07: version 1.0: initial version");
-  v.push_back("2012-12-13: version 1.1: respond to focus");
-  v.push_back("2012-12-29: version 1.2: fixed bug in GetHead and GetTail that occurs when GetLineRectIntersections returns two points");
-  v.push_back("2013-01-01: version 1.3: added QGraphicsItem getters");
-  v.push_back("2013-07-10: version 1.4: setting arrow heads emits a notification signal");
-  return v;
+  return {
+    "2012-12-07: version 1.0: initial version",
+    "2012-12-13: version 1.1: respond to focus",
+    "2012-12-29: version 1.2: fixed bug in GetHead and GetTail that occurs when GetLineRectIntersections returns two points",
+    "2013-01-01: version 1.3: added QGraphicsItem getters",
+    "2013-07-10: version 1.4: setting arrow heads emits a notification signal"
+  };
 }
 
 void ribi::QtQuadBezierArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)
