@@ -1,13 +1,16 @@
 include (../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolStyleSheetSetter/qttoolstylesheetsettermaindialog.h
+    ../../Tools/ToolStyleSheetSetter/qtstylesheetsettermaindialog.h \
+    ../../Tools/ToolStyleSheetSetter/qtstylesheetsettermenudialog.h
 
 FORMS += \
-    ../../Tools/ToolStyleSheetSetter/qttoolstylesheetsettermaindialog.ui
+    ../../Tools/ToolStyleSheetSetter/qtstylesheetsettermaindialog.ui \
+    ../../Tools/ToolStyleSheetSetter/qtstylesheetsettermenudialog.ui
 
 SOURCES += \
-    ../../Tools/ToolStyleSheetSetter/qttoolstylesheetsettermaindialog.cpp
+    ../../Tools/ToolStyleSheetSetter/qtstylesheetsettermaindialog.cpp \
+    ../../Tools/ToolStyleSheetSetter/qtstylesheetsettermenudialog.cpp
 
 RESOURCES += \
     ../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetter.qrc

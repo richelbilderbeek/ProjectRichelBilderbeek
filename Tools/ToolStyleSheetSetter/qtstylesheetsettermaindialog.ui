@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ToolStyleSheetSetterMainDialog</class>
- <widget class="QDialog" name="ToolStyleSheetSetterMainDialog">
+ <class>QtStyleSheetSetterMainDialog</class>
+ <widget class="QDialog" name="QtStyleSheetSetterMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <string>StyleSheetSetter</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Projects/ProjectVanDenBogaart/ProjectVanDenBogaart.qrc">
+   <iconset resource="ToolStyleSheetSetter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -103,7 +103,7 @@ QSlider, QPushButton, QDial
          <string>QPushButton with icon</string>
         </property>
         <property name="icon">
-         <iconset resource="../../Projects/ProjectVanDenBogaart/ProjectVanDenBogaart.qrc">
+         <iconset>
           <normaloff>:/images/PicRed14x14.png</normaloff>:/images/PicRed14x14.png</iconset>
         </property>
         <property name="checkable">
@@ -121,7 +121,7 @@ QSlider, QPushButton, QDial
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../../Projects/ProjectVanDenBogaart/ProjectVanDenBogaart.qrc"/>
+  <include location="ToolStyleSheetSetter.qrc"/>
  </resources>
  <connections/>
 </ui>

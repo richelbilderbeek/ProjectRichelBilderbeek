@@ -5,20 +5,20 @@
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class ToolStyleSheetSetterMainDialog;
+  class QtStyleSheetSetterMainDialog;
 }
 
 namespace ribi {
 
-class ToolStyleSheetSetterMainDialog : public QtHideAndShowDialog
+class QtStyleSheetSetterMainDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
-  explicit ToolStyleSheetSetterMainDialog(const std::string& stylesheet = "", QWidget *parent = 0);
-  ToolStyleSheetSetterMainDialog(const ToolStyleSheetSetterMainDialog&) = delete;
-  ToolStyleSheetSetterMainDialog& operator=(const ToolStyleSheetSetterMainDialog&) = delete;
-  ~ToolStyleSheetSetterMainDialog() noexcept;
+  explicit QtStyleSheetSetterMainDialog(const std::string& stylesheet = "", QWidget *parent = 0);
+  QtStyleSheetSetterMainDialog(const QtStyleSheetSetterMainDialog&) = delete;
+  QtStyleSheetSetterMainDialog& operator=(const QtStyleSheetSetterMainDialog&) = delete;
+  ~QtStyleSheetSetterMainDialog() noexcept;
   const std::string& GetStyleSheet() const { return m_stylesheet; }
 
 protected:
@@ -28,7 +28,7 @@ private slots:
   void on_stylesheet_textChanged();
 
 private:
-  Ui::ToolStyleSheetSetterMainDialog *ui;
+  Ui::QtStyleSheetSetterMainDialog *ui;
   std::string m_stylesheet;
 };
 
