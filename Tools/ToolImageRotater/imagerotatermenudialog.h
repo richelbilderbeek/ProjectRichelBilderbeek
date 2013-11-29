@@ -1,15 +1,12 @@
-#ifndef TRONCOLLECTIONMENUDIALOG_H
-#define TRONCOLLECTIONMENUDIALOG_H
+#ifndef IMAGEROTATERMENUDIALOG_H
+#define IMAGEROTATERMENUDIALOG_H
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "menudialog.h"
-#pragma GCC diagnostic pop
 
 namespace ribi {
 
-struct TronCollectionMenuDialog : public MenuDialog
+///GUI independent imagerotater menu dialog
+struct ImagerotaterMenuDialog : public MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -19,8 +16,9 @@ struct TronCollectionMenuDialog : public MenuDialog
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
 };
 
 } //~namespace ribi
 
-#endif // TRONCOLLECTIONMENUDIALOG_H
+#endif // IMAGEROTATERMENUDIALOG_H

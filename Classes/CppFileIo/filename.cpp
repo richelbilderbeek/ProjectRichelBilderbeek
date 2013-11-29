@@ -41,11 +41,12 @@ const std::string& ribi::fileio::Filename::Get() const noexcept
 
 
 
+void ribi::fileio::DeleteFile(const Filename& filename) { DeleteFile(filename.Get()); }
 bool ribi::fileio::FilesAreIdentical(const Filename& filename_a,const Filename& filename_b)
 {
   return FilesAreIdentical(filename_a.Get(),filename_b.Get());
 }
-void ribi::fileio::DeleteFile(const Filename& filename) { DeleteFile(filename.Get()); }
+const std::vector<std::string> ribi::fileio::FileToVector(const Filename& filename) { return FileToVector(filename.Get()); }
 const std::string ribi::fileio::GetExtensionNoDot(const Filename& filename) { return GetExtensionNoDot(filename.Get()); }
 bool ribi::fileio::IsRegularFile(const Filename& filename) { return IsRegularFile(filename.Get()); }
 

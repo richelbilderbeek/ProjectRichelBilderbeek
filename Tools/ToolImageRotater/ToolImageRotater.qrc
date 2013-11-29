@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/imagerotater/images">
+        <file>ToolimagerotaterTest.png</file>
+        <file>ToolimagerotaterResult.png</file>
+    </qresource>
+</RCC>

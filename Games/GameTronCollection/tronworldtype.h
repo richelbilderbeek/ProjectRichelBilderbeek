@@ -7,6 +7,9 @@
 #include <boost/checked_delete.hpp>
 #pragma GCC diagnostic pop
 
+namespace ribi {
+namespace tron {
+
 struct WorldType
 {
   protected:
@@ -46,5 +49,7 @@ struct WorldTypeSquare : public WorldType
   }
 };
 
+} //~namespace tron
+} //~namespace ribi
 
 #endif // WORLDTYPE_H

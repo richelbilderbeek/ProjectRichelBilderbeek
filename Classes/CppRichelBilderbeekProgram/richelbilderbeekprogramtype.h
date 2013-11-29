@@ -60,6 +60,7 @@ enum class ProgramType
   histogramEqualizationer,
   histogramEqualizationerVcl,
   hometrainer,
+  imageRotater,
   imageRotaterClx,
   imageRotaterVcl,
   k3OpEenRij,

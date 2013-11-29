@@ -67,6 +67,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::histogramEqualizationer: p.reset(new ProgramHistogramEqualizationer); break;
     case ProgramType::histogramEqualizationerVcl: p.reset(new ProgramHistogramEqualizationerVcl); break;
     case ProgramType::hometrainer: p.reset(new ProgramHometrainer); break;
+    case ProgramType::imageRotater: p.reset(new ProgramImageRotater); break;
     case ProgramType::imageRotaterClx: p.reset(new ProgramImageRotaterClx); break;
     case ProgramType::imageRotaterVcl: p.reset(new ProgramImageRotaterVcl); break;
     case ProgramType::k3OpEenRij: p.reset(new ProgramK3OpEenRij); break;
@@ -253,92 +254,6 @@ const std::vector<std::string> ribi::Program::GetVersionHistory() noexcept
     "2012-02-19: Version 1.0: initial version"
   };
 }
-
-/*
-///There is a transition between Program being inherited from
-///and ProgramStatus being an ordinary data structure
-struct ProgramInfo : public Program
-{
-  ProgramInfo(
-    const std::string& filename_console,
-    const std::string& filename_desktop,
-    const std::string& filename_desktop_windows_only,
-    const std::string& filename_web,
-    const std::string& screen_name,
-    const ProgramStatus status_console,
-    const ProgramStatus status_desktop_windows_only,
-    const ProgramStatus status_desktop,
-    const ProgramStatus status_web,
-    const ProgramType type,
-    const std::string& url)
-  : m_filename_console(filename_console),
-    m_filename_desktop(filename_desktop),
-    m_filename_desktop_windows_only(filename_desktop_windows_only),
-    m_filename_web(filename_web),
-    m_screen_name(screen_name),
-    m_status_console(status_console),
-    m_status_desktop_windows_only(status_desktop_windows_only),
-    m_status_desktop(status_desktop),
-    m_status_web(status_web),
-    m_type(type),
-    m_url(url)
-  {
-
-  }
-
-  ///Get the filename of a console version screenshot
-  const std::string GetFilenameConsole() const noexcept { return m_filename_console; }
-
-  ///Get the filename of a desktop platform-independent version screenshot
-  const std::string GetFilenameDesktop() const noexcept { return m_filename_desktop; }
-
-  ///Get the filename of a desktop windows-only version screenshot
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return m_filename_desktop_windows_only; }
-
-  ///Get the filename of a web application version screenshot
-  const std::string GetFilenameWeb() const noexcept { return m_filename_web; }
-
-  ///Status of the console-only version
-  ProgramStatus GetStatusConsole() const noexcept { return m_status_console; }
-
-  ///Status of the Windows-only desktop version
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return m_status_desktop_windows_only; }
-
-  ///Status of the platform-independent desktop version
-  ProgramStatus GetStatusDesktop() const noexcept { return m_status_desktop; }
-
-  ///Status of the web application version
-  ProgramStatus GetStatusWebApplication() const noexcept { return m_status_web; }
-
-  ///The item its enum name, e.g. 'k3OpEenRij'
-  const std::string GetName() const noexcept;
-
-  ///The item its on-screen name, e.g. 'K3-Op-Een-Rij'
-  const std::string GetScreenName() const noexcept;
-
-  ///The program, e.g. 'RichelBilderbeekProgramType::boenken'
-  ProgramType GetType() const noexcept { return m_type; }
-
-  ///The type of program its name, e.g. 'Game'
-  const std::string GetTypeName() const noexcept { return ""; }
-
-  ///The item its URL (at http://ww.richelbilderbeek.nl), e.g. 'ToolSimMysteryMachine.htm'
-  const std::string GetUrl() const noexcept { return m_url; }
-
-  private:
-  const std::string m_filename_console;
-  const std::string m_filename_desktop;
-  const std::string m_filename_desktop_windows_only;
-  const std::string m_filename_web;
-  const std::string m_screen_name;
-  const ProgramStatus m_status_console;
-  const ProgramStatus m_status_desktop_windows_only;
-  const ProgramStatus m_status_desktop;
-  const ProgramStatus m_status_web;
-  const ProgramType m_type;
-  const std::string m_url;
-};
-*/
 
 std::ostream& ribi::operator<<(std::ostream& os, const Program& p) noexcept
 {

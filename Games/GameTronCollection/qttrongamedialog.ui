@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTronCollectionGameDialog</class>
- <widget class="QDialog" name="QtTronCollectionGameDialog">
+ <class>QtTronGameDialog</class>
+ <widget class="QDialog" name="QtTronGameDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -30,7 +30,29 @@
     <number>0</number>
    </property>
    <item row="0" column="0">
-    <widget class="QWidget" name="widget" native="true"/>
+    <widget class="QWidget" name="area" native="true">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>Area</string>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>

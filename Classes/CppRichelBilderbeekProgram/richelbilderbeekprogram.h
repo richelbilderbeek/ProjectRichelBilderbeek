@@ -591,19 +591,35 @@ struct ProgramHometrainer : public ProgramTool
   const std::string GetUrl() const noexcept { return "ToolHometrainer.htm"; }
 };
 
+struct ProgramImageRotater : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "ImageRotater"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }
+  ProgramType GetType() const noexcept { return ProgramType::imageRotater; }
+  const std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
+};
+
+
 struct ProgramImageRotaterClx : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolImageRotaterClx_1_0.png"; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ImageRotater"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  const std::string GetScreenName() const noexcept { return "ImageRotater (CLX)"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::imageRotaterClx; }
-  const std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolImageRotaterClx.htm"; }
 };
 
 struct ProgramImageRotaterVcl : public ProgramTool
@@ -612,13 +628,13 @@ struct ProgramImageRotaterVcl : public ProgramTool
   const std::string GetFilenameDesktop() const noexcept { return ""; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolImageRotaterVcl_1_0.png"; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ImageRotater"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  const std::string GetScreenName() const noexcept { return "ImageRotater (VCL)"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::imageRotaterClx; }
-  const std::string GetUrl() const noexcept { return "ToolImageRotater.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolImageRotaterVcl.htm"; }
 };
 
 struct ProgramK3OpEenRij : public ProgramGame

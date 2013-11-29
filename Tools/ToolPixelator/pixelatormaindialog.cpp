@@ -142,8 +142,6 @@ QRgb ribi::PixelatorMainDialog::GetPixel(
   return rgb;
 }
 
-//Set a pixel's color
-//From http://www.richelbilderbeek.nl
 void ribi::PixelatorMainDialog::SetPixel(
   QImage& image,
   const int x,
@@ -205,90 +203,3 @@ void ribi::PixelatorMainDialog::SetPixel(
     SetPixel(image,x1,x2,y,color);
   }
 }
-/*
-//---------------------------------------------------------------------------
-void DoPixelateGrey(
-  const TImage * const imageOriginal,
-  TImage * const imageResult,
-  const int pixelSize)
-{
-  assert(imageOriginal!=0);
-  assert(imageResult!=0);
-
-  imageResult->Picture->Graphic = imageOriginal->Picture->Graphic;
-
-  assert(imageOriginal->Picture->Bitmap->Width  == imageResult->Picture->Bitmap->Width );
-  assert(imageOriginal->Picture->Bitmap->Height == imageResult->Picture->Bitmap->Height);
-
-  const int width  = imageOriginal->Picture->Bitmap->Width;
-  const int height = imageOriginal->Picture->Bitmap->Height;
-  const int maxx = 1 + (width  / pixelSize);
-  const int maxy = 1 + (height / pixelSize);
-
-  for (int y=0; y!=maxy; ++y)
-  {
-    const int y1 = (y * pixelSize);
-    if (y1 >= height) continue;
-    const int y2 = std::min( y1 + pixelSize, height );
-    assert(y1 <= height);
-    assert(y2 <= height);
-    assert(y1!=y2);
-
-    for (int x=0; x!=maxx; ++x)
-    {
-      const int x1 = (x * pixelSize);
-      if (x1 >= width) continue;
-      const int x2 = std::min( x1 + pixelSize, width );
-      assert(x1 <= width);
-      assert(x2 <= width);
-      assert(x1!=x2);
-      const int grey = GetGreyness(imageOriginal,x1,y1,x2,y2);
-      SetGreyness(imageResult,x1,y1,x2,y2,grey);
-    }
-  }
-}
-//---------------------------------------------------------------------------
-void ThresholdFilter(
-  const TImage * const imageOriginal,
-  TImage * const imageThreshold,
-  const unsigned char threshold)
-{
-  assert(imageOriginal!=0);
-  assert(imageThreshold!=0);
-
-  imageThreshold->Picture->Graphic = imageOriginal->Picture->Graphic;
-
-  assert(imageOriginal->Picture->Bitmap->Width  == imageThreshold->Picture->Bitmap->Width );
-  assert(imageOriginal->Picture->Bitmap->Height == imageThreshold->Picture->Bitmap->Height);
-
-  const int width  = imageOriginal->Picture->Bitmap->Width;
-  const int height = imageOriginal->Picture->Bitmap->Height;
-
-  for (int y=0; y!=height; ++y)
-  {
-    const unsigned char * const lineOriginal
-      = static_cast<unsigned char *>(imageOriginal->Picture->Bitmap->ScanLine[y]);
-    unsigned char * const lineThreshold
-      = static_cast<unsigned char *>(imageThreshold->Picture->Bitmap->ScanLine[y]);
-    for (int x=0; x!=width; ++x)
-    {
-      const int grey = (lineOriginal[x*3+0] + lineOriginal[x*3+1] + lineOriginal[x*3+2]) / 3;
-      if (grey > threshold)
-      {
-        lineThreshold[x*3+2] = 255; //Red
-        lineThreshold[x*3+1] = 255; //Green
-        lineThreshold[x*3+0] = 255; //Blue
-      }
-      else
-      {
-        lineThreshold[x*3+2] = 0; //Red
-        lineThreshold[x*3+1] = 0; //Green
-        lineThreshold[x*3+0] = 0; //Blue
-      }
-    }
-  }
-}
-//---------------------------------------------------------------------------
-
-
-*/

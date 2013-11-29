@@ -2,14 +2,14 @@ INCLUDEPATH += \
     ../../Games/GameTronCollection
 
 SOURCES += \
-    ../../Games/GameTronCollection/troncollectionmenudialog.cpp \
-    ../../Games/GameTronCollection/worldtype.cpp \
-    ../../Games/GameTronCollection/player.cpp
+    ../../Games/GameTronCollection/tronmenudialog.cpp \
+    ../../Games/GameTronCollection/tronworldtype.cpp \
+    ../../Games/GameTronCollection/tronplayer.cpp
 
 HEADERS  += \
-    ../../Games/GameTronCollection/troncollectionmenudialog.h \
-    ../../Games/GameTronCollection/worldtype.h \
-    ../../Games/GameTronCollection/player.h
+    ../../Games/GameTronCollection/tronmenudialog.h \
+    ../../Games/GameTronCollection/tronworldtype.h \
+    ../../Games/GameTronCollection/tronplayer.h
 
 OTHER_FILES += \
     ../../Games/GameTronCollection/Licence.txt

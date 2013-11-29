@@ -8,9 +8,9 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include <QDialog>
+#include "qthideandshowdialog.h"
 
-#include "player.h"
+#include "tronplayer.h"
 #pragma GCC diagnostic pop
 
 struct QGraphicsScene;
@@ -19,37 +19,38 @@ struct QImage;
 struct QPixmap;
 struct QTimer;
 
-namespace Ui { class QtTronCollectionGameDialog; }
+namespace Ui { class QtTronGameDialog; }
 
 namespace ribi {
+namespace tron {
 
 struct Player;
 
-class QtTronCollectionGameDialog : public QDialog
+class QtTronGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTronCollectionGameDialog(QWidget *parent = 0,
+  explicit QtTronGameDialog(QWidget *parent = 0,
     const std::vector<boost::shared_ptr<Player> > players = CreatePlayers());
-  QtTronCollectionGameDialog(const QtTronCollectionGameDialog&) = delete;
-  QtTronCollectionGameDialog& operator=(const QtTronCollectionGameDialog&) = delete;
-  ~QtTronCollectionGameDialog();
+  QtTronGameDialog(const QtTronGameDialog&) = delete;
+  QtTronGameDialog& operator=(const QtTronGameDialog&) = delete;
+  ~QtTronGameDialog();
 
 private:
-  Ui::QtTronCollectionGameDialog *ui;
-  QTimer * m_timer;
-  QPixmap * m_pixmap;
-  const int m_width;
-  const int m_height;
-  std::vector<boost::shared_ptr<Player> > m_players;
+  Ui::QtTronGameDialog *ui;
 
-  void paintEvent(QPaintEvent *);
+  QImage * m_image;
+  std::vector<boost::shared_ptr<Player> > m_players;
+  QTimer * m_timer;
+
+  void OnTimer();
   void resizeEvent(QResizeEvent*);
 
   static const std::vector<boost::shared_ptr<Player> > CreatePlayers();
 };
 
+} //~namespace tron
 } //~namespace ribi
 
 #endif // DIALOGGAME_H

@@ -53,7 +53,7 @@
 #include "qtpvdbtestnodeitemdialog.h"
 #include "qtpvdbviewfilesdialog.h"
 #include "qtpvdbviewtestsdialog.h"
-#include "qttoolstylesheetsettermaindialog.h"
+#include "qtstylesheetsettermaindialog.h"
 #include "qtpvdbtestedgeitemdialog.h"
 
 #include "qttestqtarrowitemsmenudialog.h"
@@ -568,7 +568,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked() noexcep
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_modify_stylesheet_clicked() noexcept
 {
-  ToolStyleSheetSetterMainDialog d(qApp->styleSheet().toStdString());
+  QtStyleSheetSetterMainDialog d(qApp->styleSheet().toStdString());
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
   qApp->setStyleSheet(d.GetStyleSheet().c_str());
 }

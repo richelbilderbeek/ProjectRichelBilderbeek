@@ -3,6 +3,7 @@
 
 #include <iosfwd>
 #include <string>
+#include <vector>
 
 namespace ribi {
 namespace fileio {
@@ -29,6 +30,7 @@ struct Filename
 ///working on std::string
 void DeleteFile(const Filename& filename);
 bool FilesAreIdentical(const Filename& filename_a,const Filename& filename_b);
+const std::vector<std::string> FileToVector(const Filename& filename);
 const std::string GetExtensionNoDot(const Filename& filename);
 bool IsRegularFile(const Filename& filename);
 

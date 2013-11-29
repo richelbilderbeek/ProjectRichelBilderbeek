@@ -165,7 +165,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tooltestqtmodelsmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"
 #include "trace.h"
-#include "troncollectionmenudialog.h"
+#include "tronmenudialog.h"
 #include "twodigitnewick.h"
 #pragma GCC diagnostic pop
 
@@ -396,7 +396,7 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
     { const MenuType p { new SpaceHarryMenuDialog }; m.insert(ValueType(ProgramType::spaceHarry,p)); }
     { const MenuType p { new NsanaBrosMenuDialog }; m.insert(ValueType(ProgramType::superNsanaBros,p)); }
     { const MenuType p { new TankBattalionMenuDialog }; m.insert(ValueType(ProgramType::tankBattalion,p)); }
-    { const MenuType p { new TronCollectionMenuDialog }; m.insert(ValueType(ProgramType::tronCollection,p)); }
+    { const MenuType p { new TronMenuDialog }; m.insert(ValueType(ProgramType::tronCollection,p)); }
     { const MenuType p { new XeNonZeroMenuDialog }; m.insert(ValueType(ProgramType::xeNonZero,p)); }
 
     { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
@@ -560,7 +560,8 @@ const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersi
     "2013-07-11: Version 1.09: transition phase to Qt5, still supports Qt4",
     "2013-09-19: Version 1.10: added K3OpEenRij, SimplifyNewick, TestApproximator, TestMultiApproximator, TestSimpleLinearRegression, compiles with -Weffc++, added noexcept specifications, use of .pri file",
     "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion",
-    "2013-11-15: Version 1.12: improved console application interface, use of .pri files"
+    "2013-11-15: Version 1.12: improved console application interface, use of .pri files, added Brainweaver",
+    "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer"
   };
 }
 

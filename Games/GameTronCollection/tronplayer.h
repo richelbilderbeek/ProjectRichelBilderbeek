@@ -9,10 +9,11 @@
 #include <boost/cast.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include "worldtype.h"
+#include "tronworldtype.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace tron {
 
 struct Player
 {
@@ -91,6 +92,7 @@ struct ClassicPlayer : public Player
   int m_direction;
 };
 
+} //~namespace tron
 } //~namespace ribi
 
 #endif // PLAYER_H

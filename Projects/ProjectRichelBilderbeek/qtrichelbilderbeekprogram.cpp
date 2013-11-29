@@ -64,6 +64,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtstateobservermenudialog.h"
+#include "qtimagerotatermenudialog.h"
 #include "qttestaboutmenudialog.h"
 #include "qttestdialmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
@@ -79,9 +80,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundedrectitemmenudialog.h"
 #include "qttestqtroundedtextrectitemmenudialog.h"
 #include "qttestquestionmenudialog.h"
+#include "qttronmenudialog.h"
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
 #include "qttesttogglebuttonmaindialog.h"
+#include "qthometrainermenudialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qtthresholdfilterermenudialog.h"
 #include "qttictactoemenudialog.h"
@@ -90,6 +93,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolencrangermenudialog.h"
 #include "qttoolgaborfiltermenudialog.h"
 #include "qttoolgraycodermenudialog.h"
+#include "qtstylesheetsettermenudialog.h"
 #include "qttoolmultiencrangermaindialog.h"
 #include "qttoolmultiencrangermenudialog.h"
 #include "qttoolprimeexpertmenudialog.h"
@@ -134,13 +138,14 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::filterOperationer: p = new QtFilterOperationerMenuDialog; break;
     case ProgramType::filterOperationerVcl: break;
     case ProgramType::fryskLeareLieder: break;
-    case ProgramType::functionPlotter: break;
+    case ProgramType::functionPlotter: break; //
     case ProgramType::gaborFilter: p = new QtToolGaborFilterMenuDialog; break;
     case ProgramType::grayCoder: p = new QtGrayCoderMenuDialog; break;
     case ProgramType::gtst: break;
     case ProgramType::histogramEqualizationer: new QtHistogramEqualizationerMenuDialog; break;
     case ProgramType::histogramEqualizationerVcl: break;
-    case ProgramType::hometrainer: break;
+    case ProgramType::hometrainer: new QtHometrainerMenuDialog; break;
+    case ProgramType::imageRotater: new QtImageRotaterMenuDialog; break;
     case ProgramType::imageRotaterClx: break;
     case ProgramType::imageRotaterVcl: break;
     case ProgramType::k3OpEenRij:
@@ -203,7 +208,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::spaceHarry: break;
     case ProgramType::staircaseCardCreator: break;
     case ProgramType::stateObserver: p = new QtStateObserverMenuDialog; break;
-    case ProgramType::styleSheetSetter: break;
+    case ProgramType::styleSheetSetter: p = new QtStyleSheetSetterMenuDialog; break;
     case ProgramType::superNsanaBros: break;
     case ProgramType::surfacePlotter: break;
     case ProgramType::tankBattalion: break;
@@ -266,7 +271,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ticTacToeLearner: break;
     case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
-    case ProgramType::tronCollection: break;
+    case ProgramType::tronCollection: new tron::QtTronMenuDialog; break;
     case ProgramType::ubuntuOneWatcher: break;
     case ProgramType::vanDenBogaart: break;
     case ProgramType::virtualBastard: break;

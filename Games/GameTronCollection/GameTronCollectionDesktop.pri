@@ -1,10 +1,13 @@
 include(../../Games/GameTronCollection/GameTronCollectionConsole.pri)
 
 SOURCES += \
-    ../../Games/GameTronCollection/qttroncollectiongamedialog.cpp
+    ../../Games/GameTronCollection/qttrongamedialog.cpp \
+    ../../Games/GameTronCollection/qttronmenudialog.cpp
 
 FORMS += \
-    ../../Games/GameTronCollection/qttroncollectiongamedialog.ui
+    ../../Games/GameTronCollection/qttrongamedialog.ui \
+    ../../Games/GameTronCollection/qttronmenudialog.ui
 
 HEADERS += \
-    ../../Games/GameTronCollection/qttroncollectiongamedialog.h
+    ../../Games/GameTronCollection/qttrongamedialog.h \
+    ../../Games/GameTronCollection/qttronmenudialog.h

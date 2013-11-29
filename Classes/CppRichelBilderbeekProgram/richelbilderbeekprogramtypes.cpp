@@ -22,9 +22,9 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   /// =CONCATENATE("m.insert(Pair(ProgramType::",A1,",std::string(\"",A1,"\")));")
   ///where A1 to Ax contain the programType enum values
   m.insert(Pair(ProgramType::aminoAcidFighter,std::string("aminoAcidFighter")));
-  m.insert(Pair(ProgramType::asciiArter,std::string("asciiArter")));
   m.insert(Pair(ProgramType::athleticLand,std::string("athleticLand")));
   m.insert(Pair(ProgramType::athleticLandVcl,std::string("athleticLandVcl")));
+  m.insert(Pair(ProgramType::asciiArter,std::string("asciiArter")));
   m.insert(Pair(ProgramType::barbaImage,std::string("barbaImage")));
   m.insert(Pair(ProgramType::beerWanter,std::string("beerWanter")));
   m.insert(Pair(ProgramType::bochum,std::string("bochum")));
@@ -40,16 +40,20 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::crossPoll,std::string("crossPoll")));
   m.insert(Pair(ProgramType::dasWahreSchlagerfest,std::string("dasWahreSchlagerfest")));
   m.insert(Pair(ProgramType::dotMatrix,std::string("dotMatrix")));
+  m.insert(Pair(ProgramType::encranger,std::string("encranger")));
   m.insert(Pair(ProgramType::everythingToPiecesShooter,std::string("everythingToPiecesShooter")));
   m.insert(Pair(ProgramType::fakeEvy,std::string("fakeEvy")));
   m.insert(Pair(ProgramType::filterOperationer,std::string("filterOperationer")));
+  m.insert(Pair(ProgramType::filterOperationerVcl,std::string("filterOperationerVcl")));
   m.insert(Pair(ProgramType::fryskLeareLieder,std::string("fryskLeareLieder")));
   m.insert(Pair(ProgramType::functionPlotter,std::string("functionPlotter")));
   m.insert(Pair(ProgramType::gaborFilter,std::string("gaborFilter")));
   m.insert(Pair(ProgramType::grayCoder,std::string("grayCoder")));
   m.insert(Pair(ProgramType::gtst,std::string("gtst")));
   m.insert(Pair(ProgramType::histogramEqualizationer,std::string("histogramEqualizationer")));
+  m.insert(Pair(ProgramType::histogramEqualizationerVcl,std::string("histogramEqualizationerVcl")));
   m.insert(Pair(ProgramType::hometrainer,std::string("hometrainer")));
+  m.insert(Pair(ProgramType::imageRotater,std::string("imageRotater")));
   m.insert(Pair(ProgramType::imageRotaterClx,std::string("imageRotaterClx")));
   m.insert(Pair(ProgramType::imageRotaterVcl,std::string("imageRotaterVcl")));
   m.insert(Pair(ProgramType::k3OpEenRij,std::string("k3OpEenRij")));
@@ -77,6 +81,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::perfectElasticCollision,std::string("perfectElasticCollision")));
   m.insert(Pair(ProgramType::picToCode,std::string("picToCode")));
   m.insert(Pair(ProgramType::pixelator,std::string("pixelator")));
+  m.insert(Pair(ProgramType::pixelatorVcl,std::string("pixelatorVcl")));
   m.insert(Pair(ProgramType::pokeVolley,std::string("pokeVolley")));
   m.insert(Pair(ProgramType::pong,std::string("pong")));
   m.insert(Pair(ProgramType::primeExpert,std::string("primeExpert")));
@@ -119,7 +124,6 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::testCanvas,std::string("testCanvas")));
   m.insert(Pair(ProgramType::testChess,std::string("testChess")));
   m.insert(Pair(ProgramType::testDial,std::string("testDial")));
-  m.insert(Pair(ProgramType::encranger,std::string("encranger")));
   m.insert(Pair(ProgramType::testEntrance,std::string("testEntrance")));
   m.insert(Pair(ProgramType::testExercise,std::string("testExercise")));
   m.insert(Pair(ProgramType::testFunctionParser,std::string("testFunctionParser")));
@@ -165,6 +169,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::testTwoDigitNewick,std::string("testTwoDigitNewick")));
   m.insert(Pair(ProgramType::thorVeen,std::string("thorVeen")));
   m.insert(Pair(ProgramType::thresholdFilterer,std::string("thresholdFilterer")));
+  m.insert(Pair(ProgramType::thresholdFiltererVcl,std::string("thresholdFiltererVcl")));
   m.insert(Pair(ProgramType::ticTacToe,std::string("ticTacToe")));
   m.insert(Pair(ProgramType::ticTacToeLearner,std::string("ticTacToeLearner")));
   m.insert(Pair(ProgramType::ticTacToeValuer,std::string("ticTacToeValuer")));
@@ -219,16 +224,20 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::crossPoll,std::string("CrossPoll")));
   m.insert(Pair(ProgramType::dasWahreSchlagerfest,std::string("Das Wahre Schlagerfest")));
   m.insert(Pair(ProgramType::dotMatrix,std::string("DotMatrix")));
+  m.insert(Pair(ProgramType::encranger,std::string("Encranger")));
   m.insert(Pair(ProgramType::everythingToPiecesShooter,std::string("EverythingToPiecesShooter")));
   m.insert(Pair(ProgramType::fakeEvy,std::string("Fake Evy")));
   m.insert(Pair(ProgramType::filterOperationer,std::string("FilterOperationer")));
+  m.insert(Pair(ProgramType::filterOperationerVcl,std::string("FilterOperationer (VCL)")));
   m.insert(Pair(ProgramType::fryskLeareLieder,std::string("Frysk Leare Lieder")));
   m.insert(Pair(ProgramType::functionPlotter,std::string("FunctionPlotter")));
   m.insert(Pair(ProgramType::gaborFilter,std::string("GaborFilter")));
   m.insert(Pair(ProgramType::grayCoder,std::string("GrayCoder")));
   m.insert(Pair(ProgramType::gtst,std::string("GTST")));
   m.insert(Pair(ProgramType::histogramEqualizationer,std::string("HistogramEqualizationer")));
+  m.insert(Pair(ProgramType::histogramEqualizationerVcl,std::string("HistogramEqualizationer (VCL)")));
   m.insert(Pair(ProgramType::hometrainer,std::string("Hometrainer")));
+  m.insert(Pair(ProgramType::imageRotater,std::string("ImageRotater")));
   m.insert(Pair(ProgramType::imageRotaterClx,std::string("ImageRotater (CLX)")));
   m.insert(Pair(ProgramType::imageRotaterVcl,std::string("ImageRotater (VCL)")));
   m.insert(Pair(ProgramType::k3OpEenRij,std::string("K3 Op Een Rij")));
@@ -256,6 +265,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::perfectElasticCollision,std::string("PerfectElasticCollision")));
   m.insert(Pair(ProgramType::picToCode,std::string("PicToCode")));
   m.insert(Pair(ProgramType::pixelator,std::string("Pixelator")));
+  m.insert(Pair(ProgramType::pixelatorVcl,std::string("Pixelator (VCL)")));
   m.insert(Pair(ProgramType::pokeVolley,std::string("PokeVolley")));
   m.insert(Pair(ProgramType::pong,std::string("Pong")));
   m.insert(Pair(ProgramType::primeExpert,std::string("PrimeExpert")));
@@ -298,7 +308,6 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::testCanvas,std::string("Test Canvas")));
   m.insert(Pair(ProgramType::testChess,std::string("Test Chess")));
   m.insert(Pair(ProgramType::testDial,std::string("Test Dial")));
-  m.insert(Pair(ProgramType::encranger,std::string("Test Encranger")));
   m.insert(Pair(ProgramType::testEntrance,std::string("Test Entrance")));
   m.insert(Pair(ProgramType::testExercise,std::string("Test Exercise")));
   m.insert(Pair(ProgramType::testFunctionParser,std::string("Test FunctionParser")));
@@ -344,6 +353,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::testTwoDigitNewick,std::string("Test TwoDigitNewick")));
   m.insert(Pair(ProgramType::thorVeen,std::string("Thor Veen")));
   m.insert(Pair(ProgramType::thresholdFilterer,std::string("ThresholdFilterer")));
+  m.insert(Pair(ProgramType::thresholdFiltererVcl,std::string("ThresholdFilterer (VCL)")));
   m.insert(Pair(ProgramType::ticTacToe,std::string("TicTacToe")));
   m.insert(Pair(ProgramType::ticTacToeLearner,std::string("TicTacToe Learner")));
   m.insert(Pair(ProgramType::ticTacToeValuer,std::string("TicTacToe Valuer")));
