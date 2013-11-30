@@ -33,6 +33,7 @@ include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemD
 include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemDesktop.pri)
 
 #Desktop
+include(../../Classes/CppQtConceptMap/CppQtConceptMap.pri)
 include(ProjectBrainweaverDesktop.pri)
 
 SOURCES += qtmain_developer.cpp

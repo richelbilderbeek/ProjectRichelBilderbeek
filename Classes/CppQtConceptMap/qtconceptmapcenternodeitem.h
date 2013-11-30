@@ -15,17 +15,17 @@ namespace ribi {
 namespace cmap {
 
 ///The center node
-struct QtPvdbCenterNodeItem : public QtConceptMapNodeItem
+struct QtConceptMapCenterNodeItem : public QtConceptMapNodeItem
 {
   ///Node cannot be const, as it contains a Concept the user might want to edit
   ///(that is, when a sub-concept map is created from a concept map and the
   ///focal node needs to be rated)
   ///concept_item is the display Strategy
-  explicit QtPvdbCenterNodeItem(
+  explicit QtConceptMapCenterNodeItem(
     const boost::shared_ptr<ribi::cmap::Node> node);
 
   private:
-  static const boost::shared_ptr<QtConceptMapItem> CreateConceptItem(const boost::shared_ptr<ribi::cmap::Node> node);
+  static const boost::shared_ptr<QtConceptItem> CreateConceptItem(const boost::shared_ptr<ribi::cmap::Node> node);
 };
 
 } //~namespace cmap

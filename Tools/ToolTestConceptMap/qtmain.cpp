@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ribi::QtFilterOperationerMainDialog w;
+    ribi::QtTestConceptMapMainDialog w;
     w.show();
     return a.exec();
 }

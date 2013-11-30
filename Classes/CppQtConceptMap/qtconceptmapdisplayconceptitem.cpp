@@ -20,7 +20,7 @@
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtConceptMapDisplayConceptItem::QtConceptMapDisplayConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept)
-  : QtConceptMapItem(concept)
+  : QtConceptItem(concept)
 {
   #ifndef NDEBUG
   Test();
@@ -125,14 +125,14 @@ void ribi::cmap::QtConceptMapDisplayConceptItem::UpdateBrushesAndPens() noexcept
     switch (n_rated)
     {
       case 0:
-        new_main_brush = QtPvdbBrushFactory::CreateRedGradientBrush();
+        new_main_brush = QtConceptMapBrushFactory::CreateRedGradientBrush();
         break;
       case 1:
       case 2:
-        new_main_brush = QtPvdbBrushFactory::CreateYellowGradientBrush();
+        new_main_brush = QtConceptMapBrushFactory::CreateYellowGradientBrush();
         break;
       case 3:
-        new_main_brush = QtPvdbBrushFactory::CreateGreenGradientBrush();
+        new_main_brush = QtConceptMapBrushFactory::CreateGreenGradientBrush();
         break;
       default: assert(!"Should not get here");
     }

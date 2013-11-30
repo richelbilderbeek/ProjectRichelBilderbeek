@@ -1,99 +1,47 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>Status</title>
-  <meta name="description" content="C++ Status"/>
-  <meta name="keywords" content="C++ Status code snippet"/>
-  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
-</head>
-<!-- End of head, start of body -->
-<body>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppStatus.htm">Status</a></h1>
-<p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Technical facts</h2>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>CppStatus.sh</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="CppStatus.sh" border = "1"><tr><td><code>
-#!/bin/bash<br/>
-myq<a href="CppMake.htm">make</a>="../../<a href="CppLibrary.htm">Libraries</a>/mxe/usr/i686-pc-mingw32/qt5/bin/q<a href="CppMake.htm">make</a>"<br/>
- <br/>
-#Cleaning up<br/>
-rm *.pro.user<br/>
-rm <a href="CppMakefile.htm">Makefile</a><br/>
-rm <a href="CppMakefile.htm">Makefile</a>.*<br/>
-rm <a href="CppOperatorMinus.htm">-</a>r release<br/>
-rm <a href="CppOperatorMinus.htm">-</a>r <a href="CppDebug.htm">debug</a><br/>
-rm ui_*.h<br/>
-rm qrc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
-rm moc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
-rm object_script*.*<br/>
- <br/>
-<b><a href="CppFor.htm">for</a></b> my<a href="CppProFile.htm">profile</a> in `ls | egrep ".pro\&gt;"`<br/>
-<b><a href="CppDo.htm">do</a></b><br/>
-&nbsp;&nbsp;mytarget=`echo $my<a href="CppProFile.htm">profile</a> | sed "s/\.pro<a href="CppComment.htm">//</a>"`<br/>
-&nbsp;&nbsp; <br/>
-&nbsp;&nbsp;$myq<a href="CppMake.htm">make</a> $my<a href="CppProFile.htm">profile</a><br/>
-&nbsp;&nbsp; <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> [ ! <a href="CppOperatorMinus.htm">-</a>e <a href="CppMakefile.htm">Makefile</a> ]<br/>
-&nbsp;&nbsp;then<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myq<a href="CppMake.htm">make</a> $my<a href="CppProFile.htm">profile</a>"<br/>
-&nbsp;&nbsp;fi<br/>
-&nbsp;&nbsp; <br/>
-&nbsp;&nbsp;<a href="CppMake.htm">make</a><br/>
-&nbsp;&nbsp; <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> [ <a href="CppOperatorMinus.htm">-</a>e ./release/$mytarget".exe" ]<br/>
-&nbsp;&nbsp;then<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": SUCCESS"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mytarget".exe" ~/bin/<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": FAIL"<br/>
-&nbsp;&nbsp;fi<br/>
-&nbsp;&nbsp; <br/>
-&nbsp;&nbsp;#Cleaning up<br/>
-&nbsp;&nbsp;rm <a href="CppMakefile.htm">Makefile</a><br/>
-&nbsp;&nbsp;rm <a href="CppMakefile.htm">Makefile</a>.*<br/>
-&nbsp;&nbsp;rm <a href="CppOperatorMinus.htm">-</a>r release<br/>
-&nbsp;&nbsp;rm <a href="CppOperatorMinus.htm">-</a>r <a href="CppDebug.htm">debug</a><br/>
-&nbsp;&nbsp;rm ui_*.h<br/>
-&nbsp;&nbsp;rm qrc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
-&nbsp;&nbsp;rm moc_*<a href="CppImplementationFile.htm">.cpp</a><br/>
-&nbsp;&nbsp;rm object_script*.*<br/>
- <br/>
-done #next .pro file<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p>&nbsp;</p>
-<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
-<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
-</body>
-</html>
+#!/bin/bash
+myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake"
+ 
+#Cleaning up
+rm *.pro.user
+rm Makefile
+rm Makefile.*
+rm -r release
+rm -r debug
+rm ui_*.h
+rm qrc_*.cpp
+rm moc_*.cpp
+rm object_script*.*
+ 
+for myprofile in `ls | egrep ".pro\&gt;"`
+do
+&nbsp;&nbsp;mytarget=`echo $myprofile | sed "s/\.pro//"`
+&nbsp;&nbsp; 
+&nbsp;&nbsp;$myqmake $myprofile
+&nbsp;&nbsp; 
+&nbsp;&nbsp;if [ ! -e Makefile ]
+&nbsp;&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;echo "FAIL: $myqmake $myprofile"
+&nbsp;&nbsp;fi
+&nbsp;&nbsp; 
+&nbsp;&nbsp;make
+&nbsp;&nbsp; 
+&nbsp;&nbsp;if [ -e ./release/$mytarget".exe" ]
+&nbsp;&nbsp;then
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": SUCCESS"
+&nbsp;&nbsp;&nbsp;&nbsp;cp ./release/$mytarget".exe" ~/bin/
+&nbsp;&nbsp;else
+&nbsp;&nbsp;&nbsp;&nbsp;echo $mytarget": FAIL"
+&nbsp;&nbsp;fi
+&nbsp;&nbsp; 
+&nbsp;&nbsp;#Cleaning up
+&nbsp;&nbsp;rm Makefile
+&nbsp;&nbsp;rm Makefile.*
+&nbsp;&nbsp;rm -r release
+&nbsp;&nbsp;rm -r debug
+&nbsp;&nbsp;rm ui_*.h
+&nbsp;&nbsp;rm qrc_*.cpp
+&nbsp;&nbsp;rm moc_*.cpp
+&nbsp;&nbsp;rm object_script*.*
+ 
+done #next .pro file
+

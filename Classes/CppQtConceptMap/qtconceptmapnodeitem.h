@@ -25,7 +25,7 @@ struct QtConceptMapNodeItem : public QtConceptMapItem
   ///concept_item contains the Stategy to display (and respond to the concept)
   explicit QtConceptMapNodeItem(
     const boost::shared_ptr<ribi::cmap::Node> node,
-    const boost::shared_ptr<QtConceptMapItem> concept_item);
+    const boost::shared_ptr<QtConceptItem> concept_item);
 
   virtual QRectF boundingRect() const;
 
@@ -37,8 +37,8 @@ struct QtConceptMapNodeItem : public QtConceptMapItem
   const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
   const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
 
-  const boost::shared_ptr<const QtConceptMapItem> GetConceptItem() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtConceptMapItem> GetConceptItem()       final { return m_concept_item; }
+  const boost::shared_ptr<const QtConceptItem> GetConceptItem() const final { return m_concept_item; }
+  const boost::shared_ptr<      QtConceptItem> GetConceptItem()       final { return m_concept_item; }
 
   const boost::shared_ptr<const cmap::Node>  GetNode() const { return m_node; }
   const boost::shared_ptr<      cmap::Node>& GetNode()       { return m_node; }
@@ -68,14 +68,14 @@ protected:
 
   //const boost::shared_ptr<QtConceptMapItem>& GetConceptItem() { return m_concept_item; }
 
-  ///Next to QtPvdbConcept::paint, check for collision
+  ///Next to QtConceptMapConcept::paint, check for collision
   void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) final;
 
 
 private:
 
   ///The Strategy for displaying a Concept
-  const boost::shared_ptr<QtConceptMapItem> m_concept_item;
+  const boost::shared_ptr<QtConceptItem> m_concept_item;
 
   const QPen m_contour_pen;
   const QPen m_focus_pen;

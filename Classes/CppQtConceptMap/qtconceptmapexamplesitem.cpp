@@ -30,7 +30,7 @@ ribi::cmap::QtConceptMapExamplesItem::QtConceptMapExamplesItem(
     m_item{}
 {
   this->setPen(QPen(QColor(255,0,0)));
-  this->setBrush(QtPvdbBrushFactory::CreateWhiteGradientBrush());
+  this->setBrush(QtConceptMapBrushFactory::CreateWhiteGradientBrush());
   this->setFlags(0);
   this->setZValue(2.0);
   this->setVisible(false);

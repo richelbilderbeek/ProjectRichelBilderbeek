@@ -28,7 +28,7 @@
 
 ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
     const boost::shared_ptr<ribi::cmap::Edge> edge,
-    const boost::shared_ptr<QtConceptMapItem> concept_item,
+    const boost::shared_ptr<QtConceptItem> concept_item,
     QtConceptMapNodeItem* const from,
     QtConceptMapNodeItem* const to)
   : m_arrow{},
@@ -61,7 +61,7 @@ ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-  m_concept_item->SetMainBrush(QtPvdbBrushFactory::CreateBlueGradientBrush());
+  m_concept_item->SetMainBrush(QtConceptMapBrushFactory::CreateBlueGradientBrush());
   m_concept_item->SetContourPen(QPen(QColor(255,255,255)));
   m_concept_item->SetTextPen(QPen(QColor(0,0,0)));
 
@@ -117,7 +117,7 @@ ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
     boost::bind(
       &ribi::cmap::QtConceptMapEdgeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
-  if (QtPvdbEditConceptItem * edit_concept = dynamic_cast<QtPvdbEditConceptItem*>(concept_item.get()))
+  if (QtConceptMapEditConceptItem * edit_concept = dynamic_cast<QtConceptMapEditConceptItem*>(concept_item.get()))
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
@@ -327,8 +327,8 @@ void ribi::cmap::QtConceptMapEdgeItem::paint(QPainter* painter, const QStyleOpti
 {
   m_concept_item->SetName(this->GetConcept()->GetName());
 
-  //Only QtPvdbEditConceptItem actually modifies the position of the concept items
-  if (dynamic_cast<QtPvdbEditConceptItem*>(m_concept_item.get()))
+  //Only QtConceptMapEditConceptItem actually modifies the position of the concept items
+  if (dynamic_cast<QtConceptMapEditConceptItem*>(m_concept_item.get()))
   {
     //Notifies the GUI-independent collaborators
     this->m_concept_item->SetPos(x(),y());
@@ -460,8 +460,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
   {
     const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
-    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_from(new QtConceptMapEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_to(new QtConceptMapEditConceptItem(node_to->GetConcept()));
     const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
     const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
     const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
@@ -470,7 +470,7 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
       boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(edge->GetConcept()));
       boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
         new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       const double epsilon = 0.000001;
@@ -583,8 +583,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
   {
     const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
-    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_from(new QtConceptMapEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_to(new QtConceptMapEditConceptItem(node_to->GetConcept()));
     const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
     const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
     const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
@@ -593,7 +593,7 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
       boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(edge->GetConcept()));
       boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
         new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
@@ -677,8 +677,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
   {
     const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_from(new QtPvdbEditConceptItem(node_from->GetConcept()));
-    const boost::shared_ptr<QtConceptMapItem> qtconcept_item_to(new QtPvdbEditConceptItem(node_to->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_from(new QtConceptMapEditConceptItem(node_from->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_to(new QtConceptMapEditConceptItem(node_to->GetConcept()));
     const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
     const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
     const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
@@ -687,7 +687,7 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
       boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
-      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(edge->GetConcept()));
+      boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(edge->GetConcept()));
       boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
         new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       //const double epsilon = 0.000001;

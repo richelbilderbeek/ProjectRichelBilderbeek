@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbnodeitem.h"
+#include "qtconceptmapnodeitem.h"
 
 #include <cassert>
 #include <climits>
@@ -14,9 +14,9 @@
 
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
-#include "qtpvdbbrushfactory.h"
-#include "qtpvdbeditconceptitem.h"
-#include "qtpvdbrateconceptitem.h"
+#include "qtconceptmapbrushfactory.h"
+#include "qtconceptmapeditconceptitem.h"
+#include "qtconceptmaprateconceptitem.h"
 #include "conceptmapconcept.h"
 #include "qtconceptitem.h"
 #include "trace.h"
@@ -24,7 +24,7 @@
 
 ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
   const boost::shared_ptr<ribi::cmap::Node> node,
-  const boost::shared_ptr<QtConceptMapItem> concept_item)
+  const boost::shared_ptr<QtConceptItem> concept_item)
   : m_signal_node_requests_rate_concept{},
     m_signal_node_requests_rate_examples{},
     m_concept_item(concept_item),
@@ -75,7 +75,7 @@ ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
     )
   );
 
-  if (QtPvdbEditConceptItem * edit_concept = dynamic_cast<QtPvdbEditConceptItem*>(concept_item.get()))
+  if (QtConceptMapEditConceptItem * edit_concept = dynamic_cast<QtConceptMapEditConceptItem*>(concept_item.get()))
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
@@ -85,7 +85,7 @@ ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
     );
   }
 
-  if (QtPvdbRateConceptItem * rate_concept = dynamic_cast<QtPvdbRateConceptItem*>(concept_item.get()))
+  if (QtConceptMapRateConceptItem * rate_concept = dynamic_cast<QtConceptMapRateConceptItem*>(concept_item.get()))
   {
     rate_concept->m_signal_request_rate_concept.connect(
       boost::bind(
@@ -236,8 +236,8 @@ void ribi::cmap::QtConceptMapNodeItem::paint(QPainter* painter, const QStyleOpti
   this->m_concept_item->SetName(this->GetConcept()->GetName());
 
 
-  //Only QtPvdbEditConceptItem actually modifies the position of the concept items
-  if (dynamic_cast<QtPvdbEditConceptItem*>(m_concept_item.get()))
+  //Only QtConceptMapEditConceptItem actually modifies the position of the concept items
+  if (dynamic_cast<QtConceptMapEditConceptItem*>(m_concept_item.get()))
   {
     //Notifies the GUI-independent collaborators
     this->m_concept_item->SetPos(x(),y());
@@ -341,7 +341,7 @@ void ribi::cmap::QtConceptMapNodeItem::Test()
       const auto nodes = cmap::NodeFactory::GetTests();
       boost::shared_ptr<ribi::cmap::Node> node = nodes[node_index];
       assert(node);
-      boost::shared_ptr<QtConceptMapItem> qtconcept_item(new QtPvdbEditConceptItem(node->GetConcept()));
+      boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(node->GetConcept()));
       boost::shared_ptr<QtConceptMapNodeItem> qtnode(new QtConceptMapNodeItem(node,qtconcept_item));
       assert(qtconcept_item->GetConcept() == qtnode->GetConcept());
       assert(qtconcept_item->GetConcept() == node->GetConcept());

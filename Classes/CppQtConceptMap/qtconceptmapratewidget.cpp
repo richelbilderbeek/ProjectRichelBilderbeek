@@ -19,13 +19,13 @@
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapcenternodeitem.h"
-#include "qtedgeitem.h"
+#include "qtconceptmapedgeitem.h"
 #include "qtquadbezierarrowitem.h"
-#include "qtrateexamplesdialog.h"
-#include "qtexamplesitem.h"
-#include "qtrateconceptitem.h"
+#include "qtconceptmaprateexamplesdialog.h"
+#include "qtconceptmapexamplesitem.h"
+#include "qtconceptmaprateconceptitem.h"
 #include "qtscopeddisable.h"
-#include "qtrateconceptdialog.h"
+#include "qtconceptmaprateconceptdialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -68,7 +68,7 @@ ribi::cmap::QtConceptMapRateWidget::QtConceptMapRateWidget(
 void ribi::cmap::QtConceptMapRateWidget::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
-  const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
+  const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
   QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
@@ -127,7 +127,7 @@ void ribi::cmap::QtConceptMapRateWidget::AddEdge(
 
 ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
-  const boost::shared_ptr<QtPvdbRateConceptItem> qtconcept(new QtPvdbRateConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtConceptMapRateConceptItem> qtconcept(new QtConceptMapRateConceptItem(node->GetConcept()));
   assert(qtconcept);
   QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
   assert(qtnode);
@@ -305,7 +305,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtConceptMapN
   //item->GetNode()->GetConcept()->GetExamples().
   TRACE("CALCULATE RATING HERE");
 
-  //QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
+  //QtConceptMapRateConceptDialog d(sub_concept_map); //Item may be changed
   //d.exec();
   this->setFocus();
   this->scene()->setFocusItem(item);
@@ -329,7 +329,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtConceptMap
     assert(item->GetConcept().get() == concept.get());
     assert(item->GetConcept() == concept);
 
-    QtPvdbRateExamplesDialog d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
+    QtConceptMapRateExamplesDialog d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
     d.exec();
 
     assert(item->GetConcept().get() == concept.get());

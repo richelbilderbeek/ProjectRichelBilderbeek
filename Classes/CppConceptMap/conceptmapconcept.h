@@ -86,11 +86,13 @@ struct Concept
   friend class QtTestConceptMapRateWidgetDialog;
   friend class QtTestEdgeItemDialog;
   friend class QtTestNodeItemDialog;
-  friend class QtEdgeItem;
-  friend class QtNodeItem;
-  friend class QtConceptEditDialog;
-  friend class QtRateConceptDialog;
+  friend class QtConceptMapEdgeItem;
+  friend class QtConceptMapNodeItem;
+  friend class QtConceptMapConceptEditDialog;
+  friend class QtConceptMapRateExamplesDialog;
   friend class QtRateExamplesDialog;
+  friend class QtConceptMapRateConceptDialog; //?Why to add this 20131130
+
   ///Set the examples
   void SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples);
 

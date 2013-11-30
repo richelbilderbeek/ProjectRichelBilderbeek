@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapconceptmapwidget.h"
+#include "qtconceptmapwidget.h"
 
 #include <set>
 
@@ -77,13 +77,13 @@ const std::vector<ribi::cmap::QtConceptMapNodeItem*>
   const Iterator i = std::find_if(w.begin(),w.end(),
     [](const ribi::cmap::QtConceptMapNodeItem* const node)
     {
-      return dynamic_cast<const ribi::cmap::QtPvdbCenterNodeItem*>(node);
+      return dynamic_cast<const ribi::cmap::QtConceptMapCenterNodeItem*>(node);
     }
   );
   if (i != w.end())
   {
     std::swap(*i,*w.begin());
-    assert(dynamic_cast<const ribi::cmap::QtPvdbCenterNodeItem*>(*w.begin()));
+    assert(dynamic_cast<const ribi::cmap::QtConceptMapCenterNodeItem*>(*w.begin()));
   }
   return w;
 }
@@ -142,7 +142,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   assert(m_concept_map->IsValid());
   assert(this->scene());
   //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
-  //You cannot rely on Collect<QtPvdbNodeConcept*>(scene), as this shuffles the order
+  //You cannot rely on Collect<QtConceptMapNodeConcept*>(scene), as this shuffles the order
   std::vector<QtConceptMapNodeItem*> qtnodes;
 
   assert(Collect<QtConceptMapNodeItem>(scene()).empty());
@@ -151,12 +151,12 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   {
     //Add the main question as the first node
     const boost::shared_ptr<ribi::cmap::Node> node = m_concept_map->GetNodes()[0];
-    QtConceptMapNodeItem* const qtnode = new QtPvdbCenterNodeItem(node);
+    QtConceptMapNodeItem* const qtnode = new QtConceptMapCenterNodeItem(node);
     #ifdef USE_NEW_STYLE
     QtConceptMapNodeItem* qtnode = nullptr;
     if (const boost::shared_ptr<cmap::CenterNode> center_node = boost::dynamic_pointer_cast<cmap::CenterNode>(node))
     {
-      qtnode = new QtPvdbCenterNodeItem(center_node);
+      qtnode = new QtConceptMapCenterNodeItem(center_node);
     }
     else
     {
@@ -348,7 +348,7 @@ ribi::cmap::QtConceptMapNodeItem* ribi::cmap::QtConceptMapWidget::GetItemBelowCu
     {
       if (QtConceptMapNodeItem * const qtnode = dynamic_cast<QtConceptMapNodeItem*>(item))
       {
-        assert(!dynamic_cast<QtPvdbToolsItem*>(item) && "Cannot draw arrow to ToolsItem");
+        assert(!dynamic_cast<QtConceptMapToolsItem*>(item) && "Cannot draw arrow to ToolsItem");
         qtnodes.push_back(qtnode);
       }
     }

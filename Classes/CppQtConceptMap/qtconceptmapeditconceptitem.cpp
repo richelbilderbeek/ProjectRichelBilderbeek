@@ -12,8 +12,8 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr<ribi::cmap::Concept> concept)
-  : QtConceptMapItem(concept),
+ribi::cmap::QtConceptMapEditConceptItem::QtConceptMapEditConceptItem(const boost::shared_ptr<ribi::cmap::Concept> concept)
+  : QtConceptItem(concept),
     m_signal_request_edit{}
 {
   #ifndef NDEBUG
@@ -22,26 +22,26 @@ ribi::cmap::QtPvdbEditConceptItem::QtPvdbEditConceptItem(const boost::shared_ptr
   assert(GetConcept());
   #endif
 
-  this->setBrush(QtPvdbBrushFactory::CreateGrayGradientBrush()); //NEW 2013-04-09
+  this->setBrush(QtConceptMapBrushFactory::CreateGrayGradientBrush()); //NEW 2013-04-09
 
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::QtPvdbEditConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtConceptMapEditConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   //GetConcept()->m_signal_rating_complexity_changed.connect(
-  //  boost::bind(&ribi::cmap::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //  boost::bind(&ribi::cmap::QtConceptMapEditConceptItem::UpdateBrushesAndPens,this));
   //GetConcept()->m_signal_rating_concreteness_changed.connect(
-  //  boost::bind(&ribi::cmap::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //  boost::bind(&ribi::cmap::QtConceptMapEditConceptItem::UpdateBrushesAndPens,this));
   //GetConcept()->m_signal_rating_specificity_changed.connect(
-  //  boost::bind(&ribi::cmap::QtPvdbEditConceptItem::UpdateBrushesAndPens,this));
+  //  boost::bind(&ribi::cmap::QtConceptMapEditConceptItem::UpdateBrushesAndPens,this));
 }
 
-ribi::cmap::QtPvdbEditConceptItem::~QtPvdbEditConceptItem() noexcept
+ribi::cmap::QtConceptMapEditConceptItem::~QtConceptMapEditConceptItem() noexcept
 {
   GetConcept()->m_signal_name_changed.disconnect(
-    boost::bind(&ribi::cmap::QtPvdbEditConceptItem::OnConceptNameChanged,this));
+    boost::bind(&ribi::cmap::QtConceptMapEditConceptItem::OnConceptNameChanged,this));
 }
 
-void ribi::cmap::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
+void ribi::cmap::QtConceptMapEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
 {
   switch (event->key())
   {
@@ -54,18 +54,18 @@ void ribi::cmap::QtPvdbEditConceptItem::keyPressEvent(QKeyEvent *event) noexcept
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtPvdbEditConceptItem::Test() noexcept
+void ribi::cmap::QtConceptMapEditConceptItem::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::QtPvdbEditConceptItem::Test()");
+  TRACE("Starting ribi::cmap::QtConceptMapEditConceptItem::Test()");
   ///Test SetText
   {
     const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
-    QtPvdbEditConceptItem a(concept);
+    QtConceptMapEditConceptItem a(concept);
     const auto v {
       "1234567890",
       "1234567890 1234567890",
@@ -84,7 +84,7 @@ void ribi::cmap::QtPvdbEditConceptItem::Test() noexcept
     };
     for (const auto s: v) { a.SetName(s); } //SetName tests GetName
   }
-  TRACE("Successfully finished ribi::cmap::QtPvdbEditConceptItem::Test()");
+  TRACE("Successfully finished ribi::cmap::QtConceptMapEditConceptItem::Test()");
 }
 #endif
 

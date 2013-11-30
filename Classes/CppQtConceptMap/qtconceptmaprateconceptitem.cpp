@@ -18,8 +18,8 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept)
-  : QtConceptMapItem(concept),
+ribi::cmap::QtConceptMapRateConceptItem::QtConceptMapRateConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept)
+  : QtConceptItem(concept),
     m_signal_request_rate_concept{},
     m_signal_request_rate_examples{}
 {
@@ -33,29 +33,29 @@ ribi::cmap::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::QtPvdbRateConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtConceptMapRateConceptItem::OnConceptNameChanged,this)); //Obligatory
 
   GetConcept()->m_signal_examples_changed.connect( //FIX 2013-01-06 22:32
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_concreteness_changed.connect(
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_specificity_changed.connect(
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
@@ -63,32 +63,32 @@ ribi::cmap::QtPvdbRateConceptItem::QtPvdbRateConceptItem(const boost::shared_ptr
 }
 
 
-ribi::cmap::QtPvdbRateConceptItem::~QtPvdbRateConceptItem() noexcept
+ribi::cmap::QtConceptMapRateConceptItem::~QtConceptMapRateConceptItem() noexcept
 {
   //2013-08-25
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
-        &ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-void ribi::cmap::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapRateConceptItem::keyPressEvent(QKeyEvent *event)
 {
 
   switch (event->key())
@@ -98,27 +98,27 @@ void ribi::cmap::QtPvdbRateConceptItem::keyPressEvent(QKeyEvent *event)
       return;
     case Qt::Key_F2:
       m_signal_request_rate_examples(this); //Dialog will handle empty examples
-      return; //Always return, otherwise F2 in QtPvdbNodeConcept will cause an edit
+      return; //Always return, otherwise F2 in QtConceptMapNodeConcept will cause an edit
   }
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtPvdbRateConceptItem::Test()
+void ribi::cmap::QtConceptMapRateConceptItem::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtPvdbRateConceptItem::Test started");
+  TRACE("ribi::cmap::QtConceptMapRateConceptItem::Test started");
   //Check brush comparison
   {
-    assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateYellowGradientBrush());
-    assert(QtPvdbBrushFactory::CreateRedGradientBrush() != QtPvdbBrushFactory::CreateGreenGradientBrush());
+    assert(QtConceptMapBrushFactory::CreateRedGradientBrush() != QtConceptMapBrushFactory::CreateYellowGradientBrush());
+    assert(QtConceptMapBrushFactory::CreateRedGradientBrush() != QtConceptMapBrushFactory::CreateGreenGradientBrush());
   }
   {
     const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
-    QtPvdbRateConceptItem a(concept);
+    QtConceptMapRateConceptItem a(concept);
     const auto v {
       "1234567890",
       "1234567890 1234567890",
@@ -137,11 +137,11 @@ void ribi::cmap::QtPvdbRateConceptItem::Test()
     };
     for (const auto s: v) { a.SetName(s); } //SetName tests GetName
   }
-  TRACE("ribi::cmap::QtPvdbRateConceptItem::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapRateConceptItem::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens()
+void ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens()
 {
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
@@ -156,14 +156,14 @@ void ribi::cmap::QtPvdbRateConceptItem::UpdateBrushesAndPens()
     switch (n_rated)
     {
       case 0:
-        new_main_brush = QtPvdbBrushFactory::CreateRedGradientBrush();
+        new_main_brush = QtConceptMapBrushFactory::CreateRedGradientBrush();
         break;
       case 1:
       case 2:
-        new_main_brush = QtPvdbBrushFactory::CreateYellowGradientBrush();
+        new_main_brush = QtConceptMapBrushFactory::CreateYellowGradientBrush();
         break;
       case 3:
-        new_main_brush = QtPvdbBrushFactory::CreateGreenGradientBrush();
+        new_main_brush = QtConceptMapBrushFactory::CreateGreenGradientBrush();
         break;
       default: assert(!"Should not get here");
     }

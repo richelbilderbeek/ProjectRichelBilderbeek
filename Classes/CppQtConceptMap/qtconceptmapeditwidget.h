@@ -2,7 +2,7 @@
 #define QTPVDBCONCEPTMAPEDITWIDGET_H
 
 
-#include "conceptmapfwd.h"
+#include "qtconceptmapfwd.h"
 
 #include "qtconceptmapwidget.h"
 
@@ -52,13 +52,13 @@ private:
 
   ///The arrow used to create a new arrow
   ///Is nullptr when not active
-  QtPvdbNewArrow * m_arrow;
+  QtConceptMapNewArrow * m_arrow;
 
   ///The item highlighter, used when creating a new relation
-  QtPvdbItemHighlighter * const m_highlighter;
+  QtConceptMapItemHighlighter * const m_highlighter;
 
   ///The item showing the tools
-  QtPvdbToolsItem * m_tools;
+  QtConceptMapToolsItem * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);

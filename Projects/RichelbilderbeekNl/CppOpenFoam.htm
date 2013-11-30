@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFoam</title>
+  <meta name="description" content="C++ OpenFoam"/>
+  <meta name="keywords" content="C++ OpenFoam "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppOpenFoam.htm">OpenFoam</a></h1>
+<p>&nbsp;</p>
+<h2>./CppOpenFoam/openfoamboundaryfile.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppOpenFoam/openfoamboundaryfile.cpp" border = "1"><tr><td><code>
+#include "openfoamboundaryfile.h"<br/>
+<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;ostream&gt;<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<br/>
+#include &lt;boost/algorithm/string/trim.hpp&gt;<br/>
+#include &lt;boost/algorithm/string/split.hpp&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+#include "filename.h"<br/>
+#include "openfoamheader.h"<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+ribi::foam::BoundaryFile::BoundaryFile(const std::vector&lt;BoundaryFileItem&gt;&amp; items)<br/>
+&nbsp;&nbsp;: m_items(items)<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+const std::vector&lt;ribi::foam::BoundaryFile::BoundaryFileItem&gt; ribi::foam::BoundaryFile::Parse(<br/>
+&nbsp;&nbsp;const fileio::Filename&amp; filename)<br/>
+{<br/>
+&nbsp;&nbsp;assert(fileio::IsRegularFile(filename));<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt; lines { fileio::FileToVector(filename) };<br/>
+&nbsp;&nbsp;std::vector&lt;BoundaryFileItem&gt; items;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;enum class State { name, bracket_open, type, n_faces, start_face, bracket_close };<br/>
+&nbsp;&nbsp;State cur_state;<br/>
+&nbsp;&nbsp;BoundaryFileItem cur_item;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;for (const std::string&amp; line_raw: lines)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string line { boost::algorithm::trim_copy(line_raw) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (line.empty()) continue; //Skip empty lines<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;std::string&gt; words { SplitLine(line) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!words.empty());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;switch (cur_state)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case State::name:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words.size() == 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur_item.m_name = words[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case State::bracket_open:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words.size() == 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words[0] == std::string("{"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case State::type:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words.size() == 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words[0] == std::string("type"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur_item.m_type = words[1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case State::n_faces:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words.size() == 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words[0] == std::string("nFaces"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur_item.m_n_faces = boost::lexical_cast&lt;int&gt;(words[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case State::start_face:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words.size() == 2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words[1] == std::string("startFaces"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur_item.m_start_face = boost::lexical_cast&lt;int&gt;(words[1]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case State::bracket_close:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words.size() == 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(words[0] == std::string("}"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_state == State::bracket_close)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items.push_back(cur_item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur_state = State::name;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cur_state = static_cast&lt;State&gt;(static_cast&lt;int&gt;(cur_state) + 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;assert(cur_state == State::name);<br/>
+&nbsp;&nbsp;return items;<br/>
+}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::foam::BoundaryFile::SplitLine(<br/>
+&nbsp;&nbsp;const std::string&amp; s)<br/>
+{<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; v;<br/>
+&nbsp;&nbsp;boost::algorithm::split(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::is_any_of(" \t")<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;return v;<br/>
+}<br/>
+<br/>
+std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const BoundaryFile&amp; f)<br/>
+{<br/>
+&nbsp;&nbsp;const Header h("polyBoundaryMesh","constant/polyMesh","boundary");<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; h &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; f.m_items.size() &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "(" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;;<br/>
+<br/>
+&nbsp;&nbsp;for(const BoundaryFile::BoundaryFileItem item: f.m_items)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;" &lt;&lt; item.m_name &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;{" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;&nbsp;&nbsp;type " &lt;&lt; item.m_type &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;&nbsp;&nbsp;nFaces " &lt;&lt; item.m_n_faces &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;&nbsp;&nbsp;startFace " &lt;&lt; item.m_start_face &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;}" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; ")" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;return os;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppOpenFoam/openfoamboundaryfile.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppOpenFoam/openfoamboundaryfile.h" border = "1"><tr><td><code>
+#ifndef OPENFOAMBOUNDARYFILE_H<br/>
+#define OPENFOAMBOUNDARYFILE_H<br/>
+<br/>
+#include &lt;iosfwd&gt;<br/>
+#include &lt;string&gt;<br/>
+#include &lt;vector&gt;<br/>
+#include "fileiofwd.h"<br/>
+<br/>
+namespace ribi {<br/>
+namespace foam {<br/>
+<br/>
+///Reads and writes an OpenFOAM boundary file<br/>
+struct BoundaryFile<br/>
+{<br/>
+&nbsp;&nbsp;struct BoundaryFileItem<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;BoundaryFileItem() : m_name{}, m_type{}, m_n_faces{}, m_start_face{} {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string m_name;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::string m_type;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int m_n_faces;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int m_start_face;<br/>
+&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;BoundaryFile(const fileio::Filename&amp; filename)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: BoundaryFile(Parse(filename)) {}<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;BoundaryFile(const std::vector&lt;BoundaryFileItem&gt;&amp; items);<br/>
+<br/>
+&nbsp;&nbsp;const std::vector&lt;BoundaryFileItem&gt; m_items;<br/>
+<br/>
+&nbsp;&nbsp;static const std::vector&lt;BoundaryFileItem&gt; Parse(const fileio::Filename&amp; filename);<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; SplitLine(const std::string&amp; line);<br/>
+<br/>
+&nbsp;&nbsp;friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const BoundaryFile&amp; f);<br/>
+};<br/>
+<br/>
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const BoundaryFile&amp; f);<br/>
+<br/>
+} //~namespace foam<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // OPENFOAMBOUNDARYFILE_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppOpenFoam/openfoamheader.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppOpenFoam/openfoamheader.cpp" border = "1"><tr><td><code>
+#include "openfoamheader.h"<br/>
+<br/>
+#include &lt;ostream&gt;<br/>
+<br/>
+ribi::foam::Header::Header(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; class_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; location,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; object<br/>
+&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;: m_class_name(class_name),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_location(location),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_object(object)<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const Header&amp; f)<br/>
+{<br/>
+&nbsp;&nbsp;os<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "FoamFile" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "{" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;version&nbsp;&nbsp;" &lt;&lt; "2.0"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;format&nbsp;&nbsp; " &lt;&lt; "ascii"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;class&nbsp;&nbsp;&nbsp;&nbsp;" &lt;&lt; f.m_class_name &lt;&lt; ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;location " &lt;&lt; f.m_location&nbsp;&nbsp; &lt;&lt; ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "&nbsp;&nbsp;object&nbsp;&nbsp; " &lt;&lt; f.m_object&nbsp;&nbsp;&nbsp;&nbsp; &lt;&lt; ";\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "}" &lt;&lt; '\n'<br/>
+&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;return os;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppOpenFoam/openfoamheader.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppOpenFoam/openfoamheader.h" border = "1"><tr><td><code>
+#ifndef OPENFOAMHEADER_H<br/>
+#define OPENFOAMHEADER_H<br/>
+<br/>
+#include &lt;iosfwd&gt;<br/>
+#include &lt;string&gt;<br/>
+<br/>
+namespace ribi {<br/>
+namespace foam {<br/>
+<br/>
+///The header that is above all OpenFoam files<br/>
+struct Header<br/>
+{<br/>
+&nbsp;&nbsp;///In order of appearance in the text<br/>
+&nbsp;&nbsp;Header(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; class_name,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; location,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; object<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+<br/>
+&nbsp;&nbsp;const std::string m_class_name;<br/>
+&nbsp;&nbsp;const std::string m_location;<br/>
+&nbsp;&nbsp;const std::string m_object;<br/>
+<br/>
+&nbsp;&nbsp;friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Header&amp; f);<br/>
+};<br/>
+<br/>
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Header&amp; f);<br/>
+<br/>
+} //~namespace foam<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // OPENFOAMHEADER_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

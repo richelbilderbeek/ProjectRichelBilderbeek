@@ -1,0 +1,1664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>HistogramEqualizationerVcl</title>
+  <meta name="description" content="C++ HistogramEqualizationerVcl"/>
+  <meta name="keywords" content="C++ HistogramEqualizationerVcl "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolHistogramEqualizationerVcl.htm">HistogramEqualizationerVcl</a></h1>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/Licence.txt</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/Licence.txt" border = "1"><tr><td><code>
+GNU GENERAL PUBLIC LICENSE<br/>
+<br/>
+Version 3, 29 June 2007<br/>
+<br/>
+Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;<br/>
+<br/>
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.<br/>
+Preamble<br/>
+<br/>
+The GNU General Public License is a free, copyleft license for software and other kinds of works.<br/>
+<br/>
+The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.<br/>
+<br/>
+When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.<br/>
+<br/>
+To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.<br/>
+<br/>
+For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.<br/>
+<br/>
+Developers that use the GNU GPL protect your rights with two steps: (1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.<br/>
+<br/>
+For the developers' and authors' protection, the GPL clearly explains that there is no warranty for this free software. For both users' and authors' sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.<br/>
+<br/>
+Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users' freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.<br/>
+<br/>
+Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.<br/>
+<br/>
+The precise terms and conditions for copying, distribution and modification follow.<br/>
+TERMS AND CONDITIONS<br/>
+0. Definitions.<br/>
+<br/>
+“This License” refers to version 3 of the GNU General Public License.<br/>
+<br/>
+“Copyright” also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.<br/>
+<br/>
+“The Program” refers to any copyrightable work licensed under this License. Each licensee is addressed as “you”. “Licensees” and “recipients” may be individuals or organizations.<br/>
+<br/>
+To “modify” a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a “modified version” of the earlier work or a work “based on” the earlier work.<br/>
+<br/>
+A “covered work” means either the unmodified Program or a work based on the Program.<br/>
+<br/>
+To “propagate” a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.<br/>
+<br/>
+To “convey” a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.<br/>
+<br/>
+An interactive user interface displays “Appropriate Legal Notices” to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.<br/>
+1. Source Code.<br/>
+<br/>
+The “source code” for a work means the preferred form of the work for making modifications to it. “Object code” means any non-source form of a work.<br/>
+<br/>
+A “Standard Interface” means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.<br/>
+<br/>
+The “System Libraries” of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A “Major Component”, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.<br/>
+<br/>
+The “Corresponding Source” for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work's System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.<br/>
+<br/>
+The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.<br/>
+<br/>
+The Corresponding Source for a work in source code form is that same work.<br/>
+2. Basic Permissions.<br/>
+<br/>
+All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.<br/>
+<br/>
+You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.<br/>
+<br/>
+Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.<br/>
+3. Protecting Users' Legal Rights From Anti-Circumvention Law.<br/>
+<br/>
+No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.<br/>
+<br/>
+When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work's users, your or third parties' legal rights to forbid circumvention of technological measures.<br/>
+4. Conveying Verbatim Copies.<br/>
+<br/>
+You may convey verbatim copies of the Program's source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.<br/>
+<br/>
+You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.<br/>
+5. Conveying Modified Source Versions.<br/>
+<br/>
+You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) The work must carry prominent notices stating that you modified it, and giving a relevant date.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to “keep intact all notices”.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.<br/>
+<br/>
+A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an “aggregate” if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation's users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.<br/>
+6. Conveying Non-Source Forms.<br/>
+<br/>
+You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.<br/>
+<br/>
+A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.<br/>
+<br/>
+A “User Product” is either (1) a “consumer product”, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, “normally used” refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.<br/>
+<br/>
+“Installation Information” for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.<br/>
+<br/>
+If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).<br/>
+<br/>
+The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.<br/>
+<br/>
+Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.<br/>
+7. Additional Terms.<br/>
+<br/>
+“Additional permissions” are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.<br/>
+<br/>
+When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.<br/>
+<br/>
+Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) Limiting the use for publicity purposes of names of licensors or authors of the material; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.<br/>
+<br/>
+All other non-permissive additional terms are considered “further restrictions” within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.<br/>
+<br/>
+If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.<br/>
+<br/>
+Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.<br/>
+8. Termination.<br/>
+<br/>
+You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).<br/>
+<br/>
+However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.<br/>
+<br/>
+Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.<br/>
+<br/>
+Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.<br/>
+9. Acceptance Not Required for Having Copies.<br/>
+<br/>
+You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.<br/>
+10. Automatic Licensing of Downstream Recipients.<br/>
+<br/>
+Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.<br/>
+<br/>
+An “entity transaction” is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party's predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.<br/>
+<br/>
+You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.<br/>
+11. Patents.<br/>
+<br/>
+A “contributor” is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor's “contributor version”.<br/>
+<br/>
+A contributor's “essential patent claims” are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, “control” includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.<br/>
+<br/>
+Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor's essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.<br/>
+<br/>
+In the following three paragraphs, a “patent license” is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To “grant” such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.<br/>
+<br/>
+If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. “Knowingly relying” means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient's use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.<br/>
+<br/>
+If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.<br/>
+<br/>
+A patent license is “discriminatory” if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.<br/>
+<br/>
+Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.<br/>
+12. No Surrender of Others' Freedom.<br/>
+<br/>
+If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.<br/>
+13. Use with the GNU Affero General Public License.<br/>
+<br/>
+Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.<br/>
+14. Revised Versions of this License.<br/>
+<br/>
+The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.<br/>
+<br/>
+Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License “or any later version” applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.<br/>
+<br/>
+If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy's public statement of acceptance of a version permanently authorizes you to choose that version for the Program.<br/>
+<br/>
+Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.<br/>
+15. Disclaimer of Warranty.<br/>
+<br/>
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.<br/>
+16. Limitation of Liability.<br/>
+<br/>
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.<br/>
+17. Interpretation of Sections 15 and 16.<br/>
+<br/>
+If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.<br/>
+<br/>
+END OF TERMS AND CONDITIONS<br/>
+How to Apply These Terms to Your New Programs<br/>
+<br/>
+If you develop a new program, and you want it to be of the greatest possible use to the public, the best way to achieve this is to make it free software which everyone can redistribute and change under these terms.<br/>
+<br/>
+To do so, attach the following notices to the program. It is safest to attach them to the start of each source file to most effectively state the exclusion of warranty; and each file should have at least the “copyright” line and a pointer to where the full notice is found.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;one line to give the program's name and a brief idea of what it does.&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) &lt;year&gt;&nbsp;&nbsp;&lt;name of author&gt;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GNU General Public License for more details.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<br/>
+Also add information on how to contact you by electronic and paper mail.<br/>
+<br/>
+If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;program&gt;&nbsp;&nbsp;Copyright (C) &lt;year&gt;&nbsp;&nbsp;&lt;name of author&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This is free software, and you are welcome to redistribute it<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;under certain conditions; type `show c' for details.<br/>
+<br/>
+The hypothetical commands `show w' and `show c' should show the appropriate parts of the General Public License. Of course, your program's commands might be different; for a GUI interface, you would use an “about box”.<br/>
+<br/>
+You should also get your employer (if you work as a programmer) or school, if any, to sign a “copyright disclaimer” for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<br/>
+The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/ProjectHistogramEqualizationer.bpr</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/ProjectHistogramEqualizationer.bpr" border = "1"><tr><td><code>
+&lt;?xml version='1.0' encoding='utf-8' ?&gt;<br/>
+&lt;!-- C++Builder XML Project --&gt;<br/>
+&lt;PROJECT&gt;<br/>
+&nbsp;&nbsp;&lt;MACROS&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;VERSION value="BCB.06.00"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PROJECT value="ProjectHistogramEqualizationer.exe"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OBJFILES value="ProjectHistogramEqualizationer.obj UnitFormHistogramEqualizationer.obj <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitFormHistogramEqualizationerAbout.obj"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RESFILES value="ProjectHistogramEqualizationer.res"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLGENFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;DEFFILE value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RESDEPEN value="$(RESFILES) UnitFormHistogramEqualizationer.dfm <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitFormHistogramEqualizationerAbout.dfm"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBRARIES value="rtl.lib vcl.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SPARELIBS value="vcl.lib rtl.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PACKAGES value="vcl.bpi rtl.bpi vclx.bpi bcbsmp.bpi dbrtl.bpi adortl.bpi vcldb.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qrpt.bpi bdertl.bpi vcldbx.bpi dsnap.bpi cds.bpi bdecds.bpi teeui.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teedb.bpi tee.bpi teeqr.bpi ibxpress.bpi visualclx.bpi visualdbclx.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vclie.bpi xmlrtl.bpi inet.bpi inetdbbde.bpi inetdbxpress.bpi inetdb.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nmfast.bpi bcbie.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indy.bpi bcb2kaxserver.bpi"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHCPP value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHPAS value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHRC value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHASM value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;DEBUGLIBPATH value="$(BCB)\lib\debug"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RELEASELIBPATH value="$(BCB)\lib\release"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LINKER value="ilink32"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;USERDEFINES value="_DEBUG;NDEBUG"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SYSDEFINES value="NO_STRICT"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;MAINSOURCE value="ProjectHistogramEqualizationer.cpp"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;INCLUDEPATH value="&amp;quot;C:\Program Files\Borland\CBuilder6\Projects&amp;quot;;&amp;quot;C:\Documents and Settings\Systeembeheer\Desktop\Richel\HistogramEquilizationer&amp;quot;;$(BCB)\include;$(BCB)\include\vcl"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBPATH value="&amp;quot;C:\Program Files\Borland\CBuilder6\Projects&amp;quot;;&amp;quot;C:\Documents and Settings\Systeembeheer\Desktop\Richel\HistogramEquilizationer&amp;quot;;$(BCB)\lib\obj;$(BCB)\lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;WARNINGS value="-w-par"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/MACROS&gt;<br/>
+&nbsp;&nbsp;&lt;OPTIONS&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLCFLAGS value="-I&amp;quot;C:\Program Files\Borland\CBuilder6\Projects&amp;quot; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-I&amp;quot;C:\Documents and Settings\Systeembeheer\Desktop\Richel\HistogramEquilizationer&amp;quot; <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -DNDEBUG -boa"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-tW -tWM"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RFLAGS value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;AFLAGS value="/mx /w2 /zd"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LFLAGS value="-D&amp;quot;&amp;quot; -aa -Tpe -x -Gn -v"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/OPTIONS&gt;<br/>
+&nbsp;&nbsp;&lt;LINKER&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLRES value="$(RESFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/LINKER&gt;<br/>
+&nbsp;&nbsp;&lt;FILELIST&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="ProjectHistogramEqualizationer.res" FORMNAME="" UNITNAME="ProjectHistogramEqualizationer.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="ProjectHistogramEqualizationer.cpp" FORMNAME="" UNITNAME="ProjectHistogramEqualizationer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="UnitFormHistogramEqualizationer.cpp" FORMNAME="FormHistogramEqualizationer" UNITNAME="UnitFormHistogramEqualizationer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="UnitFormHistogramEqualizationerAbout.cpp" FORMNAME="FormHistogramEqualizationerAbout" UNITNAME="UnitFormHistogramEqualizationerAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/FILELIST&gt;<br/>
+&nbsp;&nbsp;&lt;BUILDTOOLS&gt;<br/>
+&nbsp;&nbsp;&lt;/BUILDTOOLS&gt;<br/>
+<br/>
+&nbsp;&nbsp;&lt;IDEOPTIONS&gt;<br/>
+[Version Info]<br/>
+IncludeVerInfo=1<br/>
+AutoIncBuild=0<br/>
+MajorVer=1<br/>
+MinorVer=0<br/>
+Release=0<br/>
+Build=0<br/>
+Debug=0<br/>
+PreRelease=0<br/>
+Special=0<br/>
+Private=0<br/>
+DLL=0<br/>
+Locale=1043<br/>
+CodePage=1252<br/>
+<br/>
+[Version Info Keys]<br/>
+CompanyName=Richel Bilderbeek<br/>
+FileDescription=HistogramEqualizationer<br/>
+FileVersion=1.0.0.0<br/>
+InternalName=HistogramEqualizationer<br/>
+LegalCopyright=Richel Bilderbeek<br/>
+LegalTrademarks=Richel Bilderbeek<br/>
+OriginalFilename=HistogramEqualizationer<br/>
+ProductName=HistogramEqualizationer<br/>
+ProductVersion=1.0.0.0<br/>
+Comments=Licenced under GPL 3.0<br/>
+Website=http://www.richelbilderbeek.nl<br/>
+<br/>
+[HistoryLists\hlIncludePath]<br/>
+Count=1<br/>
+Item0=C:\Program Files\Borland\CBuilder6\Projects;C:\Documents and Settings\Systeembeheer\Desktop\Richel\HistogramEquilizationer;$(BCB)\include;$(BCB)\include\vcl<br/>
+<br/>
+[HistoryLists\hlLibraryPath]<br/>
+Count=1<br/>
+Item0=C:\Program Files\Borland\CBuilder6\Projects;C:\Documents and Settings\Systeembeheer\Desktop\Richel\HistogramEquilizationer;$(BCB)\lib\obj;$(BCB)\lib<br/>
+<br/>
+[HistoryLists\hlDebugSourcePath]<br/>
+Count=1<br/>
+Item0=$(BCB)\source\vcl<br/>
+<br/>
+[HistoryLists\hlConditionals]<br/>
+Count=2<br/>
+Item0=_DEBUG;NDEBUG<br/>
+Item1=_DEBUG<br/>
+<br/>
+[Debugging]<br/>
+DebugSourceDirs=$(BCB)\source\vcl<br/>
+<br/>
+[Parameters]<br/>
+RunParams=<br/>
+Launcher=<br/>
+UseLauncher=0<br/>
+DebugCWD=<br/>
+HostApplication=<br/>
+RemoteHost=<br/>
+RemotePath=<br/>
+RemoteLauncher=<br/>
+RemoteCWD=<br/>
+RemoteDebug=0<br/>
+<br/>
+[Compiler]<br/>
+ShowInfoMsgs=0<br/>
+LinkDebugVcl=0<br/>
+LinkCGLIB=0<br/>
+<br/>
+[CORBA]<br/>
+AddServerUnit=1<br/>
+AddClientUnit=1<br/>
+PrecompiledHeaders=1<br/>
+<br/>
+[Language]<br/>
+ActiveLang=<br/>
+ProjectLang=<br/>
+RootDir=<br/>
+&nbsp;&nbsp;&lt;/IDEOPTIONS&gt;<br/>
+&lt;/PROJECT&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/ProjectHistogramEqualizationer.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/ProjectHistogramEqualizationer.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+//---------------------------------------------------------------------------<br/>
+USEFORM("UnitFormHistogramEqualizationer.cpp", FormHistogramEqualizationer);<br/>
+USEFORM("UnitFormHistogramEqualizationerAbout.cpp", FormHistogramEqualizationerAbout);<br/>
+//---------------------------------------------------------------------------<br/>
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Title = "HistogramEqualizationer";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;CreateForm(__classid(TFormHistogramEqualizationer), &amp;FormHistogramEqualizationer);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/ProjectHistogramEqualizationer.res</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/ProjectHistogramEqualizationer.res" border = "1"><tr><td><code>
+        ÿÿ  ÿÿ                  è      ÿÿ ÿÿ     	        (       @         €                        €  €   €€ €   € € €€  €€€ ÀÀÀ   ÿ  ÿ   ÿÿ ÿ   ÿ ÿ ÿÿ  ÿÿÿ                 ™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdÌÄ]ÝP™‘;»2ª¢nîdDD]ÝP™‘;»2ª¢nîoÿÿ]ÝP™‘;»2ª¢nîoÿÿ]ÝP™‘;»2ª¢nîoÿÿ]ÝP™‘332ª¢nîoÿÿ]ÝP™‘ÿÿòª¢nîoÿÿ]ÝP™‘ÿÿòª¢nîoÿÿ]ÝP™‘ÿÿòª¢nîoÿÿ]ÝP™‘ÿÿòª¢nîoÿÿUUP™‘ÿÿò""nîoÿÿÿÿð™‘ÿÿÿÿÿnîoÿÿÿÿð™‘ÿÿÿÿÿnîoÿÿÿÿð™‘ÿÿÿÿÿnîoÿÿÿÿð™‘ÿÿÿÿÿffoÿÿÿÿð™‘ÿÿÿÿÿÿÿÿÿÿÿÿð™‘ÿÿÿÿÿÿÿÿÿÿÿÿð™‘ÿÿÿÿÿÿÿÿÿÿÿÿð™‘ÿÿÿÿÿÿÿÿÿÿÿÿð™‘ÿÿÿÿÿÿÿÿÿÿÿÿðÿÿÿÿÿÿÿÿÿÿÿÿðÿÿÿÿÿÿÿÿÿÿÿÿÿÿðÿÿÿÿÿÿÿÿÿÿÿÿÿÿðÿÿÿÿÿÿÿÿÿÿÿÿÿÿð                                                                                                                                                   0   ÿÿ M A I N I C O N         	            &nbsp;&nbsp;   è         ÿÿ ÿÿ             4   V S _ V E R S I O N _ I N F O     ½ïþ                 ?                         f    S t r i n g F i l e I n f o   B    0 4 1 3 0 4 E 4   D   C o m p a n y N a m e     R i c h e l   B i l d e r b e e k   X   F i l e D e s c r i p t i o n     H i s t o g r a m E q u a l i z a t i o n e r   0   F i l e V e r s i o n     1 . 0 . 0 . 0   P   I n t e r n a l N a m e   H i s t o g r a m E q u a l i z a t i o n e r   H   L e g a l C o p y r i g h t   R i c h e l   B i l d e r b e e k   L   L e g a l T r a d e m a r k s     R i c h e l   B i l d e r b e e k   X   O r i g i n a l F i l e n a m e   H i s t o g r a m E q u a l i z a t i o n e r   P   P r o d u c t N a m e     H i s t o g r a m E q u a l i z a t i o n e r   4   P r o d u c t V e r s i o n   1 . 0 . 0 . 0   F   C o m m e n t s   L i c e n c e d   u n d e r   G P L   3 . 0     V   W e b s i t e     h t t p : / / w w w . r i c h e l b i l d e r b e e k . n l     D     V a r F i l e I n f o     $    T r a n s l a t i o n     ä<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;HistogramEqualizationer, tool to perform a histogram equalization<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;vector&gt;<br/>
+#include &lt;boost/scoped_ptr.hpp&gt;<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+<br/>
+#include "UnitFormHistogramEqualizationer.h"<br/>
+#include "UnitFormHistogramEqualizationerAbout.h"<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma package(smart_init)<br/>
+#pragma resource "*.dfm"<br/>
+TFormHistogramEqualizationer *FormHistogramEqualizationer;<br/>
+//---------------------------------------------------------------------------<br/>
+__fastcall TFormHistogramEqualizationer::TFormHistogramEqualizationer(TComponent* Owner)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
+{<br/>
+&nbsp;&nbsp;ImageOriginal-&gt;Stretch = false;<br/>
+&nbsp;&nbsp;ImageGrey-&gt;Stretch = false;<br/>
+&nbsp;&nbsp;ImageResult-&gt;Stretch = false;<br/>
+&nbsp;&nbsp;ImageOriginal-&gt;AutoSize = true;<br/>
+&nbsp;&nbsp;ImageGrey-&gt;AutoSize = true;<br/>
+&nbsp;&nbsp;ImageResult-&gt;AutoSize = true;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormHistogramEqualizationer::ButtonLoadClick(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;if (OpenDialog1-&gt;Execute() == false) return;<br/>
+<br/>
+&nbsp;&nbsp;ImageOriginal-&gt;Picture-&gt;LoadFromFile(OpenDialog1-&gt;FileName);<br/>
+<br/>
+&nbsp;&nbsp;if(ImageOriginal==0 || ImageOriginal-&gt;Picture-&gt;Bitmap==0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; ShowMessage("Unable to load image");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; return;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;if (ImageOriginal-&gt;Picture-&gt;Bitmap-&gt;PixelFormat != pf24bit)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; ShowMessage("Image must be a 24-bit bitmap. Please load another image");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; return;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;DoHistogramEqualization(ImageOriginal,ImageResult);<br/>
+&nbsp;&nbsp;ConvertToGrey(ImageOriginal,ImageGrey);<br/>
+&nbsp;&nbsp;ImageOriginal-&gt;Visible = true;<br/>
+&nbsp;&nbsp;ImageGrey-&gt;Visible = true;<br/>
+&nbsp;&nbsp;ImageResult-&gt;Visible = true;<br/>
+&nbsp;&nbsp;ButtonSaveGrey-&gt;Visible = true;<br/>
+&nbsp;&nbsp;ButtonSaveResult-&gt;Visible = true;<br/>
+&nbsp;&nbsp;++PageControl1-&gt;ActivePageIndex;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormHistogramEqualizationer::ButtonSaveGreyClick(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;if (SaveDialog1-&gt;Execute() == false) return;<br/>
+&nbsp;&nbsp;ImageGrey-&gt;Picture-&gt;SaveToFile(SaveDialog1-&gt;FileName);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormHistogramEqualizationer::ButtonSaveResultClick(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;if (SaveDialog1-&gt;Execute() == false) return;<br/>
+&nbsp;&nbsp;ImageResult-&gt;Picture-&gt;SaveToFile(SaveDialog1-&gt;FileName);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormHistogramEqualizationer::ButtonAboutClick(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;boost::scoped_ptr&lt;TFormHistogramEqualizationerAbout&gt; form(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;new TFormHistogramEqualizationerAbout(0) );<br/>
+<br/>
+&nbsp;&nbsp;form-&gt;ShowModal();<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppDoHistogramEqualization.htm<br/>
+void DoHistogramEqualization(const TImage * const source, TImage * const target)<br/>
+{<br/>
+&nbsp;&nbsp;assert(source!=0 &amp;&amp; "Source image is NULL");<br/>
+&nbsp;&nbsp;assert(target!=0 &amp;&amp; "Target image is NULL");<br/>
+&nbsp;&nbsp;assert(source-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; "Source bitmap is NULL");<br/>
+&nbsp;&nbsp;assert(target-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; "Target bitmap is NULL");<br/>
+&nbsp;&nbsp;assert(source-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit &amp;&amp; "Source bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;assert(target-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit &amp;&amp; "Target bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;//Get the width and height from the source<br/>
+&nbsp;&nbsp;const int width&nbsp;&nbsp;= source-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;const int height = source-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;//Set the target's width and height<br/>
+&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;= width;<br/>
+&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;Height = height;<br/>
+<br/>
+&nbsp;&nbsp;const int surface = width * height;<br/>
+&nbsp;&nbsp;const int nGreyValues = 256; //There are 256 different pixel intensities<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt; histogram = GetImageHistogram(source);<br/>
+&nbsp;&nbsp;assert(nGreyValues==static_cast&lt;int&gt;(histogram.size()));<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt; cumulativeHistogram = GetCumulativeHistogram(histogram);<br/>
+&nbsp;&nbsp;assert(nGreyValues==static_cast&lt;int&gt;(cumulativeHistogram.size()));<br/>
+<br/>
+&nbsp;&nbsp;//Works, but anybody knows how to use std::for_each or std::transform for this?<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt; rescaledHistogram(nGreyValues,0);<br/>
+&nbsp;&nbsp;for (int i=0; i!=nGreyValues; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//'surface + 1' to prevent that rescaledGreyValue == 256<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int rescaledGreyValue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;int&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_cast&lt;double&gt;(nGreyValues)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* static_cast&lt;double&gt;(cumulativeHistogram[i])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ static_cast&lt;double&gt;(surface + 1) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(rescaledGreyValue &gt;= 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(rescaledGreyValue &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rescaledHistogram[i] = rescaledGreyValue;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;for (int y=0; y!=height; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const unsigned char * lineSource<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;const unsigned char *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned char * lineTarget<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;unsigned char *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=width; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int greyOriginal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (lineSource[x*3+0] + lineSource[x*3+1] + lineSource[x*3+2]) / 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(greyOriginal &gt;=&nbsp;&nbsp; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(greyOriginal&nbsp;&nbsp;&lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int greyNew = rescaledHistogram[greyOriginal];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(greyNew &gt;= 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(greyNew&nbsp;&nbsp;&lt; 256);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+0]=greyNew; //Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+1]=greyNew; //Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+2]=greyNew; //Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+//------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppConvertToGrey.htm<br/>
+void ConvertToGrey(const TImage * const source, TImage * const target)<br/>
+{<br/>
+&nbsp;&nbsp;assert(source!=0 &amp;&amp; "Source image is NULL");<br/>
+&nbsp;&nbsp;assert(target!=0 &amp;&amp; "Target image is NULL");<br/>
+&nbsp;&nbsp;assert(source-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; "Source bitmap is NULL");<br/>
+&nbsp;&nbsp;assert(target-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; "Target bitmap is NULL");<br/>
+&nbsp;&nbsp;assert(source-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit &amp;&amp; "Source bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;assert(target-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit &amp;&amp; "Target bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;//Get the width and height from the source<br/>
+&nbsp;&nbsp;const int width&nbsp;&nbsp;= source-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;const int height = source-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;//Set the target's width and height<br/>
+&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;= width;<br/>
+&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;Height = height;<br/>
+<br/>
+&nbsp;&nbsp;for (int y=0; y!=height; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const unsigned char * lineSource<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;const unsigned char *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned char * lineTarget<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;unsigned char *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;target-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=width; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int grey<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (lineSource[x*3+0] + lineSource[x*3+1] + lineSource[x*3+2]) / 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(grey &gt;= 0 &amp;&amp; grey &lt; 256);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+0]=grey; //Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+1]=grey; //Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineTarget[x*3+2]=grey; //Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+//------------------------------------------------------------<br/>
+//From htpp://www.richelbilderbeek.nl/CppGetImageHistogram.htm<br/>
+const std::vector&lt;int&gt; GetImageHistogram(const TImage * const image)<br/>
+{<br/>
+&nbsp;&nbsp;assert(image!=0 &amp;&amp; "Image is NULL");<br/>
+&nbsp;&nbsp;assert(image-&gt;Picture-&gt;Bitmap!=0 &amp;&amp; "Image bitmap is NULL");<br/>
+&nbsp;&nbsp;assert(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit &amp;&amp; "Image bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;//Get the width and height from the source<br/>
+&nbsp;&nbsp;const int width&nbsp;&nbsp;= image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;const int height = image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt; histogram(256,0); //There are 256 different color values<br/>
+<br/>
+&nbsp;&nbsp;for (int y=0; y!=height; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const unsigned char * line<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;const unsigned char *&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=width; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int grey<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (line[x*3+0] + line[x*3+1] + line[x*3+2]) / 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(grey &gt;= 0 &amp;&amp; grey &lt; 256);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++histogram[grey];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return histogram;<br/>
+}<br/>
+//------------------------------------------------------------<br/>
+//From htpp://www.richelbilderbeek.nl/CppGetCumulativeHistogram.htm<br/>
+template &lt;class T&gt; const std::vector&lt;T&gt; GetCumulativeHistogram(const std::vector&lt;T&gt;&amp; histogram)<br/>
+{<br/>
+&nbsp;&nbsp;std::vector&lt;T&gt; v(histogram.begin(),histogram.end() );<br/>
+&nbsp;&nbsp;const int size = v.size();<br/>
+&nbsp;&nbsp;for (int i=1; i!=size; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v[i] += v[i-1];<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return v;<br/>
+}<br/>
+//------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.ddp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.ddp" border = "1"><tr><td><code>
+DELPHI.DIAGRAM.PORTFOLIO  À@		Untitled1   <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.dfm</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.dfm" border = "1"><tr><td><code>
+object FormHistogramEqualizationer: TFormHistogramEqualizationer<br/>
+&nbsp;&nbsp;Left = 204<br/>
+&nbsp;&nbsp;Top = 183<br/>
+&nbsp;&nbsp;Width = 435<br/>
+&nbsp;&nbsp;Height = 438<br/>
+&nbsp;&nbsp;Caption = 'Histogram Equalizationer (C) 2008 Richel Bilderbeek'<br/>
+&nbsp;&nbsp;Color = clBtnFace<br/>
+&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;Font.Height = -11<br/>
+&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;OldCreateOrder = False<br/>
+&nbsp;&nbsp;Position = poScreenCenter<br/>
+&nbsp;&nbsp;PixelsPerInch = 96<br/>
+&nbsp;&nbsp;TextHeight = 14<br/>
+&nbsp;&nbsp;object PageControl1: TPageControl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Width = 427<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Height = 404<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ActivePage = TabSheetLoadAndHistogramEqualization<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabIndex = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object TabSheetLoadAndHistogramEqualization: TTabSheet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Load'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ImageOriginal: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 419<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 334<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07544269746D61703A000000424D3A0000000000000036000000280000000100<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000010000000100180000000000040000000000000000000000000000000000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000FFFFFF00}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proportional = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stretch = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel1: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 419<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonLoad: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Load'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonLoadClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonAboutOriginal: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 88<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonAboutClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object TabSheetViewGreyImage: TTabSheet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Grey'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ImageIndex = 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ImageGrey: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 419<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 334<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07544269746D61703A000000424D3A0000000000000036000000280000000100<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000010000000100180000000000040000000000000000000000000000000000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000FFFFFF00}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proportional = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stretch = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel3: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 419<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonSaveGrey: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Save'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonSaveGreyClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonAboutGrey: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 88<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonAboutClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object TabSheetViewAndSave: TTabSheet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Histogram equalized'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ImageIndex = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ImageResult: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 419<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 334<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07544269746D61703A000000424D3A0000000000000036000000280000000100<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000010000000100180000000000040000000000000000000000000000000000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000FFFFFF00}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proportional = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stretch = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel2: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 419<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonSaveResult: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Save'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonSaveResultClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonAboutResult: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 88<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonAboutClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;object OpenDialog1: TOpenDialog<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DefaultExt = 'bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Filter = '24-bit bitmap|*.bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Title = 'Please select a 24-bit bitmap for histogram equalization'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 184<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 32<br/>
+&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;object SaveDialog1: TSaveDialog<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DefaultExt = 'bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Filter = '24-bit bitmap|*.bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Title = 'Save your file as a 24-bit bitmap'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 224<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 32<br/>
+&nbsp;&nbsp;end<br/>
+end<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationer.h" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;HistogramEqualizationer, tool to perform a histogram equalization<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef UnitFormHistogramEqualizationerH<br/>
+#define UnitFormHistogramEqualizationerH<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;Classes.hpp&gt;<br/>
+#include &lt;Controls.hpp&gt;<br/>
+#include &lt;StdCtrls.hpp&gt;<br/>
+#include &lt;Forms.hpp&gt;<br/>
+#include &lt;ComCtrls.hpp&gt;<br/>
+#include &lt;ExtCtrls.hpp&gt;<br/>
+#include &lt;Dialogs.hpp&gt;<br/>
+#include &lt;Graphics.hpp&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+class TFormHistogramEqualizationer : public TForm<br/>
+{<br/>
+__published:	// IDE-managed Components<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPageControl *PageControl1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetLoadAndHistogramEqualization;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetViewAndSave;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *ImageOriginal;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *ImageResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonLoad;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOpenDialog *OpenDialog1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TSaveDialog *SaveDialog1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetViewGreyImage;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *ImageGrey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonSaveGrey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonSaveResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonAboutOriginal;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonAboutGrey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonAboutResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonLoadClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonSaveGreyClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonSaveResultClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonAboutClick(TObject *Sender);<br/>
+private:	// User declarations<br/>
+public:		// User declarations<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormHistogramEqualizationer(TComponent* Owner);<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+extern PACKAGE TFormHistogramEqualizationer *FormHistogramEqualizationer;<br/>
+//---------------------------------------------------------------------------<br/>
+void DoHistogramEqualization(const TImage * const source, TImage * const target);<br/>
+void ConvertToGrey(const TImage * const source, TImage * const target);<br/>
+const std::vector&lt;int&gt; GetImageHistogram(const TImage * const image);<br/>
+export template &lt;class T&gt; const std::vector&lt;T&gt; GetCumulativeHistogram(const std::vector&lt;T&gt;&amp; histogram);<br/>
+<br/>
+<br/>
+#endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;HistogramEqualizationer, tool to perform a histogram equalization<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+<br/>
+#include "UnitFormHistogramEqualizationerAbout.h"<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma package(smart_init)<br/>
+#pragma resource "*.dfm"<br/>
+TFormHistogramEqualizationerAbout *FormHistogramEqualizationerAbout;<br/>
+//---------------------------------------------------------------------------<br/>
+__fastcall TFormHistogramEqualizationerAbout::TFormHistogramEqualizationerAbout(TComponent* Owner)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
+{<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.ddp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.ddp" border = "1"><tr><td><code>
+DELPHI.DIAGRAM.PORTFOLIO  À@		Untitled1   <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.dfm</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.dfm" border = "1"><tr><td><code>
+object FormHistogramEqualizationerAbout: TFormHistogramEqualizationerAbout<br/>
+&nbsp;&nbsp;Left = 297<br/>
+&nbsp;&nbsp;Top = 198<br/>
+&nbsp;&nbsp;BorderStyle = bsDialog<br/>
+&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;ClientHeight = 518<br/>
+&nbsp;&nbsp;ClientWidth = 688<br/>
+&nbsp;&nbsp;Color = clBtnFace<br/>
+&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;Font.Height = -11<br/>
+&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;OldCreateOrder = False<br/>
+&nbsp;&nbsp;Position = poScreenCenter<br/>
+&nbsp;&nbsp;PixelsPerInch = 96<br/>
+&nbsp;&nbsp;TextHeight = 14<br/>
+&nbsp;&nbsp;object RichEdit1: TRichEdit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 429<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Width = 688<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Height = 89<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Align = alBottom<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Lines.Strings = (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;HistogramEqualizationer, tool to perform a histogram equalizat' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'ion'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Rich'#232'l Bilderbeek'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;This program is free software: you can redistribute it and/or ' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'modify'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;it under the terms of the GNU General Public License as publis' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'hed by'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License,' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' or'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;(at your option) any later version.'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;This program is distributed in the hope that it will be useful' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;GNU General Public License for more details.'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;You should have received a copy of the GNU General Public Lice' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nse'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/lice' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nses/&gt;.')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ReadOnly = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ScrollBars = ssVertical<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;object PanelTop: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Width = 688<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Height = 429<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object ImageAbout: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 307<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 427<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alLeft<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AutoSize = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A544A504547496D616765BF2C0000FFD8FFE000104A46494600010101006000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C191213<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F2739<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3232323232323232323232323232323232323232323232323232323232323232<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32323232323232323232323232FFC000110801AC013303012200021101031101<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FFC4001F0000010501010101010100000000000000000102030405060708090A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0BFFC400B5100002010303020403050504040000017D01020300041105122131<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;410613516107227114328191A1082342B1C11552D1F02433627282090A161718<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;191A25262728292A3435363738393A434445464748494A535455565758595A63<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6465666768696A737475767778797A838485868788898A92939495969798999A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F01000301<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01010101010101010000000000000102030405060708090A0BFFC400B5110002<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0102040403040705040400010277000102031104052131061241510761711322<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;292A35363738393A434445464748494A535455565758595A636465666768696A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F06A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4A28A6506680734668A005C91DE9431C5368A0771D90690D251405C28CD14503<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16933475A2818B49451400B494668A042D21EB4B49400B4520EB4B40C28CD140<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E94805A4CD147B5301474A339A4A07E540D0BD68A43D697A5030E9CD19F5A0D2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A5701DFD28CD1452B94252F7A4EF4EA062D251476A0614B4945001452D1482C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;454521EB4B56730520EB4B45030A29296800A28A290051494B40C293BD2D1400<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;77A28A2818514502801474A28A2800A4E6968A004A5A28A004A2968A0760A28A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2818679A5A43D697B51700A3E945148614B4945218B40E868A281852D0052D05<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20C518A5A334876128A5A28021A4EF4A3A521EB56720528E949F5A05002D1451<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;40C4EF451450014B4945050B4519A28105145140C4A5A3B514805A28A2801296<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9296818503A5140EB4020FA75A5A4EF47340C3A51EF4B487AD002D1DB8A28A00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4E69681D697B0A0A12969297BD000052D2D148B4828C514B48A128A514B45C76<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;171451452B8F94AF494502B43844EF4A3AD1DE8A005A4A052E68189451D68A00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28A28A077168A414B9A0028A4A5A003B514514805ED49451ED40C5A4A5ED4828<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01681D68A2828538A41D28CD25002E68268A4A02E2D2D2503A5002D028A3BF4A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A42D2D1DA901A43141A5A4EB4B48B42E28C500D2D05240297148053D47352D9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A450628A931454F31AF299F452D15B9E4894B45250003AD2D252D001DE93BD2D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;140094B494BD28185148681D280168A51C903D694C6DBF6E32DE941566F61B47<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3566E6D0C12A44396600D4B6D62D249FBE0557B7D6A39A36B9AFB0A9CFC8D6A5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1EB4B57EF34F16F2C288D9327BD59B8D254CCE206C003214F6A9F6D1B266FF00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51AD792B6AADF8AB98FED45685C69535B59ACEEC0863F7473B6A860E338E3D6A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A3352574615A8D4A32E5A8ACF7128FC68A41D6A8C85A28A3B5300CD2D252D200<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A51D29073450520A5CD25140D0ECD148297DA91414A2905386290D077A75340C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1A5EF416870A78A8C5381A866B164A0D14DCD153636E6295277A28AE83C80A33<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;451400B452528E94005252E692800A5A4A2800A5A4A9218F7C8A08E3B9F6A36D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4714DBB21638999778E0035B7A4DB44CF1DDC8DCEE2ADBBA556B6B5588F98240<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14F507B8AB12DC24166208BFBDB8FA2D72559397BB13D8C1429D17ED2A74FCD6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C4D73E40B876C2171D58F4AAC9791211B791DCF6AA324DE6FDF76FF808A8C052<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3823E8DC538D2B2B332AD8C94E7CD1563552E95DD5D901C74AB914D186390876<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8DD8CD6122B16007EBD2A7459237CBA9C7622A25493EA6F431B38CAEF5352468<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E6082751B064919AAB369D1DD2EE89CA81D13D2AEC5E4CF0E0119EFEA29F1AAA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8F2D244427BB0AC14DC3E1D0F65518D78DEAD9A7F79CE4F64F06414723FBD8AA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80F6AE9B504BC786368F0C02E1C2F7F7AE71D5D5FE7520FB8AEEA351CE3767CF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;661858E1EA5A09DBCD0DEA68A3BD15A9E78519A28A68028FC28A290D052F7A41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D2940A06851D6969334B9A45094F5A6669CBD7AD0CA4C71A4A71E45369177141<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A5069B9A5CD2B0D31F9A2999A2958BE62BD14515A9E7851451400519A28A0028<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A28A0028A28A002AE582AEF2CC718F7C553AD1B3558C8382DDF15151DA26D875<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EFA65A640B160138CF7A812D65B99022A973E98ABF63613EAB7A2087A6796FEE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D7A568FA1DBD840AAAA1A4C7CCEC326B86A57F65EA7A51A3ED9DFA1E710F86EF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3E52F132A9E9C54A7C3D399367960B7D319AF5D8ED6320031834D934D8B706D8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0E3B5732C5546743C2D348F203A15DC24E63755F7E951F94E84A4C1C91FDE19F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F22BD87EC001DC147D0D52BAD0ED2E73BA108FD772F1571AF27A48CE54631F84<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F2375647DCA70474140977B2B1C6E1EF5DE6A7E0E13A111A05950E415E87FF00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AF5C4EA5A4DE69B296957E5CE326BA6138CB4EA73B94E2CBD67237F03123BAD5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3F1044A851B19461C1E841AA915E4AA0905770FA8AD382E62D4EDDED6E321987<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAC3D6A39254E7CFD0F628E2A9E2F0F2C2B7693DAFB5FB7CCE5CD37A1AB7756A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D6D232338383823B8AA87AD77A6A4AE8F98A94E54E4E3256687537BD28A0F5A6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4851451F4A6014FED4CA729A4CA4C0D26695BAD37BD002D2D369C3A52192755A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;67434F5E46298C39A45F40CD19A4C514C571D9A29B9A281F311D145154730514<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51400514514005145140051451400F890C92845EB5B11D9BC8C904032CFC0C0E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95996876B990F415DB7846DCDDDC35C38CAA70335CD889B8AB9D7868A93B33A7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F0E691169B6A10005CE0B39EE6BA38E303AF4AAF6CA06062AF20E4578B3936EE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF792518A48B10AE40F4A90AE4E2981B68C0A371CFAE68892DB638A7150B47CD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4E7A546CD5BC59CF3D4AEF11EDD6B3754D321BFB678E6881C8EA477AD8CE7BF0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6A39A58C444B76ADD4558F3E757959E357BA50B2BF781D7E424E0D65CB03C328<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2990DFC25780DFFD7AED3C5015A42E38E7835C7DC4DCED2491D8FA1AE8A4E4C9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;94D24A48B9E52EB767B1CAA5EC4386031BC7B8AE76589A195E371F329E456D69<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D2B8BA1201F32718F5A6F892D8A5D2DC8040957907D6AA9CB92A7B3E8F63D2C4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D358AC12C525EFC6C9BEEB6BBF330F345252D759E10669334B4E54CF340C68A7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A9A0A95A45EB498D68C1A929EC322900C521B105388A28A0771C9D78A0F5A155<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81E4714A4E083EF487D06D262A7B87490294182073C540DED42D41E8C6D14514<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C57194514551805145140C28A28A0028A281D2800A4EF474A280274FB8BF5AF4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BF0B34167A3C6F23AA03C924E2BCD6DC6EE3DEBB0D3ACE6D42D54BC9E55B2F03<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3DEB8F14AF1B33B309F1E87756FAFE99E67966E141ED9E86B7A0BBB69172AE08<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C678AF21BCD3A2B5937A5EAC9CFDD3C62B6744D47C87113484E7A64D79D3A4AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78BB9EBC66DBB48F4AF3E11C9E40AC8BFF00155A58E54A838EC3AD3043706267<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E76919AE0B5A7FF489074E79359D357958D24AC8E826F88D6DE66C581C63B9A9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2DFC6E92CAA0A0DB5C1D83092F56286DD64918FCA194B13F80AE8A6F3E01E5DC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C16EC71F7029523F022BAE7050B591CD15CD7D4EE60D66CEF428B7986E23EE9E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;314974F24A0A2213EE2B90B148A4612DBAB46EBD2BA98AE1E48C631BC8C126A9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6AAE8F3ABC5C256671BADBB07911FB7635C65F6164214654D771E25B731B330E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;588AE0AE1C720138E706BA68239E5B58D0D10869977608CE08E95B5E26B60BA2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AF43B7054FD38AE42DE42928C1DAB9C935D47899CC9A25BE0920375FC2B1AF06<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B11077DD9F4B965752CB2BC2DB2FCEE71B4B834F5427AD3B00715E85CF98B088<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BC734F18AB36D66655DC78156BFB259C650D439A3278AA507CAD996C32BF4A8C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;706AECF692DB9C3A9C7AD5475C73549DCD54D4D7345DC4CD2669C627450C5480<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7B9E9494C35128A09A4CD0172C2CDB9429ED4C723A8A881F9A949F7A4958AE6E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E2E6928A3F8BF0A62B8945145021BDA9052E693354662D145148028A28A06145<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14500145145004B06EDCB8AED6D1A57F0EA05257008247D6B8FB052D74BF4E2B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D2FC35A62DCE830EF19DD9AE3C5C9289DB83BF3A665F85ED1AF756686E4086DB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CB2448235C13EE5BAD6E5D787EDCDD0FB33A900F2C876E3F0E95A09A298C91B9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;117FD919356FECE90200B92588C935E64EAB94B4D0F6230508DDBB9A30421AD0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42589F940CD73973A0432C8FE6A648246E1CFE95D29DD1DB0201031D6ABC73C7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81BD587B9A6A2B939BA93CED4EDD0E421F0DC7677915C44663246D90CAD8DDEC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;71FCAB62FA17D582C77313363006D4C11F89AE8444A3941B94FA53B7E0600C54<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F3C9EECD1C23BA473F6FA0B5B8051CE3FBADCE2AFA5B98873D7D6B458864ED9A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;82660ABC9AE8833CFC445BDFA1C6F8A63380FD8579CDD46566651DCE457A7F88<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17CDB27C7DE2335C4D8D9473CD3B4AC36C7F30247A575D2972AB9C2E17959195<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;069770E12478A448DBA3ED383F8D6AEB4CCBA4408DD77007DB8AD7B6975C511D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C90CB6AD82B032E15971E9599E2F84C529545DA9BB7EDF418ACDD4E7AD14FA1E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F61A9C68606B5B792FD7F439A1D29F180D281512B7152C2B9916BBD9F3537EEB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3A0B7854A2AFAD6E5B5B2AC438AC8B44DAA8719AE8ED43340302B98F93C5CDA3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2B50B45950AB0EB5C95E5A982465CE076AED6F1C8243715CFEA51096327D29C1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D99DB96E2250767B332EE2F84B68201100463E6F5AA04D492743C74A86B78A49<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;687D0CA57DC5A28A4AA245A33499A33400B487AD149400514668A602514B4504<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05140E945300CD1494B48614514500145149D6802C5A3049D5FDABDA742411E9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;36CAA303CB07F3AF0FCE39F4AF6AF0EDE2DCE8F6AD9FF966063E95C58C8DD267<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6E0E7691B0DC2F26B1F59D563D310DC4A0EC1C2802B42690B1C0FCAAB5FD9417<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;76E23B84F3075033DEBCA5652D763DE9A4E1B98B75E34536A4AF98CBB7200155<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ECFC55A95C205974C708E30840EB531F0825CCC669E63B4118551D47A56F45A7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;476EAA62E4800004D7429C22B9628C153937CD22C5ADCCB6D0466439561F32F7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;526AD3DE465411FA5501F2128C0F3D6AB6F7476539C0E95CDAA7A9D2B9648D27<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BC00F4AA3757D85AA33DC306DA2AA4ECCE40079AEAA7A9E757B6A25C4BE7601E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;84E0D67BE9175657F6EF64B1BAC987CB0CA9F50455BDA430E707D6B5ED56EE59<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DA596254B68D47944B7DE35BCDB8C343970B053AFAEC596952F7497124412405<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5B01B8073D07A0F6AF3BF1DDC06D63CA520796A15947D2BBF6290C5296C2063B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E4C7F0A8AF21D5EF0DFEAD73739E24909CFB54E120E53E67D11DF98545468BA7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1FB4FF00CAFF00914D4E0D4F13ED607DEAB548A73C57A6CF9FDD599DC6911A49<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0AB120F1D2BA281923500018AE0747D445B8DACD5B126AF26CFDDD7335667CA6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;330751D56BA17B581FBCDCBD0D634A9B94D4BF6C6B91F39E6971C1A8D99A528B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A51517D0E62E63D93328AA8DC1AD1BE005D355374DDD3AD7545E87D353F7A9C5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;90E68CD0EA50E18536AC62D1451405C334514502B85145140051451408292968<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3D68012968A28185145140051451400BC62BD2FC29330D22CC83D54FE8C45799<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D75BE0DD48A5C8D3E4E5325909FE13DC561888F340DA849465A9E94830C1D87C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B8AA979A9DBD9C4F24CE3E5E80D5933C696649EA3818EFED589259DAB4A669AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BED0EC72119B2A077FAD7930A7796BB1EC3C42514D907F69EA97B189AC2093CB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CFDF66C2D5798EAD69BA537B68CC17715590127E95A53E9D0DF5A1845A158BA8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;48DB031DF155FF00E11CD1EDACE357D38071CEF2CCCCDCF4C66B7F6492B931C6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4A73515A5CA5178BD9D561B940B203F7877AEAACD45CA161DC03546C74CB26C1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8ECE28D57A10BCFEB5B2EAB6D100981C56155A6D58EA49ADCCA92D49B8C0E82A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACF1ED7C1AD1120DACD9E6B1EE25FDE6339C56B047255D88E46C727A1341F19E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;98B6A04B1B90870AAA3A9155A7973C03CD7117CBE6EA06DE3FBA871F8D75C69A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9AF7BA1C50AB2849A8ABDCDCD67C54FA9DB3C5027916EE71B4757FAD724C0AB1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;079C54F76712796BF7507155B35D14A0A0B423175A53972CB742D00E0D2507AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6A721655B6E08AD1B5BB006D6AC989BB54D51257DC5528C6AC6CCDC4DA4EE46E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6966BFF2531C13588259138524531E42C72C49A8F66AE71AC07BDEF3D092590C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D2173DCD33383D6A3F300A89A424D6963D14D45590F99FCC7CFA547473453D8C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DBB8514514C028A28A00314519A2800A5A4A5A004EF4518A2800A28A2800A28A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2800A314F68DD40DC8403D0E29B83E868127712AE699706D751866CE36BF3F4A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A74AA79A5257562A3B9ECD66F1DCDB4D71230C5BC65883C8F5AE721F131799F6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2C518E0079115D9B1DF0781FA9F7AC3935A75D05228E6C4B32F972283CE05654<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2C36EDCF27AE7BD72468AB6A68A73E76DEC777178AC9BB8E2BC823687F8A5B64<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3130F7C0E0FE42A6D5B5A586468E294CA8087597A06FF3D2B86926F221DA7393<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D81A759798C8237392C40EBD322B6E48F2DAC67CD37539AFF2FD4F5D88234292<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AE00650C31F4AAD7D72123209073D0564BF882DE0B78E3DE06D40A05503A8FDB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;26DE5BE55AF2A34EEEE7BD52ADB4356594470678E6B1259CE58E4549797CA414<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE0002B2E4B8320C01CE7B56F4E272D7A84CB3169465B6F35CB5C37937D7131C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;677B015D45BC2ED203CE2B90BF99A4B8910E36AB1ED5D54D5E5632E650A5CFD6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA151D8BB963DE928A2BA8F3DBBBBB0A0D14940029E6ACAB656AB53B240E2868<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69D898B81DEA277C9A6924D14581C9B0A28A29882939A5A2800A28A290051451<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9A0028A5A28024FB3C9EAA3FE0428FB3B7F793FEFAA8B8F4A5E3D29E82D497EC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CC7F8E3FFBEA8FB31FF9E917FDF55171E9471E828D0567DC9BECFEB2C5FF007D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;52FD987FCF787FEFAA833EC28C8F414682B3EE4DF661FF003F10FE74E8E042C1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4DC423240C92702ABE7D8519FA503B3EE7450FD8E4D2AED2F2ED85C400794157<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;72B9CE0A83F4ACB596D02142B28F704540C918B70CB382EC7EE62A0C0EE6A126<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AF763BC64972E84D2085982C649FF80F34D78D50677127D3152C1751C6812581<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;245EC71B587E3492CB1B64C6AFF4241A352D256DC6C63B9A9376393D282D11B2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;54119FB479849707F871C0AB7A7D89BE9F6C61B0A33264D29492576545376488<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;132583B727B669E1DD18B2B60FB55CBBB49216C3263B038AA7224A873B723DAA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14933550E502D2B38662C4FD6AC8BE9A34C038F7AA26493A6D23F0AD1B1D12F2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F0891D0C717A9E0914A5CA95E46915293B442069AE1B249DBEB5BD63667233D4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8A92DB4D4815546481D335AB6D09DC0807E5E2B925593D8EB587D931AB079631<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8AF37D493CBD4AE63FEEC8C7F5AF519D4AAFB579EF8A2DCC5ACC8C3A48038AD3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0D2BCCCF154ED45DBA35FE462D149D28CD779E58B499A33462810B4514503129<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;68A2800A28349400B4520A2900B494B45300A28A2900B4514500251451400514<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;514005145140051499A5A04149452D0018A9A0457FBDD3350F3562CE232CA137<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6063343D11518B9492459B6C2DEAAA44CE5CE1557AE7DABBCD23C36FA76966E2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;55DB7329DCEA3F80570FE1EC9F1269EA18FF00AF5E6BDA64D9E512E3200E49AE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0C549AB2EE7A1847CD1B3E8CE2AE20490306552A7AE6B2C69D1337CAC547A1E9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5BD7AAA6572830B9ACEDBF31C1E01AE58C9A3D0749496A4DA5E8D6B6C9F68764<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9272780DDAAE49202FB473EC2ABC36ED731B00E41535663B6F29C6FCF3D09A89<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAEEED9A42165643D20DC43638ABF04231CF029908005485866A398DF9341674<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAED03DC66B96F12E8CF7F65E6C0BBE784F41D597BD74ECFC7F234C4429267A8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EBF8D6B0938DA4B746325169C67B33C7194A920820838208C1069B5EABADF846<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB5706E21C41758E4A8E1FEA2B8AB9F08EA76EEC8C22200CA307E1FE9EF5E9D1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C4C2AE9D7B1E257C1CE96AB58F739FA2A7B8B4B8B562B344C841C72BC7E75057<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;41C8D06696929698098A5A28A4019E2928A5A004A2968C500252D1F851400514<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A534804CD14514005145140814734BD0D2A71934879340C0D3734EFE1C52531<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;094B4945200A5A292980B572C810B2B7F763354EB534AB57BC59A04C6E78F393<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DAA27F09D18557AABE7F8222D19277D66D0DBA9322C8AC3E83A9AF63BD9B65A8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19C67F95709A4D847A3AF999124CC46E6ED8F4AEADF52B7D454794C37281B94D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;638DA328A5268AC155526E29EA67CD92493D2AB6D55E71F5AB738C13DFDAAA36<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7078AF2FA9EEAF84B3A53817E13B38AD8BA836A823D7B56368D03CB7E25C1DA8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;315D3C881E3231DAA27B9B43633233C6314F233DA8F2BCB6231CD0467D454ADC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A7B5861C6EFA54B09C677007342264F39A82F351B5D39732C837F645EB5BC22E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6F962AECE5AB2505CD276469B4D1D9DAB4B72EAA8BD4D717A86A2D7F76D228DB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1E7E55F4F7A82F355B9D5642D29DB129F963ECBFFD7A8546D15EFE0B02A8FBF3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8BF23C0C6631D5F721B7E63DA562BB700AFA1155A6D36CEEC6E961DAFFDE8CE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DAB4307A71C507218035DD2A71968D1C31A925B33125F0EE0E6DAE50FF00B320<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C1FCC5509B47BF84F36E580EE9F30FD2BAC073F8D02400E00C7BD612C3AE8CD1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;55BEE8E1595918ABA953E846292BB798C72F13449227FB4335466D1F4FB8E635<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;688FF790E47E5583A52468A517D4E5A8ADC7F0E3F261B947F40E08FE554E6D16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FE019FB3975F58C86FE5CD434D6E559F433E8A73232315652AC3B11834952212<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8A28A6002968A2900668A28A006D14B46298899172832303279A84F523B574B6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1E1BB8BED2FED36F2C6C3BAE7915CF4F0B413346F8DCA707159C26A4DA4CD271<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;692646BD683C1A3A1A56EB9AB331B4B40E945300A4EB535B5B4D772F970465DB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D874FAD753A668F0D8B2C92ED96E01CE4FDD5FA0F5AA8C5CB614A49191A7E817<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17604B37EE61FF0068619BE82B66DE28ACBC41142831198B60F5AD6CEF9C2E72<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3774AC9D5F36F7F0DE28FF0056FCFD0D6956928D376DCAC2D651C445CB6FF3D0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BB26E1F29E9DAB32E5E5B7984B139523B835AECCB21C83956E54566EA4BB20E0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;679FCABA5B5286A733A6E9CEDD50E83C46EB85BA8F7FFB6BD6AEC1A95ADDCA15<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;265563D98E0D72D2739EB490A6E9463D6BCCA982A52969A1E952C75582B4B53D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;774EB38E0B6C210770CE41CD5CF2D99707A5797A4B347C2CB228F45622A4FB45<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C9FBD73311E9E61AC5E52DBBA97E075ACDE297C1F89E8970D6EAB99E68E2038C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B35615CEBF636C4AC65E77071951C7E75CC17DDD58B1FF006893514EA490C2B5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;86554E2EF37732A99BD49690497E26A5DF88AEE6F922C4287FBBD6B28B17662C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7716EA49CD4441E38A9917D6BD1A54A9D25682B1E655AD52ABBCDDCB088028C0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A915028C9A504145C77A53C0FAD7427A1800C5270C7147518A4638238A603B18<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAD34FB75A53C9028C8CE293D8686B0F973EF4C1D6ACED1B2A039CD444721C0F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;34F8CE0920E31D4D30678A65CB7976D81F798E2935A02EE86CC60BC52B346250<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;38C91CFE75857FA3F921A6B625E31D50FDE5FC3D2B75004451D875A52718209F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A5615292E86B0A8F691C6104751495A9ABD988A41711AE237EA07635975CC6AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;585A28A29084A29714500252834942F5A045BB7BEB9B54658266456EA14E2AA3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;31772CC4927A93571EC664B45B96DBB1CE073CD556183DAA636DD14EFB3194E3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D00EF566D34EBABD6C411337FB47803F1ADBB6F0D451E1AEE6DE7FB91FF535A2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8B7B10E491CEC51493C8238E32EE7F85466B7AC3C34CCC1EF24DAA3FE59A724F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B13DAB6E18E1B5411DBC4B12FB0E4FE34F32610A8EA6B68D257D4CE526F44311<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22B54F22DE311463AE3827EA69CA71518218E0D2F3DAB74AC245885BF7A31D6A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1D422133342DD1C66A454D80396FC28B83BE653EA29BB32396D2B993A6DC3C4C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D67303BE33F2E7B8A9B5224C0307BF4A2FED5DD05CC03F7D1FA77AA73DE7DAED<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D1C0DA470C3DEB9D3E4BC19D0EF35CDD7A95480CB83D6A6B08374C5BB0A87693<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D39FA56969CA163271CFBD5C526C893B227307B1FC69043CF3CD4F9A5FCAB720<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8BC8F420521846C39393529273FE147271C50D137D4A0063029E08C629D2AE24<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2320FB537153B228B30F31E2A451CF355619021C1F5AB7F78645527A09A136E5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F228994714E0769C66918A7761F9D2BD985B413D2A393E5351BDCC319C348B80<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7D6A19750B5C1CCAA2A9C92DC145B34226DC8463B5573D48AA69AD5A46A4124F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1551F5C8B79D8848ACBDAC13DCA709336106E38150DC9DF7112E3A127F2AC83A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EB01848AAB49AB4EF217000352EB446A0CE8CF6E6A39660D204420051C9AE70E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A5747F8F15099E66624B9C9A89574F4B0E34F53A3B8314D6EF0BB2FCC383E86B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9874DAE578C03DBBD3CEF6EAC7F3A6EC27BD73C9DDDCD97C361B453B650100A4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2B0DCD15260514AE04552AC595CD4654D4AAC027AFB50D8D21C7CC60B1AEE624<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E00FF0AE934DF0F4306D96FB0F21E427F08FAFBD33C3DA7048DAFE75CBF4841F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4FEF56CC8495CFA57551A5A5D9CF52A393E5445712342E231854C70146053012<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;463F5A926226B7048CB21C544806DC574F2F6213B6E38F239ED4993F5A7638E9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4670DCD1CA3E61847CDC8A71E9914D6655392C290CF1283971F9D27A021E18E3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9E952B9DC83776FE5541F50B58FF00E5A8CD54BBD6E1640B1B64F7C547B48A2A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CCDA96E23861639AE6263B6779157E56392B51CBA92B0FE2A80DF6EE02F5AC2A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4A32D0D21CCB546B69F7F0C314AF22E48E957AD65F3A1F3B01439E2B95F3B6A1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;001049A986A972B188D18003DAB0A29426E6FA9DF89C4CAAE1E1415928F91D58<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2377514E25075615C735EDDB9E656A6979DFEF48C7F1AE8788EC8F3D533AE6BA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;850E0C8A31EF50C9AA5AA2F32035CAF96EDD58D0213DC54BC448AF648DC9357B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;70F904D577D6101CAA1359C2D89E80FE54F367205C98DB1F4A875A4FA94A9A5D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0B0DAC487EEA5236B376570B81F854505A3CEFB634248ABE9E1FBA6C65719F5A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;875EDBB1F25CCF6D46F241FEB48FA544D2DC39C9918D6EC7E1D933F3CAAB528D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0ED97FD65C0FA566EBAEE57B3673451D8F2C7F3A0455D25E6871456A6589C9C0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AC120A93EA29C66A5B038D88C44290C6054B9A69EB55715866C51DA80A01A713<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;498A02C2E07A518C0A4CD2F6A401499A4EA690F34C033CD1494A2810668A28A0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;009F94D5CD2ED22B9B91E73AAC4BF33E4F5F6AA1B589A50869AB2627768ECE4D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;62CA21B038DB8C003DAA9B6BF6A872B935CCF97CF27347963BD6EF112E8651A2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;91B8DE208D598244C558556FEDE94676478FAD6708C5284153EDE7DCB54D171B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5ABB6E981503EA378FD64A8C003A521E4566EA49F52B95206B89DFEF4AC6984B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9EAEDF9D3B06B5B49D323BE590BB6315129D95D8D46E63843D4D3BCBAB37112C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13BC609214E2A1A13B8EC33653CC255776D201EF5774EB36BB9C201F28393577<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5E11C3147026063AF150EA7BDCA3E5D2E60A0CB1CF6A940F6AD7B6D296EB4FF3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63C7980566491B46EC8C30569A9A6EC1CAD2B8CAB366914B70AB336D4F5AB16D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A6ADC442469428F7A8AF6D12D48D928727D2A5C93F74A49AD4D6F27498802CE1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A93ED7A4C5F7630D5CF67D6AD58D9B5E4AA806077350E9A5AB63E6B9D1D95CC1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;74D88AD801EB8A6EB1770430346157730F4A279E0D2AD362E37E2B99B89DEE26<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3239EA7A56708733BF42A4EC8DCF0F15CC840EB506A7A85CC376D1A485453BC3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AC3CC75CD45AAD9CF2DE931A122AECBDA3B8BEC99EF7D70E3E699BF3A8BCE762<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0B3B1FC6AE268F76E7EEE2A65D0A73F79940FAD6BCF044D9B362DD8C9A3E09CF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15C94871211EE6BAC8F659D818DDD4E05727290657607824D451DD8E5B213348<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69B9A335B9981E2939A3340E940980FD69474A4A067D281A0C514BB49A72A311<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D28B80CC5254BE49F5A0C6A072E28B83443454988BFBE28A0562586312CA89EA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6B4754D323B1811D5C9638E2ACCDA4A5B5CC33447284D59D6D771B742BB867A5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;73BA9792B1AF26873B15BCD37DC8D9BF0A99B4CBB55DC6238ADF225100585561<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00724F15369E18EE0F3ACA3D052759AD43911CDD969B2DE3B04E36F5CD5B4D10<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A31FB44A107AD6BD8AAC77B701462B9FD52E2496F5D598ED07A0A6A529CAC81A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4917E4D0924B72F6F3862076AAB61A535C48C643B510E09AD0F0F13F669B39C5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;58B4952782780101F26A1CE51BC4125B945EE34DB526358BCC2383C56A69B25B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4B0B3DBA0518E4573F269173E715C7CA4F5ADCD3E28ACADD90C8A5C8E4669545<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1E5D1EA52BDF539BBFFF008FC97DCD45146D2B845A96F5B37529539E6AE6932D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AC199666C30AE8BF2C6E676BB372CAD059599C0F9F15CC5F33DCDE90EDC938FA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;55BBCD5A69A62B136D8EB25D99A62C4F3EB514A0D3E6639C95AC8EB74A896CAD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C0698153DB351EA9A725CC7E74206EF6EF5CD191CE06F3F9D5C8756B9863F2D5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B23DEA5D2927CC98D4D5AC5662F1931925483D2984927934B2CAD2B976EA6A32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6B7445C9A28F7CA1338CD74515CDAE9D6BF2329908E6B96DD8A3777CD44E9F36<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E352B166EAE9EE663239279E05401866A32C3D69BBD7D4D68A365644B9176D6F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9ECE4DE87F3ABCDE219C8E157F1AC42EBE94D327B5274E2F561CED1ACDAE5DB7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;47C7D2ABBEA37521E656AA3BCD21634D538F6173B2C3CF2C870CEC7F1A61EBD6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A2C9F5A4C9AA485726E3D69323D6A1CD145844DB93D6832283C0A86800FA5161<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DC94CA33C2D1E79F414C58DC9E14FE5528B599BA4669680AE30CCE69BE63FF00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78D5A4D32E64E4466A65D16E0F5C0A5CF15D4AE593338B13D49A4FC6B6174190<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;72F20029EBA4DB6EDAD7009F4A9F6B01FB3918945741FD8D07F7CD147B688FD8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C8D29EF2359A0B6561C1E4D3AFEEE04BD80BB02A2B9825C36F2C727BE691896C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6E727EA6B2F636EA57B43A5BE16D7843FDAB6AE3A03505ADFD8D8B14525BDEB9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E2541FBD49BA3F5AA5474B362F686EC5ACC70CF3301957E95913C8259DE43C64<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E4541E720E3068F3C761571828EC4B9DF72EDAEA12DA46CA9D1BBD402E24495A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4562AC4E78AAE6534D3213DEA9455C9E6340EA576C306538AAED33B3125D893D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F3D6AB6E27BD2127D69A8241CCC9CBF3C9A4DE3D6A1ED483AD3B0AE5A8D81C9C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D43BC6E39A7C785809F5A87A9FAD2B0363CCBED479A7D29A14FA53C412374427<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F0A7A0B5634C8C7BD34B37AD4EB653BF0236A9974AB96FE0A4E51EE3E5932964<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA9A4FC6B553439DB192054E34023EF38FC2A5D582EA57B3976313F2A41D6BA3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5D0A118DCC4D3D747B653D3353EDE2354A47358A5D8DD81AEA134FB743C20A99<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A081012235E297B75D8AF62CE505BCCDD2363F854A9A7DCBF48DBF2AD496F652<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E56245C0F6AB76776F2A1570010289549257B02A71EE63AE8F74DD571F5A9974<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;394FDE603F1A9279669E560242A01F5A9AC6571218DDB750E73B5D0D4237B158<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E931478F3670054B169568E7E59377D29974035C9593A5496802DC854E952DCA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D7B8ED1BEC4CF6D6168B964C9A6C2F672B00B0E3EA293518DA395588CA62A180<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6F9861462A52F76ED95B3D8B77370B6C00489777D2A18B5094B01222807DA9F7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D03643AF6AA88B24B201B4D118A681B772E5DDD3C6A021EB549279D5F71726AF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5CDB192318E08AAA965296F98607AD10E54825CCD96AE6476B40475359BB141D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB8EEADD8A15683630CAE2A21A282FBC371E94A3351B8DC5B190B1F2579ED455<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D16CC80281C0A2B27345599C66E63DCD264FAD6B47E1FBC71D3153AF86A7FE26<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02BB7DAC175397D9CBB1834574A9E181DDF9AB0BE1D810FCF9352EBC0A54A472<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;54A013DABB14D16D53F833527D86DE36188D6A5E2174435459C688646E887F2A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;912CAE1CFCB19AEC0C48B8C46BCF4E2AFC3A25E3A86F2C22B7238A9789B14A81<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C32E9774DFF2CF152AE8B707AF15DE278675166F982AA7AD58FF008456611AB9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9864F4E6B378B29504702BA1B7F13E29FF00D8A8A3992BBE8BC24EF6AE5E53E6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F6C540DA05B47A73F9EC56519C1353F59BF52BD8A479F35BA893CB19EB5A36D6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16E1325371ADBF0FD85B343732CCAB2488C40CF7F4AE9ECECB4E7456DA88E47D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCD157136D071A4B73CEE3B5CDE6121257B715A122794CAA622A7E95D3590B51<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7574AED1A9CF07154B56BEB7F2A28D76C9283F3103B567ED9C9DAC57228A31CE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8D7718CE3E94D334A172B11C7AD5A9B5459632A903138C74A8E3BE97ECAD198<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30C7A56A45D8914C248F2460D399BD2AAC590307A939C54D8C8CD4B45224CFCB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4CDDCD337107814B93B7A53B00E269AD8604669074A4C0F514EC0654B0CB148D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B412A4F6AB765032E6461D78E6AE092251F3B0A6C9796EBFC6A3F1AB726D5AC4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;72ABDCA57162CD2178FBD3EDAD5A13BDFAD4BFDA96D1E7E704D4126B36D9F5FA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51EFB56B07BAB52CCD66B738C70DEB44166B6E724E4D513AF22FDC4350BEBAED<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D23FCE850A96B0B9E1737F624A9B5C64545E445093E58EB5CFB6B770780A0542<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DAA5D37F1E29AA32075A274B81FC5D2959ADD572A4035CA1BDB86EB29A619646<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EAEC7F1A7F577DC9F6CBB1D3B4F08E4B8FCE9AFA9DBAA85DCA715CC124F5269A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7AD52A0BAB17B77D8E8CEB314636A9CD46DE202170A4D605154A840975A46D1F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;103E7EEB7E74562D14FD8C3B0BDAC8F4B0189E8062919589E48A8519DB927DA8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;392D8C9CD701D629439FBE2936A7F13669361CF346C1F5A6211DE351C7350310<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;727F2A9644C75C5425D57AB0FCE980D2C4738E841AEADBC4166F6514658E4000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8E7FA57246E60070645FCEA36BFB64FF00968B49D3E6DC14AC75CFE2D48C0823<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;89DE0C72D8ACFBEF105CCF0A456CA620A73B8D7332EAF6ABFC79FA54075D857A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2934D50F20755773A86F10EA7F28460AA0739E7359DA9EAB777303195871E958<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4FAF8CFCB1D579B557B9429B028AD2342CEF621D556DCB9A74F32B3F97232AB1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E715A533C891B3991CB63D6B954BC96138538A59350B89461A4C8AD6545B666A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AA4AC6CD89DF2333B67AF535777C28792A2B9313483A3119A432B9EACC7F1A6E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;85FA82AC7546F2046FF58A0546DA9DA807F7809AE5CB13DCD2669FB042F6CFB1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D036AF6E0F19A8DF5B5DB85435879A3354A8C49F6B2355B5A6FE14FCEA16D5E7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3D302A85154A9C7B0BDA4BB969B51B93FC78A61BB9DBAC8D505154A2BB13CCDF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51E6491BABB7E74C249EA68A29D9083B514514C0292968A0028A28A00314B494<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B4005068A4A0028A28A40145145007587C4B6CA0858D8D567F13752909AE768C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D62A8411A7B591B327886E1FA002ABB6B7767A381F4ACEA2AD538F617B49772D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BEA57727598D42D712B7DE918FE351D25528A44F33EE38BB9FE23F9D3727D68A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0D3105148283D6800E95247D0FD2A334F4FB868603692968A004A5CD2514C029<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2968A0028A292900B494B45300A28A2800A28A2800A3B51450020A5A28A0028A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28A0028A28A0028A5A4A004A5A28A0028A28A005A283D68A4014514500145145<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;300A4A5A4A00074A51D292969005397EE1A6549FF2CA86032928A3EB40051451<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4C028A28A0028A28A0028A28A0028A28A004A5A4C52D0014514500252D145001<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;451450014628A5A0029294D250014514500145145002F7A28A3BD20128A0F5A5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A601477A28A4014514530129474A28A004A90FFAA151D3CFFAA1480651452530<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;168A28348028A4A5ED4C04A28A2800A5A28A0028FC683D293BD002D07AD03A51<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4005140E9483AD002D1450280133ED4B4503A5200A28A780280194549B47A548<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;800EC286C695C80231E809A511487A29ABF131C76A7924F159F39AAA4AD733FC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;87FEED156F711453E627911FFFD9}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object PanelTopRight: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 308<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 379<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 427<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel1: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 83<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 377<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Programmed by Richel Bilderbeek'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -19<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel2: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 124<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 377<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'on the 11th July of 2008'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -19<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel3: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 42<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 377<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = '(C) 2008 Richel Bilderbeek'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -19<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel4: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 377<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Histogram Equalizationer'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -24<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = [fsBold, fsItalic]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel5: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 165<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 377<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Licenced under GPL 3.0'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -19<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel6: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 206<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 377<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'http://www.richelbilderbeek.nl'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -19<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end<br/>
+end<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolHistogramEqualizationerVcl/UnitFormHistogramEqualizationerAbout.h" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;HistogramEqualizationer, tool to perform a histogram equalization<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef UnitFormHistogramEqualizationerAboutH<br/>
+#define UnitFormHistogramEqualizationerAboutH<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;Classes.hpp&gt;<br/>
+#include &lt;Controls.hpp&gt;<br/>
+#include &lt;StdCtrls.hpp&gt;<br/>
+#include &lt;Forms.hpp&gt;<br/>
+#include &lt;ComCtrls.hpp&gt;<br/>
+#include &lt;ExtCtrls.hpp&gt;<br/>
+#include &lt;Graphics.hpp&gt;<br/>
+#include &lt;jpeg.hpp&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+class TFormHistogramEqualizationerAbout : public TForm<br/>
+{<br/>
+__published:	// IDE-managed Components<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRichEdit *RichEdit1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTop;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *ImageAbout;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTopRight;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel6;<br/>
+private:	// User declarations<br/>
+public:		// User declarations<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormHistogramEqualizationerAbout(TComponent* Owner);<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+extern PACKAGE TFormHistogramEqualizationerAbout *FormHistogramEqualizationerAbout;<br/>
+//---------------------------------------------------------------------------<br/>
+#endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

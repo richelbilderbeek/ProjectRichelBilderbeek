@@ -7,20 +7,20 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtFilterOperationerMenuDialog;
+  class QtTestConceptMapMenuDialog;
 }
 
 namespace ribi {
 
-class QtFilterOperationerMenuDialog : public QtHideAndShowDialog
+class QtTestConceptMapMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtFilterOperationerMenuDialog(QWidget *parent = 0);
-  QtFilterOperationerMenuDialog(const QtFilterOperationerMenuDialog&) = delete;
-  QtFilterOperationerMenuDialog& operator=(const QtFilterOperationerMenuDialog&) = delete;
-  ~QtFilterOperationerMenuDialog() noexcept;
+  explicit QtTestConceptMapMenuDialog(QWidget *parent = 0);
+  QtTestConceptMapMenuDialog(const QtTestConceptMapMenuDialog&) = delete;
+  QtTestConceptMapMenuDialog& operator=(const QtTestConceptMapMenuDialog&) = delete;
+  ~QtTestConceptMapMenuDialog() noexcept;
 
 private slots:
   void on_button_about_clicked();
@@ -28,7 +28,7 @@ private slots:
   void on_button_start_clicked();
 
 private:
-  Ui::QtFilterOperationerMenuDialog *ui;
+  Ui::QtTestConceptMapMenuDialog *ui;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

@@ -18,6 +18,7 @@ struct Examples;
 struct File;
 struct Node;
 
+
 } //~namespace cmap
 } //~namespace ribi
 

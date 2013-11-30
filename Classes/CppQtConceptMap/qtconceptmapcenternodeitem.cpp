@@ -5,14 +5,14 @@
 #include "qtconceptmapcenternodeitem.h"
 
 #include "conceptmapcenternode.h"
-#include "qtconceptmapconceptitem.h"
+#include "qtconceptitem.h"
 #include "qtconceptmapbrushfactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtPvdbCenterNodeItem::QtPvdbCenterNodeItem(
+ribi::cmap::QtConceptMapCenterNodeItem::QtConceptMapCenterNodeItem(
   const boost::shared_ptr<ribi::cmap::Node> node)
   : QtConceptMapNodeItem(node,CreateConceptItem(node))
 {
@@ -24,14 +24,14 @@ ribi::cmap::QtPvdbCenterNodeItem::QtPvdbCenterNodeItem(
   assert(node);
   assert(this->GetConceptItem());
   this->setFlags(QGraphicsItem::ItemIsFocusable);
-  this->GetConceptItem()->SetMainBrush(QtPvdbBrushFactory::CreateGoldGradientBrush());
+  this->GetConceptItem()->SetMainBrush(QtConceptMapBrushFactory::CreateGoldGradientBrush());
 }
 
-const boost::shared_ptr<ribi::cmap::QtConceptMapItem> ribi::cmap::QtPvdbCenterNodeItem::CreateConceptItem(
+const boost::shared_ptr<ribi::cmap::QtConceptItem> ribi::cmap::QtConceptMapCenterNodeItem::CreateConceptItem(
   const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
-  const boost::shared_ptr<QtConceptMapItem> item(new QtConceptMapDisplayConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(node->GetConcept()));
   assert(item);
   return item;
 }

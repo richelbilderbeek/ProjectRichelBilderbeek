@@ -61,7 +61,7 @@ void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   assert(edge);
-  const boost::shared_ptr<QtConceptMapItem> qtconcept(new QtConceptMapDisplayConceptItem(edge->GetConcept()));
+  const boost::shared_ptr<QtConceptMapDisplayConceptItem> qtconcept(new QtConceptMapDisplayConceptItem(edge->GetConcept()));
   assert(qtconcept);
   QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
@@ -121,7 +121,7 @@ ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapDisplayWidget::AddNod
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<QtConceptMapItem> qtconcept(new QtConceptMapDisplayConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtConceptMapDisplayConceptItem> qtconcept(new QtConceptMapDisplayConceptItem(node->GetConcept()));
   assert(qtconcept);
   QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
   assert(qtnode);

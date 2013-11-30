@@ -11,9 +11,9 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtFilterOperationerMenuDialog::QtFilterOperationerMenuDialog(QWidget *parent) :
+ribi::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtFilterOperationerMenuDialog)
+    ui(new Ui::QtTestConceptMapMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -21,38 +21,38 @@ ribi::QtFilterOperationerMenuDialog::QtFilterOperationerMenuDialog(QWidget *pare
   ui->setupUi(this);
 }
 
-ribi::QtFilterOperationerMenuDialog::~QtFilterOperationerMenuDialog() noexcept
+ribi::QtTestConceptMapMenuDialog::~QtTestConceptMapMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtFilterOperationerMenuDialog::on_button_start_clicked()
+void ribi::QtTestConceptMapMenuDialog::on_button_start_clicked()
 {
-  QtFilterOperationerMainDialog d;
+  QtTestConceptMapMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtFilterOperationerMenuDialog::on_button_about_clicked()
+void ribi::QtTestConceptMapMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(FilterOperationerMenuDialog().GetAbout());
+  QtAboutDialog d(TestConceptMapMenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 
-void ribi::QtFilterOperationerMenuDialog::on_button_quit_clicked()
+void ribi::QtTestConceptMapMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtFilterOperationerMenuDialog::Test() noexcept
+void ribi::QtTestConceptMapMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtFilterOperationerMenuDialog::Test");
-  QtFilterOperationerMainDialog();
-  TRACE("Finished ribi::QtFilterOperationerMenuDialog::Test successfully");
+  TRACE("Starting ribi::QtTestConceptMapMenuDialog::Test");
+  QtTestConceptMapMainDialog();
+  TRACE("Finished ribi::QtTestConceptMapMenuDialog::Test successfully");
 }
 #endif

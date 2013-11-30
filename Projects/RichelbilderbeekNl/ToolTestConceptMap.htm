@@ -1,0 +1,1790 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>TestConceptMap</title>
+  <meta name="description" content="C++ TestConceptMap"/>
+  <meta name="keywords" content="C++ TestConceptMap "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolTestConceptMap.htm">TestConceptMap</a></h1>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./ToolTestConceptMap/ToolTestConceptMapConsole.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/ToolTestConceptMapConsole.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri)<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
+<br/>
+#Specific<br/>
+include(../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/ToolTestConceptMapConsole.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/CppConceptMap/CppConceptMap.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>/<a href="CppXml.htm">CppXml</a>.pri)<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./ToolTestConceptMap/ToolTestConceptMapDesktop.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/ToolTestConceptMapDesktop.pro" border = "1"><tr><td><code>
+include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
+<br/>
+#Libs<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Fparser.pri)<br/>
+<br/>
+#Console<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
+<br/>
+#Qt<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.pri)<br/>
+<br/>
+#Specific for this application<br/>
+#Console<br/>
+include(../../<a href="CppClass.htm">Classes</a>/CppConceptMap/CppConceptMap.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>/<a href="CppXml.htm">CppXml</a>.pri)<br/>
+#Desktop<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRoundedEditRectItem.htm">CppQtRoundedEditRectItem</a>/<a href="CppQtRoundedEditRectItem.htm">CppQtRoundedEditRectItem</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRoundedTextRectItem.htm">CppQtRoundedTextRectItem</a>/<a href="CppQtRoundedTextRectItem.htm">CppQtRoundedTextRectItem</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRoundedRectItem.htm">CppQtRoundedRectItem</a>/<a href="CppQtRoundedRectItem.htm">CppQtRoundedRectItem</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/CppQtConceptMap/CppQtConceptMap.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtKeyboardFriendlyGraphicsView.htm">CppQtKeyboardFriendlyGraphicsView</a>/<a href="CppQtKeyboardFriendlyGraphicsView.htm">CppQtKeyboardFriendlyGraphicsView</a>.pri)<br/>
+include(../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/ToolTestConceptMapConsole.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/ToolTestConceptMapConsole.pri" border = "1"><tr><td><code>
+<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/testconceptmap<a href="CppMain.htm">main</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/testconceptmapmenudialog.cpp<br/>
+<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/Licence.txt<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/testconceptmap<a href="CppMain.htm">main</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/testconceptmapmenudialog.h<br/>
+<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/ToolTestConceptMap.qrc<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/ToolTestConceptMapDesktop.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/ToolTestConceptMapDesktop.pri" border = "1"><tr><td><code>
+include(../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/ToolTestConceptMapConsole.pri)<br/>
+<br/>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapmenudialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmaprate<a href="CppWidget.htm">widget</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapedit<a href="CppWidget.htm">widget</a>dialog.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapdisplay<a href="CppWidget.htm">widget</a>dialog.h<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapmenudialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmaprate<a href="CppWidget.htm">widget</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapedit<a href="CppWidget.htm">widget</a>dialog.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapdisplay<a href="CppWidget.htm">widget</a>dialog.cpp<br/>
+<br/>
+<a href="CppFORMS.htm">FORMS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapmenudialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmaprate<a href="CppWidget.htm">widget</a>dialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapedit<a href="CppWidget.htm">widget</a>dialog.ui \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/ToolTestConceptMap/qttestconceptmapdisplay<a href="CppWidget.htm">widget</a>dialog.ui<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "testconceptmapmenudialog.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> * <a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; args { <a href="CppRibi.htm">ribi</a>::MenuDialog::<a href="CppConvert.htm">Convert</a>Arguments(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>) };<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog().Execute(args);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qtmain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qtmain.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "qtfilteroperationermaindialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapdisplaywidgetdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapdisplaywidgetdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTPVDBTESTCONCEPTMAPDISPLAYWIDGETDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTPVDBTESTCONCEPTMAPDISPLAYWIDGETDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapfwd.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui { <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog; }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> cmap {<br/>
+<br/>
+<a href="CppComment.htm">///</a>Tests all <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>s<br/>
+<a href="CppComment.htm">///</a>especially the connection between the <a href="CppPointer.htm">pointer</a> and its displayal items:<br/>
+<a href="CppComment.htm">///</a>If something via the <a href="CppPointer.htm">pointer</a> is changed, <b><a href="CppThis.htm">this</a></b> must be displayed directly<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_test_modify_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The to-be-tested concept map<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMapDisplay<a href="CppWidget.htm">Widget</a>&gt; m_concept_map;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPVDBTESTCONCEPTMAPDISPLAYWIDGETDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapdisplaywidgetdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapdisplaywidgetdialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmapdisplay<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapcompetency.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapconcept.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexample.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexample.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexamples.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexamples.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnodefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnode.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtbrushfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapdisplay<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapdisplayconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapdisplayconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qteditconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapnodeitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtrateconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtpvdbtestconceptmapdisplay<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog),<br/>
+&nbsp;&nbsp;m_concept_map(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ConceptMapDisplay<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;)<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;layout());<br/>
+&nbsp;&nbsp;ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;layout()-&gt;addWidget(m_concept_map.get());<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::~<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::Test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::Test started");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog d;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>100; <a href="CppOperatorIncrement.htm">++</a>i) d.on_button_test_modify_clicked();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::Test finished successfully");<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapDisplay<a href="CppWidget.htm">Widget</a>Dialog::on_button_test_modify_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v <a href="CppOperatorAssign.htm">=</a> m_concept_map-&gt;GetScene()-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * <b><a href="CppConst.htm">const</a></b> item)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQt.htm">Qt</a>NodeItem* <b><a href="CppConst.htm">const</a></b> qtitem <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>NodeItem*&gt;(item))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!qtitem-&gt;GetConcept()-&gt;GetName().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept()-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>qtitem-&gt;GetConcept()-&gt;SetRatingComplexity(rating_complexity);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>qtitem-&gt;GetConcept()-&gt;SetRatingConcreteness(-1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 4));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>qtitem-&gt;GetConcept()-&gt;SetRatingSpecificity(-1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 4));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> qtitem-&gt;GetConcept()-&gt;GetExamples()-&gt;Get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;cmap::Example&gt;&amp; example)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;cmap::Competency&gt; w <a href="CppOperatorAssign.htm">=</a> cmap::GetAllCompetencies();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example-&gt;SetCompetency(w[ <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> w.size() ]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example-&gt;SetCompetency(cmap::Competency::un<a href="CppInitialize.htm">initialize</a>d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;m_concept_map-&gt;GetScene()-&gt;update();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapeditwidgetdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapeditwidgetdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTPVDBTESTCONCEPTMAPEDITWIDGETDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTPVDBTESTCONCEPTMAPEDITWIDGETDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapfwd.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui { <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog; }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> cmap {<br/>
+<br/>
+<a href="CppComment.htm">///</a>Tests all <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>s<br/>
+<a href="CppComment.htm">///</a>especially the connection between the <a href="CppPointer.htm">pointer</a> and its displayal items:<br/>
+<a href="CppComment.htm">///</a>If something via the <a href="CppPointer.htm">pointer</a> is changed, <b><a href="CppThis.htm">this</a></b> must be displayed directly<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The to-be-tested concept map<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMapEdit<a href="CppWidget.htm">Widget</a>&gt; m_concept_map;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoSomethingRandom();<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPVDBTESTCONCEPTMAPEDITWIDGETDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapeditwidgetdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapeditwidgetdialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmapedit<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapconcept.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexample.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnodefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnode.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtbrushfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexamplesfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapdisplayconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtedgeitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qteditconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapnodeitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtrateconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapedit<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtpvdbtestconceptmapedit<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog),<br/>
+&nbsp;&nbsp;m_concept_map(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ConceptMapEdit<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;)<br/>
+<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;layout());<br/>
+&nbsp;&nbsp;ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;layout()-&gt;addWidget(m_concept_map.get());<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::~<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> event-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::AltModifier)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DoSomethingRandom();<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::Test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::Test started");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog d;<br/>
+&nbsp;&nbsp;d.DoSomethingRandom();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_concept_map.get() <a href="CppOperatorEqual.htm">==</a> d.m_display_node-&gt;GetNode().get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_concept_map.get() <a href="CppOperatorEqual.htm">==</a> d.m_edit_node-&gt;GetNode().get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_concept_map.get() <a href="CppOperatorEqual.htm">==</a> d.m_rate_node-&gt;GetNode().get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_concept_map-&gt;GetConcept().get() <a href="CppOperatorEqual.htm">==</a> d.m_display_node-&gt;GetNode()-&gt;GetConcept().get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_concept_map-&gt;GetConcept().get() <a href="CppOperatorEqual.htm">==</a> d.m_edit_node-&gt;GetNode()-&gt;GetConcept().get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_concept_map-&gt;GetConcept().get() <a href="CppOperatorEqual.htm">==</a> d.m_rate_node-&gt;GetNode()-&gt;GetConcept().get());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test resizing due to text being changed<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> d.m_concept_map-&gt;GetConcept()-&gt;GetName();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;boundingRect().width() <a href="CppOperatorEqual.htm">==</a> d.m_edit_node-&gt;boundingRect().width());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;boundingRect().width() <a href="CppOperatorEqual.htm">==</a> d.m_rate_node-&gt;boundingRect().width());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> w <a href="CppOperatorAssign.htm">=</a> d.m_display_node-&gt;boundingRect().width();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d.m_concept_map-&gt;GetConcept()-&gt;SetName(s <a href="CppOperatorPlus.htm">+</a> "*");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;boundingRect().width() &gt; w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_edit_node-&gt;boundingRect().width() &gt; w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_rate_node-&gt;boundingRect().width() &gt; w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test resizing due to shorter text being set<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d.m_concept_map-&gt;GetConcept()-&gt;SetName("1234567890");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> w <a href="CppOperatorAssign.htm">=</a> d.m_display_node-&gt;boundingRect().width();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d.m_concept_map-&gt;GetConcept()-&gt;SetName("123456789");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;boundingRect().width() &lt; w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test brushes being changed when ratings are given<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> d.m_concept_map-&gt;GetConcept();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;SetRatingComplexity(-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;SetRatingConcreteness(-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;SetRatingSpecificity(-1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>RateConceptItem item(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_edit_node-&gt;brush()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateGrayGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;brush() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateRedGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_rate_node-&gt;brush()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateRedGradientBrush());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;SetRatingComplexity(0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;SetRatingConcreteness(1);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_edit_node-&gt;brush()&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateGrayGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;brush()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateYellowGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_rate_node-&gt;brush()&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateYellowGradientBrush());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;concept-&gt;SetRatingSpecificity(2);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_edit_node-&gt;brush()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateGrayGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_display_node-&gt;brush() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateGreenGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.m_rate_node-&gt;brush()&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateGreenGradientBrush());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::Test finished successfully");<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapEdit<a href="CppWidget.htm">Widget</a>Dialog::DoSomethingRandom()<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v <a href="CppOperatorAssign.htm">=</a> m_concept_map-&gt;GetScene()-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * <b><a href="CppConst.htm">const</a></b> item)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQt.htm">Qt</a>NodeItem* <b><a href="CppConst.htm">const</a></b> qtitem <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>NodeItem*&gt;(item))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!qtitem-&gt;GetConcept()-&gt;GetName().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept()-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;SetName(qtitem-&gt;GetConcept()-&gt;GetName() <a href="CppOperatorPlus.htm">+</a> "N");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Examples&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> cmap::ExamplesFactory::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;GetConcept()-&gt;SetExamples(v [ <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> v.size() ] );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQt.htm">Qt</a>EdgeItem* <b><a href="CppConst.htm">const</a></b> qtitem <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>EdgeItem*&gt;(item))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!qtitem-&gt;GetConcept()-&gt;GetName().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept()-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;SetName(qtitem-&gt;GetConcept()-&gt;GetName() <a href="CppOperatorPlus.htm">+</a> "E");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Examples&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> cmap::ExamplesFactory::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;GetConcept()-&gt;SetExamples(v [ <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> v.size() ] );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;m_concept_map-&gt;GetScene()-&gt;update();<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapmenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapmenudialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTFILTEROPERATIONERMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTFILTEROPERATIONERMENUDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog;<br/>
+}<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked();<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked();<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTFILTEROPERATIONERMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapmenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapmenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmapmenudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "testconceptmapmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmapdisplay<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmapedit<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmaprate<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qttestconceptmapmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::on_button_start_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog d;<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::on_button_about_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog().GetAbout());<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::on_button_quit_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;close();<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapratewidgetdialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapratewidgetdialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> QTPVDBTESTCONCEPTMAPRATEWIDGETDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> QTPVDBTESTCONCEPTMAPRATEWIDGETDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapfwd.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> Ui { <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog; }<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> cmap {<br/>
+<br/>
+<a href="CppComment.htm">///</a>Tests all <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>s<br/>
+<a href="CppComment.htm">///</a>especially the connection between the <a href="CppPointer.htm">pointer</a> and its displayal items:<br/>
+<a href="CppComment.htm">///</a>If something via the <a href="CppPointer.htm">pointer</a> is changed, <b><a href="CppThis.htm">this</a></b> must be displayed directly<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
+&nbsp;&nbsp;<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<b><a href="CppProtected.htm">protected</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *);<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The to-be-tested concept map<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMapRate<a href="CppWidget.htm">Widget</a>&gt; m_concept_map;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoSomethingRandom();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> cmap<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTPVDBTESTCONCEPTMAPRATEWIDGETDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/qttestconceptmapratewidgetdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/qttestconceptmapratewidgetdialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qttestconceptmaprate<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapcompetency.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapconcept.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexample.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexample.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexamples.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapexamples.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnodefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapnode.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtbrushfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmaprate<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapdisplayconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapdisplayconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qteditconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtconceptmapnodeitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtrateconceptitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qtpvdbtestconceptmaprate<a href="CppWidget.htm">widget</a>dialog.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog),<br/>
+&nbsp;&nbsp;m_concept_map(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ConceptMapRate<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;)<br/>
+<br/>
+{<br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;layout());<br/>
+&nbsp;&nbsp;ui-&gt;<a href="CppWidget.htm">widget</a>-&gt;layout()-&gt;addWidget(m_concept_map.get());<br/>
+}<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::~<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::DoSomethingRandom()<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQList.htm">QList</a>&lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a> *&gt; v <a href="CppOperatorAssign.htm">=</a> m_concept_map-&gt;GetScene()-&gt;items();<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * <b><a href="CppConst.htm">const</a></b> item)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppQt.htm">Qt</a>NodeItem* <b><a href="CppConst.htm">const</a></b> qtitem <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;<a href="CppQt.htm">Qt</a>NodeItem*&gt;(item))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!qtitem-&gt;GetConcept()-&gt;GetName().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtitem-&gt;GetConcept()-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> rating_complexity <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(rating_complexity <a href="CppOperatorGreaterEqual.htm">&gt;=</a> <a href="CppOperatorMinus.htm">-</a>1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(rating_complexity <a href="CppOperatorLessEqual.htm">&lt;=</a>&nbsp;&nbsp;2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;GetConcept()-&gt;SetRatingComplexity(rating_complexity);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;GetConcept()-&gt;SetRatingConcreteness(-1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 4));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;GetConcept()-&gt;SetRatingSpecificity(-1 <a href="CppOperatorPlus.htm">+</a> (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> 4));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> qtitem-&gt;GetConcept()-&gt;GetExamples()-&gt;Get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;cmap::Example&gt;&amp; example)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( (<a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> 4) <a href="CppOperatorModulus.htm">%</a> 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;cmap::Competency&gt; w <a href="CppOperatorAssign.htm">=</a> cmap::GetAllCompetencies();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example-&gt;SetCompetency(w[ <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> w.size() ]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;example-&gt;SetCompetency(cmap::Competency::un<a href="CppInitialize.htm">initialize</a>d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtitem-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;m_concept_map-&gt;GetScene()-&gt;update();<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *e)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::AltModifier <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> e-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DoSomethingRandom();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::Test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::Test started");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Doing random stuff<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>100; <a href="CppOperatorIncrement.htm">++</a>i) d.DoSomethingRandom();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>TestConceptMapRate<a href="CppWidget.htm">Widget</a>Dialog::Test finished successfully");<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/test_qtpvdbconceptmapdialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/test_qtpvdbconceptmapdialog.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconceptmapdialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppThreadH.htm">thread</a>&gt;<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "pvdbcenternode.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbcenternodefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbclusterfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbcluster.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconcept.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbedgefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbedge.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbexamplefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbnodefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbnode.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconcepteditdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconceptmapitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconceptmap<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbedgeitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbnodeitem.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMapDialog::Test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; &gt; Edges;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; &gt; Nodes;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If <b><a href="CppThis.htm">this</a></b> dialog is fed with a file with only a focal <a href="CppQuestion.htm">question</a>, it will create a one-node concept map<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> "TESTQUESTION";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map(pvdb::ConceptMapFactory::Create(<a href="CppQuestion.htm">question</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;Get<a href="CppQuestion.htm">Question</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap()-&gt;GetNodes().size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If <b><a href="CppThis.htm">this</a></b> dialog is fed with a file with a cluster and without a concept map (that is, one node (the focal <a href="CppQuestion.htm">question</a>) only_<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>it will create a concept map from the cluster<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> "TESTQUESTION";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;Get<a href="CppQuestion.htm">Question</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_a(pvdb::ConceptFactory::Create("Concept A"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Cluster&gt; cluster(pvdb::ClusterFactory::Create( { concept_a } ));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map(pvdb::ConceptMapFactory::CreateFromCluster(<a href="CppQuestion.htm">question</a>,cluster));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetCluster(cluster);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>file-&gt;CreateConceptMapFromCluster();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> cluster-&gt;Get().size() <a href="CppOperatorPlus.htm">+</a> 1); <a href="CppComment.htm">//</a>+1 because of focus <a href="CppQuestion.htm">question</a><br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> "TESTQUESTION";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;Get<a href="CppQuestion.htm">Question</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppQuestion.htm">question</a>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Cluster&gt; cluster <a href="CppOperatorAssign.htm">=</a> pvdb::ClusterFactory::GetTest( {0,1,2} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetCluster(cluster);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cluster-&gt;Get().size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map(pvdb::ConceptMapFactory::CreateFromCluster(<a href="CppQuestion.htm">question</a>,cluster));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> cluster-&gt;Get().size() <a href="CppOperatorPlus.htm">+</a> 1); <a href="CppComment.htm">//</a>+1 because of focus <a href="CppQuestion.htm">question</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap()-&gt;GetEdges().size() <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If <b><a href="CppThis.htm">this</a></b> dialog is fed with a file with a cluster and a concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>it will read the concept map<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> "TESTQUESTION";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::Cluster&gt; cluster <a href="CppOperatorAssign.htm">=</a> pvdb::ClusterFactory::GetTest( { 0,1,2 } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetCluster(cluster);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_d(pvdb::ConceptFactory::Create("Concept F"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_e(pvdb::ConceptFactory::GetTests().at(3));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_f(pvdb::ConceptFactory::GetTests().at(4));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_a(pvdb::CenterNodeFactory::Create(<a href="CppQuestion.htm">question</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_b(pvdb::NodeFactory::GetTests().at(3));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_c(pvdb::NodeFactory::GetTests().at(4));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Nodes nodes <a href="CppOperatorAssign.htm">=</a> { node_a, node_b, node_c };<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),<b><a href="CppFalse.htm">false</a></b>,nodes.at(1),<b><a href="CppTrue.htm">true</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),<b><a href="CppFalse.htm">false</a></b>,nodes.at(2),<b><a href="CppTrue.htm">true</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),<b><a href="CppFalse.htm">false</a></b>,nodes.at(0),<b><a href="CppTrue.htm">true</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nodes,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ edge_a, edge_b, edge_c }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(concept_map);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap() <a href="CppOperatorEqual.htm">==</a> concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;Get<a href="CppQuestion.htm">Question</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppQuestion.htm">question</a>);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap() <a href="CppOperatorEqual.htm">==</a> concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetNodes().size() ); <a href="CppComment.htm">//</a>+0 because focus <a href="CppQuestion.htm">question</a> is node[0]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap()-&gt;GetEdges().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetEdges().size());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If <b><a href="CppThis.htm">this</a></b> dialog is fed with a file without a cluster, but with concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>it will read the concept map<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> "TESTQUESTION";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_d(pvdb::ConceptFactory::GetTests().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_e(pvdb::ConceptFactory::GetTests().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_f(pvdb::ConceptFactory::GetTests().at(2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_a(pvdb::CenterNodeFactory::Create(<a href="CppQuestion.htm">question</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_b(pvdb::NodeFactory::GetTests().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_c(pvdb::NodeFactory::GetTests().at(1));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Nodes nodes <a href="CppOperatorAssign.htm">=</a> { node_a, node_b, node_c };<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),<b><a href="CppFalse.htm">false</a></b>,nodes.at(1),<b><a href="CppTrue.htm">true</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),<b><a href="CppFalse.htm">false</a></b>,nodes.at(2),<b><a href="CppTrue.htm">true</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),<b><a href="CppFalse.htm">false</a></b>,nodes.at(0),<b><a href="CppTrue.htm">true</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nodes,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ edge_a, edge_b, edge_c }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(concept_map);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;Get<a href="CppQuestion.htm">Question</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap() <a href="CppOperatorEqual.htm">==</a> concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map_out<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(concept_map_out-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetNodes().size() ); <a href="CppComment.htm">//</a>+0 because focus <a href="CppQuestion.htm">question</a> is node[0]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(concept_map_out-&gt;GetEdges().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetEdges().size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(concept_map,concept_map_out));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If <b><a href="CppThis.htm">this</a></b> dialog is fed with a file without a cluster, but with concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>it will read the concept map and alter the node positions. If the dialog is<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>fed with <b><a href="CppThis.htm">this</a></b> second concept map, it will keep the nodes in the same place<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppQuestion.htm">question</a> <a href="CppOperatorAssign.htm">=</a> "TESTQUESTION";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Set<a href="CppQuestion.htm">Question</a>(<a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;Get<a href="CppQuestion.htm">Question</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppQuestion.htm">question</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_d(pvdb::ConceptFactory::GetTests().at(0));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_e(pvdb::ConceptFactory::GetTests().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Concept&gt; concept_f(pvdb::ConceptFactory::GetTests().at(2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_a(pvdb::CenterNodeFactory::Create(<a href="CppQuestion.htm">question</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_b(pvdb::NodeFactory::GetTests().at(1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Node&gt; node_c(pvdb::NodeFactory::GetTests().at(1));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Nodes nodes <a href="CppOperatorAssign.htm">=</a> { node_a, node_b, node_c };<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),<b><a href="CppFalse.htm">false</a></b>,nodes.at(1),<b><a href="CppTrue.htm">true</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),<b><a href="CppFalse.htm">false</a></b>,nodes.at(2),<b><a href="CppTrue.htm">true</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::Edge&gt; edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),<b><a href="CppFalse.htm">false</a></b>,nodes.at(0),<b><a href="CppTrue.htm">true</a></b>));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nodes,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ edge_a, edge_b, edge_c }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the dialog position the nodes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map <a href="CppOperatorEqual.htm">==</a> d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map_out<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> d.Get<a href="CppWidget.htm">Widget</a>()-&gt;GetConceptMap();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(concept_map_out-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetNodes().size() ); <a href="CppComment.htm">//</a>+0 because focus <a href="CppQuestion.htm">question</a> is node[0]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(concept_map_out-&gt;GetEdges().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetEdges().size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(concept_map,concept_map_out));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(concept_map <a href="CppOperatorNotEqual.htm">!=</a> concept_map_out<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppQt.htm">Qt</a>ConceptMapDialog repositions the nodes");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Save the repositioned nodes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;Save(pvdb::File::GetTestFileName());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Load the repositioned nodes<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file_again <a href="CppOperatorAssign.htm">=</a> pvdb::File::Load(pvdb::File::GetTestFileName());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(*file-&gt;GetConceptMap(),*file_again-&gt;GetConceptMap()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsEqual(*file-&gt;GetConceptMap(),*file_again-&gt;GetConceptMap())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Save and load must yield identical concept maps");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file_again-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file_again-&gt;GetConceptMap()-&gt;GetNodes().empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;pvdb::CenterNode&gt;(file_again-&gt;GetConceptMap()-&gt;GetNodes()[0])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "The first node in a file's ConceptMap must be a CenterNode");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let another dialog keep the node positions in the same place<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d_again(file_again);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsEqual(*file-&gt;GetConceptMap(),*file_again-&gt;GetConceptMap())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppQt.htm">Qt</a>PvdbConceptMapDialog must not reposition concept maps");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(pvdb::File::GetTestFileName().c_str());<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> pvdb::File::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt;&amp; file)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> had_cluster <a href="CppOperatorAssign.htm">=</a> file-&gt;GetCluster().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> had_concept_map <a href="CppOperatorAssign.htm">=</a> file-&gt;GetConceptMap().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>PvdbConceptMapDialog&gt; dialog(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMapDialog(file));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!had_cluster <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !had_concept_map)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap()); <a href="CppComment.htm">//</a>Created<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( had_cluster <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> !had_concept_map)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap()); <a href="CppComment.htm">//</a>Created from concept map<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!had_cluster <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;had_concept_map)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( had_cluster <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a>&nbsp;&nbsp;had_concept_map)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetCluster());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>When putting in each of the heteromorphous concept maps, shuffling it, saving it, loading<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>it, the resulting concept map must be homomorphous with the input map<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Put a concept maps in dialog, shuffle it, saving it<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file(<b><a href="CppNew.htm">new</a></b> pvdb::File);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file-&gt;SetConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbConceptMapDialog d(file);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(file-&gt;GetConceptMap());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.Shuffle();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.Save(pvdb::File::GetTestFileName());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>loading it, the resulting concept map must be homomorphous with the input map<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;pvdb::File&gt; file <a href="CppOperatorAssign.htm">=</a> pvdb::File::Load(pvdb::File::GetTestFileName());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(*file-&gt;GetConceptMap(),*v[i]));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(pvdb::File::GetTestFileName().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>If the relation is moved, the <b><a href="CppNew.htm">new</a></b> locations must be saved<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Done with Shuffle above<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMapDialog::Test completed successfully");<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;t.detach();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/test_qtpvdbconceptmapeditwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/test_qtpvdbconceptmapeditwidget.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconceptmapedit<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppThreadH.htm">thread</a>&gt;<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMapEdit<a href="CppWidget.htm">Widget</a>::Test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test cloning<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppBaseClass.htm">base class</a> (after having tested cloning of derived <b><a href="CppClass.htm">class</a></b>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!concept_map) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map-&gt;IsValid());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>::Test(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Deletion of nodes<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_concept_maps <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>n_concept_maps; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pvdb::ConceptMapFactory::GetAllTests()[i]) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_nodes <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests()[i]-&gt;GetNodes().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_nodes; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests()[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!concept_map) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map-&gt;GetNodes().size() <a href="CppOperatorEqual.htm">==</a> n_nodes);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j &lt; concept_map-&gt;GetNodes().size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;This_t&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbNodeItem* <b><a href="CppConst.htm">const</a></b> qtnode <a href="CppOperatorAssign.htm">=</a> <a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppQt.htm">Qt</a>Nodes()[j];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtnode);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;DeleteNode(qtnode);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() <a href="CppOperatorEqual.htm">==</a> n_nodes <a href="CppOperatorMinus.htm">-</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Node must really be gone");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Deletion of edges<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_concept_maps <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i <a href="CppOperatorAssign.htm">=</a> 0; i<a href="CppOperatorNotEqual.htm">!=</a>n_concept_maps; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pvdb::ConceptMapFactory::GetAllTests()[i]) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_edges <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests()[i]-&gt;GetEdges().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_edges; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests()[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!concept_map) <b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map-&gt;GetEdges().size() <a href="CppOperatorEqual.htm">==</a> n_edges);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j &lt; concept_map-&gt;GetEdges().size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;This_t&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbEdgeItem* <b><a href="CppConst.htm">const</a></b> qtedge <a href="CppOperatorAssign.htm">=</a> <a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppQt.htm">Qt</a>Edges()[j];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWidget.htm">widget</a>-&gt;DeleteEdge(qtedge);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppQt.htm">Qt</a>Edges().size() <a href="CppOperatorEqual.htm">==</a> n_edges <a href="CppOperatorMinus.htm">-</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Edge must really be gone");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMapEdit<a href="CppWidget.htm">Widget</a>::Test finished successfully");<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;t.detach();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/test_qtpvdbconceptmapratewidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/test_qtpvdbconceptmapratewidget.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconceptmaprate<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppThreadH.htm">thread</a>&gt;<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMapRate<a href="CppWidget.htm">Widget</a>::Test()<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppBaseClass.htm">base class</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>::Test(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; concept_map: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppQGraphicsItem.htm">QGraphicsItem</a> * <b><a href="CppConst.htm">const</a></b> item: <a href="CppWidget.htm">widget</a>-&gt;items())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;item-&gt;setFocus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMapRate<a href="CppWidget.htm">Widget</a>::Test finished successfully");<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;t.detach();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/test_qtpvdbconceptmapwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/test_qtpvdbconceptmapwidget.cpp" border = "1"><tr><td><code>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+<a href="CppInclude.htm">#include</a> "qtpvdbconceptmap<a href="CppWidget.htm">widget</a>.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "pvdbconceptmapfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>::Test(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>&gt;&amp; <a href="CppWidget.htm">widget</a>)<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Started <a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>::Test");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a>&nbsp;&nbsp;I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> simple homomorphous concept maps<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppWidget.htm">widget</a>-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>w-&gt;ReadFromConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; n <a href="CppOperatorAssign.htm">=</a> w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pvdb::ConceptMap::HasSameContent(*v[i],*n))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("GetSimpleHomomorphousTestConceptMaps");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(*v[i],*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> complex homomorphous concept maps<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppWidget.htm">widget</a>-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>w-&gt;ReadFromConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; n <a href="CppOperatorAssign.htm">=</a> w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pvdb::ConceptMap::HasSameContent(*v[i],*n))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("GetComplexHomomorphousTestConceptMaps");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(*v[i],*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> heteromorphous concept maps<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; i<a href="CppOperatorIncrement.htm">++</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppWidget.htm">widget</a>-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>w-&gt;ReadFromConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; n <a href="CppOperatorAssign.htm">=</a> w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pvdb::ConceptMap::HasSameContent(*v[i],*n))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("GetHeteromorphousTestConceptMaps");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(*v[i],*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> brute-force concept map<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; &gt; maps <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::pvdb::ConceptMapFactory::GetAllTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(maps.begin(),maps.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<a href="CppWidget.htm">widget</a>](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt;&amp; m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> w <a href="CppOperatorAssign.htm">=</a> <a href="CppWidget.htm">widget</a>-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>w-&gt;ReadFromConceptMap(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::pvdb::ConceptMap&gt; n <a href="CppOperatorAssign.htm">=</a> w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pvdb::ConceptMap::HasSameContent(*m,*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::pvdb::<a href="CppQt.htm">Qt</a>PvdbConceptMap<a href="CppWidget.htm">Widget</a>::Test finished successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/testconceptmapmenudialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/testconceptmapmenudialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> TESTCONCEPTMAPMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> TESTCONCEPTMAPMENUDIALOG_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "menudialog.h"<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<a href="CppComment.htm">///</a>GUI independent TestConceptMap menu dialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> TestConceptMapMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+{<br/>
+&nbsp;&nbsp;TestConceptMapMenuDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTCONCEPTMAPMENUDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestConceptMap/testconceptmapmenudialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestConceptMap/testconceptmapmenudialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "testconceptmapmenudialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::TestConceptMapMenuDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"TestConceptMap",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"tests the ConceptMap <b><a href="CppClass.htm">classes</a></b>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"on the 29th of November 2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>TestConceptMap.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("ProFile <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtCreatorProFile.htm">QtCreatorProFile</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("Test image from http://sipi.usc.edu");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::Help(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileDescription(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::ProgramTestConceptMap<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-11-29: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::TestConceptMapMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

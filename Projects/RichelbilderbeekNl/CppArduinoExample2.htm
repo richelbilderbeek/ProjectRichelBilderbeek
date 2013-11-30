@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>ArduinoExample2</title>
   <meta name="description" content="C++ ArduinoExample2"/>
-  <meta name="keywords" content="C++ ArduinoExample2 code snippet"/>
+  <meta name="keywords" content="C++ ArduinoExample2 "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -20,14 +20,51 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppArduinoExample2.htm">ArduinoExample2</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppArduinoExample2-->
+<h2>./CppArduinoExample2/CppArduinoExample2.ino</h2>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Technical facts</h2>
-<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppArduinoExample2/CppArduinoExample2.ino" border = "1"><tr><td><code>
+#include "Arduino.h"<br/>
+#include "LiquidCrystal.h"<br/>
+<br/>
+const int ms_pin_rs =&nbsp;&nbsp;6 ; //Arduino pin that connects to R/S pin of LCD display<br/>
+const int ms_pin_e&nbsp;&nbsp;=&nbsp;&nbsp;7; //Arduino pin that connects to E&nbsp;&nbsp; pin of LCD display<br/>
+const int ms_pin_d4 =&nbsp;&nbsp;8; //Arduino pin that connects to D4&nbsp;&nbsp;pin of LCD display<br/>
+const int ms_pin_d5 =&nbsp;&nbsp;A5; //Arduino pin that connects to D5&nbsp;&nbsp;pin of LCD display<br/>
+const int ms_pin_d6 =&nbsp;&nbsp;A2; //Arduino pin that connects to D6&nbsp;&nbsp;pin of LCD display<br/>
+const int ms_pin_d7 =&nbsp;&nbsp;A3; //Arduino pin that connects to D7&nbsp;&nbsp;pin of LCD display<br/>
+<br/>
+const int ms_pin_v0 =&nbsp;&nbsp;5; //Arduino pin that connects to V0&nbsp;&nbsp;pin of LCD display<br/>
+<br/>
+const int ms_pin_thermistor = A0;<br/>
+LiquidCrystal lcd(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ms_pin_rs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ms_pin_e,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ms_pin_d4,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ms_pin_d5,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ms_pin_d6,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ms_pin_d7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+void setup()<br/>
+{<br/>
+&nbsp;&nbsp;pinMode(ms_pin_thermistor,INPUT);<br/>
+&nbsp;&nbsp;lcd.begin(20,2);<br/>
+}<br/>
+<br/>
+void loop()<br/>
+{<br/>
+&nbsp;&nbsp;lcd.clear();<br/>
+&nbsp;&nbsp;lcd.setCursor(0,0);<br/>
+&nbsp;&nbsp;const int thermistor = analogRead(ms_pin_thermistor);<br/>
+&nbsp;&nbsp;lcd.print(thermistor);<br/>
+&nbsp;&nbsp;lcd.setCursor(0,1);<br/>
+&nbsp;&nbsp;const int time = millis();<br/>
+&nbsp;&nbsp;lcd.print(time);<br/>
+&nbsp;&nbsp;delay(100);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>

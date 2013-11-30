@@ -2,13 +2,13 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapconceptmapitem.h"
+#include "qtconceptmapitem.h"
 
 #include <QCursor>
 
 #include "conceptmapconcept.h"
 #include "conceptmapexamples.h"
-#include "qtconceptmapconceptitem.h"
+#include "qtconceptitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -11,7 +11,7 @@ namespace ribi {
 
 namespace cmap {
 
-///The QtConceptMapEdgeItem is a QtPvdbEditConceptItem that
+///The QtConceptMapEdgeItem is a QtConceptMapEditConceptItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
 struct QtConceptMapEdgeItem : public QtConceptMapItem
@@ -19,7 +19,7 @@ struct QtConceptMapEdgeItem : public QtConceptMapItem
 
   QtConceptMapEdgeItem(
     const boost::shared_ptr<ribi::cmap::Edge> edge,
-    const boost::shared_ptr<QtConceptMapItem> concept_item,
+    const boost::shared_ptr<QtConceptItem> concept_item,
     QtConceptMapNodeItem* const from,
     QtConceptMapNodeItem* const to);
   QtConceptMapEdgeItem(const QtConceptMapEdgeItem&) = delete;
@@ -37,8 +37,8 @@ struct QtConceptMapEdgeItem : public QtConceptMapItem
   const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
   const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
 
-  const boost::shared_ptr<const QtConceptMapItem> GetConceptItem() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtConceptMapItem> GetConceptItem()       final { return m_concept_item; }
+  const boost::shared_ptr<const QtConceptItem> GetConceptItem() const final { return m_concept_item; }
+  const boost::shared_ptr<      QtConceptItem> GetConceptItem()       final { return m_concept_item; }
 
   const boost::shared_ptr<const cmap::Edge>  GetEdge() const { return m_edge; }
   const boost::shared_ptr<      cmap::Edge>& GetEdge()       { return m_edge; }
@@ -86,7 +86,7 @@ private:
   boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
 
   ///The Strategy for displaying the Concept
-  const boost::shared_ptr<QtConceptMapItem> m_concept_item;
+  const boost::shared_ptr<QtConceptItem> m_concept_item;
 
   const QPen m_contour_pen;
   const QPen m_focus_pen;

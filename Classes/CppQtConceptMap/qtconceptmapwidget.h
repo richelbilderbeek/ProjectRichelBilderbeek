@@ -66,7 +66,7 @@ protected:
   virtual void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge) = 0;
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  ///It returns (the derived class of) the QtPvdbNodeConcept added to the scene
+  ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
   virtual QtConceptMapNodeItem * AddNode(const boost::shared_ptr<ribi::cmap::Node> node) = 0;
 
   ///Initialize the widget with the loaded concept map

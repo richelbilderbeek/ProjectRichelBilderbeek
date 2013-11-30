@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>FilterOperationer</string>
+   <string>TestConceptMap</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

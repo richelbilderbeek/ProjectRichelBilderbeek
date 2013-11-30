@@ -43,4 +43,3 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmaphelper.cpp \
     ../../Classes/CppConceptMap/conceptmaptestconceptmap.cpp \
     ../../Classes/CppConceptMap/conceptmaptestconcept.cpp
-

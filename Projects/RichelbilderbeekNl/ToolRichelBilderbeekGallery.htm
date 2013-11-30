@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>RichelBilderbeekGallery</title>
   <meta name="description" content="C++ RichelBilderbeekGallery"/>
-  <meta name="keywords" content="C++ RichelBilderbeekGallery code snippet"/>
+  <meta name="keywords" content="C++ RichelBilderbeekGallery "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -19,12 +19,6 @@
 <p>&nbsp;</p>
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="ToolRichelBilderbeekGallery.htm">RichelBilderbeekGallery</a></h1>
-<p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name ToolRichelBilderbeekGallery-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
@@ -43,10 +37,12 @@
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
   <li><img src="PicGui.png" alt="GUI"/> <a href="CppGuiApplication.htm">GUI application</a></li>
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
   <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
@@ -65,10 +61,10 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolRichelBilderbeekGalleryConsole.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryConsole.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="ToolRichelBilderbeekGalleryConsole.pro" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryConsole.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <br/>
@@ -170,135 +166,34 @@ win32 {<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolRichelBilderbeekGalleryDesktop.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="ToolRichelBilderbeekGalleryDesktop.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
-greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
-<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<table summary="./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pro" border = "1"><tr><td><code>
+include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
 <br/>
-<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a> \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Projects.htm">Projects</a>/RichelbilderbeekNl<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
 <br/>
-<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qt<a href="CppMain.htm">main</a>.cpp\<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;qtrichelbilderbeekgallerymenudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>/qtrichelbilderbeekgallerydialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;richelbilderbeekgallerymenudialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Projects.htm">Projects</a>/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>version.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>techinfotype.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>techinfo.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>replacementspro.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>replacementscpp.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>replacements.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>pagetype.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>info.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>header.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>footer.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>contenttype.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>content.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>zipscript.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>type.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>types.cpp<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
 <br/>
-<a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= qtrichelbilderbeekgallerymenudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>/qtrichelbilderbeekgallerydialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;richelbilderbeekgallerymenudialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">about</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Projects.htm">Projects</a>/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>version.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>techinfotype.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>techinfo.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>replacements.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>pagetype.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>info.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>header.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>footer.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>dialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>createemptypagedialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>contenttype.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>content.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">codetohtml</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/qtcreator<a href="CppProFile.htm">profile</a>zipscript.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">qrcfile</a>.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>type.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>types.h<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.pri)<br/>
 <br/>
-<a href="CppFORMS.htm">FORMS</a>&nbsp;&nbsp;&nbsp;&nbsp;+= qtrichelbilderbeekgallerymenudialog.ui \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>/qtrichelbilderbeekgallerydialog.ui \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.ui<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>/<a href="CppQtRichelBilderbeekGalleryDialog.htm">CppQtRichelBilderbeekGalleryDialog</a>.pri)<br/>
 <br/>
-<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Projects.htm">Projects</a>/RichelbilderbeekNl/qtrichelbilderbeekgalleryresources.qrc<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>/<a href="ToolCodeToHtml.htm">CppCodeToHtml</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">CppQrcFile</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>.pri)<br/>
+include(../../<a href="Projects.htm">Projects</a>/RichelbilderbeekNl/RichelbilderbeekNlDesktop.pri)<br/>
+include(../../<a href="Tools.htm">Tools</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a>Desktop.pri)<br/>
 <br/>
-OTHER_FILES += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/Licence.txt \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/Licence.txt \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/Licence.txt \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/Licence.txt<br/>
-<br/>
-#<br/>
-#<br/>
-# Type of compile<br/>
-#<br/>
-#<br/>
-<br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
-&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
-}<br/>
-<br/>
-#<br/>
-#<br/>
-# Platform specific<br/>
-#<br/>
-#<br/>
-<br/>
-#<br/>
-#<br/>
-# Compiler flags<br/>
-#<br/>
-#<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
-<br/>
-unix {<br/>
-&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
-}<br/>
-<br/>
-#<br/>
-#<br/>
-# Boost<br/>
-#<br/>
-#<br/>
-<br/>
-win32 {<br/>
-&nbsp;&nbsp;<a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
-}<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -306,10 +201,10 @@ win32 {<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ToolRichelBilderbeekGalleryWebsite.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryWebsite.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="ToolRichelBilderbeekGalleryWebsite.pro" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryWebsite.pro" border = "1"><tr><td><code>
 QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
@@ -395,10 +290,10 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>ToolRichelBilderbeekGalleryConsole.pri</h2>
+<h2>./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryConsole.pri</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="ToolRichelBilderbeekGalleryConsole.pri" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryConsole.pri" border = "1"><tr><td><code>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a><br/>
 <br/>
@@ -408,7 +303,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a>/richelbilderbeekgallerymenudialog.h<br/>
 <br/>
-OTHER_FILES += \<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Tools.htm">Tools</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a>/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -417,10 +312,10 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>ToolRichelBilderbeekGalleryDesktop.pri</h2>
+<h2>./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pri</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="ToolRichelBilderbeekGalleryDesktop.pri" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/ToolRichelBilderbeekGalleryDesktop.pri" border = "1"><tr><td><code>
 include(../../<a href="Tools.htm">Tools</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a>/<a href="ToolRichelBilderbeekGallery.htm">ToolRichelBilderbeekGallery</a>Console.pri)<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a> += \<br/>
@@ -438,10 +333,10 @@ include(../../<a href="Tools.htm">Tools</a>/<a href="ToolRichelBilderbeekGallery
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./ToolRichelBilderbeekGallery/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -561,10 +456,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>qtmain.cpp</h2>
+<h2>./ToolRichelBilderbeekGallery/qtmain.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="qtmain.cpp" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -597,7 +492,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::RichelBilderbeek::GalleryMenuDialog::Test();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Test();<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
@@ -609,10 +504,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>qtrichelbilderbeekgallerymenudialog.h</h2>
+<h2>./ToolRichelBilderbeekGallery/qtrichelbilderbeekgallerymenudialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="qtrichelbilderbeekgallerymenudialog.h" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/qtrichelbilderbeekgallerymenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -644,7 +539,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQt.htm">Qt</a>HideAndShowDialog<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
@@ -670,7 +565,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Returns the path of a filename<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/From http://www.richelbilderbeek.nl/Cpp<a href="CppGetPath.htm">GetPath</a>.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -683,10 +578,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>qtrichelbilderbeekgallerymenudialog.cpp</h2>
+<h2>./ToolRichelBilderbeekGallery/qtrichelbilderbeekgallerymenudialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="qtrichelbilderbeekgallerymenudialog.cpp" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/qtrichelbilderbeekgallerymenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -711,6 +606,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgallerymenudialog.h"<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
@@ -721,20 +617,22 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgallerydialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgallerymenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppQtRichelBilderbeekGalleryDialog.htm">qtrichelbilderbeekgallerydialog</a>.h"<br/>
 <a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgalleryresources.h"<br/>
 <a href="CppInclude.htm">#include</a> "richelbilderbeekgallerymenudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtrichelbilderbeekgallerymenudialog.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>HideAndShowDialog(parent),<br/>
-&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;GalleryMenuDialog::Test();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>GalleryMenuDialog::Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
@@ -742,16 +640,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::~<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::<a href="CppGetPath.htm">GetPath</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> filename.rfind("\\",filename.size());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> filename.rfind("/",filename.size());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppMax.htm">std::max</a>(a,b);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(filename.size()));<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> filename.substr(0,i);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* e)<br/>
@@ -762,14 +650,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog::GetAbout();<br/>
-&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog().GetAbout();<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryDialog <a href="CppVersion.htm">version</a>: "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQt.htm">Qt</a>RichelBilderbeekResources <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQt.htm">Qt</a>Resources::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
-&nbsp;&nbsp;d.exec();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::on_button_quit_clicked()<br/>
@@ -783,39 +671,37 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<br/>
-<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>RichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog::CreateHtmlClassGallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog().CreateHtmlClassGallery();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("CppClassGallery.htm");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog::CreateHtmlGameGallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog().CreateHtmlGameGallery();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("GameGallery.htm");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog::CreateHtmlProjectGallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog().CreateHtmlProjectGallery();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("ProjectGallery.htm");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog::CreateHtml<a href="Tools.htm">Tool</a>Gallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog().CreateHtml<a href="Tools.htm">Tool</a>Gallery();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("<a href="Tools.htm">Tool</a>Gallery.htm");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog::CreateHtmlStatus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> GalleryMenuDialog().CreateHtmlStatus();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f("CppRichelBilderbeekStatus.htm");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(f,"\n"));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppQMessageBox.htm">QMessageBox</a> box;<br/>
 &nbsp;&nbsp;box.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;box.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppGetPath.htm">GetPath</a>( qApp-&gt;arguments()[0].toStdString() );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>( qApp-&gt;arguments()[0].toStdString() );<br/>
 &nbsp;&nbsp;box.setWindowTitle( <b><a href="CppThis.htm">this</a></b>-&gt;windowTitle() );<br/>
 &nbsp;&nbsp;box.setText( (<a href="CppString.htm">std::string</a>("HTML pages have been created in folder ") <a href="CppOperatorPlus.htm">+</a> s).c_str());<br/>
 &nbsp;&nbsp;box.exec();<br/>
@@ -827,10 +713,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>richelbilderbeekgallerymenudialog.h</h2>
+<h2>./ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="richelbilderbeekgallerymenudialog.h" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -862,29 +748,34 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> GalleryMenuDialog<br/>
 {<br/>
+&nbsp;&nbsp;GalleryMenuDialog();<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the page CppClassGallery.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlClassGallery();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlClassGallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the page GameGallery.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlGameGallery();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlGameGallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the page ProjectGallery.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlProjectGallery();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlProjectGallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the page CppRichelBilderbeekStatus.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlStatus();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtmlStatus() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the page <a href="Tools.htm">Tool</a>Gallery.htm<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtml<a href="Tools.htm">Tool</a>Gallery();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; CreateHtml<a href="Tools.htm">Tool</a>Gallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Converts</a> a program to a gallery item<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Example:<br/>
@@ -896,7 +787,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/&lt;p&gt;&amp;nbsp;&lt;/p&gt;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; ToHtml(<b><a href="CppConst.htm">const</a></b> Program&amp; p);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; ToHtml(<b><a href="CppConst.htm">const</a></b> Program&amp; p) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -909,10 +800,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>richelbilderbeekgallerymenudialog.cpp</h2>
+<h2>./ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="richelbilderbeekgallerymenudialog.cpp" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/richelbilderbeekgallerymenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -943,24 +834,26 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>footer.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>header.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>pagetype.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>file.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtrichelbilderbeekgalleryresources.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRichelBilderbeekProgram.htm">richelbilderbeekprogram</a>status.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlClassGallery()<br/>
+<a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::GalleryMenuDialog()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlClassGallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> c2h::PageType page_type <a href="CppOperatorAssign.htm">=</a> c2h::PageType::cpp;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Header&gt; h {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <b><a href="CppConst.htm">const</a></b> c2h::Header(page_type,"CppClassGallery.htm")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> h-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> c2h::Header::ToHtml(c2h::HeaderType::cpp,"CppClassGallery.htm");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;p&gt;My &lt;a href=\"CppClassGallery.htm\"&gt;<b><a href="CppClass.htm">class</a></b> gallery&lt;/a&gt; shows the &lt;a href=\"CppClass.htm\"&gt;<b><a href="CppClass.htm">classes</a></b>&lt;/a&gt; I've made.");<br/>
@@ -975,43 +868,33 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; ps <a href="CppOperatorAssign.htm">=</a> Program::GetAllPrograms();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(ps.begin(),ps.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[&amp;v](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt;&amp; p)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; p: ps)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;ProgramClass*&gt;(p.get()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;ProgramClass*&gt;(p.get()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;/div&gt;");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> footer<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Footer&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> c2h::Footer(page_type)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> f-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlGameGallery()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlGameGallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> c2h::PageType page_type <a href="CppOperatorAssign.htm">=</a> c2h::PageType::cpp;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Header&gt; h {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <b><a href="CppConst.htm">const</a></b> c2h::Header(c2h::PageType::cpp,"GameGallery.htm")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> h-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> c2h::Header::ToHtml(c2h::HeaderType::cpp,"GameGallery.htm");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;v.push_back("&lt;p&gt;My &lt;a href=\"GameGallery.htm\"&gt;game gallery&lt;/a&gt; shows the &lt;a href=\"<a href="Games.htm">Games</a>.htm\"&gt;games&lt;/a&gt; I've made.");<br/>
 &nbsp;&nbsp;v.push_back("I also have a &lt;a href=\"CppClassGallery.htm\"&gt;<b><a href="CppClass.htm">class</a></b> gallery&lt;/a&gt;, &lt;a href=\"ProjectGallery.htm\"&gt;project gallery&lt;/a&gt; and &lt;a href=\"<a href="Tools.htm">Tool</a>Gallery.htm\"&gt;<a href="Tools.htm">tool</a> gallery&lt;/a&gt;.&lt;/p&gt;");<br/>
@@ -1025,44 +908,33 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; ps <a href="CppOperatorAssign.htm">=</a> Program::GetAllPrograms();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(ps.begin(),ps.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[&amp;v](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt;&amp; p)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; p: ps)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;ProgramGame*&gt;(p.get()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;ProgramGame*&gt;(p.get()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;/div&gt;");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> footer<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Footer&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> c2h::Footer(page_type)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> f-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlProjectGallery()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlProjectGallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> c2h::PageType page_type <a href="CppOperatorAssign.htm">=</a> c2h::PageType::cpp;<br/>
-<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Header&gt; h {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <b><a href="CppConst.htm">const</a></b> c2h::Header(c2h::PageType::cpp,"ProjectGallery.htm")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> h-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> c2h::Header::ToHtml(c2h::HeaderType::cpp,"ProjectGallery.htm");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;p&gt;My &lt;a href=\"ProjectGallery.htm\"&gt;project gallery&lt;/a&gt; shows the &lt;a href=\"<a href="Projects.htm">Projects</a>.htm\"&gt;projects&lt;/a&gt; I've worked on.");<br/>
@@ -1077,45 +949,34 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; ps <a href="CppOperatorAssign.htm">=</a> Program::GetAllPrograms();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(ps.begin(),ps.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[&amp;v](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt;&amp; p)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt;&amp; p: ps)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;ProgramProject*&gt;(p.get()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;ProgramProject*&gt;(p.get()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;/div&gt;");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> footer<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Footer&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> c2h::Footer(page_type)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> f-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlStatus()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtmlStatus() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> c2h::PageType page_type <a href="CppOperatorAssign.htm">=</a> c2h::PageType::cpp;<br/>
-<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Header&gt; h {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <b><a href="CppConst.htm">const</a></b> c2h::Header(c2h::PageType::cpp,"CppRichelBilderbeekStatus.htm")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> h-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> c2h::Header::ToHtml(c2h::HeaderType::cpp,"CppRichelBilderbeekStatus.htm");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Resources r;<br/>
@@ -1170,29 +1031,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> footer<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Footer&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> c2h::Footer(page_type)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> f-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtml<a href="Tools.htm">Tool</a>Gallery()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::CreateHtml<a href="Tools.htm">Tool</a>Gallery() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> c2h::PageType page_type <a href="CppOperatorAssign.htm">=</a> c2h::PageType::cpp;<br/>
-<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> header<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Header&gt; h {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <b><a href="CppConst.htm">const</a></b> c2h::Header(c2h::PageType::cpp,"<a href="Tools.htm">Tool</a>Gallery.htm")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> h-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v <a href="CppOperatorAssign.htm">=</a> c2h::Header::ToHtml(c2h::HeaderType::cpp,"<a href="Tools.htm">Tool</a>Gallery.htm");<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;p&gt;My &lt;a href=\"<a href="Tools.htm">Tool</a>Gallery.htm\"&gt;<a href="Tools.htm">tool</a> gallery&lt;/a&gt; shows the &lt;a href=\"<a href="Tools.htm">Tools</a>.htm\"&gt;<a href="Tools.htm">tools</a>&lt;/a&gt; I've made.");<br/>
@@ -1207,33 +1059,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; ps <a href="CppOperatorAssign.htm">=</a> Program::GetAllPrograms();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(ps.begin(),ps.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[&amp;v](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt;&amp; p)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; p: ps)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Program<a href="Tools.htm">Tool</a>*&gt;(p.get()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppDynamic_cast.htm">dynamic_cast</a></b>&lt;Program<a href="Tools.htm">Tool</a>*&gt;(p.get()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> HTML<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> ToHtml(*p.get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;v.push_back("&lt;/div&gt;");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> footer<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Footer&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> c2h::Footer(page_type)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w <a href="CppOperatorAssign.htm">=</a> f-&gt;ToHtml();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w { c2h::Footer::ToHtml(c2h::FooterType::cpp) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::GetAbout() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
@@ -1249,19 +1096,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-02-20: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Test()<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1270,15 +1118,16 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Just <b><a href="CppDo.htm">do</a></b> everything<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CreateHtmlClassGallery();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CreateHtmlGameGallery();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CreateHtmlProjectGallery();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CreateHtmlStatus();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CreateHtml<a href="Tools.htm">Tool</a>Gallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GalleryMenuDialog().CreateHtmlClassGallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GalleryMenuDialog().CreateHtmlGameGallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GalleryMenuDialog().CreateHtmlProjectGallery();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GalleryMenuDialog().CreateHtmlStatus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GalleryMenuDialog().CreateHtml<a href="Tools.htm">Tool</a>Gallery();<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::ToHtml(<b><a href="CppConst.htm">const</a></b> Program&amp; p)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::GalleryMenuDialog::ToHtml(<b><a href="CppConst.htm">const</a></b> Program&amp; p) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;{<br/>
@@ -1336,10 +1185,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtmain.cpp</h2>
+<h2>./ToolRichelBilderbeekGallery/wtmain.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtmain.cpp" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/wtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -1399,10 +1248,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtrichelbilderbeekgallerymenudialog.h</h2>
+<h2>./ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtrichelbilderbeekgallerymenudialog.h" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -1446,10 +1295,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>wtrichelbilderbeekgallerymenudialog.cpp</h2>
+<h2>./ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="wtrichelbilderbeekgallerymenudialog.cpp" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/wtrichelbilderbeekgallerymenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
 RichelBilderbeekGallery, gallery of Richel Bilderbeek's work<br/>
@@ -1595,10 +1444,10 @@ WtRichelBilderbeekGalleryMenuDialog::WtRichelBilderbeekGalleryMenuDialog()<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>zip.sh</h2>
+<h2>./ToolRichelBilderbeekGallery/zip.sh</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="zip.sh" border = "1"><tr><td><code>
+<table summary="./ToolRichelBilderbeekGallery/zip.sh" border = "1"><tr><td><code>
 #!/bin/sh<br/>
 <br/>
 echo "Removing user information"<br/>

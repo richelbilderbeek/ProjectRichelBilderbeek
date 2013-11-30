@@ -8,7 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "qtroundededitrectitem.h"
-#include "conceptmapfwd.h"
+#include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {

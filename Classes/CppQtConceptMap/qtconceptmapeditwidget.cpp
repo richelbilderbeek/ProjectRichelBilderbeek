@@ -21,14 +21,14 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapcenternodeitem.h"
-#include "qtconcepteditdialog.h"
+#include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapitem.h"
-#include "qtedgeitem.h"
-#include "qtexamplesitem.h"
-#include "qtitemhighlighter.h"
-#include "qtnewarrow.h"
+#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapexamplesitem.h"
+#include "qtconceptmapitemhighlighter.h"
+#include "qtconceptmapnewarrow.h"
 #include "qtconceptmapnodeitem.h"
-#include "qttoolsitem.h"
+#include "qtconceptmaptoolsitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
@@ -57,8 +57,8 @@ ribi::cmap::QtConceptMapEditWidget::QtConceptMapEditWidget(
   : QtConceptMapWidget(concept_map,parent),
     m_signal_conceptmapitem_requests_edit{},
     m_arrow(nullptr),
-    m_highlighter(new QtPvdbItemHighlighter(0)),
-    m_tools(new QtPvdbToolsItem)
+    m_highlighter(new QtConceptMapItemHighlighter(0)),
+    m_tools(new QtConceptMapToolsItem)
 {
   #ifndef NDEBUG
   Test();
@@ -96,7 +96,7 @@ ribi::cmap::QtConceptMapEditWidget::~QtConceptMapEditWidget() noexcept
 void ribi::cmap::QtConceptMapEditWidget::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
-  const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
+  const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
   QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
   assert(from);
@@ -155,8 +155,8 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt
   assert(qt_to);
   assert(qt_from != qt_to);
   assert(qt_from->GetNode() != qt_to->GetNode());
-  assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_to  ) && "Cannot select a ToolsItem");
-  assert(!dynamic_cast<const QtPvdbToolsItem*>(qt_from) && "Cannot select a ToolsItem");
+  assert(!dynamic_cast<const QtConceptMapToolsItem*>(qt_to  ) && "Cannot select a ToolsItem");
+  assert(!dynamic_cast<const QtConceptMapToolsItem*>(qt_from) && "Cannot select a ToolsItem");
   //Does this edge already exists? If yes, modify it
   {
     const std::vector<QtConceptMapEdgeItem*> edges = Collect<QtConceptMapEdgeItem>(scene());
@@ -203,7 +203,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt
       head_arrow));
 
   //Step 1: Create an Edge concept
-  const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(edge->GetConcept()));
+  const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
 
   QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(edge,qtconcept,qt_from,qt_to);
@@ -245,7 +245,7 @@ ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapEditWidget::AddNode(c
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<QtPvdbEditConceptItem> qtconcept(new QtPvdbEditConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(node->GetConcept()));
   assert(node);
   QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
 
@@ -320,7 +320,7 @@ void ribi::cmap::QtConceptMapEditWidget::CleanMe()
   //Add the tools item
   {
     assert(!m_tools);
-    m_tools = new QtPvdbToolsItem;
+    m_tools = new QtConceptMapToolsItem;
     m_tools->m_signal_clicked.connect(
       boost::bind(
         &ribi::cmap::QtConceptMapEditWidget::OnToolsClicked,
@@ -594,7 +594,7 @@ void ribi::cmap::QtConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
   {
     if (m_highlighter->GetItem() && m_arrow->GetFrom() != m_highlighter->GetItem())
     {
-      assert(!dynamic_cast<QtPvdbToolsItem*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
+      assert(!dynamic_cast<QtConceptMapToolsItem*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
       AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
     }
     this->scene()->removeItem(m_arrow);
@@ -627,7 +627,7 @@ void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptM
 
   {
     QtScopedDisable<QtConceptMapWidget> disable(this);
-    QtPvdbConceptEditDialog d(item->GetConcept());
+    QtConceptMapConceptEditDialog d(item->GetConcept());
     d.exec();
   }
   this->show();
@@ -652,7 +652,7 @@ void ribi::cmap::QtConceptMapEditWidget::OnToolsClicked()
   const QPointF cursor_pos_approx(
     m_tools->GetBuddyItem()->pos().x(),
     m_tools->GetBuddyItem()->pos().y() - 32.0);
-  m_arrow = new QtPvdbNewArrow(
+  m_arrow = new QtConceptMapNewArrow(
     m_tools->GetBuddyItem(),cursor_pos_approx);
   assert(!m_arrow->scene());
   this->scene()->addItem(m_arrow);

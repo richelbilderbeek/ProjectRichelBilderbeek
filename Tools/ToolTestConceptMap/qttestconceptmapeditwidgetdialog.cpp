@@ -18,7 +18,7 @@
 #include "qtconceptmapitem.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapdisplayconceptitem.h"
-#include "qtedgeitem.h"
+#include "qtconceptmapedgeitem.h"
 #include "qteditconceptitem.h"
 #include "qtconceptmapnodeitem.h"
 #include "qtrateconceptitem.h"

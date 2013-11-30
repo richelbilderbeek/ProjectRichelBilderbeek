@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>GameReversiConsoleVcl</title>
   <meta name="description" content="C++ GameReversiConsoleVcl"/>
-  <meta name="keywords" content="C++ GameReversiConsoleVcl code snippet"/>
+  <meta name="keywords" content="C++ GameReversiConsoleVcl "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -20,27 +20,207 @@
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="GameReversiConsoleVcl.htm">GameReversiConsoleVcl</a></h1>
 <p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name GameReversiConsoleVcl-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Technical facts</h2>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>UnitReversi.h</h2>
+<h2>./GameReversiConsoleVcl/Licence.txt</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="UnitReversi.h" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Reversi, a simple board game<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) 2007&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<table summary="./GameReversiConsoleVcl/Licence.txt" border = "1"><tr><td><code>
+GNU GENERAL PUBLIC LICENSE<br/>
+<br/>
+Version 3, 29 June 2007<br/>
+<br/>
+Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;<br/>
+<br/>
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.<br/>
+Preamble<br/>
+<br/>
+The GNU General Public License is a free, copyleft license for software and other kinds of works.<br/>
+<br/>
+The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.<br/>
+<br/>
+When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.<br/>
+<br/>
+To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.<br/>
+<br/>
+For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.<br/>
+<br/>
+Developers that use the GNU GPL protect your rights with two steps: (1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.<br/>
+<br/>
+For the developers' and authors' protection, the GPL clearly explains that there is no warranty for this free software. For both users' and authors' sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.<br/>
+<br/>
+Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users' freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.<br/>
+<br/>
+Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.<br/>
+<br/>
+The precise terms and conditions for copying, distribution and modification follow.<br/>
+TERMS AND CONDITIONS<br/>
+0. Definitions.<br/>
+<br/>
+“This License” refers to version 3 of the GNU General Public License.<br/>
+<br/>
+“Copyright” also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.<br/>
+<br/>
+“The Program” refers to any copyrightable work licensed under this License. Each licensee is addressed as “you”. “Licensees” and “recipients” may be individuals or organizations.<br/>
+<br/>
+To “modify” a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a “modified version” of the earlier work or a work “based on” the earlier work.<br/>
+<br/>
+A “covered work” means either the unmodified Program or a work based on the Program.<br/>
+<br/>
+To “propagate” a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.<br/>
+<br/>
+To “convey” a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.<br/>
+<br/>
+An interactive user interface displays “Appropriate Legal Notices” to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.<br/>
+1. Source Code.<br/>
+<br/>
+The “source code” for a work means the preferred form of the work for making modifications to it. “Object code” means any non-source form of a work.<br/>
+<br/>
+A “Standard Interface” means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.<br/>
+<br/>
+The “System Libraries” of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A “Major Component”, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.<br/>
+<br/>
+The “Corresponding Source” for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work's System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.<br/>
+<br/>
+The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.<br/>
+<br/>
+The Corresponding Source for a work in source code form is that same work.<br/>
+2. Basic Permissions.<br/>
+<br/>
+All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.<br/>
+<br/>
+You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.<br/>
+<br/>
+Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.<br/>
+3. Protecting Users' Legal Rights From Anti-Circumvention Law.<br/>
+<br/>
+No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.<br/>
+<br/>
+When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work's users, your or third parties' legal rights to forbid circumvention of technological measures.<br/>
+4. Conveying Verbatim Copies.<br/>
+<br/>
+You may convey verbatim copies of the Program's source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.<br/>
+<br/>
+You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.<br/>
+5. Conveying Modified Source Versions.<br/>
+<br/>
+You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) The work must carry prominent notices stating that you modified it, and giving a relevant date.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to “keep intact all notices”.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.<br/>
+<br/>
+A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an “aggregate” if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation's users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.<br/>
+6. Conveying Non-Source Forms.<br/>
+<br/>
+You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.<br/>
+<br/>
+A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.<br/>
+<br/>
+A “User Product” is either (1) a “consumer product”, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, “normally used” refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.<br/>
+<br/>
+“Installation Information” for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.<br/>
+<br/>
+If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).<br/>
+<br/>
+The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.<br/>
+<br/>
+Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.<br/>
+7. Additional Terms.<br/>
+<br/>
+“Additional permissions” are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.<br/>
+<br/>
+When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.<br/>
+<br/>
+Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) Limiting the use for publicity purposes of names of licensors or authors of the material; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.<br/>
+<br/>
+All other non-permissive additional terms are considered “further restrictions” within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.<br/>
+<br/>
+If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.<br/>
+<br/>
+Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.<br/>
+8. Termination.<br/>
+<br/>
+You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).<br/>
+<br/>
+However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.<br/>
+<br/>
+Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.<br/>
+<br/>
+Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.<br/>
+9. Acceptance Not Required for Having Copies.<br/>
+<br/>
+You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.<br/>
+10. Automatic Licensing of Downstream Recipients.<br/>
+<br/>
+Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.<br/>
+<br/>
+An “entity transaction” is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party's predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.<br/>
+<br/>
+You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.<br/>
+11. Patents.<br/>
+<br/>
+A “contributor” is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor's “contributor version”.<br/>
+<br/>
+A contributor's “essential patent claims” are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, “control” includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.<br/>
+<br/>
+Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor's essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.<br/>
+<br/>
+In the following three paragraphs, a “patent license” is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To “grant” such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.<br/>
+<br/>
+If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. “Knowingly relying” means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient's use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.<br/>
+<br/>
+If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.<br/>
+<br/>
+A patent license is “discriminatory” if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.<br/>
+<br/>
+Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.<br/>
+12. No Surrender of Others' Freedom.<br/>
+<br/>
+If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.<br/>
+13. Use with the GNU Affero General Public License.<br/>
+<br/>
+Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.<br/>
+14. Revised Versions of this License.<br/>
+<br/>
+The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.<br/>
+<br/>
+Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License “or any later version” applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.<br/>
+<br/>
+If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy's public statement of acceptance of a version permanently authorizes you to choose that version for the Program.<br/>
+<br/>
+Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.<br/>
+15. Disclaimer of Warranty.<br/>
+<br/>
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.<br/>
+16. Limitation of Liability.<br/>
+<br/>
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.<br/>
+17. Interpretation of Sections 15 and 16.<br/>
+<br/>
+If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.<br/>
+<br/>
+END OF TERMS AND CONDITIONS<br/>
+How to Apply These Terms to Your New Programs<br/>
+<br/>
+If you develop a new program, and you want it to be of the greatest possible use to the public, the best way to achieve this is to make it free software which everyone can redistribute and change under these terms.<br/>
+<br/>
+To do so, attach the following notices to the program. It is safest to attach them to the start of each source file to most effectively state the exclusion of warranty; and each file should have at least the “copyright” line and a pointer to where the full notice is found.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;one line to give the program's name and a brief idea of what it does.&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) &lt;year&gt;&nbsp;&nbsp;&lt;name of author&gt;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
@@ -54,55 +234,21 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppIfndef.htm">#ifndef</a> UnitReversiH<br/>
-<a href="CppDefine.htm">#define</a> UnitReversiH<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<b><a href="CppEnum.htm">enum</a></b> Square { empty, player1, player2 };<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Reversi<br/>
-{<br/>
-&nbsp;&nbsp;Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; GetBoard() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Square GetSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt; <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; GetValidMoves(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> GetSize() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Count(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt; mBoard;<br/>
+Also add information on how to contact you by electronic and paper mail.<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveUpLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveDownLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveDown(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveDownRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveUpRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
+If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveUpLeft(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveLeft(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveDownLeft(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveDown(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveDownRight(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveRight(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMoveUpRight(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;program&gt;&nbsp;&nbsp;Copyright (C) &lt;year&gt;&nbsp;&nbsp;&lt;name of author&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This is free software, and you are welcome to redistribute it<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;under certain conditions; type `show c' for details.<br/>
 <br/>
-};<br/>
+The hypothetical commands `show w' and `show c' should show the appropriate parts of the General Public License. Of course, your program's commands might be different; for a GUI interface, you would use an “about box”.<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Square GetSquareXy(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
-<b><a href="CppConst.htm">const</a></b> Square GetOtherPlayer(<b><a href="CppConst.htm">const</a></b> Square player);<br/>
+You should also get your employer (if you work as a programmer) or school, if any, to sign a “copyright disclaimer” for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
-<a href="CppEndif.htm">#endif</a><br/>
+The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -110,12 +256,146 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>UnitReversi.cpp</h2>
+<h2>./GameReversiConsoleVcl/ProjectReversiConsole.bpr</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="UnitReversi.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
+<table summary="./GameReversiConsoleVcl/ProjectReversiConsole.bpr" border = "1"><tr><td><code>
+&lt;?xml version='1.0' encoding='utf-8' ?&gt;<br/>
+&lt;!-- C++Builder XML Project --&gt;<br/>
+&lt;PROJECT&gt;<br/>
+&nbsp;&nbsp;&lt;MACROS&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;VERSION value="BCB.06.00"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PROJECT value="ProjectReversiConsole.exe"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OBJFILES value="UnitReversiMain.obj UnitReversi.obj"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RESFILES value="ProjectReversiConsole.res"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLGENFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;DEFFILE value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RESDEPEN value="$(RESFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBRARIES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SPARELIBS value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indy.bpi bcb2kaxserver.bpi"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHCPP value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHPAS value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHRC value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHASM value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;DEBUGLIBPATH value="$(BCB)\lib\debug"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RELEASELIBPATH value="$(BCB)\lib\release"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LINKER value="ilink32"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;USERDEFINES value="_DEBUG"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SYSDEFINES value="NO_STRICT;_NO_VCL"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;MAINSOURCE value="ProjectReversiConsole.bpf"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;INCLUDEPATH value="Projects\Games\Reversi;$(BCB)\include;$(BCB)\include\vcl"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBPATH value="Projects\Games\Reversi;$(BCB)\lib\obj;$(BCB)\lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;WARNINGS value="-w-par"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/MACROS&gt;<br/>
+&nbsp;&nbsp;&lt;OPTIONS&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLCFLAGS value="-IProjects\Games\Reversi -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cpp -D_DEBUG -boa"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -tWC <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-tWM- -c"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RFLAGS value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;AFLAGS value="/mx /w2 /zd"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LFLAGS value="-D&amp;quot;&amp;quot; -ap -Tpe -x -Gn -v"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/OPTIONS&gt;<br/>
+&nbsp;&nbsp;&lt;LINKER&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLOBJ value="c0x32.obj $(OBJFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLRES value="$(RESFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cw32.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/LINKER&gt;<br/>
+&nbsp;&nbsp;&lt;FILELIST&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="ProjectReversiConsole.res" FORMNAME="" UNITNAME="ProjectReversiConsole.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="ProjectReversiConsole.bpf" FORMNAME="" UNITNAME="ProjectReversiConsole" CONTAINERID="BPF" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="UnitReversiMain.cpp" FORMNAME="" UNITNAME="UnitReversiMain" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="UnitReversi.cpp" FORMNAME="" UNITNAME="UnitReversi" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/FILELIST&gt;<br/>
+&nbsp;&nbsp;&lt;BUILDTOOLS&gt;<br/>
+&nbsp;&nbsp;&lt;/BUILDTOOLS&gt;<br/>
+<br/>
+&nbsp;&nbsp;&lt;IDEOPTIONS&gt;<br/>
+[Version Info]<br/>
+IncludeVerInfo=1<br/>
+AutoIncBuild=0<br/>
+MajorVer=1<br/>
+MinorVer=0<br/>
+Release=0<br/>
+Build=0<br/>
+Debug=0<br/>
+PreRelease=0<br/>
+Special=0<br/>
+Private=0<br/>
+DLL=0<br/>
+Locale=1033<br/>
+CodePage=1252<br/>
+<br/>
+[Version Info Keys]<br/>
+CompanyName=Richel Bilderbeek<br/>
+FileDescription=Reversi Console<br/>
+FileVersion=1.0.0.0<br/>
+InternalName=Reversi Console<br/>
+LegalCopyright=Richel Bilderbeek<br/>
+LegalTrademarks=Richel Bilderbeek<br/>
+OriginalFilename=Reversi Console<br/>
+ProductName=Reversi Console<br/>
+ProductVersion=1.0.0.0<br/>
+Comments=Licenced under GPL 3.0<br/>
+Website=http://www.richelbilderbeek.nl<br/>
+<br/>
+[Debugging]<br/>
+DebugSourceDirs=$(BCB)\source\vcl<br/>
+<br/>
+[Parameters]<br/>
+RunParams=<br/>
+Launcher=<br/>
+UseLauncher=0<br/>
+DebugCWD=<br/>
+HostApplication=<br/>
+RemoteHost=<br/>
+RemotePath=<br/>
+RemoteLauncher=<br/>
+RemoteCWD=<br/>
+RemoteDebug=0<br/>
+<br/>
+[Compiler]<br/>
+ShowInfoMsgs=0<br/>
+LinkDebugVcl=0<br/>
+LinkCGLIB=0<br/>
+<br/>
+[CORBA]<br/>
+AddServerUnit=1<br/>
+AddClientUnit=1<br/>
+PrecompiledHeaders=1<br/>
+<br/>
+[Language]<br/>
+ActiveLang=<br/>
+ProjectLang=<br/>
+RootDir=<br/>
+&nbsp;&nbsp;&lt;/IDEOPTIONS&gt;<br/>
+&lt;/PROJECT&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GameReversiConsoleVcl/UnitReversi.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GameReversiConsoleVcl/UnitReversi.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Reversi, a simple board game<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) 2007&nbsp;&nbsp;Richèl Bilderbeek<br/>
 <br/>
@@ -131,351 +411,351 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma hdrstop<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "UnitReversi.h"<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size)<br/>
-&nbsp;&nbsp;: mBoard(size,<a href="CppVector.htm">std::vector</a>&lt;Square&gt;(size,empty))<br/>
+#include "UnitReversi.h"<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;cassert&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+Reversi::Reversi(const int size)<br/>
+&nbsp;&nbsp;: mBoard(size,std::vector&lt;Square&gt;(size,empty))<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( size &gt; 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( mBoard.size() <a href="CppOperatorEqual.htm">==</a> mBoard[0].size() );<br/>
+&nbsp;&nbsp;assert( size &gt; 0);<br/>
+&nbsp;&nbsp;assert( mBoard.size() == mBoard[0].size() );<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> size <a href="CppOperatorDivide.htm">/</a> 2 <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> size <a href="CppOperatorDivide.htm">/</a> 2 <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+&nbsp;&nbsp;const int x = size / 2 - 1;<br/>
+&nbsp;&nbsp;const int y = size / 2 - 1;<br/>
 &nbsp;&nbsp;SetSquare(x&nbsp;&nbsp;,y&nbsp;&nbsp;,player1);<br/>
 &nbsp;&nbsp;SetSquare(x+1,y&nbsp;&nbsp;,player2);<br/>
 &nbsp;&nbsp;SetSquare(x&nbsp;&nbsp;,y+1,player2);<br/>
 &nbsp;&nbsp;SetSquare(x+1,y+1,player1);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; Reversi::GetBoard() <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const std::vector&lt;std::vector&lt;Square&gt; &gt;&amp; Reversi::GetBoard() const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mBoard;<br/>
+&nbsp;&nbsp;return mBoard;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> Square Reversi::GetSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const Square Reversi::GetSquare(const int x, const int y) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> GetSquareXy(mBoard,x,y);<br/>
+&nbsp;&nbsp;return GetSquareXy(mBoard,x,y);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>Simply sets a square<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::SetSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+//Simply sets a square<br/>
+void Reversi::SetSquare(const int x, const int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(player <a href="CppOperatorNotEqual.htm">!=</a> empty);<br/>
+&nbsp;&nbsp;assert(player != empty);<br/>
 <br/>
-&nbsp;&nbsp;mBoard[y][x] <a href="CppOperatorAssign.htm">=</a> player;<br/>
+&nbsp;&nbsp;mBoard[y][x] = player;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetSquare(x,y)<a href="CppOperatorEqual.htm">==</a>player);<br/>
+&nbsp;&nbsp;assert(GetSquare(x,y)==player);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>Do a complete move<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+//Do a complete move<br/>
+void Reversi::DoMove(const int x, const int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(IsValidMove(x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b> <a href="CppOperatorLogicalOr.htm">||</a> "Invalid move!");<br/>
+&nbsp;&nbsp;assert(IsValidMove(x,y,player)==true || "Invalid move!");<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveUp(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveUp(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x&nbsp;&nbsp;,y-1,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveUpLeft(&nbsp;&nbsp; x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveUpLeft(&nbsp;&nbsp; x-1,y-1,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveLeft(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveLeft(&nbsp;&nbsp;&nbsp;&nbsp; x-1,y&nbsp;&nbsp;,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveDownLeft( x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveDownLeft( x-1,y+1,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveDown(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveDown(&nbsp;&nbsp;&nbsp;&nbsp; x&nbsp;&nbsp;,y+1,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveDownRight(x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveDownRight(x+1,y+1,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveRight(&nbsp;&nbsp;&nbsp;&nbsp;x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveRight(&nbsp;&nbsp;&nbsp;&nbsp;x+1,y&nbsp;&nbsp;,player);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveUpRight(&nbsp;&nbsp;x,y,player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) DoMoveUpRight(&nbsp;&nbsp;x+1,y-1,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveUp(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y,player) == true) DoMoveUp(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x&nbsp;&nbsp;,y-1,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveUpLeft(&nbsp;&nbsp; x,y,player) == true) DoMoveUpLeft(&nbsp;&nbsp; x-1,y-1,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveLeft(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player) == true) DoMoveLeft(&nbsp;&nbsp;&nbsp;&nbsp; x-1,y&nbsp;&nbsp;,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveDownLeft( x,y,player) == true) DoMoveDownLeft( x-1,y+1,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveDown(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player) == true) DoMoveDown(&nbsp;&nbsp;&nbsp;&nbsp; x&nbsp;&nbsp;,y+1,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveDownRight(x,y,player) == true) DoMoveDownRight(x+1,y+1,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveRight(&nbsp;&nbsp;&nbsp;&nbsp;x,y,player) == true) DoMoveRight(&nbsp;&nbsp;&nbsp;&nbsp;x+1,y&nbsp;&nbsp;,player);<br/>
+&nbsp;&nbsp;if (IsValidMoveUpRight(&nbsp;&nbsp;x,y,player) == true) DoMoveUpRight(&nbsp;&nbsp;x+1,y-1,player);<br/>
 &nbsp;&nbsp;SetSquare(x,y,player);<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+//---------------------------------------------------------------------------<br/>
 <br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMove(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveUp(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveUpLeft(&nbsp;&nbsp; x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveLeft(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveDownLeft( x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveDown(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveDownRight(x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveRight(&nbsp;&nbsp;&nbsp;&nbsp;x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMoveUpRight(&nbsp;&nbsp;x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;if (IsValidMoveUp(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveUpLeft(&nbsp;&nbsp; x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveLeft(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveDownLeft( x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveDown(&nbsp;&nbsp;&nbsp;&nbsp; x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveDownRight(x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveRight(&nbsp;&nbsp;&nbsp;&nbsp;x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;if (IsValidMoveUpRight(&nbsp;&nbsp;x,y,player)==true) return true;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveUp(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(x,b) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (b &gt; 0)<br/>
+&nbsp;&nbsp;int b = y - 1;<br/>
+&nbsp;&nbsp;if (b &lt; 1) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(x,b) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (b &gt; 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;b<a href="CppOperatorDecrement.htm">--</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(x,b) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(x,b) <a href="CppOperatorEqual.htm">==</a> empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b--;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(x,b) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(x,b) == empty) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveUpLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveUpLeft(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a &lt; 1 <a href="CppOperatorLogicalOr.htm">||</a> b &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (a &gt; 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b &gt; 0)<br/>
+&nbsp;&nbsp;int a = x - 1;<br/>
+&nbsp;&nbsp;int b = y - 1;<br/>
+&nbsp;&nbsp;if (a &lt; 1 || b &lt; 1) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(a,b) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (a &gt; 0 &amp;&amp; b &gt; 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorDecrement.htm">--</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;b<a href="CppOperatorDecrement.htm">--</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a--;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b--;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == empty) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveLeft(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,y) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (a &gt; 0)<br/>
+&nbsp;&nbsp;int a = x - 1;<br/>
+&nbsp;&nbsp;if (a &lt; 1) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(a,y) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (a &gt; 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorDecrement.htm">--</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,y) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,y) <a href="CppOperatorEqual.htm">==</a> empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a--;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,y) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,y) == empty) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveDownLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveDownLeft(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorPlus.htm">+</a> 1;<br/>
+&nbsp;&nbsp;const int size = mBoard.size();<br/>
+&nbsp;&nbsp;int a = x - 1;<br/>
+&nbsp;&nbsp;int b = y + 1;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b &gt; size <a href="CppOperatorMinus.htm">-</a>1 ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (a &gt; 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b &lt; size <a href="CppOperatorMinus.htm">-</a> 1)<br/>
+&nbsp;&nbsp;if (a &lt; 1) return false;<br/>
+&nbsp;&nbsp;if (b &gt; size -1 ) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(a,b) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (a &gt; 0 &amp;&amp; b &lt; size - 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorDecrement.htm">--</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;b<a href="CppOperatorIncrement.htm">++</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a--;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b++;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == empty) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveDown(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveDown(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b &gt; size <a href="CppOperatorMinus.htm">-</a>1 ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(x,b) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (b &lt; size <a href="CppOperatorMinus.htm">-</a> 1)<br/>
+&nbsp;&nbsp;const int size = mBoard.size();<br/>
+&nbsp;&nbsp;int b = y + 1;<br/>
+&nbsp;&nbsp;if (b &gt; size -1 ) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(x,b) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (b &lt; size - 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;b<a href="CppOperatorIncrement.htm">++</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(x,b) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(x,b) <a href="CppOperatorEqual.htm">==</a> empty ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b++;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(x,b) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(x,b) == empty ) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveDownRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveDownRight(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a &gt; size <a href="CppOperatorMinus.htm">-</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b &gt; size <a href="CppOperatorMinus.htm">-</a>1 ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (a &lt; size <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b &lt; size <a href="CppOperatorMinus.htm">-</a> 1)<br/>
+&nbsp;&nbsp;const int size = mBoard.size();<br/>
+&nbsp;&nbsp;int a = x + 1;<br/>
+&nbsp;&nbsp;int b = y + 1;<br/>
+&nbsp;&nbsp;if (a &gt; size - 1) return false;<br/>
+&nbsp;&nbsp;if (b &gt; size -1 ) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(a,b) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (a &lt; size - 1 &amp;&amp; b &lt; size - 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;b<a href="CppOperatorIncrement.htm">++</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorIncrement.htm">++</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> empty ) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b++;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a++;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == empty ) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveRight(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a &gt; size <a href="CppOperatorMinus.htm">-</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,y) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (a &lt; size <a href="CppOperatorMinus.htm">-</a> 1)<br/>
+&nbsp;&nbsp;const int size = mBoard.size();<br/>
+&nbsp;&nbsp;int a = x + 1;<br/>
+&nbsp;&nbsp;if (a &gt; size - 1) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(a,y) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (a &lt; size - 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorIncrement.htm">++</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,y) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,y) <a href="CppOperatorEqual.htm">==</a> empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a++;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,y) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,y) == empty) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> Reversi::IsValidMoveUpRight(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const bool Reversi::IsValidMoveUpRight(const int x, const int y, const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorPlus.htm">+</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> y <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a &gt; size <a href="CppOperatorMinus.htm">-</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (b &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorNotEqual.htm">!=</a> GetOtherPlayer(player)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (a &lt; size <a href="CppOperatorMinus.htm">-</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> b &gt; 0)<br/>
+&nbsp;&nbsp;const int size = mBoard.size();<br/>
+&nbsp;&nbsp;int a = x + 1;<br/>
+&nbsp;&nbsp;int b = y - 1;<br/>
+&nbsp;&nbsp;if (a &gt; size - 1) return false;<br/>
+&nbsp;&nbsp;if (b &lt; 1) return false;<br/>
+&nbsp;&nbsp;if (GetSquare(a,b) != GetOtherPlayer(player)) return false;<br/>
+&nbsp;&nbsp;while (a &lt; size - 1 &amp;&amp; b &gt; 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;a<a href="CppOperatorIncrement.htm">++</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;b<a href="CppOperatorDecrement.htm">--</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> player) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (GetSquare(a,b) <a href="CppOperatorEqual.htm">==</a> empty) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;a++;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;b--;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == player) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (GetSquare(a,b) == empty) return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;return false;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt; <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; Reversi::GetValidMoves(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const std::vector&lt; std::pair&lt;int,int&gt; &gt; Reversi::GetValidMoves(const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt; <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;const int size = mBoard.size();<br/>
+&nbsp;&nbsp;std::vector&lt; std::pair&lt;int,int&gt; &gt; v;<br/>
+&nbsp;&nbsp;for (int y=0; y!=size; ++y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=size; ++x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMove(x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (IsValidMove(x,y,player)==true)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back( <a href="CppMake_pair.htm">std::make_pair</a>(x,y) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back( std::make_pair(x,y) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+&nbsp;&nbsp;return v;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveUp(const int x, int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;--y;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveUpLeft(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveUpLeft(int x, int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>y;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;--y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;--x;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveLeft(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveLeft(int x, const int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;--x;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveDownLeft(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveDownLeft(int x, int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>y;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;--x;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveDown(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveDown(const int x, int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++y;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveDownRight(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveDownRight(int x, int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>y;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++x;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveRight(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveRight(int x, const int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++x;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Reversi::DoMoveUpRight(<b><a href="CppInt.htm">int</a></b> x, <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+void Reversi::DoMoveUpRight(int x, int y, const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> ( GetSquare(x,y) <a href="CppOperatorEqual.htm">==</a> GetOtherPlayer(player) )<br/>
+&nbsp;&nbsp;while ( GetSquare(x,y) == GetOtherPlayer(player) )<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;SetSquare(x,y,player);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDecrement.htm">--</a>y;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>x;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;--y;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++x;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Reversi::GetSize() <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const int Reversi::GetSize() const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mBoard.size();<br/>
+&nbsp;&nbsp;return mBoard.size();<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Reversi::Count(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+//---------------------------------------------------------------------------<br/>
+const int Reversi::Count(const Square player) const<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> GetSize();<br/>
+&nbsp;&nbsp;const int size = GetSize();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;int sum = 0;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
+&nbsp;&nbsp;for (int y=0; y!=size; ++y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=size; ++x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (mBoard[x][y] <a href="CppOperatorEqual.htm">==</a> player) <a href="CppOperatorIncrement.htm">++</a>sum;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (mBoard[x][y] == player) ++sum;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
+&nbsp;&nbsp;return sum;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> Square GetOtherPlayer(<b><a href="CppConst.htm">const</a></b> Square player)<br/>
+//---------------------------------------------------------------------------<br/>
+const Square GetOtherPlayer(const Square player)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (player)<br/>
+&nbsp;&nbsp;switch (player)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> player1: <b><a href="CppReturn.htm">return</a></b> player2;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> player2: <b><a href="CppReturn.htm">return</a></b> player1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case player1: return player2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case player2: return player1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Invalid player");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> empty;<br/>
+&nbsp;&nbsp;assert(!"Invalid player");<br/>
+&nbsp;&nbsp;return empty;<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> Square GetSquareXy(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
+//---------------------------------------------------------------------------<br/>
+const Square GetSquareXy(<br/>
+&nbsp;&nbsp;const std::vector&lt;std::vector&lt;Square&gt; &gt;&amp; board,<br/>
+&nbsp;&nbsp;const int x, const int y)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> board.size();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; size);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; size);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> board[y][x];<br/>
+&nbsp;&nbsp;const int size = board.size();<br/>
+&nbsp;&nbsp;assert(x &gt;= 0);<br/>
+&nbsp;&nbsp;assert(y &gt;= 0);<br/>
+&nbsp;&nbsp;assert(x &lt; size);<br/>
+&nbsp;&nbsp;assert(y &lt; size);<br/>
+&nbsp;&nbsp;return board[y][x];<br/>
 }<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
+//---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
+#pragma package(smart_init)<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -483,12 +763,89 @@ Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm"
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>UnitReversiMain.cpp</h2>
+<h2>./GameReversiConsoleVcl/UnitReversi.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="UnitReversiMain.cpp" border = "1"><tr><td><code>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">/*</a><br/>
+<table summary="./GameReversiConsoleVcl/UnitReversi.h" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Reversi, a simple board game<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) 2007&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GNU General Public License for more details.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef UnitReversiH<br/>
+#define UnitReversiH<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;vector&gt;<br/>
+enum Square { empty, player1, player2 };<br/>
+//---------------------------------------------------------------------------<br/>
+struct Reversi<br/>
+{<br/>
+&nbsp;&nbsp;Reversi(const int size);<br/>
+&nbsp;&nbsp;const std::vector&lt;std::vector&lt;Square&gt; &gt;&amp; GetBoard() const;<br/>
+&nbsp;&nbsp;const Square GetSquare(const int x, const int y) const;<br/>
+&nbsp;&nbsp;void DoMove(const int x, const int y, const Square player);<br/>
+&nbsp;&nbsp;void SetSquare(const int x, const int y, const Square player);<br/>
+&nbsp;&nbsp;const bool IsValidMove(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const std::vector&lt; std::pair&lt;int,int&gt; &gt; GetValidMoves(const Square player) const;<br/>
+&nbsp;&nbsp;const int GetSize() const;<br/>
+&nbsp;&nbsp;const int Count(const Square player) const;<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;std::vector&lt;std::vector&lt;Square&gt; &gt; mBoard;<br/>
+<br/>
+&nbsp;&nbsp;const bool IsValidMoveUp(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveUpLeft(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveLeft(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveDownLeft(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveDown(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveDownRight(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveRight(const int x, const int y, const Square player) const;<br/>
+&nbsp;&nbsp;const bool IsValidMoveUpRight(const int x, const int y, const Square player) const;<br/>
+<br/>
+&nbsp;&nbsp;void DoMoveUp(const int x, int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveUpLeft(int x, int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveLeft(int x, const int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveDownLeft(int x, int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveDown(const int x, int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveDownRight(int x, int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveRight(int x, const int y, const Square player);<br/>
+&nbsp;&nbsp;void DoMoveUpRight(int x, int y, const Square player);<br/>
+<br/>
+};<br/>
+<br/>
+const Square GetSquareXy(const std::vector&lt;std::vector&lt;Square&gt; &gt;&amp; board, const int x, const int y);<br/>
+const Square GetOtherPlayer(const Square player);<br/>
+<br/>
+#endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./GameReversiConsoleVcl/UnitReversiMain.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./GameReversiConsoleVcl/UnitReversiMain.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Reversi Console, a simple board game<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
 <br/>
@@ -504,241 +861,241 @@ Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm"
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-<a href="CppComment.htm">*/</a><br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a> From http://www.richelbilderbeek.nl/GameReversi.htm<br/>
-<a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppNumericH.htm">numeric</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppMemoryH.htm">memory</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitReversi.h"<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl/GameReversi.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;vector&gt;<br/>
+#include &lt;numeric&gt;<br/>
+#include &lt;algorithm&gt;<br/>
+#include &lt;iostream&gt;<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;iterator&gt;<br/>
+#include &lt;memory&gt;<br/>
+#include &lt;sstream&gt;<br/>
+#include "UnitReversi.h"<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Square s)<br/>
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Square s)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (s)<br/>
+&nbsp;&nbsp;switch (s)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> empty&nbsp;&nbsp;: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "."; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> player1: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "1"; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> player2: os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "2"; <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>: <a href="CppAssert.htm">assert</a>(!"Should not get here"); <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case empty&nbsp;&nbsp;: os &lt;&lt; "."; break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case player1: os &lt;&lt; "1"; break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case player2: os &lt;&lt; "2"; break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default: assert(!"Should not get here"); break;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;return os;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Reversi&amp; r)<br/>
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Reversi&amp; r)<br/>
 {<br/>
-&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Show the indices horizontally<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> r.GetSize();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{ //Show the indices horizontally<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int size = r.GetSize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; "&nbsp;&nbsp;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=size; ++i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (i%10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; (i%10);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; std::endl;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board <a href="CppOperatorAssign.htm">=</a> r.GetBoard();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;::const_iterator lastRow <a href="CppOperatorAssign.htm">=</a> board.end();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;::const_iterator row <a href="CppOperatorAssign.htm">=</a> board.begin();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row<a href="CppOperatorNotEqual.htm">!=</a>lastRow;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>row, <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int i = 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::vector&lt;Square&gt; &gt;&amp; board = r.GetBoard();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::vector&lt;Square&gt; &gt;::const_iterator lastRow = board.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (std::vector&lt;std::vector&lt;Square&gt; &gt;::const_iterator row = board.begin();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row!=lastRow;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++row, ++i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (i%10) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " ";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>( (*row).begin(), (*row).end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;Square&gt;(os,""));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (i%10) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; (i%10) &lt;&lt; " ";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::copy( (*row).begin(), (*row).end(),std::ostream_iterator&lt;Square&gt;(os,""));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; " " &lt;&lt; (i%10) &lt;&lt; '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;{ <a href="CppComment.htm">//</a>Show the indices horizontally<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&nbsp;&nbsp;";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> r.GetSize();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{ //Show the indices horizontally<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; "&nbsp;&nbsp;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int size = r.GetSize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=size; ++i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i%10;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; i%10;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; std::endl;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+&nbsp;&nbsp;return os;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppStr<a href="CppIsInt.htm">IsInt</a>.htm<br/>
-<a href="CppComment.htm">//</a>Checks whether a <a href="CppString.htm">std::string</a> can be <a href="CppConvert.htm">convert</a>ed to an <a href="CppInt.htm">integer</a>.<br/>
-<a href="CppComment.htm">//</a>Returns <b><a href="CppTrue.htm">true</a></b> <b><a href="CppIf.htm">if</a></b> possible, also <b><a href="CppReturn.htm">return</a></b>ing <b><a href="CppThis.htm">this</a></b> <a href="CppInt.htm">integer</a> by referencing.<br/>
-<a href="CppComment.htm">//</a>Returns <b><a href="CppFalse.htm">false</a></b> otherwise, setting the referenced <a href="CppInt.htm">integer</a> to zero.<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> <a href="CppIsInt.htm">IsInt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppInt.htm">int</a></b>&amp; rInt)<br/>
+//From http://www.richelbilderbeek.nl/CppStrIsInt.htm<br/>
+//Checks whether a std::string can be converted to an integer.<br/>
+//Returns true if possible, also returning this integer by referencing.<br/>
+//Returns false otherwise, setting the referenced integer to zero.<br/>
+const bool IsInt(const std::string&amp; s, int&amp; rInt)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIstringstream.htm">std::istringstream</a> i(s);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(i <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> rInt))<br/>
+&nbsp;&nbsp;std::istringstream i(s);<br/>
+&nbsp;&nbsp;if (!(i &gt;&gt; rInt))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;rInt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rInt = 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;return true;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetInput()<br/>
+const std::string GetInput()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(<a href="CppCin.htm">std::cin</a>,s,'\n');<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;std::string s;<br/>
+&nbsp;&nbsp;std::getline(std::cin,s,'\n');<br/>
+&nbsp;&nbsp;return s;<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a>(<a href="CppString.htm">std::string</a> input, <b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator)<br/>
+//From http://www.richelbilderbeek.nl/CppSeperateString.htm<br/>
+const std::vector&lt;std::string&gt; SeperateString(std::string input, const char seperator)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input[0]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(input[input.size()-1]<a href="CppOperatorNotEqual.htm">!=</a>seperator);<br/>
+&nbsp;&nbsp;assert(input.empty()==false);<br/>
+&nbsp;&nbsp;assert(input[0]!=seperator);<br/>
+&nbsp;&nbsp;assert(input[input.size()-1]!=seperator);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; result;<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(pos&lt;<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(input.size()))<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; result;<br/>
+&nbsp;&nbsp;int pos = 0;<br/>
+&nbsp;&nbsp;while(pos&lt;static_cast&lt;int&gt;(input.size()))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input[pos]<a href="CppOperatorEqual.htm">==</a>seperator)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (input[pos]==seperator)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> found <a href="CppOperatorAssign.htm">=</a> input.substr(0,pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string found = input.substr(0,pos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.push_back(found);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input <a href="CppOperatorAssign.htm">=</a> input.substr(pos+1,input.size()-pos);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input = input.substr(pos+1,input.size()-pos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos = 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>pos;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;++pos;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;result.push_back(input);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> result;<br/>
+&nbsp;&nbsp;return result;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsCoordinat(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input, <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt;&amp; coordinat)<br/>
+const bool IsCoordinat(const std::string&amp; input, std::pair&lt;int,int&gt;&amp; coordinat)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppCount.htm">std::count</a>(input.begin(), input.end(), ',') <a href="CppOperatorNotEqual.htm">!=</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( *(input.begin()) <a href="CppOperatorEqual.htm">==</a> ',' <a href="CppOperatorLogicalOr.htm">||</a> *(input.end() <a href="CppOperatorMinus.htm">-</a> 1) <a href="CppOperatorEqual.htm">==</a> ',') <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::const_iterator i <a href="CppOperatorAssign.htm">=</a> <a href="CppFind.htm">std::find</a>(input.begin(), input.end(), ',');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> input.end() ); <a href="CppComment.htm">//</a>Comma must be in! Checked above!<br/>
+&nbsp;&nbsp;if ( std::count(input.begin(), input.end(), ',') != 1) return false;<br/>
+&nbsp;&nbsp;if ( *(input.begin()) == ',' || *(input.end() - 1) == ',') return false;<br/>
+&nbsp;&nbsp;const std::string::const_iterator i = std::find(input.begin(), input.end(), ',');<br/>
+&nbsp;&nbsp;assert(i != input.end() ); //Comma must be in! Checked above!<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(<a href="CppSeperateString.htm">SeperateString</a>(input,','));<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorNotEqual.htm">!=</a> 2) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppIsInt.htm">IsInt</a>(v[0],coordinat.first)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppIsInt.htm">IsInt</a>(v[1],coordinat.second)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
- <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt; v(SeperateString(input,','));<br/>
+&nbsp;&nbsp;if (v.size() != 2) return false;<br/>
+&nbsp;&nbsp;if (IsInt(v[0],coordinat.first)==false) return false;<br/>
+&nbsp;&nbsp;if (IsInt(v[1],coordinat.second)==false) return false;<br/>
+ return true;<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> AskUserForBoardSize()<br/>
+const int AskUserForBoardSize()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the board's size<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;//Get the board's size<br/>
+&nbsp;&nbsp;while (1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter the size of the reversi board" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> input <a href="CppOperatorAssign.htm">=</a> GetInput();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppIsInt.htm">IsInt</a>(input,size) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Please enter the size of the reversi board" &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string input = GetInput();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int size = -1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if ( IsInt(input,size) == false)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter an <a href="CppInt.htm">integer</a> value. " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Please enter an integer value. " &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( size &lt; 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if ( size &lt; 4)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter an <a href="CppInt.htm">integer</a> value bigger then 4. " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Please enter an integer value bigger then 4. " &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( size &gt; 16)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if ( size &gt; 16)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter an <a href="CppInt.htm">integer</a> value less then 16. " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Please enter an integer value less then 16. " &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> size;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return size;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+int main()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "***********" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "* REVERSI *" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "***********" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;std::cout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "***********" &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "* REVERSI *" &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "***********" &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;Reversi r(AskUserForBoardSize());<br/>
-&nbsp;&nbsp;Square player <a href="CppOperatorAssign.htm">=</a> player1;<br/>
+&nbsp;&nbsp;Square player = player1;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;while (1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nThe board's current state: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> r <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "It is player " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> player <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "'s turn."<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter a coordinat, 'p' to pass or 'q' to quit"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::cout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "\nThe board's current state: " &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; r &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "It is player " &lt;&lt; player &lt;&lt; "'s turn."<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Please enter a coordinat, 'p' to pass or 'q' to quit"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> input <a href="CppOperatorAssign.htm">=</a> GetInput();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string input = GetInput();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input <a href="CppOperatorEqual.htm">==</a> "q")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (input == "q")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Quit<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Quit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (input <a href="CppOperatorEqual.htm">==</a> "p")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (input == "p")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Pass<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player <a href="CppOperatorAssign.htm">=</a> (player <a href="CppOperatorEqual.htm">==</a> player1? player2 : player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Pass<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player = (player == player1? player2 : player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; coordinat;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> isValidCoordinat <a href="CppOperatorAssign.htm">=</a> IsCoordinat(input, coordinat);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::pair&lt;int,int&gt; coordinat;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const bool isValidCoordinat = IsCoordinat(input, coordinat);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (isValidCoordinat <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (isValidCoordinat == false)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter a correctly formatted coordinat."<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nFor example:&nbsp;&nbsp;1,2&nbsp;&nbsp;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Please enter a correctly formatted coordinat."<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "\nFor example:&nbsp;&nbsp;1,2&nbsp;&nbsp;" &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (r.IsValidMove(coordinat.first, coordinat.second, player) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (r.IsValidMove(coordinat.first, coordinat.second, player) == false)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Please enter a valid coordinat." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Please enter a valid coordinat." &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Actually <b><a href="CppDo.htm">do</a></b> the move<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Actually do the move<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;r.DoMove(coordinat.first, coordinat.second, player);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> the game has ended<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (r.Count(empty) <a href="CppOperatorEqual.htm">==</a> 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Check if the game has ended<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (r.Count(empty) == 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No empty squares<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n1 <a href="CppOperatorAssign.htm">=</a> r.Count(player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n2 <a href="CppOperatorAssign.htm">=</a> r.Count(player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "The game has ended." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Player 1 conquered " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n1 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " squares." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Player 2 conquered " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n2 <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " squares." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "The winner is player " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (n1 &gt; n2 ? "1" : "2") <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Congratulations!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Press <a href="CppAny.htm">any</a> key to quit. " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//No empty squares<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int n1 = r.Count(player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int n2 = r.Count(player2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "The game has ended." &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Player 1 conquered " &lt;&lt; n1 &lt;&lt; " squares." &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Player 2 conquered " &lt;&lt; n2 &lt;&lt; " squares." &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "The winner is player " &lt;&lt; (n1 &gt; n2 ? "1" : "2") &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Congratulations!" &lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; std::endl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "Press any key to quit. " &lt;&lt; std::endl;<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCin.htm">std::cin</a>.get();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0; <a href="CppComment.htm">//</a>Terminate the program<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cin.get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0; //Terminate the program<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> other player can actually <b><a href="CppDo.htm">do</a></b> a move<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (r.GetValidMoves(player).empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Check if other player can actually do a move<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (r.GetValidMoves(player).empty()==true)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Too bad! Player " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> player <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " is unabled to <b><a href="CppDo.htm">do</a></b> a valid move!";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player <a href="CppOperatorAssign.htm">=</a> (player <a href="CppOperatorEqual.htm">==</a> player1 ? player2 : player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\nThe next turn again goes to player " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> player <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "Too bad! Player " &lt;&lt; player &lt;&lt; " is unabled to do a valid move!";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;player = (player == player1 ? player2 : player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::cout &lt;&lt; "\nThe next turn again goes to player " &lt;&lt; player &lt;&lt; "!" &lt;&lt; std::endl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;player <a href="CppOperatorAssign.htm">=</a> (player <a href="CppOperatorEqual.htm">==</a> player1 ? player2 : player1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;player = (player == player1 ? player2 : player1);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>

@@ -1,0 +1,1687 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ThresholdFiltererVcl</title>
+  <meta name="description" content="C++ ThresholdFiltererVcl"/>
+  <meta name="keywords" content="C++ ThresholdFiltererVcl "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ToolThresholdFiltererVcl.htm">ThresholdFiltererVcl</a></h1>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/Licence.txt</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/Licence.txt" border = "1"><tr><td><code>
+GNU GENERAL PUBLIC LICENSE<br/>
+<br/>
+Version 3, 29 June 2007<br/>
+<br/>
+Copyright (C) 2007 Free Software Foundation, Inc. &lt;http://fsf.org/&gt;<br/>
+<br/>
+Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.<br/>
+Preamble<br/>
+<br/>
+The GNU General Public License is a free, copyleft license for software and other kinds of works.<br/>
+<br/>
+The licenses for most software and other practical works are designed to take away your freedom to share and change the works. By contrast, the GNU General Public License is intended to guarantee your freedom to share and change all versions of a program--to make sure it remains free software for all its users. We, the Free Software Foundation, use the GNU General Public License for most of our software; it applies also to any other work released this way by its authors. You can apply it to your programs, too.<br/>
+<br/>
+When we speak of free software, we are referring to freedom, not price. Our General Public Licenses are designed to make sure that you have the freedom to distribute copies of free software (and charge for them if you wish), that you receive source code or can get it if you want it, that you can change the software or use pieces of it in new free programs, and that you know you can do these things.<br/>
+<br/>
+To protect your rights, we need to prevent others from denying you these rights or asking you to surrender the rights. Therefore, you have certain responsibilities if you distribute copies of the software, or if you modify it: responsibilities to respect the freedom of others.<br/>
+<br/>
+For example, if you distribute copies of such a program, whether gratis or for a fee, you must pass on to the recipients the same freedoms that you received. You must make sure that they, too, receive or can get the source code. And you must show them these terms so they know their rights.<br/>
+<br/>
+Developers that use the GNU GPL protect your rights with two steps: (1) assert copyright on the software, and (2) offer you this License giving you legal permission to copy, distribute and/or modify it.<br/>
+<br/>
+For the developers' and authors' protection, the GPL clearly explains that there is no warranty for this free software. For both users' and authors' sake, the GPL requires that modified versions be marked as changed, so that their problems will not be attributed erroneously to authors of previous versions.<br/>
+<br/>
+Some devices are designed to deny users access to install or run modified versions of the software inside them, although the manufacturer can do so. This is fundamentally incompatible with the aim of protecting users' freedom to change the software. The systematic pattern of such abuse occurs in the area of products for individuals to use, which is precisely where it is most unacceptable. Therefore, we have designed this version of the GPL to prohibit the practice for those products. If such problems arise substantially in other domains, we stand ready to extend this provision to those domains in future versions of the GPL, as needed to protect the freedom of users.<br/>
+<br/>
+Finally, every program is threatened constantly by software patents. States should not allow patents to restrict development and use of software on general-purpose computers, but in those that do, we wish to avoid the special danger that patents applied to a free program could make it effectively proprietary. To prevent this, the GPL assures that patents cannot be used to render the program non-free.<br/>
+<br/>
+The precise terms and conditions for copying, distribution and modification follow.<br/>
+TERMS AND CONDITIONS<br/>
+0. Definitions.<br/>
+<br/>
+“This License” refers to version 3 of the GNU General Public License.<br/>
+<br/>
+“Copyright” also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.<br/>
+<br/>
+“The Program” refers to any copyrightable work licensed under this License. Each licensee is addressed as “you”. “Licensees” and “recipients” may be individuals or organizations.<br/>
+<br/>
+To “modify” a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a “modified version” of the earlier work or a work “based on” the earlier work.<br/>
+<br/>
+A “covered work” means either the unmodified Program or a work based on the Program.<br/>
+<br/>
+To “propagate” a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes copying, distribution (with or without modification), making available to the public, and in some countries other activities as well.<br/>
+<br/>
+To “convey” a work means any kind of propagation that enables other parties to make or receive copies. Mere interaction with a user through a computer network, with no transfer of a copy, is not conveying.<br/>
+<br/>
+An interactive user interface displays “Appropriate Legal Notices” to the extent that it includes a convenient and prominently visible feature that (1) displays an appropriate copyright notice, and (2) tells the user that there is no warranty for the work (except to the extent that warranties are provided), that licensees may convey the work under this License, and how to view a copy of this License. If the interface presents a list of user commands or options, such as a menu, a prominent item in the list meets this criterion.<br/>
+1. Source Code.<br/>
+<br/>
+The “source code” for a work means the preferred form of the work for making modifications to it. “Object code” means any non-source form of a work.<br/>
+<br/>
+A “Standard Interface” means an interface that either is an official standard defined by a recognized standards body, or, in the case of interfaces specified for a particular programming language, one that is widely used among developers working in that language.<br/>
+<br/>
+The “System Libraries” of an executable work include anything, other than the work as a whole, that (a) is included in the normal form of packaging a Major Component, but which is not part of that Major Component, and (b) serves only to enable use of the work with that Major Component, or to implement a Standard Interface for which an implementation is available to the public in source code form. A “Major Component”, in this context, means a major essential component (kernel, window system, and so on) of the specific operating system (if any) on which the executable work runs, or a compiler used to produce the work, or an object code interpreter used to run it.<br/>
+<br/>
+The “Corresponding Source” for a work in object code form means all the source code needed to generate, install, and (for an executable work) run the object code and to modify the work, including scripts to control those activities. However, it does not include the work's System Libraries, or general-purpose tools or generally available free programs which are used unmodified in performing those activities but which are not part of the work. For example, Corresponding Source includes interface definition files associated with source files for the work, and the source code for shared libraries and dynamically linked subprograms that the work is specifically designed to require, such as by intimate data communication or control flow between those subprograms and other parts of the work.<br/>
+<br/>
+The Corresponding Source need not include anything that users can regenerate automatically from other parts of the Corresponding Source.<br/>
+<br/>
+The Corresponding Source for a work in source code form is that same work.<br/>
+2. Basic Permissions.<br/>
+<br/>
+All rights granted under this License are granted for the term of copyright on the Program, and are irrevocable provided the stated conditions are met. This License explicitly affirms your unlimited permission to run the unmodified Program. The output from running a covered work is covered by this License only if the output, given its content, constitutes a covered work. This License acknowledges your rights of fair use or other equivalent, as provided by copyright law.<br/>
+<br/>
+You may make, run and propagate covered works that you do not convey, without conditions so long as your license otherwise remains in force. You may convey covered works to others for the sole purpose of having them make modifications exclusively for you, or provide you with facilities for running those works, provided that you comply with the terms of this License in conveying all material for which you do not control copyright. Those thus making or running the covered works for you must do so exclusively on your behalf, under your direction and control, on terms that prohibit them from making any copies of your copyrighted material outside their relationship with you.<br/>
+<br/>
+Conveying under any other circumstances is permitted solely under the conditions stated below. Sublicensing is not allowed; section 10 makes it unnecessary.<br/>
+3. Protecting Users' Legal Rights From Anti-Circumvention Law.<br/>
+<br/>
+No covered work shall be deemed part of an effective technological measure under any applicable law fulfilling obligations under article 11 of the WIPO copyright treaty adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention of such measures.<br/>
+<br/>
+When you convey a covered work, you waive any legal power to forbid circumvention of technological measures to the extent such circumvention is effected by exercising rights under this License with respect to the covered work, and you disclaim any intention to limit operation or modification of the work as a means of enforcing, against the work's users, your or third parties' legal rights to forbid circumvention of technological measures.<br/>
+4. Conveying Verbatim Copies.<br/>
+<br/>
+You may convey verbatim copies of the Program's source code as you receive it, in any medium, provided that you conspicuously and appropriately publish on each copy an appropriate copyright notice; keep intact all notices stating that this License and any non-permissive terms added in accord with section 7 apply to the code; keep intact all notices of the absence of any warranty; and give all recipients a copy of this License along with the Program.<br/>
+<br/>
+You may charge any price or no price for each copy that you convey, and you may offer support or warranty protection for a fee.<br/>
+5. Conveying Modified Source Versions.<br/>
+<br/>
+You may convey a work based on the Program, or the modifications to produce it from the Program, in the form of source code under the terms of section 4, provided that you also meet all of these conditions:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) The work must carry prominent notices stating that you modified it, and giving a relevant date.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) The work must carry prominent notices stating that it is released under this License and any conditions added under section 7. This requirement modifies the requirement in section 4 to “keep intact all notices”.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) You must license the entire work, as a whole, under this License to anyone who comes into possession of a copy. This License will therefore apply, along with any applicable section 7 additional terms, to the whole of the work, and all its parts, regardless of how they are packaged. This License gives no permission to license the work in any other way, but it does not invalidate such permission if you have separately received it.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) If the work has interactive user interfaces, each must display Appropriate Legal Notices; however, if the Program has interactive interfaces that do not display Appropriate Legal Notices, your work need not make them do so.<br/>
+<br/>
+A compilation of a covered work with other separate and independent works, which are not by their nature extensions of the covered work, and which are not combined with it such as to form a larger program, in or on a volume of a storage or distribution medium, is called an “aggregate” if the compilation and its resulting copyright are not used to limit the access or legal rights of the compilation's users beyond what the individual works permit. Inclusion of a covered work in an aggregate does not cause this License to apply to the other parts of the aggregate.<br/>
+6. Conveying Non-Source Forms.<br/>
+<br/>
+You may convey a covered work in object code form under the terms of sections 4 and 5, provided that you also convey the machine-readable Corresponding Source under the terms of this License, in one of these ways:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by the Corresponding Source fixed on a durable physical medium customarily used for software interchange.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) Convey the object code in, or embodied in, a physical product (including a physical distribution medium), accompanied by a written offer, valid for at least three years and valid for as long as you offer spare parts or customer support for that product model, to give anyone who possesses the object code either (1) a copy of the Corresponding Source for all the software in the product that is covered by this License, on a durable physical medium customarily used for software interchange, for a price no more than your reasonable cost of physically performing this conveying of source, or (2) access to copy the Corresponding Source from a network server at no charge.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) Convey individual copies of the object code with a copy of the written offer to provide the Corresponding Source. This alternative is allowed only occasionally and noncommercially, and only if you received the object code with such an offer, in accord with subsection 6b.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) Convey the object code by offering access from a designated place (gratis or for a charge), and offer equivalent access to the Corresponding Source in the same way through the same place at no further charge. You need not require recipients to copy the Corresponding Source along with the object code. If the place to copy the object code is a network server, the Corresponding Source may be on a different server (operated by you or a third party) that supports equivalent copying facilities, provided you maintain clear directions next to the object code saying where to find the Corresponding Source. Regardless of what server hosts the Corresponding Source, you remain obligated to ensure that it is available for as long as needed to satisfy these requirements.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* e) Convey the object code using peer-to-peer transmission, provided you inform other peers where the object code and Corresponding Source of the work are being offered to the general public at no charge under subsection 6d.<br/>
+<br/>
+A separable portion of the object code, whose source code is excluded from the Corresponding Source as a System Library, need not be included in conveying the object code work.<br/>
+<br/>
+A “User Product” is either (1) a “consumer product”, which means any tangible personal property which is normally used for personal, family, or household purposes, or (2) anything designed or sold for incorporation into a dwelling. In determining whether a product is a consumer product, doubtful cases shall be resolved in favor of coverage. For a particular product received by a particular user, “normally used” refers to a typical or common use of that class of product, regardless of the status of the particular user or of the way in which the particular user actually uses, or expects or is expected to use, the product. A product is a consumer product regardless of whether the product has substantial commercial, industrial or non-consumer uses, unless such uses represent the only significant mode of use of the product.<br/>
+<br/>
+“Installation Information” for a User Product means any methods, procedures, authorization keys, or other information required to install and execute modified versions of a covered work in that User Product from a modified version of its Corresponding Source. The information must suffice to ensure that the continued functioning of the modified object code is in no case prevented or interfered with solely because modification has been made.<br/>
+<br/>
+If you convey an object code work under this section in, or with, or specifically for use in, a User Product, and the conveying occurs as part of a transaction in which the right of possession and use of the User Product is transferred to the recipient in perpetuity or for a fixed term (regardless of how the transaction is characterized), the Corresponding Source conveyed under this section must be accompanied by the Installation Information. But this requirement does not apply if neither you nor any third party retains the ability to install modified object code on the User Product (for example, the work has been installed in ROM).<br/>
+<br/>
+The requirement to provide Installation Information does not include a requirement to continue to provide support service, warranty, or updates for a work that has been modified or installed by the recipient, or for the User Product in which it has been modified or installed. Access to a network may be denied when the modification itself materially and adversely affects the operation of the network or violates the rules and protocols for communication across the network.<br/>
+<br/>
+Corresponding Source conveyed, and Installation Information provided, in accord with this section must be in a format that is publicly documented (and with an implementation available to the public in source code form), and must require no special password or key for unpacking, reading or copying.<br/>
+7. Additional Terms.<br/>
+<br/>
+“Additional permissions” are terms that supplement the terms of this License by making exceptions from one or more of its conditions. Additional permissions that are applicable to the entire Program shall be treated as though they were included in this License, to the extent that they are valid under applicable law. If additional permissions apply only to part of the Program, that part may be used separately under those permissions, but the entire Program remains governed by this License without regard to the additional permissions.<br/>
+<br/>
+When you convey a copy of a covered work, you may at your option remove any additional permissions from that copy, or from any part of it. (Additional permissions may be written to require their own removal in certain cases when you modify the work.) You may place additional permissions on material, added by you to a covered work, for which you have or can give appropriate copyright permission.<br/>
+<br/>
+Notwithstanding any other provision of this License, for material you add to a covered work, you may (if authorized by the copyright holders of that material) supplement the terms of this License with terms:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* a) Disclaiming warranty or limiting liability differently from the terms of sections 15 and 16 of this License; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* b) Requiring preservation of specified reasonable legal notices or author attributions in that material or in the Appropriate Legal Notices displayed by works containing it; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* c) Prohibiting misrepresentation of the origin of that material, or requiring that modified versions of such material be marked in reasonable ways as different from the original version; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* d) Limiting the use for publicity purposes of names of licensors or authors of the material; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* e) Declining to grant rights under trademark law for use of some trade names, trademarks, or service marks; or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* f) Requiring indemnification of licensors and authors of that material by anyone who conveys the material (or modified versions of it) with contractual assumptions of liability to the recipient, for any liability that these contractual assumptions directly impose on those licensors and authors.<br/>
+<br/>
+All other non-permissive additional terms are considered “further restrictions” within the meaning of section 10. If the Program as you received it, or any part of it, contains a notice stating that it is governed by this License along with a term that is a further restriction, you may remove that term. If a license document contains a further restriction but permits relicensing or conveying under this License, you may add to a covered work material governed by the terms of that license document, provided that the further restriction does not survive such relicensing or conveying.<br/>
+<br/>
+If you add terms to a covered work in accord with this section, you must place, in the relevant source files, a statement of the additional terms that apply to those files, or a notice indicating where to find the applicable terms.<br/>
+<br/>
+Additional terms, permissive or non-permissive, may be stated in the form of a separately written license, or stated as exceptions; the above requirements apply either way.<br/>
+8. Termination.<br/>
+<br/>
+You may not propagate or modify a covered work except as expressly provided under this License. Any attempt otherwise to propagate or modify it is void, and will automatically terminate your rights under this License (including any patent licenses granted under the third paragraph of section 11).<br/>
+<br/>
+However, if you cease all violation of this License, then your license from a particular copyright holder is reinstated (a) provisionally, unless and until the copyright holder explicitly and finally terminates your license, and (b) permanently, if the copyright holder fails to notify you of the violation by some reasonable means prior to 60 days after the cessation.<br/>
+<br/>
+Moreover, your license from a particular copyright holder is reinstated permanently if the copyright holder notifies you of the violation by some reasonable means, this is the first time you have received notice of violation of this License (for any work) from that copyright holder, and you cure the violation prior to 30 days after your receipt of the notice.<br/>
+<br/>
+Termination of your rights under this section does not terminate the licenses of parties who have received copies or rights from you under this License. If your rights have been terminated and not permanently reinstated, you do not qualify to receive new licenses for the same material under section 10.<br/>
+9. Acceptance Not Required for Having Copies.<br/>
+<br/>
+You are not required to accept this License in order to receive or run a copy of the Program. Ancillary propagation of a covered work occurring solely as a consequence of using peer-to-peer transmission to receive a copy likewise does not require acceptance. However, nothing other than this License grants you permission to propagate or modify any covered work. These actions infringe copyright if you do not accept this License. Therefore, by modifying or propagating a covered work, you indicate your acceptance of this License to do so.<br/>
+10. Automatic Licensing of Downstream Recipients.<br/>
+<br/>
+Each time you convey a covered work, the recipient automatically receives a license from the original licensors, to run, modify and propagate that work, subject to this License. You are not responsible for enforcing compliance by third parties with this License.<br/>
+<br/>
+An “entity transaction” is a transaction transferring control of an organization, or substantially all assets of one, or subdividing an organization, or merging organizations. If propagation of a covered work results from an entity transaction, each party to that transaction who receives a copy of the work also receives whatever licenses to the work the party's predecessor in interest had or could give under the previous paragraph, plus a right to possession of the Corresponding Source of the work from the predecessor in interest, if the predecessor has it or can get it with reasonable efforts.<br/>
+<br/>
+You may not impose any further restrictions on the exercise of the rights granted or affirmed under this License. For example, you may not impose a license fee, royalty, or other charge for exercise of rights granted under this License, and you may not initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging that any patent claim is infringed by making, using, selling, offering for sale, or importing the Program or any portion of it.<br/>
+11. Patents.<br/>
+<br/>
+A “contributor” is a copyright holder who authorizes use under this License of the Program or a work on which the Program is based. The work thus licensed is called the contributor's “contributor version”.<br/>
+<br/>
+A contributor's “essential patent claims” are all patent claims owned or controlled by the contributor, whether already acquired or hereafter acquired, that would be infringed by some manner, permitted by this License, of making, using, or selling its contributor version, but do not include claims that would be infringed only as a consequence of further modification of the contributor version. For purposes of this definition, “control” includes the right to grant patent sublicenses in a manner consistent with the requirements of this License.<br/>
+<br/>
+Each contributor grants you a non-exclusive, worldwide, royalty-free patent license under the contributor's essential patent claims, to make, use, sell, offer for sale, import and otherwise run, modify and propagate the contents of its contributor version.<br/>
+<br/>
+In the following three paragraphs, a “patent license” is any express agreement or commitment, however denominated, not to enforce a patent (such as an express permission to practice a patent or covenant not to sue for patent infringement). To “grant” such a patent license to a party means to make such an agreement or commitment not to enforce a patent against the party.<br/>
+<br/>
+If you convey a covered work, knowingly relying on a patent license, and the Corresponding Source of the work is not available for anyone to copy, free of charge and under the terms of this License, through a publicly available network server or other readily accessible means, then you must either (1) cause the Corresponding Source to be so available, or (2) arrange to deprive yourself of the benefit of the patent license for this particular work, or (3) arrange, in a manner consistent with the requirements of this License, to extend the patent license to downstream recipients. “Knowingly relying” means you have actual knowledge that, but for the patent license, your conveying the covered work in a country, or your recipient's use of the covered work in a country, would infringe one or more identifiable patents in that country that you have reason to believe are valid.<br/>
+<br/>
+If, pursuant to or in connection with a single transaction or arrangement, you convey, or propagate by procuring conveyance of, a covered work, and grant a patent license to some of the parties receiving the covered work authorizing them to use, propagate, modify or convey a specific copy of the covered work, then the patent license you grant is automatically extended to all recipients of the covered work and works based on it.<br/>
+<br/>
+A patent license is “discriminatory” if it does not include within the scope of its coverage, prohibits the exercise of, or is conditioned on the non-exercise of one or more of the rights that are specifically granted under this License. You may not convey a covered work if you are a party to an arrangement with a third party that is in the business of distributing software, under which you make payment to the third party based on the extent of your activity of conveying the work, and under which the third party grants, to any of the parties who would receive the covered work from you, a discriminatory patent license (a) in connection with copies of the covered work conveyed by you (or copies made from those copies), or (b) primarily for and in connection with specific products or compilations that contain the covered work, unless you entered into that arrangement, or that patent license was granted, prior to 28 March 2007.<br/>
+<br/>
+Nothing in this License shall be construed as excluding or limiting any implied license or other defenses to infringement that may otherwise be available to you under applicable patent law.<br/>
+12. No Surrender of Others' Freedom.<br/>
+<br/>
+If conditions are imposed on you (whether by court order, agreement or otherwise) that contradict the conditions of this License, they do not excuse you from the conditions of this License. If you cannot convey a covered work so as to satisfy simultaneously your obligations under this License and any other pertinent obligations, then as a consequence you may not convey it at all. For example, if you agree to terms that obligate you to collect a royalty for further conveying from those to whom you convey the Program, the only way you could satisfy both those terms and this License would be to refrain entirely from conveying the Program.<br/>
+13. Use with the GNU Affero General Public License.<br/>
+<br/>
+Notwithstanding any other provision of this License, you have permission to link or combine any covered work with a work licensed under version 3 of the GNU Affero General Public License into a single combined work, and to convey the resulting work. The terms of this License will continue to apply to the part which is the covered work, but the special requirements of the GNU Affero General Public License, section 13, concerning interaction through a network will apply to the combination as such.<br/>
+14. Revised Versions of this License.<br/>
+<br/>
+The Free Software Foundation may publish revised and/or new versions of the GNU General Public License from time to time. Such new versions will be similar in spirit to the present version, but may differ in detail to address new problems or concerns.<br/>
+<br/>
+Each version is given a distinguishing version number. If the Program specifies that a certain numbered version of the GNU General Public License “or any later version” applies to it, you have the option of following the terms and conditions either of that numbered version or of any later version published by the Free Software Foundation. If the Program does not specify a version number of the GNU General Public License, you may choose any version ever published by the Free Software Foundation.<br/>
+<br/>
+If the Program specifies that a proxy can decide which future versions of the GNU General Public License can be used, that proxy's public statement of acceptance of a version permanently authorizes you to choose that version for the Program.<br/>
+<br/>
+Later license versions may give you additional or different permissions. However, no additional obligations are imposed on any author or copyright holder as a result of your choosing to follow a later version.<br/>
+15. Disclaimer of Warranty.<br/>
+<br/>
+THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.<br/>
+16. Limitation of Liability.<br/>
+<br/>
+IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.<br/>
+17. Interpretation of Sections 15 and 16.<br/>
+<br/>
+If the disclaimer of warranty and limitation of liability provided above cannot be given local legal effect according to their terms, reviewing courts shall apply local law that most closely approximates an absolute waiver of all civil liability in connection with the Program, unless a warranty or assumption of liability accompanies a copy of the Program in return for a fee.<br/>
+<br/>
+END OF TERMS AND CONDITIONS<br/>
+How to Apply These Terms to Your New Programs<br/>
+<br/>
+If you develop a new program, and you want it to be of the greatest possible use to the public, the best way to achieve this is to make it free software which everyone can redistribute and change under these terms.<br/>
+<br/>
+To do so, attach the following notices to the program. It is safest to attach them to the start of each source file to most effectively state the exclusion of warranty; and each file should have at least the “copyright” line and a pointer to where the full notice is found.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;one line to give the program's name and a brief idea of what it does.&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Copyright (C) &lt;year&gt;&nbsp;&nbsp;&lt;name of author&gt;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GNU General Public License for more details.<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<br/>
+Also add information on how to contact you by electronic and paper mail.<br/>
+<br/>
+If the program does terminal interaction, make it output a short notice like this when it starts in an interactive mode:<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;program&gt;&nbsp;&nbsp;Copyright (C) &lt;year&gt;&nbsp;&nbsp;&lt;name of author&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;This is free software, and you are welcome to redistribute it<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;under certain conditions; type `show c' for details.<br/>
+<br/>
+The hypothetical commands `show w' and `show c' should show the appropriate parts of the General Public License. Of course, your program's commands might be different; for a GUI interface, you would use an “about box”.<br/>
+<br/>
+You should also get your employer (if you work as a programmer) or school, if any, to sign a “copyright disclaimer” for the program, if necessary. For more information on this, and how to apply and follow the GNU GPL, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+<br/>
+The GNU General Public License does not permit incorporating your program into proprietary programs. If your program is a subroutine library, you may consider it more useful to permit linking proprietary applications with the library. If this is what you want to do, use the GNU Lesser General Public License instead of this License. But first, please read &lt;http://www.gnu.org/philosophy/why-not-lgpl.html&gt;.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/ProjectThresholdFilterer.bpr</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/ProjectThresholdFilterer.bpr" border = "1"><tr><td><code>
+&lt;?xml version='1.0' encoding='utf-8' ?&gt;<br/>
+&lt;!-- C++Builder XML Project --&gt;<br/>
+&lt;PROJECT&gt;<br/>
+&nbsp;&nbsp;&lt;MACROS&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;VERSION value="BCB.06.00"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PROJECT value="ProjectThresholdFilterer.exe"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OBJFILES value="ProjectThresholdFilterer.obj UnitFormThresholdFilterer.obj <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitFormThresholdFiltererAbout.obj"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RESFILES value="ProjectThresholdFilterer.res"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLGENFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;DEFFILE value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RESDEPEN value="$(RESFILES) UnitFormThresholdFilterer.dfm UnitFormThresholdFiltererAbout.dfm"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBRARIES value="rtl.lib vcl.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SPARELIBS value="vcl.lib rtl.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PACKAGES value="vcl.bpi rtl.bpi dbrtl.bpi adortl.bpi vcldb.bpi vclx.bpi bdertl.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vcldbx.bpi ibxpress.bpi dsnap.bpi cds.bpi bdecds.bpi qrpt.bpi teeui.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;teedb.bpi tee.bpi dss.bpi teeqr.bpi visualclx.bpi visualdbclx.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dsnapcrba.bpi dsnapcon.bpi bcbsmp.bpi vclie.bpi xmlrtl.bpi inet.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;indy.bpi bcb2kaxserver.bpi"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHCPP value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHPAS value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHRC value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PATHASM value=".;"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;DEBUGLIBPATH value="$(BCB)\lib\debug"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RELEASELIBPATH value="$(BCB)\lib\release"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LINKER value="ilink32"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;USERDEFINES value="_DEBUG"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;SYSDEFINES value="NO_STRICT"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;MAINSOURCE value="ProjectThresholdFilterer.cpp"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;INCLUDEPATH value="..\..\..;Projects\Tools\ThresholdFilterer;$(BCB)\include;$(BCB)\include\vcl"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LIBPATH value="..\..\..;Projects\Tools\ThresholdFilterer;$(BCB)\lib\obj;$(BCB)\lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;WARNINGS value="-w-par"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/MACROS&gt;<br/>
+&nbsp;&nbsp;&lt;OPTIONS&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;IDLCFLAGS value="-I..\..\.. -IProjects\Tools\ThresholdFilterer -I$(BCB)\include <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-tW -tWM"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;PFLAGS value="-$YD -$W -$O- -$A8 -v -JPHNE -M"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;RFLAGS value=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;AFLAGS value="/mx /w2 /zd"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;LFLAGS value="-D&amp;quot;&amp;quot; -aa -Tpe -x -Gn -v"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/OPTIONS&gt;<br/>
+&nbsp;&nbsp;&lt;LINKER&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLOBJ value="c0w32.obj sysinit.obj $(OBJFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLRES value="$(RESFILES)"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ALLLIB value="$(LIBFILES) $(LIBRARIES) import32.lib cp32mt.lib"/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;OTHERFILES value=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/LINKER&gt;<br/>
+&nbsp;&nbsp;&lt;FILELIST&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="ProjectThresholdFilterer.res" FORMNAME="" UNITNAME="ProjectThresholdFilterer.res" CONTAINERID="ResTool" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="ProjectThresholdFilterer.cpp" FORMNAME="" UNITNAME="ProjectThresholdFilterer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="UnitFormThresholdFilterer.cpp" FORMNAME="FormThresholdFilterer" UNITNAME="UnitFormThresholdFilterer" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;FILE FILENAME="UnitFormThresholdFiltererAbout.cpp" FORMNAME="FormThresholdFiltererAbout" UNITNAME="UnitFormThresholdFiltererAbout" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/&gt;<br/>
+&nbsp;&nbsp;&lt;/FILELIST&gt;<br/>
+&nbsp;&nbsp;&lt;BUILDTOOLS&gt;<br/>
+&nbsp;&nbsp;&lt;/BUILDTOOLS&gt;<br/>
+<br/>
+&nbsp;&nbsp;&lt;IDEOPTIONS&gt;<br/>
+[Version Info]<br/>
+IncludeVerInfo=1<br/>
+AutoIncBuild=0<br/>
+MajorVer=1<br/>
+MinorVer=0<br/>
+Release=0<br/>
+Build=0<br/>
+Debug=0<br/>
+PreRelease=0<br/>
+Special=0<br/>
+Private=0<br/>
+DLL=0<br/>
+Locale=1033<br/>
+CodePage=1252<br/>
+<br/>
+[Version Info Keys]<br/>
+CompanyName=Richel Bilderbeek<br/>
+FileDescription=ThresholdFilterer<br/>
+FileVersion=1.0.0.0<br/>
+InternalName=ThresholdFilterer<br/>
+LegalCopyright=Richel Bilderbeek<br/>
+LegalTrademarks=Richel Bilderbeek<br/>
+OriginalFilename=ThresholdFilterer<br/>
+ProductName=ThresholdFilterer<br/>
+ProductVersion=1.0.0.0<br/>
+Comments=Licenced under GPL 3.0<br/>
+Website=http://www.richelbilderbeek.nl<br/>
+<br/>
+[Debugging]<br/>
+DebugSourceDirs=$(BCB)\source\vcl<br/>
+<br/>
+[Parameters]<br/>
+RunParams=<br/>
+Launcher=<br/>
+UseLauncher=0<br/>
+DebugCWD=<br/>
+HostApplication=<br/>
+RemoteHost=<br/>
+RemotePath=<br/>
+RemoteLauncher=<br/>
+RemoteCWD=<br/>
+RemoteDebug=0<br/>
+<br/>
+[Compiler]<br/>
+ShowInfoMsgs=0<br/>
+LinkDebugVcl=0<br/>
+LinkCGLIB=0<br/>
+<br/>
+[CORBA]<br/>
+AddServerUnit=1<br/>
+AddClientUnit=1<br/>
+PrecompiledHeaders=1<br/>
+<br/>
+[Language]<br/>
+ActiveLang=<br/>
+ProjectLang=<br/>
+RootDir=<br/>
+&nbsp;&nbsp;&lt;/IDEOPTIONS&gt;<br/>
+&lt;/PROJECT&gt;<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/ProjectThresholdFilterer.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/ProjectThresholdFilterer.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+//---------------------------------------------------------------------------<br/>
+USEFORM("UnitFormThresholdFilterer.cpp", FormThresholdFilterer);<br/>
+USEFORM("UnitFormThresholdFiltererAbout.cpp", FormThresholdFiltererAbout);<br/>
+//---------------------------------------------------------------------------<br/>
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Initialize();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Title = "ThresholdFilterer";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;CreateForm(__classid(TFormThresholdFilterer), &amp;FormThresholdFilterer);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;Run();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;catch (...)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; throw Exception("");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (Exception &amp;exception)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Application-&gt;ShowException(&amp;exception);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return 0;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/ProjectThresholdFilterer.res</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/ProjectThresholdFilterer.res" border = "1"><tr><td><code>
+        ÿÿ  ÿÿ                  è      ÿÿ ÿÿ     	        (       @         €                        €  €   €€ €   € € €€  €€€ ÀÀÀ   ÿ  ÿ   ÿÿ ÿ   ÿ ÿ ÿÿ  ÿÿÿ      33            3333           33»»ÿÿð       3;»»»ÿÿÿð      33»»±ÿÿÿÿ      3»»»™ ÿÿÿÿ    ;»»»™ÿÿÿÿð   3;»»±™™ÿðÿÿð   3»»»™™ÿÿðÿÿÿ  ;»»±™™™ÿÿÿ ÿÿð ;»»±™™™ÿÿÿÿÿð 3»»»™™™ÿÿÿÿÿÿ 3»»»    ÿÿ 3»»»»»»»ÿÿÿÿÿÿÿ 3»»»»»»»ÿÿÿÿÿÿÿ 3»»»»»»»ÿð  ÿÿÿ 3»»»  »»ÿÿÿ ÿÿ 3»»°ÿÿ »ÿÿÿðÿÿ 3»»ÿÌÿðÿðÿÿ 3»»ü Ïðÿ  ÿÿ 3»°ÿü Ïðÿ  ÿÿ ;»ÿÌÿðÿðÿð ;»ÿÿÿÿÿÿðÿð  3»°ÿÿ »ÿÿÿ ÿ   3;»  »»ÿð  ÿð   ;»»»»»ÿÿÿÿÿð    3»»»»»ÿÿÿÿÿ     33»»»»ÿÿÿÿ      3;»»»ÿÿÿð       33»»ÿÿð         3333             33        ÿàÿÿ  ÿþ  ø  ð  ð  à  À  À  €  €                                          €  €  À  À  à  ð  ð  ø  þ  ÿ  ÿÿàÿ   0   ÿÿ M A I N I C O N         	            &nbsp;&nbsp;   è   Ø      ÿÿ ÿÿ     	        Ø4   V S _ V E R S I O N _ I N F O     ½ïþ                 ?                         6    S t r i n g F i l e I n f o       0 4 0 9 0 4 E 4   D   C o m p a n y N a m e     R i c h e l   B i l d e r b e e k   L   F i l e D e s c r i p t i o n     T h r e s h o l d F i l t e r e r   0   F i l e V e r s i o n     1 . 0 . 0 . 0   D   I n t e r n a l N a m e   T h r e s h o l d F i l t e r e r   H   L e g a l C o p y r i g h t   R i c h e l   B i l d e r b e e k   L   L e g a l T r a d e m a r k s     R i c h e l   B i l d e r b e e k   L   O r i g i n a l F i l e n a m e   T h r e s h o l d F i l t e r e r   D   P r o d u c t N a m e     T h r e s h o l d F i l t e r e r   4   P r o d u c t V e r s i o n   1 . 0 . 0 . 0   F   C o m m e n t s   L i c e n c e d   u n d e r   G P L   3 . 0     V   W e b s i t e     h t t p : / / w w w . r i c h e l b i l d e r b e e k . n l     D     V a r F i l e I n f o     $    T r a n s l a t i o n     	ä<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/UnitFormThresholdFilterer.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/UnitFormThresholdFilterer.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;ThresholdFilterer, tool to perform threshold filter operations<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;boost/scoped_ptr.hpp&gt;<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+<br/>
+#include "UnitFormThresholdFilterer.h"<br/>
+#include "UnitFormThresholdFiltererAbout.h"<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma package(smart_init)<br/>
+#pragma resource "*.dfm"<br/>
+TFormThresholdFilterer *FormThresholdFilterer;<br/>
+//---------------------------------------------------------------------------<br/>
+__fastcall TFormThresholdFilterer::TFormThresholdFilterer(TComponent* Owner)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
+{<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormThresholdFilterer::ButtonLoadClick(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;if (OpenDialog1-&gt;Execute() == false) return;<br/>
+<br/>
+&nbsp;&nbsp;ImageOriginal-&gt;Picture-&gt;LoadFromFile(OpenDialog1-&gt;FileName);<br/>
+<br/>
+&nbsp;&nbsp;if (ImageResult-&gt;Picture-&gt;Bitmap-&gt;PixelFormat != pf24bit)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TrackBarThreshold-&gt;Enabled = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ButtonSave-&gt;Enabled = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ImageResult-&gt;Visible = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ImageOriginal-&gt;Visible = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CheckBoxColor-&gt;Enabled = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ShowMessage("Bitmap must be 24 bit");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;CheckBoxColor-&gt;Enabled = true;<br/>
+&nbsp;&nbsp;ImageOriginal-&gt;Visible = true;<br/>
+&nbsp;&nbsp;TrackBarThreshold-&gt;Enabled = true;<br/>
+&nbsp;&nbsp;TrackBarThresholdChange(0);<br/>
+&nbsp;&nbsp;ButtonSave-&gt;Enabled = true;<br/>
+&nbsp;&nbsp;SaveDialog1-&gt;FileName = OpenDialog1-&gt;FileName;<br/>
+&nbsp;&nbsp;ImageResult-&gt;Visible = true;<br/>
+&nbsp;&nbsp;++PageControl-&gt;ActivePageIndex;<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormThresholdFilterer::TrackBarThresholdChange(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;if (CheckBoxColor-&gt;Checked == true)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ThresholdFilterColor(ImageOriginal,TrackBarThreshold-&gt;Position, ImageResult);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ThresholdFilterNoColor(ImageOriginal,TrackBarThreshold-&gt;Position, ImageResult);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;ImageResult-&gt;Refresh();<br/>
+<br/>
+&nbsp;&nbsp;TrackBarThreshold-&gt;Hint<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= String(TrackBarThreshold-&gt;Position)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ String("/")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;+ String(TrackBarThreshold-&gt;Max);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormThresholdFilterer::ButtonSaveClick(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;if (SaveDialog1-&gt;Execute() == false) return;<br/>
+&nbsp;&nbsp;ImageResult-&gt;Picture-&gt;SaveToFile(SaveDialog1-&gt;FileName);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormThresholdFilterer::CheckBoxColorClick(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;TrackBarThresholdChange(0);<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+void __fastcall TFormThresholdFilterer::ButtonAboutClick(TObject *Sender)<br/>
+{<br/>
+&nbsp;&nbsp;boost::scoped_ptr&lt;TFormThresholdFiltererAbout&gt; form (new TFormThresholdFiltererAbout(0));<br/>
+&nbsp;&nbsp;form-&gt;ShowModal();<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+//If a pixel's grey value is below threshold, the pixel is made black<br/>
+//Else it keeps it color<br/>
+//From http://www.richelbilderbeek.nl/CppThresholdFilter.htm<br/>
+void ThresholdFilterColor(<br/>
+&nbsp;&nbsp;const TImage * const imageOriginal,<br/>
+&nbsp;&nbsp;const int threshold,<br/>
+&nbsp;&nbsp;const TImage * const imageResult)<br/>
+{<br/>
+&nbsp;&nbsp;assert(imageOriginal!=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "imageOriginal must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageOriginal-&gt;Picture !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Picture of imageOriginal must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageOriginal-&gt;Picture-&gt;Bitmap !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageOriginal must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageOriginal must be 24 bit");<br/>
+&nbsp;&nbsp;assert(imageResult!=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "imageResult must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageResult-&gt;Picture !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Picture of imageResult must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageResult-&gt;Picture-&gt;Bitmap !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageResult must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageResult-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageResult must be 24 bit");<br/>
+&nbsp;&nbsp;assert(threshold &gt;= 0 &amp;&amp; threshold &lt; 256<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Threshold must be in range [0,255]");<br/>
+<br/>
+&nbsp;&nbsp;const int width&nbsp;&nbsp;= imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;const int height = imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;imageResult-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;= width;<br/>
+&nbsp;&nbsp;imageResult-&gt;Picture-&gt;Bitmap-&gt;Height = height;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;for (int y=0; y!=height; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const unsigned char * const lineOriginal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;unsigned char *&gt;(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned char * const lineResult<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;unsigned char *&gt;(imageResult-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=width; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int grey<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (lineOriginal[x*3+2] + lineOriginal[x*3+1] + lineOriginal[x*3+0]) / 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (grey &lt; threshold)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+2] = 0; //Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+1] = 0; //Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+0] = 0; //Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+2] = lineOriginal[x*3+2]; //Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+1] = lineOriginal[x*3+1]; //Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+0] = lineOriginal[x*3+0]; //Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+//If a pixel's grey value is below threshold, the pixel is made black<br/>
+//Else it is made white<br/>
+//From http://www.richelbilderbeek.nl/CppThresholdFilter.htm<br/>
+void ThresholdFilterNoColor(<br/>
+&nbsp;&nbsp;const TImage * const imageOriginal,<br/>
+&nbsp;&nbsp;const int threshold,<br/>
+&nbsp;&nbsp;const TImage * const imageResult)<br/>
+{<br/>
+&nbsp;&nbsp;assert(imageOriginal!=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "imageOriginal must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageOriginal-&gt;Picture !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Picture of imageOriginal must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageOriginal-&gt;Picture-&gt;Bitmap !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageOriginal must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageOriginal must be 24 bit");<br/>
+&nbsp;&nbsp;assert(imageResult!=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "imageResult must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageResult-&gt;Picture !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Picture of imageResult must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageResult-&gt;Picture-&gt;Bitmap !=0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageResult must not be NULL");<br/>
+&nbsp;&nbsp;assert(imageResult-&gt;Picture-&gt;Bitmap-&gt;PixelFormat == pf24bit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bitmap of imageResult must be 24 bit");<br/>
+&nbsp;&nbsp;assert(threshold &gt;= 0 &amp;&amp; threshold &lt; 256<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Threshold must be in range [0,255]");<br/>
+<br/>
+&nbsp;&nbsp;const int width&nbsp;&nbsp;= imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
+&nbsp;&nbsp;const int height = imageOriginal-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
+&nbsp;&nbsp;imageResult-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;= width;<br/>
+&nbsp;&nbsp;imageResult-&gt;Picture-&gt;Bitmap-&gt;Height = height;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;for (int y=0; y!=height; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const unsigned char * const lineOriginal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;unsigned char *&gt;(imageOriginal-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;unsigned char * const lineResult<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= static_cast&lt;unsigned char *&gt;(imageResult-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x=0; x!=width; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int grey<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= (lineOriginal[x*3+2] + lineOriginal[x*3+1] + lineOriginal[x*3+0]) / 3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (grey &lt; threshold)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+2] = 0; //Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+1] = 0; //Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+0] = 0; //Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+2] = 255; //Red<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+1] = 255; //Green<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lineResult[x*3+0] = 255; //Blue<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/UnitFormThresholdFilterer.dfm</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/UnitFormThresholdFilterer.dfm" border = "1"><tr><td><code>
+object FormThresholdFilterer: TFormThresholdFilterer<br/>
+&nbsp;&nbsp;Left = 192<br/>
+&nbsp;&nbsp;Top = 114<br/>
+&nbsp;&nbsp;Width = 696<br/>
+&nbsp;&nbsp;Height = 480<br/>
+&nbsp;&nbsp;Caption = 'ThresholdFilterer (C) 2008 Rich'#232'l Bilderbeek'<br/>
+&nbsp;&nbsp;Color = clBtnFace<br/>
+&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;Font.Height = -11<br/>
+&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;OldCreateOrder = False<br/>
+&nbsp;&nbsp;Position = poScreenCenter<br/>
+&nbsp;&nbsp;PixelsPerInch = 96<br/>
+&nbsp;&nbsp;TextHeight = 14<br/>
+&nbsp;&nbsp;object PageControl: TPageControl<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Width = 688<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Height = 446<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ActivePage = TabSheetOriginal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabIndex = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object TabSheetOriginal: TTabSheet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Original'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ImageOriginal: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 680<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 376<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07544269746D61703A000000424D3A0000000000000036000000280000000100<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000010000000100180000000000040000000000000000000000000000000000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000FFFFFF00}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proportional = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stretch = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object PanelOriginal: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 680<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonLoad: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Load'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonLoadClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonAbout0: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 88<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonAboutClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object TabSheetResult: TTabSheet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Result'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ImageIndex = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ImageResult: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 680<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 376<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07544269746D61703A000000424D3A0000000000000036000000280000000100<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000010000000100180000000000040000000000000000000000000000000000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0000FFFFFF00}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proportional = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stretch = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Visible = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object PanelResult: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 680<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonSave: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 272<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Save'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enabled = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonSaveClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object TrackBarThreshold: TTrackBar<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 12<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 137<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enabled = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max = 255<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orientation = trHorizontal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentShowHint = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Frequency = 16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position = 128<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelEnd = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SelStart = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShowHint = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ThumbLength = 16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TickMarks = tmBottomRight<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TickStyle = tsAuto<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnChange = TrackBarThresholdChange<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object ButtonAbout1: TButton<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 360<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 25<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = ButtonAboutClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object CheckBoxColor: TCheckBox<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 160<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 13<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 97<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 17<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Keep color?'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Checked = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enabled = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State = cbChecked<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OnClick = CheckBoxColorClick<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;object OpenDialog1: TOpenDialog<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DefaultExt = 'bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Filter = '24-bit bitmap|*.bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Title = 'Please select a 24-bit bitmap'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 136<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;object SaveDialog1: TSaveDialog<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DefaultExt = 'bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Filter = '24-bit bitmap|*.bmp'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Title = 'Save your 24-bit bitmap'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 168<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 8<br/>
+&nbsp;&nbsp;end<br/>
+end<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/UnitFormThresholdFilterer.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/UnitFormThresholdFilterer.h" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;ThresholdFilterer, tool to perform threshold filter operations<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef UnitFormThresholdFiltererH<br/>
+#define UnitFormThresholdFiltererH<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;Classes.hpp&gt;<br/>
+#include &lt;Controls.hpp&gt;<br/>
+#include &lt;StdCtrls.hpp&gt;<br/>
+#include &lt;Forms.hpp&gt;<br/>
+#include &lt;ComCtrls.hpp&gt;<br/>
+#include &lt;ExtCtrls.hpp&gt;<br/>
+#include &lt;Graphics.hpp&gt;<br/>
+#include &lt;Dialogs.hpp&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+class TFormThresholdFilterer : public TForm<br/>
+{<br/>
+__published:	// IDE-managed Components<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPageControl *PageControl;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetOriginal;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTabSheet *TabSheetResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelOriginal;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *ImageOriginal;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *ImageResult;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonLoad;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonSave;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TTrackBar *TrackBarThreshold;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TOpenDialog *OpenDialog1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TSaveDialog *SaveDialog1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonAbout0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TButton *ButtonAbout1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TCheckBox *CheckBoxColor;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonLoadClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall TrackBarThresholdChange(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonSaveClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall ButtonAboutClick(TObject *Sender);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;void __fastcall CheckBoxColorClick(TObject *Sender);<br/>
+private:	// User declarations<br/>
+public:		// User declarations<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormThresholdFilterer(TComponent* Owner);<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+extern PACKAGE TFormThresholdFilterer *FormThresholdFilterer;<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppThresholdFilter.htm<br/>
+void ThresholdFilterColor(<br/>
+&nbsp;&nbsp;const TImage * const imageOriginal,<br/>
+&nbsp;&nbsp;const int threshold,<br/>
+&nbsp;&nbsp;const TImage * const imageResult);<br/>
+<br/>
+//From http://www.richelbilderbeek.nl/CppThresholdFilter.htm<br/>
+void ThresholdFilterNoColor(<br/>
+&nbsp;&nbsp;const TImage * const imageOriginal,<br/>
+&nbsp;&nbsp;const int threshold,<br/>
+&nbsp;&nbsp;const TImage * const imageResult);<br/>
+<br/>
+#endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/UnitFormThresholdFiltererAbout.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/UnitFormThresholdFiltererAbout.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;ThresholdFilterer, tool to perform threshold filter operations<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;vcl.h&gt;<br/>
+#pragma hdrstop<br/>
+<br/>
+#include "UnitFormThresholdFiltererAbout.h"<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma package(smart_init)<br/>
+#pragma resource "*.dfm"<br/>
+TFormThresholdFiltererAbout *FormThresholdFiltererAbout;<br/>
+//---------------------------------------------------------------------------<br/>
+__fastcall TFormThresholdFiltererAbout::TFormThresholdFiltererAbout(TComponent* Owner)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: TForm(Owner)<br/>
+{<br/>
+}<br/>
+//---------------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/UnitFormThresholdFiltererAbout.dfm</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/UnitFormThresholdFiltererAbout.dfm" border = "1"><tr><td><code>
+object FormThresholdFiltererAbout: TFormThresholdFiltererAbout<br/>
+&nbsp;&nbsp;Left = 209<br/>
+&nbsp;&nbsp;Top = 143<br/>
+&nbsp;&nbsp;BorderStyle = bsDialog<br/>
+&nbsp;&nbsp;Caption = 'About'<br/>
+&nbsp;&nbsp;ClientHeight = 446<br/>
+&nbsp;&nbsp;ClientWidth = 688<br/>
+&nbsp;&nbsp;Color = clBtnFace<br/>
+&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;Font.Height = -11<br/>
+&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;Font.Style = []<br/>
+&nbsp;&nbsp;OldCreateOrder = False<br/>
+&nbsp;&nbsp;Position = poScreenCenter<br/>
+&nbsp;&nbsp;PixelsPerInch = 96<br/>
+&nbsp;&nbsp;TextHeight = 14<br/>
+&nbsp;&nbsp;object RichEdit1: TRichEdit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 357<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Width = 688<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Height = 89<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Align = alBottom<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Lines.Strings = (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;ThresholdFilterer, tool to perform threshold filter operations'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Rich'#232'l Bilderbeek'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;This program is free software: you can redistribute it and/or ' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'modify'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;it under the terms of the GNU General Public License as publis' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'hed by'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License,' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' or'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;(at your option) any later version.'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;''<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;This program is distributed in the hope that it will be useful' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;','<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;GNU General Public License for more details.'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;You should have received a copy of the GNU General Public Lice' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nse'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/lice' +<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nses/&gt;.')<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PlainText = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ReadOnly = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ScrollBars = ssVertical<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;object PanelTop: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Left = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Top = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Width = 688<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Height = 357<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object Image1: TImage<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 236<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 355<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alLeft<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Picture.Data = {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0A544A504547496D6167652C3C0000FFD8FFE000104A46494600010101006000<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;600000FFDB004300080606070605080707070909080A0C140D0C0B0B0C191213<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0F141D1A1F1E1D1A1C1C20242E2720222C231C1C2837292C30313434341F2739<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3D38323C2E333432FFDB0043010909090C0B0C180D0D1832211C213232323232<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3232323232323232323232323232323232323232323232323232323232323232<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32323232323232323232323232FFC0001108014000D503012200021101031101<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FFC4001F0000010501010101010100000000000000000102030405060708090A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0BFFC400B5100002010303020403050504040000017D01020300041105122131<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;410613516107227114328191A1082342B1C11552D1F02433627282090A161718<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;191A25262728292A3435363738393A434445464748494A535455565758595A63<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6465666768696A737475767778797A838485868788898A92939495969798999A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F01000301<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01010101010101010000000000000102030405060708090A0BFFC400B5110002<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0102040403040705040400010277000102031104052131061241510761711322<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;292A35363738393A434445464748494A535455565758595A636465666768696A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F9FE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8A28A0028A28A002A48216B9B88A04318791C229924545049C72CC4051EE4803<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BD11C8A8932B431C85D36AB316CC67703B97040CE011CE4618F19C1171B4977F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B39B5B982E6397CA579977471DBCB26EC4523C8AAAADF2B1CE4AE01218807001<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9F457A2681F04BC6FAF22CADA7C7A640C85964D45CC4490D8DBB002E0F5232A0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;60673C8CF1F73E1BD6ACDE08AE74BBB867B8B86B58A0788895A50B1B6CF2FEF6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;712C6471CEE18CD0065D1524904D0A42F2C52224C9BE2665203AEE2B95F51B95<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;864770476A8E800A28A9041335BBDC2C521811D51E40A76AB3025413D0121588<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1DF69F4A008E8AED3C29F0F357F11E8C35EB5D3E4D4EC23BDFB14B67697221B8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DC554870CC8CA10174C9E703390002C3D2F4DF82106A5A1DDDF687A9797677F1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3082D359B08A59432EE54717113FCAA5BE70D1FCACA5721D78201E01572D2086<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F6F6C2D228AEF7CAEB14BE4A899DD99C8FDDC7F2E4ED2A0293C907919C0F586F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;821AACB7B7AB65A6C6B1DAA0596D6EAFA432C84396DD6F3FD9D2125D17033BC2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EFF9C2B70B869E02D67C39A9DAC6BA6DF49AB4589E78A1951DFC9319DF17D9D2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;394B2B9CA09BE784EF0AE01DEAA01A1E1AB7BCBCD257C3D697B047AEDDDA2DDD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8D8282D6D79B63560278245F296431EEC332FCE618DF720C493F99EA066430D9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DC477714F648D04915CB93E5B091D8AAA900C6016E579F9B71EF81F41BF82B59<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8B435D5BC1B04174B7528BE9B4AB88121B3695B7A092D3F7A5E091061B7A4A15<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;81568DCA855AF38F881AC683E28B3B9D5B67F6578916ECA5D6997914CF380090<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42CC30854123E59103AED650DB1512802C7817C3571AFF0081AFEFB479A083C5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;163771C1A4B59DE0B6BB70C19A557C950CA50C8CADF7CF96E33B542D741F0C3C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19A6CD109BCA9E6BB597ECB77756D717167A968B3B2BA106252CAF1EE0A03F18<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCFBD76AB05F23D03C47ABF85B545D4B45BE92D2EC214DEA030653D432B02187<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;43820F201EA057D1F7DA3E9BFF0008FC5E3AD2EFB52D035AB5B748EF27B59D75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5223728C4CFF0033F9E8B1B09036EC88F6363E55500163C61A3F86EC34B7B1F1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9C926A166B6F1C29AC4FA64CD776B17CD82D771C6C8EFE66D01484E092DBC9F9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BE68D774BB4D2AF512C358B4D56D2543245716EAE876EF6501D1C028FF002E76<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F3C30209041AFAFF00C3FE26B6F13E9773617234DD4EF2148A2BF8B4D9D2E6D6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;44972BBD59881B301F7237CC029186054BFCF1F153E1CE9BE13D52F2E346D6B4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D92D15D0B696F78BF6BB6DFCE361397419520FDEC30C82016201E67451450014<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51450014514500157354D2AFB45BF6B0D4ADA4B5BB44477864E1943A075C8EC7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6B0E0F23A1C1E2BDDFC35FB392C17B6D3F897538EEA008CD35B599641BC3AEC5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE465919776EC0420E304F5AD4F15FC34FEC7F05DBF847C276D3DEDD6AB76229<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2EAF23C8B6B7044AEC6444554F9D22C9605DC00A376C40A01E19E0CF036B5E3A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D51EC7478A30224DF35C4E4AC508E71B8804E491800024F27A0247B1E91F037C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;859ACD1A0BCB0BDB4B695AFF0050B7F2DE3904AEE5520C095728B1A30F3633FB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C63F310153D33E19E9B0E9BF0E7411134923DC5943712C92905D99E3538271C8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;55DA8B9E8A8A3B5759401CDC5E01F0AAA4027D074DBA786DD2DD5A7B3888DAAC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CD908142292CEEC76AAE49F618DCB1B0B3D32CE3B3B0B482D2D63CEC8608C468<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B9249C28E064927F1AB14500470410DADBC56F6F1470C112048E38D42AA28180<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;001C000718A8EEAC2CEFBC8FB65A4171E44AB3C3E7461FCB917EEBAE7A30C9C1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1C8AB1450057FB059F91E47D920F27CDF3FCBF2C6DF337F99BF1FDEDFF00367A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EEE7AD61EBFE00F0A78A1DA5D6343B49E7670ED3A8314AE42ED1BA442188C718<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;271C0F415D251401E37A6FECEBE1CB3F1035DDDEA1777FA584223B0946C6DD80<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32F2A1048CE48002F6E4E0E644F805A5E8F796BA9787F5AD562BEB69449B66B9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D8264C10D179912ABC7B81DA5C6EC027E535EC1450078BF87749B7F0D78A23B9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F0E69B7DA25E5B451FF6EF86A79CCDF68B661FF1F30302FE6F96CC7EEF27695C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2336D7F40B7D12CF409EEEE7C296F026D947DBF4AB770B1C8DB17EE2E76C3304<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D847DD57070FD5644EA28A00C759A7D67CB9ACEE609346B989E29900960B98DB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E60C43820AB0202142A8CA771DC0AED326BFA058F8934B6B0BF59000E2586785<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B64B6F2AF2B2C6FD55D4F43F50720907528A00AFF65CEA3F6C37139C45E52C3B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F11AE4E4B6D1D58E1464E7017E5C6E6DDC5FC52F87D6DE38F0D4E608235D6ADD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3CCB49D634DF2150C442CE70763163DC00486E7041EF28A00F8127826B5B896D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EE229219E2729247229564607041079041E315D6685E3DD46CA7B35D4EF6FA68<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6CEEE5BF82E2175FB5C73323E556570D88E47653202181C138249DDDE7ED15E1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;75B1F1058F892DE39366A2861BA2118A896300292D9C02C9C05C0FF544F3938F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13A00F48B6D9A3FF00C239E28B1D32F869B612BA5DEBDA44AA924A3E45412425<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5920911595595F22525BE660DBC9F19B52B8D43C4D62CF6763058BDA1BAB09AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;230A2EA09A5791656CA870C436195BF8C3B0C6FE78FF000C5F6B367AE4316832<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;62FAFBFD0844CA8C93897E5F2DD5F28CA491C30C743DB346BF75E64B0D90B79E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D16D77AB594E9CDA4858EF8919BE731860582B72A5D872773B8063D145140051<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45140051451401F7FD466085AE12E1A28CCE88C892151B955882C01EA012AA48<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EFB47A5494500145145001451450014514500145145001451450014514500145<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1450014514500799FC75D0ED355F86F757B7175241269AEB3C3FBC711BB1609B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;594020921B0A71C13D554B67E4CAFB2FE274B7727842EF4DB0B7D667BBBDB7B8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;454D36D9250C042F912B3A90A87206148918E0264E6BE34A009209E6B5B88AE2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE59219E270F1C91B1564607208239041E7344F335CDC4B3B88C3C8E5D8471AA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2824E78550028F60001DAA3A2800A28A2800A28A2800A28A2803EFFA28A2800A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A2800A28A28032<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FC4AF347E15D5DEDECA3BE9D6CA631DA491195676D87085072C18F18EF9C57C2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95F7DCF0ADCDBCB039902488518C723230046386520A9F70411DABE24F1A787B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FE118F145D6961362C58DAA6E3CE61C60E498E33D412328B952A46E52ACC01CF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D152410B5CDC450218C3C8E114C922A2824E39662028F72401DE89E09AD6E25B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7B88A486789CA491C8A559181C1041E41078C500474514500145145001451450<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07DF709999099E38D1F7B0011CB0DBB8ED39207257048EC491938C992B83F875<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F11AD3C69A5ACD73736916A135C4AAB6512383028E5119D8E1DCA02E08DBB807<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C2FEEDF1DE500145145001451450014514500145145001451450014514500145<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;145001451450015F387ED1DA26A3FF00090E9FAFFD9FFE259F648ECBCFDEBFEB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B7CAFB76E777DDE738C7BD7D1F5C9FC4BD057C45F0FB58B31691DD5C25BBCF6C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8D0B48C25404AEC0A41DE795183FC5C86195201F165749E0BF06DDF8CF595B28<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2EED2D205741717171322F96ACC14154243392C55405FE265048DC0D687C27D4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EFB4CF89BA1B58491A9B8B85B6996597623C4E70C0FCC0138E54739655C02700<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F69F1FAE3C237FAC473E957D037886DA5FB36A10C313FEF176F0CD27DC2C846D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2065BE6C1C6CC000F23D5B4D9B46D66FB4BB868DA7B2B892DE468C92A5918A92<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3201C647A0AA74514005145140051451401DC780BE21CBE08D6AD2E60B281EDD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A25B6BE2D02348D1F9C5D9A36011836D38C3330240CF01027D6FA4EB7A76BB67<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15E69971F69B596259A399118232B16180C463702A415FBCBFC406457C215EF1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F01B4BF104FA3EAEC83669465B7B9822BBB76F2EE658D9C8F2A46CAA7CF1A076<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08EC0018DACA0800FA1E8A28A0028A28A0028A28A0028A28A0028A28A0028A28<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A0028A2B1F5EF15685E18B396EB59D4E0B58E2D9B81259FE72C1308B9639D8F8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C0FE063D14E00362B9BF11F8F7C33E16B7BC7D4B57B41716A819ECA3995AE189<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00AA88F39C9C8EB81839240E6BC73C63FB435C4F67F62F0B5AFD96E3E5F33509<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30E0104EE11232F2A7030EE01C139453823C2E79E6BAB896E2E259269E572F24<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9231667627249279249E73401F5DF84FE32784FC5DA8B585BCD3D85D7CA224D4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0245E79638DA843105B247CBC139E01C1C7790CF0DCA178258E540EC85918300<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAC55871DC30208EC4115F0257AC7C0CF10DC47E2FB2F0C48BE669B792C970F1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12195A548F7C6C558301B4C79053636EDA4B30555A00E3E49F59F869E39D421D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3A7F26FEC2592DD2E26B442C53380EAB206DBB970411FC2DD483CEE27812F9BE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1BF897C59E20B5BB4BB0F6773617724DBBED0266CC84F27702B2C6D9EBB86339<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0E2AE7C7BD1AF34FF89973A8CC9FE8BA9451CB6F200707622C6CA4918DC0AE48<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19C065F5AF6B9E5B4D5BF67B965B7F2D203E1C2425A4EE1636483940DB8B6159<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4A9049CE0AB679A00F9128A28A0028A28A0028A28A00D8F0CE9FA5EA7AD5BDB6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFA8FD86D5E5854BE31B834D1A38DE784C233BEE6E3E4C77AF67B2F08786B47D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;634DD5B53482DFC3B7FE45CD859DA69CD7CAF3CAA5561334B09964574567D817<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E56639D844664F14D3C4D756F0DACD6D24D60B7B1E5CDC185626704150EC7CA8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CB84196653FEA81E8A41FA7FE1DEA563E23F0AC7E1FBAD2A3F0EEA7A4380BA62<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4989632A88CB73E4C8338DF26E1E6071BC2B12CC01A00E93C1FE269FC45676FF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;006A30437F15A2497D6F1432942D213E5BC52B00AF19F2E4E577A9E30E40CB75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15F3E2DD5C7837E27EB5344B1D99D90FDAAE9AE2E6E20339884F3CB3410A832B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9592629910C60239001538F6B975DD3B4AD0DAF2F6F6778ED2D23B8B8792DD8C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EB1B640924891032E76B13F20036B70029C006C515F3FDFF00ED22F6FE21B94B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3D0A0BBD223DF1C2DF6868E494873B65C95F954AE3E42B904FDEED5CA5DFC7FF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;001A4A97F15AC969024F70D2DBC8D02BCB6B1960446A70118003196424E4F3D3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;001F55D15F1E68BF18FC6FA2A4C8BAC497824B73027DBB33188EE6612292725C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;163CB641180410AA053FF85A9E39FEC7FECBFF00849AFBECFF00DFDC3CEFBDBB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FD763CCEBFED74E3A71401F67D15F1E69BF197C79A658359C7AEC9326C2A925D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;449349192E18B07604B1EABF3160031C01804771A27ED27A925C6DD7B43B49A0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6741BEC19A268D73F31DAE5839C63032BD3AF3C007D174578FF80FE3959F89F5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CD4ADB5C5B1D12D562496CDA6B80071C3ABC8E543312415014701B3D327D62C2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FADF53D3ADAFECE4F32D6EA249A17DA46E4600A9C1E46411D6802C5154E2D5B4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D99E048B50B491EE111E1549949915D5994AF3C82B1B9047508C7B1AF27F8CDF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;149BC3B6E741D12E24835C17114924ABB5BCA8805901C86E0B36176B0E543E57<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6B29600B1E3EF8DD63E1E11C7E1C934DD5A5DEC92B79FB9413192BB76750AC63<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2C4900E76AE4EF31FCD9ACEB9AA7887517BFD5EFE7BDBA6C8DF33E768249DAA3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A2AE49C28C019E05539E79AEAE25B8B89649A795CBC9248C599D89C9249E4927<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9CD47400515DE781FE1DEB5E29B0BCB9B5D1649D244586D67BA4296EA59CAB4A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24F350929B4F0AB28CE415E95EBFE0CF82577A3DEBEA3AC6BB1ADC4EFE64B0E9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;56C901460E4E239F6878D19490CB188F21B19C0E403E64AE93E1F48B17C46F0D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B3C31CC0EA76EBB5CB00099000DF2907209C8ED903208C834FC4FA3D9E83AE4D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A7596AD06AB1C5D6EEDB0627CF2BB48639F94AE7D1B72F21771F60F817F0D2E1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B514F15EBDA76DB548964D3167507CC724FEF80DD91B42FCBB979DE187406803<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AFF8DFE05D53C6367A0CBA48F326B6BB304885785498A0F3588E76A955CE01E1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;89E029ADCF125B37857E08EA5A75DDC47746D3477B159911600E0A794870EE46<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7057237124E768C90B5DE5707F19E79ADBE126BCF04B244E52242C8C54956991<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5871D8A9208EE091401F1E514514005145140051451401D8785B4E8A68AF74F9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F4FBE378F10BC9E46DE9041671A89B33AA90D24327C84E36B2ED8D90BB304373<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4DF883E2BF0E6A9A95D69D3C969612DEA9BF8AD241711194E725669BCE01DC23<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9DF96DD8CF21401E81E01F87335C787F4CF12E932C72DB3593DCB5AC739F32E2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA22DE4E0CB1EC8DD240DFBCE571FBB2AEA5DE5C3F8C3E121E14D3B482D6F04E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B35A45671CB3EA334D35B1880256356650CA496CB040801502388F3200726FE3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E92C2E353FEC8B2B498DDBB01A86A96504F76149652776CC65E2DAB206DFB9B7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B672E6B93BEBFBCD4EF24BCBFBB9EEEEA4C6F9A790C8ED8000CB1E4E0003F0AA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F45001451524104D757115BDBC524D3CAE1238E352CCEC4E000072493C628023<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A2BD93C13F00EEFC436106A9AAEB7696F672382B1D83A5CB48A1D95C798ADB14<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FCBC105FAF20118AEECFECF9E1A5D0E6B52D3CB7C92BC96F751CCD03BA73B229<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;49F313A900BAC6BD07CBD7201F30515E81F133E1F59F8167B558752CCD718CD8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4CC249157629322BA81BA3DE5D41648D895E15802479FD0015F4BFECE76F791F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;85F519E5B19EDED2595441334A4C770C0BEF758CF4619552C30AC1546372313C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22FECF5E2F8754B28A66D36E6D247267920BC6411A8C1C12D1E416E402A8F83D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;462BDDFE1EF875BC1DE188BC373EA91DEDC5A3C92E1768D91492398CED032036<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18FCC5BE6DE031006003A88E0861799E28A34799F7CACAA0176DA172DEA76AA8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C9EC00ED5E2FFB4178421BDD1AC35BD374C924D53EDA96F335AC00B4CB22ED53<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;26D5DCC432468B93FC78EE2BDB2A39A086E5024F1472A07570AEA1806560CA79<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EE18020F6201A00F832FAC2F34CBC92CEFED27B4BA8F1BE19E331BAE40232A79<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19041FC6ABD7D47F127E0AAF8CB5B9B5BD36FA3B4BF9D116559B7146288E371E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A72488178C050ACD862715C25F7ECDDE248EF245B0D674A9ED4636493992276E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0672A1580E73FC47D78E94016341FDA1AE34DF0CC56179A3C125F4313C50CB6E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8228502C4A21CC60F39707705D81571B41E95C9F8DBE32788FC69613E9724769<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63A5CAE4B5BC31EE69143AB20776C9CA951CA85CF391D853BEF843E39B2BC92D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C6833DC2ADD8B459A02191D880438EE23208F9C80A3A1208206A689F023C6FAC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5BF9F35B5A6988511E317F315670C33F750315238C860A467EB8008FE0669DFD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A1F142C8B69F05DC36D14971234DFF002C368C2C8A3232C1CA01C1C6ECE01018<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7D6F5C5F823E1CD8F82096B4BA924709243B957CBF3A2326F8FCE009124A9975<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1200BF2B118E05769400570FF182E12DBE146BF2491798A6248C2E1782D22283<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F32B0E0907A678E0A9C30EE2BCEFE38CF0C3F0935749658D1E67812256600BB7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9C8D85F53B558E07604F6A00F9128A28A0028A28A0028A28A00FB4FE1A69F0E9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5F0F348B2820D4A0489240535280433EE323162C809DA0B125464FCA4727AD6A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6BDE15D0BC4F672DAEB3A641751CBB37120ABFC858A61D70C31BDF183FC6C3A3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1CEA413C3756F15C5BCB1CD04A81E392360CAEA46410470411CE6A4A00F99352<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FD9CBC4D6D6EB2D86A7A6DE38B70F244C5A2632E0E634C8218740198AE73C85A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F1F9E09AD6E25B7B88A486789CA491C8A559181C1041E41078C57DF75CFF0089<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3C0FE1AF1779675CD220BB923C059B2D1C800CE177A10DB7E6276E71939C6680<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3E20AB1637B2E9F791DD42903C899C09E04990E411CA382A7AF71C75EB5F49EA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9FB397866E6DDBFB3753D4ACAE3622A3485668C1000662B8524B609E18005B80<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00DB5E41E2FF00857AFF0086B54F222B2927B536F3DC24A24563E541FEB247C6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;020236B8539C091132CD9A00F40F0E7C73B1F0FE83A1D85CDADA4C15E417CBA6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;59790214F2C32EC425519DA473B986D00AB80A41573AF7BFB48683BE38EC34AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4823A481E79E342616DBF211187FDE0DDD46F4E3A135F3656C69BA5DFF00893C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9D3746D13ED1796D14B34AF6C24692541CE5C162A31F746D0B9240F9988A008F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C43AF5F788F599F51BFBBBBB97776F2FED53798D1A162C101000006E3C2AA8E4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E00E95ED1FB39786D5AE354D7AF74B937A2469A7DE4B1305C319165F2C9E09F9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4292391C8E32418FC0BFB3F5EB4A2FFC593FD8F661A0B4B668E570E1BAC9B95E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32B803E5F9B3BB9C6083EEFA3E87A5F87ECDED348B082CADDE5799A3853682EC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;724FF203D0000600000068514514005145140051451400514514005145140057<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF9FB49EBEC6E346F0E46D2045437D3A955DAC49291907AE4625C8E07CC3AF6F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7BBEBFB3D32CE4BCBFBB82D2D63C6F9A790468B9200CB1E064903F1AF973F680<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D4A1D43E232471AC892D9D925BCD1B81956F32460720904323A30C1E8C01C104<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;000F2BA28A2800A28A2800A28A2803ECBF875E2C83C4DE1FD3DE11691E2C9375<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B585ACA20B67425593CC20229C6CC45D54720BA956AED2BE20F0AF8AB58F0CDE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6747D4FF00B3649E58FCCB962EC8AA032FCF18DCAEBF393CA330DA36E0E73F55<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FC3FF1FDB78C746DD74D696BAB41706CEE2DE3B8475794296DD110C77232AB91<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D7EE3E0B05DC403B4A28A2800A28A28033EEB42D1EFB518351BCD2AC6E2FA0DB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E4DCCD6E8F247B4EE5DAC4646092463A1AB90410DADBC56F6F1470C112048E38<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D42AA28180001C000718A928A0028A28A0028A2ABDD5C4B6FE4795653DD7992A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C6DE4941E529EAEDBD97E51DF6E5B9E01A00B14557B1BAFB759C7722DE78164C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9549D363EDC9C12BD572307070C338201C8162800A8E09E1BAB78AE2DE58E682<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;540F1C91B0657523208238208E7352557F27EC7A7791A75B40BE4C5B2DE0CF95<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18C0C2AE403B5780380703B1E9401628A28A0028A28A00C7F145CE9D0F87AF20<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D4DA030DE44F6AB04D2B47F6967460225280B96619002066F404F15F207C42D2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D345F18CDA74765F62F22D2CD5EDCBAB98DFECD1160CCA02B36E272C00DC727B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D7B5FC79BD6BAD53C27E1C8E28EF85E5C48D269E2658DDDDB6C51307EA872F26<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D27E5C8F9830522BC33C77FF00250FC4BFF615BAFF00D1AD401CFD1451400514<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51400514514005741E12F14DE785F58B5B8865C5BA5DC771226C2D9645740D85<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7466C2CB27CBBD55B386C8AE7E8A00FB3FC05E24B0F1169C6F74DBE8069B3F16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1A598238A6B24882C6E84239057251870368957920A81D857C71F0ABC536FE13<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F1A5BDEDD5E7D8ADE4CC57370F11953C8C166428A376E6758F0C08DB8E430245<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7D4FE11F17D878D7475D534C8A74B56C826631EE570CC0A32AB3156002B73FC3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22104F3800E828A28A0028A28A0028A28A00C7F12EBE9E1AD25B52960F3E18B7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;349124AA92B22C6CEC6356203B00858AE47CA188C9014C9E1A9ADAE7C2BA44F6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42416925942F08923446085015CAA008A718E14003B7155FC61E1A87C61E13BF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D067B892DD2ED14099002519583A9C1EA3728C8E3233C8EB5E21E02F8BF6DE01<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D2EEBC2DE25D2AED24D3AE1A1896C7648108E2456DCE39F3033E433025C80155<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;545007D17457CE1AD7ED1FAA4F79731E8DA4C16D62D1491C524CDBA70E430497<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FB8304A12855BA11BB9C8E8FC15FB416997D6F345E3031E9F761D9A396D6DA46<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;80A6170A70CEFBF258F4C600E73D403DB2BCFF00E277C4AFF857B15828D3FED3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;26A115CF95217E2292355D9B978DCA59D7386040048C9E2A4D4BE32F80F4DB75<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;94EBB1DCBBDB8B88E2B589E466041C29C0C239C636B95232338AF3BF0AEB1A37<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C58F8CDFDB57E93DBFF65C51FF006559244E4CA1199C4B33AE5536B107190096<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45CB60EF00F78B0FB67F675B7F68F91F6EF293ED1F67CF97E6606ED99E76E738<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF38AB1451400515C9E91A66A5E1DF154901BCD4B51D16FADC0824BBB969DACE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64791CC67E5CEC6593891D89FDD0524E50549F11756B8D0FE1FEB1A8DADB58DC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C91440182FF0619119955D58165DD952D85CF2700024E0807CF9E38D621D47F6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8649BFB56486D2D353B5B7172CC00B5F2CA090AF980AA857121E415CE4F20F3E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7FE25D4A1D67C55ABEA96EB22C17B7B35C46B200182BB9600E0919C1F5351EEF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDBF10EEFB3793F6EBBCFD9F4FB7DDB37BFDC8A2C8CE33855C8EC3359F400514<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5140051451400514514005145140057AE7C1BF89969E127B8D375ED4AEE3D3E5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7430EE8DE68A050B2970AA1B2859D90E555B3839033B8791D1401F79D9EADA6E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A171756F65A85A5CCF68FB2E6386657685B2461C03953952307D0FA55CAF8D3E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1DFC41BEF036B31CA27BB934C771E7D9A4998C82C9BDF61E0BEC5201054E76E4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95055BEB7B0D7AC6F2F7FB34DDDA1D512DC4F35B413798146F68DB6B606E0B22<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;329E01040C85C81401A945145001451450015C3F8C7E13F85BC6D79F6EBF827B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6BF3B43DDD9C811E4550400C082A7A8E71BBE5519C0C577145007CD9F113E040<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F0F68D26AFE1BBABBBC82DD0BDD5BDD18F7471AABB3CA1FE50400146C0A4F24E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4F4AF1BBAB0BCB1F23ED9693DBF9F12CF0F9D194F3236FBAEB9EAA70704706BE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F7ACFD4F42D1F5BF2BFB5B4AB1BFF273E5FDAEDD25D99C671B81C6703A7A0A00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8520826BAB88ADEDE29269E57091C71A9667627000039249E315EC1F0F3C3FA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;878774BB5F1358F9979717C9E45C69F697B0F9D2DA3EE6768955F7EF0B6F26D0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACB2190118510B799EDF67F0D7C2569717533685A6DC7DA1F7F97358C0563393<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F70041B46DDAB8E9F203F799D9BA08349D36D6C22B0B7D3ED21B389C3C76F1C2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AB1A307DE085030086F9B3EBCF5A00E6F40F17CBE21D1ED2F631F6186E6D3F73<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;77776E8D0CF3B322291E5CEDB30EDB7C9760EC5800728D5CFF0089FE2AC5E118<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B5392EEFAC751906A0D6B636F636AF95F2D51E5499DA4DBB8798A995CED2776D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63B917D126834DB3D2C24F15A41A7D9A2B8575558A058B0CA79E1426D041EDB4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1E315F367C6DBDD0B56D5BC3BA4F8666FED5BA8A2915AE21B9378F2F9920F2E2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F37733BB060E4293C6F18EB401F47E8DAE697E21D392FF0048BF82F6D5B037C2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F9DA48076B0EAAD8232A70467915CDFC5AB55BCF857E2089D2460B6E25C26ECE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51D5C1F9518E015C9E00C672C832C39FF811E17D57C39E0EB997558E4B77BEB8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32A5A4A92249105F9097563805B191850718259B80B27C7ED4FEC1F0BE7B6F27<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CCFED0BB86DB76EC7978265DD8C73FEAB18E3EF67B60807CA145145001451450<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;014514500145145001451450014514500486799ADD2DDA590C08ECE91963B559<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;800C40E8090AA09EFB47A57A27C38F1C5C786351B8B24D5FC9F0E472B4EE6502<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19B321483CE4501F7C8AAC1FCA6DE98463824061E6F5626771676D0FDB3CD87E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;694400B621763B5B2080371088495CE46DC9C8C000FBBEC2F1350D3ADAF62188<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EE2249546F57C06008F990953D7AA920F624558AF9FF00E02F8D67BCD726D02E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;05F3C6DA7C5E56FB99678A16872A76A907CA56565CE5B6EE4C0C06545F7C8278<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6EADE2B8B79639A09503C7246C195D48C8208E08239CD00494515C1FC4AF1FE9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1E11D2EE2CAF6EA4177796537930DA4C52EB71C22B29DA420E5CEF623053E557<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;390003B886659D0BA09000EC9F3C6C872AC54F0C01C64707A1182320835257CB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9E19F8A968DE379754D6E5BBD3AC26B8B63E5592BBB3C70A489189E6122BC817<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CC5662CB217D80600016BD4F50F8FDE06B2CFD9EE2FAFF001B7FE3DAD4AE73BB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3FEB0A7DDDA33FEFAE33F36D00F50A2BE74D4BF696D4A5B755D2FC37696D3EF0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;59EEAE5A752B83C0550841CE39CF63C73C63EA13F8D3C5133BAE9DE27D7E2D52<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DED61496EB4D5B1B596359BCD0B22C7B8321C822412465433738EA01F4DCD7F6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;76F796D6735DC11DD5D6EFB3C2F200F2ED196DAA796C0E4E3A5787FC40F8EDE5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE5CE8DE11B882368B3BB58907988CCA0929126D60DB88550E7E5E4F4187AE73<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;48FD9F7C5FAA2591D6B52B4D3EDD1193CA691AE25B75DCCC02AAFC982C4B603F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F193D722BD3FC2FF00033C21E1E74B8BB864D62EC2282D7C15A20DB4862B1018<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C1CE70FBB18183919201E216DE19F887E3FF000FDB4F6F75ACEB56E5CCAC9777<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2CB046416452AD3380EFC499D80850572D962ABEB7F0C7C31E1FF0978BEEFC3D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1C105FEBF6B691DDDE5FC9B775ABB471AF93086C3329DF2B17555C2BA2B127A7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69E36F124DA3D84F6F6B2496121B73349ABCF6C5ED6CA3DEAA5989203CA41212<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;35DC4B6DC80A735E77F02D6CEEFC43E29D72DA2FDCEA17728B57BB9035CAC6AE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1C804B33BF1327984900111F2E58EC00F70AF9FF00F691F127FC827C2E91FF00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D44259197FDF8D029CFF00D74C823FBB83D6BDF279E1B5B796E2E258E182242F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;249230554503249278000E735F1C7C51F1AC3E3CF189D52D20921B38ADD2DEDD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6540B21519625F0CC33B9DF183D31DF3401C7C93CD324292CB23A429B2256624<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22EE2D85F41B998E07724F7A8E8A2800A28A2800A28A2800A28A2800A28A2800<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A28A2800A28A2803406B7A8C72C32DBDC7D9248A24855ECD16DCB2A30752C630<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;37306556DCD96CAA9CE40AFB1FC0BE3AD2FC79A18BFB03E55C4785BAB476CBDB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B9EC7D54E0E1BBE3B1040F8A2BA4F0678DF55F036A8F7FA5F972174DAD04EF27<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;94C79019911D43100B637640DC4E3382003EDBAF1FF88FF07DFC4FA8E9674758<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2DE15F2ED9E59246FF0041814CCEDB1338756322A8518D9E5A28C29252E781BE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3058F89D2F634D324B792D6DE4B9FB2B5F79F757329691CC76E8C0190055CF51<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B490A176806BD234BD45755B05BC4B6BBB74777558EEE06864C2B95DC51B901B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1B864038232074A00F2FF0BFC03F0DE9B65730788608F589FED05A0B9592680F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95B13E56457C021B7F73C11CF615F5AF80BE12090C76F7BA95B99EF479302490<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1387652E8A5D43B058D18805D8A8566018E43687883E3AF86745D662B5864935<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0B4D9BDAE2C1566DC434A8D1F2E9B0864460DF30656E00055ABCE2D7C6DF10FE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22EB7A2E932DE5DE8967A9DC48F6F75A6C0D10608986DAC5D4BA21566601C9CB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1FBC422800E8FC15E10B2F04EA70EABA2F8FEC753B15BB8FFB485B4323A245E5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CC079821959157249DF280A9B776EE0ABFA85BF8B34EB1D324BCD4F5880D9C16<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9E719CA312D1AC8C8B33385553E6E14A2AA00C43F96645E4799D8F87344D266B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4D7EFF00C71AC9D41ADE5F2B588B53B081350F2A638881776329E13FD6332E36<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AB15C045B17DE1CF0A7866DE2DDE20BBB7B4D1EDD05CE93A9DA1D46DED9EE421<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;02748BB33425CA6FDA2428EBB4101C03D0352F89BE0BD26DD66BDF105A464B84<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;681773CF1B609C3C4A0BA11820865183C1C1E2BCCFC4FF00B47DBC12CD6DE18D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27ED3B784BCBD62A8486E48887CC54A8E09653CF238C1F20F115C5949F67B5BB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8BCAD4A389A4BD9A1123C8D7677F982713AABF9858441B0E5108919412E5467C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AF71E27D4D85AE91BF539FCB11C1A65B844212321C88517EF36D0E4AE00F9F8E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;46D00EA35DF15F8C7E2A6209ADA79E38EEE05861B35F2ED2DDE4FDDA87C83F33<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B11B59DF8CB81C371E97F0A355D3742D59BC2BE1AB68F549DAE17FB4F50F354C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6D8854B491B850E6247595154A1526443E62EF01B43E167C39D7346B7D4A3D66<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DA3D2ECDAE1A5B5803C53DC9930BE549248A0A388B04A295237B33950552BD71<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2C6DE3D466BF58F1753451C323EE3F322172A31D38323FE7EC2802BEAD341676<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;72DE5DEAFF00D996A91346F33BC4888CE542B9691480C0F033F29DDC86E31F0C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5F5BA5ADE496F1CBE6F9785760548DE00DC14AB32B286C80C0FCC003C6703EE3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F12DEAE9BE15D5EFDE29254B6B29A668E399A1660A84E03AF284E3EF0E47515F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0C4E616B895ADE392380B931A48E1D9573C02C0004E3BE067D05004745145001<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45145001451450014514500145145001451450014514500145145005CD2F55BE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D16FD6FF004DB992D6ED11D1268F8650E851B07B1DAC791C8EA3079AEC2F3E2B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78F3C47A5CFA04FA94974350748B6C16C892B8391E52F96A090E48046093803A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;160793D1B4CFED7BE92DBCEF2B65A5CDCEEDBBB3E4C2F2EDC6475D98CF6CE79E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;95EC1F0CFC3B6FA4782F5AF10C37D07F6C8D3D6E6749AD0C8FA6C00C92A48B1B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3049647304522062BB7E57C90407008F43F0BE99E1F75D3ACE3B4BCD74BAC69A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E8492E60B5B975B49AD1C0420471333BC6AECAC599727285A314E3B6D4753BFF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00B45EE9F7D6F3DDEA104DAD786AEAD9638A65B89DA26B8B513C9B958FEEE32E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0064690E1D5781D18D2A6D2BC477B6577A36A5A9DA978F4CD6AD1EC4BFDB2D65<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9EE248750DF012649555101729BB76E1B831C8922D2DEF174CD0266FB7DD5ADA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69977E1DF1369FA233CB044652105C02C02A801880C76ED566397C0A00E112D3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;508430D345DEA16FA5E99A84D656D35D4305D687B2E5B749247CFEF42ED63F28<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;625C6C20C6ACBD0416D2CF6971FF0008D5C49E21F0FCDAE95B48AED26967D46F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5ADE394ADCA6F850C0193717604A94C9054B675EF3E1F788755B530C361A95BD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F469AC25F6AB6EB6F6875791E56684381207F298A8E1948C1007CA778D8D421D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;574DD4B53F88FE25D1AD348BDB64B286C1A5BB92F56CD1E568672E91BA863B24<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DE15401F30C7CFBCD00605D5FB7882F62F0F788F4593C43269EF6B6733C170AF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;766F6E5C5CDC2AB29112448209632060A840A1D5598AC7E28F873E1BB0F06CBE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29D03549D9AC62865B3BAB431C32467CB4746B8DCE8371063DBE5A2499914959<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;58E4E9E95ACDDC76115C59247F63F0A25F22DE5DDAA59473DE070F204B18DD09<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;74B5FB4150DB7259B76C3935B979AFD96B5A4F88EC6DB44FED9D5AD7E5B8D3E4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F334DD46E2D0C712BC8C4460B3398D49540018FCA5201C2100EC3E1EF8B3FE13<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5F05D8EB322411DD3EE8EE6185F708E45241F75C8C3053C80C393D4F515F2E78<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23C656DE13F8A9A959E9F712697A2EA6E619CEB3688AF6F3AA36D2E916D540B3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;165DA0AA85639DB8CAFD270EB36736A773621F6C904AB6E59C850F318FCD31A8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;272CC23DAE703186E09218280737F15B5C8742F873ABBCF6B773A5E5BC9641AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E30C22696365577C91B5376067D580C1CD7C695F47FED13E25B75F0F5A787ED7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5180DD497624BBB68AE0F98A8A9950E8063692CADF311CAA901B92BE31E0EF02<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6B3E31BCC5969F7D258A6E135D410A305200F94191E342D965F97783839C1C50<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0737346B138549A3981456DC818004A8257E600E41383DB20E0918263AB17F66<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FA7EA3736529CC96F2BC4C763264A920FCAE030E9D18023B806ABD0014514500<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14514500145145001451450014515D0785BC17AEF8CE5BD8B43B4FB449691095<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C16080E582850C7E50C725802464236324628039FA2BD23C75F08F54F0A69D61<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A85AC37D771DCC524F7502DBF99FD9C142B6D9254CAB63730DF8507612063A79<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BD001451450058B7BEB8B482EE1824D91DDC4219C6D077A075900E7A7CC8A78F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4F4CD7B87C3AF13DE689E17D1E28C4F79A9EA9294B0D362633492B2168BED6E7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CC502158C795E4BE149B6560C9F332F83D58B3BEB8B094CB6B279537CA565551<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BE32AC1832375460547CCA41EA33824100F74D726D66C7E18699AF787EFE39B4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DB0B2D3D27D4E3BA9EDE4BBF2A59E26B6088118C4AD2AF27CB6C7773CAF2FE06<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F8A7FD83A5C7A7DFEB3ACD8D85BA1482CB48B0B5700F04C8659CB36598C84AE3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;196E081F28E3FC43E33BED7B46D234558E3B3D274BB748E2B487857942E1E67C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01B9D98B1F6DC7B962DCDD007BFF00FC34D7FD4A3FF952FF00ED55D458FED0DE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0ABBBC8E09A2D56CA36CE679EDD4A26013C84766E7A700F5F4E6BE58A2803EAB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BAF077853C6D74DE21F036BB69A6EB8EFE75C6A1624CAEA92C4E84345BD444EC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;189DD80C0A93F7B26BC92FBC493DFE8F6B7BAC68163797D05A5B483C45A54B2B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCD865BCB592E992401EE311AB2ABBAE0E33D4A8F3FD1B5CD53C3DA8A5FE917F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3D95D2E06F85F1B8020ED61D19720654E41C722A3D2D963BF599AFE4B07851E6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8AE23562CB2A2168C0DBC82CE15777F0E73DA8023BEBFBCD4EF24BCBFBB9EEEE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A4C6F9A790C8ED8000CB1E4E0003F0AD4D3BC61AFE93E25B8F10D86A5241AA5C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3C8F34CA8B890B9CB6E4C6D209E718C020118C0AC79E3586E2589268E74472AB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2C6182B807EF0DC01C1EBC807D40A8E80373C55E2DD5FC67AA45A8EB33472DC4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;56E96EA5230836AE79C0EE58B31F7638C0C01F47FC14F03B7867C3F0EAED7323<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3EAF650CF2C6B2AB46492CC9F298C3295465FE320977E3E5527C33E16F842F7C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4FE2DB3B88F4AFED0D32C2EE06BF53346815198E0B07CEF5F9492A01C8047190<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6BEC380CCD6F135C471C739406448DCBAAB6390188048CF7C0CFA0A00F953E33<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7852C3C3BE3E137DA675875595EF27C34733A077CB32A6508E4B80ADC1DA3121<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25821AC7C09F14D8E929A9E97358EB76AD124A058C84BB298F7332820075CE42<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ED259B2A42F381D27ED27A2B47ACE8DAE89E32935B9B33092A194A3170C0672C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0F9841C0C2E064FCC057A5FC18D57FB4BE1AD840D61F629AC3FD1648C43E5ABF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAB22C80679DE922316E373331E845007C893C135ADC4B6F711490CF13949239<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14AB230382083C820F18A8EBEDFF0012781FC35E2EF2CEB9A4417724780B365A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;390019C2EF421B6FCC4EDCE32738CD78FF00893F66EFF56FE17D67D03C3A99FA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E58491AFFBA36EDF53BBB500780515B9E28F08EB5E0ED51EC358B292121D9629<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C29314E060EE8DF1861865F719C100F1587400514514005145140057A67C06BD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5B5F8A9670B45239BBB79A1565999021085F2C070E30846D3C6486EAA2BCCEBD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23E0A5C6856BE390FAADF4F697D2C46DB4C92288BEDB89488F76790180620065<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;64E4938C0C807D5F75636F7BE41B88F73412ACD13062AC8E3B82391904A9F556<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;65390483E37E25F801697B6F01D275392C60B6B72CD61040F2ACD718F9DE3F36<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7C2170A8B82D8F9172DDEBDB28A00F822FEC6E34CD46E6C2F23F2EEAD6578664<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DC0ED752430C8E0E083D2ABD7D27F12BE19B78B7C6B14AC63D134DB7B27964D4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B0AF6E5033492175F93CB97CC94B1CB10EACCDB8142ADE09E2AD25342F146A3A<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6450DF431DBCA5563BF8D526518C80DB0953D7865386186180714018F4514500<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;145145001451450015241335B5C453A08CBC6E1D4491ABA920E79560430F6208<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3DEA3A2800A28AF4CF825E0987C5BE316BAD42DE39F4BD2D04B3C7200CB2C8D9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11A11907190CDD083B3047CD401EE7F0D3C0B71E0AF0F6996CC206BA93CCB9BF<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;92650D244F22460C116DE02E513736E3931F43B814F40A28A00F37F8AFE1B8BC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;51069F62F24F1DC34A890A5A33B49731B3AF9C9228056385585BB9998385207C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B9DA1F3FF67FBBB8BEF035E5C4F77F6866D4243217B70B279A406766903132E4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;321DCC0303919202E3BC17EDE21D1B5086D6C63472FF006668753552A51954EE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78949600A386F29F631E0304CE467F86BC3DAAE85E20D504D3C773A3CAE65B39<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;65BB91EE959847B926C8C4A06C011D999D5542E483C00759451450065F892CEC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6FFC35A95B6A76F693D9B5BB9963BB97CA888033967C1280100EF032B8C8E457<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C313C135ADC4B6F711490CF1394923914AB230382083C820F18AFBEEBE34F8B5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6D0DA7C54F104705AC96A8D702431BB06259D1599F209E1998B019E030181D00<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07174514500145145004934135B3849E2922728AE15D4A92ACA194F3D8A9041E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E0835D27C38BEB8D3FE2578726B593CB91B50861276839491846E39F55661ED9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E39AF48D43C1DE1BF177C23B0F175B6A7FD9F268DA21B392DF6C611AE226DD86<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00F0D2333F7CB79B1B63390DE3F613FF00627886DAE274F3BEC3768EE96F75B7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7EC704849632719C70EA4FA8A00FBBE8AC7F0A5FD9EA7E12D26F2C2EE7BBB592<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D23D935CC82499B0A01F31870640410DFED035B14014EF6CA199E3BD5B1B4B8D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42D124366F3800A332E080FB58A06E01201E3B1E95F1E7C4AF175C78CFC5AD7F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;75A7CFA74D0442D5AD26903984A33657EE211C9390D920E79C600FA7FE2678C5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FC0FE0B9F56B6F21AF9A58E1B58E7466491C9C9076918F9039EA3A7E07E349E7<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9AEAE25B8B89649A795CBC9248C599D89C9249E49279CD004745145001451450<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;01451450014515DA681F0BBC61AE22DE41E1CBB96CE3B830CCAD3C76CEC51B0E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ABE61C820E573B48041182411401A9E0AF85F2EB5A71D63598355FB09962860B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4D321492E2E1A404824B3620500C6FBA4014A3020F209FAAF4AD2AC743D2EDF4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CD32DA3B6B3B74D91449D147F3249C924F24924E49AE5FE1B6953F86FC15A6E9<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1756D69FDA51B94D4058F94042E577AF9BB7197F2FCA5240624953C8F9ABB4A0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;028A2ABDC9B79F7584B3EC92E2272112631C8506033295218637AFCC3A161C83<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8A00E1F40F14E97AD6B4979A5D8C13C70DDDCE981AD5B66C91E6691E45662B1C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EB2244B3308F73A633870E4AFA0571FA19365AE594167A1C09F6DD3D6EB57BE8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D218E633B731B4ABFBB90E489F24C43E6230170E17B0A0028A28A00AF7F7D6FA<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;669D737F7927976B6B13CD33ED276A28258E0727001E95F0C6BBA9FF006DF887<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;53D5BC9F27EDD772DCF95BB76CDEE5B6E70338CE33815F49FC7FF1458E9DE087<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F0F99239350D4DE32210F868E2470E6423078DC814038CE4919DA457CB940051<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45140051451401EF9FB366BEC2E359F0E48D2146417D02855DAA41092127AE4E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;62C0E47CA7A77BFE2FF80B6D35BDD5F68CB21BB16512436969B238FCF40A870B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21E51D41625A4DCA413FBD2D81F3E585E3E9FA8DB5EC43325BCA92A8DEC992A4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11F3210C3A755208EC41AFB1FC0BE31D2FE22F8484A7C896E3CA10EA764E9C23<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B2E181424E636F9B19272383C8200072FF0002F52BF9343BED2F51B3DB345E56<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A02F9A3911EF45CEF7DEFBD4176050AF99C86C00090BB8FAC563F87B4CB3F0D6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8F61E1F82683FD1E271022A88DDE3561972A0FCCDF3AEF618059B385DC056C50<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;07CC1FB44EB7F6EF1CDA6931DC6F874DB41BE2D98F2E690EE6E71CE50447A903<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EB9AF1FAE93C7BAF5F788BC6BAA5EDFDDC77256E2486130CDE6C4912B10AB1B6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00298E8703764B11926B9BA0028A28A0028A28A0028A28A00E83C0FE1BFF0084<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BBC69A5E8664F2E3BA97F7AE1B0446A0BBED383F36D56C646338CF15F69E95A5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;58E87A5DBE99A65B476D676E9B22893A28FE64939249E49249C935F2C7C06B68<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;67F8A96724B246AF05BCD2441A6085D8A15C28DA779DACC7682BC02D9F9707EB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3A0028A2A3927861785259634799F644ACC0176DA5B0BEA76AB1C0EC09ED4015<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F54B99AD2C1A7B78E4964574C471C2656932E01503728048246E242AE7737CA0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D70F69E20B6F1826A1A61F01EA5702C6DDEFFECFE218910BCEECDE522090B901<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CF9C0370A817038381D47892FA7B3B0902DD47648EF0AA5D2DD451C8A379699B<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;132326122567EE4857E1700D78C7C4FF001B43E1CBA83C3325C5DEABA869D6F2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45F68044202491288D6E0B0737278591D4148DCED0CAD8C2801E179755D0AC35<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7F11D9E99A34BE3FD4EE2E67934CB8BB923BA8A067490C6B6870589DB238190D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B76905B3B6BDCF426DDE1ED31BECDF65CDA447ECFF0067FB3F95F20F93CAC9F2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F1D36E4E318C9C57CD9A5DF358F816D6EBC456926ABA3C1AEC36D64FA9C8A924<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1179492A8F2DA099920740858239C80028C125FE9F804CB6F12DC491C9384024<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;78D0A2B36392149240CF6C9C7A9A0092B9BF1CF8CEC7C0BE1A9358BE8E498971<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0DBC09C19A52090B9C614614924F400E0138076355D56C743D2EE353D4EE63B6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B3B74DF2CAFD147F3249C000724900649AF8E3E2378CDBC75E31B8D5D63922B4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;54582D22936EE489738CE0752C59BA9C6EC648028032FC4FE27D53C5DAE4DABE<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AF3F9B71270AABC24483A220ECA327F3249249271E8A2800A28A2800A28A2800<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AEA3C0BE3AD53C07AE0BFB03E6DBC985BAB476C25C20EC7D1864E1BB67B8241E<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5E8A00FB8FC2FE2ED17C63A5A5FE8F7B1CC0A2B4B016025809C8DB22672A72AD<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EC719048E6A397C5DA3E953AD8EB9ABD8D9DDAE50C934890C72B2A44CE572EDB<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3FD72611CEEC7232BF31F8828A00E83C73A97F6BF8E75ABEF33CCF36EDFE6175<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F6943838F924DABBA3E3E4E061768ED9AE7E8A2800A28A2800A28A2800A28A28<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;03B4F84BA6C3AAFC54F0FDBCED22A25C1B80508077448D2A8E41E372007DB3D3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AD7D975F2A7ECFBA6C37DF1345C4AD207B0B296E220A460B12B161B8E9B6463C<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;63903E87EABA002A333C2B7096ED2C627746748CB0DCCAA40620752016504F6D<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C3D6A4ACFD62DAF2EACD16C96C5E48E5494C57B11749361DCA0107F76DB8290F<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;87DB8CED2680383F1AF8861F09F8825D427B9D1AE35277B73A7417CE20648887<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5740CA589395902C92A2247F687FDE10596BCB352FEDDD7FC55692EA9637C6F3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4F956791E58C59CA1121594DCBBA3A428C03C1E62168DD552DE3126EDCE3D3FC<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;45E01B0D475AB7D635F9A0D3D6C2EDA4B2783518EDFCE4333DC48D232DBA32B2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A6E6015CFDD63B949690F796BA48FF00847F4FD3AE1638CDB25B92B1A46CA1A2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2AC00FDDAAE3283908B8EAA1081800F33F0C7807C4475CD322F115F7F6968565<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A7AC074FBFB58E231A8DEB1A15412C52AFC8AC409436444CFCC680FA66A5AAE8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BE13D1967BFB9B4D374F81047186C2280AA484451D4ED5385519E3815E7FACF8<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EBC21F0CAD08B0BC8EF4CE8A6DB4CD3E55932A2DE1589E676662A36C68030232<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B26763905ABE78F19F8E75AF1D6A897DAC4B181126C86DE0056284719DA09272<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;48C92492781D000003ACF8BDF14BFE138BC4D2B4C5D9A15A4BE646EE987B9900<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2BE61CF2AB82405EBCE5B9C05F2FA28A0028A28A0028A28A00FFD9}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Proportional = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stretch = True<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object PanelTopRight: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 237<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 450<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 355<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alClient<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel1: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 206<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 448<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'http://www.richelbilderbeek.nl'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel2: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 165<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 448<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Licenced under GPL 3.0'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel3: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 124<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 448<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'on the 28th July of 2008'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel4: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 83<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 448<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'Programmed by Rich'#232'l Bilderbeek'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel5: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 42<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 448<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = '(C) 2008 Rich'#232'l Bilderbeek'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object Panel6: TPanel<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Left = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Top = 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Width = 448<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Height = 41<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Align = alTop<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Caption = 'ThresholdFilterer'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Charset = ANSI_CHARSET<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Color = clWindowText<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Height = -27<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Name = 'Courier New'<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Font.Style = [fsBold, fsItalic]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ParentFont = False<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TabOrder = 5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;end<br/>
+&nbsp;&nbsp;end<br/>
+end<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolThresholdFiltererVcl/UnitFormThresholdFiltererAbout.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolThresholdFiltererVcl/UnitFormThresholdFiltererAbout.h" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;ThresholdFilterer, tool to perform threshold filter operations<br/>
+&nbsp;&nbsp;Copyright (C) 2008&nbsp;&nbsp;Richèl Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef UnitFormThresholdFiltererAboutH<br/>
+#define UnitFormThresholdFiltererAboutH<br/>
+//---------------------------------------------------------------------------<br/>
+#include &lt;Classes.hpp&gt;<br/>
+#include &lt;Controls.hpp&gt;<br/>
+#include &lt;StdCtrls.hpp&gt;<br/>
+#include &lt;Forms.hpp&gt;<br/>
+#include &lt;ComCtrls.hpp&gt;<br/>
+#include &lt;ExtCtrls.hpp&gt;<br/>
+#include &lt;jpeg.hpp&gt;<br/>
+//---------------------------------------------------------------------------<br/>
+class TFormThresholdFiltererAbout : public TForm<br/>
+{<br/>
+__published:	// IDE-managed Components<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRichEdit *RichEdit1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTop;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TImage *Image1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *PanelTopRight;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TPanel *Panel6;<br/>
+private:	// User declarations<br/>
+public:		// User declarations<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__fastcall TFormThresholdFiltererAbout(TComponent* Owner);<br/>
+};<br/>
+//---------------------------------------------------------------------------<br/>
+extern PACKAGE TFormThresholdFiltererAbout *FormThresholdFiltererAbout;<br/>
+//---------------------------------------------------------------------------<br/>
+#endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>FilesAreIdentical</title>
   <meta name="description" content="C++ FilesAreIdentical"/>
-  <meta name="keywords" content="C++ FilesAreIdentical code snippet"/>
+  <meta name="keywords" content="C++ FilesAreIdentical "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -19,12 +19,6 @@
 <p>&nbsp;</p>
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppFilesAreIdentical.htm">FilesAreIdentical</a></h1>
-<p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name CppFilesAreIdentical-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
@@ -57,10 +51,10 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppFilesAreIdentical.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppFilesAreIdentical/CppFilesAreIdentical.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="CppFilesAreIdentical.pro" border = "1"><tr><td><code>
+<table summary="./CppFilesAreIdentical/CppFilesAreIdentical.pro" border = "1"><tr><td><code>
 <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
@@ -80,10 +74,10 @@ unix {<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>main.cpp</h2>
+<h2>./CppFilesAreIdentical/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="main.cpp" border = "1"><tr><td><code>
+<table summary="./CppFilesAreIdentical/main.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -114,7 +108,7 @@ unix {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> FilesAreIdentical(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppFilesAreIdentical.htm">FilesAreIdentical</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename_a,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename_b)<br/>
 {<br/>
@@ -139,7 +133,7 @@ unix {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_filenames; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> filenames[j];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FilesAreIdentical(s,t) <a href="CppOperatorEqual.htm">==</a> (i <a href="CppOperatorEqual.htm">==</a> j));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesAreIdentical.htm">FilesAreIdentical</a>(s,t) <a href="CppOperatorEqual.htm">==</a> (i <a href="CppOperatorEqual.htm">==</a> j));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

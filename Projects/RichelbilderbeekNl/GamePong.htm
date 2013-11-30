@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>GamePong</title>
   <meta name="description" content="C++ GamePong"/>
-  <meta name="keywords" content="C++ GamePong code snippet"/>
+  <meta name="keywords" content="C++ GamePong "/>
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -19,12 +19,6 @@
 <p>&nbsp;</p>
 <!-- Page header -->
 <h1>(<a href="Cpp.htm">C++</a>) <a href="GamePong.htm">GamePong</a></h1>
-<p>&nbsp;</p>
-<!-- No CodeToHtmlInfo about this class with page name GamePong-->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
@@ -57,26 +51,26 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2><a href="CppQtProjectFile.htm">Qt project file</a>: GamePongDesktop.pro</h2>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./GamePong/GamePongDesktop.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="GamePongDesktop.pro" border = "1"><tr><td><code>
-include(../../DesktopApplication.pri)<br/>
+<table summary="./GamePong/GamePongDesktop.pro" border = "1"><tr><td><code>
+include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
 <br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
 <br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppFileIo/CppFileIo.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppHelp/CppHelp.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/CppMenuDialog/CppMenuDialog.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
 <br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.pri)<br/>
 <br/>
-include(GamePongDesktop.pri)<br/>
+include(<a href="GamePong.htm">GamePong</a>Desktop.pri)<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
@@ -86,21 +80,21 @@ include(GamePongDesktop.pri)<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>GamePongConsole.pri</h2>
+<h2>./GamePong/GamePongConsole.pri</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="GamePongConsole.pri" border = "1"><tr><td><code>
+<table summary="./GamePong/GamePongConsole.pri" border = "1"><tr><td><code>
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a><br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong/pongmenudialog.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/pongmenudialog.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong/pongmenudialog.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/pongmenudialog.h<br/>
 <br/>
-OTHER_FILES += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong/Licence.txt<br/>
+<a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -108,20 +102,20 @@ OTHER_FILES += \<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>GamePongDesktop.pri</h2>
+<h2>./GamePong/GamePongDesktop.pri</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="GamePongDesktop.pri" border = "1"><tr><td><code>
-include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
+<table summary="./GamePong/GamePongDesktop.pri" border = "1"><tr><td><code>
+include(../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/<a href="GamePong.htm">GamePong</a>Console.pri)<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong/qtpong<a href="CppMain.htm">main</a>dialog.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/qtpong<a href="CppMain.htm">main</a>dialog.h<br/>
 <br/>
 <a href="CppFORMS.htm">FORMS</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong/qtpong<a href="CppMain.htm">main</a>dialog.ui<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/qtpong<a href="CppMain.htm">main</a>dialog.ui<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/GamePong/qtpong<a href="CppMain.htm">main</a>dialog.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GamePong.htm">GamePong</a>/qtpong<a href="CppMain.htm">main</a>dialog.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -129,10 +123,10 @@ include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>pongmenudialog.h</h2>
+<h2>./GamePong/pongmenudialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="pongmenudialog.h" border = "1"><tr><td><code>
+<table summary="./GamePong/pongmenudialog.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> PONGMENUDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> PONGMENUDIALOG_H<br/>
 <br/>
@@ -162,10 +156,10 @@ include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>pongmenudialog.cpp</h2>
+<h2>./GamePong/pongmenudialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="pongmenudialog.cpp" border = "1"><tr><td><code>
+<table summary="./GamePong/pongmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> "pongmenudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
@@ -194,7 +188,7 @@ include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/GamePong.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GamePong.htm">GamePong</a>.htm",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtDialWidget.htm">QtDialWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtDialWidget.htm">QtDialWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
@@ -242,10 +236,10 @@ include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>qtmain.cpp</h2>
+<h2>./GamePong/qtmain.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="qtmain.cpp" border = "1"><tr><td><code>
+<table summary="./GamePong/qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
@@ -267,10 +261,10 @@ include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>qtpongmaindialog.h</h2>
+<h2>./GamePong/qtpongmaindialog.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="qtpongmaindialog.h" border = "1"><tr><td><code>
+<table summary="./GamePong/qtpongmaindialog.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> PONGMAINDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> PONGMAINDIALOG_H<br/>
 <br/>
@@ -436,10 +430,10 @@ include(../../<a href="Games.htm">Games</a>/GamePong/GamePongConsole.pri)<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>qtpongmaindialog.cpp</h2>
+<h2>./GamePong/qtpongmaindialog.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="qtpongmaindialog.cpp" border = "1"><tr><td><code>
+<table summary="./GamePong/qtpongmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>

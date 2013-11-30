@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>CallStackCounter</title>
+  <meta name="description" content="C++ CallStackCounter"/>
+  <meta name="keywords" content="C++ CallStackCounter "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppCallStackCounter.htm">CallStackCounter</a></h1>
+<p>&nbsp;</p>
+<h2>./CppCallStackCounter/callstackcounter.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppCallStackCounter/callstackcounter.cpp" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+CallStackCounter, C++ class to track the size of the call stack<br/>
+Copyright (C) 2009-2013&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppCallStackCounter.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#include "callstackcounter.h"<br/>
+<br/>
+#include &lt;algorithm&gt;<br/>
+#include "callstackcounter.h"<br/>
+<br/>
+int CallStackCounter::cnt = 0;<br/>
+int CallStackHistoryCounter::cnt = 0;<br/>
+std::vector&lt;int&gt; CallStackHistoryCounter::history = std::vector&lt;int&gt;();<br/>
+<br/>
+int CallStackHistoryCounter::Max()<br/>
+{<br/>
+&nbsp;&nbsp;return *std::max_element(history.begin(),history.end());<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppCallStackCounter/callstackcounter.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppCallStackCounter/callstackcounter.h" border = "1"><tr><td><code>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+CallStackCounter, C++ class to track the size of the call stack<br/>
+Copyright (C) 2009-2013&nbsp;&nbsp;Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+GNU General Public License for more details.<br/>
+<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppCallStackCounter.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef CALLSTACKCOUNTER_H<br/>
+#define CALLSTACKCOUNTER_H<br/>
+<br/>
+#include &lt;vector&gt;<br/>
+<br/>
+struct CallStackCounter<br/>
+{<br/>
+&nbsp;&nbsp;CallStackCounter()&nbsp;&nbsp;{ ++cnt; }<br/>
+&nbsp;&nbsp;~CallStackCounter() { --cnt; }<br/>
+&nbsp;&nbsp;static int Count() { return cnt; }<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;static int cnt;<br/>
+};<br/>
+<br/>
+struct CallStackHistoryCounter<br/>
+{<br/>
+&nbsp;&nbsp;CallStackHistoryCounter()&nbsp;&nbsp;{ ++cnt; history.push_back(cnt); }<br/>
+&nbsp;&nbsp;~CallStackHistoryCounter() { --cnt; history.push_back(cnt); }<br/>
+&nbsp;&nbsp;static int Count() { return cnt; }<br/>
+&nbsp;&nbsp;static const std::vector&lt;int&gt;&amp; History() { return history; }<br/>
+&nbsp;&nbsp;static int Max();<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;static int cnt;<br/>
+&nbsp;&nbsp;static std::vector&lt;int&gt; history;<br/>
+};<br/>
+<br/>
+#endif // CALLSTACKCOUNTER_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppCallStackCounter/CppCallStackCounter.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppCallStackCounter/CppCallStackCounter.pri" border = "1"><tr><td><code>
+INCLUDEPATH += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppCallStackCounter<br/>
+<br/>
+SOURCES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppCallStackCounter/callstackcounter.cpp<br/>
+<br/>
+HEADERS += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppCallStackCounter/callstackcounter.h<br/>
+<br/>
+OTHER_FILES += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppCallStackCounter/Licence.txt<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

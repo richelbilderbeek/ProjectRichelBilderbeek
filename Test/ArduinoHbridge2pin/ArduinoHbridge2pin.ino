@@ -19,7 +19,7 @@ void loop()
   {
     digitalWrite(pin_a,LOW);
     digitalWrite(pin_b,HIGH);
-    delay(1000);
+    delay(10000);
   }
   //Standby
   {
@@ -31,6 +31,6 @@ void loop()
   {
     digitalWrite(pin_b,LOW);
     digitalWrite(pin_a,HIGH);
-    delay(1000);
+    delay(10000);
   }
 }

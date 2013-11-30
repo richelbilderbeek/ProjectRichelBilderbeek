@@ -6,15 +6,15 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
-#include "qtconceptmapitem.h"
+#include "qtconceptitem.h"
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace cmap {
 
-///QtPvdbDisplayConcept display a Concept
-struct QtConceptMapDisplayConceptItem : public QtConceptMapItem
+///QtConceptMapDisplayConcept display a Concept
+struct QtConceptMapDisplayConceptItem : public QtConceptItem
 {
   ~QtConceptMapDisplayConceptItem() noexcept;
 
