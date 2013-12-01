@@ -8,7 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtPvdbConceptMapDialog; }
@@ -32,8 +32,8 @@ class QtPvdbConceptMapDialog : public ::ribi::QtHideAndShowDialog
   #endif
 
   ///Obtain the widget
-  const QtPvdbConceptMapWidget * GetWidget() const;
-  QtPvdbConceptMapWidget * GetWidget();
+  const cmap::QtConceptMapWidget * GetWidget() const;
+  cmap::QtConceptMapWidget * GetWidget();
 
   ///Does the user need to go back to the student menu?
   bool GoBackToMenu() const { return m_back_to_menu; }
@@ -67,14 +67,18 @@ private:
   boost::shared_ptr<pvdb::File> m_file;
 
   ///The concept map widget
-  QtPvdbConceptMapEditWidget * const m_widget;
+  cmap::QtConceptMapEditWidget * const m_widget;
 
-  //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map);
+  static const boost::shared_ptr<ribi::cmap::ConceptMap> CreateFromCluster(
+    const std::string& question,
+    const boost::shared_ptr<Cluster>& cluster);
+
+  //static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map);
   ///DON'T USE: puts a new ConceptMap in file
-  static QtPvdbConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
+  static cmap::QtConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
   ///NEW 2013-01-07
-  void OnConceptMapItemRequestsEdit(QtPvdbConceptMapItem* const item);
+  void OnConceptMapItemRequestsEdit(cmap::QtConceptMapItem* const item);
 
   #ifndef NDEBUG
   ///Test this class

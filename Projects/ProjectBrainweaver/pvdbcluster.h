@@ -21,7 +21,7 @@ struct ClusterFactory;
 struct Cluster
 {
   ///Add a Concept to the Cluster
-  void Add(const boost::shared_ptr<ribi::pvdb::Concept>& concept);
+  void Add(const boost::shared_ptr<ribi::cmap::Concept>& concept);
 
   ///See if the cluster is empty
   bool Empty() const;
@@ -30,11 +30,11 @@ struct Cluster
   static const boost::shared_ptr<pvdb::Cluster> FromXml(const std::string& s);
 
   ///Obtain the list of Concepts
-  const std::vector<boost::shared_ptr<const ribi::pvdb::Concept> > Get() const;
-  const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& Get() { return m_v; }
+  const std::vector<boost::shared_ptr<const ribi::cmap::Concept> > Get() const;
+  const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& Get() { return m_v; }
 
   ///Set the concepts
-  void SetConcepts(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& concepts);
+  void SetConcepts(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& concepts);
 
   ///Convert a Cluster from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const pvdb::Cluster>& c);
@@ -42,7 +42,7 @@ struct Cluster
   private:
 
   ///A Cluster is a list of Concepts. The Concepts contain examples.
-  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > m_v;
+  std::vector<boost::shared_ptr<ribi::cmap::Concept> > m_v;
 
   ///Test this class
   static void Test();
@@ -50,7 +50,7 @@ struct Cluster
 
   ///Block constructor, except for ClusterFactory
   friend ClusterFactory;
-  Cluster(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v);
+  Cluster(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v);
 
   ///Block destructor, except for the friend boost::checked_delete
   ~Cluster() {}

@@ -30,7 +30,7 @@
 ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestNodeItemDialog),
-  m_node(pvdb::NodeFactory::GetTests().at(1)),
+  m_node(cmap::NodeFactory::GetTests().at(1)),
   m_display_node(nullptr),
   m_edit_node(nullptr),
   m_rate_node(nullptr)
@@ -112,11 +112,11 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
   m_rate_node->SetPos(   0.0, 40.0);
 
   {
-    const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = pvdb::GetAllCompetencies();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
-      ui->box_competency->addItem(pvdb::CompetencyToDutchStr(v[i]).c_str());
+      ui->box_competency->addItem(cmap::CompetencyToDutchStr(v[i]).c_str());
     }
   }
 
@@ -139,7 +139,7 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::~QtPvdbTestNodeItemDialog() noexcept
   delete ui;
 }
 
-const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::GetNode()
+const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::GetNode()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -206,7 +206,7 @@ void ribi::pvdb::QtPvdbTestNodeItemDialog::keyPressEvent(QKeyEvent *event)
 
 void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const pvdb::Competency c = static_cast<pvdb::Competency>(index);
+  const cmap::Competency c = static_cast<cmap::Competency>(index);
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
@@ -287,7 +287,7 @@ void ribi::pvdb::QtPvdbTestNodeItemDialog::Test()
   {
     TRACE("TODO?");
     /*
-    const boost::shared_ptr<ribi::pvdb::Concept> concept = d.m_node->GetConcept();
+    const boost::shared_ptr<ribi::cmap::Concept> concept = d.m_node->GetConcept();
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);

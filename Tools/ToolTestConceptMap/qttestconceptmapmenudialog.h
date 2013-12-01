@@ -11,6 +11,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace cmap {
 
 class QtTestConceptMapMenuDialog : public QtHideAndShowDialog
 {
@@ -25,7 +26,11 @@ public:
 private slots:
   void on_button_about_clicked();
   void on_button_quit_clicked();
-  void on_button_start_clicked();
+  void on_button_readonly_conceptmap_clicked();
+
+  void on_button_edit_conceptmap_clicked();
+
+  void on_button_rate_conceptmap_clicked();
 
 private:
   Ui::QtTestConceptMapMenuDialog *ui;
@@ -34,6 +39,7 @@ private:
   #endif
 };
 
+} //~namespace cmap
 } //~namespace ribi
 
 #endif // QTFILTEROPERATIONERMENUDIALOG_H

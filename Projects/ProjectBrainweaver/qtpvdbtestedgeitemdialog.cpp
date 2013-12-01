@@ -48,8 +48,8 @@ ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) 
   assert(m_to);
   {
     const std::size_t index = 4; //Must have examples
-    assert(index < pvdb::EdgeFactory::GetTests(m_from,m_to).size());
-    m_edge = pvdb::EdgeFactory::GetTests(m_from,m_to)[index];
+    assert(index < cmap::EdgeFactory::GetTests(m_from,m_to).size());
+    m_edge = cmap::EdgeFactory::GetTests(m_from,m_to)[index];
     assert(m_edge->GetConcept());
     assert(m_edge->GetConcept()->GetExamples());
     assert(!m_edge->GetConcept()->GetExamples()->Get().empty()
@@ -138,13 +138,13 @@ ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) 
   node2->SetPos( 100.0, 100.0);
 
   {
-    const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = pvdb::GetAllCompetencies();
     const std::size_t sz = boost::numeric_cast<int>(v.size());
     for (std::size_t i=0; i!=sz; ++i)
     {
       assert(i < v.size());
-      const pvdb::Competency competency = v[i];
-      const std::string s = pvdb::CompetencyToDutchStr(competency);
+      const cmap::Competency competency = v[i];
+      const std::string s = cmap::CompetencyToDutchStr(competency);
       const QString qs = s.c_str();
       assert(ui);
       assert(ui->box_competency);
@@ -177,30 +177,30 @@ ribi::pvdb::QtPvdbTestEdgeItemDialog::~QtPvdbTestEdgeItemDialog() noexcept
   delete ui;
 }
 
-const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::QtPvdbTestEdgeItemDialog::CreateFrom()
+const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestEdgeItemDialog::CreateFrom()
 {
   const std::size_t index = 2;
-  assert(index < pvdb::NodeFactory::GetTests().size());
-  const boost::shared_ptr<ribi::pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
+  assert(index < cmap::NodeFactory::GetTests().size());
+  const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::GetTests()[index];
   assert(node);
   return node;
 }
 
-const boost::shared_ptr<ribi::pvdb::Node> ribi::pvdb::QtPvdbTestEdgeItemDialog::CreateTo()
+const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestEdgeItemDialog::CreateTo()
 {
   const std::size_t index = 3;
-  assert(index < pvdb::NodeFactory::GetTests().size());
-  const boost::shared_ptr<ribi::pvdb::Node> node = pvdb::NodeFactory::GetTests()[index];
+  assert(index < cmap::NodeFactory::GetTests().size());
+  const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::GetTests()[index];
   assert(node);
   return node;
 }
 
-const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdgeCurrentWay()
+const boost::shared_ptr<ribi::cmap::Edge> ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdgeCurrentWay()
 {
   return GetEdge(ui->box_edit->currentIndex());
 }
 
-const boost::shared_ptr<ribi::pvdb::Edge> ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdge(const int index)
+const boost::shared_ptr<ribi::cmap::Edge> ribi::pvdb::QtPvdbTestEdgeItemDialog::GetEdge(const int index)
 {
   switch(index)
   {
@@ -235,7 +235,7 @@ void ribi::pvdb::QtPvdbTestEdgeItemDialog::keyPressEvent(QKeyEvent *event)
 
 void ribi::pvdb::QtPvdbTestEdgeItemDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const pvdb::Competency c = static_cast<pvdb::Competency>(index);
+  const cmap::Competency c = static_cast<cmap::Competency>(index);
   assert(GetEdgeCurrentWay());
   assert(GetEdgeCurrentWay()->GetConcept());
   assert(GetEdgeCurrentWay()->GetConcept()->GetExamples());

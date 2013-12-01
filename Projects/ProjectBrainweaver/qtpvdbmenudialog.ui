@@ -138,52 +138,26 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="button_test_qtconceptmapdisplaywidget">
+       <widget class="QPushButton" name="button_test_conceptmap_2">
         <property name="enabled">
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>&amp;N. QtConceptMapDisplayWidget</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_test_qtconceptmapeditwidget">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string>&amp;O. QtConceptMapEditWidget</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_test_qtconceptmapratewidget">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string>&amp;P. QtConceptMapRateWidget</string>
-        </property>
-        <property name="default">
-         <bool>false</bool>
+         <string>&amp;N. Concept map</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="button_create_test_files">
         <property name="text">
-         <string>&amp;Q. Create test files</string>
+         <string>&amp;O. Create test files</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QPushButton" name="button_modify_stylesheet">
         <property name="text">
-         <string>&amp;R. Modify stylesheet</string>
+         <string>&amp;P. Modify stylesheet</string>
         </property>
        </widget>
       </item>
@@ -193,7 +167,7 @@
          <bool>true</bool>
         </property>
         <property name="text">
-         <string>&amp;S. Create sub-concept map</string>
+         <string>&amp;Q. Create sub-concept map</string>
         </property>
        </widget>
       </item>
@@ -351,9 +325,7 @@
   <tabstop>button_test_conceptitem</tabstop>
   <tabstop>button_test_node_item</tabstop>
   <tabstop>button_test_edge_item</tabstop>
-  <tabstop>button_test_qtconceptmapdisplaywidget</tabstop>
-  <tabstop>button_test_qtconceptmapeditwidget</tabstop>
-  <tabstop>button_test_qtconceptmapratewidget</tabstop>
+  <tabstop>button_test_conceptmap_2</tabstop>
   <tabstop>button_create_test_files</tabstop>
   <tabstop>button_modify_stylesheet</tabstop>
  </tabstops>

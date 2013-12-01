@@ -137,7 +137,7 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    //const boost::shared_ptr<ribi::pvdb::ConceptMap> copy_concept_map
+    //const boost::shared_ptr<ribi::cmap::ConceptMap> copy_concept_map
     //  = m_file->GetConceptMap();
     assert(m_widget);
     assert(m_widget->GetConceptMap());
@@ -163,7 +163,7 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     const int n_nodes = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
     for (int node_index = 1; node_index != n_nodes; ++node_index) //1: skip center node
     {
-      const boost::shared_ptr<ribi::pvdb::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
+      const boost::shared_ptr<ribi::cmap::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
       QtPvdbRatedConceptWidget * const widget
         = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);

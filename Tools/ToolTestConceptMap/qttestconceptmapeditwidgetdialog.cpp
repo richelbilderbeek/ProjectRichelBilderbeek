@@ -14,17 +14,17 @@
 #include "conceptmapexample.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-#include "qtbrushfactory.h"
+#include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapitem.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "qtconceptmapedgeitem.h"
-#include "qteditconceptitem.h"
+#include "qtconceptmapeditconceptitem.h"
 #include "qtconceptmapnodeitem.h"
-#include "qtrateconceptitem.h"
+#include "qtconceptmaprateconceptitem.h"
 #include "qtconceptmapeditwidget.h"
 #include "trace.h"
-#include "ui_qtpvdbtestconceptmapeditwidgetdialog.h"
+#include "ui_qttestconceptmapeditwidgetdialog.h"
 #pragma GCC diagnostic pop
 
 
@@ -141,7 +141,7 @@ void ribi::cmap::QtTestConceptMapEditWidgetDialog::DoSomethingRandom()
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
     {
-      if (QtNodeItem* const qtitem = dynamic_cast<QtNodeItem*>(item))
+      if (QtConceptMapNodeItem* const qtitem = dynamic_cast<QtConceptMapNodeItem*>(item))
       {
         assert(qtitem->GetConcept());
         assert(!qtitem->GetConcept()->GetName().empty());
@@ -151,7 +151,7 @@ void ribi::cmap::QtTestConceptMapEditWidgetDialog::DoSomethingRandom()
         qtitem->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
         qtitem->update();
       }
-      if (QtEdgeItem* const qtitem = dynamic_cast<QtEdgeItem*>(item))
+      if (QtConceptMapEdgeItem* const qtitem = dynamic_cast<QtConceptMapEdgeItem*>(item))
       {
         assert(qtitem->GetConcept());
         assert(!qtitem->GetConcept()->GetName().empty());
@@ -165,3 +165,5 @@ void ribi::cmap::QtTestConceptMapEditWidgetDialog::DoSomethingRandom()
   );
   m_concept_map->GetScene()->update();
 }
+
+

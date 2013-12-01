@@ -26,7 +26,7 @@ struct File
     const std::string& about,
     const std::string& assessor_name,
     const boost::shared_ptr<pvdb::Cluster>& cluster,
-    const boost::shared_ptr<ribi::pvdb::ConceptMap>& concept_map,
+    const boost::shared_ptr<ribi::cmap::ConceptMap>& concept_map,
     const std::string& question,
     const std::string& student_name,
     const std::string& version
@@ -52,8 +52,8 @@ struct File
   const boost::shared_ptr<      Cluster> GetCluster()       { return m_cluster; }
 
   ///Get the concept map
-  const boost::shared_ptr<const ribi::pvdb::ConceptMap> GetConceptMap() const { return m_concept_map; }
-  const boost::shared_ptr<      ConceptMap> GetConceptMap()       { return m_concept_map; }
+  const boost::shared_ptr<const ribi::cmap::ConceptMap> GetConceptMap() const { return m_concept_map; }
+  const boost::shared_ptr<      ribi::cmap::ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the File filename extension
   static const std::string GetFilenameExtension() { return m_filename_extension; }
@@ -92,7 +92,7 @@ struct File
 
   ///Write a new ConceptMap from a Cluster
   ///Can only be done exactly once
-  void SetConceptMap(const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map);
+  void SetConceptMap(const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map);
 
   ///Set the question
   void SetQuestion(const std::string& question);
@@ -119,7 +119,7 @@ struct File
 
   ///The concept map
   ///Initially will be nullptr
-  boost::shared_ptr<ribi::pvdb::ConceptMap> m_concept_map;
+  boost::shared_ptr<ribi::cmap::ConceptMap> m_concept_map;
 
   ///The file extension of a a File
   static const std::string m_filename_extension;

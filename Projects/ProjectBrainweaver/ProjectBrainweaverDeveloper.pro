@@ -28,6 +28,7 @@ include(../../Classes/CppXml/CppXml.pri)
 #Specific
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Tools/ToolStyleSheetSetter/ToolStyleSheetSetterDesktop.pri)
+include(../../Tools/ToolTestConceptMap/ToolTestConceptMapDesktop.pri)
 include(../../Tools/ToolTestQtArrowItems/ToolTestQtArrowItemsDesktop.pri)
 include(../../Tools/ToolTestQtRoundedEditRectItem/ToolTestQtRoundedEditRectItemDesktop.pri)
 include(../../Tools/ToolTestQtRoundedTextRectItem/ToolTestQtRoundedTextRectItemDesktop.pri)

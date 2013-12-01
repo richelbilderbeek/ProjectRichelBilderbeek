@@ -13,25 +13,25 @@
 #include <QKeyEvent>
 #include <QMessageBox>
 
-#include "pvdbcenternodefactory.h"
-#include "pvdbcenternode.h"
+#include "conceptmapcenternodefactory.h"
+#include "conceptmapcenternode.h"
 #include "pvdbcluster.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapconceptfactory.h"
 #include "qtpvdbfiledialog.h"
 #include "pvdbclusterfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmap.h"
 #include "qtpvdbclusterwidget.h"
-#include "pvdbcompetency.h"
-#include "pvdbedge.h"
-#include "pvdbedgefactory.h"
-#include "pvdbnodefactory.h"
-#include "pvdbconceptfactory.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbexamplefactory.h"
+#include "conceptmapcompetency.h"
+#include "conceptmapedge.h"
+#include "conceptmapedgefactory.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapfactory.h"
+#include "conceptmapexamplefactory.h"
 #include "pvdbfile.h"
 #include "pvdbfilefactory.h"
-#include "pvdbnode.h"
+#include "conceptmapnode.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "trace.h"
 #include "ui_qtpvdbclusterdialog.h"
@@ -283,8 +283,8 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  typedef std::vector<boost::shared_ptr<ribi::pvdb::Edge> > Edges;
-  typedef std::vector<boost::shared_ptr<ribi::pvdb::Node> > Nodes;
+  typedef std::vector<boost::shared_ptr<ribi::cmap::Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<ribi::cmap::Node> > Nodes;
 
   //Regular tests
   {
@@ -416,20 +416,20 @@ void ribi::pvdb::QtPvdbClusterDialog::Test()
 
     file->SetCluster(cluster);
 
-    const boost::shared_ptr<ribi::pvdb::Concept> concept_d(pvdb::ConceptFactory::Create("Concept F"));
-    const boost::shared_ptr<ribi::pvdb::Concept> concept_e(pvdb::ConceptFactory::GetTests().at(3));
-    const boost::shared_ptr<ribi::pvdb::Concept> concept_f(pvdb::ConceptFactory::GetTests().at(4));
-    const boost::shared_ptr<ribi::pvdb::Node> node_a(pvdb::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<ribi::pvdb::Node> node_b(pvdb::NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<ribi::pvdb::Node> node_c(pvdb::NodeFactory::GetTests().at(2));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::Create("Concept F"));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(3));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(4));
+    const boost::shared_ptr<ribi::cmap::Node> node_a(cmap::CenterNodeFactory::Create(question));
+    const boost::shared_ptr<ribi::cmap::Node> node_b(cmap::NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<ribi::cmap::Node> node_c(cmap::NodeFactory::GetTests().at(2));
     const Nodes nodes = { node_a, node_b, node_c };
-    const boost::shared_ptr<ribi::pvdb::Edge> edge_a(pvdb::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<ribi::pvdb::Edge> edge_b(pvdb::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<ribi::pvdb::Edge> edge_c(pvdb::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<ribi::cmap::Edge> edge_a(cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<ribi::cmap::Edge> edge_b(cmap::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<ribi::cmap::Edge> edge_c(cmap::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
     const Edges edges = { edge_a, edge_b, edge_c };
 
-    const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(
-      ribi::pvdb::ConceptMapFactory::Create(nodes,edges));
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(
+      ribi::cmap::ConceptMapFactory::Create(nodes,edges));
     assert(concept_map);
     file->SetConceptMap(concept_map);
 

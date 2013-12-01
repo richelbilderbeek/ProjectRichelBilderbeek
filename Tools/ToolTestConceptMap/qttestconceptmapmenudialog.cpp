@@ -11,7 +11,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *parent) :
+ribi::cmap::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestConceptMapMenuDialog)
 {
@@ -21,38 +21,52 @@ ribi::QtTestConceptMapMenuDialog::QtTestConceptMapMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtTestConceptMapMenuDialog::~QtTestConceptMapMenuDialog() noexcept
+ribi::cmap::QtTestConceptMapMenuDialog::~QtTestConceptMapMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestConceptMapMenuDialog::on_button_start_clicked()
-{
-  QtTestConceptMapMainDialog d;
-  this->ShowChild(&d);
-}
-
-void ribi::QtTestConceptMapMenuDialog::on_button_about_clicked()
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_about_clicked()
 {
   QtAboutDialog d(TestConceptMapMenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 
-void ribi::QtTestConceptMapMenuDialog::on_button_quit_clicked()
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtTestConceptMapMenuDialog::Test() noexcept
+void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestConceptMapMenuDialog::Test");
-  QtTestConceptMapMainDialog();
-  TRACE("Finished ribi::QtTestConceptMapMenuDialog::Test successfully");
+  TRACE("Starting ribi::cmap::QtTestConceptMapMenuDialog::Test");
+  QtTestConceptMapDisplayWidgetDialog();
+  QtTestConceptMapEditWidgetDialog();
+  QtTestConceptMapRateWidgetDialog();
+  TRACE("Finished ribi::cmap::QtTestConceptMapMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_readonly_conceptmap_clicked()
+{
+  QtTestConceptMapDisplayWidgetDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edit_conceptmap_clicked()
+{
+  QtTestConceptMapEditWidgetDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
+{
+  QtTestConceptMapRateWidgetDialog d;
+  this->ShowChild(&d);
+}

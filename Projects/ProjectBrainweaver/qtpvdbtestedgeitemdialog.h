@@ -48,19 +48,19 @@ private slots:
 private:
 
   Ui::QtPvdbTestEdgeItemDialog *ui;
-  boost::shared_ptr<ribi::pvdb::Edge> m_edge;
+  boost::shared_ptr<ribi::cmap::Edge> m_edge;
   QtPvdbEdgeItem* m_edge_item;
-  const boost::shared_ptr<ribi::pvdb::Node> m_from;
-  const boost::shared_ptr<ribi::pvdb::Node> m_to;
+  const boost::shared_ptr<ribi::cmap::Node> m_from;
+  const boost::shared_ptr<ribi::cmap::Node> m_to;
 
-  static const boost::shared_ptr<ribi::pvdb::Node> CreateFrom();
-  static const boost::shared_ptr<ribi::pvdb::Node> CreateTo();
+  static const boost::shared_ptr<ribi::cmap::Node> CreateFrom();
+  static const boost::shared_ptr<ribi::cmap::Node> CreateTo();
 
   ///Get the Edge via the route chosen by box_edit
-  const boost::shared_ptr<ribi::pvdb::Edge> GetEdgeCurrentWay();
+  const boost::shared_ptr<ribi::cmap::Edge> GetEdgeCurrentWay();
 
   ///Get the Edge from a route
-  const boost::shared_ptr<ribi::pvdb::Edge> GetEdge(const int index);
+  const boost::shared_ptr<ribi::cmap::Edge> GetEdge(const int index);
 
   ///Called whenever an item requests a scene update
   void OnRequestSceneUpdate();

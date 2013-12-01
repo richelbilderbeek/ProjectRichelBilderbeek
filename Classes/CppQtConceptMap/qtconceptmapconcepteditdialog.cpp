@@ -18,7 +18,7 @@
 #include "conceptmapconcept.h"
 #include "conceptmapconceptfactory.h"
 #include "qtconceptmapcompetency.h"
-#include "ui_qtpvdbconcepteditdialog.h"
+#include "ui_qtconceptmapconcepteditdialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

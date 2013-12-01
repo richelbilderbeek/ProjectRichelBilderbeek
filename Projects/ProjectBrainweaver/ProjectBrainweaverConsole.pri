@@ -9,7 +9,7 @@ SOURCES += \
     ../../Projects/ProjectBrainweaver/pvdbfilefactory.cpp \
     ../../Projects/ProjectBrainweaver/pvdbhelper.cpp \
     ../../Projects/ProjectBrainweaver/pvdbmenudialog.cpp \
-    ../../Projects/ProjectBrainweaver/pvdbrating.cpp \
+#    ../../Projects/ProjectBrainweaver/pvdbrating.cpp \
     ../../Projects/ProjectBrainweaver/test_pvdbcluster.cpp
 
 HEADERS  += \
@@ -19,5 +19,5 @@ HEADERS  += \
     ../../Projects/ProjectBrainweaver/pvdbfilefactory.h \
     ../../Projects/ProjectBrainweaver/pvdbfwd.h \
     ../../Projects/ProjectBrainweaver/pvdbhelper.h \
-    ../../Projects/ProjectBrainweaver/pvdbmenudialog.h \
-    ../../Projects/ProjectBrainweaver/pvdbrating.h
+    ../../Projects/ProjectBrainweaver/pvdbmenudialog.h
+#    ../../Projects/ProjectBrainweaver/pvdbrating.h

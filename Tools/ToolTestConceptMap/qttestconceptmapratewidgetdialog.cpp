@@ -21,15 +21,15 @@
 #include "conceptmapexamples.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-#include "qtbrushfactory.h"
+#include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapratewidget.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "qtconceptmapdisplayconceptitem.h"
-#include "qteditconceptitem.h"
+#include "qtconceptmapeditconceptitem.h"
 #include "qtconceptmapnodeitem.h"
-#include "qtrateconceptitem.h"
+#include "qtconceptmaprateconceptitem.h"
 #include "trace.h"
-#include "ui_qtpvdbtestconceptmapratewidgetdialog.h"
+#include "ui_qttestconceptmapratewidgetdialog.h"
 #pragma GCC diagnostic pop
 
 
@@ -63,7 +63,7 @@ void ribi::cmap::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
     {
-      if (QtNodeItem* const qtitem = dynamic_cast<QtNodeItem*>(item))
+      if (QtConceptMapNodeItem* const qtitem = dynamic_cast<QtConceptMapNodeItem*>(item))
       {
         assert(qtitem->GetConcept());
         assert(!qtitem->GetConcept()->GetName().empty());

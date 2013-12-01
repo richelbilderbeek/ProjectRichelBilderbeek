@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtconceptmapratewidget.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
 #include <thread>
@@ -10,12 +10,12 @@
 
 #include <QGraphicsItem>
 
-#include "pvdbconceptmapfactory.h"
+#include "conceptmapfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbConceptMapRateWidget::Test()
+void ribi::cmap::QtConceptMapRateWidget::Test()
 {
   {
     static bool is_tested = false;
@@ -29,20 +29,20 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::Test()
   #endif
   //Test base class
   {
-    const auto v = ribi::pvdb::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map: v)
+    const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
     {
-      boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMapWidget> widget(new This_t(concept_map));
       assert(widget);
-      QtPvdbConceptMapWidget::Test(widget);
+      QtConceptMapWidget::Test(widget);
     }
   }
   /*
   {
-    const auto v = ribi::pvdb::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map: v)
+    const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
     {
-      boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMapWidget> widget(new This_t(concept_map));
       assert(widget);
       for(QGraphicsItem * const item: widget->items())
       {
@@ -52,7 +52,7 @@ void ribi::pvdb::QtPvdbConceptMapRateWidget::Test()
     }
   }
   */
-  TRACE("ribi::pvdb::QtPvdbConceptMapRateWidget::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapRateWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

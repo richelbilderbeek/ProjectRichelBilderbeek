@@ -15,17 +15,17 @@
 #include <QFile>
 #include <QRegExp>
 
-#include "pvdbcenternode.h"
+#include "conceptmapcenternode.h"
 #include "pvdbclusterfactory.h"
 #include "pvdbcluster.h"
-#include "pvdbconcept.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmapconcept.h"
+#include "conceptmapconcept.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
 #include "fileio.h"
 #include "pvdbfilefactory.h"
 #include "pvdbhelper.h"
-#include "pvdbnode.h"
+#include "conceptmapnode.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -53,7 +53,7 @@ ribi::pvdb::File::File(
   const std::string& about,
   const std::string& assessor_name,
   const boost::shared_ptr<pvdb::Cluster>& cluster,
-  const boost::shared_ptr<ribi::pvdb::ConceptMap>& concept_map,
+  const boost::shared_ptr<ribi::cmap::ConceptMap>& concept_map,
   const std::string& question,
   const std::string& student_name,
   const std::string& version)
@@ -179,7 +179,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
     if (!v.empty())
     {
       assert(v.size() == 1);
-      f->m_concept_map = ConceptMapFactory::FromXml(v[0]);
+      f->m_concept_map = cmap::ConceptMapFactory::FromXml(v[0]);
     }
     else
     {
@@ -213,7 +213,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
 
   assert( (!f->GetConceptMap() || !f->GetConceptMap()->GetNodes().empty() )
     && "Either a file has no concept map or it has at least one node");
-  assert( (!f->GetConceptMap() || boost::dynamic_pointer_cast<pvdb::CenterNode>(f->GetConceptMap()->GetNodes()[0]) )
+  assert( (!f->GetConceptMap() || boost::dynamic_pointer_cast<cmap::CenterNode>(f->GetConceptMap()->GetNodes()[0]) )
     && "Either a file has no concept map or the first node in a file's ConceptMap is be a CenterNode");
 
   return f;
@@ -238,7 +238,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTes
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
   const int n_clusters = static_cast<int>(pvdb::ClusterFactory::GetTests().size());
-  const int n_concept_maps = static_cast<int>(pvdb::ConceptMapFactory::GetAllTests().size());
+  const int n_concept_maps = static_cast<int>(cmap::ConceptMapFactory::GetAllTests().size());
   for (int cluster_index=0; cluster_index!=n_clusters; ++cluster_index)
   {
     for (int concept_map_index=0; concept_map_index!=n_concept_maps; ++concept_map_index)
@@ -249,7 +249,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTes
       const std::string student_name = "student_name";
       const std::string version = "version";
       const auto cluster = pvdb::ClusterFactory::GetTests()[cluster_index];
-      const auto concept_map = ribi::pvdb::ConceptMapFactory::GetAllTests()[concept_map_index];
+      const auto concept_map = ribi::cmap::ConceptMapFactory::GetAllTests()[concept_map_index];
       if (concept_map)
       {
         assert(!concept_map->GetNodes().empty());
@@ -317,7 +317,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
 
   assert( (!file->GetConceptMap() || !file->GetConceptMap()->GetNodes().empty() )
     && "Either a file has no concept map or it has at least one node");
-  assert( (!file->GetConceptMap() || boost::dynamic_pointer_cast<pvdb::CenterNode>(file->GetConceptMap()->GetNodes()[0]) )
+  assert( (!file->GetConceptMap() || boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0]) )
     && "Either a file has no concept map or the first node in a file's ConceptMap is be a CenterNode");
 
   return file;
@@ -356,12 +356,12 @@ void ribi::pvdb::File::SetAssessorName(const std::string& assessor_name)
   this->AutoSave();
 }
 
-void ribi::pvdb::File::SetConceptMap(const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map)
+void ribi::pvdb::File::SetConceptMap(const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map)
 {
   assert(!m_concept_map && "Can only set when there is no concept map present yet");
   m_concept_map = concept_map;
   assert(!m_concept_map->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(m_concept_map->GetNodes()[0])
+  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(m_concept_map->GetNodes()[0])
     && "The first node in a file's ConceptMap must be a CenterNode");
   this->AutoSave();
 }
@@ -438,10 +438,10 @@ void ribi::pvdb::File::Test()
     firstfile->SetStudentName("Richel Bilderbeek");
     const std::string question = "Focal question?";
     {
-      const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-        = ribi::pvdb::ConceptMapFactory::Create(question);
+      const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+        = ribi::cmap::ConceptMapFactory::Create(question);
       assert(!concept_map->GetNodes().empty());
-      assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(concept_map->GetNodes()[0])
+      assert(boost::dynamic_pointer_cast<cmap::CenterNode>(concept_map->GetNodes()[0])
         && "The first node in a file's ConceptMap must be a CenterNode");
 
       firstfile->SetConceptMap(concept_map);
@@ -526,7 +526,7 @@ const std::string ribi::pvdb::File::ToXml(const File& file)
   s << "<about>" << file.GetAbout() << "</about>";
   s << "<assessor_name>" << file.GetAssessorName() << "</assessor_name>";
   if (file.GetCluster()   ) s << Cluster::ToXml(file.GetCluster());
-  if (file.GetConceptMap()) s << ConceptMap::ToXml(file.GetConceptMap());
+  if (file.GetConceptMap()) s << cmap::ConceptMap::ToXml(file.GetConceptMap());
   s << "<question>" << file.GetQuestion() << "</question>";
   s << "<student_name>" << file.GetStudentName() << "</student_name>";
   s << "<version>" << file.GetVersion() << "</version>";

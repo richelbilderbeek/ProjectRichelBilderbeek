@@ -12,7 +12,7 @@
 
 #include <QTreeWidget>
 
-#include "pvdbcompetency.h"
+#include "conceptmapcompetency.h"
 #include "pvdbcluster.h"
 #include "pvdbfwd.h"
 #pragma GCC diagnostic pop

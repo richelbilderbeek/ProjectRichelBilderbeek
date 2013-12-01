@@ -42,13 +42,13 @@ private slots:
 
 private:
   Ui::QtPvdbTestConceptItemDialog *ui;
-  const boost::shared_ptr<ribi::pvdb::Concept> m_concept;
+  const boost::shared_ptr<ribi::cmap::Concept> m_concept;
   QtPvdbDisplayConceptItem* m_display_concept;
   QtPvdbEditConceptItem* m_edit_concept;
   QtPvdbRateConceptItem* m_rate_concept;
 
   ///Get the Concept via the route chosen by box_edit
-  const boost::shared_ptr<ribi::pvdb::Concept> GetChosenConcept();
+  const boost::shared_ptr<ribi::cmap::Concept> GetChosenConcept();
 
   #ifndef NDEBUG
   ///Test this class

@@ -23,7 +23,7 @@ ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::QtPvdbTestCreateSubConceptMapDi
   #ifndef NDEBUG
   Test();
   #endif
-  const int n_tests = boost::numeric_cast<int>(pvdb::ConceptMapFactory::GetAllTests().size());
+  const int n_tests = boost::numeric_cast<int>(cmap::ConceptMapFactory::GetAllTests().size());
   ui->box_index->setMaximum(n_tests - 1); //-1: 0-based counting
 
   QObject::connect(ui->box_index,SIGNAL(valueChanged(int)),this,SLOT(OnConceptMapChanged()));
@@ -41,10 +41,10 @@ ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::~QtPvdbTestCreateSubConceptMapD
 void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
 {
   const int i = ui->box_index->value();
-  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > v = ribi::pvdb::ConceptMapFactory::GetAllTests();
+  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory::GetAllTests();
   assert(i < boost::numeric_cast<int>(v.size()));
   assert(v[i]);
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = v[i];
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = v[i];
   assert(concept_map);
 
   if(!ui->widget_concept_map->layout())
@@ -57,7 +57,7 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
   m_concept_map.reset(new QtPvdbConceptMapDisplayWidget(concept_map));
   ui->widget_concept_map->layout()->addWidget(m_concept_map.get());
 
-  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > subs = concept_map->CreateSubs();
+  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > subs = concept_map->CreateSubs();
   const int n_subs = boost::numeric_cast<int>(subs.size());
   assert(n_subs != 0);
   ui->box_index_sub->setMaximum(n_subs - 1); //-1: 0-based counting
@@ -67,13 +67,13 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
 void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
 {
   const int i = ui->box_index->value();
-  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > v = ribi::pvdb::ConceptMapFactory::GetAllTests();
+  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory::GetAllTests();
   assert(i < boost::numeric_cast<int>(v.size()));
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = v[i];
-  const std::vector<boost::shared_ptr<ribi::pvdb::ConceptMap> > subs = concept_map->CreateSubs();
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = v[i];
+  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > subs = concept_map->CreateSubs();
   const int j = ui->box_index_sub->value();
   assert(j < boost::numeric_cast<int>(subs.size()));
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> sub = subs[j];
+  const boost::shared_ptr<ribi::cmap::ConceptMap> sub = subs[j];
 
   if(!ui->widget_sub_concept_map->layout())
   {

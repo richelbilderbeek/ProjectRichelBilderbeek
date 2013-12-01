@@ -14,14 +14,14 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 
-#include "pvdbcompetency.h"
+#include "conceptmapcompetency.h"
 #include "pvdbcluster.h"
 #include "pvdbclusterfactory.h"
 #include "pvdbhelper.h"
-#include "pvdbconcept.h"
-#include "pvdbexamples.h"
-#include "pvdbexample.h"
-#include "pvdbconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexamples.h"
+#include "conceptmapexample.h"
+#include "conceptmapconceptfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -90,10 +90,10 @@ void ribi::pvdb::Cluster::Test()
   }
   //Test all Clusters with each combination of Concepts
   {
-    const std::vector<std::vector<boost::shared_ptr<ribi::pvdb::Concept> > > v
-      = GetCombinations(pvdb::ConceptFactory::GetTests());
+    const std::vector<std::vector<boost::shared_ptr<ribi::cmap::Concept> > > v
+      = GetCombinations(cmap::ConceptFactory::GetTests());
     std::for_each(v.begin(),v.end(),
-      [](const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& concepts)
+      [](const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& concepts)
       {
         const boost::shared_ptr<ribi::pvdb::Cluster> c(new ribi::pvdb::Cluster(concepts));
         assert(c);

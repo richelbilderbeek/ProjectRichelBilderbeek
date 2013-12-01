@@ -26,9 +26,9 @@
 ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbViewTestsDialog),
-    m_c(pvdb::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
-    m_h(pvdb::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
-    m_s(pvdb::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps()),
+    m_c(cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
+    m_h(cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
+    m_s(cmap::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps()),
     m_widgets{}
 {
 
@@ -72,7 +72,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         mylayout->addWidget(label);
         assert(i < static_cast<int>(m_h.size()));
         assert(m_h[i]);
-        const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map(m_h[i]);
+        const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(m_h[i]);
         assert(concept_map);
         const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
@@ -98,7 +98,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         //widget->setMinimumHeight(minheight);
         assert(i < static_cast<int>(m_s.size()));
         assert(m_s[i]);
-        const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = m_s[i];
+        const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_s[i];
         assert(concept_map);
         const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
@@ -122,7 +122,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         mylayout->addWidget(label);
         assert(i < static_cast<int>(m_c.size()));
         assert(m_c[i]);
-        const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = m_c[i];
+        const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_c[i];
         assert(concept_map);
         const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
@@ -142,7 +142,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog() noexcept
 
 boost::shared_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget(
   const int type,
-  const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map)
+  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map)
 {
   switch (type)
   {

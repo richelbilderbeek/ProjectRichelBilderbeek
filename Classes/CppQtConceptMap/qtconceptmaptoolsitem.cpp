@@ -15,7 +15,7 @@ ribi::cmap::QtConceptMapToolsItem::QtConceptMapToolsItem()
   : m_signal_clicked(),
     m_item(nullptr)
 {
-  this->setPixmap(QPixmap(":/images/PicArrow14x14.png"));
+  this->setPixmap(QPixmap(":/CppQtConceptMap/images/CppQtConceptMapArrow14x14.png"));
 
   assert(!this->pixmap().isNull());
 

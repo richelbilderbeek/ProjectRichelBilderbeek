@@ -39,17 +39,6 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::C
   return p;
 }
 
-#ifdef TO_ADD_TO_PROJECTBRAINWEAVER
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::CreateFromCluster(
-  const std::string& question,
-  const boost::shared_ptr<cmap::Cluster>& cluster)
-{
-  boost::shared_ptr<ribi::cmap::ConceptMap> p(new ConceptMap(question,cluster));
-  assert(p);
-  assert(p->IsValid());
-  return p;
-}
-#endif
 
 const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::Create(
   const std::string& focal_question)

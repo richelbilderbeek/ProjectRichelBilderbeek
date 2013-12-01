@@ -26,7 +26,7 @@
 ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbTestConceptItemDialog),
-  m_concept(pvdb::ConceptFactory::GetTests().at(1)),
+  m_concept(cmap::ConceptFactory::GetTests().at(1)),
   m_display_concept(nullptr),
   m_edit_concept(nullptr),
   m_rate_concept(nullptr)
@@ -82,11 +82,11 @@ ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *pa
   assert(dynamic_cast<QtPvdbConceptItem*>(ui->view->scene()->items()[2]));
 
   {
-    const std::vector<pvdb::Competency> v = pvdb::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = pvdb::GetAllCompetencies();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
-      ui->box_competency->addItem(pvdb::CompetencyToDutchStr(v[i]).c_str());
+      ui->box_competency->addItem(cmap::CompetencyToDutchStr(v[i]).c_str());
     }
   }
 
@@ -108,7 +108,7 @@ ribi::pvdb::QtPvdbTestConceptItemDialog::~QtPvdbTestConceptItemDialog() noexcept
   delete ui;
 }
 
-const boost::shared_ptr<ribi::pvdb::Concept> ribi::pvdb::QtPvdbTestConceptItemDialog::GetChosenConcept()
+const boost::shared_ptr<ribi::cmap::Concept> ribi::pvdb::QtPvdbTestConceptItemDialog::GetChosenConcept()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -169,7 +169,7 @@ void ribi::pvdb::QtPvdbTestConceptItemDialog::keyPressEvent(QKeyEvent *event)
 
 void ribi::pvdb::QtPvdbTestConceptItemDialog::on_box_competency_currentIndexChanged(int index)
 {
-  const pvdb::Competency c = static_cast<pvdb::Competency>(index);
+  const cmap::Competency c = static_cast<cmap::Competency>(index);
   this->GetChosenConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
@@ -238,7 +238,7 @@ void ribi::pvdb::QtPvdbTestConceptItemDialog::Test()
   }
   //Test brushes being changed when ratings are given
   {
-    const boost::shared_ptr<ribi::pvdb::Concept> concept = d.m_concept;
+    const boost::shared_ptr<ribi::cmap::Concept> concept = d.m_concept;
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);

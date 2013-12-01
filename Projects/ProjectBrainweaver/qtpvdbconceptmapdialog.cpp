@@ -15,22 +15,22 @@
 #include <QLabel>
 #include <QMessageBox>
 
-#include "pvdbcenternode.h"
+#include "conceptmapcenternode.h"
 #include "pvdbcluster.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
-#include "pvdbedge.h"
+#include "conceptmapconcept.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
+#include "conceptmapedge.h"
 #include "pvdbfile.h"
-#include "pvdbnodefactory.h"
-#include "pvdbnode.h"
-#include "qtpvdbconcepteditdialog.h"
-#include "qtpvdbconceptmapeditwidget.h"
-#include "qtpvdbconceptmapitem.h"
-#include "qtpvdbconceptmapwidget.h"
-#include "qtpvdbedgeitem.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapnode.h"
+#include "qtconceptmapconcepteditdialog.h"
+#include "qtconceptmapeditwidget.h"
+#include "qtconceptmapitem.h"
+#include "qtconceptmapwidget.h"
+#include "qtconceptmapedgeitem.h"
 #include "qtpvdbfiledialog.h"
-#include "qtpvdbnodeitem.h"
+#include "qtconceptmapnodeitem.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
@@ -70,7 +70,7 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   assert(m_file);
   assert(m_file->GetConceptMap());
   assert(!m_file->GetConceptMap()->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
+  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
     && "The first node in a file's ConceptMap must be a CenterNode");
 
   assert(file == m_file);
@@ -102,7 +102,36 @@ ribi::pvdb::QtPvdbConceptMapDialog::~QtPvdbConceptMapDialog() noexcept
   delete ui;
 }
 
-ribi::pvdb::QtPvdbConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::QtPvdbConceptMapDialog::CreateFromCluster(
+  const std::string& question,
+  const boost::shared_ptr<pvdb::Cluster>& cluster)
+{
+  std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes {
+    cmap::ConceptMap::CreateNodes(question, {} )
+  };
+  std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges;
+
+  const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v = cluster->Get();
+  const int n = boost::numeric_cast<int>(v.size());
+  for (int i=0; i!=n; ++i)
+  {
+    const int x = 0;
+    const int y = 0;
+    const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::Create(v[i],x,y);
+    assert(node);
+    nodes.push_back(node);
+  }
+  assert(v.size() + 1 == nodes.size()
+    && "Assume the ConceptMap has as much nodes as the cluster has concepts + one focal question");
+  const boost::shared_ptr<ribi::cmap::ConceptMap> p {
+    cmap::ConceptMapFactory::Create(nodes,edges)
+  };
+  assert(p);
+  assert(p->IsValid());
+  return p;
+}
+
+ribi::cmap::QtConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
 
@@ -112,8 +141,8 @@ ribi::pvdb::QtPvdbConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::Cre
   if (!had_cluster && !had_concept_map)
   {
     TRACE("User starts building a concept map from scratch");
-    boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map
-      = ribi::pvdb::ConceptMapFactory::Create(file->GetQuestion());
+    boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+      = ribi::cmap::ConceptMapFactory::Create(file->GetQuestion());
     file->SetConceptMap(concept_map);
   }
   else if ( had_cluster && !had_concept_map)
@@ -121,7 +150,7 @@ ribi::pvdb::QtPvdbConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::Cre
     TRACE("User supplied a filled-in cluster");
     assert(file->GetCluster());
 
-    boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::CreateFromCluster(
+    boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = ribi::cmap::ConceptMapFactory::Create(
         file->GetQuestion(),
         file->GetCluster()
       );
@@ -166,7 +195,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
   assert(m_file);
   assert(m_file->GetConceptMap());
   assert(!m_file->GetConceptMap()->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<pvdb::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
+  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
     && "The first node in a file's ConceptMap must be a CenterNode");
 
   const int n_edges_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetEdges().size());
@@ -179,20 +208,20 @@ void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
 }
 #endif
 
-const ribi::pvdb::QtPvdbConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget() const
+const ribi::cmap::QtConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget() const
 {
   assert(m_widget);
   return m_widget;
 }
 
-ribi::pvdb::QtPvdbConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget()
+ribi::cmap::QtConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
   //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
   //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
-  return const_cast<QtPvdbConceptMapWidget*>(
-    const_cast<const QtPvdbConceptMapDialog*>(this)->GetWidget());
+  return const_cast<cmap::QtConceptMapWidget*>(
+    const_cast<const cmap::QtConceptMapDialog*>(this)->GetWidget());
 }
 
 void ribi::pvdb::QtPvdbConceptMapDialog::keyPressEvent(QKeyEvent* e)
@@ -275,7 +304,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::on_button_save_clicked()
 
 void ribi::pvdb::QtPvdbConceptMapDialog::Save() const
 {
-  //const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = GetWidget()->GetConceptMap();
+  //const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = GetWidget()->GetConceptMap();
   //assert(concept_map);
   assert(m_file->GetConceptMap() == GetWidget()->GetConceptMap());
   //m_file->SetConceptMap(concept_map);

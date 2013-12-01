@@ -20,6 +20,7 @@ struct QtConceptMapNewArrow;
 struct QtConceptMapNodeItem;
 struct QtConceptMapToolsItem;
 struct QtConceptMapRateWidget;
+struct QtConceptMapWidget;
 
 } //~namespace cmap
 } //~namespace ribi

@@ -8,22 +8,22 @@
 #include <vector>
 
 #include "pvdbcluster.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptfactory.h"
-#include "pvdbexample.h"
+#include "conceptmapconcept.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapexample.h"
 #include "pvdbclusterfactory.h"
-#include "pvdbexamplefactory.h"
-#include "pvdbexamples.h"
-#include "pvdbexamplesfactory.h"
-#include "qtpvdbcompetency.h"
+#include "conceptmapexamplefactory.h"
+#include "conceptmapexamples.h"
+#include "conceptmapexamplesfactory.h"
+#include "qtconceptmapcompetency.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-///QTreeWidgetItem with the only function of storing a pvdb::Competency additionally
+///QTreeWidgetItem with the only function of storing a cmap::Competency additionally
 struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
 {
   QtPvdbTreeWidgetItem(
-    const ribi::pvdb::Competency competency,
+    const ribi::cmap::Competency competency,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
@@ -38,7 +38,7 @@ struct QtPvdbTreeWidgetItem : public QTreeWidgetItem
     assert(rating_complexity >= -1);
     assert(rating_complexity <=  2);
   }
-  const ribi::pvdb::Competency m_competency;
+  const ribi::cmap::Competency m_competency;
   const bool m_is_complex;
   const int m_rating_complexity;
   const int m_rating_concreteness;
@@ -80,7 +80,7 @@ ribi::pvdb::QtPvdbClusterWidget::QtPvdbClusterWidget(
 void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
 {
   QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
-    pvdb::Competency::uninitialized,true,-1,-1,-1);
+    cmap::Competency::uninitialized,true,-1,-1,-1);
   item->setText(0,text.c_str());
   this->addTopLevelItem(item);
 }
@@ -88,10 +88,10 @@ void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
 void ribi::pvdb::QtPvdbClusterWidget::DoRandomStuff()
 {
   QtPvdbTreeWidgetItem * const top = new QtPvdbTreeWidgetItem(
-    pvdb::Competency::misc,true,0,1,2);
+    cmap::Competency::misc,true,0,1,2);
   top->setText(0,"SOMETEXT");
   QtPvdbTreeWidgetItem * const child_item = new QtPvdbTreeWidgetItem(
-    pvdb::Competency::uninitialized,true,-1,0,2);
+    cmap::Competency::uninitialized,true,-1,0,2);
   child_item->setText(0,"SOMETEXT");
   top->addChild(child_item);
   child_item->setFlags(
@@ -238,25 +238,25 @@ void ribi::pvdb::QtPvdbClusterWidget::BuildCluster()
 
   this->clear();
   assert(m_cluster);
-  const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v = m_cluster->Get();
+  const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v = m_cluster->Get();
   std::for_each(v.begin(),v.end(),
-    [this](const boost::shared_ptr<const ribi::pvdb::Concept>& concept)
+    [this](const boost::shared_ptr<const ribi::cmap::Concept>& concept)
     {
       assert(concept);
       assert(concept->GetRatingComplexity() >= -1);
       assert(concept->GetRatingComplexity() <=  2);
       QtPvdbTreeWidgetItem * const top
         = new QtPvdbTreeWidgetItem(
-          pvdb::Competency::uninitialized, //A concept is not classified in competencies
+          cmap::Competency::uninitialized, //A concept is not classified in competencies
           concept->GetIsComplex(),
           concept->GetRatingComplexity(),
           concept->GetRatingConcreteness(),
           concept->GetRatingSpecificity()
           );
       top->setText(0,concept->GetName().c_str());
-      const std::vector<boost::shared_ptr<const pvdb::Example> > examples = concept->GetExamples()->Get();
+      const std::vector<boost::shared_ptr<const cmap::Example> > examples = concept->GetExamples()->Get();
       std::for_each(examples.begin(),examples.end(),
-        [top,this](const boost::shared_ptr<const pvdb::Example>& example)
+        [top,this](const boost::shared_ptr<const cmap::Example>& example)
         {
           QtPvdbTreeWidgetItem * const child_item
             = new QtPvdbTreeWidgetItem(
@@ -318,7 +318,7 @@ void ribi::pvdb::QtPvdbClusterWidget::Test()
         assert(c != d);
         assert(IsEqual(*c,*d));
         QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
-          pvdb::Competency::misc,true,0,1,2);
+          cmap::Competency::misc,true,0,1,2);
         item->setText(0,QString("An extra line"));
         w.addTopLevelItem(item);
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()) + 1);
@@ -337,7 +337,7 @@ void ribi::pvdb::QtPvdbClusterWidget::Test()
 
 void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
 {
-  std::vector<boost::shared_ptr<ribi::pvdb::Concept> > concepts;
+  std::vector<boost::shared_ptr<ribi::cmap::Concept> > concepts;
   const int n_top = this->topLevelItemCount();
   for (int i=0; i!=n_top; ++i)
   {
@@ -345,17 +345,17 @@ void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
     //QtPvdbTreeWidgetItem * const top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //BUG 2012-12-30
     assert(top);
     const std::string name = top->text(0).toStdString();
-    std::vector<boost::shared_ptr<pvdb::Example> > examples;
+    std::vector<boost::shared_ptr<cmap::Example> > examples;
 
     const int n_child = top->childCount();
     for (int j=0; j!=n_child; ++j)
     {
       const QtPvdbTreeWidgetItem * const pvdb_item
         = dynamic_cast<QtPvdbTreeWidgetItem *>(top->child(j));
-      const pvdb::Competency competency = pvdb_item ? pvdb_item->m_competency : pvdb::Competency::uninitialized;
+      const cmap::Competency competency = pvdb_item ? pvdb_item->m_competency : cmap::Competency::uninitialized;
       assert(GetDepth(top->child(j))==1);
-      boost::shared_ptr<pvdb::Example> p(
-        pvdb::ExampleFactory::Create(
+      boost::shared_ptr<cmap::Example> p(
+        cmap::ExampleFactory::Create(
           top->child(j)->text(0).toStdString(),
           competency
         )
@@ -366,9 +366,9 @@ void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
     QtPvdbTreeWidgetItem * const pvdb_top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //FIX 2012-12-30
 
     concepts.push_back(
-      ribi::pvdb::ConceptFactory::Create(
+      ribi::cmap::ConceptFactory::Create(
         name,
-        pvdb::ExamplesFactory::Create(examples),
+        cmap::ExamplesFactory::Create(examples),
         pvdb_top ? pvdb_top->m_is_complex : true,
         pvdb_top ? pvdb_top->m_rating_complexity : -1,
         pvdb_top ? pvdb_top->m_rating_concreteness : -1,

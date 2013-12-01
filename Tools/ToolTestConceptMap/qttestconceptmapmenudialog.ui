@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>284</width>
-    <height>342</height>
+    <width>613</width>
+    <height>414</height>
    </rect>
   </property>
   <property name="font">
@@ -54,22 +54,23 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="image_gabor">
+    <widget class="QPushButton" name="button_readonly_conceptmap">
      <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>:/images/ToolGaborFilter.png</pixmap>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <string>Read-only concept map</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_start">
+    <widget class="QPushButton" name="button_edit_conceptmap">
      <property name="text">
-      <string>Start</string>
+      <string>Editable concept map</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_rate_conceptmap">
+     <property name="text">
+      <string>Rateable concept map</string>
      </property>
     </widget>
    </item>

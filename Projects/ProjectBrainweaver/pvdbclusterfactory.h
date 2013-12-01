@@ -16,7 +16,7 @@ namespace pvdb {
 ///Factory for creating Cluster instances
 struct ClusterFactory
 {
-  static const boost::shared_ptr<pvdb::Cluster> Create(const std::vector<boost::shared_ptr<ribi::pvdb::Concept> >& v);
+  static const boost::shared_ptr<pvdb::Cluster> Create(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v);
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging

@@ -2,19 +2,19 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbconceptmapeditwidget.h"
+#include "qtconceptmapeditwidget.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
 #include <thread>
 #endif
 
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbConceptMapEditWidget::Test()
+void ribi::cmap::QtConceptMapEditWidget::Test()
 {
   {
     static bool is_tested = false;
@@ -31,35 +31,35 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::Test()
   }
   //Test base class (after having tested cloning of derived class)
   {
-    const auto v = ribi::pvdb::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map: v)
+    const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
+    for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
     {
       if (!concept_map) continue;
       assert(concept_map);
       assert(concept_map->IsValid());
 
-      boost::shared_ptr<QtPvdbConceptMapWidget> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMapWidget> widget(new This_t(concept_map));
       assert(widget);
-      QtPvdbConceptMapWidget::Test(widget);
+      QtConceptMapWidget::Test(widget);
     }
   }
   //Deletion of nodes
   {
-    const std::size_t n_concept_maps = ribi::pvdb::ConceptMapFactory::GetAllTests().size();
+    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
-      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
-      const std::size_t n_nodes = ribi::pvdb::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
+      if (!cmap::ConceptMapFactory::GetAllTests()[i]) continue;
+      const std::size_t n_nodes = ribi::cmap::ConceptMapFactory::GetAllTests()[i]->GetNodes().size();
       for (std::size_t j=0; j!=n_nodes; ++j)
       {
-        boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetAllTests()[i];
+        boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = ribi::cmap::ConceptMapFactory::GetAllTests()[i];
         if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetNodes().size() == n_nodes);
         assert(j < concept_map->GetNodes().size());
         boost::shared_ptr<This_t> widget(new This_t(concept_map));
         assert(widget);
-        QtPvdbNodeItem* const qtnode = widget->GetQtNodes()[j];
+        QtConceptMapNodeItem* const qtnode = widget->GetQtNodes()[j];
         assert(qtnode);
         widget->DeleteNode(qtnode);
         assert(widget->GetQtNodes().size() == n_nodes - 1
@@ -69,28 +69,28 @@ void ribi::pvdb::QtPvdbConceptMapEditWidget::Test()
   }
   //Deletion of edges
   {
-    const std::size_t n_concept_maps = ribi::pvdb::ConceptMapFactory::GetAllTests().size();
+    const std::size_t n_concept_maps = ribi::cmap::ConceptMapFactory::GetAllTests().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
-      if (!pvdb::ConceptMapFactory::GetAllTests()[i]) continue;
-      const std::size_t n_edges = ribi::pvdb::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
+      if (!cmap::ConceptMapFactory::GetAllTests()[i]) continue;
+      const std::size_t n_edges = ribi::cmap::ConceptMapFactory::GetAllTests()[i]->GetEdges().size();
       for (std::size_t j=0; j!=n_edges; ++j)
       {
-        boost::shared_ptr<ribi::pvdb::ConceptMap> concept_map = ribi::pvdb::ConceptMapFactory::GetAllTests()[i];
+        boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = ribi::cmap::ConceptMapFactory::GetAllTests()[i];
         if (!concept_map) continue;
         assert(concept_map);
         assert(concept_map->GetEdges().size() == n_edges);
         assert(j < concept_map->GetEdges().size());
         boost::shared_ptr<This_t> widget(new This_t(concept_map));
         assert(widget);
-        QtPvdbEdgeItem* const qtedge = widget->GetQtEdges()[j];
+        QtConceptMapEdgeItem* const qtedge = widget->GetQtEdges()[j];
         widget->DeleteEdge(qtedge);
         assert(widget->GetQtEdges().size() == n_edges - 1
           && "Edge must really be gone");
       }
     }
   }
-  TRACE("ribi::pvdb::QtPvdbConceptMapEditWidget::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapEditWidget::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

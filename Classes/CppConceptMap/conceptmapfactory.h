@@ -24,12 +24,6 @@ struct ConceptMapFactory
   static const boost::shared_ptr<ribi::cmap::ConceptMap> Create(
     const std::string& focal_question);
 
-  #ifdef TO_ADD_TO_PROJECTBRAINWEAVER
-  static const boost::shared_ptr<ribi::cmap::ConceptMap> CreateFromCluster(
-    const std::string& question,
-    const boost::shared_ptr<cmap::Cluster>& cluster);
-  #endif
-
   static const boost::shared_ptr<ribi::cmap::ConceptMap> Create(
     const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
     const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges = {});

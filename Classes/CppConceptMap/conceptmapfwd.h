@@ -15,7 +15,7 @@ struct ConceptMap;
 struct Edge;
 struct Example;
 struct Examples;
-struct File;
+//struct File;
 struct Node;
 
 

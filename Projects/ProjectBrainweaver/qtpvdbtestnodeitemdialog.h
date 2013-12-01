@@ -45,13 +45,13 @@ private slots:
 private:
 
   Ui::QtPvdbTestNodeItemDialog *ui;
-  const boost::shared_ptr<ribi::pvdb::Node> m_node;
+  const boost::shared_ptr<ribi::cmap::Node> m_node;
   QtPvdbNodeItem* m_display_node;
   QtPvdbNodeItem* m_edit_node;
   QtPvdbNodeItem* m_rate_node;
 
   ///Get the Node via the route chosen by box_edit
-  const boost::shared_ptr<ribi::pvdb::Node> GetNode();
+  const boost::shared_ptr<ribi::cmap::Node> GetNode();
 
   void OnRequestsSceneUpdate();
 

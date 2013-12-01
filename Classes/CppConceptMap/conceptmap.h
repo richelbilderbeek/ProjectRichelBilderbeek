@@ -33,6 +33,11 @@ struct ConceptMap
     const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
     const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges);
 
+  ///Prepend the question as a first node, before adding the supplied nodes
+  static const std::vector<boost::shared_ptr<ribi::cmap::Node> > CreateNodes(
+    const std::string& question,
+    const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes);
+
   ///Create all sub-conceptmaps
   ///Note that CreateSubs()[0] is the concept map around the focal question
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > CreateSubs() const;
@@ -76,11 +81,6 @@ private:
   ///The nodes
   std::vector<boost::shared_ptr<ribi::cmap::Node> > m_nodes;
 
-  ///Prepend the question as a first node, before adding the supplied nodes
-  static const std::vector<boost::shared_ptr<ribi::cmap::Node> > CreateNodes(
-    const std::string& question,
-    const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes);
-
   #ifndef NDEBUG
   ///Test this class
   static void Test();
@@ -96,10 +96,9 @@ private:
   #ifdef TO_ADD_TO_PROJECTBRAINWEAVER
   ConceptMap(
     const std::string& question,
-    const boost::shared_ptr<cmap::Cluster>& cluster);
+    const boost::shared_ptr<pvdb::Cluster>& cluster);
   #endif
   friend ConceptMapFactory;
-
   ///Block destructor, except for the friend boost::checked_delete
   ~ConceptMap() {}
   friend void boost::checked_delete<>(ConceptMap* x);

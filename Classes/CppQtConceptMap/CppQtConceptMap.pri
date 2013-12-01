@@ -29,7 +29,10 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qtconceptmapcompetency.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptwidget.cpp \
     ../../Classes/CppQtConceptMap/conceptmapbrating.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialog.cpp
+    ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialog.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapconceptmapeditwidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapratewidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapwidget.cpp
 
 HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapdisplaywidget.h \
@@ -64,3 +67,6 @@ FORMS += \
     ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialog.ui \
     ../../Classes/CppQtConceptMap/qtconceptmapratedconceptwidget.ui \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialog.ui
+
+RESOURCES += \
+    ../../Classes/CppQtConceptMap/CppQtConceptMap.qrc
