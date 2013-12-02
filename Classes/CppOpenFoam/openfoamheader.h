@@ -12,21 +12,32 @@ struct Header
 {
   ///In order of appearance in the text
   Header(
-    const std::string& class_name,
-    const std::string& location,
-    const std::string& object
+    const std::string& class_name = "",
+    const std::string& location = "",
+    const std::string& object = ""
   );
+
+  const std::string& GetClass() const noexcept { return m_class_name; }
+  const std::string& GetLocation() const noexcept { return m_location; }
+  const std::string& GetObject() const noexcept { return m_object; }
 
   private:
 
-  const std::string m_class_name;
-  const std::string m_location;
-  const std::string m_object;
+  std::string m_class_name;
+  std::string m_location;
+  std::string m_object;
 
-  friend std::ostream& operator<<(std::ostream& os, const Header& f);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  friend std::istream& operator>>(std::istream& is, Header& h);
 };
 
+bool operator==(const Header& lhs, const Header& rhs);
+bool operator!=(const Header& lhs, const Header& rhs);
 std::ostream& operator<<(std::ostream& os, const Header& f);
+std::istream& operator>>(std::istream& is, Header& h);
 
 } //~namespace foam
 } //~namespace ribi

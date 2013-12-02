@@ -6,7 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -54,7 +54,7 @@ private:
   ///m_file be const, as the Display Concept map cannot deal with const ribi::cmap::ConceptMap (yet?)
   const boost::shared_ptr<pvdb::File> m_file;
 
-  QtPvdbConceptMapRateWidget * const m_widget;
+  cmap::QtConceptMapRateWidget * const m_widget;
 };
 
 } //~namespace pvdb

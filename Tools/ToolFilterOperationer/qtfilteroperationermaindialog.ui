@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>FilterOperationer</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -41,8 +41,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>526</width>
-            <height>385</height>
+            <width>98</width>
+            <height>28</height>
            </rect>
           </property>
          </widget>

@@ -53,9 +53,9 @@ private slots:
 private:
   Ui::QtRichelBilderbeekGalleryMenuDialog *ui;
 
-  ///Returns the path of a filename
-  ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-  //static const std::string GetPath(const std::string& filename);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

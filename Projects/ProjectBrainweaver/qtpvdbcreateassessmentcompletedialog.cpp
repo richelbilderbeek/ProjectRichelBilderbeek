@@ -6,9 +6,9 @@
 
 #include <QKeyEvent>
 #include <QFileDialog>
-#include "pvdbconceptmap.h"
+#include "conceptmap.h"
 #include "pvdbfile.h"
-#include "pvdbconceptmapfactory.h"
+#include "conceptmapfactory.h"
 #include "qtpvdbfiledialog.h"
 
 #include "ui_qtpvdbcreateassessmentcompletedialog.h"

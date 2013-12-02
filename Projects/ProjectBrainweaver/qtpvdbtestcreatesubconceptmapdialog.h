@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #include "qthideandshowdialog.h"
 #pragma GCC diagnostic pop
 
@@ -39,8 +39,8 @@ private slots:
 private:
   Ui::QtPvdbTestCreateSubConceptMapDialog *ui;
 
-  boost::shared_ptr<QtPvdbConceptMapWidget> m_concept_map;
-  boost::shared_ptr<QtPvdbConceptMapWidget> m_sub_concept_map;
+  boost::shared_ptr<cmap::QtConceptMapWidget> m_concept_map;
+  boost::shared_ptr<cmap::QtConceptMapWidget> m_sub_concept_map;
 
   #ifndef NDEBUG
   static void Test();

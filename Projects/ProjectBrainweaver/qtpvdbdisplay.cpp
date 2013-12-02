@@ -9,16 +9,16 @@
 #include <QHeaderView>
 #include <QTableWidget>
 
-#include "pvdbcompetency.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmap.h"
-#include "pvdbedge.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
+#include "conceptmapcompetency.h"
+#include "conceptmapconcept.h"
+#include "conceptmap.h"
+#include "conceptmapedge.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
 #include "pvdbfile.h"
 #include "pvdbhelper.h"
-#include "pvdbnode.h"
-#include "qtpvdbcompetency.h"
+#include "conceptmapnode.h"
+#include "qtconceptmapcompetency.h"
 #pragma GCC diagnostic pop
 
 void ribi::pvdb::QtDisplay::DisplayRatedConcepts(
@@ -88,7 +88,7 @@ void ribi::pvdb::QtDisplay::DisplayExamples(
     {
       const cmap::Competency competency = static_cast<cmap::Competency>(i + 1); //Skip 0 == uninitialized
       const std::string text = cmap::CompetencyToDutchStr(competency);
-      const QIcon icon = pvdb::QtCompetency::CompetencyToIcon(competency);
+      const QIcon icon = cmap::QtCompetency::CompetencyToIcon(competency);
       QTableWidgetItem * const item = new QTableWidgetItem;
       item->setText(text.c_str());
       item->setIcon(icon);

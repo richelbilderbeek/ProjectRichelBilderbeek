@@ -8,7 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtPvdbTestEdgeItemDialog; }
@@ -16,7 +16,7 @@ namespace Ui { class QtPvdbTestEdgeItemDialog; }
 namespace ribi {
 namespace pvdb {
 
-///Tests all QtPvdbConceptItem items when being a member of a QtPvdbNodeItem,
+///Tests all QtPvdbConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
 class QtPvdbTestEdgeItemDialog : public ribi::QtHideAndShowDialog
@@ -49,7 +49,7 @@ private:
 
   Ui::QtPvdbTestEdgeItemDialog *ui;
   boost::shared_ptr<ribi::cmap::Edge> m_edge;
-  QtPvdbEdgeItem* m_edge_item;
+  cmap::QtConceptMapEdgeItem* m_edge_item;
   const boost::shared_ptr<ribi::cmap::Node> m_from;
   const boost::shared_ptr<ribi::cmap::Node> m_to;
 

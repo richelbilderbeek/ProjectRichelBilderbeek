@@ -81,7 +81,7 @@ struct Concept
   private:
   friend class QtConceptMapDialog;
   friend class QtStudentMenuDialog;
-  friend class QtTestConceptItemDialog;
+  friend class QtPvdbTestConceptItemDialog;
   friend class QtTestConceptMapEditWidgetDialog;
   friend class QtTestConceptMapRateWidgetDialog;
   friend class QtTestEdgeItemDialog;
@@ -91,6 +91,7 @@ struct Concept
   friend class QtConceptMapConceptEditDialog;
   friend class QtConceptMapRateExamplesDialog;
   friend class QtRateExamplesDialog;
+
   friend class QtConceptMapRateConceptDialog; //?Why to add this 20131130
 
   ///Set the examples

@@ -14,13 +14,13 @@
 #include <QPainter>
 #include <QPrinter>
 
-#include "pvdbconceptmap.h"
-#include "qtpvdbconceptmapwidget.h"
+#include "conceptmap.h"
+#include "qtconceptmapwidget.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qtpvdbconceptmapeditwidget.h"
+#include "qtconceptmapeditwidget.h"
 #include "qtpvdbdisplay.h"
 #include "qtpvdbfiledialog.h"
-#include "qtpvdbdisplayconceptitem.h"
+#include "qtconceptmapdisplayconceptitem.h"
 #include "pvdbfile.h"
 #include "trace.h"
 #include "ui_qtpvdbratingdialog.h"

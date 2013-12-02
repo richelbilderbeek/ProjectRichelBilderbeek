@@ -71,10 +71,10 @@ struct Trace
 
   #define TRACE(x)             \
   {                            \
-    std::ofstream f(           \
+    std::ofstream f_314_xyz(   \
       "trace_out.txt",         \
       std::ios::app);          \
-    f                          \
+    f_314_xyz                  \
       << "TRACE \'"            \
       <<  std::string(#x )     \
       <<  "\' line "           \
@@ -86,7 +86,7 @@ struct Trace
           std::string>(x)      \
       <<  "'"                  \
       << std::endl;            \
-    f.close();                 \
+    f_314_xyz.close();         \
     std::clog                  \
       << "TRACE \'"            \
       <<  std::string (#x)     \

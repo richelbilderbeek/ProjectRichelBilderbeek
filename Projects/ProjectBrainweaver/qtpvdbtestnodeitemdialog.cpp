@@ -49,7 +49,7 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
 
   {
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(m_node->GetConcept()));
-    m_display_node = new QtPvdbNodeItem(m_node,item);
+    m_display_node = new cmap::QtConceptMapNodeItem(m_node,item);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -66,7 +66,7 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
 
   {
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbEditConceptItem(m_node->GetConcept()));
-    m_edit_node = new QtPvdbNodeItem(m_node,item);
+    m_edit_node = new cmap::QtConceptMapNodeItem(m_node,item);
     m_edit_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -79,7 +79,7 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
 
   {
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbRateConceptItem(m_node->GetConcept()));
-    m_rate_node = new QtPvdbNodeItem(m_node,item);
+    m_rate_node = new cmap::QtConceptMapNodeItem(m_node,item);
     m_rate_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -102,9 +102,9 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
   ui->view->scene()->addItem(m_rate_node);
 
   assert(ui->view->scene()->items().size() == 3);
-  assert(dynamic_cast<QtPvdbNodeItem*>(ui->view->scene()->items()[0]));
-  assert(dynamic_cast<QtPvdbNodeItem*>(ui->view->scene()->items()[1]));
-  assert(dynamic_cast<QtPvdbNodeItem*>(ui->view->scene()->items()[2]));
+  assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[0]));
+  assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[1]));
+  assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[2]));
 
   //QtPvdbConceptItems are aware of their surroundings, but I put them into place manually
   m_display_node->SetPos(0.0,-40.0);
@@ -150,13 +150,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const QtPvdbNodeItem* const node_item = dynamic_cast<const QtPvdbNodeItem*>(item);
+          const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
           assert(node_item);
           return dynamic_cast<const QtPvdbDisplayConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
-      QtPvdbNodeItem * const qtnode = dynamic_cast<QtPvdbNodeItem*>(*iter);
+      cmap::QtConceptMapNodeItem * const qtnode = dynamic_cast<cmap::QtConceptMapNodeItem*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -166,13 +166,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const QtPvdbNodeItem* const node_item = dynamic_cast<const QtPvdbNodeItem*>(item);
+          const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
           assert(node_item);
           return dynamic_cast<const QtPvdbEditConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
-      QtPvdbNodeItem * const qtnode = dynamic_cast<QtPvdbNodeItem*>(*iter);
+      cmap::QtConceptMapNodeItem * const qtnode = dynamic_cast<cmap::QtConceptMapNodeItem*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -182,13 +182,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const QtPvdbNodeItem* const node_item = dynamic_cast<const QtPvdbNodeItem*>(item);
+          const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
           assert(node_item);
           return dynamic_cast<const QtPvdbRateConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
-      QtPvdbNodeItem * const qtnode = dynamic_cast<QtPvdbNodeItem*>(*iter);
+      cmap::QtConceptMapNodeItem * const qtnode = dynamic_cast<cmap::QtConceptMapNodeItem*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }

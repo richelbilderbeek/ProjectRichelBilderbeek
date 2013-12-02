@@ -70,3 +70,19 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
   QtTestConceptMapRateWidgetDialog d;
   this->ShowChild(&d);
 }
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
+{
+  QtTestConceptItemDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
+{
+  //
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
+{
+  //
+}

@@ -65,19 +65,19 @@ ribi::pvdb::QtPvdbTestEdgeItemDialog::QtPvdbTestEdgeItemDialog(QWidget *parent) 
   #endif
 
   //Create three nodes that the edges can connect to
-  QtPvdbNodeItem * node1 = nullptr;
+  cmap::QtConceptMapNodeItem * node1 = nullptr;
   {
     //m_from->GetConcept()->SetName("1");
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(m_from->GetConcept()));
-    node1 = new QtPvdbNodeItem(m_from,item);
+    node1 = new cmap::QtConceptMapNodeItem(m_from,item);
     node1->m_signal_request_scene_update.connect(
       boost::bind(&ribi::pvdb::QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
-  QtPvdbNodeItem * node2 = nullptr;
+  cmap::QtConceptMapNodeItem * node2 = nullptr;
   {
     //m_to->GetConcept()->SetName("2");
     const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbEditConceptItem(m_to->GetConcept()));
-    node2 = new QtPvdbNodeItem(m_to,item);
+    node2 = new cmap::QtConceptMapNodeItem(m_to,item);
     node2->m_signal_request_scene_update.connect(
       boost::bind(&ribi::pvdb::QtPvdbTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }

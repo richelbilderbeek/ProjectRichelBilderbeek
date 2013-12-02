@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtPvdbTestConceptItemDialog; }
@@ -43,9 +43,9 @@ private slots:
 private:
   Ui::QtPvdbTestConceptItemDialog *ui;
   const boost::shared_ptr<ribi::cmap::Concept> m_concept;
-  QtPvdbDisplayConceptItem* m_display_concept;
-  QtPvdbEditConceptItem* m_edit_concept;
-  QtPvdbRateConceptItem* m_rate_concept;
+  cmap::QtConceptMapDisplayConceptItem* m_display_concept;
+  cmap::QtConceptMapEditConceptItem* m_edit_concept;
+  cmap::QtConceptMapRateConceptItem* m_rate_concept;
 
   ///Get the Concept via the route chosen by box_edit
   const boost::shared_ptr<ribi::cmap::Concept> GetChosenConcept();

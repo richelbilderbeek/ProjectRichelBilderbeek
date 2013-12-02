@@ -7,7 +7,7 @@
 #include <QFileDialog>
 #include "pvdbfile.h"
 #include "pvdbclusterfactory.h"
-#include "pvdbconceptmapfactory.h"
+#include "conceptmapfactory.h"
 //#include "pvdbmenudialog.h"
 #include "qtpvdbfiledialog.h"
 #include "qtpvdbclusterdialog.h"

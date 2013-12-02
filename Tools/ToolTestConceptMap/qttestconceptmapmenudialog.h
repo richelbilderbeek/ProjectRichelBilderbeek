@@ -32,6 +32,12 @@ private slots:
 
   void on_button_rate_conceptmap_clicked();
 
+  void on_button_concept_clicked();
+
+  void on_button_node_clicked();
+
+  void on_button_edge_clicked();
+
 private:
   Ui::QtTestConceptMapMenuDialog *ui;
   #ifndef NDEBUG

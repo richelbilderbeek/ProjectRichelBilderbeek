@@ -95,7 +95,7 @@ boundary
     //The order in which the vertices are given must be such that, 
     //looking from inside the block and starting with any vertex, 
     //the face must be traversed in a clockwise direction to define the other vertices. 
-    faces
+    defaultFaces
     (
       (0 3 2 1)
       (0 4 7 3)

@@ -12,13 +12,13 @@
 #include <QLayout>
 #include <QVBoxLayout>
 
-#include "pvdbconceptfactory.h"
-#include "pvdbconcept.h"
-#include "pvdbconceptmapfactory.h"
+#include "conceptmapconceptfactory.h"
+#include "conceptmapconcept.h"
+#include "conceptmapfactory.h"
 #include "fileio.h"
-#include "pvdbconceptmap.h"
-#include "qtpvdbrateconcepttallydialog.h"
-#include "pvdbexamples.h"
+#include "conceptmap.h"
+#include "qtconceptmaprateconcepttallydialog.h"
+#include "conceptmapexamples.h"
 #include "qtpvdbfiledialog.h"
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
 #include "pvdbfilefactory.h"
@@ -27,28 +27,29 @@
 #include "qtpvdbassessormenudialog.h"
 #include "qtpvdbclusterdialog.h"
 #include "qtpvdbclusterwidget.h"
-#include "pvdbnode.h"
-#include "pvdbconcept.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "qtpvdbconcepteditdialog.h"
+#include "conceptmapnode.h"
+#include "conceptmapconcept.h"
+#include "conceptmapexample.h"
+#include "qttestconceptmapmenudialog.h"
+#include "conceptmapexamples.h"
+#include "qtconceptmapconcepteditdialog.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
-#include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
-#include "qtpvdbtestconceptmapeditwidgetdialog.h"
-#include "qtpvdbtestconceptmapratewidgetdialog.h"
+#include "qttestconceptmapdisplaywidgetdialog.h"
+#include "qttestconceptmapeditwidgetdialog.h"
+#include "qttestconceptmapratewidgetdialog.h"
 #include "qtpvdboverviewdialog.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qtpvdbrateconceptdialog.h"
+#include "qtconceptmaprateconceptdialog.h"
 #include "qtpvdbrateconceptmapdialog.h"
-#include "qtpvdbrateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialog.h"
 #include "qtpvdbratingdialog.h"
 #include "qtpvdbstudentmenudialog.h"
 #include "qtpvdbtestconceptitemdialog.h"
-#include "qtpvdbtestconceptmapdisplaywidgetdialog.h"
-#include "qtpvdbtestconceptmapeditwidgetdialog.h"
-#include "qtpvdbtestconceptmapratewidgetdialog.h"
+#include "qttestconceptmapdisplaywidgetdialog.h"
+#include "qttestconceptmapeditwidgetdialog.h"
+#include "qttestconceptmapratewidgetdialog.h"
 #include "qtpvdbtestedgeitemdialog.h"
 #include "qtpvdbtestnodeitemdialog.h"
 #include "qtpvdbviewfilesdialog.h"
@@ -110,8 +111,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
   const int index = std::rand() % concept_maps.size();
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[ index ];
   //Create and show the dialog
-  boost::shared_ptr<QtPvdbRateConceptDialog> d(
-    new QtPvdbRateConceptDialog(concept_map));
+  boost::shared_ptr<cmap::QtConceptMapRateConceptDialog> d(
+    new cmap::QtConceptMapRateConceptDialog(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
@@ -129,7 +130,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> concept = ribi::cmap::ConceptFactory::GetTests().at(5);
-  boost::shared_ptr<QtPvdbRateExamplesDialog> d(new QtPvdbRateExamplesDialog(concept));
+  boost::shared_ptr<cmap::QtConceptMapRateExamplesDialog> d(new cmap::QtConceptMapRateExamplesDialog(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
@@ -240,7 +241,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked() noexcept
     concept = concepts[ std::rand() % concepts.size() ];
   }
   assert(concept);
-  QtPvdbConceptEditDialog d(concept);
+  cmap::QtConceptMapConceptEditDialog d(concept);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
@@ -302,9 +303,7 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
         ui->button_test_create_sub_concept_map,
         ui->button_test_edge_item,
         ui->button_test_node_item,
-        ui->button_test_qtconceptmapdisplaywidget,
-        ui->button_test_qtconceptmapeditwidget,
-        ui->button_test_qtconceptmapratewidget,
+        ui->button_test_conceptmaps,
         ui->button_test_qtroundededitrectitem,
         ui->button_test_qtroundedtextrectitem,
         ui->button_view_files,
@@ -482,8 +481,6 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked() noexcept
 {
-  QtPvdbTestConceptItemDialog d;
-  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked() noexcept
@@ -599,9 +596,9 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked() noexcep
 {
 
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-    = QtPvdbRateConceptTallyDialog::CreateTestConceptMap();
-  boost::shared_ptr<QtPvdbRateConceptTallyDialog> d(
-    new QtPvdbRateConceptTallyDialog(concept_map));
+    = cmap::QtConceptMapRateConceptTallyDialog::CreateTestConceptMap();
+  boost::shared_ptr<cmap::QtConceptMapRateConceptTallyDialog> d(
+    new cmap::QtConceptMapRateConceptTallyDialog(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
 }
 

@@ -54,9 +54,6 @@ public slots:
   void on_button_test_create_sub_concept_map_clicked() noexcept;
   void on_button_test_edge_item_clicked() noexcept;
   void on_button_test_node_item_clicked() noexcept;
-  void on_button_test_qtconceptmapdisplaywidget_clicked() noexcept;
-  void on_button_test_qtconceptmapeditwidget_clicked() noexcept;
-  void on_button_test_qtconceptmapratewidget_clicked() noexcept;
   void on_button_test_qtroundededitrectitem_clicked() noexcept;
   void on_button_test_qtroundedtextrectitem_clicked() noexcept;
   void on_button_view_files_clicked() noexcept;

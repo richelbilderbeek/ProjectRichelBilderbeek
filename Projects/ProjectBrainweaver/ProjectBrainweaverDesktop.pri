@@ -113,7 +113,7 @@ FORMS    += \
     ../../Projects/ProjectBrainweaver/qtpvdbprintconceptmapdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbprintratingdialog.ui \
 #    ../../Projects/ProjectBrainweaver/qtpvdbrateconceptdialog.ui \
-#    ../../Projects/ProjectBrainweaver/qtpvdbrateconceptmapdialog.ui \
+   ../../Projects/ProjectBrainweaver/qtpvdbrateconceptmapdialog.ui \
 #    ../../Projects/ProjectBrainweaver/qtpvdbratedconceptwidget.ui \
 #    ../../Projects/ProjectBrainweaver/qtpvdbrateexamplesdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbratingdialog.ui \

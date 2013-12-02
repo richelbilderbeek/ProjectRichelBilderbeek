@@ -114,31 +114,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="button_test_conceptitem">
-        <property name="text">
-         <string>&amp;K. QtPvdbConceptItem</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_test_node_item">
-        <property name="text">
-         <string>&amp;L. QtPvdbNodeItem</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_test_edge_item">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string>&amp;M. QtPvdbEdgeItem</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="button_test_conceptmap_2">
+       <widget class="QPushButton" name="button_test_conceptmaps">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -322,10 +298,7 @@
   <tabstop>button_test_qtroundedtextrectitem</tabstop>
   <tabstop>button_test_qtroundededitrectitem</tabstop>
   <tabstop>button_test_arrowitems</tabstop>
-  <tabstop>button_test_conceptitem</tabstop>
-  <tabstop>button_test_node_item</tabstop>
-  <tabstop>button_test_edge_item</tabstop>
-  <tabstop>button_test_conceptmap_2</tabstop>
+  <tabstop>button_test_conceptmaps</tabstop>
   <tabstop>button_create_test_files</tabstop>
   <tabstop>button_modify_stylesheet</tabstop>
  </tabstops>

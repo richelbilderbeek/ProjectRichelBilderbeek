@@ -8,7 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -45,13 +45,13 @@ private:
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > m_s;
 
   /// Tha widgets
-  std::vector<boost::shared_ptr<QtPvdbConceptMapWidget> > m_widgets;
+  std::vector<boost::shared_ptr<cmap::QtConceptMapWidget> > m_widgets;
 
   #ifndef NDEBUG
   static void Test();
   #endif
 
-  static boost::shared_ptr<QtPvdbConceptMapWidget> CreateWidget(
+  static boost::shared_ptr<cmap::QtConceptMapWidget> CreateWidget(
     const int type,
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map);
 };

@@ -1,7 +1,8 @@
 #include "openfoamboundaryfile.h"
 
 #include <cassert>
-#include <ostream>
+#include <iostream>
+#include <stdexcept>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -13,110 +14,180 @@
 
 #include "filename.h"
 #include "openfoamheader.h"
+#include "openfoamboundaryfileitem.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::foam::BoundaryFile::BoundaryFile(const std::vector<BoundaryFileItem>& items)
-  : m_items(items)
-{
 
+ribi::foam::BoundaryFile::BoundaryFile(
+  const Header header,
+  const std::vector<BoundaryFileItem>& items)
+  : m_header{header},
+    m_items(items)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
-const std::vector<ribi::foam::BoundaryFile::BoundaryFileItem> ribi::foam::BoundaryFile::Parse(
-  const fileio::Filename& filename)
+const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 {
-  assert(fileio::IsRegularFile(filename));
-  const std::vector<std::string> lines { fileio::FileToVector(filename) };
-  std::vector<BoundaryFileItem> items;
+  BoundaryFile b;
+  is >> b;
+  return b;
+}
 
-
-  enum class State { name, bracket_open, type, n_faces, start_face, bracket_close };
-  State cur_state;
-  BoundaryFileItem cur_item;
-
-
-  for (const std::string& line_raw: lines)
+#ifndef NDEBUG
+void ribi::foam::BoundaryFile::Test() noexcept
+{
   {
-    const std::string line { boost::algorithm::trim_copy(line_raw) };
-    if (line.empty()) continue; //Skip empty lines
-    std::vector<std::string> words { SplitLine(line) };
-    assert(!words.empty());
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::foam::BoundaryFile::Test");
+  //Some initial data
+  const Header header("some_name","some_location","some_object");
+  std::vector<BoundaryFileItem> items;
+  for (int i=1; i!=4; ++i)
+  {
+    const std::string name = "some_name" + boost::lexical_cast<std::string>(i);
+    const std::string type = "some_type" + boost::lexical_cast<std::string>(i);
+    const int n_faces = i;
+    const int start_face = i * i;
+    BoundaryFileItem item(name,type,n_faces,start_face);
+    items.push_back(item);
+  }
+  //operator==
+  {
+    const BoundaryFile b(header,items);
+    const BoundaryFile c(header,items);
+    assert(header == header);
+    assert(b == c);
+  }
+  //operator!=
+  {
+    const BoundaryFile b(header,items);
+    const Header other_header("some_other_name","some_other_location","some_other_object");
+    assert(header != other_header);
+    const BoundaryFile c(other_header,items);
+    assert(b != c);
+  }
+  //operator!=
+  {
+    const BoundaryFile b(header,items);
+    std::vector<BoundaryFileItem> other_items;
+    for (int i=1; i!=3; ++i)
+    {
+      const std::string name = "some_other_name" + boost::lexical_cast<std::string>(i);
+      const std::string type = "some_other_type" + boost::lexical_cast<std::string>(i);
+      const int n_faces = i + 123;
+      const int start_face = (i * i) + 456;
+      BoundaryFileItem item(name,type,n_faces,start_face);
+      other_items.push_back(item);
+    }
+    const BoundaryFile c(header,other_items);
+    assert(b != c);
+  }
+  //Stream conversion
+  {
+    const BoundaryFile b(header,items);
+    std::stringstream s;
+    s << b;
+    BoundaryFile c;
+    s >> c;
+    if (b != c)
+    {
+      TRACE(b);
+      TRACE(c);
+    }
+    assert(b == c);
+  }
+  TRACE("Finished ribi::foam::Header::BoundaryFile successfully");
+}
+#endif
 
-    switch (cur_state)
+bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs)
+{
+  if (lhs.GetHeader() != rhs.GetHeader())
+  {
+    //TRACE(lhs.GetHeader());
+    //TRACE(rhs.GetHeader());
+    return false;
+  }
+  const std::vector<BoundaryFileItem>& lhs_items = lhs.GetItems();
+  const std::vector<BoundaryFileItem>& rhs_items = rhs.GetItems();
+  if (lhs_items.size() != rhs_items.size())
+  {
+    //TRACE(lhs_items.size());
+    //TRACE(rhs_items.size());
+    return false;
+  }
+  return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
+  /*
+  const std::size_t n_items = lhs_items.size();
+  for (std::size_t i=0; i!=n_items; ++i)
+  {
+    if (lhs_items[i] != rhs_items[i])
     {
-      case State::name:
-        assert(words.size() == 1);
-        cur_item.m_name = words[0];
-        break;
-      case State::bracket_open:
-        assert(words.size() == 1);
-        assert(words[0] == std::string("{"));
-        break;
-      case State::type:
-        assert(words.size() == 2);
-        assert(words[0] == std::string("type"));
-        cur_item.m_type = words[1];
-        break;
-      case State::n_faces:
-        assert(words.size() == 2);
-        assert(words[0] == std::string("nFaces"));
-        cur_item.m_n_faces = boost::lexical_cast<int>(words[1]);
-        break;
-      case State::start_face:
-        assert(words.size() == 2);
-        assert(words[1] == std::string("startFaces"));
-        cur_item.m_start_face = boost::lexical_cast<int>(words[1]);
-        break;
-      case State::bracket_close:
-        assert(words.size() == 1);
-        assert(words[0] == std::string("}"));
-        break;
-    }
-    if (cur_state == State::bracket_close)
-    {
-      items.push_back(cur_item);
-      cur_state = State::name;
-    }
-    else
-    {
-      cur_state = static_cast<State>(static_cast<int>(cur_state) + 1);
+      TRACE(lhs_items[i]);
+      TRACE(rhs_items[i]);
+      return false;
     }
   }
-  assert(cur_state == State::name);
-  return items;
+  return true;
+  */
 }
 
-const std::vector<std::string> ribi::foam::BoundaryFile::SplitLine(
-  const std::string& s)
+bool ribi::foam::operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs)
 {
-  std::vector<std::string> v;
-  boost::algorithm::split(
-    v,
-    s,
-    boost::is_any_of(" \t")
-  );
-  return v;
+  return !(lhs == rhs);
+}
+
+std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFile& f)
+{
+  assert(f.m_items.empty()); //Make empty otherwise
+
+  //Read header
+  is >> f.m_header;
+
+  //Read items
+  int n_items = 0;
+  {
+    is >> n_items;
+    assert(n_items > 0);
+  }
+  {
+    std::string bracket_open;
+    is >> bracket_open;
+    assert(bracket_open == "(");
+  }
+  for (int i=0; i!= n_items; ++i)
+  {
+    BoundaryFileItem item;
+    is >> item;
+    f.m_items.push_back(item);
+  }
+  {
+    std::string bracket_close;
+    is >> bracket_close;
+    assert(bracket_close == ")");
+  }
+  return is;
 }
 
 std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFile& f)
 {
-  const Header h("polyBoundaryMesh","constant/polyMesh","boundary");
   os
-    << h << '\n'
+    << f.GetHeader() << '\n'
     << "" << '\n'
     << f.m_items.size() << '\n'
     << "(" << '\n'
   ;
 
-  for(const BoundaryFile::BoundaryFileItem item: f.m_items)
+  for(const BoundaryFileItem item: f.m_items)
   {
-    os
-      << "  " << item.m_name << '\n'
-      << "  {" << '\n'
-      << "    type " << item.m_type << '\n'
-      << "    nFaces " << item.m_n_faces << '\n'
-      << "    startFace " << item.m_start_face << '\n'
-      << "  }" << '\n'
-    ;
+    os << item << '\n';
   }
 
   os

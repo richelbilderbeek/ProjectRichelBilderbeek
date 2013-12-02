@@ -4,9 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "about.h"
 #include "menudialog.h"
-#include "richelbilderbeekprogram.h"
 
 namespace ribi {
 

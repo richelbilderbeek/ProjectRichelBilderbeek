@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>613</width>
-    <height>414</height>
+    <width>406</width>
+    <height>586</height>
    </rect>
   </property>
   <property name="font">
@@ -50,6 +50,30 @@
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_concept">
+     <property name="text">
+      <string>Concept</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_node">
+     <property name="text">
+      <string>NodeItem</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_edge">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Edge</string>
      </property>
     </widget>
    </item>

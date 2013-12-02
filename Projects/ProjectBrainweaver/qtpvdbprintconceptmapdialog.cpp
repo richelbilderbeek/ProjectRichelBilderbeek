@@ -13,12 +13,12 @@
 #include <QPrinter>
 
 #include "pvdbfile.h"
-#include "pvdbconceptmap.h"
-#include "pvdbconceptmapfactory.h"
-#include "qtpvdbratedconceptwidget.h"
+#include "conceptmap.h"
+#include "conceptmapfactory.h"
+#include "qtconceptmapratedconceptwidget.h"
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
-#include "qtpvdbconceptmapdisplaywidget.h"
+#include "qtconceptmapdisplaywidget.h"
 #pragma GCC diagnostic pop
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
@@ -27,7 +27,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintConceptMapDialog),
     m_file(file),
-    m_widget(new QtPvdbConceptMapDisplayWidget(file->GetConceptMap()))
+    m_widget(new cmap::QtConceptMapDisplayWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);
 
@@ -165,8 +165,8 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     {
       const boost::shared_ptr<ribi::cmap::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
-      QtPvdbRatedConceptWidget * const widget
-        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);
+      cmap::QtConceptMapRatedConceptWidget * const widget
+        = new cmap::QtConceptMapRatedConceptWidget(m_file->GetConceptMap(),node);
       assert(widget);
       widget->HideRating();
       ui->frame_concept_map_as_text->layout()->addWidget(widget);

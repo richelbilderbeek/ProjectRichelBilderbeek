@@ -39,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtrichelbilderbeekgallerydialog.h"
 //#include "qtrichelbilderbeekgalleryresources.h"
 #include "richelbilderbeekgallerymenudialog.h"
+#include "trace.h"
 #include "ui_qtrichelbilderbeekgallerymenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -48,7 +49,7 @@ ribi::QtRichelBilderbeekGalleryMenuDialog::QtRichelBilderbeekGalleryMenuDialog(Q
     ui(new Ui::QtRichelBilderbeekGalleryMenuDialog)
 {
   #ifndef NDEBUG
-  //GalleryMenuDialog::Test();
+  Test();
   #endif
   ui->setupUi(this);
 }
@@ -122,3 +123,18 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
   box.setText( (std::string("HTML pages have been created in folder ") + s).c_str());
   box.exec();
 }
+
+#ifndef NDEBUG
+void ribi::QtRichelBilderbeekGalleryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRichelBilderbeekGalleryMenuDialog::Test");
+  QtRichelBilderbeekGalleryDialog();
+  QtRichelBilderbeekGalleryMenuDialog().on_button_create_html_clicked();
+  TRACE("Finished ribi::QtRichelBilderbeekGalleryMenuDialog::Test successfully");
+}
+#endif

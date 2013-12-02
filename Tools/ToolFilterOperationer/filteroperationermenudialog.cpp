@@ -20,9 +20,9 @@ const ribi::About ribi::FilterOperationerMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "FilterOperationer",
-    "",
-    "",
-    "",
+    "tool to perform image filter operations",
+    "on the 29th of November 2013",
+    "2008-2013",
     "http://www.richelbilderbeek.nl/ToolFilterOperationer.htm",
     GetVersion(),
     GetVersionHistory());

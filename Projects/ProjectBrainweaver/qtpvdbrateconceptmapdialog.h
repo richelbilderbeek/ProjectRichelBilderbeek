@@ -8,7 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "pvdbfwd.h"
+#include "qtpvdbfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui { class QtPvdbRateConceptMapDialog; }

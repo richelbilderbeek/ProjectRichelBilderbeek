@@ -273,7 +273,6 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
       && "Next folder must not be the one that is just processed");
 
 
-    TRACE(folder_todo);
     const std::vector<std::string> files_here {
       GetFilesInFolder(folder_todo)
     };

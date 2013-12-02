@@ -15,17 +15,17 @@
 #include <QPrinter>
 
 #include "pvdbfile.h"
-#include "pvdbconcept.h"
+#include "conceptmapconcept.h"
 #include "qtpvdbfiledialog.h"
-#include "pvdbnode.h"
-#include "pvdbedge.h"
-#include "pvdbconceptmapfactory.h"
-#include "pvdbexample.h"
-#include "pvdbexamples.h"
-#include "pvdbconceptmap.h"
-#include "qtpvdbratedconceptwidget.h"
+#include "conceptmapnode.h"
+#include "conceptmapedge.h"
+#include "conceptmapfactory.h"
+#include "conceptmapexample.h"
+#include "conceptmapexamples.h"
+#include "conceptmap.h"
+#include "qtconceptmapratedconceptwidget.h"
 #include "qtpvdbdisplay.h"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtconceptmapratewidget.h"
 #include "ui_qtpvdbprintratingdialog.h"
 #pragma GCC diagnostic pop
 
@@ -35,7 +35,7 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintRatingDialog),
     m_file(file),
-    m_widget(new QtPvdbConceptMapRateWidget(file->GetConceptMap()))
+    m_widget(new cmap::QtConceptMapRateWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);    
   assert(m_file);
@@ -188,8 +188,8 @@ void ribi::pvdb::QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
     {
       const auto node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
-      QtPvdbRatedConceptWidget * const widget
-        = new QtPvdbRatedConceptWidget(m_file->GetConceptMap(),node);
+      cmap::QtConceptMapRatedConceptWidget * const widget
+        = new cmap::QtConceptMapRatedConceptWidget(m_file->GetConceptMap(),node);
       assert(widget);
       ui->widget_concept_map_as_text->layout()->addWidget(widget);
     }

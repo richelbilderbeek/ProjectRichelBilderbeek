@@ -120,5 +120,10 @@
         <file>ToolUbuntuOneWatcher_1_0.png</file>
         <file>ToolVisualAbc_1_0.png</file>
         <file>ToolPrimeExpert_2_1.png</file>
+        <file>ToolImageRotater_2_0.png</file>
+        <file>ToolHistogramEqualizationer_2_0.png</file>
+        <file>ToolDotMatrix_2_0.png</file>
+        <file>ToolDotMatrix_2_1.png</file>
+        <file>ToolFilterOperationer_2_0.png</file>
     </qresource>
 </RCC>

@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 #include "fileiofwd.h"
+#include "openfoamfwd.h"
+#include "openfoamheader.h"
 
 namespace ribi {
 namespace foam {
@@ -12,29 +14,35 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct BoundaryFile
 {
-  struct BoundaryFileItem
-  {
-    BoundaryFileItem() : m_name{}, m_type{}, m_n_faces{}, m_start_face{} {}
-    std::string m_name;
-    std::string m_type;
-    int m_n_faces;
-    int m_start_face;
-  };
+  BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
+  BoundaryFile(
+    const Header header = Header("polyBoundaryMesh","constant/polyMesh","boundary"),
+    const std::vector<BoundaryFileItem>& items = {});
 
-  BoundaryFile(const fileio::Filename& filename)
-    : BoundaryFile(Parse(filename)) {}
+  const Header& GetHeader() const noexcept { return m_header; }
+  const std::vector<BoundaryFileItem> GetItems() const noexcept { return m_items; }
+
   private:
-  BoundaryFile(const std::vector<BoundaryFileItem>& items);
 
-  const std::vector<BoundaryFileItem> m_items;
+  ///The OpenFOAM header
+  Header m_header;
+  ///The items boundary contains
+  std::vector<BoundaryFileItem> m_items;
 
-  static const std::vector<BoundaryFileItem> Parse(const fileio::Filename& filename);
-  static const std::vector<std::string> SplitLine(const std::string& line);
+  static const BoundaryFile Parse(std::istream& is);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const BoundaryFile& f);
+  friend std::istream& operator>>(std::istream& is, BoundaryFile& f);
 };
 
+bool operator==(const BoundaryFile& lhs,const BoundaryFile& rhs);
+bool operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs);
 std::ostream& operator<<(std::ostream& os, const BoundaryFile& f);
+std::istream& operator>>(std::istream& is, BoundaryFile& f);
 
 } //~namespace foam
 } //~namespace ribi

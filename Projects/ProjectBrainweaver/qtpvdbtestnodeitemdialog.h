@@ -16,7 +16,7 @@ namespace Ui { class QtPvdbTestNodeItemDialog; }
 namespace ribi {
 namespace pvdb {
 
-///Tests all QtPvdbConceptItem items when being a member of a QtPvdbNodeItem,
+///Tests all QtPvdbConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
 class QtPvdbTestNodeItemDialog : public ribi::QtHideAndShowDialog
@@ -46,9 +46,9 @@ private:
 
   Ui::QtPvdbTestNodeItemDialog *ui;
   const boost::shared_ptr<ribi::cmap::Node> m_node;
-  QtPvdbNodeItem* m_display_node;
-  QtPvdbNodeItem* m_edit_node;
-  QtPvdbNodeItem* m_rate_node;
+  cmap::QtConceptMapNodeItem* m_display_node;
+  cmap::QtConceptMapNodeItem* m_edit_node;
+  cmap::QtConceptMapNodeItem* m_rate_node;
 
   ///Get the Node via the route chosen by box_edit
   const boost::shared_ptr<ribi::cmap::Node> GetNode();

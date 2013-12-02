@@ -14,16 +14,16 @@
 #include <QFileDialog>
 #include <QKeyEvent>
 
-#include "pvdbconceptmapfactory.h"
-#include "pvdbconceptmap.h"
+#include "conceptmapfactory.h"
+#include "conceptmap.h"
 #include "pvdbfilefactory.h"
 #include "qtpvdbfiledialog.h"
 #include "qtscopeddisable.h"
 #include "pvdbfile.h"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtconceptmapratewidget.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
-#include "qtpvdbrateconceptdialog.h"
+#include "qtconceptmaprateconceptdialog.h"
 #include "ui_qtpvdbrateconceptmapdialog.h"
 #pragma GCC diagnostic pop
 
@@ -33,7 +33,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
   m_file(file),
-  m_widget(new QtPvdbConceptMapRateWidget(file->GetConceptMap()))
+  m_widget(new cmap::QtConceptMapRateWidget(file->GetConceptMap()))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -73,7 +73,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog() noexcept
   delete ui;
 }
 
-ribi::pvdb::QtPvdbConceptMapRateWidget * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
+ribi::cmap::QtConceptMapRateWidget * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
 {
   assert(m_widget);
   return m_widget;
@@ -110,7 +110,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const bo
   this->show();
   this->m_widget->setEnabled(true);
   #else
-  QtPvdbRateConceptDialog d(sub_concept_map); //Item may be changed
+  cmap::QtConceptMapRateConceptDialog d(sub_concept_map); //Item may be changed
   d.exec();
   #endif
 }

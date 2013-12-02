@@ -11,15 +11,15 @@
 
 #include <QKeyEvent>
 
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbeditconceptitem.h"
-#include "qtpvdbbrushfactory.h"
-#include "pvdbconcept.h"
-#include "qtpvdbrateconceptitem.h"
-#include "pvdbexamples.h"
-#include "pvdbexample.h"
+#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapeditconceptitem.h"
+#include "qtconceptmapbrushfactory.h"
+#include "conceptmapconcept.h"
+#include "qtconceptmaprateconceptitem.h"
+#include "conceptmapexamples.h"
+#include "conceptmapexample.h"
 #include "ui_qtpvdbtestconceptitemdialog.h"
-#include "pvdbconceptfactory.h"
+#include "conceptmapconceptfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -40,7 +40,7 @@ ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *pa
   //Node is used in: m_node
   assert(m_concept.use_count() == 1);
 
-  m_display_concept = new QtPvdbDisplayConceptItem(m_concept);
+  m_display_concept = new cmap::QtConceptMapDisplayConceptItem(m_concept);
   assert(m_display_concept);
 
   //Node is used in: m_node and QtPvdbNodeConcept::m_node
@@ -51,12 +51,12 @@ ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *pa
   assert(m_concept.use_count() == 2);
 
   //Node is used in: m_node, QtPvdbNodeConcept::m_node
-  m_edit_concept = new QtPvdbEditConceptItem(m_concept);
+  m_edit_concept = new cmap::QtConceptMapEditConceptItem(m_concept);
 
   assert(m_edit_concept);
   assert(m_concept.use_count() == 3);
 
-  m_rate_concept = new QtPvdbRateConceptItem(m_concept);
+  m_rate_concept = new cmap::QtConceptMapRateConceptItem(m_concept);
 
   assert(m_rate_concept);
   assert(m_concept.use_count() == 4);
@@ -77,12 +77,12 @@ ribi::pvdb::QtPvdbTestConceptItemDialog::QtPvdbTestConceptItemDialog(QWidget *pa
   ui->view->scene()->addItem(m_rate_concept);
 
   assert(ui->view->scene()->items().size() == 3);
-  assert(dynamic_cast<QtPvdbConceptItem*>(ui->view->scene()->items()[0]));
-  assert(dynamic_cast<QtPvdbConceptItem*>(ui->view->scene()->items()[1]));
-  assert(dynamic_cast<QtPvdbConceptItem*>(ui->view->scene()->items()[2]));
+  assert(dynamic_cast<cmap::QtConceptItem*>(ui->view->scene()->items()[0]));
+  assert(dynamic_cast<cmap::QtConceptItem*>(ui->view->scene()->items()[1]));
+  assert(dynamic_cast<cmap::QtConceptItem*>(ui->view->scene()->items()[2]));
 
   {
-    const std::vector<cmap::Competency> v = pvdb::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
@@ -119,11 +119,13 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::pvdb::QtPvdbTestConceptItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](QGraphicsItem * const item)
         {
-          return dynamic_cast<QtPvdbDisplayConceptItem*>(item);
+          return dynamic_cast<cmap::QtConceptMapDisplayConceptItem*>(item);
         }
       );
       assert(iter!=v.end());
-      QtPvdbDisplayConceptItem * const qtconcept = dynamic_cast<QtPvdbDisplayConceptItem*>(*iter);
+      cmap::QtConceptMapDisplayConceptItem * const qtconcept {
+        dynamic_cast<cmap::QtConceptMapDisplayConceptItem*>(*iter)
+      };
       assert(qtconcept);
       return qtconcept->GetConcept();
     }
@@ -133,11 +135,13 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::pvdb::QtPvdbTestConceptItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](QGraphicsItem * const item)
         {
-          return dynamic_cast<QtPvdbEditConceptItem*>(item);
+          return dynamic_cast<cmap::QtConceptMapEditConceptItem*>(item);
         }
       );
       assert(iter!=v.end());
-      QtPvdbEditConceptItem * const qtconcept = dynamic_cast<QtPvdbEditConceptItem*>(*iter);
+      cmap::QtConceptMapEditConceptItem * const qtconcept {
+        dynamic_cast<cmap::QtConceptMapEditConceptItem*>(*iter)
+      };
       assert(qtconcept);
       return qtconcept->GetConcept();
     }
@@ -147,11 +151,13 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::pvdb::QtPvdbTestConceptItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](QGraphicsItem * const item)
         {
-          return dynamic_cast<QtPvdbRateConceptItem*>(item);
+          return dynamic_cast<cmap::QtConceptMapRateConceptItem*>(item);
         }
       );
       assert(iter!=v.end());
-      QtPvdbRateConceptItem * const qtconcept = dynamic_cast<QtPvdbRateConceptItem*>(*iter);
+      cmap::QtConceptMapRateConceptItem * const qtconcept {
+        dynamic_cast<cmap::QtConceptMapRateConceptItem*>(*iter)
+      };
       assert(qtconcept);
       return qtconcept->GetConcept();
     }
