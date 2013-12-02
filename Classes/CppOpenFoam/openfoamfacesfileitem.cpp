@@ -79,6 +79,10 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFileItem& f)
   int n_nodes = 0;
   {
     is >> n_nodes;
+    if (n_nodes < 0)
+    {
+      TRACE("BREAK");
+    }
     assert(n_nodes > 0);
   }
   {
