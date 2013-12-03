@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <sstream>
 
 #include "openfoamparseerror.h"
 #include "trace.h"

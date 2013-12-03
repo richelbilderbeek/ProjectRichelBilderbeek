@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <sstream>
 #include "fuzzy_equal_to.h"
 #include "trace.h"
 
