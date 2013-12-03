@@ -1,5 +1,5 @@
-#ifndef QTPVDBTESTNODEITEMDIALOG_H
-#define QTPVDBTESTNODEITEMDIALOG_H
+#ifndef QTCONCEPTMAPTESTNODEITEMDIALOG_H
+#define QTCONCEPTMAPTESTNODEITEMDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -8,26 +8,26 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "pvdbfwd.h"
+#include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtPvdbTestNodeItemDialog; }
+namespace Ui { class QtConceptMapTestNodeItemDialog; }
 
 namespace ribi {
-namespace pvdb {
+namespace cmap {
 
-///Tests all QtPvdbConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
+///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtPvdbTestNodeItemDialog : public ribi::QtHideAndShowDialog
+class QtConceptMapTestNodeItemDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtPvdbTestNodeItemDialog(QWidget *parent = 0);
-  QtPvdbTestNodeItemDialog(const QtPvdbTestNodeItemDialog&) = delete;
-  QtPvdbTestNodeItemDialog& operator=(const QtPvdbTestNodeItemDialog&) = delete;
-  ~QtPvdbTestNodeItemDialog() noexcept;
+  explicit QtConceptMapTestNodeItemDialog(QWidget *parent = 0);
+  QtConceptMapTestNodeItemDialog(const QtConceptMapTestNodeItemDialog&) = delete;
+  QtConceptMapTestNodeItemDialog& operator=(const QtConceptMapTestNodeItemDialog&) = delete;
+  ~QtConceptMapTestNodeItemDialog() noexcept;
 
 protected:
 
@@ -44,7 +44,7 @@ private slots:
 
 private:
 
-  Ui::QtPvdbTestNodeItemDialog *ui;
+  Ui::QtConceptMapTestNodeItemDialog *ui;
   const boost::shared_ptr<ribi::cmap::Node> m_node;
   cmap::QtConceptMapNodeItem* m_display_node;
   cmap::QtConceptMapNodeItem* m_edit_node;
@@ -61,4 +61,4 @@ private:
 } //~namespace pvdb
 } //~namespace ribi
 
-#endif // QTPVDBTESTNODEITEMDIALOG_H
+#endif // QTCONCEPTMAPTESTNODEITEMDIALOG_H

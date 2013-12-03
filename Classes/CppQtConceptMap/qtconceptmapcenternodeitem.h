@@ -1,5 +1,5 @@
-#ifndef QTPVDBCENTERNODEITEM_H
-#define QTPVDBCENTERNODEITEM_H
+#ifndef QTCONCEPTMAPCENTERNODEITEM_H
+#define QTCONCEPTMAPCENTERNODEITEM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -31,4 +31,4 @@ struct QtConceptMapCenterNodeItem : public QtConceptMapNodeItem
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBCENTERNODEITEM_H
+#endif // QTCONCEPTMAPCENTERNODEITEM_H

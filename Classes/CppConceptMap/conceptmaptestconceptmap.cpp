@@ -419,9 +419,9 @@ void ribi::cmap::ConceptMap::Test()
   #ifdef TO_ADD_TO_PROJECTBRAINWEAVER
   //Conversion from Cluster
   {
-    const std::vector<boost::shared_ptr<pvdb::Cluster> > clusters = pvdb::ClusterFactory::GetTests();
+    const std::vector<boost::shared_ptr<cmap::Cluster> > clusters = cmap::ClusterFactory::GetTests();
     std::for_each(clusters.begin(),clusters.end(),
-      [](const boost::shared_ptr<pvdb::Cluster> & cluster)
+      [](const boost::shared_ptr<cmap::Cluster> & cluster)
       {
         if (cluster)
         {

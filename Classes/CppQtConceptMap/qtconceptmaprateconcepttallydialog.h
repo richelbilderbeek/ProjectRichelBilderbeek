@@ -1,5 +1,5 @@
-#ifndef QTPVDBRATECONCEPTTALLYDIALOG_H
-#define QTPVDBRATECONCEPTTALLYDIALOG_H
+#ifndef QTCONCEPTMAPRATECONCEPTTALLYDIALOG_H
+#define QTCONCEPTMAPRATECONCEPTTALLYDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -71,4 +71,4 @@ private:
 } //~namespace pvdb
 } //~namespace ribi
 
-#endif // QTPVDBRATECONCEPTTALLYDIALOG_H
+#endif // QTCONCEPTMAPRATECONCEPTTALLYDIALOG_H

@@ -1,5 +1,5 @@
-#ifndef QTPVDBCOMPETENCY_H
-#define QTPVDBCOMPETENCY_H
+#ifndef QTCONCEPTMAPCOMPETENCY_H
+#define QTCONCEPTMAPCOMPETENCY_H
 
 #include <map>
 #pragma GCC diagnostic push
@@ -53,4 +53,4 @@ struct QtCompetency
 } //~namespace pvdb
 } //~namespace ribi
 
-#endif // QTPVDBCOMPETENCY_H
+#endif // QTCONCEPTMAPCOMPETENCY_H

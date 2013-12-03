@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 
+#include "openfoamparseerror.h"
 #include "trace.h"
 
 ribi::foam::FacesFileItem::FacesFileItem(
@@ -79,9 +80,10 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFileItem& f)
   int n_nodes = 0;
   {
     is >> n_nodes;
-    if (n_nodes < 0)
+    assert(is);
+    if (n_nodes <= 0)
     {
-      TRACE("BREAK");
+      throw ParseError();
     }
     assert(n_nodes > 0);
   }

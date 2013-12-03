@@ -79,20 +79,22 @@ struct Concept
   static const std::string ToXml(const boost::shared_ptr<const ribi::cmap::Concept>& t);
 
   private:
+
+  friend class QtConceptMapConceptEditDialog;
   friend class QtConceptMapDialog;
+  friend class QtConceptMapEdgeItem;
+  friend class QtConceptMapNodeItem;
+  friend class QtConceptMapRateConceptDialog; //?Why to add this 20131130
+  friend class QtConceptMapRateExamplesDialog;
+  friend class QtConceptMapTestConceptItemDialog;
+  friend class QtConceptMapTestEdgeItemDialog;
+  friend class QtConceptMapTestNodeItemDialog;
+  friend class QtRateExamplesDialog;
   friend class QtStudentMenuDialog;
-  friend class QtPvdbTestConceptItemDialog;
-  friend class QtTestConceptMapEditWidgetDialog;
   friend class QtTestConceptMapRateWidgetDialog;
   friend class QtTestEdgeItemDialog;
   friend class QtTestNodeItemDialog;
-  friend class QtConceptMapEdgeItem;
-  friend class QtConceptMapNodeItem;
-  friend class QtConceptMapConceptEditDialog;
-  friend class QtConceptMapRateExamplesDialog;
-  friend class QtRateExamplesDialog;
-
-  friend class QtConceptMapRateConceptDialog; //?Why to add this 20131130
+  friend class QtTestConceptMapEditWidgetDialog;
 
   ///Set the examples
   void SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples);

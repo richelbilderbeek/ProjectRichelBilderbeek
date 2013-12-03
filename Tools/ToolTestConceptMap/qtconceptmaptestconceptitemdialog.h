@@ -1,5 +1,5 @@
-#ifndef QTPVDBTESTCONCEPTITEMDIALOG_H
-#define QTPVDBTESTCONCEPTITEMDIALOG_H
+#ifndef QTCONCEPTMAPTESTCONCEPTITEMDIALOG_H
+#define QTCONCEPTMAPTESTCONCEPTITEMDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -7,26 +7,25 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
-#include "qtpvdbfwd.h"
+#include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtPvdbTestConceptItemDialog; }
+namespace Ui { class QtConceptMapTestConceptItemDialog; }
 
 namespace ribi {
+namespace cmap {
 
-namespace pvdb {
-
-///Tests all QtPvdbConceptItem items, especially the connection between the pointer and its displayal items:
+///Tests all QtConceptMapConceptItem items, especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtPvdbTestConceptItemDialog : public ribi::QtHideAndShowDialog
+class QtConceptMapTestConceptItemDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtPvdbTestConceptItemDialog(QWidget *parent = 0);
-  QtPvdbTestConceptItemDialog(const QtPvdbTestConceptItemDialog&) = delete;
-  QtPvdbTestConceptItemDialog& operator=(const QtPvdbTestConceptItemDialog&) = delete;
-  ~QtPvdbTestConceptItemDialog() noexcept;
+  explicit QtConceptMapTestConceptItemDialog(QWidget *parent = 0);
+  QtConceptMapTestConceptItemDialog(const QtConceptMapTestConceptItemDialog&) = delete;
+  QtConceptMapTestConceptItemDialog& operator=(const QtConceptMapTestConceptItemDialog&) = delete;
+  ~QtConceptMapTestConceptItemDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *event);
@@ -41,7 +40,7 @@ private slots:
   void on_edit_example_text_textChanged(const QString &arg1);
 
 private:
-  Ui::QtPvdbTestConceptItemDialog *ui;
+  Ui::QtConceptMapTestConceptItemDialog *ui;
   const boost::shared_ptr<ribi::cmap::Concept> m_concept;
   cmap::QtConceptMapDisplayConceptItem* m_display_concept;
   cmap::QtConceptMapEditConceptItem* m_edit_concept;
@@ -60,4 +59,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTPVDBTESTCONCEPTITEMDIALOG_H
+#endif // QTCONCEPTMAPTESTCONCEPTITEMDIALOG_H

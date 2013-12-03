@@ -1,5 +1,5 @@
-#ifndef QTPVDBBRUSHFACTORY_H
-#define QTPVDBBRUSHFACTORY_H
+#ifndef QTCONCEPTMAPBRUSHFACTORY_H
+#define QTCONCEPTMAPBRUSHFACTORY_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -56,4 +56,4 @@ struct QtConceptMapBrushFactory
 } //~namespace pvdb
 } //~namespace ribi
 
-#endif // QTPVDBBRUSHFACTORY_H
+#endif // QTCONCEPTMAPBRUSHFACTORY_H

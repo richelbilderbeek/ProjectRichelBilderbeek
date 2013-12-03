@@ -13,12 +13,12 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
-#include "pvdbconceptmap.h"
-#include "pvdbconceptmapfactory.h"
-#include "qtpvdbconceptmapdisplaywidget.h"
-#include "qtpvdbconceptmapeditwidget.h"
-#include "qtpvdbconceptmapratewidget.h"
-#include "qtpvdbconceptmapwidget.h"
+#include "conceptmap.h"
+#include "conceptmapfactory.h"
+#include "qtconceptmapdisplaywidget.h"
+#include "qtconceptmapeditwidget.h"
+#include "qtconceptmapratewidget.h"
+#include "qtconceptmapwidget.h"
 #include "trace.h"
 #include "ui_qtpvdbviewtestsdialog.h"
 #pragma GCC diagnostic pop
@@ -74,7 +74,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         assert(m_h[i]);
         const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(m_h[i]);
         assert(concept_map);
-        const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
         assert(extra_height > 0);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -100,7 +100,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         assert(m_s[i]);
         const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_s[i];
         assert(concept_map);
-        const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
         mylayout->addWidget(widget.get());
@@ -124,7 +124,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
         assert(m_c[i]);
         const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_c[i];
         assert(concept_map);
-        const boost::shared_ptr<QtPvdbConceptMapWidget> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMapWidget> widget(CreateWidget(type,concept_map));
         assert(widget);
         //widget->setMinimumHeight(minheight);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -140,7 +140,7 @@ ribi::pvdb::QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog() noexcept
   delete ui;
 }
 
-boost::shared_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget(
+boost::shared_ptr<ribi::cmap::QtConceptMapWidget> ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget(
   const int type,
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map)
 {
@@ -148,19 +148,19 @@ boost::shared_ptr<ribi::pvdb::QtPvdbConceptMapWidget> ribi::pvdb::QtPvdbViewTest
   {
     case 0:
     {
-      boost::shared_ptr<QtPvdbConceptMapWidget> p(new QtPvdbConceptMapDisplayWidget(concept_map));
+      boost::shared_ptr<cmap::QtConceptMapWidget> p(new cmap::QtConceptMapDisplayWidget(concept_map));
       assert(p);
       return p;
     }
     case 1:
     {
-      boost::shared_ptr<QtPvdbConceptMapWidget> p(new QtPvdbConceptMapEditWidget(concept_map));
+      boost::shared_ptr<cmap::QtConceptMapWidget> p(new cmap::QtConceptMapEditWidget(concept_map));
       assert(p);
       return p;
     }
     case 2:
     {
-      boost::shared_ptr<QtPvdbConceptMapWidget> p(new QtPvdbConceptMapRateWidget(concept_map));
+      boost::shared_ptr<cmap::QtConceptMapWidget> p(new cmap::QtConceptMapRateWidget(concept_map));
       assert(p);
       return p;
     }

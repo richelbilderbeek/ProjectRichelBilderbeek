@@ -1,5 +1,5 @@
-#ifndef QTPVDBEDGEITEM_H
-#define QTPVDBEDGEITEM_H
+#ifndef QTCONCEPTMAPEDGEITEM_H
+#define QTCONCEPTMAPEDGEITEM_H
 
 #include <boost/shared_ptr.hpp>
 #include "qtconceptmapeditconceptitem.h"
@@ -117,4 +117,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTPVDBEDGEITEM_H
+#endif // QTCONCEPTMAPEDGEITEM_H

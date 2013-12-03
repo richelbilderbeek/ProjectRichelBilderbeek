@@ -21,6 +21,17 @@ struct Header
   const std::string& GetLocation() const noexcept { return m_location; }
   const std::string& GetObject() const noexcept { return m_object; }
 
+  ///A header consists out of multiple lines
+  ///(1) header name
+  ///(2) bracket open
+  ///(3) version
+  ///(4) format
+  ///(5) class
+  ///(6) location
+  ///(7) object
+  ///(8) bracket close
+  int GetNumberOfLines() const noexcept { return 8; }
+
   private:
 
   std::string m_class_name;

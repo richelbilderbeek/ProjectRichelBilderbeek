@@ -40,9 +40,9 @@ SOURCES += \
     ../../Projects/ProjectBrainweaver/qtpvdbratingdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentmenudialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentstartcompletedialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.cpp \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.cpp \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.cpp \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.cpp \
 #    ../../Projects/ProjectBrainweaver/qtpvdbtoolsitem.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbviewfilesdialog.cpp \
     ../../Projects/ProjectBrainweaver/qtpvdbviewtestsdialog.cpp \
@@ -91,10 +91,10 @@ HEADERS  += \
     ../../Projects/ProjectBrainweaver/qtpvdbratingdialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentmenudialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentstartcompletedialog.h \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.h \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbtestcreatesubconceptmapdialog.h \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.h \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.h \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.h \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.h \
 #    ../../Projects/ProjectBrainweaver/qtpvdbtoolsitem.h \
     ../../Projects/ProjectBrainweaver/qtpvdbviewfilesdialog.h \
     ../../Projects/ProjectBrainweaver/qtpvdbviewtestsdialog.h \
@@ -119,9 +119,9 @@ FORMS    += \
     ../../Projects/ProjectBrainweaver/qtpvdbratingdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentmenudialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbstudentstartcompletedialog.ui \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.ui \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.ui \
-    ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.ui \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestconceptitemdialog.ui \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestedgeitemdialog.ui \
+#    ../../Projects/ProjectBrainweaver/qtpvdbtestnodeitemdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbviewfilesdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbviewtestsdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbtestcreatesubconceptmapdialog.ui

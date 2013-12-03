@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtPvdbTestConceptItemDialog</class>
- <widget class="QDialog" name="QtPvdbTestConceptItemDialog">
+ <class>QtConceptMapTestNodeItemDialog</class>
+ <widget class="QDialog" name="QtConceptMapTestNodeItemDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>831</width>
-    <height>486</height>
+    <width>760</width>
+    <height>610</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Test Concept</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="Brainweaver.qrc">
-    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
+   <string>Test Node</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>cmap::ConceptFactory::GetTests()[1]</string>
+      <string>cmap::NodeFactory::GetTests()[1]</string>
      </property>
     </widget>
    </item>
@@ -39,25 +35,45 @@
        <widget class="QComboBox" name="box_edit">
         <item>
          <property name="text">
-          <string>m_concept</string>
+          <string>m_node</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>QtPvdbDisplayConcept-&gt;GetConcept()</string>
+          <string>QtNode-&gt;GetNode() (display)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>QtPvdbConcept-&gt;GetConcept()</string>
+          <string>QtNode-&gt;GetNode() (edit)</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>QtPvdbRateConcept-&gt;GetConcept()</string>
+          <string>QtNode-&gt;GetNode() (rate)</string>
          </property>
         </item>
        </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>X coordinat</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="box_x"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Y coordinat</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="box_y"/>
       </item>
       <item>
        <widget class="QLabel" name="label_6">
@@ -200,20 +216,6 @@
        </spacer>
       </item>
      </layout>
-     <zorder>edit_name</zorder>
-     <zorder>label_8</zorder>
-     <zorder>box_edit</zorder>
-     <zorder>label_6</zorder>
-     <zorder>label_5</zorder>
-     <zorder>box_complexity</zorder>
-     <zorder>label_4</zorder>
-     <zorder>box_concreteness</zorder>
-     <zorder>label_3</zorder>
-     <zorder>box_specificity</zorder>
-     <zorder>label_7</zorder>
-     <zorder>edit_example_text</zorder>
-     <zorder>label_2</zorder>
-     <zorder>box_competency</zorder>
     </widget>
    </item>
    <item row="1" column="0">
@@ -237,8 +239,6 @@
   <tabstop>box_competency</tabstop>
   <tabstop>view</tabstop>
  </tabstops>
- <resources>
-  <include location="Brainweaver.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

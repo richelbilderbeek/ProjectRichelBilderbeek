@@ -1,5 +1,5 @@
-#ifndef PVDBRATING_H
-#define PVDBRATING_H
+#ifndef CONCEPTMAPRATING_H
+#define CONCEPTMAPRATING_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -38,4 +38,4 @@ struct Rating
 } //~namespace pvdb
 } //~namespace ribi
 
-#endif // PVDBRATING_H
+#endif // CONCEPTMAPRATING_H

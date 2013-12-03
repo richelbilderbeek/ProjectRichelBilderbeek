@@ -16,6 +16,7 @@
 #include "filename.h"
 #include "openfoamheader.h"
 #include "openfoamfacesfileitem.h"
+#include "openfoamparseerror.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -132,6 +133,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
   {
     is >> n_items;
     assert(n_items > 0);
+    TRACE(n_items);
   }
   {
     std::string bracket_open;
@@ -140,9 +142,16 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
   }
   for (int i=0; i!=n_items; ++i)
   {
-    FacesFileItem item;
-    is >> item;
-    f.m_items.push_back(item);
+    try
+    {
+      FacesFileItem item;
+      is >> item;
+      f.m_items.push_back(item);
+    }
+    catch(ParseError&)
+    {
+      throw ParseError("faces",i + f.m_header.GetNumberOfLines());
+    }
   }
   {
     std::string bracket_close;

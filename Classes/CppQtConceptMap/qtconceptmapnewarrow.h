@@ -1,5 +1,5 @@
-#ifndef QTPVDBNEWARROW_H
-#define QTPVDBNEWARROW_H
+#ifndef QTCONCEPTMAPNEWARROW_H
+#define QTCONCEPTMAPNEWARROW_H
 
 #include <string>
 #include <vector>
@@ -41,4 +41,4 @@ struct QtConceptMapNewArrow : public QtArrowItem
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBNEWARROW_H
+#endif // QTCONCEPTMAPNEWARROW_H

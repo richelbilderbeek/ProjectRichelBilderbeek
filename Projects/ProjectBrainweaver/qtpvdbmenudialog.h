@@ -48,16 +48,16 @@ public slots:
   void on_button_student_clicked() noexcept;
   void on_button_test_arrowitems_clicked() noexcept;
   void on_button_test_cluster_clicked() noexcept;
-  void on_button_test_conceptedit_clicked() noexcept;
-  void on_button_test_conceptitem_clicked() noexcept;
-  void on_button_test_conceptmap_clicked() noexcept;
+  //void on_button_test_conceptedit_clicked() noexcept;
+  //void on_button_test_conceptitem_clicked() noexcept;
+  //void on_button_test_conceptmap_clicked() noexcept;
   void on_button_test_create_sub_concept_map_clicked() noexcept;
-  void on_button_test_edge_item_clicked() noexcept;
-  void on_button_test_node_item_clicked() noexcept;
+  //void on_button_test_edge_item_clicked() noexcept;
+  //void on_button_test_node_item_clicked() noexcept;
   void on_button_test_qtroundededitrectitem_clicked() noexcept;
   void on_button_test_qtroundedtextrectitem_clicked() noexcept;
   void on_button_view_files_clicked() noexcept;
-  void on_button_view_test_concept_maps_clicked() noexcept;
+  //void on_button_view_test_concept_maps_clicked() noexcept;
 
 private slots:
   void keyPressEvent(QKeyEvent* e) noexcept;

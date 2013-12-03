@@ -1,5 +1,5 @@
-#ifndef QTPVDBTESTEDGEITEMDIALOG_H
-#define QTPVDBTESTEDGEITEMDIALOG_H
+#ifndef QTCONCEPTMAPTESTEDGEITEMDIALOG_H
+#define QTCONCEPTMAPTESTEDGEITEMDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -8,26 +8,26 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "qtpvdbfwd.h"
+#include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtPvdbTestEdgeItemDialog; }
+namespace Ui { class QtConceptMapTestEdgeItemDialog; }
 
 namespace ribi {
-namespace pvdb {
+namespace cmap {
 
-///Tests all QtPvdbConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
+///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtPvdbTestEdgeItemDialog : public ribi::QtHideAndShowDialog
+class QtConceptMapTestEdgeItemDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtPvdbTestEdgeItemDialog(QWidget *parent = 0);
-  QtPvdbTestEdgeItemDialog(const QtPvdbTestEdgeItemDialog&) = delete;
-  QtPvdbTestEdgeItemDialog& operator=(const QtPvdbTestEdgeItemDialog&) = delete;
-  ~QtPvdbTestEdgeItemDialog() noexcept;
+  explicit QtConceptMapTestEdgeItemDialog(QWidget *parent = 0);
+  QtConceptMapTestEdgeItemDialog(const QtConceptMapTestEdgeItemDialog&) = delete;
+  QtConceptMapTestEdgeItemDialog& operator=(const QtConceptMapTestEdgeItemDialog&) = delete;
+  ~QtConceptMapTestEdgeItemDialog() noexcept;
 protected:
 
   void keyPressEvent(QKeyEvent *);
@@ -47,7 +47,7 @@ private slots:
 
 private:
 
-  Ui::QtPvdbTestEdgeItemDialog *ui;
+  Ui::QtConceptMapTestEdgeItemDialog *ui;
   boost::shared_ptr<ribi::cmap::Edge> m_edge;
   cmap::QtConceptMapEdgeItem* m_edge_item;
   const boost::shared_ptr<ribi::cmap::Node> m_from;
@@ -74,5 +74,5 @@ private:
 
 } //~namespace ribi
 
-#endif // QTPVDBTESTEDGEITEMDIALOG_H
+#endif // QTCONCEPTMAPTESTEDGEITEMDIALOG_H
 

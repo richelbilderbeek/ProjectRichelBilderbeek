@@ -1,5 +1,5 @@
-#ifndef QTPVDBEXAMPLESITEM_H
-#define QTPVDBEXAMPLESITEM_H
+#ifndef QTCONCEPTMAPEXAMPLESITEM_H
+#define QTCONCEPTMAPEXAMPLESITEM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -49,4 +49,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBEXAMPLESITEM_H
+#endif // QTCONCEPTMAPEXAMPLESITEM_H

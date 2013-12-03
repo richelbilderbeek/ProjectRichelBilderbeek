@@ -1,5 +1,5 @@
-#ifndef QTPVDBTOOLSITEM_H
-#define QTPVDBTOOLSITEM_H
+#ifndef QTCONCEPTMAPTOOLSITEM_H
+#define QTCONCEPTMAPTOOLSITEM_H
 
 #include <string>
 #include <vector>
@@ -66,4 +66,4 @@ struct QtConceptMapToolsItem : public QGraphicsPixmapItem
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBTOOLSITEM_H
+#endif // QTCONCEPTMAPTOOLSITEM_H

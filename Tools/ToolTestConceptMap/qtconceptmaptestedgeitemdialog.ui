@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtPvdbTestEdgeItemDialog</class>
- <widget class="QDialog" name="QtPvdbTestEdgeItemDialog">
+ <class>QtConceptMapTestEdgeItemDialog</class>
+ <widget class="QDialog" name="QtConceptMapTestEdgeItemDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -12,10 +12,6 @@
   </property>
   <property name="windowTitle">
    <string>Test Edge</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="Brainweaver.qrc">
-    <normaloff>:/images/PicArrow14x14.png</normaloff>:/images/PicArrow14x14.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -258,8 +254,6 @@
   <tabstop>box_arrow_tail</tabstop>
   <tabstop>view</tabstop>
  </tabstops>
- <resources>
-  <include location="Brainweaver.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

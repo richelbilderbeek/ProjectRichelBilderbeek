@@ -41,7 +41,7 @@ ribi::cmap::QtConceptMapConceptEditDialog::QtConceptMapConceptEditDialog(
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapConceptEditDialog),
-#ifdef PVDB_WRITE_TO_CONCEPT
+#ifdef CONCEPTMAP_WRITE_TO_CONCEPT
     m_rating_complexity(concept->GetRatingComplexity()),
     m_rating_concreteness(concept->GetRatingConcreteness()),
     m_rating_specificity(concept->GetRatingSpecificity())
@@ -157,7 +157,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test()
         QtConceptMapConceptEditDialog d(concept);
         //Do nothing...
         d.on_button_ok_clicked();
-        #ifdef PVDB_WRITE_TO_CONCEPT
+        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         assert(d.WriteToConcept() == old_concept);
         #else
         assert(IsEqual(*concept,*old_concept));
@@ -176,7 +176,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test()
         QtConceptMapConceptEditDialog d(concept);
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
         d.on_button_ok_clicked();
-        #ifdef PVDB_WRITE_TO_CONCEPT
+        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         TRACE("TODO");
         #else
         TRACE("TODO");
@@ -198,7 +198,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test()
         d.ui->edit_text->setText("TO BE ADDED EXAMPLE");
         d.on_button_add_clicked(); //Should add
         d.on_button_ok_clicked();
-        #ifdef PVDB_WRITE_TO_CONCEPT
+        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         TRACE("TODO");
         #else
         TRACE("TODO");
@@ -224,7 +224,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test()
         d.ui->edit_text->setText("TO BE ADDED EXAMPLE");
         d.on_button_add_clicked(); //Should add
         //DO NOT PRESS OK d.on_button_ok_clicked();
-        #ifdef PVDB_WRITE_TO_CONCEPT
+        #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         TRACE("TODO");
         #else
         assert(IsEqual(*concept,*old_concept));
@@ -239,7 +239,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test()
 
 void ribi::cmap::QtConceptMapConceptEditDialog::on_button_ok_clicked()
 {
-  #ifndef PVDB_WRITE_TO_CONCEPT
+  #ifndef CONCEPTMAP_WRITE_TO_CONCEPT
   assert(m_concept);
   //Name
   const std::string name = ui->edit_concept->text().toStdString();
@@ -273,7 +273,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::on_button_ok_clicked()
   close();
 }
 
-#ifdef PVDB_WRITE_TO_CONCEPT
+#ifdef CONCEPTMAP_WRITE_TO_CONCEPT
 const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapConceptEditDialog::WriteToConcept() const
 {
   //Name

@@ -1,5 +1,5 @@
-#ifndef QTPVDBCONCEPTMAPITEM_H
-#define QTPVDBCONCEPTMAPITEM_H
+#ifndef QTCONCEPTMAPCONCEPTMAPITEM_H
+#define QTCONCEPTMAPCONCEPTMAPITEM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -67,4 +67,4 @@ struct QtConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
 
 } //~namespace ribi
 
-#endif // QTPVDBCONCEPTMAPITEM_H
+#endif // QTCONCEPTMAPCONCEPTMAPITEM_H

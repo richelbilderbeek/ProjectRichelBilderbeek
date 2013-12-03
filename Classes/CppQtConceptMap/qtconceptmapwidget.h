@@ -1,5 +1,5 @@
-#ifndef QTPVDBCONCEPTMAPWIDGET_H
-#define QTPVDBCONCEPTMAPWIDGET_H
+#ifndef QTCONCEPTMAPCONCEPTMAPWIDGET_H
+#define QTCONCEPTMAPCONCEPTMAPWIDGET_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -149,4 +149,4 @@ public slots:
 
 } //~namespace ribi
 
-#endif // QTPVDBCONCEPTMAPWIDGET_H
+#endif // QTCONCEPTMAPCONCEPTMAPWIDGET_H

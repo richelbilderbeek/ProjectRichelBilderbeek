@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbtestnodeitemdialog.h"
+#include "qtconceptmaptestnodeitemdialog.h"
 
 #include <cassert>
 
@@ -12,24 +12,24 @@
 
 #include <boost/lexical_cast.hpp>
 #include <QKeyEvent>
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbeditconceptitem.h"
-#include "qtpvdbrateconceptitem.h"
-#include "pvdbnodefactory.h"
-#include "qtpvdbdisplayconceptitem.h"
-#include "qtpvdbbrushfactory.h"
-#include "qtpvdbnodeitem.h"
-#include "pvdbexamples.h"
-#include "pvdbexample.h"
-#include "ui_qtpvdbtestnodeitemdialog.h"
-#include "pvdbconcept.h"
-#include "pvdbnode.h"
+#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapeditconceptitem.h"
+#include "qtconceptmaprateconceptitem.h"
+#include "conceptmapnodefactory.h"
+#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapbrushfactory.h"
+#include "qtconceptmapnodeitem.h"
+#include "conceptmapexamples.h"
+#include "conceptmapexample.h"
+#include "ui_qtconceptmaptestnodeitemdialog.h"
+#include "conceptmapconcept.h"
+#include "conceptmapnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) :
+ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtPvdbTestNodeItemDialog),
+  ui(new Ui::QtConceptMapTestNodeItemDialog),
   m_node(cmap::NodeFactory::GetTests().at(1)),
   m_display_node(nullptr),
   m_edit_node(nullptr),
@@ -48,28 +48,28 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
   assert(m_node->GetConcept().use_count() == 1);
 
   {
-    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbDisplayConceptItem(m_node->GetConcept()));
+    const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(m_node->GetConcept()));
     m_display_node = new cmap::QtConceptMapNodeItem(m_node,item);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
         this));
   }
 
-  //Node is used in: m_node and QtPvdbNodeConcept::m_node
+  //Node is used in: m_node and QtConceptMapNodeConcept::m_node
   assert(m_node.use_count() == 2);
-  //Concept is used in: m_node::m_concept, QtPvdbDisplayConcept::m_node::m_concept and QtPvdbConcept::m_concept
+  //Concept is used in: m_node::m_concept, QtConceptMapDisplayConcept::m_node::m_concept and QtConceptMapConcept::m_concept
   assert(m_node.get() == m_display_node->GetNode().get());
   assert(m_node->GetConcept().get() == m_display_node->GetNode()->GetConcept().get());
   assert(m_node->GetConcept().use_count() == 2);
   assert(m_node->GetConceptUseCount() == 2);
 
   {
-    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbEditConceptItem(m_node->GetConcept()));
+    const boost::shared_ptr<QtConceptMapEditConceptItem> item(new QtConceptMapEditConceptItem(m_node->GetConcept()));
     m_edit_node = new cmap::QtConceptMapNodeItem(m_node,item);
     m_edit_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -78,11 +78,11 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
   assert(m_node->GetConcept().use_count() == 3);
 
   {
-    const boost::shared_ptr<QtPvdbConceptItem> item(new QtPvdbRateConceptItem(m_node->GetConcept()));
+    const boost::shared_ptr<QtConceptMapRateConceptItem> item(new QtConceptMapRateConceptItem(m_node->GetConcept()));
     m_rate_node = new cmap::QtConceptMapNodeItem(m_node,item);
     m_rate_node->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate,
+        &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
         this));
   }
 
@@ -106,13 +106,13 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
   assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[1]));
   assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[2]));
 
-  //QtPvdbConceptItems are aware of their surroundings, but I put them into place manually
+  //QtConceptMapConceptItems are aware of their surroundings, but I put them into place manually
   m_display_node->SetPos(0.0,-40.0);
   m_edit_node->SetPos(   0.0,  0.0);
   m_rate_node->SetPos(   0.0, 40.0);
 
   {
-    const std::vector<cmap::Competency> v = pvdb::GetAllCompetencies();
+    const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
@@ -134,12 +134,12 @@ ribi::pvdb::QtPvdbTestNodeItemDialog::QtPvdbTestNodeItemDialog(QWidget *parent) 
   ui->box_competency->setCurrentIndex(static_cast<int>(this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->GetCompetency()));
 }
 
-ribi::pvdb::QtPvdbTestNodeItemDialog::~QtPvdbTestNodeItemDialog() noexcept
+ribi::cmap::QtConceptMapTestNodeItemDialog::~QtConceptMapTestNodeItemDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::GetNode()
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDialog::GetNode()
 {
   switch(ui->box_edit->currentIndex())
   {
@@ -152,7 +152,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
         {
           const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
           assert(node_item);
-          return dynamic_cast<const QtPvdbDisplayConceptItem*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtConceptMapDisplayConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
@@ -168,7 +168,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
         {
           const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
           assert(node_item);
-          return dynamic_cast<const QtPvdbEditConceptItem*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtConceptMapEditConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
@@ -184,7 +184,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
         {
           const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
           assert(node_item);
-          return dynamic_cast<const QtPvdbRateConceptItem*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtConceptMapRateConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
@@ -196,26 +196,26 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::pvdb::QtPvdbTestNodeItemDialog::
       assert(!"Should not get here");
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::pvdb::QtPvdbTestNodeItemDialog::GetNode: index unknown");
+  throw std::logic_error("ribi::cmap::QtConceptMapTestNodeItemDialog::GetNode: index unknown");
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_competency_currentIndexChanged(int index)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_competency_currentIndexChanged(int index)
 {
   const cmap::Competency c = static_cast<cmap::Competency>(index);
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetCompetency(c);
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::on_edit_name_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::on_edit_name_textChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetName(arg1.toStdString());
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_complexity_currentIndexChanged(const QString &arg1)
 {
   const int rating_complexity = boost::lexical_cast<int>(arg1.toStdString());
   assert(rating_complexity >= -1);
@@ -223,22 +223,22 @@ void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_complexity_currentIndexChanged
   this->GetNode()->GetConcept()->SetRatingComplexity(rating_complexity);
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_concreteness_currentIndexChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetRatingConcreteness(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::on_box_specificity_currentIndexChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->SetRatingSpecificity(boost::lexical_cast<int>(arg1.toStdString()));
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
+void ribi::cmap::QtConceptMapTestNodeItemDialog::on_edit_example_text_textChanged(const QString &arg1)
 {
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::Test()
+void ribi::cmap::QtConceptMapTestNodeItemDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -250,8 +250,8 @@ void ribi::pvdb::QtPvdbTestNodeItemDialog::Test()
     []
     {
   #endif
-  TRACE("ribi::pvdb::QtPvdbTestNodeItemDialog::Test started");
-  QtPvdbTestNodeItemDialog d;
+  TRACE("ribi::cmap::QtConceptMapTestNodeItemDialog::Test started");
+  QtConceptMapTestNodeItemDialog d;
   assert(d.m_node.get() == d.m_display_node->GetNode().get());
   assert(d.m_node.get() == d.m_edit_node->GetNode().get());
   assert(d.m_node.get() == d.m_rate_node->GetNode().get());
@@ -291,27 +291,27 @@ void ribi::pvdb::QtPvdbTestNodeItemDialog::Test()
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
-    QtPvdbRateConceptItem item(concept);
-    assert(d.m_edit_node->brush()    == QtPvdbBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_node->brush() == QtPvdbBrushFactory::CreateRedGradientBrush());
-    assert(d.m_rate_node->brush()    == QtPvdbBrushFactory::CreateRedGradientBrush());
+    QtConceptMapRateConceptItem item(concept);
+    assert(d.m_edit_node->brush()    == QtConceptMapBrushFactory::CreateGrayGradientBrush());
+    assert(d.m_display_node->brush() == QtConceptMapBrushFactory::CreateRedGradientBrush());
+    assert(d.m_rate_node->brush()    == QtConceptMapBrushFactory::CreateRedGradientBrush());
 
     concept->SetRatingComplexity(0);
     concept->SetRatingConcreteness(1);
 
-    assert(d.m_edit_node->brush()     == QtPvdbBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_node->brush()  == QtPvdbBrushFactory::CreateYellowGradientBrush());
-    assert(d.m_rate_node->brush()     == QtPvdbBrushFactory::CreateYellowGradientBrush());
+    assert(d.m_edit_node->brush()     == QtConceptMapBrushFactory::CreateGrayGradientBrush());
+    assert(d.m_display_node->brush()  == QtConceptMapBrushFactory::CreateYellowGradientBrush());
+    assert(d.m_rate_node->brush()     == QtConceptMapBrushFactory::CreateYellowGradientBrush());
 
     concept->SetRatingSpecificity(2);
 
-    assert(d.m_edit_node->brush()    == QtPvdbBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_node->brush() == QtPvdbBrushFactory::CreateGreenGradientBrush());
-    assert(d.m_rate_node->brush()    == QtPvdbBrushFactory::CreateGreenGradientBrush());
+    assert(d.m_edit_node->brush()    == QtConceptMapBrushFactory::CreateGrayGradientBrush());
+    assert(d.m_display_node->brush() == QtConceptMapBrushFactory::CreateGreenGradientBrush());
+    assert(d.m_rate_node->brush()    == QtConceptMapBrushFactory::CreateGreenGradientBrush());
     */
   }
 
-  TRACE("ribi::pvdb::QtPvdbTestNodeItemDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapTestNodeItemDialog::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );
@@ -319,7 +319,7 @@ void ribi::pvdb::QtPvdbTestNodeItemDialog::Test()
   #endif
 }
 
-void ribi::pvdb::QtPvdbTestNodeItemDialog::OnRequestsSceneUpdate()
+void ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate()
 {
   this->ui->view->scene()->update();
 }

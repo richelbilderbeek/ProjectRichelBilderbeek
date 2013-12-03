@@ -1,5 +1,5 @@
-#ifndef QTPVDBCONCEPTEDITDIALOG_H
-#define QTPVDBCONCEPTEDITDIALOG_H
+#ifndef QTCONCEPTMAPCONCEPTEDITDIALOG_H
+#define QTCONCEPTMAPCONCEPTEDITDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -46,7 +46,7 @@ private:
   Ui::QtConceptMapConceptEditDialog *ui;
 
 
-#ifdef PVDB_WRITE_TO_CONCEPT
+#ifdef CONCEPTMAP_WRITE_TO_CONCEPT
   const int m_rating_complexity;
   const int m_rating_concreteness;
   const int m_rating_specificity;
@@ -63,4 +63,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBCONCEPTEDITDIALOG_H
+#endif // QTCONCEPTMAPCONCEPTEDITDIALOG_H

@@ -96,7 +96,7 @@ private:
   #ifdef TO_ADD_TO_PROJECTBRAINWEAVER
   ConceptMap(
     const std::string& question,
-    const boost::shared_ptr<pvdb::Cluster>& cluster);
+    const boost::shared_ptr<cmap::Cluster>& cluster);
   #endif
   friend ConceptMapFactory;
   ///Block destructor, except for the friend boost::checked_delete

@@ -16,10 +16,6 @@ struct QtPvdbClusterWidget;
 struct QtPvdbConceptMapDialog;
 struct QtPvdbRateExamplesDialog;
 struct QtPvdbStudentMenuDialog;
-struct QtPvdbTestConceptItemDialog;
-struct QtPvdbTestEdgeItemDialog;
-struct QtPvdbTestNodeItemDialog;
-struct QtPvdbToolsItem;
 
 } //~namespace pvdb
 

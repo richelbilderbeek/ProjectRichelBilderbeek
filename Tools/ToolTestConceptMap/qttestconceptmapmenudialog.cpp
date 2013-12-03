@@ -7,6 +7,9 @@
 #include "qttestconceptmapdisplaywidgetdialog.h"
 #include "qttestconceptmapeditwidgetdialog.h"
 #include "qttestconceptmapratewidgetdialog.h"
+#include "qtconceptmaptestconceptitemdialog.h"
+#include "qtconceptmaptestedgeitemdialog.h"
+#include "qtconceptmaptestnodeitemdialog.h"
 #include "ui_qttestconceptmapmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -73,16 +76,18 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_concept_clicked()
 {
-  QtTestConceptItemDialog d;
+  QtConceptMapTestConceptItemDialog d;
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
 {
-  //
+  QtConceptMapTestNodeItemDialog d;
+  this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 {
-  //
+  QtConceptMapTestEdgeItemDialog d;
+  this->ShowChild(&d);
 }

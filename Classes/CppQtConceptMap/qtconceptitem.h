@@ -1,5 +1,5 @@
-#ifndef QTPVDBCONCEPT_H
-#define QTPVDBCONCEPT_H
+#ifndef QTCONCEPTMAPCONCEPT_H
+#define QTCONCEPTMAPCONCEPT_H
 
 #include <string>
 #include <vector>
@@ -122,4 +122,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBCONCEPT_H
+#endif // QTCONCEPTMAPCONCEPT_H

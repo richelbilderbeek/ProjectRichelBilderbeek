@@ -72,7 +72,7 @@ ribi::cmap::ConceptMap::ConceptMap(
 #ifdef TO_ADD_TO_PROJECTBRAINWEAVER
 ribi::cmap::ConceptMap::ConceptMap(
   const std::string& question,
-  const boost::shared_ptr<pvdb::Cluster>& cluster)
+  const boost::shared_ptr<cmap::Cluster>& cluster)
   : m_edges{},
     m_nodes(CreateNodes(question, {} ))
 {

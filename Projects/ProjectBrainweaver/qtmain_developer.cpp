@@ -13,13 +13,13 @@
 #include "pvdbfile.h"
 #include "pvdbhelper.h"
 #include "qtpvdbclusterdialog.h"
-#include "qtpvdbcompetency.h"
+#include "qtconceptmapcompetency.h"
 #include "qtpvdbclusterwidget.h"
 #include "qtpvdbconceptmapdialog.h"
-#include "qtpvdbconcepteditdialog.h"
-#include "qtpvdbconceptmapeditwidget.h"
-#include "qtpvdbrateexamplesdialog.h"
-#include "qtpvdbconceptmapratewidget.h"
+#include "qtconceptmapconcepteditdialog.h"
+#include "qtconceptmapeditwidget.h"
+#include "qtconceptmaprateexamplesdialog.h"
+#include "qtconceptmapratewidget.h"
 #include "qtpvdbmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -107,19 +107,19 @@ int main(int argc, char *argv[])
         &ribi::pvdb::QtPvdbMenuDialog::on_button_student_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_arrowitems_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptedit_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptitem_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_edge_item_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_node_item_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapdisplaywidget_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapeditwidget_clicked,
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtconceptmapratewidget_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundededitrectitem_clicked,
         &ribi::pvdb::QtPvdbMenuDialog::on_button_test_qtroundedtextrectitem_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked,
-        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
+        &ribi::pvdb::QtPvdbMenuDialog::on_button_view_files_clicked
+        //&ribi::pvdb::QtPvdbMenuDialog::on_button_view_test_concept_maps_clicked
       };
     try
     {

@@ -1,5 +1,5 @@
-#ifndef QTPVDBNODEITEM_H
-#define QTPVDBNODEITEM_H
+#ifndef QTCONCEPTMAPNODEITEM_H
+#define QTCONCEPTMAPNODEITEM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -102,4 +102,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTPVDBNODEITEM_H
+#endif // QTCONCEPTMAPNODEITEM_H

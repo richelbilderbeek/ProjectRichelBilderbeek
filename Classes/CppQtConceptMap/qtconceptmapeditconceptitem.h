@@ -1,5 +1,5 @@
-#ifndef QTPVDBEDITCONCEPTITEM_H
-#define QTPVDBEDITCONCEPTITEM_H
+#ifndef QTCONCEPTMAPEDITCONCEPTITEM_H
+#define QTCONCEPTMAPEDITCONCEPTITEM_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -37,4 +37,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTPVDBEDITCONCEPTITEM_H
+#endif // QTCONCEPTMAPEDITCONCEPTITEM_H

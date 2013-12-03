@@ -1,5 +1,5 @@
-#ifndef QTPVDBRATECONCEPT_H
-#define QTPVDBRATECONCEPT_H
+#ifndef QTCONCEPTMAPRATECONCEPT_H
+#define QTCONCEPTMAPRATECONCEPT_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -45,4 +45,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTPVDBRATECONCEPT_H
+#endif // QTCONCEPTMAPRATECONCEPT_H

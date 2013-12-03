@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>QtPreDickAdvocaTorMainDialog</class>
+ <widget class="QDialog" name="QtPreDickAdvocaTorMainDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>648</width>
+    <height>113</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PreDickAdvocaTor</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QComboBox" name="box_left"/>
+   </item>
+   <item row="0" column="1">
+    <widget class="QComboBox" name="box_right"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label1">
+     <property name="font">
+      <font>
+       <family>Courier New</family>
+       <pointsize>48</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>10</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label2">
+     <property name="font">
+      <font>
+       <family>Courier New</family>
+       <pointsize>48</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>10</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
