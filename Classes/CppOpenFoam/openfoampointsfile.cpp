@@ -31,6 +31,11 @@ ribi::foam::PointsFile::PointsFile(
   #endif
 }
 
+const ribi::foam::Header ribi::foam::PointsFile::GetDefaultHeader() noexcept
+{
+  return Header("vectorField","constant/polyMesh","points");
+}
+
 const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
 {
   PointsFile b;

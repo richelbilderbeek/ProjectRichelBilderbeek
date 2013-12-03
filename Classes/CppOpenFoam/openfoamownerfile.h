@@ -16,9 +16,10 @@ struct OwnerFile
 {
   OwnerFile(std::istream& is) : OwnerFile(Parse(is)) {}
   OwnerFile(
-    const Header header = Header("labelList","constant/polyMesh","owner"),
+    const Header header = GetDefaultHeader(),
     const std::vector<OwnerFileItem>& items = {});
 
+  static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<OwnerFileItem> GetItems() const noexcept { return m_items; }
 

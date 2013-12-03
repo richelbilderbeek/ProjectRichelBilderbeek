@@ -16,9 +16,10 @@ struct BoundaryFile
 {
   BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
   BoundaryFile(
-    const Header header = Header("polyBoundaryMesh","constant/polyMesh","boundary"),
+    const Header header = GetDefaultHeader(),
     const std::vector<BoundaryFileItem>& items = {});
 
+  static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<BoundaryFileItem> GetItems() const noexcept { return m_items; }
 

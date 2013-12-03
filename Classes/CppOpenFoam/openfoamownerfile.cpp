@@ -31,6 +31,11 @@ ribi::foam::OwnerFile::OwnerFile(
   #endif
 }
 
+const ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept
+{
+  return Header("labelList","constant/polyMesh","owner");
+}
+
 const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
 {
   OwnerFile b;

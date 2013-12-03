@@ -16,9 +16,10 @@ struct NeighbourFile
 {
   NeighbourFile(std::istream& is) : NeighbourFile(Parse(is)) {}
   NeighbourFile(
-    const Header header = Header("labelList","constant/polyMesh","neighbour"),
+    const Header header = GetDefaultHeader(),
     const std::vector<NeighbourFileItem>& items = {});
 
+  static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<NeighbourFileItem> GetItems() const noexcept { return m_items; }
 

@@ -16,9 +16,10 @@ struct PointsFile
 {
   PointsFile(std::istream& is) : PointsFile(Parse(is)) {}
   PointsFile(
-    const Header header = Header("vectorField","constant/polyMesh","points"),
+    const Header header = GetDefaultHeader(),
     const std::vector<PointsFileItem>& items = {});
 
+  static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<PointsFileItem>& GetItems() const noexcept { return m_items; }
 

@@ -30,6 +30,11 @@ ribi::foam::BoundaryFile::BoundaryFile(
   #endif
 }
 
+const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
+{
+  return Header("polyBoundaryMesh","constant/polyMesh","boundary");
+}
+
 const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 {
   BoundaryFile b;

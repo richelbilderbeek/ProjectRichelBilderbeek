@@ -31,6 +31,11 @@ ribi::foam::NeighbourFile::NeighbourFile(
   #endif
 }
 
+const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
+{
+  return Header("labelList","constant/polyMesh","neighbour");
+}
+
 const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& is)
 {
   NeighbourFile b;
