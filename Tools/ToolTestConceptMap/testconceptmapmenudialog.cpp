@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "qtconceptmapratewidget.h"
+
 ribi::TestConceptMapMenuDialog::TestConceptMapMenuDialog()
 {
   #ifndef NDEBUG
@@ -28,13 +30,13 @@ const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestConceptMap",
     "tests the ConceptMap classes",
-    "on the 29th of November 2013",
+    "on the 3rd of December 2013",
     "2013",
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("ProFile version: " + QtCreatorProFile::GetVersion());
-  a.AddLibrary("Test image from http://sipi.usc.edu");
+  a.AddLibrary("QtConceptMapWidget version: " + cmap::QtConceptMapWidget::GetVersion());
+  //a.AddLibrary("Test image from http://sipi.usc.edu");
 
   return a;
 }
@@ -70,7 +72,7 @@ const std::string ribi::TestConceptMapMenuDialog::GetVersion() const noexcept
 const std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2013-11-29: version 1.0: initial version"
+    "2013-12-03: version 1.0: initial version"
   };
 }
 

@@ -47,6 +47,9 @@ public:
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
 
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
   void Shuffle();

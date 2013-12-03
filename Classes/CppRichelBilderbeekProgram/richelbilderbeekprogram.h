@@ -1283,6 +1283,21 @@ struct ProgramPong : public ProgramGame
   const std::string GetUrl() const noexcept { return "GamePong.htm"; }
 };
 
+struct ProgramPreDickAdvocaTor : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "PreDickAdvocaTor"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::preDickAdvocaTor; }
+  const std::string GetUrl() const noexcept { return "ToolPreDickAdvocaTor.htm"; }
+};
+
 struct ProgramPrimeExpert : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }

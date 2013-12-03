@@ -35,7 +35,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::c2h::Info::Info()
   : m_page_info(CreatePageInfo())
-    //m_page_name(GetFileBasename(source))
 {
   #ifndef NDEBUG
   Test();
@@ -6090,11 +6089,53 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> started as a Quickbasic <a href=\"Games.htm\">game</a> in 2000. Later I ported it to C++, but have not yet finished it and lost the code as well!</p>",
+        "<p>",
+        "  Amino Acid Fighter is a",
+        "  <a href=\"Games.htm\">game</a> in which amino acids do battle to a maximum of",
+        "  four players.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> is a <a href=\"Games.htm\">game</a> in which amino acids do battle to a maximum of four players.</p>",
+        "<p>",
+        "  Amino Acid Fighter has the following history:",
+        "</p>",
+        "<ul>",
+        "  <li>2000: Quickbasic (code lost)</li>",
+        "  <li>20xx: <a href=\"GameAminoAcidFighterVcl.htm\">Amino Acid Fighter (VCL)</a></li>",
+        "  <li>201x: <a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a></li>",
+        "</ul>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"GameAminoAcidFighter.wav\">Download the WAV with the theme music of 'Amino Acid Fighter'</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "GameAminoAcidFighterVcl",
+      {
+        "<p><img src=\"PicVcl.png\" alt=\"Vcl\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Amino Acid Fighter is a",
+        "  <a href=\"Games.htm\">game</a> in which amino acids do battle to a maximum of",
+        "  four players.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Amino Acid Fighter has the following history:",
+        "</p>",
+        "<ul>",
+        "  <li>2000: Quickbasic (code lost)</li>",
+        "  <li>20xx: <a href=\"GameAminoAcidFighterVcl.htm\">Amino Acid Fighter (VCL)</a></li>",
+        "  <li>201x: <a href=\"GameAminoAcidFighter.htm\">Amino Acid Fighter</a></li>",
+        "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6110,6 +6151,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "GameBeerGetter",
       {
@@ -6283,7 +6325,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is a two-player Dutch <a href=\"Games.htm\">game</a> similar to <a href=\"http://en.wikipedia.org/wiki/Arcade_Volleyball\">Arcade Volleyball</a>.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The beta version (0.9) is released at the 18th of February of 2010.</p>",
+        "<p>",
+        "  <a href=\"GameBinnenVolley.htm\">BinnenVolley</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The beta version (0.9) is released at the 18th of February of 2010.</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6647,11 +6690,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameKnokfighter.htm\">Knokfighter</a> is a <a href=\"Games.htm\">game</a> programmed by me and Joost van den Bogaart.</p>",
-        "<p>&nbsp;</p>",
-        "<p>We tried to make a Double Dragon clone with ourselves as the heroes.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"GameKnokfighter.htm\">Knokfighter</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.</p>",
+        "<p>",
+        "  <a href=\"GameKnokfighter.htm\">Knokfighter</a> is a <a href=\"Games.htm\">game</a>",
+        "  programmed by me and Joost van den Bogaart. It is a ",
+        "  Double Dragon clone with ourselves as the heroes.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",

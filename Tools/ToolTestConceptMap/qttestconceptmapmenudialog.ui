@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>406</width>
-    <height>586</height>
+    <width>464</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="font">
@@ -95,6 +95,14 @@
     <widget class="QPushButton" name="button_rate_conceptmap">
      <property name="text">
       <string>Rateable concept map</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="button_view_concept_maps">
+     <property name="text">
+      <string>View concept maps
+used in testing</string>
      </property>
     </widget>
    </item>

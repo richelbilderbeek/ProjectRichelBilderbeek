@@ -19,10 +19,10 @@ const ribi::About ribi::PreDickAdvocaTorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
-    "HistogramEqualization",
-    "tool to predict WC scores",
-    "the 28th of November 2013",
-    "2008-2013",
+    "PreDickAdvocaTor",
+    "tool to correctly predict WC scores", //if the lucky number is correct and the truth becomes reality
+    "the 3rd of December 2013",
+    "20010-2013",
     "http://www.richelbilderbeek.nl/ToolPreDickAdvocaTor.htm",
     GetVersion(),
     GetVersionHistory());
@@ -61,7 +61,7 @@ const std::string ribi::PreDickAdvocaTorMenuDialog::GetVersion() const noexcept
 const std::vector<std::string> ribi::PreDickAdvocaTorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2008-07-11: version 1.0: initial Windows-only version",
-    "2013-11-28: version 2.0: port to Qt"
+    "2010-xx-xx: version 1.0: initial version",
+    "2013-12-03: version 2.0: improved user experience, prepare for next WC"
   };
 }

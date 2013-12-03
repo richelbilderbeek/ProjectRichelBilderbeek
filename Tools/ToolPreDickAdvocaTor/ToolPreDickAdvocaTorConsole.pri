@@ -3,9 +3,9 @@ INCLUDEPATH += \
 
 HEADERS += \
     ../../Tools/ToolPreDickAdvocaTor/predickadvocatormenudialog.h \
-    predickadvocatormaindialog.h
+    ../../Tools/ToolPreDickAdvocaTor/predickadvocatormaindialog.h
 
 SOURCES += \
     ../../Tools/ToolPreDickAdvocaTor/predickadvocatormenudialog.cpp \
-    predickadvocatormaindialog.cpp
+    ../../Tools/ToolPreDickAdvocaTor/predickadvocatormaindialog.cpp
 

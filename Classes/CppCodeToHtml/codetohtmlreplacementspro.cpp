@@ -32,6 +32,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ///a Qt project file is converted to HTML
 const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::CreateProReplacements() noexcept
 {
+
   return
   {
     //Desired replacements
@@ -187,6 +188,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "MysteryMachineWidget","<a href=\"C$ppM$ysteryM$achin$eW$idget.htm\">M$ysteryM$achin$eW$idget</a>" },
     { "ProjectVanDenBogaart","<a href=\"P$rojectV$anD$enB$ogaart.htm\">P$rojectV$anD$enB$ogaart</a>" },
     { "QtConnectThreeWidget","<a href=\"C$ppQ$tC$onnectT$hreeW$idget.htm\">Q$tC$onnectT$hreeW$idget</a>" },
+    { "ToolPreDickAdvocaTor","<a href=\"T$oolP$reD$ickA$dvocaT$or.htm\">T$oolP$reD$ickA$dvocaT$or</a>" },
     { "TestQtCreatorProFile","<a href=\"T$oolT$estQ$tC$reatorP$roF$ile.htm\">T$estQ$tC$reatorP$roF$ile</a>" },
     { "ToolTestApproximator","<a href=\"T$oolT$estA$pproximator.htm\">T$oolT$estA$pproximator</a>" },
     { "ToolTestNewickVector","<a href=\"T$oolT$estN$ewickV$ector.htm\">T$oolT$estN$ewickV$ector</a>" },
@@ -299,6 +301,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "CppWtShapeWidget","<a href=\"C$ppW$tS$hapeW$idget.htm\">C$ppW$tS$hapeW$idget</a>" },
     { "GameAthleticLand","<a href=\"G$ameA$thleticL$and.htm\">G$ameA$thleticL$and</a>" },
     { "GameConnectThree","<a href=\"G$ameC$onnectT$hree.htm\">G$ameC$onnectT$hree</a>" },
+    { "PreDickAdvocaTor","<a href=\"T$oolP$reD$ickA$dvocaT$or.htm\">P$reD$ickA$dvocaT$or</a>" },
     { "ProjectWtWebsite","<a href=\"P$rojectW$t$W$ebsite.htm\">P$rojectW$t$W$ebsite</a>" },
     { "ToolQmakeWatcher","<a href=\"T$oolQ$m$akeW$atcher.htm\">T$oolQ$m$akeW$atcher</a>" },
     { "ToolTestEntrance","<a href=\"T$oolT$estE$ntrance.htm\">T$oolT$estE$ntrance</a>" },

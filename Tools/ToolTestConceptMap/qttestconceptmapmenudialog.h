@@ -1,5 +1,5 @@
-#ifndef QTFILTEROPERATIONERMENUDIALOG_H
-#define QTFILTEROPERATIONERMENUDIALOG_H
+#ifndef QTTESTCONCEPTAMPMENUDIALOG_H
+#define QTTESTCONCEPTAMPMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -38,6 +38,8 @@ private slots:
 
   void on_button_edge_clicked();
 
+  void on_button_view_concept_maps_clicked();
+
 private:
   Ui::QtTestConceptMapMenuDialog *ui;
   #ifndef NDEBUG
@@ -48,4 +50,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTFILTEROPERATIONERMENUDIALOG_H
+#endif // QTTESTCONCEPTAMPMENUDIALOG_H

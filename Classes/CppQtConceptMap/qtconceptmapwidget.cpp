@@ -384,6 +384,19 @@ QGraphicsScene* ribi::cmap::QtConceptMapWidget::GetScene() const
   return this->scene();
 }
 
+const std::string ribi::cmap::QtConceptMapWidget::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::cmap::QtConceptMapWidget::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: version 1.0: initial version"
+    "2013-12-03: version 1.1: start of versioning"
+  };
+}
+
 bool ribi::cmap::QtConceptMapWidget::IsCenterNode(const QGraphicsItem* const item)
 {
 

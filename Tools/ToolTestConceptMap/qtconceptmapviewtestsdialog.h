@@ -8,32 +8,31 @@
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
 
-#include "qtpvdbfwd.h"
+#include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtPvdbViewTestsDialog;
+  class QtConceptMapViewTestsDialog;
 }
 
 namespace ribi {
+namespace cmap {
 
-namespace pvdb {
-
-class QtPvdbViewTestsDialog : public ribi::QtHideAndShowDialog
+class QtConceptMapViewTestsDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtPvdbViewTestsDialog(QWidget* parent = 0);
-  QtPvdbViewTestsDialog(const QtPvdbViewTestsDialog&) = delete;
-  QtPvdbViewTestsDialog& operator=(const QtPvdbViewTestsDialog&) = delete;
-  ~QtPvdbViewTestsDialog() noexcept;
+  explicit QtConceptMapViewTestsDialog(QWidget* parent = 0);
+  QtConceptMapViewTestsDialog(const QtConceptMapViewTestsDialog&) = delete;
+  QtConceptMapViewTestsDialog& operator=(const QtConceptMapViewTestsDialog&) = delete;
+  ~QtConceptMapViewTestsDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent* event);
   
 private:
-  Ui::QtPvdbViewTestsDialog *ui;
+  Ui::QtConceptMapViewTestsDialog *ui;
 
   /// ComplexHomomorphousTestConceptMaps
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > m_c;
@@ -57,7 +56,6 @@ private:
 };
 
 } //~namespace pvdb
-
 } //~namespace ribi
 
 #endif // QTPVDBVIEWTESTSDIALOG_H

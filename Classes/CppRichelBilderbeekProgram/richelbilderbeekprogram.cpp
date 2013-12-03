@@ -114,6 +114,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::pixelatorVcl: p.reset(new ProgramPixelatorVcl); break;
     case ProgramType::pokeVolley: p.reset(new ProgramPokeVolley); break;
     case ProgramType::pong: p.reset(new ProgramPong); break;
+    case ProgramType::preDickAdvocaTor: p.reset(new ProgramPreDickAdvocaTor); break;
     case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;
     case ProgramType::projectRichelBilderbeek: p.reset(new ProgramProjectRichelBilderbeek); break;
     case ProgramType::pylos: p.reset(new ProgramPylos); break;

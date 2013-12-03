@@ -7,6 +7,7 @@
 #include <cassert>
 #include <boost/lambda/lambda.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/numeric/conversion/cast.hpp>
 
 #include <QDesktopWidget>
 #include <QFileDialog>

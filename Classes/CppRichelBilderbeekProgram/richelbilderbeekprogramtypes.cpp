@@ -99,6 +99,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::pixelatorVcl,std::string("pixelatorVcl")));
   m.insert(Pair(ProgramType::pokeVolley,std::string("pokeVolley")));
   m.insert(Pair(ProgramType::pong,std::string("pong")));
+  m.insert(Pair(ProgramType::preDickAdvocaTor,std::string("preDickAdvocaTor")));
   m.insert(Pair(ProgramType::primeExpert,std::string("primeExpert")));
   m.insert(Pair(ProgramType::projectRichelBilderbeek,std::string("projectRichelBilderbeek")));
   m.insert(Pair(ProgramType::pylos,std::string("pylos")));
@@ -306,6 +307,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::pixelatorVcl,std::string("Pixelator (VCL)")));
   m.insert(Pair(ProgramType::pokeVolley,std::string("PokeVolley")));
   m.insert(Pair(ProgramType::pong,std::string("Pong")));
+  m.insert(Pair(ProgramType::preDickAdvocaTor,std::string("PreDickAdvocaTor")));
   m.insert(Pair(ProgramType::primeExpert,std::string("PrimeExpert")));
   m.insert(Pair(ProgramType::projectRichelBilderbeek,std::string("ProjectRichelBilderbeek")));
   m.insert(Pair(ProgramType::pylos,std::string("Pylos")));

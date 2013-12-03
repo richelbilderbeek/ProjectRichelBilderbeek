@@ -16,9 +16,10 @@ struct FacesFile
 {
   FacesFile(std::istream& is) : FacesFile(Parse(is)) {}
   FacesFile(
-    const Header header = Header("faceList","constant/polyMesh","faces"),
+    const Header header = GetDefaultHeader(),
     const std::vector<FacesFileItem>& items = {});
 
+  static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<FacesFileItem> GetItems() const noexcept { return m_items; }
 

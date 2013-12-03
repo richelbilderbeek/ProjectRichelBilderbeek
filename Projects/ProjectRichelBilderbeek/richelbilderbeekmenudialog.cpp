@@ -459,19 +459,15 @@ const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::
   assert(!sm_map_to_menu.empty());
   assert(static_cast<int>(sm_map_to_menu.left.size()) == static_cast<int>(ProgramType::n_types)
     && "All types must be present");
-  #ifndef NDEBUG
-  /*
-  This test would defy the whole purpose of lazy initialization in debug mode
-  Keep it out!
 
-  typedef boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>>::value_type Pair;
-  for (const Pair& p: sm_map_to_menu.left)
-  {
-    assert(p.first == p.second->GetProgram()->GetType()
-      && "Types must match");
-  }
-  */
-  #endif
+
+  //One could argue that this test would defy the whole purpose of lazy initialization in debug mode
+  //typedef boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>>::value_type Pair;
+  //for (const Pair& p: sm_map_to_menu.left)
+  //{
+  //  assert(p.first == p.second->GetProgram()->GetType()
+  //    && "Types must match");
+  //}
   return sm_map_to_menu;
 }
 

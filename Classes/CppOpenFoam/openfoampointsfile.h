@@ -20,7 +20,7 @@ struct PointsFile
     const std::vector<PointsFileItem>& items = {});
 
   const Header& GetHeader() const noexcept { return m_header; }
-  const std::vector<PointsFileItem> GetItems() const noexcept { return m_items; }
+  const std::vector<PointsFileItem>& GetItems() const noexcept { return m_items; }
 
   private:
 

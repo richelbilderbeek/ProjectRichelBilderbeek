@@ -106,6 +106,7 @@ enum class ProgramType
   pixelatorVcl,
   pokeVolley,
   pong,
+  preDickAdvocaTor,
   primeExpert,
   projectRichelBilderbeek,
   pylos,

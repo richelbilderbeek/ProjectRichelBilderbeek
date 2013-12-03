@@ -26,7 +26,7 @@ ribi::QtPreDickAdvocaTorMenuDialog::~QtPreDickAdvocaTorMenuDialog() noexcept
 
 void ribi::QtPreDickAdvocaTorMenuDialog::on_button_start_clicked()
 {
-  const int seed = 123;
+  const int seed = ui->box_number->value();
   QtPreDickAdvocaTorMainDialog d(seed);
   this->ShowChild(&d);
 }
@@ -51,7 +51,7 @@ void ribi::QtPreDickAdvocaTorMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtPreDickAdvocaTorMenuDialog::Test");
-  QtPreDickAdvocaTorMainDialog();
+  QtPreDickAdvocaTorMainDialog(123);
   TRACE("Finished ribi::QtPreDickAdvocaTorMenuDialog::Test successfully");
 }
 #endif

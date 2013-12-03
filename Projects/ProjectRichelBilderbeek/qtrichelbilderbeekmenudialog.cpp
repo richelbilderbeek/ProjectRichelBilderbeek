@@ -31,6 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/function.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#include <QDesktopWidget>
 #include <QFile>
 #include <QKeyEvent>
 #include <QLabel>
@@ -113,6 +114,18 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     button->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Maximum);
     QObject::connect(button,SIGNAL(clicked()),this,SLOT(OnAbout()));
     layout->addWidget(button);
+  }
+  {
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    this->setGeometry(
+      QRect(
+        0,
+        0,
+        screen.width() * 8 / 10,
+        screen.height() * 8 / 10
+      )
+    );
+    this->move( screen.center() - this->rect().center() );
   }
 }
 
@@ -197,11 +210,9 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const std::string text)
           QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(type));
         assert(placeholder);
         this->ShowChild(placeholder.get());
-        //placeholder->exec();
         return;
       }
       else
-      //if (boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog))
       {
         TRACE("Create QtHideAndShowDialog");
         const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
@@ -211,14 +222,6 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const std::string text)
         this->ShowChild(hide_and_show_dialog.get());
         return;
       }
-      //Dont work with QDialog anymore: crashes program
-      //else
-      //{
-      //  TRACE("Create QDialog");
-      //  dialog->exec();
-      //  this->show();
-      //  return;
-      //}
     }
   }
 }

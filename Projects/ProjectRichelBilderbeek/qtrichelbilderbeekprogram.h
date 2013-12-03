@@ -35,10 +35,6 @@ struct QtRichelBilderbeekProgram
 
   ///Create a placeholder dialog for the program type
   static QtHideAndShowDialog * CreateQtPlaceholderDialog(const ProgramType type);
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  static bool IsRegularFile(const std::string& filename);
 };
 
 } //~namespace ribi

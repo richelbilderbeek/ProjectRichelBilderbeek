@@ -8,7 +8,7 @@ HEADERS += \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestnodeitemdialog.h \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestedgeitemdialog.h \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestconceptitemdialog.h \
-    qtpvdbviewtestsdialog.h
+    ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.h
 
 SOURCES += \
     ../../Tools/ToolTestConceptMap/qttestconceptmapmenudialog.cpp \
@@ -18,7 +18,8 @@ SOURCES += \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestnodeitemdialog.cpp \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestedgeitemdialog.cpp \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestconceptitemdialog.cpp \
-    qtpvdbviewtestsdialog.cpp
+    ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.cpp
+
 
 FORMS += \
     ../../Tools/ToolTestConceptMap/qttestconceptmapmenudialog.ui \
@@ -28,7 +29,6 @@ FORMS += \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestnodeitemdialog.ui \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestedgeitemdialog.ui \
     ../../Tools/ToolTestConceptMap/qtconceptmaptestconceptitemdialog.ui \
-    qtpvdbviewtestsdialog.ui
+    ../../Tools/ToolTestConceptMap/qtconceptmapviewtestsdialog.ui
 
-RESOURCES += \
-    Brainweaver.qrc
+

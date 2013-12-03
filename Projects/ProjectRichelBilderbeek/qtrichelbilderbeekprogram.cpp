@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QLabel>
 #include <QVBoxLayout>
 
+#include "fileio.h"
 #include "qtaminoacidfightermenudialog.h"
 #include "qtasciiartermenudialog.h"
 #include "qtathleticlandmenudialog.h"
@@ -41,6 +42,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtdaswahreschlagerfestmenudialog.h"
 #include "qtfilteroperationermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
+#include "qttestconceptmapmenudialog.h"
+#include "qtpredickadvocatormenudialog.h"
 #include "qtk3opeenrijmenudialog.h"
 #include "qtk3opeenrijresources.h"
 #include "qtkalmanfilterermenudialog.h"
@@ -115,12 +118,15 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
   {
     case ProgramType::aminoAcidFighter: p = new aaf::QtAafMenuDialog; break;
     case ProgramType::asciiArter: p = new QtAsciiArterMenuDialog; break;
+    case ProgramType::asciiArterVcl: break;
     case ProgramType::athleticLand: p = new athl::QtAthleticLandMenuDialog; break;
     case ProgramType::athleticLandVcl: break;
     case ProgramType::barbaImage: break;
     case ProgramType::beerWanter: p = new QtBeerWanterMenuDialog; break;
+    case ProgramType::beerWanterVcl: break;
     case ProgramType::bochum: break;
     case ProgramType::boenken: p = new QtBoenkenMenuDialog; break;
+    case ProgramType::boenkenVcl: break;
     case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
     case ProgramType::bristol: break;
     case ProgramType::chrisWiley: break;
@@ -131,20 +137,26 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::createQtProjectZipFile: p = new QtCreateQtProjectZipFileMenuDialog; break;
     case ProgramType::crossPoll: break;
     case ProgramType::dasWahreSchlagerfest: p = new QtDasWahreSchlagerfestMenuDialog; break;
-    case ProgramType::dotMatrix: p = new QtDotMatrixMenuDialog;  break;
+    case ProgramType::dasWahreSchlagerfestVcl: break;
+    case ProgramType::dotMatrix: p = new QtDotMatrixMenuDialog; break;
+    case ProgramType::dotMatrixVcl: break;
     case ProgramType::encranger: p = new QtToolEncrangerMenuDialog; break;
     case ProgramType::everythingToPiecesShooter: break;
     case ProgramType::fakeEvy: break;
     case ProgramType::filterOperationer: p = new QtFilterOperationerMenuDialog; break;
     case ProgramType::filterOperationerVcl: break;
     case ProgramType::fryskLeareLieder: break;
-    case ProgramType::functionPlotter: break; //
+    case ProgramType::functionPlotter: break;
+    case ProgramType::functionPlotterVcl: break;
     case ProgramType::gaborFilter: p = new QtToolGaborFilterMenuDialog; break;
+    case ProgramType::gaborFilterVcl: break;
     case ProgramType::grayCoder: p = new QtGrayCoderMenuDialog; break;
+    case ProgramType::grayCoderVcl: break;
     case ProgramType::gtst: break;
     case ProgramType::histogramEqualizationer: new QtHistogramEqualizationerMenuDialog; break;
     case ProgramType::histogramEqualizationerVcl: break;
     case ProgramType::hometrainer: new QtHometrainerMenuDialog; break;
+    case ProgramType::hometrainerVcl: break;
     case ProgramType::imageRotater: new QtImageRotaterMenuDialog; break;
     case ProgramType::imageRotaterClx: break;
     case ProgramType::imageRotaterVcl: break;
@@ -154,9 +166,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
       p = new QtK3OpEenRijMenuDialog(resources);
     }
     break;
+    case ProgramType::k3OpEenRijVcl: break;
     case ProgramType::kalmanFilterer: p = new kalman::QtKalmanFiltererMenuDialog; break;
     case ProgramType::keySender: break;
     case ProgramType::knokfighter: break;
+    case ProgramType::knokfighterVcl: break;
     case ProgramType::kTouchLectureCreator: break;
     case ProgramType::lambdaBot: break;
     case ProgramType::learyCircumplex: break;
@@ -164,11 +178,15 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::loose: break;
     case ProgramType::martianCafeTuinemaTycoon: break;
     case ProgramType::mazeCreator: p = new QtMazeCreatorMenuDialog; break;
+    case ProgramType::mazeCreatorVcl: break;
     case ProgramType::maziak: p = new QtMaziakMenuDialog; break;
+    case ProgramType::maziakVcl: break;
     case ProgramType::metZnDrieen: break;
+    case ProgramType::metZnDrieenVcl: break;
     case ProgramType::midiLessonCreator: break;
     case ProgramType::morpher: break;
     case ProgramType::multiEncranger: p = new QtToolMultiEncrangerMenuDialog; break;
+    case ProgramType::multiEncrangerVcl: break;
     case ProgramType::muscaDomestica: break;
     case ProgramType::musicTheory: p = new QtMusicTheoryMenuDialog; break;
     case ProgramType::ndsmake: break;
@@ -176,6 +194,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::paperRockScissors: break;
     case ProgramType::pause: break;
     case ProgramType::perfectElasticCollision: p = new QtPerfectElasticCollisionMenuDialog; break;
+    case ProgramType::preDickAdvocaTor: p = new QtPreDickAdvocaTorMenuDialog; break;
     case ProgramType::picToCode: p = new QtPicToCodeMenuDialog; break;
     case ProgramType::pixelator: p = new QtPixelatorMenuDialog; break;
     case ProgramType::pixelatorVcl: break;
@@ -189,14 +208,18 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::rampal: break;
     case ProgramType::rasper: break;
     case ProgramType::randomCode: p = new QtRandomCodeMenuDialog; break;
+    case ProgramType::randomCodeVcl: break;
     case ProgramType::refrigeratorPuzzleSolver: break;
     case ProgramType::regexTester: p = new QtRegexTesterMenuDialog; break;
     case ProgramType::reversi: break;
     case ProgramType::richelBilderbeekGallery: p = new QtRichelBilderbeekGalleryMenuDialog; break;
     case ProgramType::richelbilderbeekNlSitemapGenerator: p = new QtSitemapGeneratorMenuDialog; break;
     case ProgramType::rubiksClock: p = new QtRubiksClockMenuDialog; break;
+    case ProgramType::rubiksClockVcl: break;
     case ProgramType::searchAndDestroyChess: break;
+    case ProgramType::searchAndDestroyChessVcl: break;
     case ProgramType::secretMessage: new QtSecretMessageMenuDialog; break;
+    case ProgramType::secretMessageVcl: break;
     case ProgramType::simBrainiac: break;
     case ProgramType::simImmuneResponse: break;
     case ProgramType::simMysteryMachine: p = new QtSimMysteryMachineMenuDialog; break;
@@ -206,11 +229,13 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::soaSim: break;
     case ProgramType::solvePuzzleX: break;
     case ProgramType::spaceHarry: break;
+    case ProgramType::spaceHarryVcl: break;
     case ProgramType::staircaseCardCreator: break;
     case ProgramType::stateObserver: p = new QtStateObserverMenuDialog; break;
     case ProgramType::styleSheetSetter: p = new QtStyleSheetSetterMenuDialog; break;
     case ProgramType::superNsanaBros: break;
     case ProgramType::surfacePlotter: break;
+    case ProgramType::surfacePlotterVcl: break;
     case ProgramType::tankBattalion: break;
     case ProgramType::testAbout: p = new QtTestAboutMenuDialog; break;
     case ProgramType::testApproximator: p = new QtToolTestApproximatorMenuDialog; break;
@@ -220,6 +245,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testBinaryNewickVector: /* p = new QtTestBinaryNewickVectorMenuDialog; */break;
     case ProgramType::testCanvas: p = new QtToolTestCanvasMenuDialog; break;
     case ProgramType::testChess: break;
+    case ProgramType::testConceptMap: p = new cmap::QtTestConceptMapMenuDialog; break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
     case ProgramType::testEntrance: break;
     case ProgramType::testExercise: break;
@@ -272,6 +298,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
     case ProgramType::tronCollection: new tron::QtTronMenuDialog; break;
+    case ProgramType::tronCollectionVcl: break;
     case ProgramType::ubuntuOneWatcher: break;
     case ProgramType::vanDenBogaart: break;
     case ProgramType::virtualBastard: break;
@@ -305,28 +332,28 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
     label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(label);
   }
-  if (IsRegularFile(p->GetFilenameConsole()))
+  if (fileio::IsRegularFile(p->GetFilenameConsole()))
   {
     const QPixmap pixmap(p->GetFilenameConsole().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (IsRegularFile(p->GetFilenameDesktop()))
+  if (fileio::IsRegularFile(p->GetFilenameDesktop()))
   {
     const QPixmap pixmap(p->GetFilenameDesktop().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
+  if (fileio::IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
   {
     const QPixmap pixmap(p->GetFilenameDesktopWindowsOnly().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (IsRegularFile(p->GetFilenameWeb()))
+  if (fileio::IsRegularFile(p->GetFilenameWeb()))
   {
     const QPixmap pixmap(p->GetFilenameWeb().c_str());
     QLabel * const label = new QLabel;
@@ -335,12 +362,4 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
   }
   assert(d);
   return d;
-}
-
-
-bool ribi::QtRichelBilderbeekProgram::IsRegularFile(const std::string& filename)
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
 }

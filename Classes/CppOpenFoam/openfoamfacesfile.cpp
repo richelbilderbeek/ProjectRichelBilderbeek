@@ -32,6 +32,12 @@ ribi::foam::FacesFile::FacesFile(
   #endif
 }
 
+
+
+const ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
+{
+  return Header("faceList","constant/polyMesh","faces");
+}
 const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
 {
   FacesFile b;

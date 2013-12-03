@@ -7,6 +7,7 @@
 #include "qttestconceptmapdisplaywidgetdialog.h"
 #include "qttestconceptmapeditwidgetdialog.h"
 #include "qttestconceptmapratewidgetdialog.h"
+#include "qtconceptmapviewtestsdialog.h"
 #include "qtconceptmaptestconceptitemdialog.h"
 #include "qtconceptmaptestedgeitemdialog.h"
 #include "qtconceptmaptestnodeitemdialog.h"
@@ -89,5 +90,11 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_node_clicked()
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 {
   QtConceptMapTestEdgeItemDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()
+{
+  QtConceptMapViewTestsDialog d;
   this->ShowChild(&d);
 }

@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtpvdbviewtestsdialog.h"
+#include "qtconceptmapviewtestsdialog.h"
 
 #include <cassert>
 
@@ -20,12 +20,12 @@
 #include "qtconceptmapratewidget.h"
 #include "qtconceptmapwidget.h"
 #include "trace.h"
-#include "ui_qtpvdbviewtestsdialog.h"
+#include "ui_qtconceptmapviewtestsdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
+ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtPvdbViewTestsDialog),
+    ui(new Ui::QtConceptMapViewTestsDialog),
     m_c(cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()),
     m_h(cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps()),
     m_s(cmap::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps()),
@@ -135,12 +135,12 @@ ribi::pvdb::QtPvdbViewTestsDialog::QtPvdbViewTestsDialog(QWidget* parent)
   }
 }
 
-ribi::pvdb::QtPvdbViewTestsDialog::~QtPvdbViewTestsDialog() noexcept
+ribi::cmap::QtConceptMapViewTestsDialog::~QtConceptMapViewTestsDialog() noexcept
 {
   delete ui;
 }
 
-boost::shared_ptr<ribi::cmap::QtConceptMapWidget> ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget(
+boost::shared_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget(
   const int type,
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map)
 {
@@ -166,26 +166,26 @@ boost::shared_ptr<ribi::cmap::QtConceptMapWidget> ribi::pvdb::QtPvdbViewTestsDia
     }
     default:
       assert(!"Should not get here");
-      throw std::logic_error("ribi::pvdb::QtPvdbViewTestsDialog::CreateWidget: unimplemented type");
+      throw std::logic_error("ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget: unimplemented type");
   }
 }
 
 
-void ribi::pvdb::QtPvdbViewTestsDialog::keyPressEvent(QKeyEvent* event)
+void ribi::cmap::QtConceptMapViewTestsDialog::keyPressEvent(QKeyEvent* event)
 {
   if (event->key()  == Qt::Key_Escape) { close(); return; }
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbViewTestsDialog::Test()
+void ribi::cmap::QtConceptMapViewTestsDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::pvdb::QtPvdbViewTestsDialog::Test");
-  QtPvdbViewTestsDialog d;
+  TRACE("Started ribi::cmap::QtConceptMapViewTestsDialog::Test");
+  QtConceptMapViewTestsDialog d;
   d.show();
   d.update();
   d.resize(100,100);
@@ -195,6 +195,6 @@ void ribi::pvdb::QtPvdbViewTestsDialog::Test()
   d.show();
   d.update();
   d.close();
-  TRACE("ribi::pvdb::QtPvdbViewTestsDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMapViewTestsDialog::Test finished successfully");
 }
 #endif

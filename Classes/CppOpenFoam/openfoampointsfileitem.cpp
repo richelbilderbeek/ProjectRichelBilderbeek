@@ -24,17 +24,29 @@ void ribi::foam::PointsFileItem::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::PointsFileItem::Test");
-  const PointsFileItem i( {1.1,2.2,3.3} );
-  std::stringstream s;
-  s << i;
-  PointsFileItem j;
-  s >> j;
-  if (i != j)
+  //operator== and operator!=
   {
-    TRACE(i);
-    TRACE(j);
+    const PointsFileItem i( {1.1,2.2,3.3} );
+    PointsFileItem j( {2.2,3.3,4.4} );
+    assert(i == i);
+    assert(i != j);
+    assert(j != i);
+    assert(j == j);
   }
-  assert(i == j);
+  //operator<< and operator>>
+  {
+    const PointsFileItem i( {1.1,2.2,3.3} );
+    std::stringstream s;
+    s << i;
+    PointsFileItem j;
+    s >> j;
+    if (i != j)
+    {
+      TRACE(i);
+      TRACE(j);
+    }
+    assert(i == j);
+  }
   TRACE("Finished ribi::foam::PointsFileItem::Test successfully");
 }
 #endif
