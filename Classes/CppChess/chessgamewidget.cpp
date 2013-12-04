@@ -2,7 +2,9 @@
 
 #include <cassert>
 #include <string>
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
+#endif
 
 #include "chessboard.h"
 #include "chessgame.h"
@@ -10,6 +12,13 @@
 #include "chesssquarefactory.h"
 #include "chesssquareselector.h"
 #include "chessmovefactory.h"
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lexical_cast.hpp>
+#pragma GCC diagnostic pop
+
 //ribi::Chess::GameWidget::GameWidget()
 //  : Chess::Widget(Rect(0,0,0,0))
 //{
@@ -57,7 +66,7 @@ bool ribi::Chess::GameWidget::CanDoMove(
   for (int i=0; i!=32; ++i)
   {
     std::string s
-      = std::to_string(piece->GetNameChar())
+      = boost::lexical_cast<std::string>(piece->GetNameChar())
       + from->ToStr()
       + ( (i / 1) % 2 ? " " : "x")
       + to->ToStr();
@@ -91,7 +100,7 @@ void ribi::Chess::GameWidget::DoMove(
   for (int i=0; i!=32; ++i)
   {
     std::string s
-      = std::to_string(piece->GetNameChar())
+      = boost::lexical_cast<std::string>(piece->GetNameChar())
       + from->ToStr()
       + ( (i / 1) % 2 ? " " : "x")
       + to->ToStr();
@@ -126,8 +135,10 @@ void ribi::Chess::GameWidget::Test()
     if (tested) return;
     tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       {
         boost::shared_ptr<Chess::Game> game(new Chess::Game);
@@ -211,5 +222,7 @@ void ribi::Chess::GameWidget::Test()
         assert( game->GetBoard()->GetPiece(SquareFactory::Create("e4")));
       }
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
+  #endif
 }

@@ -2,7 +2,11 @@
 
 #include <cassert>
 #include <exception>
+
+#ifdef MXE_SUPPORTS_THREADS
 #include <future>
+#endif
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -140,8 +144,10 @@ void ribi::Chess::BoardWidget::Test()
     if (tested) return;
     tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       {
 
@@ -232,6 +238,8 @@ void ribi::Chess::BoardWidget::Test()
       }
 
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
 }

@@ -3,7 +3,9 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtsearchanddestroychessgamedialog.h"
 
+#ifdef MXE_SUPPORTS_THREADS
 #include <future>
+#endif
 
 #include "ui_qtsearchanddestroychessgamedialog.h"
 #pragma GCC diagnostic pop
@@ -30,12 +32,16 @@ void ribi::QtSearchAndDestroyChessGameDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       ribi::Chess::QtChessBoardWidget();
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
 
 }

@@ -6,7 +6,7 @@
 
 #include <cassert>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
 #endif
 
@@ -23,7 +23,7 @@ void ribi::cmap::Concept::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
     {
@@ -140,7 +140,7 @@ void ribi::cmap::Concept::Test()
   }
   TRACE("Concept::Test finished successfully");
 
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
+  #ifdef MXE_SUPPORTS_THREADS
     }
   );
   t.detach();

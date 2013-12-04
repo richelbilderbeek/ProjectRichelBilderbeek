@@ -16,7 +16,7 @@ void ribi::Chess::Move::Test()
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -321,7 +321,7 @@ void ribi::Chess::Move::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

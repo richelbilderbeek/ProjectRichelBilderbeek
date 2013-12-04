@@ -23,7 +23,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtchessboardwidget.h"
 
+#ifdef MXE_SUPPORTS_THREADS
 #include <future>
+#endif
+
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
@@ -288,11 +291,15 @@ void ribi::Chess::QtChessBoardWidget::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       QtChessBoardWidget();
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
 }

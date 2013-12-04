@@ -72,7 +72,7 @@ void ribi::Chess::Rank::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -149,7 +149,7 @@ void ribi::Chess::Rank::Test()
         assert(r.ToInt() == 7);
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

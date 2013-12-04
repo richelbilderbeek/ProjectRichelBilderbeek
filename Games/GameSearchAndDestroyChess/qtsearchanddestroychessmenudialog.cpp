@@ -53,11 +53,15 @@ void ribi::sadc::QtSearchAndDestroyChessMenuDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       QtSearchAndDestroyChessGameDialog();
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
 }

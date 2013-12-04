@@ -8,7 +8,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 
-#ifdef SADC_USE_THREADS
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
 #endif
 
@@ -115,7 +115,7 @@ void ribi::sadc::MenuDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -124,7 +124,7 @@ void ribi::sadc::MenuDialog::Test()
       MenuDialog();
       Chess::Game();
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

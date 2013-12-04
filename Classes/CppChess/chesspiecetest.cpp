@@ -36,7 +36,7 @@ void ribi::Chess::Piece::Test()
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -61,7 +61,7 @@ void ribi::Chess::Piece::Test()
       ribi::Chess::PieceQueen::Test();
       ribi::Chess::PieceRook::Test();
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -75,7 +75,7 @@ void ribi::Chess::PieceBishop::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -161,7 +161,7 @@ void ribi::Chess::PieceBishop::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -174,7 +174,7 @@ void ribi::Chess::PieceKing::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -245,7 +245,7 @@ void ribi::Chess::PieceKing::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -258,7 +258,7 @@ void ribi::Chess::PieceKnight::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -366,7 +366,7 @@ void ribi::Chess::PieceKnight::Test()
         //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Nb1 c3")) != moves.end());
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -379,7 +379,7 @@ void ribi::Chess::PiecePawn::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -677,7 +677,7 @@ void ribi::Chess::PiecePawn::Test()
         assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -690,7 +690,7 @@ void ribi::Chess::PieceQueen::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -795,7 +795,7 @@ void ribi::Chess::PieceQueen::Test()
         //assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qb1 b8")) != moves.end());
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif
@@ -808,7 +808,7 @@ void ribi::Chess::PieceRook::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -878,7 +878,7 @@ void ribi::Chess::PieceRook::Test()
         );
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

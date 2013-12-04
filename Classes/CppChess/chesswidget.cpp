@@ -1,7 +1,10 @@
 #include "chesswidget.h"
 
 #include <cassert>
+
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
+#endif
 
 #include "chessboard.h"
 #include "chesspiece.h"
@@ -91,8 +94,10 @@ void ribi::Chess::ChessWidget::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       {
         boost::shared_ptr<Widget > w(new Widget);
@@ -100,6 +105,9 @@ void ribi::Chess::ChessWidget::Test()
       }
       //Nothing to test
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
+
 }

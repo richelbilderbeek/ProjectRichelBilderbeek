@@ -64,7 +64,7 @@ void ribi::Chess::Square::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -181,7 +181,7 @@ void ribi::Chess::Square::Test()
       }
       FTRACE("Tested Chess::Square successfully");
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

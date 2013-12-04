@@ -8,7 +8,7 @@
 #include <set>
 #include <iterator>
 
-#ifdef COMPILER_SUPPORTS_THREADS_20130507
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
 #endif
 
@@ -41,7 +41,7 @@ void ribi::cmap::ConceptMap::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
     {
@@ -581,7 +581,7 @@ void ribi::cmap::ConceptMap::Test()
     }
   }
   TRACE("ConceptMap::Test finished successfully");
-  #ifdef COMPILER_SUPPORTS_THREADS_20130507
+  #ifdef MXE_SUPPORTS_THREADS
     }
   );
   t.detach();

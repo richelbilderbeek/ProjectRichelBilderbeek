@@ -60,7 +60,7 @@ void ribi::Chess::BitBoard::Test()
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -74,7 +74,7 @@ void ribi::Chess::BitBoard::Test()
       b.Set(SquareFactory::Create("g8"),false);
       assert(!b.Get(SquareFactory::Create(("g8"))));
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

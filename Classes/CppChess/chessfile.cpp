@@ -4,7 +4,7 @@
 #include <cassert>
 #include <stdexcept>
 
-#ifdef SADC_USE_THREADS
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
 #endif
 
@@ -71,7 +71,7 @@ void ribi::Chess::File::Test()
     if (tested) return;
     tested = true;
   }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
   #endif
@@ -148,7 +148,7 @@ void ribi::Chess::File::Test()
         assert(f.ToInt() == 7);
       }
     }
-  #ifdef SADC_USE_THREADS
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.detach();
   #endif

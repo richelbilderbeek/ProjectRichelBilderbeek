@@ -1,14 +1,33 @@
 #!/bin/sh
 #From http://richelbilderbeek.nl/CppQtCrosscompileToWindowsExample15.htm
 
-echo "1. Cross compiling to Windows: desktop application version"
+#Cleaning up
+#rm Makefile
+#rm Makefile.*
+#rm -r release
+#rm -r debug
+#rm ui_*.h
+#rm qrc_*.cpp
+#rm moc_*.cpp
+#rm object_script*.*
+#rm *.o
+#rm *_plugin_import.cpp
 
-echo "1.1: Creating Windows makefile"
 ../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake ProjectRichelBilderbeekDesktop.pro
-# i686-pc-mingw32-qmake ProjectRichelBilderbeekDesktop.pro
 
-echo "1.2: making makefile"
 make
 
-echo "1.3: copying executable"
-cp release/ProjectRichelBilderbeekDesktop.exe .
+cp release/ProjectRichelBilderbeekDesktop.exe ~/bin
+
+#Cleaning up
+#rm Makefile
+#rm Makefile.*
+#rm -r release
+#rm -r debug
+#rm ui_*.h
+#rm qrc_*.cpp
+#rm moc_*.cpp
+#rm object_script*.*
+#rm *.o
+#rm *_plugin_import.cpp
+

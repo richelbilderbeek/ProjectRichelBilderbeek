@@ -4,7 +4,10 @@
 
 #include <algorithm>
 #include <cassert>
+
+#ifdef MXE_SUPPORTS_THREADS
 #include <thread>
+#endif
 
 
 #include <boost/scoped_ptr.hpp>
@@ -206,8 +209,10 @@ void ribi::Chess::Resources::Test()
     if (is_tested) return;
     is_tested = true;
   }
+  #ifdef MXE_SUPPORTS_THREADS
   std::thread t(
     []
+  #endif
     {
       const std::vector<std::string> filenames = GetFilenames();
       for (const std::string& s: filenames)
@@ -219,6 +224,8 @@ void ribi::Chess::Resources::Test()
         assert(ribi::fileio::IsRegularFile(s));
       }
     }
+  #ifdef MXE_SUPPORTS_THREADS
   );
   t.join();
+  #endif
 }
