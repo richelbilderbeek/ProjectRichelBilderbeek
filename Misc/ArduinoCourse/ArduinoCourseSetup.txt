@@ -1,0 +1,52 @@
+This document is Dutch, as this Arduino course will be given primarily to Dutch children in the ages 12-18 years old.
+
+Doelen:
+- Kinderen de basis van Ardino bij te brengen, opdat ze zelf verder kunnen
+- Kinderen de basis van electronica bij te brengen, opdat ze zelf verder kunnen
+- Kinderen de basis van programmeren bij te brengen, opdat ze zelf verder kunnen
+- Kinderen leren problemen op te lossen, geen 'handje vasthouden'
+
+Subdoelen:
+- Richel: iedereen mag instromen
+- Richel: leerlingen moeten altijd in kunnen stromen
+- Richel: de leerlingen doen blijken dat leren niet altijd leuk is, maar altijd bevredigend is aan het eind
+- Richel: de leerlingen ermee om leren gaan dat Engels de lingua franca van het internet is
+
+- Eigenschappen omgeving
+  - Richel: laptop met Linux en Arduino IDE
+  - Peter: laptop met Windows 7 en Arduino IDE
+  - 2 Windows computers, staan niet in de buurt
+  - Richel: woordenboek EN-NE
+
+Wanneer geslaagd:
+- Richel: als de leerlingen zelfstandig verder kunnen
+- Richel: als de leerlingen mij hebben verbaasd
+
+Vorm:
+- Kinderen proberen zelf een laptop mee te nemen
+- Geen reader
+- Presentaties klein, danwel op whiteboard
+
+Eigenschappen begeleiders (volgens Richel):
+- Richel:
+  - sterke punten
+    - didactisch, 'de man die je doet leren'
+    - doelgericht, 'de man die je doet leren; die slimme vragen van je verwacht'
+    - trots, 'de man die iets van je verwacht'
+  - zwakkere punten
+    - minder sociaal, 'de man waar je niet hoeft uit te huilen'
+    - minder vergevend, 'de man waar je niet hoeft te verwachten dat hij je helpt als je je niet inzet'
+- Peter: 
+  - sterke punten: 
+    - sociaal, 'de man waar je altijd een praatje mee kunt maken', 
+    - vergevend: 'de man bij wie je 'dommere' vragen durft te stellen'
+    - ervaring, 'de man die al veel heeft gewerkt met Arduino'
+    - ideeen, 'de man die al veel Arduino projecten heeft gezien'
+  - zwakkere punten 
+     - langdradig, 'de man van de lange opsommingen'
+
+Data:
+- vrijdag 3 januari t/m 4 juli, 26 weken
+
+
+
