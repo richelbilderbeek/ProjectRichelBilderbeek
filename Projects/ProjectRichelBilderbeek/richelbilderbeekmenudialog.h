@@ -54,14 +54,11 @@ struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
-  ///Created by lazy initialization
-  static boost::bimap<ProgramType,boost::shared_ptr<MenuDialog>> sm_map_to_menu;
-
-  ///Every Program by Richel Bilderbeek
-  //const std::vector<boost::shared_ptr<Program> > m_programs;
+  ///All program menus
+  const std::vector<boost::shared_ptr<MenuDialog>> m_menus;
 
   ///Create all menus
-  static const boost::bimap<ProgramType,boost::shared_ptr<MenuDialog> > GetEnumMenuMap() noexcept;
+  static const std::vector<boost::shared_ptr<MenuDialog>> CreateMenus() noexcept;
 
   ///Shows all programs' statuses
   void ShowStatus() const noexcept;

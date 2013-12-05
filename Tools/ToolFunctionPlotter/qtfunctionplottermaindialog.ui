@@ -56,7 +56,14 @@
           <widget class="QDoubleSpinBox" name="box_maxx"/>
          </item>
          <item row="1" column="0">
-          <widget class="QDoubleSpinBox" name="box_minx"/>
+          <widget class="QDoubleSpinBox" name="box_minx">
+           <property name="minimum">
+            <double>-999999999.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>999999999.000000000000000</double>
+           </property>
+          </widget>
          </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_maxx">

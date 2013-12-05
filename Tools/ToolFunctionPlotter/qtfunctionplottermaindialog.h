@@ -7,6 +7,9 @@ namespace Ui {
   class QtFunctionPlotterMainDialog;
 }
 
+struct QwtPlot;
+struct QwtPlotCurve;
+
 namespace ribi {
 
 class QtFunctionPlotterMainDialog : public QtHideAndShowDialog
@@ -26,6 +29,8 @@ private slots:
 private:
     Ui::QtFunctionPlotterMainDialog *ui;
 
+  QwtPlotCurve * const m_curve;
+  QwtPlot * const m_plot;
 
   ///Rescale calculates a value between old_min and old_max its relative place and transforms
   ///this relative position to a new_min and new_max

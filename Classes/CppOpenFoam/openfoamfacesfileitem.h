@@ -3,22 +3,23 @@
 
 #include <vector>
 #include <iosfwd>
+#include "openfoampointindex.h"
 
 namespace ribi {
 namespace foam {
 
-///An item in an OpenFOAM boundary file
+///An item in an OpenFOAM 'faces' file
 struct FacesFileItem
 {
   FacesFileItem(
-    const std::vector<int>& node_indices = {}
+    const std::vector<PointIndex>& point_indices = {}
   );
 
-  const std::vector<int>& GetNodeIndices() const noexcept { return m_node_indices; }
+  const std::vector<PointIndex>& GetPointIndices() const noexcept { return m_point_indices; }
 
   private:
 
-  std::vector<int> m_node_indices;
+  std::vector<PointIndex> m_point_indices;
 
   #ifndef NDEBUG
   static void Test() noexcept;

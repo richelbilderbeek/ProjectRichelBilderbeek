@@ -6,6 +6,12 @@
 
 #include <QDesktopWidget>
 #include <QDoubleSpinBox>
+#include <QGridLayout>
+
+#include "qwt_plot.h"
+#include "qwt_plot_curve.h"
+
+#include "qwt_point_data.h"
 
 #include "qtfunctionplottermaindialog.h"
 #include "ui_qtfunctionplottermaindialog.h"
@@ -15,13 +21,33 @@
 
 ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtFunctionPlotterMainDialog)
+    ui(new Ui::QtFunctionPlotterMainDialog),
+    m_curve(new QwtPlotCurve),
+    m_plot(new QwtPlot)
 {
   ui->setupUi(this);
 
   #ifndef NDEBUG
   assert(Rescale(2.0,1.0,5.0,0.0,100.0) >= 24.9999 && Rescale(2.0,1.0,5.0,0.0,100.0) < 25.0001);
   #endif
+  //Create plot
+  {
+    assert(!ui->plot_contents->layout());
+    QGridLayout * const layout = new QGridLayout;
+    ui->plot_contents->setLayout(layout);
+
+    layout->addWidget(m_plot);
+
+    #ifdef _WIN32
+    m_plot->setCanvasBackground(QBrush(QColor(255,255,255)));
+    #else
+    plot->setCanvasBackground(QColor(255,255,255));
+    #endif
+
+    m_curve->attach(m_plot);
+    m_curve->setStyle(QwtPlotCurve::Lines);
+    m_curve->setPen(QPen(QColor(128,128,128)));
+  }
 
   QObject::connect(
     this->ui->edit_equation,
@@ -47,6 +73,7 @@ ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
   ui->box_maxx->setValue(1.0);
 
   ui->edit_equation->setText("cos(x)");
+
 
   {
     //Put the dialog in the screen center at 50% x 50% of its size
@@ -83,7 +110,8 @@ void ribi::QtFunctionPlotterMainDialog::OnAnyChange() noexcept
 
   //Evaluate the function in a 2D std::vector
   const int n_cols = ui->area_plot->width();
-  std::vector<double> v(n_cols,0.0);
+  std::vector<double> v_y(n_cols,0.0);
+  std::vector<double> v_x(n_cols,0.0);
   const double n_cols_d = static_cast<double>(n_cols);
 
   for (int x = 0; x!=n_cols; ++x)
@@ -94,18 +122,24 @@ void ribi::QtFunctionPlotterMainDialog::OnAnyChange() noexcept
     const double y = f.Eval(xs);
     if (!f.EvalError())
     {
-      v[x] = y;
+      v_y[x] = y;
     }
     else
     {
-      v[x] = 0.0;
+      v_y[x] = 0.0;
     }
+    v_x[x] = x_scaled;
   }
 
   this->setWindowTitle("Function plotted successfully");
 
-  //Plot the 2D std::vector
-  //ui->surfaceplotwidget->SetSurfaceGrey(v);
+  //Plot
+  #ifdef _WIN32
+  m_curve->setData(new QwtPointArrayData(&v_x[0],&v_y[0],v_y.size()));
+  #else
+  m_curve->setData(&v_x[0],&v_y[0],v_y.size());
+  #endif
+  m_plot->replot();
 }
 
 double ribi::QtFunctionPlotterMainDialog::Rescale(

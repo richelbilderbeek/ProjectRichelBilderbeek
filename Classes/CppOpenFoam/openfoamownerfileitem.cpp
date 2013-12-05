@@ -6,13 +6,13 @@
 #include "trace.h"
 
 ribi::foam::OwnerFileItem::OwnerFileItem(
-  const int face_index
+  const CellIndex& cell_index
   )
-  : m_face_index{face_index}
+  : m_cell_index{cell_index}
 {
   #ifndef NDEBUG
   Test();
-  assert(m_face_index >= 0);
+  assert(m_cell_index.Get() >= 0);
   #endif
 }
 
@@ -43,7 +43,7 @@ void ribi::foam::OwnerFileItem::Test() noexcept
 bool ribi::foam::operator==(const OwnerFileItem& lhs, const OwnerFileItem& rhs)
 {
   return
-       lhs.GetFaceIndex() == rhs.GetFaceIndex()
+       lhs.GetCellIndex() == rhs.GetCellIndex()
   ;
 }
 
@@ -54,14 +54,14 @@ bool ribi::foam::operator!=(const OwnerFileItem& lhs, const OwnerFileItem& rhs)
 
 std::ostream& ribi::foam::operator<<(std::ostream& os, const OwnerFileItem& item)
 {
-  os << item.GetFaceIndex();
+  os << item.GetCellIndex();
   return os;
 }
 
 std::istream& ribi::foam::operator>>(std::istream& is, OwnerFileItem& f)
 {
-  is >> f.m_face_index;
-  if (f.GetFaceIndex() < 0) TRACE(f.GetFaceIndex());
-  assert(f.GetFaceIndex() >= 0);
+  is >> f.m_cell_index;
+  if (f.GetCellIndex().Get() < 0) TRACE(f.GetCellIndex());
+  assert(f.GetCellIndex().Get() >= 0);
   return is;
 }

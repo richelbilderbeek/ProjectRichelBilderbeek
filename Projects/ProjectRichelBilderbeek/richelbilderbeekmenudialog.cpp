@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "athleticlandmenudialog.h"
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
+#include "functionplottermenudialog.h"
 #include "boenkenmenudialog.h"
 #include "codetohtmlmenudialog.h"
 #include "connectthree.h"
@@ -45,6 +46,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "daswahreschlagerfestmenudialog.h"
 #include "richelbilderbeekprogramtypes.h"
 #include "dial.h"
+#include "secretmessagemenudialog.h"
+#include "pixelatormenudialog.h"
+#include "stylesheetsettermenudialog.h"
+#include "toolsurfaceplottermenudialog.h"
+#include "imagerotatermenudialog.h"
 #include "dialwidget.h"
 #include "encranger.h"
 #include "exercise.h"
@@ -56,13 +62,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "htmlpage.h"
 #include "ipaddress.h"
 #include "k3opeenrijmenudialog.h"
+#include "filteroperationermenudialog.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterermenudialog.h"
+#include "histogramequalizationermenudialog.h"
 #include "knokfightermenudialog.h"
 #include "laggedwhitenoisesystem.h"
+#include "testconceptmapmenudialog.h"
+#include "thresholdfilterermenudialog.h"
+#include "tooltestapproximatormenudialog.h"
 #include "lazy_init.h"
 #include "led.h"
 #include "ledwidget.h"
+#include "predickadvocatormenudialog.h"
+#include "pixelatormenudialog.h"
 #include "loopreader.h"
 #include "manydigitnewick.h"
 #include "matrix.h"
@@ -169,17 +182,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "twodigitnewick.h"
 #pragma GCC diagnostic pop
 
-boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog> >
-  ribi::ProjectRichelBilderbeekMenuDialog::sm_map_to_menu {};
-
 ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
+  : m_menus(CreateMenus())
 {
   #ifndef NDEBUG
   Test();
-  for (auto p: GetEnumMenuMap().left)
+  for (auto p: CreateMenus())
   {
-    assert(p.second);
-
+    assert(p);
   }
   #endif
 }
@@ -201,23 +211,17 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
   }
   if (s == std::string("--program") || s == std::string("-p"))
   {
-    for (const auto p: GetEnumMenuMap().left)
+    for (const auto m: CreateMenus())
     {
-      const boost::shared_ptr<ribi::MenuDialog> m = p.second;
       assert(m);
-      assert(p.first == m->GetProgram()->GetType()
-        && "Types must match");
       std::cout << m->GetProgram()->GetName() << '\n';
     }
     return 0;
   }
   //Find menu dialog and execute it with one argument less
-  for (const auto p: GetEnumMenuMap().left)
+  for (const auto m: CreateMenus())
   {
-    const boost::shared_ptr<ribi::MenuDialog> m = p.second;
     assert(m);
-    assert(p.first == m->GetProgram()->GetType()
-      && "Types must match");
     if (s == m->GetProgram()->GetName() || s == m->GetAbout().GetFileTitle())
     {
       std::vector<std::string> sub_argv;
@@ -281,7 +285,6 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   a.AddLibrary("LedWidget version: " + LedWidget::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
   a.AddLibrary("ManyDigitNewick version: " + ManyDigitNewick::GetVersion());
-  a.AddLibrary("Matrix version: " + Matrix::GetVersion());
   a.AddLibrary("Matrix version: " + Matrix::GetVersion());
   a.AddLibrary("MultiAlphaFilter version: " + MultiAlphaFilter::GetVersion());
   a.AddLibrary("MultiApproximator version: " + MultiApproximator<double,double>::GetVersion());
@@ -348,127 +351,209 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
   return a;
 }
 
-const boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMenuDialog::GetEnumMenuMap() noexcept
+const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilderbeekMenuDialog::CreateMenus() noexcept
 {
-  if (sm_map_to_menu.empty())
+  std::vector<boost::shared_ptr<ribi::MenuDialog>> v;
+  for (const ProgramType t: ProgramTypes::GetAll())
   {
-    boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>> m;
-    typedef boost::shared_ptr<ribi::MenuDialog> MenuType;
-    typedef boost::bimap<ribi::ProgramType,MenuType>::value_type ValueType;
-    //Once add the menu items lazily
-    //That is what the ValueType is for:
-    //One could extract it from the MenuType, but this would activate its tests
-    //Therefore, add it in this way
-    { const MenuType p { new AminoAcidFighterMenuDialog }; m.insert(ValueType(ProgramType::aminoAcidFighter,p)); }
-    { const MenuType p { new AthleticLandMenuDialog }; m.insert(ValueType(ProgramType::athleticLand,p)); }
-    { const MenuType p; m.insert(ValueType(ProgramType::athleticLandVcl,p)); }
-    { const MenuType p { new AsciiArterMenuDialog }; m.insert(ValueType(ProgramType::asciiArter,p)); }
-    { const MenuType p; m.insert(ValueType(ProgramType::barbaImage,p)); }
-    { const MenuType p { new BeerWanterMenuDialog }; m.insert(ValueType(ProgramType::beerWanter,p)); }
-    { const MenuType p; m.insert(ValueType(ProgramType::bochum,p)); }
-    { const MenuType p { new Boenken::MenuDialog }; m.insert(ValueType(ProgramType::boenken,p)); }
-    { const MenuType p { new ribi::pvdb::MenuDialog }; m.insert(ValueType(ProgramType::brainweaver,p)); }
-    { const MenuType p; m.insert(ValueType(ProgramType::bristol,p)); }
-    { const MenuType p; m.insert(ValueType(ProgramType::chrisWiley,p)); }
-    { const MenuType p { new c2h::CodeToHtmlMenuDialog }; m.insert(ValueType(ProgramType::codeToHtml,p)); }
-    { const MenuType p { new ConnectThreeMenuDialog }; m.insert(ValueType(ProgramType::connectThree,p)); }
-    { const MenuType p; m.insert(ValueType(ProgramType::corridor,p)); }
-    { const MenuType p { new CreateGlossaryMenuDialog }; m.insert(ValueType(ProgramType::createGlossary,p)); }
-    { const MenuType p { new CreateQtProjectZipFile::MenuDialog }; m.insert(ValueType(ProgramType::createQtProjectZipFile,p)); }
-
-    { const MenuType p; m.insert(ValueType(ProgramType::crossPoll,p)); }
-
-    { const MenuType p { new DasWahreSchlagerfestMenuDialog }; m.insert(ValueType(ProgramType::dasWahreSchlagerfest,p)); }
-    { const MenuType p { new GrayCoderMenuDialog }; m.insert(ValueType(ProgramType::grayCoder,p)); }
-    { const MenuType p { new HometrainerMenuDialog }; m.insert(ValueType(ProgramType::hometrainer,p)); }
-    { const MenuType p { new K3OpEenRijMenuDialog }; m.insert(ValueType(ProgramType::k3OpEenRij,p)); }
-    { const MenuType p { new KnokfighterMenuDialog }; m.insert(ValueType(ProgramType::knokfighter,p)); }
-    { const MenuType p { new MetZnDrieenMenuDialog }; m.insert(ValueType(ProgramType::metZnDrieen,p)); }
-
-    { const MenuType p { new PaperRockScissorsMenuDialog }; m.insert(ValueType(ProgramType::paperRockScissors,p)); }
-    { const MenuType p { new PokeVolleyMenuDialog }; m.insert(ValueType(ProgramType::pokeVolley,p)); }
-    { const MenuType p { new PongMenuDialog }; m.insert(ValueType(ProgramType::pong,p)); }
-
-    { const MenuType p { new ReversiMenuDialog }; m.insert(ValueType(ProgramType::reversi,p)); }
-    { const MenuType p { new sadc::MenuDialog }; m.insert(ValueType(ProgramType::searchAndDestroyChess,p)); }
-
-    { const MenuType p { new SimPredatorMenuDialog }; m.insert(ValueType(ProgramType::simPredator,p)); }
-    { const MenuType p { new SpaceHarryMenuDialog }; m.insert(ValueType(ProgramType::spaceHarry,p)); }
-    { const MenuType p { new NsanaBrosMenuDialog }; m.insert(ValueType(ProgramType::superNsanaBros,p)); }
-    { const MenuType p { new TankBattalionMenuDialog }; m.insert(ValueType(ProgramType::tankBattalion,p)); }
-    { const MenuType p { new TronMenuDialog }; m.insert(ValueType(ProgramType::tronCollection,p)); }
-    { const MenuType p { new XeNonZeroMenuDialog }; m.insert(ValueType(ProgramType::xeNonZero,p)); }
-
-    { const MenuType p { new kalman::KalmanFiltererMenuDialog }; m.insert(ValueType(ProgramType::kalmanFilterer,p)); }
-    { const MenuType p { new MazeCreatorMenuDialog }; m.insert(ValueType(ProgramType::mazeCreator,p)); }
-    { const MenuType p { new MaziakMenuDialog }; m.insert(ValueType(ProgramType::maziak,p)); }
-    { const MenuType p { new MusicTheoryMenuDialog }; m.insert(ValueType(ProgramType::musicTheory,p)); }
-    { const MenuType p { new PerfectElasticCollisionMenuDialog }; m.insert(ValueType(ProgramType::perfectElasticCollision,p)); }
-    { const MenuType p { new PicToCodeMenuDialog }; m.insert(ValueType(ProgramType::picToCode,p)); }
-    { const MenuType p { new PrimeExpertMenuDialog }; m.insert(ValueType(ProgramType::primeExpert,p)); }
-    { const MenuType p { new PylosMenuDialog }; m.insert(ValueType(ProgramType::pylos,p)); }
-    { const MenuType p { new QuadraticSolverMenuDialog }; m.insert(ValueType(ProgramType::quadraticSolver,p)); }
-    { const MenuType p { new RandomCodeMenuDialog }; m.insert(ValueType(ProgramType::randomCode,p)); }
-    { const MenuType p { new RegexTesterMenuDialog }; m.insert(ValueType(ProgramType::regexTester,p)); }
-    { const MenuType p { new RubiksClockMenuDialog }; m.insert(ValueType(ProgramType::rubiksClock,p)); }
-    { const MenuType p { new SimMysteryMachineMenuDialog }; m.insert(ValueType(ProgramType::simMysteryMachine,p)); }
-    { const MenuType p { new StateObserverMenuDialog }; m.insert(ValueType(ProgramType::stateObserver,p)); }
-    { const MenuType p { new TestDialMenuDialog }; m.insert(ValueType(ProgramType::testDial,p)); }
-    { const MenuType p { new TestExerciseMenuDialog }; m.insert(ValueType(ProgramType::testExercise,p)); }
-    { const MenuType p { new TestFunctionParserMenuDialog }; m.insert(ValueType(ProgramType::testFunctionParser,p)); }
-    { const MenuType p { new TestGroupWidgetMenuDialog }; m.insert(ValueType(ProgramType::testGroupWidget,p)); }
-    { const MenuType p { new TestKeyboardFriendlyGraphicsViewMenuDialog }; m.insert(ValueType(ProgramType::testQtKeyboardFriendlyGraphicsView,p)); }
-    { const MenuType p { new TestLedMenuDialog }; m.insert(ValueType(ProgramType::testLed,p)); }
-    { const MenuType p { new TestMultipleChoiceQuestionMenuDialog }; m.insert(ValueType(ProgramType::testMultipleChoiceQuestion,p)); }
-    { const MenuType p { new TestOpenQuestionMenuDialog }; m.insert(ValueType(ProgramType::testOpenQuestion,p)); }
-    { const MenuType p { new TestPylosMenuDialog }; m.insert(ValueType(ProgramType::testPylos,p)); }
-    { const MenuType p { new TestQrcFileMenuDialog }; m.insert(ValueType(ProgramType::testQrcFile,p)); }
-    { const MenuType p { new TestQtArrowItemsMenuDialog }; m.insert(ValueType(ProgramType::testQrcFile,p)); }
-    { const MenuType p { new TestQtCreatorProFileMenuDialog }; m.insert(ValueType(ProgramType::testQrcFile,p)); }
-    { const MenuType p { new TestQtRoundedEditRectItemMenuDialog }; m.insert(ValueType(ProgramType::testQtRoundedEditRectItem,p)); }
-    { const MenuType p { new TestQtRoundedRectItemMenuDialog }; m.insert(ValueType(ProgramType::testQtRoundedRectItem,p)); }
-    { const MenuType p { new TestQtRoundedTextRectItemMenuDialog }; m.insert(ValueType(ProgramType::testQtRoundedTextRectItem,p)); }
-    { const MenuType p { new TestQuestionMenuDialog }; m.insert(ValueType(ProgramType::testQuestion,p)); }
-    { const MenuType p { new TestShapeMenuDialog }; m.insert(ValueType(ProgramType::testShape,p)); }
-    { const MenuType p { new TestShinyButtonMenuDialog }; m.insert(ValueType(ProgramType::testShinyButton,p)); }
-    { const MenuType p { new TicTacToeMenuDialog }; m.insert(ValueType(ProgramType::ticTacToe,p)); }
-    { const MenuType p { new ToolDotMatrixMenuDialog }; m.insert(ValueType(ProgramType::dotMatrix,p)); }
-    { const MenuType p { new ToolEncrangerMenuDialog }; m.insert(ValueType(ProgramType::encranger,p)); }
-    { const MenuType p { new ToolGaborFilterMenuDialog }; m.insert(ValueType(ProgramType::gaborFilter,p)); }
-    { const MenuType p { new ToolMultiEncrangerMenuDialog }; m.insert(ValueType(ProgramType::multiEncranger ,p)); }
-    { const MenuType p { new ToolSimplifyNewickMenuDialog }; m.insert(ValueType(ProgramType::simplifyNewick,p)); }
-    { const MenuType p { new ToolTestApproximatorMenuDialog }; m.insert(ValueType(ProgramType::stateObserver,p)); }
-    { const MenuType p { new ToolTestCanvasMenuDialog }; m.insert(ValueType(ProgramType::testCanvas,p)); }
-    { const MenuType p { new ToolTestMultiApproximatorMenuDialog }; m.insert(ValueType(ProgramType::testMultiApproximator,p)); }
-    { const MenuType p { new ToolTestQtModelsMenuDialog }; m.insert(ValueType(ProgramType::testQtModels,p)); }
-    { const MenuType p { new ToolTestSimpleLinearRegressionMenuDialog }; m.insert(ValueType(ProgramType::testSimpleLinearRegression,p)); }
-
-    sm_map_to_menu = m;
-  }
-
-  #ifndef NDEBUG
-  for (const ProgramType program_type: ProgramTypes::GetAll())
-  {
-    if (sm_map_to_menu.left.find(program_type) == sm_map_to_menu.left.end())
+    boost::shared_ptr<ribi::MenuDialog> p;
+    switch (t)
     {
-      TRACE("ERROR: ProgramType missing");
-      TRACE(ProgramTypes::ProgramTypeToEnumName(program_type));
+      case ProgramType::aminoAcidFighter: p.reset(new AminoAcidFighterMenuDialog); break;
+      case ProgramType::asciiArter: p.reset(new AsciiArterMenuDialog); break;
+      case ProgramType::asciiArterVcl: break;
+      case ProgramType::athleticLand: p.reset(new AthleticLandMenuDialog); break;
+      case ProgramType::athleticLandVcl: break;
+      case ProgramType::barbaImage: break;
+      case ProgramType::beerWanter: p.reset(new BeerWanterMenuDialog); break;
+      case ProgramType::beerWanterVcl: break;
+      case ProgramType::bochum: break;
+      case ProgramType::boenken: p.reset(new Boenken::MenuDialog); break;
+      case ProgramType::boenkenVcl: break;
+      case ProgramType::brainweaver: p.reset(new ribi::pvdb::MenuDialog); break;
+      case ProgramType::bristol: break;
+      case ProgramType::chrisWiley: break;
+      case ProgramType::codeToHtml: p.reset(new c2h::CodeToHtmlMenuDialog); break;
+      case ProgramType::connectThree: p.reset(new ConnectThreeMenuDialog); break;
+      case ProgramType::corridor: break;
+      case ProgramType::createGlossary: p.reset(new CreateGlossaryMenuDialog); break;
+      case ProgramType::createQtProjectZipFile: p.reset(new CreateQtProjectZipFile::MenuDialog); break;
+      case ProgramType::crossPoll: break;
+      case ProgramType::dasWahreSchlagerfest: p.reset(new DasWahreSchlagerfestMenuDialog); break;
+      case ProgramType::dasWahreSchlagerfestVcl: break;
+      case ProgramType::dotMatrix: p.reset(new ToolDotMatrixMenuDialog); break;
+      case ProgramType::dotMatrixVcl: break;
+      case ProgramType::encranger: p.reset(new ToolEncrangerMenuDialog); break;
+      case ProgramType::everythingToPiecesShooter: break;
+      case ProgramType::fakeEvy: break;
+      case ProgramType::filterOperationer: p.reset(new FilterOperationerMenuDialog); break;
+      case ProgramType::filterOperationerVcl: break;
+      case ProgramType::fryskLeareLieder: break;
+      case ProgramType::functionPlotter: p.reset(new FunctionPlotterMenuDialog); break;
+      case ProgramType::functionPlotterVcl: break;
+      case ProgramType::gaborFilter: p.reset(new ToolGaborFilterMenuDialog); break;
+      case ProgramType::gaborFilterVcl: break;
+      case ProgramType::grayCoder: p.reset(new GrayCoderMenuDialog); break;
+      case ProgramType::grayCoderVcl: break;
+      case ProgramType::gtst: break;
+      case ProgramType::histogramEqualizationer: p.reset(new HistogramEqualizationerMenuDialog); break;
+      case ProgramType::histogramEqualizationerVcl: break;
+      case ProgramType::hometrainer: p.reset(new HometrainerMenuDialog); break;
+      case ProgramType::hometrainerVcl: break;
+      case ProgramType::imageRotater: p.reset(new ImageRotaterMenuDialog); break;
+      case ProgramType::imageRotaterClx: break;
+      case ProgramType::imageRotaterVcl: break;
+      case ProgramType::k3OpEenRij: p.reset(new K3OpEenRijMenuDialog); break;
+      case ProgramType::k3OpEenRijVcl: break;
+      case ProgramType::kalmanFilterer: p.reset(new kalman::KalmanFiltererMenuDialog); break;
+      case ProgramType::keySender: break;
+      case ProgramType::knokfighter: p.reset(new KnokfighterMenuDialog); break;
+      case ProgramType::knokfighterVcl: break;
+      case ProgramType::kTouchLectureCreator: break;
+      case ProgramType::lambdaBot: break;
+      case ProgramType::learyCircumplex: break;
+      case ProgramType::logisticGrowthSimulator : break;
+      case ProgramType::loose: break;
+      case ProgramType::martianCafeTuinemaTycoon: break;
+      case ProgramType::mazeCreator: p.reset(new MazeCreatorMenuDialog); break;
+      case ProgramType::mazeCreatorVcl: break;
+      case ProgramType::maziak: p.reset(new MaziakMenuDialog); break;
+      case ProgramType::maziakVcl: break;
+      case ProgramType::metZnDrieen: p.reset(new MetZnDrieenMenuDialog); break;
+      case ProgramType::metZnDrieenVcl: break;
+      case ProgramType::midiLessonCreator : break;
+      case ProgramType::morpher : break;
+      case ProgramType::multiEncranger: p.reset(new ToolMultiEncrangerMenuDialog); break;
+      case ProgramType::multiEncrangerVcl: break;
+      case ProgramType::muscaDomestica: break;
+      case ProgramType::musicTheory: p.reset(new MusicTheoryMenuDialog); break;
+      case ProgramType::ndsmake: break;
+      case ProgramType::ndsPaint: break;
+      case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
+      case ProgramType::pause: break;
+      case ProgramType::perfectElasticCollision: p.reset(new PerfectElasticCollisionMenuDialog); break;
+      case ProgramType::picToCode: p.reset(new PicToCodeMenuDialog); break;
+      case ProgramType::pixelator: p.reset(new PixelatorMenuDialog); break;
+      case ProgramType::pixelatorVcl: break;
+      case ProgramType::pokeVolley: p.reset(new PokeVolleyMenuDialog); break;
+      case ProgramType::pong: p.reset(new PongMenuDialog); break;
+      case ProgramType::preDickAdvocaTor: p.reset(new PreDickAdvocaTorMenuDialog); break;
+      case ProgramType::primeExpert: p.reset(new PrimeExpertMenuDialog); break;
+      case ProgramType::projectRichelBilderbeek: p.reset(new ProjectRichelBilderbeekMenuDialog); break;
+      case ProgramType::pylos: p.reset(new PylosMenuDialog); break;
+      case ProgramType::qmakeWatcher: break;
+      case ProgramType::quadraticSolver: p.reset(new QuadraticSolverMenuDialog); break;
+      case ProgramType::rampal: break;
+      case ProgramType::randomCode: p.reset(new RandomCodeMenuDialog); break;
+      case ProgramType::randomCodeVcl: break;
+      case ProgramType::rasper: break;
+      case ProgramType::refrigeratorPuzzleSolver: break;
+      case ProgramType::regexTester: p.reset(new RegexTesterMenuDialog); break;
+      case ProgramType::reversi: p.reset(new ReversiMenuDialog); break;
+      case ProgramType::richelBilderbeekGallery: break;
+      case ProgramType::richelbilderbeekNlSitemapGenerator: break;
+      case ProgramType::rubiksClock: p.reset(new RubiksClockMenuDialog); break;
+      case ProgramType::rubiksClockVcl: break;
+      case ProgramType::searchAndDestroyChess: p.reset(new sadc::MenuDialog); break;
+      case ProgramType::searchAndDestroyChessVcl: break;
+      case ProgramType::secretMessage: p.reset(new ribi::SecretMessage::MenuDialog); break;
+      case ProgramType::secretMessageVcl: break;
+      case ProgramType::simBrainiac: break;
+      case ProgramType::simImmuneResponse: break;
+      case ProgramType::simMysteryMachine: p.reset(new SimMysteryMachineMenuDialog); break;
+      case ProgramType::simplifyNewick: p.reset(new ToolSimplifyNewickMenuDialog); break;
+      case ProgramType::simPredator: p.reset(new SimPredatorMenuDialog); break;
+      case ProgramType::simStagecraft: break;
+      case ProgramType::soaSim: break;
+      case ProgramType::solvePuzzleX: break;
+      case ProgramType::spaceHarry: p.reset(new SpaceHarryMenuDialog); break;
+      case ProgramType::spaceHarryVcl: break;
+      case ProgramType::staircaseCardCreator: break;
+      case ProgramType::stateObserver: p.reset(new StateObserverMenuDialog); break;
+      case ProgramType::styleSheetSetter: p.reset(new StyleSheetSetterMenuDialog); break;
+      case ProgramType::superNsanaBros: p.reset(new NsanaBrosMenuDialog); break;
+      case ProgramType::surfacePlotter: p.reset(new ToolSurfacePlotterMenuDialog); break;
+      case ProgramType::surfacePlotterVcl: break;
+      case ProgramType::tankBattalion: p.reset(new TankBattalionMenuDialog); break;
+      case ProgramType::testAbout: break;
+      case ProgramType::testApproximator: p.reset(new ToolTestApproximatorMenuDialog); break;
+      case ProgramType::testBinaryNewickVector: break;
+      case ProgramType::testBouncingBallsWidget: break;
+      case ProgramType::testBouncingRectsWidget: break;
+      case ProgramType::testBroadcastServer: break;
+      case ProgramType::testCanvas: p.reset(new ToolTestCanvasMenuDialog); break;
+      case ProgramType::testChess: break;
+      case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
+      case ProgramType::testDial: p.reset(new TestDialMenuDialog); break;
+      case ProgramType::testEntrance: break;
+      case ProgramType::testExercise: p.reset(new TestExerciseMenuDialog); break;
+      case ProgramType::testFunctionParser: p.reset(new TestFunctionParserMenuDialog); break;
+      case ProgramType::testGnuplotInterface: break;
+      case ProgramType::testGraphicsProxyWidget: break;
+      case ProgramType::testGravityWidget: break;
+      case ProgramType::testGroupWidget: p.reset(new TestGroupWidgetMenuDialog); break;
+      case ProgramType::testHugeVector: break;
+      case ProgramType::testLazy_init: break;
+      case ProgramType::testLed: p.reset(new TestLedMenuDialog); break;
+      case ProgramType::testManyDigitNewick: break;
+      case ProgramType::testMultiApproximator: p.reset(new ToolTestMultiApproximatorMenuDialog); break;
+      case ProgramType::testMultipleChoiceQuestion: p.reset(new TestMultipleChoiceQuestionMenuDialog); break;
+      case ProgramType::testMultiVector: break;
+      case ProgramType::testNdsmake: break;
+      case ProgramType::testNeuralNet: break;
+      case ProgramType::testNewick: break;
+      case ProgramType::testNewickVector: break;
+      case ProgramType::testOpenQuestion: p.reset(new TestOpenQuestionMenuDialog); break;
+      case ProgramType::testPylos: p.reset(new TestPylosMenuDialog); break;
+      case ProgramType::testQrcFile: p.reset(new TestQrcFileMenuDialog); break;
+      case ProgramType::testQtArrowItems : p.reset(new TestQtArrowItemsMenuDialog); break;
+      case ProgramType::testQtCreatorProFile: p.reset(new TestQtCreatorProFileMenuDialog); break;
+      case ProgramType::testQtHideAndShowDialog: break;
+      case ProgramType::testQtKeyboardFriendlyGraphicsView: p.reset(new TestKeyboardFriendlyGraphicsViewMenuDialog); break;
+      case ProgramType::testQtModels: p.reset(new ToolTestQtModelsMenuDialog); break;
+      case ProgramType::testQtOcrWidget: break;
+      case ProgramType::testQtRoundedEditRectItem: p.reset(new TestQtRoundedEditRectItemMenuDialog); break;
+      case ProgramType::testQtRoundedRectItem: p.reset(new TestQtRoundedRectItemMenuDialog); break;
+      case ProgramType::testQtRoundedTextRectItem: p.reset(new TestQtRoundedTextRectItemMenuDialog); break;
+      case ProgramType::testQuestion: p.reset(new TestQuestionMenuDialog); break;
+      case ProgramType::testReversi: break;
+      case ProgramType::testSelectFileDialog: break;
+      case ProgramType::testServerPusher: break;
+      case ProgramType::testShape: p.reset(new TestShapeMenuDialog); break;
+      case ProgramType::testShinyButton: p.reset(new TestShinyButtonMenuDialog); break;
+      case ProgramType::testSimpleLinearRegression: p.reset(new ToolTestSimpleLinearRegressionMenuDialog); break;
+      case ProgramType::testStopwatch: break;
+      case ProgramType::testTextPositionWidget: break;
+      case ProgramType::testTicTacToe: break;
+      case ProgramType::testTimedServerPusher: break;
+      case ProgramType::testToggleButton: break;
+      case ProgramType::testTwoDigitNewick: break;
+      case ProgramType::thorVeen: break;
+      case ProgramType::thresholdFilterer: p.reset(new ThresholdFiltererMenuDialog); break;
+      case ProgramType::thresholdFiltererVcl: break;
+      case ProgramType::ticTacToe: p.reset(new TicTacToeMenuDialog); break;
+      case ProgramType::ticTacToeLearner: break;
+      case ProgramType::ticTacToeValuer: break;
+      case ProgramType::timePoll: break;
+      case ProgramType::tronCollection: p.reset(new TronMenuDialog); break;
+      case ProgramType::tronCollectionVcl: break;
+      case ProgramType::ubuntuOneWatcher: break;
+      case ProgramType::vanDenBogaart: break;
+      case ProgramType::virtualBastard: break;
+      case ProgramType::visualAbc: break;
+      case ProgramType::xeNonZero: p.reset(new XeNonZeroMenuDialog); break;
+      case ProgramType::zork: break;
+      case ProgramType::n_types:
+        assert(!"Must not use n_types");
+        throw std::logic_error("ribi::ProjectRichelBilderbeekMenuDialog::CreateMenus");
     }
+    assert(p);
+    v.push_back(p);
   }
-  #endif
-  assert(!sm_map_to_menu.empty());
-  assert(static_cast<int>(sm_map_to_menu.left.size()) == static_cast<int>(ProgramType::n_types)
+  assert(!v.empty());
+  assert(static_cast<int>(v.size()) == static_cast<int>(ProgramType::n_types)
     && "All types must be present");
-
-
-  //One could argue that this test would defy the whole purpose of lazy initialization in debug mode
-  //typedef boost::bimap<ribi::ProgramType,boost::shared_ptr<ribi::MenuDialog>>::value_type Pair;
-  //for (const Pair& p: sm_map_to_menu.left)
-  //{
-  //  assert(p.first == p.second->GetProgram()->GetType()
-  //    && "Types must match");
-  //}
-  return sm_map_to_menu;
+  return v;
 }
 
 
@@ -566,13 +651,13 @@ void ribi::ProjectRichelBilderbeekMenuDialog::ShowStatus() const noexcept
   typedef boost::shared_ptr<const ribi::Program> ProgramType;
 
   std::vector<ProgramType> v;
-  for (auto p: GetEnumMenuMap().left)
+  for (auto p: CreateMenus())
   {
-    assert(p.second);
-    assert(p.second->GetProgram());
-    v.push_back(p.second->GetProgram());
+    assert(p);
+    assert(p->GetProgram());
+    v.push_back(p->GetProgram());
   }
-  assert(v.size() == GetEnumMenuMap().left.size());
+  assert(v.size() == CreateMenus().size());
 
   //Find out the padding
   const int max_length {
@@ -619,9 +704,8 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::ProjectRichelBilderbeekMenuDialog::Test()");
   //Create all menus
-  for (const auto p: GetEnumMenuMap().left)
+  for (const auto m: CreateMenus())
   {
-    const boost::shared_ptr<MenuDialog> m = p.second;
     assert(!m->GetVersion().empty());
     assert(!m->GetVersionHistory().empty());
     assert(m->GetProgram());

@@ -4,6 +4,8 @@
 #include <string>
 #include <iosfwd>
 
+#include "openfoamfaceindex.h"
+
 namespace ribi {
 namespace foam {
 
@@ -14,19 +16,19 @@ struct BoundaryFileItem
     const std::string& name = "",
     const std::string& type = "",
     const int n_faces = 0,
-    const int n_start_face = 0
+    const FaceIndex n_start_face = 0
   );
 
   const std::string& GetName() const noexcept { return m_name; }
   int GetNfaces() const noexcept { return m_n_faces; }
-  int GetStartFace() const noexcept { return m_start_face; }
+  const FaceIndex GetStartFace() const noexcept { return m_start_face; }
   const std::string GetType() const noexcept { return m_type; }
 
   private:
 
   int m_n_faces;
   std::string m_name;
-  int m_start_face;
+  FaceIndex m_start_face;
   std::string m_type;
 
   #ifndef NDEBUG

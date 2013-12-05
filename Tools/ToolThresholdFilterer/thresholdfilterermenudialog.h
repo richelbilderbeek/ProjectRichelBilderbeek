@@ -1,5 +1,5 @@
-#ifndef PIXELATORMENUDIALOG_H
-#define PIXELATORMENUDIALOG_H
+#ifndef THRESHOLDFILTERERMENUDIALOG_H
+#define THRESHOLDFILTERERMENUDIALOG_H
 
 #include "menudialog.h"
 
@@ -21,4 +21,4 @@ struct ThresholdFiltererMenuDialog : public MenuDialog
 
 } //~namespace ribi
 
-#endif // PIXELATORMENUDIALOG_H
+#endif // THRESHOLDFILTERERMENUDIALOG_H

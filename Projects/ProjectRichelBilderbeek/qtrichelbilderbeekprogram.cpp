@@ -33,6 +33,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaminoacidfightermenudialog.h"
 #include "qtasciiartermenudialog.h"
 #include "qtathleticlandmenudialog.h"
+#include "qtfunctionplottermenudialog.h"
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
@@ -146,7 +147,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::filterOperationer: p = new QtFilterOperationerMenuDialog; break;
     case ProgramType::filterOperationerVcl: break;
     case ProgramType::fryskLeareLieder: break;
-    case ProgramType::functionPlotter: break;
+    case ProgramType::functionPlotter: p = new QtFunctionPlotterMenuDialog; break;
     case ProgramType::functionPlotterVcl: break;
     case ProgramType::gaborFilter: p = new QtToolGaborFilterMenuDialog; break;
     case ProgramType::gaborFilterVcl: break;

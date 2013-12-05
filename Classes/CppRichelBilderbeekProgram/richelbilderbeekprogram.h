@@ -564,7 +564,7 @@ struct ProgramFryskLeareLieder : public ProgramTool
 struct ProgramFunctionPlotter : public ProgramTool
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return "ToolFunctionPlotter_2_0.png"; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "FunctionPlotter"; }

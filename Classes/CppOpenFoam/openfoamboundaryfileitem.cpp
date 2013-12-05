@@ -9,7 +9,7 @@ ribi::foam::BoundaryFileItem::BoundaryFileItem(
   const std::string& name,
   const std::string& type,
   const int n_faces,
-  const int n_start_face
+  const FaceIndex n_start_face
   )
   :
     m_n_faces{n_faces},
@@ -21,7 +21,7 @@ ribi::foam::BoundaryFileItem::BoundaryFileItem(
   Test();
   #endif
   assert(m_n_faces >= 0);
-  assert(m_start_face >= 0);
+  assert(m_start_face.Get() >= 0);
 }
 
 #ifndef NDEBUG

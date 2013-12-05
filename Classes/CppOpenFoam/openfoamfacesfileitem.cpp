@@ -8,13 +8,16 @@
 #include "trace.h"
 
 ribi::foam::FacesFileItem::FacesFileItem(
-  const std::vector<int>& node_indices
+  const std::vector<PointIndex>& point_indices
   )
-  : m_node_indices{node_indices}
+  : m_point_indices{point_indices}
 {
   #ifndef NDEBUG
   Test();
-  for (int index: m_node_indices) { assert(index > 0); }
+  for (PointIndex index: m_point_indices)
+  {
+    assert(index.Get() > 0); //NONSENSE? I'd guess an index starts at zero?
+  }
   #endif
 }
 
@@ -45,7 +48,7 @@ void ribi::foam::FacesFileItem::Test() noexcept
 bool ribi::foam::operator==(const FacesFileItem& lhs, const FacesFileItem& rhs)
 {
   return
-       lhs.GetNodeIndices() == rhs.GetNodeIndices()
+       lhs.GetPointIndices() == rhs.GetPointIndices()
   ;
 }
 
@@ -57,12 +60,12 @@ bool ribi::foam::operator!=(const FacesFileItem& lhs, const FacesFileItem& rhs)
 std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFileItem& item)
 {
   os
-    << item.GetNodeIndices().size()
+    << item.GetPointIndices().size()
     << "("
   ;
 
   std::stringstream s;
-  for (const int i: item.GetNodeIndices()) { s << i << " "; }
+  for (const PointIndex i: item.GetPointIndices()) { s << i << " "; }
   std::string t { s.str() };
   assert(t.back() == ' ');
   t.pop_back();
@@ -77,7 +80,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFileItem& item
 
 std::istream& ribi::foam::operator>>(std::istream& is, FacesFileItem& f)
 {
-  assert(f.GetNodeIndices().empty()); //Or empty it
+  assert(f.GetPointIndices().empty()); //Or empty it
   int n_nodes = 0;
   {
     is >> n_nodes;
@@ -97,7 +100,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFileItem& f)
   {
     int node = -1;
     is >> node;
-    f.m_node_indices.push_back(node);
+    f.m_point_indices.push_back(node);
     assert(node >= 0);
   }
   {

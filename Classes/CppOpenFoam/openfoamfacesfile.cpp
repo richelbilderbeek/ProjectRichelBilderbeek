@@ -58,7 +58,7 @@ void ribi::foam::FacesFile::Test() noexcept
   std::vector<FacesFileItem> items;
   for (int i=1; i!=4; ++i)
   {
-    FacesFileItem item( std::vector<int>(i,i) );
+    FacesFileItem item( std::vector<PointIndex>(i,i) );
     items.push_back(item);
   }
   //operator==
@@ -82,7 +82,7 @@ void ribi::foam::FacesFile::Test() noexcept
     std::vector<FacesFileItem> other_items;
     for (int i=1; i!=3; ++i)
     {
-      FacesFileItem item( std::vector<int>(i+1,i*i) );
+      FacesFileItem item( std::vector<PointIndex>(i+1,i*i) );
       other_items.push_back(item);
     }
     const FacesFile c(header,other_items);
