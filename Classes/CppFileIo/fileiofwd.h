@@ -4,7 +4,7 @@
 namespace ribi {
 namespace fileio {
 
-enum class FileCopyMode;
+enum class CopyMode;
 struct Filename;
 
 } //~namespace fileio

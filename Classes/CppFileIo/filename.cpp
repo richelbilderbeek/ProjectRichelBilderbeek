@@ -41,6 +41,13 @@ const std::string& ribi::fileio::Filename::Get() const noexcept
 
 
 
+void ribi::fileio::CopyFile(
+  const Filename& fileNameFrom,
+  const Filename& fileNameTo,
+  const CopyMode copy_mode)
+{
+  CopyFile(fileNameFrom.Get(),fileNameTo.Get(),copy_mode);
+}
 void ribi::fileio::DeleteFile(const Filename& filename) { DeleteFile(filename.Get()); }
 bool ribi::fileio::FilesAreIdentical(const Filename& filename_a,const Filename& filename_b)
 {

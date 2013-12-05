@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-CreateQtProjectZipFile, tool to create a zip file from a Qt project
-Copyright (C) 2012-2013 Richel Bilderbeek
+SurfacePlotter, plots a bivariate function
+Copyright (C) 2010-2012  Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,21 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm
+//From http://www.richelbilderbeek.nl/FunctionPlotter.htm
 //---------------------------------------------------------------------------
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "createqtprojectzipfilemenudialog.h"
-#include "trace.h"
-#pragma GCC diagnostic pop
+#ifndef FUNCTIONPLOTTERMENUDIALOG_H
+#define FUNCTIONPLOTTERMENUDIALOG_H
 
-int main(int argc, char* argv[])
+#include <string>
+#include <vector>
+
+#include "about.h"
+
+namespace ribi {
+
+///GUI independent SurfacePlotter menu dialog
+struct FunctionPlotterMenuDialog
 {
-  START_TRACE();
-  ribi::CreateQtProjectZipFile::MenuDialog d;
-  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
-  return d.Execute(args);
+  static const About GetAbout();
+  static const std::string GetVersion();
+  static const std::vector<std::string> GetVersionHistory();
+};
 
-}
+} //namespace ribi
 
+#endif // FUNCTIONPLOTTERMENUDIALOG_H

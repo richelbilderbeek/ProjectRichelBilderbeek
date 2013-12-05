@@ -1,26 +1,20 @@
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
+include(../../Libraries/FParser.pri)
+include(../../Libraries/Qwt.pri)
 
-#Console, general
 include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppHelp/CppHelp.pri)
 include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
-#Desktop, general
 include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-#Console, specific
-include(../../Classes/CppQrcFile/CppQrcFile.pri)
-include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
+#Specific, console
 
-#Desktop, specific
-include(ToolCreateQtProjectZipFileDesktop.pri)
-
+#Specific, desktop
+include(../../Tools/ToolFunctionPlotter/ToolFunctionPlotterDesktop.pri)
 
 SOURCES += qtmain.cpp
-
-

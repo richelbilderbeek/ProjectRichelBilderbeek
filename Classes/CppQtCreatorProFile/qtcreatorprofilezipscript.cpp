@@ -92,7 +92,8 @@ const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::strin
 {
   assert(fileio::IsFolder(source_folder));
 
-  const std::vector<std::string> pro_filenames = GetProFilesInFolder(source_folder);
+  //Also include .pri files
+  const std::vector<std::string> pro_filenames = GetProAndPriFilesInFolder(source_folder);
 
   std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> > scripts;
 
@@ -138,6 +139,8 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   std::copy(pro_file->GetOtherFiles().begin(),pro_file->GetOtherFiles().end(),std::back_inserter(v));
   std::copy(pro_file->GetResources().begin(),pro_file->GetResources().end(),std::back_inserter(v));
   std::copy(pro_file->GetSources().begin(),pro_file->GetSources().end(),std::back_inserter(v));
+
+
   //Copy all resources
   for (const std::string qrc_filename_raw: pro_file->GetResources())
   {
@@ -221,22 +224,29 @@ const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
   return a;
 }
 
-const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
+//const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
+//{
+//  assert(fileio::IsFolder(folder));
+//  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
+//}
+
+const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProAndPriFilesInFolder(const std::string& folder)
 {
   assert(fileio::IsFolder(folder));
-  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
+  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro|pri)\\>");
 }
 
 const std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.2";
 }
 
 const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() noexcept
 {
   return {
     "2013-05-19: version 1.0: initial version",
-    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"
+    "2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive",
+    "2013-12-05: version 1.2: add support for .pri files"
   };
 }
 
@@ -313,7 +323,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
     std::remove(tmp_pro_filename.c_str());
 
     //Count the current number of .pro files
-    const std::size_t n = GetProFilesInFolder("").size();
+    const std::size_t n = GetProAndPriFilesInFolder("").size();
 
     //Add a .pro file
     {
@@ -322,8 +332,8 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
       assert(ribi::fileio::IsRegularFile(tmp_pro_filename));
     }
 
-    //Count the current number of .pro files again
-    const std::size_t p = GetProFilesInFolder("").size();
+    //Count the current number of .pro and .pri files again
+    const std::size_t p = GetProAndPriFilesInFolder("").size();
     #ifndef NDEBUG
     if (n != p-1)
     {
@@ -332,7 +342,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
     #endif
     assert(n == p - 1);
     std::remove("tmp23465278.pro");
-    const std::size_t q = GetProFilesInFolder("").size();
+    const std::size_t q = GetProAndPriFilesInFolder("").size();
     assert(n == q);
   }
   TRACE("Finished ribi::QtCreatorProFileZipScript::Test successfully");

@@ -308,7 +308,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "GameConnectThree","<a href=\"G$ameC$onnectT$hree.htm\">G$ameC$onnectT$hree</a>" },
     { "PreDickAdvocaTor","<a href=\"T$oolP$reD$ickA$dvocaT$or.htm\">P$reD$ickA$dvocaT$or</a>" },
     { "ProjectWtWebsite","<a href=\"P$rojectW$t$W$ebsite.htm\">P$rojectW$t$W$ebsite</a>" },
-
+    { "ToolBrainspinner","<a href=\"T$oolB$rains$pinner.htm\">T$oolB$rains$pinner</a>" },
     { "ToolImageRotater","<a href=\"T$oolI$mageR$otater.htm\">T$oolI$mageR$otater</a>" },
     { "ToolQmakeWatcher","<a href=\"T$oolQ$m$akeW$atcher.htm\">T$oolQ$m$akeW$atcher</a>" },
     { "ToolTestEntrance","<a href=\"T$oolT$estE$ntrance.htm\">T$oolT$estE$ntrance</a>" },
@@ -456,6 +456,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtautoconfig","<a href=\"C$ppW$tA$utoC$onfig.htm\">w$ta$utoc$onfig</a>" },
     { "wtdialwidget","<a href=\"C$ppW$tD$ialW$idget.htm\">w$td$ialw$idget</a>" },
     { "wtcodetohtml","<a href=\"T$oolC$odeToH$tml.htm\">w$tc$odet$oh$tml</a>" },
+    { "Brainspinner","<a href=\"T$oolB$rains$pinner.htm\">B$rains$pinner</a>" },
     { "CppCoordinat","<a href=\"C$ppC$oordin$at.htm\">C$ppC$oord$inat</a>" },
     { "CppDotMatrix","<a href=\"C$ppD$otM$atrix.htm\">C$ppD$otM$atrix</a>" },
     { "CppEncranger","<a href=\"C$ppE$ncranger.htm\">C$ppE$ncranger</a>" },

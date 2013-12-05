@@ -1,5 +1,5 @@
 #!/bin/bash
-for folder in `ls | egrep "Cpp"`
+for folder in `ls | egrep -v "build-"`
 do
   echo $folder
 

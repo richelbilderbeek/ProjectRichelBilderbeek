@@ -129,6 +129,6 @@ void ribi::CreateQtProjectZipFile::MenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::CreateQtProjectZipFile::MenuDialog::Test()");
-  TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test()");
+  TRACE("Finished ribi::CreateQtProjectZipFile::MenuDialog::Test() successfully");
 }
 #endif

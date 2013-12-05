@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "filecopymode.h"
+
 namespace ribi {
 namespace fileio {
 
@@ -28,6 +30,10 @@ struct Filename
 
 ///Free functions on Filename. These call the fileio functions
 ///working on std::string
+void CopyFile(
+  const Filename& fileNameFrom,
+  const Filename& fileNameTo,
+  const ribi::fileio::CopyMode copy_mode = CopyMode::prevent_overwrite);
 void DeleteFile(const Filename& filename);
 bool FilesAreIdentical(const Filename& filename_a,const Filename& filename_b);
 const std::vector<std::string> FileToVector(const Filename& filename);

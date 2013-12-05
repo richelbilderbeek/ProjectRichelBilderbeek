@@ -72,48 +72,57 @@ edges
 
 boundary
 (
-  //There are multiple boundary types:
-  //- movingWall:
-  //- fixedWalls:
-  //- frontAndBack: for two dimensional meshes
-  //- inlet
-  //- outlet
-  //- walls
-
-  my_cube_faces
+  my_cube_bottom
   {
-   //There are multiple types:
-   //- wall:
-   //- patch
-    //- cyclic
-   type patch;
-
-   //The vertices that make up the six faces of the cube
-   //
-   //Each block face is defined by a list of 4 vertex numbers. 
-   //The order in which the vertices are given must be such that, 
-    //looking from inside the block and starting with any vertex, 
-   //the face must be traversed in a clockwise direction to define the other vertices. 
-   faces
-   (
-      //bottom
+    type patch;
+    faces
+    (
       (0 3 2 1)
-      //left
+    );
+  }
+
+  my_cube_left
+  {
+    type patch;
+    faces
+    (
       (0 4 7 3)
-      //front
+    );
+  }
+
+  my_cube_front
+  {
+    type patch;
+    faces
+    (
       (1 5 4 0)
-      //right
+    );
+  }
+
+  my_cube_right
+  {
+    type patch;
+    faces
+    (
       (2 6 5 1)
-      //back
+    );
+  }
+
+  my_cube_back
+  {
+    type patch;
+    faces
+    (
       (3 7 6 2)
-      //top
+    );
+  }
+
+  my_cube_top
+  {
+    type patch;
+    faces
+    (
       (4 5 6 7)
     );
   }
 );
-
-//List of patches to be merged
-//mergePatchPairs
-//(
-//
-//);

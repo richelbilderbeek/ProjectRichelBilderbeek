@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>ToolFunctionPlotterMenuImage.png</file>
+    </qresource>
+</RCC>
