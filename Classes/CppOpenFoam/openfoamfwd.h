@@ -8,6 +8,7 @@ struct BoundaryFile;
 struct BoundaryFileItem;
 struct FacesFile;
 struct FacesFileItem;
+struct Filenames;
 struct Header;
 struct NeighbourFile;
 struct NeighbourFileItem;

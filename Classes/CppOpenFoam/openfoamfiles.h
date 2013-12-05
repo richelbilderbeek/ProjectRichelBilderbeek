@@ -19,15 +19,16 @@ class Files
   Files(const std::string& folder_name);
 
   private:
-  boost::shared_ptr<BoundaryFile> m_boundary;
-  boost::shared_ptr<FacesFile> m_faces;
-  boost::shared_ptr<NeighbourFile> m_neighbour;
-  boost::shared_ptr<OwnerFile> m_owner;
-  boost::shared_ptr<PointsFile> m_points;
+  const boost::shared_ptr<BoundaryFile> m_boundary;
+  const boost::shared_ptr<FacesFile> m_faces;
+  const boost::shared_ptr<NeighbourFile> m_neighbour;
+  const boost::shared_ptr<OwnerFile> m_owner;
+  const boost::shared_ptr<PointsFile> m_points;
 
 
   static const boost::shared_ptr<BoundaryFile> CreateBoundary(const std::string& folder_name);
   static const boost::shared_ptr<FacesFile> CreateFaces(const std::string& folder_name);
+  static const boost::shared_ptr<Filenames> CreateFilenames() noexcept;
   static const boost::shared_ptr<NeighbourFile> CreateNeighbour(const std::string& folder_name);
   static const boost::shared_ptr<OwnerFile> CreateOwner(const std::string& folder_name);
   static const boost::shared_ptr<PointsFile> CreatePoints(const std::string& folder_name);

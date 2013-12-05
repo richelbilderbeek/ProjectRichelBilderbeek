@@ -20,9 +20,9 @@ public:
     ~QtFunctionPlotterMenuDialog() noexcept;
     
 private slots:
-    void on_button_start_clicked();
-    void on_button_about_clicked();
-    void on_button_quit_clicked();
+    void on_button_start_clicked() noexcept;
+    void on_button_about_clicked() noexcept;
+    void on_button_quit_clicked() noexcept;
 
 private:
     Ui::QtFunctionPlotterMenuDialog *ui;

@@ -20,21 +20,21 @@ ribi::QtFunctionPlotterMenuDialog::~QtFunctionPlotterMenuDialog() noexcept
     delete ui;
 }
 
-void ribi::QtFunctionPlotterMenuDialog::on_button_start_clicked()
+void ribi::QtFunctionPlotterMenuDialog::on_button_start_clicked() noexcept
 {
   QtFunctionPlotterMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtFunctionPlotterMenuDialog::on_button_about_clicked()
+void ribi::QtFunctionPlotterMenuDialog::on_button_about_clicked() noexcept
 {
-  About a(FunctionPlotterMenuDialog::GetAbout());
+  About a(FunctionPlotterMenuDialog().GetAbout());
   //a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);
 }
 
-void ribi::QtFunctionPlotterMenuDialog::on_button_quit_clicked()
+void ribi::QtFunctionPlotterMenuDialog::on_button_quit_clicked() noexcept
 {
   this->close();
 }

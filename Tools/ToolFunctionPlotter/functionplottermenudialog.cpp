@@ -1,7 +1,7 @@
 #include "functionplottermenudialog.h"
 #include "profile.h"
 
-const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout()
+const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -18,12 +18,12 @@ const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::FunctionPlotterMenuDialog::GetVersion()
+const std::string ribi::FunctionPlotterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial Windows-only version",

@@ -1,7 +1,7 @@
 #include "secretmessagemenudialog.h"
 #include "trace.h"
 
-const ribi::About ribi::SecretMessage::MenuDialog::GetAbout()
+const ribi::About ribi::SecretMessage::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -17,12 +17,12 @@ const ribi::About ribi::SecretMessage::MenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::SecretMessage::MenuDialog::GetVersion()
+const std::string ribi::SecretMessage::MenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::SecretMessage::MenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::SecretMessage::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-01-11: version 1.0: initial Windows-only version",

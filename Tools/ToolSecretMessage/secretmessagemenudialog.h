@@ -4,21 +4,21 @@
 #include <string>
 #include <vector>
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 namespace SecretMessage {
 
-struct MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
-  ///Obtain this class its About information
-  static const About GetAbout();
+  const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  const std::string GetVersion() const noexcept;
+  const std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Obtain this class its version
-  static const std::string GetVersion();
-
-  ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory();
+  private:
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 };
 
 } //~namespace SecretMessage
