@@ -20,19 +20,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTCHESSMENUDIALOG_H
 #define QTTESTCHESSMENUDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#include "qthideandshowdialog.h"
+
 namespace Ui {
-class QtTestChessMenuDialog;
+  class QtTestChessMenuDialog;
 }
-//---------------------------------------------------------------------------
-class QtTestChessMenuDialog : public QDialog
+
+namespace ribi {
+
+class QtTestChessMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestChessMenuDialog(QWidget *parent = 0);
+  QtTestChessMenuDialog(const QtTestChessMenuDialog&) = delete;
+  QtTestChessMenuDialog& operator=(const QtTestChessMenuDialog&) = delete;
   ~QtTestChessMenuDialog();
 
 private slots:
@@ -51,5 +55,7 @@ private slots:
 private:
   Ui::QtTestChessMenuDialog *ui;
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTCHESSMENUDIALOG_H

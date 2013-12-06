@@ -1,13 +1,11 @@
 INCLUDEPATH += \
-    ../../Tools/ToolCodeToHtml
-
-SOURCES += \
-    ../../Tools/ToolCodeToHtml/codetohtmlmaindialog.cpp \
-    ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.cpp
-
-HEADERS += \
-    ../../Tools/ToolCodeToHtml/codetohtmlmaindialog.h \
-    ../../Tools/ToolCodeToHtml/codetohtmlmenudialog.h
+    ../../Tools/ToolTestBinaryNewickVector
 
 OTHER_FILES += \
-    ../../Tools/ToolCodeToHtml/Licence.txt
+    ../../Tools/ToolTestBinaryNewickVector/Licence.txt
+
+HEADERS += \
+    ../../Tools/ToolTestBinaryNewickVector/testbinarynewickvectormenudialog.h
+
+SOURCES += \
+    ../../Tools/ToolTestBinaryNewickVector/testbinarynewickvectormenudialog.cpp

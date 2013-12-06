@@ -61,7 +61,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
+#include "qttestbinarynewickvectormenudialog.h"
 #include "qtrichelbilderbeekmenudialog.h"
+#include "qttesttwodigitnewickmenudialog.h"
 #include "qtrubiksclockmenudialog.h"
 #include "qtsecretmessagemenudialog.h"
 #include "qtsimmysterymachinemenudialog.h"
@@ -243,7 +245,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testBouncingBallsWidget: break;
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
-    case ProgramType::testBinaryNewickVector: /* p = new QtTestBinaryNewickVectorMenuDialog; */break;
+    case ProgramType::testBinaryNewickVector: p = new QtTestBinaryNewickVectorMenuDialog; break;
     case ProgramType::testCanvas: p = new QtToolTestCanvasMenuDialog; break;
     case ProgramType::testChess: break;
     case ProgramType::testConceptMap: p = new cmap::QtTestConceptMapMenuDialog; break;
@@ -290,7 +292,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testTicTacToe: break;
     case ProgramType::testTimedServerPusher: break;
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
-    case ProgramType::testTwoDigitNewick: /* p = new QtTestTwoDigitNewickMenuDialog; */ break;
+    case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
     case ProgramType::thorVeen: break;
     case ProgramType::thresholdFilterer: new QtThresholdFiltererMenuDialog; break;
     case ProgramType::thresholdFiltererVcl: break;

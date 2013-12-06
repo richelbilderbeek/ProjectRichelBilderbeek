@@ -8,7 +8,7 @@ namespace foam {
 
 struct ParseError : public std::runtime_error
 {
-  ParseError(
+  explicit ParseError(
     const std::string& filename = "",
     const int line = -1);
 

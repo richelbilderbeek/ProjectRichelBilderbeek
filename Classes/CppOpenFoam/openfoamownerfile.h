@@ -7,6 +7,7 @@
 #include "fileiofwd.h"
 #include "openfoamfwd.h"
 #include "openfoamheader.h"
+#include "openfoamownerfileitem.h"
 
 namespace ribi {
 namespace foam {
@@ -14,14 +15,17 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct OwnerFile
 {
-  OwnerFile(std::istream& is) : OwnerFile(Parse(is)) {}
-  OwnerFile(
+  explicit OwnerFile(std::istream& is) : OwnerFile(Parse(is)) {}
+  explicit OwnerFile(
     const Header header = GetDefaultHeader(),
     const std::vector<OwnerFileItem>& items = {});
 
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<OwnerFileItem> GetItems() const noexcept { return m_items; }
+  const OwnerFileItem& GetItem(const FaceIndex& face_index) const noexcept;
+
+  void SetItem(const FaceIndex& face_index, const OwnerFileItem& item) noexcept;
 
   private:
 

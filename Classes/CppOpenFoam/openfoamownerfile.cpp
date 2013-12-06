@@ -13,8 +13,11 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include <QFile>
+
 #include "filename.h"
 #include "openfoamheader.h"
+#include "openfoamfaceindex.h"
 #include "openfoamownerfileitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -33,7 +36,15 @@ ribi::foam::OwnerFile::OwnerFile(
 
 const ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept
 {
-  return Header("labelList","constant/polyMesh","owner");
+  return Header("labelList","constant/polyMesh","","owner");
+}
+
+const ribi::foam::OwnerFileItem& ribi::foam::OwnerFile::GetItem(
+  const ribi::foam::FaceIndex& face_index) const noexcept
+{
+  const int i = face_index.Get();
+  assert(i < static_cast<int>(m_items.size()));
+  return m_items[i];
 }
 
 const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
@@ -41,6 +52,14 @@ const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
   OwnerFile b;
   is >> b;
   return b;
+}
+
+void ribi::foam::OwnerFile::SetItem(const FaceIndex& face_index, const OwnerFileItem& item) noexcept
+{
+  const int i = face_index.Get();
+  assert(i < static_cast<int>(m_items.size()));
+  m_items[i] = item;
+  assert(m_items[i] == item);
 }
 
 #ifndef NDEBUG
@@ -57,7 +76,7 @@ void ribi::foam::OwnerFile::Test() noexcept
   std::vector<OwnerFileItem> items;
   for (int i=1; i!=4; ++i)
   {
-    OwnerFileItem item(i * i);
+    OwnerFileItem item(CellIndex(i * i));
     items.push_back(item);
   }
   //operator==
@@ -81,10 +100,23 @@ void ribi::foam::OwnerFile::Test() noexcept
     std::vector<OwnerFileItem> other_items;
     for (int i=1; i!=3; ++i)
     {
-      OwnerFileItem item(2 * i * i);
+      OwnerFileItem item(CellIndex(2 * i * i));
       other_items.push_back(item);
     }
     const OwnerFile c(header,other_items);
+    assert(b != c);
+  }
+  //operator!=
+  {
+    const OwnerFile b(header,items);
+    OwnerFile c(header,items);
+    assert(b == c);
+    const FaceIndex i(1);
+    const CellIndex j { c.GetItem(i).GetCellIndex() };
+    const OwnerFileItem new_item(CellIndex(j.Get() + 1));
+    assert(c.GetItem(i) != new_item);
+    c.SetItem(i,new_item);
+    assert(c.GetItem(i) == new_item);
     assert(b != c);
   }
   //Stream conversion
@@ -100,6 +132,20 @@ void ribi::foam::OwnerFile::Test() noexcept
       TRACE(c);
     }
     assert(b == c);
+  }
+  //Read from testing file
+  {
+    const std::string filename { GetDefaultHeader().GetObject() };
+    {
+      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
+      f.copy(filename.c_str());
+    }
+    {
+      assert(fileio::IsRegularFile(filename));
+      std::ifstream f(filename.c_str());
+      OwnerFile b(f);
+      assert(!b.GetItems().empty());
+    }
   }
   TRACE("Finished ribi::foam::Header::OwnerFile successfully");
 }

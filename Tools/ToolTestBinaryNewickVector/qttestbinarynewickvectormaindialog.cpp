@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "about.h"
 #include "qttestbinarynewickvectormaindialog.h"
+#include "testbinarynewickvectormenudialog.h"
 #include "newick.h"
 #include "newickstorage.h"
 #include "binarynewickvector.h"
@@ -83,26 +84,6 @@ ribi::QtTestBinaryNewickVectorMainDialog::~QtTestBinaryNewickVectorMainDialog() 
   delete m_timer;
 }
 
-const std::string ribi::QtTestBinaryNewickVectorMainDialog::GetVersion() noexcept
-{
-  return "3.1";
-}
-
-const std::vector<std::string> ribi::QtTestBinaryNewickVectorMainDialog::GetVersionHistory() noexcept
-{
-  std::vector<std::string> v;
-  v.push_back("2010-08-20: Version 1.0: initial version, tool was called TestNewickVector");
-  v.push_back("2010-08-21: Version 1.1: added more debug checks, added IsBinary,  GetSimpler and GetRootBranches");
-  v.push_back("2010-08-24: Version 1.2: calculates the total number of derived Newicks and (related to this) the number of symmetries in a Newick");
-  v.push_back("2010-08-25: Version 1.3: calculates the Ewens probability of simple Newicks");
-  v.push_back("2010-09-04: Version 1.4: '(1,(3))' is added to the set of invalid Newicks");
-  v.push_back("2010-09-16: Version 1.5: added library version numbers, created difference in debug and release version, fixed a bug in BinaryNewickVector::GetSimplerNewicks, added '(0)' to the set of invalid Newicks");
-  v.push_back("2010-10-01: Version 1.6: transition from CLN to BigInt library, so TestBinaryNewickVector can run under Windows. Kept checks comparing CLN and BigInt library in under Ubuntu");
-  v.push_back("2011-02-20: Version 2.0: major revision of architecture, removed use of CLN library, renamed program to TestBinaryNewickVector");
-  v.push_back("2011-03-01: Version 3.0: major rewrite of algorithms");
-  v.push_back("2011-03-08: Version 3.1: minor rewrite of algorithms");
-  return v;
-}
 
 void ribi::QtTestBinaryNewickVectorMainDialog::OnAnyChange()
 {
@@ -317,20 +298,8 @@ void ribi::QtTestBinaryNewickVectorMainDialog::on_button_demo_clicked()
 
 void ribi::QtTestBinaryNewickVectorMainDialog::on_button_about_clicked()
 {
-  About about(
-    "Richel Bilderbeek",
-    "TestBinaryNewickVector",
-    "GUI tool to test BinaryNewickVector",
-    "the 8th of March 2011",
-    "2010-2011",
-    "http://www.richelbilderbeek.nl/ToolTestBinaryNewickVector.htm",
-    GetVersion(),
-    GetVersionHistory());
-  about.AddLibrary("BigInt: version 2010.04.30");
-  about.AddLibrary("BinaryNewickVector: " + BinaryNewickVector::GetVersion());
-
-  QtAboutDialog d(about);
-  d.exec();
+  QtAboutDialog d(TestBinaryNewickVectorMenuDialog().GetAbout());
+  this->ShowChild(&d);
 }
 
 void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()

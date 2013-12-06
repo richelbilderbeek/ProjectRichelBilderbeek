@@ -20,23 +20,25 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef QTTESTCHESSBOARDDIALOG_H
 #define QTTESTCHESSBOARDDIALOG_H
-//---------------------------------------------------------------------------
-#include <QDialog>
-//---------------------------------------------------------------------------
+
+#include "qthideandshowdialog.h"
 #include "chessfwd.h"
-//---------------------------------------------------------------------------
+
 struct QModelIndex;
-//---------------------------------------------------------------------------
+
 namespace Ui {
-class QtTestChessBoardDialog;
+  class QtTestChessBoardDialog;
 }
-//---------------------------------------------------------------------------
-class QtTestChessBoardDialog : public QDialog
+
+namespace ribi {
+class QtTestChessBoardDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
   explicit QtTestChessBoardDialog(QWidget *parent = 0);
+  QtTestChessBoardDialog(const QtTestChessBoardDialog&) = delete;
+  QtTestChessBoardDialog& operator=(const QtTestChessBoardDialog&) = delete;
   ~QtTestChessBoardDialog();
 
 private slots:
@@ -51,5 +53,7 @@ private:
 
   void OnChessboardChanged();
 };
-//---------------------------------------------------------------------------
+
+} //~namespace ribi
+
 #endif // QTTESTCHESSBOARDDIALOG_H

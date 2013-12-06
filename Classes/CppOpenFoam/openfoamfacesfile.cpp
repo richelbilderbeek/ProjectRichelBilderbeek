@@ -13,6 +13,8 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include <QFile>
+
 #include "filename.h"
 #include "openfoamheader.h"
 #include "openfoamfacesfileitem.h"
@@ -34,7 +36,7 @@ ribi::foam::FacesFile::FacesFile(
 
 const ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
 {
-  return Header("faceList","constant/polyMesh","faces");
+  return Header("faceList","constant/polyMesh","","faces");
 }
 
 const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
@@ -58,7 +60,7 @@ void ribi::foam::FacesFile::Test() noexcept
   std::vector<FacesFileItem> items;
   for (int i=1; i!=4; ++i)
   {
-    FacesFileItem item( std::vector<PointIndex>(i,i) );
+    FacesFileItem item( std::vector<PointIndex>(i,PointIndex(i)));
     items.push_back(item);
   }
   //operator==
@@ -82,7 +84,7 @@ void ribi::foam::FacesFile::Test() noexcept
     std::vector<FacesFileItem> other_items;
     for (int i=1; i!=3; ++i)
     {
-      FacesFileItem item( std::vector<PointIndex>(i+1,i*i) );
+      FacesFileItem item( std::vector<PointIndex>(i+1,PointIndex(i*i)) );
       other_items.push_back(item);
     }
     const FacesFile c(header,other_items);
@@ -101,6 +103,20 @@ void ribi::foam::FacesFile::Test() noexcept
       TRACE(c);
     }
     assert(b == c);
+  }
+  //Read from testing file
+  {
+    const std::string filename { GetDefaultHeader().GetObject() };
+    {
+      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
+      f.copy(filename.c_str());
+    }
+    {
+      assert(fileio::IsRegularFile(filename));
+      std::ifstream f(filename.c_str());
+      FacesFile b(f);
+      assert(!b.GetItems().empty());
+    }
   }
   TRACE("Finished ribi::foam::Header::FacesFile successfully");
 }

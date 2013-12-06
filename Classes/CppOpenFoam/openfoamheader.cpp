@@ -8,10 +8,12 @@
 ribi::foam::Header::Header(
     const std::string& class_name,
     const std::string& location,
+    const std::string& note,
     const std::string& object
   )
   : m_class_name(class_name),
     m_location(location),
+    m_note(note),
     m_object(object)
 {
   #ifndef NDEBUG
@@ -28,7 +30,7 @@ void ribi::foam::Header::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::Header::Test");
-  const Header h("some_name","some_location","some_object");
+  const Header h("some_name","some_location","some_note","some_object");
   std::stringstream s;
   s << h;
   Header i;
@@ -84,72 +86,70 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
     is >> bracket_open;
     assert(bracket_open == "{");
   }
+  while (1)
   {
-    std::string version_text;
-    is >> version_text;
-    assert(version_text == "version");
-  }
-  {
-    std::string version;
-    is >> version;
-    assert(version == "2.0;");
-  }
-  {
-    std::string format_text;
-    is >> format_text;
-    assert(format_text == "format");
-  }
-  {
-    std::string format;
-    is >> format;
-    assert(format == "ascii;");
-  }
-  {
-    std::string class_name_text;
-    is >> class_name_text;
-    assert(class_name_text == "class");
-  }
-  {
-    std::string class_name;
-    is >> class_name;
-    assert(class_name.back() == ';');
-    class_name.pop_back();
-    assert(class_name.back() != ';');
-    h.m_class_name = class_name;
-  }
-  {
-    std::string location_text;
-    is >> location_text;
-    #ifndef NDEBUG
-    if(location_text != "location") { TRACE(location_text); }
-    #endif
-    assert(location_text == "location");
-  }
-  {
-    std::string location;
-    is >> location;
-    assert(location.back() == ';');
-    location.pop_back();
-    assert(location.back() != ';');
-    h.m_location = location;
-  }
-  {
-    std::string object_text;
-    is >> object_text;
-    assert(object_text == "object");
-  }
-  {
-    std::string object;
-    is >> object;
-    assert(object.back() == ';');
-    object.pop_back();
-    assert(object.back() != ';');
-    h.m_object = object;
-  }
-  {
-    std::string bracket_close;
-    is >> bracket_close;
-    assert(bracket_close == "}");
+    std::string s;
+    is >> s;
+    if (s == "version")
+    {
+      std::string t;
+      is >> t;
+      assert(t == "2.0;"  );
+    }
+    else if (s == "format" )
+    {
+      std::string t;
+      is >> t;
+      assert(t == "ascii;");
+    }
+    else if (s == "class"  )
+    {
+      std::string class_name;
+      is >> class_name;
+      assert(class_name.back() == ';');
+      class_name.pop_back();
+      assert(class_name.back() != ';');
+      h.m_class_name = class_name;
+    }
+    else if (s == "location")
+    {
+      std::string location;
+      is >> location;
+      assert(location.back() == ';');
+      location.pop_back();
+      assert(location.back() != ';');
+      h.m_location = location;
+    }
+    else if (s == "note")
+    {
+      //Read until ;
+      std::string s;
+      is >> s;
+      assert(!s.empty());
+      while (s.back() != ';')
+      {
+        std::string t;
+        is >> t;
+        s += t;
+      }
+      assert(s.back() == ';');
+      s.pop_back();
+      assert(s.back() != ';');
+      h.m_note = s;
+    }
+    else if (s == "object")
+    {
+      std::string object;
+      is >> object;
+      assert(object.back() == ';');
+      object.pop_back();
+      assert(object.back() != ';');
+      h.m_object = object;
+    }
+    else if (s == "}")
+    {
+      break;
+    }
   }
   return is;
 }

@@ -1,5 +1,20 @@
 #include "functionplottermenudialog.h"
+
+#include <iostream>
+
 #include "profile.h"
+
+int ribi::FunctionPlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
 
 const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
 {
@@ -16,6 +31,29 @@ const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
 
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
+}
+
+const ribi::Help ribi::FunctionPlotterMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::FunctionPlotterMenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramFunctionPlotter
+  };
+  assert(p);
+  return p;
 }
 
 const std::string ribi::FunctionPlotterMenuDialog::GetVersion() const noexcept

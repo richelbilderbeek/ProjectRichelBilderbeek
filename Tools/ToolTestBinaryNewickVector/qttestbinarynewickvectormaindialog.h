@@ -39,9 +39,6 @@ public:
   QtTestBinaryNewickVectorMainDialog& operator=(const QtTestBinaryNewickVectorMainDialog&) = delete;
   ~QtTestBinaryNewickVectorMainDialog() noexcept;
 
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-
 private:
   Ui::QtTestBinaryNewickVectorMainDialog *ui;
   QTimer * m_timer;

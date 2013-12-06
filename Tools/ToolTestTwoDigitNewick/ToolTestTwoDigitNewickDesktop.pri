@@ -1,9 +1,16 @@
-INCLUDEPATH += \
-    ../../Tools/ToolTestTwoDigitNewick
+include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickConsole.pri)
 
-SOURCES +=
+SOURCES += \
+    ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickmaindialog.cpp \
+    ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickmenudialog.cpp
 
-HEADERS +=
+FORMS += \
+    ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickmaindialog.ui \
+    ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickmenudialog.ui
 
-OTHER_FILES += \
-    ../../Tools/ToolTestTwoDigitNewick/Licence.txt
+RESOURCES += \
+    ../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewick.qrc
+
+HEADERS += \
+    ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickmaindialog.h \
+    ../../Tools/ToolTestTwoDigitNewick/qttesttwodigitnewickmenudialog.h

@@ -30,7 +30,7 @@ void ribi::foam::FacesFileItem::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::FacesFileItem::Test");
-  const FacesFileItem i( {1,2,3,4} );
+  const FacesFileItem i( { PointIndex(1),PointIndex(2),PointIndex(3),PointIndex(4) } );
   std::stringstream s;
   s << i;
   FacesFileItem j;
@@ -98,10 +98,9 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFileItem& f)
   }
   for (int i=0; i!=n_nodes; ++i)
   {
-    int node = -1;
+    PointIndex node;
     is >> node;
     f.m_point_indices.push_back(node);
-    assert(node >= 0);
   }
   {
     char bracket_close;

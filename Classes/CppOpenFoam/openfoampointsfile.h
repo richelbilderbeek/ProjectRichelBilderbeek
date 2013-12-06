@@ -7,6 +7,7 @@
 #include "fileiofwd.h"
 #include "openfoamfwd.h"
 #include "openfoamheader.h"
+#include "openfoampointsfileitem.h"
 
 namespace ribi {
 namespace foam {
@@ -14,8 +15,8 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct PointsFile
 {
-  PointsFile(std::istream& is) : PointsFile(Parse(is)) {}
-  PointsFile(
+  explicit PointsFile(std::istream& is) : PointsFile(Parse(is)) {}
+  explicit PointsFile(
     const Header header = GetDefaultHeader(),
     const std::vector<PointsFileItem>& items = {});
 

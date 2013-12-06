@@ -8,113 +8,142 @@
 #include "fileio.h"
 #include "xml.h"
 
-const std::vector<ribi::fileio::Filename> ParameterFilenamesOpenFoam::GetAll() const noexcept
+const std::vector<ribi::fileio::Filename> ribi::foam::Filenames::GetAll() const noexcept
 {
   return {
     this->GetBoundary(),
     this->GetFaces(),
     this->GetNeighbour(),
-    this->GetNodes(),
     this->GetOpenFoamCase(),
-    this->GetOwner()
+    this->GetOwner(),
+    this->GetPoints()
   };
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetBoundary() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetBoundary() const noexcept
 {
-  return ribi::fileio::Filename("constant\\polyMesh\\boundary");
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "polyMesh"
+    + fileio::GetPathSeperator()
+    + "boundary"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetBoundaryPostprocessed() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetFaces() const noexcept
 {
-  return ribi::fileio::Filename(GetBoundary().Get() + "_post");
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "polyMesh"
+    + fileio::GetPathSeperator()
+    + "faces"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetFaces() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetNeighbour() const noexcept
 {
-  return ribi::fileio::Filename("constant\\polyMesh\\faces");
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "polyMesh"
+    + fileio::GetPathSeperator()
+    + "neighbour"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetFacesPostprocessed() const noexcept
-{
-  return ribi::fileio::Filename(GetFaces().Get() + "_post");
-}
-
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetNeighbour() const noexcept
-{
-  return ribi::fileio::Filename("constant\\polyMesh\\neighbour");
-}
-
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetNeighbourPostprocessed() const noexcept
-{
-  return ribi::fileio::Filename(GetNeighbour().Get() + "_post");
-}
-
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetNodes() const noexcept
-{
-  return ribi::fileio::Filename("constant\\polyMesh\\points");
-}
-
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetNodesPostprocessed() const noexcept
-{
-  return ribi::fileio::Filename(GetNodes().Get() + "_post");
-}
-
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamCase() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamCase() const noexcept
 {
   return ribi::fileio::Filename("case.foam");
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamControlDict() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamControlDict() const noexcept
 {
-  return ribi::fileio::Filename("system\\controlDict");
+  return ribi::fileio::Filename(
+      "system"
+    + fileio::GetPathSeperator()
+    + "controlDict"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamFvSchemes() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamFvSchemes() const noexcept
 {
-  return ribi::fileio::Filename("system\\fvSchemes");
+  return ribi::fileio::Filename(
+      "system"
+    + fileio::GetPathSeperator()
+    + "fvSchemes"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamFvSolution() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamFvSolution() const noexcept
 {
-  return ribi::fileio::Filename("system\\fvSolution");
+  return ribi::fileio::Filename(
+      "system"
+    + fileio::GetPathSeperator()
+    + "fvSolution"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamPressureField() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamPressureField() const noexcept
 {
-  return ribi::fileio::Filename("0\\p");
+  return ribi::fileio::Filename(
+      "0"
+    + fileio::GetPathSeperator()
+    + "p"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamTransportProperties() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamTransportProperties() const noexcept
 {
-  return ribi::fileio::Filename("constant\\transportProperties");
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "transportProperties"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOpenFoamVelocityField() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamVelocityField() const noexcept
 {
-  return ribi::fileio::Filename("0\\U");
+  return ribi::fileio::Filename(
+      "0"
+    + fileio::GetPathSeperator()
+    + "U"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOwner() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetOwner() const noexcept
 {
-  return ribi::fileio::Filename("constant\\polyMesh\\owner");
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "polyMesh"
+    + fileio::GetPathSeperator()
+    + "owner"
+  );
 }
 
-const ribi::fileio::Filename ParameterFilenamesOpenFoam::GetOwnerPostprocessed() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetPoints() const noexcept
 {
-  return ribi::fileio::Filename(GetOwner().Get() + "_post");
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "polyMesh"
+    + fileio::GetPathSeperator()
+    + "points"
+  );
 }
 
-std::ostream& operator<<(std::ostream& os, const ParameterFilenamesOpenFoam& filenames)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Filenames& filenames)
 {
   std::stringstream s;
   s
     << ribi::xml::ToXml("filename_boundary",filenames.GetBoundary())
     << ribi::xml::ToXml("filename_faces",filenames.GetFaces())
     << ribi::xml::ToXml("filename_neightbour",filenames.GetNeighbour())
-    << ribi::xml::ToXml("filename_nodes",filenames.GetNodes())
     << ribi::xml::ToXml("filename_openfoam",filenames.GetOpenFoamCase())
     << ribi::xml::ToXml("filename_owner",filenames.GetOwner())
+    << ribi::xml::ToXml("filename_points",filenames.GetPoints())
   ;
 
   os << ribi::xml::ToXml("parameter_filenames_openfoam",s.str());

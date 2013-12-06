@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <fstream>
+#include <stdexcept>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -63,6 +64,7 @@ void ribi::VisualAbcMainDialog::ConvertToPng(const std::string& s)
     const std::string cmd = "abcm2ps " + m_abc_filename;
     const int error = std::system(cmd.c_str());
     assert(!error);
+    if (error) throw std::runtime_error(cmd.c_str());
   }
   //Convert PS file to PNG or PNGs
 
@@ -72,6 +74,7 @@ void ribi::VisualAbcMainDialog::ConvertToPng(const std::string& s)
       + m_png_filename;
     const int error = std::system(cmd.c_str());
     assert(!error);
+    if (error) throw std::runtime_error(cmd.c_str());
   }
 }
 
@@ -89,6 +92,7 @@ void ribi::VisualAbcMainDialog::ConvertToMid(const std::string& s)
       + " -o " + m_mid_filename;
     const int error = std::system(cmd.c_str());
     assert(!error);
+    if (error) throw std::runtime_error(cmd.c_str());
   }
 }
 
@@ -100,6 +104,7 @@ void ribi::VisualAbcMainDialog::PlayMid()
       + m_mid_filename;
     const int error = std::system(cmd.c_str());
     assert(!error && "playsound not found, type 'sudo apt-get install playmidi'");
+    if (error) throw std::runtime_error(cmd.c_str());
   }
 }
 

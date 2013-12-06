@@ -8,7 +8,7 @@ namespace foam {
 
 struct FaceIndex
 {
-  FaceIndex(const int index);
+  explicit FaceIndex(const int index);
   int Get() const noexcept { return m_index; }
 
   private:
@@ -20,6 +20,7 @@ std::ostream& operator<<(std::ostream& os, const FaceIndex& face_index);
 std::istream& operator>>(std::istream& is, FaceIndex& face_index);
 
 bool operator==(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
+bool operator!=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

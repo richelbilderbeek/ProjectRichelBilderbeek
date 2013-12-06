@@ -19,9 +19,25 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
 #include "toolsurfaceplottermenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "profile.h"
 
-const ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout()
+int ribi::ToolSurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -38,12 +54,35 @@ const ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::ToolSurfacePlotterMenuDialog::GetVersion()
+const ribi::Help ribi::ToolSurfacePlotterMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::ToolSurfacePlotterMenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramSurfacePlotter
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::ToolSurfacePlotterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-02-07: version 1.0: initial Windows-only version",
@@ -51,4 +90,3 @@ const std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHis
     "2012-07-07: version 2.0: port to Qt"
   };
 }
-

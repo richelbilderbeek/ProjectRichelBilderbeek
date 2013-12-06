@@ -25,17 +25,36 @@ void ribi::foam::OwnerFileItem::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::OwnerFileItem::Test");
-  const OwnerFileItem i(123);
-  std::stringstream s;
-  s << i;
-  OwnerFileItem j;
-  s >> j;
-  if (i != j)
+  //operator==
   {
-    TRACE(i);
-    TRACE(j);
+    const OwnerFileItem i(CellIndex(123));
+    assert(i == i);
+    const OwnerFileItem j(CellIndex(123));
+    assert(i == j);
+    assert(j == i);
+    assert(j == j);
   }
-  assert(i == j);
+  //operator!=
+  {
+    const OwnerFileItem i(CellIndex(123));
+    const OwnerFileItem j(CellIndex(234));
+    assert(i != j);
+    assert(j != i);
+  }
+  //operator<< and operator>>
+  {
+    const OwnerFileItem i(CellIndex(123));
+    std::stringstream s;
+    s << i;
+    OwnerFileItem j;
+    s >> j;
+    if (i != j)
+    {
+      TRACE(i);
+      TRACE(j);
+    }
+    assert(i == j);
+  }
   TRACE("Finished ribi::foam::OwnerFileItem::Test successfully");
 }
 #endif

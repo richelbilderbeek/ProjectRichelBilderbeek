@@ -1,9 +1,11 @@
 INCLUDEPATH += \
     ../../Tools/ToolTestTwoDigitNewick
 
-SOURCES +=
+SOURCES += \
+    ../../Tools/ToolTestTwoDigitNewick/testtwodigitnewickmenudialog.cpp
 
-HEADERS +=
+HEADERS += \
+    ../../Tools/ToolTestTwoDigitNewick/testtwodigitnewickmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolTestTwoDigitNewick/Licence.txt

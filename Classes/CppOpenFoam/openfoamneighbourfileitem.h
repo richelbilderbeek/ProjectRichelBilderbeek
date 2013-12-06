@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <iosfwd>
+#include "openfoamcellindex.h"
 
 namespace ribi {
 namespace foam {
@@ -10,13 +11,13 @@ namespace foam {
 ///An item in an OpenFOAM boundary file
 struct NeighbourFileItem
 {
-  NeighbourFileItem(const int face_index = 0);
+  explicit NeighbourFileItem(const CellIndex face_index = CellIndex(0));
 
-  int GetFaceIndex() const noexcept { return m_face_index; }
+  const CellIndex GetCellIndex() const noexcept { return m_cell_index; }
 
   private:
 
-  int m_face_index;
+  CellIndex m_cell_index;
 
   #ifndef NDEBUG
   static void Test() noexcept;

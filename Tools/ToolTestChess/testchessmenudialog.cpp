@@ -18,6 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestChess.htm
 //---------------------------------------------------------------------------
+#include "testchessmenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "chessbitboard.h"
 #include "chessboard.h"
 #include "chessboardwidget.h"
@@ -34,10 +39,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chesssquare.h"
 #include "chesssquareselector.h"
 #include "chesswidget.h"
-#include "testchessmenudialog.h"
 #include "widget.h"
-//---------------------------------------------------------------------------
-const About TestChessMenuDialog::GetAbout()
+
+int ribi::TestChessMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::TestChessMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -64,20 +80,41 @@ const About TestChessMenuDialog::GetAbout()
   a.AddLibrary("Chess::Score version: " + Chess::Score::GetVersion());
   a.AddLibrary("Chess::Square version: " + Chess::Square::GetVersion());
   a.AddLibrary("Chess::SquareSelector version: " + Chess::SquareSelector::GetVersion());
-
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }
-//---------------------------------------------------------------------------
-const std::string TestChessMenuDialog::GetVersion()
+
+const ribi::Help ribi::TestChessMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::TestChessMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramTestChess
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::TestChessMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> TestChessMenuDialog::GetVersionHistory()
+
+const std::vector<std::string> ribi::TestChessMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-01-25: Version 1.0: initial version");
-  return v;
+  return {
+    "2012-01-25: Version 1.0: initial version"
+  };
 }
-//---------------------------------------------------------------------------

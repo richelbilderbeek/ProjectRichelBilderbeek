@@ -9,7 +9,7 @@ namespace foam {
 ///The index in the 'points' file
 struct PointIndex
 {
-  PointIndex(const int index);
+  explicit PointIndex(const int index = 0);
   int Get() const noexcept { return m_index; }
 
   private:

@@ -1,7 +1,21 @@
-
 #include "toolvisualabcmenudialog.h"
 
-const ribi::About ribi::VisualAbcMenuDialog::GetAbout()
+#include <cassert>
+#include <iostream>
+
+int ribi::VisualAbcMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
+
+const ribi::About ribi::VisualAbcMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -17,16 +31,39 @@ const ribi::About ribi::VisualAbcMenuDialog::GetAbout()
   return a;
 }
 
-const std::string ribi::VisualAbcMenuDialog::GetVersion()
+const ribi::Help ribi::VisualAbcMenuDialog::GetHelp() const noexcept
+{
+  return Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::VisualAbcMenuDialog::GetProgram() const noexcept
+{
+  const boost::shared_ptr<const ribi::Program> p {
+    new ProgramVisualAbc
+  };
+  assert(p);
+  return p;
+}
+
+const std::string ribi::VisualAbcMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::VisualAbcMenuDialog::GetVersionHistory()
+const std::vector<std::string> ribi::VisualAbcMenuDialog::GetVersionHistory() const noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-05-01: Version 1.0: initial version");
-  v.push_back("2011-05-01: Version 1.1: added button to save ABC text");
-  return v;
+  return {
+    "2011-05-01: Version 1.0: initial version",
+    "2011-05-01: Version 1.1: added button to save ABC text"
+  };
 }
 

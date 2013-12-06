@@ -11,14 +11,16 @@ namespace foam {
 struct Header
 {
   ///In order of appearance in the text
-  Header(
+  explicit Header(
     const std::string& class_name = "",
-    const std::string& location = "",
-    const std::string& object = ""
+    const std::string& location   = "",
+    const std::string& note       = "",
+    const std::string& object     = ""
   );
 
   const std::string& GetClass() const noexcept { return m_class_name; }
   const std::string& GetLocation() const noexcept { return m_location; }
+  const std::string& GetNote() const noexcept { return m_note; }
   const std::string& GetObject() const noexcept { return m_object; }
 
   ///A header consists out of multiple lines
@@ -36,6 +38,7 @@ struct Header
 
   std::string m_class_name;
   std::string m_location;
+  std::string m_note;
   std::string m_object;
 
   #ifndef NDEBUG

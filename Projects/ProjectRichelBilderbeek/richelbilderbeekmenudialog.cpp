@@ -32,8 +32,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermenudialog.h"
 #include "athleticlandmenudialog.h"
 #include "beerwantermenudialog.h"
+#include "testtwodigitnewickmenudialog.h"
 #include "binarynewickvector.h"
-#include "functionplottermenudialog.h"
 #include "boenkenmenudialog.h"
 #include "codetohtmlmenudialog.h"
 #include "connectthree.h"
@@ -42,44 +42,35 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "copy_if.h"
 #include "counter.h"
 #include "createglossarymenudialog.h"
+#include "testtogglebuttonmenudialog.h"
 #include "createqtprojectzipfilemenudialog.h"
 #include "daswahreschlagerfestmenudialog.h"
-#include "richelbilderbeekprogramtypes.h"
 #include "dial.h"
-#include "secretmessagemenudialog.h"
-#include "pixelatormenudialog.h"
-#include "stylesheetsettermenudialog.h"
-#include "toolsurfaceplottermenudialog.h"
-#include "imagerotatermenudialog.h"
 #include "dialwidget.h"
 #include "encranger.h"
 #include "exercise.h"
+#include "filteroperationermenudialog.h"
 #include "fixedlagsmootherkalmanfilter.h"
+#include "functionplottermenudialog.h"
 #include "fuzzy_equal_to.h"
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
+#include "histogramequalizationermenudialog.h"
 #include "hometrainermenudialog.h"
 #include "htmlpage.h"
+#include "imagerotatermenudialog.h"
 #include "ipaddress.h"
 #include "k3opeenrijmenudialog.h"
-#include "filteroperationermenudialog.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterermenudialog.h"
-#include "histogramequalizationermenudialog.h"
 #include "knokfightermenudialog.h"
 #include "laggedwhitenoisesystem.h"
-#include "testconceptmapmenudialog.h"
-#include "thresholdfilterermenudialog.h"
-#include "tooltestapproximatormenudialog.h"
 #include "lazy_init.h"
 #include "led.h"
 #include "ledwidget.h"
-#include "predickadvocatormenudialog.h"
-#include "pixelatormenudialog.h"
 #include "loopreader.h"
 #include "manydigitnewick.h"
 #include "matrix.h"
-#include "xenonzeromenudialog.h"
 #include "mazecreatormenudialog.h"
 #include "maziakmenudialog.h"
 #include "metzndrieenmenudialog.h"
@@ -93,6 +84,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "musicscale.h"
 #include "musictheorymenudialog.h"
 #include "mysterymachine.h"
+
 #include "mysterymachinewidget.h"
 #include "newick.h"
 #include "newickvector.h"
@@ -102,9 +94,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "paperrockscissorsmenudialog.h"
 #include "perfectelasticcollisionmenudialog.h"
 #include "pictocodemenudialog.h"
+#include "pixelatormenudialog.h"
+#include "pixelatormenudialog.h"
 #include "pokevolleymenudialog.h"
 #include "pongmenudialog.h"
+#include "predickadvocatormenudialog.h"
+#include "pvdbmenudialog.h"
 #include "pylosmenudialog.h"
+#include "qmakewatchermenudialog.h"
 #include "qmakewatchermenudialog.h"
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
@@ -116,14 +113,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "randomcodemenudialog.h"
 #include "regextestermenudialog.h"
 #include "reversimenudialog.h"
+#include "richelbilderbeekgallerymenudialog.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
+#include "richelbilderbeekprogramtypes.h"
 #include "rubiksclock.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockmenudialog.h"
 #include "rubiksclockwidget.h"
 #include "searchanddestroychessmenudialog.h"
+#include "secretmessagemenudialog.h"
 #include "shape.h"
 #include "shapewidget.h"
 #include "shinybutton.h"
@@ -131,14 +131,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "simmysterymachinemenudialog.h"
 #include "simpredatormenudialog.h"
 #include "sitemapgeneratormenudialog.h"
+#include "sitemapgeneratormenudialog.h"
 #include "sortedbinarynewickvector.h"
 #include "spaceharrymenudialog.h"
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
-#include "pvdbmenudialog.h"
 #include "steadystatekalmanfilterparameters.h"
 #include "stopwatch.h"
+#include "stylesheetsettermenudialog.h"
 #include "tankbattalionmenudialog.h"
+#include "testaboutmenudialog.h"
+#include "testbinarynewickvectormenudialog.h"
+#include "testchessmenudialog.h"
+#include "testconceptmapmenudialog.h"
 #include "testdialmenudialog.h"
 #include "testdialmenudialog.h"
 #include "testexercisemenudialog.h"
@@ -159,11 +164,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshapemenudialog.h"
 #include "testshinybuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
+#include "thresholdfilterermenudialog.h"
 #include "tictactoe.h"
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-
 #include "tooldotmatrixmenudialog.h"
 #include "toolencrangermenudialog.h"
 #include "toolgaborfiltermenudialog.h"
@@ -171,15 +176,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolmultiencrangermenudialog.h"
 #include "toolprimeexpertmenudialog.h"
 #include "toolsimplifynewickmenudialog.h"
+#include "toolsurfaceplottermenudialog.h"
+#include "tooltestapproximatormenudialog.h"
 #include "tooltestapproximatormenudialog.h"
 #include "tooltestcanvasmenudialog.h"
 #include "tooltestledmenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"
+#include "toolvisualabcmenudialog.h"
 #include "trace.h"
 #include "tronmenudialog.h"
 #include "twodigitnewick.h"
+#include "xenonzeromenudialog.h"
 #pragma GCC diagnostic pop
 
 ribi::ProjectRichelBilderbeekMenuDialog::ProjectRichelBilderbeekMenuDialog()
@@ -409,10 +418,10 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::keySender: break;
       case ProgramType::knokfighter: p.reset(new KnokfighterMenuDialog); break;
       case ProgramType::knokfighterVcl: break;
-      case ProgramType::kTouchLectureCreator: break;
-      case ProgramType::lambdaBot: break;
+      case ProgramType::kTouchLectureCreator: break; //
+      case ProgramType::lambdaBot: break; //
       case ProgramType::learyCircumplex: break;
-      case ProgramType::logisticGrowthSimulator : break;
+      case ProgramType::logisticGrowthSimulator: break;
       case ProgramType::loose: break;
       case ProgramType::martianCafeTuinemaTycoon: break;
       case ProgramType::mazeCreator: p.reset(new MazeCreatorMenuDialog); break;
@@ -421,16 +430,16 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::maziakVcl: break;
       case ProgramType::metZnDrieen: p.reset(new MetZnDrieenMenuDialog); break;
       case ProgramType::metZnDrieenVcl: break;
-      case ProgramType::midiLessonCreator : break;
-      case ProgramType::morpher : break;
+      case ProgramType::midiLessonCreator : break; //
+      case ProgramType::morpher : break; //
       case ProgramType::multiEncranger: p.reset(new ToolMultiEncrangerMenuDialog); break;
       case ProgramType::multiEncrangerVcl: break;
       case ProgramType::muscaDomestica: break;
       case ProgramType::musicTheory: p.reset(new MusicTheoryMenuDialog); break;
-      case ProgramType::ndsmake: break;
+      case ProgramType::ndsmake: break; //
       case ProgramType::ndsPaint: break;
       case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
-      case ProgramType::pause: break;
+      case ProgramType::pause: break; //
       case ProgramType::perfectElasticCollision: p.reset(new PerfectElasticCollisionMenuDialog); break;
       case ProgramType::picToCode: p.reset(new PicToCodeMenuDialog); break;
       case ProgramType::pixelator: p.reset(new PixelatorMenuDialog); break;
@@ -441,17 +450,17 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::primeExpert: p.reset(new PrimeExpertMenuDialog); break;
       case ProgramType::projectRichelBilderbeek: p.reset(new ProjectRichelBilderbeekMenuDialog); break;
       case ProgramType::pylos: p.reset(new PylosMenuDialog); break;
-      case ProgramType::qmakeWatcher: break;
+      case ProgramType::qmakeWatcher: p.reset(new QmakeWatcherMenuDialog); break;
       case ProgramType::quadraticSolver: p.reset(new QuadraticSolverMenuDialog); break;
       case ProgramType::rampal: break;
       case ProgramType::randomCode: p.reset(new RandomCodeMenuDialog); break;
       case ProgramType::randomCodeVcl: break;
-      case ProgramType::rasper: break;
+      case ProgramType::rasper: /* p.reset(new RasperMenuDialog); */ break;
       case ProgramType::refrigeratorPuzzleSolver: break;
       case ProgramType::regexTester: p.reset(new RegexTesterMenuDialog); break;
       case ProgramType::reversi: p.reset(new ReversiMenuDialog); break;
-      case ProgramType::richelBilderbeekGallery: break;
-      case ProgramType::richelbilderbeekNlSitemapGenerator: break;
+      case ProgramType::richelBilderbeekGallery: p.reset(new GalleryMenuDialog); break;
+      case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new SitemapGeneratorMenuDialog); break;
       case ProgramType::rubiksClock: p.reset(new RubiksClockMenuDialog); break;
       case ProgramType::rubiksClockVcl: break;
       case ProgramType::searchAndDestroyChess: p.reset(new sadc::MenuDialog); break;
@@ -475,14 +484,14 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::surfacePlotter: p.reset(new ToolSurfacePlotterMenuDialog); break;
       case ProgramType::surfacePlotterVcl: break;
       case ProgramType::tankBattalion: p.reset(new TankBattalionMenuDialog); break;
-      case ProgramType::testAbout: break;
+      case ProgramType::testAbout: p.reset(new TestAboutMenuDialog); break;
       case ProgramType::testApproximator: p.reset(new ToolTestApproximatorMenuDialog); break;
-      case ProgramType::testBinaryNewickVector: break;
+      case ProgramType::testBinaryNewickVector: p.reset(new TestBinaryNewickVectorMenuDialog); break;
       case ProgramType::testBouncingBallsWidget: break;
       case ProgramType::testBouncingRectsWidget: break;
       case ProgramType::testBroadcastServer: break;
       case ProgramType::testCanvas: p.reset(new ToolTestCanvasMenuDialog); break;
-      case ProgramType::testChess: break;
+      case ProgramType::testChess: p.reset(new TestChessMenuDialog); break;
       case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
       case ProgramType::testDial: p.reset(new TestDialMenuDialog); break;
       case ProgramType::testEntrance: break;
@@ -526,8 +535,8 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::testTextPositionWidget: break;
       case ProgramType::testTicTacToe: break;
       case ProgramType::testTimedServerPusher: break;
-      case ProgramType::testToggleButton: break;
-      case ProgramType::testTwoDigitNewick: break;
+      case ProgramType::testToggleButton: p.reset(new TestToggleButtonMenuDialog); break;
+      case ProgramType::testTwoDigitNewick: p.reset(new TestTwoDigitNewickMenuDialog); break;
       case ProgramType::thorVeen: break;
       case ProgramType::thresholdFilterer: p.reset(new ThresholdFiltererMenuDialog); break;
       case ProgramType::thresholdFiltererVcl: break;
@@ -540,7 +549,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::ubuntuOneWatcher: break;
       case ProgramType::vanDenBogaart: break;
       case ProgramType::virtualBastard: break;
-      case ProgramType::visualAbc: break;
+      case ProgramType::visualAbc: p.reset(new VisualAbcMenuDialog); break;
       case ProgramType::xeNonZero: p.reset(new XeNonZeroMenuDialog); break;
       case ProgramType::zork: break;
       case ProgramType::n_types:

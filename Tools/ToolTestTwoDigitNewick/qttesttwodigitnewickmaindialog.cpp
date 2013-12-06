@@ -21,7 +21,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttesttwodigitnewickdialog.h"
+#include "qttesttwodigitnewickmaindialog.h"
 
 #include <algorithm>
 #include <string>
@@ -35,18 +35,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "BigInteger.hh"
 
 #include "about.h"
+#include "testtwodigitnewickmenudialog.h"
 #include "binarynewickvector.h"
 #include "newick.h"
 #include "qtaboutdialog.h"
 #include "twodigitnewickderivative.h"
 #include "twodigitnewick.h"
 #include "twodigitnewickindexer.h"
-#include "ui_qttesttwodigitnewickdialog.h"
+#include "ui_qttesttwodigitnewickmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent)
+ribi::QtTestTwoDigitNewickMainDialog::QtTestTwoDigitNewickMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent), //Removed Qt::Window flag
-    ui(new Ui::QtTestTwoDigitNewickDialog)
+    ui(new Ui::QtTestTwoDigitNewickMainDialog)
 {
   ui->setupUi(this);
   QObject::connect(ui->edit_newick,SIGNAL(textChanged(QString)),
@@ -81,41 +82,14 @@ ribi::QtTestTwoDigitNewickDialog::QtTestTwoDigitNewickDialog(QWidget *parent)
   OnAnyChange();
 }
 
-ribi::QtTestTwoDigitNewickDialog::~QtTestTwoDigitNewickDialog() noexcept
+ribi::QtTestTwoDigitNewickMainDialog::~QtTestTwoDigitNewickMainDialog() noexcept
 {
   delete ui;
 }
 
-const std::string ribi::QtTestTwoDigitNewickDialog::GetVersion() noexcept
-{
-  return "2.2";
-}
 
-const std::vector<std::string> ribi::QtTestTwoDigitNewickDialog::GetVersionHistory() noexcept
-{
-  std::vector<std::string> v;
-  v.push_back("2010-08-22: version 0.1: initial version, only simple Newicks");
-  v.push_back("2010-08-23: version 0.2: added support for more complex newicks");
-  v.push_back("2010-08-23: version 0.3: complex newicks supported");
-  v.push_back("2010-08-24: version 0.4: improved architecture");
-  v.push_back("2010-08-25: version 0.5: cleaned up code");
-  v.push_back("2010-08-25: version 0.6: added Ewens probability for simple Newicks");
-  v.push_back("2010-09-03: version 0.7: all TwoDigitNewicks contain correct values of m_sum_above_zero and m_sum_above_one. NewickIndex contains a new method called ConstructNewick to reconstruct BinaryNewickVector from a TwoDigitNewick.");
-  v.push_back("2010-09-03: version 0.8: framework to get all TwoDigitNewicks' probabilities calculated is setup");
-  v.push_back("2010-09-03: version 0.8.1: bug-fix: probabilities of simple Newicks can be calculated from GUI");
-  v.push_back("2010-09-03: version 0.8.2: bug-fix: probabilities of Newicks with multiple complex branches can be calculated");
-  v.push_back("2010-09-04: version 0.9: TwoDigitNewick architecture is correctly built up");
-  v.push_back("2010-09-04: version 0.10: Project can be built differently in debug and release mode. Application can also be called with command-line parameters");
-  v.push_back("2010-09-04: version 0.11: bug-fix: the Newick '(1,(1,1))' now has its probability correctly calculated");
-  v.push_back("2010-09-05: version 1.0: initial release");
-  v.push_back("2010-10-02: version 1.1: application ports to Windows");
-  v.push_back("2011-02-20: version 2.0: major architectural change, removed use of CLN library");
-  v.push_back("2011-03-01: version 2.1: major changes in Newick namespace");
-  v.push_back("2011-03-08: version 2.2: minor changes in Newick namespace");
-  return v;
-}
 
-void ribi::QtTestTwoDigitNewickDialog::OnAnyChange()
+void ribi::QtTestTwoDigitNewickMainDialog::OnAnyChange()
 {
   ui->edit_text->clear();
   //Check Newicks
@@ -271,29 +245,16 @@ void ribi::QtTestTwoDigitNewickDialog::OnAnyChange()
   }
 }
 
-void ribi::QtTestTwoDigitNewickDialog::OnAboutClick()
+void ribi::QtTestTwoDigitNewickMainDialog::OnAboutClick()
 {
-  About about(
-    "Richel Bilderbeek",
-    "TestTwoDigitNewick",
-    "tool to test the two-digit-Newick architecture",
-    "the 8th of March 2011",
-    "2010-2011",
-    "http://www.richelbilderbeek.nl/ToolTestTwoDigitNewick",
-    GetVersion(),
-    GetVersionHistory());
+  About about {
+    TestTwoDigitNewickMenuDialog().GetAbout()
+  };
 
   about.AddLibrary("BigInt: version 2010.04.30");
   about.AddLibrary("BinaryNewickVector: version " + BinaryNewickVector::GetVersion());
   about.AddLibrary("TwoDigitNewick: version " + TwoDigitNewick::GetVersion());
 
   QtAboutDialog d(about);
-  d.exec();
+  this->ShowChild(&d);
 }
-
-void ribi::QtTestTwoDigitNewickDialog::on_button_help_clicked()
-{
-  //
-}
-
-

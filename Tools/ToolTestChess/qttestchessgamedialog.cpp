@@ -18,17 +18,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestChess.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "qttestchessgamedialog.h"
+
 #include "chessboard.h"
 #include "chessboardwidget.h"
 #include "chessmove.h"
-#include "qttestchessgamedialog.h"
-//#include "testchessmaindialog.h"
 #include "ui_qttestchessgamedialog.h"
-//---------------------------------------------------------------------------
+#pragma GCC diagnostic pop
+
 #define NO_QTGAMEWIDGET_YET
-//---------------------------------------------------------------------------
-QtTestChessGameDialog::QtTestChessGameDialog(QWidget *parent) :
-  QDialog(parent),
+
+ribi::QtTestChessGameDialog::QtTestChessGameDialog(QWidget *parent) :
+  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestChessGameDialog)
 {
   ui->setupUi(this);
@@ -42,13 +46,13 @@ QtTestChessGameDialog::QtTestChessGameDialog(QWidget *parent) :
 
   OnChessboardChanged();
 }
-//---------------------------------------------------------------------------
-QtTestChessGameDialog::~QtTestChessGameDialog()
+
+ribi::QtTestChessGameDialog::~QtTestChessGameDialog()
 {
   delete ui;
 }
-//---------------------------------------------------------------------------
-void QtTestChessGameDialog::OnChessboardChanged()
+
+void ribi::QtTestChessGameDialog::OnChessboardChanged()
 {
   #ifndef NO_QTGAMEWIDGET_YET
   const std::vector<Chess::Move> v = ui->chessgame_widget->GetWidget()->GetBoard()->GetMoves();
@@ -66,8 +70,8 @@ void QtTestChessGameDialog::OnChessboardChanged()
   ui->edit_status->appendPlainText(s.c_str());
   #endif
 }
-//---------------------------------------------------------------------------
-void QtTestChessGameDialog::on_list_moves_doubleClicked(const QModelIndex &index)
+
+void ribi::QtTestChessGameDialog::on_list_moves_doubleClicked(const QModelIndex &index)
 {
   const std::string move_str = ui->list_moves->item(index.row())->text().toStdString();
   const std::string s
@@ -78,4 +82,4 @@ void QtTestChessGameDialog::on_list_moves_doubleClicked(const QModelIndex &index
   OnChessboardChanged();
   #endif
 }
-//---------------------------------------------------------------------------
+

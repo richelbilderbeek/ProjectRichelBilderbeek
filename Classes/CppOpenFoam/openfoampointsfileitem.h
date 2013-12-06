@@ -11,7 +11,7 @@ namespace foam {
 ///An item in an OpenFOAM boundary file
 struct PointsFileItem
 {
-  PointsFileItem(
+  explicit PointsFileItem(
     const std::array<double,3>& coordinat = { 0.0, 0.0, 0.0}
   );
 

@@ -11,7 +11,7 @@ namespace foam {
 ///An item in an OpenFOAM boundary file
 struct OwnerFileItem
 {
-  OwnerFileItem(const CellIndex& cell_index = 0);
+  explicit OwnerFileItem(const CellIndex& cell_index = CellIndex(0));
 
   CellIndex GetCellIndex() const noexcept { return m_cell_index; }
 

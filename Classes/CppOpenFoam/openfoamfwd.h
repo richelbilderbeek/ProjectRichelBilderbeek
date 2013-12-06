@@ -6,6 +6,8 @@ namespace foam {
 
 struct BoundaryFile;
 struct BoundaryFileItem;
+struct CellIndex;
+struct FaceIndex;
 struct FacesFile;
 struct FacesFileItem;
 struct Filenames;
@@ -14,6 +16,7 @@ struct NeighbourFile;
 struct NeighbourFileItem;
 struct OwnerFile;
 struct OwnerFileItem;
+struct PointIndex;
 struct PointsFile;
 struct PointsFileItem;
 

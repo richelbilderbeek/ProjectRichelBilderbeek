@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "richelbilderbeekgallerymenudialog.h"
 
 #include <cassert>
+#include <iostream>
 #include <boost/scoped_ptr.hpp>
 
 #include "codetohtmlfooter.h"
@@ -39,6 +40,18 @@ ribi::GalleryMenuDialog::GalleryMenuDialog()
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::GalleryMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
 }
 
 const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const noexcept
@@ -288,6 +301,29 @@ const ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Program version: " + Program::GetVersion());
   a.AddLibrary("ProgramStatus version: " + ProgramStatusVersion::GetVersion());
   return a;
+}
+
+const ribi::Help ribi::GalleryMenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::GalleryMenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramGaborFilter
+  };
+  assert(p);
+  return p;
 }
 
 const std::string ribi::GalleryMenuDialog::GetVersion() const noexcept

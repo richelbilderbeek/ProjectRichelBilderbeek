@@ -27,31 +27,28 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestTwoDigitNewickDialog;
+  class QtTestTwoDigitNewickMainDialog;
 }
 
 namespace ribi {
 
-class QtTestTwoDigitNewickDialog : public QtHideAndShowDialog
+class QtTestTwoDigitNewickMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestTwoDigitNewickDialog(QWidget *parent = 0);
-  QtTestTwoDigitNewickDialog(const QtTestTwoDigitNewickDialog&) = delete;
-  QtTestTwoDigitNewickDialog& operator=(const QtTestTwoDigitNewickDialog&) = delete;
-  ~QtTestTwoDigitNewickDialog() noexcept;
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  explicit QtTestTwoDigitNewickMainDialog(QWidget *parent = 0);
+  QtTestTwoDigitNewickMainDialog(const QtTestTwoDigitNewickMainDialog&) = delete;
+  QtTestTwoDigitNewickMainDialog& operator=(const QtTestTwoDigitNewickMainDialog&) = delete;
+  ~QtTestTwoDigitNewickMainDialog() noexcept;
 
 protected:
 
 
 private:
-  Ui::QtTestTwoDigitNewickDialog *ui;
+  Ui::QtTestTwoDigitNewickMainDialog *ui;
 
 private slots:
-  void on_button_help_clicked();
   void OnAnyChange();
   void OnAboutClick();
 };

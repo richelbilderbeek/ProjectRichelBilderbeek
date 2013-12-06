@@ -12,11 +12,11 @@ namespace foam {
 ///An item in an OpenFOAM boundary file
 struct BoundaryFileItem
 {
-  BoundaryFileItem(
+  explicit BoundaryFileItem(
     const std::string& name = "",
     const std::string& type = "",
     const int n_faces = 0,
-    const FaceIndex n_start_face = 0
+    const FaceIndex n_start_face = FaceIndex(0)
   );
 
   const std::string& GetName() const noexcept { return m_name; }

@@ -23,7 +23,7 @@ ribi::QtSecretMessageMenuDialog::~QtSecretMessageMenuDialog() noexcept
 
 void ribi::QtSecretMessageMenuDialog::on_button_about_clicked()
 {
-  About a = SecretMessage::MenuDialog::GetAbout();
+  About a = SecretMessage::MenuDialog().GetAbout();
   //a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());
   //a.AddLibrary("QtRichelBilderbeekResources version: " + RichelBilderbeek::QtResources::GetVersion());
   QtAboutDialog d(a);

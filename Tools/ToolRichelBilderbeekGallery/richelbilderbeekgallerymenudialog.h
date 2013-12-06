@@ -21,13 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RICHELBILDERBEEKGALLERYMENUDIALOG_H
 #define RICHELBILDERBEEKGALLERYMENUDIALOG_H
 
-#include "about.h"
+#include "menudialog.h"
 
 namespace ribi {
 
 struct Program;
 
-struct GalleryMenuDialog
+struct GalleryMenuDialog : public MenuDialog
 {
   GalleryMenuDialog();
 
@@ -47,6 +47,8 @@ struct GalleryMenuDialog
   const std::vector<std::string> CreateHtmlToolGallery() const noexcept;
 
   const About GetAbout() const noexcept;
+  const Help GetHelp() const noexcept;
+  const boost::shared_ptr<const Program> GetProgram() const noexcept;
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 
@@ -57,6 +59,8 @@ struct GalleryMenuDialog
   ///Test this class
   static void Test() noexcept;
   #endif
+
+  int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   ///Converts a program to a gallery item
   ///Example:

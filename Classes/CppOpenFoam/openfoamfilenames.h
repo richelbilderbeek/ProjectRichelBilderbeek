@@ -26,10 +26,6 @@ struct Filenames
   ///Must use Win32 backslashes
   const ribi::fileio::Filename GetNeighbour() const noexcept;
 
-  ///The filename the resulting nodes will be written to
-  ///Must use Win32 backslashes
-  const ribi::fileio::Filename GetNodes() const noexcept;
-
   ///The filename that indicates that this is an OpenFOAM case
   const ribi::fileio::Filename GetOpenFoamCase() const noexcept;
 
@@ -56,6 +52,10 @@ struct Filenames
   ///The filename the resulting owner (needed by OpenFOAM) will be written to
   ///Must use Win32 backslashes
   const ribi::fileio::Filename GetOwner() const noexcept;
+
+  ///The filename the resulting nodes will be written to
+  ///Must use Win32 backslashes
+  const ribi::fileio::Filename GetPoints() const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

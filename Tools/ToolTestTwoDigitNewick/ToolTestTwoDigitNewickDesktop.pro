@@ -1,112 +1,23 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-CONFIG   += console
-CONFIG   -= app_bundle
+include(../../Libraries/Boost.pri)
+include(../../Libraries/BigInteger.pri)
 
-#Use 64 bit
-#QMAKE_CXXFLAGS += -m64
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppBinaryNewickVector \
-  ../../Classes/CppFuzzy_equal_to \
-  ../../Classes/CppNewick \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppQtHideAndShowDialog \
-  ../../Classes/CppTrace \
-  ../../Classes/CppTwoDigitNewick
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
+#Specific
+include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppNewick/CppNewick.pri)
+include(../../Classes/CppTwoDigitNewick/CppTwoDigitNewick.pri)
+include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 
-TEMPLATE = app
-
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppBinaryNewickVector/binarynewickvector.cpp \
-    ../../Classes/CppNewick/newick.cpp \
-    ../../Classes/CppNewick/newickcpp98.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewick.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.cpp \
-    ../../Classes/CppTwoDigitNewick/twodigitnewicks.cpp \
-    qtmain.cpp \
-    qttesttwodigitnewickdialog.cpp
-
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppBinaryNewickVector/binarynewickvector.h \
-    ../../Classes/CppNewick/newick.h \
-    ../../Classes/CppNewick/newickcpp98.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppTrace/trace.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewick.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickderivative.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindexer.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewickindextable.h \
-    ../../Classes/CppTwoDigitNewick/twodigitnewicks.h \
-    qttesttwodigitnewickdialog.h
-
-FORMS += \
-    qttesttwodigitnewickdialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
-
-RESOURCES += \
-    ToolTestTwoDigitNewick.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-#
-#
-# Big integer
-#
-#
-INCLUDEPATH += \
-    ../../Libraries/bigint-2010.04.30
-
-HEADERS += \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.hh \
-    ../../Libraries/bigint-2010.04.30/BigInteger.hh \
-    ../../Libraries/bigint-2010.04.30/BigIntegerLibrary.hh \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.hh \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.hh \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.hh \
-    ../../Libraries/bigint-2010.04.30/NumberlikeArray.hh
-
-SOURCES += \
-    ../../Libraries/bigint-2010.04.30/BigIntegerAlgorithms.cc \
-    ../../Libraries/bigint-2010.04.30/BigInteger.cc \
-    ../../Libraries/bigint-2010.04.30/BigIntegerUtils.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsigned.cc \
-    ../../Libraries/bigint-2010.04.30/BigUnsignedInABase.cc
+SOURCES += qtmain.cpp

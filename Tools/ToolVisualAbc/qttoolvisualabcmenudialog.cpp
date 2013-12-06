@@ -28,7 +28,7 @@ void ribi::QtVisualAbcMenuDialog::on_button_start_clicked()
 
 void ribi::QtVisualAbcMenuDialog::on_button_about_clicked()
 {
-  About a = VisualAbcMenuDialog::GetAbout();
+  About a = VisualAbcMenuDialog().GetAbout();
   QtAboutDialog d(a);
   this->ShowChild(&d);
 }

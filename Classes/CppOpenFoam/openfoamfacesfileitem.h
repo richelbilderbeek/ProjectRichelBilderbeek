@@ -11,7 +11,7 @@ namespace foam {
 ///An item in an OpenFOAM 'faces' file
 struct FacesFileItem
 {
-  FacesFileItem(
+  explicit FacesFileItem(
     const std::vector<PointIndex>& point_indices = {}
   );
 

@@ -12,6 +12,8 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include <QFile>
+
 #include "filename.h"
 #include "openfoamheader.h"
 #include "openfoamboundaryfileitem.h"
@@ -30,9 +32,36 @@ ribi::foam::BoundaryFile::BoundaryFile(
   #endif
 }
 
+bool ribi::foam::BoundaryFile::CanGet(const FaceIndex& face_index) const noexcept
+{
+  for (const BoundaryFileItem& item: m_items)
+  {
+    const int i = face_index.Get();
+    const int min = item.GetStartFace().Get();
+    const int max = min + item.GetNfaces();
+    if (i >= min && i < max) return true;
+  }
+  return false;
+}
+
+ribi::foam::BoundaryFileItem& ribi::foam::BoundaryFile::Find(const FaceIndex& face_index) noexcept
+{
+  assert(CanGet(face_index));
+  const int sz = static_cast<int>(m_items.size());
+  for (int i=0; i!=sz; ++i)
+  {
+    const int j = face_index.Get();
+    const int min = m_items[i].GetStartFace().Get();
+    const int max = min + m_items[i].GetNfaces();
+    if (j >= min && j < max) return m_items[i];
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("ribi::foam::BoundaryFile::Find");
+}
+
 const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
 {
-  return Header("polyBoundaryMesh","constant/polyMesh","boundary");
+  return Header("polyBoundaryMesh","constant/polyMesh","","boundary");
 }
 
 const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
@@ -59,7 +88,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
     const std::string name = "some_name" + boost::lexical_cast<std::string>(i);
     const std::string type = "some_type" + boost::lexical_cast<std::string>(i);
     const int n_faces = i;
-    const int start_face = i * i;
+    const FaceIndex start_face(i * i);
     BoundaryFileItem item(name,type,n_faces,start_face);
     items.push_back(item);
   }
@@ -87,7 +116,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
       const std::string name = "some_other_name" + boost::lexical_cast<std::string>(i);
       const std::string type = "some_other_type" + boost::lexical_cast<std::string>(i);
       const int n_faces = i + 123;
-      const int start_face = (i * i) + 456;
+      const FaceIndex start_face((i * i) + 456);
       BoundaryFileItem item(name,type,n_faces,start_face);
       other_items.push_back(item);
     }
@@ -107,6 +136,20 @@ void ribi::foam::BoundaryFile::Test() noexcept
       TRACE(c);
     }
     assert(b == c);
+  }
+  //Read from testing file
+  {
+    const std::string filename { GetDefaultHeader().GetObject() };
+    {
+      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
+      f.copy(filename.c_str());
+    }
+    {
+      assert(fileio::IsRegularFile(filename));
+      std::ifstream f(filename.c_str());
+      BoundaryFile b(f);
+      assert(!b.GetItems().empty());
+    }
   }
   TRACE("Finished ribi::foam::Header::BoundaryFile successfully");
 }

@@ -7,6 +7,7 @@
 #include "fileiofwd.h"
 #include "openfoamfwd.h"
 #include "openfoamheader.h"
+#include "openfoamboundaryfileitem.h"
 
 namespace ribi {
 namespace foam {
@@ -14,8 +15,8 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct BoundaryFile
 {
-  BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
-  BoundaryFile(
+  explicit BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
+  explicit BoundaryFile(
     const Header header = GetDefaultHeader(),
     const std::vector<BoundaryFileItem>& items = {});
 
@@ -23,12 +24,22 @@ struct BoundaryFile
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<BoundaryFileItem> GetItems() const noexcept { return m_items; }
 
+  ///Swap the face indices between
+  //void Swap(const FaceIndex& lhs, const FaceIndex& rhs);
+
   private:
 
   ///The OpenFOAM header
   Header m_header;
   ///The items boundary contains
   std::vector<BoundaryFileItem> m_items;
+
+  ///Is the FaceIndex present among the current items?
+  bool CanGet(const FaceIndex& face_index) const noexcept;
+
+  ///Find out which BoundaryFileItem the face belongs to
+  ///Assumes CanGet(face_index) == true
+  BoundaryFileItem& Find(const FaceIndex& face_index) noexcept;
 
   static const BoundaryFile Parse(std::istream& is);
 

@@ -7,6 +7,7 @@
 #include "fileiofwd.h"
 #include "openfoamfwd.h"
 #include "openfoamheader.h"
+#include "openfoamneighbourfileitem.h"
 
 namespace ribi {
 namespace foam {
@@ -14,14 +15,22 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct NeighbourFile
 {
-  NeighbourFile(std::istream& is) : NeighbourFile(Parse(is)) {}
-  NeighbourFile(
+  explicit NeighbourFile(std::istream& is) : NeighbourFile(Parse(is)) {}
+  explicit NeighbourFile(
     const Header header = GetDefaultHeader(),
     const std::vector<NeighbourFileItem>& items = {});
+
+  ///If the FaceIndex is present
+  bool CanGetItem(const FaceIndex& face_index) const noexcept;
 
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<NeighbourFileItem> GetItems() const noexcept { return m_items; }
+
+  ///Assumes CanGetItem == true
+  const NeighbourFileItem& GetItem(const FaceIndex& face_index) const noexcept;
+
+  void SetItem(const FaceIndex& face_index, const NeighbourFileItem& item) noexcept;
 
   private:
 

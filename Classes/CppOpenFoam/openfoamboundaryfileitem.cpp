@@ -33,7 +33,7 @@ void ribi::foam::BoundaryFileItem::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::BoundaryFileItem::Test");
-  const BoundaryFileItem i("some_name","some_type",123,456);
+  const BoundaryFileItem i("some_name","some_type",123,FaceIndex(456));
   std::stringstream s;
   s << i;
   BoundaryFileItem j;

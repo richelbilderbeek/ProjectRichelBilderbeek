@@ -27,3 +27,7 @@ bool ribi::foam::operator==(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
   return lhs.Get() == rhs.Get();
 }
 
+bool ribi::foam::operator!=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
+{
+  return !(lhs == rhs);
+}

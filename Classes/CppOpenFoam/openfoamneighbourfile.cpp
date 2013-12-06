@@ -13,9 +13,12 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/lexical_cast.hpp>
 
+#include <QFile>
+
 #include "filename.h"
 #include "openfoamheader.h"
 #include "openfoamneighbourfileitem.h"
+#include "openfoamfaceindex.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -31,9 +34,23 @@ ribi::foam::NeighbourFile::NeighbourFile(
   #endif
 }
 
+bool ribi::foam::NeighbourFile::CanGetItem(
+  const FaceIndex& face_index) const noexcept
+{
+  assert(face_index.Get() >= 0);
+  return face_index.Get() < static_cast<int>(m_items.size());
+}
+
 const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
 {
-  return Header("labelList","constant/polyMesh","neighbour");
+  return Header("labelList","constant/polyMesh","","neighbour");
+}
+
+const ribi::foam::NeighbourFileItem& ribi::foam::NeighbourFile::GetItem(
+  const FaceIndex& face_index) const noexcept
+{
+  assert(CanGetItem(face_index));
+  return m_items[ static_cast<int>(face_index.Get()) ];
 }
 
 const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& is)
@@ -41,6 +58,14 @@ const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& i
   NeighbourFile b;
   is >> b;
   return b;
+}
+
+void ribi::foam::NeighbourFile::SetItem(const FaceIndex& face_index, const NeighbourFileItem& item) noexcept
+{
+  assert(face_index.Get() >= 0);
+  assert(face_index.Get() < static_cast<int>(m_items.size()));
+  m_items[ face_index.Get() ] = item;
+  assert(GetItem(face_index) == item);
 }
 
 #ifndef NDEBUG
@@ -57,7 +82,7 @@ void ribi::foam::NeighbourFile::Test() noexcept
   std::vector<NeighbourFileItem> items;
   for (int i=1; i!=4; ++i)
   {
-    NeighbourFileItem item(i * i);
+    NeighbourFileItem item(CellIndex(i * i));
     items.push_back(item);
   }
   //operator==
@@ -81,7 +106,7 @@ void ribi::foam::NeighbourFile::Test() noexcept
     std::vector<NeighbourFileItem> other_items;
     for (int i=1; i!=3; ++i)
     {
-      NeighbourFileItem item(2 * i * i);
+      NeighbourFileItem item(CellIndex(2 * i * i));
       other_items.push_back(item);
     }
     const NeighbourFile c(header,other_items);
@@ -100,6 +125,20 @@ void ribi::foam::NeighbourFile::Test() noexcept
       TRACE(c);
     }
     assert(b == c);
+  }
+  //Read from testing file
+  {
+    const std::string filename { GetDefaultHeader().GetObject() };
+    {
+      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
+      f.copy(filename.c_str());
+    }
+    {
+      assert(fileio::IsRegularFile(filename));
+      std::ifstream f(filename.c_str());
+      NeighbourFile b(f);
+      assert(!b.GetItems().empty());
+    }
   }
   TRACE("Finished ribi::foam::Header::NeighbourFile successfully");
 }

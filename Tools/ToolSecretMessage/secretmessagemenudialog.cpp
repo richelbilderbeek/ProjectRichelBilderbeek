@@ -1,5 +1,21 @@
 #include "secretmessagemenudialog.h"
+
+#include <cassert>
+#include <iostream>
+
 #include "trace.h"
+
+int ribi::SecretMessage::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
+  const int argc = static_cast<int>(argv.size());
+  if (argc == 1)
+  {
+    std::cout << GetHelp() << '\n';
+    return 1;
+  }
+  assert(!"TODO");
+  return 1;
+}
 
 const ribi::About ribi::SecretMessage::MenuDialog::GetAbout() const noexcept
 {
@@ -15,6 +31,29 @@ const ribi::About ribi::SecretMessage::MenuDialog::GetAbout() const noexcept
   //a.AddLibrary("ProFile version: " + ProFile::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
+}
+
+const ribi::Help ribi::SecretMessage::MenuDialog::GetHelp() const noexcept
+{
+  return ribi::Help(
+    this->GetAbout().GetFileTitle(),
+    this->GetAbout().GetFileDescription(),
+    {
+
+    },
+    {
+
+    }
+  );
+}
+
+const boost::shared_ptr<const ribi::Program> ribi::SecretMessage::MenuDialog::GetProgram() const noexcept
+{
+  boost::shared_ptr<const ribi::Program> p {
+    new ribi::ProgramSecretMessage
+  };
+  assert(p);
+  return p;
 }
 
 const std::string ribi::SecretMessage::MenuDialog::GetVersion() const noexcept

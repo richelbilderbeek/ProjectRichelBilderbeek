@@ -6,13 +6,13 @@
 #include "trace.h"
 
 ribi::foam::NeighbourFileItem::NeighbourFileItem(
-  const int face_index
+  const CellIndex cell_index
   )
-  : m_face_index{face_index}
+  : m_cell_index{cell_index}
 {
   #ifndef NDEBUG
   Test();
-  assert(m_face_index >= -1 && "Also allow -1");
+  assert(m_cell_index.Get() >= -1 && "Also allow -1"); //?NONSENSE or not?
   #endif
 }
 
@@ -25,7 +25,7 @@ void ribi::foam::NeighbourFileItem::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::NeighbourFileItem::Test");
-  const NeighbourFileItem i(123);
+  const NeighbourFileItem i(CellIndex(123));
   std::stringstream s;
   s << i;
   NeighbourFileItem j;
@@ -43,7 +43,7 @@ void ribi::foam::NeighbourFileItem::Test() noexcept
 bool ribi::foam::operator==(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs)
 {
   return
-       lhs.GetFaceIndex() == rhs.GetFaceIndex()
+       lhs.GetCellIndex() == rhs.GetCellIndex()
   ;
 }
 
@@ -54,13 +54,13 @@ bool ribi::foam::operator!=(const NeighbourFileItem& lhs, const NeighbourFileIte
 
 std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFileItem& item)
 {
-  os << item.GetFaceIndex();
+  os << item.GetCellIndex();
   return os;
 }
 
 std::istream& ribi::foam::operator>>(std::istream& is, NeighbourFileItem& f)
 {
-  is >> f.m_face_index;
-  assert(f.GetFaceIndex() >= -1);
+  is >> f.m_cell_index;
+  assert(f.GetCellIndex().Get() >= -1);
   return is;
 }

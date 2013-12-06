@@ -49,7 +49,7 @@ void ribi::QtToolSurfacePlotterMenuDialog::on_button_start_clicked()
 
 void ribi::QtToolSurfacePlotterMenuDialog::on_button_about_clicked()
 {
-  About a(ToolSurfacePlotterMenuDialog::GetAbout());
+  About a(ToolSurfacePlotterMenuDialog().GetAbout());
   a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);

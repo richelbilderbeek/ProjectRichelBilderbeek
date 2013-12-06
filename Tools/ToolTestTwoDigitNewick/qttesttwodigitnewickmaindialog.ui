@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestTwoDigitNewickDialog</class>
- <widget class="QDialog" name="QtTestTwoDigitNewickDialog">
+ <class>QtTestTwoDigitNewickMainDialog</class>
+ <widget class="QDialog" name="QtTestTwoDigitNewickMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -68,13 +68,6 @@
    <item>
     <widget class="QWidget" name="widget_bottom" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QPushButton" name="button_help">
-        <property name="text">
-         <string>Help</string>
-        </property>
-       </widget>
-      </item>
       <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
