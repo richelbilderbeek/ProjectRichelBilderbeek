@@ -494,7 +494,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::testChess: p.reset(new TestChessMenuDialog); break;
       case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
       case ProgramType::testDial: p.reset(new TestDialMenuDialog); break;
-      case ProgramType::testEntrance: p.reset(new TestEntranceMenuDialog); break;
+      case ProgramType::testEntrance: p.reset(new ToolTestEntrance::MenuDialog); break;
       case ProgramType::testExercise: p.reset(new TestExerciseMenuDialog); break;
       case ProgramType::testFunctionParser: p.reset(new TestFunctionParserMenuDialog); break;
       case ProgramType::testGnuplotInterface: break;

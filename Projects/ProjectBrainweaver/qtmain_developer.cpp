@@ -143,7 +143,7 @@ int main(int argc, char *argv[])
 ///2013-05-20:
 ///- ?DONE: Increase the area of a QtNodeIdem
 ///    1) FAILS: by adding 'QPainterPath QtPvdbConceptItem::shape() const'
-///    2) MIGHT WORK: Bypass in cmap::QtConceptMapNodeItem::boundingRect
+///    2) MIGHT WORK: Bypass in cmap::QtNode::boundingRect
 ///- ?1st of May, when concluded it's a good thing to implement:
 ///  - cluster dialog: allow more than 2 levels in clustering
 ///  - concept map dialog: allow examples from concepts to be dragged out and promoted to new conpepts

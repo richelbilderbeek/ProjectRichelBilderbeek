@@ -248,22 +248,22 @@ void ribi::cmap::QtConceptMapTestConceptItemDialog::Test()
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
-    assert(d.m_edit_concept->brush()    == QtConceptMapBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_concept->brush() == QtConceptMapBrushFactory::CreateRedGradientBrush());
-    assert(d.m_rate_concept->brush()    == QtConceptMapBrushFactory::CreateRedGradientBrush());
+    assert(d.m_edit_concept->brush()    == QtBrushFactory::CreateGrayGradientBrush());
+    assert(d.m_display_concept->brush() == QtBrushFactory::CreateRedGradientBrush());
+    assert(d.m_rate_concept->brush()    == QtBrushFactory::CreateRedGradientBrush());
 
     concept->SetRatingComplexity(0);
     concept->SetRatingConcreteness(1);
 
-    assert(d.m_edit_concept->brush()     == QtConceptMapBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_concept->brush()  == QtConceptMapBrushFactory::CreateYellowGradientBrush());
-    assert(d.m_rate_concept->brush()     == QtConceptMapBrushFactory::CreateYellowGradientBrush());
+    assert(d.m_edit_concept->brush()     == QtBrushFactory::CreateGrayGradientBrush());
+    assert(d.m_display_concept->brush()  == QtBrushFactory::CreateYellowGradientBrush());
+    assert(d.m_rate_concept->brush()     == QtBrushFactory::CreateYellowGradientBrush());
 
     concept->SetRatingSpecificity(2);
 
-    assert(d.m_edit_concept->brush()    == QtConceptMapBrushFactory::CreateGrayGradientBrush());
-    assert(d.m_display_concept->brush() == QtConceptMapBrushFactory::CreateGreenGradientBrush());
-    assert(d.m_rate_concept->brush()    == QtConceptMapBrushFactory::CreateGreenGradientBrush());
+    assert(d.m_edit_concept->brush()    == QtBrushFactory::CreateGrayGradientBrush());
+    assert(d.m_display_concept->brush() == QtBrushFactory::CreateGreenGradientBrush());
+    assert(d.m_rate_concept->brush()    == QtBrushFactory::CreateGreenGradientBrush());
   }
   TRACE("ribi::cmap::QtConceptMapTestConceptItemDialog::Test finished successfully");
 }

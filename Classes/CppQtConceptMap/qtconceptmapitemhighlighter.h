@@ -13,24 +13,24 @@ namespace ribi {
 
 namespace cmap {
 
-class QtConceptMapItemHighlighter : public QObject
+class QtItemHighlighter : public QObject
 {
   Q_OBJECT
 
 public:
-  QtConceptMapItemHighlighter(QObject *parent = 0);
-  QtConceptMapItemHighlighter(const QtConceptMapItemHighlighter&) = delete;
-  QtConceptMapItemHighlighter& operator=(const QtConceptMapItemHighlighter&) = delete;
+  QtItemHighlighter(QObject *parent = 0);
+  QtItemHighlighter(const QtItemHighlighter&) = delete;
+  QtItemHighlighter& operator=(const QtItemHighlighter&) = delete;
 
   ///Get the item being highlighted
   ///Returns nullptr if no item is highlighted
-        QtConceptMapNodeItem* GetItem()       noexcept { return m_item; }
-  const QtConceptMapNodeItem* GetItem() const noexcept { return m_item; }
+        QtNode* GetItem()       noexcept { return m_item; }
+  const QtNode* GetItem() const noexcept { return m_item; }
 
   ///Set the item to highlight.
   ///If set with a nullptr, highlighting the current item stops
   ///If set with the same item twice, nothing new happens
-  void SetItem(QtConceptMapNodeItem* const item);
+  void SetItem(QtNode* const item);
 
 
 private:
@@ -38,7 +38,7 @@ private:
   int m_cnt;
 
   ///The item being highlighted
-  QtConceptMapNodeItem* m_item;
+  QtNode* m_item;
 
   ///The timer used for highlighting every 100 ms
   QTimer * const m_timer;

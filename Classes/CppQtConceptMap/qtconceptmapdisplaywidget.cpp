@@ -7,7 +7,7 @@
 #include <boost/lambda/lambda.hpp>
 
 #include "conceptmapedge.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "conceptmaphelper.h"
 #include "conceptmapedge.h"
@@ -17,7 +17,7 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapfactory.h"
 #include "qtconceptmapcenternodeitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -63,12 +63,12 @@ void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
   assert(edge);
   const boost::shared_ptr<QtConceptMapDisplayConceptItem> qtconcept(new QtConceptMapDisplayConceptItem(edge->GetConcept()));
   assert(qtconcept);
-  QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
+  QtNode * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtConceptMapNodeItem * const to   = FindQtNode(edge->GetTo());
+  QtNode * const to   = FindQtNode(edge->GetTo());
   assert(to);
   assert(from != to);
-  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(
+  QtEdge * const qtedge = new QtEdge(
     edge,
     qtconcept,
     from,
@@ -117,13 +117,13 @@ void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
   #endif
 }
 
-ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapDisplayWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtConceptMapDisplayWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
   const boost::shared_ptr<QtConceptMapDisplayConceptItem> qtconcept(new QtConceptMapDisplayConceptItem(node->GetConcept()));
   assert(qtconcept);
-  QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
+  QtNode * const qtnode = new QtNode(node,qtconcept);
   assert(qtnode);
 
   //General: inform an Observer that this item has changed
@@ -147,7 +147,7 @@ ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapDisplayWidget::AddNod
   assert(qtnode->pos().y() == node->GetY());
 
   //Cannot test this: during construction, the nodes will be put in one-by-one
-  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
+  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
 
   return qtnode;
 }
@@ -167,7 +167,7 @@ void ribi::cmap::QtConceptMapDisplayWidget::CleanMe()
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
-    QtConceptMapExamplesItem * const item = new QtConceptMapExamplesItem;
+    QtExamplesItem * const item = new QtExamplesItem;
     assert(item);
     SetExamplesItem(item);
     assert(GetExamplesItem());

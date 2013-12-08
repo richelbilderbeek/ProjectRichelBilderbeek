@@ -26,7 +26,7 @@
 #include "qtconceptmapdisplayconceptitem.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "qtconceptmapeditconceptitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmaprateconceptitem.h"
 #include "trace.h"
 #include "ui_qttestconceptmapdisplaywidgetdialog.h"
@@ -78,7 +78,7 @@ void ribi::cmap::QtTestConceptMapDisplayWidgetDialog::on_button_test_modify_clic
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
     {
-      if (QtConceptMapNodeItem* const qtitem = dynamic_cast<QtConceptMapNodeItem*>(item))
+      if (QtNode* const qtitem = dynamic_cast<QtNode*>(item))
       {
         assert(qtitem->GetConcept());
         assert(!qtitem->GetConcept()->GetName().empty());

@@ -110,7 +110,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const bo
   this->show();
   this->m_widget->setEnabled(true);
   #else
-  cmap::QtConceptMapRateConceptDialog d(sub_concept_map); //Item may be changed
+  cmap::QtRateConceptDialog d(sub_concept_map); //Item may be changed
   d.exec();
   #endif
 }

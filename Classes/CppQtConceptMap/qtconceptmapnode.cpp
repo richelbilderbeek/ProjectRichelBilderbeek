@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 
 #include <cassert>
 #include <climits>
@@ -22,7 +22,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
+ribi::cmap::QtNode::QtNode(
   const boost::shared_ptr<ribi::cmap::Node> node,
   const boost::shared_ptr<QtConceptItem> concept_item)
   : m_signal_node_requests_rate_concept{},
@@ -59,18 +59,18 @@ ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
   m_concept_item->SetPos(m_node->GetX(),m_node->GetY());
 
   m_concept_item->m_signal_position_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapNodeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
+    boost::bind(&ribi::cmap::QtNode::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
   m_node->m_signal_node_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapNodeItem::OnNodeChanged,this,boost::lambda::_1));
+    boost::bind(&ribi::cmap::QtNode::OnNodeChanged,this,boost::lambda::_1));
 
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapNodeItem::OnItemHasUpdated,this));
+      &ribi::cmap::QtNode::OnItemHasUpdated,this));
 
   m_concept_item->m_signal_request_scene_update.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapNodeItem::OnRequestsSceneUpdate,
+      &ribi::cmap::QtNode::OnRequestsSceneUpdate,
       this
     )
   );
@@ -89,13 +89,13 @@ ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
   {
     rate_concept->m_signal_request_rate_concept.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapNodeItem::OnItemRequestsRateConcept,
+        &ribi::cmap::QtNode::OnItemRequestsRateConcept,
         this
       )
     );
     rate_concept->m_signal_request_rate_examples.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapNodeItem::OnItemRequestsRateExamples,
+        &ribi::cmap::QtNode::OnItemRequestsRateExamples,
         this
       )
     );
@@ -110,7 +110,7 @@ ribi::cmap::QtConceptMapNodeItem::QtConceptMapNodeItem(
   assert(this->m_concept_item->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
-QRectF ribi::cmap::QtConceptMapNodeItem::boundingRect() const
+QRectF ribi::cmap::QtNode::boundingRect() const
 {
   //TRACE(m_concept_item->boundingRect().width());
   //TRACE(QtConceptMapItem::boundingRect().width());
@@ -122,12 +122,12 @@ QRectF ribi::cmap::QtConceptMapNodeItem::boundingRect() const
   //return QtConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
 }
 
-QBrush ribi::cmap::QtConceptMapNodeItem::brush() const
+QBrush ribi::cmap::QtNode::brush() const
 {
   return m_concept_item->brush();
 }
 
-void ribi::cmap::QtConceptMapNodeItem::DisableAll()
+void ribi::cmap::QtNode::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
@@ -135,7 +135,7 @@ void ribi::cmap::QtConceptMapNodeItem::DisableAll()
   this->m_concept_item->setVisible(false);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::EnableAll()
+void ribi::cmap::QtNode::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
@@ -143,26 +143,26 @@ void ribi::cmap::QtConceptMapNodeItem::EnableAll()
   this->m_concept_item->setVisible(true);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::focusInEvent(QFocusEvent*)
+void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
 {
   m_concept_item->SetContourPen(m_focus_pen); //Updates itself
   assert(!m_concept_item->hasFocus());
 }
 
-void ribi::cmap::QtConceptMapNodeItem::focusOutEvent(QFocusEvent*)
+void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
 {
   m_concept_item->SetContourPen(m_contour_pen); //Updates itself
   //m_signal_item_has_updated(0); //2013-01-20: causes Examples to get hidden //BUG
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtConceptMapNodeItem::GetConcept() const
+const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const
 {
   const boost::shared_ptr<const ribi::cmap::Concept> p = m_node->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapNodeItem::GetConcept()
+const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept()
 {
   const boost::shared_ptr<ribi::cmap::Concept> p = m_node->GetConcept();
   assert(p);
@@ -170,7 +170,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapNodeItem::G
 }
 
 /*
-void ribi::cmap::QtConceptMapNodeItem::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
+void ribi::cmap::QtNode::hoverMoveEvent(QGraphicsSceneHoverEvent * e)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
   //m_concept_item->hoverMoveEvent(e);
@@ -179,7 +179,7 @@ void ribi::cmap::QtConceptMapNodeItem::hoverMoveEvent(QGraphicsSceneHoverEvent *
 }
 */
 
-void ribi::cmap::QtConceptMapNodeItem::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event)
 {
   assert(m_concept_item);
   assert(m_concept_item->GetConcept());
@@ -193,7 +193,7 @@ void ribi::cmap::QtConceptMapNodeItem::keyPressEvent(QKeyEvent *event)
   QtConceptMapItem::keyPressEvent(event);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::OnItemHasUpdated()
+void ribi::cmap::QtNode::OnItemHasUpdated()
 {
   this->setRect(m_concept_item->boundingRect());
 
@@ -204,29 +204,29 @@ void ribi::cmap::QtConceptMapNodeItem::OnItemHasUpdated()
   this->m_signal_item_has_updated(this);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::OnItemRequestsRateConcept()
+void ribi::cmap::QtNode::OnItemRequestsRateConcept()
 {
   m_signal_node_requests_rate_concept(this);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::OnItemRequestsRateExamples()
+void ribi::cmap::QtNode::OnItemRequestsRateExamples()
 {
   m_signal_node_requests_rate_examples(this);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::OnNodeChanged(const cmap::Node * node)
+void ribi::cmap::QtNode::OnNodeChanged(const cmap::Node * node)
 {
   assert(node);
   //Keep the coordinats synced
   this->SetPos(node->GetX(),node->GetY());
 }
 
-void ribi::cmap::QtConceptMapNodeItem::OnRequestsSceneUpdate()
+void ribi::cmap::QtNode::OnRequestsSceneUpdate()
 {
   this->m_signal_request_scene_update();
 }
 
-void ribi::cmap::QtConceptMapNodeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget)
+void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem* item, QWidget* widget)
 {
 
   assert(m_concept_item);
@@ -257,7 +257,7 @@ void ribi::cmap::QtConceptMapNodeItem::paint(QPainter* painter, const QStyleOpti
       [this](const QGraphicsItem* const other_item)
       {
         assert(other_item);
-        if (const QtConceptMapNodeItem* const other_node = dynamic_cast<const QtConceptMapNodeItem*>(other_item))
+        if (const QtNode* const other_node = dynamic_cast<const QtNode*>(other_item))
         {
           const double dx = x() - other_node->x() > 0.0 ? 1.0 : -1.0;
           const double dy = y() - other_node->y() > 0.0 ? 1.0 : -1.0;
@@ -269,17 +269,17 @@ void ribi::cmap::QtConceptMapNodeItem::paint(QPainter* painter, const QStyleOpti
   }
 }
 
-void ribi::cmap::QtConceptMapNodeItem::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept)
+void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept)
 {
   this->m_node->SetConcept(concept);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::SetName(const std::string& name)
+void ribi::cmap::QtNode::SetName(const std::string& name)
 {
   m_node->GetConcept()->SetName(name);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::SetX(const double x)
+void ribi::cmap::QtNode::SetX(const double x)
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -301,7 +301,7 @@ void ribi::cmap::QtConceptMapNodeItem::SetX(const double x)
   assert(std::abs(x - m_concept_item->pos().x()) < epsilon);
 }
 
-void ribi::cmap::QtConceptMapNodeItem::SetY(const double y)
+void ribi::cmap::QtNode::SetY(const double y)
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -324,14 +324,14 @@ void ribi::cmap::QtConceptMapNodeItem::SetY(const double y)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapNodeItem::Test()
+void ribi::cmap::QtNode::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMapNodeItem::Test");
+  TRACE("Started ribi::cmap::QtNode::Test");
 
   //Test SetX and SetY being in sync
   {
@@ -342,7 +342,7 @@ void ribi::cmap::QtConceptMapNodeItem::Test()
       boost::shared_ptr<ribi::cmap::Node> node = nodes[node_index];
       assert(node);
       boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(node->GetConcept()));
-      boost::shared_ptr<QtConceptMapNodeItem> qtnode(new QtConceptMapNodeItem(node,qtconcept_item));
+      boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
       assert(qtconcept_item->GetConcept() == qtnode->GetConcept());
       assert(qtconcept_item->GetConcept() == node->GetConcept());
       assert(node == qtnode->GetNode());
@@ -435,6 +435,6 @@ void ribi::cmap::QtConceptMapNodeItem::Test()
       }
     }
   }
-  TRACE("Finished ribi::cmap::QtConceptMapNodeItem::Test successfully");
+  TRACE("Finished ribi::cmap::QtNode::Test successfully");
 }
 #endif

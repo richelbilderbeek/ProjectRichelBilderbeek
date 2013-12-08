@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtConceptMapRateConceptTallyDialog</class>
- <widget class="QDialog" name="QtConceptMapRateConceptTallyDialog">
+ <class>QtRateConceptTallyDialog</class>
+ <widget class="QDialog" name="QtRateConceptTallyDialog">
   <property name="geometry">
    <rect>
     <x>0</x>

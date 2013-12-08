@@ -12,7 +12,7 @@ namespace ribi {
 namespace cmap {
 
 ///Class for holding some QBrush instances
-struct QtConceptMapBrushFactory
+struct QtBrushFactory
 {
   ///Obtain a brush its name
   static const std::string BrushToStr(const QBrush& brush);

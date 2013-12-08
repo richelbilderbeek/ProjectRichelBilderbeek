@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "qtconceptmapratewidget.h"
+//#include "qtconceptmapratewidget.h"
 
 ribi::TestConceptMapMenuDialog::TestConceptMapMenuDialog()
 {
@@ -35,7 +35,7 @@ const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("QtConceptMapWidget version: " + cmap::QtConceptMapWidget::GetVersion());
+  //a.AddLibrary("QtConceptMapWidget version: " + cmap::QtConceptMapWidget::GetVersion());
   //a.AddLibrary("Test image from http://sipi.usc.edu");
 
   return a;

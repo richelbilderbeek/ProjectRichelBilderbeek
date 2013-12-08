@@ -12,9 +12,9 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapCenterNodeItem::QtConceptMapCenterNodeItem(
+ribi::cmap::QtCenterNode::QtCenterNode(
   const boost::shared_ptr<ribi::cmap::Node> node)
-  : QtConceptMapNodeItem(node,CreateConceptItem(node))
+  : QtNode(node,CreateConceptItem(node))
 {
   assert( ( boost::dynamic_pointer_cast<cmap::CenterNode>(node)
         || !boost::dynamic_pointer_cast<cmap::CenterNode>(node) )
@@ -24,10 +24,10 @@ ribi::cmap::QtConceptMapCenterNodeItem::QtConceptMapCenterNodeItem(
   assert(node);
   assert(this->GetConceptItem());
   this->setFlags(QGraphicsItem::ItemIsFocusable);
-  this->GetConceptItem()->SetMainBrush(QtConceptMapBrushFactory::CreateGoldGradientBrush());
+  this->GetConceptItem()->SetMainBrush(QtBrushFactory::CreateGoldGradientBrush());
 }
 
-const boost::shared_ptr<ribi::cmap::QtConceptItem> ribi::cmap::QtConceptMapCenterNodeItem::CreateConceptItem(
+const boost::shared_ptr<ribi::cmap::QtConceptItem> ribi::cmap::QtCenterNode::CreateConceptItem(
   const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);

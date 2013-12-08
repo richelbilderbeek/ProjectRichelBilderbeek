@@ -103,8 +103,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
   const int index = std::rand() % concept_maps.size();
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[ index ];
   //Create and show the dialog
-  boost::shared_ptr<cmap::QtConceptMapRateConceptDialog> d(
-    new cmap::QtConceptMapRateConceptDialog(concept_map));
+  boost::shared_ptr<cmap::QtRateConceptDialog> d(
+    new cmap::QtRateConceptDialog(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
@@ -122,7 +122,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> concept = ribi::cmap::ConceptFactory::GetTests().at(5);
-  boost::shared_ptr<cmap::QtConceptMapRateExamplesDialog> d(new cmap::QtConceptMapRateExamplesDialog(concept));
+  boost::shared_ptr<cmap::QtRateExamplesDialog> d(new cmap::QtRateExamplesDialog(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
@@ -531,9 +531,9 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked() noexcep
 {
 
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-    = cmap::QtConceptMapRateConceptTallyDialog::CreateTestConceptMap();
-  boost::shared_ptr<cmap::QtConceptMapRateConceptTallyDialog> d(
-    new cmap::QtConceptMapRateConceptTallyDialog(concept_map));
+    = cmap::QtRateConceptTallyDialog::CreateTestConceptMap();
+  boost::shared_ptr<cmap::QtRateConceptTallyDialog> d(
+    new cmap::QtRateConceptTallyDialog(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
 }
 

@@ -56,7 +56,7 @@ struct QtConceptItem : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual void keyPressEvent(QKeyEvent *event) = 0;
 
   ///Derived classes draw the concept the same, only with different pens
-  ///It is QtConceptMapEdgeItem however, that also draws an arrow underneath
+  ///It is QtEdge however, that also draws an arrow underneath
   void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *) final;
 
   ///The brush by which the indicator is filled

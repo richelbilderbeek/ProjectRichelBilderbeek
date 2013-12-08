@@ -28,10 +28,10 @@ struct QtConceptMapEditWidget : public QtConceptMapWidget
   #endif
 
   ///Delete an EdgeConcept
-  void DeleteEdge(QtConceptMapEdgeItem * const edge);
+  void DeleteEdge(QtEdge * const edge);
 
   ///Delete a Node
-  void DeleteNode(QtConceptMapNodeItem * const node);
+  void DeleteNode(QtNode * const node);
 
   #ifndef NDEBUG
   ///Do something random
@@ -52,33 +52,33 @@ private:
 
   ///The arrow used to create a new arrow
   ///Is nullptr when not active
-  QtConceptMapNewArrow * m_arrow;
+  QtNewArrow * m_arrow;
 
   ///The item highlighter, used when creating a new relation
-  QtConceptMapItemHighlighter * const m_highlighter;
+  QtItemHighlighter * const m_highlighter;
 
   ///The item showing the tools
-  QtConceptMapToolsItem * m_tools;
+  QtTool * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
 
   ///Add a new edge
-  void AddEdge(QtConceptMapNodeItem * const from, QtConceptMapNodeItem* const to);
+  void AddEdge(QtNode * const from, QtNode* const to);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtConceptMapNodeItem * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
+  QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
 
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtConceptMapWidget
-  const std::vector<QtConceptMapEdgeItem *> GetQtEdges();
+  const std::vector<QtEdge *> GetQtEdges();
 
   ///Obtain the read-and-write Qt node items
   ///The read-only Qt node items is already supplied by QtConceptMapWidget
-  const std::vector<QtConceptMapNodeItem *> GetQtNodes();
+  const std::vector<QtNode *> GetQtNodes();
 
   ///Called when an item wants to be edited
   void OnConceptMapItemRequestsEdit(QtConceptMapItem * const item);

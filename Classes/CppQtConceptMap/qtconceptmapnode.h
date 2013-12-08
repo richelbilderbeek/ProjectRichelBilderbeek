@@ -16,14 +16,14 @@ namespace ribi {
 
 namespace cmap {
 
-///QtConceptMapNodeItem displays a Node
-struct QtConceptMapNodeItem : public QtConceptMapItem
+///QtNode displays a Node
+struct QtNode : public QtConceptMapItem
 {
-  virtual ~QtConceptMapNodeItem() noexcept {}
+  virtual ~QtNode() noexcept {}
 
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)
-  explicit QtConceptMapNodeItem(
+  explicit QtNode(
     const boost::shared_ptr<ribi::cmap::Node> node,
     const boost::shared_ptr<QtConceptItem> concept_item);
 
@@ -55,8 +55,8 @@ struct QtConceptMapNodeItem : public QtConceptMapItem
 
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem
-  boost::signals2::signal<void (QtConceptMapNodeItem *)> m_signal_node_requests_rate_concept;
-  boost::signals2::signal<void (QtConceptMapNodeItem *)> m_signal_node_requests_rate_examples;
+  boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_concept;
+  boost::signals2::signal<void (QtNode *)> m_signal_node_requests_rate_examples;
 
   ///No other signals, these are present in the ConceptItems
 

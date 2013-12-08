@@ -17,17 +17,17 @@
 namespace ribi {
 namespace cmap {
 
-///QtConceptMapNewArrow is the arrow shown before a new one is added
-struct QtConceptMapNewArrow : public QtArrowItem
+///QtNewArrow is the arrow shown before a new one is added
+struct QtNewArrow : public QtArrowItem
 {
-  QtConceptMapNewArrow(
-    QtConceptMapNodeItem * const from,
+  QtNewArrow(
+    QtNode * const from,
     const QPointF& current_to);
-  QtConceptMapNewArrow(const QtConceptMapNewArrow&) = delete;
-  QtConceptMapNewArrow& operator=(const QtConceptMapNewArrow&) = delete;
+  QtNewArrow(const QtNewArrow&) = delete;
+  QtNewArrow& operator=(const QtNewArrow&) = delete;
   ///Obtain the source node
-  const QtConceptMapNodeItem * GetFrom() const { return m_from; }
-        QtConceptMapNodeItem * GetFrom()       { return m_from; }
+  const QtNode * GetFrom() const { return m_from; }
+        QtNode * GetFrom()       { return m_from; }
 
   private:
   ///Must be suppplied
@@ -35,7 +35,7 @@ struct QtConceptMapNewArrow : public QtArrowItem
 
   ///The source node
   ///Cannot be const as the user might want to edit it
-  QtConceptMapNodeItem * const m_from;
+  QtNode * const m_from;
 };
 
 } //~namespace cmap

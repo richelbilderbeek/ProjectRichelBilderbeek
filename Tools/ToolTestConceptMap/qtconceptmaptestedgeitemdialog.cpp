@@ -23,9 +23,9 @@
 #include "conceptmapnode.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "qtconceptmapdisplayconceptitem.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtconceptmapeditconceptitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmaprateconceptitem.h"
 #include "trace.h"
 #include "ui_qtconceptmaptestedgeitemdialog.h"
@@ -65,19 +65,19 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   #endif
 
   //Create three nodes that the edges can connect to
-  cmap::QtConceptMapNodeItem * node1 = nullptr;
+  cmap::QtNode * node1 = nullptr;
   {
     //m_from->GetConcept()->SetName("1");
     const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(m_from->GetConcept()));
-    node1 = new cmap::QtConceptMapNodeItem(m_from,item);
+    node1 = new cmap::QtNode(m_from,item);
     node1->m_signal_request_scene_update.connect(
       boost::bind(&ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
-  cmap::QtConceptMapNodeItem * node2 = nullptr;
+  cmap::QtNode * node2 = nullptr;
   {
     //m_to->GetConcept()->SetName("2");
     const boost::shared_ptr<QtConceptMapEditConceptItem> item(new QtConceptMapEditConceptItem(m_to->GetConcept()));
-    node2 = new cmap::QtConceptMapNodeItem(m_to,item);
+    node2 = new cmap::QtNode(m_to,item);
     node2->m_signal_request_scene_update.connect(
       boost::bind(&ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate,this));
   }
@@ -92,7 +92,7 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   {
     assert(m_edge);
     boost::shared_ptr<QtConceptMapEditConceptItem> concept(new QtConceptMapEditConceptItem(m_edge->GetConcept()));
-    m_edge_item = new QtConceptMapEdgeItem(m_edge,concept,node1,node2);
+    m_edge_item = new QtEdge(m_edge,concept,node1,node2);
   }
 
   //Node is used in: m_edge and QtConceptMapNodeConcept::m_edge
@@ -126,7 +126,7 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
       std::count_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          return dynamic_cast<const QtConceptMapEdgeItem*>(item);
+          return dynamic_cast<const QtEdge*>(item);
         }
       ) == 1);
   }
@@ -213,11 +213,11 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::QtConceptMapTestEdgeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          return dynamic_cast<const QtConceptMapEdgeItem*>(item);
+          return dynamic_cast<const QtEdge*>(item);
         }
       );
       assert(iter!=v.end());
-      QtConceptMapEdgeItem * const qtedge = dynamic_cast<QtConceptMapEdgeItem*>(*iter);
+      QtEdge * const qtedge = dynamic_cast<QtEdge*>(*iter);
       assert(qtedge);
       return qtedge->GetEdge();
     }

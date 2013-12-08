@@ -43,7 +43,7 @@ private:
   void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtConceptMapNodeItem * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
+  QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
 
   void CleanMe();
 

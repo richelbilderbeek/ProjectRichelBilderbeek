@@ -38,11 +38,11 @@ public:
 
   ///Obtain the read-only Qt edge items
   ///Read-and-write Qt edge items are only supported for QtConceptMapEditWidget
-  const std::vector<const QtConceptMapEdgeItem *> GetQtEdges() const;
+  const std::vector<const QtEdge *> GetQtEdges() const;
 
   ///Obtain the read-only Qt node items
   ///Read-and-write Qt node items are only supported for QtConceptMapEditWidget
-  const std::vector<const QtConceptMapNodeItem *> GetQtNodes() const;
+  const std::vector<const QtNode *> GetQtNodes() const;
 
   ///Obtain the QGraphicsScene
   QGraphicsScene* GetScene() const;
@@ -70,7 +70,7 @@ protected:
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
-  virtual QtConceptMapNodeItem * AddNode(const boost::shared_ptr<ribi::cmap::Node> node) = 0;
+  virtual QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node) = 0;
 
   ///Initialize the widget with the loaded concept map
   ///BuildQtConceptMap changes the concept map entered, by changing some GUI
@@ -82,28 +82,28 @@ protected:
   virtual void CleanMe() = 0;
 
   ///Get all the edges connected to the concept
-  const std::vector<QtConceptMapEdgeItem*> FindEdges(const QtConceptMapNodeItem * const from) const;
+  const std::vector<QtEdge*> FindEdges(const QtNode * const from) const;
 
   //Find the edge with the same from and to
-  const QtConceptMapEdgeItem * FindQtEdge(
-    const QtConceptMapNodeItem* const from,
-    const QtConceptMapNodeItem* const to) const;
+  const QtEdge * FindQtEdge(
+    const QtNode* const from,
+    const QtNode* const to) const;
 
   ///Find the QtNode containing the Node
-  QtConceptMapNodeItem * FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const;
+  QtNode * FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const;
 
   ///Obtain the center node
-  const QtConceptMapNodeItem * GetCenterNode() const;
+  const QtNode * GetCenterNode() const;
 
   ///Obtain the rectangle with text showing the examples
-  const QtConceptMapExamplesItem * GetExamplesItem() const;
+  const QtExamplesItem * GetExamplesItem() const;
 
   ///Obtain the rectangle with text showing the examples
-  QtConceptMapExamplesItem * GetExamplesItem();
+  QtExamplesItem * GetExamplesItem();
 
-  ///Obtain the first QtConceptMapNodeItem under the cursor
+  ///Obtain the first QtNode under the cursor
   ///Returns nullptr if none is present
-  QtConceptMapNodeItem* GetItemBelowCursor(const QPointF& pos) const;
+  QtNode* GetItemBelowCursor(const QPointF& pos) const;
 
   ///Check if this item is the center node
   static bool IsCenterNode(const QGraphicsItem* const item);
@@ -116,7 +116,7 @@ protected:
   void RepositionItems();
 
   ///Set the rectangle with text showing the examples
-  void SetExamplesItem(QtConceptMapExamplesItem * const item);
+  void SetExamplesItem(QtExamplesItem * const item);
 
   #ifndef NDEBUG
   ///Test the internals of this class:
@@ -131,7 +131,7 @@ private:
   const boost::shared_ptr<ribi::cmap::ConceptMap> m_concept_map;
 
   ///The item showing the examples
-  QtConceptMapExamplesItem * m_examples_item;
+  QtExamplesItem * m_examples_item;
 
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;

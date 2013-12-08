@@ -18,7 +18,7 @@
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapdisplayconceptitem.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "conceptmapexamples.h"
 #include "conceptmapexample.h"
 #include "ui_qtconceptmaptestnodeitemdialog.h"
@@ -49,7 +49,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   {
     const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(m_node->GetConcept()));
-    m_display_node = new cmap::QtConceptMapNodeItem(m_node,item);
+    m_display_node = new cmap::QtNode(m_node,item);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -66,7 +66,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   {
     const boost::shared_ptr<QtConceptMapEditConceptItem> item(new QtConceptMapEditConceptItem(m_node->GetConcept()));
-    m_edit_node = new cmap::QtConceptMapNodeItem(m_node,item);
+    m_edit_node = new cmap::QtNode(m_node,item);
     m_edit_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -79,7 +79,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   {
     const boost::shared_ptr<QtConceptMapRateConceptItem> item(new QtConceptMapRateConceptItem(m_node->GetConcept()));
-    m_rate_node = new cmap::QtConceptMapNodeItem(m_node,item);
+    m_rate_node = new cmap::QtNode(m_node,item);
     m_rate_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -102,9 +102,9 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   ui->view->scene()->addItem(m_rate_node);
 
   assert(ui->view->scene()->items().size() == 3);
-  assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[0]));
-  assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[1]));
-  assert(dynamic_cast<cmap::QtConceptMapNodeItem*>(ui->view->scene()->items()[2]));
+  assert(dynamic_cast<cmap::QtNode*>(ui->view->scene()->items()[0]));
+  assert(dynamic_cast<cmap::QtNode*>(ui->view->scene()->items()[1]));
+  assert(dynamic_cast<cmap::QtNode*>(ui->view->scene()->items()[2]));
 
   //QtConceptMapConceptItems are aware of their surroundings, but I put them into place manually
   m_display_node->SetPos(0.0,-40.0);
@@ -150,13 +150,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
+          const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
           return dynamic_cast<const QtConceptMapDisplayConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
-      cmap::QtConceptMapNodeItem * const qtnode = dynamic_cast<cmap::QtConceptMapNodeItem*>(*iter);
+      cmap::QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -166,13 +166,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
+          const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
           return dynamic_cast<const QtConceptMapEditConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
-      cmap::QtConceptMapNodeItem * const qtnode = dynamic_cast<cmap::QtConceptMapNodeItem*>(*iter);
+      cmap::QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }
@@ -182,13 +182,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
       const auto iter = std::find_if(v.begin(),v.end(),
         [](const QGraphicsItem * const item)
         {
-          const cmap::QtConceptMapNodeItem* const node_item = dynamic_cast<const cmap::QtConceptMapNodeItem*>(item);
+          const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
           return dynamic_cast<const QtConceptMapRateConceptItem*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
-      cmap::QtConceptMapNodeItem * const qtnode = dynamic_cast<cmap::QtConceptMapNodeItem*>(*iter);
+      cmap::QtNode * const qtnode = dynamic_cast<cmap::QtNode*>(*iter);
       assert(qtnode);
       return qtnode->GetNode();
     }

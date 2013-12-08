@@ -23,11 +23,11 @@
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapitem.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapitemhighlighter.h"
 #include "qtconceptmapnewarrow.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmaptoolsitem.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtscopeddisable.h"
@@ -57,8 +57,8 @@ ribi::cmap::QtConceptMapEditWidget::QtConceptMapEditWidget(
   : QtConceptMapWidget(concept_map,parent),
     m_signal_conceptmapitem_requests_edit{},
     m_arrow(nullptr),
-    m_highlighter(new QtConceptMapItemHighlighter(0)),
-    m_tools(new QtConceptMapToolsItem)
+    m_highlighter(new QtItemHighlighter(0)),
+    m_tools(new QtTool)
 {
   #ifndef NDEBUG
   Test();
@@ -78,7 +78,7 @@ ribi::cmap::QtConceptMapEditWidget::QtConceptMapEditWidget(
   assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
   assert(concept_map->IsValid());
   const auto nodes = concept_map->GetNodes();
-  const auto items = Collect<QtConceptMapNodeItem>(this->scene());
+  const auto items = Collect<QtNode>(this->scene());
   const std::size_t n_items = items.size();
   const std::size_t n_nodes = nodes.size();
   assert(n_items == n_nodes && "GUI and non-GUI concept map must match");
@@ -98,12 +98,12 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(
 {
   const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
-  QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
+  QtNode * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtConceptMapNodeItem * const to   = FindQtNode(edge->GetTo());
+  QtNode * const to   = FindQtNode(edge->GetTo());
   assert(to);
   assert(from != to);
-  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(
+  QtEdge * const qtedge = new QtEdge(
     edge,
     qtconcept,
     from,
@@ -140,7 +140,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(
     edge) == 1 && "Assume edge is already in the concept map");
   //this->GetConceptMap()->AddEdge(edge);
 
-  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -149,19 +149,19 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt_from, QtConceptMapNodeItem* const qt_to)
+void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
 {
   assert(qt_from);
   assert(qt_to);
   assert(qt_from != qt_to);
   assert(qt_from->GetNode() != qt_to->GetNode());
-  assert(!dynamic_cast<const QtConceptMapToolsItem*>(qt_to  ) && "Cannot select a ToolsItem");
-  assert(!dynamic_cast<const QtConceptMapToolsItem*>(qt_from) && "Cannot select a ToolsItem");
+  assert(!dynamic_cast<const QtTool*>(qt_to  ) && "Cannot select a ToolsItem");
+  assert(!dynamic_cast<const QtTool*>(qt_from) && "Cannot select a ToolsItem");
   //Does this edge already exists? If yes, modify it
   {
-    const std::vector<QtConceptMapEdgeItem*> edges = Collect<QtConceptMapEdgeItem>(scene());
+    const std::vector<QtEdge*> edges = Collect<QtEdge>(scene());
     const auto iter = std::find_if(edges.begin(),edges.end(),
-      [qt_from,qt_to](const QtConceptMapEdgeItem* const other_edge)
+      [qt_from,qt_to](const QtEdge* const other_edge)
       {
         return
             (other_edge->GetArrow()->GetFromItem() == qt_from && other_edge->GetArrow()->GetToItem() == qt_to  )
@@ -170,7 +170,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt
     );
     if (iter != edges.end())
     {
-      QtConceptMapEdgeItem * const qtedge = *iter;
+      QtEdge * const qtedge = *iter;
       assert(qtedge);
       assert(qtedge->GetEdge()->GetFrom() != qtedge->GetEdge()->GetTo());
       assert(qtedge->GetArrow()->GetFromItem() != qtedge->GetArrow()->GetToItem());
@@ -182,7 +182,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt
   }
 
   //Edge does not exist yet, create a new one
-  const std::vector<QtConceptMapNodeItem*> qtnodes = Collect<QtConceptMapNodeItem>(scene());
+  const std::vector<QtNode*> qtnodes = Collect<QtNode>(scene());
   const boost::shared_ptr<ribi::cmap::Concept> concept(cmap::ConceptFactory::Create());
   assert(concept);
   const bool head_arrow = true;
@@ -206,7 +206,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt
   const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
 
-  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(edge,qtconcept,qt_from,qt_to);
+  QtEdge * const qtedge = new QtEdge(edge,qtconcept,qt_from,qt_to);
 
   //Edges connected to the center node do not show their concepts
   if (IsCenterNode(qt_from) || IsCenterNode(qt_to))
@@ -235,19 +235,19 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtConceptMapNodeItem * const qt
 
   this->GetConceptMap()->AddEdge(edge);
 
-  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 
   this->scene()->update();
 }
 
-ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapEditWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtConceptMapEditWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
   const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(node->GetConcept()));
   assert(node);
-  QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
+  QtNode * const qtnode = new QtNode(node,qtconcept);
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
@@ -279,7 +279,7 @@ ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapEditWidget::AddNode(c
   assert(qtnode->pos().y() == node->GetY());
   //Cannot check this: during construction the concept map has multiple nodes, that can only be
   //added one by one
-  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
   //  && "GUI and non-GUI concept map must match");
 
   return qtnode;
@@ -306,7 +306,7 @@ void ribi::cmap::QtConceptMapEditWidget::CleanMe()
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
-    QtConceptMapExamplesItem * const item = new QtConceptMapExamplesItem;
+    QtExamplesItem * const item = new QtExamplesItem;
     assert(item);
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
@@ -320,7 +320,7 @@ void ribi::cmap::QtConceptMapEditWidget::CleanMe()
   //Add the tools item
   {
     assert(!m_tools);
-    m_tools = new QtConceptMapToolsItem;
+    m_tools = new QtTool;
     m_tools->m_signal_clicked.connect(
       boost::bind(
         &ribi::cmap::QtConceptMapEditWidget::OnToolsClicked,
@@ -341,7 +341,7 @@ std::unique_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapEditWidg
 }
 #endif
 
-void ribi::cmap::QtConceptMapEditWidget::DeleteEdge(QtConceptMapEdgeItem * const qtedge)
+void ribi::cmap::QtConceptMapEditWidget::DeleteEdge(QtEdge * const qtedge)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -359,7 +359,7 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteEdge(QtConceptMapEdgeItem * const
   const int n_items_after = this->scene()->items().count();
   assert(n_items_after + 1 == n_items_before);
   //Cannot do the check below: in DeleteNode multiple edges are deleted
-  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
   //  && "GUI and non-GUI concept map must match");
   #endif
 }
@@ -374,18 +374,18 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteLeftovers()
     done = true;
     //Delete edges without to/from nodes
     {
-      const std::vector<QtConceptMapEdgeItem*> qtedge = Collect<QtConceptMapEdgeItem>(scene());
+      const std::vector<QtEdge*> qtedge = Collect<QtEdge>(scene());
       for (int i = 0; i!=static_cast<int>(qtedge.size()); ++i)
       {
         assert(i >= 0 && i < static_cast<int>(qtedge.size()));
         //An edge can be deleted if its 'to' or 'from' is absent
-        QtConceptMapEdgeItem * const edge = qtedge[i];
+        QtEdge * const edge = qtedge[i];
         assert(edge->GetFrom());
         assert(edge->GetTo());
         assert(edge->GetFrom() != edge->GetTo());
-        const std::vector<QtConceptMapNodeItem*> qtnodes = Collect<QtConceptMapNodeItem>(scene());
+        const std::vector<QtNode*> qtnodes = Collect<QtNode>(scene());
         if (std::count_if(qtnodes.begin(),qtnodes.end(),
-          [edge](const QtConceptMapNodeItem * node)
+          [edge](const QtNode * node)
           {
             return edge->GetArrow()->GetToItem() == node || edge->GetArrow()->GetFromItem() == node;
           }
@@ -400,13 +400,13 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteLeftovers()
     if (done) break;
   }
 
-  assert(Collect<QtConceptMapNodeItem>(this->scene()) == this->GetQtNodes());
-  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtNode>(this->scene()) == this->GetQtNodes());
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 #endif
 
-void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtConceptMapNodeItem * const qtnode)
+void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtNode * const qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -414,11 +414,11 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtConceptMapNodeItem * const
 
   //Delete the edges connected to this node
   {
-    const std::vector<QtConceptMapEdgeItem *> qtedges = this->GetQtEdges();
+    const std::vector<QtEdge *> qtedges = this->GetQtEdges();
     const std::size_t sz = qtedges.size();
     for (std::size_t i=0; i!=sz; ++i)
     {
-      QtConceptMapEdgeItem * const qtedge = qtedges[i];
+      QtEdge * const qtedge = qtedges[i];
       assert(qtedge);
       if (qtedge->GetFrom() == qtnode || qtedge->GetTo() == qtnode)
       {
@@ -435,7 +435,7 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtConceptMapNodeItem * const
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
   assert(n_items_before - n_items_after >= 1 && "At least one item is deleted: one node and x edges");
-  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
   #endif
 }
@@ -448,17 +448,17 @@ void ribi::cmap::QtConceptMapEditWidget::DoRandomStuff()
   const boost::shared_ptr<ribi::cmap::Concept> concept1(cmap::ConceptFactory::Create("...", { {} } ) );
   const boost::shared_ptr<ribi::cmap::Node> node1(cmap::NodeFactory::Create(concept1));
   this->GetConceptMap()->AddNode(node1);
-  QtConceptMapNodeItem * const qtnode1 = AddNode(node1);
+  QtNode * const qtnode1 = AddNode(node1);
 
   const boost::shared_ptr<ribi::cmap::Concept> concept2(cmap::ConceptFactory::Create("...", { {} } ) );
   const boost::shared_ptr<ribi::cmap::Node> node2(cmap::NodeFactory::Create(concept2));
   this->GetConceptMap()->AddNode(node2);
-  QtConceptMapNodeItem * const qtnode2 = AddNode(node2);
+  QtNode * const qtnode2 = AddNode(node2);
 
   assert(qtnode1->GetNode() != qtnode2->GetNode());
   this->AddEdge(qtnode1,qtnode2);
 
-  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 #endif
@@ -466,20 +466,20 @@ void ribi::cmap::QtConceptMapEditWidget::DoRandomStuff()
 
 
 
-const std::vector<ribi::cmap::QtConceptMapEdgeItem *> ribi::cmap::QtConceptMapEditWidget::GetQtEdges()
+const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMapEditWidget::GetQtEdges()
 {
-  const std::vector<QtConceptMapEdgeItem *> qtedges
-    = Collect<QtConceptMapEdgeItem>(this->scene());
+  const std::vector<QtEdge *> qtedges
+    = Collect<QtEdge>(this->scene());
   //Cannot do the check below: in DeleteNode multiple edges are deleted
   //assert(qtedges.size() == GetConceptMap()->GetNodes().size()
   //    && "GUI and non-GUI must contain an equal amount of edges");
   return qtedges;
 }
 
-const std::vector<ribi::cmap::QtConceptMapNodeItem *> ribi::cmap::QtConceptMapEditWidget::GetQtNodes()
+const std::vector<ribi::cmap::QtNode *> ribi::cmap::QtConceptMapEditWidget::GetQtNodes()
 {
-  const std::vector<QtConceptMapNodeItem *> qtnodes
-    = Collect<QtConceptMapNodeItem>(this->scene());
+  const std::vector<QtNode *> qtnodes
+    = Collect<QtNode>(this->scene());
   if (qtnodes.size() != GetConceptMap()->GetNodes().size())
   {
     TRACE(qtnodes.size());
@@ -506,19 +506,19 @@ void ribi::cmap::QtConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noexcep
           [this](QGraphicsItem* const item)
           {
             //Delete a Node Concept
-            if (QtConceptMapNodeItem * const node = dynamic_cast<QtConceptMapNodeItem *>(item))
+            if (QtNode * const node = dynamic_cast<QtNode *>(item))
             {
               if (!IsCenterNode(node)) //Cannot delete center node
               {
-                const std::vector<QtConceptMapNodeItem*> node_concepts = Collect<QtConceptMapNodeItem>(scene());
+                const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
                 assert(std::count(node_concepts.begin(),node_concepts.end(),node) == 1);
                 DeleteNode(node);
               }
             }
             //Delete an Edge Concept
-            if (QtConceptMapEdgeItem* const edge = dynamic_cast<QtConceptMapEdgeItem*>(item))
+            if (QtEdge* const edge = dynamic_cast<QtEdge*>(item))
             {
-              const std::vector<QtConceptMapEdgeItem*> edge_concepts = Collect<QtConceptMapEdgeItem>(scene());
+              const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());
               assert(std::count(edge_concepts.begin(),edge_concepts.end(),edge) == 1);
               assert(scene()->items().contains(edge));
               DeleteEdge(edge);
@@ -558,13 +558,13 @@ void ribi::cmap::QtConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *even
   assert(GetConceptMap());
   GetConceptMap()->AddNode(node);
 
-  QtConceptMapNodeItem * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
+  QtNode * const qtnode = AddNode(node); //AddNode creates, connects and adds the node to scene
 
   assert(qtnode);
   const QPointF new_point = mapToScene(event->pos());
   qtnode->SetPos(new_point.x(),new_point.y());
 
-  assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
     && "GUI and non-GUI concept map must match");
 }
 
@@ -576,7 +576,7 @@ void ribi::cmap::QtConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
     m_arrow->SetHeadPos(pos.x(),pos.y());
 
     //Move the item under the arrow
-    QtConceptMapNodeItem* const item_below = GetItemBelowCursor(mapToScene(event->pos()));
+    QtNode* const item_below = GetItemBelowCursor(mapToScene(event->pos()));
 
     m_highlighter->SetItem(item_below); //item_below is allowed to be nullptr
   }
@@ -594,7 +594,7 @@ void ribi::cmap::QtConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
   {
     if (m_highlighter->GetItem() && m_arrow->GetFrom() != m_highlighter->GetItem())
     {
-      assert(!dynamic_cast<QtConceptMapToolsItem*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
+      assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
       AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
     }
     this->scene()->removeItem(m_arrow);
@@ -642,7 +642,7 @@ void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptM
 
 void ribi::cmap::QtConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  m_tools->SetBuddyItem(dynamic_cast<const QtConceptMapNodeItem*>(item));
+  m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapItem*>(item));
   scene()->update();
 }
@@ -652,7 +652,7 @@ void ribi::cmap::QtConceptMapEditWidget::OnToolsClicked()
   const QPointF cursor_pos_approx(
     m_tools->GetBuddyItem()->pos().x(),
     m_tools->GetBuddyItem()->pos().y() - 32.0);
-  m_arrow = new QtConceptMapNewArrow(
+  m_arrow = new QtNewArrow(
     m_tools->GetBuddyItem(),cursor_pos_approx);
   assert(!m_arrow->scene());
   this->scene()->addItem(m_arrow);

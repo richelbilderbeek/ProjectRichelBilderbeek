@@ -10,23 +10,23 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapRateConceptTallyDialog; }
+namespace Ui { class QtRateConceptTallyDialog; }
 
 namespace ribi {
 namespace cmap {
 
-class QtConceptMapRateConceptTallyDialog : public ribi::QtHideAndShowDialog
+class QtRateConceptTallyDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
   ///Sub concept map is modified by this dialog
-  explicit QtConceptMapRateConceptTallyDialog(
+  explicit QtRateConceptTallyDialog(
     const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> sub_concept_map,
     QWidget *parent = 0);
-  QtConceptMapRateConceptTallyDialog(const QtConceptMapRateConceptTallyDialog&) = delete;
-  QtConceptMapRateConceptTallyDialog& operator=(const QtConceptMapRateConceptTallyDialog&) = delete;
-  ~QtConceptMapRateConceptTallyDialog() noexcept;
+  QtRateConceptTallyDialog(const QtRateConceptTallyDialog&) = delete;
+  QtRateConceptTallyDialog& operator=(const QtRateConceptTallyDialog&) = delete;
+  ~QtRateConceptTallyDialog() noexcept;
 
   static const boost::shared_ptr<ribi::cmap::ConceptMap> CreateTestConceptMap();
 
@@ -47,7 +47,7 @@ private slots:
   void OnCellChanged(int row, int col);
 
 private:
-  Ui::QtConceptMapRateConceptTallyDialog *ui;
+  Ui::QtRateConceptTallyDialog *ui;
   //const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> m_map;
 
   ///The concept map is converted to this data type

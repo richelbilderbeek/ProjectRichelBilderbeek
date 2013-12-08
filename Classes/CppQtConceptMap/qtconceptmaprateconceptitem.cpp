@@ -113,8 +113,8 @@ void ribi::cmap::QtConceptMapRateConceptItem::Test()
   TRACE("ribi::cmap::QtConceptMapRateConceptItem::Test started");
   //Check brush comparison
   {
-    assert(QtConceptMapBrushFactory::CreateRedGradientBrush() != QtConceptMapBrushFactory::CreateYellowGradientBrush());
-    assert(QtConceptMapBrushFactory::CreateRedGradientBrush() != QtConceptMapBrushFactory::CreateGreenGradientBrush());
+    assert(QtBrushFactory::CreateRedGradientBrush() != QtBrushFactory::CreateYellowGradientBrush());
+    assert(QtBrushFactory::CreateRedGradientBrush() != QtBrushFactory::CreateGreenGradientBrush());
   }
   {
     const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
@@ -156,14 +156,14 @@ void ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens()
     switch (n_rated)
     {
       case 0:
-        new_main_brush = QtConceptMapBrushFactory::CreateRedGradientBrush();
+        new_main_brush = QtBrushFactory::CreateRedGradientBrush();
         break;
       case 1:
       case 2:
-        new_main_brush = QtConceptMapBrushFactory::CreateYellowGradientBrush();
+        new_main_brush = QtBrushFactory::CreateYellowGradientBrush();
         break;
       case 3:
-        new_main_brush = QtConceptMapBrushFactory::CreateGreenGradientBrush();
+        new_main_brush = QtBrushFactory::CreateGreenGradientBrush();
         break;
       default: assert(!"Should not get here");
     }

@@ -29,9 +29,9 @@
 #include "qtconceptmapeditwidget.h"
 #include "qtconceptmapitem.h"
 #include "qtconceptmapwidget.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtpvdbfiledialog.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
@@ -83,7 +83,7 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   
   this->layout()->addWidget(m_widget);
 
-  assert(!Collect<cmap::QtConceptMapNodeItem>(m_widget->scene()).empty());
+  assert(!Collect<cmap::QtNode>(m_widget->scene()).empty());
 
   //Center the dialog
   {

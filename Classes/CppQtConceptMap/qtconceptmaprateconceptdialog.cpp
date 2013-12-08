@@ -30,7 +30,7 @@
 #include "ui_qtconceptmaprateconceptdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapRateConceptDialog::QtConceptMapRateConceptDialog(
+ribi::cmap::QtRateConceptDialog::QtRateConceptDialog(
   const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
@@ -109,7 +109,7 @@ ribi::cmap::QtConceptMapRateConceptDialog::QtConceptMapRateConceptDialog(
 
 
 
-ribi::cmap::QtConceptMapRateConceptDialog::~QtConceptMapRateConceptDialog() noexcept
+ribi::cmap::QtRateConceptDialog::~QtRateConceptDialog() noexcept
 {
   //If user clicked OK, keep the current ratings (which are updated by the comboboxes)
   //else the user cancelled, so put back the initial ratings
@@ -132,20 +132,20 @@ ribi::cmap::QtConceptMapRateConceptDialog::~QtConceptMapRateConceptDialog() noex
   delete ui;
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::keyPressEvent(QKeyEvent* e)
+void ribi::cmap::QtRateConceptDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   //QDialog::keyPressEvent(e);
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::on_button_ok_clicked()
+void ribi::cmap::QtRateConceptDialog::on_button_ok_clicked()
 {
   //Ratings already set by comboboxes
   m_button_ok_clicked = true;
   close();
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::OnRatingComplexityChanged(const ribi::cmap::Concept* concept)
+void ribi::cmap::QtRateConceptDialog::OnRatingComplexityChanged(const ribi::cmap::Concept* concept)
 {
   assert(concept);
   if (ui->box_complexity->currentIndex() != concept->GetRatingComplexity())
@@ -154,7 +154,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::OnRatingComplexityChanged(const 
   }
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::OnRatingConcretenessChanged(const ribi::cmap::Concept* concept)
+void ribi::cmap::QtRateConceptDialog::OnRatingConcretenessChanged(const ribi::cmap::Concept* concept)
 {
   assert(concept);
   if (ui->box_concreteness->currentIndex() != concept->GetRatingConcreteness())
@@ -163,7 +163,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::OnRatingConcretenessChanged(cons
   }
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::OnRatingSpecificityChanged(const ribi::cmap::Concept* concept)
+void ribi::cmap::QtRateConceptDialog::OnRatingSpecificityChanged(const ribi::cmap::Concept* concept)
 {
   assert(concept);
   if (ui->box_specificity->currentIndex() != concept->GetRatingSpecificity())
@@ -173,7 +173,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::OnRatingSpecificityChanged(const
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapRateConceptDialog::Test()
+void ribi::cmap::QtRateConceptDialog::Test()
 {
   {
     static bool is_tested = false;
@@ -191,7 +191,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::Test()
       const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[i];
       if (!concept_map)
       {
-        QtConceptMapRateConceptDialog d(concept_map);
+        QtRateConceptDialog d(concept_map);
         continue;
       }
       assert(concept_map);
@@ -202,7 +202,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::Test()
       assert(concept != old_concept);
       assert(IsEqual(*concept,*old_concept));
       {
-        QtConceptMapRateConceptDialog d(concept_map);
+        QtRateConceptDialog d(concept_map);
         assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
         assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
         assert(concept->GetRatingSpecificity() == d.ui->box_specificity->currentIndex());
@@ -226,7 +226,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::Test()
       const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[i];
       if (!concept_map)
       {
-        QtConceptMapRateConceptDialog d(concept_map);
+        QtRateConceptDialog d(concept_map);
         continue;
       }
       assert(concept_map);
@@ -237,7 +237,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::Test()
       assert(old_concept);
       assert(concept != old_concept);
       assert(IsEqual(*concept,*old_concept));
-      QtConceptMapRateConceptDialog d(concept_map);
+      QtRateConceptDialog d(concept_map);
       assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
       assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
       assert(concept->GetRatingSpecificity()  == d.ui->box_specificity->currentIndex());
@@ -253,12 +253,12 @@ void ribi::cmap::QtConceptMapRateConceptDialog::Test()
 }
 #endif
 
-void ribi::cmap::QtConceptMapRateConceptDialog::on_button_tally_relevancies_clicked()
+void ribi::cmap::QtRateConceptDialog::on_button_tally_relevancies_clicked()
 {
   #ifndef NDEBUG
   const bool has_concept_map = m_sub_concept_map.get(); //.get() needed for crosscompiler
   #endif
-  QtConceptMapRateConceptTallyDialog d(m_sub_concept_map);
+  QtRateConceptTallyDialog d(m_sub_concept_map);
   d.exec(); //Keep this dialog visible, as of 2013-08-30
   assert(has_concept_map == static_cast<bool>(m_sub_concept_map.get()));
   ui->box_complexity->setCurrentIndex(d.GetSuggestedComplexity());
@@ -266,7 +266,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::on_button_tally_relevancies_clic
   ui->box_specificity->setCurrentIndex(d.GetSuggestedSpecificity());
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::on_box_complexity_currentIndexChanged(int)
+void ribi::cmap::QtRateConceptDialog::on_box_complexity_currentIndexChanged(int)
 {
   assert(m_concept);
   if (m_concept->GetRatingComplexity() != ui->box_complexity->currentIndex())
@@ -275,7 +275,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::on_box_complexity_currentIndexCh
   }
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
+void ribi::cmap::QtRateConceptDialog::on_box_concreteness_currentIndexChanged(int)
 {
   assert(m_concept);
   if (m_concept->GetRatingConcreteness() != ui->box_concreteness->currentIndex())
@@ -284,7 +284,7 @@ void ribi::cmap::QtConceptMapRateConceptDialog::on_box_concreteness_currentIndex
   }
 }
 
-void ribi::cmap::QtConceptMapRateConceptDialog::on_box_specificity_currentIndexChanged(int)
+void ribi::cmap::QtRateConceptDialog::on_box_specificity_currentIndexChanged(int)
 {
   assert(m_concept);
   if (m_concept->GetRatingSpecificity() != ui->box_specificity->currentIndex())

@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 
 #include <cassert>
 
@@ -21,16 +21,16 @@
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
+ribi::cmap::QtEdge::QtEdge(
     const boost::shared_ptr<ribi::cmap::Edge> edge,
     const boost::shared_ptr<QtConceptItem> concept_item,
-    QtConceptMapNodeItem* const from,
-    QtConceptMapNodeItem* const to)
+    QtNode* const from,
+    QtNode* const to)
   : m_arrow{},
     m_concept_item(concept_item),
     m_contour_pen(QPen(QColor(255,255,255))),
@@ -61,7 +61,7 @@ ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
     | QGraphicsItem::ItemIsMovable
     | QGraphicsItem::ItemIsSelectable);
 
-  m_concept_item->SetMainBrush(QtConceptMapBrushFactory::CreateBlueGradientBrush());
+  m_concept_item->SetMainBrush(QtBrushFactory::CreateBlueGradientBrush());
   m_concept_item->SetContourPen(QPen(QColor(255,255,255)));
   m_concept_item->SetTextPen(QPen(QColor(0,0,0)));
 
@@ -99,23 +99,23 @@ ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
   //Signals
   m_arrow->m_signal_item_updated.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated,this));
+      &ribi::cmap::QtEdge::OnItemHasUpdated,this));
 
   m_edge->m_signal_edge_changed.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEdgeItem::OnEdgeChanged,this,boost::lambda::_1));
+      &ribi::cmap::QtEdge::OnEdgeChanged,this,boost::lambda::_1));
 
   m_concept_item->m_signal_item_has_updated.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated,this));
+      &ribi::cmap::QtEdge::OnItemHasUpdated,this));
 
   m_concept_item->m_signal_request_scene_update.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEdgeItem::OnRequestSceneUpdate,this));
+      &ribi::cmap::QtEdge::OnRequestSceneUpdate,this));
 
   m_concept_item->m_signal_position_changed.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEdgeItem::SetPos,this,boost::lambda::_1,boost::lambda::_2));
+      &ribi::cmap::QtEdge::SetPos,this,boost::lambda::_1,boost::lambda::_2));
 
   if (QtConceptMapEditConceptItem * edit_concept = dynamic_cast<QtConceptMapEditConceptItem*>(concept_item.get()))
   {
@@ -131,7 +131,7 @@ ribi::cmap::QtConceptMapEdgeItem::QtConceptMapEdgeItem(
   assert(this->m_arrow->acceptHoverEvents()); //Must remove the 's' in Qt5?
 }
 
-QRectF ribi::cmap::QtConceptMapEdgeItem::boundingRect() const
+QRectF ribi::cmap::QtEdge::boundingRect() const
 {
   assert((m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
       || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect())
@@ -144,7 +144,7 @@ QRectF ribi::cmap::QtConceptMapEdgeItem::boundingRect() const
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::DisableAll()
+void ribi::cmap::QtEdge::DisableAll()
 {
   this->setEnabled(false);
   this->setVisible(false);
@@ -154,7 +154,7 @@ void ribi::cmap::QtConceptMapEdgeItem::DisableAll()
   this->m_arrow->setVisible(false);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::EnableAll()
+void ribi::cmap::QtEdge::EnableAll()
 {
   this->setEnabled(true);
   this->setVisible(true);
@@ -164,26 +164,26 @@ void ribi::cmap::QtConceptMapEdgeItem::EnableAll()
   this->m_arrow->setVisible(true);
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtConceptMapEdgeItem::GetConcept() const
+const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() const
 {
   const boost::shared_ptr<const ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapEdgeItem::GetConcept()
+const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept()
 {
   const boost::shared_ptr<ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const std::string ribi::cmap::QtConceptMapEdgeItem::GetName() const
+const std::string ribi::cmap::QtEdge::GetName() const
 {
   return m_edge->GetConcept()->GetName();
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::focusInEvent(QFocusEvent*)
+void ribi::cmap::QtEdge::focusInEvent(QFocusEvent*)
 {
   //Lose focus of arrow
   m_arrow->SetPen(QPen(QColor(0,0,0)));
@@ -191,14 +191,14 @@ void ribi::cmap::QtConceptMapEdgeItem::focusInEvent(QFocusEvent*)
   assert(!m_concept_item->hasFocus());
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::focusOutEvent(QFocusEvent*)
+void ribi::cmap::QtEdge::focusOutEvent(QFocusEvent*)
 {
   m_arrow->SetPen(QPen(QColor(0,0,0)));
   m_concept_item->SetContourPen(m_contour_pen); //Updates itself
   assert(!m_concept_item->hasFocus());
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event)
 {
   assert(m_arrow);
   assert(m_edge);
@@ -221,7 +221,7 @@ void ribi::cmap::QtConceptMapEdgeItem::keyPressEvent(QKeyEvent *event)
   QtConceptMapItem::keyPressEvent(event);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {  
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -264,7 +264,7 @@ void ribi::cmap::QtConceptMapEdgeItem::mousePressEvent(QGraphicsSceneMouseEvent 
   QtConceptMapItem::mousePressEvent(event);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::OnEdgeChanged(const cmap::Edge * const edge)
+void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)
 {
   assert(m_arrow);
   assert(m_edge);
@@ -299,7 +299,7 @@ void ribi::cmap::QtConceptMapEdgeItem::OnEdgeChanged(const cmap::Edge * const ed
 
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated()
+void ribi::cmap::QtEdge::OnItemHasUpdated()
 {
   this->SetName(m_concept_item->GetName());
 
@@ -317,13 +317,13 @@ void ribi::cmap::QtConceptMapEdgeItem::OnItemHasUpdated()
   this->m_signal_item_has_updated(this);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::OnRequestSceneUpdate()
+void ribi::cmap::QtEdge::OnRequestSceneUpdate()
 {
   this->m_signal_request_scene_update();
 }
 
 
-void ribi::cmap::QtConceptMapEdgeItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   m_concept_item->SetName(this->GetConcept()->GetName());
 
@@ -363,12 +363,12 @@ void ribi::cmap::QtConceptMapEdgeItem::paint(QPainter* painter, const QStyleOpti
   }
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) //NEW 2013-01-07
+void ribi::cmap::QtEdge::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) //NEW 2013-01-07
 {
   this->m_edge->SetConcept(concept);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::SetHasHeadArrow(const bool has_head_arrow)
+void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow)
 {
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -380,7 +380,7 @@ void ribi::cmap::QtConceptMapEdgeItem::SetHasHeadArrow(const bool has_head_arrow
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::SetHasTailArrow(const bool has_tail_arrow)
+void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow)
 {
   assert(m_arrow);
   assert(m_edge);
@@ -394,12 +394,12 @@ void ribi::cmap::QtConceptMapEdgeItem::SetHasTailArrow(const bool has_tail_arrow
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::SetName(const std::string& name)
+void ribi::cmap::QtEdge::SetName(const std::string& name)
 {
   m_edge->GetConcept()->SetName(name);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::SetX(const double x)
+void ribi::cmap::QtEdge::SetX(const double x)
 {
   if ( x != this->pos().x()
     || x != this->GetEdge()->GetX()
@@ -423,7 +423,7 @@ void ribi::cmap::QtConceptMapEdgeItem::SetX(const double x)
   assert(std::abs(x - this->GetConceptItem()->pos().x()) < 0.000001);
 }
 
-void ribi::cmap::QtConceptMapEdgeItem::SetY(const double y)
+void ribi::cmap::QtEdge::SetY(const double y)
 {
   if ( y != this->pos().y()
     || y != this->GetEdge()->GetY()
@@ -442,14 +442,14 @@ void ribi::cmap::QtConceptMapEdgeItem::SetY(const double y)
   assert(std::abs(y - this->GetConceptItem()->pos().y()) < 0.000001);
 }
 
-QPainterPath ribi::cmap::QtConceptMapEdgeItem::shape() const
+QPainterPath ribi::cmap::QtEdge::shape() const
 {
   return m_concept_item->shape()
     .united(m_arrow->shape().translated(-this->pos()));
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapEdgeItem::Test()
+void ribi::cmap::QtEdge::Test()
 {
   {
     static bool is_tested = false;
@@ -462,8 +462,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
     const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_from(new QtConceptMapEditConceptItem(node_from->GetConcept()));
     const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_to(new QtConceptMapEditConceptItem(node_to->GetConcept()));
-    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
-    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
+    const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to,qtconcept_item_to));
     const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
@@ -471,8 +471,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
       boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(edge->GetConcept()));
-      boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
-        new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      boost::shared_ptr<QtEdge> qtedge(
+        new QtEdge(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());
@@ -585,8 +585,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
     const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_from(new QtConceptMapEditConceptItem(node_from->GetConcept()));
     const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_to(new QtConceptMapEditConceptItem(node_to->GetConcept()));
-    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
-    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
+    const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to,qtconcept_item_to));
     const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
@@ -594,8 +594,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
       boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(edge->GetConcept()));
-      boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
-        new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      boost::shared_ptr<QtEdge> qtedge(
+        new QtEdge(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());
       assert(edge == qtedge->GetEdge());
@@ -679,8 +679,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
     const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_from(new QtConceptMapEditConceptItem(node_from->GetConcept()));
     const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item_to(new QtConceptMapEditConceptItem(node_to->GetConcept()));
-    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_from(new QtConceptMapNodeItem(node_from,qtconcept_item_from));
-    const boost::shared_ptr<QtConceptMapNodeItem> qtnode_to(new QtConceptMapNodeItem(node_to,qtconcept_item_to));
+    const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
+    const boost::shared_ptr<QtNode> qtnode_to(new QtNode(node_to,qtconcept_item_to));
     const std::size_t n_edges = cmap::EdgeFactory::GetTests(node_from,node_to).size();
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
@@ -688,8 +688,8 @@ void ribi::cmap::QtConceptMapEdgeItem::Test()
       boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(edge->GetConcept()));
-      boost::shared_ptr<QtConceptMapEdgeItem> qtedge(
-        new QtConceptMapEdgeItem(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
+      boost::shared_ptr<QtEdge> qtedge(
+        new QtEdge(edge,qtconcept_item,qtnode_from.get(),qtnode_to.get()));
       //const double epsilon = 0.000001;
       assert(qtconcept_item->GetConcept() == qtedge->GetConcept());
       assert(qtconcept_item->GetConcept() == edge->GetConcept());

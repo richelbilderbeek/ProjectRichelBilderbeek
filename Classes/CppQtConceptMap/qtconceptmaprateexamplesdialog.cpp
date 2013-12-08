@@ -34,11 +34,11 @@ struct QtConceptMapListWidgetItem : public QListWidgetItem
 };
 
 
-ribi::cmap::QtConceptMapRateExamplesDialog::QtConceptMapRateExamplesDialog(
+ribi::cmap::QtRateExamplesDialog::QtRateExamplesDialog(
   const boost::shared_ptr<ribi::cmap::Concept> concept,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapRateExamplesDialog),
+    ui(new Ui::QtRateExamplesDialog),
     m_concept(concept)
 {
   ui->setupUi(this);
@@ -94,12 +94,12 @@ ribi::cmap::QtConceptMapRateExamplesDialog::QtConceptMapRateExamplesDialog(
 
 }
 
-ribi::cmap::QtConceptMapRateExamplesDialog::~QtConceptMapRateExamplesDialog() noexcept
+ribi::cmap::QtRateExamplesDialog::~QtRateExamplesDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtConceptMapRateExamplesDialog::GetRatedExamples() const
+const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtRateExamplesDialog::GetRatedExamples() const
 {
   std::vector<boost::shared_ptr<cmap::Example> > v;
 
@@ -125,30 +125,30 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtConceptMapRateExampl
   return examples;
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::keyPressEvent(QKeyEvent* e)
+void ribi::cmap::QtRateExamplesDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   QDialog::keyPressEvent(e);
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::Test()
+void ribi::cmap::QtRateExamplesDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapRateExamplesDialog::Test started");
+  TRACE("ribi::cmap::QtRateExamplesDialog::Test started");
   ///Test conversion between reading and writing a concept
   {
     const int sz = ribi::cmap::ConceptFactory::GetTests().size();
     for (int i=0; i!=sz; ++i)
     {
-      const auto a = QtConceptMapRateExamplesDialog(cmap::ConceptFactory::GetTests()[i]).GetRatedExamples();
+      const auto a = QtRateExamplesDialog(cmap::ConceptFactory::GetTests()[i]).GetRatedExamples();
       assert(a);
       for (int j=0; j!=sz; ++j)
       {
-        const auto b = QtConceptMapRateExamplesDialog(cmap::ConceptFactory::GetTests()[j]).GetRatedExamples();
+        const auto b = QtRateExamplesDialog(cmap::ConceptFactory::GetTests()[j]).GetRatedExamples();
         assert(b);
         assert(a != b);
         if (i == j)
@@ -162,10 +162,10 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::Test()
       }
     }
   }
-  TRACE("ribi::cmap::QtConceptMapRateExamplesDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtRateExamplesDialog::Test finished successfully");
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_prof_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_prof_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -174,7 +174,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_prof_clicked()
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_organisations_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_organisations_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -183,7 +183,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_organisations_clicked
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_social_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_social_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -192,7 +192,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_social_clicked()
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_target_audience_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_target_audience_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -201,7 +201,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_target_audience_click
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_prof_development_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_prof_development_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -210,7 +210,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_prof_development_clic
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_misc_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_misc_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -219,7 +219,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_misc_clicked()
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_ti_knowledge_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_ti_knowledge_clicked()
 {
   if (ui->list->currentItem())
   {
@@ -228,7 +228,7 @@ void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_ti_knowledge_clicked(
   }
 }
 
-void ribi::cmap::QtConceptMapRateExamplesDialog::on_button_ok_clicked()
+void ribi::cmap::QtRateExamplesDialog::on_button_ok_clicked()
 {
   const boost::shared_ptr<ribi::cmap::Examples> p = GetRatedExamples();
   assert(p);

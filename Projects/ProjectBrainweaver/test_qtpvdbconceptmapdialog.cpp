@@ -31,8 +31,8 @@
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapitem.h"
 #include "qtconceptmapwidget.h"
-#include "qtconceptmapedgeitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapedge.h"
+#include "qtconceptmapnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

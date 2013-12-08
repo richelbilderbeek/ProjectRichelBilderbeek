@@ -17,7 +17,7 @@ namespace ribi {
 namespace cmap {
 
 ///Rate the focal concept of a sub-ConceptMap.
-class QtConceptMapRateConceptDialog : public ribi::QtHideAndShowDialog
+class QtRateConceptDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     
@@ -25,11 +25,11 @@ class QtConceptMapRateConceptDialog : public ribi::QtHideAndShowDialog
   ///concept is the center node
   ///sub_concept_map[0] is the same as concept and might be changed
   ///sub_concept_map is non-const, as GetRatedConcept will produce a new concept
-  explicit QtConceptMapRateConceptDialog(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
+  explicit QtRateConceptDialog(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
     QWidget* parent = 0);
-  QtConceptMapRateConceptDialog(const QtConceptMapRateConceptDialog&) = delete;
-  QtConceptMapRateConceptDialog& operator=(const QtConceptMapRateConceptDialog&) = delete;
-  ~QtConceptMapRateConceptDialog() noexcept;
+  QtRateConceptDialog(const QtRateConceptDialog&) = delete;
+  QtRateConceptDialog& operator=(const QtRateConceptDialog&) = delete;
+  ~QtRateConceptDialog() noexcept;
 
   ///Set suggested values for this concept
   //void MakeSuggestions(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map);

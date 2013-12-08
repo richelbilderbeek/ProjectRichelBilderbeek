@@ -13,12 +13,12 @@
 #include "conceptmapconcept.h"
 #include "qtconceptmapitem.h"
 #include "conceptmaphelper.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtconceptmapbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapExamplesItem::QtConceptMapExamplesItem(
+ribi::cmap::QtExamplesItem::QtExamplesItem(
   QGraphicsItem* parent)
   : QtRoundedEditRectItem(
       { "..." },
@@ -30,20 +30,20 @@ ribi::cmap::QtConceptMapExamplesItem::QtConceptMapExamplesItem(
     m_item{}
 {
   this->setPen(QPen(QColor(255,0,0)));
-  this->setBrush(QtConceptMapBrushFactory::CreateWhiteGradientBrush());
+  this->setBrush(QtBrushFactory::CreateWhiteGradientBrush());
   this->setFlags(0);
   this->setZValue(2.0);
   this->setVisible(false);
   //this->SetBuddyItem(concept);
 }
 
-void ribi::cmap::QtConceptMapExamplesItem::OnItemUpdated()
+void ribi::cmap::QtExamplesItem::OnItemUpdated()
 {
   this->update();
   this->m_signal_request_scene_update();
 }
 
-void ribi::cmap::QtConceptMapExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
   this->SetExamples(this->m_item->GetConcept()->GetExamples());
 
@@ -57,7 +57,7 @@ void ribi::cmap::QtConceptMapExamplesItem::paint(QPainter *painter, const QStyle
   QtRoundedEditRectItem::paint(painter,option,widget);
 }
 
-void ribi::cmap::QtConceptMapExamplesItem::SetBuddyItem(const QtConceptMapItem* const item)
+void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapItem* const item)
 {
   if (m_item != item)
   {
@@ -66,7 +66,7 @@ void ribi::cmap::QtConceptMapExamplesItem::SetBuddyItem(const QtConceptMapItem* 
     {
       m_item->m_signal_item_has_updated.connect(
         boost::bind(
-          &ribi::cmap::QtConceptMapExamplesItem::OnItemUpdated,this
+          &ribi::cmap::QtExamplesItem::OnItemUpdated,this
         )
       );
       this->SetExamples(item->GetConcept()->GetExamples());
@@ -84,7 +84,7 @@ void ribi::cmap::QtConceptMapExamplesItem::SetBuddyItem(const QtConceptMapItem* 
   }
 }
 
-void ribi::cmap::QtConceptMapExamplesItem::SetExamples(const boost::shared_ptr<const cmap::Examples>& examples)
+void ribi::cmap::QtExamplesItem::SetExamples(const boost::shared_ptr<const cmap::Examples>& examples)
 {
   std::vector<std::string> v;
   for (const boost::shared_ptr<const cmap::Example> example: examples->Get())

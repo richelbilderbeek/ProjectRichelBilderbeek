@@ -25,24 +25,24 @@ namespace cmap {
 ///Tools item is a class that is displayed above a selected node or edge
 ///and displays clickable icons to perform actions, for example
 ///adding a relation or modifying arrow edges
-///QtConceptMapToolsItem cannot have its visibility set directly:
+///QtTool cannot have its visibility set directly:
 ///- if it has a buddy, it is visible
 ///- if it has no buddy, it is invisible
-struct QtConceptMapToolsItem : public QGraphicsPixmapItem
+struct QtTool : public QGraphicsPixmapItem
 {
-  explicit QtConceptMapToolsItem();
-  QtConceptMapToolsItem(const QtConceptMapToolsItem& other) = delete;
-  QtConceptMapToolsItem& operator=(const QtConceptMapToolsItem& other) = delete;
-  virtual ~QtConceptMapToolsItem() {}
+  explicit QtTool();
+  QtTool(const QtTool& other) = delete;
+  QtTool& operator=(const QtTool& other) = delete;
+  virtual ~QtTool() {}
 
   ///Get the item the tools item floats above
   ///Return type cannot be const, as the user might want to modify it
-  const QtConceptMapNodeItem * GetBuddyItem() const;
-        QtConceptMapNodeItem * GetBuddyItem();
+  const QtNode * GetBuddyItem() const;
+        QtNode * GetBuddyItem();
 
   ///Set the position from the widget it floats above
   ///item cannot be const, as the user might want to modify it
-  void SetBuddyItem(const QtConceptMapNodeItem * const item);
+  void SetBuddyItem(const QtNode * const item);
 
   ///Signalled when a tool is clicked
   boost::signals2::signal<void ()> m_signal_clicked;
@@ -58,7 +58,7 @@ struct QtConceptMapToolsItem : public QGraphicsPixmapItem
 
   ///The item the tools item floats above
   ///m_item cannot be const, as the user might want to modify it
-  const QtConceptMapNodeItem * m_item;
+  const QtNode * m_item;
 
   void setVisible(bool visible) { QGraphicsPixmapItem::setVisible(visible); }
 };

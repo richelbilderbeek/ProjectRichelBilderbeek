@@ -7,11 +7,11 @@
 #include <QCursor>
 #include <QPainter>
 #include <QGraphicsSceneMouseEvent>
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapToolsItem::QtConceptMapToolsItem()
+ribi::cmap::QtTool::QtTool()
   : m_signal_clicked(),
     m_item(nullptr)
 {
@@ -32,34 +32,34 @@ ribi::cmap::QtConceptMapToolsItem::QtConceptMapToolsItem()
 }
 
 
-ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapToolsItem::GetBuddyItem()
+ribi::cmap::QtNode * ribi::cmap::QtTool::GetBuddyItem()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
   //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
   //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
-  return const_cast<QtConceptMapNodeItem * >(const_cast<const QtConceptMapToolsItem *>(this)->GetBuddyItem());
+  return const_cast<QtNode * >(const_cast<const QtTool *>(this)->GetBuddyItem());
 }
 
-const ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapToolsItem::GetBuddyItem() const
+const ribi::cmap::QtNode * ribi::cmap::QtTool::GetBuddyItem() const
 {
   assert(m_item);
   return m_item;
 }
 
 
-void ribi::cmap::QtConceptMapToolsItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtTool::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void ribi::cmap::QtConceptMapToolsItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void ribi::cmap::QtTool::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   QGraphicsPixmapItem::mousePressEvent(event);
   m_signal_clicked();
 }
 
-void ribi::cmap::QtConceptMapToolsItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::cmap::QtTool::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   assert(m_item);
   this->setPos(
@@ -79,7 +79,7 @@ void ribi::cmap::QtConceptMapToolsItem::paint(QPainter* painter, const QStyleOpt
   }
 }
 
-void ribi::cmap::QtConceptMapToolsItem::SetBuddyItem(const QtConceptMapNodeItem * const item)
+void ribi::cmap::QtTool::SetBuddyItem(const QtNode * const item)
 {
   if (item != m_item)
   {

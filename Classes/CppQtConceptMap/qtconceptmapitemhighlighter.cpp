@@ -9,11 +9,11 @@
 #include <QGraphicsItem>
 #include <QTimer>
 //#include "qtconceptmapconceptitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapItemHighlighter::QtConceptMapItemHighlighter(QObject *parent)
+ribi::cmap::QtItemHighlighter::QtItemHighlighter(QObject *parent)
   : QObject(parent),
     m_cnt(0),
     m_item(nullptr),
@@ -25,7 +25,7 @@ ribi::cmap::QtConceptMapItemHighlighter::QtConceptMapItemHighlighter(QObject *pa
     this,SLOT(OnTimer()));
 }
 
-void ribi::cmap::QtConceptMapItemHighlighter::SetItem(QtConceptMapNodeItem* const item)
+void ribi::cmap::QtItemHighlighter::SetItem(QtNode* const item)
 {
   if (m_item == item) return;
 
@@ -43,7 +43,7 @@ void ribi::cmap::QtConceptMapItemHighlighter::SetItem(QtConceptMapNodeItem* cons
 }
 
 
-void ribi::cmap::QtConceptMapItemHighlighter::OnTimer()
+void ribi::cmap::QtItemHighlighter::OnTimer()
 {
   if (m_item)
   {

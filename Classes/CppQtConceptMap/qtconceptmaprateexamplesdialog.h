@@ -11,23 +11,23 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapRateExamplesDialog; }
+namespace Ui { class QtRateExamplesDialog; }
 
 namespace ribi {
 namespace cmap {
 
 ///Allows the user to rate the examples of a concept
-class QtConceptMapRateExamplesDialog : public ribi::QtHideAndShowDialog
+class QtRateExamplesDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtConceptMapRateExamplesDialog(
+  explicit QtRateExamplesDialog(
     const boost::shared_ptr<ribi::cmap::Concept> concept,
     QWidget* parent = 0);
-  QtConceptMapRateExamplesDialog(const QtConceptMapRateExamplesDialog&) = delete;
-  QtConceptMapRateExamplesDialog& operator=(const QtConceptMapRateExamplesDialog&) = delete;
-  ~QtConceptMapRateExamplesDialog() noexcept;
+  QtRateExamplesDialog(const QtRateExamplesDialog&) = delete;
+  QtRateExamplesDialog& operator=(const QtRateExamplesDialog&) = delete;
+  ~QtRateExamplesDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent *);
@@ -43,7 +43,7 @@ private slots:
   void on_button_ok_clicked();
 
 private:
-  Ui::QtConceptMapRateExamplesDialog *ui;
+  Ui::QtRateExamplesDialog *ui;
 
   ///The concept, which is modified when clicking OK, but remains unmodified when
   ///the user clicks cancel

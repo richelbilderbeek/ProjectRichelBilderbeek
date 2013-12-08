@@ -30,11 +30,11 @@
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapitem.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapitemhighlighter.h"
 #include "qtconceptmapnewarrow.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmaptoolsitem.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
@@ -67,23 +67,23 @@ const std::vector<T> Sort(const std::vector<T>& v)
 }
 
 template <>
-const std::vector<ribi::cmap::QtConceptMapNodeItem*>
+const std::vector<ribi::cmap::QtNode*>
   Sort(
-    const std::vector<ribi::cmap::QtConceptMapNodeItem*>& v)
+    const std::vector<ribi::cmap::QtNode*>& v)
 {
-  typedef std::vector<ribi::cmap::QtConceptMapNodeItem*>::iterator Iterator;
-  std::vector<ribi::cmap::QtConceptMapNodeItem*> w(v);
+  typedef std::vector<ribi::cmap::QtNode*>::iterator Iterator;
+  std::vector<ribi::cmap::QtNode*> w(v);
   std::sort(w.begin(),w.end());
   const Iterator i = std::find_if(w.begin(),w.end(),
-    [](const ribi::cmap::QtConceptMapNodeItem* const node)
+    [](const ribi::cmap::QtNode* const node)
     {
-      return dynamic_cast<const ribi::cmap::QtConceptMapCenterNodeItem*>(node);
+      return dynamic_cast<const ribi::cmap::QtCenterNode*>(node);
     }
   );
   if (i != w.end())
   {
     std::swap(*i,*w.begin());
-    assert(dynamic_cast<const ribi::cmap::QtConceptMapCenterNodeItem*>(*w.begin()));
+    assert(dynamic_cast<const ribi::cmap::QtCenterNode*>(*w.begin()));
   }
   return w;
 }
@@ -95,7 +95,7 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
     m_concept_map(concept_map),
-    m_examples_item(new QtConceptMapExamplesItem)
+    m_examples_item(new QtExamplesItem)
 {
   assert( (concept_map || !concept_map)
     && "Also empty concept maps must be displayed");
@@ -107,7 +107,7 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   assert(!m_examples_item->scene());
   scene()->addItem(m_examples_item); //Add the examples so it has a parent
 
-  assert(Collect<QtConceptMapNodeItem>(scene()).empty());
+  assert(Collect<QtNode>(scene()).empty());
 
   //Without this line, mouseMoveEvent won't be called
   this->setMouseTracking(true);
@@ -143,17 +143,17 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   assert(this->scene());
   //This std::vector keeps the QtNodes in the same order as the nodes in the concept map
   //You cannot rely on Collect<QtConceptMapNodeConcept*>(scene), as this shuffles the order
-  std::vector<QtConceptMapNodeItem*> qtnodes;
+  std::vector<QtNode*> qtnodes;
 
-  assert(Collect<QtConceptMapNodeItem>(scene()).empty());
+  assert(Collect<QtNode>(scene()).empty());
 
   //Add the nodes to the scene
   {
     //Add the main question as the first node
     const boost::shared_ptr<ribi::cmap::Node> node = m_concept_map->GetNodes()[0];
-    QtConceptMapNodeItem* const qtnode = new QtConceptMapCenterNodeItem(node);
+    QtNode* const qtnode = new QtCenterNode(node);
     #ifdef USE_NEW_STYLE
-    QtConceptMapNodeItem* qtnode = nullptr;
+    QtNode* qtnode = nullptr;
     if (const boost::shared_ptr<cmap::CenterNode> center_node = boost::dynamic_pointer_cast<cmap::CenterNode>(node))
     {
       qtnode = new QtConceptMapCenterNodeItem(center_node);
@@ -163,7 +163,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
       assert(node);
       const boost::shared_ptr<QtConceptMapItem> item(new QtConceptMapDisplayConceptItem(node->GetConcept()));
       assert(item);
-      qtnode = new QtConceptMapNodeItem(node,item);
+      qtnode = new QtNode(node,item);
     }
     #endif
     assert(qtnode);
@@ -176,7 +176,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
     assert(!qtnode->scene());
     this->scene()->addItem(qtnode);
     qtnodes.push_back(qtnode);
-    assert(Collect<QtConceptMapNodeItem>(scene()).size() == 1);
+    assert(Collect<QtNode>(scene()).size() == 1);
 
     //Add the regular nodes to the scene
     const std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes = m_concept_map->GetNodes();
@@ -184,19 +184,19 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
     assert(n_nodes >= 1);
     for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip center node
     {
-      assert(Collect<QtConceptMapNodeItem>(scene()).size() == i && "Node not yet added to scene");
+      assert(Collect<QtNode>(scene()).size() == i && "Node not yet added to scene");
       assert(i < nodes.size());
       boost::shared_ptr<ribi::cmap::Node> node = nodes[i];
       assert(node);
-      QtConceptMapNodeItem * const qtnode = AddNode(node);
+      QtNode * const qtnode = AddNode(node);
       qtnodes.push_back(qtnode);
-      assert(Collect<QtConceptMapNodeItem>(scene()).size() == i + 1 && "Node is added to scene");
+      assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
     }
   }
   #ifndef NDEBUG
   {
     //Check the number of
-    const auto qtnodes = Collect<QtConceptMapNodeItem>(scene());
+    const auto qtnodes = Collect<QtNode>(scene());
     const auto n_qtnodes = qtnodes.size();
     const auto nodes = m_concept_map->GetNodes();
     const auto n_nodes = nodes.size();
@@ -221,7 +221,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   #ifndef NDEBUG
   {
     //Check the number of edges
-    const auto qtedges = Collect<QtConceptMapEdgeItem>(scene());
+    const auto qtedges = Collect<QtEdge>(scene());
     const auto n_qtedges = qtedges.size();
     const auto edges = m_concept_map->GetEdges();
     const auto n_edges = edges.size();
@@ -239,7 +239,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   #ifndef NDEBUG
   assert(m_concept_map->IsValid());
   const auto nodes = m_concept_map->GetNodes();
-  const auto items = Collect<QtConceptMapNodeItem>(this->scene());
+  const auto items = Collect<QtNode>(this->scene());
   const std::size_t n_items = items.size();
   const std::size_t n_nodes = nodes.size();
   if (n_items != n_nodes)
@@ -253,14 +253,14 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   #endif
 }
 
-const std::vector<ribi::cmap::QtConceptMapEdgeItem*> ribi::cmap::QtConceptMapWidget::FindEdges(
-  const QtConceptMapNodeItem* const from) const
+const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMapWidget::FindEdges(
+  const QtNode* const from) const
 {
   assert(from);
-  const std::vector<QtConceptMapEdgeItem*> v = Collect<QtConceptMapEdgeItem>(scene());
-  std::vector<QtConceptMapEdgeItem*> w;
+  const std::vector<QtEdge*> v = Collect<QtEdge>(scene());
+  std::vector<QtEdge*> w;
   std::copy_if(v.begin(),v.end(),std::back_inserter(w),
-    [from](const QtConceptMapEdgeItem* const edge)
+    [from](const QtEdge* const edge)
     {
       return edge->GetFrom() == from || edge->GetTo() == from;
     }
@@ -268,17 +268,17 @@ const std::vector<ribi::cmap::QtConceptMapEdgeItem*> ribi::cmap::QtConceptMapWid
   return w;
 }
 
-const ribi::cmap::QtConceptMapEdgeItem * ribi::cmap::QtConceptMapWidget::FindQtEdge(
-  const QtConceptMapNodeItem* const from,
-  const QtConceptMapNodeItem* const to) const
+const ribi::cmap::QtEdge * ribi::cmap::QtConceptMapWidget::FindQtEdge(
+  const QtNode* const from,
+  const QtNode* const to) const
 {
 
   assert(from);
   assert(to);
   assert(from != to);
-  const std::vector<QtConceptMapEdgeItem*> edge_concepts = Collect<QtConceptMapEdgeItem>(scene());
+  const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());
   const auto iter = std::find_if(edge_concepts.begin(),edge_concepts.end(),
-    [from,to](const QtConceptMapEdgeItem* const edge)
+    [from,to](const QtEdge* const edge)
     {
       return
         (edge->GetFrom() == from && edge->GetTo() == to)
@@ -289,10 +289,10 @@ const ribi::cmap::QtConceptMapEdgeItem * ribi::cmap::QtConceptMapWidget::FindQtE
   return * iter;
 }
 
-ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapWidget::FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const
+ribi::cmap::QtNode * ribi::cmap::QtConceptMapWidget::FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const
 {
-  const std::vector<QtConceptMapNodeItem *> qtnodes = Collect<QtConceptMapNodeItem>(scene());
-  for (QtConceptMapNodeItem * qtnode: qtnodes)
+  const std::vector<QtNode *> qtnodes = Collect<QtNode>(scene());
+  for (QtNode * qtnode: qtnodes)
   {
     if (qtnode->GetNode() == node) return qtnode;
   }
@@ -300,7 +300,7 @@ ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapWidget::FindQtNode(co
   throw std::logic_error("ribi::cmap::QtConceptMapWidget::FindQtNode");
 }
 
-const ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapWidget::GetCenterNode() const
+const ribi::cmap::QtNode * ribi::cmap::QtConceptMapWidget::GetCenterNode() const
 {
 
   assert(scene());
@@ -313,42 +313,42 @@ const ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapWidget::GetCent
   const auto iter = std::find_if(v.begin(),v.end(),
     [this](const QGraphicsItem * const item) { return this->IsCenterNode(item); } );
   assert(iter != v.end());
-  const QtConceptMapNodeItem * const center_node = dynamic_cast<QtConceptMapNodeItem*>(*iter);
+  const QtNode * const center_node = dynamic_cast<QtNode*>(*iter);
   assert(center_node);
   assert(IsCenterNode(center_node));
   return center_node;
 }
 
-const ribi::cmap::QtConceptMapExamplesItem * ribi::cmap::QtConceptMapWidget::GetExamplesItem() const
+const ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMapWidget::GetExamplesItem() const
 {
   assert(m_examples_item || !m_examples_item);
   return m_examples_item;
 }
 
-ribi::cmap::QtConceptMapExamplesItem * ribi::cmap::QtConceptMapWidget::GetExamplesItem()
+ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMapWidget::GetExamplesItem()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
   //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
   //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
-  return const_cast<QtConceptMapExamplesItem*>(
+  return const_cast<QtExamplesItem*>(
     const_cast<const QtConceptMapWidget*>(this)->GetExamplesItem());
 }
 
-ribi::cmap::QtConceptMapNodeItem* ribi::cmap::QtConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
+ribi::cmap::QtNode* ribi::cmap::QtConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
 {
   #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   const QList<QGraphicsItem*> v = this->scene()->items(pos.x(),pos.y(),2.0,2.0,Qt::IntersectsItemShape,Qt::AscendingOrder);
   #else
   const QList<QGraphicsItem*> v = this->scene()->items(pos.x(),pos.y(),2.0,2.0);
   #endif
-  std::vector<QtConceptMapNodeItem*> qtnodes;
+  std::vector<QtNode*> qtnodes;
   std::for_each(v.begin(),v.end(),
     [&qtnodes](QGraphicsItem* const item)
     {
-      if (QtConceptMapNodeItem * const qtnode = dynamic_cast<QtConceptMapNodeItem*>(item))
+      if (QtNode * const qtnode = dynamic_cast<QtNode*>(item))
       {
-        assert(!dynamic_cast<QtConceptMapToolsItem*>(item) && "Cannot draw arrow to ToolsItem");
+        assert(!dynamic_cast<QtTool*>(item) && "Cannot draw arrow to ToolsItem");
         qtnodes.push_back(qtnode);
       }
     }
@@ -360,19 +360,19 @@ ribi::cmap::QtConceptMapNodeItem* ribi::cmap::QtConceptMapWidget::GetItemBelowCu
   return nullptr;
 }
 
-const std::vector<const ribi::cmap::QtConceptMapEdgeItem *> ribi::cmap::QtConceptMapWidget::GetQtEdges() const
+const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMapWidget::GetQtEdges() const
 {
-  const std::vector<const QtConceptMapEdgeItem *> qtedges
-    = Collect<const QtConceptMapEdgeItem>(this->scene());
+  const std::vector<const QtEdge *> qtedges
+    = Collect<const QtEdge>(this->scene());
   assert(qtedges.size() == GetConceptMap()->GetNodes().size()
       && "GUI and non-GUI must contain an equal amount of edges");
   return qtedges;
 }
 
-const std::vector<const ribi::cmap::QtConceptMapNodeItem *> ribi::cmap::QtConceptMapWidget::GetQtNodes() const
+const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMapWidget::GetQtNodes() const
 {
-  const std::vector<const QtConceptMapNodeItem *> qtnodes
-    = Collect<const QtConceptMapNodeItem>(this->scene());
+  const std::vector<const QtNode *> qtnodes
+    = Collect<const QtNode>(this->scene());
   assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
       && "GUI and non-GUI must contain an equal amount of nodes");
   return qtnodes;
@@ -400,7 +400,7 @@ const std::vector<std::string> ribi::cmap::QtConceptMapWidget::GetVersionHistory
 bool ribi::cmap::QtConceptMapWidget::IsCenterNode(const QGraphicsItem* const item)
 {
 
-  const QtConceptMapNodeItem * const qtnode = dynamic_cast<const QtConceptMapNodeItem*>(item);
+  const QtNode * const qtnode = dynamic_cast<const QtNode*>(item);
   return qtnode && !(item->flags() & QGraphicsItem::ItemIsMovable);
 }
 
@@ -449,12 +449,12 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
     //The ray of the upcoming circle of nodes, is the larger of
     //(1) half of the diagonal of the focal question (e.g. for short concepts)
     //(2) calculated from the circumference by adding the nodes' length
-    const std::vector<QtConceptMapNodeItem *> qtnode_concepts_unsorted = Collect<QtConceptMapNodeItem>(scene());
-    const std::vector<QtConceptMapNodeItem *> qtnode_concepts = Sort(qtnode_concepts_unsorted);
+    const std::vector<QtNode *> qtnode_concepts_unsorted = Collect<QtNode>(scene());
+    const std::vector<QtNode *> qtnode_concepts = Sort(qtnode_concepts_unsorted);
     assert(!qtnode_concepts.empty());
     assert(qtnode_concepts[0]);
-    const QtConceptMapNodeItem * const qtcenter_node
-      = dynamic_cast<const QtConceptMapNodeItem *>(qtnode_concepts[0]);
+    const QtNode * const qtcenter_node
+      = dynamic_cast<const QtNode *>(qtnode_concepts[0]);
     assert(qtcenter_node);
     assert(qtcenter_node->pos().x() > -0.5);
     assert(qtcenter_node->pos().x() <  0.5);
@@ -479,7 +479,7 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
         / boost::numeric_cast<double>(n_nodes - 1);
       const double x =  std::cos(angle) * r;
       const double y = -std::sin(angle) * r;
-      QtConceptMapNodeItem * const qtnode = qtnode_concepts[i];
+      QtNode * const qtnode = qtnode_concepts[i];
       qtnode->GetNode()->SetPos(x,y);
       //qtnode->setPos(x,y);
       #ifndef NDEBUG
@@ -497,9 +497,9 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
 
   {
     //Put the edge concepts in the middle of the nodes
-    const std::vector<QtConceptMapEdgeItem *> qtedge_concepts = Collect<QtConceptMapEdgeItem>(scene());
+    const std::vector<QtEdge *> qtedge_concepts = Collect<QtEdge>(scene());
     std::for_each(qtedge_concepts.begin(), qtedge_concepts.end(),
-      [](QtConceptMapEdgeItem * const qtedge)
+      [](QtEdge * const qtedge)
       {
         const QPointF p((qtedge->GetFrom()->pos() + qtedge->GetTo()->pos()) / 2.0);
         const double new_x = p.x();
@@ -521,13 +521,13 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
   while (1)
   {
     bool done = true;
-    const std::vector<QtConceptMapNodeItem *> qtnodes = Sort(Collect<QtConceptMapNodeItem>(scene()));
+    const std::vector<QtNode *> qtnodes = Sort(Collect<QtNode>(scene()));
     assert(!qtnodes.empty());
     assert(qtnodes[0]);
     assert(IsCenterNode(qtnodes[0]));
-    const std::vector<QtConceptMapEdgeItem* > qtedges = Collect<QtConceptMapEdgeItem>(scene());
-    const QtConceptMapNodeItem * const center_node
-      = dynamic_cast<const QtConceptMapNodeItem *>(qtnodes[0]);
+    const std::vector<QtEdge* > qtedges = Collect<QtEdge>(scene());
+    const QtNode * const center_node
+      = dynamic_cast<const QtNode *>(qtnodes[0]);
     assert(center_node);
 
     std::vector<QtRoundedEditRectItem*> nodes_and_edges;
@@ -548,14 +548,14 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
           const double cur_y = node_or_edge->pos().y();
           const double new_x = cur_x + (node_or_edge->pos().x() < center_node->pos().x() ? -1.0 : 1.0);
           const double new_y = cur_y + (node_or_edge->pos().y() < center_node->pos().y() ? -1.0 : 1.0);
-          if (QtConceptMapNodeItem * const qtnode = dynamic_cast<QtConceptMapNodeItem *>(node_or_edge))
+          if (QtNode * const qtnode = dynamic_cast<QtNode *>(node_or_edge))
           {
             qtnode->GetNode()->SetX(new_x);
             qtnode->GetNode()->SetY(new_y);
           }
           else
           {
-            QtConceptMapEdgeItem * const qtedge = dynamic_cast<QtConceptMapEdgeItem *>(node_or_edge);
+            QtEdge * const qtedge = dynamic_cast<QtEdge *>(node_or_edge);
             assert(qtedge && "Every item is either a Qt node or Qt edge");
             qtedge->GetEdge()->SetX(new_x);
             qtedge->GetEdge()->SetY(new_y);
@@ -570,7 +570,7 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
   }
 }
 
-void ribi::cmap::QtConceptMapWidget::SetExamplesItem(QtConceptMapExamplesItem * const item)
+void ribi::cmap::QtConceptMapWidget::SetExamplesItem(QtExamplesItem * const item)
 {
   assert((item || !item) && "Can be both");
   m_examples_item = item;
@@ -579,9 +579,9 @@ void ribi::cmap::QtConceptMapWidget::SetExamplesItem(QtConceptMapExamplesItem * 
 #ifndef NDEBUG
 void ribi::cmap::QtConceptMapWidget::Shuffle()
 {
-  const std::vector<QtConceptMapNodeItem*> nodes = Collect<QtConceptMapNodeItem>(scene());
+  const std::vector<QtNode*> nodes = Collect<QtNode>(scene());
   std::for_each(nodes.begin(),nodes.end(),
-    [this](QtConceptMapNodeItem* qtnode)
+    [this](QtNode* qtnode)
     {
       if (!IsCenterNode(qtnode))
       {
@@ -632,9 +632,9 @@ void ribi::cmap::QtConceptMapWidget::TestMe(const boost::shared_ptr<const ribi::
   }
   {
     std::set<QtConceptMapItem*> v;
-    const std::vector<QtConceptMapNodeItem*> node_concepts = Collect<QtConceptMapNodeItem>(scene());
+    const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
     std::copy(node_concepts.begin(),node_concepts.end(),std::inserter(v,v.begin()));
-    const std::vector<QtConceptMapEdgeItem*> edge_concepts = Collect<QtConceptMapEdgeItem>(scene());
+    const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());
     std::copy(edge_concepts.begin(),edge_concepts.end(),std::inserter(v,v.begin()));
     assert(v.size() == (node_concepts.size() + edge_concepts.size()) && "All Qt nodes must be unique");
   }

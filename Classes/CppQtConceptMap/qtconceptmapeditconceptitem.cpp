@@ -22,7 +22,7 @@ ribi::cmap::QtConceptMapEditConceptItem::QtConceptMapEditConceptItem(const boost
   assert(GetConcept());
   #endif
 
-  this->setBrush(QtConceptMapBrushFactory::CreateGrayGradientBrush()); //NEW 2013-04-09
+  this->setBrush(QtBrushFactory::CreateGrayGradientBrush()); //NEW 2013-04-09
 
   GetConcept()->m_signal_name_changed.connect(
     boost::bind(&ribi::cmap::QtConceptMapEditConceptItem::OnConceptNameChanged,this)); //Obligatory

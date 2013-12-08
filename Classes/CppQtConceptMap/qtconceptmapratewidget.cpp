@@ -13,13 +13,13 @@
 #include "conceptmapconcept.h"
 #include "conceptmapexamples.h"
 #include "qtconceptmapdisplayconceptitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapfactory.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapcenternodeitem.h"
-#include "qtconceptmapedgeitem.h"
+#include "qtconceptmapedge.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtconceptmaprateexamplesdialog.h"
 #include "qtconceptmapexamplesitem.h"
@@ -70,12 +70,12 @@ void ribi::cmap::QtConceptMapRateWidget::AddEdge(
 {
   const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
   assert(qtconcept);
-  QtConceptMapNodeItem * const from = FindQtNode(edge->GetFrom());
+  QtNode * const from = FindQtNode(edge->GetFrom());
   assert(from);
-  QtConceptMapNodeItem * const to   = FindQtNode(edge->GetTo());
+  QtNode * const to   = FindQtNode(edge->GetTo());
   assert(to);
   assert(from != to);
-  QtConceptMapEdgeItem * const qtedge = new QtConceptMapEdgeItem(
+  QtEdge * const qtedge = new QtEdge(
     edge,
     qtconcept,
     from,
@@ -125,11 +125,11 @@ void ribi::cmap::QtConceptMapRateWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   const boost::shared_ptr<QtConceptMapRateConceptItem> qtconcept(new QtConceptMapRateConceptItem(node->GetConcept()));
   assert(qtconcept);
-  QtConceptMapNodeItem * const qtnode = new QtConceptMapNodeItem(node,qtconcept);
+  QtNode * const qtnode = new QtNode(node,qtconcept);
   assert(qtnode);
 
   //General: inform an Observer that this item has changed
@@ -165,7 +165,7 @@ ribi::cmap::QtConceptMapNodeItem * ribi::cmap::QtConceptMapRateWidget::AddNode(c
   assert(qtnode->pos().y() == node->GetY());
 
   //Cannot test this: during construction not all nodes are put in
-  //assert(Collect<QtConceptMapNodeItem>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
+  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size());
 
   return qtnode;
 }
@@ -185,7 +185,7 @@ void ribi::cmap::QtConceptMapRateWidget::CleanMe()
   //Add the invisible examples item
   {
     assert(!GetExamplesItem());
-    QtConceptMapExamplesItem * const item = new QtConceptMapExamplesItem;
+    QtExamplesItem * const item = new QtExamplesItem;
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
@@ -208,11 +208,11 @@ std::unique_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapRateWidg
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateWidget::CreateSubConceptMap(QtConceptMapNodeItem * const item)
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateWidget::CreateSubConceptMap(QtNode * const item)
 {
   assert(item);
   //Collect all nodes first
-  const std::vector<QtConceptMapEdgeItem*> qtedges = FindEdges(item);
+  const std::vector<QtEdge*> qtedges = FindEdges(item);
   std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   //assert(focal_concept);
   const boost::shared_ptr<ribi::cmap::Node> focal_node = item->GetNode(); //FIX?
@@ -226,18 +226,18 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateWidg
   const int sz = static_cast<int>(qtedges.size());
   for (int i=0; i!=sz; ++i)
   {
-    QtConceptMapEdgeItem* const qtedge = qtedges[i];
+    QtEdge* const qtedge = qtedges[i];
     assert(qtedge);
     assert(qtedge->GetFrom());
     assert(qtedge->GetTo());
     assert(qtedge->GetArrow());
     assert(qtedge->GetArrow()->GetFromItem());
-    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetFromItem()));
-    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetFromItem())->GetNode());
-    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetFromItem())->GetNode()->GetConcept());
-    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetToItem()));
-    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode());
-    assert(dynamic_cast<const QtConceptMapNodeItem*>(qtedge->GetArrow()->GetToItem())->GetNode()->GetConcept());
+    assert(dynamic_cast<const QtNode*>(qtedge->GetArrow()->GetFromItem()));
+    assert(dynamic_cast<const QtNode*>(qtedge->GetArrow()->GetFromItem())->GetNode());
+    assert(dynamic_cast<const QtNode*>(qtedge->GetArrow()->GetFromItem())->GetNode()->GetConcept());
+    assert(dynamic_cast<const QtNode*>(qtedge->GetArrow()->GetToItem()));
+    assert(dynamic_cast<const QtNode*>(qtedge->GetArrow()->GetToItem())->GetNode());
+    assert(dynamic_cast<const QtNode*>(qtedge->GetArrow()->GetToItem())->GetNode()->GetConcept());
     const boost::shared_ptr<ribi::cmap::Node> other_node
       = qtedge->GetFrom()->GetNode() == focal_node
       ? qtedge->GetTo()->GetNode()
@@ -286,7 +286,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphics
   scene()->update();
 }
 
-void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtConceptMapNodeItem * const item)
+void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtNode * const item)
 {
   assert(item);
   assert(item->GetNode()->GetConcept());
@@ -314,7 +314,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtConceptMapN
   this->OnItemRequestsUpdate(item);
 }
 
-void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtConceptMapNodeItem * const item)
+void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtNode * const item)
 {
   assert(item);
   if (item->GetConcept()->GetExamples()->Get().empty())
@@ -329,7 +329,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtConceptMap
     assert(item->GetConcept().get() == concept.get());
     assert(item->GetConcept() == concept);
 
-    QtConceptMapRateExamplesDialog d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
+    QtRateExamplesDialog d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
     d.exec();
 
     assert(item->GetConcept().get() == concept.get());

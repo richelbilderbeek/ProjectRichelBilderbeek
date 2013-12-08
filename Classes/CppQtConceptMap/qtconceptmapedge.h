@@ -11,20 +11,20 @@ namespace ribi {
 
 namespace cmap {
 
-///The QtConceptMapEdgeItem is a QtConceptMapEditConceptItem that
+///The QtEdge is a QtConceptMapEditConceptItem that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
-struct QtConceptMapEdgeItem : public QtConceptMapItem
+struct QtEdge : public QtConceptMapItem
 {
 
-  QtConceptMapEdgeItem(
+  QtEdge(
     const boost::shared_ptr<ribi::cmap::Edge> edge,
     const boost::shared_ptr<QtConceptItem> concept_item,
-    QtConceptMapNodeItem* const from,
-    QtConceptMapNodeItem* const to);
-  QtConceptMapEdgeItem(const QtConceptMapEdgeItem&) = delete;
-  QtConceptMapEdgeItem& operator=(const QtConceptMapEdgeItem&) = delete;
-  ~QtConceptMapEdgeItem() noexcept {}
+    QtNode* const from,
+    QtNode* const to);
+  QtEdge(const QtEdge&) = delete;
+  QtEdge& operator=(const QtEdge&) = delete;
+  ~QtEdge() noexcept {}
 
   QRectF boundingRect() const final;
 
@@ -44,15 +44,15 @@ struct QtConceptMapEdgeItem : public QtConceptMapItem
   const boost::shared_ptr<      cmap::Edge>& GetEdge()       { return m_edge; }
 
   ///The node item the arrow originates from
-  const QtConceptMapNodeItem * GetFrom() const { return m_from; }
-        QtConceptMapNodeItem * GetFrom()       { return m_from; }
+  const QtNode * GetFrom() const { return m_from; }
+        QtNode * GetFrom()       { return m_from; }
 
   ///Get the name of the relation
   const std::string GetName() const;
 
   ///The node item the arrow targets
-  const QtConceptMapNodeItem * GetTo() const { return m_to; }
-        QtConceptMapNodeItem * GetTo()       { return m_to; }
+  const QtNode * GetTo() const { return m_to; }
+        QtNode * GetTo()       { return m_to; }
 
   void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept);
 
@@ -95,10 +95,10 @@ private:
   const boost::shared_ptr<ribi::cmap::Edge> m_edge;
 
   ///The node item the arrow originates from
-  QtConceptMapNodeItem * const m_from;
+  QtNode * const m_from;
 
   ///The node item the arrow targets
-  QtConceptMapNodeItem * const m_to;
+  QtNode * const m_to;
 
   ///Called whenever the edge changes
   void OnEdgeChanged(const cmap::Edge * const edge);

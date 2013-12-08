@@ -59,7 +59,7 @@ void ribi::cmap::QtConceptMapEditWidget::Test()
         assert(j < concept_map->GetNodes().size());
         boost::shared_ptr<This_t> widget(new This_t(concept_map));
         assert(widget);
-        QtConceptMapNodeItem* const qtnode = widget->GetQtNodes()[j];
+        QtNode* const qtnode = widget->GetQtNodes()[j];
         assert(qtnode);
         widget->DeleteNode(qtnode);
         assert(widget->GetQtNodes().size() == n_nodes - 1
@@ -83,7 +83,7 @@ void ribi::cmap::QtConceptMapEditWidget::Test()
         assert(j < concept_map->GetEdges().size());
         boost::shared_ptr<This_t> widget(new This_t(concept_map));
         assert(widget);
-        QtConceptMapEdgeItem* const qtedge = widget->GetQtEdges()[j];
+        QtEdge* const qtedge = widget->GetQtEdges()[j];
         widget->DeleteEdge(qtedge);
         assert(widget->GetQtEdges().size() == n_edges - 1
           && "Edge must really be gone");

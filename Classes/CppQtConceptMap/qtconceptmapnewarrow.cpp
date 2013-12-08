@@ -11,7 +11,7 @@
 #include <QPainter>
 
 //#include "qtconceptmapconceptitem.h"
-#include "qtconceptmapnodeitem.h"
+#include "qtconceptmapnode.h"
 #include "trace.h"
 
 #include <boost/geometry.hpp>
@@ -107,8 +107,8 @@ GetLineRectIntersections(
   return points;
 }
 
-ribi::cmap::QtConceptMapNewArrow::QtConceptMapNewArrow(
-  QtConceptMapNodeItem * const from,
+ribi::cmap::QtNewArrow::QtNewArrow(
+  QtNode * const from,
   const QPointF& current_to)
   : QtArrowItem(
       from->pos().x(),from->pos().y(),false,
@@ -131,7 +131,7 @@ ribi::cmap::QtConceptMapNewArrow::QtConceptMapNewArrow(
   assert(!(this->flags() & QGraphicsItem::ItemIsMovable ));
 }
 
-void ribi::cmap::QtConceptMapNewArrow::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::cmap::QtNewArrow::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;

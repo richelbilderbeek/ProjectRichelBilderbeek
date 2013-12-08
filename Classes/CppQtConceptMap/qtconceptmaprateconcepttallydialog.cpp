@@ -29,11 +29,11 @@
 #include "ui_qtconceptmaprateconcepttallydialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapRateConceptTallyDialog::QtConceptMapRateConceptTallyDialog(
+ribi::cmap::QtRateConceptTallyDialog::QtRateConceptTallyDialog(
   const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> sub_concept_map,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapRateConceptTallyDialog),
+    ui(new Ui::QtRateConceptTallyDialog),
     m_data(CreateData(sub_concept_map))
 {
   #ifndef NDEBUG
@@ -157,13 +157,13 @@ ribi::cmap::QtConceptMapRateConceptTallyDialog::QtConceptMapRateConceptTallyDial
   }
 }
 
-ribi::cmap::QtConceptMapRateConceptTallyDialog::~QtConceptMapRateConceptTallyDialog() noexcept
+ribi::cmap::QtRateConceptTallyDialog::~QtRateConceptTallyDialog() noexcept
 {
   delete ui;
 }
 
-const std::vector<ribi::cmap::QtConceptMapRateConceptTallyDialog::Row>
-  ribi::cmap::QtConceptMapRateConceptTallyDialog::CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map)
+const std::vector<ribi::cmap::QtRateConceptTallyDialog::Row>
+  ribi::cmap::QtRateConceptTallyDialog::CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map)
 {
   std::vector<Row> data;
 
@@ -207,7 +207,7 @@ const std::vector<ribi::cmap::QtConceptMapRateConceptTallyDialog::Row>
   return data;
 }
 
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateConceptTallyDialog::CreateTestConceptMap()
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDialog::CreateTestConceptMap()
 {
   //Create a subconcept map for testing:
   // - node with a concept with (1) text 'TextNode' (2) one example with text 'TextExampleNode'
@@ -250,7 +250,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateConc
   return sub_concept_map;
 }
 
-int ribi::cmap::QtConceptMapRateConceptTallyDialog::GetSuggestedComplexity() const
+int ribi::cmap::QtRateConceptTallyDialog::GetSuggestedComplexity() const
 {
   //Tally the edges that contribute to complexity
   const int n_edges = std::accumulate(m_data.begin(),m_data.end(),0,
@@ -278,7 +278,7 @@ int ribi::cmap::QtConceptMapRateConceptTallyDialog::GetSuggestedComplexity() con
   return 2;
 }
 
-int ribi::cmap::QtConceptMapRateConceptTallyDialog::GetSuggestedConcreteness() const
+int ribi::cmap::QtRateConceptTallyDialog::GetSuggestedConcreteness() const
 {
   //Tally the examples that contribute to concreteness
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
@@ -298,7 +298,7 @@ int ribi::cmap::QtConceptMapRateConceptTallyDialog::GetSuggestedConcreteness() c
   return 2;
 }
 
-int ribi::cmap::QtConceptMapRateConceptTallyDialog::GetSuggestedSpecificity() const
+int ribi::cmap::QtRateConceptTallyDialog::GetSuggestedSpecificity() const
 {
   //Tally the examples that contribute to specificity
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
@@ -318,12 +318,12 @@ int ribi::cmap::QtConceptMapRateConceptTallyDialog::GetSuggestedSpecificity() co
   return 2;
 }
 
-void ribi::cmap::QtConceptMapRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
+void ribi::cmap::QtRateConceptTallyDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::cmap::QtConceptMapRateConceptTallyDialog::OnCellChanged(int row_index, int col)
+void ribi::cmap::QtRateConceptTallyDialog::OnCellChanged(int row_index, int col)
 {
   assert(row_index >= 0);
   assert(row_index < static_cast<int>(m_data.size()));
@@ -370,7 +370,7 @@ void ribi::cmap::QtConceptMapRateConceptTallyDialog::OnCellChanged(int row_index
   }
 }
 
-void ribi::cmap::QtConceptMapRateConceptTallyDialog::resizeEvent(QResizeEvent *)
+void ribi::cmap::QtRateConceptTallyDialog::resizeEvent(QResizeEvent *)
 {
   const int small_col_width = 20;
   ui->table->setColumnWidth(0, small_col_width);
@@ -380,32 +380,32 @@ void ribi::cmap::QtConceptMapRateConceptTallyDialog::resizeEvent(QResizeEvent *)
   ui->table->setColumnWidth(3,ui->table->width() - (3 * small_col_width) - (3 * extra_space));
 }
 
-void ribi::cmap::QtConceptMapRateConceptTallyDialog::on_button_ok_clicked()
+void ribi::cmap::QtRateConceptTallyDialog::on_button_ok_clicked()
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapRateConceptTallyDialog::Test()
+void ribi::cmap::QtRateConceptTallyDialog::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMapRateConceptTallyDialog::Test");
+  TRACE("Started ribi::cmap::QtRateConceptTallyDialog::Test");
   //Empty table
   {
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map;
     assert(!concept_map);
-    QtConceptMapRateConceptTallyDialog d(concept_map);
+    QtRateConceptTallyDialog d(concept_map);
   }
 
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = CreateTestConceptMap();
   assert(concept_map);
 
 
-  QtConceptMapRateConceptTallyDialog d(concept_map);
+  QtRateConceptTallyDialog d(concept_map);
 
   //TEMP
   {
@@ -484,6 +484,6 @@ void ribi::cmap::QtConceptMapRateConceptTallyDialog::Test()
   assert(d.ui->table->item(2,2)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsSpecific() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,3)->text() == QString(edge->GetConcept()->GetExamples()->Get()[0]->GetText().c_str()));
 
-  TRACE("Finished ribi::cmap::QtConceptMapRateConceptTallyDialog::Test successfully");
+  TRACE("Finished ribi::cmap::QtRateConceptTallyDialog::Test successfully");
 }
 #endif

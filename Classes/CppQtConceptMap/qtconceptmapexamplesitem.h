@@ -14,12 +14,12 @@
 namespace ribi {
 namespace cmap {
 
-struct QtConceptMapExamplesItem : public QtRoundedEditRectItem
+struct QtExamplesItem : public QtRoundedEditRectItem
 {
-  QtConceptMapExamplesItem(QGraphicsItem* parent = 0);
-  QtConceptMapExamplesItem(const QtConceptMapExamplesItem&) = delete;
-  QtConceptMapExamplesItem& operator=(const QtConceptMapExamplesItem&) = delete;
-  ~QtConceptMapExamplesItem() noexcept {}
+  QtExamplesItem(QGraphicsItem* parent = 0);
+  QtExamplesItem(const QtExamplesItem&) = delete;
+  QtExamplesItem& operator=(const QtExamplesItem&) = delete;
+  ~QtExamplesItem() noexcept {}
   ///Check the buddy item
   const QtConceptMapItem* GetBuddyItem() const noexcept { return m_item; }
 

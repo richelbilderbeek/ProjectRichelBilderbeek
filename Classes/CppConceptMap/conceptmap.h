@@ -17,6 +17,9 @@ namespace cmap {
 
 struct ConceptMapFactory;
 
+///A concept map
+///Its interface is based on nodes and edges
+///Use ConceptMapWidget to work with commands
 struct ConceptMap
 {
   ConceptMap(const ConceptMap&) = delete;

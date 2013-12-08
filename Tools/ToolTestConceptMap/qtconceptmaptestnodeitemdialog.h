@@ -16,7 +16,7 @@ namespace Ui { class QtConceptMapTestNodeItemDialog; }
 namespace ribi {
 namespace cmap {
 
-///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtConceptMapNodeItem,
+///Tests all QtConceptMapConceptItem items when being a member of a cmap::QtNode,
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
 class QtConceptMapTestNodeItemDialog : public ribi::QtHideAndShowDialog
@@ -46,9 +46,9 @@ private:
 
   Ui::QtConceptMapTestNodeItemDialog *ui;
   const boost::shared_ptr<ribi::cmap::Node> m_node;
-  cmap::QtConceptMapNodeItem* m_display_node;
-  cmap::QtConceptMapNodeItem* m_edit_node;
-  cmap::QtConceptMapNodeItem* m_rate_node;
+  cmap::QtNode* m_display_node;
+  cmap::QtNode* m_edit_node;
+  cmap::QtNode* m_rate_node;
 
   ///Get the Node via the route chosen by box_edit
   const boost::shared_ptr<ribi::cmap::Node> GetNode();

@@ -10,7 +10,6 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace cmap {
 
 struct CenterNodeFactory;
