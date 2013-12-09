@@ -21,12 +21,12 @@
 #include "conceptmapexamples.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-#include "qtconceptmapdisplayconceptitem.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapedge.h"
-#include "qtconceptmapeditconceptitem.h"
+#include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnode.h"
-#include "qtconceptmaprateconceptitem.h"
+#include "qtconceptmapratestrategy.h"
 #include "trace.h"
 #include "ui_qtconceptmaptestedgeitemdialog.h"
 #pragma GCC diagnostic pop
@@ -68,7 +68,7 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   cmap::QtNode * node1 = nullptr;
   {
     //m_from->GetConcept()->SetName("1");
-    const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(m_from->GetConcept()));
+    const boost::shared_ptr<QtDisplayStrategy> item(new QtDisplayStrategy(m_from->GetConcept()));
     node1 = new cmap::QtNode(m_from,item);
     node1->m_signal_request_scene_update.connect(
       boost::bind(&ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate,this));
@@ -76,7 +76,7 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   cmap::QtNode * node2 = nullptr;
   {
     //m_to->GetConcept()->SetName("2");
-    const boost::shared_ptr<QtConceptMapEditConceptItem> item(new QtConceptMapEditConceptItem(m_to->GetConcept()));
+    const boost::shared_ptr<QtEditStrategy> item(new QtEditStrategy(m_to->GetConcept()));
     node2 = new cmap::QtNode(m_to,item);
     node2->m_signal_request_scene_update.connect(
       boost::bind(&ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate,this));
@@ -91,13 +91,13 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   //Create the edge
   {
     assert(m_edge);
-    boost::shared_ptr<QtConceptMapEditConceptItem> concept(new QtConceptMapEditConceptItem(m_edge->GetConcept()));
+    boost::shared_ptr<QtEditStrategy> concept(new QtEditStrategy(m_edge->GetConcept()));
     m_edge_item = new QtEdge(m_edge,concept,node1,node2);
   }
 
   //Node is used in: m_edge and QtConceptMapNodeConcept::m_edge
   //assert(m_edge.use_count() == 2);
-  //Concept is used in: m_edge::m_concept, QtConceptMapDisplayConcept::m_edge::m_concept and QtConceptMapConcept::m_concept
+  //Concept is used in: m_edge::m_concept, QtDisplayStrategy::m_edge::m_concept and QtConceptMapConcept::m_concept
   assert(m_edge.get() == m_edge_item->GetEdge().get());
   assert(m_edge->GetConcept().get() == m_edge_item->GetEdge()->GetConcept().get());
 

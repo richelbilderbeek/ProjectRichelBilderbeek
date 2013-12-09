@@ -12,11 +12,11 @@
 
 #include <boost/lexical_cast.hpp>
 #include <QKeyEvent>
-#include "qtconceptmapdisplayconceptitem.h"
-#include "qtconceptmapeditconceptitem.h"
-#include "qtconceptmaprateconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
+#include "qtconceptmapeditstrategy.h"
+#include "qtconceptmapratestrategy.h"
 #include "conceptmapnodefactory.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapnode.h"
 #include "conceptmapexamples.h"
@@ -48,7 +48,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   assert(m_node->GetConcept().use_count() == 1);
 
   {
-    const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(m_node->GetConcept()));
+    const boost::shared_ptr<QtDisplayStrategy> item(new QtDisplayStrategy(m_node->GetConcept()));
     m_display_node = new cmap::QtNode(m_node,item);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
@@ -58,14 +58,14 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
 
   //Node is used in: m_node and QtConceptMapNodeConcept::m_node
   assert(m_node.use_count() == 2);
-  //Concept is used in: m_node::m_concept, QtConceptMapDisplayConcept::m_node::m_concept and QtConceptMapConcept::m_concept
+  //Concept is used in: m_node::m_concept, QtDisplayStrategy::m_node::m_concept and QtConceptMapConcept::m_concept
   assert(m_node.get() == m_display_node->GetNode().get());
   assert(m_node->GetConcept().get() == m_display_node->GetNode()->GetConcept().get());
   assert(m_node->GetConcept().use_count() == 2);
   assert(m_node->GetConceptUseCount() == 2);
 
   {
-    const boost::shared_ptr<QtConceptMapEditConceptItem> item(new QtConceptMapEditConceptItem(m_node->GetConcept()));
+    const boost::shared_ptr<QtEditStrategy> item(new QtEditStrategy(m_node->GetConcept()));
     m_edit_node = new cmap::QtNode(m_node,item);
     m_edit_node->m_signal_request_scene_update.connect(
       boost::bind(
@@ -78,7 +78,7 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   assert(m_node->GetConcept().use_count() == 3);
 
   {
-    const boost::shared_ptr<QtConceptMapRateConceptItem> item(new QtConceptMapRateConceptItem(m_node->GetConcept()));
+    const boost::shared_ptr<QtRateStrategy> item(new QtRateStrategy(m_node->GetConcept()));
     m_rate_node = new cmap::QtNode(m_node,item);
     m_rate_node->m_signal_request_scene_update.connect(
       boost::bind(
@@ -152,7 +152,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
         {
           const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
-          return dynamic_cast<const QtConceptMapDisplayConceptItem*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtDisplayStrategy*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
@@ -168,7 +168,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
         {
           const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
-          return dynamic_cast<const QtConceptMapEditConceptItem*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtEditStrategy*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
@@ -184,7 +184,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
         {
           const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
-          return dynamic_cast<const QtConceptMapRateConceptItem*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtRateStrategy*>(node_item->GetConceptItem().get());
         }
       );
       assert(iter!=v.end());
@@ -291,7 +291,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::Test()
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
-    QtConceptMapRateConceptItem item(concept);
+    QtRateStrategy item(concept);
     assert(d.m_edit_node->brush()    == QtConceptMapBrushFactory::CreateGrayGradientBrush());
     assert(d.m_display_node->brush() == QtConceptMapBrushFactory::CreateRedGradientBrush());
     assert(d.m_rate_node->brush()    == QtConceptMapBrushFactory::CreateRedGradientBrush());

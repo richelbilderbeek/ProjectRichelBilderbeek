@@ -7,7 +7,7 @@
 #include "trace.h"
 
 ribi::foam::PointsFileItem::PointsFileItem(
-  const std::array<double,3>& coordinat
+  const Coordinat3D& coordinat
   )
   : m_coordinat(coordinat)
 {
@@ -56,9 +56,9 @@ bool ribi::foam::operator==(const PointsFileItem& lhs, const PointsFileItem& rhs
 {
   const double abs_tolerance = 0.001;
   return
-        fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat()[0],rhs.GetCoordinat()[0])
-     && fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat()[1],rhs.GetCoordinat()[1])
-     && fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat()[2],rhs.GetCoordinat()[2])
+        fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat().GetX(),rhs.GetCoordinat().GetX())
+     && fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat().GetY(),rhs.GetCoordinat().GetY())
+     && fuzzy_equal_to_abs(abs_tolerance)(lhs.GetCoordinat().GetZ(),rhs.GetCoordinat().GetZ())
   ;
 }
 
@@ -71,16 +71,9 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& ite
 {
   os
     << "("
-  ;
-
-  std::stringstream s;
-  for (const double d: item.GetCoordinat()) { s << d << " "; }
-  std::string t { s.str() };
-  assert(t.back() == ' ');
-  t.pop_back();
-  assert(t.back() != ' ');
-  os
-    << t
+    << item.GetCoordinat().GetX() << " "
+    << item.GetCoordinat().GetY() << " "
+    << item.GetCoordinat().GetZ()
     << ")"
   ;
 
@@ -94,11 +87,20 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFileItem& f)
     is >> bracket_open;
     assert(bracket_open == '(');
   }
-  for (int i=0; i!=3; ++i)
   {
     double d = 0.0;
     is >> d;
-    f.m_coordinat[i] = d;
+    f.m_coordinat.SetX(d);
+  }
+  {
+    double d = 0.0;
+    is >> d;
+    f.m_coordinat.SetY(d);
+  }
+  {
+    double d = 0.0;
+    is >> d;
+    f.m_coordinat.SetZ(d);
   }
   {
     char bracket_close;

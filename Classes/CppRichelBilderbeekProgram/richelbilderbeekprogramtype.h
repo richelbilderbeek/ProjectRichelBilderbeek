@@ -112,7 +112,7 @@ enum class ProgramType
   pylos,
   qmakeWatcher,
   quadraticSolver,
-  rampal,
+  rampalEtienne,
   randomCode,
   randomCodeVcl,
   rasper,

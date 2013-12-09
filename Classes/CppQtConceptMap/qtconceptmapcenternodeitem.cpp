@@ -8,7 +8,7 @@
 #include "qtconceptitem.h"
 #include "qtconceptmapbrushfactory.h"
 #include "conceptmapnode.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -27,11 +27,11 @@ ribi::cmap::QtCenterNode::QtCenterNode(
   this->GetConceptItem()->SetMainBrush(QtBrushFactory::CreateGoldGradientBrush());
 }
 
-const boost::shared_ptr<ribi::cmap::QtConceptItem> ribi::cmap::QtCenterNode::CreateConceptItem(
+const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtCenterNode::CreateConceptItem(
   const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
-  const boost::shared_ptr<QtConceptMapDisplayConceptItem> item(new QtConceptMapDisplayConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtDisplayStrategy> item(new QtDisplayStrategy(node->GetConcept()));
   assert(item);
   return item;
 }

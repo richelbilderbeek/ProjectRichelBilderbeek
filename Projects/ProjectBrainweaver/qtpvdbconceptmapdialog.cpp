@@ -28,7 +28,7 @@
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapeditwidget.h"
 #include "qtconceptmapitem.h"
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 #include "qtconceptmapedge.h"
 #include "qtpvdbfiledialog.h"
 #include "qtconceptmapnode.h"
@@ -212,19 +212,19 @@ void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
 }
 #endif
 
-const ribi::cmap::QtConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget() const
+const ribi::cmap::QtConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget() const
 {
   assert(m_widget);
   return m_widget;
 }
 
-ribi::cmap::QtConceptMapWidget * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget()
+ribi::cmap::QtConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::GetWidget()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
   //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
   //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
-  return const_cast<cmap::QtConceptMapWidget*>(
+  return const_cast<cmap::QtConceptMap*>(
     const_cast<const QtPvdbConceptMapDialog*>(this)->GetWidget()); //?Why Dialog
 
 }
@@ -280,7 +280,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(cmap::QtCo
 void ribi::pvdb::QtPvdbConceptMapDialog::on_button_save_clicked()
 {
   //Temporarily disable to widget, otherwise saving cannot succeed
-  const QtScopedDisable<cmap::QtConceptMapWidget> scoped_disable1(GetWidget());
+  const QtScopedDisable<cmap::QtConceptMap> scoped_disable1(GetWidget());
   const QtScopedDisable<QtPvdbConceptMapDialog> scoped_disable2(this);
   this->hide();
 

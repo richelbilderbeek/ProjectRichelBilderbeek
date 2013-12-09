@@ -105,7 +105,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::pylos,std::string("pylos")));
   m.insert(Pair(ProgramType::qmakeWatcher,std::string("qmakeWatcher")));
   m.insert(Pair(ProgramType::quadraticSolver,std::string("quadraticSolver")));
-  m.insert(Pair(ProgramType::rampal,std::string("rampal")));
+  m.insert(Pair(ProgramType::rampalEtienne,std::string("rampalEtienne")));
   m.insert(Pair(ProgramType::randomCode,std::string("randomCode")));
   m.insert(Pair(ProgramType::randomCodeVcl,std::string("randomCodeVcl")));
   m.insert(Pair(ProgramType::rasper,std::string("rasper")));
@@ -313,7 +313,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::pylos,std::string("Pylos")));
   m.insert(Pair(ProgramType::qmakeWatcher,std::string("qmake Watcher")));
   m.insert(Pair(ProgramType::quadraticSolver,std::string("QuadraticSolver")));
-  m.insert(Pair(ProgramType::rampal,std::string("Rampal")));
+  m.insert(Pair(ProgramType::rampalEtienne,std::string("RampalEtienne")));
   m.insert(Pair(ProgramType::randomCode,std::string("RandomCode")));
   m.insert(Pair(ProgramType::randomCodeVcl,std::string("RandomCode (VCL)")));
   m.insert(Pair(ProgramType::rasper,std::string("Rasper")));

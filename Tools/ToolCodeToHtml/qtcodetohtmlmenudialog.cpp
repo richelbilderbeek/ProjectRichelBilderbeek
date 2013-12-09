@@ -83,6 +83,7 @@ void ribi::c2h::QtCodeToHtmlMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting QtCodeToHtmlMenuDialog::Test");
+  CodeToHtmlMenuDialog();
   QtCodeToHtmlMainDialog();
   TRACE("Finished QtCodeToHtmlMenuDialog::Test successfully");
 }

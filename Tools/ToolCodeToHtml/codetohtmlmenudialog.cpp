@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qrcfile.h"
 #include "qtcreatorprofile.h"
 #include "codetohtmldialog.h"
-//#include "codetohtmltechinfotype.h"
+#include "codetohtmlinfo.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -245,6 +245,50 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::c2h::CodeToHtmlMenuDialog::Test()");
+  {
+    const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
+    const std::vector<std::string> html {
+      info->ToHtml("non_existing_page_762538762539827382309728")
+    };
+    assert(html.size() == 1);
+    const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
+    const std::string html_str = html[0];
+    assert(html_str.substr(0,no_info_str.size()) == no_info_str);
+  }
+  //Every Program must have some CodeToHtml info
+  {
+    const std::vector<boost::shared_ptr<Program> > programs { Program::GetAllPrograms() };
+    std::vector<std::string> pagenames;
+    std::transform(programs.begin(),programs.end(),std::back_inserter(pagenames),
+      [](const boost::shared_ptr<Program> program)
+      {
+        const std::string s = program->GetUrl();
+        assert(s.substr(s.size() - 4, 4) == std::string(".htm"));
+        const std::string t = s.substr(0,s.size() - 4);
+        return t;
+      }
+    );
+
+    for (const std::string pagename: pagenames)
+    {
+      const boost::shared_ptr<const c2h::Info> info(new c2h::Info);
+      const std::vector<std::string> html {
+        info->ToHtml(pagename)
+      };
+      assert(!html.empty());
+      const std::string no_info_str = "<!-- No CodeToHtmlInfo about this class";
+      const std::string html_str = html[0];
+      if(html_str.substr(0,no_info_str.size()) == no_info_str)
+      {
+        TRACE("ERROR");
+        TRACE("No info for page:");
+        TRACE(pagename);
+      }
+      assert(html_str.substr(0,no_info_str.size()) != no_info_str
+        && "For every programType there must be HTML info");
+    }
+  }
+  assert(1==2);
   TRACE("Finished ribi::c2h::CodeToHtmlMenuDialog::Test()");
 }
 #endif

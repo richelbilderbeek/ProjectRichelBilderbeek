@@ -18,7 +18,7 @@
 #include "conceptmapfactory.h"
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapnode.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -43,7 +43,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 ribi::cmap::QtConceptMapDisplayWidget::QtConceptMapDisplayWidget(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
-  : QtConceptMapWidget(concept_map,parent)
+  : QtConceptMap(concept_map,parent)
 {
   #ifndef NDEBUG
   Test();
@@ -61,7 +61,7 @@ void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   assert(edge);
-  const boost::shared_ptr<QtConceptMapDisplayConceptItem> qtconcept(new QtConceptMapDisplayConceptItem(edge->GetConcept()));
+  const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(edge->GetConcept()));
   assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom());
   assert(from);
@@ -85,10 +85,10 @@ void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
   //Add the EdgeConcepts to the scene
   qtedge->m_signal_item_has_updated.connect(
     boost::bind(
-      &QtConceptMapWidget::OnItemRequestsUpdate,
+      &QtConceptMap::OnItemRequestsUpdate,
       this,boost::lambda::_1)); //Do not forget the placeholder!
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
   assert(this->scene());
 
 
@@ -121,18 +121,18 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapDisplayWidget::AddNode(const boost:
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<QtConceptMapDisplayConceptItem> qtconcept(new QtConceptMapDisplayConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(node->GetConcept()));
   assert(qtconcept);
   QtNode * const qtnode = new QtNode(node,qtconcept);
   assert(qtnode);
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
-   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtnode->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
   assert(!qtnode->scene());
   this->scene()->addItem(qtnode);
@@ -178,12 +178,12 @@ void ribi::cmap::QtConceptMapDisplayWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapDisplayWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapDisplayWidget::CreateNewDerived() const
 {
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMapWidget> p(new QtConceptMapDisplayWidget(concept_map));
+  std::unique_ptr<QtConceptMap> p(new QtConceptMapDisplayWidget(concept_map));
   assert(p);
   return p;
 }

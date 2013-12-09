@@ -34,7 +34,7 @@ ribi::cmap::QtRateConceptDialog::QtRateConceptDialog(
   const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtConceptMapRateConceptDialog),
+    ui(new Ui::QtRateStrategyDialog),
     m_button_ok_clicked(false),
     m_concept(sub_concept_map
       ? sub_concept_map->GetNodes().at(0)->GetConcept()
@@ -100,11 +100,11 @@ ribi::cmap::QtRateConceptDialog::QtRateConceptDialog(
   //so let this dialog follow the ratings done by the tally dialog
   //DOES NOT WORK
   //m_concept->m_signal_rating_complexity_changed.connect(
-  //  boost::bind(&ribi::cmap::QtConceptMapRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //  boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
   //m_concept->m_signal_rating_concreteness_changed.connect(
-  //  boost::bind(&ribi::cmap::QtConceptMapRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //  boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
   //m_concept->m_signal_rating_specificity_changed.connect(
-  //  boost::bind(&ribi::cmap::QtConceptMapRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //  boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
 }
 
 
@@ -123,11 +123,11 @@ ribi::cmap::QtRateConceptDialog::~QtRateConceptDialog() noexcept
   //{
   //  //Just to be sure
   //  m_concept->m_signal_rating_complexity_changed.disconnect(
-  //    boost::bind(&ribi::cmap::QtConceptMapRateConceptDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //    boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
   //  m_concept->m_signal_rating_concreteness_changed.disconnect(
-  //    boost::bind(&ribi::cmap::QtConceptMapRateConceptDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //    boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
   //  m_concept->m_signal_rating_specificity_changed.disconnect(
-  //    boost::bind(&ribi::cmap::QtConceptMapRateConceptDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //    boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
   //}
   delete ui;
 }
@@ -180,7 +180,7 @@ void ribi::cmap::QtRateConceptDialog::Test()
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMapRateConceptDialog::Test");
+  TRACE("Started ribi::cmap::QtRateStrategyDialog::Test");
 
   {
     const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > concept_maps
@@ -214,7 +214,7 @@ void ribi::cmap::QtRateConceptDialog::Test()
         d.close();
         //Need to call the destructor
       }
-      assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtConceptMapRateConceptDialog must not change the concept");
+      assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtRateStrategyDialog must not change the concept");
     }
   }
   {
@@ -246,10 +246,10 @@ void ribi::cmap::QtRateConceptDialog::Test()
       d.ui->box_concreteness->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
       d.ui->box_specificity->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
       d.ui->button_ok->click();
-      assert(!IsEqual(*concept,*old_concept) && "QtConceptMapRateConceptDialog must change the concept when clicked OK");
+      assert(!IsEqual(*concept,*old_concept) && "QtRateStrategyDialog must change the concept when clicked OK");
     }
   }
-  TRACE("Finished ribi::cmap::QtConceptMapRateConceptDialog::Test successfully");
+  TRACE("Finished ribi::cmap::QtRateStrategyDialog::Test successfully");
 }
 #endif
 

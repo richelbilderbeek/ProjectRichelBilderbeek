@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 
 #include <set>
 
@@ -25,7 +25,7 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtarrowitem.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapconcepteditdialog.h"
@@ -90,7 +90,7 @@ const std::vector<ribi::cmap::QtNode*>
 
 
 
-ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
+ribi::cmap::QtConceptMap::QtConceptMap(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
@@ -128,13 +128,13 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
 }
 
 
-ribi::cmap::QtConceptMapWidget::~QtConceptMapWidget() noexcept
+ribi::cmap::QtConceptMap::~QtConceptMap() noexcept
 {
   delete m_examples_item; //Why did I forget this?
   m_examples_item = nullptr;
 }
 
-void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
+void ribi::cmap::QtConceptMap::BuildQtConceptMap()
 {
 
   CleanMe();
@@ -161,7 +161,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
     else
     {
       assert(node);
-      const boost::shared_ptr<QtConceptMapItem> item(new QtConceptMapDisplayConceptItem(node->GetConcept()));
+      const boost::shared_ptr<QtConceptMapItem> item(new QtDisplayStrategy(node->GetConcept()));
       assert(item);
       qtnode = new QtNode(node,item);
     }
@@ -169,9 +169,9 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
     assert(qtnode);
     //Let the center node respond to mouse clicks
     qtnode->m_signal_request_scene_update.connect(
-      boost::bind(&ribi::cmap::QtConceptMapWidget::OnRequestSceneUpdate,this));
+      boost::bind(&ribi::cmap::QtConceptMap::OnRequestSceneUpdate,this));
     qtnode->m_signal_item_has_updated.connect(
-      boost::bind(&ribi::cmap::QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+      boost::bind(&ribi::cmap::QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
     //Add the center node to scene
     assert(!qtnode->scene());
     this->scene()->addItem(qtnode);
@@ -253,7 +253,7 @@ void ribi::cmap::QtConceptMapWidget::BuildQtConceptMap()
   #endif
 }
 
-const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMapWidget::FindEdges(
+const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
   const QtNode* const from) const
 {
   assert(from);
@@ -268,7 +268,7 @@ const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMapWidget::FindEdges
   return w;
 }
 
-const ribi::cmap::QtEdge * ribi::cmap::QtConceptMapWidget::FindQtEdge(
+const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
   const QtNode* const from,
   const QtNode* const to) const
 {
@@ -289,7 +289,7 @@ const ribi::cmap::QtEdge * ribi::cmap::QtConceptMapWidget::FindQtEdge(
   return * iter;
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMapWidget::FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const
 {
   const std::vector<QtNode *> qtnodes = Collect<QtNode>(scene());
   for (QtNode * qtnode: qtnodes)
@@ -297,10 +297,10 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapWidget::FindQtNode(const boost::sha
     if (qtnode->GetNode() == node) return qtnode;
   }
   assert(!"Should always find QtNode");
-  throw std::logic_error("ribi::cmap::QtConceptMapWidget::FindQtNode");
+  throw std::logic_error("ribi::cmap::QtConceptMap::FindQtNode");
 }
 
-const ribi::cmap::QtNode * ribi::cmap::QtConceptMapWidget::GetCenterNode() const
+const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const
 {
 
   assert(scene());
@@ -319,23 +319,23 @@ const ribi::cmap::QtNode * ribi::cmap::QtConceptMapWidget::GetCenterNode() const
   return center_node;
 }
 
-const ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMapWidget::GetExamplesItem() const
+const ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMap::GetExamplesItem() const
 {
   assert(m_examples_item || !m_examples_item);
   return m_examples_item;
 }
 
-ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMapWidget::GetExamplesItem()
+ribi::cmap::QtExamplesItem * ribi::cmap::QtConceptMap::GetExamplesItem()
 {
   //Calls the const version of this member function
   //To avoid duplication in const and non-const member functions [1]
   //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
   //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
   return const_cast<QtExamplesItem*>(
-    const_cast<const QtConceptMapWidget*>(this)->GetExamplesItem());
+    const_cast<const QtConceptMap*>(this)->GetExamplesItem());
 }
 
-ribi::cmap::QtNode* ribi::cmap::QtConceptMapWidget::GetItemBelowCursor(const QPointF& pos) const
+ribi::cmap::QtNode* ribi::cmap::QtConceptMap::GetItemBelowCursor(const QPointF& pos) const
 {
   #if (QT_VERSION >= QT_VERSION_CHECK(5,0,0))
   const QList<QGraphicsItem*> v = this->scene()->items(pos.x(),pos.y(),2.0,2.0,Qt::IntersectsItemShape,Qt::AscendingOrder);
@@ -360,7 +360,7 @@ ribi::cmap::QtNode* ribi::cmap::QtConceptMapWidget::GetItemBelowCursor(const QPo
   return nullptr;
 }
 
-const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMapWidget::GetQtEdges() const
+const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges() const
 {
   const std::vector<const QtEdge *> qtedges
     = Collect<const QtEdge>(this->scene());
@@ -369,7 +369,7 @@ const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMapWidget::Ge
   return qtedges;
 }
 
-const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMapWidget::GetQtNodes() const
+const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
 {
   const std::vector<const QtNode *> qtnodes
     = Collect<const QtNode>(this->scene());
@@ -378,18 +378,18 @@ const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMapWidget::Ge
   return qtnodes;
 }
 
-QGraphicsScene* ribi::cmap::QtConceptMapWidget::GetScene() const
+QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const
 {
 
   return this->scene();
 }
 
-const std::string ribi::cmap::QtConceptMapWidget::GetVersion() noexcept
+const std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::cmap::QtConceptMapWidget::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noexcept
 {
   return {
     "201x-xx-xx: version 1.0: initial version"
@@ -397,14 +397,14 @@ const std::vector<std::string> ribi::cmap::QtConceptMapWidget::GetVersionHistory
   };
 }
 
-bool ribi::cmap::QtConceptMapWidget::IsCenterNode(const QGraphicsItem* const item)
+bool ribi::cmap::QtConceptMap::IsCenterNode(const QGraphicsItem* const item)
 {
 
   const QtNode * const qtnode = dynamic_cast<const QtNode*>(item);
   return qtnode && !(item->flags() & QGraphicsItem::ItemIsMovable);
 }
 
-void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent *event) noexcept
+void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept
 {
 
   switch (event->key())
@@ -421,7 +421,7 @@ void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent *event) noexcept
   scene()->update();
 }
 
-bool ribi::cmap::QtConceptMapWidget::MustReposition(const std::vector<boost::shared_ptr<const cmap::Node> >& nodes) const
+bool ribi::cmap::QtConceptMap::MustReposition(const std::vector<boost::shared_ptr<const cmap::Node> >& nodes) const
 {
   //If all are at the origin, the nodes must be (re)positioned
   return std::count_if(nodes.begin(),nodes.end(),
@@ -432,18 +432,18 @@ bool ribi::cmap::QtConceptMapWidget::MustReposition(const std::vector<boost::sha
   ) == static_cast<int>(nodes.size());
 }
 
-void ribi::cmap::QtConceptMapWidget::OnItemRequestsUpdate(const QGraphicsItem* const item)
+void ribi::cmap::QtConceptMap::OnItemRequestsUpdate(const QGraphicsItem* const item)
 {
   OnItemRequestUpdateImpl(item);
 }
 
-void ribi::cmap::QtConceptMapWidget::OnRequestSceneUpdate()
+void ribi::cmap::QtConceptMap::OnRequestSceneUpdate()
 {
   scene()->update();
 }
 
 
-void ribi::cmap::QtConceptMapWidget::RepositionItems()
+void ribi::cmap::QtConceptMap::RepositionItems()
 {
   {
     //The ray of the upcoming circle of nodes, is the larger of
@@ -570,14 +570,14 @@ void ribi::cmap::QtConceptMapWidget::RepositionItems()
   }
 }
 
-void ribi::cmap::QtConceptMapWidget::SetExamplesItem(QtExamplesItem * const item)
+void ribi::cmap::QtConceptMap::SetExamplesItem(QtExamplesItem * const item)
 {
   assert((item || !item) && "Can be both");
   m_examples_item = item;
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapWidget::Shuffle()
+void ribi::cmap::QtConceptMap::Shuffle()
 {
   const std::vector<QtNode*> nodes = Collect<QtNode>(scene());
   std::for_each(nodes.begin(),nodes.end(),
@@ -606,7 +606,7 @@ void ribi::cmap::QtConceptMapWidget::Shuffle()
 #endif
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapWidget::TestMe(const boost::shared_ptr<const ribi::cmap::ConceptMap> map) const
+void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::ConceptMap> map) const
 {
   {
     std::set<const cmap::Node*> w;

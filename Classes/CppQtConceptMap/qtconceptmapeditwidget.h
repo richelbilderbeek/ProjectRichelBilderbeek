@@ -4,14 +4,14 @@
 
 #include "qtconceptmapfwd.h"
 
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 
 namespace ribi {
 
 namespace cmap {
 
-///QtConceptMapWidget for creation and editing of a ConceptMap
-struct QtConceptMapEditWidget : public QtConceptMapWidget
+///QtConceptMap for creation and editing of a ConceptMap
+struct QtConceptMapEditWidget : public QtConceptMap
 {
   typedef QtConceptMapEditWidget This_t;
   QtConceptMapEditWidget(
@@ -24,7 +24,7 @@ struct QtConceptMapEditWidget : public QtConceptMapWidget
   #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
-  std::unique_ptr<QtConceptMapWidget> CreateNewDerived() const;
+  std::unique_ptr<QtConceptMap> CreateNewDerived() const;
   #endif
 
   ///Delete an EdgeConcept
@@ -73,11 +73,11 @@ private:
   void CleanMe();
 
   ///Obtain the read-and-write Qt edge items
-  ///The read-only Qt edge items is already supplied by QtConceptMapWidget
+  ///The read-only Qt edge items is already supplied by QtConceptMap
   const std::vector<QtEdge *> GetQtEdges();
 
   ///Obtain the read-and-write Qt node items
-  ///The read-only Qt node items is already supplied by QtConceptMapWidget
+  ///The read-only Qt node items is already supplied by QtConceptMap
   const std::vector<QtNode *> GetQtNodes();
 
   ///Called when an item wants to be edited

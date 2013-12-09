@@ -2,26 +2,25 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmaprateconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 
 #include <cstdlib>
+#include <sstream>
 
 #include <QKeyEvent>
 
-#include "conceptmaphelper.h"
 #include "conceptmapexample.h"
-#include "conceptmapconcept.h"
 #include "conceptmapexamples.h"
-#include "conceptmapconceptfactory.h"
+#include "conceptmaphelper.h"
+#include "conceptmapconcept.h"
 #include "conceptmapcompetency.h"
+#include "conceptmapconceptfactory.h"
 #include "qtconceptmapbrushfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapRateConceptItem::QtConceptMapRateConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept)
-  : QtConceptItem(concept),
-    m_signal_request_rate_concept{},
-    m_signal_request_rate_examples{}
+ribi::cmap::QtDisplayStrategy::QtDisplayStrategy(const boost::shared_ptr<ribi::cmap::Concept>& concept)
+  : QtItemDisplayStrategy(concept)
 {
   #ifndef NDEBUG
   Test();
@@ -33,116 +32,86 @@ ribi::cmap::QtConceptMapRateConceptItem::QtConceptMapRateConceptItem(const boost
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptMapRateConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
 
   GetConcept()->m_signal_examples_changed.connect( //FIX 2013-01-06 22:32
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
+
   GetConcept()->m_signal_rating_complexity_changed.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_concreteness_changed.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
   GetConcept()->m_signal_rating_specificity_changed.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
+        this
+      )
+    );
+}
+
+ribi::cmap::QtDisplayStrategy::~QtDisplayStrategy() noexcept
+{
+  GetConcept()->m_signal_examples_changed.disconnect(
+      boost::bind(
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
 
-}
-
-
-ribi::cmap::QtConceptMapRateConceptItem::~QtConceptMapRateConceptItem() noexcept
-{
-  //2013-08-25
+  //Obligatory: because concepts live longer than DisplayConceptItems,
+  //these Concepts will signal Items when the Item is destroyed,
+  //which results in a segmentation fault
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
   //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens,
+        &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
 }
 
-void ribi::cmap::QtConceptMapRateConceptItem::keyPressEvent(QKeyEvent *event)
-{
-
-  switch (event->key())
-  {
-    case Qt::Key_F1:
-      m_signal_request_rate_concept(this);
-      return;
-    case Qt::Key_F2:
-      m_signal_request_rate_examples(this); //Dialog will handle empty examples
-      return; //Always return, otherwise F2 in QtConceptMapNodeConcept will cause an edit
-  }
-}
-
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapRateConceptItem::Test()
+void ribi::cmap::QtDisplayStrategy::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtConceptMapRateConceptItem::Test started");
-  //Check brush comparison
-  {
-    assert(QtBrushFactory::CreateRedGradientBrush() != QtBrushFactory::CreateYellowGradientBrush());
-    assert(QtBrushFactory::CreateRedGradientBrush() != QtBrushFactory::CreateGreenGradientBrush());
-  }
-  {
-    const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
-    QtConceptMapRateConceptItem a(concept);
-    const auto v {
-      "1234567890",
-      "1234567890 1234567890",
-      "1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890",
-      "1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890"
-    };
-    for (const auto s: v) { a.SetName(s); } //SetName tests GetName
-  }
-  TRACE("ribi::cmap::QtConceptMapRateConceptItem::Test finished successfully");
+  TRACE("Starting ribi::cmap::QtDisplayStrategy::Test()");
+  TRACE("Successfully finished ribi::cmap::QtDisplayStrategy::Test()");
 }
 #endif
 
-void ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens()
+
+void ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens() noexcept
 {
+  //TRACE("Start of void ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens()");
   assert(GetConcept());
   assert(GetConcept()->GetExamples());
 
@@ -217,7 +186,6 @@ void ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens()
       new_indicator_pen = QPen(QColor(0,255,0),1); //Thin pen
     }
   }
-
   if (this->brush() != new_main_brush
     || this->GetIndicatorBrush() != new_indicator_brush
     || this->GetIndicatorPen() != new_indicator_pen)
@@ -231,10 +199,7 @@ void ribi::cmap::QtConceptMapRateConceptItem::UpdateBrushesAndPens()
     //TRACE(std::rand()); //GOOD: Detects infinite recursion
     //this->update();
     this->m_signal_item_has_updated(this); //Obligatory
-    #pragma GCC diagnostic push
-    #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
     this->m_signal_request_scene_update(); //Obligatory
-    #pragma GCC diagnostic pop
   }
-
+  //TRACE("End of void ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens()");
 }

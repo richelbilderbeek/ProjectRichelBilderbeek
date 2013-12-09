@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <fstream>
 
+#include "fileio.h"
 #include "toolvisualabccheckprerequisites.h"
 
 ribi::CheckPrerequisites::CheckPrerequisites()
@@ -17,25 +18,32 @@ ribi::CheckPrerequisites::CheckPrerequisites()
 
 void ribi::CheckPrerequisites::CheckAbc2midi()
 {
-  std::remove("tmp.txt");
-  assert(!FileExists("tmp.txt"));
-
+  const std::string s { fileio::GetTempFileName() };
+  assert(!fileio::IsRegularFile(s));
+  const std::string cmd {
+    "abc2midi > " + s
+  };
   const int result
-    = std::system("abc2midi > tmp.txt");
+    = std::system(cmd.c_str());
   if (result != 0)
   {
     throw std::runtime_error(
       "\'abc2midi\' not not present. "
       "Type \'sudo apt-get install abcmidi\' to install");
   }
-  std::remove("tmp.txt");
-  assert(!FileExists("tmp.txt"));
+  fileio::DeleteFile(s);
+  assert(!fileio::IsRegularFile(s));
 }
 
 void ribi::CheckPrerequisites::CheckAbcm2ps()
 {
+  const std::string s { fileio::GetTempFileName() };
+  assert(!fileio::IsRegularFile(s));
+  const std::string cmd {
+    "abcm2ps > " + s
+  };
   const int result
-    = std::system("abcm2ps > tmp.txt");
+    = std::system(cmd.c_str());
   if (result != 0)
   {
     throw std::runtime_error(
@@ -43,14 +51,19 @@ void ribi::CheckPrerequisites::CheckAbcm2ps()
       "Type \'sudo apt-get install abcm2ps\' to install");
   }
 
-  std::remove("tmp.txt");
-  assert(!FileExists("tmp.txt"));
+  fileio::DeleteFile(s);
+  assert(!fileio::IsRegularFile(s));
 }
 
 void ribi::CheckPrerequisites::CheckConvert()
 {
+  const std::string s { fileio::GetTempFileName() };
+  assert(!fileio::IsRegularFile(s));
+  const std::string cmd {
+    "convert --help > " + s
+  };
   const int result
-    = std::system("convert --help > tmp.txt");
+    = std::system(cmd.c_str());
   if (result != 0)
   {
     //FileExists("tmp.txt"))
@@ -58,31 +71,27 @@ void ribi::CheckPrerequisites::CheckConvert()
       "\'convert\' not not present. "
       "Type \'sudo apt-get install imagemagick\' to install");
   }
-  std::remove("tmp.txt");
-  assert(!FileExists("tmp.txt"));
+  fileio::DeleteFile(s);
+  assert(!fileio::IsRegularFile(s));
 }
 
 void ribi::CheckPrerequisites::CheckPlaysound()
 {
+  const std::string s { fileio::GetTempFileName() };
+  assert(!fileio::IsRegularFile(s));
+  const std::string cmd {
+    "playsound --version > " + s
+  };
   const int error
-    = std::system("playsound --version > tmp.txt");
-  if (!FileExists("tmp.txt"))
+    = std::system(cmd.c_str());
+  if (error || !fileio::IsRegularFile(s))
   {
     assert(error);
     throw std::runtime_error(
       "\'playsound\' not not present. "
       "Type \'sudo apt-get install libsdl-sound1.2\' to install");
   }
-  std::remove("tmp.txt");
-  assert(!FileExists("tmp.txt"));
-}
+  fileio::DeleteFile(s);
 
-///FileExists checks if a certain file exists
-///From http://www.richelbilderbeek.nl/CppFileExists.htm
-bool ribi::CheckPrerequisites::FileExists(const std::string& filename)
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
+  assert(!fileio::IsRegularFile(s));
 }
-
