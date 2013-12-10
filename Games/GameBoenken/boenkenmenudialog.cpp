@@ -24,8 +24,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::Boenken::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -90,3 +95,16 @@ const std::vector<std::string> ribi::Boenken::MenuDialog::GetVersionHistory() co
     "2012-11-17: version 4.1: added a fancy color gradient to the main menu"
   };
 }
+
+#ifndef NDEBUG
+void ribi::Boenken::MenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Boenken::MenuDialog::Test");
+  TRACE("Finished ribi::Boenken::MenuDialog::Test successfully");
+}
+#endif

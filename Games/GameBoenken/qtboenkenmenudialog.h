@@ -76,7 +76,9 @@ private:
   static const std::vector<boost::shared_ptr<Boenken::SpriteNonMoving> > CreateObstacles(
     const Boenken::ArenaSettings& a);
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void onControlsClick();

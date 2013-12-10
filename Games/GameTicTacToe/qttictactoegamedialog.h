@@ -52,6 +52,10 @@ private:
   Ui::QtTicTacToeGameDialog *ui;
   boost::shared_ptr<QtTicTacToeWidget> m_tictactoe;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void HasWinner();
 };

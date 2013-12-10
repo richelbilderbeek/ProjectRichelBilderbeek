@@ -30,6 +30,7 @@ private slots:
 
 private:
   Ui::QtAafMenuDialog *ui;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

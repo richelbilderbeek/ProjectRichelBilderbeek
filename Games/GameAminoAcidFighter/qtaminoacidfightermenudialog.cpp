@@ -51,6 +51,7 @@ void ribi::aaf::QtAafMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::aaf::QtAafMenuDialog::Test");
   QtAafMainDialog();
+  AminoAcidFighterMenuDialog();
   TRACE("Finished ribi::aaf::QtAafMenuDialog::Test successfully");
 }
 #endif

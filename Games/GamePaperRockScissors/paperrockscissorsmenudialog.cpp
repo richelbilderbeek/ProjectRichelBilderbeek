@@ -67,3 +67,16 @@ const std::vector<std::string> ribi::PaperRockScissorsMenuDialog::GetVersionHist
     "2013-07-13: version 0.1: conformized to ProjectRichelBilderbeekConsoleS"
   };
 }
+
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
+}
+#endif

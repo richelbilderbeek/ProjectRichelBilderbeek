@@ -22,8 +22,9 @@ struct MenuDialog : public ::ribi::MenuDialog
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   private:
+
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

@@ -58,6 +58,10 @@ private:
   Ui::QtPylosMainDialog *ui;
   QtPylosGameWidget * const m_pylos_widget;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void OnWinner();
 };

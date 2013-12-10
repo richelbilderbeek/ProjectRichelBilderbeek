@@ -27,12 +27,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtbeerwantermaindialog.h"
 #include "ui_qtbeerwantermenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtBeerWanterMenuDialog::QtBeerWanterMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtBeerWanterMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -63,3 +67,16 @@ void ribi::QtBeerWanterMenuDialog::on_button_quit_clicked() noexcept
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtBeerWanterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtBeerWanterMenuDialog::Test");
+  QtBeerWanterMainDialog();
+  TRACE("Finished ribi::QtBeerWanterMenuDialog::Test successfully");
+}
+#endif

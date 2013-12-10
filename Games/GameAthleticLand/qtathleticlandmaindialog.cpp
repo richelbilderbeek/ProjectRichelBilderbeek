@@ -10,6 +10,7 @@
 
 #include "qtathleticlandmainwidget.h"
 #include "ui_qtathleticlandmaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::athl::QtAthleticLandMainDialog::QtAthleticLandMainDialog(QWidget *parent)
@@ -17,6 +18,9 @@ ribi::athl::QtAthleticLandMainDialog::QtAthleticLandMainDialog(QWidget *parent)
     ui(new Ui::QtAthleticLandMainDialog),
     m_main_widget{new QtAthleticLandMainWidget}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   assert(!this->layout());
@@ -45,3 +49,17 @@ void ribi::athl::QtAthleticLandMainDialog::keyPressEvent(QKeyEvent *event)
       break;
   }
 }
+
+#ifndef NDEBUG
+void ribi::athl::QtAthleticLandMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::athl::QtAthleticLandMainDialog::Test");
+  QtAthleticLandMainWidget();
+  TRACE("Finished ribi::athl::QtAthleticLandMainDialog::Test successfully");
+}
+#endif

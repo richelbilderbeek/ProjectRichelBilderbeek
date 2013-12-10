@@ -34,6 +34,10 @@ private:
   void keyPressEvent(QKeyEvent *event);
 
   QtAthleticLandMainWidget * const m_main_widget;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace aaf

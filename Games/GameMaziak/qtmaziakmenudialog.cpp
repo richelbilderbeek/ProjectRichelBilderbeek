@@ -270,142 +270,15 @@ int ribi::QtMaziakMenuDialog::getMazeSize() const
   throw std::logic_error("Unsupported value of mDifficulty");
 }
 
-
-
-/*
-#include <vcl.h>
-#pragma hdrstop
-
-#include <ctime>
-#include <stdexcept>
-#include <cstdlib>
-#include <boost/scoped_ptr.hpp>
-#include "UnitMazeCreater.h"
-
-#include "UnitFormMaziakMenu.h"
-#include "UnitFormMaziakAbout.h"
-#include "UnitFormMaziakGame.h"
-#include "UnitFormMaziakInstructions.h"
-
-#pragma package(smart_init)
-#pragma resource "*.dfm"
-TFormMaziakMenu *FormMaziakMenu;
-
-__fastcall TFormMaziakMenu::TFormMaziakMenu(TComponent* Owner)
-  : TForm(Owner),
-    mDifficulty(easy)
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
 {
-  RandomizeTimer();
-  ImageEasyClick(0);
-}
-
-const int TFormMaziakMenu::GetSize() const
-{
-  switch (mDifficulty)
   {
-    case easy  : return  99;
-    case medium: return 499;
-    case hard  : return 999;
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
   }
-  assert(!"Should not get here");
-  throw std::logic_error("Unsupported value of mDifficulty");
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
 }
-
-
-void __fastcall TFormMaziakMenu::ImageStartClick(TObject *Sender)
-{
-  boost::scoped_ptr<TFormMaziakGame> f(new TFormMaziakGame(0,GetSize()));
-  f->WindowState = wsMaximized;
-  f->ShowModal();
-}
-
-void __fastcall TFormMaziakMenu::ImageAboutClick(TObject *Sender)
-{
-  boost::scoped_ptr<TFormMaziakAbout> f(new TFormMaziakAbout(0));
-  f->ShowModal();
-}
-
-void __fastcall TFormMaziakMenu::ImageQuitClick(TObject *Sender)
-{
-  Close();
-}
-
-void __fastcall TFormMaziakMenu::FormKeyDown(TObject *Sender, WORD &Key,
-      TShiftState Shift)
-{
-  switch (Key)
-  {
-    case 's': case 'S': ImageStartClick(0); break;
-    case 'i': case 'I': ImageInstructionsClick(0); break;
-    case 'a': case 'A': ImageAboutClick(0); break;
-    case 'q': case 'Q': ImageQuitClick(0); break;
-    case '+': case VK_NEXT: case VK_DOWN: case VK_ADD: case VK_RIGHT:
-    {
-      switch (mDifficulty)
-      {
-        case easy  : ImageMediumClick(0); break;
-        case medium: ImageHardClick(0); break;
-        case hard  : break;
-      }
-    }
-    break;
-    case '-': case VK_PRIOR: case VK_UP: case VK_SUBTRACT: case VK_LEFT:
-    {
-      switch (mDifficulty)
-      {
-        case easy  : break;
-        case medium: ImageEasyClick(0); break;
-        case hard  : ImageMediumClick(0);break;
-      }
-    }
-    break;
-  }
-}
-
-//From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
-void RandomizeTimer()
-{
-  std::srand(std::time(0));
-}
-
-
-void __fastcall TFormMaziakMenu::ImageInstructionsClick(TObject *Sender)
-{
-  boost::scoped_ptr<TFormMaziakInstructions> f(new TFormMaziakInstructions(0));
-  f->ShowModal();
-}
-
-
-
-void __fastcall TFormMaziakMenu::ImageEasyClick(TObject *Sender)
-{
-  ImageEasy->Picture   = ImageEasySelected->Picture;
-  ImageMedium->Picture = ImageMediumNotSelected->Picture;
-  ImageHard->Picture   = ImageHardNotSelected->Picture;
-  mDifficulty = easy;
-  ImagePlayer->Picture = ImagePlayerEasy->Picture;
-  ImageEnemy->Picture  = ImageEnemyEasy->Picture;
-}
-
-
-void __fastcall TFormMaziakMenu::ImageMediumClick(TObject *Sender)
-{
-  ImageEasy->Picture   = ImageEasyNotSelected->Picture;
-  ImageMedium->Picture = ImageMediumSelected->Picture;
-  ImageHard->Picture   = ImageHardNotSelected->Picture;
-  mDifficulty = medium;
-  ImagePlayer->Picture = ImagePlayerMedium->Picture;
-  ImageEnemy->Picture  = ImageEnemyMedium->Picture;
-}
-
-void __fastcall TFormMaziakMenu::ImageHardClick(TObject *Sender)
-{
-  ImageEasy->Picture   = ImageEasyNotSelected->Picture;
-  ImageMedium->Picture = ImageMediumNotSelected->Picture;
-  ImageHard->Picture   = ImageHardSelected->Picture;
-  mDifficulty = hard;
-  ImagePlayer->Picture = ImagePlayerHard->Picture;
-  ImageEnemy->Picture  = ImageEnemyHard->Picture;
-}
-
-*/
+#endif

@@ -27,8 +27,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+#include "beerwantermaindialog.h"
+#include "trace.h"
+
 int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -98,3 +104,31 @@ const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() c
     "2013-07-13: version 7.1: added libcvautomation script to beat the game, improved desktop menu and about screen"
   };
 }
+
+#ifndef NDEBUG
+void ribi::BeerWanterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::BeerWanterMenuDialog::Test");
+  const int screen_width = 640;
+  const int screen_height = 400;
+  const int sprite_width = 32;
+  const int sprite_height = 48;
+  const int window_width = 320;
+  const int window_height = 200;
+
+  BeerWanterMainDialog(
+    screen_width,
+    screen_height,
+    sprite_width,
+    sprite_height,
+    window_width,
+    window_height
+  );
+  TRACE("Finished ribi::BeerWanterMenuDialog::Test successfully");
+}
+#endif

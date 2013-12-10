@@ -41,6 +41,10 @@ struct Dialog
   boost::shared_ptr<SpritePlayer> mSpritePlayer;
   SpriteContainer mSprites;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   friend std::ostream& operator<<(std::ostream& os, const Dialog& s);
 };
 

@@ -152,7 +152,11 @@ protected:
   void keyPressEvent(QKeyEvent *);
   void resizeEvent(QResizeEvent *);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
 } //~namespace ribi
 
 #endif // PONGMAINDIALOG_H

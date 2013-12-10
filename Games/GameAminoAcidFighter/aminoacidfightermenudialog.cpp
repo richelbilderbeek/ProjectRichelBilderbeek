@@ -6,8 +6,13 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "trace.h"
+
 int ribi::AminoAcidFighterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -67,3 +72,16 @@ const std::vector<std::string> ribi::AminoAcidFighterMenuDialog::GetVersionHisto
     "2013-11-07: version 1.1: Initial Qt version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::AminoAcidFighterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::AminoAcidFighterMenuDialog::Test()");
+  TRACE("Finished ribi::AminoAcidFighterMenuDialog::Test()");
+}
+#endif

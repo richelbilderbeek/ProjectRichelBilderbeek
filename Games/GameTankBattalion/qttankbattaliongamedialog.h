@@ -27,6 +27,10 @@ public:
 private:
   boost::shared_ptr<QtGameWidget> m_game;
   Ui::QtTankBattalionGameDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 #endif // QTTANKBATTALIONGAMEDIALOG

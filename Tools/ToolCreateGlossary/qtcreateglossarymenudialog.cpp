@@ -27,12 +27,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreateglossarymaindialog.h"
 #include "ui_qtcreateglossarymenudialog.h"
 #include "createglossarymaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCreateGlossaryMenuDialog::QtCreateGlossaryMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtCreateGlossaryMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -61,3 +65,17 @@ void ribi::QtCreateGlossaryMenuDialog::on_button_start_clicked()
   this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtCreateGlossaryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtCreateGlossaryMenuDialog::Test");
+  QtCreateGlossaryMainDialog();
+  CreateGlossaryMenuDialog();
+  TRACE("Finished QtCreateGlossaryMenuDialog::Test successfully");
+}
+#endif

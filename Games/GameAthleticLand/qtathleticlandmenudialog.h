@@ -30,6 +30,7 @@ private slots:
 
 private:
   Ui::QtAthleticLandMenuDialog *ui;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

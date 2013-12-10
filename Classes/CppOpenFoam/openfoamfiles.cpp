@@ -67,8 +67,16 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBound
 {
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
-    folder_name + fileio::GetPathSeperator() + CreateFilenames()->GetBoundary().Get()
+    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
+    + CreateFilenames()->GetBoundary().Get()
   );
+  #ifndef NDEBUG
+  if (!fileio::IsRegularFile(filename))
+  {
+    TRACE(filename);
+    TRACE("BREAK");
+  }
+  #endif
   assert(fileio::IsRegularFile(filename));
   std::ifstream is(filename.Get().c_str());
   try
@@ -226,7 +234,8 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
 {
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
-    folder_name + fileio::GetPathSeperator() + CreateFilenames()->GetFaces().Get()
+    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
+    + CreateFilenames()->GetFaces().Get()
   );
   std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::FacesFile> p {
@@ -266,7 +275,8 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeig
 {
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
-    folder_name + fileio::GetPathSeperator() + CreateFilenames()->GetNeighbour().Get()
+    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
+    + CreateFilenames()->GetNeighbour().Get()
   );
   std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::NeighbourFile> p {
@@ -281,7 +291,8 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
 {
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
-    folder_name + fileio::GetPathSeperator() + CreateFilenames()->GetOwner().Get()
+    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
+    + CreateFilenames()->GetOwner().Get()
   );
   std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::OwnerFile> p {
@@ -296,7 +307,8 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
 {
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
-    folder_name + fileio::GetPathSeperator() + CreateFilenames()->GetPoints().Get()
+    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
+    + CreateFilenames()->GetPoints().Get()
   );
   std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::PointsFile> p {

@@ -48,6 +48,10 @@ private:
   void resizeEvent(QResizeEvent*);
 
   static const std::vector<boost::shared_ptr<Player> > CreatePlayers();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace tron

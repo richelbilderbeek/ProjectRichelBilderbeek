@@ -84,12 +84,14 @@ private:
     const unsigned char b,
     const unsigned char a = 255);
 
-  ///Test this class
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void onTimer();
   void onCountdownTimer();
+
 };
 
 } //~namespace ribi

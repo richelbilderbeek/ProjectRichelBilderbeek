@@ -32,6 +32,10 @@ struct NsanaBrosMenuDialog : public MenuDialog
 
   boost::scoped_ptr<NsanaBrosGameDialog> m_game;
   boost::shared_ptr<NsanaBrosOptionsDialog> m_options;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

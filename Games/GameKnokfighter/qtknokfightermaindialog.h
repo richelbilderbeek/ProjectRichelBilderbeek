@@ -38,6 +38,10 @@ class QtKnokfighterMainDialog : public QGraphicsView
   QtKnokfighterBackground * const m_background;
   std::vector<boost::shared_ptr<QtKnokfighterPlayer> > m_players;
   QGraphicsScene * const m_scene;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

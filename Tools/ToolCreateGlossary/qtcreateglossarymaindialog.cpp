@@ -25,19 +25,23 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QTimer>
 #include "createglossarymaindialog.h"
 #include "ui_qtcreateglossarymaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtCreateGlossaryMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   QTimer::singleShot(100,this,SLOT(create_glossary()));
 }
 
 ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }
 
 void ribi::QtCreateGlossaryMainDialog::create_glossary()
@@ -45,3 +49,17 @@ void ribi::QtCreateGlossaryMainDialog::create_glossary()
   CreateGlossaryMainDialog();
   ui->label->setText("Done!");
 }
+
+#ifndef NDEBUG
+void ribi::QtCreateGlossaryMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting QtCreateGlossaryMainDialog::Test");
+  CreateGlossaryMainDialog();
+  TRACE("Finished QtCreateGlossaryMainDialog::Test successfully");
+}
+#endif

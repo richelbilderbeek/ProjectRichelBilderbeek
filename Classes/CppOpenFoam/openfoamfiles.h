@@ -16,6 +16,8 @@ namespace foam {
 ///Files contains all files in an OpenFOAM folder
 struct Files
 {
+  ///Builds up files from the current or any folder
+  ///Use an empty string to build up from current folder
   explicit Files(const std::string& folder_name);
 
   explicit Files(
@@ -30,6 +32,9 @@ struct Files
 
   ///Create a copy of the complete file structure of Files in the copy folder name
   static void CreateCopy(const Files& files, const std::string copy_folder_name) noexcept;
+
+  ///Create the test files in the correct OpenFOAM folder structure
+  static void CreateTestFiles(const std::string& folder_name);
 
   const boost::shared_ptr<const BoundaryFile> GetBoundary() const noexcept { return m_boundary; }
   const boost::shared_ptr<const FacesFile> GetFaces() const noexcept { return m_faces; }
@@ -67,8 +72,6 @@ struct Files
   static const boost::shared_ptr<OwnerFile> CreateOwner(const std::string& folder_name);
   static const boost::shared_ptr<PointsFile> CreatePoints(const std::string& folder_name);
 
-  ///Create the test files in the correct OpenFOAM folder structure
-  static void CreateTestFiles(const std::string& folder_name);
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -92,3 +92,16 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
   d.exec();
   this->show();
 }
+
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
+}
+#endif

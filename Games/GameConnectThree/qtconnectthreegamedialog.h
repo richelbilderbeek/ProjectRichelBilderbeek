@@ -70,6 +70,10 @@ private:
   ///is either terminated, or the next player can do
   ///his/her move.
   void OnValidMove() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

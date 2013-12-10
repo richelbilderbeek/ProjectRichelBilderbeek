@@ -61,7 +61,18 @@ void ribi::fileio::CreateFolder(const std::string& folder)
 
 void ribi::fileio::DeleteFile(const std::string& filename)
 {
+  #ifndef NDEBUG
+  if(!IsRegularFile(filename))
+  {
+    TRACE("ERROR");
+    TRACE(filename);
+  }
+  #endif
+  assert(IsRegularFile(filename)
+    && "Can only delete existing files");
   std::remove(filename.c_str());
+
+  //Under Windows, readonly files must be made deleteable
   if (IsRegularFile(filename))
   {
     #ifdef _WIN32
@@ -100,7 +111,6 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
   assert(GetFilesInFolder(folder).empty());
   const std::string cmd = "rmdir " + folder;
   const int error = std::system(cmd.c_str());
-  TRACE(cmd);
   assert(!error && "Assume rmdir works under both Windows and Linux");
   if (error)
   {

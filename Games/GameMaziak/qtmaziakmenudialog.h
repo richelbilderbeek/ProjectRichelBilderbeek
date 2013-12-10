@@ -57,6 +57,10 @@ private:
   void onStart();
   void onInstructions();
   void onAbout();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

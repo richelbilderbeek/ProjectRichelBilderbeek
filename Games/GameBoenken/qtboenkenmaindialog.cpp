@@ -177,7 +177,7 @@ void ribi::QtBoenkenMainDialog::Paint(
   pixmap = pixmap.fromImage(image);
 }
 
-void ribi::QtBoenkenMainDialog::Test()
+void ribi::QtBoenkenMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -188,6 +188,19 @@ void ribi::QtBoenkenMainDialog::Test()
     //boost::shared_ptr<Boenken::Game> p(new Boenken::Game(
   }
 }
+
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
+}
+#endif
 
 ///Null function
 //boost::shared_ptr<Boenken::Game> CreateNoBoenken()

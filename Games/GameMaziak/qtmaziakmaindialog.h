@@ -144,6 +144,10 @@ private:
   void keyReleaseEvent(QKeyEvent * e);
   void paintEvent(QPaintEvent * event);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void onTimerPressKey();
   void onTimerEnemy();

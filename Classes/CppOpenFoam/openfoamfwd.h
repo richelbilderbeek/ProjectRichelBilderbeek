@@ -11,6 +11,7 @@ struct FaceIndex;
 struct FacesFile;
 struct FacesFileItem;
 struct Filenames;
+struct Files;
 struct Header;
 struct NeighbourFile;
 struct NeighbourFileItem;

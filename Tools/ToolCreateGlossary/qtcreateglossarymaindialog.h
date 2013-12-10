@@ -46,8 +46,11 @@ private slots:
   void create_glossary();
 
 private:
-
   Ui::QtCreateGlossaryMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

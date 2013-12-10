@@ -22,7 +22,9 @@ public:
 private:
   Ui::QtSearchAndDestroyChessGameDialog *ui;
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

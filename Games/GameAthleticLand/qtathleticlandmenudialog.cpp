@@ -51,6 +51,7 @@ void ribi::athl::QtAthleticLandMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::athl::QtAthleticLandMenuDialog::Test");
   QtAthleticLandMainDialog();
+  AthleticLandMenuDialog();
   TRACE("Finished ribi::athl::QtAthleticLandMenuDialog::Test successfully");
 }
 #endif

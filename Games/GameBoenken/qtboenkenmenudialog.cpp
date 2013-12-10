@@ -323,7 +323,7 @@ void ribi::QtBoenkenMenuDialog::onAboutClick()
   this->ShowChild(&d);
 }
 
-void ribi::QtBoenkenMenuDialog::Test()
+void ribi::QtBoenkenMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -348,3 +348,15 @@ void ribi::QtBoenkenMenuDialog::Test()
   }
 }
 
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
+}
+#endif

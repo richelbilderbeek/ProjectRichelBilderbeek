@@ -67,3 +67,16 @@ const std::vector<std::string> ribi::KnokfighterMenuDialog::GetVersionHistory() 
     "2013-11-07: version 1.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
+}
+#endif

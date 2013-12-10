@@ -34,16 +34,20 @@ namespace ribi {
 
 class QtDasWahreSchlagerfestMainDialog : public QtHideAndShowDialog
 {
-    Q_OBJECT
+  Q_OBJECT
     
 public:
-    explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0) noexcept;
-    QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
-    QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
-    ~QtDasWahreSchlagerfestMainDialog() noexcept;
+  explicit QtDasWahreSchlagerfestMainDialog(QWidget *parent = 0) noexcept;
+  QtDasWahreSchlagerfestMainDialog(const QtDasWahreSchlagerfestMainDialog&) = delete;
+  QtDasWahreSchlagerfestMainDialog& operator=(const QtDasWahreSchlagerfestMainDialog&) = delete;
+  ~QtDasWahreSchlagerfestMainDialog() noexcept;
 
 private:
-    Ui::QtDasWahreSchlagerfestMainDialog *ui;
+  Ui::QtDasWahreSchlagerfestMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

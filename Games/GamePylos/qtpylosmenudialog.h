@@ -52,6 +52,10 @@ private:
   bool m_type_basic;
   bool m_theme_bw;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void OnStart();
   void OnAbout();

@@ -42,6 +42,10 @@ private slots:
   void onCheck();
   void onButtonLeft();
   void onButtonRight();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace aaf

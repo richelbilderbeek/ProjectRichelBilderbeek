@@ -92,3 +92,16 @@ const std::vector<std::string> ribi::MaziakMenuDialog::GetVersionHistory() const
     "2007-10-22: version 1.0: Initial version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::X::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::X::Test");
+  TRACE("Finished ribi::X::Test successfully");
+}
+#endif

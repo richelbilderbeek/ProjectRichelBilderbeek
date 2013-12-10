@@ -10,6 +10,7 @@
 #include <QKeyEvent>
 #include <QTimer>
 
+#include "trace.h"
 #include "qtaminoacidfightermaindialog.h"
 #include "ui_qtaminoacidfightermaindialog.h"
 #pragma GCC diagnostic pop
@@ -22,6 +23,9 @@ ribi::aaf::QtAafMainDialog::QtAafMainDialog(QWidget *parent)
     m_sprite(new QGraphicsPixmapItem),
     m_angle(0.0)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Load the sprite
@@ -115,3 +119,16 @@ void ribi::aaf::QtAafMainDialog::onButtonRight()
   m_angle+=1.0;
   m_sprite->setRotation(m_angle);
 }
+
+#ifndef NDEBUG
+void ribi::aaf::QtAafMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::aaf::QtAafMainDialog::Test()");
+  TRACE("Finished ribi::aaf::QtAafMainDialog::Test()");
+}
+#endif

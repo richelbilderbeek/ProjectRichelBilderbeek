@@ -82,8 +82,9 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
     if (title != "FoamFile")
     {
       std::stringstream s;
-      s << "Stream assumed to be an OpenFOAM header,"
-        << "does not start with 'FoamFile', but with '"
+      s << "Stream incorrectly assumed to be an OpenFOAM header. "
+        << "OpenFOAM header start with 'FoamFile'. "
+        << "This file starts with  '"
         << title << "' instead";
       throw std::runtime_error(s.str());
     }
