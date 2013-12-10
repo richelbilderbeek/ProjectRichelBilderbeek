@@ -15,6 +15,7 @@
 #include <QFile>
 
 #include "filename.h"
+#include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamboundaryfileitem.h"
 #include "trace.h"
@@ -61,7 +62,12 @@ ribi::foam::BoundaryFileItem& ribi::foam::BoundaryFile::Find(const FaceIndex& fa
 
 const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
 {
-  return Header("polyBoundaryMesh","constant/polyMesh","","boundary");
+  const std::string class_name = "polyBoundaryMesh";
+  const std::string location   = "constant" + fileio::GetPathSeperator() + "polyMesh";
+  const std::string note       = "";
+  const std::string object     = "boundary";
+
+  return Header(class_name,location,note,object);
 }
 
 const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)

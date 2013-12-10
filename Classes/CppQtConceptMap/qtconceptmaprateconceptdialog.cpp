@@ -34,7 +34,7 @@ ribi::cmap::QtRateConceptDialog::QtRateConceptDialog(
   const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtRateStrategyDialog),
+    ui(new Ui::QtRateConceptDialog),
     m_button_ok_clicked(false),
     m_concept(sub_concept_map
       ? sub_concept_map->GetNodes().at(0)->GetConcept()

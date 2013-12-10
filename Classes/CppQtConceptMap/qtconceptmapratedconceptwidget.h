@@ -14,9 +14,7 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui {
-  class QtConceptMapRatedConceptWidget;
-}
+namespace Ui { class QtConceptMapRatedConceptWidget; }
 
 namespace ribi {
 namespace cmap {

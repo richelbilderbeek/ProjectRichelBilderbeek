@@ -79,7 +79,14 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
   {
     std::string title;
     is >> title;
-    assert(title == "FoamFile");
+    if (title != "FoamFile")
+    {
+      std::stringstream s;
+      s << "Stream assumed to be an OpenFOAM header,"
+        << "does not start with 'FoamFile', but with '"
+        << title << "' instead";
+      throw std::runtime_error(s.str());
+    }
   }
   {
     std::string bracket_open;

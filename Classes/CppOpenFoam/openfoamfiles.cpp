@@ -71,11 +71,21 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBound
   );
   assert(fileio::IsRegularFile(filename));
   std::ifstream is(filename.Get().c_str());
-  boost::shared_ptr<ribi::foam::BoundaryFile> p {
-    new ribi::foam::BoundaryFile(is)
-  };
-  assert(p);
-  return p;
+  try
+  {
+    const boost::shared_ptr<ribi::foam::BoundaryFile> p {
+      new ribi::foam::BoundaryFile(is)
+    };
+    assert(p);
+    return p;
+  }
+  catch(std::runtime_error& e)
+  {
+    std::stringstream s;
+    s << "File '" << filename << "' is not an OpenFOAM 'boundary' file: "
+      << e.what();
+    throw std::runtime_error(s.str());
+  }
 }
 
 void ribi::foam::Files::CreateCopy(
@@ -88,54 +98,82 @@ void ribi::foam::Files::CreateCopy(
     TRACE(copy_folder_name);
   }
   #endif
-  assert(fileio::IsFolder(copy_folder_name)
+  assert(!fileio::IsFolder(copy_folder_name)
     && "Cannot make a copy in an existing folder");
 
   CreateFolders(copy_folder_name);
-
+  //boundary
   {
     const std::string destination_path {
         copy_folder_name
       + fileio::GetPathSeperator()
-      + "constant"
-      + fileio::GetPathSeperator()
-      + "polyMesh"
+      + BoundaryFile::GetDefaultHeader().GetLocation()
       + fileio::GetPathSeperator()
       + BoundaryFile::GetDefaultHeader().GetObject()
     };
-
     std::ofstream f(destination_path.c_str());
-    f << files.GetBoundary();
+    f << *files.GetBoundary();
   }
-  assert(!"JUNK BELO");
-  /*
-  //Read from testing file
-  for (const std::string filename:
-    {
-      BoundaryFile::GetDefaultHeader().GetObject(),
-      FacesFile::GetDefaultHeader().GetObject(),
-      NeighbourFile::GetDefaultHeader().GetObject(),
-      OwnerFile::GetDefaultHeader().GetObject(),
-      PointsFile::GetDefaultHeader().GetObject()
-    }
-  )
+  //faces
   {
     const std::string destination_path {
-      folder_name
+        copy_folder_name
       + fileio::GetPathSeperator()
-      + "constant"
+      + FacesFile::GetDefaultHeader().GetLocation()
       + fileio::GetPathSeperator()
-      + "polyMesh"
-      + fileio::GetPathSeperator()
-      + filename
+      + FacesFile::GetDefaultHeader().GetObject()
     };
-    QFile f(resources_path.c_str());
-    f.copy(destination_path.c_str());
-    assert(fileio::IsRegularFile(destination_path));
+    std::ofstream f(destination_path.c_str());
+    f << *files.GetFaces();
   }
-  */
-  assert(Files(copy_folder_name) == files
-    && "Resulting Files must be same");
+  //neighbour
+  {
+    const std::string destination_path {
+        copy_folder_name
+      + fileio::GetPathSeperator()
+      + NeighbourFile::GetDefaultHeader().GetLocation()
+      + fileio::GetPathSeperator()
+      + NeighbourFile::GetDefaultHeader().GetObject()
+    };
+    std::ofstream f(destination_path.c_str());
+    f << *files.GetNeighbour();
+  }
+  //owner
+  {
+    const std::string destination_path {
+        copy_folder_name
+      + fileio::GetPathSeperator()
+      + OwnerFile::GetDefaultHeader().GetLocation()
+      + fileio::GetPathSeperator()
+      + OwnerFile::GetDefaultHeader().GetObject()
+    };
+    std::ofstream f(destination_path.c_str());
+    f << *files.GetOwner();
+  }
+  //points
+  {
+    const std::string destination_path {
+        copy_folder_name
+      + fileio::GetPathSeperator()
+      + PointsFile::GetDefaultHeader().GetLocation()
+      + fileio::GetPathSeperator()
+      + PointsFile::GetDefaultHeader().GetObject()
+    };
+    std::ofstream f(destination_path.c_str());
+    f << *files.GetPoints();
+  }
+
+
+  try
+  {
+    assert(Files(copy_folder_name) == files
+      && "Resulting Files must be same");
+  }
+  catch (std::runtime_error& e)
+  {
+    TRACE(e.what());
+    assert(!"Resulting Files must be same");
+  }
 }
 
 const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefaultBoundary() noexcept

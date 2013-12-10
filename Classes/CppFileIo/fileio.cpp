@@ -86,8 +86,21 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
 {
   assert(IsFolder(folder)
     && "Can only delete folders that do exist");
+
+  //Delete all files
+  for (const std::string& subfolder: GetFoldersInFolder(folder))
+  {
+    DeleteFolder(folder + GetPathSeperator() + subfolder);
+  }
+  assert(GetFoldersInFolder(folder).empty());
+  for (const std::string& filename: GetFilesInFolder(folder))
+  {
+    DeleteFile(folder + GetPathSeperator() + filename);
+  }
+  assert(GetFilesInFolder(folder).empty());
   const std::string cmd = "rmdir " + folder;
   const int error = std::system(cmd.c_str());
+  TRACE(cmd);
   assert(!error && "Assume rmdir works under both Windows and Linux");
   if (error)
   {
@@ -431,14 +444,15 @@ const std::string ribi::fileio::GetTempFolderName()
 
 const std::string ribi::fileio::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> ribi::fileio::GetVersionHistory() noexcept
 {
   return {
     "2013-10-14: Version 1.0: initial version",
-    "2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions"
+    "2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions",
+    "2013-12-10: Version 1.2: improved existing function, added some functions"
   };
 }
 
@@ -518,10 +532,8 @@ void ribi::fileio::Test() noexcept
   //CopyFile
   for (int i=0; i!=2; ++i)
   {
-    const std::string filename { "tmp.txt" };
-    const std::string filename_copy { "tmp_copy.txt" };
-    DeleteFile(filename);
-    DeleteFile(filename_copy);
+    const std::string filename { GetTempFileName() };
+    const std::string filename_copy { GetTempFileName() };
 
     //Create a regular file
     assert(!IsRegularFile(filename));
@@ -547,9 +559,8 @@ void ribi::fileio::Test() noexcept
 
     DeleteFile(filename);
     DeleteFile(filename_copy);
-
-    assert(!IsRegularFile(filename));
-    assert(!IsRegularFile(filename_copy));
+    assert(!IsRegularFile(filename) && "Temporary file must be cleaned up");
+    assert(!IsRegularFile(filename_copy) && "Temporary file must be cleaned up");
   }
   //GetTempFolderName, CreateFolder and DeleteFolder
   {
@@ -560,7 +571,7 @@ void ribi::fileio::Test() noexcept
       CreateFolder(f);
       assert(IsFolder(f));
       DeleteFolder(f);
-      assert(!IsFolder(f));
+      assert(!IsFolder(f) && "Temporary folder must be cleaned up");
     }
     //Depth 2
     {
@@ -578,12 +589,12 @@ void ribi::fileio::Test() noexcept
       }
       assert(IsFolder(super_folder));
       DeleteFolder(super_folder);
-      assert(!IsFolder(super_folder));
+      assert(!IsFolder(super_folder) && "Temporary folder must be cleaned up");
     }
   }
   //FilesAreIdentical
   {
-    const std::vector<std::string> filenames { "tmp_a.txt", "tmp_b.txt", "tmp_c.txt" };
+    const std::vector<std::string> filenames { GetTempFileName(), GetTempFileName(), GetTempFileName() };
     const int n_filenames = filenames.size();
     for (const std::string& filename: filenames)
     {
@@ -599,6 +610,11 @@ void ribi::fileio::Test() noexcept
         const std::string t = filenames[j];
         assert(FilesAreIdentical(s,t) == (i == j));
       }
+    }
+    for (const std::string& filename: filenames)
+    {
+      DeleteFile(filename);
+      assert(!IsRegularFile(filename) && "Temporary file must be cleaned up");
     }
   }
   //GetFileBasename
@@ -756,6 +772,10 @@ void ribi::fileio::Test() noexcept
     assert(v.size() == 6);
 
     //Clean up
+    DeleteFolder(folder_name1);
+    DeleteFolder(folder_name2);
+    assert(!IsFolder(folder_name1) && "Temporary folder must be cleaned up");
+    assert(!IsFolder(folder_name2) && "Temporary folder must be cleaned up");
   }
   //GetPath
   {
@@ -800,8 +820,7 @@ void ribi::fileio::Test() noexcept
   //IsRegularFile
   {
     {
-      const std::string filename { "tmp.txt" };
-      DeleteFile(filename);
+      const std::string filename { GetTempFileName() };
 
       //Create a regular file
       assert(!IsRegularFile(filename));
@@ -815,7 +834,7 @@ void ribi::fileio::Test() noexcept
 
       DeleteFile(filename);
 
-      assert(!IsRegularFile(filename));
+      assert(!IsRegularFile(filename) && "Temporary file must be cleaned up");
     }
   }
   //RemovePath
@@ -838,12 +857,11 @@ void ribi::fileio::Test() noexcept
   }
   //RenameFile
   {
-    const std::string filename_from = "tmp.txt";
-    const std::string filename_to   = "tmp2.txt";
+    const std::string filename_from { GetTempFileName() };
+    const std::string filename_to   { GetTempFileName() };
 
-    //Delete possible old temporary files
-    DeleteFile(filename_from);
-    DeleteFile(filename_to);
+    assert(!IsRegularFile(filename_from));
+    assert(!IsRegularFile(filename_to));
 
     //Create new file
     {
@@ -862,6 +880,10 @@ void ribi::fileio::Test() noexcept
     //Only filename_to will exist
     assert(!IsRegularFile(filename_from));
     assert( IsRegularFile(filename_to));
+
+    //Clean up
+    DeleteFile(filename_to);
+    assert(!IsRegularFile(filename_to) && "Temporary file must be cleaned up");
   }
   TRACE("Finished ribi::fileio::Test successfully");
 }

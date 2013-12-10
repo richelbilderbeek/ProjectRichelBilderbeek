@@ -51,6 +51,9 @@ struct Header
 bool operator==(const Header& lhs, const Header& rhs);
 bool operator!=(const Header& lhs, const Header& rhs);
 std::ostream& operator<<(std::ostream& os, const Header& f);
+
+///Read the header of an OpenFOAM file.
+///Throws std::runtime_error if file is incorrectly formed
 std::istream& operator>>(std::istream& is, Header& h);
 
 } //~namespace foam

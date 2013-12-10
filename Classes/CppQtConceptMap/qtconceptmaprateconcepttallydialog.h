@@ -47,7 +47,7 @@ private slots:
   void OnCellChanged(int row, int col);
 
 private:
-  Ui::QtRateConceptTallyDialog *ui;
+  ::Ui::QtRateConceptTallyDialog *ui;
   //const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> m_map;
 
   ///The concept map is converted to this data type

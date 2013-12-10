@@ -7591,6 +7591,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "GameXeNonZero",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"GameXeNonZero.htm\">XeNonZero</a> is an unfinished <a href=\"Games.htm\">game</a>",
+        "  similar to Xenon 2, but then console based.",
+        "</p>",
+      }
+    }
+  );
   m.push_back(
     { "GameZork",
       {
@@ -13508,13 +13521,35 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolThresholdFilterer_1_0.png\">View a screenshot of 'ThresholdFilterer' (version 1.0)(png)</a></li>",
-        "  <li><a href=\"ToolThresholdFiltererExe_1_0.zip\">Download the 'ThresholdFilterer' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolThresholdFiltererSource_1_0.zip\">Download the 'ThresholdFilterer' source code (version 1.0)(zip)</a></li>",
+        "  <li>...</li>",
         "</ul>"
       }
     }
   );
+
+  m.push_back(
+    { "ToolThresholdFiltererVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolThresholdFiltererVcl.htm\">ThresholdFilterer (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to perform threshold filter operations and is the predecessor of",
+        "  <a href=\"ToolThresholdFilterer.htm\">ThresholdFilterer</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolThresholdFilterer_1_0.png\">View a screenshot of 'ThresholdFilterer' (version 1.0)(png)</a></li>",
+        "  <li><a href=\"ToolThresholdFiltererExe_1_0.zip\">Download the 'ThresholdFilterer' Windows executable (version 1.0)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTicTacToeLearner",
       {
@@ -13655,6 +13690,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolVirtualBastard",
+      {
+        "<p>",
+        "  <a href=\"ToolVirtualBastard.htm\">VirtualBastard</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test graphical user interfaces.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolVisualAbc",
       {

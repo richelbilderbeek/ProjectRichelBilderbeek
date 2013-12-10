@@ -288,7 +288,6 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
         && "For every programType there must be HTML info");
     }
   }
-  assert(1==2);
   TRACE("Finished ribi::c2h::CodeToHtmlMenuDialog::Test()");
 }
 #endif

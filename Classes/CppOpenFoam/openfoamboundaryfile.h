@@ -15,7 +15,10 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct BoundaryFile
 {
+  ///Read an OpenFOAM 'boundary' file.
+  ///Throws std::runtime_error if file is incorrectly formed
   explicit BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
+
   explicit BoundaryFile(
     const Header header = GetDefaultHeader(),
     const std::vector<BoundaryFileItem>& items = {});
@@ -41,6 +44,9 @@ struct BoundaryFile
   ///Assumes CanGet(face_index) == true
   BoundaryFileItem& Find(const FaceIndex& face_index) noexcept;
 
+
+  ///Read an OpenFOAM 'boundary' file.
+  ///Throws std::runtime_error if file is incorrectly formed
   static const BoundaryFile Parse(std::istream& is);
 
   #ifndef NDEBUG
@@ -54,6 +60,9 @@ struct BoundaryFile
 bool operator==(const BoundaryFile& lhs,const BoundaryFile& rhs);
 bool operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs);
 std::ostream& operator<<(std::ostream& os, const BoundaryFile& f);
+
+///Read an OpenFOAM 'boundary' file.
+///Throws std::runtime_error if file is incorrectly formed
 std::istream& operator>>(std::istream& is, BoundaryFile& f);
 
 } //~namespace foam

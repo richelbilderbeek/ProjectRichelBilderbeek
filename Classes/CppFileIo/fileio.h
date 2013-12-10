@@ -29,7 +29,7 @@ void CopyFile(
 //From http://www.richelbilderbeek.nl/CppDeleteFile.htm
 void DeleteFile(const std::string& filename);
 
-///Deletes a folder
+///Deletes a folder its content recursively
 ///Will throw an exception if this fails
 void DeleteFolder(const std::string& folder);
 
