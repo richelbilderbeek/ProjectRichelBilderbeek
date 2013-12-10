@@ -11,10 +11,11 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapRateConceptDialog; }
 
 namespace ribi {
 namespace cmap {
+
+namespace Ui { class QtRateConceptDialog; }
 
 ///Rate the focal concept of a sub-ConceptMap.
 class QtRateConceptDialog : public ribi::QtHideAndShowDialog
@@ -47,7 +48,7 @@ private slots:
   void on_box_specificity_currentIndexChanged(int index);
 
 private:
-  Ui::QtConceptMapRateConceptDialog *ui;
+  Ui::QtRateConceptDialog *ui;
 
   ///To distinguish between closing the dialog by clicking OK, or by ALT-F4
   bool m_button_ok_clicked;
