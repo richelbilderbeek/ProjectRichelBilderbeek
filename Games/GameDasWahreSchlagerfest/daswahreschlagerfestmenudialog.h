@@ -27,8 +27,6 @@ namespace ribi {
 
 struct DasWahreSchlagerfestMenuDialog : public MenuDialog
 {
-  DasWahreSchlagerfestMenuDialog();
-
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;

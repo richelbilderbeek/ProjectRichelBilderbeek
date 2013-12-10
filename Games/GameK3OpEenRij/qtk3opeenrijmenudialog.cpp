@@ -10,6 +10,7 @@
 #include "qtk3opeenrijinstructionsdialog.h"
 #include "qtk3opeenrijselectplayerwidget.h"
 #include "ui_qtk3opeenrijmenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtK3OpEenRijMenuDialog::QtK3OpEenRijMenuDialog(
@@ -31,28 +32,6 @@ ribi::QtK3OpEenRijMenuDialog::~QtK3OpEenRijMenuDialog() noexcept
 {
   delete ui;
 }
-
-#ifndef NDEBUG
-void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  {
-    const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
-    QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
-  }
-  {
-    QtK3OpEenRijInstructionsDialog d;
-  }
-  {
-    About about = K3OpEenRijMenuDialog().GetAbout();
-    QtAboutDialog d(about);
-  }
-}
-#endif
 
 void ribi::QtK3OpEenRijMenuDialog::on_button_about_clicked() noexcept
 {
@@ -83,8 +62,9 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
 
   QtConnectThreeGameDialog d(
     resources,
-    nullptr,this->
-    m_select->GetIsPlayerHuman());
+    nullptr,
+    m_select->GetIsPlayerHuman()
+  );
   d.setWindowTitle("K3OpEenRij (C) 2007-2013");
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
@@ -94,14 +74,25 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtK3OpEenRijMenuDialog::Test");
+  {
+    const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
+    QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
+  }
+  {
+    QtK3OpEenRijInstructionsDialog d;
+  }
+  {
+    About about = K3OpEenRijMenuDialog().GetAbout();
+    QtAboutDialog d(about);
+  }
+  TRACE("Finished ribi::QtK3OpEenRijMenuDialog::Test successfully");
 }
 #endif

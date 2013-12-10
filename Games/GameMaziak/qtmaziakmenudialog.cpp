@@ -39,6 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakinstructionsdialog.h"
 #include "qtmaziakmaindialog.h"
 #include "ui_qtmaziakmenudialog.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -47,6 +48,9 @@ ribi::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
     ui(new Ui::QtMaziakMenuDialog),
     m_difficulty(easy)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Put the dialog in the screen's center
@@ -240,9 +244,7 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 void ribi::QtMaziakMenuDialog::onStart()
 {
   boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,getMazeSize()));
-  this->hide();
-  d->exec();
-  this->show();
+  this->ShowChild(d.get());
 }
 
 void ribi::QtMaziakMenuDialog::onInstructions()
@@ -271,14 +273,27 @@ int ribi::QtMaziakMenuDialog::getMazeSize() const
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtMaziakMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtMaziakMenuDialog::Test");
+  {
+    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,99));
+    assert(d);
+  }
+  {
+    const boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
+    assert(d);
+  }
+  {
+    const About a = MaziakMenuDialog().GetAbout();
+    boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
+    assert(d);
+  }
+  TRACE("Finished ribi::QtMaziakMenuDialog::Test successfully");
 }
 #endif

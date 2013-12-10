@@ -47,10 +47,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "richelbilderbeekprogramtypes.h"
 #include "testqtroundedtextrectitemmenudialog.h"
+#include "qtrichelbilderbeekmenuitem.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget *parent)
+ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(
+  QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent),
     m_signal_show{}
 {
@@ -65,12 +67,10 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
   const int n_rows = n_program_types / n_cols;
   for (int i = 0; i!=n_program_types; ++i)
   {
-    QtRoundedTextRectItem * const item = new QtRoundedTextRectItem;
+
 
     const int col = i % n_cols;
     const int row = i / n_cols;
-    const double w = item->boundingRect().width();
-    const double h = item->boundingRect().height();
     const double x = -300.0 + (static_cast<double>(col) * 200.0);
     const double y = static_cast<double>(row-(n_rows/2)) * 22.0;
 
@@ -78,14 +78,14 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
     const boost::shared_ptr<Program> p
       = Program::CreateProgram(
         program_types[i]);
-    const std::string s = p->GetScreenName();
 
-    item->SetText(s);
+    QtRichelBilderbeekMenuItem * const item = new QtRichelBilderbeekMenuItem(p->GetType());
+    const double w = item->boundingRect().width();
+    const double h = item->boundingRect().height();
+
+    //const std::string s = p->GetScreenName(); //Set the screen name
+    //item->SetText(s);
     item->setPos(x,y);
-    QPen pen = item->GetFocusPen();
-    pen.setWidth(3);
-    pen.setColor(QColor(255,0,0));
-    item->SetFocusPen(pen);
 
     const double left = x;
     const double top = y;
@@ -118,13 +118,6 @@ ribi::QtRichelBilderbeekMenuItemWidget::QtRichelBilderbeekMenuItemWidget(QWidget
       brush.setColorAt(1.0,color);
     }
     item->setBrush(brush);
-    //Rotation
-    {
-      const double f = static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX);
-      const double angle = -3.0 + (6.0 * f);
-      item->setRotation(angle);
-
-    }
     if (row == n_rows / 2 && col == 1)
     {
       item->setFocus();
@@ -145,10 +138,10 @@ void ribi::QtRichelBilderbeekMenuItemWidget::keyPressEvent(QKeyEvent *event) noe
     {
       //Find the text on the item
       QGraphicsItem * const item = this->scene()->focusItem();
-      QtRoundedTextRectItem * const text_item = dynamic_cast<QtRoundedTextRectItem*>(item);
-      assert(text_item);
-      const std::string text = text_item->GetText();
-      m_signal_show(text);
+      QtRichelBilderbeekMenuItem * const menu_item = dynamic_cast<QtRichelBilderbeekMenuItem*>(item);
+      assert(menu_item);
+      const ProgramType program_type { menu_item->GetProgramType() };
+      m_signal_show(program_type);
     }
     return;
   }

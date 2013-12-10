@@ -6,8 +6,13 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "trace.h"
+
 int ribi::KnokfighterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -69,14 +74,14 @@ const std::vector<std::string> ribi::KnokfighterMenuDialog::GetVersionHistory() 
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::KnokfighterMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::KnokfighterMenuDialog::Test");
+  TRACE("Finished ribi::KnokfighterMenuDialog::Test successfully");
 }
 #endif

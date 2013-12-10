@@ -6,8 +6,13 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "trace.h"
+
 int ribi::MetZnDrieenMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -69,14 +74,14 @@ const std::vector<std::string> ribi::MetZnDrieenMenuDialog::GetVersionHistory() 
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::MetZnDrieenMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::MetZnDrieenMenuDialog::Test");
+  TRACE("Finished ribi::MetZnDrieenMenuDialog::Test successfully");
 }
 #endif

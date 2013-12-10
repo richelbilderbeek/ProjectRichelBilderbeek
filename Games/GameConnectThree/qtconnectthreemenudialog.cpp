@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreewidget.h"
 #include "qtselectplayerwidget.h"
 #include "ui_qtconnectthreemenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
@@ -49,18 +50,6 @@ ribi::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog() noexcept
   delete ui;
 }
 
-#ifndef NDEBUG
-void ribi::QtConnectThreeMenuDialog::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
-  QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
-}
-#endif
 
 void ribi::QtConnectThreeMenuDialog::on_button_start_clicked() noexcept
 {
@@ -86,14 +75,17 @@ void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtConnectThreeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtConnectThreeMenuDialog::Test");
+  ConnectThreeMenuDialog();
+  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
+  QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
+  TRACE("Finished ribi::QtConnectThreeMenuDialog::Test successfully");
 }
 #endif

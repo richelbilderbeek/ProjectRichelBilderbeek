@@ -16,13 +16,13 @@ namespace ribi {
 struct QtKnokfighterBackground;
 struct QtKnokfighterPlayer;
 
-class QtKnokfighterMainDialog : public QGraphicsView
+class QtKnokfighterMainWidget : public QGraphicsView
 {
   Q_OBJECT
   public:
-  explicit QtKnokfighterMainDialog(QWidget *parent = 0);
-  QtKnokfighterMainDialog(const QtKnokfighterMainDialog&) = delete;
-  QtKnokfighterMainDialog& operator=(const QtKnokfighterMainDialog&) = delete;
+  explicit QtKnokfighterMainWidget(QWidget *parent = 0);
+  QtKnokfighterMainWidget(const QtKnokfighterMainWidget&) = delete;
+  QtKnokfighterMainWidget& operator=(const QtKnokfighterMainWidget&) = delete;
 
   signals:
     

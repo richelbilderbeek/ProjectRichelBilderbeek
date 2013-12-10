@@ -13,13 +13,16 @@
 namespace ribi {
 namespace foam {
 
-///Files contains all files in an OpenFOAM folder
+///Files contains the info of all files in an OpenFOAM folder
+///After creating a Files, these files can be deleted
+///Use CreateCopy to let these files be recreated again
 struct Files
 {
-  ///Builds up files from the current or any folder
+  ///Builds up Files from the current or any folder
   ///Use an empty string to build up from current folder
   explicit Files(const std::string& folder_name);
 
+  ///Builds up a Files from its information or from nothing
   explicit Files(
     const boost::shared_ptr<BoundaryFile> boundary = CreateDefaultBoundary(),
     const boost::shared_ptr<FacesFile> faces = CreateDefaultFaces(),
@@ -42,26 +45,21 @@ struct Files
   const boost::shared_ptr<const OwnerFile> GetOwner() const noexcept { return m_owner; }
   const boost::shared_ptr<const PointsFile> GetPoints() const noexcept { return m_points; }
 
-  void SetOwner(const boost::shared_ptr<OwnerFile>& owner) noexcept;
-
   void Swap(const FaceIndex& lhs, const FaceIndex& rhs);
 
   private:
   const boost::shared_ptr<BoundaryFile> m_boundary;
   const boost::shared_ptr<FacesFile> m_faces;
   const boost::shared_ptr<NeighbourFile> m_neighbour;
-  boost::shared_ptr<OwnerFile> m_owner; //non-const due to tests of operator==
+  const boost::shared_ptr<OwnerFile> m_owner;
   const boost::shared_ptr<PointsFile> m_points;
 
-
   static const boost::shared_ptr<BoundaryFile> CreateBoundary(const std::string& folder_name);
-
   static const boost::shared_ptr<BoundaryFile> CreateDefaultBoundary() noexcept;
   static const boost::shared_ptr<FacesFile> CreateDefaultFaces() noexcept;
   static const boost::shared_ptr<NeighbourFile> CreateDefaultNeighbour() noexcept;
   static const boost::shared_ptr<OwnerFile> CreateDefaultOwner() noexcept;
   static const boost::shared_ptr<PointsFile> CreateDefaultPoints() noexcept;
-
   static const boost::shared_ptr<FacesFile> CreateFaces(const std::string& folder_name);
 
   ///Creates the folder structure needed by OpenFOAM
@@ -78,6 +76,8 @@ struct Files
   #endif
 };
 
+///Write all info to a single stream. Use CreateCopy to write all info
+///to an OpenFOAM folder structure with multiple files
 std::ostream& operator<<(std::ostream& os, const Files& files);
 
 bool operator==(const Files& lhs, const Files& rhs);

@@ -101,12 +101,18 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
   //Delete all files
   for (const std::string& subfolder: GetFoldersInFolder(folder))
   {
-    DeleteFolder(folder + GetPathSeperator() + subfolder);
+    DeleteFolder(
+      (folder.empty() ? folder : folder + fileio::GetPathSeperator())
+      + subfolder
+    );
   }
   assert(GetFoldersInFolder(folder).empty());
   for (const std::string& filename: GetFilesInFolder(folder))
   {
-    DeleteFile(folder + GetPathSeperator() + filename);
+    DeleteFile(
+      (folder.empty() ? folder : folder + fileio::GetPathSeperator())
+      + filename
+   );
   }
   assert(GetFilesInFolder(folder).empty());
   const std::string cmd = "rmdir " + folder;
@@ -114,10 +120,12 @@ void ribi::fileio::DeleteFolder(const std::string& folder)
   assert(!error && "Assume rmdir works under both Windows and Linux");
   if (error)
   {
+    TRACE(folder);
     throw std::runtime_error("DeleteFolder failed by system call");
   }
   if (IsFolder(folder))
   {
+    TRACE(folder);
     throw std::runtime_error("DeleteFolder failed in deleting the folder");
   }
 }
@@ -337,6 +345,14 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str)
 {
+  #ifndef NDEBUG
+  if(!IsFolder(folder))
+  {
+    TRACE("ERROR");
+    TRACE(folder);
+  }
+  #endif
+
   //Get all filenames
   assert(IsFolder(folder));
   const std::vector<std::string> v = GetFilesInFolder(folder);

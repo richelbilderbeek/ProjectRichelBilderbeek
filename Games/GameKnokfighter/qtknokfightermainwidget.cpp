@@ -1,7 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qtknokfightermaindialog.h"
+#include "qtknokfightermainwidget.h"
 
 #include <cassert>
 
@@ -13,7 +13,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
+ribi::QtKnokfighterMainWidget::QtKnokfighterMainWidget(QWidget *parent) :
   QGraphicsView(parent),
   m_background(new QtKnokfighterBackground(800,600)),
   m_players(
@@ -24,6 +24,9 @@ ribi::QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
   ),
   m_scene(new QGraphicsScene(this))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   this->setScene(m_scene);
 
   //Add the background
@@ -49,7 +52,7 @@ ribi::QtKnokfighterMainDialog::QtKnokfighterMainDialog(QWidget *parent) :
   }
 }
 
-void ribi::QtKnokfighterMainDialog::do_main_timer()
+void ribi::QtKnokfighterMainWidget::do_main_timer()
 {
   //v is the background moving speed. Setting this to e.g. 0.1
   //causes the background to keep the player centered more gradually
@@ -88,7 +91,7 @@ void ribi::QtKnokfighterMainDialog::do_main_timer()
   }
 }
 
-void ribi::QtKnokfighterMainDialog::keyPressEvent(QKeyEvent *event)
+void ribi::QtKnokfighterMainWidget::keyPressEvent(QKeyEvent *event)
 {
   switch(event->key())
   {
@@ -105,14 +108,24 @@ void ribi::QtKnokfighterMainDialog::keyPressEvent(QKeyEvent *event)
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtKnokfighterMainWidget::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtKnokfighterMainWidget::Test");
+  QtKnokfighterBackground(800,600);
+  {
+    boost::shared_ptr<QtKnokfighterPlayer> p(new QtKnokfighterPlayer(QtKnokfighterPlayer::Name::richel));
+    assert(p);
+  }
+  {
+    boost::shared_ptr<QtKnokfighterPlayer> p(new QtKnokfighterPlayer(QtKnokfighterPlayer::Name::joost));
+    assert(p);
+  }
+
+  TRACE("Finished ribi::QtKnokfighterMainWidget::Test successfully");
 }
 #endif

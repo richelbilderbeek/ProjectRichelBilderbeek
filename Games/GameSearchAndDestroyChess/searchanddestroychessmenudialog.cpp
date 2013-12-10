@@ -42,6 +42,9 @@ ribi::sadc::MenuDialog::MenuDialog()
 
 int ribi::sadc::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -108,7 +111,7 @@ const std::vector<std::string> ribi::sadc::MenuDialog::GetVersionHistory() const
 }
 
 #ifndef NDEBUG
-void ribi::sadc::MenuDialog::Test()
+void ribi::sadc::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

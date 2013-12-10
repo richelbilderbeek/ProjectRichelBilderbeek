@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosgame.h"
 #include "qtpyloswondialog.h"
 #include "ui_qtpylosmaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtPylosMainDialog::QtPylosMainDialog(

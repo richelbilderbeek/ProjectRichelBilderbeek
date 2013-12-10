@@ -349,12 +349,6 @@ void ribi::foam::Files::CreateTestFiles(const std::string& folder_name)
   }
 }
 
-void ribi::foam::Files::SetOwner(const boost::shared_ptr<ribi::foam::OwnerFile>& owner) noexcept
-{
-  assert(owner);
-  m_owner = owner;
-}
-
 void ribi::foam::Files::Swap(const ribi::foam::FaceIndex& lhs, const ribi::foam::FaceIndex& rhs)
 {
   assert(lhs != rhs);
@@ -452,9 +446,6 @@ void ribi::foam::Files::Test() noexcept
   }
   //operator!=
   {
-    Files f;
-    Files g;
-    assert(f == g);
     const std::vector<OwnerFileItem> items_1 {
       OwnerFileItem(CellIndex(0)),
       OwnerFileItem(CellIndex(1)),
@@ -471,13 +462,23 @@ void ribi::foam::Files::Test() noexcept
     const boost::shared_ptr<OwnerFile> owner_2 {
       new OwnerFile(OwnerFile::GetDefaultHeader(),items_2)
     };
+
+    const Files f(
+      Files::CreateDefaultBoundary(),
+      Files::CreateDefaultFaces(),
+      Files::CreateDefaultNeighbour(),
+      owner_1,
+      Files::CreateDefaultPoints()
+    );
+    const Files g(
+      Files::CreateDefaultBoundary(),
+      Files::CreateDefaultFaces(),
+      Files::CreateDefaultNeighbour(),
+      owner_2,
+      Files::CreateDefaultPoints()
+    );
+
     assert(*owner_1 != *owner_2);
-    f.SetOwner(owner_1);
-    assert(f != g);
-    g.SetOwner(owner_2);
-    assert(f != g);
-    f.SetOwner(owner_2);
-    assert(f == g);
   }
   //CreateCopy
   {

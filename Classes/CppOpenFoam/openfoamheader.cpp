@@ -2,6 +2,8 @@
 
 #include <cassert>
 #include <ostream>
+#include <sstream>
+#include <stdexcept>
 
 #include "trace.h"
 

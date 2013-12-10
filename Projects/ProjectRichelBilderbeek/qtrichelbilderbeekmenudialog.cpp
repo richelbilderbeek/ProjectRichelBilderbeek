@@ -190,39 +190,28 @@ void ribi::QtRichelBilderbeekMenuDialog::OnAbout()
   d.exec();
 }
 
-void ribi::QtRichelBilderbeekMenuDialog::OnShow(const std::string text)
+void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 {
-  //Display the dialog
-  const std::vector<ProgramType> v = ProgramTypes::GetAll();
-  for (const ProgramType type: v)
+  const boost::shared_ptr<QDialog> dialog(
+    QtRichelBilderbeekProgram::CreateQtMenuDialog(program_type));
+
+  if (!dialog)
   {
-    const boost::shared_ptr<Program> p = Program::CreateProgram(type);
-    if (p->GetScreenName() == text)
-    {
-
-      const boost::shared_ptr<QDialog> dialog(
-        QtRichelBilderbeekProgram::CreateQtMenuDialog(type));
-
-      if (!dialog)
-      {
-        TRACE("Create placeholder");
-        const boost::shared_ptr<QtHideAndShowDialog> placeholder(
-          QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(type));
-        assert(placeholder);
-        this->ShowChild(placeholder.get());
-        return;
-      }
-      else
-      {
-        TRACE("Create QtHideAndShowDialog");
-        const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
-          boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
-        assert(hide_and_show_dialog);
-        //hide_and_show_dialog->exec();
-        this->ShowChild(hide_and_show_dialog.get());
-        return;
-      }
-    }
+    TRACE("Create placeholder");
+    const boost::shared_ptr<QtHideAndShowDialog> placeholder(
+      QtRichelBilderbeekProgram::CreateQtPlaceholderDialog(program_type));
+    assert(placeholder);
+    this->ShowChild(placeholder.get());
+    return;
+  }
+  else
+  {
+    TRACE("Create QtHideAndShowDialog");
+    const boost::shared_ptr<QtHideAndShowDialog> hide_and_show_dialog(
+      boost::dynamic_pointer_cast<QtHideAndShowDialog>(dialog));
+    assert(hide_and_show_dialog);
+    this->ShowChild(hide_and_show_dialog.get());
+    return;
   }
 }
 

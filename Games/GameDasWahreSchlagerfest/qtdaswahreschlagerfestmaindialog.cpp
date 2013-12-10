@@ -25,12 +25,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include "qtdaswahreschlagerfestwidget.h"
 #include "ui_qtdaswahreschlagerfestmaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtDasWahreSchlagerfestMainDialog::QtDasWahreSchlagerfestMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtDasWahreSchlagerfestMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -40,14 +44,15 @@ ribi::QtDasWahreSchlagerfestMainDialog::~QtDasWahreSchlagerfestMainDialog() noex
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtDasWahreSchlagerfestMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtDasWahreSchlagerfestMainDialog::Test");
+  QtDasWahreSchlagerfestWidget();
+  TRACE("Finished ribi::QtDasWahreSchlagerfestMainDialog::Test successfully");
 }
 #endif

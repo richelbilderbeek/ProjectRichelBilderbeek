@@ -5,9 +5,13 @@
 
 #include "connectthree.h"
 #include "connectthreewidget.h"
+#include "trace.h"
 
 int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -75,14 +79,14 @@ const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() c
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::K3OpEenRijMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::K3OpEenRijMenuDialog::Test");
+  TRACE("Finished ribi::K3OpEenRijMenuDialog::Test successfully");
 }
 #endif

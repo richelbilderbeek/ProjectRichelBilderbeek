@@ -39,11 +39,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakgameoverdialog.h"
 #include "qtmaziakgamewondialog.h"
 #include "ui_qtmaziakmaindialog.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
 ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size)
-  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtMaziakMainDialog),
     //Floor
     m_pixmap_empty(new QPixmap(":/images/Empty.png")),
@@ -113,6 +114,9 @@ ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_siz
     mMaze{},
     mDistances{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   assert(m_pixmap_empty);
   assert(!m_pixmap_empty->isNull());
@@ -937,14 +941,15 @@ bool ribi::CanMoveTo(
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtMaziakMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtMaziakMainDialog::Test");
+  QtMaziakMainDialog(0,99);
+  TRACE("Finished ribi::QtMaziakMainDialog::Test successfully");
 }
 #endif

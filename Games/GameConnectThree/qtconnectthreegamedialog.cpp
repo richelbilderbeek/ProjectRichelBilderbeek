@@ -29,10 +29,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthree.h"
 #include "connectthreewidget.h"
 #include "connectthreeresources.h"
+#include "qtconnectthreeresources.h"
 #include "ui_qtconnectthreegamedialog.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreewidget.h"
 #include "qtshowwinnerdialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
@@ -49,6 +51,10 @@ ribi::QtConnectThreeGameDialog::QtConnectThreeGameDialog(
     m_is_player_human(is_player_human),
     m_resources(resources)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 
   //Add board widget
@@ -146,14 +152,20 @@ void ribi::QtConnectThreeGameDialog::OnValidMove() noexcept
 }
 
 #ifndef NDEBUG
-void ribi::X::Test() noexcept
+void ribi::QtConnectThreeGameDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtConnectThreeGameDialog::Test");
+  const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
+  assert(resources);
+  const boost::shared_ptr<const QtConnectThreeGameDialog> d {
+    new QtConnectThreeGameDialog(resources,nullptr,std::bitset<3>(false))
+  };
+  assert(d);
+  TRACE("Finished ribi::QtConnectThreeGameDialog::Test successfully");
 }
 #endif

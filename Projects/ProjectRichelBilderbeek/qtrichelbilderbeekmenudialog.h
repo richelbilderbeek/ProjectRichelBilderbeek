@@ -59,7 +59,9 @@ private:
 
   void keyPressEvent(QKeyEvent *);
 
-  void OnShow(const std::string text);
+  //void OnShow(const std::string text);
+  void OnShow(const ProgramType program_type);
+
 
   #ifndef NDEBUG
   ///Test this class

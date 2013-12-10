@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/signals2.hpp>
 #include "qtkeyboardfriendlygraphicsview.h"
+#include "richelbilderbeekprogramtype.h"
 
 namespace ribi {
 
@@ -33,7 +34,8 @@ namespace ribi {
 /// - emit m_signal_show with the name of the application the user selected
 struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 {
-  QtRichelBilderbeekMenuItemWidget(QWidget *parent = 0);
+  QtRichelBilderbeekMenuItemWidget(
+    QWidget *parent = 0);
 
   ~QtRichelBilderbeekMenuItemWidget() noexcept {}
 
@@ -41,7 +43,8 @@ struct QtRichelBilderbeekMenuItemWidget : public QtKeyboardFriendlyGraphicsView
 
   ///Emitted when the user wants to start an application
   ///The string passed is the text on the item
-  boost::signals2::signal<void(const std::string)> m_signal_show;
+  //boost::signals2::signal<void(const std::string)> m_signal_show;
+  boost::signals2::signal<void(const ribi::ProgramType)> m_signal_show;
 };
 
 } //~namespace ribi

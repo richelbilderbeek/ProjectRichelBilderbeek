@@ -43,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtboenkenspritemoving.h"
 #include "qtboenkenspritenonmoving.h"
 #include "qtboenkenspriteplayer.h"
+#include "trace.h"
 #include "ui_qtboenkenmenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -323,6 +324,7 @@ void ribi::QtBoenkenMenuDialog::onAboutClick()
   this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
 void ribi::QtBoenkenMenuDialog::Test() noexcept
 {
   {
@@ -330,6 +332,7 @@ void ribi::QtBoenkenMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::QtBoenkenMenuDialog::Test");
   {
 
     Boenken::ArenaSettings a;
@@ -346,17 +349,6 @@ void ribi::QtBoenkenMenuDialog::Test() noexcept
     assert(b);
     QtBoenkenMainDialog d(0,b);
   }
-}
-
-#ifndef NDEBUG
-void ribi::X::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Finished ribi::QtBoenkenMenuDialog::Test successfully");
 }
 #endif

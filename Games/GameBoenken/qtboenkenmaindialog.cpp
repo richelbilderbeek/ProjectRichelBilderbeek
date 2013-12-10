@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "qtboenkengame.h"
 #include "ui_qtboenkenmaindialog.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -177,6 +178,7 @@ void ribi::QtBoenkenMainDialog::Paint(
   pixmap = pixmap.fromImage(image);
 }
 
+#ifndef NDEBUG
 void ribi::QtBoenkenMainDialog::Test() noexcept
 {
   {
@@ -184,27 +186,7 @@ void ribi::QtBoenkenMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  {
-    //boost::shared_ptr<Boenken::Game> p(new Boenken::Game(
-  }
-}
-
-#ifndef NDEBUG
-void ribi::X::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  TRACE("Starting ribi::X::Test");
-  TRACE("Finished ribi::X::Test successfully");
+  TRACE("Starting ribi::QtBoenkenMainDialog::Test");
+  TRACE("Finished ribi::QtBoenkenMainDialog::Test successfully");
 }
 #endif
-
-///Null function
-//boost::shared_ptr<Boenken::Game> CreateNoBoenken()
-//{
-//  boost::shared_ptr<Boenken::Game> p;
-//  return p;
-//}

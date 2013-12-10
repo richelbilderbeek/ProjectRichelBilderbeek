@@ -11,6 +11,7 @@
 #include <QVBoxLayout>
 
 #include "qtpongmaindialog.h"
+#include "trace.h"
 #include "ui_qtpongmaindialog.h"
 #pragma GCC diagnostic pop
 
