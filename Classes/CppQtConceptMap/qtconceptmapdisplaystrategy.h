@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPDISPLAYCONCEPTITEM_H
-#define QTCONCEPTMAPDISPLAYCONCEPTITEM_H
+#ifndef QTCONCEPTMAPDISPLAYSTRATEGY_H
+#define QTCONCEPTMAPDISPLAYSTRATEGY_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -13,13 +13,13 @@
 namespace ribi {
 namespace cmap {
 
-///QtConceptMapDisplayConcept display a Concept
-struct QtConceptMapDisplayConceptItem : public QtConceptItem
+///QtDisplayStrategy display a Concept
+struct QtDisplayStrategy : public QtItemDisplayStrategy
 {
-  ~QtConceptMapDisplayConceptItem() noexcept;
+  ~QtDisplayStrategy() noexcept;
 
   //concept can be modified (as it is not const), but I can promise I will try to prevent this from happening
-  explicit QtConceptMapDisplayConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept);
+  explicit QtDisplayStrategy(const boost::shared_ptr<ribi::cmap::Concept>& concept);
 
 protected:
   virtual void keyPressEvent(QKeyEvent *) noexcept {} //Do not respond to key presses
@@ -35,4 +35,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPDISPLAYCONCEPTITEM_H
+#endif // QTCONCEPTMAPDISPLAYSTRATEGY_H

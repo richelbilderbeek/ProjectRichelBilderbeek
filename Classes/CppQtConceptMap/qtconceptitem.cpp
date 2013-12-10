@@ -28,7 +28,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptItem::QtConceptItem(
+ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
   const boost::shared_ptr<ribi::cmap::Concept>& concept)
   : m_signal_position_changed{},
     m_concept(concept),
@@ -53,7 +53,7 @@ ribi::cmap::QtConceptItem::QtConceptItem(
 
   //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
-    boost::bind(&ribi::cmap::QtConceptItem::OnConceptNameChanged,this)); //Obligatory
+    boost::bind(&ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
 
   //FIX? 2013-06-25
   //this->SetText("DUMMY TEXT");
@@ -63,45 +63,45 @@ ribi::cmap::QtConceptItem::QtConceptItem(
   this->SetName(m_concept->GetName());
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtConceptItem::GetConcept() const noexcept
+const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStrategy::GetConcept() const noexcept
 {
   boost::shared_ptr<const ribi::cmap::Concept> p(m_concept);
   assert(p);
   return p;
 }
 
-const std::string ribi::cmap::QtConceptItem::GetName() const noexcept
+const std::string ribi::cmap::QtItemDisplayStrategy::GetName() const noexcept
 {
   return Unwordwrap(this->GetText());
 }
 
-void ribi::cmap::QtConceptItem::hoverStartEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent *)
 {
   std::exit(1); //Never called
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void ribi::cmap::QtConceptItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtItemDisplayStrategy::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   //std::exit(2);
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
-void ribi::cmap::QtConceptItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void ribi::cmap::QtItemDisplayStrategy::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   Base::mouseMoveEvent(event);
   //this->m_signal_item_has_updated(); //2013-06-25
   m_signal_request_scene_update();
 }
 
-void ribi::cmap::QtConceptItem::mousePressEvent(QGraphicsSceneMouseEvent * event)
+void ribi::cmap::QtItemDisplayStrategy::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   Base::mousePressEvent(event);
   //this->m_signal_item_has_updated(); //2013-06-25
   m_signal_request_scene_update();
 }
 
-void ribi::cmap::QtConceptItem::OnConceptNameChanged()
+void ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged()
 {
   assert(this);
   assert(m_concept);
@@ -110,7 +110,7 @@ void ribi::cmap::QtConceptItem::OnConceptNameChanged()
   //m_signal_item_changed(this); //Called by SetText
 }
 
-void ribi::cmap::QtConceptItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void ribi::cmap::QtItemDisplayStrategy::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
   assert(m_concept);
   assert(m_concept->GetExamples());
@@ -134,7 +134,7 @@ void ribi::cmap::QtConceptItem::paint(QPainter* painter, const QStyleOptionGraph
   }
 }
 
-void ribi::cmap::QtConceptItem::SetIndicatorBrush(const QBrush& brush)
+void ribi::cmap::QtItemDisplayStrategy::SetIndicatorBrush(const QBrush& brush)
 {
   if (m_indicator_brush != brush)
   {
@@ -143,7 +143,7 @@ void ribi::cmap::QtConceptItem::SetIndicatorBrush(const QBrush& brush)
   }
 }
 
-void ribi::cmap::QtConceptItem::SetIndicatorPen(const QPen& pen)
+void ribi::cmap::QtItemDisplayStrategy::SetIndicatorPen(const QPen& pen)
 {
   if (m_indicator_pen != pen)
   {
@@ -152,7 +152,7 @@ void ribi::cmap::QtConceptItem::SetIndicatorPen(const QPen& pen)
   }
 }
 
-void ribi::cmap::QtConceptItem::SetMainBrush(const QBrush& any_brush)
+void ribi::cmap::QtItemDisplayStrategy::SetMainBrush(const QBrush& any_brush)
 {
 
   if (this->brush() != any_brush)
@@ -163,7 +163,7 @@ void ribi::cmap::QtConceptItem::SetMainBrush(const QBrush& any_brush)
   assert(this->brush() == any_brush);
 }
 
-void ribi::cmap::QtConceptItem::SetPos(const double x, const double y)
+void ribi::cmap::QtItemDisplayStrategy::SetPos(const double x, const double y)
 {
   if (x != this->x() || y != this->y())
   {
@@ -172,7 +172,7 @@ void ribi::cmap::QtConceptItem::SetPos(const double x, const double y)
   }
 }
 
-void ribi::cmap::QtConceptItem::SetName(const std::string& s)
+void ribi::cmap::QtItemDisplayStrategy::SetName(const std::string& s)
 {
   //Set the text
   const std::vector<std::string> v { Wordwrap(s,40) };
@@ -188,7 +188,7 @@ void ribi::cmap::QtConceptItem::SetName(const std::string& s)
 }
 
 /*
-QPainterPath ribi::cmap::QtConceptItem::shape() const
+QPainterPath ribi::cmap::QtItemDisplayStrategy::shape() const
 {
   const int click_easy_width = 5;
   QPainterPath path;
@@ -201,15 +201,15 @@ QPainterPath ribi::cmap::QtConceptItem::shape() const
 */
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptItem::Test()
+void ribi::cmap::QtItemDisplayStrategy::Test()
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::cmap::QtConceptItem::Test()");
+  TRACE("Starting ribi::cmap::QtItemDisplayStrategy::Test()");
 
-  TRACE("Successfully finished ribi::cmap::QtConceptItem::Test()");
+  TRACE("Successfully finished ribi::cmap::QtItemDisplayStrategy::Test()");
 }
 #endif

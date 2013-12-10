@@ -16,7 +16,7 @@ namespace Ui { class QtTestConceptMapRateWidgetDialog; }
 namespace ribi {
 namespace cmap {
 
-///Tests all QtConceptMapWidgets
+///Tests all QtConceptMaps
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
 class QtTestConceptMapRateWidgetDialog : public ribi::QtHideAndShowDialog

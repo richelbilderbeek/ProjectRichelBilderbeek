@@ -40,7 +40,7 @@
         </item>
         <item>
          <property name="text">
-          <string>QtConceptMapDisplayConcept-&gt;GetConcept()</string>
+          <string>QtDisplayStrategy-&gt;GetConcept()</string>
          </property>
         </item>
         <item>
@@ -50,7 +50,7 @@
         </item>
         <item>
          <property name="text">
-          <string>QtConceptMapRateConcept-&gt;GetConcept()</string>
+          <string>QtRateStrategy-&gt;GetConcept()</string>
          </property>
         </item>
        </widget>

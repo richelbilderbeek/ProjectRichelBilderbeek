@@ -11,11 +11,11 @@
 
 #include <QKeyEvent>
 
-#include "qtconceptmapdisplayconceptitem.h"
-#include "qtconceptmapeditconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
+#include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapbrushfactory.h"
 #include "conceptmapconcept.h"
-#include "qtconceptmaprateconceptitem.h"
+#include "qtconceptmapratestrategy.h"
 #include "conceptmapexamples.h"
 #include "conceptmapexample.h"
 #include "ui_qtconceptmaptestconceptitemdialog.h"
@@ -40,23 +40,23 @@ ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog
   //Node is used in: m_node
   assert(m_concept.use_count() == 1);
 
-  m_display_concept = new cmap::QtConceptMapDisplayConceptItem(m_concept);
+  m_display_concept = new cmap::QtDisplayStrategy(m_concept);
   assert(m_display_concept);
 
   //Node is used in: m_node and QtConceptMapNodeConcept::m_node
   assert(m_concept.use_count() == 2);
-  //Concept is used in: m_node::m_concept, QtConceptMapDisplayConcept::m_node::m_concept and QtConceptMapConcept::m_concept
+  //Concept is used in: m_node::m_concept, QtDisplayStrategy::m_node::m_concept and QtConceptMapConcept::m_concept
   assert(m_concept.get() == m_display_concept->GetConcept().get());
   assert(m_concept.get() == m_display_concept->GetConcept().get());
   assert(m_concept.use_count() == 2);
 
   //Node is used in: m_node, QtConceptMapNodeConcept::m_node
-  m_edit_concept = new cmap::QtConceptMapEditConceptItem(m_concept);
+  m_edit_concept = new cmap::QtEditStrategy(m_concept);
 
   assert(m_edit_concept);
   assert(m_concept.use_count() == 3);
 
-  m_rate_concept = new cmap::QtConceptMapRateConceptItem(m_concept);
+  m_rate_concept = new cmap::QtRateStrategy(m_concept);
 
   assert(m_rate_concept);
   assert(m_concept.use_count() == 4);
@@ -77,9 +77,9 @@ ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog
   ui->view->scene()->addItem(m_rate_concept);
 
   assert(ui->view->scene()->items().size() == 3);
-  assert(dynamic_cast<cmap::QtConceptItem*>(ui->view->scene()->items()[0]));
-  assert(dynamic_cast<cmap::QtConceptItem*>(ui->view->scene()->items()[1]));
-  assert(dynamic_cast<cmap::QtConceptItem*>(ui->view->scene()->items()[2]));
+  assert(dynamic_cast<cmap::QtItemDisplayStrategy*>(ui->view->scene()->items()[0]));
+  assert(dynamic_cast<cmap::QtItemDisplayStrategy*>(ui->view->scene()->items()[1]));
+  assert(dynamic_cast<cmap::QtItemDisplayStrategy*>(ui->view->scene()->items()[2]));
 
   {
     const std::vector<cmap::Competency> v = cmap::GetAllCompetencies();
@@ -119,12 +119,12 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapTestConcept
       const auto iter = std::find_if(v.begin(),v.end(),
         [](QGraphicsItem * const item)
         {
-          return dynamic_cast<cmap::QtConceptMapDisplayConceptItem*>(item);
+          return dynamic_cast<cmap::QtDisplayStrategy*>(item);
         }
       );
       assert(iter!=v.end());
-      cmap::QtConceptMapDisplayConceptItem * const qtconcept {
-        dynamic_cast<cmap::QtConceptMapDisplayConceptItem*>(*iter)
+      cmap::QtDisplayStrategy * const qtconcept {
+        dynamic_cast<cmap::QtDisplayStrategy*>(*iter)
       };
       assert(qtconcept);
       return qtconcept->GetConcept();
@@ -135,12 +135,12 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapTestConcept
       const auto iter = std::find_if(v.begin(),v.end(),
         [](QGraphicsItem * const item)
         {
-          return dynamic_cast<cmap::QtConceptMapEditConceptItem*>(item);
+          return dynamic_cast<cmap::QtEditStrategy*>(item);
         }
       );
       assert(iter!=v.end());
-      cmap::QtConceptMapEditConceptItem * const qtconcept {
-        dynamic_cast<cmap::QtConceptMapEditConceptItem*>(*iter)
+      cmap::QtEditStrategy * const qtconcept {
+        dynamic_cast<cmap::QtEditStrategy*>(*iter)
       };
       assert(qtconcept);
       return qtconcept->GetConcept();
@@ -151,12 +151,12 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapTestConcept
       const auto iter = std::find_if(v.begin(),v.end(),
         [](QGraphicsItem * const item)
         {
-          return dynamic_cast<cmap::QtConceptMapRateConceptItem*>(item);
+          return dynamic_cast<cmap::QtRateStrategy*>(item);
         }
       );
       assert(iter!=v.end());
-      cmap::QtConceptMapRateConceptItem * const qtconcept {
-        dynamic_cast<cmap::QtConceptMapRateConceptItem*>(*iter)
+      cmap::QtRateStrategy * const qtconcept {
+        dynamic_cast<cmap::QtRateStrategy*>(*iter)
       };
       assert(qtconcept);
       return qtconcept->GetConcept();

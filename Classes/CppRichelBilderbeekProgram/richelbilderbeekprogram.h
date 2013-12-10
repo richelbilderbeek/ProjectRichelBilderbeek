@@ -138,7 +138,7 @@ struct ProgramAminoAcidFighter : public ProgramGame
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::aminoAcidFighter; }
-  const std::string GetUrl() const noexcept { return "GameBeerAminoAcidFighter.htm"; }
+  const std::string GetUrl() const noexcept { return "GameAminoAcidFighter.htm"; }
 };
 
 struct ProgramAthleticLand : public ProgramGame
@@ -633,7 +633,7 @@ struct ProgramGrayCoder : public ProgramTool
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::grayCoder; }
-  const std::string GetUrl() const noexcept { return "GrayCoder.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolGrayCoder.htm"; }
 };
 
 struct ProgramGrayCoderVcl : public ProgramTool
@@ -648,7 +648,7 @@ struct ProgramGrayCoderVcl : public ProgramTool
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }
   ProgramType GetType() const noexcept { return ProgramType::grayCoderVcl; }
-  const std::string GetUrl() const noexcept { return "GrayCoderVcl.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolGrayCoderVcl.htm"; }
 };
 
 struct ProgramGtst : public ProgramProject
@@ -1145,7 +1145,7 @@ struct ProgramNdsmake : public ProgramClass
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ndsmake; }
-  const std::string GetUrl() const noexcept { return "CppNdsmake.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolNdsmake.htm"; }
 };
 
 struct ProgramNdsPaint : public ProgramTool
@@ -1160,7 +1160,7 @@ struct ProgramNdsPaint : public ProgramTool
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::ndsPaint; }
-  const std::string GetUrl() const noexcept { return "CppNdsPaint.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolNdsPaint.htm"; }
 };
 
 struct ProgramPaperRockScissors : public ProgramTool
@@ -1374,19 +1374,19 @@ struct ProgramQuadraticSolver : public ProgramTool
   const std::string GetUrl() const noexcept { return "ToolQuadraticSolver.htm"; }
 };
 
-struct ProgramRampal : public ProgramProject
+struct ProgramRampalEtienne : public ProgramProject
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "ProjectRampal"; }
+  const std::string GetScreenName() const noexcept { return "ProjectRampalEtienne"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::rampal; }
-  const std::string GetUrl() const noexcept { return "ProjectRampal.htm"; }
+  ProgramType GetType() const noexcept { return ProgramType::rampalEtienne; }
+  const std::string GetUrl() const noexcept { return "ProjectRampalEtienne.htm"; }
 };
 
 struct ProgramRandomCode : public ProgramTool
@@ -1507,7 +1507,7 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::richelbilderbeekNlSitemapGenerator; }
-  const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator.htm"; }
 };
 
 struct ProgramRubiksClock : public ProgramGame
@@ -1673,7 +1673,7 @@ struct ProgramSimPredator : public ProgramGame
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::simPredator; }
-  const std::string GetUrl() const noexcept { return "ToolSimPredator.htm"; }
+  const std::string GetUrl() const noexcept { return "GameSimPredator.htm"; }
 };
 
 struct ProgramSimStagecraft : public ProgramTool
@@ -2603,7 +2603,7 @@ struct ProgramTestTextPositionWidget : public ProgramClass
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testTextPositionWidget; }
-  const std::string GetUrl() const noexcept { return "ToolTextPositionWidget.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolTestTextPositionWidget.htm"; }
 };
 
 struct ProgramTestTicTacToe : public ProgramClass
@@ -2959,20 +2959,6 @@ struct ProgramEncranger : public ProgramTool
   const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }
 };
 
-struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool
-{
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator_2_0.png"; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "RichelBilderbeekNlSitemapGenerator"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::richelBilderbeekNlSitemapGenerator; }
-  const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }
-};
 */
 
 std::ostream& operator<<(std::ostream& os, const Program& p) noexcept;

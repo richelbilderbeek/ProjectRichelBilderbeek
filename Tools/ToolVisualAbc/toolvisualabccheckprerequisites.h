@@ -12,7 +12,6 @@ struct CheckPrerequisites
   void CheckAbcm2ps();
   void CheckConvert();
   void CheckPlaysound();
-  static bool FileExists(const std::string& filename);
 };
 
 } //~namespace ribi

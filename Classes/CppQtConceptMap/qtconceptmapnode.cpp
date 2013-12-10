@@ -15,8 +15,8 @@
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapeditconceptitem.h"
-#include "qtconceptmaprateconceptitem.h"
+#include "qtconceptmapeditstrategy.h"
+#include "qtconceptmapratestrategy.h"
 #include "conceptmapconcept.h"
 #include "qtconceptitem.h"
 #include "trace.h"
@@ -24,7 +24,7 @@
 
 ribi::cmap::QtNode::QtNode(
   const boost::shared_ptr<ribi::cmap::Node> node,
-  const boost::shared_ptr<QtConceptItem> concept_item)
+  const boost::shared_ptr<QtItemDisplayStrategy> concept_item)
   : m_signal_node_requests_rate_concept{},
     m_signal_node_requests_rate_examples{},
     m_concept_item(concept_item),
@@ -75,7 +75,7 @@ ribi::cmap::QtNode::QtNode(
     )
   );
 
-  if (QtConceptMapEditConceptItem * edit_concept = dynamic_cast<QtConceptMapEditConceptItem*>(concept_item.get()))
+  if (QtEditStrategy * edit_concept = dynamic_cast<QtEditStrategy*>(concept_item.get()))
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
@@ -85,7 +85,7 @@ ribi::cmap::QtNode::QtNode(
     );
   }
 
-  if (QtConceptMapRateConceptItem * rate_concept = dynamic_cast<QtConceptMapRateConceptItem*>(concept_item.get()))
+  if (QtRateStrategy * rate_concept = dynamic_cast<QtRateStrategy*>(concept_item.get()))
   {
     rate_concept->m_signal_request_rate_concept.connect(
       boost::bind(
@@ -236,8 +236,8 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
   this->m_concept_item->SetName(this->GetConcept()->GetName());
 
 
-  //Only QtConceptMapEditConceptItem actually modifies the position of the concept items
-  if (dynamic_cast<QtConceptMapEditConceptItem*>(m_concept_item.get()))
+  //Only QtEditStrategy actually modifies the position of the concept items
+  if (dynamic_cast<QtEditStrategy*>(m_concept_item.get()))
   {
     //Notifies the GUI-independent collaborators
     this->m_concept_item->SetPos(x(),y());
@@ -341,7 +341,7 @@ void ribi::cmap::QtNode::Test()
       const auto nodes = cmap::NodeFactory::GetTests();
       boost::shared_ptr<ribi::cmap::Node> node = nodes[node_index];
       assert(node);
-      boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept_item(new QtConceptMapEditConceptItem(node->GetConcept()));
+      boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
       boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));
       assert(qtconcept_item->GetConcept() == qtnode->GetConcept());
       assert(qtconcept_item->GetConcept() == node->GetConcept());

@@ -5,21 +5,24 @@
 #include <vector>
 #include <iosfwd>
 
+#include "coordinat3d.h"
+
 namespace ribi {
 namespace foam {
 
-///An item in an OpenFOAM boundary file
+///An item in an OpenFOAM 'points' file
 struct PointsFileItem
 {
   explicit PointsFileItem(
-    const std::array<double,3>& coordinat = { 0.0, 0.0, 0.0}
+    const Coordinat3D& coordinat = { 0.0, 0.0, 0.0}
   );
 
-  const std::array<double,3>& GetCoordinat() const noexcept { return m_coordinat; }
+  const Coordinat3D& GetCoordinat() const noexcept { return m_coordinat; }
+        Coordinat3D& GetCoordinat()       noexcept { return m_coordinat; }
 
   private:
 
-  std::array<double,3> m_coordinat;
+  Coordinat3D m_coordinat;
 
   #ifndef NDEBUG
   static void Test() noexcept;

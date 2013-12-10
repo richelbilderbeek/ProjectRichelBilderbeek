@@ -42,9 +42,9 @@ private slots:
 private:
   Ui::QtConceptMapTestConceptItemDialog *ui;
   const boost::shared_ptr<ribi::cmap::Concept> m_concept;
-  cmap::QtConceptMapDisplayConceptItem* m_display_concept;
-  cmap::QtConceptMapEditConceptItem* m_edit_concept;
-  cmap::QtConceptMapRateConceptItem* m_rate_concept;
+  cmap::QtDisplayStrategy* m_display_concept;
+  cmap::QtEditStrategy* m_edit_concept;
+  cmap::QtRateStrategy* m_rate_concept;
 
   ///Get the Concept via the route chosen by box_edit
   const boost::shared_ptr<ribi::cmap::Concept> GetChosenConcept();

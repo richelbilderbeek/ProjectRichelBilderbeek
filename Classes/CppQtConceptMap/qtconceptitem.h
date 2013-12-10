@@ -23,17 +23,17 @@
 namespace ribi {
 namespace cmap {
 
-///A QtConceptItem shows a Concept
+///A QtItemDisplayStrategy shows a Concept
 ///A Concept can be shown in multiple different ways, which is performed by its derived classes.
-struct QtConceptItem : public QtRoundedEditRectItem //NEW 2013-09-15
+struct QtItemDisplayStrategy : public QtRoundedEditRectItem //NEW 2013-09-15
 {
   typedef QtRoundedEditRectItem Base;
 
   ///concept cannot be const, the user might edit it (in derived classes for example)
-  explicit QtConceptItem(const boost::shared_ptr<ribi::cmap::Concept>& concept);
-  QtConceptItem(const QtConceptItem& other) = delete;
-  QtConceptItem& operator=(const QtConceptItem& other) = delete;
-  virtual ~QtConceptItem() noexcept {}
+  explicit QtItemDisplayStrategy(const boost::shared_ptr<ribi::cmap::Concept>& concept);
+  QtItemDisplayStrategy(const QtItemDisplayStrategy& other) = delete;
+  QtItemDisplayStrategy& operator=(const QtItemDisplayStrategy& other) = delete;
+  virtual ~QtItemDisplayStrategy() noexcept {}
 
   ///Read the Concept
   const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const noexcept;

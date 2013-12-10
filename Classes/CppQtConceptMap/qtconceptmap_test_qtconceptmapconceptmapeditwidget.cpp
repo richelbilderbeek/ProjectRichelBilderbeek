@@ -38,9 +38,9 @@ void ribi::cmap::QtConceptMapEditWidget::Test()
       assert(concept_map);
       assert(concept_map->IsValid());
 
-      boost::shared_ptr<QtConceptMapWidget> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
       assert(widget);
-      QtConceptMapWidget::Test(widget);
+      QtConceptMap::Test(widget);
     }
   }
   //Deletion of nodes

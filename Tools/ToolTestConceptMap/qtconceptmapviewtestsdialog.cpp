@@ -18,7 +18,7 @@
 #include "qtconceptmapdisplaywidget.h"
 #include "qtconceptmapeditwidget.h"
 #include "qtconceptmapratewidget.h"
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 #include "trace.h"
 #include "ui_qtconceptmapviewtestsdialog.h"
 #pragma GCC diagnostic pop
@@ -74,7 +74,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         assert(m_h[i]);
         const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(m_h[i]);
         assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMapWidget> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(type,concept_map));
         assert(widget);
         assert(extra_height > 0);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -100,7 +100,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         assert(m_s[i]);
         const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_s[i];
         assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMapWidget> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(type,concept_map));
         assert(widget);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
         mylayout->addWidget(widget.get());
@@ -124,7 +124,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::QtConceptMapViewTestsDialog(QWidget* pa
         assert(m_c[i]);
         const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = m_c[i];
         assert(concept_map);
-        const boost::shared_ptr<cmap::QtConceptMapWidget> widget(CreateWidget(type,concept_map));
+        const boost::shared_ptr<cmap::QtConceptMap> widget(CreateWidget(type,concept_map));
         assert(widget);
         //widget->setMinimumHeight(minheight);
         widget->setMinimumHeight(widget->scene()->itemsBoundingRect().height() + extra_height);
@@ -140,7 +140,7 @@ ribi::cmap::QtConceptMapViewTestsDialog::~QtConceptMapViewTestsDialog() noexcept
   delete ui;
 }
 
-boost::shared_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget(
+boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget(
   const int type,
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map)
 {
@@ -148,19 +148,19 @@ boost::shared_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapViewTe
   {
     case 0:
     {
-      boost::shared_ptr<cmap::QtConceptMapWidget> p(new cmap::QtConceptMapDisplayWidget(concept_map));
+      boost::shared_ptr<cmap::QtConceptMap> p(new cmap::QtConceptMapDisplayWidget(concept_map));
       assert(p);
       return p;
     }
     case 1:
     {
-      boost::shared_ptr<cmap::QtConceptMapWidget> p(new cmap::QtConceptMapEditWidget(concept_map));
+      boost::shared_ptr<cmap::QtConceptMap> p(new cmap::QtConceptMapEditWidget(concept_map));
       assert(p);
       return p;
     }
     case 2:
     {
-      boost::shared_ptr<cmap::QtConceptMapWidget> p(new cmap::QtConceptMapRateWidget(concept_map));
+      boost::shared_ptr<cmap::QtConceptMap> p(new cmap::QtConceptMapRateWidget(concept_map));
       assert(p);
       return p;
     }

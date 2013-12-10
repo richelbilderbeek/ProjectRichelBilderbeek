@@ -15,12 +15,12 @@
 #include <QPrinter>
 
 #include "conceptmap.h"
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 #include "qtpvdbprintratingdialog.h"
 #include "qtconceptmapeditwidget.h"
 #include "qtpvdbdisplay.h"
 #include "qtpvdbfiledialog.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "pvdbfile.h"
 #include "trace.h"
 #include "ui_qtpvdbratingdialog.h"

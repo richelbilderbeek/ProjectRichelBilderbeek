@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 
 #include <cassert>
 #include <boost/numeric/conversion/cast.hpp>
@@ -13,14 +13,14 @@
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapWidget::Test(const boost::shared_ptr<const QtConceptMapWidget>& widget)
+void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>& widget)
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Started ribi::cmap::QtConceptMapWidget::Test");
+  TRACE("Started ribi::cmap::QtConceptMap::Test");
   assert(widget);
   //#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   #ifdef  I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
@@ -91,7 +91,7 @@ void ribi::cmap::QtConceptMapWidget::Test(const boost::shared_ptr<const QtConcep
     );
   }
   #endif
-  TRACE("ribi::cmap::QtConceptMapWidget::Test finished successfully");
+  TRACE("ribi::cmap::QtConceptMap::Test finished successfully");
 }
 #endif
 

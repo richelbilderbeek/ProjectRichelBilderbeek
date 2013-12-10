@@ -39,11 +39,11 @@ ribi::c2h::Info::Info()
   #ifndef NDEBUG
   Test();
   #endif
-  {
-    const std::string s = "CodeToHtml info pages: "
-    + boost::lexical_cast<std::string>(m_page_info.size());
-    TRACE(s);
-  }
+  //{
+  //  const std::string s = "CodeToHtml info pages: "
+  //  + boost::lexical_cast<std::string>(m_page_info.size());
+  //  TRACE(s);
+  //}
 }
 
 const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo()
@@ -6251,6 +6251,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "GameAthleticLand",
       {
@@ -6703,17 +6704,45 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"GameKnokfighter_1_0.png\">View a screenshot of 'Knokfighter' (version 1.0)(png)</a></li>",
         "  <li><a href=\"GameKnokfighterStory_1_0.zip\">Download the (.ppt) storyline of the final game (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameKnokfighterExe_1_0.zip\">Download the 'Knokfighter' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameKnokfighterResources_1_0.zip\">Download the 'Knokfighter' (.bmp) resources (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameKnokfighterExeNoResources_1_0.zip\">Download the 'Knokfighter' Windows executable (without resources)(version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameKnokfighterSource_1_0.zip\">Download the 'Knokfighter' source code (without resources)(version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameKnokfighterSource_1_0.htm\">View the C++ Builder source code of 'Knokfighter' as a web page (version 1.0)(htm)</a></li>",
         "</ul>"
       }
     }
   );
+
+  m.push_back(
+    { "GameKnokfighterVcl",
+      {
+        "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"GameKnokfighterVcl.htm\">Knokfighter (VCL)</a> is a <a href=\"Games.htm\">game</a>",
+        "  programmed by me and Joost van den Bogaart. It is a ",
+        "  Double Dragon clone with ourselves as the heroes.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"GameKnokfighterVcl.htm\">Knokfighter (VCL)</a> is the predecessor",
+        "  of <a href=\"GameKnokfighter.htm\">Knokfighter</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"GameKnokfighter_1_0.png\">View a screenshot of 'Knokfighter (VCL)' (version 1.0)(png)</a></li>",
+        "  <li><a href=\"GameKnokfighterExe_1_0.zip\">Download the 'Knokfighter (VCL)' Windows executable (version 1.0)(zip)</a></li>",
+        "  <li><a href=\"GameKnokfighterResources_1_0.zip\">Download the 'Knokfighter' resources (version 1.0)(bmp)(zip)</a></li>",
+        "  <li><a href=\"GameKnokfighterExeNoResources_1_0.zip\">Download the 'Knokfighter (VCL)' Windows executable (without resources)(version 1.0)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "GameMartianCafeTuinemaTycoon",
       {
@@ -6845,9 +6874,45 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is a Dutch turn-based tic-tac-toe-like <a href=\"Games.htm\">game</a>. It can be played by one, two or three players. The <a href=\"Games.htm\">game</a> is in the Dutch language.</p>",
+        "<p>",
+        "  <a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is a Dutch turn-based tic-tac-toe-like",
+        "  <a href=\"Games.htm\">game</a>. It can be played by one, two or three players. The",
+        "  <a href=\"Games.htm\">game</a> is in the Dutch language.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library. The current version number is 1.3.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li>...</li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "GameMetZnDrieenVcl",
+      {
+        "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"GameMetZnDrieenVcl.htm\">Met Z'n Drieen (VCL)</a> is a Dutch turn-based tic-tac-toe-like",
+        "  <a href=\"Games.htm\">game</a>. It can be played by one, two or three players. The",
+        "  <a href=\"Games.htm\">game</a> is in the Dutch language.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"GameMetZnDrieenVcl.htm\">Met Z'n Drieen (VCL)</a> is the predecessor",
+        "  of <a href=\"GameMetZnDrieen.htm\">Met Z'n Drieen</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -6859,8 +6924,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <li><a href=\"GameMetZnDrieen_1_3.png\">View a screenshot of 'Met Z'n Drieen' (v.1.3)(png)</a></li>",
         "  <li><a href=\"GameMetZnDrieenMenu_1_3.png\">View a screenshot of the 'Met Z'n Drieen' menu screen (v.1.3)(png)</a></li>",
         "  <li><a href=\"GameMetZnDrieenExe_1_3.zip\">Download the 'Met Z'n Drieen' Windows executable (v.1.3)(zip)</a></li>",
-        "  <li><a href=\"GameMetZnDrieenSource_1_3.zip\">Download the 'Met Z'n Drieen' source code (v.1.3)(zip)</a></li>",
-        "  <li><a href=\"GameMetZnDrieenSource_1_3.htm\">View the C++ Builder source code of 'Met Z'n Drieen' as a web site (v.1.3)(htm)</a></li>",
         "  <li><a href=\"GameMetZnDrieenCdFront.png\">View the CD artwork of 'Met z'n Drieen' (front)(png)</a></li>",
         "  <li><a href=\"GameMetZnDrieenCdFront.bmp\">View the CD artwork of 'Met z'n Drieen' (front)(bmp)</a></li>",
         "  <li><a href=\"GameMetZnDrieenCdBack.png\">View the CD artwork of 'Met z'n Drieen' (back)(png)</a></li>",
@@ -6877,16 +6940,13 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <li><a href=\"GameMetZnDrieenScreenshot_1_2.png\">View a screenshot of 'Met Z'n Drieen' (v.1.2)(png)</a></li>",
         "  <li><a href=\"GameMetZnDrieenScreenshotMenu_1_2.png\">View a screenshot of the 'Met Z'n Drieen' menu screen (v.1.2)(png)</a></li>",
         "  <li><a href=\"GameMetZnDrieenScreenshot_1_0.png\">View a screenshot of 'Met Z'n Drieen' (v.1.0)(png)</a></li>",
-        "  <li>Download the 'Met Z'n Drieen' Windows executable (v.1.2)(zip)(lost)</li>",
-        "  <li>Download the 'Met Z'n Drieen' source code (v.1.2)(zip)(lost)</li>",
         "  <li><a href=\"GameMetZnDrieenExe_1_1.zip\">Download the 'Met Z'n Drieen' Windows executable (v.1.1)(zip)</a></li>",
-        "  <li><a href=\"GameMetZnDrieenSource_1_1.zip\">Download the 'Met Z'n Drieen' source code (v.1.1)(zip)</a></li>",
         "  <li><a href=\"GameMetZnDrieenExe_1_0.zip\">Download the 'Met Z'n Drieen' Windows executable (v.1.0)(zip)</a></li>",
-        "  <li><a href=\"GameMetZnDrieenSource_1_0.zip\">Download the 'Met Z'n Drieen' source code (v.1.0)(zip)</a></li>",
         "</ul>"
       }
     }
   );
+
   m.push_back(
     { "GamePokeVolley",
       {
@@ -6940,6 +7000,61 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "GamePong",
+      {
+        "<p>",
+        "  <a href=\"GamePong.htm\">Pong</a> is a Pong <a href=\"Games.htm\">game</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolPreDickAdvocaTor",
+      {
+        "<p>",
+        "  <a href=\"ToolPreDickAdvocaTor.htm\">PreDickAdvocaTor</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to predict soccer world championship scores</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolPreDickAdvocaTor.png\">View a 'PreDickAdvocaTor' screenshot (v.1.0)(png)</a></li>",
+        "  <li><a href=\"ToolPreDickAdvocaTorExe.zip\">Download the 'PreDickAdvocaTor' Windows executable (v.1.0)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolPrimeExpert",
+      {
+        "<p>",
+        "  <a href=\"ToolPrimeExpert.htm\">PrimeExpert</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to determine if a number is prime.</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolQmakeWatcher",
+      {
+        "<p>",
+        "  <a href=\"ToolQmakeWatcher.htm\">QmakeWatcher</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to show which qmake does with with the makefile it creates.</a>",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "GamePublicToiletManager5",
       {
@@ -7019,8 +7134,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"GameReversi_1_0.png\">View a screenshot of 'Reversi' (png)(version 1.0)</a></li>",
         "  <li><a href=\"GameReversiExe_1_0.zip\">Download the 'Reversi' Windows executable (zip)(version 1.0)</a></li>",
-        "  <li><a href=\"GameReversiSource_1_0.zip\">Download the 'Reversi' source code (zip)(version 1.0)</a></li>",
-        "  <li><a href=\"GameReversiSource_1_0.htm\">View the C++ Builder source code of 'Reversi' as a web page (htm)(version 1.0)</a></li>",
         "</ul>"
       }
     }
@@ -7265,8 +7378,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<p>Harry was one of my favorite bartenders in one of my favorite (now closed) pubs.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"GameSpaceHarry.htm\">Space Harry</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>",
-        "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -7274,12 +7385,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<h2>Downloads</h2>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"GameSpaceHarry_1_0.png\">View a screenshot of 'Space Harry' (version 1.0)(png)</a></li>",
-        "  <li><a href=\"GameSpaceHarryMenu_1_0.png\">View a screenshot of the menu of 'Space Harry' (version 1.0)(png)</a></li>",
-        "  <li><a href=\"GameSpaceHarryGameOver_1_0.png\">View a screenshot of the 'Space Harry' game over screen (version 1.0)(png)</a></li>",
-        "  <li><a href=\"GameSpaceHarryExe_1_0.zip\">Download a Windows executable of 'Space Harry' (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameSpaceHarrySource_1_0.zip\">Download the source code of 'Space Harry' (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"GameSpaceHarrySource_1_0.htm\">View the C++ Builder source code of 'Space Harry' as a web page (version 1.0)(htm)</a></li>",
+        "  <li>...</li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -7296,6 +7402,67 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "GameSpaceHarryVcl",
+      {
+        "<p><img src=\"PicVcl.png\" alt=\"VCL\"/><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"GameSpaceHarryVcl.htm\">Space Harry (VCL)</a> is a simple 'Space Harrier' clone.</p>",
+        "<p>&nbsp;</p>",
+        "<p>Harry was one of my favorite bartenders in one of my favorite (now closed) pubs.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"GameSpaceHarry_1_0.png\">View a screenshot of 'Space Harry' (version 1.0)(png)</a></li>",
+        "  <li><a href=\"GameSpaceHarryMenu_1_0.png\">View a screenshot of the menu of 'Space Harry' (version 1.0)(png)</a></li>",
+        "  <li><a href=\"GameSpaceHarryGameOver_1_0.png\">View a screenshot of the 'Space Harry' game over screen (version 1.0)(png)</a></li>",
+        "  <li><a href=\"GameSpaceHarryExe_1_0.zip\">Download a Windows executable of 'Space Harry' (version 1.0)(zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Game Controls</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li>Arrows: move Harry</li>",
+        "  <li>Space: fire</li>",
+        "  <li>F1: toggle transparency mode</li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "GameSuperNsanaBros",
+      {
+        "<p>",
+        "  <a href=\"GameSuperNsanaBros.htm\">SuperNsanaBros</a> is a <a href=\"Games.htm\">game</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "GameTankBattalion",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"GameTankBattalion.htm\">Tank Battalion</a> is an unfinished <a href=\"Games.htm\">game</a>",
+        "  that is a PC clone of the MSX <a href=\"Games.htm\">game</a> 'Tank Battalion'.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "GameTicTacToe",
       {
@@ -9747,8 +9914,10 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolCreateGlossary",
       {
-        "<p><a href=\"ToolCreateGlossary.htm\">CreateGlossary</a> is a <a href=\"Tools.htm\">tool</a> to generate",
-        "the glossaries of this website."
+        "<p>",
+        "  <a href=\"ToolCreateGlossary.htm\">CreateGlossary</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to generate the glossaries of this website.",
+        "</p>"
       }
     }
   );
@@ -9788,17 +9957,37 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolDotMatrix",
       {
-        "<p><a href=\"ToolDotMatrix.htm\">DotMatrix</a> is a <a href=\"Tools.htm\">tool</a> to display text as dot-matrix ",
-        "characters (5 (width) x 7 (height) pixels, without spacer pixels), like on your microwave display.</p>",
-        "<p>&nbsp;</p>",
-        "<p>The program relies heavily on the function DotMatrix. It is the function that draws a character on a ",
-        "TImage. The advantage to <a href=\"CppVcl.htm\">VCL</a> functions like TextOut is that you can be sure about the ",
-        "font's dimensions and character placement.</p>",
+        "<p>",
+        "  <a href=\"ToolDotMatrix.htm\">DotMatrix</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to display text as dot-matrix",
+        "  characters (5 (width) x 7 (height) pixels, without spacer pixels),",
+        "  like on your microwave display.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolDotMatrix_1_0.png\">View a screenshot of 'DotMatrix'</a></li>",
+        "  <li><a href=\"ToolDotMatrix_2_1.png\">View a screenshot of 'DotMatrix' (2.1)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "ToolDotMatrixVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolDotMatrixVcl.htm\">DotMatrix (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to display text as dot-matrix ",
+        "  characters (5 (width) x 7 (height) pixels, without spacer pixels),",
+        "  like on your microwave display.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolDotMatrixVcl.htm\">DotMatrix (VCL)</a> is the predecessor",
+        "  of <a href=\"ToolDotMatrix.htm\">DotMatrix</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolDotMatrix_1_0.png\">View a screenshot of 'DotMatrix (VCL)' (1.0)</a></li>",
         "  <li><a href=\"ToolDotMatrixExe.zip\">Download the 'DotMatrix' Windows executable (zip)</a></li>",
-        "  <li><a href=\"ToolDotMatrixSource.zip\">Download the 'DotMatrix' source code (zip)</a></li>",
         "</ul>"
       }
     }
@@ -9839,28 +10028,61 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolFilterOperationer",
       {
-        "<p><a href=\"ToolFilterOperationer.htm\">FilterOperationer</a> demonstrates <a href=\"CppDoFilterOperation.htm\">DoFilterOperation</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"ToolFilterOperationer.htm\">FilterOperationer</a> is   programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>",
-        "and <a href=\"CppVcl.htm\">VCL</a> libraries.</p>",
+        "<p>",
+        "  <a href=\"ToolFilterOperationer.htm\">FilterOperationer</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  that do a filter operation type called a convolution an images.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppDoFilterOperation.png\">View an example image of 'DoFilterOperation'</a></li>",
-        "  <li><a href=\"ToolFilterOperationer_1_0.png\">View a screenshot of 'FilterOperationer'</a></li>",
-        "  <li><a href=\"ToolFilterOperationerSource.rar\">Download the 'FilterOperationer' source code (rar)</a></li>",
-        "  <li><a href=\"ToolFilterOperationerSource.zip\">Download the 'FilterOperationer' source code (zip)</a></li>",
-        "  <li><a href=\"ToolFilterOperationerExe.rar\">Download the 'FilterOperationer' Windows executable (rar)</a></li>",
-        "  <li><a href=\"ToolFilterOperationerExe.zip\">Download the 'FilterOperationer' Windows executable (zip)</a></li>",
+        "  <li><a href=\"ToolFilterOperationer_2_0.png\">View a screenshot of 'FilterOperationer' (2.0)</a></li>",
         "</ul>"
       }
     }
   );
   m.push_back(
+    { "ToolFilterOperationerVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolFilterOperationer.htm\">FilterOperationer (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  that do a filter operation type called a convolution an images.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolFilterOperationer.htm\">FilterOperationer (VCL)</a> is the predecessor of",
+        "  <a href=\"ToolFilterOperationer.htm\">FilterOperationer</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppDoFilterOperation.png\">View an example image of 'DoFilterOperation'</a></li>",
+        "  <li><a href=\"ToolFilterOperationer_1_0.png\">View a screenshot of 'FilterOperationer (VCL)'</a> (1.0)</li>",
+        "  <li><a href=\"ToolFilterOperationerExe.zip\">Download the 'FilterOperationer (VCL)' Windows executable (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolFakeEvy",
+      {
+        "<p>",
+        "  <a href=\"ToolFakeEvy.htm\">FakeEvy</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to generate 'Start To Run' episodes.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolFryskLeareLieder",
       {
-        "<p><a href=\"ToolFryskLeareLieder.htm\">Frysk Leare Lieder</a> is a <a href=\"Tools.htm\">tool</a> programmed on the 10th February 2007 to practice my Frysian (a language spoken in the Northwest of Holland). This first version contains only seven verbs, but for me it is still very tough! As my Frysian knowledge increase, I will improve it and add more words to it.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"GameFryskLeareLieder.htm\">Frysk Leare Lieder</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppLibrary.htm\">libraries</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolFryskLeareLieder.htm\">Frysk Leare Lieder</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  programmed on the 10th February 2007 to practice my Frysian (a language spoken in",
+        "  the Northwest of Holland). This first version contains only seven verbs,",
+        "  but for me it is still very tough! As my Frysian knowledge increase,",
+        "  I will improve it and add more words to it.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -9871,8 +10093,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"ToolFryskLeareLieder_1_0.png\">View a screenshot of 'Frysk Leare Lieder' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolFryskLeareLiederExe_1_0.zip\">Download the 'Frysk Leare Lieder' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolFryskLeareLiederSource_1_0.zip\">Download the 'Frysk Leare Lieder' source code (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolFryskLeareLiederSource_1_0.htm\">View the C++ Builder source code of 'Frysk Leare Lieder' as a web page (version 1.0)(htm)</a></li>",
         "</ul>"
       }
     }
@@ -9880,30 +10100,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolFunctionPlotter",
       {
-        "<p><a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> is a demonstration tool of <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>:</p>",
-        "<p>The user can input a function in the for 'y=f(x)' and a range for x. <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> then plots the values of y.</p>",
-        "<p>&nbsp;</p>",
-        "<p>Since version 1.1 <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> can also approximate the surface under the function.</p>",
-        "<p>&nbsp;</p>",
-        "<p>Note that this program uses <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a> version 2.7, where the current version (of February 2010) exceeds 4.0. This is due to compilation problems under <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. Small changes have been made to <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a> to get it to compile.</p>",
-        "<p>&nbsp;</p>",
-        "<p>The initial version of <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> is released at the 13th of February of 2010 and programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library.</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"ToolFunctionPlotter_1_1.png\">View a screenshot of 'FunctionPlotter' (v.1.1)</a></li>",
-        "  <li><a href=\"ToolFunctionPlotterExe.zip\">Download the 'FunctionPlotter' Windows executable (v.1.1)(zip)</a></li>",
-        "  <li><a href=\"ToolFunctionPlotterSource.zip\">Download the 'FunctionPlotter' source code (v.1.1)(zip)</a></li>",
-        "</ul>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Older downloads</h2>",
+        "<p>",
+        "  <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to demonstrate <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>:",
+        "</p>",
+        "<p>",
+        "  The user can input a function in the for 'y=f(x)' and a range for x.",
+        "  <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a> then plots the values of y.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolFunctionPlotterExe_1_0.zip\">Download the 'FunctionPlotter' Windows executable (v.1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolFunctionPlotterSource_1_0.zip\">Download the 'FunctionPlotter' source code (v.1.0)(zip)</a></li>",
+        "  <li><a href=\"ToolFunctionPlotter_2_0.png\">View a screenshot of 'FunctionPlotter' (v.2.0)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -9918,16 +10125,65 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolFunctionPlotterVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolFunctionPlotterVcl.htm\">FunctionPlotter (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to demonstrate <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>:",
+        "</p>",
+        "<p>",
+
+        "<p>",
+        "  <a href=\"ToolFunctionPlotterVcl.htm\">FunctionPlotter (VCL)</a> is the predecessor of",
+        "  <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a>.",
+        "</p>",
+
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Note that this program uses",
+        "  <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>",
+        "  version 2.7, where the current version (of February 2010) exceeds 4.0. This is due",
+        "  to compilation problems under <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0.",
+        "  Small changes have been made to",
+        "  <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>",
+        "  to get it to compile.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolFunctionPlotter_1_1.png\">View a screenshot of 'FunctionPlotter (VCL)' (v.1.1)</a></li>",
+        "  <li><a href=\"ToolFunctionPlotterExe.zip\">Download the 'FunctionPlotter (VCL)' Windows executable (v.1.1)(zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>External links</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"http://warp.povusers.org/FunctionParser\">Homepage of Warp's FunctionParser class</a></li>",
+        "</ul>",
+      }
+    }
+  );
+
+
+
   m.push_back(
     { "ToolGaborFilter",
       {
-        "<p><a href=\"ToolGaborFilter.htm\">GaborFilter</a> is a <a href=\"Tools.htm\">tool</a> to perform Gabor filtering on bitmap images.</p>",
+        "<p>",
+        "  <a href=\"ToolGaborFilter.htm\">GaborFilter</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to perform Gabor filtering on images.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>I learned about Gabor filters while working on <a href=\"ProjectBochum.htm\">my Bochum Project</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p>Initially, <a href=\"ToolGaborFilter.htm\">GaborFilter</a> was programmed in <a href=\"Cpp.htm\">C++</a> using the ",
-        "<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>. In 2012 it was ported to",
-        "<a href=\"CppQtCreator.htm\">Qt Creator</a>.</p>",
+        "<p>",
+        "  I learned about Gabor filters while working on",
+        "  <a href=\"ProjectBochum.htm\">my Bochum Project</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -9938,10 +10194,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"ToolGaborFilterExample.png\">View an example image of 'GaborFilter' (png)</a></li>",
         "  <li><a href=\"ToolGaborFilter_2_0.png\">View a screenshot of 'GaborFilter' (png)(version 2.0)</a></li>",
-        "  <li><a href=\"ToolGaborFilter_1_0.png\">View a screenshot of 'GaborFilter' (png)(version 1.0)</a></li>",
-        "  <li><a href=\"ToolGaborFilterExe.zip\">Download the 'GaborFilter' Windows executable (zip)(version 1.0)</a></li>",
-        "  <li><a href=\"ToolGaborFilterSource_2_0.zip\">Download the 'GaborFilter' Qt Creator source code (zip)(version 1.0)</a></li>",
-        "  <li><a href=\"ToolGaborFilterSource.zip\">Download the 'GaborFilter' C++ Builder source code (zip)(version 1.0)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -10236,6 +10488,38 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+
+
+  m.push_back(
+    { "ToolGaborFilterVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolGaborFilterVcl.htm\">GaborFilter (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to perform Gabor filtering on images.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolGaborFilterVcl.htm\">GaborFilter (VCL)</a> is programmed with the ",
+        "  <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0 <a href=\"CppIde.htm\">IDE</a>",
+        "  and is the predecessor of <a href=\"ToolGaborFilter.htm\">GaborFilter</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolGaborFilter_1_0.png\">View a screenshot of 'GaborFilter (VCL)' (png)(version 1.0)</a></li>",
+        "  <li><a href=\"ToolGaborFilterExe.zip\">Download the 'GaborFilter (VCL)' Windows executable (zip)(version 1.0)</a></li>",
+        "</ul>",
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolTestGnuplotInterface",
       {
@@ -10279,13 +10563,47 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     { "ToolGrayCoder",
       {
 
-        "<p><a href=\"ToolGrayCoder.htm\">GrayCoder</a> is a <a href=\"Tools.htm\">tool</a> to convert integer values to Gray codes and",
-        "vice versa.</p>",
+        "<p>",
+        "  <a href=\"ToolGrayCoder.htm\">GrayCoder</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to convert integer values to Gray codes and",
+        "  vice versa.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolGrayCoder_1_0.png\"> View a screenshot of 'GrayCoder' (version 1.0)</a></li>",
-        "  <li><a href=\"ToolGrayCoderExe_1_0.zip\">Download the 'GrayCoder' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolGrayCoderSource_1_0.zip\"> Download the 'GrayCoder' source code (version 1.0)(zip)</a></li>",
+        "  <li><a href=\"ToolGrayCoder_2_1.png\"> View a screenshot of 'GrayCoder' (version 2.1)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>External links</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"http://en.wikipedia.org/wiki/Gray_code\">Wikipedia s page about Gray Codes</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolGrayCoderVcl",
+      {
+
+        "<p>",
+        "  <a href=\"ToolGrayCoderVcl.htm\">GrayCoder (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to convert integer values to Gray codes and",
+        "  vice versa.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolGrayCoderVcl.htm\">GrayCoder (VCL)</a> is the predecessor of",
+        "  <a href=\"ToolGrayCoder.htm\">GrayCoder</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolGrayCoder_1_0.png\"> View a screenshot of 'GrayCoder (VCL)' (version 1.0)</a></li>",
+        "  <li><a href=\"ToolGrayCoderExe_1_0.zip\">Download the 'GrayCoder (VCL)' Windows executable (version 1.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -10322,22 +10640,40 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolHistogramEqualizationer",
       {
-        "<p><a href=\"Tools.htm\">Tool</a> to perform a <a href=\"CppDoHistogramEqualization.htm\">histogram equalization</a> on an image.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"ToolHistogramEqualizationer.htm\">HistogramEqualizationer</a> uses the functions ",
-        "<a href=\"CppDoHistogramEqualization.htm\">DoHistogramEqualization</a> and <a href=\"CppConvertToGrey.htm\">ConvertToGrey</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"ToolHistogramEqualizationer.htm\">HistogramEqualizationer</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE ",
-        "<a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> library.</p>",
+        "<p>",
+        "  <a href=\"ToolHistogramEqualizationer.htm\">HistogramEqualizationer</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to perform a <a href=\"CppDoHistogramEqualization.htm\">histogram equalization</a> on an image.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolHistogramEqualizationerScreenshot.png\">View a screenshot of HistogramEqualizationer'</a></li>",
-        "  <li><a href=\"ToolHistogramEqualizationerExe.zip\">Download the 'HistogramEqualizationer' Windows executable (zip)</a></li>",
-        "  <li><a href=\"ToolHistogramEqualizationerSource.zip\">Download the 'HistogramEqualizationer' source code (zip)</a></li>",
+        "  <li><a href=\"ToolHistogramEqualizationer_2_0.png\">View a screenshot of HistogramEqualizationer' (2.0)(png)</a></li>",
         "</ul>",
       }
     }
   );
+
+  m.push_back(
+    { "ToolHistogramEqualizationerVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolHistogramEqualizationerVcl.htm\">HistogramEqualizationer (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to perform a <a href=\"CppDoHistogramEqualization.htm\">histogram equalization</a> on an image.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolHistogramEqualizationerVcl.htm\">HistogramEqualizationer (VCL)</a> the predecessor",
+        "  of <a href=\"ToolHistogramEqualizationer.htm\">HistogramEqualizationer</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolHistogramEqualizationer_1_0.png\">View a screenshot of HistogramEqualizationer (VCL)' (1.0)(png)</a></li>",
+        "  <li><a href=\"ToolHistogramEqualizationerExe.zip\">Download the 'HistogramEqualizationer' Windows executable (zip)</a></li>",
+        "</ul>",
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolHometrainer",
       {
@@ -10668,7 +11004,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
   m.push_back(
-    { "ToolImageRotaterVcl",
+    { "ToolImageRotaterClx",
       {
         "<p>",
         "  Finally, after 17 years of trying once-in-a-while, I've managed to create a",
@@ -10839,6 +11175,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolLambdaBot",
+      {
+        "<p>",
+        "  <a href=\"ToolLambdaBot.htm\">LambdaBot</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to demonstrate an IRC bot.",
+        "</p>",
+      }
+    }
+  );
   m.push_back(
     { "ToolLearyCircumplex",
       {
@@ -10914,18 +11261,49 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolMazeCreator",
       {
-        "<p><a href=\"ToolMazeCreator.htm\">MazeCreator</a> is a <a href=\"Cpp.htm\">C++</a> <a href=\"Tools.htm\">tool</a> to demonstrate <a href=\"CppCreateMaze.htm\">my simple maze generation algorithm</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolMazeCreator.htm\">MazeCreator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to demonstrate <a href=\"CppCreateMaze.htm\">my simple maze generation algorithm</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"ToolMazeCreator_2_0.png\">View a screenshot of 'Maze Creator' (v. 2.0)</a></li>",
-        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"ToolMazeCreatorSource_2_0.zip\">Download the 'Maze Creator' source code (v. 2.0)(zip)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMazeCreator_1_0.png\">View a screenshot of 'Maze Creator' (v. 1.0)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMazeCreatorExe_1_0.zip\">Download the 'Maze Creator' Windows executable (v. 1.0)(zip)</a></li>",
-        "  <li><img src=\"PicCppBuilder.png\" alt=\"C++ Builder\"/> <a href=\"ToolMazeCreatorSource_1_0.zip\">Download the C++ Builder 'Maze Creator' source code (v. 1.0)(zip)</a></li>",
         "</ul>",
       }
     }
   );
+  m.push_back(
+    { "ToolMazeCreatorVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolMazeCreatorVcl.htm\">MazeCreator (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to demonstrate <a href=\"CppCreateMaze.htm\">my simple maze generation algorithm</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolMazeCreatorVcl.htm\">MazeCreator (VCL)</a> is the predecessor of",
+        "  <a href=\"ToolMazeCreator.htm\">MazeCreator</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMazeCreator_1_0.png\">View a screenshot of 'Maze Creator (VCL)' (v. 1.0)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolMazeCreatorExe_1_0.zip\">Download the 'Maze Creator (VCL)' Windows executable (v. 1.0)(zip)</a></li>",
+        "</ul>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolMidiLessonCreator",
+      {
+        "<p>",
+        "  <a href=\"ToolMidiLessonCreator.htm\">MidiLessonCreator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to create MIDI lessons.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolMorpher",
       {
@@ -10944,9 +11322,35 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolMultiEncranger",
       {
-        "<p><a href=\"ToolMultiEncranger.htm\">MultiEncranger</a> is a multi-line version of ",
-        "<a href=\"ToolEncranger.htm\">Encranger</a>. For more information, <a href=\"ToolEncranger.htm\">go to the",
-        "Encranger page</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolMultiEncranger.htm\">MultiEncranger</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  and a multi-line version of <a href=\"ToolEncranger.htm\">Encranger</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li>...</li>",
+        "</ul>",
+      }
+    }
+  );
+  m.push_back(
+    { "ToolMultiEncrangerVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolMultiEncrangerVcl.htm\">MultiEncranger (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  and a multi-line version of <a href=\"ToolEncranger.htm\">Encranger</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolMultiEncrangerVcl.htm\">MultiEncranger (VCL)</a> is the predecessor of",
+        "  <a href=\"ToolMultiEncranger.htm\">MultiEncranger</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -10957,8 +11361,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"ToolMultiEncranger_1_0.png\">View a screenshot of 'MultiEncranger' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolMultiEncrangerExe_1_0.zip\">Download the 'MultiEncranger' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolMultiEncrangerSource_1_0.zip\">Download the 'MultiEncranger' source code (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolMultiEncrangerSource_1_0.htm\">View the 'MultiEncranger' source code as a web page (version 1.0)(htm)</a></li>",
         "</ul>",
       }
     }
@@ -11055,6 +11457,28 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolNdsPaint",
+      {
+        "<p>",
+        "  <a href=\"ToolNdsPaint.htm\">NdsPaint</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to draw images on an NDS.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li>...</li>",
+        "</ul>",
+      }
+    }
+  );
+
   m.push_back(
     { "ToolPaperRockScissors", // || m_page_name == "CppPaperRockScissors",
       {
@@ -11164,20 +11588,39 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolPixelator",
       {
-        "<p><a href=\"ToolPixelator.htm\">Pixelator</a> is a <a href=\"Tools.htm\">tool</a> to 'pixelate' images. ",
-        "It relies heavily on the <a href=\"CppPixelate.htm\">Pixelate</a> <a href=\"CppFunction.htm\">function</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolPixelator.htm\">Pixelator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to 'pixelate' images.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"ToolPixelator_1_0.png\">View a screenshot of 'Pixelator'</a></li>",
-        "  <li><a href=\"ToolPixelatorExe.zip\">Download the 'Pixelator' Windows executable (zip)</a></li>",
-        "  <li><a href=\"ToolPixelatorSource.zip\">Download the 'Pixelator' source code (zip)</a></li>",
-        "</ul>",
-
+        "  <li>...</li>",
+        "</ul>"
       }
     }
   );
   m.push_back(
-    { "ToolQuadraticSolver", // || m_page_name == "CppQuadraticSolver",
+    { "ToolPixelatorVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolPixelatorVcl.htm\">Pixelator (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to 'pixelate' images.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolPixelatorVcl.htm\">Pixelator (VCL)</a> is the predecessor of",
+        "  <a href=\"ToolPixelator.htm\">Pixelator</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolPixelator_1_0.png\">View a screenshot of 'Pixelator'</a></li>",
+        "  <li><a href=\"ToolPixelatorExe.zip\">Download the 'Pixelator' Windows executable (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "ToolQuadraticSolver",
       {
         "<p><a href=\"ToolQuadraticSolver.htm\">QuadraticSolver</a> is a (console) <a href=\"Tools.htm\">tool</a> to solve quadratic equations.</p>",
         "<p>&nbsp;</p>",
@@ -11210,10 +11653,13 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolRandomCode",
       {
-        "<p>A simple tool that creates random C++ code. I wrote it for the forums I visited: when",
-        "somebody was begging for code ('Coult u pleaz gimme code 4 peer2peer programm?'), I",
-        "posted a piece of random generated code with the comment 'Here it is, it just",
-        "needs to have some bugs fixed!'. Programmers' humor is great, isn't it?</p>",
+        "<p>",
+        "  <a href=\"ToolRandomCode.htm\">RandomCode</a> is a simple <a href=\"Tools.htm\">tool</a>",
+        "  that creates random C++ code. I wrote it for the forums I visited: when",
+        "  somebody was begging for code ('Coult u pleaz gimme code 4 peer2peer programm?'), I",
+        "  posted a piece of random generated code with the comment 'Here it is, it just",
+        "  needs to have some bugs fixed!'. Programmers' humor is great, isn't it?",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11224,33 +11670,37 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCode_3_0.png\">View a screenshot of 'Random Code' (Web application)(version 3.0)(png)</a></li>",
         "  <li><img src=\"PicUbuntu.png\" alt=\"Ubuntu\"/> <a href=\"ToolRandomCode_2_0.png\">View a screenshot of 'Random Code' (version 2.0)(png)</a></li>",
-        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolRandomCode_1_0.png\">View a screenshot of 'Random Code' (version 1.0)(png)</a></li>",
         "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolRandomCodeExeWindows_3_0.zip\">Download the 'Random Code' Windows executable (version 3.0)(zip)</a></li>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_4_1.zip\">Download the 'Random Code' source code (version 4.1)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>The <a href=\"CppWindows.htm\">Windows</a> executable of version 3.0 is created following ",
-        "<a href=\"CppQtCrosscompileToWindowsExample15.htm\">how to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15: MinGW cross-compiling environment</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Older downloads</h2>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_4_0.zip\">Download the 'Random Code' source code (version 4.0)(zip)</a></li>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_3_0.zip\">Download the 'Random Code' source code (version 3.0)(zip)</a></li>",
-        "  <li><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCodeSource_3_0.htm\">View the 'Random Code' source code as a web page (version 3.0)(htm)</a></li>",
-        "  <li><a href=\"ToolRandomCode_wtarchitecture.png\">View the Wt architecture of 'Random Code' (version 3.0)(png)</a></li>",
-        "  <li><img src=\"PicWeb.png\" alt=\"Web\"/> <a href=\"ToolRandomCode_2_1.png\">View a screenshot of 'Random Code' (Web application)(version 2.0)(png)</a></li>",
-        "  <li><a href=\"ToolRandomCodeSource_2_1.zip\">Download the 'Random Code' source code (version 2.1)(zip)</a></li>",
-        "  <li><a href=\"ToolRandomCodeSource_2_0.zip\">Download the 'Random Code' source code (version 2.0)(zip)</a></li>",
-        "  <li><a href=\"ToolRandomCodeExeWindows_1_0.zip\">Download the 'Random Code' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolRandomCodeSource_1_0.zip\">Download the 'Random Code' source code (version 1.0)(zip)</a></li>",
-        "</ul>",
+        "<a href=\"CppQtCrosscompileToWindowsExample15.htm\">how to cross-compile a Qt Creator project from Ubuntu to a windows executable: example 15: MinGW cross-compiling environment</a>.</p>"
       }
     }
   );
+
+  m.push_back(
+    { "ToolRandomCodeVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolRandomCodeVcl.htm\">RandomCode (VCL)</a> is a simple <a href=\"Tools.htm\">tool</a>",
+        "  that creates random C++ code and is the predecessor of <a href=\"ToolRandomCode.htm\">RandomCode</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"ToolRandomCode_1_0.png\">View a screenshot of 'Random Code' (version 1.0)(png)</a></li>",
+        "  <li><a href=\"ToolRandomCodeExeWindows_1_0.zip\">Download the 'Random Code' Windows executable (version 1.0)(zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolRasper",
       {
@@ -11411,6 +11861,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolRichelBilderbeekGallery",
+      {
+        "<p>",
+        "  <a href=\"ToolRichelBilderbeekGallery.htm\">RichelBilderbeekGallery</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to create the galleries on this website.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolRichelbilderbeekNlSitemapGenerator",
       {
@@ -11459,7 +11921,38 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolSecretMessage",
       {
-        "<p><a href=\"ToolSecretMessage.htm\">SecretMessage</a> is a <a href=\"Tools.htm\">tool</a> to add a secret message to a 24-bit bitmap. These secret messages can also be extracted again.</p>",
+        "<p>",
+        "  <a href=\"ToolSecretMessage.htm\">SecretMessage</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to add a secret message to an image. These secret messages",
+        "  can also be extracted again.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li>...</li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolSecretMessageVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolSecretMessageVcl.htm\">SecretMessage (VCL)</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to add a secret message to a 24-bit bitmap. These secret messages",
+        "  can also be extracted again.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"ToolSecretMessageVcl.htm\">SecretMessage (VCL)</a> is the predecessor",
+        "  of <a href=\"ToolSecretMessage.htm\">SecretMessage</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11471,22 +11964,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <li><a href=\"ToolSecretMessage_1_0.png\">View a screenshot of SecretMessage' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolSecretMessageExample.png\">View an example image with a secret message (version 1.1)(png)</a></li>",
         "  <li><a href=\"ToolSecretMessageExe_1_0.zip\">Download the 'SecretMessage' Windows executable (version 1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolSecretMessageSource_1_1.zip\">Download the 'SecretMessage' source code (version 1.1)(zip)</a></li>",
-        "</ul>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Older downloads</h2>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"ToolSecretMessageSource_1_0.zip\">Download the 'SecretMessage' source code (version 1.0)(zip)</a></li>",
-        "</ul>",
-
+        "</ul>"
       }
     }
   );
+
   m.push_back(
     { "ToolSimBrainiac",
       {
@@ -11718,6 +12200,41 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolSolvePuzzleX",
+      {
+        "<p>",
+        "  <a href=\"ToolSolvePuzzleX.htm\">SolvePuzzleX</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  solve a puzzle given to me by a girl I initially named 'X'.</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolStaircaseCardCreator",
+      {
+        "<p>",
+        "  <a href=\"ToolStaircaseCardCreator.htm\">StaircaseCardCreator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to create staircase cards.</a>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolStyleSheetSetter",
+      {
+        "<p>",
+        "  <a href=\"ToolStyleSheetSetter.htm\">StyleSheetSetter</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to experiment with a Qt application its style sheet.</a>",
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolStateObserver",
       {
@@ -11750,14 +12267,52 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "ToolSurfacePlotter",
       {
-        "<p><a href=\"ToolSurfacePlotter.htm\">SurfacePlotter</a> is a demonstration <a href=\"Tools.htm\">tool</a> of the <a href=\"CppSurfacePlotterTImage.htm\">SurfacePlotter class</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolSurfacePlotter.htm\">SurfacePlotter</a> is a <a href=\"Tools.htm\">tool</a>"
+        "  to make a surface plot.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>Note that this program uses <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a> version 2.7, where the current version (of February 2010) exceeds 4.0. This is due to compilation problems under <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. Small changes have been made to <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a> to get it to compile.</p>",
         "<p>&nbsp;</p>",
-        "<p>The initial version of <a href=\"ToolSurfacePlotter.htm\">SurfacePlotter</a> is released at the 7th of February of 2010 and programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a> and <a href=\"CppVcl.htm\">VCL</a> libraries.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Downloads</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"ToolSurfacePlotter_2_0.png\">View a screenshot of 'SurfacePlotter' (2.0)(png)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>External links</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"http://warp.povusers.org/FunctionParser\">Homepage of Warp's FunctionParser class</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "ToolSurfacePlotterVcl",
+      {
+        "<p>",
+        "  <a href=\"ToolSurfacePlotterVcl.htm\">SurfacePlotter (VCL)</a> is a <a href=\"Tools.htm\">tool</a>"
+        "  to make a surface plot and is the predecessor of <a href=\"ToolSurfacePlotter.htm\">SurfacePlotter</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Note that this program uses <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>",
+        "  version 2.7, where the current version (of February 2010) exceeds 4.0. This is due to",
+        "  compilation problems under <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0.",
+        "  Small changes have been made to <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>",
+        "  to get it to compile.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11768,7 +12323,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"ToolSurfacePlotter_1_2.png\">View a screenshot of 'SurfacePlotter' (v.1.2)(png)</a></li>",
         "  <li><a href=\"ToolSurfacePlotterExe_1_2.zip\">Download the 'SurfacePlotter' Windows executable (v.1.2)(zip)</a></li>",
-        "  <li><a href=\"ToolSurfacePlotterSource_1_2.zip\">Download the 'SurfacePlotter' source code (v.1.2)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11780,10 +12334,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"ToolSurfacePlotter_1_1.png\">View a screenshot of 'SurfacePlotter' (v.1.1)(png)</a></li>",
         "  <li><a href=\"ToolSurfacePlotterExe_1_1.zip\">Download the 'SurfacePlotter' Windows executable (v.1.1)(zip)</a></li>",
-        "  <li><a href=\"ToolSurfacePlotterSource_1_1.zip\">Download the 'SurfacePlotter' source code (v.1.1)(zip)</a></li>",
         "  <li><a href=\"ToolSurfacePlotter_1_0.png\">View a screenshot of 'SurfacePlotter' (v.1.0)(png)</a></li>",
         "  <li><a href=\"ToolSurfacePlotterExe_1_0.zip\">Download the 'SurfacePlotter' Windows executable (v.1.0)(zip)</a></li>",
-        "  <li><a href=\"ToolSurfacePlotterSource_1_0.zip\">Download the 'SurfacePlotter' source code (v.1.0)(zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -11794,10 +12346,33 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"http://warp.povusers.org/FunctionParser\">Homepage of Warp's FunctionParser class</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestAbout",
+      {
+        "<p>",
+        "  <a href=\"ToolTestAbout.htm\">TestAbout</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppAbout.htm\">About</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestApproximator",
+      {
+        "<p>",
+        "  <a href=\"ToolTestApproximator.htm\">TestApproximator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppApproximator.htm\">Approximator</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestBinaryNewickVector",
       {
@@ -11830,6 +12405,29 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestBouncingBallsWidget",
+      {
+        "<p>",
+        "  <a href=\"ToolTestBouncingBallsWidget.htm\">TestBouncingBallsWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppBouncingBallsWidget.htm\">BouncingBallsWidget</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestBouncingRectsWidget",
+      {
+        "<p>",
+        "  <a href=\"ToolTestBouncingRectsWidget.htm\">TestBouncingRectsWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppBouncingRectsWidget.htm\">BouncingRectsWidget</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestBroadcastServer",
       {
@@ -11868,6 +12466,40 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestCanvas",
+      {
+        "<p>",
+        "  <a href=\"ToolTestCanvas.htm\">TestCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppCanvas.htm\">Canvas</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestChess",
+      {
+        "<p>",
+        "  <a href=\"ToolTestChess.htm\">TestChess</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppChess.htm\">Chess</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestConceptMap",
+      {
+        "<p>",
+        "  <a href=\"ToolTestConceptMap.htm\">TestConceptMap</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppConceptMap.htm\">ConceptMap</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestDial",
       {
@@ -12002,6 +12634,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestExercise",
+      {
+        "<p>",
+        "  <a href=\"ToolTestExercise.htm\">TestExercise</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppExercise.htm\">Exercise</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestFunctionParser",
       {
@@ -12050,6 +12694,33 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+
+  m.push_back(
+    { "ToolTestGraphicsProxyWidget",
+      {
+        "<p>",
+        "  <a href=\"ToolTestGraphicsProxyWidget.htm\">TestGraphicsProxyWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppGraphicsProxyWidget.htm\">GraphicsProxyWidget</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "ToolTestGravityWidget",
+      {
+        "<p>",
+        "  <a href=\"ToolTestGravityWidget.htm\">ToolTestGravityWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppGravityWidget.htm\">GravityWidget</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+
   m.push_back(
     { "ToolTestGroupWidget",
       {
@@ -12069,6 +12740,29 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestHugeVector",
+      {
+        "<p>",
+        "  <a href=\"ToolTestHugeVector.htm\">ToolTestHugeVector</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppHugeVector.htm\">HugeVector</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestLazy_init",
+      {
+        "<p>",
+        "  <a href=\"ToolTestLazy_init.htm\">ToolTestLazy_init</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppLazy_init.htm\">Lazy_init</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestLed",
       {
@@ -12096,6 +12790,40 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestManyDigitNewick",
+      {
+        "<p>",
+        "  <a href=\"ToolTestManyDigitNewick.htm\">ToolTestManyDigitNewick</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppManyDigitNewick.htm\">ManyDigitNewick</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestMultiApproximator",
+      {
+        "<p>",
+        "  <a href=\"ToolTestMultiApproximator.htm\">TestMultiApproximator</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestMultipleChoiceQuestion",
+      {
+        "<p>",
+        "  <a href=\"ToolTestMultipleChoiceQuestion.htm\">TestMultipleChoiceQuestion</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestMultiVector",
       {
@@ -12183,6 +12911,40 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestNewick",
+      {
+        "<p>",
+        "  <a href=\"ToolTestNewick.htm\">TestNewick</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestNewickVector",
+      {
+        "<p>",
+        "  <a href=\"ToolTestNewickVector.htm\">TestNewickVector</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppNewickVector.htm\">NewickVector</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestOpenQuestion",
+      {
+        "<p>",
+        "  <a href=\"ToolTestOpenQuestion.htm\">TestOpenQuestion</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppOpenQuestion.htm\">OpenQuestion</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestPrimeExpert",
       {
@@ -12269,13 +13031,63 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "ToolTestQtKeyboardFriendlyGraphicsView",
       {
-    //TODO
+        "<p>",
+        "  <a href=\"ToolTestQtKeyboardFriendlyGraphicsView.htm\">TestQtKeyboardFriendlyGraphicsView</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtKeyboardFriendlyGraphicsView.htm\">QtKeyboardFriendlyGraphicsView</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestQrcFile",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQrcFile.htm\">TestQrcFile</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQrcFile.htm\">QrcFile</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestQtArrowItems",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtArrowItems.htm\">TestQtArrowItems</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtArrowItems.htm\">QtArrowItems</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestQtCreatorProFile",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtCreatorProFile.htm\">TestQtCreatorProFile</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestQtHideAndShowDialog",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtHideAndShowDialog.htm\">TestQtHideAndShowDialog</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtHideAndShowDialog.htm\">QtHideAndShowDialog</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolTestQtModels",
       {
@@ -12295,6 +13107,30 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+
+  m.push_back(
+    { "ToolTestQtOcrWidget",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtOcrWidget.htm\">TestQtOcrWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtOcrWidget.htm\">QtOcrWidget</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestQtRoundedEditRectItem",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtRoundedEditRectItem.htm\">TestQtRoundedEditRectItem</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtRoundedEditRectItem.htm\">QtRoundedEditRectItem</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestQtRoundedRectItem",
       {
@@ -12316,6 +13152,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestQtRoundedTextRectItem",
+      {
+        "<p>",
+        "  <a href=\"ToolTestQtRoundedTextRectItem.htm\">TestQtRoundedTextRectItem</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppQtRoundedTextRectItem.htm\">QtRoundedTextRectItem</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestQuestion",
       {
@@ -12349,6 +13197,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestReversi",
+      {
+        "<p>",
+        "  <a href=\"ToolTestReversi.htm\">TestReversi</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppReversi.htm\">Reversi</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestSelectFileDialog",
       {
@@ -12452,6 +13312,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestSimpleLinearRegression",
+      {
+        "<p>",
+        "  <a href=\"ToolTestSimpleLinearRegression.htm\">TestSimpleLinearRegression</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppSimpleLinearRegression.htm\">SimpleLinearRegression</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestStopwatch",
       {
@@ -12484,6 +13356,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestTextPositionWidget",
+      {
+        "<p>",
+        "  <a href=\"ToolTestTextPositionWidget.htm\">TestTextPositionWidget</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppTextPositionWidget.htm\">TextPositionWidget</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolTestTicTacToe",
       {
@@ -12611,9 +13496,10 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolThresholdFilterer",
       {
-        "<p><a href=\"ToolThresholdFilterer.htm\">ThresholdFilterer</a> is a <a href=\"Tools.htm\">tool</a> to perform threshold filter operations and demonstrates the <a href=\"CppFunction.htm\">function</a> <a href=\"CppThresholdFilter.htm\">ThresholdFilter</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"ToolThresholdFilterer.htm\">ThresholdFilterer</a> is programmed in <a href=\"Cpp.htm\">C++</a> using the IDE <a href=\"CppBuilder.htm\">C++ Builder</a> 6.0. It uses the <a href=\"CppStl.htm\">STL</a>, <a href=\"CppVcl.htm\">VCL</a> and <a href=\"CppBoost.htm\">Boost</a> libraries.</p>",
+        "<p>",
+        "  <a href=\"ToolThresholdFilterer.htm\">ThresholdFilterer</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to perform threshold filter operations.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",

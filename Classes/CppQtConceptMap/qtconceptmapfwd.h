@@ -9,11 +9,11 @@ struct QtQuadBezierArrowItem;
 
 namespace cmap {
 
-struct QtConceptItem;
+struct QtItemDisplayStrategy;
 struct QtConceptMapDisplayWidget;
-struct QtConceptMapDisplayConceptItem;
+struct QtDisplayStrategy;
 struct QtConceptMapEditWidget;
-struct QtConceptMapEditConceptItem;
+struct QtEditStrategy;
 struct QtEdge;
 struct QtExamplesItem;
 struct QtConceptMapItem;
@@ -22,8 +22,8 @@ struct QtNewArrow;
 struct QtNode;
 struct QtTool;
 struct QtConceptMapRateWidget;
-struct QtConceptMapRateConceptItem;
-struct QtConceptMapWidget;
+struct QtRateStrategy;
+struct QtConceptMap;
 
 } //~namespace cmap
 } //~namespace ribi

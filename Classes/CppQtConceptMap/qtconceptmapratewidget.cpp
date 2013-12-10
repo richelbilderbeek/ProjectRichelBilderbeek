@@ -12,7 +12,7 @@
 #include "conceptmaphelper.h"
 #include "conceptmapconcept.h"
 #include "conceptmapexamples.h"
-#include "qtconceptmapdisplayconceptitem.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapnode.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapfactory.h"
@@ -23,7 +23,7 @@
 #include "qtquadbezierarrowitem.h"
 #include "qtconceptmaprateexamplesdialog.h"
 #include "qtconceptmapexamplesitem.h"
-#include "qtconceptmaprateconceptitem.h"
+#include "qtconceptmapratestrategy.h"
 #include "qtscopeddisable.h"
 #include "qtconceptmaprateconceptdialog.h"
 #include "trace.h"
@@ -49,7 +49,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 ribi::cmap::QtConceptMapRateWidget::QtConceptMapRateWidget(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
-  : QtConceptMapWidget(concept_map,parent),
+  : QtConceptMap(concept_map,parent),
     m_signal_request_rate_concept_dialog{}
 {
   #ifndef NDEBUG
@@ -68,7 +68,7 @@ ribi::cmap::QtConceptMapRateWidget::QtConceptMapRateWidget(
 void ribi::cmap::QtConceptMapRateWidget::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
-  const boost::shared_ptr<QtConceptMapEditConceptItem> qtconcept(new QtConceptMapEditConceptItem(edge->GetConcept()));
+  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
   assert(qtconcept);
   QtNode * const from = FindQtNode(edge->GetFrom());
   assert(from);
@@ -93,15 +93,15 @@ void ribi::cmap::QtConceptMapRateWidget::AddEdge(
 
   //General
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
   //General: inform an Observer that this item has changed
   qtedge->m_signal_item_has_updated.connect(
-   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtedge->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
   //Specific: disable changing arrow heads
   qtedge->GetArrow()->setEnabled(false);
@@ -127,18 +127,18 @@ void ribi::cmap::QtConceptMapRateWidget::AddEdge(
 
 ribi::cmap::QtNode * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
-  const boost::shared_ptr<QtConceptMapRateConceptItem> qtconcept(new QtConceptMapRateConceptItem(node->GetConcept()));
+  const boost::shared_ptr<QtRateStrategy> qtconcept(new QtRateStrategy(node->GetConcept()));
   assert(qtconcept);
   QtNode * const qtnode = new QtNode(node,qtconcept);
   assert(qtnode);
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
-   boost::bind(&QtConceptMapWidget::OnItemRequestsUpdate,this,boost::lambda::_1));
+   boost::bind(&QtConceptMap::OnItemRequestsUpdate,this,boost::lambda::_1));
 
   //General: inform an Observer that a QGraphicsScene needs to be updated
   qtnode->m_signal_request_scene_update.connect(
-    boost::bind(&QtConceptMapWidget::OnRequestSceneUpdate,this));
+    boost::bind(&QtConceptMap::OnRequestSceneUpdate,this));
 
   //Specific: inform an Observer that the Node requests its Concept being rated
   qtnode->m_signal_node_requests_rate_concept.connect(
@@ -198,12 +198,12 @@ void ribi::cmap::QtConceptMapRateWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::cmap::QtConceptMapWidget> ribi::cmap::QtConceptMapRateWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapRateWidget::CreateNewDerived() const
 {
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMapWidget> p(new This_t(concept_map));
+  std::unique_ptr<QtConceptMap> p(new This_t(concept_map));
   return p;
 }
 #endif
@@ -305,7 +305,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtNode * cons
   //item->GetNode()->GetConcept()->GetExamples().
   TRACE("CALCULATE RATING HERE");
 
-  //QtConceptMapRateConceptDialog d(sub_concept_map); //Item may be changed
+  //QtRateStrategyDialog d(sub_concept_map); //Item may be changed
   //d.exec();
   this->setFocus();
   this->scene()->setFocusItem(item);

@@ -27,8 +27,8 @@ struct QtConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const = 0;
   virtual const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()       = 0;
 
-  virtual const boost::shared_ptr<const QtConceptItem> GetConceptItem() const = 0;
-  virtual const boost::shared_ptr<      QtConceptItem> GetConceptItem()       = 0;
+  virtual const boost::shared_ptr<const QtItemDisplayStrategy> GetConceptItem() const = 0;
+  virtual const boost::shared_ptr<      QtItemDisplayStrategy> GetConceptItem()       = 0;
 
   ///Set the name of the concept
   virtual void SetName(const std::string& name) = 0;

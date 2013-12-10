@@ -78,6 +78,66 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBound
   return p;
 }
 
+void ribi::foam::Files::CreateCopy(
+  const ribi::foam::Files& files,
+  const std::string copy_folder_name) noexcept
+{
+  #ifndef NDEBUG
+  if (fileio::IsFolder(copy_folder_name))
+  {
+    TRACE(copy_folder_name);
+  }
+  #endif
+  assert(fileio::IsFolder(copy_folder_name)
+    && "Cannot make a copy in an existing folder");
+
+  CreateFolders(copy_folder_name);
+
+  {
+    const std::string destination_path {
+        copy_folder_name
+      + fileio::GetPathSeperator()
+      + "constant"
+      + fileio::GetPathSeperator()
+      + "polyMesh"
+      + fileio::GetPathSeperator()
+      + BoundaryFile::GetDefaultHeader().GetObject()
+    };
+
+    std::ofstream f(destination_path.c_str());
+    f << files.GetBoundary();
+  }
+  assert(!"JUNK BELO");
+  /*
+  //Read from testing file
+  for (const std::string filename:
+    {
+      BoundaryFile::GetDefaultHeader().GetObject(),
+      FacesFile::GetDefaultHeader().GetObject(),
+      NeighbourFile::GetDefaultHeader().GetObject(),
+      OwnerFile::GetDefaultHeader().GetObject(),
+      PointsFile::GetDefaultHeader().GetObject()
+    }
+  )
+  {
+    const std::string destination_path {
+      folder_name
+      + fileio::GetPathSeperator()
+      + "constant"
+      + fileio::GetPathSeperator()
+      + "polyMesh"
+      + fileio::GetPathSeperator()
+      + filename
+    };
+    QFile f(resources_path.c_str());
+    f.copy(destination_path.c_str());
+    assert(fileio::IsRegularFile(destination_path));
+  }
+  */
+  assert(Files(copy_folder_name) == files
+    && "Resulting Files must be same");
+}
+
 const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefaultBoundary() noexcept
 {
   const boost::shared_ptr<BoundaryFile> p {
@@ -282,6 +342,11 @@ void ribi::foam::Files::Swap(const ribi::foam::FaceIndex& lhs, const ribi::foam:
     assert(lhs_is_boundary == rhs_is_boundary
       && "Can only swap two boundary or two non-boundary faces");
 
+    if (lhs_is_boundary != rhs_is_boundary)
+    {
+      throw std::logic_error("Can only swap two boundary or two non-boundary faces");
+    }
+
     if (lhs_is_boundary)
     {
       assert(rhs_is_boundary);
@@ -364,9 +429,25 @@ void ribi::foam::Files::Test() noexcept
     f.SetOwner(owner_2);
     assert(f == g);
   }
+  //CreateCopy
+  {
+    const std::string temp_folder_source = ribi::fileio::GetTempFolderName();
+    {
+      assert(!ribi::fileio::IsFolder(temp_folder_source));
+      CreateTestFiles(temp_folder_source);
+    }
+    const Files source(temp_folder_source);
+    const std::string temp_folder_target = ribi::fileio::GetTempFolderName();
+    Files::CreateCopy(source,temp_folder_target);
+    const Files target(temp_folder_target);
+    assert(source == target);
+    ribi::fileio::DeleteFolder(temp_folder_source);
+    ribi::fileio::DeleteFolder(temp_folder_target);
+  }
   //Swap faces
   {
-    const std::string temp_folder = "tmp_folder";
+    const std::string temp_folder = ribi::fileio::GetTempFolderName();
+    assert(!ribi::fileio::IsFolder(temp_folder));
     CreateTestFiles(temp_folder);
 
     const Files f(temp_folder);
@@ -382,6 +463,9 @@ void ribi::foam::Files::Test() noexcept
     assert(f != g);
     g.Swap(i,j);
     assert(f == g);
+    ribi::fileio::DeleteFolder(temp_folder);
+    assert(!ribi::fileio::IsFolder(temp_folder));
+
   }
   TRACE("Finished ribi::foam::Files::Test successfully");
 }

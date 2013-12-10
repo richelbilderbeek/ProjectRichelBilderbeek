@@ -32,9 +32,9 @@ void ribi::cmap::QtConceptMapRateWidget::Test()
     const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
     for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
     {
-      boost::shared_ptr<QtConceptMapWidget> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
       assert(widget);
-      QtConceptMapWidget::Test(widget);
+      QtConceptMap::Test(widget);
     }
   }
   /*
@@ -42,7 +42,7 @@ void ribi::cmap::QtConceptMapRateWidget::Test()
     const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
     for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
     {
-      boost::shared_ptr<QtConceptMapWidget> widget(new This_t(concept_map));
+      boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
       assert(widget);
       for(QGraphicsItem * const item: widget->items())
       {

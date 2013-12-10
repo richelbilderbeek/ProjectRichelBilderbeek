@@ -30,7 +30,7 @@
 #include "conceptmapnode.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapitem.h"
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapnode.h"
 #include "trace.h"

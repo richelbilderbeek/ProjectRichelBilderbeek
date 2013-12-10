@@ -10,23 +10,25 @@
 namespace ribi {
 namespace cmap {
 
-//An ABC View with a ConceptMap as the Model
-class QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
+///QtConceptMap displays a ConceptMap
+///It does not offer UI interaction with the user
+///QtConceptMap does offer UI interaction
+class QtConceptMap : public ribi::QtKeyboardFriendlyGraphicsView
 {
   Q_OBJECT
 
 public:
-  explicit QtConceptMapWidget(
+  explicit QtConceptMap(
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
     QWidget* parent = 0);
-  QtConceptMapWidget(const QtConceptMapWidget&) = delete;
-  QtConceptMapWidget& operator=(const QtConceptMapWidget&) = delete;
-  virtual ~QtConceptMapWidget() noexcept;
+  QtConceptMap(const QtConceptMap&) = delete;
+  QtConceptMap& operator=(const QtConceptMap&) = delete;
+  virtual ~QtConceptMap() noexcept;
 
   #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
-  virtual std::unique_ptr<QtConceptMapWidget> CreateNewDerived() const = 0;
+  virtual std::unique_ptr<QtConceptMap> CreateNewDerived() const = 0;
 
   ///Do something random, used in debugging
   virtual void DoRandomStuff() = 0;
@@ -55,7 +57,7 @@ public:
   void Shuffle();
 
   ///Test this class with a derived class instance
-  static void Test(const boost::shared_ptr<const QtConceptMapWidget>& widget);
+  static void Test(const boost::shared_ptr<const QtConceptMap>& widget);
   #endif
 
 public slots:

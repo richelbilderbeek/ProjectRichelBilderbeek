@@ -28,6 +28,9 @@ struct Files
   Files(const Files&) = delete;
   Files& operator=(const Files&) = delete;
 
+  ///Create a copy of the complete file structure of Files in the copy folder name
+  static void CreateCopy(const Files& files, const std::string copy_folder_name) noexcept;
+
   const boost::shared_ptr<const BoundaryFile> GetBoundary() const noexcept { return m_boundary; }
   const boost::shared_ptr<const FacesFile> GetFaces() const noexcept { return m_faces; }
   const boost::shared_ptr<const NeighbourFile> GetNeighbour() const noexcept { return m_neighbour; }

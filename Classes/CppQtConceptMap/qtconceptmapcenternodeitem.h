@@ -25,7 +25,7 @@ struct QtCenterNode : public QtNode
     const boost::shared_ptr<ribi::cmap::Node> node);
 
   private:
-  static const boost::shared_ptr<QtConceptItem> CreateConceptItem(const boost::shared_ptr<ribi::cmap::Node> node);
+  static const boost::shared_ptr<QtItemDisplayStrategy> CreateConceptItem(const boost::shared_ptr<ribi::cmap::Node> node);
 };
 
 } //~namespace cmap

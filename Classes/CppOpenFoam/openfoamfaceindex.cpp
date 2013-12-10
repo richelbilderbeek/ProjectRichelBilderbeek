@@ -2,24 +2,66 @@
 
 #include <cassert>
 #include <iostream>
+#include <stdexcept>
 
 ribi::foam::FaceIndex::FaceIndex(const int index)
   : m_index(index)
 {
   assert(m_index >= 0
     && "A FaceIndex must be zero or a positive value");
+  if (m_index < 0)
+  {
+    throw std::invalid_argument("A FaceIndex must be zero or a positive value");
+  }
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const FaceIndex& face_index)
+ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator-=(const FaceIndex& rhs)
+{
+  m_index -= rhs.Get();
+
+  assert(m_index >= 0
+    && "A FaceIndex must be zero or a positive value");
+  if (m_index < 0)
+  {
+    throw std::invalid_argument(
+      "FaceIndex::operator-=: FaceIndex cannot be negative");
+  }
+  return *this;
+}
+
+ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator++() noexcept
+{
+  ++m_index;
+  return *this;
+}
+
+ribi::foam::FaceIndex ribi::foam::FaceIndex::operator++(int) noexcept
+{
+  FaceIndex old(*this);
+  ++(*this);
+  return old;
+}
+
+std::ostream& ribi::foam::operator<<(std::ostream& os, const FaceIndex& face_index) noexcept
 {
   os << face_index.Get();
   return os;
 }
 
-std::istream& ribi::foam::operator>>(std::istream& is, FaceIndex& face_index)
+std::istream& ribi::foam::operator>>(std::istream& is, FaceIndex& face_index) noexcept
 {
   is >> face_index.m_index;
   return is;
+}
+
+const ribi::foam::FaceIndex ribi::foam::operator+(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
+{
+  return FaceIndex(lhs.Get() + rhs.Get());
+}
+
+const ribi::foam::FaceIndex ribi::foam::operator-(const FaceIndex& lhs, const FaceIndex& rhs)
+{
+  return FaceIndex(lhs.Get() - rhs.Get());
 }
 
 bool ribi::foam::operator==(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
@@ -30,4 +72,14 @@ bool ribi::foam::operator==(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
 bool ribi::foam::operator!=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
 {
   return !(lhs == rhs);
+}
+
+bool ribi::foam::operator<(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
+{
+  return lhs.Get() < rhs.Get();
+}
+
+bool ribi::foam::operator>=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
+{
+  return !(lhs < rhs);
 }

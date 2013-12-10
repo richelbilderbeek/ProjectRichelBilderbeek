@@ -452,7 +452,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::pylos: p.reset(new PylosMenuDialog); break;
       case ProgramType::qmakeWatcher: p.reset(new QmakeWatcherMenuDialog); break;
       case ProgramType::quadraticSolver: p.reset(new QuadraticSolverMenuDialog); break;
-      case ProgramType::rampal: break;
+      case ProgramType::rampalEtienne: break;
       case ProgramType::randomCode: p.reset(new RandomCodeMenuDialog); break;
       case ProgramType::randomCodeVcl: break;
       case ProgramType::rasper: /* p.reset(new RasperMenuDialog); */ break;

@@ -32,8 +32,8 @@ class QtPvdbConceptMapDialog : public ::ribi::QtHideAndShowDialog
   #endif
 
   ///Obtain the widget
-  const cmap::QtConceptMapWidget * GetWidget() const;
-  cmap::QtConceptMapWidget * GetWidget();
+  const cmap::QtConceptMap * GetWidget() const;
+  cmap::QtConceptMap * GetWidget();
 
   ///Does the user need to go back to the student menu?
   bool GoBackToMenu() const { return m_back_to_menu; }

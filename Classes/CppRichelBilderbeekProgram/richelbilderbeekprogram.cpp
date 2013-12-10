@@ -120,7 +120,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::pylos: p.reset(new ProgramPylos); break;
     case ProgramType::qmakeWatcher: p.reset(new ProgramQmakeWatcher); break;
     case ProgramType::quadraticSolver: p.reset(new ProgramQuadraticSolver); break;
-    case ProgramType::rampal: p.reset(new ProgramRampal); break;
+    case ProgramType::rampalEtienne: p.reset(new ProgramRampalEtienne); break;
     case ProgramType::randomCode: p.reset(new ProgramRandomCode); break;
     case ProgramType::randomCodeVcl: p.reset(new ProgramRandomCodeVcl); break;
     case ProgramType::rasper: p.reset(new ProgramRasper); break;

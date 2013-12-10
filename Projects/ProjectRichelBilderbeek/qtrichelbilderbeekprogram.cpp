@@ -208,7 +208,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pylos: p = new QtPylosMenuDialog; break;
     case ProgramType::qmakeWatcher: new QtQmakeWatcherMenuDialog; break;
     case ProgramType::quadraticSolver: new QtQuadraticSolverMenuDialog; break;
-    case ProgramType::rampal: break;
+    case ProgramType::rampalEtienne: break;
     case ProgramType::rasper: break;
     case ProgramType::randomCode: p = new QtRandomCodeMenuDialog; break;
     case ProgramType::randomCodeVcl: break;

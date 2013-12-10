@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 
 #include "conceptmapfwd.h"
 
@@ -18,8 +18,8 @@
 namespace ribi {
 namespace cmap {
 
-///QtConceptMapWidget for creation and editing of a ConceptMap
-struct QtConceptMapDisplayWidget : public QtConceptMapWidget
+///QtConceptMap for displayal of a ConceptMap in a read-only fashion
+struct QtConceptMapDisplayWidget : public QtConceptMap
 {
   typedef QtConceptMapDisplayWidget This_t;
 
@@ -31,7 +31,7 @@ struct QtConceptMapDisplayWidget : public QtConceptMapWidget
   #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
-  std::unique_ptr<QtConceptMapWidget> CreateNewDerived() const;
+  std::unique_ptr<QtConceptMap> CreateNewDerived() const;
 
   ///Do something random
   void DoRandomStuff();
@@ -40,9 +40,11 @@ struct QtConceptMapDisplayWidget : public QtConceptMapWidget
 private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
+  ///In this derived class, I promise not to change the Edge
   void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
+  ///In this derived class, I promise not to change the Node
   QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
 
   void CleanMe();

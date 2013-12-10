@@ -11,6 +11,10 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
+<<<<<<< HEAD
+=======
+namespace Ui { class QtRateStrategyDialog; }
+>>>>>>> 0209a3ba47eab5d8adee1371debbbf832d01f224
 
 namespace ribi {
 namespace cmap {
@@ -48,7 +52,11 @@ private slots:
   void on_box_specificity_currentIndexChanged(int index);
 
 private:
+<<<<<<< HEAD
   Ui::QtRateConceptDialog *ui;
+=======
+  Ui::QtRateStrategyDialog *ui;
+>>>>>>> 0209a3ba47eab5d8adee1371debbbf832d01f224
 
   ///To distinguish between closing the dialog by clicking OK, or by ALT-F4
   bool m_button_ok_clicked;

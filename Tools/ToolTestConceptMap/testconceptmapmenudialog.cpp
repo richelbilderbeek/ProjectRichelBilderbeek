@@ -35,7 +35,7 @@ const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("QtConceptMapWidget version: " + cmap::QtConceptMapWidget::GetVersion());
+  //a.AddLibrary("QtConceptMap version: " + cmap::QtConceptMap::GetVersion());
   //a.AddLibrary("Test image from http://sipi.usc.edu");
 
   return a;

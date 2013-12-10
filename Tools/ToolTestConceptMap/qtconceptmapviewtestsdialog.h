@@ -44,13 +44,13 @@ private:
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > m_s;
 
   /// Tha widgets
-  std::vector<boost::shared_ptr<cmap::QtConceptMapWidget> > m_widgets;
+  std::vector<boost::shared_ptr<cmap::QtConceptMap> > m_widgets;
 
   #ifndef NDEBUG
   static void Test();
   #endif
 
-  static boost::shared_ptr<cmap::QtConceptMapWidget> CreateWidget(
+  static boost::shared_ptr<cmap::QtConceptMap> CreateWidget(
     const int type,
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map);
 };

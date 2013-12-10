@@ -1,7 +1,7 @@
 #ifndef QTCONCEPTMAPCONCEPTMAPRATEWIDGET_H
 #define QTCONCEPTMAPCONCEPTMAPRATEWIDGET_H
 
-#include "qtconceptmapwidget.h"
+#include "qtconceptmap.h"
 
 #include "conceptmapfwd.h"
 
@@ -9,8 +9,8 @@ namespace ribi {
 
 namespace cmap {
 
-///QtConceptMapWidget for creation and editing of a ConceptMap
-struct QtConceptMapRateWidget : public QtConceptMapWidget
+///QtConceptMap for creation and editing of a ConceptMap
+struct QtConceptMapRateWidget : public QtConceptMap
 {
   typedef QtConceptMapRateWidget This_t;
 
@@ -24,7 +24,7 @@ struct QtConceptMapRateWidget : public QtConceptMapWidget
   #ifndef NDEBUG
   ///Creates a new derived class
   ///A simpler alternative to Clone (see above)
-  std::unique_ptr<QtConceptMapWidget> CreateNewDerived() const;
+  std::unique_ptr<QtConceptMap> CreateNewDerived() const;
 
   ///Do something random
   void DoRandomStuff();
@@ -61,19 +61,19 @@ private:
   ///Is implemented by OnItemUpdateRequestImpl
   void OnItemRequestUpdateImpl(const QGraphicsItem* const item);
 
-  ///Called when a QtConceptItem requests to have its concept rated
+  ///Called when a QtItemDisplayStrategy requests to have its concept rated
   ///Note that this might be a ConceptItem on an Edge, but those signals are not connected
   ///item must be a Node, becaus only Nodes can be rated and because the Node is
   ///used for contruction of a sub concept map
   void OnNodeRequestsRateConcept(QtNode * const item);
 
-  ///Called when a QtConceptItem requests to have its concept rated
+  ///Called when a QtItemDisplayStrategy requests to have its concept rated
   ///Note that this might be a ConceptItem on an Edge, but those signals are not connected
   ///item must be a Node, becaus only Nodes can be rated and because the Node is
   ///used for contruction of a sub concept map
   void OnNodeRequestsRateConceptWithSuggestion(QtNode * const item);
 
-  ///Called when a QtConceptItem requests to have its examples rated
+  ///Called when a QtItemDisplayStrategy requests to have its examples rated
   ///Note that this might be a ConceptItem on an Edge, but those signals are not connected
   void OnNodeRequestsRateExamples(QtNode * const item);
 

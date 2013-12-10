@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPEDITCONCEPTITEM_H
-#define QTCONCEPTMAPEDITCONCEPTITEM_H
+#ifndef QTCONCEPTMAPEDITSTRATEGY_H
+#define QTCONCEPTMAPEDITSTRATEGY_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -14,13 +14,14 @@ namespace ribi {
 namespace cmap {
 
 ///Displays a Concept that might be edited
-struct QtConceptMapEditConceptItem : public QtConceptItem
+///QtEditStrategy -> QtEditStrategy
+struct QtEditStrategy : public QtItemDisplayStrategy
 {
   //concept will be modified
-  explicit QtConceptMapEditConceptItem(const boost::shared_ptr<ribi::cmap::Concept> concept);
-  ~QtConceptMapEditConceptItem() noexcept;
+  explicit QtEditStrategy(const boost::shared_ptr<ribi::cmap::Concept> concept);
+  ~QtEditStrategy() noexcept;
   ///Signalled when the user wants to edit
-  boost::signals2::signal<void (QtConceptItem *)> m_signal_request_edit;
+  boost::signals2::signal<void (QtItemDisplayStrategy *)> m_signal_request_edit;
 
 protected:
   void keyPressEvent(QKeyEvent *event) noexcept;
@@ -37,4 +38,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPEDITCONCEPTITEM_H
+#endif // QTCONCEPTMAPEDITSTRATEGY_H
