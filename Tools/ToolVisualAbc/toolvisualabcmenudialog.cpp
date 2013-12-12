@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::VisualAbcMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
@@ -70,3 +72,15 @@ const std::vector<std::string> ribi::VisualAbcMenuDialog::GetVersionHistory() co
   };
 }
 
+#ifndef NDEBUG
+void ribi::VisualAbcMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::VisualAbcMenuDialog::Test");
+  TRACE("Finished ribi::VisualAbcMenuDialog::Test successfully");
+}
+#endif

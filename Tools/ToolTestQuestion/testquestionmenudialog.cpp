@@ -134,3 +134,15 @@ const std::vector<std::string> ribi::TestQuestionMenuDialog::GetVersionHistory()
     "2013-11-05: version 3.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+#ifndef NDEBUG
+void ribi::TestQuestionMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQuestionMenuDialog::Test");
+  TRACE("Finished ribi::TestQuestionMenuDialog::Test successfully");
+}
+#endif

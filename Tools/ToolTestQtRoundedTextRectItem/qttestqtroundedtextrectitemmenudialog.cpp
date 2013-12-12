@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedrectitem.h"
 #include "qtroundedtextrectitem.h"
 #include "testqtroundedtextrectitemmenudialog.h"
+#include "trace.h"
 #include "qtaboutdialog.h"
 #include "qttestqtroundedtextrectitemmaindialog.h"
 #include "ui_qttestqtroundedtextrectitemmenudialog.h"
@@ -77,3 +78,16 @@ void ribi::QtTestQtRoundedTextRectItemMenuDialog::on_button_start_clicked()
   QtTestQtRoundedTextRectItemMainDialog d;
   ShowChild(&d);
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedTextRectItemMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedTextRectItemMenuDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedTextRectItemMenuDialog::Test successfully");
+}
+#endif

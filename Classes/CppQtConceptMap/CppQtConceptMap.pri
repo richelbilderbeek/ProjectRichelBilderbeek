@@ -6,33 +6,33 @@ OTHER_FILES += \
     ../../Classes/CppQtConceptMap/Licence.txt
 
 SOURCES += \
+    ../../Classes/CppQtConceptMap/conceptmapbrating.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapbrushfactory.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapcenternodeitem.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapcompetency.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmap.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapdisplaystrategy.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapdisplaywidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapedge.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapeditstrategy.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapeditwidget.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapratewidget.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapitem.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapcenternodeitem.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptitem.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapitemhighlighter.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapnewarrow.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmaptoolsitem.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialog.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapnode.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconceptdialog.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapbrushfactory.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapcompetency.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapratedconceptwidget.cpp \
-    ../../Classes/CppQtConceptMap/conceptmapbrating.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialog.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapratedconceptwidget.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmaprateexamplesdialog.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapratestrategy.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapratewidget.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapconceptmapeditwidget.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapratewidget.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapwidget.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapnode.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapedge.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapratestrategy.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapdisplaystrategy.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapeditstrategy.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmap.cpp
+    ../../Classes/CppQtConceptMap/qtconceptmaptoolsitem.cpp
 
 HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapdisplaywidget.h \

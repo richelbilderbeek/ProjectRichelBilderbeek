@@ -20,7 +20,7 @@
 #include "qtaboutdialog.h"
 #include "qtroundededitrectitem.h"
 #include "testqtroundededitrectitemmenudialog.h"
-
+#include "trace.h"
 #ifndef NDEBUG
 #include "qtroundedtextrectitem.h"
 #endif
@@ -111,3 +111,16 @@ void ribi::QtTestQtRoundedEditRectItemWidget::keyPressEvent(QKeyEvent *event) no
   }
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedEditRectItemWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedEditRectItemWidget::Test");
+  TRACE("Finished ribi::QtTestQtRoundedEditRectItemWidget::Test successfully");
+}
+#endif

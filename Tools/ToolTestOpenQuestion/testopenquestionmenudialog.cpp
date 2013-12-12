@@ -121,3 +121,15 @@ const std::vector<std::string> ribi::TestOpenQuestionMenuDialog::GetVersionHisto
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestOpenQuestionMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestOpenQuestionMenuDialog::Test");
+  TRACE("Finished ribi::TestOpenQuestionMenuDialog::Test successfully");
+}
+#endif

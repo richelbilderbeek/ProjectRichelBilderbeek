@@ -24,8 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-class QtTestQtRoundedTextRectItemMainDialog;
+  class QtTestQtRoundedTextRectItemMainDialog;
 }
+
+namespace ribi {
 
 class QtTestQtRoundedTextRectItemMainDialog : public ribi::QtHideAndShowDialog
 {
@@ -42,6 +44,12 @@ protected:
 
 private:
   Ui::QtTestQtRoundedTextRectItemMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+} //~namespace ribi
 
 #endif // QTTESTQTROUNDEDTEXTRECTITEMMAINDIALOG_H

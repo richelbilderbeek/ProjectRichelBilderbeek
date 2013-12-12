@@ -50,6 +50,10 @@ struct TestQuestionMainDialog
   void OnQuestionAnswered();
 
   static std::vector<boost::shared_ptr<QuestionDialog> > CreateQuestions();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

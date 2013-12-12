@@ -15,7 +15,7 @@
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapRateWidget::Test()
+void ribi::cmap::QtConceptMapRateWidget::Test() noexcept
 {
   {
     static bool is_tested = false;

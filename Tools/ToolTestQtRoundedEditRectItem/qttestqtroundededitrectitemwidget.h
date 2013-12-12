@@ -17,6 +17,10 @@ struct QtTestQtRoundedEditRectItemWidget : public QtKeyboardFriendlyGraphicsView
 private:
   ///Display a font
   void Display(const QFont& font);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -119,7 +119,7 @@ ribi::cmap::Competency ribi::cmap::QtCompetency::IconToCompetency(const QIcon& i
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtCompetency::Test()
+void ribi::cmap::QtCompetency::Test() noexcept
 {
   {
     static bool is_tested = false;

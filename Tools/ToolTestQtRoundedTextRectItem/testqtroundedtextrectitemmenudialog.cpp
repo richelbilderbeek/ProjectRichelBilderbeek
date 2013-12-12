@@ -96,3 +96,15 @@ const std::vector<std::string> ribi::TestQtRoundedTextRectItemMenuDialog::GetVer
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestQtRoundedTextRectItemMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQtRoundedTextRectItemMenuDialog::Test");
+  TRACE("Finished ribi::TestQtRoundedTextRectItemMenuDialog::Test successfully");
+}
+#endif

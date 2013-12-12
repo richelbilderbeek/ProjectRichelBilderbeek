@@ -50,6 +50,10 @@ struct TestShapeMainDialog
   void OnShapeAnswered();
 
   static std::vector<boost::shared_ptr<ShapeWidget> > CreateShapes();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

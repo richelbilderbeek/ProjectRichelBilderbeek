@@ -448,3 +448,16 @@ void ribi::TestNewickVectorDialog::SetTheta(const std::string& s)
 {
   m_theta_str = s;
 }
+
+#ifndef NDEBUG
+void ribi::TestNewickVectorDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestNewickVectorDialog::Test");
+  TRACE("Finished ribi::TestNewickVectorDialog::Test successfully");
+}
+#endif

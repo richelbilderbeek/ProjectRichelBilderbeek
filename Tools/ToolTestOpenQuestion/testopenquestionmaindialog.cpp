@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "openquestion.h"
 #include "openquestiondialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::TestOpenQuestionMainDialog::TestOpenQuestionMainDialog()
@@ -70,7 +71,15 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestOpenQuestionMain
   return v;
 }
 
-
-
-
-
+#ifndef NDEBUG
+void ribi::TestOpenQuestionMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestOpenQuestionMainDialog::Test");
+  TRACE("Finished ribi::TestOpenQuestionMainDialog::Test successfully");
+}
+#endif

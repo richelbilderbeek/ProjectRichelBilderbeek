@@ -92,3 +92,16 @@ const std::vector<std::string> ribi::TestQtArrowItemsMenuDialog::GetVersionHisto
     "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestQtArrowItemsMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQtArrowItemsMenuDialog::Test");
+  TRACE("Finished ribi::TestQtArrowItemsMenuDialog::Test successfully");
+}
+#endif

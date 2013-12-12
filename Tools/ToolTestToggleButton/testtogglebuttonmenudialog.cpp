@@ -100,3 +100,16 @@ const std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHisto
     "2013-11-05: version 1.3: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestToggleButtonMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestToggleButtonMenuDialog::Test");
+  TRACE("Finished ribi::TestToggleButtonMenuDialog::Test successfully");
+}
+#endif

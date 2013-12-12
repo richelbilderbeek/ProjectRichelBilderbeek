@@ -126,3 +126,16 @@ const std::vector<std::string> ribi::TestTwoDigitNewickMenuDialog::GetVersionHis
     "2011-03-08: version 2.2: minor changes in Newick namespace",
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestTwoDigitNewickMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestTwoDigitNewickMenuDialog::Test");
+  TRACE("Finished ribi::TestTwoDigitNewickMenuDialog::Test successfully");
+}
+#endif

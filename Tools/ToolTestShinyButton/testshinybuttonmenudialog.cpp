@@ -101,3 +101,16 @@ const std::vector<std::string> ribi::TestShinyButtonMenuDialog::GetVersionHistor
     "2013-11-05: version 2.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestShinyButtonMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestShinyButtonMenuDialog::Test");
+  TRACE("Finished ribi::TestShinyButtonMenuDialog::Test successfully");
+}
+#endif

@@ -3,6 +3,8 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::ThresholdFiltererMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
@@ -68,3 +70,16 @@ const std::vector<std::string> ribi::ThresholdFiltererMenuDialog::GetVersionHist
     "2013-11-28: version 2.0: port to Qt"
   };
 }
+
+#ifndef NDEBUG
+void ribi::ThresholdFiltererMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ThresholdFiltererMenuDialog::Test");
+  TRACE("Finished ribi::ThresholdFiltererMenuDialog::Test successfully");
+}
+#endif

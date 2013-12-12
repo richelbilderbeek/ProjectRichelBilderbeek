@@ -122,3 +122,15 @@ const std::vector<std::string> ribi::TestMultipleChoiceQuestionMenuDialog::GetVe
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestMultipleChoiceQuestionMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestMultipleChoiceQuestionMenuDialog::Test");
+  TRACE("Finished ribi::TestMultipleChoiceQuestionMenuDialog::Test successfully");
+}
+#endif

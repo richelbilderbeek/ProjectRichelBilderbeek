@@ -239,7 +239,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::on_edit_example_text_textChange
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestNodeItemDialog::Test()
+void ribi::cmap::QtConceptMapTestNodeItemDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

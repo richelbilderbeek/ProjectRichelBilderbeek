@@ -308,7 +308,7 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::OnRequestSceneUpdate()
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test()
+void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

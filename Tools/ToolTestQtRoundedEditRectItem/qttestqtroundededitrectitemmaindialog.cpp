@@ -22,10 +22,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtroundededitrectitemmaindialog.h"
 #include <QKeyEvent>
+
+#include "trace.h"
 #include "ui_qttestqtroundededitrectitemmaindialog.h"
 #pragma GCC diagnostic pop
 
-QtTestQtRoundedEditRectItemMainDialog::QtTestQtRoundedEditRectItemMainDialog(QWidget *parent) :
+ribi::QtTestQtRoundedEditRectItemMainDialog::QtTestQtRoundedEditRectItemMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedEditRectItemMainDialog)
 {
@@ -35,13 +37,25 @@ QtTestQtRoundedEditRectItemMainDialog::QtTestQtRoundedEditRectItemMainDialog(QWi
   ui->setupUi(this);
 }
 
-QtTestQtRoundedEditRectItemMainDialog::~QtTestQtRoundedEditRectItemMainDialog() noexcept
+ribi::QtTestQtRoundedEditRectItemMainDialog::~QtTestQtRoundedEditRectItemMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtTestQtRoundedEditRectItemMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedEditRectItemMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedEditRectItemMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedEditRectItemMainDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedEditRectItemMainDialog::Test successfully");
+}
+#endif

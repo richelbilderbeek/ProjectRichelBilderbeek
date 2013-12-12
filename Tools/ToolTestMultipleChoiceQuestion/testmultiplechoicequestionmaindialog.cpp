@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "multiplechoicequestion.h"
 #include "multiplechoicequestiondialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::TestMultipleChoiceQuestionMainDialog::TestMultipleChoiceQuestionMainDialog()
@@ -73,7 +74,15 @@ std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestMultipleChoiceQu
   return v;
 }
 
-
-
-
-
+#ifndef NDEBUG
+void ribi::TestMultipleChoiceQuestionMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestMultipleChoiceQuestionMainDialog::Test");
+  TRACE("Finished ribi::TestMultipleChoiceQuestionMainDialog::Test successfully");
+}
+#endif

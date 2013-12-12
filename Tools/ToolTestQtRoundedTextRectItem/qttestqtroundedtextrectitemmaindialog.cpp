@@ -23,10 +23,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundedtextrectitemmaindialog.h"
 
 #include <QKeyEvent>
+
+#include "trace.h"
 #include "ui_qttestqtroundedtextrectitemmaindialog.h"
 #pragma GCC diagnostic pop
 
-QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWidget *parent) :
+ribi::QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedTextRectItemMainDialog)
 {
@@ -36,12 +38,25 @@ QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWi
   ui->setupUi(this);
 }
 
-QtTestQtRoundedTextRectItemMainDialog::~QtTestQtRoundedTextRectItemMainDialog() noexcept
+ribi::QtTestQtRoundedTextRectItemMainDialog::~QtTestQtRoundedTextRectItemMainDialog() noexcept
 {
   delete ui;
 }
 
-void QtTestQtRoundedTextRectItemMainDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestQtRoundedTextRectItemMainDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedTextRectItemMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedTextRectItemMainDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedTextRectItemMainDialog::Test successfully");
+}
+#endif

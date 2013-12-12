@@ -62,7 +62,7 @@ void ribi::cmap::QtTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *even
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtTestConceptMapEditWidgetDialog::Test()
+void ribi::cmap::QtTestConceptMapEditWidgetDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

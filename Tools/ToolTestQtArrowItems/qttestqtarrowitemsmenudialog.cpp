@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttestqtarrowitemsmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "trace.h"
 #include "ui_qttestqtarrowitemsmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -73,3 +74,15 @@ void ribi::QtTestQtArrowItemsMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtTestQtArrowItemsMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtArrowItemsMenuDialog::Test");
+  TRACE("Finished ribi::QtTestQtArrowItemsMenuDialog::Test successfully");
+}
+#endif
