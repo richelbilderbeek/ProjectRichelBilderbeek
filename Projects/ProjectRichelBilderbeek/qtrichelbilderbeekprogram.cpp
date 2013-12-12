@@ -156,11 +156,11 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::grayCoder: p = new QtGrayCoderMenuDialog; break;
     case ProgramType::grayCoderVcl: break;
     case ProgramType::gtst: break;
-    case ProgramType::histogramEqualizationer: new QtHistogramEqualizationerMenuDialog; break;
+    case ProgramType::histogramEqualizationer: p = new QtHistogramEqualizationerMenuDialog; break;
     case ProgramType::histogramEqualizationerVcl: break;
-    case ProgramType::hometrainer: new QtHometrainerMenuDialog; break;
+    case ProgramType::hometrainer: p = new QtHometrainerMenuDialog; break;
     case ProgramType::hometrainerVcl: break;
-    case ProgramType::imageRotater: new QtImageRotaterMenuDialog; break;
+    case ProgramType::imageRotater: p = new QtImageRotaterMenuDialog; break;
     case ProgramType::imageRotaterClx: break;
     case ProgramType::imageRotaterVcl: break;
     case ProgramType::k3OpEenRij:
@@ -204,10 +204,10 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pokeVolley: break;
     case ProgramType::pong: break;
     case ProgramType::primeExpert: p = new QtToolPrimeExpertMenuDialog;  break;
-    case ProgramType::projectRichelBilderbeek: new QtRichelBilderbeekMenuDialog; break;
+    case ProgramType::projectRichelBilderbeek: p = new QtRichelBilderbeekMenuDialog; break;
     case ProgramType::pylos: p = new QtPylosMenuDialog; break;
-    case ProgramType::qmakeWatcher: new QtQmakeWatcherMenuDialog; break;
-    case ProgramType::quadraticSolver: new QtQuadraticSolverMenuDialog; break;
+    case ProgramType::qmakeWatcher: p = new QtQmakeWatcherMenuDialog; break;
+    case ProgramType::quadraticSolver: p = new QtQuadraticSolverMenuDialog; break;
     case ProgramType::rampalEtienne: break;
     case ProgramType::rasper: break;
     case ProgramType::randomCode: p = new QtRandomCodeMenuDialog; break;
@@ -221,7 +221,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::rubiksClockVcl: break;
     case ProgramType::searchAndDestroyChess: break;
     case ProgramType::searchAndDestroyChessVcl: break;
-    case ProgramType::secretMessage: new QtSecretMessageMenuDialog; break;
+    case ProgramType::secretMessage: p = new QtSecretMessageMenuDialog; break;
     case ProgramType::secretMessageVcl: break;
     case ProgramType::simBrainiac: break;
     case ProgramType::simImmuneResponse: break;
@@ -294,7 +294,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
     case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
     case ProgramType::thorVeen: break;
-    case ProgramType::thresholdFilterer: new QtThresholdFiltererMenuDialog; break;
+    case ProgramType::thresholdFilterer: p = new QtThresholdFiltererMenuDialog; break;
     case ProgramType::thresholdFiltererVcl: break;
     case ProgramType::ticTacToe: p = new QtTicTacToeMenuDialog; break;
     case ProgramType::ticTacToeLearner: break;
