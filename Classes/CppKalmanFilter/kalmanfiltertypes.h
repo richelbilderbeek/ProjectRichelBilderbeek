@@ -28,7 +28,7 @@ struct KalmanFilterTypes
   static const boost::bimap<KalmanFilterType,std::string> CreateMap();
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

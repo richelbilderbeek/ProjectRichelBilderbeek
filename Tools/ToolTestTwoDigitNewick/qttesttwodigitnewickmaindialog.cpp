@@ -46,9 +46,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 ribi::QtTestTwoDigitNewickMainDialog::QtTestTwoDigitNewickMainDialog(QWidget *parent)
-  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestTwoDigitNewickMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   QObject::connect(ui->edit_newick,SIGNAL(textChanged(QString)),
     this,SLOT(OnAnyChange()));

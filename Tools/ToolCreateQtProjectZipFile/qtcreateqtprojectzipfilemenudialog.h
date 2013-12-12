@@ -51,7 +51,6 @@ private:
   Ui::QtCreateQtProjectZipFileMenuDialog *ui;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

@@ -29,6 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "qtaboutdialog.h"
 #include "primeexpert.h"
+#include "trace.h"
 #include "ui_qttoolprimeexpertmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -37,6 +38,9 @@ ribi::QtToolPrimeExpertMainDialog::QtToolPrimeExpertMainDialog(QWidget *parent)
     ui(new Ui::QtToolPrimeExpertMainDialog),
     m_expert(new PrimeExpert)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->edit_value->setText("2");
 }
@@ -79,3 +83,16 @@ void ribi::QtToolPrimeExpertMainDialog::on_edit_value_textChanged(QString s)
     + " sec)";
   ui->text->appendPlainText(text.c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtToolPrimeExpertMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolPrimeExpertMainDialog::Test");
+  TRACE("Finished ribi::QtToolPrimeExpertMainDialog::Test successfully");
+}
+#endif

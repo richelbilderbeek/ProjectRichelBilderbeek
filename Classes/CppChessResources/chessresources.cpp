@@ -202,7 +202,7 @@ Resources * ribi::Chess::Resources::Get()
 }
 */
 
-void ribi::Chess::Resources::Test()
+void ribi::Chess::Resources::Test() noexcept
 {
   {
     static bool is_tested = false;

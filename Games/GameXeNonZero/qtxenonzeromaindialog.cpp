@@ -6,6 +6,7 @@
 
 #include "xenonzeromaindialog.h"
 #include "ui_qtxenonzeromaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)
@@ -13,6 +14,9 @@ ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)
     ui(new Ui::QtXeNonZeroMainDialog),
     m_dialog(new xnz::Dialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   assert(m_dialog);
   on_button_space_clicked();
@@ -67,3 +71,16 @@ void ribi::QtXeNonZeroMainDialog::on_button_w_clicked()
   assert(m_dialog);
   Display(m_dialog->ProcessInput(xnz::Dialog::Input::up));
 }
+
+#ifndef NDEBUG
+void ribi::QtXeNonZeroMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtXeNonZeroMainDialog::Test");
+  TRACE("Finished ribi::QtXeNonZeroMainDialog::Test successfully");
+}
+#endif

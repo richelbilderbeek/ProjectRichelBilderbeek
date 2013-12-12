@@ -24,9 +24,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "dial.h"
+#include "trace.h"
 
 int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -93,3 +97,15 @@ const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() con
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestDialMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestDialMenuDialog::Test");
+  TRACE("Finished ribi::TestDialMenuDialog::Test successfully");
+}
+#endif

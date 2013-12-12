@@ -3,8 +3,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::PixelatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -65,3 +70,16 @@ const std::vector<std::string> ribi::PixelatorMenuDialog::GetVersionHistory() co
     "2013-11-28: version 2.0: port to Qt"
   };
 }
+
+#ifndef NDEBUG
+void ribi::PixelatorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::PixelatorMenuDialog::Test");
+  TRACE("Finished ribi::PixelatorMenuDialog::Test successfully");
+}
+#endif

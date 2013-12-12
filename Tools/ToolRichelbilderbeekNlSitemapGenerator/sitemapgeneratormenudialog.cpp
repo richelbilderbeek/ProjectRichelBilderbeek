@@ -33,12 +33,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 
 #include "fileio.h"
+
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::SitemapGeneratorMenuDialog::SitemapGeneratorMenuDialog()
   : m_signal_log{}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const std::vector<std::string>& files) noexcept
@@ -511,3 +515,16 @@ const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHisto
     "2012-12-15: version 1.3: made global functions static member functions, use of QtHideAndShowDialog, added some graphics to menu"
   };
 }
+
+#ifndef NDEBUG
+void ribi::SitemapGeneratorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::SitemapGeneratorMenuDialog::Test");
+  TRACE("Finished ribi::SitemapGeneratorMenuDialog::Test successfully");
+}
+#endif

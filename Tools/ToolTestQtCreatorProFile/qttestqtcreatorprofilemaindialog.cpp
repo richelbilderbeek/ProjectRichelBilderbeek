@@ -36,6 +36,9 @@ ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQtCreatorProFileMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

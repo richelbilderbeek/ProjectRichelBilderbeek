@@ -63,7 +63,7 @@ struct Example
   static cmap::Competency StrToCompetency(const std::string& s);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Convert Example to a std::string
   static const std::string ToXml(const boost::shared_ptr<const cmap::Example>& t);

@@ -89,7 +89,7 @@ struct Node
   double m_y;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
 };
 

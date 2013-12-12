@@ -38,6 +38,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog()
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const std::vector<std::string> files = { "question.png" };
   for(const std::string& filename: files)
   {

@@ -53,7 +53,7 @@ private:
   std::vector<boost::shared_ptr<QtShapeWidget> > m_widgets;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 };
 
 } //~namespace ribi

@@ -26,6 +26,9 @@ ribi::QtToolTestApproximatorXyMainDialog::QtToolTestApproximatorXyMainDialog(QWi
   m_curve_values(new QwtPlotCurve),
   m_plot(new QwtPlot)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Set up the plot
@@ -183,3 +186,16 @@ void ribi::QtToolTestApproximatorXyMainDialog::Plot() noexcept
   assert(m_plot);
   m_plot->replot();
 }
+
+#ifndef NDEBUG
+void ribi::QtToolTestApproximatorXyMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolTestApproximatorXyMainDialog::Test");
+  TRACE("Finished ribi::QtToolTestApproximatorXyMainDialog::Test successfully");
+}
+#endif

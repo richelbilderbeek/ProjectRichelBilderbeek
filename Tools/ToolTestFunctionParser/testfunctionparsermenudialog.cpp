@@ -23,8 +23,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::TestFunctionParserMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -92,3 +97,16 @@ const std::vector<std::string> ribi::TestFunctionParserMenuDialog::GetVersionHis
     "2013-11-05: version 2.4: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestFunctionParserMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestFunctionParserMenuDialog::Test");
+  TRACE("Finished ribi::TestFunctionParserMenuDialog::Test successfully");
+}
+#endif

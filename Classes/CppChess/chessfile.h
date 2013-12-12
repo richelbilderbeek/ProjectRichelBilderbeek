@@ -23,7 +23,7 @@ struct File
   static const std::vector<std::string> GetVersionHistory();
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Convert a File to its single-character string.
   ///For example, file "a" has x-coordinat 0

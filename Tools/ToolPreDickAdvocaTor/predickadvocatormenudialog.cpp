@@ -3,8 +3,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::PreDickAdvocaTorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -65,3 +70,16 @@ const std::vector<std::string> ribi::PreDickAdvocaTorMenuDialog::GetVersionHisto
     "2013-12-03: version 2.0: improved user experience, prepare for next WC"
   };
 }
+
+#ifndef NDEBUG
+void ribi::PreDickAdvocaTorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::PreDickAdvocaTorMenuDialog::Test");
+  TRACE("Finished ribi::PreDickAdvocaTorMenuDialog::Test successfully");
+}
+#endif

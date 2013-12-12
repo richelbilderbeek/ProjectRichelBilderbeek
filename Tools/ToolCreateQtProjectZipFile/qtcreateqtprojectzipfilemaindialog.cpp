@@ -46,10 +46,10 @@ ribi::QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog(QWi
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMainDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 
   TRACE("QtCreateQtProjectZipFileMainDialog::QtCreateQtProjectZipFileMainDialog");
   ui->lineEdit->setText("Tools/ToolCreateQtProjectZipFile");

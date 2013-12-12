@@ -46,6 +46,10 @@ private slots:
 private:
   Ui::QtTestFunctionParserMainDialog *ui;
   void Parse() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

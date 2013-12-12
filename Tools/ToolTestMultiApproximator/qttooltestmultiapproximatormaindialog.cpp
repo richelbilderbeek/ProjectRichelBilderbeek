@@ -29,6 +29,9 @@ ribi::QtToolTestMultiApproximatorMainDialog::QtToolTestMultiApproximatorMainDial
   m_multi_plot(new QwtPlot),
   m_plot(new QwtPlot)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Set up the plots
@@ -284,3 +287,16 @@ void ribi::QtToolTestMultiApproximatorMainDialog::Plot() noexcept
     m_plot->replot();
   }
 }
+
+#ifndef NDEBUG
+void ribi::QtToolTestMultiApproximatorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolTestMultiApproximatorMainDialog::Test");
+  TRACE("Finished ribi::QtToolTestMultiApproximatorMainDialog::Test successfully");
+}
+#endif

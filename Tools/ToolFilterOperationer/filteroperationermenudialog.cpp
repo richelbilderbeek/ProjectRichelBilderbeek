@@ -3,8 +3,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::FilterOperationerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -67,3 +72,16 @@ const std::vector<std::string> ribi::FilterOperationerMenuDialog::GetVersionHist
     "2013-11-29: version 2.0: port to Qt"
   };
 }
+
+#ifndef NDEBUG
+void ribi::FilterOperationerMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::FilterOperationerMenuDialog::Test");
+  TRACE("Finished ribi::FilterOperationerMenuDialog::Test successfully");
+}
+#endif

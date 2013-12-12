@@ -1306,7 +1306,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::SetWhiteNoiseSystemType(const 
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFilterExperimentModel::Test()
+void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
 {
   {
     static bool is_tested = false;

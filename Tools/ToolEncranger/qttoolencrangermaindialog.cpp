@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "encranger.h"
 #include "loopreader.h"
 #include "qtaboutdialog.h"
+#include "trace.h"
 #include "ui_qttoolencrangermaindialog.h"
 #include "toolencrangermaindialog.h"
 #pragma GCC diagnostic pop
@@ -39,6 +40,9 @@ ribi::QtToolEncrangerMainDialog::QtToolEncrangerMainDialog(QWidget *parent) noex
     ui(new Ui::QtToolEncrangerMainDialog),
     m_dialog(new ToolEncrangerMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -66,3 +70,16 @@ void ribi::QtToolEncrangerMainDialog::on_button_deencrypt_clicked() noexcept
   m_dialog->Deencrypt();
   ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtToolEncrangerMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolEncrangerMainDialog::Test");
+  TRACE("Finished ribi::QtToolEncrangerMainDialog::Test successfully");
+}
+#endif

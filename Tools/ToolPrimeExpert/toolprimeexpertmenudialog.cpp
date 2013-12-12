@@ -7,6 +7,9 @@
 
 int ribi::PrimeExpertMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -70,3 +73,16 @@ const std::vector<std::string> ribi::PrimeExpertMenuDialog::GetVersionHistory() 
     "2013-11-04: Version 2.2: conformized for ProjectRichelBilderbeekConsole",
   };
 }
+
+#ifndef NDEBUG
+void ribi::PrimeExpertMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::PrimeExpertMenuDialog::Test");
+  TRACE("Finished ribi::PrimeExpertMenuDialog::Test successfully");
+}
+#endif

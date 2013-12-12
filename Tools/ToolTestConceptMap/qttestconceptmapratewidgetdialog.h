@@ -44,7 +44,9 @@ private:
 
   void DoSomethingRandom();
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

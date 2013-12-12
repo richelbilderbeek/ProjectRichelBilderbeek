@@ -30,16 +30,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-//#include <boost/signals2.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/lambda/lambda.hpp>
-//#include <boost/xpressive/xpressive.hpp>
 
-//#include <QDir>
-//#include <QFile>
 #include <QKeyEvent>
 
 #include "fileio.h"
+#include "trace.h"
 #include "ui_qtsitemapgeneratormaindialog.h"
 #include "sitemapgeneratormenudialog.h"
 #pragma GCC diagnostic pop
@@ -48,6 +45,9 @@ ribi::QtSitemapGeneratorMainDialog::QtSitemapGeneratorMainDialog(QWidget *parent
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSitemapGeneratorMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -103,3 +103,16 @@ void ribi::QtSitemapGeneratorMainDialog::OnLogMessage(const std::string& msg) no
 {
   ui->text_output->appendPlainText(msg.c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtSitemapGeneratorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtSitemapGeneratorMainDialog::Test");
+  TRACE("Finished ribi::QtSitemapGeneratorMainDialog::Test successfully");
+}
+#endif

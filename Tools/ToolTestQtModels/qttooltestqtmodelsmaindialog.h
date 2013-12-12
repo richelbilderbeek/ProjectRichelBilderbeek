@@ -51,7 +51,7 @@ private:
   static const std::vector<std::string> CreateRandomTexts();
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

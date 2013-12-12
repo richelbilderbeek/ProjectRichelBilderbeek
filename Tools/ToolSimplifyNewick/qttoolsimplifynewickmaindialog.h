@@ -47,6 +47,10 @@ public:
 private:
   Ui::QtToolSimplifyNewickMainDialog *ui;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void OnAnyEditChange() noexcept;
 

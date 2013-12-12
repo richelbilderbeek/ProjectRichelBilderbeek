@@ -34,7 +34,7 @@
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::cmap::ConceptMap::Test()
+void ribi::cmap::ConceptMap::Test() noexcept
 {
   {
     static bool is_tested = false;

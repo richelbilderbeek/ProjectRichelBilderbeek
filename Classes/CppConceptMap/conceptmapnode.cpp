@@ -112,7 +112,7 @@ void ribi::cmap::Node::SetY(const double y)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::Node::Test()
+void ribi::cmap::Node::Test() noexcept
 {
   {
     static bool is_tested = false;

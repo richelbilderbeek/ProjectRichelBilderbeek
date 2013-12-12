@@ -109,7 +109,7 @@ struct QtChessBoardWidget : public QWidget
   ///Repaint the QtChessBoardWidget
   void DoRepaint();
 
-  static void Test();
+  static void Test() noexcept;
   ///Respond to mouse click
   //void OnClicked(const Wt::WMouseEvent& e);
 };

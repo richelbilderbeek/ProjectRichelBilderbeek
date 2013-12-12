@@ -124,7 +124,7 @@ void ribi::CreateQtProjectZipFile::Path::SetSubFolder(const std::string& s)
   m_sub_folder = s;
 }
 
-void ribi::CreateQtProjectZipFile::Path::Test()
+void ribi::CreateQtProjectZipFile::Path::Test() noexcept
 {
   {
     static bool is_tested = false;

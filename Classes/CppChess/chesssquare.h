@@ -37,7 +37,7 @@ struct Square
 
   ///Test the correct working of Square
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert the Square to a string

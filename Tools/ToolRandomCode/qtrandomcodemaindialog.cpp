@@ -27,8 +27,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-
-
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
@@ -37,12 +35,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtrandomcodemaindialog.h"
 #include "randomcode.h"
 #include "randomcodemenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtRandomCodeMainDialog::QtRandomCodeMainDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRandomCodeMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Put the dialog in the screen center
@@ -81,3 +83,15 @@ void ribi::QtRandomCodeMainDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtRandomCodeMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRandomCodeMainDialog::Test");
+  TRACE("Finished ribi::QtRandomCodeMainDialog::Test successfully");
+}
+#endif

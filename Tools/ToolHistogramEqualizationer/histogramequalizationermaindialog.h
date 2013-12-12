@@ -39,6 +39,10 @@ struct HistogramEqualizationerMainDialog
   private:
   //void ConvertToGrey(const TImage * const source, TImage * const target);
   static const std::vector<int> GetImageHistogram(const QImage& image) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 //From htpp://www.richelbilderbeek.nl/CppGetCumulativeHistogram.htm

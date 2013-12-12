@@ -324,7 +324,7 @@ void ribi::cmap::QtNode::SetY(const double y)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtNode::Test()
+void ribi::cmap::QtNode::Test() noexcept
 {
   {
     static bool is_tested = false;

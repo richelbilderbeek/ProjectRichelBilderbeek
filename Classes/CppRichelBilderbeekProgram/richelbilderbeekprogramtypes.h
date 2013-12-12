@@ -37,7 +37,7 @@ struct ProgramTypes
   static const boost::bimap<ProgramType,std::string> CreateScreenNameMap();
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

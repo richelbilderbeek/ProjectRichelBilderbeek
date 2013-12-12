@@ -138,7 +138,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::RemoveEmptyItem(QListWidgetItem 
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapConceptEditDialog::Test()
+void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

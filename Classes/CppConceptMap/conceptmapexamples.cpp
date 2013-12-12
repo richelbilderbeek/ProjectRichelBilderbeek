@@ -99,7 +99,7 @@ void ribi::cmap::Examples::OnExampleChanged()
   m_signal_examples_changed(this);
 }
 
-void ribi::cmap::Examples::Test()
+void ribi::cmap::Examples::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -17,6 +17,7 @@
 #include "filename.h"
 #include "fileio.h"
 #include "openfoamheader.h"
+#include "openfoamboundaryindex.h"
 #include "openfoamboundaryfileitem.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -68,6 +69,11 @@ const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
   const std::string object     = "boundary";
 
   return Header(class_name,location,note,object);
+}
+
+const ribi::foam::BoundaryIndex ribi::foam::BoundaryFile::GetMaxBoundaryIndex() const noexcept
+{
+  return BoundaryIndex(static_cast<int>(m_items.size()));
 }
 
 const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)

@@ -21,7 +21,13 @@ struct BoundaryFileItem
 
   const std::string& GetName() const noexcept { return m_name; }
   int GetNfaces() const noexcept { return m_n_faces; }
+
+  ///Obtain the first Face its index
   const FaceIndex GetStartFace() const noexcept { return m_start_face; }
+
+  ///Obtain the last+1 Face index
+  const FaceIndex GetEndFace() const noexcept;
+
   const std::string GetType() const noexcept { return m_type; }
 
   private:

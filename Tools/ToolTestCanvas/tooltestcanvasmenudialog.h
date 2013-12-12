@@ -16,6 +16,10 @@ struct ToolTestCanvasMenuDialog : public MenuDialog
 
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -18,6 +18,9 @@ struct PreDickAdvocaTorMainDialog
   static const std::vector<std::vector<int> > CreateTeamScores(const int seed);
   static int GetScore();
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

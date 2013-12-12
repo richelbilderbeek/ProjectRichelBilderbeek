@@ -47,13 +47,15 @@ protected:
 
 private slots:
   void on_button_start_clicked();
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked();
 
 private:
   Ui::QtAsciiArterMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -367,7 +367,7 @@ bool ribi::kalman::KalmanFilterExperimentParameter::IsVector(const KalmanFilterE
 }
 
 #ifndef NDEBUG
-void ribi::kalman::KalmanFilterExperimentParameter::Test()
+void ribi::kalman::KalmanFilterExperimentParameter::Test() noexcept
 {
   {
     static bool is_tested = false;

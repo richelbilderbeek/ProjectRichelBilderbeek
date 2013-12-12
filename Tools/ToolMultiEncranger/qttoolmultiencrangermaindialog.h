@@ -35,6 +35,10 @@ private:
 private slots:
   void on_button_deencrypt_clicked() noexcept;
   void on_button_encrypt_clicked() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

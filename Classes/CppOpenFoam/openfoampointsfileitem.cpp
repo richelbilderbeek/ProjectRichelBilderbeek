@@ -27,8 +27,8 @@ void ribi::foam::PointsFileItem::Test() noexcept
   TRACE("Starting ribi::foam::PointsFileItem::Test");
   //operator== and operator!=
   {
-    const PointsFileItem i( {1.1,2.2,3.3} );
-    PointsFileItem j( {2.2,3.3,4.4} );
+    const PointsFileItem i( Coordinat3D(1.1,2.2,3.3) );
+    PointsFileItem j( Coordinat3D(2.2,3.3,4.4) );
     assert(i == i);
     assert(i != j);
     assert(j != i);
@@ -36,7 +36,7 @@ void ribi::foam::PointsFileItem::Test() noexcept
   }
   //operator<< and operator>>
   {
-    const PointsFileItem i( {1.1,2.2,3.3} );
+    const PointsFileItem i( Coordinat3D(1.1,2.2,3.3) );
     std::stringstream s;
     s << i;
     PointsFileItem j;

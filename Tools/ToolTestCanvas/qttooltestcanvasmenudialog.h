@@ -31,7 +31,7 @@ private slots:
   void on_button_start_canvas_clicked();
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

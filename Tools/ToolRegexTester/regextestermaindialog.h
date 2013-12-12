@@ -79,6 +79,9 @@ struct RegexTesterMainDialog
   static const std::vector<std::string> GetTestRegexes() noexcept;
   static const std::vector<std::string> GetTestStrings() noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

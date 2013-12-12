@@ -65,7 +65,7 @@ const std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
   return v;
 }
 
-void ribi::Chess::Rank::Test()
+void ribi::Chess::Rank::Test() noexcept
 {
   {
     static bool is_tested = false;

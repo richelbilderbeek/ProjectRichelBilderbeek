@@ -114,7 +114,7 @@ private:
   void setFocus(Qt::FocusReason focusReason) = delete;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

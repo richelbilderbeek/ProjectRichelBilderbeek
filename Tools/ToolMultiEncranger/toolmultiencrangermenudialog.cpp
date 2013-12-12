@@ -10,6 +10,7 @@
 #include "loopreader.h"
 #include "encranger.h"
 #include "fileio.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 //From http://www.richelbilderbeek.nl/CppSaveContainer.htm
@@ -22,6 +23,9 @@ void SaveContainer(const Container& c, const std::string& filename)
 
 int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -176,3 +180,16 @@ const std::vector<std::string> ribi::ToolMultiEncrangerMenuDialog::GetVersionHis
     "2013-11-04: Version 2.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::ToolMultiEncrangerMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolMultiEncrangerMenuDialog::Test");
+  TRACE("Finished ribi::ToolMultiEncrangerMenuDialog::Test successfully");
+}
+#endif

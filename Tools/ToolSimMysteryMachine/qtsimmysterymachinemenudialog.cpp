@@ -35,6 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtsimmysterymachinerealmachinedialog.h"
 #include "qttogglebuttonwidget.h"
 #include "simmysterymachinemenudialog.h"
+#include "trace.h"
 #include "ui_qtsimmysterymachinemenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -43,6 +44,9 @@ ribi::QtSimMysteryMachineMenuDialog::QtSimMysteryMachineMenuDialog(QWidget *pare
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSimMysteryMachineMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->led_1->GetWidget()->GetLed()->SetColor(255,255,255);
@@ -93,3 +97,15 @@ void ribi::QtSimMysteryMachineMenuDialog::on_button_real_clicked() noexcept
   this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtSimMysteryMachineMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtSimMysteryMachineMenuDialog::Test");
+  TRACE("Finished ribi::QtSimMysteryMachineMenuDialog::Test successfully");
+}
+#endif

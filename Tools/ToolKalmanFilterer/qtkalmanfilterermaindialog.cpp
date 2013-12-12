@@ -714,7 +714,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowTable(const boost::shared_ptr
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFiltererMainDialog::Test()
+void ribi::kalman::QtKalmanFiltererMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

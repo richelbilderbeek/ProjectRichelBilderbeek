@@ -55,6 +55,10 @@ private:
   const boost::shared_ptr<QwtPlot> GetPlot(const int i) noexcept;
 
   void Plot() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

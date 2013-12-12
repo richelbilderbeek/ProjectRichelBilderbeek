@@ -53,6 +53,10 @@ private:
 
   void DisplayDialColor() noexcept;
   void DisplayDialValue() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

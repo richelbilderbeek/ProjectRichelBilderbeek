@@ -67,7 +67,9 @@ private slots:
   void OnAnyChange() noexcept;
   void OnDemoTick() noexcept;
 
-  //static bool Match(const std::vector<int>& lhs, const std::vector<int>& rhs);
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

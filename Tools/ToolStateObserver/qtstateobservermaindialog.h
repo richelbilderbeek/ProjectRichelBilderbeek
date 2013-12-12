@@ -58,6 +58,10 @@ private:
   QwtPlotCurve * const m_curve_outputs_slsq;
   QwtPlotCurve * const m_curve_outputs_ma;
   QwtPlotCurve * const m_curve_outputs_miso;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

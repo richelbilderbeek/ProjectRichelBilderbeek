@@ -86,7 +86,7 @@ private:
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Block constructor, except for the friend ConceptMapFactory

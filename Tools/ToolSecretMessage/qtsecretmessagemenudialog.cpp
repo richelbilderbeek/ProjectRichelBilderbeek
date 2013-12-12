@@ -5,6 +5,7 @@
 #include "qtsecretmessageextractdialog.h"
 #include "qtsecretmessagemenudialog.h"
 #include "secretmessagemenudialog.h"
+#include "trace.h"
 #include "ui_qtsecretmessagemenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -12,6 +13,9 @@ ribi::QtSecretMessageMenuDialog::QtSecretMessageMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtSecretMessageMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -50,4 +54,15 @@ void ribi::QtSecretMessageMenuDialog::on_button_quit_clicked()
   close();
 }
 
-
+#ifndef NDEBUG
+void ribi::QtSecretMessageMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtSecretMessageMenuDialog::Test");
+  TRACE("Finished ribi::QtSecretMessageMenuDialog::Test successfully");
+}
+#endif

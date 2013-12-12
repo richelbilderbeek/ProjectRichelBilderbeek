@@ -3,8 +3,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::TestAboutMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -67,3 +72,16 @@ const std::vector<std::string> ribi::TestAboutMenuDialog::GetVersionHistory() co
     "2013-11-28: version 1.3: conformized to ProjectRichelBilderbeek"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestAboutMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestAboutMenuDialog::Test");
+  TRACE("Finished ribi::TestAboutMenuDialog::Test successfully");
+}
+#endif

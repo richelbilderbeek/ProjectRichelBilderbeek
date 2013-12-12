@@ -120,7 +120,7 @@ void ribi::cmap::Edge::SetY(const double y)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::Edge::Test()
+void ribi::cmap::Edge::Test() noexcept
 {
   {
     static bool is_tested = false;

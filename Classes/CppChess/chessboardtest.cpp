@@ -15,7 +15,7 @@
 #include "trace.h"
 
 #ifndef NDEBUG
-void ribi::Chess::Board::Test()
+void ribi::Chess::Board::Test() noexcept
 {
   //Testing boost::shared_ptr<Chess::Board> exactly once
   {

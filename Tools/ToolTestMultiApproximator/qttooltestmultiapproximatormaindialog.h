@@ -64,6 +64,10 @@ private:
   const boost::shared_ptr<QwtPlot> m_plot;
 
   void Plot() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

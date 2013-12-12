@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFileDialog>
 
+#include "fileio.h"
 #include "qrcfile.h"
 #include "testqrcfilemenudialog.h"
 #include "ui_qttestqrcfilemaindialog.h"
@@ -36,6 +37,9 @@ ribi::QtTestQrcFileMainDialog::QtTestQrcFileMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQrcFileMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->edit->setText("Tools/ToolTestQrcFile/ToolTestQrcFile.qrc");
@@ -46,18 +50,10 @@ ribi::QtTestQrcFileMainDialog::~QtTestQrcFileMainDialog() noexcept
   delete ui;
 }
 
-bool ribi::QtTestQrcFileMainDialog::IsRegularFile(const std::string& filename) noexcept
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
-}
-
-
 void ribi::QtTestQrcFileMainDialog::on_edit_textChanged(const QString &arg1)
 {
   const std::string filename = std::string("../../") + arg1.toStdString();
-  if (!IsRegularFile(filename))
+  if (!fileio::IsRegularFile(filename))
   {
     ui->text_result->clear();
     const std::string text = std::string("File '") + filename + std::string("' does not exist.");

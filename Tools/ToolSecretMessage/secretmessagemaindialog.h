@@ -6,6 +6,9 @@ namespace ribi {
 struct SecretMessageMainDialog
 {
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //namespace ribi

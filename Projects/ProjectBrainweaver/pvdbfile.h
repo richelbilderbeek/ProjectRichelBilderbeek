@@ -155,7 +155,7 @@ struct File
   static const std::string ConvertFrom_0_3(const std::string& xml);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Correct befriending, from http://richelbilderbeek.nl/CppChecked_delete.htm
   friend void boost::checked_delete<>(File* x);

@@ -422,7 +422,7 @@ void ribi::kalman::QtKalmanFilterExperimentDialog::SetNumberOfTimesteps(const in
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFilterExperimentDialog::Test()
+void ribi::kalman::QtKalmanFilterExperimentDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -25,6 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 int ribi::QuadraticSolverMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -87,3 +90,16 @@ const std::vector<std::string> ribi::QuadraticSolverMenuDialog::GetVersionHistor
     "2013-10-01: version 2.1: added desktop version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::QuadraticSolverMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QuadraticSolverMenuDialog::Test");
+  TRACE("Finished ribi::QuadraticSolverMenuDialog::Test successfully");
+}
+#endif

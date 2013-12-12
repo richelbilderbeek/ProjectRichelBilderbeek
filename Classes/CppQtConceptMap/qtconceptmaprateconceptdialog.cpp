@@ -173,7 +173,7 @@ void ribi::cmap::QtRateConceptDialog::OnRatingSpecificityChanged(const ribi::cma
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtRateConceptDialog::Test()
+void ribi::cmap::QtRateConceptDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

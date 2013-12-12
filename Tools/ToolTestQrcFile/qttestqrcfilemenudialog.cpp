@@ -32,6 +32,9 @@ ribi::QtTestQrcFileMenuDialog::QtTestQrcFileMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestQrcFileMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

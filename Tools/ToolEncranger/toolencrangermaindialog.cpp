@@ -20,13 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "toolencrangermaindialog.h"
 
+#include "trace.h"
+
 ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog()
   : m_encranger(new Encranger(0)), // 0 == m_key
     m_encrypted_text{},
     m_key(0),
     m_plain_text{}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 void ribi::ToolEncrangerMainDialog::Deencrypt()
@@ -53,3 +57,16 @@ void ribi::ToolEncrangerMainDialog::SetPlainText(const std::string& s)
 {
   m_plain_text = s;
 }
+
+#ifndef NDEBUG
+void ribi::ToolEncrangerMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolEncrangerMainDialog::Test");
+  TRACE("Finished ribi::ToolEncrangerMainDialog::Test successfully");
+}
+#endif

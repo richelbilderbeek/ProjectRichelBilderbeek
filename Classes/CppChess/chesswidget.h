@@ -67,7 +67,7 @@ struct ChessWidget : public ribi::Widget
   void PressKey(const Chess::ChessWidget::Key key);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///The Selector (a cursor and possibly a selected square)
   boost::scoped_ptr<Chess::SquareSelector> m_selector;

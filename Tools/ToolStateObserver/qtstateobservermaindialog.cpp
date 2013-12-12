@@ -21,6 +21,7 @@
 #include "multiintegerstateobserver.h"
 #include "noisefunctionparser.h"
 #include "slidingmodeobserver.h"
+#include "trace.h"
 #include "ui_qtstateobservermaindialog.h"
 
 #if QWT_VERSION >= 0x060100
@@ -42,6 +43,9 @@ ribi::QtStateObserverMainDialog::QtStateObserverMainDialog(
     m_curve_outputs_ma(new QwtPlotCurve("Multi alpha filter estimations")),
     m_curve_outputs_miso(new QwtPlotCurve("Multi integer state observer estimations"))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   #ifdef _WIN32
@@ -408,3 +412,16 @@ void ribi::QtStateObserverMainDialog::on_button_rerun_clicked() noexcept
 {
   this->Run();
 }
+
+#ifndef NDEBUG
+void ribi::QtStateObserverMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtStateObserverMainDialog::Test");
+  TRACE("Finished ribi::QtStateObserverMainDialog::Test successfully");
+}
+#endif

@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "toolgaborfiltermenudialog.h"
 #include "qttoolgaborfiltermaindialog.h"
+#include "trace.h"
 #include "ui_qttoolgaborfiltermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -32,12 +33,15 @@ ribi::QtToolGaborFilterMenuDialog::QtToolGaborFilterMenuDialog(QWidget *parent) 
     QtHideAndShowDialog(parent),
     ui(new Ui::QtToolGaborFilterMenuDialog)
 {
-    ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
+  ui->setupUi(this);
 }
 
 ribi::QtToolGaborFilterMenuDialog::~QtToolGaborFilterMenuDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }
 
 void ribi::QtToolGaborFilterMenuDialog::on_button_start_clicked()
@@ -56,3 +60,16 @@ void ribi::QtToolGaborFilterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
+
+#ifndef NDEBUG
+void ribi::QtToolGaborFilterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolGaborFilterMenuDialog::Test");
+  TRACE("Finished ribi::QtToolGaborFilterMenuDialog::Test successfully");
+}
+#endif

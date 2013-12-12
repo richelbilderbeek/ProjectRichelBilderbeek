@@ -51,6 +51,9 @@ ribi::TestNewickVectorDialog::TestNewickVectorDialog() noexcept
     m_text{}
 {
   #ifndef NDEBUG
+  Test();
+  #endif
+  #ifndef NDEBUG
   Newick::Test();
   BinaryNewickVector::Test();
   #endif

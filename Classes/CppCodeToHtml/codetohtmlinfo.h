@@ -62,7 +62,7 @@ struct Info
   static const std::string GetTime() noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 

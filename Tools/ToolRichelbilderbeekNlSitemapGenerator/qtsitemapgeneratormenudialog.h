@@ -51,6 +51,10 @@ private slots:
 
 private:
   Ui::QtSitemapGeneratorMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

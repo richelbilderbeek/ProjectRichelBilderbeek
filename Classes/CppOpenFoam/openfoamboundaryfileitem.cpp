@@ -24,6 +24,11 @@ ribi::foam::BoundaryFileItem::BoundaryFileItem(
   assert(m_start_face.Get() >= 0);
 }
 
+const ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
+{
+  return m_start_face + FaceIndex(m_n_faces);
+}
+
 #ifndef NDEBUG
 void ribi::foam::BoundaryFileItem::Test() noexcept
 {

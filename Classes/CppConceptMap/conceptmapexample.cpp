@@ -132,7 +132,7 @@ ribi::cmap::Competency ribi::cmap::Example::StrToCompetency(const std::string& s
   throw std::logic_error("ribi::cmap::Example::StrToCompetency: unknown string");
 }
 
-void ribi::cmap::Example::Test()
+void ribi::cmap::Example::Test() noexcept
 {
   {
     static bool is_tested = false;

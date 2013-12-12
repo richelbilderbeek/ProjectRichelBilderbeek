@@ -50,6 +50,10 @@ private slots:
   void on_button_quit_clicked();
   void on_button_start_singlescale_clicked();
   void on_button_start_multiscale_clicked();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

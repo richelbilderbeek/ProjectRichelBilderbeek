@@ -28,10 +28,10 @@ ribi::QtSimMysteryMachineRealMachineDialog::QtSimMysteryMachineRealMachineDialog
     QtHideAndShowDialog(parent),
     ui(new Ui::QtSimMysteryMachineRealMachineDialog)
 {
-    ui->setupUi(this);
+  ui->setupUi(this);
 }
 
 ribi::QtSimMysteryMachineRealMachineDialog::~QtSimMysteryMachineRealMachineDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }

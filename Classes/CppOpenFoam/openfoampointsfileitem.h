@@ -14,7 +14,7 @@ namespace foam {
 struct PointsFileItem
 {
   explicit PointsFileItem(
-    const Coordinat3D& coordinat = { 0.0, 0.0, 0.0}
+    const Coordinat3D& coordinat = Coordinat3D(0.0, 0.0, 0.0)
   );
 
   const Coordinat3D& GetCoordinat() const noexcept { return m_coordinat; }

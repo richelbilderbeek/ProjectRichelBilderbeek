@@ -115,7 +115,7 @@ const std::vector<std::string> ribi::SimpleLinearRegression::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-void ribi::SimpleLinearRegression::Test()
+void ribi::SimpleLinearRegression::Test() noexcept
 {
   {
     static bool is_tested { false };

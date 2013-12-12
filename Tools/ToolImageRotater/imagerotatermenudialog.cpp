@@ -3,8 +3,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "trace.h"
+
 int ribi::ImageRotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -65,3 +70,16 @@ const std::vector<std::string> ribi::ImageRotaterMenuDialog::GetVersionHistory()
     "2013-11-29: version 2.0: port to Qt"
   };
 }
+
+#ifndef NDEBUG
+void ribi::ImageRotaterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ImageRotaterMenuDialog::Test");
+  TRACE("Finished ribi::ImageRotaterMenuDialog::Test successfully");
+}
+#endif

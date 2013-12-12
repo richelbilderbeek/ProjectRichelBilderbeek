@@ -34,7 +34,7 @@ struct BitBoard
   static const std::vector<std::string> GetVersionHistory();
 
   ///Test the BitBoard
-  static void Test();
+  static void Test() noexcept;
 
   private:
   ///An 8x8 std::vector of bools

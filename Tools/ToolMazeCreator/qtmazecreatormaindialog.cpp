@@ -34,11 +34,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QTimer>
 
+#include "trace.h"
 #include "ui_qtmazecreatormaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent), //Removed Qt::Window flag
+    QtHideAndShowDialog(parent),
     ui(new Ui::QtMazeCreatorMainDialog),
     m_scene(new QGraphicsScene),
     m_background(new QGraphicsPixmapItem),
@@ -46,6 +47,9 @@ ribi::QtMazeCreatorMainDialog::QtMazeCreatorMainDialog(QWidget *parent) :
     m_maze_sz(7),
     m_rotation(0.0)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->graphicsView->setScene(m_scene.get());
   m_scene->addItem(m_background.get());
@@ -154,7 +158,7 @@ void ribi::QtMazeCreatorMainDialog::onTimer()
   m_rotation+=1.0;
   m_background->setRotation(m_rotation);
 }
-//---------------------------------------------------------------------------
+
 //Creates a maze
 // 0 : path
 // 1 : wall
@@ -223,3 +227,16 @@ const std::vector<std::vector<int> > ribi::QtMazeCreatorMainDialog::CreateMaze(c
   }
   return maze;
 }
+
+#ifndef NDEBUG
+void ribi::QtMazeCreatorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtMazeCreatorMainDialog::Test");
+  TRACE("Finished ribi::QtMazeCreatorMainDialog::Test successfully");
+}
+#endif

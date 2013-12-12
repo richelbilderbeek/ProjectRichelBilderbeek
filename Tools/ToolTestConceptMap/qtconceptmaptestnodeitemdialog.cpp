@@ -238,6 +238,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::on_edit_example_text_textChange
   this->GetNode()->GetConcept()->GetExamples()->Get().at(0)->SetText(arg1.toStdString());
 }
 
+#ifndef NDEBUG
 void ribi::cmap::QtConceptMapTestNodeItemDialog::Test()
 {
   {
@@ -318,6 +319,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::Test()
   t.detach();
   #endif
 }
+#endif
 
 void ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate()
 {

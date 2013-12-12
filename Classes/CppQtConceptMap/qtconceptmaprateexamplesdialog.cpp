@@ -131,7 +131,7 @@ void ribi::cmap::QtRateExamplesDialog::keyPressEvent(QKeyEvent* e)
   QDialog::keyPressEvent(e);
 }
 
-void ribi::cmap::QtRateExamplesDialog::Test()
+void ribi::cmap::QtRateExamplesDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

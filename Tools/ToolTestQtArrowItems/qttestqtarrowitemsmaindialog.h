@@ -60,6 +60,9 @@ private:
 
   void OnRequestSceneUpdate();
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

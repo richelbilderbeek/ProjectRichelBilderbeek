@@ -49,6 +49,9 @@ public:
 
 private:
   Ui::QtPicToCodeMainDialog *ui;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void on_button_convert_clicked();

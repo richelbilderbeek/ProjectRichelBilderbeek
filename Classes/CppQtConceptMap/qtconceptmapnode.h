@@ -94,7 +94,7 @@ private:
   void OnItemRequestsRateExamples();
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

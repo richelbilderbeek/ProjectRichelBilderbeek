@@ -38,6 +38,9 @@ ribi::QtTestQtRoundedTextRectItemMenuDialog::QtTestQtRoundedTextRectItemMenuDial
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedTextRectItemMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

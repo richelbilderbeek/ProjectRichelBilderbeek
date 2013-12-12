@@ -45,7 +45,7 @@ struct Cluster
   std::vector<boost::shared_ptr<ribi::cmap::Concept> > m_v;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
 
   ///Block constructor, except for ClusterFactory

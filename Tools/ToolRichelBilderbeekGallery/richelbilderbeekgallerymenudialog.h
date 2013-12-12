@@ -54,12 +54,6 @@ struct GalleryMenuDialog : public MenuDialog
 
 
   private:
-
-  #ifndef NDEBUG
-  ///Test this class
-  static void Test() noexcept;
-  #endif
-
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   ///Converts a program to a gallery item
@@ -73,6 +67,10 @@ struct GalleryMenuDialog : public MenuDialog
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
   const std::vector<std::string> ToHtml(const Program& p) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

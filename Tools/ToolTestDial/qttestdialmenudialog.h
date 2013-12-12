@@ -50,8 +50,9 @@ private slots:
 private:
   Ui::QtTestDialMenuDialog *ui;
 
-  ///Test this class
-  void Test() noexcept;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

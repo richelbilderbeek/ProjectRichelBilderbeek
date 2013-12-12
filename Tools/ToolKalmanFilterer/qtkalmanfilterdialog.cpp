@@ -36,7 +36,9 @@ ribi::kalman::QtKalmanFilterDialog::QtKalmanFilterDialog(const boost::shared_ptr
     m_model{model},
     m_parameters{}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(m_model);
   ui->setupUi(this);
 
@@ -206,3 +208,16 @@ void ribi::kalman::QtKalmanFilterDialog::on_box_filter_type_currentIndexChanged(
 
   m_signal_kalman_filter_type_changed(this->GetKalmanFilterType());
 }
+
+#ifndef NDEBUG
+void ribi::kalman::QtKalmanFilterDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::kalman::QtKalmanFilterDialog::Test");
+  TRACE("Finished ribi::kalman::QtKalmanFilterDialog::Test successfully");
+}
+#endif

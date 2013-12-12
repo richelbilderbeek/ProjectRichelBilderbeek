@@ -234,7 +234,7 @@ const std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
 }
 
 #ifndef NDEBUG
-void ribi::QtCreatorProFile::Test()
+void ribi::QtCreatorProFile::Test() noexcept
 {
   //Test exactly once
   {

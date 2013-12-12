@@ -6,6 +6,7 @@
 #include "qtstateobservermaindialog.h"
 #include "qthideandshowdialog.h"
 #include "stateobservermenudialog.h"
+#include "trace.h"
 #include "ui_qtstateobservermenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -14,6 +15,9 @@ ribi::QtStateObserverMenuDialog::QtStateObserverMenuDialog(QWidget *parent) noex
   QtHideAndShowDialog(parent),
   ui(new Ui::QtStateObserverMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -45,3 +49,15 @@ void ribi::QtStateObserverMenuDialog::on_button_quit_clicked() noexcept
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtStateObserverMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtStateObserverMenuDialog::Test");
+  TRACE("Finished ribi::QtStateObserverMenuDialog::Test successfully");
+}
+#endif

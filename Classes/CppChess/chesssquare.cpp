@@ -57,7 +57,7 @@ const std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-void ribi::Chess::Square::Test()
+void ribi::Chess::Square::Test() noexcept
 {
   {
     static bool is_tested = false;

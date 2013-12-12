@@ -97,7 +97,7 @@ struct Game
 
   #ifndef NDEBUG
   ///Tests the Game class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   private:

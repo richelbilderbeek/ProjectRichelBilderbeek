@@ -49,8 +49,12 @@ protected:
 private:
   Ui::QtTestLedMainDialog *ui;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
-    void on_slider_valueChanged(int value) noexcept;
+  void on_slider_valueChanged(int value) noexcept;
 };
 
 } //~namespace ribi

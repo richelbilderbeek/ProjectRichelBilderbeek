@@ -9,7 +9,7 @@
 
 
 #ifndef NDEBUG
-void ribi::Chess::Move::Test()
+void ribi::Chess::Move::Test() noexcept
 {
   {
     static bool tested = false;

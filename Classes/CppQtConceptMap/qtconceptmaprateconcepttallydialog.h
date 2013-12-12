@@ -63,7 +63,7 @@ private:
     CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

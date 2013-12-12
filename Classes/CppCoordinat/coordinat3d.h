@@ -11,7 +11,7 @@ namespace ribi {
 //with an alternative.
 struct Coordinat3D
 {
-  Coordinat3D(
+  explicit Coordinat3D(
     const double x = 0.0,
     const double y = 0.0,
     const double z = 0.0

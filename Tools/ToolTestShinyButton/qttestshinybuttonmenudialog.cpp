@@ -36,6 +36,9 @@ ribi::QtTestShinyButtonMenuDialog::QtTestShinyButtonMenuDialog(QWidget *parent) 
     m_button_about(new QtShinyButtonWidget(0.50,0.25,"About")),
     m_button_quit( new QtShinyButtonWidget(0.75,0.25,"Quit"))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->layout->addWidget(m_button_start.get());
   ui->layout->addWidget(m_button_about.get());

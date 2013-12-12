@@ -26,7 +26,7 @@ struct WhiteNoiseSystemTypes
   static const boost::bimap<WhiteNoiseSystemType,std::string> CreateMap();
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

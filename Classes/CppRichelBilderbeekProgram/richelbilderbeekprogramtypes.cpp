@@ -483,7 +483,7 @@ const std::string ribi::ProgramTypes::ProgramTypeToScreenName(const ProgramType 
 }
 
 #ifndef NDEBUG
-void ribi::ProgramTypes::Test()
+void ribi::ProgramTypes::Test() noexcept
 {
   {
     static bool is_tested = false;

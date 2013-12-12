@@ -25,9 +25,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "musicchord.h"
 #include "musicnote.h"
 #include "musicscale.h"
+#include "trace.h"
 
 int ribi::MusicTheoryMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -92,3 +96,15 @@ const std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory() 
   };
 }
 
+#ifndef NDEBUG
+void ribi::MusicTheoryMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::MusicTheoryMenuDialog::Test");
+  TRACE("Finished ribi::MusicTheoryMenuDialog::Test successfully");
+}
+#endif

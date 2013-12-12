@@ -14,20 +14,23 @@ class QtSecretMessageCreateDialog : public QtHideAndShowDialog
     Q_OBJECT
     
 public:
-    explicit QtSecretMessageCreateDialog(QWidget *parent = 0);
-    QtSecretMessageCreateDialog(const QtSecretMessageCreateDialog&) = delete;
-    QtSecretMessageCreateDialog& operator=(const QtSecretMessageCreateDialog&) = delete;
-    ~QtSecretMessageCreateDialog() noexcept;
+  explicit QtSecretMessageCreateDialog(QWidget *parent = 0);
+  QtSecretMessageCreateDialog(const QtSecretMessageCreateDialog&) = delete;
+  QtSecretMessageCreateDialog& operator=(const QtSecretMessageCreateDialog&) = delete;
+  ~QtSecretMessageCreateDialog() noexcept;
     
 private slots:
-
-    void on_button_load_original_clicked();
-    void paintEvent(QPaintEvent *);
+  void on_button_load_original_clicked();
+  void paintEvent(QPaintEvent *);
 
 private:
-    Ui::QtSecretMessageCreateDialog *ui;
-    QPixmap m_original;
-    bool m_needs_repaint;
+  Ui::QtSecretMessageCreateDialog *ui;
+  QPixmap m_original;
+  bool m_needs_repaint;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

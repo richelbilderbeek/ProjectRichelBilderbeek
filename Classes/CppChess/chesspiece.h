@@ -60,7 +60,7 @@ struct Piece
 
   #ifndef NDEBUG
   ///Test all Pieces
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
@@ -107,7 +107,7 @@ struct PieceBishop : public Piece
 
   #ifndef NDEBUG
   ///Test Bishop
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
@@ -146,7 +146,7 @@ struct PieceKing : public Piece
 
   #ifndef NDEBUG
   ///Test PieceKing
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
@@ -187,7 +187,7 @@ struct PieceKnight : public Piece
 
   #ifndef NDEBUG
   ///Test PieceKnight
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
@@ -219,7 +219,7 @@ struct PiecePawn : public Piece
 
   #ifndef NDEBUG
   ///Test PiecePawn
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
@@ -252,7 +252,7 @@ struct PieceQueen : public Piece
 
   #ifndef NDEBUG
   ///Test PieceQueen
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<
@@ -286,7 +286,7 @@ struct PieceRook : public Piece
 
   #ifndef NDEBUG
   ///Test PieceRook
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Piece to std::string for operator<<

@@ -35,6 +35,9 @@ ribi::QtTestToggleButtonMenuDialog::QtTestToggleButtonMenuDialog(QWidget *parent
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestToggleButtonMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

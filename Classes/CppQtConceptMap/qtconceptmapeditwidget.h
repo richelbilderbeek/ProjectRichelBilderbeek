@@ -93,7 +93,7 @@ private:
   void OnToolsClicked();
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 };
 
 } //~namespace cmap

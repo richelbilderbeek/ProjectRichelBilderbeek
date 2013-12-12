@@ -25,7 +25,7 @@ struct Score
 
   #ifndef NDEBUG
   ///Test if Score is working correctly
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Convert a Score to string

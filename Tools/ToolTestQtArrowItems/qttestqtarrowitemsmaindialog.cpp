@@ -46,6 +46,9 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtArrowItemsMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   assert(this->ui->view->scene());

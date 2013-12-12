@@ -259,7 +259,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

@@ -216,7 +216,7 @@ void ribi::QtRichelBilderbeekMenuDialog::OnShow(const ProgramType program_type)
 }
 
 #ifndef NDEBUG
-void ribi::QtRichelBilderbeekMenuDialog::Test()
+void ribi::QtRichelBilderbeekMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

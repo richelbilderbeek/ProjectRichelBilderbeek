@@ -17,6 +17,9 @@
 
 int ribi::ToolDotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -125,3 +128,16 @@ const std::vector<std::string> ribi::ToolDotMatrixMenuDialog::GetVersionHistory(
     "2013-11-01: version 2.1: improved console version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::ToolDotMatrixMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolDotMatrixMenuDialog::Test");
+  TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
+}
+#endif

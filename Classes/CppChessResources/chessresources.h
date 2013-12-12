@@ -49,7 +49,7 @@ struct Resources
   //static Resources * m_instance;
 
   ///Tests this class for all files being present
-  static void Test();
+  static void Test() noexcept;
 };
 
 } //~ namespace Chess

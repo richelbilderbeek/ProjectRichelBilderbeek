@@ -8,15 +8,15 @@
 #include <QDoubleSpinBox>
 #include <QGridLayout>
 
-#include "qwt_plot.h"
-#include "qwt_plot_curve.h"
-
-#include "qwt_point_data.h"
-
-#include "qtfunctionplottermaindialog.h"
-#include "ui_qtfunctionplottermaindialog.h"
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+#include <qwt_point_data.h>
 
 #include "fparser.hh"
+
+#include "qtfunctionplottermaindialog.h"
+#include "trace.h"
+#include "ui_qtfunctionplottermaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
@@ -25,6 +25,9 @@ ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
     m_curve(new QwtPlotCurve),
     m_plot(new QwtPlot)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   #ifndef NDEBUG
@@ -167,3 +170,16 @@ void ribi::QtFunctionPlotterMainDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }
+
+#ifndef NDEBUG
+void ribi::QtFunctionPlotterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtFunctionPlotterMainDialog::Test");
+  TRACE("Finished ribi::QtFunctionPlotterMainDialog::Test successfully");
+}
+#endif

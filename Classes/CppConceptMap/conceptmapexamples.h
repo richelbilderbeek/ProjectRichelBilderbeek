@@ -41,7 +41,7 @@ private:
   void OnExampleChanged();
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Correct befriending, from http://richelbilderbeek.nl/CppChecked_delete.htm
   friend void boost::checked_delete<>(Examples* x);

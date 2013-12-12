@@ -107,6 +107,7 @@ void ribi::cmap::QtTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
   }
 }
 
+#ifndef NDEBUG
 void ribi::cmap::QtTestConceptMapRateWidgetDialog::Test()
 {
   {
@@ -122,3 +123,4 @@ void ribi::cmap::QtTestConceptMapRateWidgetDialog::Test()
   }
   TRACE("ribi::cmap::QtTestConceptMapRateWidgetDialog::Test finished successfully");
 }
+#endif

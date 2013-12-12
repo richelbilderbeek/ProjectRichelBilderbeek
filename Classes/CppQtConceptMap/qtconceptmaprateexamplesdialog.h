@@ -53,7 +53,7 @@ private:
   const boost::shared_ptr<ribi::cmap::Examples> GetRatedExamples() const;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
 };
 

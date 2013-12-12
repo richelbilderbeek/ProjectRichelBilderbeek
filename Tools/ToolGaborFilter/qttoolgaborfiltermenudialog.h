@@ -14,23 +14,25 @@ namespace ribi {
 
 class QtToolGaborFilterMenuDialog : public QtHideAndShowDialog
 {
-    Q_OBJECT
+  Q_OBJECT
     
 public:
-    explicit QtToolGaborFilterMenuDialog(QWidget *parent = 0);
-    QtToolGaborFilterMenuDialog(const QtToolGaborFilterMenuDialog&) = delete;
-    QtToolGaborFilterMenuDialog& operator=(const QtToolGaborFilterMenuDialog&) = delete;
-    ~QtToolGaborFilterMenuDialog() noexcept;
+  explicit QtToolGaborFilterMenuDialog(QWidget *parent = 0);
+  QtToolGaborFilterMenuDialog(const QtToolGaborFilterMenuDialog&) = delete;
+  QtToolGaborFilterMenuDialog& operator=(const QtToolGaborFilterMenuDialog&) = delete;
+  ~QtToolGaborFilterMenuDialog() noexcept;
     
 private slots:
-    void on_button_start_clicked();
-
-    void on_button_about_clicked();
-
-    void on_button_quit_clicked();
+  void on_button_start_clicked();
+  void on_button_about_clicked();
+  void on_button_quit_clicked();
 
 private:
-    Ui::QtToolGaborFilterMenuDialog *ui;
+  Ui::QtToolGaborFilterMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

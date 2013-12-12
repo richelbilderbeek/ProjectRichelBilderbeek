@@ -40,7 +40,7 @@ struct GameWidget : public Chess::ChessWidget
   const boost::shared_ptr<Chess::Game> GetGame() const { return m_game; }
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   private:
   ~GameWidget() {}

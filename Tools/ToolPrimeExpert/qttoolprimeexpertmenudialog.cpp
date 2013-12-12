@@ -10,6 +10,7 @@
 #include "qtaboutdialog.h"
 #include "qttoolprimeexpertmaindialog.h"
 #include "qthideandshowdialog.h"
+#include "trace.h"
 #include "ui_qttoolprimeexpertmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -17,6 +18,9 @@ ribi::QtToolPrimeExpertMenuDialog::QtToolPrimeExpertMenuDialog(QWidget *parent) 
     QtHideAndShowDialog(parent),
     ui(new Ui::QtToolPrimeExpertMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -52,3 +56,15 @@ void ribi::QtToolPrimeExpertMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtToolPrimeExpertMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolPrimeExpertMenuDialog::Test");
+  TRACE("Finished ribi::QtToolPrimeExpertMenuDialog::Test successfully");
+}
+#endif

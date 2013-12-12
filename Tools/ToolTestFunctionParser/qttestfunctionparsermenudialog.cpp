@@ -32,6 +32,9 @@ ribi::QtTestFunctionParserMenuDialog::QtTestFunctionParserMenuDialog(QWidget *pa
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestFunctionParserMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -62,3 +65,15 @@ void ribi::QtTestFunctionParserMenuDialog::on_button_quit_clicked() noexcept
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtTestFunctionParserMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestFunctionParserMenuDialog::Test");
+  TRACE("Finished ribi::QtTestFunctionParserMenuDialog::Test successfully");
+}
+#endif

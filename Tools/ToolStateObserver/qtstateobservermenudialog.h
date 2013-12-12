@@ -26,6 +26,10 @@ private slots:
 
 private:
   Ui::QtStateObserverMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -20,9 +20,9 @@ struct FunctionPlotterMenuDialog : public MenuDialog
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  //static const About GetAbout();
-  //static const std::string GetVersion();
-  //static const std::vector<std::string> GetVersionHistory();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //namespace ribi

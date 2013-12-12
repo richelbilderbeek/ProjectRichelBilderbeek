@@ -45,6 +45,9 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
   : m_signal_request_about{},
     m_signal_request_quit{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const double pi = boost::math::constants::pi<double>();
   {
     //Legend

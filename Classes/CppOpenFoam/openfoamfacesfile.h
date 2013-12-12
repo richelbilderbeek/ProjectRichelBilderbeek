@@ -20,9 +20,17 @@ struct FacesFile
     const Header header = GetDefaultHeader(),
     const std::vector<FacesFileItem>& items = {});
 
+  bool CanGetItem(const FaceIndex& face_index) const noexcept;
+
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<FacesFileItem> GetItems() const noexcept { return m_items; }
+
+  ///Assumes CanGetItem is true
+  const FacesFileItem& GetItem(const FaceIndex& face_index) const noexcept;
+
+  ///Obtain the number of faces, the size of m_items, or the first face index not available
+  const FaceIndex GetMaxFaceIndex() const noexcept;
 
   private:
 

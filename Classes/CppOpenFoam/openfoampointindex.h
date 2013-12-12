@@ -21,6 +21,11 @@ std::ostream& operator<<(std::ostream& os, const PointIndex& face_index);
 std::istream& operator>>(std::istream& is, PointIndex& face_index);
 
 bool operator==(const PointIndex& lhs, const PointIndex& rhs) noexcept;
+bool operator!=(const PointIndex& lhs, const PointIndex& rhs) noexcept;
+bool operator<(const PointIndex& lhs, const PointIndex& rhs) noexcept;
+bool operator>(const PointIndex& lhs, const PointIndex& rhs) noexcept;
+bool operator<=(const PointIndex& lhs, const PointIndex& rhs) noexcept;
+bool operator>=(const PointIndex& lhs, const PointIndex& rhs) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

@@ -31,7 +31,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::TestQuestionMainDialog::TestQuestionMainDialog()
   : m_questions(CreateQuestions())
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 std::vector<boost::shared_ptr<ribi::QuestionDialog> > ribi::TestQuestionMainDialog::CreateQuestions()

@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 
+#include "trace.h"
 #include "ui_qtpredickadvocatormaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -18,6 +19,9 @@ ribi::QtPreDickAdvocaTorMainDialog::QtPreDickAdvocaTorMainDialog(
     ui(new Ui::QtPreDickAdvocaTorMainDialog),
     m_dialog(seed)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   const int sz = m_dialog.GetTeamNames().size();
@@ -77,3 +81,16 @@ void ribi::QtPreDickAdvocaTorMainDialog::on_box_right_currentIndexChanged(int)
 {
   OnAnyChange();
 }
+
+#ifndef NDEBUG
+void ribi::QtPreDickAdvocaTorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtPreDickAdvocaTorMainDialog::Test");
+  TRACE("Finished ribi::QtPreDickAdvocaTorMainDialog::Test successfully");
+}
+#endif

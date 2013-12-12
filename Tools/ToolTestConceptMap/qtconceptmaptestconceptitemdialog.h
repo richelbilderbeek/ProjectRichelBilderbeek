@@ -50,8 +50,7 @@ private:
   const boost::shared_ptr<ribi::cmap::Concept> GetChosenConcept();
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

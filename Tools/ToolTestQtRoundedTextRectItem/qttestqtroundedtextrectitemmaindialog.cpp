@@ -30,6 +30,9 @@ QtTestQtRoundedTextRectItemMainDialog::QtTestQtRoundedTextRectItemMainDialog(QWi
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedTextRectItemMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

@@ -59,7 +59,7 @@ void ribi::QtToolTestCanvasMenuDialog::on_button_start_canvas_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestCanvasMenuDialog::Test()
+void ribi::QtToolTestCanvasMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

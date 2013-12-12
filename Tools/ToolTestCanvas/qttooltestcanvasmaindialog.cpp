@@ -10,6 +10,7 @@
 #include <boost/lambda/lambda.hpp>
 
 #include "canvas.h"
+#include "trace.h"
 #include "ui_qttooltestcanvasmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -18,6 +19,9 @@ ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
   ui(new Ui::QtToolTestCanvasMainDialog),
   m_canvas(CreateCanvas())
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   m_canvas->m_signal_changed.connect(
@@ -143,3 +147,16 @@ void ribi::QtToolTestCanvasMainDialog::on_button_line_clicked()
     ui->box_line_y2->value()
   );
 }
+
+#ifndef NDEBUG
+void ribi::QtToolTestCanvasMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolTestCanvasMainDialog::Test");
+  TRACE("Finished ribi::QtToolTestCanvasMainDialog::Test successfully");
+}
+#endif

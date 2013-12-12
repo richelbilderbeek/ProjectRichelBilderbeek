@@ -38,6 +38,9 @@ ribi::QtTestShinyButtonMainDialog::QtTestShinyButtonMainDialog(QWidget *parent)
    ui(new Ui::QtTestShinyButtonMainDialog),
    m_shiny_button(new QtShinyButtonWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->my_layout->addWidget(m_shiny_button.get());

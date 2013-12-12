@@ -19,14 +19,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolRandomCode.htm
 //---------------------------------------------------------------------------
-
-
 #include "randomcode.h"
 
+#include <cassert>
+
 #include "randomcodemenudialog.h"
+#include "trace.h"
 
 int ribi::RandomCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& /*argv*/) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(!"TODO");
   return 1;
 }
@@ -85,3 +89,16 @@ const std::vector<std::string> ribi::RandomCodeMenuDialog::GetVersionHistory() c
     "2012-12-25: version 4.2: added menu for desktop version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::RandomCodeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::RandomCodeMenuDialog::Test");
+  TRACE("Finished ribi::RandomCodeMenuDialog::Test successfully");
+}
+#endif

@@ -116,7 +116,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const bo
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbRateConceptMapDialog::Test()
+void ribi::pvdb::QtPvdbRateConceptMapDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

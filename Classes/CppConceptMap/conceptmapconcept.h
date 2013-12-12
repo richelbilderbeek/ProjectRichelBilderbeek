@@ -140,7 +140,7 @@ struct Concept
   int m_rating_specificity;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Use checked_delete for destructor
   ~Concept() {}

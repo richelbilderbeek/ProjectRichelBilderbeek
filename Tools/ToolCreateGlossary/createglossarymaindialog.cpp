@@ -64,9 +64,25 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
   const std::string& page_url,
   const std::string& regex)
 {
+  const std::string website_folder {
+  #ifndef _WIN32
+    "/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
+  #else
+    "D:\\Projects\\Projects\\RichelbilderbeekNl",
+  #endif
+  };
+  #ifndef NDEBUG
+  if (!ribi::fileio::IsFolder(website_folder))
+  {
+    TRACE("ERROR");
+    TRACE(website_folder);
+  }
+  #endif
+  assert(ribi::fileio::IsFolder(website_folder));
+
   const std::vector<std::string> pagenames {
     ribi::fileio::GetFilesInFolderByRegex(
-      "/home/richel/ProjectRichelBilderbeek/Projects/RichelbilderbeekNl",
+      website_folder,
       regex)
   };
 
@@ -74,9 +90,16 @@ void ribi::CreateGlossaryMainDialog::CreatePage(
   for (const std::string& s: pagenames)
   {
     const std::string full_path
-      = std::string("/home/richel/ProjectRichelBilderbeek/")
-      + std::string("Projects/RichelbilderbeekNl/")
+      = website_folder
+      + fileio::GetPathSeperator()
       + s;
+    #ifndef NDEBUG
+    if (!ribi::fileio::IsRegularFile(full_path))
+    {
+      TRACE("ERROR");
+      TRACE(full_path);
+    }
+    #endif
     assert(ribi::fileio::IsRegularFile(full_path));
     boost::shared_ptr<const HtmlPage> page {
       new HtmlPage(full_path)

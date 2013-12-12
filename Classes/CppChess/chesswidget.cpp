@@ -86,7 +86,7 @@ void ribi::Chess::ChessWidget::PressKey(const ChessWidget::Key key)
   }
 }
 
-void ribi::Chess::ChessWidget::Test()
+void ribi::Chess::ChessWidget::Test() noexcept
 {
   //Testing Chess::Widget exactly once
   {

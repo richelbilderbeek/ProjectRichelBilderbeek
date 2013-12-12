@@ -50,7 +50,9 @@ private:
   Ui::QtSimMysteryMachineMainDialog *ui;
   boost::scoped_ptr<QtMysteryMachineWidget> m_machine;
 
-private slots:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

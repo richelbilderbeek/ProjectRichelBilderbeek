@@ -60,7 +60,7 @@ private:
   boost::scoped_ptr<TestOpenQuestionMenuDialog> m_dialog;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

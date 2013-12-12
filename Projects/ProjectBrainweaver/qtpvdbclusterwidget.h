@@ -60,7 +60,7 @@ private:
   int GetDepth(const QTreeWidgetItem * const item) const;
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Write the widget its data to the cluster
   void WriteToCluster();

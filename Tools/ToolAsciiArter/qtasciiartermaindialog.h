@@ -65,6 +65,10 @@ private:
 private slots:
   void on_edit_width_textChanged(QString );
   void on_button_load_clicked();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -137,7 +137,7 @@ struct Board
 
   #ifndef NDEBUG
   ///Tests the Board2d class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   //friend bool operator==(const Board& lhs, const Board& rhs);

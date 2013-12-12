@@ -60,11 +60,11 @@ void ribi::foam::PointsFile::Test() noexcept
   for (int i=1; i!=4; ++i)
   {
     PointsFileItem item(
-      {
+      Coordinat3D(
         static_cast<double>(i) * 1.1,
         static_cast<double>(i) * 2.2,
         static_cast<double>(i) * 3.3
-      }
+      )
     );
     items.push_back(item);
   }
@@ -90,11 +90,11 @@ void ribi::foam::PointsFile::Test() noexcept
     for (int i=1; i!=3; ++i)
     {
       PointsFileItem item(
-        {
+        Coordinat3D(
           static_cast<double>(i) * 4.4,
           static_cast<double>(i) * 5.5,
           static_cast<double>(i) * 6.6
-        }
+        )
       );
       other_items.push_back(item);
     }

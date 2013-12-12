@@ -22,11 +22,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtpictocodemenudialog.h"
 
+#include <cassert>
 
 #include "about.h"
 #include "pictocodemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtpictocodemaindialog.h"
+#include "trace.h"
 #include "ui_qtpictocodemenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -34,6 +36,9 @@ ribi::QtPicToCodeMenuDialog::QtPicToCodeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtPicToCodeMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -59,3 +64,15 @@ void ribi::QtPicToCodeMenuDialog::on_button_quit_clicked()
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtPicToCodeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtPicToCodeMenuDialog::Test");
+  TRACE("Finished ribi::QtPicToCodeMenuDialog::Test successfully");
+}
+#endif

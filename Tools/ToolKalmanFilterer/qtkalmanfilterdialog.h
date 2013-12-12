@@ -67,10 +67,12 @@ private:
   ///Obtain the all KalmanFilterParameterType values, ordered for humans
   const std::vector<KalmanFilterParameterType> GetParameterTypes() const;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
-
   void on_button_calculate_optimal_kalman_gain_steady_state_clicked();
-
   void on_box_filter_type_currentIndexChanged(int index);
 
 };

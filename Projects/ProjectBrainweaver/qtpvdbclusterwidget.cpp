@@ -298,7 +298,7 @@ void ribi::pvdb::QtPvdbClusterWidget::RemoveEmptyItem(QTreeWidgetItem* item,int 
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbClusterWidget::Test()
+void ribi::pvdb::QtPvdbClusterWidget::Test() noexcept
 {
   {
     static bool is_tested = false;

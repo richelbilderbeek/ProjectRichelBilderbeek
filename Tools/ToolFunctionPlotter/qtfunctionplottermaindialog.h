@@ -43,6 +43,9 @@ private:
     const double newMin,
     const double newMax);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -6,8 +6,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+#include "openfoamfwd.h"
 #include "openfoamcellindex.h"
-#include "openfoampoint.h"
+//#include "openfoampoint.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -20,19 +21,22 @@ namespace foam {
 struct Face
 {
   Face(
-    const boost::shared_ptr<CellIndex> neighbour = nullptr,
-    const boost::shared_ptr<CellIndex> owner = nullptr,
-    const std::vector<Point>& points = {}
+    //const boost::shared_ptr<Cell> neighbour = nullptr,
+    //const boost::shared_ptr<Cell> owner = nullptr,
+    const std::vector<boost::shared_ptr<Point> >& points = {}
   );
 
+  Face(const Face&) = delete;
+  Face& operator=(const Face&) = delete;
+
   ///If this Face has no Neighbour, this is nullptr
-  const boost::shared_ptr<CellIndex> m_neighbour;
+  //const boost::shared_ptr<CellIndex> m_neighbour;
 
   ///If this Face has no Owner, this is nullptr
-  const boost::shared_ptr<CellIndex> m_owner;
+  //const boost::shared_ptr<CellIndex> m_owner;
 
   ///The points/vertices/coordinats this face consists of
-  const std::vector<Point> m_points;
+  const std::vector<boost::shared_ptr<Point> > m_points;
 };
 
 } //~namespace foam

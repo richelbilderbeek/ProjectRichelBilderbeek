@@ -50,6 +50,10 @@ struct ToolEncrangerMainDialog
   std::string m_encrypted_text;
   int m_key;
   std::string m_plain_text;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -22,6 +22,9 @@ ribi::QtFilterOperationerMainDialog::QtFilterOperationerMainDialog(QWidget *pare
     m_result{nullptr},
     m_source{nullptr}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->filter->setModel(m_model);

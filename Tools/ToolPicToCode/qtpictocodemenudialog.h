@@ -28,6 +28,9 @@ protected:
 
 private:
   Ui::QtPicToCodeMenuDialog *ui;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
 private slots:
   void on_button_quit_clicked();

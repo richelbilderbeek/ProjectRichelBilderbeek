@@ -115,8 +115,7 @@ private:
   void ShowTable(const boost::shared_ptr<const KalmanFilterExperiment>& experiment);
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 private slots:

@@ -40,20 +40,18 @@ public:
   ~QtTestChessMenuDialog();
 
 private slots:
-
   void on_button_about_clicked();
-
   void on_button_quit_clicked();
-
-
   void on_button_view_resources_clicked();
-
   void on_button_test_board_clicked();
-
   void on_button_test_game_clicked();
 
 private:
   Ui::QtTestChessMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

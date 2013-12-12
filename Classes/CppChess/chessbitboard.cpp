@@ -52,7 +52,7 @@ bool ribi::Chess::BitBoard::Get(const boost::shared_ptr<const Square> s) const
   #endif
 }
 
-void ribi::Chess::BitBoard::Test()
+void ribi::Chess::BitBoard::Test() noexcept
 {
   //Testing Chess::BitBoard exactly once
   {

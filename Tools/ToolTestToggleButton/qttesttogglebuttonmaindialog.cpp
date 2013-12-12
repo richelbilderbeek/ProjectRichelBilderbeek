@@ -37,6 +37,9 @@ ribi::QtTestToggleButtonMainDialog::QtTestToggleButtonMainDialog(QWidget *parent
  : QtHideAndShowDialog(parent),
    ui(new Ui::QtTestToggleButtonMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->toggle_button->m_signal_toggled.connect(

@@ -43,6 +43,9 @@ ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::QtTestKeyboardFriendlyGraphi
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestKeyboardFriendlyGraphicsViewMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   {
     typedef QtTestKeyboardFriendlyGraphicsViewWidget Widget;

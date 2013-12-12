@@ -13,6 +13,9 @@
 
 int ribi::ToolTestMultiApproximatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -75,3 +78,16 @@ const std::vector<std::string> ribi::ToolTestMultiApproximatorMenuDialog::GetVer
     "2013-08-23: version 1.1: display conversion from MultiApproximator to Approximator"
   };
 }
+
+#ifndef NDEBUG
+void ribi::ToolTestMultiApproximatorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolTestMultiApproximatorMenuDialog::Test");
+  TRACE("Finished ribi::ToolTestMultiApproximatorMenuDialog::Test successfully");
+}
+#endif

@@ -26,18 +26,10 @@ ribi::QtToolTestApproximatorXyzMainDialog::QtToolTestApproximatorXyzMainDialog(Q
   ui(new Ui::QtToolTestApproximatorXyzMainDialog),
   m_approximator(),
   m_data(CreateData())
-/*
-  m_curve_approximation_z_high(new QwtPlotCurve),
-  m_curve_approximation_z_low(new QwtPlotCurve),
-  m_curve_approximation_z_mid(new QwtPlotCurve),
-  m_curve_values_z_high(new QwtPlotCurve),
-  m_curve_values_z_low(new QwtPlotCurve),
-  m_curve_values_z_mid(new QwtPlotCurve),
-  m_plot_z_high(new QwtPlot),
-  m_plot_z_low(new QwtPlot),
-  m_plot_z_mid(new QwtPlot)
-*/
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Set up the plots and curves
@@ -267,3 +259,16 @@ void ribi::QtToolTestApproximatorXyzMainDialog::Plot() noexcept
   m_plot->replot();
   #endif
 }
+
+#ifndef NDEBUG
+void ribi::QtToolTestApproximatorXyzMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolTestApproximatorXyzMainDialog::Test");
+  TRACE("Finished ribi::QtToolTestApproximatorXyzMainDialog::Test successfully");
+}
+#endif

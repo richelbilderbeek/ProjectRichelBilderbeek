@@ -70,7 +70,7 @@ void ribi::kalman::QtKalmanFiltererMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFiltererMenuDialog::Test()
+void ribi::kalman::QtKalmanFiltererMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

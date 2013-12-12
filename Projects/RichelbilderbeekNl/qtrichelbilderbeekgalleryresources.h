@@ -56,11 +56,6 @@ struct QtResources
 
   const std::string GetWeb() const noexcept { return "PicWeb.png"; }
   const std::string GetWindows() const noexcept { return "PicWindows.png"; }
-
-  ///Determines if a filename is a regular file
-  ///From http://www.richelbilderbeek.nl/CppIsRegularFile.htm
-  //static bool IsRegularFile(const std::string& filename) noexcept;
-
 };
 
 } //~namespace ribi

@@ -59,6 +59,7 @@ void ribi::cmap::QtTestConceptMapDisplayWidgetDialog::keyPressEvent(QKeyEvent *e
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+#ifndef NDEBUG
 void ribi::cmap::QtTestConceptMapDisplayWidgetDialog::Test()
 {
   {
@@ -71,6 +72,7 @@ void ribi::cmap::QtTestConceptMapDisplayWidgetDialog::Test()
   for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
   TRACE("ribi::cmap::QtTestConceptMapDisplayWidgetDialog::Test finished successfully");
 }
+#endif
 
 void ribi::cmap::QtTestConceptMapDisplayWidgetDialog::on_button_test_modify_clicked()
 {

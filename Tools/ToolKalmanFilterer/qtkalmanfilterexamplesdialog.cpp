@@ -69,7 +69,7 @@ void ribi::kalman::QtKalmanFilterExamplesDialog::keyPressEvent(QKeyEvent * event
 }
 
 #ifndef NDEBUG
-void ribi::kalman::QtKalmanFilterExamplesDialog::Test()
+void ribi::kalman::QtKalmanFilterExamplesDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

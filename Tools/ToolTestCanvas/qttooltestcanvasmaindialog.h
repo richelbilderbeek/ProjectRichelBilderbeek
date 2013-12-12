@@ -46,6 +46,10 @@ private:
 
   static const boost::shared_ptr<Canvas> CreateCanvas();
   void ShowCanvas(const ribi::Canvas * const canvas = nullptr);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

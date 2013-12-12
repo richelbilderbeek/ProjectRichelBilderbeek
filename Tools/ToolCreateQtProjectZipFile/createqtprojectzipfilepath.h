@@ -81,7 +81,7 @@ struct Path
   void SetSubFolder(const std::string& s);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Converts a Path to a string
   ///For example,

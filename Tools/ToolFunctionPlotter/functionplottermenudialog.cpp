@@ -3,9 +3,13 @@
 #include <iostream>
 
 #include "profile.h"
+#include "trace.h"
 
 int ribi::FunctionPlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -70,3 +74,15 @@ const std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistor
   };
 }
 
+#ifndef NDEBUG
+void ribi::FunctionPlotterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::FunctionPlotterMenuDialog::Test");
+  TRACE("Finished ribi::FunctionPlotterMenuDialog::Test successfully");
+}
+#endif

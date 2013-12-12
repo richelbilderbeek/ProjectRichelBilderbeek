@@ -12,6 +12,9 @@ ribi::QtVisualAbcMenuDialog::QtVisualAbcMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtVisualAbcMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

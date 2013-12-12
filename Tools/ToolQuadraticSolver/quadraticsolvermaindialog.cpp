@@ -28,7 +28,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 
 #include <boost/lexical_cast.hpp>
+
+#include "trace.h"
 #pragma GCC diagnostic pop
+
+ribi::QuadraticSolverMainDialog::QuadraticSolverMainDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 const std::string ribi::QuadraticSolverMainDialog::AskUserForString() noexcept
 {
@@ -99,3 +108,16 @@ const std::vector<double> ribi::QuadraticSolverMainDialog::SolveQuadratic(
   solutions.push_back((-b - rD)/(2.0 * a));
   return solutions;
 }
+
+#ifndef NDEBUG
+void ribi::QuadraticSolverMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QuadraticSolverMainDialog::Test");
+  TRACE("Finished ribi::QuadraticSolverMainDialog::Test successfully");
+}
+#endif

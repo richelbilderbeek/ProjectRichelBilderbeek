@@ -72,6 +72,10 @@ struct AsciiArterMainDialog
   const std::vector<std::string> m_asciiart;
   //const std::vector<std::vector<double> > m_image;
   //const int m_width;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

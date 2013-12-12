@@ -37,10 +37,10 @@ ribi::QtTestShapeMenuDialog::QtTestShapeMenuDialog(QWidget *parent) :
   ui(new Ui::QtTestShapeMenuDialog),
   m_dialog(new TestShapeMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
 ribi::QtTestShapeMenuDialog::~QtTestShapeMenuDialog() noexcept
@@ -71,7 +71,7 @@ void ribi::QtTestShapeMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtTestShapeMenuDialog::Test()
+void ribi::QtTestShapeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

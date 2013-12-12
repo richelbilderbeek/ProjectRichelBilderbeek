@@ -36,6 +36,9 @@ ribi::QtTestQtArrowItemsMenuDialog::QtTestQtArrowItemsMenuDialog(QWidget *parent
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtArrowItemsMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

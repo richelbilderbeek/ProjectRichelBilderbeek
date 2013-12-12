@@ -30,10 +30,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "loopreader.h"
 #include "encranger.h"
 #include "toolencrangermaindialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -150,3 +155,16 @@ const std::vector<std::string> ribi::ToolEncrangerMenuDialog::GetVersionHistory(
     "2013-11-01: Version 2.6: improved console version",
   };
 }
+
+#ifndef NDEBUG
+void ribi::ToolEncrangerMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolEncrangerMenuDialog::Test");
+  TRACE("Finished ribi::ToolEncrangerMenuDialog::Test successfully");
+}
+#endif

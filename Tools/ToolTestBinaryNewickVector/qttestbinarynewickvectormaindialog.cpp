@@ -50,6 +50,9 @@ ribi::QtTestBinaryNewickVectorMainDialog::QtTestBinaryNewickVectorMainDialog(QWi
     ui(new Ui::QtTestBinaryNewickVectorMainDialog),
     m_timer(new QTimer)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,SIGNAL(textChanged(QString)),
@@ -340,3 +343,16 @@ void ribi::QtTestBinaryNewickVectorMainDialog::on_button_calculate_clicked()
     QString("PROBABILITY: ")
     + boost::lexical_cast<std::string>(probability).c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtTestBinaryNewickVectorMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestBinaryNewickVectorMainDialog::Test");
+  TRACE("Finished ribi::QtTestBinaryNewickVectorMainDialog::Test successfully");
+}
+#endif

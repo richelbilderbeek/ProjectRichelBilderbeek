@@ -34,10 +34,10 @@ ribi::QtTestDialMenuDialog::QtTestDialMenuDialog(QWidget *parent) noexcept
  : QtHideAndShowDialog(parent),
    ui(new Ui::QtTestDialMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
 ribi::QtTestDialMenuDialog::~QtTestDialMenuDialog() noexcept
@@ -64,6 +64,7 @@ void ribi::QtTestDialMenuDialog::on_button_quit_clicked() noexcept
   close();
 }
 
+#ifndef NDEBUG
 void ribi::QtTestDialMenuDialog::Test() noexcept
 {
   {
@@ -75,4 +76,4 @@ void ribi::QtTestDialMenuDialog::Test() noexcept
     QtTestDialMainDialog d;
   }
 }
-
+#endif

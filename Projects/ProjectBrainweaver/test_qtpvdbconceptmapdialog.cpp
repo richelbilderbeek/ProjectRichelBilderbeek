@@ -37,7 +37,7 @@
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbConceptMapDialog::Test()
+void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

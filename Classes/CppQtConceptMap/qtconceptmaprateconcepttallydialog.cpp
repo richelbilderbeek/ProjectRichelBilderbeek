@@ -386,7 +386,7 @@ void ribi::cmap::QtRateConceptTallyDialog::on_button_ok_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtRateConceptTallyDialog::Test()
+void ribi::cmap::QtRateConceptTallyDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

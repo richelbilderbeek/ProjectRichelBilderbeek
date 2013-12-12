@@ -38,6 +38,9 @@ ribi::QtTestDialMainDialog::QtTestDialMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestDialMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   ui->dial->GetWidget()->GetDial()->m_signal_color_changed.connect(
@@ -104,3 +107,16 @@ void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */) noe
     boost::numeric_cast<int>(b * 255.0));
 
 }
+
+#ifndef NDEBUG
+void ribi::QtTestDialMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestDialMainDialog::Test");
+  TRACE("Finished ribi::QtTestDialMainDialog::Test successfully");
+}
+#endif

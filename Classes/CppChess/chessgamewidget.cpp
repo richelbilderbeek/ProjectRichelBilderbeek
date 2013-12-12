@@ -127,7 +127,7 @@ void ribi::Chess::GameWidget::DoMove(
 
 }
 
-void ribi::Chess::GameWidget::Test()
+void ribi::Chess::GameWidget::Test() noexcept
 {
   //Testing Chess::Piece exactly once
   {

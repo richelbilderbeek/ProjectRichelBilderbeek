@@ -30,7 +30,9 @@ const FaceIndex operator-(const FaceIndex& lhs, const FaceIndex& rhs);
 bool operator==(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
 bool operator!=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
 bool operator<(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
+bool operator>(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
 bool operator>=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
+bool operator<=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

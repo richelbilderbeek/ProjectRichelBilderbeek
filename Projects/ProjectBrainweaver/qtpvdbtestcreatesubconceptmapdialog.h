@@ -43,7 +43,7 @@ private:
   boost::shared_ptr<cmap::QtConceptMap> m_sub_concept_map;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

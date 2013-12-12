@@ -47,7 +47,7 @@ private:
   std::vector<boost::shared_ptr<cmap::QtConceptMap> > m_widgets;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   static boost::shared_ptr<cmap::QtConceptMap> CreateWidget(

@@ -276,7 +276,7 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_next_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbClusterDialog::Test()
+void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -32,7 +32,7 @@ const std::vector<ribi::kalman::WhiteNoiseSystemType> ribi::kalman::WhiteNoiseSy
 }
 
 #ifndef NDEBUG
-void ribi::kalman::WhiteNoiseSystemTypes::Test()
+void ribi::kalman::WhiteNoiseSystemTypes::Test() noexcept
 {
   {
     static bool is_tested = false;

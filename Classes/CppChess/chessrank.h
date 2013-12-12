@@ -25,7 +25,7 @@ struct Rank
   static const std::vector<std::string> GetVersionHistory();
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   ///Convert the Rank to its y coordinat on the Board, for example 0 for square h1
   int ToInt() const;

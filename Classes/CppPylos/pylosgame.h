@@ -170,7 +170,7 @@ struct Game
 
   #ifndef NDEBUG
   ///Test the Game class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///TogglePlayer toggles between player1 and player2 and saves the current

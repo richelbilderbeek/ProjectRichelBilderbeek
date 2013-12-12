@@ -63,3 +63,22 @@ bool ribi::foam::operator!=(const CellIndex& lhs, const CellIndex& rhs) noexcept
   return !(lhs == rhs);
 }
 
+bool ribi::foam::operator<(const CellIndex& lhs, const CellIndex& rhs) noexcept
+{
+  return lhs.Get() < rhs.Get();
+}
+
+bool ribi::foam::operator>(const CellIndex& lhs, const CellIndex& rhs) noexcept
+{
+  return lhs.Get() > rhs.Get();
+}
+
+bool ribi::foam::operator>=(const CellIndex& lhs, const CellIndex& rhs) noexcept
+{
+  return !(lhs < rhs);
+}
+
+bool ribi::foam::operator<=(const CellIndex& lhs, const CellIndex& rhs) noexcept
+{
+  return !(lhs > rhs);
+}

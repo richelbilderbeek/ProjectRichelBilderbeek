@@ -86,7 +86,7 @@ struct Game
     std::vector<boost::shared_ptr<SpriteNonMoving> > obstacles);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
 };
 

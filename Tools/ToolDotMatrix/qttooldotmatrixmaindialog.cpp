@@ -6,8 +6,8 @@
 #include <cassert>
 #include <QPainter>
 
-
 #include "qtdotmatrixstring.h"
+#include "trace.h"
 #include "ui_qttooldotmatrixmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -15,6 +15,9 @@ ribi::QtToolDotMatrixMainDialog::QtToolDotMatrixMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolDotMatrixMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -44,3 +47,16 @@ void ribi::QtToolDotMatrixMainDialog::paintEvent(QPaintEvent *)
     this->height() - edit_height,
     pixmap);
 }
+
+#ifndef NDEBUG
+void ribi::QtToolDotMatrixMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolDotMatrixMainDialog::Test");
+  TRACE("Finished ribi::QtToolDotMatrixMainDialog::Test successfully");
+}
+#endif

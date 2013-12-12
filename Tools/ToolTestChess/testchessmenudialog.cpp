@@ -39,10 +39,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chesssquare.h"
 #include "chesssquareselector.h"
 #include "chesswidget.h"
+#include "trace.h"
 #include "widget.h"
 
 int ribi::TestChessMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -118,3 +122,16 @@ const std::vector<std::string> ribi::TestChessMenuDialog::GetVersionHistory() co
     "2012-01-25: Version 1.0: initial version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestChessMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestChessMenuDialog::Test");
+  TRACE("Finished ribi::TestChessMenuDialog::Test successfully");
+}
+#endif

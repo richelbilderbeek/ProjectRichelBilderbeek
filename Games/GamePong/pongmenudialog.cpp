@@ -10,6 +10,9 @@
 
 int ribi::PongMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -69,3 +72,16 @@ const std::vector<std::string> ribi::PongMenuDialog::GetVersionHistory() const n
     "2013-11-07: version 0.1: conformized to ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::PongMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::PongMenuDialog::Test");
+  TRACE("Finished ribi::PongMenuDialog::Test successfully");
+}
+#endif

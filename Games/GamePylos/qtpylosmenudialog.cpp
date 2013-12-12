@@ -45,6 +45,9 @@ ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   m_type_basic(true),
   m_theme_bw(false)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Generate sprites when needed
@@ -177,5 +180,15 @@ void ribi::QtPylosMenuDialog::OnStart()
   this->ShowChild(&d);
 }
 
-
-
+#ifndef NDEBUG
+void ribi::QtPylosMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtPylosMenuDialog::Test");
+  TRACE("Finished ribi::QtPylosMenuDialog::Test successfully");
+}
+#endif

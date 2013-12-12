@@ -300,7 +300,7 @@ void ribi::kalman::FixedLagSmootherKalmanFilter::SupplyMeasurementAndInput(
 }
 
 #ifndef NDEBUG
-void ribi::kalman::FixedLagSmootherKalmanFilter::Test()
+void ribi::kalman::FixedLagSmootherKalmanFilter::Test() noexcept
 {
   {
     static bool is_tested = false;

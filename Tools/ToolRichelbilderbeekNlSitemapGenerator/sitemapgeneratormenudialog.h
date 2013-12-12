@@ -57,6 +57,10 @@ struct SitemapGeneratorMenuDialog : public MenuDialog
   static const std::string GetDateIso8601() noexcept;
 
   static const std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

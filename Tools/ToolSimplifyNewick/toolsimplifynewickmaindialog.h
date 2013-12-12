@@ -42,6 +42,9 @@ struct ToolSimplifyNewickMainDialog
   private:
   static int SumSecond(const std::vector<std::pair<std::vector<int>,int> >& v) noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

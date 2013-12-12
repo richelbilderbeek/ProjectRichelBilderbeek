@@ -51,9 +51,7 @@ private:
 
   void keyPressEvent(QKeyEvent *) noexcept;
 
-
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 };

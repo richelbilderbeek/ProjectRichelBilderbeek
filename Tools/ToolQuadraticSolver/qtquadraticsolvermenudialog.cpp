@@ -9,6 +9,7 @@
 #include "qtaboutdialog.h"
 #include "qtquadraticsolvermaindialog.h"
 #include "qthideandshowdialog.h"
+#include "trace.h"
 #include "ui_qtquadraticsolvermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -16,6 +17,9 @@ ribi::QtQuadraticSolverMenuDialog::QtQuadraticSolverMenuDialog(QWidget *parent) 
     QtHideAndShowDialog(parent),
     ui(new Ui::QtQuadraticSolverMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -50,3 +54,16 @@ void ribi::QtQuadraticSolverMenuDialog::on_button_start_clicked()
   //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
+
+#ifndef NDEBUG
+void ribi::QtQuadraticSolverMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtQuadraticSolverMenuDialog::Test");
+  TRACE("Finished ribi::QtQuadraticSolverMenuDialog::Test successfully");
+}
+#endif

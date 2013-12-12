@@ -34,6 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttestchessgamedialog.h"
 #include "qttestchessviewresourcesdialog.h"
 #include "testchessmenudialog.h"
+#include "trace.h"
 #include "ui_qttestchessmenudialog.h"
 
 #pragma GCC diagnostic pop
@@ -42,6 +43,9 @@ ribi::QtTestChessMenuDialog::QtTestChessMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestChessMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -81,3 +85,16 @@ void ribi::QtTestChessMenuDialog::on_button_test_game_clicked()
   QtTestChessGameDialog d;
   this->ShowChild(&d);
 }
+
+#ifndef NDEBUG
+void ribi::QtTestChessMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestChessMenuDialog::Test");
+  TRACE("Finished ribi::QtTestChessMenuDialog::Test successfully");
+}
+#endif

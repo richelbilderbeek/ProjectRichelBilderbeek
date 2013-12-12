@@ -25,7 +25,8 @@ ribi::QtSearchAndDestroyChessGameDialog::~QtSearchAndDestroyChessGameDialog()
   delete ui;
 }
 
-void ribi::QtSearchAndDestroyChessGameDialog::Test()
+#ifndef NDEBUG
+void ribi::QtSearchAndDestroyChessGameDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -45,3 +46,4 @@ void ribi::QtSearchAndDestroyChessGameDialog::Test()
   #endif
 
 }
+#endif

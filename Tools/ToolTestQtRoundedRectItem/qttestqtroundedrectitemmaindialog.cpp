@@ -31,6 +31,9 @@ ribi::QtTestQtRoundedRectItemMainDialog::QtTestQtRoundedRectItemMainDialog(QWidg
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestQtRoundedRectItemMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

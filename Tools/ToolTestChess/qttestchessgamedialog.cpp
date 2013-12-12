@@ -35,6 +35,9 @@ ribi::QtTestChessGameDialog::QtTestChessGameDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestChessGameDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   #ifndef NO_QTGAMEWIDGET_YET
@@ -83,3 +86,15 @@ void ribi::QtTestChessGameDialog::on_list_moves_doubleClicked(const QModelIndex 
   #endif
 }
 
+#ifndef NDEBUG
+void ribi::QtTestChessGameDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestChessGameDialog::Test");
+  TRACE("Finished ribi::QtTestChessGameDialog::Test successfully");
+}
+#endif

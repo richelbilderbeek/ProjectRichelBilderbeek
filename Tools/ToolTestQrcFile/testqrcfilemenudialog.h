@@ -37,7 +37,6 @@ struct TestQrcFileMenuDialog : public MenuDialog
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
   #ifndef NDEBUG
-  ///Test the QrcFile
   static void Test() noexcept;
   #endif
 };

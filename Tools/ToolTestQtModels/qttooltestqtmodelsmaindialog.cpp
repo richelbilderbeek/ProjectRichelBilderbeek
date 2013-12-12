@@ -43,10 +43,10 @@ ribi::QtToolTestQtModelsMainDialog::QtToolTestQtModelsMainDialog(QWidget *parent
   QtHideAndShowDialog(parent),
   ui(new Ui::QtToolTestQtModelsMainDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
 ribi::QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog() noexcept

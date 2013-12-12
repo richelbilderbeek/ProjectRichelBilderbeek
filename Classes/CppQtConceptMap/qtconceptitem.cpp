@@ -201,7 +201,7 @@ QPainterPath ribi::cmap::QtItemDisplayStrategy::shape() const
 */
 
 #ifndef NDEBUG
-void ribi::cmap::QtItemDisplayStrategy::Test()
+void ribi::cmap::QtItemDisplayStrategy::Test() noexcept
 {
   {
     static bool is_tested = false;

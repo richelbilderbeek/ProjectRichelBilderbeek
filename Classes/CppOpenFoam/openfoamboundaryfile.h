@@ -18,14 +18,24 @@ struct BoundaryFile
   ///Read an OpenFOAM 'boundary' file.
   ///Throws std::runtime_error if file is incorrectly formed
   explicit BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
-
   explicit BoundaryFile(
     const Header header = GetDefaultHeader(),
     const std::vector<BoundaryFileItem>& items = {});
 
+
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
+
   const std::vector<BoundaryFileItem> GetItems() const noexcept { return m_items; }
+
+  const BoundaryFileItem GetItem(const BoundaryIndex& boundary_index) const noexcept;
+
+  ///Obtain the number of boundaries, the size of m_items, or the first boundary index not available
+  const BoundaryIndex GetMaxBoundaryIndex() const noexcept;
+
+  ///Is the Face belonging to a Boundary?
+  ///(if not, it belongs to a Cell)
+  bool IsBoundary(const FaceIndex& face_index) const noexcept { return CanGet(face_index); }
 
   ///Swap the face indices between
   //void Swap(const FaceIndex& lhs, const FaceIndex& rhs);

@@ -25,9 +25,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include "gaborfilter.h"
 #include "gaborfilterwidget.h"
+#include "trace.h"
 
 int ribi::ToolGaborFilterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -89,3 +93,16 @@ const std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistor
     "2012-07-07: version 2.0: port to Qt"
   };
 }
+
+#ifndef NDEBUG
+void ribi::ToolGaborFilterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ToolGaborFilterMenuDialog::Test");
+  TRACE("Finished ribi::ToolGaborFilterMenuDialog::Test successfully");
+}
+#endif

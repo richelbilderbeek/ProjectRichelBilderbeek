@@ -38,22 +38,22 @@ const ribi::Coordinat3D ribi::operator-(
   const Coordinat3D& v1,
   const Coordinat3D& v2)
 {
-  return {
+  return Coordinat3D(
     v1.GetX()-v2.GetX(),
     v1.GetY()-v2.GetY(),
     v1.GetZ()-v2.GetZ()
-  };
+  );
 }
 
 const ribi::Coordinat3D ribi::operator+(
   const Coordinat3D& v1,
   const Coordinat3D& v2)
 {
-  return {
+  return Coordinat3D(
     v1.GetX()+v2.GetX(),
     v1.GetY()+v2.GetY(),
     v1.GetZ()+v2.GetZ()
-  };
+  );
 }
 
 

@@ -31,6 +31,9 @@ ribi::QtToolTestSimpleLinearRegressionMainDialog::QtToolTestSimpleLinearRegressi
     m_xs{},
     m_ys{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Set up the plot

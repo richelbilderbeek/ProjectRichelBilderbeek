@@ -103,7 +103,7 @@ void ribi::cmap::QtRateStrategy::keyPressEvent(QKeyEvent *event)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtRateStrategy::Test()
+void ribi::cmap::QtRateStrategy::Test() noexcept
 {
   {
     static bool is_tested = false;

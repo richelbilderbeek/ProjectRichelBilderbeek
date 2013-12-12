@@ -50,6 +50,10 @@ private:
   Ui::QtToolPrimeExpertMainDialog *ui;
   boost::scoped_ptr<PrimeExpert> m_expert;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
     void on_edit_value_textChanged(QString );
 };

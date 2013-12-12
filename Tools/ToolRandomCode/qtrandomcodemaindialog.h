@@ -47,6 +47,10 @@ protected:
 private:
   Ui::QtRandomCodeMainDialog *ui;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 private slots:
   void on_button_about_clicked();
   void on_button_generate_clicked();

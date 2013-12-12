@@ -73,7 +73,7 @@ struct KalmanFilterExperimentParameter
 
   #ifndef NDEBUG
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   static const std::vector<std::pair<KalmanFilterParameterType,KalmanFilterExperimentParameterType> > m_map_kalman_filter;

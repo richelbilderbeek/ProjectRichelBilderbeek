@@ -501,7 +501,7 @@ void ribi::Pylos::Board::Remove(const std::vector<Coordinat>& v, const Player pl
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Board::Test()
+void ribi::Pylos::Board::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;

@@ -25,7 +25,8 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-void ribi::pvdb::Cluster::Test()
+#ifndef NDEBUG
+void ribi::pvdb::Cluster::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -113,3 +114,4 @@ void ribi::pvdb::Cluster::Test()
   t.detach();
   #endif
 }
+#endif

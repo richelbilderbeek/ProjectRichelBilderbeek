@@ -44,10 +44,10 @@ ribi::QtPerfectElasticCollisionMainDialog::QtPerfectElasticCollisionMainDialog(Q
     ui(new Ui::QtPerfectElasticCollisionMainDialog),
     m_timer(new QTimer)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 
   QObject::connect(
     this->ui->dial_angle,SIGNAL(sliderMoved(int)),
@@ -402,7 +402,7 @@ double ribi::QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, cons
 }
 
 #ifndef NDEBUG
-void ribi::QtPerfectElasticCollisionMainDialog::Test()
+void ribi::QtPerfectElasticCollisionMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

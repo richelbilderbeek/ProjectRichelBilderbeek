@@ -18,6 +18,7 @@
 #include "filename.h"
 #include "openfoamheader.h"
 #include "openfoamfacesfileitem.h"
+#include "openfoamfaceindex.h"
 #include "openfoamparseerror.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -34,9 +35,26 @@ ribi::foam::FacesFile::FacesFile(
   #endif
 }
 
+bool ribi::foam::FacesFile::CanGetItem(const ribi::foam::FaceIndex& face_index) const noexcept
+{
+  assert(face_index.Get() >= 0);
+  return face_index.Get() < static_cast<int>(m_items.size());
+}
+
 const ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
 {
   return Header("faceList","constant/polyMesh","","faces");
+}
+
+const ribi::foam::FacesFileItem& ribi::foam::FacesFile::GetItem(const ribi::foam::FaceIndex& face_index) const noexcept
+{
+  assert(CanGetItem(face_index));
+  return m_items[ face_index.Get() ];
+}
+
+const ribi::foam::FaceIndex ribi::foam::FacesFile::GetMaxFaceIndex() const noexcept
+{
+  return FaceIndex(static_cast<int>(m_items.size()));
 }
 
 const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)

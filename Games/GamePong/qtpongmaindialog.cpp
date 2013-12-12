@@ -22,6 +22,9 @@ ribi::QtPongMainDialog::QtPongMainDialog(QWidget *parent)
     m_ball(new PongBall),
     m_players( { new PongPlayer, new PongPlayer } )
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   const int w = this->width();
   const int h = this->height();
@@ -89,3 +92,16 @@ void ribi::QtPongMainDialog::resizeEvent(QResizeEvent *)
   m_background->SetGeometry(this->width(),this->height());
   m_ball->SetArenaRect(this->width(),this->height());
 }
+
+#ifndef NDEBUG
+void ribi::QtPongMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtPongMainDialog::Test");
+  TRACE("Finished ribi::QtPongMainDialog::Test successfully");
+}
+#endif

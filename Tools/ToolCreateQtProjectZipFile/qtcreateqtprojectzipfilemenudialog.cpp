@@ -34,10 +34,10 @@ ribi::QtCreateQtProjectZipFileMenuDialog::QtCreateQtProjectZipFileMenuDialog(QWi
   QtHideAndShowDialog(parent),
   ui(new Ui::QtCreateQtProjectZipFileMenuDialog)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 }
 
 ribi::QtCreateQtProjectZipFileMenuDialog::~QtCreateQtProjectZipFileMenuDialog() noexcept

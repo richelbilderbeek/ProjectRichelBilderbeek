@@ -36,6 +36,9 @@ ribi::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTestPylosMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 

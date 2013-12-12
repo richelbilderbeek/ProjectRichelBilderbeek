@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmysterymachinewidget.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+#include "trace.h"
 #include "ui_qtsimmysterymachinemaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -44,8 +45,10 @@ ribi::QtSimMysteryMachineMainDialog::QtSimMysteryMachineMainDialog(QWidget *pare
    ui(new Ui::QtSimMysteryMachineMainDialog),
    m_machine(new QtMysteryMachineWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
-
   ui->my_layout->addWidget(m_machine.get());
 }
 
@@ -53,3 +56,16 @@ ribi::QtSimMysteryMachineMainDialog::~QtSimMysteryMachineMainDialog() noexcept
 {
   delete ui;
 }
+
+#ifndef NDEBUG
+void ribi::QtSimMysteryMachineMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtSimMysteryMachineMainDialog::Test");
+  TRACE("Finished ribi::QtSimMysteryMachineMainDialog::Test successfully");
+}
+#endif

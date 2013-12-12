@@ -37,6 +37,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const std::vector<std::string> files = { "Question.png" };
   for(const std::string& filename: files)
   {

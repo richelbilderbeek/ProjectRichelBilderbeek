@@ -4,9 +4,18 @@
 #include <iostream>
 #include <stdexcept>
 
+#include "trace.h"
+
 ribi::foam::FaceIndex::FaceIndex(const int index)
   : m_index(index)
 {
+  #ifndef NDEBUG
+  if (m_index < 0)
+  {
+    TRACE("ERROR");
+    TRACE(m_index);
+  }
+  #endif
   assert(m_index >= 0
     && "A FaceIndex must be zero or a positive value");
   if (m_index < 0)
@@ -79,7 +88,17 @@ bool ribi::foam::operator<(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
   return lhs.Get() < rhs.Get();
 }
 
+bool ribi::foam::operator>(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
+{
+  return lhs.Get() > rhs.Get();
+}
+
 bool ribi::foam::operator>=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
 {
   return !(lhs < rhs);
+}
+
+bool ribi::foam::operator<=(const FaceIndex& lhs, const FaceIndex& rhs) noexcept
+{
+  return !(lhs > rhs);
 }

@@ -55,7 +55,9 @@ private:
 
   void OnRequestsSceneUpdate();
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace pvdb

@@ -83,7 +83,7 @@ private slots:
   void on_box_lag_valueChanged(int arg1);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

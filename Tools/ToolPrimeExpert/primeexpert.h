@@ -41,6 +41,10 @@ struct PrimeExpert
   void CalculateNextPrime();
   int CalculateMax(const int x);
   friend std::ostream& operator<<(std::ostream&, const PrimeExpert&);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 std::ostream& operator<<(std::ostream& os, const PrimeExpert& primeExpert);

@@ -34,6 +34,9 @@ ribi::QtTestFunctionParserMainDialog::QtTestFunctionParserMainDialog(QWidget *pa
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestFunctionParserMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   const double pi = boost::math::constants::pi<double>();
@@ -94,3 +97,15 @@ void ribi::QtTestFunctionParserMainDialog::Parse() noexcept
   ui->label_result->setText(boost::lexical_cast<std::string>(y).c_str());
 }
 
+#ifndef NDEBUG
+void ribi::QtTestFunctionParserMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestFunctionParserMainDialog::Test");
+  TRACE("Finished ribi::QtTestFunctionParserMainDialog::Test successfully");
+}
+#endif

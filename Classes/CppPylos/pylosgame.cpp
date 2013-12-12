@@ -317,7 +317,7 @@ void ribi::Pylos::Game::Set(const Coordinat& c)
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Game::Test()
+void ribi::Pylos::Game::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;

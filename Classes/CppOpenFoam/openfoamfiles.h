@@ -14,13 +14,21 @@ namespace ribi {
 namespace foam {
 
 ///Files contains the info of all files in an OpenFOAM folder
+///This info can be used to create a Mesh
 ///After creating a Files, these files can be deleted
 ///Use CreateCopy to let these files be recreated again
 struct Files
 {
   ///Builds up Files from the current or any folder
   ///Use an empty string to build up from current folder
-  explicit Files(const std::string& folder_name);
+  explicit Files(const std::string& folder_name)
+    : Files(
+        CreateBoundary(folder_name),
+        CreateFaces(folder_name),
+        CreateNeighbour(folder_name),
+        CreateOwner(folder_name),
+        CreatePoints(folder_name)
+      ) { }
 
   ///Builds up a Files from its information or from nothing
   explicit Files(
@@ -36,8 +44,12 @@ struct Files
   ///Create a copy of the complete file structure of Files in the copy folder name
   static void CreateCopy(const Files& files, const std::string copy_folder_name) noexcept;
 
-  ///Create the test files in the correct OpenFOAM folder structure
+  ///Create test files in the correct OpenFOAM folder structure
+  ///These files are obtained from the /Classes/CppOpenFoam/CppOpenFoam.qrc resources file
   static void CreateTestFiles(const std::string& folder_name);
+
+  ///Create valid test Files
+  static const std::vector<boost::shared_ptr<Files>> CreateTestFiles() noexcept;
 
   const boost::shared_ptr<const BoundaryFile> GetBoundary() const noexcept { return m_boundary; }
   const boost::shared_ptr<const FacesFile> GetFaces() const noexcept { return m_faces; }
@@ -53,6 +65,10 @@ struct Files
   const boost::shared_ptr<NeighbourFile> m_neighbour;
   const boost::shared_ptr<OwnerFile> m_owner;
   const boost::shared_ptr<PointsFile> m_points;
+
+  ///Checks this class for correctless
+  ///Throws std::logic_error if there are incorrectnesses
+  void CheckMe() const;
 
   static const boost::shared_ptr<BoundaryFile> CreateBoundary(const std::string& folder_name);
   static const boost::shared_ptr<BoundaryFile> CreateDefaultBoundary() noexcept;

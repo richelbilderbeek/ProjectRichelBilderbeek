@@ -27,3 +27,27 @@ bool ribi::foam::operator==(const PointIndex& lhs, const PointIndex& rhs) noexce
   return lhs.Get() == rhs.Get();
 }
 
+bool ribi::foam::operator!=(const PointIndex& lhs, const PointIndex& rhs) noexcept
+{
+  return !(lhs == rhs);
+}
+
+bool ribi::foam::operator<(const PointIndex& lhs, const PointIndex& rhs) noexcept
+{
+  return lhs.Get() < rhs.Get();
+}
+
+bool ribi::foam::operator>(const PointIndex& lhs, const PointIndex& rhs) noexcept
+{
+  return lhs.Get() > rhs.Get();
+}
+
+bool ribi::foam::operator<=(const PointIndex& lhs, const PointIndex& rhs) noexcept
+{
+  return !(lhs > rhs);
+}
+
+bool ribi::foam::operator>=(const PointIndex& lhs, const PointIndex& rhs) noexcept
+{
+  return !(lhs < rhs);
+}

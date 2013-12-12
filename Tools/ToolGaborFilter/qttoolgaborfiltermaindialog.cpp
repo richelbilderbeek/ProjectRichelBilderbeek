@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
 
+#include "trace.h"
 #include "ui_qttoolgaborfiltermaindialog.h"
 
 #pragma GCC diagnostic pop
@@ -34,6 +35,9 @@ ribi::QtToolGaborFilterMainDialog::QtToolGaborFilterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolGaborFilterMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   this->on_dial_angle_sliderMoved(ui->dial_angle->value());
   this->on_slider_frequency_sliderMoved(ui->slider_frequency->value());
@@ -73,3 +77,16 @@ void ribi::QtToolGaborFilterMainDialog::on_slider_sigma_sliderMoved(int position
   ui->label_sigma->setText(s.substr(0,4).c_str());
 
 }
+
+#ifndef NDEBUG
+void ribi::QtToolGaborFilterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolGaborFilterMainDialog::Test");
+  TRACE("Finished ribi::QtToolGaborFilterMainDialog::Test successfully");
+}
+#endif

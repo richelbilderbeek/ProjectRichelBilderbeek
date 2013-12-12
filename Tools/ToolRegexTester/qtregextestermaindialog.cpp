@@ -22,10 +22,11 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtregextestermaindialog.h"
 
-
+#include <cassert>
 
 #include "regextestermaindialog.h"
 #include "regextestermaindialog.h"
+#include "trace.h"
 #include "ui_qtregextestermaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -36,6 +37,9 @@ ribi::QtRegexTesterMainDialog::QtRegexTesterMainDialog(
     ui(new Ui::QtRegexTesterMainDialog),
     m_dialog(dialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   QObject::connect(ui->edit_line,SIGNAL(textEdited(QString)),this,SLOT(onAnyChange()));
@@ -97,3 +101,16 @@ void ribi::QtRegexTesterMainDialog::onAnyChange()
 
   ui->edit_replaced_regexes->setPlainText( dialog->GetRegexReplace(line,regex_str,format).c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtRegexTesterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRegexTesterMainDialog::Test");
+  TRACE("Finished ribi::QtRegexTesterMainDialog::Test successfully");
+}
+#endif

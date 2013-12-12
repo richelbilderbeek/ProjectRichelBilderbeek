@@ -90,8 +90,7 @@ private slots:
   static double GetAngle(const double dx, const double dy);
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

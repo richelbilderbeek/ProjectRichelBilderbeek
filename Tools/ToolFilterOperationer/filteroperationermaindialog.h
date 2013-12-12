@@ -78,6 +78,10 @@ struct FilterOperationerMainDialog
 
   ///Y-X ordered
   static const QImage VectorToImage(const std::vector<std::vector<int> >& m);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

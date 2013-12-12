@@ -24,16 +24,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <boost/lexical_cast.hpp>
 #include <QDesktopWidget>
-#include "qttoolsurfaceplottermaindialog.h"
-#include "ui_qttoolsurfaceplottermaindialog.h"
 
 #include "fparser.hh"
+#include "qttoolsurfaceplottermaindialog.h"
+#include "trace.h"
+#include "ui_qttoolsurfaceplottermaindialog.h"
+
 #pragma GCC diagnostic pop
 
 ribi::QtToolSurfacePlotterMainDialog::QtToolSurfacePlotterMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolSurfacePlotterMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   #ifndef NDEBUG
@@ -174,3 +179,16 @@ void ribi::QtToolSurfacePlotterMainDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }
+
+#ifndef NDEBUG
+void ribi::QtToolSurfacePlotterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolSurfacePlotterMainDialog::Test");
+  TRACE("Finished ribi::QtToolSurfacePlotterMainDialog::Test successfully");
+}
+#endif

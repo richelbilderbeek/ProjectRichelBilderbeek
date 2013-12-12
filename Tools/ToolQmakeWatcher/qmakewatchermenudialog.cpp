@@ -28,6 +28,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 int ribi::QmakeWatcherMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -91,3 +94,16 @@ const std::vector<std::string> ribi::QmakeWatcherMenuDialog::GetVersionHistory()
     "2013-11-04: version 1.1: conformized for ProjectRichelBilderbeekConsole"
   };
 }
+
+#ifndef NDEBUG
+void ribi::QmakeWatcherMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QmakeWatcherMenuDialog::Test");
+  TRACE("Finished ribi::QmakeWatcherMenuDialog::Test successfully");
+}
+#endif

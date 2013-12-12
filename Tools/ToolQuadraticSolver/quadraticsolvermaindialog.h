@@ -28,6 +28,8 @@ namespace ribi {
 
 struct QuadraticSolverMainDialog
 {
+  QuadraticSolverMainDialog();
+
   void Execute() const noexcept;
 
   ///Calculates all solutions from the quadratic equation,
@@ -45,6 +47,10 @@ struct QuadraticSolverMainDialog
 
   //From http://www.richelbilderbeek.nl/CppIsDouble.htm
   static bool IsDouble(const std::string& s) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

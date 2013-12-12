@@ -50,6 +50,9 @@ ribi::QtTestNewickVectorDialog::QtTestNewickVectorDialog(QWidget *parent) noexce
     m_timer(new QTimer),
     m_dialog(new TestNewickVectorDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   QObject::connect(
     ui->edit_newick,SIGNAL(textChanged(QString)),

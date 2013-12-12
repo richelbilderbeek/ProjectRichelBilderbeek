@@ -3,6 +3,8 @@
 #include <cassert>
 #include <fstream>
 #include <iostream>
+#include <map>
+#include <set>
 #include <sstream>
 
 #pragma GCC diagnostic push
@@ -14,6 +16,7 @@
 #include "filename.h"
 #include "openfoamboundaryfile.h"
 #include "openfoamfacesfile.h"
+#include "coordinat3d.h"
 #include "openfoamneighbourfile.h"
 #include "openfoamownerfile.h"
 #include "openfoamfilenames.h"
@@ -21,6 +24,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+/*
 ribi::foam::Files::Files(const std::string& folder_name)
   : m_boundary(CreateBoundary(folder_name)),
     m_faces(CreateFaces(folder_name)),
@@ -38,6 +42,7 @@ ribi::foam::Files::Files(const std::string& folder_name)
   assert(m_owner);
   assert(m_points);
 }
+*/
 
 ribi::foam::Files::Files(
   const boost::shared_ptr<BoundaryFile> boundary,
@@ -60,6 +65,189 @@ ribi::foam::Files::Files(
   assert(m_neighbour);
   assert(m_owner);
   assert(m_points);
+
+  CheckMe();
+}
+
+void ribi::foam::Files::CheckMe() const
+{
+  const FaceIndex n_faces { FaceIndex(static_cast<int>(this->m_faces->GetItems().size())) };
+  const PointIndex n_points { PointIndex(static_cast<int>(this->m_points->GetItems().size())) };
+
+  //'boundary' file individuals items
+  for (const BoundaryFileItem& item: m_boundary->GetItems())
+  {
+    std::stringstream s;
+    s << "Error in 'boundary' file in this item:\n"
+      << '\n'
+      << item << '\n'
+      << '\n';
+    if (item.GetNfaces() <= 0)
+    {
+      s << "nFaces (" << item.GetNfaces() << ") must be a positive non-zero value";
+      throw std::logic_error(s.str());
+    }
+    if (item.GetStartFace() > n_faces)
+    {
+      s << "startFace (" << item.GetStartFace() << ") beyond number of faces (" << n_faces << ")";
+      throw std::logic_error(s.str());
+    }
+    if (item.GetStartFace() + FaceIndex(item.GetNfaces()) > n_faces)
+    {
+      s << "startFace (" << item.GetStartFace() << ")"
+        << " + nFaces (" << n_faces << ")"
+        << " = " << (item.GetStartFace() + FaceIndex(item.GetNfaces()))
+        << " is beyond number of faces (" << n_faces << ")"
+        ;
+      throw std::logic_error(s.str());
+    }
+  }
+  //'boundary' file: no ranges should overlap
+  const int n_boundary_items { static_cast<int>(m_boundary->GetItems().size()) };
+  for (int i=0; i!=n_boundary_items; ++i)
+  {
+    const BoundaryFileItem item_i = m_boundary->GetItems()[i];
+    const FaceIndex first_i = item_i.GetStartFace();
+    assert(first_i.Get() >= 0);
+    assert(item_i.GetNfaces() >= 0);
+    const FaceIndex last_i = first_i + FaceIndex(item_i.GetNfaces());
+    for (int j=0; j!=n_boundary_items; ++j)
+    {
+      if (i == j) continue;
+      const BoundaryFileItem item_j = m_boundary->GetItems()[j];
+      const FaceIndex first_j = item_j.GetStartFace();
+      assert(item_j.GetNfaces() >= 0);
+      const FaceIndex last_j = first_j + FaceIndex(item_j.GetNfaces());
+      if ( (first_i >= first_j && first_i < last_j)
+        || (last_i  >  first_j && last_i  < last_j)
+        || (first_j >= first_i && first_j < last_i)
+        || (last_j  >  first_i && last_j  < last_i)
+      )
+      {
+        std::stringstream s;
+        s << "Error in 'boundary' file in these items:\n"
+          << '\n'
+          << item_i << '\n'
+          << '\n'
+          << item_j << '\n'
+          << '\n'
+          << "Face index ranges overlap: "
+          << "[" << first_i << "," << last_i << "> and "
+          << "[" << first_j << "," << last_j << ">";
+        throw std::logic_error(s.str());
+      }
+    }
+  }
+  //'faces' files
+  //Check point indices are valid
+  for (const FacesFileItem& item: m_faces->GetItems())
+  {
+    for (const PointIndex& index: item.GetPointIndices())
+    {
+      assert(index.Get() >= 0);
+      if (index >= n_points)
+      {
+        std::stringstream s;
+        s << "Error in 'faces' file in this item:\n"
+          << '\n'
+          << item << '\n'
+          << '\n'
+          << "point index (" << index << ") beyond number of points (" << n_points << ")"
+        ;
+        throw std::logic_error(s.str());
+
+      }
+    }
+  }
+  //Detect doublures
+  {
+    for (FaceIndex i = FaceIndex(0); i!=n_faces; ++i)
+    {
+      std::vector<PointIndex> v_i { m_faces->GetItem(i).GetPointIndices() };
+      std::sort(v_i.begin(),v_i.end());
+      for (FaceIndex j = FaceIndex(0); j!=n_faces; ++j)
+      {
+        if (i == j) continue;
+        std::vector<PointIndex> v_j { m_faces->GetItem(j).GetPointIndices() };
+        std::sort(v_j.begin(),v_j.end());
+        if (v_i == v_j)
+        {
+        std::stringstream s;
+        s << "Error in 'faces' file in these items:\n"
+          << "\n"
+          << "Item " << i << ": " << m_faces->GetItem(i) << '\n'
+          << "Item " << j << ": " << m_faces->GetItem(j) << '\n'
+          << "\n"
+          << "Faces at index " << i << " and " << j << " consist of the same Point indices";
+        ;
+        throw std::logic_error(s.str());
+
+        }
+      }
+
+    }
+
+  }
+  //'owner' files
+  if (m_owner->GetItems().size() != m_faces->GetItems().size())
+  {
+    std::stringstream s;
+    s << "The file 'owner' has a different amount of faces than 'faces':\n"
+      << "'faces' has " << m_faces->GetItems().size()
+      << ", where 'owner' has " << m_owner->GetItems().size()
+      << '\n'
+    ;
+    throw std::logic_error(s.str());
+  }
+
+  #ifdef SURE_THIS_CODE_CANNOT_BE_REUSED_20131212
+  //Faces that have the same owner (which is a cell index) are member of the same cell
+  //Each point index of all faces must be present at least one times: at least three faces are
+  //needed at each vertex to form an enclosing/non-leaking cell surface, yet not all faces
+  //are owned by each cell
+  //Because each point index must be present once, it has no use collecting these
+  {
+    std::map<CellIndex,std::multiset<PointIndex>> m;
+    for (FaceIndex face_index = FaceIndex(0); face_index!=n_faces; ++face_index)
+    {
+      //Find the point indices of this face
+      const std::vector<PointIndex> p { m_faces->GetItem(face_index).GetPointIndices() };
+
+      //Find the owner of this face
+      const CellIndex c { m_owner->GetItem(face_index).GetCellIndex() };
+
+      //Add the combination to m
+      if (m.find(c) == m.end()) { m.insert(std::make_pair(c,std::multiset<PointIndex>())); }
+      assert(m.find(c) != m.end());
+      std::copy(p.begin(),p.end(),std::inserter(m.find(c)->second,m.find(c)->second.begin()));
+    }
+    //Check that each point index is present at least twice
+    for (const std::pair<CellIndex,std::multiset<PointIndex>>& s: m)
+    {
+      for (const PointIndex& i: s.second)
+      {
+        const int count = s.second.count(i);
+        if (count < 2)
+        {
+          TRACE(*m_owner);
+          TRACE(*m_faces);
+          std::stringstream str;
+          str
+            << "Error in 'owner' and 'faces' file combination:\n"
+            << "The file 'owner' has faces owned by the same cell,"
+            << "of which these faces do not cover each vertex with at least two times\n"
+            << '\n'
+            << "In this case, cell index " << s.first
+            << " its faces have a point index " << i << " that is only a member of "
+            << count << " faces"
+          ;
+          throw std::logic_error(str.str());
+
+        }
+      }
+    }
+  }
+  #endif
 }
 
 const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
@@ -318,6 +506,67 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
   return p;
 }
 
+const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::CreateTestFiles() noexcept
+{
+  std::vector<boost::shared_ptr<ribi::foam::Files>> v;
+  //Empty
+  {
+    const boost::shared_ptr<Files> files {
+      new Files
+    };
+    assert(files);
+    v.push_back(files);
+  }
+  //Cube
+  /*
+  {
+    const boost::shared_ptr<BoundaryFile> boundary;
+    const boost::shared_ptr<FacesFile> faces;
+    const boost::shared_ptr<NeighbourFile> neighbour;
+    const boost::shared_ptr<OwnerFile> owner;
+    const boost::shared_ptr<PointsFile> points {
+      new PointsFile(
+        PointsFile::GetDefaultHeader(),
+        {
+          PointsFileItem(ribi::Coordinat3D(0.0,0.0,0.0)),
+          PointsFileItem(ribi::Coordinat3D(1,0,0)),
+          PointsFileItem(ribi::Coordinat3D(1,1,0)),
+          PointsFileItem(ribi::Coordinat3D(0,1,0)),
+          PointsFileItem(ribi::Coordinat3D(0,0,1)),
+          PointsFileItem(ribi::Coordinat3D(1,0,1)),
+          PointsFileItem(ribi::Coordinat3D(1,1,1)),
+          PointsFileItem(ribi::Coordinat3D(0,1,1))
+        }
+      )
+    };
+
+    const boost::shared_ptr<Files> files {
+      new Files(
+        boundary,
+        faces,
+        neighbour,
+        owner,
+        points
+      )
+    };
+    assert(files);
+    v.push_back(files);
+  }
+  */
+  //Complex from resources
+  {
+    const std::string folder_name = ribi::fileio::GetTempFolderName();
+    CreateTestFiles(folder_name);
+    const boost::shared_ptr<Files> files {
+      new Files(folder_name)
+    };
+    assert(files);
+    v.push_back(files);
+    ribi::fileio::DeleteFolder(folder_name);
+  }
+  return v;
+}
+
 void ribi::foam::Files::CreateTestFiles(const std::string& folder_name)
 {
   CreateFolders(folder_name);
@@ -446,39 +695,16 @@ void ribi::foam::Files::Test() noexcept
   }
   //operator!=
   {
-    const std::vector<OwnerFileItem> items_1 {
-      OwnerFileItem(CellIndex(0)),
-      OwnerFileItem(CellIndex(1)),
-      OwnerFileItem(CellIndex(2))
-    };
-    const std::vector<OwnerFileItem> items_2 {
-      OwnerFileItem(CellIndex(0)),
-      OwnerFileItem(CellIndex(1)),
-      OwnerFileItem(CellIndex(4))
-    };
-    const boost::shared_ptr<OwnerFile> owner_1 {
-      new OwnerFile(OwnerFile::GetDefaultHeader(),items_1)
-    };
-    const boost::shared_ptr<OwnerFile> owner_2 {
-      new OwnerFile(OwnerFile::GetDefaultHeader(),items_2)
-    };
-
-    const Files f(
-      Files::CreateDefaultBoundary(),
-      Files::CreateDefaultFaces(),
-      Files::CreateDefaultNeighbour(),
-      owner_1,
-      Files::CreateDefaultPoints()
-    );
-    const Files g(
-      Files::CreateDefaultBoundary(),
-      Files::CreateDefaultFaces(),
-      Files::CreateDefaultNeighbour(),
-      owner_2,
-      Files::CreateDefaultPoints()
-    );
-
-    assert(*owner_1 != *owner_2);
+    const std::vector<boost::shared_ptr<ribi::foam::Files>> v { Files::CreateTestFiles() };
+    const std::size_t sz = v.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      for (std::size_t j=0; j!=sz; ++j)
+      {
+        if (i == j) { assert(v[i] == v[j]); }
+        if (i != j) { assert(v[i] != v[j]); }
+      }
+    }
   }
   //CreateCopy
   {

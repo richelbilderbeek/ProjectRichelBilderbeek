@@ -31,10 +31,10 @@ ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog
   m_edit_concept(nullptr),
   m_rate_concept(nullptr)
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
   assert(ui->view->scene());
 
   //Node is used in: m_node
@@ -209,7 +209,7 @@ void ribi::cmap::QtConceptMapTestConceptItemDialog::on_edit_example_text_textCha
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapTestConceptItemDialog::Test()
+void ribi::cmap::QtConceptMapTestConceptItemDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

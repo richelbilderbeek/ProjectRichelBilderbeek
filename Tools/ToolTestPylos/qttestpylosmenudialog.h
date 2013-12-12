@@ -51,7 +51,11 @@ private slots:
   void on_button_random_play_clicked();
 
 private:
-    Ui::QtTestPylosMenuDialog *ui;
+  Ui::QtTestPylosMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

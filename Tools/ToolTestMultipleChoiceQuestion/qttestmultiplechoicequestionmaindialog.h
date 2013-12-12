@@ -64,7 +64,7 @@ private:
   static boost::shared_ptr<QtMultipleChoiceQuestionDialog> CreateQtMultipleChoiceQuestionDialog(const std::string& s);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

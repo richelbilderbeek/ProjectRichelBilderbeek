@@ -38,6 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 int ribi::RubiksClockMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -111,3 +114,15 @@ const std::vector<std::string> ribi::RubiksClockMenuDialog::GetVersionHistory() 
   };
 }
 
+#ifndef NDEBUG
+void ribi::RubiksClockMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::RubiksClockMenuDialog::Test");
+  TRACE("Finished ribi::RubiksClockMenuDialog::Test successfully");
+}
+#endif

@@ -36,8 +36,7 @@ private slots:
   void on_button_start_clicked();
 
   #ifndef NDEBUG
-  ///Test this class
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

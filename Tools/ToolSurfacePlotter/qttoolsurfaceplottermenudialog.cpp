@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolsurfaceplottermenudialog.h"
 #include "qttoolsurfaceplottermaindialog.h"
 #include "qttoolsurfaceplottermenudialog.h"
+#include "trace.h"
 #include "ui_qttoolsurfaceplottermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -33,12 +34,15 @@ ribi::QtToolSurfacePlotterMenuDialog::QtToolSurfacePlotterMenuDialog(QWidget *pa
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolSurfacePlotterMenuDialog)
 {
-    ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
+  ui->setupUi(this);
 }
 
 ribi::QtToolSurfacePlotterMenuDialog::~QtToolSurfacePlotterMenuDialog() noexcept
 {
-    delete ui;
+  delete ui;
 }
 
 void ribi::QtToolSurfacePlotterMenuDialog::on_button_start_clicked()
@@ -59,3 +63,16 @@ void ribi::QtToolSurfacePlotterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
+
+#ifndef NDEBUG
+void ribi::QtToolSurfacePlotterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolSurfacePlotterMenuDialog::Test");
+  TRACE("Finished ribi::QtToolSurfacePlotterMenuDialog::Test successfully");
+}
+#endif

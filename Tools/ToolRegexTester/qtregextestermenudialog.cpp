@@ -109,7 +109,7 @@ void ribi::QtRegexTesterMenuDialog::on_button_boost_xpressive_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtRegexTesterMenuDialog::Test()
+void ribi::QtRegexTesterMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -21,6 +21,9 @@ ribi::QtVisualAbcMainDialog::QtVisualAbcMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtVisualAbcMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   this->setMaximumWidth(1024);
   this->setMaximumHeight(768);

@@ -30,20 +30,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <string>
 
-
-
 #include <QDesktopWidget>
 #include <QFile>
 
 #include "fileio.h"
+#include "trace.h"
 #include "ui_qtqmakewatchermaindialog.h"
-
 #pragma GCC diagnostic pop
 
 ribi::QtQmakeWatcherMainDialog::QtQmakeWatcherMainDialog(QWidget *parent)
-  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtQmakeWatcherMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->edit_pro->setWordWrapMode(QTextOption::NoWrap);
   ui->edit_makefile->setWordWrapMode(QTextOption::NoWrap);
@@ -123,3 +124,16 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
     }
   }
 }
+
+#ifndef NDEBUG
+void ribi::QtQmakeWatcherMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtQmakeWatcherMainDialog::Test");
+  TRACE("Finished ribi::QtQmakeWatcherMainDialog::Test successfully");
+}
+#endif

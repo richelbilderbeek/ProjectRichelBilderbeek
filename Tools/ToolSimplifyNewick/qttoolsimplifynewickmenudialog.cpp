@@ -45,7 +45,7 @@ void ribi::QtToolSimplifyNewickMenuDialog::on_button_start_clicked() noexcept
 }
 
 #ifndef NDEBUG
-void ribi::QtToolSimplifyNewickMenuDialog::Test()
+void ribi::QtToolSimplifyNewickMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -35,10 +35,10 @@ ribi::QtHometrainerMainDialog::QtHometrainerMainDialog(
     m_qtdialog{}
     //m_questions{dialog->GetQuestions()}
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
 
   assert(m_dialog);
   SetQuestion(m_dialog->GetCurrentQuestion());

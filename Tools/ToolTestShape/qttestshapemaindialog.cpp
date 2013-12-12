@@ -40,10 +40,10 @@ ribi::QtTestShapeMainDialog::QtTestShapeMainDialog(QWidget *parent) :
     m_dialog(new TestShapeMainDialog),
     m_widgets{}
 {
-  ui->setupUi(this);
   #ifndef NDEBUG
   Test();
   #endif
+  ui->setupUi(this);
   int i=0;
   for(boost::shared_ptr<ShapeWidget>& widget: m_dialog->GetShapes())
   {
@@ -61,7 +61,7 @@ ribi::QtTestShapeMainDialog::~QtTestShapeMainDialog() noexcept
   delete ui;
 }
 
-void ribi::QtTestShapeMainDialog::Test()
+void ribi::QtTestShapeMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

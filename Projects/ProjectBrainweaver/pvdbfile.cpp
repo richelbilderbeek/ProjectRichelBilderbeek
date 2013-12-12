@@ -393,7 +393,7 @@ void ribi::pvdb::File::SetStudentName(const std::string& student_name)
 }
 
 #ifndef NDEBUG
-void ribi::pvdb::File::Test()
+void ribi::pvdb::File::Test() noexcept
 {
   {
     static bool is_tested = false;

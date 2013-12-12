@@ -6,13 +6,17 @@
 #include "qtfunctionplottermaindialog.h"
 #include "qtfunctionplottermenudialog.h"
 #include "ui_qtfunctionplottermenudialog.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtFunctionPlotterMenuDialog::QtFunctionPlotterMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtFunctionPlotterMenuDialog)
 {
-    ui->setupUi(this);
+  #ifndef NDEBUG
+  Test();
+  #endif
+  ui->setupUi(this);
 }
 
 ribi::QtFunctionPlotterMenuDialog::~QtFunctionPlotterMenuDialog() noexcept
@@ -38,3 +42,16 @@ void ribi::QtFunctionPlotterMenuDialog::on_button_quit_clicked() noexcept
 {
   this->close();
 }
+
+#ifndef NDEBUG
+void ribi::QtFunctionPlotterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtFunctionPlotterMenuDialog::Test");
+  TRACE("Finished ribi::QtFunctionPlotterMenuDialog::Test successfully");
+}
+#endif

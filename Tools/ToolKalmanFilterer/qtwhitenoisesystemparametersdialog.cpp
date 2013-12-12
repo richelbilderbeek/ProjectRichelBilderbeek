@@ -205,7 +205,7 @@ void ribi::kalman::QtWhiteNoiseSystemParametersDialog::SetWhiteNoiseSystemType(c
 
 
 #ifndef NDEBUG
-void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test()
+void ribi::kalman::QtWhiteNoiseSystemParametersDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

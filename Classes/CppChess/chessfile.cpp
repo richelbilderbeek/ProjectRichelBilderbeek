@@ -64,7 +64,7 @@ std::string ribi::Chess::File::IntToCharToStr(const int x)
   return boost::lexical_cast<std::string>(c);
 }
 
-void ribi::Chess::File::Test()
+void ribi::Chess::File::Test() noexcept
 {
   {
     static bool tested = false;

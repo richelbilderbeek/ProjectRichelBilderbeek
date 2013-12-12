@@ -192,7 +192,7 @@ struct QtCreatorProFile
 
   #ifndef NDEBUG
   ///Test QtCreatorProFile
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   friend std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p);

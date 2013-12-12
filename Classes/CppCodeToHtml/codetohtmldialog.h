@@ -87,7 +87,7 @@ struct Dialog
     ) noexcept;
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 };

@@ -28,6 +28,9 @@ struct NoiseFunctionParser
 
   static double MyRand(const double * const max);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

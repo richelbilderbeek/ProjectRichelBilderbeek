@@ -35,6 +35,9 @@ ribi::QtTestLedMainDialog::QtTestLedMainDialog(QWidget *parent) noexcept
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestLedMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   ui->led_red->GetWidget()->GetLed()->SetColor(  255,  0,  0);
   ui->led_green->GetWidget()->GetLed()->SetColor(  0,255,  0);
@@ -71,3 +74,16 @@ void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
   ui->led_gray->GetWidget()->GetLed()->SetIntensity(intensity);
   ui->led_white->GetWidget()->GetLed()->SetIntensity(intensity);
 }
+
+#ifndef NDEBUG
+void ribi::QtTestLedMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestLedMainDialog::Test");
+  TRACE("Finished ribi::QtTestLedMainDialog::Test successfully");
+}
+#endif

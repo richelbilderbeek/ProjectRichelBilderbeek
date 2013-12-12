@@ -448,7 +448,7 @@ const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
 }
 
 #ifndef NDEBUG
-void ribi::c2h::Dialog::Test()
+void ribi::c2h::Dialog::Test() noexcept
 {
   {
     static bool is_tested = false;

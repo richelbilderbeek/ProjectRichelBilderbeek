@@ -43,7 +43,7 @@ struct BoardWidget : public Chess::ChessWidget
   void SetActivePlayer(const Player player);
 
   ///Test this class
-  static void Test();
+  static void Test() noexcept;
 
   private:
 

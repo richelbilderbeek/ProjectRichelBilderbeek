@@ -171,7 +171,7 @@ void ribi::TwoDigitNewick::SetTheta(const double theta)
   sm_theta = theta;
 }
 
-void ribi::TwoDigitNewick::Test()
+void ribi::TwoDigitNewick::Test() noexcept
 {
   ribi::TwoDigitNewick::SetTheta(10.0);
   const std::vector<std::string> v = Newick::CreateValidNewicks();

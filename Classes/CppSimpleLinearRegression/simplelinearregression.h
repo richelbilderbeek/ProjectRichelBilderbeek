@@ -67,7 +67,7 @@ private:
     const std::vector<double>& v);
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 };
 

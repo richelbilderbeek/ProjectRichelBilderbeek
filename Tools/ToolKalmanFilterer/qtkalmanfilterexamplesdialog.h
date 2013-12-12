@@ -46,7 +46,7 @@ private:
 
 
   #ifndef NDEBUG
-  static void Test();
+  static void Test() noexcept;
   #endif
 
 private slots:

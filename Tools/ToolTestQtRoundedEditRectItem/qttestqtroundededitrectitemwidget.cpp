@@ -30,6 +30,9 @@
 ribi::QtTestQtRoundedEditRectItemWidget::QtTestQtRoundedEditRectItemWidget(QWidget *parent)
   : QtKeyboardFriendlyGraphicsView(parent)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Display with default font
   this->Display(QtRoundedEditRectItem().GetFont());
 }

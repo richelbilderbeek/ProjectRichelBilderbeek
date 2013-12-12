@@ -50,7 +50,7 @@ private:
   ///with the focal concept item as the central node
   void OnRequestRateConceptDialog(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map);
 
-  static void Test();
+  static void Test() noexcept;
 };
 
 } //~namespace pvdb

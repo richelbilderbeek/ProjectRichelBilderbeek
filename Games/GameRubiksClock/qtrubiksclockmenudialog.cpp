@@ -32,14 +32,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "qtrubiksclockwidget.h"
 #include "qttogglebuttonwidget.h"
 #include "rubiksclockmenudialog.h"
+#include "trace.h"
 #include "ui_qtrubiksclockmenudialog.h"
-
 #pragma GCC diagnostic pop
 
 ribi::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRubiksClockMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -77,3 +80,15 @@ void ribi::QtRubiksClockMenuDialog::on_button_start_clicked()
   ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtRubiksClockMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRubiksClockMenuDialog::Test");
+  TRACE("Finished ribi::QtRubiksClockMenuDialog::Test successfully");
+}
+#endif

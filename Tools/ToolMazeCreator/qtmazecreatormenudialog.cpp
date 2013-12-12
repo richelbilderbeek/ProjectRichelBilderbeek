@@ -26,6 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "mazecreatormenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtmazecreatormaindialog.h"
+#include "trace.h"
 #include "ui_qtmazecreatormenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -33,6 +34,9 @@ ribi::QtMazeCreatorMenuDialog::QtMazeCreatorMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtMazeCreatorMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 }
 
@@ -60,3 +64,16 @@ void ribi::QtMazeCreatorMenuDialog::on_button_quit_clicked()
 {
   close();
 }
+
+#ifndef NDEBUG
+void ribi::QtMazeCreatorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtMazeCreatorMenuDialog::Test");
+  TRACE("Finished ribi::QtMazeCreatorMenuDialog::Test successfully");
+}
+#endif

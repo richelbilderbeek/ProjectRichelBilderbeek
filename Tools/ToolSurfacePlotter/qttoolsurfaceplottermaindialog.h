@@ -31,20 +31,20 @@ namespace ribi {
 
 class QtToolSurfacePlotterMainDialog : public QtHideAndShowDialog
 {
-    Q_OBJECT
+  Q_OBJECT
     
 public:
-    explicit QtToolSurfacePlotterMainDialog(QWidget *parent = 0);
-    QtToolSurfacePlotterMainDialog(const QtToolSurfacePlotterMainDialog&) = delete;
-    QtToolSurfacePlotterMainDialog& operator=(const QtToolSurfacePlotterMainDialog&) = delete;
-    ~QtToolSurfacePlotterMainDialog() noexcept;
+  explicit QtToolSurfacePlotterMainDialog(QWidget *parent = 0);
+  QtToolSurfacePlotterMainDialog(const QtToolSurfacePlotterMainDialog&) = delete;
+  QtToolSurfacePlotterMainDialog& operator=(const QtToolSurfacePlotterMainDialog&) = delete;
+  ~QtToolSurfacePlotterMainDialog() noexcept;
     
 private slots:
-    void OnAnyChange();
-    void resizeEvent(QResizeEvent *);
+  void OnAnyChange();
+  void resizeEvent(QResizeEvent *);
 
 private:
-    Ui::QtToolSurfacePlotterMainDialog *ui;
+  Ui::QtToolSurfacePlotterMainDialog *ui;
 
   ///Rescale calculates a value between old_min and old_max its relative place and transforms
   ///this relative position to a new_min and new_max
@@ -57,6 +57,9 @@ private:
     const double newMin,
     const double newMax);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

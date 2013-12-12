@@ -63,7 +63,7 @@ void ribi::QtPerfectElasticCollisionMenuDialog::on_button_quit_clicked() noexcep
 }
 
 #ifndef NDEBUG
-void ribi::QtPerfectElasticCollisionMenuDialog::Test()
+void ribi::QtPerfectElasticCollisionMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

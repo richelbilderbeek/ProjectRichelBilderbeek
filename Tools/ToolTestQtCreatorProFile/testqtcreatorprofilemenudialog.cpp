@@ -31,6 +31,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 int ribi::TestQtCreatorProFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -95,3 +98,15 @@ const std::vector<std::string> ribi::TestQtCreatorProFileMenuDialog::GetVersionH
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQtCreatorProFileMenuDialog::Test");
+  TRACE("Finished ribi::TestQtCreatorProFileMenuDialog::Test successfully");
+}
+#endif

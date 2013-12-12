@@ -284,7 +284,7 @@ void ribi::Chess::QtChessBoardWidget::resizeEvent(QResizeEvent *)
 }
 
 
-void ribi::Chess::QtChessBoardWidget::Test()
+void ribi::Chess::QtChessBoardWidget::Test() noexcept
 {
   {
     static bool is_tested = false;

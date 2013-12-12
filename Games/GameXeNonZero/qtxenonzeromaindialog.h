@@ -39,6 +39,10 @@ private:
 
   ///Displays the dialog
   void Display(const boost::shared_ptr<const xnz::Area> area);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -48,6 +48,10 @@ private:
   Ui::QtTestChessGameDialog *ui;
 
   void OnChessboardChanged();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

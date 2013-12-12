@@ -17,6 +17,9 @@
 
 int ribi::kalman::KalmanFiltererMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -104,3 +107,16 @@ const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersio
     "2013-07-17: version 1.15: allow copying from and pasting to parameter tables, transitioned to Qt5, GCC 4.8.0 and Boost 1.54.0, able to crosscompile again"
   };
 }
+
+#ifndef NDEBUG
+void ribi::kalman::KalmanFiltererMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::kalman::KalmanFiltererMenuDialog::Test");
+  TRACE("Finished ribi::kalman::KalmanFiltererMenuDialog::Test successfully");
+}
+#endif

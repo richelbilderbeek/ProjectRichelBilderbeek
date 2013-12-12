@@ -18,6 +18,9 @@
 
 int ribi::TestBinaryNewickVectorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -88,3 +91,16 @@ const std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersio
     "2013-12-06: Version 3.2: conformized to ProjectRichelBilderbeek"
   };
 }
+
+#ifndef NDEBUG
+void ribi::TestBinaryNewickVectorMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestBinaryNewickVectorMenuDialog::Test");
+  TRACE("Finished ribi::TestBinaryNewickVectorMenuDialog::Test successfully");
+}
+#endif

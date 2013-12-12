@@ -100,7 +100,7 @@ struct Move
   ///Tests all moves that are potentially valid,
   ///that is, there must be situations possible
   ///in which these are valid.
-  static void Test();
+  static void Test() noexcept;
   #endif
 
   ///Obtain the square the piece is moving to

@@ -25,6 +25,10 @@ std::istream& operator>>(std::istream& is, CellIndex& face_index);
 
 bool operator==(const CellIndex& lhs, const CellIndex& rhs) noexcept;
 bool operator!=(const CellIndex& lhs, const CellIndex& rhs) noexcept;
+bool operator<(const CellIndex& lhs, const CellIndex& rhs) noexcept;
+bool operator>(const CellIndex& lhs, const CellIndex& rhs) noexcept;
+bool operator>=(const CellIndex& lhs, const CellIndex& rhs) noexcept;
+bool operator<=(const CellIndex& lhs, const CellIndex& rhs) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

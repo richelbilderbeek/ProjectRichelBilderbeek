@@ -13847,7 +13847,7 @@ const std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 }
 
 #ifndef NDEBUG
-void ribi::c2h::Info::Test()
+void ribi::c2h::Info::Test() noexcept
 {
   {
     static bool is_tested = false;

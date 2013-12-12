@@ -47,6 +47,9 @@ ribi::QtToolSimplifyNewickMainDialog::QtToolSimplifyNewickMainDialog(QWidget *pa
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtToolSimplifyNewickMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Put the dialog in the screen center
@@ -183,56 +186,15 @@ void ribi::QtToolSimplifyNewickMainDialog::on_edit_max_complexity_textChanged(co
   OnAnyEditChange();
 }
 
-///IntToStrWithSep converts an integer to std::string
-///and adds thousands seperators.
-///From http://www.richelbilderbeek.nl/CppIntToStrWithSep.htm
-/*
-const std::string IntToStrWithSep(cln::cl_I i)
+#ifndef NDEBUG
+void ribi::QtToolSimplifyNewickMainDialog::Test() noexcept
 {
-  std::string s
-    = boost::lexical_cast<std::string>(cln::mod(i,10));
-  i = cln::floor1(i,10);
-  int d = 1;
-  while (!cln::zerop(i))
   {
-    s = boost::lexical_cast<std::string>(cln::mod(i,10))
-      + (d % 3 == 0 ? "," : "")
-      + s;
-    i = cln::floor1(i,10);
-    ++d;
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
   }
-  return s;
+  TRACE("Starting ribi::QtToolSimplifyNewickMainDialog::Test");
+  TRACE("Finished ribi::QtToolSimplifyNewickMainDialog::Test successfully");
 }
-*/
-
-///SafeIntToCli converts an int to cln::cl_I safely.
-///From http://www.richelbilderbeek.nl/CppSafeIntToCli.htm
-/*
-const cln::cl_I SafeIntToCli(const int i)
-{
-  //A cln::cl_I can handle integer values to 2^29 in its constructor
-  if (i < 536870912)
-  {
-    return cln::cl_I(i);
-  }
-  const std::string s = boost::lexical_cast<std::string>(i);
-  return cln::cl_I(s.c_str());
-}
-*/
-
-/*
-///GetMaxInt returns the highest possible value of a int.
-///From http://www.richelbilderbeek.nl/CppGetMaxInt.htm
-int GetMaxInt()
-{
-  return boost::numeric::bounds<int>::highest();
-}
-
-
-
-///From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
-void RandomizeTimer()
-{
-  std::srand(std::time(0));
-}
-*/
+#endif

@@ -52,6 +52,10 @@ private slots:
   void on_box_left_currentIndexChanged(int index);
   void on_box_right_currentIndexChanged(int index);
   void OnAnyChange();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 

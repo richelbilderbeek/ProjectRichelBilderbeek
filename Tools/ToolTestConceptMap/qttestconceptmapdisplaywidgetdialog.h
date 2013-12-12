@@ -45,7 +45,9 @@ private:
   ///The to-be-tested concept map
   boost::shared_ptr<QtConceptMapDisplayWidget> m_concept_map;
 
-  static void Test();
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

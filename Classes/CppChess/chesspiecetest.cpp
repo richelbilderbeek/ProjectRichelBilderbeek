@@ -28,7 +28,7 @@ bool IsPresent(boost::shared_ptr<T> p,const std::vector<boost::shared_ptr<U> > v
 }
 
 #ifndef NDEBUG
-void ribi::Chess::Piece::Test()
+void ribi::Chess::Piece::Test() noexcept
 {
   //Testing Chess::Piece exactly once
   {
@@ -68,7 +68,7 @@ void ribi::Chess::Piece::Test()
 }
 
 
-void ribi::Chess::PieceBishop::Test()
+void ribi::Chess::PieceBishop::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -167,7 +167,7 @@ void ribi::Chess::PieceBishop::Test()
   #endif
 }
 
-void ribi::Chess::PieceKing::Test()
+void ribi::Chess::PieceKing::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -251,7 +251,7 @@ void ribi::Chess::PieceKing::Test()
   #endif
 }
 
-void ribi::Chess::PieceKnight::Test()
+void ribi::Chess::PieceKnight::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -372,7 +372,7 @@ void ribi::Chess::PieceKnight::Test()
   #endif
 }
 
-void ribi::Chess::PiecePawn::Test()
+void ribi::Chess::PiecePawn::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -683,7 +683,7 @@ void ribi::Chess::PiecePawn::Test()
   #endif
 }
 
-void ribi::Chess::PieceQueen::Test()
+void ribi::Chess::PieceQueen::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -801,7 +801,7 @@ void ribi::Chess::PieceQueen::Test()
   #endif
 }
 
-void ribi::Chess::PieceRook::Test()
+void ribi::Chess::PieceRook::Test() noexcept
 {
   {
     static bool is_tested = false;

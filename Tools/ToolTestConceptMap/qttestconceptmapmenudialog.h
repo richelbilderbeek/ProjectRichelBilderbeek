@@ -42,6 +42,7 @@ private slots:
 
 private:
   Ui::QtTestConceptMapMenuDialog *ui;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

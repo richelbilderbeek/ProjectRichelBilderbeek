@@ -136,7 +136,7 @@ void ribi::Chess::BoardWidget::SetActivePlayer(const Player player)
   }
 }
 
-void ribi::Chess::BoardWidget::Test()
+void ribi::Chess::BoardWidget::Test() noexcept
 {
   //Testing Chess::Piece exactly once
   {

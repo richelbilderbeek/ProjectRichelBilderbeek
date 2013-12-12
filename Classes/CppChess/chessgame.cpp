@@ -151,7 +151,7 @@ const boost::shared_ptr<ribi::Chess::Score>& ribi::Chess::Game::Score() const
 }
 
 #ifndef NDEBUG
-void ribi::Chess::Game::Test()
+void ribi::Chess::Game::Test() noexcept
 {
   {
     static bool is_tested = false;

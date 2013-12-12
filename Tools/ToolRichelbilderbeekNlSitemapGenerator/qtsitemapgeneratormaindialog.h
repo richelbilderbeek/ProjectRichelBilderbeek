@@ -55,6 +55,10 @@ private slots:
   static const std::string GetCurrentFolder(const std::string& s);
 
   void OnLogMessage(const std::string& msg) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

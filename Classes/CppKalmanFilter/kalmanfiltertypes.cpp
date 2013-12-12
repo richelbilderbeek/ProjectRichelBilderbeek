@@ -32,7 +32,7 @@ const std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterType
 }
 
 #ifndef NDEBUG
-void ribi::kalman::KalmanFilterTypes::Test()
+void ribi::kalman::KalmanFilterTypes::Test() noexcept
 {
   {
     static bool is_tested = false;

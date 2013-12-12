@@ -88,7 +88,7 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
 
 
 #ifndef NDEBUG
-void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::Test()
+void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

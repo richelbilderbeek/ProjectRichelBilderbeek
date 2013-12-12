@@ -33,10 +33,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ribi::QtPylosMainDialog::QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget,
   QWidget *parent)
-  : QtHideAndShowDialog(parent), //Removed Qt::Window flag
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtPylosMainDialog),
     m_pylos_widget(pylos_widget ? pylos_widget : new QtPylosGameWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   //Connect
@@ -76,6 +79,19 @@ void ribi::QtPylosMainDialog::OnWinner()
 {
   QtPylosWonDialog d;
   d.SetWinner(m_pylos_widget->GetPylos()->GetWinner());
-  d.exec();
+  this->ShowChild(&d);
   close();
 }
+
+#ifndef NDEBUG
+void ribi::QtPylosMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtPylosMainDialog::Test");
+  TRACE("Finished ribi::QtPylosMainDialog::Test successfully");
+}
+#endif

@@ -7,6 +7,9 @@
 
 int ribi::SecretMessage::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -68,3 +71,16 @@ const std::vector<std::string> ribi::SecretMessage::MenuDialog::GetVersionHistor
     "2012-08-03: version 2.0: port to Qt Creator"
   };
 }
+
+#ifndef NDEBUG
+void ribi::SecretMessage::MenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::SecretMessage::MenuDialog::Test");
+  TRACE("Finished ribi::SecretMessage::MenuDialog::Test successfully");
+}
+#endif

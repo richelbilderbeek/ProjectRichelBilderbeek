@@ -26,6 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
+#include "trace.h"
 #include "ui_qtrubiksclockmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -33,6 +34,9 @@ ribi::QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRubiksClockMainDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
 
   for (int i=0; i!=10000; ++i)
@@ -73,3 +77,16 @@ void ribi::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
   const QRectF r(ui->clock->geometry());
   ui->clock->GetWidget()->SetGeometry(Rect(r.x(),r.y(),r.width(),r.height()));
 }
+
+#ifndef NDEBUG
+void ribi::QtRubiksClockMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtRubiksClockMainDialog::Test");
+  TRACE("Finished ribi::QtRubiksClockMainDialog::Test successfully");
+}
+#endif

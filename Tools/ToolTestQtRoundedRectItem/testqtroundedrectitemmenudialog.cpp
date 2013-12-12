@@ -7,6 +7,9 @@
 
 int ribi::TestQtRoundedRectItemMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -70,3 +73,15 @@ const std::vector<std::string> ribi::TestQtRoundedRectItemMenuDialog::GetVersion
   };
 }
 
+#ifndef NDEBUG
+void ribi::TestQtRoundedRectItemMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TestQtRoundedRectItemMenuDialog::Test");
+  TRACE("Finished ribi::TestQtRoundedRectItemMenuDialog::Test successfully");
+}
+#endif

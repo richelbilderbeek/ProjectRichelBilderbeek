@@ -135,7 +135,7 @@ double ribi::Dial::GetDistance(const double dX, const double dY)
 }
 
 #ifndef NDEBUG
-void ribi::Dial::Test()
+void ribi::Dial::Test() noexcept
 {
   {
     static bool is_tested = false;

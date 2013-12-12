@@ -449,7 +449,7 @@ QPainterPath ribi::cmap::QtEdge::shape() const
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtEdge::Test()
+void ribi::cmap::QtEdge::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -29,6 +29,10 @@ private slots:
 
 private:
   Ui::QtGrayCoderMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi
