@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttestfunctionparsermaindialog.h"
 #include "testfunctionparsermenudialog.h"
+#include "trace.h"
 #include "ui_qttestfunctionparsermenudialog.h"
 #pragma GCC diagnostic pop
 

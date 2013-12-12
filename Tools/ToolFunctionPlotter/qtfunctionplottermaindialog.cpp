@@ -10,7 +10,10 @@
 
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
+
+#if QWT_VERSION >= 0x060100
 #include <qwt_point_data.h>
+#endif
 
 #include "fparser.hh"
 
@@ -44,7 +47,7 @@ ribi::QtFunctionPlotterMainDialog::QtFunctionPlotterMainDialog(QWidget *parent)
     #ifdef _WIN32
     m_plot->setCanvasBackground(QBrush(QColor(255,255,255)));
     #else
-    plot->setCanvasBackground(QColor(255,255,255));
+    m_plot->setCanvasBackground(QColor(255,255,255));
     #endif
 
     m_curve->attach(m_plot);
@@ -137,7 +140,7 @@ void ribi::QtFunctionPlotterMainDialog::OnAnyChange() noexcept
   this->setWindowTitle("Function plotted successfully");
 
   //Plot
-  #ifdef _WIN32
+  #if QWT_VERSION >= 0x060100 || !WIN32
   m_curve->setData(new QwtPointArrayData(&v_x[0],&v_y[0],v_y.size()));
   #else
   m_curve->setData(&v_x[0],&v_y[0],v_y.size());

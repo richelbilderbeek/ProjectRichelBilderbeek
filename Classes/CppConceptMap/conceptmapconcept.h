@@ -82,13 +82,13 @@ struct Concept
 
   friend class QtConceptMapConceptEditDialog;
   friend class QtConceptMapDialog;
-  friend class QtRateConceptDialog;
+  friend class QtRateConceptDialogNewName;
   friend class QtConceptMapTestConceptItemDialog;
   friend class QtConceptMapTestEdgeItemDialog;
   friend class QtConceptMapTestNodeItemDialog;
   friend class QtEdge;
   friend class QtNode;
-  friend class QtRateExamplesDialog;
+  friend class QtRateExamplesDialogNewName;
   friend class QtStudentMenuDialog;
   friend class QtTestConceptMapEditWidgetDialog;
   friend class QtTestConceptMapRateWidgetDialog;

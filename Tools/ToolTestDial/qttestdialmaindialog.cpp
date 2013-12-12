@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtdialwidget.h"
 #include "rainbow.h"
+#include "trace.h"
 #include "ui_qttestdialmaindialog.h"
 #pragma GCC diagnostic pop
 

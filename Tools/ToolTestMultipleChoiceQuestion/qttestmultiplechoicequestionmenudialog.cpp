@@ -84,7 +84,7 @@ void ribi::QtTestMultipleChoiceQuestionMenuDialog::on_button_quit_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtTestMultipleChoiceQuestionMenuDialog::Test()
+void ribi::QtTestMultipleChoiceQuestionMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

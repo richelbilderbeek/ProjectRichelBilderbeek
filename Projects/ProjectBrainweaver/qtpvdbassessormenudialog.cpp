@@ -9,7 +9,7 @@
 
 #include "qtpvdbaboutdialog.h"
 //#include "pvdbmenudialog.h"
-#include "qtconceptmaprateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
 #include "qtpvdbcreateassessmentmenudialog.h"
 #include "qtpvdbrateconceptmapdialog.h"

@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttestqtcreatorprofilemaindialog.h"
 #include "testqtcreatorprofilemenudialog.h"
+#include "trace.h"
 #include "ui_qttestqtcreatorprofilemenudialog.h"
 #pragma GCC diagnostic pop
 

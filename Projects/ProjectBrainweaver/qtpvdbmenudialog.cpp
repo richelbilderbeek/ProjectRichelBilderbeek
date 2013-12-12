@@ -17,7 +17,7 @@
 #include "conceptmapfactory.h"
 #include "fileio.h"
 #include "conceptmap.h"
-#include "qtconceptmaprateconcepttallydialog.h"
+#include "qtconceptmaprateconcepttallydialognewname.h"
 #include "conceptmapexamples.h"
 #include "qtpvdbfiledialog.h"
 #include "qtpvdbtestcreatesubconceptmapdialog.h"
@@ -41,9 +41,9 @@
 #include "qtpvdboverviewdialog.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qtconceptmaprateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "qtpvdbrateconceptmapdialog.h"
-#include "qtconceptmaprateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtpvdbratingdialog.h"
 #include "qtpvdbstudentmenudialog.h"
 #include "qtpvdbviewfilesdialog.h"
@@ -103,8 +103,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
   const int index = std::rand() % concept_maps.size();
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[ index ];
   //Create and show the dialog
-  boost::shared_ptr<cmap::QtRateConceptDialog> d(
-    new cmap::QtRateConceptDialog(concept_map));
+  boost::shared_ptr<cmap::QtRateConceptDialogNewName> d(
+    new cmap::QtRateConceptDialogNewName(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
@@ -122,7 +122,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> concept = ribi::cmap::ConceptFactory::GetTests().at(5);
-  boost::shared_ptr<cmap::QtRateExamplesDialog> d(new cmap::QtRateExamplesDialog(concept));
+  boost::shared_ptr<cmap::QtRateExamplesDialogNewName> d(new cmap::QtRateExamplesDialogNewName(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }
 
@@ -531,9 +531,9 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_auto_clicked() noexcep
 {
 
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-    = cmap::QtRateConceptTallyDialog::CreateTestConceptMap();
-  boost::shared_ptr<cmap::QtRateConceptTallyDialog> d(
-    new cmap::QtRateConceptTallyDialog(concept_map));
+    = cmap::QtRateConceptTallyDialogNewName::CreateTestConceptMap();
+  boost::shared_ptr<cmap::QtRateConceptTallyDialogNewName> d(
+    new cmap::QtRateConceptTallyDialogNewName(concept_map));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); }
 }
 

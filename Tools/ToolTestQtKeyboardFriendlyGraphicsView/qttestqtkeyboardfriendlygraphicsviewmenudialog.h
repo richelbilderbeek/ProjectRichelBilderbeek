@@ -48,6 +48,10 @@ private slots:
 
 private:
   Ui::QtTestKeyboardFriendlyGraphicsViewMenuDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

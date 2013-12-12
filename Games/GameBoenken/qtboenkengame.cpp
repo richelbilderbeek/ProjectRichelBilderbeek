@@ -189,7 +189,7 @@ void ribi::Boenken::Game::pressKey(const int key)
   if (key == Qt::Key_F2) std::exit(1);
 }
 
-void ribi::Boenken::Game::Test()
+void ribi::Boenken::Game::Test() noexcept
 {
   {
     static bool is_tested = false;

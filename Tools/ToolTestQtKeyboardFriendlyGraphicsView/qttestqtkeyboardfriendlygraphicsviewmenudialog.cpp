@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtroundedtextrectitem.h"
 #include "qttestqtkeyboardfriendlygraphicsviewwidget.h"
 #include "testqtkeyboardfriendlygraphicsviewmenudialog.h"
+#include "trace.h"
 #include "ui_qttestqtkeyboardfriendlygraphicsviewmenudialog.h"
 #pragma GCC diagnostic pop
 

@@ -23,7 +23,7 @@
 #include "qtconceptmapratewidget.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
-#include "qtconceptmaprateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "ui_qtpvdbrateconceptmapdialog.h"
 #pragma GCC diagnostic pop
 
@@ -110,7 +110,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::OnRequestRateConceptDialog(const bo
   this->show();
   this->m_widget->setEnabled(true);
   #else
-  cmap::QtRateConceptDialog d(sub_concept_map); //Item may be changed
+  cmap::QtRateConceptDialogNewName d(sub_concept_map); //Item may be changed
   d.exec();
   #endif
 }

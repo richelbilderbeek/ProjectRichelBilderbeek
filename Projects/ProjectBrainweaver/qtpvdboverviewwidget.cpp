@@ -16,15 +16,15 @@
 #include "conceptmapconceptfactory.h"
 #include "conceptmapfactory.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmaprateconcepttallydialog.h"
+#include "qtconceptmaprateconcepttallydialognewname.h"
 #include "qtpvdbprintconceptmapdialog.h"
 #include "qtpvdbprintratingdialog.h"
 #include "qttestconceptmapeditwidgetdialog.h"
 #include "qttestconceptmapratewidgetdialog.h"
 #include "qtpvdbassessormenudialog.h"
-#include "qtconceptmaprateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "qtpvdbrateconceptmapdialog.h"
-#include "qtconceptmaprateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtpvdbclusterdialog.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtpvdbcreateassessmentcompletedialog.h"
@@ -136,7 +136,7 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
       = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
     assert(concept_map);
-    QtHideAndShowDialog* p(new cmap::QtRateConceptDialog(concept_map));
+    QtHideAndShowDialog* p(new cmap::QtRateConceptDialogNewName(concept_map));
     assert(p);
     v.push_back(p);
   }
@@ -144,7 +144,7 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
       = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
     assert(concept_map);
-    QtHideAndShowDialog* p(new cmap::QtRateConceptTallyDialog(concept_map));
+    QtHideAndShowDialog* p(new cmap::QtRateConceptTallyDialogNewName(concept_map));
     assert(p);
     v.push_back(p);
   }
@@ -154,7 +154,7 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new cmap::QtRateExamplesDialog(cmap::ConceptFactory::GetTests().at(4)));
+    QtHideAndShowDialog* p(new cmap::QtRateExamplesDialogNewName(cmap::ConceptFactory::GetTests().at(4)));
     assert(p);
     v.push_back(p);
   }

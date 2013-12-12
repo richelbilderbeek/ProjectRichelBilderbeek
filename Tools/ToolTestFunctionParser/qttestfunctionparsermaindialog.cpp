@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "fparser.hh"
+#include "trace.h"
 #include "ui_qttestfunctionparsermaindialog.h"
 #pragma GCC diagnostic pop
 

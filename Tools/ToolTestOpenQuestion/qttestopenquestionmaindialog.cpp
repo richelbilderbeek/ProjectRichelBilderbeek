@@ -111,7 +111,7 @@ void ribi::QtTestOpenQuestionMainDialog::SetQuestion(const std::string& s)
 }
 
 #ifndef NDEBUG
-void ribi::QtTestOpenQuestionMainDialog::Test()
+void ribi::QtTestOpenQuestionMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtledwidget.h"
 #include "tooltestledmenudialog.h"
+#include "trace.h"
 #include "ui_qttooltestledmaindialog.h"
 #pragma GCC diagnostic pop
 

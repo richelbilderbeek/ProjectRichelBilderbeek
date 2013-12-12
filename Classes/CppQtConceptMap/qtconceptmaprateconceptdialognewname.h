@@ -11,13 +11,13 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtRateConceptDialog; }
+namespace Ui { class QtRateConceptDialogNewName; }
 
 namespace ribi {
 namespace cmap {
 
 ///Rate the focal concept of a sub-ConceptMap.
-class QtRateConceptDialog : public ribi::QtHideAndShowDialog
+class QtRateConceptDialogNewName : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
     
@@ -25,11 +25,11 @@ class QtRateConceptDialog : public ribi::QtHideAndShowDialog
   ///concept is the center node
   ///sub_concept_map[0] is the same as concept and might be changed
   ///sub_concept_map is non-const, as GetRatedConcept will produce a new concept
-  explicit QtRateConceptDialog(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
+  explicit QtRateConceptDialogNewName(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
     QWidget* parent = 0);
-  QtRateConceptDialog(const QtRateConceptDialog&) = delete;
-  QtRateConceptDialog& operator=(const QtRateConceptDialog&) = delete;
-  ~QtRateConceptDialog() noexcept;
+  QtRateConceptDialogNewName(const QtRateConceptDialogNewName&) = delete;
+  QtRateConceptDialogNewName& operator=(const QtRateConceptDialogNewName&) = delete;
+  ~QtRateConceptDialogNewName() noexcept;
 
   ///Set suggested values for this concept
   //void MakeSuggestions(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map);
@@ -47,7 +47,7 @@ private slots:
   void on_box_specificity_currentIndexChanged(int index);
 
 private:
-  Ui::QtRateConceptDialog *ui;
+  Ui::QtRateConceptDialogNewName *ui;
 
   ///To distinguish between closing the dialog by clicking OK, or by ALT-F4
   bool m_button_ok_clicked;

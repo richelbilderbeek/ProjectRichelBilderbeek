@@ -59,7 +59,7 @@ void ribi::QtDotMatrixMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtDotMatrixMenuDialog::Test()
+void ribi::QtDotMatrixMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

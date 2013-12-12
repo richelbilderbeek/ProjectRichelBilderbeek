@@ -86,7 +86,7 @@ void ribi::QtToolTestQtModelsMenuDialog::on_button_start_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestQtModelsMenuDialog::Test()
+void ribi::QtToolTestQtModelsMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

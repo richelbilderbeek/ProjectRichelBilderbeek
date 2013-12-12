@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "chessboard.h"
 #include "chessboardwidget.h"
 #include "chessmove.h"
+#include "trace.h"
 #include "ui_qttestchessgamedialog.h"
 #pragma GCC diagnostic pop
 

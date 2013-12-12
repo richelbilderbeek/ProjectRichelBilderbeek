@@ -21,11 +21,11 @@
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapedge.h"
 #include "qtquadbezierarrowitem.h"
-#include "qtconceptmaprateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapratestrategy.h"
 #include "qtscopeddisable.h"
-#include "qtconceptmaprateconceptdialog.h"
+#include "qtconceptmaprateconceptdialognewname.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -329,7 +329,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtNode * con
     assert(item->GetConcept().get() == concept.get());
     assert(item->GetConcept() == concept);
 
-    QtRateExamplesDialog d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
+    QtRateExamplesDialogNewName d(concept); //FYI: Might change the concept (as suggested by the ctor prototype)
     d.exec();
 
     assert(item->GetConcept().get() == concept.get());
