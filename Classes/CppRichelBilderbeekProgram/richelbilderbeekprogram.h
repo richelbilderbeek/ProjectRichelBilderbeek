@@ -2141,7 +2141,7 @@ struct ProgramTestHugeVector : public ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestHugeVector.htm"; }
 };
 
-struct ProgramTestTestLazy_init : public ProgramClass
+struct ProgramTestLazy_init : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return ""; }

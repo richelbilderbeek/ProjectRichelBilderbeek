@@ -19,8 +19,10 @@ int ribi::PongMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) 
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::PongMenuDialog::GetAbout() const noexcept
@@ -28,9 +30,9 @@ const ribi::About ribi::PongMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "Pong",
-    "",
-    "",
-    "",
+    "Pong clone",
+    "today",
+    "2013-x",
     "http://www.richelbilderbeek.nl/GamePong.htm",
     GetVersion(),
     GetVersionHistory());

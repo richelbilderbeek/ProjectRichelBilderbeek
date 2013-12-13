@@ -30,6 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "fileio.h"
 #include "qrcfile.h"
 #include "testqrcfilemenudialog.h"
+#include "trace.h"
 #include "ui_qttestqrcfilemaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -69,3 +70,16 @@ void ribi::QtTestQrcFileMainDialog::on_edit_textChanged(const QString &arg1)
   ui->text_result->clear();
   ui->text_result->setPlainText(s.str().c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQrcFileMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQrcFileMainDialog::Test");
+  TRACE("Finished ribi::QtTestQrcFileMainDialog::Test successfully");
+}
+#endif

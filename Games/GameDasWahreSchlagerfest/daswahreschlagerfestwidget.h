@@ -66,6 +66,10 @@ struct DasWahreSchlagerfestWidget
 
   //Check for three in a rows
   void CheckThree();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

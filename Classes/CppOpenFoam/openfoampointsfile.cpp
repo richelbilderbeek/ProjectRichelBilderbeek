@@ -42,6 +42,7 @@ const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
 {
   PointsFile b;
   is >> b;
+  assert(is);
   return b;
 }
 
@@ -159,28 +160,54 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
 
   //Read header
   is >> f.m_header;
+  assert(is);
 
   //Read items
   int n_items = 0;
   {
-    is >> n_items;
-    assert(n_items > 0);
+    //Eat comment
+    char c = '\0';
+    is >> c;
+    assert(is);
+    if (c >= '0' && c <= '9')
+    {
+      while (c != '(')
+      {
+        //Start eating n_items
+        n_items *= 10;
+        const int n = c - '0';
+        assert(n >= 0 && n <= 9);
+        n_items += n;
+        is >> c;
+        assert(is);
+      }
+    }
   }
+  //Already eaten
+  /*
   {
-    std::string bracket_open;
+    char bracket_open = '\0';
     is >> bracket_open;
-    assert(bracket_open == "(");
+    assert(is);
+    assert(bracket_open == '(');
   }
+  */
   for (int i=0; i!=n_items; ++i)
   {
     PointsFileItem item;
     is >> item;
+    assert(is);
     f.m_items.push_back(item);
   }
+  //Eat comments until bracket close
   {
-    std::string bracket_close;
-    is >> bracket_close;
-    assert(bracket_close == ")");
+    char bracket_close = '\0';
+    while (bracket_close != ')')
+    {
+      is >> bracket_close;
+      assert(is);
+    }
+    assert(bracket_close == ')');
   }
   return is;
 }

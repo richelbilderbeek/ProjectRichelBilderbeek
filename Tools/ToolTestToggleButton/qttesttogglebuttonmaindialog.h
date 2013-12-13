@@ -30,9 +30,13 @@ private:
   void DisplayToggleButtonValue();
 
 private slots:
-    void on_dial_dialMoved(int value);
-    void OnDial();
-    void on_dial_sliderPressed();
+  void on_dial_dialMoved(int value);
+  void OnDial();
+  void on_dial_sliderPressed();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

@@ -2,6 +2,9 @@
 #define OPENFOAMFWD_H
 
 namespace ribi {
+
+struct Coordinat3D;
+
 namespace foam {
 
 struct Boundary;
@@ -22,7 +25,6 @@ struct NeighbourFile;
 struct NeighbourFileItem;
 struct OwnerFile;
 struct OwnerFileItem;
-struct Point;
 struct PointIndex;
 struct PointsFile;
 struct PointsFileItem;

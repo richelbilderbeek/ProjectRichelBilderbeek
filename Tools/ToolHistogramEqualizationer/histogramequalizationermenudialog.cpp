@@ -52,7 +52,7 @@ const ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexce
 const boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
+    new ribi::ProgramHistogramEqualizationer
   };
   assert(p);
   return p;

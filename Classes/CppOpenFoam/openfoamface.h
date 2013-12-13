@@ -12,6 +12,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
 namespace foam {
 
 ///An OpenFOAM face:
@@ -21,22 +22,27 @@ namespace foam {
 struct Face
 {
   Face(
-    //const boost::shared_ptr<Cell> neighbour = nullptr,
-    //const boost::shared_ptr<Cell> owner = nullptr,
-    const std::vector<boost::shared_ptr<Point> >& points = {}
+    const boost::shared_ptr<Cell> neighbour,
+    const boost::shared_ptr<Cell> owner,
+    const std::vector<boost::shared_ptr<ribi::Coordinat3D> >& points
   );
 
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
 
+  void AssignOwner(const boost::shared_ptr<Cell> owner) noexcept;
+
+  const boost::shared_ptr<Cell> GetOwner() noexcept;
+
+  private:
   ///If this Face has no Neighbour, this is nullptr
-  //const boost::shared_ptr<CellIndex> m_neighbour;
+  boost::shared_ptr<Cell> m_neighbour;
 
   ///If this Face has no Owner, this is nullptr
-  //const boost::shared_ptr<CellIndex> m_owner;
+  boost::shared_ptr<Cell> m_owner;
 
   ///The points/vertices/coordinats this face consists of
-  const std::vector<boost::shared_ptr<Point> > m_points;
+  const std::vector<boost::shared_ptr<ribi::Coordinat3D> > m_points;
 };
 
 } //~namespace foam

@@ -68,6 +68,9 @@ struct About
   ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
   static const std::string GetBoostVersion() noexcept;
 
+  ///Get the author of my classes
+  static const std::string GetDefaultAuthor() noexcept { return "Richel Bilderbeek"; }
+
   ///Get the file/class/program its description
   const std::string& GetFileDescription() const noexcept { return m_file_description; }
 

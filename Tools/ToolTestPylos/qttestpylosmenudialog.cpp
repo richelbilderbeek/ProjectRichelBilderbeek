@@ -28,8 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestpylosgametestsdialog.h"
 #include "qttestpylosrandomplaydialog.h"
 #include "testpylosmenudialog.h"
+#include "trace.h"
 #include "ui_qttestpylosmenudialog.h"
-
 #pragma GCC diagnostic pop
 
 ribi::QtTestPylosMenuDialog::QtTestPylosMenuDialog(QWidget *parent) :
@@ -82,3 +82,15 @@ void ribi::QtTestPylosMenuDialog::on_button_random_play_clicked()
   this->ShowChild(&d);
 }
 
+#ifndef NDEBUG
+void ribi::QtTestPylosMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestPylosMenuDialog::Test");
+  TRACE("Finished ribi::QtTestPylosMenuDialog::Test successfully");
+}
+#endif

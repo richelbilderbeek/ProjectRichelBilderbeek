@@ -54,7 +54,7 @@ const ribi::Help ribi::FilterOperationerMenuDialog::GetHelp() const noexcept
 const boost::shared_ptr<const ribi::Program> ribi::FilterOperationerMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
+    new ribi::ProgramFilterOperationer
   };
   assert(p);
   return p;

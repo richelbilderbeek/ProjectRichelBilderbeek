@@ -36,18 +36,13 @@ ribi::QtCreateGlossaryMainDialog::QtCreateGlossaryMainDialog(QWidget *parent) :
   Test();
   #endif
   ui->setupUi(this);
-  QTimer::singleShot(100,this,SLOT(create_glossary()));
+  CreateGlossaryMainDialog();
+  ui->label->setText("Done!");
 }
 
 ribi::QtCreateGlossaryMainDialog::~QtCreateGlossaryMainDialog() noexcept
 {
   delete ui;
-}
-
-void ribi::QtCreateGlossaryMainDialog::create_glossary()
-{
-  CreateGlossaryMainDialog();
-  ui->label->setText("Done!");
 }
 
 #ifndef NDEBUG

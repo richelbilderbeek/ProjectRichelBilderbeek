@@ -38,8 +38,10 @@ int ribi::MaziakMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::MaziakMenuDialog::GetAbout() const noexcept

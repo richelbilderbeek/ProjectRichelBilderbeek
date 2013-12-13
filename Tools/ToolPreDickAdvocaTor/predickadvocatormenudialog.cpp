@@ -52,7 +52,7 @@ const ribi::Help ribi::PreDickAdvocaTorMenuDialog::GetHelp() const noexcept
 const boost::shared_ptr<const ribi::Program> ribi::PreDickAdvocaTorMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
+    new ribi::ProgramPreDickAdvocaTor
   };
   assert(p);
   return p;

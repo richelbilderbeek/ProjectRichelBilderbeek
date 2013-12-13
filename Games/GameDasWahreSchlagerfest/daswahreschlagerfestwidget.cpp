@@ -22,15 +22,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "daswahreschlagerfestwidget.h"
-#pragma GCC diagnostic pop
 
 #include <numeric>
+
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::DasWahreSchlagerfestWidget::DasWahreSchlagerfestWidget(const int width, const int height)
   : m_signal_changed{},
     m_cursor{Cursor(width / 2,0,Tile::beer)},
     m_v(height,std::vector<Tile>(width,Tile::empty))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(height == static_cast<int>(m_v.size()));
   assert(width == static_cast<int>(m_v[0].size()));
 }
@@ -222,3 +227,17 @@ void ribi::DasWahreSchlagerfestWidget::PressKey(const ribi::DasWahreSchlagerfest
     break;
   }
 }
+
+#ifndef NDEBUG
+void ribi::DasWahreSchlagerfestWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::DasWahreSchlagerfestWidget::Test");
+
+  TRACE("Finished ribi::DasWahreSchlagerfestWidget::Test successfully");
+}
+#endif

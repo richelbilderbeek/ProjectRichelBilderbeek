@@ -60,6 +60,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryIndex& face
 std::istream& ribi::foam::operator>>(std::istream& is, BoundaryIndex& face_index) noexcept
 {
   is >> face_index.m_index;
+  assert(is);
   return is;
 }
 

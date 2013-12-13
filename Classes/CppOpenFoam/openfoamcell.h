@@ -18,14 +18,12 @@ namespace foam {
 ///Cell is called a neighbour
 struct Cell
 {
-  Cell(
-    const std::vector<boost::shared_ptr<Face> >& faces,
-    const boost::shared_ptr<Cell> neighbour
-  );
+  Cell();
 
+  void AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces);
   private:
 
-  std::vector<boost::shared_ptr<Face> > m_faces;
+  std::vector<boost::shared_ptr<Face> > m_owned_faces;
 
   const boost::shared_ptr<Cell> m_neighbour;
 };

@@ -19,8 +19,11 @@ int ribi::AminoAcidFighterMenuDialog::ExecuteSpecific(const std::vector<std::str
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::AminoAcidFighterMenuDialog::GetAbout() const noexcept
@@ -28,9 +31,9 @@ const ribi::About ribi::AminoAcidFighterMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "AminoAcidFighter",
-    "",
-    "",
-    "",
+    "4 player SpaceWar clone with amino acids",
+    "today",
+    "200x-201x",
     "http://www.richelbilderbeek.nl/GameAminoAcidFighter.htm",
     GetVersion(),
     GetVersionHistory());

@@ -23,6 +23,10 @@ struct NeighbourFile
   ///If the FaceIndex is present
   bool CanGetItem(const FaceIndex& face_index) const noexcept;
 
+  ///Find the first CellIndex beyond the cell indices present
+  ///Or: find the first CellIndex that does not exist anymore
+  const CellIndex FindMaxCellIndex() const noexcept;
+
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<NeighbourFileItem> GetItems() const noexcept { return m_items; }

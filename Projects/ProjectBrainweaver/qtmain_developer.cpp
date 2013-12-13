@@ -18,7 +18,7 @@
 #include "qtpvdbconceptmapdialog.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapeditwidget.h"
-#include "qtconceptmaprateexamplesdialog.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtconceptmapratewidget.h"
 #include "qtpvdbmenudialog.h"
 #include "trace.h"

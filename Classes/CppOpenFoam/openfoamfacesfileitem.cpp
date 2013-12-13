@@ -94,17 +94,20 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFileItem& f)
   {
     char bracket_open;
     is >> bracket_open;
+    assert(is);
     assert(bracket_open == '(');
   }
   for (int i=0; i!=n_nodes; ++i)
   {
     PointIndex node;
     is >> node;
+    assert(is);
     f.m_point_indices.push_back(node);
   }
   {
     char bracket_close;
     is >> bracket_close;
+    assert(is);
     assert(bracket_close == ')');
   }
   return is;

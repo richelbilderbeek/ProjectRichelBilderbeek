@@ -71,6 +71,13 @@ const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
   return Header(class_name,location,note,object);
 }
 
+const ribi::foam::BoundaryFileItem ribi::foam::BoundaryFile::GetItem(const ribi::foam::BoundaryIndex& boundary_index) const noexcept
+{
+  assert(boundary_index.Get() >= 0);
+  assert(boundary_index < GetMaxBoundaryIndex());
+  return m_items[ boundary_index.Get() ];
+}
+
 const ribi::foam::BoundaryIndex ribi::foam::BoundaryFile::GetMaxBoundaryIndex() const noexcept
 {
   return BoundaryIndex(static_cast<int>(m_items.size()));
@@ -80,6 +87,7 @@ const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 {
   BoundaryFile b;
   is >> b;
+  assert(is);
   return b;
 }
 
@@ -210,27 +218,32 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFile& f)
 
   //Read header
   is >> f.m_header;
+  assert(is);
 
   //Read items
   int n_items = 0;
   {
     is >> n_items;
+    assert(is);
     assert(n_items > 0);
   }
   {
     std::string bracket_open;
     is >> bracket_open;
+    assert(is);
     assert(bracket_open == "(");
   }
   for (int i=0; i!= n_items; ++i)
   {
     BoundaryFileItem item;
     is >> item;
+    assert(is);
     f.m_items.push_back(item);
   }
   {
     std::string bracket_close;
     is >> bracket_close;
+    assert(is);
     assert(bracket_close == ")");
   }
   return is;

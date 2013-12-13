@@ -61,6 +61,7 @@ const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
 {
   FacesFile b;
   is >> b;
+  assert(is);
   return b;
 }
 
@@ -166,17 +167,20 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
 
   //Read header
   is >> f.m_header;
+  assert(is);
 
   //Read items
   int n_items = 0;
   {
     is >> n_items;
+    assert(is);
     assert(n_items > 0);
     TRACE(n_items);
   }
   {
     std::string bracket_open;
     is >> bracket_open;
+    assert(is);
     assert(bracket_open == "(");
   }
   for (int i=0; i!=n_items; ++i)
@@ -185,6 +189,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
     {
       FacesFileItem item;
       is >> item;
+      assert(is);
       f.m_items.push_back(item);
     }
     catch(ParseError&)
@@ -195,6 +200,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
   {
     std::string bracket_close;
     is >> bracket_close;
+    assert(is);
     assert(bracket_close == ")");
   }
   return is;

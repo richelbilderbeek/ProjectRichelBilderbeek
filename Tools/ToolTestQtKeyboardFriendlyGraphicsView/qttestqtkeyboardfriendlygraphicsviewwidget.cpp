@@ -333,3 +333,16 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::keyPressEvent(QKeyEvent *ev
   QtKeyboardFriendlyGraphicsView::keyPressEvent(event);
 }
 #pragma GCC diagnostic pop
+
+#ifndef NDEBUG
+void ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test");
+  TRACE("Finished ribi::QtTestKeyboardFriendlyGraphicsViewWidget::Test successfully");
+}
+#endif

@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>AsciiArter</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
-  </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
@@ -72,8 +68,6 @@ QPushButton { font: 16px, &quot;monospace&quot; }</string>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

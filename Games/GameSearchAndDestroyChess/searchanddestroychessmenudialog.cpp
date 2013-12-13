@@ -13,6 +13,31 @@
 #endif
 
 #include "chessgame.h"
+
+#include "chesswidget.h"
+#include "chesssquareselector.h"
+#include "chesssquarefactory.h"
+#include "chesssquare.h"
+#include "chessscore.h"
+#include "chessrank.h"
+#include "chessplayer.h"
+#include "chesspiecefactory.h"
+#include "chesspiece.h"
+#include "chessmoves.h"
+#include "chessmovefactory.h"
+#include "chessmove.h"
+#include "chesshelper.h"
+#include "chessgamewidget.h"
+#include "chessgame.h"
+#include "chessfwd.h"
+#include "chessfile.h"
+#include "chesscolor.h"
+#include "chesscastling.h"
+#include "chessboardwidget.h"
+#include "chessboardfactory.h"
+#include "chessboard.h"
+#include "chessbitboard.h"
+
 #include "trace.h"
 
 #include <QFile>
@@ -68,7 +93,18 @@ const ribi::About ribi::sadc::MenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Artwork from GNU XBoard");
-  //a.AddLibrary("Chess::Board2d version: " + Chess::Board2d::GetVersion());
+  a.AddLibrary("Chess::widget version: " + Chess::ChessWidget::GetVersion());
+  a.AddLibrary("Chess::SquareSelector version: " + Chess::SquareSelector::GetVersion());
+  a.AddLibrary("Chess::Square: " + Chess::Square::GetVersion());
+  a.AddLibrary("Chess::Score: " + Chess::Score::GetVersion());
+  a.AddLibrary("Chess::Rank: " + Chess::Rank::GetVersion());
+  a.AddLibrary("Chess::Moves: " + Chess::Moves::GetVersion());
+  a.AddLibrary("Chess::Move: " + Chess::Move::GetVersion());
+  a.AddLibrary("Chess::Game: " + Chess::Game::GetVersion());
+  a.AddLibrary("Chess::GameWidget: " + Chess::GameWidget::GetVersion());
+  a.AddLibrary("Chess::File: " + Chess::File::GetVersion());
+  a.AddLibrary("Chess::Board: " + Chess::Board::GetVersion());
+  a.AddLibrary("Chess::BoardWidget: " + Chess::BoardWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

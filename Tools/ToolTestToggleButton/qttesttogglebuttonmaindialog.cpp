@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "testtogglebuttonmenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+#include "trace.h"
 #include "ui_qttesttogglebuttonmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -97,3 +98,15 @@ void ribi::QtTestToggleButtonMainDialog::on_dial_sliderPressed()
   OnDial();
 }
 
+#ifndef NDEBUG
+void ribi::QtTestToggleButtonMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestToggleButtonMainDialog::Test");
+  TRACE("Finished ribi::QtTestToggleButtonMainDialog::Test successfully");
+}
+#endif

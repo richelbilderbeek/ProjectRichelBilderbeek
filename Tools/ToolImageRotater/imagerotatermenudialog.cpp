@@ -52,7 +52,7 @@ const ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
 const boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
+    new ribi::ProgramImageRotater
   };
   assert(p);
   return p;

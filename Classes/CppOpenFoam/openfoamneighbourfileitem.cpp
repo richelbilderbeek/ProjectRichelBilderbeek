@@ -61,6 +61,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFileItem& 
 std::istream& ribi::foam::operator>>(std::istream& is, NeighbourFileItem& f)
 {
   is >> f.m_cell_index;
+  assert(is);
   assert(f.GetCellIndex().Get() >= -1);
   return is;
 }

@@ -482,10 +482,14 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
     + CreateFilenames()->GetOwner().Get()
   );
-  std::ifstream is(filename.Get().c_str());
-  boost::shared_ptr<ribi::foam::OwnerFile> p {
-    new ribi::foam::OwnerFile(is)
+
+  const boost::shared_ptr<ribi::foam::OwnerFile> p {
+    new ribi::foam::OwnerFile(filename.Get())
   };
+  //std::ifstream is(filename.Get().c_str());
+  //const boost::shared_ptr<ribi::foam::OwnerFile> p {
+  //  new ribi::foam::OwnerFile(is)
+  //};
   assert(p);
   return p;
 }
@@ -517,46 +521,11 @@ const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::Creat
     assert(files);
     v.push_back(files);
   }
-  //Cube
-  /*
-  {
-    const boost::shared_ptr<BoundaryFile> boundary;
-    const boost::shared_ptr<FacesFile> faces;
-    const boost::shared_ptr<NeighbourFile> neighbour;
-    const boost::shared_ptr<OwnerFile> owner;
-    const boost::shared_ptr<PointsFile> points {
-      new PointsFile(
-        PointsFile::GetDefaultHeader(),
-        {
-          PointsFileItem(ribi::Coordinat3D(0.0,0.0,0.0)),
-          PointsFileItem(ribi::Coordinat3D(1,0,0)),
-          PointsFileItem(ribi::Coordinat3D(1,1,0)),
-          PointsFileItem(ribi::Coordinat3D(0,1,0)),
-          PointsFileItem(ribi::Coordinat3D(0,0,1)),
-          PointsFileItem(ribi::Coordinat3D(1,0,1)),
-          PointsFileItem(ribi::Coordinat3D(1,1,1)),
-          PointsFileItem(ribi::Coordinat3D(0,1,1))
-        }
-      )
-    };
-
-    const boost::shared_ptr<Files> files {
-      new Files(
-        boundary,
-        faces,
-        neighbour,
-        owner,
-        points
-      )
-    };
-    assert(files);
-    v.push_back(files);
-  }
-  */
   //Complex from resources
+  for (int i=0; i!=4; ++i)
   {
     const std::string folder_name = ribi::fileio::GetTempFolderName();
-    CreateTestFiles(folder_name);
+    CreateTestFiles(folder_name,i);
     const boost::shared_ptr<Files> files {
       new Files(folder_name)
     };
@@ -567,12 +536,14 @@ const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::Creat
   return v;
 }
 
-void ribi::foam::Files::CreateTestFiles(const std::string& folder_name)
+void ribi::foam::Files::CreateTestFiles(const std::string& folder_name, const int test_index)
 {
+  assert(test_index >= 0 && test_index < 4);
+
   CreateFolders(folder_name);
 
   //Read from testing file
-  for (const std::string filename:
+  for (const std::string filename_base:
     {
       BoundaryFile::GetDefaultHeader().GetObject(),
       FacesFile::GetDefaultHeader().GetObject(),
@@ -582,6 +553,18 @@ void ribi::foam::Files::CreateTestFiles(const std::string& folder_name)
     }
   )
   {
+    std::string filename_appendix;
+    switch (test_index)
+    {
+      case 0: filename_appendix = "_1x1x1"; break;
+      case 1: filename_appendix = "_1x1x2"; break;
+      case 2: filename_appendix = "_1x2x2"; break;
+      case 3: filename_appendix = "_2x2x2"; break;
+      default: assert(!"Should never get here");
+        throw std::logic_error("foam::Files::CreateTestFiles: unknown test index");
+    }
+    assert(!filename_appendix.empty());
+    const std::string filename = filename_base + filename_appendix;
     const std::string resources_path { ":/CppOpenFoam/files/" + filename };
     const std::string destination_path {
       folder_name
@@ -590,7 +573,7 @@ void ribi::foam::Files::CreateTestFiles(const std::string& folder_name)
       + fileio::GetPathSeperator()
       + "polyMesh"
       + fileio::GetPathSeperator()
-      + filename
+      + filename_base
     };
     QFile f(resources_path.c_str());
     f.copy(destination_path.c_str());
@@ -707,11 +690,12 @@ void ribi::foam::Files::Test() noexcept
     }
   }
   //CreateCopy
+  for (int test_index=0; test_index!=4; ++test_index) //Test file index
   {
     const std::string temp_folder_source = ribi::fileio::GetTempFolderName();
     {
       assert(!ribi::fileio::IsFolder(temp_folder_source));
-      CreateTestFiles(temp_folder_source);
+      CreateTestFiles(temp_folder_source,test_index);
     }
     const Files source(temp_folder_source);
     const std::string temp_folder_target = ribi::fileio::GetTempFolderName();
@@ -725,7 +709,7 @@ void ribi::foam::Files::Test() noexcept
   {
     const std::string temp_folder = ribi::fileio::GetTempFolderName();
     assert(!ribi::fileio::IsFolder(temp_folder));
-    CreateTestFiles(temp_folder);
+    CreateTestFiles(temp_folder,3); //3 = 2x2x2 cubes
 
     const Files f(temp_folder);
     assert(f == f);

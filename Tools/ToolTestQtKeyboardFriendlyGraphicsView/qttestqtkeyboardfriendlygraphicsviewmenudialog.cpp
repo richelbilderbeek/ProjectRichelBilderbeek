@@ -95,3 +95,16 @@ void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Quit()
 {
   close();
 }
+
+#ifndef NDEBUG
+void ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Test");
+  TRACE("Finished ribi::QtTestKeyboardFriendlyGraphicsViewMenuDialog::Test successfully");
+}
+#endif

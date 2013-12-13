@@ -84,19 +84,23 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
 {
   {
     is >> f.m_name;
+    assert(is);
   }
   {
     std::string bracket_open;
     is >> bracket_open;
+    assert(is);
     assert(bracket_open == std::string("{"));
   }
   {
     std::string type_text;
     is >> type_text;
+    assert(is);
     assert(type_text == std::string("type"));
   }
   {
     is >> f.m_type;
+    assert(is);
     assert(f.m_type.back() == ';');
     f.m_type.pop_back();
     assert(f.m_type.back() != ';');
@@ -104,6 +108,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
   {
     std::string n_faces_text;
     is >> n_faces_text;
+    assert(is);
     assert(n_faces_text == std::string("nFaces"));
   }
   {
@@ -112,6 +117,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
   {
     std::string semicolon;
     is >> semicolon;
+    assert(is);
     #ifndef NDEBUG
     if (semicolon != std::string(";"))
     {
@@ -123,6 +129,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
   {
     std::string start_face_text;
     is >> start_face_text;
+    assert(is);
     #ifndef NDEBUG
     if (start_face_text != std::string("startFace"))
     {
@@ -133,15 +140,18 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
   }
   {
     is >> f.m_start_face;
+    assert(is);
   }
   {
     std::string semicolon;
     is >> semicolon;
+    assert(is);
     assert(semicolon == std::string(";"));
   }
   {
     std::string bracket_close;
     is >> bracket_close;
+    assert(is);
     assert(bracket_close == std::string("}"));
   }
   return is;

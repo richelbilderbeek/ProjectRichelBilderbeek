@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "asciiartermenudialog.h"
 #include "qtasciiartermaindialog.h"
+#include "trace.h"
 #include "ui_qtasciiartermenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -70,3 +71,17 @@ void ribi::QtAsciiArterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
+
+#ifndef NDEBUG
+void ribi::QtAsciiArterMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtAsciiArterMenuDialog::Test");
+  QtAsciiArterMenuDialog();
+  TRACE("Finished ribi::QtAsciiArterMenuDialog::Test successfully");
+}
+#endif

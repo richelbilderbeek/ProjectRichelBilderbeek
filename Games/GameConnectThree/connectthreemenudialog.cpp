@@ -43,8 +43,10 @@ int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() const noexcept
@@ -116,6 +118,7 @@ void ribi::ConnectThreeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ConnectThreeMenuDialog::Test");
+
   TRACE("Finished ribi::ConnectThreeMenuDialog::Test successfully");
 }
 #endif

@@ -18,8 +18,10 @@ int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
@@ -27,7 +29,7 @@ const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "K3OpEenRij",
-    "connect-three game",
+    "K3-themed connect-three game",
     "the 6th of August 2013",
     "2007-2013",
     "http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",

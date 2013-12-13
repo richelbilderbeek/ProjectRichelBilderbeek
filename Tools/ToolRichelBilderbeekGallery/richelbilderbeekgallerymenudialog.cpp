@@ -320,7 +320,7 @@ const ribi::Help ribi::GalleryMenuDialog::GetHelp() const noexcept
 const boost::shared_ptr<const ribi::Program> ribi::GalleryMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
+    new ribi::ProgramRichelBilderbeekGallery
   };
   assert(p);
   return p;

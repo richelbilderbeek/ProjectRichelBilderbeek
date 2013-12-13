@@ -19,8 +19,10 @@ int ribi::KnokfighterMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::KnokfighterMenuDialog::GetAbout() const noexcept
@@ -28,9 +30,9 @@ const ribi::About ribi::KnokfighterMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "Knokfighter",
-    "",
-    "",
-    "",
+    "Double Dragon clone",
+    "today",
+    "200x-201x",
     "http://www.richelbilderbeek.nl/GameKnokfighter.htm",
     GetVersion(),
     GetVersionHistory());

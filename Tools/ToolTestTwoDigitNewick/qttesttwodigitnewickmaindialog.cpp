@@ -39,6 +39,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "binarynewickvector.h"
 #include "newick.h"
 #include "qtaboutdialog.h"
+#include "trace.h"
 #include "twodigitnewickderivative.h"
 #include "twodigitnewick.h"
 #include "twodigitnewickindexer.h"
@@ -261,3 +262,16 @@ void ribi::QtTestTwoDigitNewickMainDialog::OnAboutClick()
   QtAboutDialog d(about);
   this->ShowChild(&d);
 }
+
+#ifndef NDEBUG
+void ribi::QtTestTwoDigitNewickMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestTwoDigitNewickMainDialog::Test");
+  TRACE("Finished ribi::QtTestTwoDigitNewickMainDialog::Test successfully");
+}
+#endif

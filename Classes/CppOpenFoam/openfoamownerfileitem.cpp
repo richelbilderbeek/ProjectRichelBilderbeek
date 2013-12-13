@@ -80,6 +80,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const OwnerFileItem& item
 std::istream& ribi::foam::operator>>(std::istream& is, OwnerFileItem& f)
 {
   is >> f.m_cell_index;
+  assert(is);
   if (f.GetCellIndex().Get() < 0) TRACE(f.GetCellIndex());
   assert(f.GetCellIndex().Get() >= 0);
   return is;

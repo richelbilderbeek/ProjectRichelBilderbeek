@@ -177,6 +177,8 @@ const std::vector<std::string> ribi::fileio::FileToVector(const std::string& fil
     std::getline(in,s);
     v.push_back(s); //Might throw std::bad_alloc
   }
+  //Remove empty line at back of vector
+  if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }
 
@@ -588,6 +590,79 @@ void ribi::fileio::Test() noexcept
     assert(!IsRegularFile(filename) && "Temporary file must be cleaned up");
     assert(!IsRegularFile(filename_copy) && "Temporary file must be cleaned up");
   }
+  //FilesAreIdentical
+  {
+    const std::vector<std::string> filenames { GetTempFileName(), GetTempFileName(), GetTempFileName() };
+    const int n_filenames = filenames.size();
+    for (const std::string& filename: filenames)
+    {
+      std::ofstream f(filename.c_str());
+      f << filename;
+    }
+
+    for (int i=0; i!=n_filenames; ++i)
+    {
+      const std::string s = filenames[i];
+      for (int j=0; j!=n_filenames; ++j)
+      {
+        const std::string t = filenames[j];
+        assert(FilesAreIdentical(s,t) == (i == j));
+      }
+    }
+    for (const std::string& filename: filenames)
+    {
+      DeleteFile(filename);
+      assert(!IsRegularFile(filename) && "Temporary file must be cleaned up");
+    }
+  }
+  //FileToVector and VectorToFile, indidual
+  {
+    const std::string filename = GetTempFileName();
+    assert(!IsRegularFile(filename));
+    const std::vector<std::string> v { "A","BC", "DEF" };
+    VectorToFile(v,filename);
+    assert(IsRegularFile(filename));
+    const std::vector<std::string> w { FileToVector(filename) };
+    if (v != w)
+    {
+      TRACE(v.size());
+      for (const std::string& s: v) TRACE(s);
+      TRACE(w.size());
+      for (const std::string& t: w) TRACE(t);
+    }
+    assert(v == w);
+    DeleteFile(filename);
+    assert(!IsRegularFile(filename));
+  }
+  //FileToVector and VectorToFile, many
+  {
+    std::vector<std::vector<std::string>> v
+    {
+      { },
+      { "A" },
+      { "A", "B" },
+      { "A", "B", "C" },
+      { "A", "", "C" }
+    };
+    for (const std::vector<std::string>& w: v)
+    {
+      const std::string filename = GetTempFileName();
+      assert(!IsRegularFile(filename));
+      VectorToFile(w,filename);
+      assert(IsRegularFile(filename));
+      const std::vector<std::string> x { FileToVector(filename) };
+      if (w != x)
+      {
+        TRACE(w.size());
+        for (const std::string& s: w) TRACE(s);
+        TRACE(x.size());
+        for (const std::string& t: x) TRACE(t);
+      }
+      assert(w == x);
+      DeleteFile(filename);
+      assert(!IsRegularFile(filename));
+    }
+  }
   //GetTempFolderName, CreateFolder and DeleteFolder
   {
     //Depth 1
@@ -616,31 +691,6 @@ void ribi::fileio::Test() noexcept
       assert(IsFolder(super_folder));
       DeleteFolder(super_folder);
       assert(!IsFolder(super_folder) && "Temporary folder must be cleaned up");
-    }
-  }
-  //FilesAreIdentical
-  {
-    const std::vector<std::string> filenames { GetTempFileName(), GetTempFileName(), GetTempFileName() };
-    const int n_filenames = filenames.size();
-    for (const std::string& filename: filenames)
-    {
-      std::ofstream f(filename.c_str());
-      f << filename;
-    }
-
-    for (int i=0; i!=n_filenames; ++i)
-    {
-      const std::string s = filenames[i];
-      for (int j=0; j!=n_filenames; ++j)
-      {
-        const std::string t = filenames[j];
-        assert(FilesAreIdentical(s,t) == (i == j));
-      }
-    }
-    for (const std::string& filename: filenames)
-    {
-      DeleteFile(filename);
-      assert(!IsRegularFile(filename) && "Temporary file must be cleaned up");
     }
   }
   //GetFileBasename
@@ -914,3 +964,30 @@ void ribi::fileio::Test() noexcept
   TRACE("Finished ribi::fileio::Test successfully");
 }
 #endif
+
+void ribi::fileio::VectorToFile(
+  const std::vector<std::string>& v,
+  const std::string& filename,
+  const CopyMode copy_mode
+)
+{
+  if (copy_mode == CopyMode::prevent_overwrite)
+  {
+    assert(!IsRegularFile(filename) && "File must not exist");
+    if (IsRegularFile(filename))
+    {
+      std::stringstream msg;
+      msg
+        << "VectorToFile: not allowed to overwrite file '"
+        << filename
+        << "'";
+
+      throw std::runtime_error(msg.str().c_str());
+    }
+  }
+  {
+    std::ofstream f(filename.c_str());
+    std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
+  }
+  assert(IsRegularFile(filename));
+}

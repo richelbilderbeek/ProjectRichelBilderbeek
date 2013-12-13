@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
-    <height>637</height>
+    <width>490</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="font">
@@ -17,10 +17,6 @@
   </property>
   <property name="windowTitle">
    <string>AsciiArter</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="ToolAsciiArter.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -37,7 +33,7 @@ QPushButton { font: 48px, &quot;monospace&quot; }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolAsciiArter.qrc">:/images/AsciiArter.png</pixmap>
+      <pixmap resource="ToolAsciiArter.qrc">:/ToolAsciiArter/images/ToolAsciiArterWelcome.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

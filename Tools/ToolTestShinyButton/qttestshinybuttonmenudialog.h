@@ -58,9 +58,9 @@ private:
   void OnButtonAboutClicked();
   void OnButtonQuitClicked();
 
-
-private slots:
-
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

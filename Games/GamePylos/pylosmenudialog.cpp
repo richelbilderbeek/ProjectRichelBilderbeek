@@ -44,8 +44,10 @@ int ribi::PylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv)
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::PylosMenuDialog::GetAbout() const noexcept
@@ -64,6 +66,10 @@ const ribi::About ribi::PylosMenuDialog::GetAbout() const noexcept
   a.AddLibrary("Pylos::CurrentMoveState version: " + Pylos::CurrentMoveState::GetVersion());
   a.AddLibrary("Pylos::Game version: " + Pylos::Game::GetVersion());
   a.AddLibrary("Pylos::Move version: " + Pylos::Move::GetVersion());
+  //a.AddLibrary("Pylos::MustRemoveState version: " + Pylos::MustRemoveState:: enum
+  //a.AddLibrary("Pylos::Player version: " + Pylos::Player:: enum
+  //a.AddLibrary("Pylos::PositionState version: " + Pylos::PositionState:: enum
+  //a.AddLibrary("Pylos::Winner version: " + Pylos::Winner:: enum
   return a;
 }
 
@@ -112,6 +118,25 @@ void ribi::PylosMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PylosMenuDialog::Test");
+  const boost::shared_ptr<ribi::Pylos::Board> a(
+    new ribi::Pylos::BoardAdvanced
+  );
+  assert(a);
+  const boost::shared_ptr<ribi::Pylos::Board> b(
+    new ribi::Pylos::BoardBasic
+  );
+  assert(b);
+  Pylos::Coordinat(0,0,0);
+  Pylos::CurrentMoveState();
+  const boost::shared_ptr<Pylos::Game> g_a(
+    new Pylos::Game(a)
+  );
+  assert(g_a);
+  const boost::shared_ptr<Pylos::Game> g_b(
+    new Pylos::Game(b)
+  );
+  assert(g_b);
+  Pylos::Move();
   TRACE("Finished ribi::PylosMenuDialog::Test successfully");
 }
 #endif

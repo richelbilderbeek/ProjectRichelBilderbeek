@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "shinybutton.h"
 #include "shinybuttonwidget.h"
 #include "qtshinybuttonwidget.h"
+#include "trace.h"
 #include "ui_qttestshinybuttonmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -116,3 +117,15 @@ void ribi::QtTestShinyButtonMainDialog::on_dial_gradient_sliderMoved(int)
   m_shiny_button->GetWidget()->GetShinyButton()->SetColor(color,gradient);
 }
 
+#ifndef NDEBUG
+void ribi::QtTestShinyButtonMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestShinyButtonMainDialog::Test");
+  TRACE("Finished ribi::QtTestShinyButtonMainDialog::Test successfully");
+}
+#endif

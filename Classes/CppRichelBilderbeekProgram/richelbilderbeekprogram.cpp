@@ -170,7 +170,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testGravityWidget: p.reset(new ProgramTestGravityWidget); break;
     case ProgramType::testGroupWidget: p.reset(new ProgramTestGroupWidget); break;
     case ProgramType::testHugeVector: p.reset(new ProgramTestHugeVector); break;
-    case ProgramType::testLazy_init: p.reset(new ProgramTestTestLazy_init); break;
+    case ProgramType::testLazy_init: p.reset(new ProgramTestLazy_init); break;
     case ProgramType::testLed: p.reset(new ProgramTestLed); break;
     case ProgramType::testManyDigitNewick: p.reset(new ProgramTestManyDigitNewick); break;
     case ProgramType::testMultiApproximator: p.reset(new ProgramTestMultiApproximator); break;
@@ -225,6 +225,11 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
       throw std::logic_error("Unimplemented RichelBilderbeek::ProgramType");
   }
   #ifndef NDEBUG
+  if (!p)
+  {
+    TRACE(ProgramTypes::ProgramTypeToEnumName(type));
+  }
+  assert(p);
   if (p->GetType() != type)
   {
     TRACE("ERROR");
@@ -236,7 +241,6 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
   assert(p->GetType() == type
     && "type and Program::GetType must match");
 
-  assert(p);
   return p;
 }
 

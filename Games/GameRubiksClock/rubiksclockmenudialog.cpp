@@ -47,8 +47,10 @@ int ribi::RubiksClockMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::RubiksClockMenuDialog::GetAbout() const noexcept
@@ -123,6 +125,52 @@ void ribi::RubiksClockMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::RubiksClockMenuDialog::Test");
+  {
+    const boost::shared_ptr<Dial> p(
+      new Dial
+    );
+    assert(p);
+  }
+  {
+    const boost::shared_ptr<DialWidget> p(
+      new DialWidget
+    );
+    assert(p);
+  }
+  Rect();
+  RubiksClock();
+  {
+    const boost::shared_ptr<RubiksClockDial> p(
+      new RubiksClockDial(0,0,0,1,1,0,0,0)
+    );
+    assert(p);
+  }
+  {
+    const boost::shared_ptr<RubiksClockDialWidget> p(
+      new RubiksClockDialWidget(0.0,0,0,1,1,0,0,0)
+    );
+    assert(p);
+  }
+  {
+    const boost::shared_ptr<RubiksClockWidget> p(
+      new RubiksClockWidget
+    );
+    assert(p);
+  }
+  {
+    const boost::shared_ptr<ToggleButton> p(
+      new ToggleButton
+    );
+    assert(p);
+  }
+  ToggleButtonWidget();
+  {
+    const boost::shared_ptr<Widget> p(
+      new Widget
+    );
+    assert(p);
+  }
+
   TRACE("Finished ribi::RubiksClockMenuDialog::Test successfully");
 }
 #endif

@@ -141,6 +141,12 @@ void RenameFile(
 void Test() noexcept;
 #endif
 
+///Convert a std::vector to a file
+void VectorToFile(
+  const std::vector<std::string>& v,
+  const std::string& filename,
+  const CopyMode copy_mode = CopyMode::prevent_overwrite);
+
 } //~namespace fileio
 
 } //~namespace ribi

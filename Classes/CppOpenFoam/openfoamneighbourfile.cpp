@@ -41,6 +41,21 @@ bool ribi::foam::NeighbourFile::CanGetItem(
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
+const ribi::foam::CellIndex ribi::foam::NeighbourFile::FindMaxCellIndex() const noexcept
+{
+  CellIndex i = (*std::max_element(
+    m_items.begin(),
+    m_items.end(),
+    [](const NeighbourFileItem& lhs, const NeighbourFileItem& rhs)
+    {
+      return lhs.GetCellIndex() < rhs.GetCellIndex();
+    }
+  )).GetCellIndex();
+
+  ++i;
+  return i;
+}
+
 const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
 {
   return Header("labelList","constant/polyMesh","","neighbour");
@@ -57,6 +72,7 @@ const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& i
 {
   NeighbourFile b;
   is >> b;
+  assert(is);
   return b;
 }
 
@@ -170,28 +186,76 @@ std::istream& ribi::foam::operator>>(std::istream& is, NeighbourFile& f)
 
   //Read header
   is >> f.m_header;
+  assert(is);
 
   //Read items
   int n_items = 0;
+  char opening_bracket = '\0';
   {
-    is >> n_items;
-    assert(n_items > 0);
+    //Eat comment
+    char c = '\0';
+    is >> c;
+    assert(is);
+    if (c >= '0' && c <= '9')
+    {
+      while (c != '(' && c != '{')
+      {
+        //Start eating n_items
+        n_items *= 10;
+        const int n = c - '0';
+        assert(n >= 0 && n <= 9);
+        n_items += n;
+        is >> c;
+        assert(is);
+      }
+    }
+    opening_bracket = c;
+    #ifndef NDEBUG
+    if (!(opening_bracket == '(' || opening_bracket == '{'))
+    {
+      TRACE(opening_bracket);
+      TRACE("ERROR");
+    }
+    #endif
+    assert(opening_bracket == '(' || opening_bracket == '{');
   }
+  TRACE(opening_bracket);
+  assert(opening_bracket == '(' || opening_bracket == '{');
+  if (opening_bracket == '(')
   {
-    std::string bracket_open;
-    is >> bracket_open;
-    assert(bracket_open == "(");
+    for (int i=0; i!=n_items; ++i)
+    {
+      NeighbourFileItem item;
+      is >> item;
+      assert(is);
+      f.m_items.push_back(item);
+    }
   }
-  for (int i=0; i!=n_items; ++i)
+  else
   {
+    assert(opening_bracket == '{');
+    //Read once, push n_items times
     NeighbourFileItem item;
     is >> item;
-    f.m_items.push_back(item);
+    assert(is);
+    for (int i=0; i!=n_items; ++i)
+    {
+      f.m_items.push_back(item);
+    }
   }
+  //Eat comments until bracket close
   {
-    std::string bracket_close;
-    is >> bracket_close;
-    assert(bracket_close == ")");
+    char bracket_close = '\0';
+    while (bracket_close != ')' && bracket_close != '}')
+    {
+      is >> bracket_close;
+      assert(is);
+    }
+    assert(bracket_close == ')' || bracket_close == '}');
+    assert(
+         (opening_bracket == '(' && bracket_close == ')')
+      || (opening_bracket == '{' && bracket_close == '}')
+    );
   }
   return is;
 }

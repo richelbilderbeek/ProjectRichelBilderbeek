@@ -18,6 +18,7 @@
 #endif
 
 #include "simplelinearregression.h"
+#include "trace.h"
 #include "ui_qttooltestsimplelinearregressionmaindialog.h"
 
 #pragma GCC diagnostic pop
@@ -171,3 +172,16 @@ void ribi::QtToolTestSimpleLinearRegressionMainDialog::Plot() noexcept
   assert(m_plot);
   m_plot->replot();
 }
+
+#ifndef NDEBUG
+void ribi::QtToolTestSimpleLinearRegressionMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtToolTestSimpleLinearRegressionMainDialog::Test");
+  TRACE("Finished ribi::QtToolTestSimpleLinearRegressionMainDialog::Test successfully");
+}
+#endif

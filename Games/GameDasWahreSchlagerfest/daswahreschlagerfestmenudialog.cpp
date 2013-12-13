@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "daswahreschlagerfestwidget.h"
 #include "trace.h"
 
 int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -36,8 +37,10 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
@@ -100,6 +103,7 @@ void ribi::DasWahreSchlagerfestMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::DasWahreSchlagerfestMenuDialog::Test");
+  DasWahreSchlagerfestWidget();
   TRACE("Finished ribi::DasWahreSchlagerfestMenuDialog::Test successfully");
 }
 #endif

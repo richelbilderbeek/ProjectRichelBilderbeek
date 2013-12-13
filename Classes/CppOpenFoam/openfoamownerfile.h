@@ -15,7 +15,7 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct OwnerFile
 {
-  explicit OwnerFile(std::istream& is) : OwnerFile(Parse(is)) {}
+  explicit OwnerFile(const std::string& filename) : OwnerFile(Parse(filename)) {}
   explicit OwnerFile(
     const Header header = GetDefaultHeader(),
     const std::vector<OwnerFileItem>& items = {});
@@ -34,7 +34,9 @@ struct OwnerFile
   ///The items 'neighbour' contains
   std::vector<OwnerFileItem> m_items;
 
+  explicit OwnerFile(std::istream& is) : OwnerFile(Parse(is)) {}
   static const OwnerFile Parse(std::istream& is);
+  static const OwnerFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;

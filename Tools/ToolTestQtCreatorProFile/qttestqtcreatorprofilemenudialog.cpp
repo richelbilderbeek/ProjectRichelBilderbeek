@@ -65,3 +65,15 @@ void ribi::QtTestQtCreatorProFileMenuDialog::on_button_quit_clicked()
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtTestQtCreatorProFileMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtCreatorProFileMenuDialog::Test");
+  TRACE("Finished ribi::QtTestQtCreatorProFileMenuDialog::Test successfully");
+}
+#endif

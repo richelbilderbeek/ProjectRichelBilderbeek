@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qttesttogglebuttonmaindialog.h"
 #include "rainbow.h"
 #include "testtogglebuttonmenudialog.h"
+#include "trace.h"
 #include "ui_qttesttogglebuttonmenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -67,4 +68,15 @@ void ribi::QtTestToggleButtonMenuDialog::on_button_quit_clicked()
   close();
 }
 
-
+#ifndef NDEBUG
+void ribi::QtTestToggleButtonMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestToggleButtonMenuDialog::Test");
+  TRACE("Finished ribi::QtTestToggleButtonMenuDialog::Test successfully");
+}
+#endif

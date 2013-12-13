@@ -52,7 +52,7 @@ const ribi::Help ribi::StyleSheetSetterMenuDialog::GetHelp() const noexcept
 const boost::shared_ptr<const ribi::Program> ribi::StyleSheetSetterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramGaborFilter
+    new ribi::ProgramStyleSheetSetter
   };
   assert(p);
   return p;

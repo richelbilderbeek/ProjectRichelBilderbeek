@@ -19,8 +19,10 @@ int ribi::ReversiMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  std::cout
+    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::ReversiMenuDialog::GetAbout() const noexcept
@@ -28,9 +30,9 @@ const ribi::About ribi::ReversiMenuDialog::GetAbout() const noexcept
   About a(
     "Richel Bilderbeek",
     "Reversi",
-    "",
-    "",
-    "",
+    "Reversi clone",
+    "today",
+    "200x-2013",
     "http://www.richelbilderbeek.nl/GameReversi.htm",
     GetVersion(),
     GetVersionHistory());

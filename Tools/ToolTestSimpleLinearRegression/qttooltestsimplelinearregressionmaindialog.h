@@ -45,6 +45,10 @@ private:
   std::vector<double> m_ys;
 
   void Plot() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

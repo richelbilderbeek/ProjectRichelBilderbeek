@@ -38,17 +38,21 @@ struct Files
     const boost::shared_ptr<OwnerFile> owner = CreateDefaultOwner(),
     const boost::shared_ptr<PointsFile> points = CreateDefaultPoints()
   );
-  Files(const Files&) = delete;
-  Files& operator=(const Files&) = delete;
+  //Files(const Files&) = delete;
+  //Files& operator=(const Files&) = delete;
 
   ///Create a copy of the complete file structure of Files in the copy folder name
   static void CreateCopy(const Files& files, const std::string copy_folder_name) noexcept;
 
   ///Create test files in the correct OpenFOAM folder structure
   ///These files are obtained from the /Classes/CppOpenFoam/CppOpenFoam.qrc resources file
-  static void CreateTestFiles(const std::string& folder_name);
+  static void CreateTestFiles(const std::string& folder_name, const int test_index);
 
   ///Create valid test Files
+  ///0: empty Files
+  ///1: Cube
+  ///2: 1x2 cubes
+  ///3: 2x2 cubes
   static const std::vector<boost::shared_ptr<Files>> CreateTestFiles() noexcept;
 
   const boost::shared_ptr<const BoundaryFile> GetBoundary() const noexcept { return m_boundary; }

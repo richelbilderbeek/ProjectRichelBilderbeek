@@ -16,6 +16,7 @@
 #include <QFile>
 
 #include "filename.h"
+#include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamfaceindex.h"
 #include "openfoamownerfileitem.h"
@@ -51,7 +52,17 @@ const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
 {
   OwnerFile b;
   is >> b;
+  assert(is);
   return b;
+}
+
+const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(const std::string& filename)
+{
+  const std::string tmp_filename { fileio::GetTempFileName() };
+  fileio::CopyFile(filename,tmp_filename);
+  Header::CleanFile(tmp_filename);
+  std::ifstream f(tmp_filename.c_str());
+  return Parse(f);
 }
 
 void ribi::foam::OwnerFile::SetItem(const FaceIndex& face_index, const OwnerFileItem& item) noexcept
@@ -140,6 +151,7 @@ void ribi::foam::OwnerFile::Test() noexcept
       QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
       f.copy(filename.c_str());
     }
+    Header::CleanFile(filename);
     {
       assert(fileio::IsRegularFile(filename));
       std::ifstream f(filename.c_str());
@@ -177,28 +189,85 @@ std::istream& ribi::foam::operator>>(std::istream& is, OwnerFile& f)
 
   //Read header
   is >> f.m_header;
+  assert(is);
 
   //Read items
   int n_items = 0;
+  char opening_bracket = '\0';
   {
-    is >> n_items;
-    assert(n_items > 0);
+    //Eat comment
+    char c = '\0';
+    is >> c;
+    assert(is);
+    if (c >= '0' && c <= '9')
+    {
+      while (c != '(' && c != '{')
+      {
+        //Start eating n_items
+        n_items *= 10;
+        const int n = c - '0';
+        assert(n >= 0 && n <= 9);
+        n_items += n;
+        is >> c;
+        assert(is);
+      }
+    }
+    opening_bracket = c;
+    #ifndef NDEBUG
+    if (!(opening_bracket == '(' || opening_bracket == '{'))
+    {
+      TRACE(opening_bracket);
+      TRACE("ERROR");
+    }
+    #endif
+    assert(opening_bracket == '(' || opening_bracket == '{');
   }
+  TRACE(opening_bracket);
+  //Already eaten
+  /*
   {
-    std::string bracket_open;
+    char bracket_open = '\0';
     is >> bracket_open;
-    assert(bracket_open == "(");
+    assert(is);
+    assert(bracket_open == '(');
   }
-  for (int i=0; i!=n_items; ++i)
+  */
+  assert(opening_bracket == '(' || opening_bracket == '{');
+  if (opening_bracket == '(')
   {
+    for (int i=0; i!=n_items; ++i)
+    {
+      OwnerFileItem item;
+      is >> item;
+      assert(is);
+      f.m_items.push_back(item);
+    }
+  }
+  else
+  {
+    assert(opening_bracket == '{');
+    //Read once, push n_items times
     OwnerFileItem item;
     is >> item;
-    f.m_items.push_back(item);
+    assert(is);
+    for (int i=0; i!=n_items; ++i)
+    {
+      f.m_items.push_back(item);
+    }
   }
+  //Eat comments until bracket close
   {
-    std::string bracket_close;
-    is >> bracket_close;
-    assert(bracket_close == ")");
+    char bracket_close = '\0';
+    while (bracket_close != ')' && bracket_close != '}')
+    {
+      is >> bracket_close;
+      assert(is);
+    }
+    assert(bracket_close == ')' || bracket_close == '}');
+    assert(
+         (opening_bracket == '(' && bracket_close == ')')
+      || (opening_bracket == '{' && bracket_close == '}')
+    );
   }
   return is;
 }

@@ -23,8 +23,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundedrectitemmaindialog.h"
 
 #include <QKeyEvent>
-#include "ui_qttestqtroundedrectitemmaindialog.h"
 
+#include "trace.h"
+#include "ui_qttestqtroundedrectitemmaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtTestQtRoundedRectItemMainDialog::QtTestQtRoundedRectItemMainDialog(QWidget *parent) :
@@ -47,3 +48,15 @@ void ribi::QtTestQtRoundedRectItemMainDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
+#ifndef NDEBUG
+void ribi::QtTestQtRoundedRectItemMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtRoundedRectItemMainDialog::Test");
+  TRACE("Finished ribi::QtTestQtRoundedRectItemMainDialog::Test successfully");
+}
+#endif

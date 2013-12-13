@@ -18,6 +18,9 @@ struct Header
     const std::string& object     = ""
   );
 
+  ///Remove comments from a file
+  static void CleanFile(const std::string& filename) noexcept;
+
   const std::string& GetClass() const noexcept { return m_class_name; }
   const std::string& GetLocation() const noexcept { return m_location; }
   const std::string& GetNote() const noexcept { return m_note; }

@@ -19,6 +19,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const PointIndex& face_in
 std::istream& ribi::foam::operator>>(std::istream& is, PointIndex& face_index)
 {
   is >> face_index.m_index;
+  assert(is);
   return is;
 }
 

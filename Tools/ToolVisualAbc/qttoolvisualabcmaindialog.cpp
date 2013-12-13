@@ -13,6 +13,7 @@
 
 #include "fileio.h"
 #include "qttoolvisualabcmaindialog.h"
+#include "trace.h"
 #include "ui_qttoolvisualabcmaindialog.h"
 #include "toolvisualabcmaindialog.h"
 #pragma GCC diagnostic pop
@@ -98,3 +99,16 @@ void ribi::QtVisualAbcMainDialog::on_label_save_clicked()
   file << ui->edit_text->toPlainText().toStdString();
 }
 
+
+#ifndef NDEBUG
+void ribi::QtVisualAbcMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtVisualAbcMainDialog::Test");
+  TRACE("Finished ribi::QtVisualAbcMainDialog::Test successfully");
+}
+#endif

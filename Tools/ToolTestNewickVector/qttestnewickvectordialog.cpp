@@ -171,3 +171,15 @@ void ribi::QtTestNewickVectorDialog::on_box_compare_clicked() noexcept
   m_dialog->SetCompareToTwoDigitNewick(ui->box_compare->isChecked());
 }
 
+#ifndef NDEBUG
+void ribi::QtTestNewickVectorDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestNewickVectorDialog::Test");
+  TRACE("Finished ribi::QtTestNewickVectorDialog::Test successfully");
+}
+#endif

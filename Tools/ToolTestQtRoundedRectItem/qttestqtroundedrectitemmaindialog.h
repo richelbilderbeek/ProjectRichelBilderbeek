@@ -45,6 +45,10 @@ protected:
 
 private:
   Ui::QtTestQtRoundedRectItemMainDialog *ui;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

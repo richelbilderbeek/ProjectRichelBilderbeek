@@ -42,9 +42,6 @@ public:
   QtCreateGlossaryMainDialog& operator=(const QtCreateGlossaryMainDialog&) = delete;
   ~QtCreateGlossaryMainDialog() noexcept;
 
-private slots:
-  void create_glossary();
-
 private:
   Ui::QtCreateGlossaryMainDialog *ui;
 

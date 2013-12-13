@@ -82,6 +82,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& ite
 
 std::istream& ribi::foam::operator>>(std::istream& is, PointsFileItem& f)
 {
+
   {
     char bracket_open;
     is >> bracket_open;
@@ -90,21 +91,25 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFileItem& f)
   {
     double d = 0.0;
     is >> d;
+    assert(is);
     f.m_coordinat.SetX(d);
   }
   {
     double d = 0.0;
     is >> d;
+    assert(is);
     f.m_coordinat.SetY(d);
   }
   {
     double d = 0.0;
     is >> d;
+    assert(is);
     f.m_coordinat.SetZ(d);
   }
   {
     char bracket_close;
     is >> bracket_close;
+    TRACE(is);
     assert(bracket_close == ')');
   }
   return is;

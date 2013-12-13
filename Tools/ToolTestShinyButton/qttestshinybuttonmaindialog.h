@@ -59,6 +59,10 @@ private slots:
   void on_edit_text_textChanged(const QString &arg1);
   void on_dial_main_color_sliderMoved(int position);
   void on_dial_gradient_sliderMoved(int position);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

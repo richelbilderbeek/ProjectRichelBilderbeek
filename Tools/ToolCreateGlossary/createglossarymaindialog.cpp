@@ -194,5 +194,7 @@ void ribi::CreateGlossaryMainDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::CreateGlossaryMainDialog::Test");
+  TRACE("Finished ribi::CreateGlossaryMainDialog::Test successfully");
 }
 #endif

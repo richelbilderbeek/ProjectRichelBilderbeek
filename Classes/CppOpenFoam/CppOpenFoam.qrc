@@ -1,10 +1,28 @@
 <RCC>
     <qresource prefix="/CppOpenFoam/files">
-        <file>blockMeshDict</file>
-        <file>boundary</file>
-        <file>faces</file>
-        <file>neighbour</file>
-        <file>owner</file>
-        <file>points</file>
+        <file>blockMeshDict_1x1x1</file>
+        <file>blockMeshDict_1x1x2</file>
+        <file>blockMeshDict_1x2x2</file>
+        <file>blockMeshDict_2x2x2</file>
+        <file>boundary_1x1x1</file>
+        <file>boundary_1x1x2</file>
+        <file>boundary_1x2x2</file>
+        <file>boundary_2x2x2</file>
+        <file>faces_1x1x1</file>
+        <file>faces_1x1x2</file>
+        <file>faces_1x2x2</file>
+        <file>faces_2x2x2</file>
+        <file>neighbour_1x1x1</file>
+        <file>neighbour_1x1x2</file>
+        <file>neighbour_1x2x2</file>
+        <file>neighbour_2x2x2</file>
+        <file>owner_1x1x1</file>
+        <file>owner_1x1x2</file>
+        <file>owner_1x2x2</file>
+        <file>owner_2x2x2</file>
+        <file>points_1x1x1</file>
+        <file>points_1x1x2</file>
+        <file>points_1x2x2</file>
+        <file>points_2x2x2</file>
     </qresource>
 </RCC>

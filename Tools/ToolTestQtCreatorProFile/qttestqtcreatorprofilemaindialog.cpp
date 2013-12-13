@@ -73,3 +73,16 @@ void ribi::QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
   ui->text_result->clear();
   ui->text_result->setPlainText(s.str().c_str());
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQtCreatorProFileMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQtCreatorProFileMainDialog::Test");
+  TRACE("Finished ribi::QtTestQtCreatorProFileMainDialog::Test successfully");
+}
+#endif

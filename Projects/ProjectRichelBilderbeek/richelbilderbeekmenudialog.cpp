@@ -50,6 +50,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "encranger.h"
 #include "exercise.h"
 #include "filteroperationermenudialog.h"
+#include "richelbilderbeekplaceholdermenudialog.h"
 #include "fixedlagsmootherkalmanfilter.h"
 #include "functionplottermenudialog.h"
 #include "fuzzy_equal_to.h"
@@ -242,7 +243,7 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
   return 1;
 }
 
-const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -251,8 +252,8 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAbout() const noex
     "the 15th of November 2013",
     "2010-2013",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
-    GetVersion(),
-    GetVersionHistory());
+    GetVersionStatic(),
+    GetVersionHistoryStatic());
   //a.AddLibrary("TestTwoDigitNewick version: " + WtTestTwoDigitNewickDialog::GetVersion());
   a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
   a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
@@ -370,126 +371,1693 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
     {
       case ProgramType::aminoAcidFighter: p.reset(new AminoAcidFighterMenuDialog); break;
       case ProgramType::asciiArter: p.reset(new AsciiArterMenuDialog); break;
-      case ProgramType::asciiArterVcl: break;
+      case ProgramType::asciiArterVcl:
+      {
+        const std::string version = "3.0";
+        const std::vector<std::string> version_history {
+          "2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'",
+          "2006-12-16: Version 2.0: renamed 'AsciiArter' to 'TestAsciiArter', minor improvements",
+          "2008-06-21: Version 3.0: minor improvements"
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "AsciiArter (VCL)",
+          "tool to create ASCII art",
+          "the 21st of June 2008",
+          "2006-2011",
+          "http://www.richelbilderbeek.nl/ToolAsciiArterVcl.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramAsciiArterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::athleticLand: p.reset(new AthleticLandMenuDialog); break;
-      case ProgramType::athleticLandVcl: break;
-      case ProgramType::barbaImage: break;
+      case ProgramType::athleticLandVcl:
+      {
+        const std::string version = "3.0";
+        const std::vector<std::string> version_history {
+          "201x-xx-xx: Version 0.0: initial C++ Builder version"
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "AthleticLand (VCL)",
+          "MSX game clone",
+          "today",
+          "201x-2012",
+          "http://www.richelbilderbeek.nl/GameAthleticLandVcl.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramAthleticLandVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::barbaImage:
+      {
+        const std::string version = "1.0";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: Version 1.0: initial C++ Builder version"
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "BarbaImage (VCL)",
+          "image manipulation toolkit",
+          "someday",
+          "20xx-201x",
+          "http://www.richelbilderbeek.nl/ToolBarbaImageVcl.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramBarbaImage),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::beerWanter: p.reset(new BeerWanterMenuDialog); break;
-      case ProgramType::beerWanterVcl: break;
-      case ProgramType::bochum: break;
+      case ProgramType::beerWanterVcl:
+      {
+        const std::string version = "3.0";
+        const std::vector<std::string> version_history {
+          "2005-11-16: version 1.0: (at that time called) 'Beerwanter 1' was programmed in C++ using the C++ Builder IDE during a 'Spass programmieren' session, which made BeerWanter a game for Windows users only",
+          "2005-11-18: version 2.0: (at that time called) 'Beerwanter 2' was programmed after the success of BeerWanter 1.0. The game was made tougher",
+          "2005-11-22: version 3.0: (at that time called) 'Beerwanter 3' was programmed after the success of BeerWanter 2.0. The game was made even tougher",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "BeerWanter (VCL)",
+          "a simple game",
+          "the 22nd of November 2005",
+          "2005",
+          "http://www.richelbilderbeek.nl/GameBeerWanterVcl.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramBeerWanterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::bochum:
+      {
+        const std::string version = "1.0";
+        const std::vector<std::string> version_history {
+          "200x-xx-xx: version 1.0: ",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "Bochum",
+          "",
+          "someday",
+          "200x-200x",
+          "http://www.richelbilderbeek.nl/ProjectBochum.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramBochum),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::boenken: p.reset(new Boenken::MenuDialog); break;
-      case ProgramType::boenkenVcl: break;
+      case ProgramType::boenkenVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramBoenkenVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::brainweaver: p.reset(new ribi::pvdb::MenuDialog); break;
-      case ProgramType::bristol: break;
-      case ProgramType::chrisWiley: break;
+      case ProgramType::bristol:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramBristol),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::chrisWiley:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramChrisWiley),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::codeToHtml: p.reset(new c2h::CodeToHtmlMenuDialog); break;
       case ProgramType::connectThree: p.reset(new ConnectThreeMenuDialog); break;
-      case ProgramType::corridor: break;
+      case ProgramType::corridor:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          "?",
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramCorridor),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::createGlossary: p.reset(new CreateGlossaryMenuDialog); break;
       case ProgramType::createQtProjectZipFile: p.reset(new CreateQtProjectZipFile::MenuDialog); break;
-      case ProgramType::crossPoll: break;
+      case ProgramType::crossPoll:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramCrossPoll),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::dasWahreSchlagerfest: p.reset(new DasWahreSchlagerfestMenuDialog); break;
-      case ProgramType::dasWahreSchlagerfestVcl: break;
+      case ProgramType::dasWahreSchlagerfestVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramDasWahreSchlagerfestVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::dotMatrix: p.reset(new ToolDotMatrixMenuDialog); break;
-      case ProgramType::dotMatrixVcl: break;
+      case ProgramType::dotMatrixVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramDotMatrixVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::encranger: p.reset(new ToolEncrangerMenuDialog); break;
-      case ProgramType::everythingToPiecesShooter: break;
-      case ProgramType::fakeEvy: break;
+      case ProgramType::everythingToPiecesShooter:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          "Joost van den Bogaart",
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramEverythingToPiecesShooter),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::fakeEvy:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramFakeEvy),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::filterOperationer: p.reset(new FilterOperationerMenuDialog); break;
-      case ProgramType::filterOperationerVcl: break;
-      case ProgramType::fryskLeareLieder: break;
+      case ProgramType::filterOperationerVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramFilterOperationerVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::fryskLeareLieder:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramFryskLeareLieder),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::functionPlotter: p.reset(new FunctionPlotterMenuDialog); break;
-      case ProgramType::functionPlotterVcl: break;
+      case ProgramType::functionPlotterVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramFunctionPlotterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::gaborFilter: p.reset(new ToolGaborFilterMenuDialog); break;
-      case ProgramType::gaborFilterVcl: break;
+      case ProgramType::gaborFilterVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramGaborFilterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::grayCoder: p.reset(new GrayCoderMenuDialog); break;
-      case ProgramType::grayCoderVcl: break;
-      case ProgramType::gtst: break;
+      case ProgramType::grayCoderVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramGrayCoderVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::gtst:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramGtst),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::histogramEqualizationer: p.reset(new HistogramEqualizationerMenuDialog); break;
-      case ProgramType::histogramEqualizationerVcl: break;
+      case ProgramType::histogramEqualizationerVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramHistogramEqualizationerVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::hometrainer: p.reset(new HometrainerMenuDialog); break;
-      case ProgramType::hometrainerVcl: break;
+      case ProgramType::hometrainerVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramHometrainerVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::imageRotater: p.reset(new ImageRotaterMenuDialog); break;
-      case ProgramType::imageRotaterClx: break;
-      case ProgramType::imageRotaterVcl: break;
+      case ProgramType::imageRotaterClx:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramImageRotaterClx),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::imageRotaterVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramImageRotaterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::k3OpEenRij: p.reset(new K3OpEenRijMenuDialog); break;
-      case ProgramType::k3OpEenRijVcl: break;
+      case ProgramType::k3OpEenRijVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramK3OpEenRijVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::kalmanFilterer: p.reset(new kalman::KalmanFiltererMenuDialog); break;
-      case ProgramType::keySender: break;
+      case ProgramType::keySender:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramKeySender),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::knokfighter: p.reset(new KnokfighterMenuDialog); break;
-      case ProgramType::knokfighterVcl: break;
-      case ProgramType::kTouchLectureCreator: break; //
-      case ProgramType::lambdaBot: break; //
-      case ProgramType::learyCircumplex: break;
-      case ProgramType::logisticGrowthSimulator: break;
-      case ProgramType::loose: break;
-      case ProgramType::martianCafeTuinemaTycoon: break;
+      case ProgramType::knokfighterVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          "Joost van den Bogaart & Richel Bilderbeek",
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramKnokfighterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::kTouchLectureCreator:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramKTouchLectureCreator),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::lambdaBot:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramLambdaBot),
+            version,
+            version_history
+          )
+        );
+      }
+      break; //
+      case ProgramType::learyCircumplex:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramLearyCircumplex),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::logisticGrowthSimulator:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramLogisticGrowthSimulator),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::loose:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramLoose),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::martianCafeTuinemaTycoon:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          "Joost van den Bogaart",
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMartianCafeTuinemaTycoon),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::mazeCreator: p.reset(new MazeCreatorMenuDialog); break;
-      case ProgramType::mazeCreatorVcl: break;
+      case ProgramType::mazeCreatorVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMazeCreatorVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::maziak: p.reset(new MaziakMenuDialog); break;
-      case ProgramType::maziakVcl: break;
+      case ProgramType::maziakVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMaziakVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::metZnDrieen: p.reset(new MetZnDrieenMenuDialog); break;
-      case ProgramType::metZnDrieenVcl: break;
-      case ProgramType::midiLessonCreator : break; //
-      case ProgramType::morpher : break; //
+      case ProgramType::metZnDrieenVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMetZnDrieenVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::midiLessonCreator :
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMidiLessonCreator),
+            version,
+            version_history
+          )
+        );
+      }
+      break; //
+      case ProgramType::morpher :
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMorpher),
+            version,
+            version_history
+          )
+        );
+      }
+      break; //
       case ProgramType::multiEncranger: p.reset(new ToolMultiEncrangerMenuDialog); break;
-      case ProgramType::multiEncrangerVcl: break;
-      case ProgramType::muscaDomestica: break;
+      case ProgramType::multiEncrangerVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMultiEncrangerVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::muscaDomestica:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramMuscaDomestica),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::musicTheory: p.reset(new MusicTheoryMenuDialog); break;
-      case ProgramType::ndsmake: break; //
-      case ProgramType::ndsPaint: break;
+      case ProgramType::ndsmake:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramNdsmake),
+            version,
+            version_history
+          )
+        );
+      }
+      break; //
+      case ProgramType::ndsPaint:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramNdsPaint),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::paperRockScissors: p.reset(new PaperRockScissorsMenuDialog); break;
-      case ProgramType::pause: break; //
+      case ProgramType::pause:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramPause),
+            version,
+            version_history
+          )
+        );
+      }
+      break; //
       case ProgramType::perfectElasticCollision: p.reset(new PerfectElasticCollisionMenuDialog); break;
       case ProgramType::picToCode: p.reset(new PicToCodeMenuDialog); break;
       case ProgramType::pixelator: p.reset(new PixelatorMenuDialog); break;
-      case ProgramType::pixelatorVcl: break;
+      case ProgramType::pixelatorVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramPixelatorVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::pokeVolley: p.reset(new PokeVolleyMenuDialog); break;
       case ProgramType::pong: p.reset(new PongMenuDialog); break;
       case ProgramType::preDickAdvocaTor: p.reset(new PreDickAdvocaTorMenuDialog); break;
       case ProgramType::primeExpert: p.reset(new PrimeExpertMenuDialog); break;
-      case ProgramType::projectRichelBilderbeek: p.reset(new ProjectRichelBilderbeekMenuDialog); break;
+      case ProgramType::projectRichelBilderbeek:
+        //Don't do this: this will result in an infinite recursion
+        //p.reset(new ProjectRichelBilderbeekMenuDialog);
+      {
+        p.reset(
+          new PlaceholderMenuDialog(
+            GetAboutStatic(),
+            boost::shared_ptr<Program>(new ProgramProjectRichelBilderbeek),
+            GetVersionStatic(),
+            GetVersionHistoryStatic()
+          )
+        );
+      }
+      break;
       case ProgramType::pylos: p.reset(new PylosMenuDialog); break;
       case ProgramType::qmakeWatcher: p.reset(new QmakeWatcherMenuDialog); break;
       case ProgramType::quadraticSolver: p.reset(new QuadraticSolverMenuDialog); break;
-      case ProgramType::rampalEtienne: break;
+      case ProgramType::rampalEtienne:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramRampalEtienne),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::randomCode: p.reset(new RandomCodeMenuDialog); break;
-      case ProgramType::randomCodeVcl: break;
-      case ProgramType::rasper: /* p.reset(new RasperMenuDialog); */ break;
-      case ProgramType::refrigeratorPuzzleSolver: break;
+      case ProgramType::randomCodeVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramRandomCodeVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::rasper: /* p.reset(new RasperMenuDialog); */
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramRasper),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::refrigeratorPuzzleSolver:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramRefrigeratorPuzzleSolver),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::regexTester: p.reset(new RegexTesterMenuDialog); break;
       case ProgramType::reversi: p.reset(new ReversiMenuDialog); break;
       case ProgramType::richelBilderbeekGallery: p.reset(new GalleryMenuDialog); break;
       case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new SitemapGeneratorMenuDialog); break;
       case ProgramType::rubiksClock: p.reset(new RubiksClockMenuDialog); break;
-      case ProgramType::rubiksClockVcl: break;
+      case ProgramType::rubiksClockVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramRubiksClockVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::searchAndDestroyChess: p.reset(new sadc::MenuDialog); break;
-      case ProgramType::searchAndDestroyChessVcl: break;
+      case ProgramType::searchAndDestroyChessVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSearchAndDestroyChessVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::secretMessage: p.reset(new ribi::SecretMessage::MenuDialog); break;
-      case ProgramType::secretMessageVcl: break;
-      case ProgramType::simBrainiac: break;
-      case ProgramType::simImmuneResponse: break;
+      case ProgramType::secretMessageVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSecretMessageVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::simBrainiac:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSimBrainiac),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::simImmuneResponse:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSimImmuneResponse),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::simMysteryMachine: p.reset(new SimMysteryMachineMenuDialog); break;
       case ProgramType::simplifyNewick: p.reset(new ToolSimplifyNewickMenuDialog); break;
       case ProgramType::simPredator: p.reset(new SimPredatorMenuDialog); break;
-      case ProgramType::simStagecraft: break;
-      case ProgramType::soaSim: break;
-      case ProgramType::solvePuzzleX: break;
+      case ProgramType::simStagecraft:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSimStagecraft),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::soaSim:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSoaSim),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::solvePuzzleX:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSolvePuzzleX),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::spaceHarry: p.reset(new SpaceHarryMenuDialog); break;
-      case ProgramType::spaceHarryVcl: break;
-      case ProgramType::staircaseCardCreator: break;
+      case ProgramType::spaceHarryVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSpaceHarryVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::staircaseCardCreator:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramStaircaseCardCreator),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::stateObserver: p.reset(new StateObserverMenuDialog); break;
       case ProgramType::styleSheetSetter: p.reset(new StyleSheetSetterMenuDialog); break;
       case ProgramType::superNsanaBros: p.reset(new NsanaBrosMenuDialog); break;
       case ProgramType::surfacePlotter: p.reset(new ToolSurfacePlotterMenuDialog); break;
-      case ProgramType::surfacePlotterVcl: break;
+      case ProgramType::surfacePlotterVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramSurfacePlotterVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::tankBattalion: p.reset(new TankBattalionMenuDialog); break;
       case ProgramType::testAbout: p.reset(new TestAboutMenuDialog); break;
       case ProgramType::testApproximator: p.reset(new ToolTestApproximatorMenuDialog); break;
       case ProgramType::testBinaryNewickVector: p.reset(new TestBinaryNewickVectorMenuDialog); break;
-      case ProgramType::testBouncingBallsWidget: break;
-      case ProgramType::testBouncingRectsWidget: break;
-      case ProgramType::testBroadcastServer: break;
+      case ProgramType::testBouncingBallsWidget:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestBouncingBallsWidget),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testBouncingRectsWidget:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestBouncingRectsWidget),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testBroadcastServer:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestBroadcastServer),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testCanvas: p.reset(new ToolTestCanvasMenuDialog); break;
       case ProgramType::testChess: p.reset(new TestChessMenuDialog); break;
       case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
@@ -497,66 +2065,831 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::testEntrance: p.reset(new ToolTestEntrance::MenuDialog); break;
       case ProgramType::testExercise: p.reset(new TestExerciseMenuDialog); break;
       case ProgramType::testFunctionParser: p.reset(new TestFunctionParserMenuDialog); break;
-      case ProgramType::testGnuplotInterface: break;
-      case ProgramType::testGraphicsProxyWidget: break;
-      case ProgramType::testGravityWidget: break;
+      case ProgramType::testGnuplotInterface:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestGnuplotInterface),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testGraphicsProxyWidget:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestGraphicsProxyWidget),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testGravityWidget:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestGravityWidget),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testGroupWidget: p.reset(new TestGroupWidgetMenuDialog); break;
-      case ProgramType::testHugeVector: break;
-      case ProgramType::testLazy_init: break;
+      case ProgramType::testHugeVector:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestHugeVector),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testLazy_init:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestLazy_init),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testLed: p.reset(new TestLedMenuDialog); break;
-      case ProgramType::testManyDigitNewick: break;
+      case ProgramType::testManyDigitNewick:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestManyDigitNewick),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testMultiApproximator: p.reset(new ToolTestMultiApproximatorMenuDialog); break;
       case ProgramType::testMultipleChoiceQuestion: p.reset(new TestMultipleChoiceQuestionMenuDialog); break;
-      case ProgramType::testMultiVector: break;
-      case ProgramType::testNdsmake: break;
-      case ProgramType::testNeuralNet: break;
-      case ProgramType::testNewick: break;
-      case ProgramType::testNewickVector: break;
+      case ProgramType::testMultiVector:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestMultiVector),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testNdsmake:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestNdsmake),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testNeuralNet:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestNeuralNet),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testNewick:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestNewick),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testNewickVector:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestNewickVector),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testOpenQuestion: p.reset(new TestOpenQuestionMenuDialog); break;
       case ProgramType::testPylos: p.reset(new TestPylosMenuDialog); break;
       case ProgramType::testQrcFile: p.reset(new TestQrcFileMenuDialog); break;
       case ProgramType::testQtArrowItems : p.reset(new TestQtArrowItemsMenuDialog); break;
       case ProgramType::testQtCreatorProFile: p.reset(new TestQtCreatorProFileMenuDialog); break;
-      case ProgramType::testQtHideAndShowDialog: break;
+      case ProgramType::testQtHideAndShowDialog:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestQtHideAndShowDialog),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testQtKeyboardFriendlyGraphicsView: p.reset(new TestKeyboardFriendlyGraphicsViewMenuDialog); break;
       case ProgramType::testQtModels: p.reset(new ToolTestQtModelsMenuDialog); break;
-      case ProgramType::testQtOcrWidget: break;
+      case ProgramType::testQtOcrWidget:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestQtOcrWidget),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testQtRoundedEditRectItem: p.reset(new TestQtRoundedEditRectItemMenuDialog); break;
       case ProgramType::testQtRoundedRectItem: p.reset(new TestQtRoundedRectItemMenuDialog); break;
       case ProgramType::testQtRoundedTextRectItem: p.reset(new TestQtRoundedTextRectItemMenuDialog); break;
       case ProgramType::testQuestion: p.reset(new TestQuestionMenuDialog); break;
-      case ProgramType::testReversi: break;
-      case ProgramType::testSelectFileDialog: break;
-      case ProgramType::testServerPusher: break;
-      case ProgramType::testShape: p.reset(new TestShapeMenuDialog); break;
+      case ProgramType::testReversi:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestReversi),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testSelectFileDialog:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestSelectFileDialog),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testServerPusher:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestServerPusher),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testShape: p.reset(new TestShapeMenuDialog);
+      break;
       case ProgramType::testShinyButton: p.reset(new TestShinyButtonMenuDialog); break;
       case ProgramType::testSimpleLinearRegression: p.reset(new ToolTestSimpleLinearRegressionMenuDialog); break;
-      case ProgramType::testStopwatch: break;
-      case ProgramType::testTextPositionWidget: break;
-      case ProgramType::testTicTacToe: break;
-      case ProgramType::testTimedServerPusher: break;
+      case ProgramType::testStopwatch:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestStopwatch),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testTextPositionWidget:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestTextPositionWidget),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testTicTacToe:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestTicTacToe),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::testTimedServerPusher:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTestTimedServerPusher),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::testToggleButton: p.reset(new TestToggleButtonMenuDialog); break;
       case ProgramType::testTwoDigitNewick: p.reset(new TestTwoDigitNewickMenuDialog); break;
-      case ProgramType::thorVeen: break;
+      case ProgramType::thorVeen:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramThorVeen),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::thresholdFilterer: p.reset(new ThresholdFiltererMenuDialog); break;
-      case ProgramType::thresholdFiltererVcl: break;
+      case ProgramType::thresholdFiltererVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramThresholdFiltererVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::ticTacToe: p.reset(new TicTacToeMenuDialog); break;
-      case ProgramType::ticTacToeLearner: break;
-      case ProgramType::ticTacToeValuer: break;
-      case ProgramType::timePoll: break;
+      case ProgramType::ticTacToeLearner:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTicTacToeLearner),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::ticTacToeValuer:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTicTacToeValuer),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::timePoll:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTimePoll),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::tronCollection: p.reset(new TronMenuDialog); break;
-      case ProgramType::tronCollectionVcl: break;
-      case ProgramType::ubuntuOneWatcher: break;
-      case ProgramType::vanDenBogaart: break;
-      case ProgramType::virtualBastard: break;
+      case ProgramType::tronCollectionVcl:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramTronCollectionVcl),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::ubuntuOneWatcher:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramUbuntuOneWatcher),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::vanDenBogaart:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramVanDenBogaart),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
+      case ProgramType::virtualBastard:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          About::GetDefaultAuthor(),
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramVirtualBastard),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::visualAbc: p.reset(new VisualAbcMenuDialog); break;
       case ProgramType::xeNonZero: p.reset(new XeNonZeroMenuDialog); break;
-      case ProgramType::zork: break;
+      case ProgramType::zork:
+      {
+        const std::string version = "x.x";
+        const std::vector<std::string> version_history {
+          "20xx-xx-xx: version x.x: something",
+        };
+        const About about(
+          "Not me",
+          "somename",
+          "description",
+          "someday",
+          "20xx-20xx",
+          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          version,
+          version_history
+        );
+        p.reset(
+          new PlaceholderMenuDialog(
+            about,
+            boost::shared_ptr<Program>(new ProgramZork),
+            version,
+            version_history
+          )
+        );
+      }
+      break;
       case ProgramType::n_types:
         assert(!"Must not use n_types");
         throw std::logic_error("ribi::ProjectRichelBilderbeekMenuDialog::CreateMenus");
     }
+    #ifndef NDEBUG
+    if (!p)
+    {
+      TRACE("ERROR");
+      TRACE(ProgramTypes::ProgramTypeToEnumName(t));
+    }
+    #endif
     assert(p);
+    if (p->GetProgram()->GetType() != t)
+    {
+      TRACE("ERROR");
+      TRACE(ProgramTypes::ProgramTypeToEnumName(t));
+      TRACE(ProgramTypes::ProgramTypeToEnumName(p->GetProgram()->GetType()));
+    }
+    assert(p->GetProgram()->GetType() == t);
     v.push_back(p);
   }
   assert(!v.empty());
@@ -592,12 +2925,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDi
   return p;
 }
 
-const std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersion() const noexcept
+const std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
   return "1.13";
 }
 
-const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
 {
   return {
     "2010-12-20: Version 0.1: web-application-only project called 'ProjectWtWebsite', initial setup with BeerWanter and Loose",
@@ -715,6 +3048,7 @@ void ribi::ProjectRichelBilderbeekMenuDialog::Test() noexcept
   //Create all menus
   for (const auto m: CreateMenus())
   {
+
     assert(!m->GetVersion().empty());
     assert(!m->GetVersionHistory().empty());
     assert(m->GetProgram());

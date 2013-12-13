@@ -11,6 +11,9 @@ struct CellIndex
   explicit CellIndex(const int index = 0);
   int Get() const noexcept { return m_index; }
 
+  CellIndex& operator++() noexcept;   //Prefix
+  CellIndex operator++(int) noexcept; //Postfix
+
   private:
   int m_index;
   friend std::istream& operator>>(std::istream& is, CellIndex& face_index);

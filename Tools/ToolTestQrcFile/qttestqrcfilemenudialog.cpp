@@ -25,6 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qttestqrcfilemaindialog.h"
 #include "testqrcfilemenudialog.h"
+#include "trace.h"
 #include "ui_qttestqrcfilemenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -63,3 +64,16 @@ void ribi::QtTestQrcFileMenuDialog::on_button_quit_clicked()
 {
   close();
 }
+
+#ifndef NDEBUG
+void ribi::QtTestQrcFileMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTestQrcFileMenuDialog::Test");
+  TRACE("Finished ribi::QtTestQrcFileMenuDialog::Test successfully");
+}
+#endif
