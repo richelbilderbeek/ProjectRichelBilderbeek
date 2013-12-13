@@ -16,6 +16,7 @@
 #include <QFile>
 
 #include "filename.h"
+#include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamneighbourfileitem.h"
 #include "openfoamfaceindex.h"
@@ -74,6 +75,15 @@ const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& i
   is >> b;
   assert(is);
   return b;
+}
+
+const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(const std::string& filename)
+{
+  const std::string tmp_filename { fileio::GetTempFileName() };
+  fileio::CopyFile(filename,tmp_filename);
+  Header::CleanFile(tmp_filename);
+  std::ifstream f(tmp_filename.c_str());
+  return Parse(f);
 }
 
 void ribi::foam::NeighbourFile::SetItem(const FaceIndex& face_index, const NeighbourFileItem& item) noexcept

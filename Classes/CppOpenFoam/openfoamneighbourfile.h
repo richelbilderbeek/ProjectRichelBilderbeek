@@ -16,6 +16,7 @@ namespace foam {
 struct NeighbourFile
 {
   explicit NeighbourFile(std::istream& is) : NeighbourFile(Parse(is)) {}
+  explicit NeighbourFile(const std::string& filename) : NeighbourFile(Parse(filename)) {}
   explicit NeighbourFile(
     const Header header = GetDefaultHeader(),
     const std::vector<NeighbourFileItem>& items = {});
@@ -44,6 +45,7 @@ struct NeighbourFile
   std::vector<NeighbourFileItem> m_items;
 
   static const NeighbourFile Parse(std::istream& is);
+  static const NeighbourFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;
