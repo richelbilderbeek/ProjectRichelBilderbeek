@@ -27,6 +27,7 @@ Vorm:
 - Kinderen proberen zelf een laptop mee te nemen
 - Geen reader
 - Presentaties klein, danwel op whiteboard
+- ?Elk kind een aantekeningenschrift
 
 Eigenschappen begeleiders (volgens Richel):
 - Richel:
@@ -45,15 +46,17 @@ Data:
 - vrijdag 3 januari t/m 4 juli, 26 weken
 
 Lesdoelen
+Les 1
+* Wat is onze vorm?
+* Hoe stel je bij ons een vraag? (1) zelf nadenken (2) opzoeken (3) andere leerling vragen (4) ons vragen
+* Wat is een slimme vraag?
+* Ontdekken dat aanklooien niet werkt
+* Output: electronica en C, een LED aansturen
+Les 2
+* Input: electronica en C, een drukknop maken
 
-Wat is onze vorm?
-
-Hoe stel je bij ons een vraag? (1) zelf nadenken (2) opzoeken (3) andere leerling vragen (4) ons vragen
-Wat is een slimme vraag?
-
-Ontdekken dat aanklooien niet werkt
 
 
-Output: electronica en C
-Input: electronica en C
+
+
 
