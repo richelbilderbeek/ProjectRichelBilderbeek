@@ -33,17 +33,12 @@ Eigenschappen begeleiders (volgens Richel):
     - didactisch, 'de man die je doet leren'
     - doelgericht, 'de man die je doet leren; die slimme vragen van je verwacht'
     - trots, 'de man die iets van je verwacht'
-  - zwakkere punten
-    - minder sociaal, 'de man waar je niet hoeft uit te huilen'
-    - minder vergevend, 'de man waar je niet hoeft te verwachten dat hij je helpt als je je niet inzet'
 - Peter: 
   - sterke punten: 
     - sociaal, 'de man waar je altijd een praatje mee kunt maken', 
     - vergevend: 'de man bij wie je 'dommere' vragen durft te stellen'
     - ervaring, 'de man die al veel heeft gewerkt met Arduino'
     - ideeen, 'de man die al veel Arduino projecten heeft gezien'
-  - zwakkere punten 
-     - langdradig, 'de man van de lange opsommingen'
 
 Data:
 - vrijdag 3 januari t/m 4 juli, 26 weken

@@ -85,6 +85,8 @@ CppForExample1
 CppForExample1.exe
 CppForward_listExample1
 CppForward_listExample1.exe
+CppGcovExample1
+CppGcovExample1.exe
 CppGetDateIso8601
 CppGetDateIso8601.exe
 CppGetFilesInFolder
@@ -269,6 +271,8 @@ CppQPainterExample1
 CppQPainterExample1.exe
 CppQPrintDialogExample1
 CppQPrintDialogExample1.exe
+CppQPrinterExample2
+CppQPrinterExample2.exe
 CppQSqlTableModelExample1
 CppQSqlTableModelExample1.exe
 CppQSqlTableModelExample2
@@ -511,8 +515,6 @@ GameDasWahreSchlagerfestDesktop
 GameDasWahreSchlagerfestDesktop.exe
 GameK3OpEenRijDesktop
 GameK3OpEenRijDesktop.exe
-GameKnokfighterDesktop
-GameKnokfighterDesktop.exe
 GameMaziakDesktop
 GameMaziakDesktop.exe
 GamePongDesktop
@@ -521,7 +523,6 @@ GamePylosDesktop
 GamePylosDesktop.exe
 GameRubiksClockDesktop
 GameRubiksClockDesktop.exe
-GameSearchAndDestroyChessDesktop
 GameSuperNsanaBrosDesktop
 GameSuperNsanaBrosDesktop.exe
 GameTankBattalionDesktop
@@ -535,7 +536,9 @@ GameXeNonZeroDesktop.exe
 ProjectBrainweaverDeveloper
 ProjectBrainweaverDeveloper.exe
 ProjectRichelBilderbeekConsole
+ProjectRichelBilderbeekConsole.exe
 ProjectRichelBilderbeekDesktop
+ProjectRichelBilderbeekDesktop.exe
 ToolAsciiArterConsole
 ToolAsciiArterConsole.exe
 ToolAsciiArterDesktop
@@ -643,18 +646,18 @@ ToolStaircaseCardCreator
 ToolStaircaseCardCreator.exe
 ToolStyleSheetSetterDesktop
 ToolStyleSheetSetterDesktop.exe
-ToolSurfacePlotterDesktop
-ToolSurfacePlotterDesktop.exe
 ToolTestAboutDesktop
 ToolTestAboutDesktop.exe
-ToolTestBinaryNewickVector
-ToolTestBinaryNewickVector.exe
+ToolTestBinaryNewickVectorDesktop
+ToolTestBinaryNewickVectorDesktop.exe
 ToolTestBoucingRectsWidget
 ToolTestBoucingRectsWidget.exe
 ToolTestBouncingBallsWidget
 ToolTestBouncingBallsWidget.exe
 ToolTestCanvasConsole
 ToolTestCanvasConsole.exe
+ToolTestConceptMapConsole
+ToolTestConceptMapConsole.exe
 ToolTestConceptMapDesktop
 ToolTestConceptMapDesktop.exe
 ToolTestGraphicsProxyWidget.exe
@@ -683,5 +686,6 @@ ToolTestTwoDigitNewickDesktop.exe
 ToolThresholdFiltererDesktop
 ToolThresholdFiltererDesktop.exe
 ToolUbuntuOneWatcherDesktop.exe
+ToolVisualAbcDesktop
 ToolVisualAbcDesktop.exe
 Zork
