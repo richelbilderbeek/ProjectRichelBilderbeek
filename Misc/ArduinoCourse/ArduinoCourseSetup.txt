@@ -17,6 +17,7 @@ Subdoelen:
   - Peter: laptop met Windows 7 en Arduino IDE
   - 2 Windows computers, staan niet in de buurt
   - Richel: woordenboek EN-NE
+  - ?whiteboard
 
 Wanneer geslaagd:
 - Richel: als de leerlingen zelfstandig verder kunnen
@@ -43,5 +44,16 @@ Eigenschappen begeleiders (volgens Richel):
 Data:
 - vrijdag 3 januari t/m 4 juli, 26 weken
 
+Lesdoelen
 
+Wat is onze vorm?
+
+Hoe stel je bij ons een vraag? (1) zelf nadenken (2) opzoeken (3) andere leerling vragen (4) ons vragen
+Wat is een slimme vraag?
+
+Ontdekken dat aanklooien niet werkt
+
+
+Output: electronica en C
+Input: electronica en C
 
