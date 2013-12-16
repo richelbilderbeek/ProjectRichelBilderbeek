@@ -318,13 +318,14 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p>",
-        " <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> is a <a href=\"CppDataType.htm\">data type</a>",
+        "  <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> is a <a href=\"CppDataType.htm\">data type</a>",
         "  for storing phylogenies in the <a href=\"CppNewick.htm\">Newick</a> format.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
         "  The <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestBinaryNewickVector.htm\">TestBinaryNewickVector</a>",
-        "is a GUI to test and experiment with <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a>.</p>",
+        "  is a GUI to test and experiment with <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
       }
     }
@@ -459,6 +460,20 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppCallStackCounter",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppCallStackCounter.htm\">CallStackCounter</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  to probe the depth of the call stack, for example in a recursive function.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppChecked_deleteExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -480,7 +495,9 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppChess.htm\">Chess</a> has many chess <a href=\"CppClass.htm\">classes</a></p>"
+        "<p>",
+        "  <a href=\"CppChess.htm\">Chess</a> has many chess <a href=\"CppClass.htm\">classes</a>",
+        "</p>"
       }
     }
   );
@@ -502,8 +519,10 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppConnectThree.htm\">ConnectThree</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.</p>"
+        "<p>",
+        "  <a href=\"CppConnectThree.htm\">ConnectThree</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  for a <a href=\"GameConnectThree.htm\">ConnectThree game</a>.",
+        "</p>"
       }
     }
   );

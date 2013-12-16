@@ -167,7 +167,6 @@ void ribi::foam::OwnerFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      TRACE(filename);
       if (!fileio::IsRegularFile(filename))
       {
         TRACE("ERROR");
@@ -182,24 +181,6 @@ void ribi::foam::OwnerFile::Test() noexcept
       assert(!b.GetItems().empty());
     }
   }
-  //Read from testing file
-  /*
-  {
-    const std::string filename { GetDefaultHeader().GetObject() };
-    {
-      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
-      f.copy(filename.c_str());
-    }
-    assert(fileio::IsRegularFile(filename));
-    Header::CleanFile(filename);
-    {
-      assert(fileio::IsRegularFile(filename));
-      std::ifstream f(filename.c_str());
-      OwnerFile b(f);
-      assert(!b.GetItems().empty());
-    }
-  }
-  */
   TRACE("Finished ribi::foam::Header::OwnerFile successfully");
 }
 #endif

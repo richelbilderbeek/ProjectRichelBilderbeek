@@ -149,7 +149,6 @@ void ribi::foam::PointsFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      TRACE(filename);
       if (!fileio::IsRegularFile(filename))
       {
         TRACE("ERROR");
@@ -227,15 +226,6 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
     #endif
     assert(opening_bracket == '(' || opening_bracket == '{');
   }
-  //Already eaten
-  /*
-  {
-    char bracket_open = '\0';
-    is >> bracket_open;
-    assert(is);
-    assert(bracket_open == '(');
-  }
-  */
   assert(opening_bracket == '(' || opening_bracket == '{');
   if (opening_bracket == '(')
   {

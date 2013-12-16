@@ -175,7 +175,6 @@ void ribi::foam::NeighbourFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      TRACE(filename);
       if (!fileio::IsRegularFile(filename))
       {
         TRACE("ERROR");
@@ -183,30 +182,10 @@ void ribi::foam::NeighbourFile::Test() noexcept
       }
       assert(fileio::IsRegularFile(filename));
       NeighbourFile b(filename);
-      if (b.GetItems().empty())
-      {
-        TRACE("ERROR");
-      }
       assert( (!b.GetItems().empty() || b.GetItems().empty())
         && "If a mesh has no non-bhoundary cells, neighbour can be empty");
     }
   }
-  /*
-  //Read from testing file
-  {
-    const std::string filename { GetDefaultHeader().GetObject() };
-    {
-      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
-      f.copy(filename.c_str());
-    }
-    {
-      assert(fileio::IsRegularFile(filename));
-      std::ifstream f(filename.c_str());
-      NeighbourFile b(f);
-      assert(!b.GetItems().empty());
-    }
-  }
-  */
   TRACE("Finished ribi::foam::Header::NeighbourFile successfully");
 }
 #endif
