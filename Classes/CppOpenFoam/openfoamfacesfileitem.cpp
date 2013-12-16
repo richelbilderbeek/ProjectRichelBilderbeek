@@ -16,7 +16,7 @@ ribi::foam::FacesFileItem::FacesFileItem(
   Test();
   for (PointIndex index: m_point_indices)
   {
-    assert(index.Get() > 0); //NONSENSE? I'd guess an index starts at zero?
+    assert(index.Get() >= 0 && "Sure, there is a point with index 0");
   }
   #endif
 }

@@ -28,9 +28,8 @@ ribi::foam::Mesh::Mesh(
 {
 
   //Add Cell owner to Faces
-  assert(!m_cells.empty());
   {
-
+    assert(!m_cells.empty());
     const FaceIndex n_faces = files.GetFaces()->GetMaxFaceIndex();
     for (FaceIndex i = FaceIndex(0); i!=n_faces; ++i)
     {
@@ -75,12 +74,18 @@ ribi::foam::Mesh::Mesh(
       p.first->AssignOwnedFaces(p.second);
     }
   }
+  //Add neighbours to Cells
+  HIERO
 
   //Add ? to Faces
   m_boundaries = CreateBoundaries(files,m_faces);
 
   //Check
   #ifndef NDEBUG
+
+  for (boost::shared_ptr<Cell> cell: m_cells) { assert(cell); assert(cell->GetNeighbour()); }
+
+
   if (GetNumberOfBoundaries() != files.GetBoundary()->GetMaxBoundaryIndex().Get())
   {
     TRACE("ERROR");
