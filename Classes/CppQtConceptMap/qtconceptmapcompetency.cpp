@@ -4,6 +4,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconceptmapcompetency.h"
 
+// /home/richel/ProjectRichelBilderbeek/Classes/CppQtConceptMap/qtconceptmapcompetency.cpp
 #include <cassert>
 
 #include <QImage>
