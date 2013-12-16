@@ -33,6 +33,13 @@ ribi::foam::Header::Header(
 void ribi::foam::Header::CleanFile(
   const std::string& filename) noexcept
 {
+  #ifndef NDEBUG
+  if(!fileio::IsRegularFile(filename))
+  {
+    TRACE("ERROR");
+  }
+  #endif
+
   assert(fileio::IsRegularFile(filename));
   //v is dirty
   const std::vector<std::string> v { fileio::FileToVector(filename) };

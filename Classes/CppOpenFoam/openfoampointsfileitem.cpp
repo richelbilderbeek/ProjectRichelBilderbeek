@@ -109,7 +109,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFileItem& f)
   {
     char bracket_close;
     is >> bracket_close;
-    TRACE(is);
+    assert(is);
     assert(bracket_close == ')');
   }
   return is;

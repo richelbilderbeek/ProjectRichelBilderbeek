@@ -15,6 +15,7 @@
 
 #include <QFile>
 
+#include "fileio.h"
 #include "filename.h"
 #include "openfoamheader.h"
 #include "openfoampointsfileitem.h"
@@ -44,6 +45,15 @@ const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
   is >> b;
   assert(is);
   return b;
+}
+
+const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename)
+{
+  const std::string tmp_filename { fileio::GetTempFileName() };
+  fileio::CopyFile(filename,tmp_filename);
+  Header::CleanFile(tmp_filename);
+  std::ifstream f(tmp_filename.c_str());
+  return Parse(f);
 }
 
 #ifndef NDEBUG
@@ -117,16 +127,40 @@ void ribi::foam::PointsFile::Test() noexcept
     assert(b == c);
   }
   //Read from testing file
+  for (int test_index = 0; test_index!=4; ++test_index)
   {
-    const std::string filename { GetDefaultHeader().GetObject() };
+    std::string filename_appendix;
+    switch (test_index)
     {
-      QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
+      case 0: filename_appendix = "_1x1x1"; break;
+      case 1: filename_appendix = "_1x1x2"; break;
+      case 2: filename_appendix = "_1x2x2"; break;
+      case 3: filename_appendix = "_2x2x2"; break;
+      default: assert(!"Should never get here");
+        throw std::logic_error("foam::Files::CreateTestFiles: unknown test index");
+    }
+    assert(!filename_appendix.empty());
+    const std::string filename_base { GetDefaultHeader().GetObject() };
+    const std::string filename = filename_base + filename_appendix;
+    const std::string resources_path { ":/CppOpenFoam/files/" + filename };
+
+    {
+      QFile f( resources_path.c_str() );
       f.copy(filename.c_str());
     }
     {
+      TRACE(filename);
+      if (!fileio::IsRegularFile(filename))
+      {
+        TRACE("ERROR");
+        TRACE(filename);
+      }
       assert(fileio::IsRegularFile(filename));
-      std::ifstream f(filename.c_str());
-      PointsFile b(f);
+      PointsFile b(filename);
+      if (b.GetItems().empty())
+      {
+        TRACE("ERROR");
+      }
       assert(!b.GetItems().empty());
     }
   }
@@ -164,6 +198,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
 
   //Read items
   int n_items = 0;
+  char opening_bracket = '\0';
   {
     //Eat comment
     char c = '\0';
@@ -171,7 +206,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
     assert(is);
     if (c >= '0' && c <= '9')
     {
-      while (c != '(')
+      while (c != '(' && c != '{')
       {
         //Start eating n_items
         n_items *= 10;
@@ -182,6 +217,15 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
         assert(is);
       }
     }
+    opening_bracket = c;
+    #ifndef NDEBUG
+    if (!(opening_bracket == '(' || opening_bracket == '{'))
+    {
+      TRACE(opening_bracket);
+      TRACE("ERROR");
+    }
+    #endif
+    assert(opening_bracket == '(' || opening_bracket == '{');
   }
   //Already eaten
   /*
@@ -192,22 +236,42 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
     assert(bracket_open == '(');
   }
   */
-  for (int i=0; i!=n_items; ++i)
+  assert(opening_bracket == '(' || opening_bracket == '{');
+  if (opening_bracket == '(')
   {
+    for (int i=0; i!=n_items; ++i)
+    {
+      PointsFileItem item;
+      is >> item;
+      assert(is);
+      f.m_items.push_back(item);
+    }
+  }
+  else
+  {
+    assert(opening_bracket == '{');
+    //Read once, push n_items times
     PointsFileItem item;
     is >> item;
     assert(is);
-    f.m_items.push_back(item);
+    for (int i=0; i!=n_items; ++i)
+    {
+      f.m_items.push_back(item);
+    }
   }
   //Eat comments until bracket close
   {
     char bracket_close = '\0';
-    while (bracket_close != ')')
+    while (bracket_close != ')' && bracket_close != '}')
     {
       is >> bracket_close;
       assert(is);
     }
-    assert(bracket_close == ')');
+    assert(bracket_close == ')' || bracket_close == '}');
+    assert(
+         (opening_bracket == '(' && bracket_close == ')')
+      || (opening_bracket == '{' && bracket_close == '}')
+    );
   }
   return is;
 }

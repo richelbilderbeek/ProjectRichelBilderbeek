@@ -80,6 +80,28 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
+  m.push_back(
+    { "CppApproximator",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppApproximator.htm\">Approximator</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> to perform an interpolation",
+        "  on data. For example, when the supplied data consists of the coordinats",
+        "  (1,1) and (2,2), it will estimate (the x value of) 1,5 to be (the value y value of) 1,5.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppApproximator.htm\">Approximator</a> does not support multiple",
+        "  identical keys (for example the coordinats (1.0,2.0) and (1.0,3.0)),",
+        "  similar to a <a href=\"CppMap.htm\">std::map</a>.",
+        "  <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> does",
+        "  allow this."
+        "</p>"
+      }
+    }
+  );
 
   m.push_back(
     { "CppAlglibExample1",
@@ -182,10 +204,12 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppAsciiArter.htm\">AsciiArter</a> is a",
-        "GUI-independent <a href=\"CppClass.htm\">class</a> to",
-        "<a href=\"CppConvert.htm\">convert</a> images to",
-        "<a href=\"CppAsciiArt.htm\">ASCII art</a>.</p>"
+        "<p>",
+        "  <a href=\"CppAsciiArter.htm\">AsciiArter</a> is a",
+        "  GUI-independent <a href=\"CppClass.htm\">class</a> to",
+        "  <a href=\"CppConvert.htm\">convert</a> images to",
+        "  <a href=\"CppAsciiArt.htm\">ASCII art</a>.",
+        "</p>"
       }
     }
   );
@@ -245,11 +269,15 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppAutoExample1.htm\">auto example 1: basics</a> is an <a href=\"CppAuto.htm\">auto</a> <a href=\"CppExample.htm\">example</a>.",
+        "<p>",
+        "  <a href=\"CppAutoExample1.htm\">auto example 1: basics</a> is an <a href=\"CppAuto.htm\">auto</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>A division will only succeed if the denominator is unequal to zero. ",
-        "In your code, you will have to take care that a division by zero never occurs. ",
-        "Using <a href=\"CppAssert.htm\">assert</a>, as shown in the code below, will take you to the problem directly.",
+        "<p>",
+        "  A division will only succeed if the denominator is unequal to zero.",
+        "  In your code, you will have to take care that a division by zero never occurs. ",
+        "  Using <a href=\"CppAssert.htm\">assert</a>, as shown in the code below, will take you to the problem directly.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppAssertExample1.zip\">Download the Qt Creator project 'CppAssertExample1' (zip)</a></li>",
@@ -289,10 +317,13 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> is a <a href=\"CppDataType.htm\">data type</a> ",
-        "for storing phylogenies in the <a href=\"CppNewick.htm\">Newick</a> format.</p>",
+        "<p>",
+        " <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> is a <a href=\"CppDataType.htm\">data type</a>",
+        "  for storing phylogenies in the <a href=\"CppNewick.htm\">Newick</a> format.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>The <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestBinaryNewickVector.htm\">TestBinaryNewickVector</a> ",
+        "<p>",
+        "  The <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestBinaryNewickVector.htm\">TestBinaryNewickVector</a>",
         "is a GUI to test and experiment with <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a>.</p>",
         "<p>&nbsp;</p>",
       }

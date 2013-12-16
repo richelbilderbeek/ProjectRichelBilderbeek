@@ -17,7 +17,7 @@ struct BoundaryFile
 {
   ///Read an OpenFOAM 'boundary' file.
   ///Throws std::runtime_error if file is incorrectly formed
-  explicit BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
+  explicit BoundaryFile(const std::string& filename) : BoundaryFile(Parse(filename)) {}
   explicit BoundaryFile(
     const Header header = GetDefaultHeader(),
     const std::vector<BoundaryFileItem>& items = {});
@@ -41,6 +41,9 @@ struct BoundaryFile
   //void Swap(const FaceIndex& lhs, const FaceIndex& rhs);
 
   private:
+  ///Read an OpenFOAM 'boundary' file.
+  ///Throws std::runtime_error if file is incorrectly formed
+  explicit BoundaryFile(std::istream& is) : BoundaryFile(Parse(is)) {}
 
   ///The OpenFOAM header
   Header m_header;
@@ -58,6 +61,8 @@ struct BoundaryFile
   ///Read an OpenFOAM 'boundary' file.
   ///Throws std::runtime_error if file is incorrectly formed
   static const BoundaryFile Parse(std::istream& is);
+
+  static const BoundaryFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -15,7 +15,7 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct FacesFile
 {
-  explicit FacesFile(std::istream& is) : FacesFile(Parse(is)) {}
+  explicit FacesFile(const std::string& filename) : FacesFile(Parse(filename)) {}
   explicit FacesFile(
     const Header header = GetDefaultHeader(),
     const std::vector<FacesFileItem>& items = {});
@@ -33,6 +33,7 @@ struct FacesFile
   const FaceIndex GetMaxFaceIndex() const noexcept;
 
   private:
+  explicit FacesFile(std::istream& is) : FacesFile(Parse(is)) {}
 
   ///The OpenFOAM header
   Header m_header;
@@ -40,6 +41,7 @@ struct FacesFile
   std::vector<FacesFileItem> m_items;
 
   static const FacesFile Parse(std::istream& is);
+  static const FacesFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;

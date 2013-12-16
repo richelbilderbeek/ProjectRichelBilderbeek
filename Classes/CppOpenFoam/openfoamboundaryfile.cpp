@@ -91,6 +91,15 @@ const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
   return b;
 }
 
+const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
+{
+  const std::string tmp_filename { fileio::GetTempFileName() };
+  fileio::CopyFile(filename,tmp_filename);
+  Header::CleanFile(tmp_filename);
+  std::ifstream f(tmp_filename.c_str());
+  return Parse(f);
+}
+
 #ifndef NDEBUG
 void ribi::foam::BoundaryFile::Test() noexcept
 {
@@ -158,6 +167,46 @@ void ribi::foam::BoundaryFile::Test() noexcept
     assert(b == c);
   }
   //Read from testing file
+  for (int test_index = 0; test_index!=4; ++test_index)
+  {
+    std::string filename_appendix;
+    switch (test_index)
+    {
+      case 0: filename_appendix = "_1x1x1"; break;
+      case 1: filename_appendix = "_1x1x2"; break;
+      case 2: filename_appendix = "_1x2x2"; break;
+      case 3: filename_appendix = "_2x2x2"; break;
+      default: assert(!"Should never get here");
+        throw std::logic_error("foam::Files::CreateTestFiles: unknown test index");
+    }
+    assert(!filename_appendix.empty());
+    const std::string filename_base { GetDefaultHeader().GetObject() };
+    const std::string filename = filename_base + filename_appendix;
+    const std::string resources_path { ":/CppOpenFoam/files/" + filename };
+
+    {
+      QFile f( resources_path.c_str() );
+      f.copy(filename.c_str());
+    }
+    {
+      TRACE(filename);
+      if (!fileio::IsRegularFile(filename))
+      {
+        TRACE("ERROR");
+        TRACE(filename);
+      }
+      assert(fileio::IsRegularFile(filename));
+      BoundaryFile b(filename);
+      if (b.GetItems().empty())
+      {
+        TRACE("ERROR");
+      }
+      assert( (!b.GetItems().empty() || b.GetItems().empty())
+        && "If a mesh has no non-boundary cells, neighbour can be empty");
+    }
+  }
+  /*
+  //Read from testing file
   {
     const std::string filename { GetDefaultHeader().GetObject() };
     {
@@ -171,6 +220,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
       assert(!b.GetItems().empty());
     }
   }
+  */
   TRACE("Finished ribi::foam::Header::BoundaryFile successfully");
 }
 #endif
@@ -222,29 +272,71 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFile& f)
 
   //Read items
   int n_items = 0;
+  char opening_bracket = '\0';
   {
-    is >> n_items;
+    //Eat comment
+    char c = '\0';
+    is >> c;
     assert(is);
-    assert(n_items > 0);
+    if (c >= '0' && c <= '9')
+    {
+      while (c != '(' && c != '{')
+      {
+        //Start eating n_items
+        n_items *= 10;
+        const int n = c - '0';
+        assert(n >= 0 && n <= 9);
+        n_items += n;
+        is >> c;
+        assert(is);
+      }
+    }
+    opening_bracket = c;
+    #ifndef NDEBUG
+    if (!(opening_bracket == '(' || opening_bracket == '{'))
+    {
+      TRACE(opening_bracket);
+      TRACE("ERROR");
+    }
+    #endif
+    assert(opening_bracket == '(' || opening_bracket == '{');
   }
+  assert(opening_bracket == '(' || opening_bracket == '{');
+  if (opening_bracket == '(')
   {
-    std::string bracket_open;
-    is >> bracket_open;
-    assert(is);
-    assert(bracket_open == "(");
+    for (int i=0; i!=n_items; ++i)
+    {
+      BoundaryFileItem item;
+      is >> item;
+      assert(is);
+      f.m_items.push_back(item);
+    }
   }
-  for (int i=0; i!= n_items; ++i)
+  else
   {
+    assert(opening_bracket == '{');
+    //Read once, push n_items times
     BoundaryFileItem item;
     is >> item;
     assert(is);
-    f.m_items.push_back(item);
+    for (int i=0; i!=n_items; ++i)
+    {
+      f.m_items.push_back(item);
+    }
   }
+  //Eat comments until bracket close
   {
-    std::string bracket_close;
-    is >> bracket_close;
-    assert(is);
-    assert(bracket_close == ")");
+    char bracket_close = '\0';
+    while (bracket_close != ')' && bracket_close != '}')
+    {
+      is >> bracket_close;
+      assert(is);
+    }
+    assert(bracket_close == ')' || bracket_close == '}');
+    assert(
+         (opening_bracket == '(' && bracket_close == ')')
+      || (opening_bracket == '{' && bracket_close == '}')
+    );
   }
   return is;
 }

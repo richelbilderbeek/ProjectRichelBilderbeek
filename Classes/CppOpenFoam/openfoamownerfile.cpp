@@ -145,12 +145,52 @@ void ribi::foam::OwnerFile::Test() noexcept
     assert(b == c);
   }
   //Read from testing file
+  for (int test_index = 0; test_index!=4; ++test_index)
+  {
+    std::string filename_appendix;
+    switch (test_index)
+    {
+      case 0: filename_appendix = "_1x1x1"; break;
+      case 1: filename_appendix = "_1x1x2"; break;
+      case 2: filename_appendix = "_1x2x2"; break;
+      case 3: filename_appendix = "_2x2x2"; break;
+      default: assert(!"Should never get here");
+        throw std::logic_error("foam::Files::CreateTestFiles: unknown test index");
+    }
+    assert(!filename_appendix.empty());
+    const std::string filename_base { GetDefaultHeader().GetObject() };
+    const std::string filename = filename_base + filename_appendix;
+    const std::string resources_path { ":/CppOpenFoam/files/" + filename };
+
+    {
+      QFile f( resources_path.c_str() );
+      f.copy(filename.c_str());
+    }
+    {
+      TRACE(filename);
+      if (!fileio::IsRegularFile(filename))
+      {
+        TRACE("ERROR");
+        TRACE(filename);
+      }
+      assert(fileio::IsRegularFile(filename));
+      OwnerFile b(filename);
+      if (b.GetItems().empty())
+      {
+        TRACE("ERROR");
+      }
+      assert(!b.GetItems().empty());
+    }
+  }
+  //Read from testing file
+  /*
   {
     const std::string filename { GetDefaultHeader().GetObject() };
     {
       QFile f( (std::string(":/CppOpenFoam/files/") + filename).c_str() );
       f.copy(filename.c_str());
     }
+    assert(fileio::IsRegularFile(filename));
     Header::CleanFile(filename);
     {
       assert(fileio::IsRegularFile(filename));
@@ -159,6 +199,7 @@ void ribi::foam::OwnerFile::Test() noexcept
       assert(!b.GetItems().empty());
     }
   }
+  */
   TRACE("Finished ribi::foam::Header::OwnerFile successfully");
 }
 #endif
@@ -222,16 +263,6 @@ std::istream& ribi::foam::operator>>(std::istream& is, OwnerFile& f)
     #endif
     assert(opening_bracket == '(' || opening_bracket == '{');
   }
-  TRACE(opening_bracket);
-  //Already eaten
-  /*
-  {
-    char bracket_open = '\0';
-    is >> bracket_open;
-    assert(is);
-    assert(bracket_open == '(');
-  }
-  */
   assert(opening_bracket == '(' || opening_bracket == '{');
   if (opening_bracket == '(')
   {

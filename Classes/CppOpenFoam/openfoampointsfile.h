@@ -15,7 +15,7 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct PointsFile
 {
-  explicit PointsFile(std::istream& is) : PointsFile(Parse(is)) {}
+  explicit PointsFile(const std::string& filename) : PointsFile(Parse(filename)) {}
   explicit PointsFile(
     const Header header = GetDefaultHeader(),
     const std::vector<PointsFileItem>& items = {});
@@ -25,6 +25,7 @@ struct PointsFile
   const std::vector<PointsFileItem>& GetItems() const noexcept { return m_items; }
 
   private:
+  explicit PointsFile(std::istream& is) : PointsFile(Parse(is)) {}
 
   ///The OpenFOAM header
   Header m_header;
@@ -32,6 +33,7 @@ struct PointsFile
   std::vector<PointsFileItem> m_items;
 
   static const PointsFile Parse(std::istream& is);
+  static const PointsFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;

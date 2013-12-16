@@ -270,7 +270,7 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBound
   try
   {
     const boost::shared_ptr<ribi::foam::BoundaryFile> p {
-      new ribi::foam::BoundaryFile(is)
+      new ribi::foam::BoundaryFile(filename.Get())
     };
     assert(p);
     return p;
@@ -425,9 +425,9 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
     + CreateFilenames()->GetFaces().Get()
   );
-  std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::FacesFile> p {
-    new ribi::foam::FacesFile(is)
+    new ribi::foam::FacesFile(filename.Get())
   };
   assert(p);
   return p;
@@ -466,9 +466,9 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeig
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
     + CreateFilenames()->GetNeighbour().Get()
   );
-  std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::NeighbourFile> p {
-    new ribi::foam::NeighbourFile(is)
+    new ribi::foam::NeighbourFile(filename.Get())
   };
   assert(p);
   return p;
@@ -502,9 +502,9 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
     + CreateFilenames()->GetPoints().Get()
   );
-  std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.Get().c_str());
   boost::shared_ptr<ribi::foam::PointsFile> p {
-    new ribi::foam::PointsFile(is)
+    new ribi::foam::PointsFile(filename.Get())
   };
   assert(p);
   return p;

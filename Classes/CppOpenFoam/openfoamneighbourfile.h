@@ -15,7 +15,6 @@ namespace foam {
 ///Reads and writes an OpenFOAM boundary file
 struct NeighbourFile
 {
-  explicit NeighbourFile(std::istream& is) : NeighbourFile(Parse(is)) {}
   explicit NeighbourFile(const std::string& filename) : NeighbourFile(Parse(filename)) {}
   explicit NeighbourFile(
     const Header header = GetDefaultHeader(),
@@ -38,6 +37,7 @@ struct NeighbourFile
   void SetItem(const FaceIndex& face_index, const NeighbourFileItem& item) noexcept;
 
   private:
+  explicit NeighbourFile(std::istream& is) : NeighbourFile(Parse(is)) {}
 
   ///The OpenFOAM header
   Header m_header;
