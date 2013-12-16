@@ -7,10 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
-
-//#include <QFont>
 #include "qtroundedtextrectitem.h"
-//#include "qtquadbezierarrowitem.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {

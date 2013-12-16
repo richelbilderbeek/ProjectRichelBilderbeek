@@ -262,8 +262,7 @@ void ribi::pvdb::QtPvdbMenuDialog::Test() noexcept
         ui->button_test_conceptmaps,
         ui->button_test_qtroundededitrectitem,
         ui->button_test_qtroundedtextrectitem,
-        ui->button_view_files,
-        ui->button_view_test_concept_maps
+        ui->button_view_files
       };
     const std::size_t n_buttons = buttons.size();
     for (std::size_t i = 0; i!=n_buttons; ++i)
@@ -543,8 +542,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_create_sub_concept_map_clicked
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }
 
-void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmap_2_clicked()
+void ribi::pvdb::QtPvdbMenuDialog::on_button_test_conceptmaps_clicked()
 {
   cmap::QtTestConceptMapMenuDialog d;
-  this->ShowChild(&d);
+  if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }
 }

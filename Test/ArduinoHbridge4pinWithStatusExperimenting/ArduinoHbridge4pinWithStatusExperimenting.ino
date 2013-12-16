@@ -54,6 +54,7 @@ void setup()
 
 void loop()
 {
+  
   //The time between a change in current direction
   const int my_toggle_delay = 10000; //msec
   //Route A
@@ -61,27 +62,19 @@ void loop()
   digitalWrite(pin_2,LOW);
   digitalWrite(pin_3,LOW);
   digitalWrite(pin_4,LOW);
-  delay(50);
-  digitalWrite(pin_1,HIGH);
-  //digitalWrite(pin_2,HIGH);
-  digitalWrite(pin_4,HIGH);
-  //digitalWrite(pin_4,HIGH);
 
   {
     const bool ok = digitalRead(pin_status) == HIGH;
     Serial.print(ok ? "." : "ERROR\n");
   }
-
   delay(my_toggle_delay);
   
   //Route B
-  digitalWrite(pin_1,LOW);
-  digitalWrite(pin_2,LOW);
-  digitalWrite(pin_3,LOW);
-  digitalWrite(pin_4,LOW);
-  delay(50);
+  /*
+  digitalWrite(pin_1,HIGH);
   digitalWrite(pin_2,HIGH);
   digitalWrite(pin_3,HIGH);
+  digitalWrite(pin_4,HIGH);
 
   {
     const bool ok = digitalRead(pin_status) == HIGH;
@@ -89,4 +82,5 @@ void loop()
   }
 
   delay(my_toggle_delay);
+  */
 }

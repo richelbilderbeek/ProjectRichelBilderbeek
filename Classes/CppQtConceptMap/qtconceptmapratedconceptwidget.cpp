@@ -78,7 +78,8 @@ ribi::cmap::QtConceptMapRatedConceptWidget::QtConceptMapRatedConceptWidget(
           = first_arrow
           + edge->GetConcept()->GetName()
           + second_arrow
-          + node->GetConcept()->GetName();
+          //+ node->GetConcept()->GetName();
+          + edge->GetTo()->GetConcept()->GetName();
         ui->list_cluster_relations->addItem(new QListWidgetItem(text.c_str()));
       }
       else if (edge->GetTo() == node)
@@ -90,7 +91,8 @@ ribi::cmap::QtConceptMapRatedConceptWidget::QtConceptMapRatedConceptWidget(
           = first_arrow
           + edge->GetConcept()->GetName()
           + second_arrow
-          + node->GetConcept()->GetName();
+        //  + node->GetConcept()->GetName(); //20131216
+          + edge->GetFrom()->GetConcept()->GetName();
         ui->list_cluster_relations->addItem(new QListWidgetItem(text.c_str()));
       }
       //Indendent on arrow: all examples
