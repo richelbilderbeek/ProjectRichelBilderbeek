@@ -42,8 +42,18 @@ bool ribi::foam::NeighbourFile::CanGetItem(
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
-const ribi::foam::CellIndex ribi::foam::NeighbourFile::FindMaxCellIndex() const noexcept
+const ribi::foam::CellIndex ribi::foam::NeighbourFile::CountNumberOfCells() const noexcept
 {
+  //NOT CONFIDENT ABOUT THIS
+  if (m_items.empty())
+  {
+    return CellIndex(1);
+    //throw std::logic_error(
+    //  "NeighbourFile::FindMaxCellIndex: there is no valid cell index");
+  }
+  assert( (!m_items.empty() || m_items.empty())
+    && "If a mesh has no non-boundary cells, neighbour can be empty");
+
   CellIndex i = (*std::max_element(
     m_items.begin(),
     m_items.end(),
@@ -52,7 +62,8 @@ const ribi::foam::CellIndex ribi::foam::NeighbourFile::FindMaxCellIndex() const 
       return lhs.GetCellIndex() < rhs.GetCellIndex();
     }
   )).GetCellIndex();
-
+  TRACE(m_items.size());
+  TRACE(i);
   ++i;
   return i;
 }
@@ -83,7 +94,10 @@ const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(const std::stri
   fileio::CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
-  return Parse(f);
+  const NeighbourFile file { Parse(f) };
+  f.close();
+  fileio::DeleteFile(tmp_filename);
+  return file;
 }
 
 void ribi::foam::NeighbourFile::SetItem(const FaceIndex& face_index, const NeighbourFileItem& item) noexcept

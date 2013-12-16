@@ -52,6 +52,7 @@ const ribi::foam::FacesFileItem& ribi::foam::FacesFile::GetItem(const ribi::foam
   return m_items[ face_index.Get() ];
 }
 
+
 const ribi::foam::FaceIndex ribi::foam::FacesFile::GetMaxFaceIndex() const noexcept
 {
   return FaceIndex(static_cast<int>(m_items.size()));
@@ -71,7 +72,10 @@ const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(const std::string& file
   fileio::CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
-  return Parse(f);
+  const FacesFile file { Parse(f) };
+  f.close();
+  fileio::DeleteFile(tmp_filename);
+  return file;
 }
 
 #ifndef NDEBUG

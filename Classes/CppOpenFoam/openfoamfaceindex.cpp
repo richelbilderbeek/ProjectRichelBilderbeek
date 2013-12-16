@@ -24,6 +24,20 @@ ribi::foam::FaceIndex::FaceIndex(const int index)
   }
 }
 
+ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator+=(const FaceIndex& rhs)
+{
+  m_index += rhs.Get();
+
+  assert(m_index >= 0
+    && "A FaceIndex must be zero or a positive value, must have overflowed");
+  if (m_index < 0)
+  {
+    throw std::invalid_argument(
+      "FaceIndex::operator+=: FaceIndex cannot be negative, must have overflowed");
+  }
+  return *this;
+}
+
 ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator-=(const FaceIndex& rhs)
 {
   m_index -= rhs.Get();

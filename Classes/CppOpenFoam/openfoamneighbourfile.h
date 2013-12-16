@@ -25,7 +25,7 @@ struct NeighbourFile
 
   ///Find the first CellIndex beyond the cell indices present
   ///Or: find the first CellIndex that does not exist anymore
-  const CellIndex FindMaxCellIndex() const noexcept;
+  const CellIndex CountNumberOfCells() const noexcept;
 
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
@@ -33,6 +33,8 @@ struct NeighbourFile
 
   ///Assumes CanGetItem == true
   const NeighbourFileItem& GetItem(const FaceIndex& face_index) const noexcept;
+
+  int GetNumberOfItems() const noexcept { return static_cast<int>(m_items.size()); }
 
   void SetItem(const FaceIndex& face_index, const NeighbourFileItem& item) noexcept;
 

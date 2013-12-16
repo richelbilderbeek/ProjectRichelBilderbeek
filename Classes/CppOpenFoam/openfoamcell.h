@@ -21,12 +21,20 @@ struct Cell
   Cell();
 
   void AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces);
+
+  const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
+  const std::vector<boost::shared_ptr<const Face> > GetOwnedFaces() const noexcept;
+
   private:
 
-  std::vector<boost::shared_ptr<Face> > m_owned_faces;
+  std::vector<boost::shared_ptr<Face>> m_owned_faces;
 
   const boost::shared_ptr<Cell> m_neighbour;
+
+  friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
 };
+
+std::ostream& operator<<(std::ostream& os, const Cell& cell);
 
 } //namespace foam
 } //namespace ribi

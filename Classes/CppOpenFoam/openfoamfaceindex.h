@@ -13,6 +13,7 @@ struct FaceIndex
   int Get() const noexcept { return m_index; }
 
   ///Throws std::invalid_argument if the new index is invalid
+  FaceIndex& operator+=(const FaceIndex& rhs);
   FaceIndex& operator-=(const FaceIndex& rhs);
   FaceIndex& operator++() noexcept;   //Prefix
   FaceIndex operator++(int) noexcept; //Postfix

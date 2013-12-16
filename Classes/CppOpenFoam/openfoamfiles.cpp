@@ -50,8 +50,7 @@ ribi::foam::Files::Files(
   const boost::shared_ptr<NeighbourFile> neighbour,
   const boost::shared_ptr<OwnerFile> owner,
   const boost::shared_ptr<PointsFile> points
-)
-  : m_boundary(boundary),
+) : m_boundary(boundary),
     m_faces(faces),
     m_neighbour(neighbour),
     m_owner(owner),

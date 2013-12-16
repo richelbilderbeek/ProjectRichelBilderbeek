@@ -81,29 +81,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
-    { "CppApproximator",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppApproximator.htm\">Approximator</a> is a",
-        "  <a href=\"CppClass.htm\">class</a> to perform an interpolation",
-        "  on data. For example, when the supplied data consists of the coordinats",
-        "  (1,1) and (2,2), it will estimate (the x value of) 1,5 to be (the value y value of) 1,5.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppApproximator.htm\">Approximator</a> does not support multiple",
-        "  identical keys (for example the coordinats (1.0,2.0) and (1.0,3.0)),",
-        "  similar to a <a href=\"CppMap.htm\">std::map</a>.",
-        "  <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> does",
-        "  allow this."
-        "</p>"
-      }
-    }
-  );
-
-  m.push_back(
     { "CppAlglibExample1",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/></p>",
@@ -132,13 +109,24 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
-    { "CppApproximation",
+    { "CppApproximator",
       {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppApproximation.htm\">Approximation</a> is a",
-        "<a href=\"CppClass.htm\">class</a> to do a linear",
-        "interpolation.</p>"
+        "<p>",
+        "  <a href=\"CppApproximator.htm\">Approximator</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> to perform an interpolation",
+        "  on data. For example, when the supplied data consists of the coordinats",
+        "  (1,1) and (2,2), it will estimate (the x value of) 1,5 to be (the value y value of) 1,5.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppApproximator.htm\">Approximator</a> does not support multiple",
+        "  identical keys (for example the coordinats (1.0,2.0) and (1.0,3.0)),",
+        "  similar to a <a href=\"CppMap.htm\">std::map</a>.",
+        "  <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> does",
+        "  allow this."
+        "</p>"
       }
     }
   );
@@ -467,11 +455,28 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>",
         "  <a href=\"CppCallStackCounter.htm\">CallStackCounter</a> is a <a href=\"CppClass.htm\">class</a>",
         "  to probe the depth of the call stack, for example in a recursive function.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The tool <a href=\"ToolTestCallStackCounter.htm\">TestCallStackCounter</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to demonstrate its use.",
         "</p>"
       }
     }
   );
 
+  m.push_back(
+    { "CppCanvas",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppCanvas.htm\">Canvas</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  of an ASCII art painting canvas.",
+        "</p>"
+      }
+    }
+  );
 
   m.push_back(
     { "CppChecked_deleteExample1",
@@ -501,6 +506,33 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppChessResources",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppChessResources.htm\">ChessResources</a> contains and manages",
+        "  <a href=\"CppChess.htm\">chess</a> resources",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppCodeToHtml",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppCodeToHtml.htm\">CodeToHtml</a> contains <a href=\"CppClass.htm\">classes</a>",
+        "  used especially by the <a href=\"Tools.htm\">tool</a> <a href=\"ToolCodeToHtml.htm\">CodeToHtml</a>",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppCompileErrorParseErrorAtBOOST_JOIN",
       {
@@ -514,6 +546,26 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppConceptMap",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppConceptMap.htm\">ConceptMap</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  for a concept map.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppConceptMap.htm\">ConceptMap</a> is used in, among others,",
+        "  the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestConceptMap.htm\">TestConceptMap</a>",
+        "  and the <a href=\"Projects.htm\">project</a> <a href=\"ProjectBrainweaver.htm\">Brainweaver</a>."
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppConnectThree",
       {
@@ -526,6 +578,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "CppConnectThreeWidget",
       {
@@ -536,6 +589,20 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppCoordinat",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppCoordinat.htm\">Coordinat</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  for a coordinat.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppCopy_if",
       {
@@ -646,16 +713,20 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "CppCounter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppCounter.htm\">Counter</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for tallying.</p>"
+        "<p>",
+        "  <a href=\"CppCounter.htm\">Counter</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  for tallying.",
+        "</p>"
       }
     }
   );
+
   m.push_back(
     { "CppDial",
       {
@@ -671,6 +742,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "CppDialWidget",
       {
@@ -680,6 +752,20 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppDotMatrix",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppDotMatrix.htm\">DotMatrix</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  for creating dot matrix texts.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppEncranger",
       {
@@ -785,9 +871,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
        R"(<ol>)",
        R"(  <li><a href="http://www.gotw.ca/gotw/">Herb Sutter's Guru Of The Week archive</a></li>)",
        R"(</ol>)",
-        "<p>Additionally, <a href=\"CppExercise.htm\">Exercise</a> is a",
-        "<a href=\"CppClass.htm\">class</a> for an",
-        "exercise.</p>"
+        "<p>",
+        "  Additionally, <a href=\"CppExercise.htm\">Exercise</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> for an",
+        "  exercise.",
+        "</p>"
       }
     }
   );
@@ -958,10 +1046,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppFuzzy_equal_to.htm\">fuzzy_equal_to</a> is a <a href=\"CppPredicate.htm\">predicate</a> ",
-        "to test two <a href=\"CppDouble.htm\">doubles</a> for equality with a certain tolerance. ",
-        "A tolerance of 0.0 denotes that an exact match is requested. Note that the value of 0.0 cannot",
-        "be compared fuzzily.</p>"
+        "<p>",
+        "  <a href=\"CppFuzzy_equal_to.htm\">fuzzy_equal_to</a> is a <a href=\"CppPredicate.htm\">predicate</a>",
+        "  to test two <a href=\"CppDouble.htm\">doubles</a> for equality with a certain tolerance.",
+        "  A tolerance of 0.0 denotes that an exact match is requested.",
+        "</p>"
       }
     }
   );
@@ -970,31 +1059,44 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppGaborFilter.htm\">GaborFilter</a> is a",
-        "<a href=\"CppClass.htm\">class</a> for a",
-        "Gabor filter.</p>"
+        "<p>",
+        "  <a href=\"CppGaborFilter.htm\">GaborFilter</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> for a",
+        "  Gabor filter.",
+        "</p>"
       }
     }
   );
+
   m.push_back(
     { "CppGaborFilterWidget",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppGaborFilterWidget.htm\">GaborFilterWidget</a> is a",
-        "<a href=\"CppClass.htm\">class</a> for a",
-        "<a href=\"CppGaborFilter.htm\">Gabor filter</a> <a href=\"CppWidget.htm\">widget</a>.</p>"
+        "<p>",
+        "  <a href=\"CppGaborFilterWidget.htm\">GaborFilterWidget</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> for a",
+        "  <a href=\"CppGaborFilter.htm\">Gabor filter</a> <a href=\"CppWidget.htm\">widget</a>.",
+        "</p>"
       }
     }
   );
+
   m.push_back(
     { "CppGetExtension",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppGetExtension.htm\">GetExtension</a> is a <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a> <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's extension.</p>",
+        "<p>",
+        "  <a href=\"CppGetExtension.htm\">GetExtension</a> is a",
+        "  <a href=\"CppFileIo.htm\">file I/O</a> <a href=\"CppString.htm\">std::string</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to get a filename's extension.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>Thanks goes to Curtis Krauskopf, who supported me to improve the (terrible and error-prone) STL version GetExtension.</p>",
+        "<p>",
+        "  Thanks goes to Curtis Krauskopf, who supported me to improve the",
+        "  (terrible and error-prone) STL version GetExtension.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppGetExtension.zip\">Download the Qt Creator project 'CppGetExtension' (zip)</a></li>",
@@ -2437,6 +2539,68 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppHelp",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppHelp.htm\">Help</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> to display help information",
+        "  in a command-line application.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppHtmlPage",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppHtmlPage.htm\">HtmlPage</a> is a <a href=\"CppClass.htm\">class</a>",
+        "for processing an HTML page.</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppIfExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppIfExample1.htm\">if example 1: basics</a> is an <a href=\"CppIf.htm\">if</a> <a href=\"CppExample.htm\">example</a>.",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppIfExample1.zip\">Download the Qt Creator project 'CppIfExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppIpAddress",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppIpAddress.htm\">IpAddress</a> is a <a href=\"CppClass.htm\">class</a>",
+        "  for containing an IP address.",
+        "</p>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppIrcBot",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppIrcBot.htm\">IrcBot</a> is a <a href=\"CppClass.htm\">class</a>",
+        "for an IRC bot. Its default name is 'lambda'.</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppIsRegularFile",
       {
@@ -2450,6 +2614,122 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppKalmanFilter",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>The <a href=\"CppKalmanFilter.htm\">Kalman filter</a> is a way to do predictions from noisy measurements. For a (far) more precise",
+        "definition, see [1].</p>",
+        "<p>&nbsp;</p>",
+        "<p>The <a href=\"Tools.htm\">tool</a> <a href=\"ToolKalmanFilterer.htm\">KalmanFilterer</a> allows one to work with <a href=\"CppKalmanFilter.htm\">Kalman filters</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Examples</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppKalmanFilterExample1.htm\">Kalman filter example 1: single state, from adapted C code</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample2.htm\">Kalman filter example 2: single state, use of classes</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample3.htm\">Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample4.htm\">Kalman filter example 4: single state, use of 1x1 boost::numeric::ublas::matrix and boost::numeric::ublas::vector</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample5.htm\">Kalman filter example 5</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample6.htm\">Kalman filter example 6</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample7.htm\">Kalman filter example 7</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample8.htm\">Kalman filter example 8: displaying the graphs (initial)</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample9.htm\">Kalman filter example 9: displaying the graphs (better)</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample10.htm\">Kalman filter example 10: displaying the graphs (even better)</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample11.htm\">Kalman filter example 11: displaying the graphs (best)</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample12.htm\">Kalman filter example 12: displaying the equations</a></li>",
+        "  <li><a href=\"CppKalmanFilterExample13.htm\">Kalman filter example 13: displaying the equations only</a></li>",
+        "  <li><a href=\"ToolKalmanFilterer.htm\">KalmanFilterer</a>: <a href=\"Tools.htm\">tool</a> to work with <a href=\"CppKalmanFilter.htm\">Kalman filters</a></li>",
+        "  <li><a href=\"CppKalmanFilterEquations.png\">Kalman filter equations</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppReferences.htm\">References</a></h2>",
+        "<p>&nbsp;</p>",
+        "<ol>",
+        "  <li><a href=\"https://en.wikipedia.org/wiki/Kalman_filter\">Wikipedia page about the Kalman filter</a></li>",
+        "  <li><a href=\"http://academic.csuohio.edu/simond/estimation\">Kalman filter examples (in Matlab)</a></li>",
+        "  <li><a href=\"http://greg.czerniak.info/guides/kalman1/\">Kalman filter tutorial by Greg Czerniak</a></li>",
+        "</ol>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppLazy_init",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppLazy_init.htm\">Lazy_init</a> is a <a href=\"CppClass.htm\">class</a></p>",
+        "<p>with lazy initialization.</p>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppLed",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppLed.htm\">Led</a> is a <a href=\"CppClass.htm\">class</a> for an LED light.</p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppLedWidget",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a>",
+        "  <a href=\"CppWidget.htm\">widget</a>.",
+        "</p>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppLinkErrorCannotFindLgstapp",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppLinkErrorCannotFindLgstapp.htm\">cannot find -lgstapp-0.10</a> is a",
+        "<a href=\"CppLinkError.htm\">link error</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppLinkErrorCannotFindLgstapp.zip\">Download the Qt Creator project 'CppLinkErrorCannotFindLgstapp' (zip)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>This bug is reported with this <a href=\"https://bugs.launchpad.net/ubuntu/+source/qtwebkit-opensource-src/+bug/1134745\">Launchpad bug report</a>",
+        "and another <a href=\"https://bugs.launchpad.net/ubuntu/+source/qtbase-opensource-src/+bug/1165250\">Launchpad bug report</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>Solution</h2>",
+        "<p>&nbsp;</p>",
+        "<p>Install some gstreamer packages:</p>",
+        "<p>&nbsp;</p>",
+        "<!-- start of code -->",
+        "<table summary=\"fileMMYf2H.txt\" border = \"1\"><tr><td><code>",
+        "sudo apt-get install libgstreamer1.0-dev <br/>",
+        "sudo apt-get install libgstreamer0.10-dev <br/>",
+        "sudo apt-get install libgstreamer-plugins-base1.0-dev <br/>",
+        "sudo apt-get install libgstreamer-plugins-base0.10-dev <br/>",
+        "</code></td></tr></table>",
+        "<!-- end of the code -->"
+      }
+    }
+  );
+
   m.push_back(
     { "CppLibcvautomationExample1",
       {
@@ -2577,160 +2857,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
-  m.push_back(
-    { "CppHtmlPage",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppHtmlPage.htm\">HtmlPage</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for processing an HTML page.</p>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppIfExample1",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppIfExample1.htm\">if example 1: basics</a> is an <a href=\"CppIf.htm\">if</a> <a href=\"CppExample.htm\">example</a>.",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppIfExample1.zip\">Download the Qt Creator project 'CppIfExample1' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppIpAddress",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppIpAddress.htm\">IpAddress</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for containing an IP address.</p>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppIrcBot",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppIrcBot.htm\">IrcBot</a> is a <a href=\"CppClass.htm\">class</a>",
-        "for an IRC bot. Its default name is 'lambda'.</p>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppKalmanFilter",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p>The <a href=\"CppKalmanFilter.htm\">Kalman filter</a> is a way to do predictions from noisy measurements. For a (far) more precise",
-        "definition, see [1].</p>",
-        "<p>&nbsp;</p>",
-        "<p>The <a href=\"Tools.htm\">tool</a> <a href=\"ToolKalmanFilterer.htm\">KalmanFilterer</a> allows one to work with <a href=\"CppKalmanFilter.htm\">Kalman filters</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Examples</h2>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppKalmanFilterExample1.htm\">Kalman filter example 1: single state, from adapted C code</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample2.htm\">Kalman filter example 2: single state, use of classes</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample3.htm\">Kalman filter example 3: single state, use of 1x1 boost::numeric::ublas::matrix</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample4.htm\">Kalman filter example 4: single state, use of 1x1 boost::numeric::ublas::matrix and boost::numeric::ublas::vector</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample5.htm\">Kalman filter example 5</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample6.htm\">Kalman filter example 6</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample7.htm\">Kalman filter example 7</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample8.htm\">Kalman filter example 8: displaying the graphs (initial)</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample9.htm\">Kalman filter example 9: displaying the graphs (better)</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample10.htm\">Kalman filter example 10: displaying the graphs (even better)</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample11.htm\">Kalman filter example 11: displaying the graphs (best)</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample12.htm\">Kalman filter example 12: displaying the equations</a></li>",
-        "  <li><a href=\"CppKalmanFilterExample13.htm\">Kalman filter example 13: displaying the equations only</a></li>",
-        "  <li><a href=\"ToolKalmanFilterer.htm\">KalmanFilterer</a>: <a href=\"Tools.htm\">tool</a> to work with <a href=\"CppKalmanFilter.htm\">Kalman filters</a></li>",
-        "  <li><a href=\"CppKalmanFilterEquations.png\">Kalman filter equations</a></li>",
-        "</ul>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2><a href=\"CppReferences.htm\">References</a></h2>",
-        "<p>&nbsp;</p>",
-        "<ol>",
-        "  <li><a href=\"https://en.wikipedia.org/wiki/Kalman_filter\">Wikipedia page about the Kalman filter</a></li>",
-        "  <li><a href=\"http://academic.csuohio.edu/simond/estimation\">Kalman filter examples (in Matlab)</a></li>",
-        "  <li><a href=\"http://greg.czerniak.info/guides/kalman1/\">Kalman filter tutorial by Greg Czerniak</a></li>",
-        "</ol>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppLazy_init",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppLazy_init.htm\">Lazy_init</a> is a <a href=\"CppClass.htm\">class</a></p>",
-        "<p>with lazy initialization.</p>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppLed",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppLed.htm\">Led</a> is a <a href=\"CppClass.htm\">class</a> for an LED light.</p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppLed.htm\">Led</a> is used in the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestLed.htm\">TestLed</a>.</p>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppLedWidget",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppLedWidget.htm\">LedWidget</a> is a <a href=\"CppLed.htm\">Led</a> <a href=\"CppWidget.htm\">widget</a>.</p>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppLinkErrorCannotFindLgstapp",
-      {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p><a href=\"CppLinkErrorCannotFindLgstapp.htm\">cannot find -lgstapp-0.10</a> is a",
-        "<a href=\"CppLinkError.htm\">link error</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppLinkErrorCannotFindLgstapp.zip\">Download the Qt Creator project 'CppLinkErrorCannotFindLgstapp' (zip)</a></li>",
-        "</ul>",
-        "<p>&nbsp;</p>",
-        "<p>This bug is reported with this <a href=\"https://bugs.launchpad.net/ubuntu/+source/qtwebkit-opensource-src/+bug/1134745\">Launchpad bug report</a>",
-        "and another <a href=\"https://bugs.launchpad.net/ubuntu/+source/qtbase-opensource-src/+bug/1165250\">Launchpad bug report</a>.</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<p>&nbsp;</p>",
-        "<h2>Solution</h2>",
-        "<p>&nbsp;</p>",
-        "<p>Install some gstreamer packages:</p>",
-        "<p>&nbsp;</p>",
-        "<!-- start of code -->",
-        "<table summary=\"fileMMYf2H.txt\" border = \"1\"><tr><td><code>",
-        "sudo apt-get install libgstreamer1.0-dev <br/>",
-        "sudo apt-get install libgstreamer0.10-dev <br/>",
-        "sudo apt-get install libgstreamer-plugins-base1.0-dev <br/>",
-        "sudo apt-get install libgstreamer-plugins-base0.10-dev <br/>",
-        "</code></td></tr></table>",
-        "<!-- end of the code -->"
-      }
-    }
-  );
+
   m.push_back(
     { "CppLinkErrorUndefinedReferenceToWebCore",
       {
@@ -2750,11 +2877,14 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppLoopReader.htm\">LoopReader</a> is a",
-        "<a href=\"CppTemplateClass.htm\">template class</a> to iterate",
-        "through a <a href=\"CppContainer.htm\">container</a>. If the <a href=\"CppContainer.htm\">container</a>'s end is",
-        "reached, however, <a href=\"CppLoopReader.htm\">LoopReader</a> starts reading",
-        "from the beginning again.</p>"
+        "<p>",
+        "  <a href=\"CppLoopReader.htm\">LoopReader</a> is a",
+        "  <a href=\"CppTemplateClass.htm\">template class</a> to iterate",
+        "  through a <a href=\"CppContainer.htm\">container</a>. If the",
+        "  <a href=\"CppContainer.htm\">container</a>'s end is",
+        "  reached, however, <a href=\"CppLoopReader.htm\">LoopReader</a> starts reading",
+        "  from the beginning again.",
+        "</p>"
       }
     }
   );
@@ -2763,7 +2893,9 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>A <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.</p>"
+        "<p>",
+        "  A <a href=\"CppNewick.htm\">Newick</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
       }
     }
   );
@@ -2772,7 +2904,12 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>A <a href=\"CppMatrix.htm\">matrix</a> is a two-dimensional <a href=\"CppContainer.htm\">container</a> (that is a <a href=\"CppContainer.htm\">container</a> in which two values are needed to retrieve an element). For one-dimensional containers, <a href=\"CppContainer.htm\">go to the container page</a>.</p>",
+        "<p>",
+        "  <a href=\"CppMatrix.htm\">matrix</a> is a two-dimensional <a href=\"CppContainer.htm\">container</a>",
+        "  (that is a <a href=\"CppContainer.htm\">container</a> in which two values",
+        "  are needed to retrieve an element). For one-dimensional containers,",
+        "  <a href=\"CppContainer.htm\">go to the container page</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>There exists no std::matrix (yet).</p>",
         "<p>&nbsp;</p>",
@@ -2794,7 +2931,12 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<h2><img src=\"PicStl.png\" alt=\"STL\"/> <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt;</h2>",
         "<p>&nbsp;</p>",
-        "<p>A <a href=\"CppVector.htm\">std::vector</a> can contain a collection of <a href=\"CppVector.htm\">std::vector</a>s. If all <a href=\"CppVector.htm\">std::vector</a>s in this collection are of the same size, one has a matrix.</p>",
+        "<p>",
+        "  A <a href=\"CppVector.htm\">std::vector</a> can contain a collection of",
+        "  <a href=\"CppVector.htm\">std::vector</a>s. If all",
+        "  <a href=\"CppVector.htm\">std::vector</a>s in this collection are of the same",
+        "  size, one has a matrix.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>When using <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt; for a two-dimensional matrix, the choice between x-y-ordering or y-x-ordering must be made. The run-time speed difference does not reside in individual element read/write, but when obtaining a row or collumn: in a y-x-ordered <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt; an individual row can be obtained, in an x-y-ordered <a href=\"CppVector.htm\">std::vector</a>&lt;<a href=\"CppVector.htm\">std::vector</a>&lt;<b><a href=\"CppInt.htm\">int</a></b>&gt; &gt; an individual collumn can be obtained.</p>",
         "<p>&nbsp;</p>",
@@ -3551,23 +3693,67 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppMenuDialog",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMenuDialog.htm\">MenuDialog</a> is a",
+        "  <a href=\"CppClass.htm\">class</a>",
+        "  for a menu dialog.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppMultiApproximator",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> to perform an interpolation",
+        "  on data. For example, when the supplied data consists of the coordinats",
+        "  (1,1) and (2,2), it will estimate (the x value of) 1,5 to be (the value y value of) 1,5.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMultiApproximator.htm\">MultiApproximator</a> supports multiple",
+        "  identical keys (for example the coordinats (1.0,2.0) and (1.0,3.0)),",
+        "  similar to a <a href=\"CppMulti_map.htm\">std::multi_map</a>.",
+        "  <a href=\"CppApproximator.htm\">Approximator</a> does not",
+        "  allow this."
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppMultipleChoiceQuestion",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a> is a <a href=\"CppClass.htm\">class</a> ",
-        "for a multiple choice <a href=\"CppQuestion.htm\">question</a>.</p>"
+        "<p>",
+        "  <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a> is a",
+        "  <a href=\"CppClass.htm\">class</a>",
+        "  for a multiple choice <a href=\"CppQuestion.htm\">question</a>.",
+        "</p>"
       }
     }
   );
+
   m.push_back(
     { "CppMultipleChoiceQuestionDialog",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppMultipleChoiceQuestionDialog.htm\">MultipleChoiceQuestionDialog</a> is a dialog ",
-        "for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.</p>"
+        "<p>",
+        "  <a href=\"CppMultipleChoiceQuestionDialog.htm\">MultipleChoiceQuestionDialog</a> is a dialog",
+        "  for <a href=\"CppMultipleChoiceQuestion.htm\">MultipleChoiceQuestion</a>.",
+        "</p>"
       }
     }
   );
@@ -3579,11 +3765,26 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p><a href=\"CppMultiVector.htm\">MultiVector</a> is a <a href=\"CppContainer.htm\">container</a> ",
         "<a href=\"CppClass.htm\">class</a> to store elements at indices of any dimensionality.</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppMultiVector.htm\">MultiVector</a> is demonstrated/tested with the ",
-        "<a href=\"Tools.htm\">tool</a> <a href=\"ToolTestMultiVector.htm\">TestMultiVector</a>.</p>"
+        "<p>",
+        "  <a href=\"CppMultiVector.htm\">MultiVector</a> is demonstrated/tested with the ",
+        "  <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestMultiVector.htm\">TestMultiVector</a>.",
+        "</p>"
       }
     }
   );
+
+  m.push_back(
+    { "CppMusic",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppMusic.htm\">Music</a> contains music <a href=\"CppClass.htm\">classes</a>.",
+        "</p>",
+      }
+    }
+  );
+
   m.push_back(
     { "CppMusicChord",
       {
@@ -3594,6 +3795,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
   m.push_back(
     { "CppMusicNote",
       {
@@ -3731,7 +3933,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppOpenQuestion.htm\">OpenQuestion</a> is a <a href=\"CppClass.htm\">class</a> for an open <a href=\"CppQuestion.htm\">question</a>.</p>"
+        "<p>",
+        "  <a href=\"CppOpenQuestion.htm\">OpenQuestion</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> for an open",
+        "  <a href=\"CppQuestion.htm\">question</a>.",
+        "</p>"
       }
     }
   );
@@ -3740,16 +3946,22 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a> is a dialog for <a href=\"CppOpenQuestion.htm\">OpenQuestion</a>.</p>"
+        "<p>",
+        "  <a href=\"CppOpenQuestionDialog.htm\">OpenQuestionDialog</a> is a dialog for",
+        "  <a href=\"CppOpenQuestion.htm\">OpenQuestion</a>.",
+        "</p>"
       }
     }
   );
   m.push_back(
     { "CppPredicateExample1",
       {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>"
-
-        //In the example below, it is shown how to replace negative values by zero. The predicate is if an integer is less then zero.
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  In the example below, it is shown how to replace negative values",
+        "  by zero. The predicate is if an integer is less then zero.",
+        "</p>"
       }
 
     }
@@ -3793,10 +4005,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p>The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a> are used for the",
-        "<a href=\"Games.htm\">game</a> <a href=\"GamePylos.htm\">Pylos</a> (also called 'Pyraos').</p>",
+        "<p>",
+        "  The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a>",
+        "  are used for the",
+        "  <a href=\"Games.htm\">game</a> <a href=\"GamePylos.htm\">Pylos</a>",
+        "  (also called 'Pyraos').",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p>The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a> are tested by <a href=\"ToolTestPylos.htm\">TestPylos page</a>.</p>"
+        "<p>",
+        "  The <a href=\"CppPylos.htm\">Pylos</a> <a href=\"CppClass.htm\">classes</a>",
+        "  are tested by <a href=\"ToolTestPylos.htm\">TestPylos page</a>.",
+        "</p>"
       }
     }
   );
@@ -3915,9 +4134,11 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQrcFile.htm\">QrcFile</a> is a",
-        "<a href=\"CppClass.htm\">class</a> for a <a href=\"CppQt.htm\">Qt</a>",
-        "resources file.</p>"
+        "<p>",
+        "  <a href=\"CppQrcFile.htm\">QrcFile</a> is a",
+        "  <a href=\"CppClass.htm\">class</a> for a <a href=\"CppQt.htm\">Qt</a>",
+        "  resources file.",
+        "</p>"
       }
     }
   );
@@ -4189,7 +4410,10 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtChess.htm\">QtChess</a> has many <a href=\"CppQt.htm\">Qt</a> <a href=\"CppChess.htm\">chess</a> <a href=\"CppClass.htm\">classes</a></p>"
+        "<p>",
+        "  <a href=\"CppQtChess.htm\">QtChess</a> has many <a href=\"CppQt.htm\">Qt</a>",
+        "  <a href=\"CppChess.htm\">chess</a> <a href=\"CppClass.htm\">classes</a>",
+        "</p>"
       }
     }
   );
@@ -4224,11 +4448,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> is a <a href=\"CppQtProjectFile.htm\">Qt project file (.pro)</a>",
-        "<a href=\"CppClass.htm\">class</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a>",
+        "  is a <a href=\"CppQtProjectFile.htm\">Qt project file (.pro)</a>",
+        "  <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> is tested by the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestQtCreatorProFile.htm\">TestQtCreatorProFile</a>.</p>"
+        "<p>",
+        "  <a href=\"CppQtCreatorProFile.htm\">QtCreatorProFile</a> is tested by the",
+        "  <a href=\"Tools.htm\">tool</a> ",
+        "  <a href=\"ToolTestQtCreatorProFile.htm\">TestQtCreatorProFile</a>.",
+        "</p>"
       }
     }
   );
@@ -4237,11 +4467,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtDialWidget.htm\">QtDialWidget</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppClass.htm\">class</a> to display an <a href=\"CppDial.htm\">Dial</a>.</p>",
+        "<p>",
+        "  <a href=\"CppQtDialWidget.htm\">QtDialWidget</a> is a",
+        "  <a href=\"CppQt.htm\">Qt</a>",
+        "  <a href=\"CppClass.htm\">class</a> to display an",
+        "  <a href=\"CppDial.htm\">Dial</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtDialWidget.htm\">QtDialWidget</a> is used in the <a href=\"Tools.htm\">tool</a> ",
-        "<a href=\"ToolTestDial.htm\">TestDial</a>.</p>"
+        "<p>",
+        "  <a href=\"CppQtDialWidget.htm\">QtDialWidget</a> is used in the",
+        "  <a href=\"Tools.htm\">tool</a>",
+        "  <a href=\"ToolTestDial.htm\">TestDial</a>.",
+        "</p>"
       }
     }
   );
@@ -4250,8 +4487,12 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
-        "<p><a href=\"CppQtDisplayPosItem.htm\">QtDisplayPosItem</a> is a <a href=\"CppQt.htm\">Qt</a> ",
-        "<a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a> <a href=\"CppClass.htm\">class</a> that displays its position.</p>"
+        "<p>",
+        "  <a href=\"CppQtDisplayPosItem.htm\">QtDisplayPosItem</a> is a",
+        "  <a href=\"CppQt.htm\">Qt</a>",
+        "  <a href=\"CppQGraphicsItem.htm\">QGraphicsItem</a>",
+        "  <a href=\"CppClass.htm\">class</a> that displays its position.",
+        "</p>"
       }
     }
   );

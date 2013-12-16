@@ -97,7 +97,10 @@ const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string
   fileio::CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
-  return Parse(f);
+  const ribi::foam::BoundaryFile file { Parse(f) };
+  f.close();
+  fileio::DeleteFile(tmp_filename);
+  return file;
 }
 
 #ifndef NDEBUG

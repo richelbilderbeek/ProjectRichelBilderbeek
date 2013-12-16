@@ -62,7 +62,10 @@ const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(const std::string& file
   fileio::CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
-  return Parse(f);
+  const OwnerFile file { Parse(f) };
+  f.close();
+  fileio::DeleteFile(tmp_filename);
+  return file;
 }
 
 void ribi::foam::OwnerFile::SetItem(const FaceIndex& face_index, const OwnerFileItem& item) noexcept

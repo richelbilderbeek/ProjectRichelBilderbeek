@@ -32,7 +32,11 @@ struct Face
 
   void AssignOwner(const boost::shared_ptr<Cell> owner) noexcept;
 
+  const boost::shared_ptr<const Cell> GetNeighbour() const noexcept { return m_neighbour; }
+
   const boost::shared_ptr<Cell> GetOwner() noexcept;
+
+  const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > GetPoints() const noexcept;
 
   private:
   ///If this Face has no Neighbour, this is nullptr
@@ -43,7 +47,11 @@ struct Face
 
   ///The points/vertices/coordinats this face consists of
   const std::vector<boost::shared_ptr<ribi::Coordinat3D> > m_points;
+
+  friend std::ostream& operator<<(std::ostream& os, const Face& face);
 };
+
+std::ostream& operator<<(std::ostream& os, const Face& face);
 
 } //~namespace foam
 } //~namespace ribi
