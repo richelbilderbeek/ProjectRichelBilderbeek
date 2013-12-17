@@ -23,38 +23,38 @@ FoamFile
     my_cube_bottom
     {
         type            patch;
-        nFaces          4;
-        startFace       12;
+        nFaces          2;
+        startFace       4;
     }
     my_cube_left
     {
         type            patch;
         nFaces          4;
-        startFace       16;
+        startFace       6;
     }
     my_cube_front
     {
         type            patch;
-        nFaces          4;
-        startFace       20;
+        nFaces          2;
+        startFace       10;
     }
     my_cube_right
     {
         type            patch;
         nFaces          4;
-        startFace       24;
+        startFace       12;
     }
     my_cube_back
     {
         type            patch;
-        nFaces          4;
-        startFace       28;
+        nFaces          2;
+        startFace       16;
     }
     my_cube_top
     {
         type            patch;
-        nFaces          4;
-        startFace       32;
+        nFaces          2;
+        startFace       18;
     }
 )
 

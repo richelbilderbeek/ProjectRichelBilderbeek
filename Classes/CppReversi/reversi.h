@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef REVERSI_H
 #define REVERSI_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 struct Reversi
 {
   enum { empty   = 0};
@@ -91,5 +91,5 @@ struct Reversi
   void Set(const int x, const int y, const int state);
 
 };
-//---------------------------------------------------------------------------
+
 #endif // REVERSI_H

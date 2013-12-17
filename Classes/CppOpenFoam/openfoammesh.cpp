@@ -87,15 +87,6 @@ ribi::foam::Mesh::Mesh(
       const CellIndex neighbour_index {
         files.GetNeighbour()->GetItem(index).GetCellIndex()
       };
-      #ifndef NDEBUG
-      if (index.Get() >= static_cast<int>(m_cells.size()))
-      {
-        TRACE("ERROR");
-        TRACE(*files.GetNeighbour());
-        TRACE(index.Get());
-        TRACE(m_cells.size());
-      }
-      #endif
       assert(i < static_cast<int>(m_faces.size()));
       assert(neighbour_index.Get() < static_cast<int>(m_cells.size()));
       assert(!m_faces[i]->GetNeighbour());

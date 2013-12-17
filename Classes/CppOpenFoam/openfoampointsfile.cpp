@@ -130,7 +130,7 @@ void ribi::foam::PointsFile::Test() noexcept
     assert(b == c);
   }
   //Read from testing file
-  for (int test_index = 0; test_index!=4; ++test_index)
+  for (int test_index = 0; test_index!=5; ++test_index)
   {
     std::string filename_appendix;
     switch (test_index)
@@ -139,6 +139,7 @@ void ribi::foam::PointsFile::Test() noexcept
       case 1: filename_appendix = "_1x1x2"; break;
       case 2: filename_appendix = "_1x2x2"; break;
       case 3: filename_appendix = "_2x2x2"; break;
+      case 4: filename_appendix = "_3x4x5"; break;
       default: assert(!"Should never get here");
         throw std::logic_error("foam::Files::CreateTestFiles: unknown test index");
     }

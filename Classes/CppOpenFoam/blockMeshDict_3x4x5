@@ -45,8 +45,8 @@ blocks
 (
   hex                   //The shape is always hex, as blocks are always hexahedra
   (0 1 2 3 4 5 6 7)     // vertex numbers 
-  (1 2 2)            // numbers of cells in each direction
-  simpleGrading (1 1 1) // cell expansion ratios
+  (3 4 5)            // numbers of cells in each direction 
+  simpleGrading (1 1 1) // cell expansion ratios 
 );
 
 //Used to describe arc or spline edges 

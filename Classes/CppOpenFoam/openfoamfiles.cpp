@@ -522,7 +522,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::Creat
     v.push_back(files);
   }
   //Complex from resources
-  for (int i=0; i!=4; ++i)
+  for (int i=0; i!=5; ++i)
   {
     const std::string folder_name = ribi::fileio::GetTempFolderName();
     CreateTestFiles(folder_name,i);
@@ -538,7 +538,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::Creat
 
 void ribi::foam::Files::CreateTestFiles(const std::string& folder_name, const int test_index)
 {
-  assert(test_index >= 0 && test_index < 4);
+  assert(test_index >= 0 && test_index < 5);
 
   CreateFolders(folder_name);
 
@@ -560,6 +560,7 @@ void ribi::foam::Files::CreateTestFiles(const std::string& folder_name, const in
       case 1: filename_appendix = "_1x1x2"; break;
       case 2: filename_appendix = "_1x2x2"; break;
       case 3: filename_appendix = "_2x2x2"; break;
+      case 4: filename_appendix = "_3x4x5"; break;
       default: assert(!"Should never get here");
         throw std::logic_error("foam::Files::CreateTestFiles: unknown test index");
     }
@@ -692,7 +693,7 @@ void ribi::foam::Files::Test() noexcept
     }
   }
   //CreateCopy
-  for (int test_index=0; test_index!=4; ++test_index) //Test file index
+  for (int test_index=0; test_index!=5; ++test_index)
   {
     const std::string temp_folder_source = ribi::fileio::GetTempFolderName();
     {
@@ -712,7 +713,6 @@ void ribi::foam::Files::Test() noexcept
     const std::string temp_folder = ribi::fileio::GetTempFolderName();
     assert(!ribi::fileio::IsFolder(temp_folder));
     CreateTestFiles(temp_folder,3); //3 = 2x2x2 cubes
-
     const Files f(temp_folder);
     assert(f == f);
     Files g(temp_folder);
@@ -739,37 +739,37 @@ bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::File
   //Split function for ease in debugging
   if (*lhs.GetBoundary()!= *rhs.GetBoundary())
   {
-    TRACE("Boundaries differ:");
-    TRACE(*lhs.GetBoundary());
-    TRACE(*rhs.GetBoundary());
+    //TRACE("Boundaries differ:");
+    //TRACE(*lhs.GetBoundary());
+    //TRACE(*rhs.GetBoundary());
     return false;
   }
   if (*lhs.GetFaces() != *rhs.GetFaces())
   {
-    TRACE("Faces differ:");
-    TRACE(*lhs.GetFaces());
-    TRACE(*rhs.GetFaces());
+    //TRACE("Faces differ:");
+    //TRACE(*lhs.GetFaces());
+    //TRACE(*rhs.GetFaces());
     return false;
   }
   if (*lhs.GetNeighbour() != *rhs.GetNeighbour())
   {
-    TRACE("Neighbours differ:");
-    TRACE(*lhs.GetNeighbour());
-    TRACE(*rhs.GetNeighbour());
+    //TRACE("Neighbours differ:");
+    //TRACE(*lhs.GetNeighbour());
+    //TRACE(*rhs.GetNeighbour());
     return false;
   }
   if (*lhs.GetOwner() != *rhs.GetOwner())
   {
-    TRACE("Owners differ:");
-    TRACE(*lhs.GetOwner());
-    TRACE(*rhs.GetOwner());
+    //TRACE("Owners differ:");
+    //TRACE(*lhs.GetOwner());
+    //TRACE(*rhs.GetOwner());
     return false;
   }
   if (*lhs.GetPoints() != *rhs.GetPoints())
   {
-    TRACE("Points differ:");
-    TRACE(*lhs.GetPoints());
-    TRACE(*rhs.GetPoints());
+    //TRACE("Points differ:");
+    //TRACE(*lhs.GetPoints());
+    //TRACE(*rhs.GetPoints());
     return false;
   }
   return true;
