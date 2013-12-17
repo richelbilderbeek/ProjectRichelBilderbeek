@@ -1,4 +1,4 @@
-#include(../../Tools/ToolTestReversi/ToolTestReversiConsole.pri)
+include(../../Tools/ToolTestReversi/ToolTestReversiConsole.pri)
 
 SOURCES += \
     qttestreversimaindialog.cpp

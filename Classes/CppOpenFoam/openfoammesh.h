@@ -24,6 +24,13 @@ struct Mesh
   ///Create Cells so these can be shared over the Faces
   Mesh(const Files& files) : Mesh(files,CreatePoints(files)) {}
 
+  Mesh(
+    const std::vector<boost::shared_ptr<Boundary>>& boundaries,
+    const std::vector<boost::shared_ptr<Cell>>& cells,
+    const std::vector<boost::shared_ptr<Face>>& faces,
+    const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points
+  );
+
   ///Write the Mesh to a Files
   Files CreateFiles() const noexcept;
 
@@ -32,16 +39,34 @@ struct Mesh
   int GetNumberOfFaces() const noexcept;
   int GetNumberOfPoints() const noexcept;
 
+  const std::vector<boost::shared_ptr<Boundary> >& GetBoundaries() noexcept { return m_boundaries; }
+  const std::vector<boost::shared_ptr<Cell> >& GetCells() noexcept { return  m_cells; }
+  const std::vector<boost::shared_ptr<Face> >& GetFaces() noexcept { return m_faces; }
+  const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& GetPoints() noexcept { return m_points; }
+
   private:
+
+  ///Order is not important
   std::vector<boost::shared_ptr<Boundary> > m_boundaries;
+
+  ///Order is not important
   std::vector<boost::shared_ptr<Cell> > m_cells;
+
+  ///Order is important for ReorderFaces only
   std::vector<boost::shared_ptr<Face> > m_faces;
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D>> m_points;
+
+  ///Order is not important
+  std::vector<boost::shared_ptr<ribi::Coordinat3D>> m_points;
 
   ///Step #1
   ///Create Faces so these can be shared over Boundary and Cell
   Mesh(const Files& files,
     const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points);
+
+  ///Checks if the Faces their indices are adjacent
+  ///when they belong to the
+  ///same Boundary
+  bool AreFacesOrdered() const noexcept;
 
   static const std::vector<boost::shared_ptr<Boundary> > CreateBoundaries(
     const Files& files, const std::vector<boost::shared_ptr<Face>>& faces);
@@ -64,6 +89,39 @@ struct Mesh
   const boost::shared_ptr<PointsFile> CreatePoints() const noexcept;
 
   static const std::vector<boost::shared_ptr<ribi::Coordinat3D> > CreatePoints(const Files& files);
+
+  ///This member function is called to reorder the faces in such a way
+  ///that indices in m_faces are adjacent when they belong to the
+  ///same Boundary
+  ///
+  ///For example, consider the following boundary file:
+  ///
+  ///2
+  ///(
+  ///  boundary_left
+  ///  {
+  ///    type            patch;
+  ///    nFaces          2;
+  ///    startFace       0;
+  ///  }
+  ///  boundary_right
+  ///  {
+  ///    type            patch;
+  ///    nFaces          2;
+  ///    startFace       2;
+  ///  }
+  ///)
+  ///
+  ///ReorderFaces will put the faces belonging to 'boundary_left'
+  ///at indices 0 and 1, and the faces belonging to 'boundary_right'
+  ///at indices 2 and 3.
+  ///
+  ///These ordering of Faces in m_faces is unimportant, except for this
+  void ReorderFaces();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
   friend std::ostream& operator<<(std::ostream& os, const Mesh& mesh);
 };

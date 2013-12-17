@@ -6,6 +6,7 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "reversimaindialog.h"
 #include "trace.h"
 
 int ribi::ReversiMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

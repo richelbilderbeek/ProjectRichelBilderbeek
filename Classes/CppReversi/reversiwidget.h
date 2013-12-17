@@ -1,9 +1,15 @@
 #ifndef REVERSIWIDGET_H
 #define REVERSIWIDGET_H
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 
 #include <QWidget>
+#pragma GCC diagnostic pop
+
+namespace ribi {
 
 struct Reversi;
 
@@ -25,5 +31,7 @@ private:
   void paintEvent(QPaintEvent *);
 
 };
+
+} //~namespace ribi
 
 #endif // REVERSIWIDGET_H

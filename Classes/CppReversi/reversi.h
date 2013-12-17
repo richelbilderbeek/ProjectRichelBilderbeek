@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+namespace ribi {
+
 struct Reversi
 {
   enum { empty   = 0};
@@ -91,5 +93,7 @@ struct Reversi
   void Set(const int x, const int y, const int state);
 
 };
+
+} //~namespace ribi
 
 #endif // REVERSI_H

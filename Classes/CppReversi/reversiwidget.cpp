@@ -1,13 +1,17 @@
 
 #include <cstdlib>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QMouseEvent>
 #include <QPainter>
 
 #include "reversi.h"
 #include "reversiwidget.h"
+#pragma GCC diagnostic pop
 
-ReversiWidget::ReversiWidget(QWidget *parent) :
+ribi::ReversiWidget::ReversiWidget(QWidget *parent) :
   QWidget(parent),
   m_reversi(new Reversi(4)),
   m_color_player1(    QColor(255,  0,  0)),
@@ -34,8 +38,8 @@ ReversiWidget::ReversiWidget(QWidget *parent) :
     //r.
   }
 }
-//---------------------------------------------------------------------------
-void ReversiWidget::mousePressEvent(QMouseEvent * e)
+
+void ribi::ReversiWidget::mousePressEvent(QMouseEvent * e)
 {
   const int x = (e->x() * m_reversi->GetSize()) / this->width();
   const int y = (e->y() * m_reversi->GetSize()) / this->height();
@@ -47,8 +51,8 @@ void ReversiWidget::mousePressEvent(QMouseEvent * e)
      repaint();
   }
 }
-//---------------------------------------------------------------------------
-void ReversiWidget::paintEvent(QPaintEvent *)
+
+void ribi::ReversiWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   const int width  = this->width();
@@ -75,4 +79,4 @@ void ReversiWidget::paintEvent(QPaintEvent *)
     }
   }
 }
-//---------------------------------------------------------------------------
+

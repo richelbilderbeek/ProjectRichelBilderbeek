@@ -20,12 +20,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // From http://www.richelbilderbeek.nl/ToolTestReversi.htm
 //---------------------------------------------------------------------------
 #include <cassert>
-//---------------------------------------------------------------------------
+#include <stdexcept>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
-//---------------------------------------------------------------------------
+
 #include "reversi.h"
-//---------------------------------------------------------------------------
-Reversi::Reversi(const int size)
+#pragma GCC diagnostic pop
+
+ribi::Reversi::Reversi(const int size)
   : m_board(size,std::vector<int>(size,empty)),
     m_current_player(player1)
 {
@@ -39,9 +44,14 @@ Reversi::Reversi(const int size)
   Set(x  ,y+1,player2);
   Set(x+1,y+1,player1);
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMove(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMove(const int x, const int y) const
 {
+  assert(x >= 0);
+  assert(y >= 0);
+  assert(!"TODO");
+  return false;
+  /*
   typedef std::pair<int,int> Coordinat;
   typedef std::vector<Coordinat> Line;
   const std::vector<Line> v = GetSurroundingCoordinats(x,y);
@@ -66,10 +76,11 @@ bool Reversi::CanDoMove(const int x, const int y) const
       }
     }
   }
+  */
 }
-//---------------------------------------------------------------------------
+
 //Do a complete move
-void Reversi::DoMove(const int x, const int y)
+void ribi::Reversi::DoMove(const int x, const int y)
 {
   assert(CanDoMove(x,y)==true || "Invalid move!");
   const int player = GetCurrentPlayer();
@@ -83,8 +94,8 @@ void Reversi::DoMove(const int x, const int y)
   if (CanDoMoveUpRight(  x,y)) DoMoveUpRight(  x+1,y-1);
   Set(x,y,player);
 }
-//---------------------------------------------------------------------------
-int Reversi::Get(const int x, const int y) const
+
+int ribi::Reversi::Get(const int x, const int y) const
 {
   const int sz = GetSize();
   assert(x >= 0);
@@ -93,8 +104,8 @@ int Reversi::Get(const int x, const int y) const
   assert(y < sz);
   return m_board[y][x];
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> Reversi::GetVersionHistory()
+
+const std::vector<std::string> ribi::Reversi::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back(std::string("YYYY-MM-DD: version X.Y: [descripion]"));
@@ -106,9 +117,9 @@ const std::vector<std::string> Reversi::GetVersionHistory()
     "initial port to Qt Creator"));
   return v;
 }
-//---------------------------------------------------------------------------
+
 //Simply sets a square
-void Reversi::Set(const int x, const int y, const int state)
+void ribi::Reversi::Set(const int x, const int y, const int state)
 {
   assert(x>=0 && x < GetSize());
   assert(y>=0 && y < GetSize());
@@ -116,8 +127,8 @@ void Reversi::Set(const int x, const int y, const int state)
   assert(Get(x,y)==state);
   TogglePlayer();
 }
-//---------------------------------------------------------------------------
-void Reversi::TogglePlayer()
+
+void ribi::Reversi::TogglePlayer()
 {
   switch (GetCurrentPlayer())
   {
@@ -126,10 +137,10 @@ void Reversi::TogglePlayer()
     default: assert(!"Should not get here");
   }
 }
-//---------------------------------------------------------------------------
 
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveUp(const int x, const int y) const
+
+
+bool ribi::Reversi::CanDoMoveUp(const int x, const int y) const
 {
   int b = y - 1;
   if (b < 1) return false;
@@ -144,8 +155,8 @@ bool Reversi::CanDoMoveUp(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveUpLeft(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveUpLeft(const int x, const int y) const
 {
   int a = x - 1;
   int b = y - 1;
@@ -161,8 +172,8 @@ bool Reversi::CanDoMoveUpLeft(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveLeft(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveLeft(const int x, const int y) const
 {
   int a = x - 1;
   if (a < 1) return false;
@@ -176,8 +187,8 @@ bool Reversi::CanDoMoveLeft(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveDownLeft(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveDownLeft(const int x, const int y) const
 {
   const int size = m_board.size();
   int a = x - 1;
@@ -196,8 +207,8 @@ bool Reversi::CanDoMoveDownLeft(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveDown(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveDown(const int x, const int y) const
 {
   const int sz = m_board.size();
   int b = y;
@@ -212,8 +223,8 @@ bool Reversi::CanDoMoveDown(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveDownRight(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveDownRight(const int x, const int y) const
 {
   const int size = m_board.size();
   int a = x + 1;
@@ -231,8 +242,8 @@ bool Reversi::CanDoMoveDownRight(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveRight(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveRight(const int x, const int y) const
 {
   const int size = m_board.size();
   int a = x + 1;
@@ -247,8 +258,8 @@ bool Reversi::CanDoMoveRight(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-bool Reversi::CanDoMoveUpRight(const int x, const int y) const
+
+bool ribi::Reversi::CanDoMoveUpRight(const int x, const int y) const
 {
   const int size = m_board.size();
   int a = x + 1;
@@ -266,8 +277,8 @@ bool Reversi::CanDoMoveUpRight(const int x, const int y) const
   }
   return false;
 }
-//---------------------------------------------------------------------------
-const std::vector< std::pair<int,int> > Reversi::GetValidMoves() const
+
+const std::vector< std::pair<int,int> > ribi::Reversi::GetValidMoves() const
 {
   const int size = m_board.size();
   std::vector< std::pair<int,int> > v;
@@ -283,8 +294,8 @@ const std::vector< std::pair<int,int> > Reversi::GetValidMoves() const
   }
   return v;
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveUp(const int x, int y)
+
+void ribi::Reversi::DoMoveUp(const int x, int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -293,8 +304,8 @@ void Reversi::DoMoveUp(const int x, int y)
     --y;
   }
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveUpLeft(int x, int y)
+
+void ribi::Reversi::DoMoveUpLeft(int x, int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -304,8 +315,8 @@ void Reversi::DoMoveUpLeft(int x, int y)
     --x;
   }
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveLeft(int x, const int y)
+
+void ribi::Reversi::DoMoveLeft(int x, const int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -315,8 +326,8 @@ void Reversi::DoMoveLeft(int x, const int y)
   }
 
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveDownLeft(int x, int y)
+
+void ribi::Reversi::DoMoveDownLeft(int x, int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -326,8 +337,8 @@ void Reversi::DoMoveDownLeft(int x, int y)
     --x;
   }
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveDown(const int x, int y)
+
+void ribi::Reversi::DoMoveDown(const int x, int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -336,8 +347,8 @@ void Reversi::DoMoveDown(const int x, int y)
     ++y;
   }
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveDownRight(int x, int y)
+
+void ribi::Reversi::DoMoveDownRight(int x, int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -347,8 +358,8 @@ void Reversi::DoMoveDownRight(int x, int y)
     ++x;
   }
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveRight(int x, const int y)
+
+void ribi::Reversi::DoMoveRight(int x, const int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -357,8 +368,8 @@ void Reversi::DoMoveRight(int x, const int y)
     ++x;
   }
 }
-//---------------------------------------------------------------------------
-void Reversi::DoMoveUpRight(int x, int y)
+
+void ribi::Reversi::DoMoveUpRight(int x, int y)
 {
   const int player = GetCurrentPlayer();
   while ( Get(x,y) == GetOtherPlayer() )
@@ -368,18 +379,18 @@ void Reversi::DoMoveUpRight(int x, int y)
     ++x;
   }
 }
-//---------------------------------------------------------------------------
-int Reversi::GetSize() const
+
+int ribi::Reversi::GetSize() const
 {
   return m_board.size();
 }
-//---------------------------------------------------------------------------
+
 ///GetSurroundingCoordinats returns the surrounding
 ///coordinats in all eight directions for a given coordinat,
 ///in chronological direction.
 ///In the resulting std::vectors, this coordinat is omitted.
 const std::vector<std::vector<std::pair<int,int> > >
-  Reversi::GetSurroundingCoordinats(const int x, const int y) const
+  ribi::Reversi::GetSurroundingCoordinats(const int x, const int y) const
 {
   const int sz = GetSize();
   std::vector<std::vector<std::pair<int,int> > > v;
@@ -414,8 +425,8 @@ const std::vector<std::vector<std::pair<int,int> > >
   assert(v.size() == 8);
   return v;
 }
-//---------------------------------------------------------------------------
-int Reversi::Count(const int player) const
+
+int ribi::Reversi::Count(const int player) const
 {
   const int size = GetSize();
 
@@ -430,8 +441,8 @@ int Reversi::Count(const int player) const
   }
   return sum;
 }
-//---------------------------------------------------------------------------
-int Reversi::GetOtherPlayer() const
+
+int ribi::Reversi::GetOtherPlayer() const
 {
   switch (GetCurrentPlayer())
   {
@@ -439,5 +450,7 @@ int Reversi::GetOtherPlayer() const
     case player2: return player1;
     default: assert(!"Should not get here");
   }
+  assert(!"Should not get here");
+  throw std::logic_error("ribi::Reversi::GetOtherPlayer: invalid player");
 }
-//---------------------------------------------------------------------------
+
