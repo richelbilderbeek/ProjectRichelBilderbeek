@@ -18,6 +18,13 @@ ribi::foam::Face::Face(
 
 }
 
+void ribi::foam::Face::AssignNeighbour(const boost::shared_ptr<ribi::foam::Cell> neighbour) noexcept
+{
+  assert(!m_neighbour && "neighbour can only be assigned once");
+  assert(neighbour);
+  m_neighbour = neighbour;
+}
+
 void ribi::foam::Face::AssignOwner(const boost::shared_ptr<ribi::foam::Cell> owner) noexcept
 {
   assert(!m_owner && "Can only assign owner once");

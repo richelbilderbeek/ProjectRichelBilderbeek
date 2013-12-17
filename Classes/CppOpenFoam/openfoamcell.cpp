@@ -6,11 +6,20 @@
 #include "trace.h"
 
 ribi::foam::Cell::Cell()
-  : m_owned_faces{},
-    m_neighbour{}
+  : m_owned_faces{}
+    //,m_neighbour{}
 {
 
 }
+
+/*
+void ribi::foam::Cell::AssignNeighbour(const boost::shared_ptr<ribi::foam::Cell> neighbour) noexcept
+{
+  assert(!m_neighbour && "neighbour can only be assigned once");
+  assert(neighbour);
+  m_neighbour = neighbour;
+}
+*/
 
 void ribi::foam::Cell::AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces)
 {
@@ -19,10 +28,12 @@ void ribi::foam::Cell::AssignOwnedFaces(const std::vector<boost::shared_ptr<Face
   m_owned_faces = owned_faces;
 }
 
+/*
 const boost::shared_ptr<const ribi::foam::Cell> ribi::foam::Cell::GetNeighbour() const noexcept
 {
   return m_neighbour;
 }
+*/
 
 const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Cell::GetOwnedFaces() const noexcept
 {
@@ -54,6 +65,6 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Cell& c
   {
     os << *face << '\n';
   }
-  os << *cell.m_neighbour;
+  //os << *cell.m_neighbour;
   return os;
 }

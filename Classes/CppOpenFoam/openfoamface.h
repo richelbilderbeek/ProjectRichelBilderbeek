@@ -30,6 +30,9 @@ struct Face
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
 
+  ///Can only assign once
+  void AssignNeighbour(const boost::shared_ptr<Cell> neighbour) noexcept;
+
   void AssignOwner(const boost::shared_ptr<Cell> owner) noexcept;
 
   const boost::shared_ptr<const Cell> GetNeighbour() const noexcept { return m_neighbour; }

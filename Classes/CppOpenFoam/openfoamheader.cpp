@@ -27,6 +27,12 @@ ribi::foam::Header::Header(
 {
   #ifndef NDEBUG
   Test();
+  assert( (location.empty() || location[0] != '\"' )
+    && "A location may not start with a quotation mark"
+  );
+  assert( (location.empty() || location[ location.size() - 1 ] != '\"' )
+    && "A location may not end with a quotation mark"
+  );
   #endif
 }
 
@@ -86,11 +92,35 @@ void ribi::foam::Header::Test() noexcept
 
 bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs)
 {
-  return
-       lhs.GetClass()    == rhs.GetClass()
-    && lhs.GetLocation() == rhs.GetLocation()
-    && lhs.GetObject()   == rhs.GetObject()
-  ;
+  if (lhs.GetClass() != rhs.GetClass())
+  {
+    //TRACE("Classes differ:");
+    //TRACE(lhs.GetClass());
+    //TRACE(rhs.GetClass());
+    return false;
+  }
+  //Compare location independent of OS path seperator
+  {
+    std::string lhs_location = lhs.GetLocation();
+    std::string rhs_location = rhs.GetLocation();
+    std::replace(lhs_location.begin(),lhs_location.end(),'\\','/');
+    std::replace(rhs_location.begin(),rhs_location.end(),'\\','/');
+    if (lhs_location != rhs_location)
+    {
+      //TRACE("Locations differ:");
+      //TRACE(lhs.GetLocation());
+      //TRACE(rhs.GetLocation());
+      return false;
+    }
+  }
+  if (lhs.GetObject() != rhs.GetObject())
+  {
+    //TRACE("Object differ:");
+    //TRACE(lhs.GetObject());
+    //TRACE(rhs.GetObject());
+    return false;
+  }
+  return true;
 }
 
 bool ribi::foam::operator!=(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs)
@@ -106,7 +136,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const Header& f)
     << "  version  " << "2.0"           << ";\n"
     << "  format   " << "ascii"         << ";\n"
     << "  class    " << f.GetClass()    << ";\n"
-    << "  location " << f.GetLocation() << ";\n"
+    << "  location \"" << f.GetLocation() << "\";\n"
     << "  object   " << f.GetObject()   << ";\n"
     << "}" << '\n'
   ;
@@ -187,9 +217,22 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
       std::string location;
       is >> location;
       assert(is);
-      assert(location.back() == ';');
-      location.pop_back();
-      assert(location.back() != ';');
+      assert(location.size() > 3);
+      assert(location[0] == '\"');
+      assert(location[ location.size() - 2] == '\"');
+      assert(location[ location.size() - 1] == ';');
+      location = location.substr(1,location.size() - 3);
+
+      assert( (location.empty() || location[0] != '\"' )
+        && "A location may not start with a quotation mark"
+      );
+      assert( (location.empty() || location[ location.size() - 1 ] != '\"' )
+        && "A location may not end with a quotation mark"
+      );
+      assert( (location.empty() || location[ location.size() - 1 ] != ';' )
+        && "A location may not end with a semicolon"
+      );
+
       h.m_location = location;
     }
     else if (s == "note")

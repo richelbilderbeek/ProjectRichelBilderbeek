@@ -215,32 +215,29 @@ bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs)
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
-    //TRACE(lhs.GetHeader());
-    //TRACE(rhs.GetHeader());
+    TRACE("Headers differ:");
+    TRACE(lhs.GetHeader());
+    TRACE(rhs.GetHeader());
     return false;
   }
   const std::vector<BoundaryFileItem>& lhs_items = lhs.GetItems();
   const std::vector<BoundaryFileItem>& rhs_items = rhs.GetItems();
   if (lhs_items.size() != rhs_items.size())
   {
-    //TRACE(lhs_items.size());
-    //TRACE(rhs_items.size());
+    TRACE("Number of items differ:");
+    TRACE(lhs_items.size());
+    TRACE(rhs_items.size());
     return false;
   }
-  return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
-  /*
-  const std::size_t n_items = lhs_items.size();
-  for (std::size_t i=0; i!=n_items; ++i)
+  const bool all_items_equal {
+    std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin())
+  };
+  if (!all_items_equal)
   {
-    if (lhs_items[i] != rhs_items[i])
-    {
-      TRACE(lhs_items[i]);
-      TRACE(rhs_items[i]);
-      return false;
-    }
+    TRACE("Items differ:");
+    TRACE(all_items_equal);
   }
-  return true;
-  */
+  return all_items_equal;
 }
 
 bool ribi::foam::operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs)

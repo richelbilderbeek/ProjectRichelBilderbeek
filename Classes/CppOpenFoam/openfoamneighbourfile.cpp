@@ -76,6 +76,12 @@ const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
 const ribi::foam::NeighbourFileItem& ribi::foam::NeighbourFile::GetItem(
   const FaceIndex& face_index) const noexcept
 {
+  #ifndef NDEBUG
+  if(!CanGetItem(face_index))
+  {
+    TRACE("BREAK");
+  }
+  #endif
   assert(CanGetItem(face_index));
   return m_items[ static_cast<int>(face_index.Get()) ];
 }

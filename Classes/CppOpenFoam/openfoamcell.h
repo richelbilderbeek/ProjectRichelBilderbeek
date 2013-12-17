@@ -20,16 +20,20 @@ struct Cell
 {
   Cell();
 
+  ///Can only assign once
+  //void AssignNeighbour(const boost::shared_ptr<Cell> neighbour) noexcept;
+
+  ///Can only assign once
   void AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces);
 
-  const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
+  //const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
   const std::vector<boost::shared_ptr<const Face> > GetOwnedFaces() const noexcept;
 
   private:
 
   std::vector<boost::shared_ptr<Face>> m_owned_faces;
 
-  const boost::shared_ptr<Cell> m_neighbour;
+  //boost::shared_ptr<Cell> m_neighbour;
 
   friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
 };

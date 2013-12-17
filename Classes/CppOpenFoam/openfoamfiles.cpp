@@ -123,6 +123,7 @@ void ribi::foam::Files::CheckMe() const
         || (last_j  >  first_i && last_j  < last_i)
       )
       {
+        TRACE(*m_boundary);
         std::stringstream s;
         s << "Error in 'boundary' file in these items:\n"
           << '\n'
@@ -612,6 +613,7 @@ void ribi::foam::Files::Swap(const ribi::foam::FaceIndex& lhs, const ribi::foam:
     //(both cells are boundary cells)
     //or both of them are present
     //(both cells are non-boundary cells)
+    /*
     const bool lhs_is_boundary = m_neighbour->CanGetItem(lhs);
     const bool rhs_is_boundary = m_neighbour->CanGetItem(rhs);
     assert(lhs_is_boundary == rhs_is_boundary
@@ -636,6 +638,7 @@ void ribi::foam::Files::Swap(const ribi::foam::FaceIndex& lhs, const ribi::foam:
       m_neighbour->SetItem(lhs,NeighbourFileItem(rhs_cell_index));
       m_neighbour->SetItem(rhs,NeighbourFileItem(lhs_cell_index));
     }
+    */
   }
   //Owner
   {
@@ -733,12 +736,43 @@ void ribi::foam::Files::Test() noexcept
 
 bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs)
 {
-  return
-       ((*lhs.GetBoundary())  == (*rhs.GetBoundary()))
-    && ((*lhs.GetFaces())     == (*rhs.GetFaces()))
-    && ((*lhs.GetNeighbour()) == (*rhs.GetNeighbour()))
-    && ((*lhs.GetOwner())     == (*rhs.GetOwner()))
-    && ((*lhs.GetPoints())    == (*rhs.GetPoints()));
+  //Split function for ease in debugging
+  if (*lhs.GetBoundary()!= *rhs.GetBoundary())
+  {
+    TRACE("Boundaries differ:");
+    TRACE(*lhs.GetBoundary());
+    TRACE(*rhs.GetBoundary());
+    return false;
+  }
+  if (*lhs.GetFaces() != *rhs.GetFaces())
+  {
+    TRACE("Faces differ:");
+    TRACE(*lhs.GetFaces());
+    TRACE(*rhs.GetFaces());
+    return false;
+  }
+  if (*lhs.GetNeighbour() != *rhs.GetNeighbour())
+  {
+    TRACE("Neighbours differ:");
+    TRACE(*lhs.GetNeighbour());
+    TRACE(*rhs.GetNeighbour());
+    return false;
+  }
+  if (*lhs.GetOwner() != *rhs.GetOwner())
+  {
+    TRACE("Owners differ:");
+    TRACE(*lhs.GetOwner());
+    TRACE(*rhs.GetOwner());
+    return false;
+  }
+  if (*lhs.GetPoints() != *rhs.GetPoints())
+  {
+    TRACE("Points differ:");
+    TRACE(*lhs.GetPoints());
+    TRACE(*rhs.GetPoints());
+    return false;
+  }
+  return true;
 }
 
 bool ribi::foam::operator!=(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs)

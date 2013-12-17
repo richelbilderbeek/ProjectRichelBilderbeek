@@ -75,16 +75,47 @@ ribi::foam::Mesh::Mesh(
     }
   }
   //Add neighbours to Cells
-  HIERO
+  {
+    const int n_faces = static_cast<int>(m_faces.size());
+    for (int i=0; i!=n_faces; ++i)
+    {
+      const FaceIndex index(i);
+      assert(files.GetNeighbour());
+      //Not all Faces have a neighbour
+      if (!files.GetNeighbour()->CanGetItem(index)) continue;
+      assert(files.GetNeighbour()->CanGetItem(index));
+      const CellIndex neighbour_index {
+        files.GetNeighbour()->GetItem(index).GetCellIndex()
+      };
+      #ifndef NDEBUG
+      if (index.Get() >= static_cast<int>(m_cells.size()))
+      {
+        TRACE("ERROR");
+        TRACE(*files.GetNeighbour());
+        TRACE(index.Get());
+        TRACE(m_cells.size());
+      }
+      #endif
+      assert(i < static_cast<int>(m_faces.size()));
+      assert(neighbour_index.Get() < static_cast<int>(m_cells.size()));
+      assert(!m_faces[i]->GetNeighbour());
+      m_faces[i]->AssignNeighbour( m_cells[ neighbour_index.Get() ] );
+      assert(m_faces[i]->GetNeighbour());
+    }
+  }
 
-  //Add ? to Faces
+  //Assign boundaries
   m_boundaries = CreateBoundaries(files,m_faces);
 
   //Check
   #ifndef NDEBUG
 
-  for (boost::shared_ptr<Cell> cell: m_cells) { assert(cell); assert(cell->GetNeighbour()); }
-
+  for (boost::shared_ptr<Cell> cell: m_cells)
+  {
+    assert(cell);
+    //assert( (cell->GetNeighbour() || !cell->GetNeighbour())
+    //  && "Not all cells have a neighbour, for example in a 1x1x1 mesh");
+  }
 
   if (GetNumberOfBoundaries() != files.GetBoundary()->GetMaxBoundaryIndex().Get())
   {
@@ -95,51 +126,6 @@ ribi::foam::Mesh::Mesh(
   #endif
   assert(GetNumberOfBoundaries() == files.GetBoundary()->GetMaxBoundaryIndex().Get());
 
-  /*
-  #ifndef NDEBUG
-  if (!
-       ( files.GetNeighbour()->GetItems().empty()
-         && GetNumberOfCells() == 0
-       )
-    || (!files.GetNeighbour()->GetItems().empty()
-         && GetNumberOfCells() == files.GetNeighbour()->CountNumberOfCells().Get()
-       )
-  )
-  {
-    TRACE("ERROR");
-    TRACE(GetNumberOfCells());
-    TRACE(files.GetNeighbour()->GetItems().size());
-    if (!files.GetNeighbour()->GetItems().empty()) TRACE(files.GetNeighbour()->CountNumberOfCells());
-  }
-  #endif
-  assert(
-       ( files.GetNeighbour()->GetItems().empty()
-         && GetNumberOfCells() == 0
-       )
-    || (!files.GetNeighbour()->GetItems().empty()
-         && GetNumberOfCells() == files.GetNeighbour()->CountNumberOfCells().Get()
-       )
-  );
-
-  #ifndef NDEBUG
-  if (GetNumberOfPoints() != static_cast<int>(files.GetPoints()->GetItems().size()))
-  {
-    TRACE("ERROR");
-    TRACE(GetNumberOfPoints());
-    TRACE(files.GetPoints()->GetItems().size());
-  }
-  #endif
-  assert(GetNumberOfPoints() == static_cast<int>(files.GetPoints()->GetItems().size()));
-
-  #ifndef NDEBUG
-  if (GetNumberOfFaces() != files.GetFaces()->GetMaxFaceIndex().Get())
-  {
-    TRACE("ERROR");
-    TRACE(GetNumberOfFaces());
-    TRACE(files.GetFaces()->GetMaxFaceIndex());
-  }
-  #endif
-  */
   assert(GetNumberOfFaces() == files.GetFaces()->GetMaxFaceIndex().Get());
 }
 
@@ -186,12 +172,48 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBounda
 {
   std::vector<BoundaryFileItem> items;
 
-  FaceIndex n_start_face(0);
+
   for (const boost::shared_ptr<Boundary> boundary: m_boundaries)
   {
+    assert(!boundary->GetFaces().empty());
     const int n_faces {
       static_cast<int>(boundary->GetFaces().size())
     };
+    assert(n_faces > 0);
+    //Determine the start face: at which indices are the Faces in m_faces?
+    std::vector<int> indices;
+    std::transform(boundary->GetFaces().begin(),boundary->GetFaces().end(),std::back_inserter(indices),
+      [this](const boost::shared_ptr<Face> face)
+      {
+        const std::vector<boost::shared_ptr<Face>>::const_iterator iter {
+          std::find(m_faces.begin(),m_faces.end(),face)
+        };
+        assert(iter != m_faces.end());
+        const int index = std::distance(m_faces.begin(),iter);
+        assert(index >= 0);
+        assert(index < static_cast<int>(m_faces.size()));
+        return index;
+      }
+    );
+    assert(!indices.empty());
+    assert(indices.size() == boundary->GetFaces().size());
+    std::sort(indices.begin(),indices.end());
+    #ifndef NDEBUG
+    const std::size_t n_indices = indices.size();
+    if (n_indices > 1)
+    {
+      for (std::size_t i=1; i!=n_indices; ++i)
+      {
+        assert(indices[i-1] != indices[i]
+          && "All face indices must be unique");
+        assert(indices[i-1] + 1 == indices[i]
+          && "All face indices must be adjacent");
+      }
+    }
+    #endif
+
+    const FaceIndex n_start_face = FaceIndex(indices[0]);
+    //TRACE(n_start_face);
     const BoundaryFileItem item(
       boundary->GetName(),
       boundary->GetType(),
@@ -199,7 +221,6 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBounda
       n_start_face
     );
     items.push_back(item);
-    n_start_face += FaceIndex(n_faces);
   }
 
   boost::shared_ptr<BoundaryFile> f {
@@ -379,10 +400,15 @@ ribi::foam::Files ribi::foam::Mesh::CreateFiles() const noexcept
 const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Mesh::CreateNeighbour() const noexcept
 {
   std::vector<NeighbourFileItem> v;
-  for (boost::shared_ptr<Cell> cell: m_cells)
+  for (boost::shared_ptr<Face> face: m_faces)
   {
-    const boost::shared_ptr<const ribi::foam::Cell> neighbour { cell->GetNeighbour() };
-    assert(neighbour);
+    assert(face);
+    const boost::shared_ptr<const ribi::foam::Cell> neighbour { face->GetNeighbour() };
+
+    assert( (neighbour || !neighbour)
+      && "Not all cells have a neighbour, for example in a 1x1x1 mesh");
+    if (!neighbour) continue;
+
     assert(std::find(m_cells.begin(),m_cells.end(),neighbour) != m_cells.end());
 
     const int index
@@ -546,7 +572,8 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Mesh& m
   os << "Cells:\n";
   for (const boost::shared_ptr<Cell> cell: mesh.m_cells)
   {
-    os << "* Neighbour: " << cell->GetNeighbour() << '\n'
+    os
+       //<< "* Neighbour: " << cell->GetNeighbour() << '\n'
        << "* Faces: ";
     for (boost::shared_ptr<const ribi::foam::Face> face: cell->GetOwnedFaces())
     {
