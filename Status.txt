@@ -210,6 +210,12 @@ CppMemberFunctionExample1
 CppMemberFunctionExample1.exe
 CppMemberFunctionExample2
 CppMemberFunctionExample2.exe
+CppMemcheckExample1
+CppMemcheckExample1.exe
+CppMemcheckExample2
+CppMemcheckExample2.exe
+CppMemcheckExample3
+CppMemcheckExample3.exe
 CppMoveConstructorExample1
 CppMoveConstructorExample1.exe
 CppMultimapExample1
@@ -420,6 +426,8 @@ CppStdFunctionExample1
 CppStdFunctionExample1.exe
 CppStdFunctionExample2
 CppStdFunctionExample2.exe
+CppStdIotaExample1
+CppStdIotaExample1.exe
 CppStdRefExample1
 CppStdRefExample1.exe
 CppStdRefExample2
@@ -533,8 +541,12 @@ GameTronCollectionDesktop
 GameTronCollectionDesktop.exe
 GameXeNonZeroDesktop
 GameXeNonZeroDesktop.exe
+ProjectBrainweaverAssessor
+ProjectBrainweaverAssessor.exe
 ProjectBrainweaverDeveloper
 ProjectBrainweaverDeveloper.exe
+ProjectBrainweaverStudent
+ProjectBrainweaverStudent.exe
 ProjectRichelBilderbeekConsole
 ProjectRichelBilderbeekConsole.exe
 ProjectRichelBilderbeekDesktop
@@ -674,6 +686,8 @@ ToolTestOpenQuestionDesktop.exe
 ToolTestQtArrowItemsDesktop
 ToolTestQtArrowItemsDesktop.exe
 ToolTestQtOcrWidget
+ToolTestReversiConsole.exe
+ToolTestReversiDesktop.exe
 ToolTestStopwatch.exe
 ToolTestTextPositionWidget
 ToolTestTextPositionWidget.exe
