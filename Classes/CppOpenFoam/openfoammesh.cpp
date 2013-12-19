@@ -1,6 +1,7 @@
 #include "openfoammesh.h"
 
 #include <cassert>
+#include <ostream>
 #include <map>
 
 #include "openfoamboundary.h"
@@ -30,6 +31,14 @@ ribi::foam::Mesh::Mesh(
 {
   #ifndef NDEBUG
   Test();
+  for (const boost::shared_ptr<Face> face: m_faces)
+  {
+    assert(face);
+    assert(face->GetOwner());
+    assert( (face->GetNeighbour() || !face->GetNeighbour() )
+      && "internalMesh faces have a neighbour, defaultWall faces don't"
+    );
+  }
   #endif
 
   if (!AreFacesOrdered())
@@ -156,10 +165,12 @@ bool ribi::foam::Mesh::AreFacesOrdered() const noexcept
   for (const boost::shared_ptr<Boundary> boundary: m_boundaries)
   {
     assert(!boundary->GetFaces().empty());
+    #ifndef NDEBUG
     const int n_faces {
       static_cast<int>(boundary->GetFaces().size())
     };
     assert(n_faces > 0);
+    #endif
     //Determine the start face: at which indices are the Faces in m_faces?
     std::vector<int> indices;
     std::transform(boundary->GetFaces().begin(),boundary->GetFaces().end(),std::back_inserter(indices),
@@ -193,6 +204,58 @@ bool ribi::foam::Mesh::AreFacesOrdered() const noexcept
   }
   return true;
 }
+
+
+double ribi::foam::Mesh::CalcSimilarity(
+  const std::vector<ribi::Coordinat3D>& v,
+  const std::vector<ribi::Coordinat3D>& w) noexcept
+{
+  if (v.size() != w.size()) return std::numeric_limits<double>::max();
+  const double distance {
+    std::accumulate(v.begin(),v.end(),0.0,
+      [w](const double init,const ribi::Coordinat3D& c)
+      {
+        //Find the closest coordinat in w to c
+        const std::vector<ribi::Coordinat3D>::const_iterator closest {
+          std::min_element(w.begin(),w.end(),
+            [c](const ribi::Coordinat3D& lhs, const ribi::Coordinat3D& rhs)
+            {
+              return Distance(lhs,c) < Distance(rhs,c);
+            }
+          )
+        };
+        return init + Distance(c,*closest);
+      }
+    )
+  };
+  return distance;
+}
+
+double ribi::foam::Mesh::CalcSimilarity(
+  const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
+  const std::vector<ribi::Coordinat3D>& w) noexcept
+{
+  if (v.size() != w.size()) return std::numeric_limits<double>::max();
+  const double distance {
+    std::accumulate(v.begin(),v.end(),0.0,
+      [w](const double init,const boost::shared_ptr<const ribi::Coordinat3D>& c)
+      {
+        //Find the closest coordinat in w to c
+        const std::vector<ribi::Coordinat3D>::const_iterator closest {
+          std::min_element(w.begin(),w.end(),
+            [c](const ribi::Coordinat3D& lhs, const ribi::Coordinat3D& rhs)
+            {
+              return Distance(lhs,*c) < Distance(rhs,*c);
+            }
+          )
+        };
+        return init + Distance(*c,*closest);
+      }
+    )
+  };
+  return distance;
+}
+
 
 const std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::CreateBoundaries(
   const Files& files,
@@ -544,6 +607,54 @@ const std::vector<boost::shared_ptr<ribi::Coordinat3D> >
   return v;
 }
 
+const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimilarFace(
+  const std::vector<ribi::Coordinat3D>& coordinats
+  ) const
+{
+  ///Obtain the distance from focal coordindat to each face its coordinat
+  std::vector<double> distances;
+  const std::size_t sz = coordinats.size();
+  for (std::size_t i=0; i!=sz; ++i)
+  {
+    const double distance = CalcSimilarity(
+      m_faces[i]->GetPoints(),
+      coordinats
+    );
+    distances.push_back(distance);
+  }
+
+  //Find the most similar
+  const int index {
+    std::distance(
+      distances.begin(),
+      std::min_element(distances.begin(),distances.end())
+    )
+  };
+
+  //Return the face
+  const boost::shared_ptr<const ribi::foam::Face> p {
+    m_faces[index]
+  };
+  assert(p);
+  return p;
+}
+
+const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Mesh::GetFaces() const noexcept
+{
+  std::vector<boost::shared_ptr<const ribi::foam::Face> > v;
+  std::transform(
+    m_faces.begin(),m_faces.end(),
+    std::back_inserter(v),
+    [](boost::shared_ptr<ribi::foam::Face> old_face)
+    {
+      const boost::shared_ptr<const ribi::foam::Face> new_face(old_face);
+      assert(old_face == new_face);
+      return new_face;
+    }
+  );
+  return v;
+}
+
 int ribi::foam::Mesh::GetNumberOfBoundaries() const noexcept
 {
   return static_cast<int>(this->m_boundaries.size());
@@ -602,6 +713,92 @@ void ribi::foam::Mesh::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::Mesh::Test");
+  //Check if the number of boundary faces is correct
+  {
+    const std::vector<boost::shared_ptr<ribi::foam::Files>> v { Files::CreateTestFiles() };
+    assert(v.size() == 6);
+    const std::vector<int> n_internal_mesh_faces_expected { 0,0,1,4,12,133 };
+    assert(v.size() == n_internal_mesh_faces_expected.size());
+    const int n_meshes = static_cast<int>(v.size());
+    for (int mesh_index = 0; mesh_index != n_meshes; ++mesh_index)
+    {
+      const Mesh mesh(*v[mesh_index]);
+      const std::vector<boost::shared_ptr<const Face> > mesh_faces {
+        mesh.GetFaces()
+      };
+      const int n_internal {
+        std::count_if(mesh_faces.begin(),mesh_faces.end(),
+          [](const boost::shared_ptr<const Face> face)
+          {
+            assert(face);
+            assert(face->GetOwner());
+            return face->GetNeighbour(); //internal faces have a neighbour
+          }
+        )
+      };
+      assert(n_internal == n_internal_mesh_faces_expected[mesh_index]
+        && "Must have as much internal faces as expected"
+      );
+    }
+  }
+  //Find most similar Faces
+  {
+    //Handcraft Faces, put these in mesh
+
+    //Points as log 12 page 48
+    const boost::shared_ptr<ribi::Coordinat3D> p0 { new ribi::Coordinat3D(0.0,0.0,0.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p1 { new ribi::Coordinat3D(1.0,0.0,0.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p2 { new ribi::Coordinat3D(1.0,1.0,0.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p3 { new ribi::Coordinat3D(0.0,1.0,0.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p4 { new ribi::Coordinat3D(0.0,0.0,1.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p5 { new ribi::Coordinat3D(1.0,0.0,1.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p6 { new ribi::Coordinat3D(1.0,1.0,1.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p7 { new ribi::Coordinat3D(0.0,1.0,1.0) };
+    assert(p0); assert(p1); assert(p2); assert(p3);
+    assert(p4); assert(p5); assert(p6); assert(p7);
+    const boost::shared_ptr<Cell> cell { new Cell };
+    const std::vector<boost::shared_ptr<Cell>> cells { cell };
+
+    const boost::shared_ptr<Cell> n0; //No neighbours in a 1x1 mesh
+    const boost::shared_ptr<Cell> n1; //No neighbours in a 1x1 mesh
+    const boost::shared_ptr<Cell> n2; //No neighbours in a 1x1 mesh
+    const boost::shared_ptr<Cell> n3; //No neighbours in a 1x1 mesh
+    const boost::shared_ptr<Cell> n4; //No neighbours in a 1x1 mesh
+    const boost::shared_ptr<Cell> n5; //No neighbours in a 1x1 mesh
+    const boost::shared_ptr<Cell> own0 { cell }; //The only Cell owns all Faces
+    const boost::shared_ptr<Cell> own1 { cell }; //The only Cell owns all Faces
+    const boost::shared_ptr<Cell> own2 { cell }; //The only Cell owns all Faces
+    const boost::shared_ptr<Cell> own3 { cell }; //The only Cell owns all Faces
+    const boost::shared_ptr<Cell> own4 { cell }; //The only Cell owns all Faces
+    const boost::shared_ptr<Cell> own5 { cell }; //The only Cell owns all Faces
+
+    const std::vector<boost::shared_ptr<ribi::Coordinat3D>> points { p0,p1,p2,p3,p4,p5,p6,p7 };
+    const boost::shared_ptr<Face> f0 { new Face(n0,own0, { p0, p2, p3, p1 } ) };
+    const boost::shared_ptr<Face> f1 { new Face(n1,own1, { p0, p4, p6, p2 } ) };
+    const boost::shared_ptr<Face> f2 { new Face(n2,own2, { p0, p1, p5, p4 } ) };
+    const boost::shared_ptr<Face> f3 { new Face(n3,own3, { p1, p3, p7, p5 } ) };
+    const boost::shared_ptr<Face> f4 { new Face(n4,own4, { p2, p6, p7, p3 } ) };
+    const boost::shared_ptr<Face> f5 { new Face(n5,own5, { p4, p5, p7, p6 } ) };
+
+    const std::vector<boost::shared_ptr<Face>> faces { f0,f1,f2,f3,f4,f5,f6 };
+    cell->AssignOwnedFaces( { f0,f1,f2,f3,f4,f5,f6 } );
+
+    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5,f6 },"defaultFaces","patch" ) };
+    const std::vector<boost::shared_ptr<Boundary>> boundaries { boundary };
+
+    const Mesh m(
+      boundaries,
+      cells,
+      faces,
+      points
+    );
+    for (const boost::shared_ptr<Face> face: faces)
+    {
+      //For every Face, extract the coordinats
+      //FindMostSimilar should find back the original Face
+      assert(m.FindMostSimilarFace(face->GetPoints()) == face);
+    }
+  }
   TRACE("Finished ribi::foam::Mesh::Test successfully");
 }
 #endif

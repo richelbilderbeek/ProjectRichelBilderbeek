@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>284</width>
-    <height>342</height>
+    <height>553</height>
    </rect>
   </property>
   <property name="font">
@@ -54,12 +54,12 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="image_gabor">
+    <widget class="QLabel" name="image">
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/ToolGaborFilter.png</pixmap>
+      <pixmap resource="ToolHistogramEqualizationer.qrc">:/histogramequalizationer/images/ToolHistogramEqualizationerMenu.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -90,6 +90,8 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ToolHistogramEqualizationer.qrc"/>
+ </resources>
  <connections/>
 </ui>

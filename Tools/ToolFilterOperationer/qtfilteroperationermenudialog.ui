@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>284</width>
-    <height>342</height>
+    <width>274</width>
+    <height>553</height>
    </rect>
   </property>
   <property name="font">
@@ -54,12 +54,12 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="image_gabor">
+    <widget class="QLabel" name="label">
      <property name="text">
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/ToolGaborFilter.png</pixmap>
+      <pixmap resource="ToolFilterOperationer.qrc">:/filteroperationer/images/ToolFilterOperationerResult.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -90,6 +90,8 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ToolFilterOperationer.qrc"/>
+ </resources>
  <connections/>
 </ui>

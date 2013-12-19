@@ -25,6 +25,18 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator-=(const Coordinat3D& rhs) noexcep
   return *this;
 }
 
+double ribi::Distance(const Coordinat3D& lhs,const Coordinat3D& rhs)
+{
+  const double dx = lhs.GetX() - rhs.GetX();
+  const double dy = lhs.GetY() - rhs.GetY();
+  const double dz = lhs.GetZ() - rhs.GetZ();
+  return std::sqrt(
+      (dx * dx)
+    + (dy * dy)
+    + (dz * dz)
+  );
+}
+
 double ribi::Length(const Coordinat3D& v)
 {
   return std::sqrt(

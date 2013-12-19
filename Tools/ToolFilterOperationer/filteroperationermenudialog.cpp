@@ -69,7 +69,8 @@ const std::vector<std::string> ribi::FilterOperationerMenuDialog::GetVersionHist
 {
   return {
     "2008-xx-17: version 1.0: initial Windows-only version",
-    "2013-11-29: version 2.0: port to Qt"
+    "2013-11-29: version 2.0: port to Qt",
+    "2013-12-19: version 2.1: allowed saving of images in desktop version"
   };
 }
 

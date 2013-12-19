@@ -37,7 +37,8 @@ struct Face
 
   const boost::shared_ptr<const Cell> GetNeighbour() const noexcept { return m_neighbour; }
 
-  const boost::shared_ptr<Cell> GetOwner() noexcept;
+  const boost::shared_ptr<const Cell> GetOwner() const noexcept { return m_owner; }
+  const boost::shared_ptr<      Cell> GetOwner()       noexcept;
 
   const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > GetPoints() const noexcept;
 

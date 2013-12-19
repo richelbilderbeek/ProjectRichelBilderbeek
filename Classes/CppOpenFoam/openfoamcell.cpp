@@ -1,6 +1,7 @@
 #include "openfoamcell.h"
 
 #include <cassert>
+#include <ostream>
 
 #include "openfoamface.h"
 #include "trace.h"

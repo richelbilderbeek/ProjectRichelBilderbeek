@@ -34,6 +34,8 @@ private slots:
   void on_button_do_clicked();
   void on_button_load_clicked();
 
+  void on_button_save_clicked();
+
 private:
   Ui::QtFilterOperationerMainDialog *ui;
 

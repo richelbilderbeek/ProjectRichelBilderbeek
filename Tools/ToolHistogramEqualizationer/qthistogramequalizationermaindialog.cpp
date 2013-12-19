@@ -64,6 +64,7 @@ void ribi::QtHistogramEqualizationerMainDialog::on_button_load_clicked()
     };
     assert(!target.isNull());
     m_target->setPixmap(target);
+    m_target->setAlignment(Qt::AlignCenter);
   }
 }
 

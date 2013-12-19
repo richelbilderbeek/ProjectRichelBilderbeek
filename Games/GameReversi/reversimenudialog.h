@@ -4,8 +4,9 @@
 #include "menudialog.h"
 
 namespace ribi {
+namespace reversi {
 
-struct ReversiMenuDialog : public MenuDialog
+struct MenuDialog : public ribi::MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -21,6 +22,7 @@ struct ReversiMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace reversi
 } //~namespace ribi
 
 #endif // REVERSIMENUDIALOG_H

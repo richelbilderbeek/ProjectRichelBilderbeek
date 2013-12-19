@@ -1,6 +1,7 @@
 #include "openfoamface.h"
 
 #include <cassert>
+#include <ostream>
 
 #include "openfoamcell.h"
 #include "coordinat3d.h"

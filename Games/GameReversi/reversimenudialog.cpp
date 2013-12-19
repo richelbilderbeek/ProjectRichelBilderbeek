@@ -6,10 +6,12 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "reversiboard.h"
+#include "reversiwidget.h"
 #include "reversimaindialog.h"
 #include "trace.h"
 
-int ribi::ReversiMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::reversi::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -26,7 +28,7 @@ int ribi::ReversiMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
   return 0;
 }
 
-const ribi::About ribi::ReversiMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -41,7 +43,7 @@ const ribi::About ribi::ReversiMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ReversiMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::reversi::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -55,7 +57,7 @@ const ribi::Help ribi::ReversiMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ReversiMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::reversi::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramReversi
@@ -64,12 +66,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ReversiMenuDialog::GetProgram
   return p;
 }
 
-const std::string ribi::ReversiMenuDialog::GetVersion() const noexcept
+const std::string ribi::reversi::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ReversiMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::reversi::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07-13: version 1.1: conformized to ProjectRichelBilderbeekConsole"
@@ -77,14 +79,17 @@ const std::vector<std::string> ribi::ReversiMenuDialog::GetVersionHistory() cons
 }
 
 #ifndef NDEBUG
-void ribi::ReversiMenuDialog::Test() noexcept
+void ribi::reversi::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ReversiMenuDialog::Test");
-  TRACE("Finished ribi::ReversiMenuDialog::Test successfully");
+  TRACE("Starting ribi::reversi::MenuDialog::Test");
+  MainDialog();
+  Widget();
+  Board();
+  TRACE("Finished ribi::reversi::MenuDialog::Test successfully");
 }
 #endif

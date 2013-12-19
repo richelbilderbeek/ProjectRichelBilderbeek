@@ -47,6 +47,10 @@ const Coordinat3D operator+(
   const Coordinat3D& v1,
   const Coordinat3D& v2);
 
+///Calculate the distance between two coordinats
+double Distance(const Coordinat3D& lhs,const Coordinat3D& rhs);
+
+///When viewing a coordinat as a vector from origin, calculate its length
 double Length(const Coordinat3D& v);
 
 } //~namespace ribi

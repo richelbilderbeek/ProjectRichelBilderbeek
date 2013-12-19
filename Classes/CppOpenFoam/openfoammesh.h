@@ -34,6 +34,10 @@ struct Mesh
   ///Write the Mesh to a Files
   Files CreateFiles() const noexcept;
 
+  const boost::shared_ptr<const Face> FindMostSimilarFace(
+    const std::vector<ribi::Coordinat3D>& coordinats
+  ) const;
+
   int GetNumberOfBoundaries() const noexcept;
   int GetNumberOfCells() const noexcept;
   int GetNumberOfFaces() const noexcept;
@@ -41,7 +45,8 @@ struct Mesh
 
   const std::vector<boost::shared_ptr<Boundary> >& GetBoundaries() noexcept { return m_boundaries; }
   const std::vector<boost::shared_ptr<Cell> >& GetCells() noexcept { return  m_cells; }
-  const std::vector<boost::shared_ptr<Face> >& GetFaces() noexcept { return m_faces; }
+  const std::vector<boost::shared_ptr<      Face> >& GetFaces()       noexcept { return m_faces; }
+  const std::vector<boost::shared_ptr<const Face> >  GetFaces() const noexcept;
   const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& GetPoints() noexcept { return m_points; }
 
   private:
@@ -67,6 +72,14 @@ struct Mesh
   ///when they belong to the
   ///same Boundary
   bool AreFacesOrdered() const noexcept;
+
+  static double CalcSimilarity(
+    const std::vector<ribi::Coordinat3D>& v,
+    const std::vector<ribi::Coordinat3D>& w) noexcept;
+
+  static double CalcSimilarity(
+    const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
+    const std::vector<ribi::Coordinat3D>& w) noexcept;
 
   static const std::vector<boost::shared_ptr<Boundary> > CreateBoundaries(
     const Files& files, const std::vector<boost::shared_ptr<Face>>& faces);

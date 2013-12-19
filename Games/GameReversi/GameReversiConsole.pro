@@ -1,4 +1,4 @@
-include(../../DesktopApplication.pri)
+include(../../ConsoleApplication.pri)
 
 #Libs
 include(../../Libraries/Boost.pri)
@@ -12,14 +12,10 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
-#Desktop
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
-
 #Specific for this application
 #Console
 include(../../Classes/CppReversi/CppReversi.pri)
-include(../../Game/GameReversi/GameReversiConsole.pri)
+include(../../Games/GameReversi/GameReversiConsole.pri)
 
 SOURCES +=  \
   main.cpp

@@ -1,5 +1,5 @@
-#ifndef TESTREVERSIMAINDIALOG_H
-#define TESTREVERSIMAINDIALOG_H
+#ifndef REVERSIMAINDIALOG_H
+#define REVERSIMAINDIALOG_H
 
 #include <string>
 #include <vector>
@@ -10,16 +10,15 @@
 #include "about.h"
 #pragma GCC diagnostic pop
 
-struct QImage;
-
 namespace ribi {
+namespace reversi {
 
-struct TestReversiMainDialog
+struct MainDialog
 {
-  TestReversiMainDialog();
+  MainDialog();
 
   ///Start a Reversi game
-  void Execute();
+  void Execute(const int size);
 
   private:
 
@@ -28,6 +27,7 @@ struct TestReversiMainDialog
   #endif
 };
 
+} //~namespace reversi
 } //~namespace ribi
 
-#endif // TESTREVERSIMAINDIALOG_H
+#endif // REVERSIMAINDIALOG_H

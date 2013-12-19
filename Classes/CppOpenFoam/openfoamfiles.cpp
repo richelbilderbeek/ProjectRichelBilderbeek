@@ -65,15 +65,19 @@ ribi::foam::Files::Files(
   assert(m_owner);
   assert(m_points);
 
+  #ifndef NDEBUG
   CheckMe();
+  #endif
+
 }
 
 void ribi::foam::Files::CheckMe() const
 {
+  TRACE_FUNC();
   const FaceIndex n_faces { FaceIndex(static_cast<int>(this->m_faces->GetItems().size())) };
   const PointIndex n_points { PointIndex(static_cast<int>(this->m_points->GetItems().size())) };
 
-  //'boundary' file individuals items
+  TRACE("CheckMe: 'boundary' file individuals items");
   for (const BoundaryFileItem& item: m_boundary->GetItems())
   {
     std::stringstream s;
@@ -101,7 +105,7 @@ void ribi::foam::Files::CheckMe() const
       throw std::logic_error(s.str());
     }
   }
-  //'boundary' file: no ranges should overlap
+  TRACE("CheckMe: 'boundary' file: no ranges should overlap");
   const int n_boundary_items { static_cast<int>(m_boundary->GetItems().size()) };
   for (int i=0; i!=n_boundary_items; ++i)
   {
@@ -138,8 +142,8 @@ void ribi::foam::Files::CheckMe() const
       }
     }
   }
-  //'faces' files
-  //Check point indices are valid
+  //
+  TRACE("CheckMe: 'faces' files: point indices must be valid");
   for (const FacesFileItem& item: m_faces->GetItems())
   {
     for (const PointIndex& index: item.GetPointIndices())
@@ -159,7 +163,7 @@ void ribi::foam::Files::CheckMe() const
       }
     }
   }
-  //Detect doublures
+  TRACE("CheckMe: 'faces' files: detect doublures");
   {
     for (FaceIndex i = FaceIndex(0); i!=n_faces; ++i)
     {
@@ -172,15 +176,15 @@ void ribi::foam::Files::CheckMe() const
         std::sort(v_j.begin(),v_j.end());
         if (v_i == v_j)
         {
-        std::stringstream s;
-        s << "Error in 'faces' file in these items:\n"
-          << "\n"
-          << "Item " << i << ": " << m_faces->GetItem(i) << '\n'
-          << "Item " << j << ": " << m_faces->GetItem(j) << '\n'
-          << "\n"
-          << "Faces at index " << i << " and " << j << " consist of the same Point indices";
-        ;
-        throw std::logic_error(s.str());
+          std::stringstream s;
+          s << "Error in 'faces' file in these items:\n"
+            << "\n"
+            << "Item " << i << ": " << m_faces->GetItem(i) << '\n'
+            << "Item " << j << ": " << m_faces->GetItem(j) << '\n'
+            << "\n"
+            << "Faces at index " << i << " and " << j << " consist of the same Point indices";
+          ;
+          throw std::logic_error(s.str());
 
         }
       }
@@ -188,7 +192,7 @@ void ribi::foam::Files::CheckMe() const
     }
 
   }
-  //'owner' files
+  TRACE("CheckMe: 'owner' files");
   if (m_owner->GetItems().size() != m_faces->GetItems().size())
   {
     std::stringstream s;
@@ -248,12 +252,16 @@ void ribi::foam::Files::CheckMe() const
     }
   }
   #endif
+  TRACE("CheckMe finished successfully");
 }
 
 const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
   const std::string& folder_name)
 {
+  std::cout << (__func__) << std::endl;
+
   assert(ribi::fileio::IsFolder(folder_name));
+
   const ribi::fileio::Filename filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
     + CreateFilenames()->GetBoundary().Get()
@@ -265,18 +273,24 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBound
     TRACE("BREAK");
   }
   #endif
+
   assert(fileio::IsRegularFile(filename));
+
   std::ifstream is(filename.Get().c_str());
+
   try
   {
+
     const boost::shared_ptr<ribi::foam::BoundaryFile> p {
       new ribi::foam::BoundaryFile(filename.Get())
     };
+
     assert(p);
     return p;
   }
   catch(std::runtime_error& e)
   {
+
     std::stringstream s;
     s << "File '" << filename << "' is not an OpenFOAM 'boundary' file: "
       << e.what();
@@ -420,6 +434,7 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefault
 const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
   const std::string& folder_name)
 {
+  std::cout << (__func__) << std::endl;
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
@@ -461,6 +476,7 @@ void ribi::foam::Files::CreateFolders(const std::string& folder_name)
 const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeighbour(
   const std::string& folder_name)
 {
+  std::cout << (__func__) << std::endl;
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
@@ -477,6 +493,7 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeig
 const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
   const std::string& folder_name)
 {
+  std::cout << (__func__) << std::endl;
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
@@ -497,6 +514,7 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
 const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
   const std::string& folder_name)
 {
+  std::cout << (__func__) << std::endl;
   assert(ribi::fileio::IsFolder(folder_name));
   const ribi::fileio::Filename filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
