@@ -780,10 +780,10 @@ void ribi::foam::Mesh::Test() noexcept
     const boost::shared_ptr<Face> f4 { new Face(n4,own4, { p2, p6, p7, p3 } ) };
     const boost::shared_ptr<Face> f5 { new Face(n5,own5, { p4, p5, p7, p6 } ) };
 
-    const std::vector<boost::shared_ptr<Face>> faces { f0,f1,f2,f3,f4,f5,f6 };
-    cell->AssignOwnedFaces( { f0,f1,f2,f3,f4,f5,f6 } );
+    const std::vector<boost::shared_ptr<Face>> faces { f0,f1,f2,f3,f4,f5 };
+    cell->AssignOwnedFaces( { f0,f1,f2,f3,f4,f5 } );
 
-    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5,f6 },"defaultFaces","patch" ) };
+    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces","patch" ) };
     const std::vector<boost::shared_ptr<Boundary>> boundaries { boundary };
 
     const Mesh m(
@@ -794,11 +794,21 @@ void ribi::foam::Mesh::Test() noexcept
     );
     for (const boost::shared_ptr<Face> face: faces)
     {
+      const auto points { face->GetPoints() };
+      std::vector<ribi::Coordinat3D> coordinats;
+      std::transform(points.begin(),points.end(),
+        std::back_inserter(coordinats),
+        [](const boost::shared_ptr<const ribi::Coordinat3D> shared_coordinat)
+        {
+          return *shared_coordinat;
+        }
+      );
       //For every Face, extract the coordinats
       //FindMostSimilar should find back the original Face
-      assert(m.FindMostSimilarFace(face->GetPoints()) == face);
+      assert(m.FindMostSimilarFace(coordinats) == face);
     }
   }
+  assert(1==2);
   TRACE("Finished ribi::foam::Mesh::Test successfully");
 }
 #endif
