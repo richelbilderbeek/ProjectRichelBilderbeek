@@ -96,7 +96,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog w;<br/>
+&nbsp;&nbsp;<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -264,19 +264,19 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog;<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog();<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog *ui;<br/>
 };<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTTEXTPOSITIONWIDGETDIALOG_H<br/>
@@ -295,9 +295,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 <a href="CppInclude.htm">#include</a> "<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.htm">widget</a>dialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_<a href="Tools.htm">tool</a>testtextposition<a href="CppWidget.htm">widget</a>dialog.h"<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog::<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<br/>
@@ -314,7 +314,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog::~<a href="Tools.htm">Tool</a>TestTextPosition<a href="CppWidget.htm">Widget</a>Dialog()<br/>
+<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog::~<a href="Tools.htm">Tool</a><a href="ToolTestTextPositionWidget.htm">TestTextPositionWidget</a>Dialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>

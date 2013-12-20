@@ -112,13 +112,13 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighterplayer.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighter<a href="CppMain.htm">main</a>dialog.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighterbackground.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighterbackground.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighter<a href="CppMain.htm">main</a><a href="CppWidget.htm">widget</a>.h<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighterplayer.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighter<a href="CppMain.htm">main</a>dialog.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighterbackground.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighterbackground.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKnokfighter</a>/qtknokfighter<a href="CppMain.htm">main</a><a href="CppWidget.htm">widget</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -151,7 +151,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameKnokfighter/knokfighterattack.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "knokfighterattack.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameKnokfighter.htm">knokfighter</a>attack.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Knokfighter {<br/>
 <br/>
@@ -189,7 +189,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameKnokfighter/knokfighterkey.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "knokfighterkey.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameKnokfighter.htm">knokfighter</a>key.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Knokfighter {<br/>
 <br/>
@@ -223,6 +223,10 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -239,7 +243,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameKnokfighter/knokfightermenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "knokfightermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameKnokfighter.htm">knokfighter</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -247,16 +251,23 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::KnokfighterMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::KnokfighterMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -264,9 +275,9 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Knokfighter",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppDouble.htm">Double</a> Dragon clone",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"today",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"200x-201x",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GameKnokfighter.htm">GameKnokfighter</a>.htm",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
@@ -308,6 +319,19 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-11-07: <a href="CppVersion.htm">version</a> 1.1: conformized to <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>Console"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::KnokfighterMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::KnokfighterMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::KnokfighterMenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -386,8 +410,8 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameKnokfighter.htm">GameKn
 <table summary="./GameKnokfighter/knokfighterplayer.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "knokfighterplayer.h"<br/>
-<a href="CppInclude.htm">#include</a> "knokfighterplayerstate.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameKnokfighter.htm">knokfighter</a>player.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameKnokfighter.htm">knokfighter</a>playerstate.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Knokfighter {<br/>
 <br/>
@@ -563,7 +587,7 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameKnokfighter/knokfighterplayerstate.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "knokfighterplayerstate.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameKnokfighter.htm">knokfighter</a>playerstate.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Knokfighter {<br/>
 <br/>
@@ -657,7 +681,7 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQColor.htm">QColor</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfighterbackground.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a>background.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppRainbow.htm">rainbow</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -708,10 +732,10 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>./GameKnokfighter/qtknokfightermaindialog.h</h2>
+<h2>./GameKnokfighter/qtknokfightermainwidget.h</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="./GameKnokfighter/qtknokfightermaindialog.h" border = "1"><tr><td><code>
+<table summary="./GameKnokfighter/qtknokfightermainwidget.h" border = "1"><tr><td><code>
 <a href="CppIfndef.htm">#ifndef</a> QTKNOKFIGHTERMAINDIALOG_H<br/>
 <a href="CppDefine.htm">#define</a> QTKNOKFIGHTERMAINDIALOG_H<br/>
 <br/>
@@ -730,13 +754,13 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>KnokfighterBackground;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>KnokfighterPlayer;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppQtSignals.htm">signals</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
@@ -752,6 +776,10 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterBackground * <b><a href="CppConst.htm">const</a></b> m_background;<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>KnokfighterPlayer&gt; &gt; m_players;<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsScene.htm">QGraphicsScene</a> * <b><a href="CppConst.htm">const</a></b> m_scene;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -764,26 +792,26 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>./GameKnokfighter/qtknokfightermaindialog.cpp</h2>
+<h2>./GameKnokfighter/qtknokfightermainwidget.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="./GameKnokfighter/qtknokfightermaindialog.cpp" border = "1"><tr><td><code>
+<table summary="./GameKnokfighter/qtknokfightermainwidget.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfightermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a><a href="CppMain.htm">main</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfighterbackground.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfighterplayer.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a>background.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a>player.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMainDialog::<a href="CppQt.htm">Qt</a>KnokfighterMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;<a href="CppQGraphicsView.htm">QGraphicsView</a>(parent),<br/>
 &nbsp;&nbsp;m_background(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>KnokfighterBackground(800,600)),<br/>
 &nbsp;&nbsp;m_players(<br/>
@@ -794,6 +822,9 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 &nbsp;&nbsp;),<br/>
 &nbsp;&nbsp;m_scene(<b><a href="CppNew.htm">new</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>(<b><a href="CppThis.htm">this</a></b>))<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setScene(m_scene);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the background<br/>
@@ -819,7 +850,7 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMainDialog::do_main_<a href="CppTime.htm">time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>::do_main_<a href="CppTime.htm">time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v is the background moving speed. Setting <b><a href="CppThis.htm">this</a></b> to e.g. 0.1<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>causes the background to keep the player centered more gradually<br/>
@@ -858,7 +889,7 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMainDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b>(event-&gt;key())<br/>
 &nbsp;&nbsp;{<br/>
@@ -873,6 +904,29 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>::Test");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>KnokfighterBackground(800,600);<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>KnokfighterPlayer&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>KnokfighterPlayer(<a href="CppQt.htm">Qt</a>KnokfighterPlayer::Name::richel));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>KnokfighterPlayer&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>KnokfighterPlayer(<a href="CppQt.htm">Qt</a>KnokfighterPlayer::Name::joost));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterMain<a href="CppWidget.htm">Widget</a>::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -935,12 +989,12 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfighterplayer.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a>player.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQBitmap.htm">QBitmap</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsScene.htm">QGraphicsScene</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfighterbackground.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a>background.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>KnokfighterPlayer::<a href="CppQt.htm">Qt</a>KnokfighterPlayer(<br/>
@@ -993,7 +1047,7 @@ Player<a href="CppState.htm">State</a> * Player::GetWalk<a href="CppState.htm">S
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtknokfightermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameKnokfighter.htm">knokfighter</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>

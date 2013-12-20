@@ -58,6 +58,7 @@ void loop()
   //The time between a change in current direction
   const int my_toggle_delay = 10000; //msec
   //Route A
+  
   digitalWrite(pin_1,LOW);
   digitalWrite(pin_2,LOW);
   digitalWrite(pin_3,LOW);

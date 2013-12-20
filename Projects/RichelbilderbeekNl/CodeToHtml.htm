@@ -1,0 +1,10 @@
+#!/bin/bash
+for folder in `ls | egrep -v "build-"`
+do
+&nbsp;&nbsp;echo $folder
+
+&nbsp;&nbsp;~/bin/ToolCodeToHtmlConsole ./$folder
+done
+
+rm tmp.txt
+rm trace_out.txt

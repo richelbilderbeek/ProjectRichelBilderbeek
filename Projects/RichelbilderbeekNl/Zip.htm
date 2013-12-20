@@ -1,0 +1,10 @@
+#!/bin/bash
+for file in `find ./ -type d`
+do
+&nbsp;&nbsp;if [ $file = "./" ] 
+&nbsp;&nbsp;then 
+&nbsp;&nbsp;&nbsp;&nbsp;continue 
+&nbsp;&nbsp;fi
+&nbsp;&nbsp;cmd="zip -r "$file".zip "$file
+&nbsp;&nbsp;$cmd
+done

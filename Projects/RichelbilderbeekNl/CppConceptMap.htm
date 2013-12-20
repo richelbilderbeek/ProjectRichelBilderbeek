@@ -655,6 +655,9 @@ namespace cmap {<br/>
 <br/>
 struct ConceptMapFactory;<br/>
 <br/>
+///A concept map<br/>
+///Its interface is based on nodes and edges<br/>
+///Use ConceptMapWidget to work with commands<br/>
 struct ConceptMap<br/>
 {<br/>
 &nbsp;&nbsp;ConceptMap(const ConceptMap&amp;) = delete;<br/>
@@ -670,6 +673,11 @@ struct ConceptMap<br/>
 &nbsp;&nbsp;static bool CanConstruct(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt;&amp; nodes,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Edge&gt; &gt;&amp; edges);<br/>
+<br/>
+&nbsp;&nbsp;///Prepend the question as a first node, before adding the supplied nodes<br/>
+&nbsp;&nbsp;static const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt; CreateNodes(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; question,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt;&amp; nodes);<br/>
 <br/>
 &nbsp;&nbsp;///Create all sub-conceptmaps<br/>
 &nbsp;&nbsp;///Note that CreateSubs()[0] is the concept map around the focal question<br/>
@@ -714,14 +722,9 @@ private:<br/>
 &nbsp;&nbsp;///The nodes<br/>
 &nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt; m_nodes;<br/>
 <br/>
-&nbsp;&nbsp;///Prepend the question as a first node, before adding the supplied nodes<br/>
-&nbsp;&nbsp;static const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt; CreateNodes(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; question,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt;&amp; nodes);<br/>
-<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Block constructor, except for the friend ConceptMapFactory<br/>
@@ -737,7 +740,6 @@ private:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;cmap::Cluster&gt;&amp; cluster);<br/>
 &nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;friend ConceptMapFactory;<br/>
-<br/>
 &nbsp;&nbsp;///Block destructor, except for the friend boost::checked_delete<br/>
 &nbsp;&nbsp;~ConceptMap() {}<br/>
 &nbsp;&nbsp;friend void boost::checked_delete&lt;&gt;(ConceptMap* x);<br/>
@@ -793,7 +795,6 @@ ribi::cmap::CenterNode::CenterNode(<br/>
 #pragma GCC diagnostic pop<br/>
 <br/>
 namespace ribi {<br/>
-<br/>
 namespace cmap {<br/>
 <br/>
 struct CenterNodeFactory;<br/>
@@ -951,6 +952,58 @@ struct CenterNodeFactory<br/>
 } //~namespace ribi<br/>
 <br/>
 #endif // CONCEPTMAPCENTERNODEFACTORY_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppConceptMap/conceptmapcommand.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppConceptMap/conceptmapcommand.cpp" border = "1"><tr><td><code>
+#include "conceptmapcommand.h"<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+#pragma GCC diagnostic pop<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppConceptMap/conceptmapcommand.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppConceptMap/conceptmapcommand.h" border = "1"><tr><td><code>
+#ifndef CONCEPTMAPCOMMAND_H<br/>
+#define CONCEPTMAPCOMMAND_H<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+namespace cmap {<br/>
+<br/>
+///Command can be used to do and undo commands to a concept map Widget<br/>
+struct Command<br/>
+{<br/>
+<br/>
+};<br/>
+<br/>
+} //~namespace cmap<br/>
+} //~namespace ribi<br/>
+<br/>
+<br/>
+#endif // CONCEPTMAPCOMMAND_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1387,18 +1440,22 @@ struct Concept<br/>
 &nbsp;&nbsp;static const std::string ToXml(const boost::shared_ptr&lt;const ribi::cmap::Concept&gt;&amp; t);<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
+<br/>
+&nbsp;&nbsp;friend class QtConceptMapConceptEditDialog;<br/>
 &nbsp;&nbsp;friend class QtConceptMapDialog;<br/>
+&nbsp;&nbsp;friend class QtRateConceptDialogNewName;<br/>
+&nbsp;&nbsp;friend class QtConceptMapTestConceptItemDialog;<br/>
+&nbsp;&nbsp;friend class QtConceptMapTestEdgeItemDialog;<br/>
+&nbsp;&nbsp;friend class QtConceptMapTestNodeItemDialog;<br/>
+&nbsp;&nbsp;friend class QtEdge;<br/>
+&nbsp;&nbsp;friend class QtNode;<br/>
+&nbsp;&nbsp;friend class QtRateExamplesDialogNewName;<br/>
 &nbsp;&nbsp;friend class QtStudentMenuDialog;<br/>
-&nbsp;&nbsp;friend class QtTestConceptItemDialog;<br/>
 &nbsp;&nbsp;friend class QtTestConceptMapEditWidgetDialog;<br/>
 &nbsp;&nbsp;friend class QtTestConceptMapRateWidgetDialog;<br/>
 &nbsp;&nbsp;friend class QtTestEdgeItemDialog;<br/>
 &nbsp;&nbsp;friend class QtTestNodeItemDialog;<br/>
-&nbsp;&nbsp;friend class QtEdgeItem;<br/>
-&nbsp;&nbsp;friend class QtNodeItem;<br/>
-&nbsp;&nbsp;friend class QtConceptEditDialog;<br/>
-&nbsp;&nbsp;friend class QtRateConceptDialog;<br/>
-&nbsp;&nbsp;friend class QtRateExamplesDialog;<br/>
+<br/>
 &nbsp;&nbsp;///Set the examples<br/>
 &nbsp;&nbsp;void SetExamples(const boost::shared_ptr&lt;ribi::cmap::Examples&gt;&amp; examples);<br/>
 <br/>
@@ -1444,7 +1501,7 @@ struct Concept<br/>
 &nbsp;&nbsp;int m_rating_specificity;<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Use checked_delete for destructor<br/>
 &nbsp;&nbsp;~Concept() {}<br/>
@@ -1890,7 +1947,7 @@ void ribi::cmap::Edge::SetY(const double y)<br/>
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::cmap::Edge::Test()<br/>
+void ribi::cmap::Edge::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -2113,7 +2170,7 @@ struct Edge<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;Edge() = delete;<br/>
@@ -2550,7 +2607,7 @@ ribi::cmap::Competency ribi::cmap::Example::StrToCompetency(const std::string&am
 &nbsp;&nbsp;throw std::logic_error("ribi::cmap::Example::StrToCompetency: unknown string");<br/>
 }<br/>
 <br/>
-void ribi::cmap::Example::Test()<br/>
+void ribi::cmap::Example::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -2800,7 +2857,7 @@ struct Example<br/>
 &nbsp;&nbsp;static cmap::Competency StrToCompetency(const std::string&amp; s);<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Convert Example to a std::string<br/>
 &nbsp;&nbsp;static const std::string ToXml(const boost::shared_ptr&lt;const cmap::Example&gt;&amp; t);<br/>
@@ -3076,7 +3133,7 @@ void ribi::cmap::Examples::OnExampleChanged()<br/>
 &nbsp;&nbsp;m_signal_examples_changed(this);<br/>
 }<br/>
 <br/>
-void ribi::cmap::Examples::Test()<br/>
+void ribi::cmap::Examples::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -3285,7 +3342,7 @@ private:<br/>
 &nbsp;&nbsp;void OnExampleChanged();<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Correct befriending, from http://richelbilderbeek.nl/CppChecked_delete.htm<br/>
 &nbsp;&nbsp;friend void boost::checked_delete&lt;&gt;(Examples* x);<br/>
@@ -3534,17 +3591,6 @@ const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; ribi::cmap::ConceptMapFact
 &nbsp;&nbsp;return p;<br/>
 }<br/>
 <br/>
-#ifdef TO_ADD_TO_PROJECTBRAINWEAVER<br/>
-const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; ribi::cmap::ConceptMapFactory::CreateFromCluster(<br/>
-&nbsp;&nbsp;const std::string&amp; question,<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;cmap::Cluster&gt;&amp; cluster)<br/>
-{<br/>
-&nbsp;&nbsp;boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; p(new ConceptMap(question,cluster));<br/>
-&nbsp;&nbsp;assert(p);<br/>
-&nbsp;&nbsp;assert(p-&gt;IsValid());<br/>
-&nbsp;&nbsp;return p;<br/>
-}<br/>
-#endif<br/>
 <br/>
 const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; ribi::cmap::ConceptMapFactory::Create(<br/>
 &nbsp;&nbsp;const std::string&amp; focal_question)<br/>
@@ -5011,12 +5057,6 @@ struct ConceptMapFactory<br/>
 &nbsp;&nbsp;static const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; focal_question);<br/>
 <br/>
-&nbsp;&nbsp;#ifdef TO_ADD_TO_PROJECTBRAINWEAVER<br/>
-&nbsp;&nbsp;static const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; CreateFromCluster(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; question,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;cmap::Cluster&gt;&amp; cluster);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
 &nbsp;&nbsp;static const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Node&gt; &gt;&amp; nodes,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::Edge&gt; &gt;&amp; edges = {});<br/>
@@ -5076,8 +5116,9 @@ struct ConceptMap;<br/>
 struct Edge;<br/>
 struct Example;<br/>
 struct Examples;<br/>
-struct File;<br/>
+//struct File;<br/>
 struct Node;<br/>
+<br/>
 <br/>
 } //~namespace cmap<br/>
 } //~namespace ribi<br/>
@@ -5813,7 +5854,7 @@ void ribi::cmap::Node::SetY(const double y)<br/>
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::cmap::Node::Test()<br/>
+void ribi::cmap::Node::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -6080,7 +6121,7 @@ struct Node<br/>
 &nbsp;&nbsp;double m_y;<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 };<br/>
 <br/>
@@ -6268,7 +6309,7 @@ struct NodeFactory<br/>
 <br/>
 #include &lt;cassert&gt;<br/>
 <br/>
-#ifdef COMPILER_SUPPORTS_THREADS_20130507<br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;thread&gt;<br/>
 #endif<br/>
 <br/>
@@ -6278,14 +6319,14 @@ struct NodeFactory<br/>
 #pragma GCC diagnostic pop<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::cmap::Concept::Test()<br/>
+void ribi::cmap::Concept::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -6402,7 +6443,7 @@ void ribi::cmap::Concept::Test()<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;TRACE("Concept::Test finished successfully");<br/>
 <br/>
-&nbsp;&nbsp;#ifdef COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
@@ -6430,7 +6471,7 @@ void ribi::cmap::Concept::Test()<br/>
 #include &lt;set&gt;<br/>
 #include &lt;iterator&gt;<br/>
 <br/>
-#ifdef COMPILER_SUPPORTS_THREADS_20130507<br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;thread&gt;<br/>
 #endif<br/>
 <br/>
@@ -6456,14 +6497,14 @@ void ribi::cmap::Concept::Test()<br/>
 #pragma GCC diagnostic pop<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::cmap::ConceptMap::Test()<br/>
+void ribi::cmap::ConceptMap::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -7003,13 +7044,64 @@ void ribi::cmap::ConceptMap::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;TRACE("ConceptMap::Test finished successfully");<br/>
-&nbsp;&nbsp;#ifdef COMPILER_SUPPORTS_THREADS_20130507<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 #endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppConceptMap/conceptmapwidget.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppConceptMap/conceptmapwidget.cpp" border = "1"><tr><td><code>
+#include "conceptmapwidget.h"<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+#pragma GCC diagnostic pop<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppConceptMap/conceptmapwidget.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppConceptMap/conceptmapwidget.h" border = "1"><tr><td><code>
+#ifndef CONCEPTMAPWIDGET_H<br/>
+#define CONCEPTMAPWIDGET_H<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+namespace cmap {<br/>
+<br/>
+///Widget does the Command-driven communication with ConceptMap<br/>
+struct Widget<br/>
+{<br/>
+<br/>
+};<br/>
+<br/>
+} //~namespace cmap<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // CONCEPTMAPWIDGET_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -7045,7 +7137,9 @@ HEADERS += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapnode.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapnodefactory.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmaphelper.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapedge.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapedge.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapwidget.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapcommand.h<br/>
 <br/>
 SOURCES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapcenternode.cpp \<br/>
@@ -7065,7 +7159,9 @@ SOURCES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapnodefactory.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmaphelper.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmaptestconceptmap.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmaptestconcept.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmaptestconcept.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapwidget.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppConceptMap/conceptmapcommand.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

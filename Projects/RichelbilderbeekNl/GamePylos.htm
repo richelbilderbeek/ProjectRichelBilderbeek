@@ -181,6 +181,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -230,17 +234,23 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>game.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>move.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>player.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -259,6 +269,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Game <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Game::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Move <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Move::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::MustRemove<a href="CppState.htm">State</a>:: <b><a href="CppEnum.htm">enum</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Player <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Player:: <b><a href="CppEnum.htm">enum</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Position<a href="CppState.htm">State</a>:: <b><a href="CppEnum.htm">enum</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppPylos.htm">Pylos</a>::Winner <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppPylos.htm">Pylos</a>::Winner:: <b><a href="CppEnum.htm">enum</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
@@ -297,6 +311,38 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2012-05-28: <a href="CppVersion.htm">version</a> 2.0: improved <a href="CppVersion.htm">version</a> to work with <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board&gt; a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardAdvanced<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>::Board&gt; b(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>::BoardBasic<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b);<br/>
+&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Coordinat(0,0,0);<br/>
+&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::CurrentMove<a href="CppState.htm">State</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPylos.htm">Pylos</a>::Game&gt; g_a(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPylos.htm">Pylos</a>::Game(a)<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g_a);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPylos.htm">Pylos</a>::Game&gt; g_b(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPylos.htm">Pylos</a>::Game(b)<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(g_b);<br/>
+&nbsp;&nbsp;<a href="CppPylos.htm">Pylos</a>::Move();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppPylos.htm">Pylos</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -525,6 +571,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog *ui;<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnWinner();<br/>
 };<br/>
@@ -572,15 +622,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppPylos.htm">pylos</a>game.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>wondialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="CppPylos.htm">pylos</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog(<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a> * <b><a href="CppConst.htm">const</a></b> <a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent), <a href="CppComment.htm">//</a>Removed <a href="CppQt.htm">Qt</a>::Window flag<br/>
+&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>(<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a> ? <a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a> : <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>Game<a href="CppWidget.htm">Widget</a>)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect<br/>
@@ -620,9 +674,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>WonDialog d;<br/>
 &nbsp;&nbsp;d.SetWinner(m_<a href="CppPylos.htm">pylos</a>_<a href="CppWidget.htm">widget</a>-&gt;Get<a href="CppPylos.htm">Pylos</a>()-&gt;GetWinner());<br/>
-&nbsp;&nbsp;d.exec();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -688,6 +755,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_type_basic;<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> m_theme_bw;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnStart();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAbout.htm">About</a>();<br/>
@@ -745,6 +816,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppPylos.htm">pylos</a>sprites.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtPylosWidget.htm">qtpyloswidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="CppPylos.htm">pylos</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
@@ -754,6 +826,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_type_basic(<b><a href="CppTrue.htm">true</a></b>),<br/>
 &nbsp;&nbsp;m_theme_bw(<b><a href="CppFalse.htm">false</a></b>)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Generate sprites when needed<br/>
@@ -885,6 +960,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MainDialog d(p);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppPylos.htm">Pylos</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

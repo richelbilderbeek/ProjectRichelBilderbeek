@@ -132,7 +132,18 @@ void ribi::fileio::CreateFolder(const std::string&amp; folder)<br/>
 <br/>
 void ribi::fileio::DeleteFile(const std::string&amp; filename)<br/>
 {<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;if(!IsRegularFile(filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(filename);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;assert(IsRegularFile(filename)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Can only delete existing files");<br/>
 &nbsp;&nbsp;std::remove(filename.c_str());<br/>
+<br/>
+&nbsp;&nbsp;//Under Windows, readonly files must be made deleteable<br/>
 &nbsp;&nbsp;if (IsRegularFile(filename))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;#ifdef _WIN32<br/>
@@ -157,15 +168,35 @@ void ribi::fileio::DeleteFolder(const std::string&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;assert(IsFolder(folder)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Can only delete folders that do exist");<br/>
+<br/>
+&nbsp;&nbsp;//Delete all files<br/>
+&nbsp;&nbsp;for (const std::string&amp; subfolder: GetFoldersInFolder(folder))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DeleteFolder(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(folder.empty() ? folder : folder + fileio::GetPathSeperator())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ subfolder<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;assert(GetFoldersInFolder(folder).empty());<br/>
+&nbsp;&nbsp;for (const std::string&amp; filename: GetFilesInFolder(folder))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(folder.empty() ? folder : folder + fileio::GetPathSeperator())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ filename<br/>
+&nbsp;&nbsp; );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;assert(GetFilesInFolder(folder).empty());<br/>
 &nbsp;&nbsp;const std::string cmd = "rmdir " + folder;<br/>
 &nbsp;&nbsp;const int error = std::system(cmd.c_str());<br/>
 &nbsp;&nbsp;assert(!error &amp;&amp; "Assume rmdir works under both Windows and Linux");<br/>
 &nbsp;&nbsp;if (error)<br/>
 &nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(folder);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;throw std::runtime_error("DeleteFolder failed by system call");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;if (IsFolder(folder))<br/>
 &nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(folder);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;throw std::runtime_error("DeleteFolder failed in deleting the folder");<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -217,6 +248,8 @@ const std::vector&lt;std::string&gt; ribi::fileio::FileToVector(const std::strin
 &nbsp;&nbsp;&nbsp;&nbsp;std::getline(in,s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s); //Might throw std::bad_alloc<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//Remove empty line at back of vector<br/>
+&nbsp;&nbsp;if (!v.empty() &amp;&amp; v.back().empty()) v.pop_back();<br/>
 &nbsp;&nbsp;return v;<br/>
 }<br/>
 <br/>
@@ -344,7 +377,6 @@ const std::vector&lt;std::string&gt; ribi::fileio::GetFilesInFolderRecursive(con
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Next folder must not be the one that is just processed");<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;TRACE(folder_todo);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; files_here {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetFilesInFolder(folder_todo)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
@@ -386,6 +418,14 @@ const std::vector&lt;std::string&gt; ribi::fileio::GetFilesInFolderByRegex(<br/>
 &nbsp;&nbsp;const std::string&amp; folder,<br/>
 &nbsp;&nbsp;const std::string&amp; regex_str)<br/>
 {<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;if(!IsFolder(folder))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(folder);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
 &nbsp;&nbsp;//Get all filenames<br/>
 &nbsp;&nbsp;assert(IsFolder(folder));<br/>
 &nbsp;&nbsp;const std::vector&lt;std::string&gt; v = GetFilesInFolder(folder);<br/>
@@ -503,14 +543,15 @@ const std::string ribi::fileio::GetTempFolderName()<br/>
 <br/>
 const std::string ribi::fileio::GetVersion() noexcept<br/>
 {<br/>
-&nbsp;&nbsp;return "1.1";<br/>
+&nbsp;&nbsp;return "1.2";<br/>
 }<br/>
 <br/>
 const std::vector&lt;std::string&gt; ribi::fileio::GetVersionHistory() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;return {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-10-14: Version 1.0: initial version",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-11-08: Version 1.1: improved FileToVector, improved GetFileBasename, added some functions",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-12-10: Version 1.2: improved existing function, added some functions"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -590,10 +631,8 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;//CopyFile<br/>
 &nbsp;&nbsp;for (int i=0; i!=2; ++i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename { "tmp.txt" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename_copy { "tmp_copy.txt" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename_copy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename { GetTempFileName() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename_copy { GetTempFileName() };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Create a regular file<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
@@ -619,9 +658,81 @@ void ribi::fileio::Test() noexcept<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename_copy);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename) &amp;&amp; "Temporary file must be cleaned up");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename_copy) &amp;&amp; "Temporary file must be cleaned up");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//FilesAreIdentical<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; filenames { GetTempFileName(), GetTempFileName(), GetTempFileName() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int n_filenames = filenames.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; filename: filenames)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f &lt;&lt; filename;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=n_filenames; ++i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string s = filenames[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int j=0; j!=n_filenames; ++j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string t = filenames[j];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(FilesAreIdentical(s,t) == (i == j));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; filename: filenames)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename) &amp;&amp; "Temporary file must be cleaned up");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//FileToVector and VectorToFile, indidual<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename = GetTempFileName();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename_copy));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; v { "A","BC", "DEF" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;VectorToFile(v,filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(IsRegularFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; w { FileToVector(filename) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (v != w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(v.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; s: v) TRACE(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(w.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; t: w) TRACE(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(v == w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//FileToVector and VectorToFile, many<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;std::vector&lt;std::string&gt;&gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "A" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "A", "B" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "A", "B", "C" },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "A", "", "C" }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (const std::vector&lt;std::string&gt;&amp; w: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename = GetTempFileName();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VectorToFile(w,filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(IsRegularFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; x { FileToVector(filename) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (w != x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(w.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; s: w) TRACE(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(x.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; t: x) TRACE(t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(w == x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//GetTempFolderName, CreateFolder and DeleteFolder<br/>
 &nbsp;&nbsp;{<br/>
@@ -632,7 +743,7 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateFolder(f);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(IsFolder(f));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteFolder(f);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsFolder(f));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsFolder(f) &amp;&amp; "Temporary folder must be cleaned up");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Depth 2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -650,27 +761,7 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(IsFolder(super_folder));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteFolder(super_folder);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsFolder(super_folder));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//FilesAreIdentical<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; filenames { "tmp_a.txt", "tmp_b.txt", "tmp_c.txt" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int n_filenames = filenames.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (const std::string&amp; filename: filenames)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f(filename.c_str());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f &lt;&lt; filename;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=n_filenames; ++i)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string s = filenames[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int j=0; j!=n_filenames; ++j)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string t = filenames[j];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(FilesAreIdentical(s,t) == (i == j));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsFolder(super_folder) &amp;&amp; "Temporary folder must be cleaned up");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//GetFileBasename<br/>
@@ -828,6 +919,10 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(v.size() == 6);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Clean up<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DeleteFolder(folder_name1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DeleteFolder(folder_name2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsFolder(folder_name1) &amp;&amp; "Temporary folder must be cleaned up");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsFolder(folder_name2) &amp;&amp; "Temporary folder must be cleaned up");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//GetPath<br/>
 &nbsp;&nbsp;{<br/>
@@ -872,8 +967,7 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;//IsRegularFile<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename { "tmp.txt" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename { GetTempFileName() };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Create a regular file<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
@@ -887,7 +981,7 @@ void ribi::fileio::Test() noexcept<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename) &amp;&amp; "Temporary file must be cleaned up");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//RemovePath<br/>
@@ -910,12 +1004,11 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//RenameFile<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename_from = "tmp.txt";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename_to&nbsp;&nbsp; = "tmp2.txt";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename_from { GetTempFileName() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename_to&nbsp;&nbsp; { GetTempFileName() };<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Delete possible old temporary files<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename_from);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename_to);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename_from));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename_to));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Create new file<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -934,10 +1027,41 @@ void ribi::fileio::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Only filename_to will exist<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename_from));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert( IsRegularFile(filename_to));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Clean up<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DeleteFile(filename_to);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename_to) &amp;&amp; "Temporary file must be cleaned up");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;TRACE("Finished ribi::fileio::Test successfully");<br/>
 }<br/>
 #endif<br/>
+<br/>
+void ribi::fileio::VectorToFile(<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; v,<br/>
+&nbsp;&nbsp;const std::string&amp; filename,<br/>
+&nbsp;&nbsp;const CopyMode copy_mode<br/>
+)<br/>
+{<br/>
+&nbsp;&nbsp;if (copy_mode == CopyMode::prevent_overwrite)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsRegularFile(filename) &amp;&amp; "File must not exist");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (IsRegularFile(filename))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::stringstream msg;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msg<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "VectorToFile: not allowed to overwrite file '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&lt; "'";<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw std::runtime_error(msg.str().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::copy(v.begin(),v.end(),std::ostream_iterator&lt;std::string&gt;(f,"\n"));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;assert(IsRegularFile(filename));<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -980,7 +1104,7 @@ void CopyFile(<br/>
 //From http://www.richelbilderbeek.nl/CppDeleteFile.htm<br/>
 void DeleteFile(const std::string&amp; filename);<br/>
 <br/>
-///Deletes a folder<br/>
+///Deletes a folder its content recursively<br/>
 ///Will throw an exception if this fails<br/>
 void DeleteFolder(const std::string&amp; folder);<br/>
 <br/>
@@ -1092,6 +1216,12 @@ void RenameFile(<br/>
 void Test() noexcept;<br/>
 #endif<br/>
 <br/>
+///Convert a std::vector to a file<br/>
+void VectorToFile(<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; v,<br/>
+&nbsp;&nbsp;const std::string&amp; filename,<br/>
+&nbsp;&nbsp;const CopyMode copy_mode = CopyMode::prevent_overwrite);<br/>
+<br/>
 } //~namespace fileio<br/>
 <br/>
 } //~namespace ribi<br/>
@@ -1114,7 +1244,7 @@ void Test() noexcept;<br/>
 namespace ribi {<br/>
 namespace fileio {<br/>
 <br/>
-enum class FileCopyMode;<br/>
+enum class CopyMode;<br/>
 struct Filename;<br/>
 <br/>
 } //~namespace fileio<br/>
@@ -1175,6 +1305,13 @@ const std::string&amp; ribi::fileio::Filename::Get() const noexcept<br/>
 <br/>
 <br/>
 <br/>
+void ribi::fileio::CopyFile(<br/>
+&nbsp;&nbsp;const Filename&amp; fileNameFrom,<br/>
+&nbsp;&nbsp;const Filename&amp; fileNameTo,<br/>
+&nbsp;&nbsp;const CopyMode copy_mode)<br/>
+{<br/>
+&nbsp;&nbsp;CopyFile(fileNameFrom.Get(),fileNameTo.Get(),copy_mode);<br/>
+}<br/>
 void ribi::fileio::DeleteFile(const Filename&amp; filename) { DeleteFile(filename.Get()); }<br/>
 bool ribi::fileio::FilesAreIdentical(const Filename&amp; filename_a,const Filename&amp; filename_b)<br/>
 {<br/>
@@ -1212,6 +1349,8 @@ std::ostream&amp; ribi::fileio::operator&lt;&lt;(std::ostream&amp; os, const Fil
 #include &lt;string&gt;<br/>
 #include &lt;vector&gt;<br/>
 <br/>
+#include "filecopymode.h"<br/>
+<br/>
 namespace ribi {<br/>
 namespace fileio {<br/>
 <br/>
@@ -1235,6 +1374,10 @@ struct Filename<br/>
 <br/>
 ///Free functions on Filename. These call the fileio functions<br/>
 ///working on std::string<br/>
+void CopyFile(<br/>
+&nbsp;&nbsp;const Filename&amp; fileNameFrom,<br/>
+&nbsp;&nbsp;const Filename&amp; fileNameTo,<br/>
+&nbsp;&nbsp;const ribi::fileio::CopyMode copy_mode = CopyMode::prevent_overwrite);<br/>
 void DeleteFile(const Filename&amp; filename);<br/>
 bool FilesAreIdentical(const Filename&amp; filename_a,const Filename&amp; filename_b);<br/>
 const std::vector&lt;std::string&gt; FileToVector(const Filename&amp; filename);<br/>

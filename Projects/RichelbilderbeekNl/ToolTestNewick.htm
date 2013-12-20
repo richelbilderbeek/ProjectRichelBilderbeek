@@ -287,13 +287,13 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> Declare the supported options.<br/>
 &nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> Test<a href="CppNewick.htm">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> <a href="ToolTestNewick.htm">TestNewick</a>");<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> <a href="CppNewick.htm">newick</a>_str;<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> theta_str;<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> types_str;<br/>
@@ -318,8 +318,8 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("types",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;types_str)-&gt;default_value(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Test<a href="CppNewick.htm">Newick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Test<a href="CppNewick.htm">Newick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector)),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector)),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "types of <a href="CppAlgorithm.htm">algorithm</a>s used")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 <br/>
@@ -332,7 +332,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("a") <a href="CppOperatorLogicalOr.htm">||</a> m.count("<a href="CppAbout.htm">about</a>"))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test<a href="CppNewick.htm">Newick</a>Dialog::GetAbout().Create<a href="CppAbout.htm">About</a>Text();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetAbout().Create<a href="CppAbout.htm">About</a>Text();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
@@ -349,13 +349,13 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppAlgorithm.htm">Algorithm</a> types:\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_many_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppNewickVector.htm">NewickVector</a> (*)\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_ravindran <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": Ravindran\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppSortedBinaryNewickVector.htm">SortedBinaryNewickVector</a>\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> (**)\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Test<a href="CppNewick.htm">Newick</a>::m_flag_all <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": All\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_many_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppManyDigitNewick.htm">ManyDigitNewick</a>\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppNewickVector.htm">NewickVector</a> (*)\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_ravindran <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": Ravindran\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppSortedBinaryNewickVector.htm">SortedBinaryNewickVector</a>\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": <a href="CppTwoDigitNewick.htm">TwoDigitNewick</a> (**)\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_all <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": All\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(*) Recommended <b><a href="CppFor.htm">for</a></b> unary and binary phylogenies\n"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "(**) Recommended <b><a href="CppFor.htm">for</a></b> phylogenies of higher arities\n"<br/>
@@ -366,7 +366,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("l") <a href="CppOperatorLogicalOr.htm">||</a> m.count("licence"))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test<a href="CppNewick.htm">Newick</a>Dialog::GetAbout().CreateLicenceText();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetAbout().CreateLicenceText();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
@@ -376,7 +376,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("v") <a href="CppOperatorLogicalOr.htm">||</a> m.count("<a href="CppVersion.htm">version</a>"))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test<a href="CppNewick.htm">Newick</a>Dialog::Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::Get<a href="CppVersion.htm">Version</a>History();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.end(),<br/>
@@ -398,15 +398,15 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Invalid theta\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>Dialog dialog(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;| Test<a href="CppNewick.htm">Newick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector);<br/>
+&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>Dialog dialog(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector);<br/>
 &nbsp;&nbsp;dialog.DoCalculate(<a href="CppNewick.htm">newick</a>_str,theta_str);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the results<br/>
 &nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog.GetTable().begin(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialog.GetTable().end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;Test<a href="CppNewick.htm">Newick</a>Result&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>Result&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
 <br/>
 <br/>
 }<br/>
@@ -436,27 +436,27 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewick.htm">newick</a>dialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppNewick.htm">Newick</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewick.htm">TestNewick</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog();<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog();<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog *ui;<br/>
-&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>Dialog m_dialog;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog *ui;<br/>
+&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>Dialog m_dialog;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Display();<br/>
 <br/>
 <br/>
@@ -501,9 +501,9 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qttest<a href="CppNewick.htm">newick</a>dialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -522,12 +522,12 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;on_button_compare_clicked();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::~<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog()<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::~<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
@@ -539,14 +539,14 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::Display()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::Display()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display text<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;clear();<br/>
 &nbsp;&nbsp;ui-&gt;text-&gt;appendPlainText(m_dialog.GetText().c_str());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display table<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Test<a href="CppNewick.htm">Newick</a>Result&gt;&amp; table <a href="CppOperatorAssign.htm">=</a> m_dialog.GetTable();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>Result&gt;&amp; table <a href="CppOperatorAssign.htm">=</a> m_dialog.GetTable();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_results <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(table.size());<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;clear();<br/>
@@ -576,7 +576,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_cols <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;columnCount();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> col_width <a href="CppOperatorAssign.htm">=</a> ui-&gt;table-&gt;width() <a href="CppOperatorDivide.htm">/</a> n_cols;<br/>
@@ -586,7 +586,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::on_button_compare_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::on_button_compare_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog.DoCalculate(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString(),<br/>
@@ -594,7 +594,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;Display();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::on_<a href="CppAny.htm">any</a>_change()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::on_<a href="CppAny.htm">any</a>_change()<br/>
 {<br/>
 &nbsp;&nbsp;m_dialog.DoAutoCalculate(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;edit_<a href="CppNewick.htm">newick</a>-&gt;text().toStdString(),<br/>
@@ -603,9 +603,9 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;Display();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(Test<a href="CppNewick.htm">Newick</a>Dialog::GetAbout());<br/>
+&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetAbout());<br/>
 &nbsp;&nbsp;d.exec();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -630,12 +630,12 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppBigInt.htm">BigIntegerLibrary</a>.hh"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Test<a href="CppNewick.htm">Newick</a> is the <a href="CppBaseClass.htm">base class</a> <b><a href="CppFor.htm">for</a></b> testing <a href="CppNewick.htm">Newick</a>s <b><a href="CppFor.htm">for</a></b><br/>
+<a href="CppComment.htm">///</a><a href="ToolTestNewick.htm">TestNewick</a> is the <a href="CppBaseClass.htm">base class</a> <b><a href="CppFor.htm">for</a></b> testing <a href="CppNewick.htm">Newick</a>s <b><a href="CppFor.htm">for</a></b><br/>
 <a href="CppComment.htm">///</a>their calculated probabilities and its calculation <a href="CppTime.htm">time</a>.<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~Test<a href="CppNewick.htm">Newick</a>() {}<br/>
+&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta) <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta) <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -652,7 +652,7 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_probability;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; CreateTests(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags);<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt; &gt; CreateTests(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags);<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_all;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_binary_<a href="CppNewick.htm">newick</a>_vector;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_flag_many_digit_<a href="CppNewick.htm">newick</a>;<br/>
@@ -663,54 +663,54 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a> : <b><a href="CppPublic.htm">public</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a> : <b><a href="CppPublic.htm">public</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a>() : Test<a href="CppNewick.htm">Newick</a>() {}<br/>
+&nbsp;&nbsp;<a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a>() : <a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
 &nbsp;&nbsp;~<a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a>() {}<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="CppBinaryNewickVector.htm">BinaryNewickVector</a>"; }<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>() : Test<a href="CppNewick.htm">Newick</a>() {}<br/>
-&nbsp;&nbsp;~Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>() {}<br/>
+&nbsp;&nbsp;<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>() : <a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
+&nbsp;&nbsp;~<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>() {}<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>"; }<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewickVector.htm">TestNewickVector</a> : <b><a href="CppPublic.htm">public</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewickVector.htm">TestNewickVector</a> : <b><a href="CppPublic.htm">public</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="ToolTestNewickVector.htm">TestNewickVector</a>() : Test<a href="CppNewick.htm">Newick</a>() {}<br/>
+&nbsp;&nbsp;<a href="ToolTestNewickVector.htm">TestNewickVector</a>() : <a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
 &nbsp;&nbsp;~<a href="ToolTestNewickVector.htm">TestNewickVector</a>() {}<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="CppNewickVector.htm">NewickVector</a>"; }<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> TestRavindran : <b><a href="CppPublic.htm">public</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> TestRavindran : <b><a href="CppPublic.htm">public</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;TestRavindran() : Test<a href="CppNewick.htm">Newick</a>() {}<br/>
+&nbsp;&nbsp;TestRavindran() : <a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
 &nbsp;&nbsp;~TestRavindran() {}<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "Ravindran"; }<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a> : <b><a href="CppPublic.htm">public</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a> : <b><a href="CppPublic.htm">public</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a>() : Test<a href="CppNewick.htm">Newick</a>() {}<br/>
+&nbsp;&nbsp;<a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a>() : <a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
 &nbsp;&nbsp;~<a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a>() {}<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetTestName() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "<a href="CppSortedBinaryNewickVector.htm">SortedBinaryNewickVector</a>"; }<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> Test<a href="CppNewick.htm">Newick</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> <a href="ToolTestNewick.htm">TestNewick</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>() : Test<a href="CppNewick.htm">Newick</a>() {}<br/>
+&nbsp;&nbsp;<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>() : <a href="ToolTestNewick.htm">TestNewick</a>() {}<br/>
 &nbsp;&nbsp;~<a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>() {}<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta);<br/>
@@ -765,15 +765,15 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core gui<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewick.htm">newick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_all <a href="CppOperatorAssign.htm">=</a> 63;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_many_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> 2;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 4;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_ravindran <a href="CppOperatorAssign.htm">=</a> 8;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 16;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Test<a href="CppNewick.htm">Newick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> 32;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_all <a href="CppOperatorAssign.htm">=</a> 63;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 1;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_many_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 4;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_ravindran <a href="CppOperatorAssign.htm">=</a> 8;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector <a href="CppOperatorAssign.htm">=</a> 16;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::m_flag_two_digit_<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> 32;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()<br/>
+<a href="ToolTestNewick.htm">TestNewick</a>::<a href="ToolTestNewick.htm">TestNewick</a>()<br/>
 &nbsp;&nbsp;: m_<a href="CppTime.htm">time</a>(0.0),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_probability(0.0)<br/>
 {<br/>
@@ -781,30 +781,30 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">///</a>CreateAllTests creates all tests<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; Test<a href="CppNewick.htm">Newick</a>::CreateTests(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt; &gt; <a href="ToolTestNewick.htm">TestNewick</a>::CreateTests(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> flags)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; v;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt; &gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_binary_<a href="CppNewick.htm">newick</a>_vector)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestBinaryNewickVector.htm">TestBinaryNewickVector</a>));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_many_digit_<a href="CppNewick.htm">newick</a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_<a href="CppNewick.htm">newick</a>_vector)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestNewickVector.htm">TestNewickVector</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestNewickVector.htm">TestNewickVector</a>));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_ravindran)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> TestRavindran));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;(<b><a href="CppNew.htm">new</a></b> TestRavindran));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_sorted_binary_<a href="CppNewick.htm">newick</a>_vector)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestSortedBinaryNewickVector.htm">TestSortedBinaryNewickVector</a>));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (flags &amp; m_flag_two_digit_<a href="CppNewick.htm">newick</a>)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppNewick.htm">Newick</a>::SetProbability(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> probability)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::SetProbability(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> probability)<br/>
 {<br/>
 &nbsp;&nbsp;m_probability <a href="CppOperatorAssign.htm">=</a> probability;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppNewick.htm">Newick</a>::Set<a href="CppTime.htm">Time</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestNewick.htm">TestNewick</a>::Set<a href="CppTime.htm">Time</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a>)<br/>
 {<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">time</a>;<br/>
 }<br/>
@@ -856,7 +856,7 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 &nbsp;&nbsp;SetProbability(p);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppBool.htm">bool</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::CanCalculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -866,7 +866,7 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::Calculate(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanCalculate(<a href="CppNewick.htm">newick</a>_str,theta));<br/>
 &nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> t;<br/>
@@ -986,13 +986,13 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewick.htm">newick</a>result.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">///</a>Test<a href="CppNewick.htm">Newick</a>Dialog is the graphics-independent<br/>
-<a href="CppComment.htm">///</a>part of <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog (desktop <a href="CppApplication.htm">application</a>) and<br/>
-<a href="CppComment.htm">///</a>WtTest<a href="CppNewick.htm">Newick</a>Dialog (<a href="CppWebApplication.htm">web application</a>)<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppNewick.htm">Newick</a>Dialog<br/>
+<a href="CppComment.htm">///</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog is the graphics-independent<br/>
+<a href="CppComment.htm">///</a>part of <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog (desktop <a href="CppApplication.htm">application</a>) and<br/>
+<a href="CppComment.htm">///</a><a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog (<a href="CppWebApplication.htm">web application</a>)<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Dialog<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;Test<a href="CppNewick.htm">Newick</a>Result&gt; TableType;<br/>
-&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>Dialog(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> types <a href="CppOperatorAssign.htm">=</a> 63);<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>Result&gt; TableType;<br/>
+&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>Dialog(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> types <a href="CppOperatorAssign.htm">=</a> 63);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoAutoCalculate(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; theta_str,<br/>
@@ -1022,7 +1022,7 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppDouble.htm">double</a></b> <a href="CppGetRandomUniform.htm">GetRandomUniform</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppRandomizeTimer.htm">RandomizeTimer</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; ExtractProbabilities(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Test<a href="CppNewick.htm">Newick</a>Result&gt;&amp; v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>Result&gt;&amp; v);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHardBiologicalBinary<a href="CppNewick.htm">Newick</a>s();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetHardBinary<a href="CppNewick.htm">Newick</a>s();<br/>
@@ -1061,7 +1061,7 @@ Test<a href="CppNewick.htm">Newick</a>::Test<a href="CppNewick.htm">Newick</a>()
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewick.htm">newick</a>dialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick</a>Dialog(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> types)<br/>
+<a href="ToolTestNewick.htm">TestNewick</a>Dialog::<a href="ToolTestNewick.htm">TestNewick</a>Dialog(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> types)<br/>
 &nbsp;&nbsp;: m_types(types)<br/>
 {<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
@@ -1074,8 +1074,8 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<a href="CppNewickVector.htm">NewickVector</a>::Test();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppNewick.htm">newick</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppCreateValidNewicks.htm">CreateValidNewicks</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Test<a href="CppNewick.htm">Newick</a>::CreateTests(Test<a href="CppNewick.htm">Newick</a>::m_flag_all);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt; &gt; tests<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="ToolTestNewick.htm">TestNewick</a>::CreateTests(<a href="ToolTestNewick.htm">TestNewick</a>::m_flag_all);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBigInt.htm">BigInteger</a> max_complexity <a href="CppOperatorAssign.htm">=</a> 10000;<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str,<a href="CppNewick.htm">newick</a>s)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1093,12 +1093,12 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;&nbsp;&nbsp;m_table.resize(0);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Do all valid tests<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;&amp; test,tests)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;&amp; test,tests)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (test-&gt;CanCalculate(<a href="CppNewick.htm">newick</a>_str,theta))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test-&gt;Calculate(<a href="CppNewick.htm">newick</a>_str,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>Result r;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>Result r;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">newick</a>_str;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.theta <a href="CppOperatorAssign.htm">=</a> theta;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.test_name <a href="CppOperatorAssign.htm">=</a> test-&gt;GetTestName();<br/>
@@ -1134,7 +1134,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppNewick.htm">Newick</a>Dialog::DoAutoCalculate(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::DoAutoCalculate(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; theta_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; max_complexity_str)<br/>
@@ -1172,7 +1172,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppNewick.htm">Newick</a>Dialog::DoCalculate(<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::DoCalculate(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppNewick.htm">newick</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; theta_str)<br/>
 {<br/>
@@ -1193,15 +1193,15 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">Newick</a>::<a href="CppStringToNewick.htm">StringToNewick</a>(<a href="CppNewick.htm">newick</a>_str);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> theta <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(theta_str);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt; &gt; tests <a href="CppOperatorAssign.htm">=</a> Test<a href="CppNewick.htm">Newick</a>::CreateTests(m_types);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt; &gt; tests <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestNewick.htm">TestNewick</a>::CreateTests(m_types);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do all valid tests<br/>
-&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test<a href="CppNewick.htm">Newick</a>&gt;&amp; test,tests)<br/>
+&nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>&gt;&amp; test,tests)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (test-&gt;CanCalculate(<a href="CppNewick.htm">newick</a>_str,theta))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test-&gt;Calculate(<a href="CppNewick.htm">newick</a>_str,theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>Result r;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>Result r;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.<a href="CppNewick.htm">newick</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppNewick.htm">newick</a>_str;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.theta <a href="CppOperatorAssign.htm">=</a> theta;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.test_name <a href="CppOperatorAssign.htm">=</a> test-&gt;GetTestName();<br/>
@@ -1223,8 +1223,8 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::ExtractProbabilities(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Test<a href="CppNewick.htm">Newick</a>Result&gt;&amp; v)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::ExtractProbabilities(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>Result&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; w;<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b>&amp; i,v)<br/>
@@ -1234,15 +1234,15 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> Test<a href="CppNewick.htm">Newick</a>Dialog::GetAbout()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetAbout()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppQt.htm">Qt</a> dialog to compare the <a href="CppNewick.htm">Newick</a> <b><a href="CppClass.htm">classes</a></b>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 24th of March 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppNewick.htm">Newick</a>.htm",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="ToolTestNewick.htm">TestNewick</a>.htm",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("BigInt: <a href="CppVersion.htm">version</a> 2010.04.30");<br/>
@@ -1253,34 +1253,34 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppAbout.htm">about</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Test<a href="CppNewick.htm">Newick</a>Dialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "2.4";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;v.push_back("2011-03-06: <a href="CppVersion.htm">version</a> 2.1: initial <a href="CppVersion.htm">version</a>, same <a href="CppVersion.htm">version</a>ing as <a href="CppQt.htm">Qt</a>Test<a href="CppNewick.htm">Newick</a>Dialog");<br/>
+&nbsp;&nbsp;v.push_back("2011-03-06: <a href="CppVersion.htm">version</a> 2.1: initial <a href="CppVersion.htm">version</a>, same <a href="CppVersion.htm">version</a>ing as <a href="CppQt.htm">Qt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog");<br/>
 &nbsp;&nbsp;v.push_back("2011-03-08: <a href="CppVersion.htm">version</a> 2.2: minor changes in <a href="CppNewick.htm">Newick</a> <b><a href="CppNamespace.htm">namespace</a></b>, added <a href="CppAbout.htm">About</a> screen");<br/>
-&nbsp;&nbsp;v.push_back("2011-03-11: <a href="CppVersion.htm">version</a> 2.3: put GUI logic in GUI-independent Test<a href="CppNewick.htm">Newick</a>Dialog <b><a href="CppClass.htm">class</a></b>");<br/>
-&nbsp;&nbsp;v.push_back("2011-03-24: <a href="CppVersion.htm">version</a> 2.4: put <a href="CppAbout.htm">About</a> in Test<a href="CppNewick.htm">Newick</a>Dialog");<br/>
+&nbsp;&nbsp;v.push_back("2011-03-11: <a href="CppVersion.htm">version</a> 2.3: put GUI logic in GUI-independent <a href="ToolTestNewick.htm">TestNewick</a>Dialog <b><a href="CppClass.htm">class</a></b>");<br/>
+&nbsp;&nbsp;v.push_back("2011-03-24: <a href="CppVersion.htm">version</a> 2.4: put <a href="CppAbout.htm">About</a> in <a href="ToolTestNewick.htm">TestNewick</a>Dialog");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
-<b><a href="CppDouble.htm">double</a></b> Test<a href="CppNewick.htm">Newick</a>Dialog::<a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+<b><a href="CppDouble.htm">double</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::<a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRandomizeTimer.htm">RandomizeTimer</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppNewick.htm">Newick</a>Dialog::<a href="CppRandomizeTimer.htm">RandomizeTimer</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::<a href="CppRandomizeTimer.htm">RandomizeTimer</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppSrand.htm">std::srand</a>(<a href="CppTime.htm">std::time</a>(0));<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetHardBiologicalBinary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetHardBiologicalBinary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("((1,(1,(((((1,(1,((1,1),(3,1)))),1),((((1,((1,((1,1),(45,6))),(((1,1),(4,1)),2))),1),2),1)),1),2))),(1,1))");<br/>
@@ -1386,7 +1386,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetHardBinary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetHardBinary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("((4,4),4)");<br/>
@@ -1407,7 +1407,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetLightBiologicalBinary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetLightBiologicalBinary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("((1,(1,((((((1,1),(1,1)),1),((((1,((1,(1,(10,3))),((3,2),1))),1),2),1)),1),1))),1)");<br/>
@@ -1513,7 +1513,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetLightBinary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetLightBinary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("((2,2),2)");<br/>
@@ -1533,7 +1533,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetLightTrinary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetLightTrinary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Trinarity in leaf<br/>
@@ -1610,7 +1610,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetM<a href="CppAny.htm">any</a>Binary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetM<a href="CppAny.htm">any</a>Binary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("((90,1000),100)");<br/>
@@ -1747,7 +1747,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Test<a href="CppNewick.htm">Newick</a>Dialog::GetMediumBinary<a href="CppNewick.htm">Newick</a>s()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetMediumBinary<a href="CppNewick.htm">Newick</a>s()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("((3,3),3)");<br/>
@@ -1764,7 +1764,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> Test<a href="CppNewick.htm">Newick</a>Dialog::SaveTable(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::SaveTable(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename);<br/>
 &nbsp;&nbsp;<a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> row,m_table)<br/>
@@ -1801,7 +1801,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> Test<a href="CppNewick.htm">Newick</a>Result<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Result<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> <a href="CppNewick.htm">newick</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> theta;<br/>
@@ -1810,7 +1810,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> <a href="CppTime.htm">time</a>;<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Test<a href="CppNewick.htm">Newick</a>Result&amp; r);<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Result&amp; r);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTNEWICKRESULT_H<br/>
 </code></td></tr></table>
@@ -1829,7 +1829,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewick.htm">newick</a>result.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Test<a href="CppNewick.htm">Newick</a>Result&amp; r)<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="ToolTestNewick.htm">TestNewick</a>Result&amp; r)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> r.<a href="CppNewick.htm">newick</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t'<br/>
@@ -1860,23 +1860,23 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <a href="CppInclude.htm">#include</a> "wttest<a href="CppNewick.htm">newick</a>dialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppWtAboutDialog.htm">wtaboutdialog</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> WtTest<a href="CppNewick.htm">Newick</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;WtTest<a href="CppNewick.htm">Newick</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a><a href="CppApplication.htm">Application</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet("wt.css");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("Test<a href="CppNewick.htm">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="ToolTestNewick.htm">TestNewick</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ShowMain();<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowMain()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;WtTest<a href="CppNewick.htm">Newick</a>Dialog * <b><a href="CppConst.htm">const</a></b> d<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> WtTest<a href="CppNewick.htm">Newick</a>Dialog;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog * <b><a href="CppConst.htm">const</a></b> d<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;d-&gt;m_signal_about.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;WtTest<a href="CppNewick.htm">Newick</a><a href="CppApplication.htm">Application</a>::Show<a href="CppAbout.htm">About</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a><a href="CppApplication.htm">Application</a>::Show<a href="CppAbout.htm">About</a>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;clear();<br/>
@@ -1885,7 +1885,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show<a href="CppAbout.htm">About</a>()<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> Test<a href="CppNewick.htm">Newick</a>Dialog::GetAbout();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> <a href="ToolTestNewick.htm">TestNewick</a>Dialog::GetAbout();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppEncranger.htm">Encranger</a>: <a href="CppVersion.htm">version</a> " <a href="CppOperatorPlus.htm">+</a> <a href="CppEncranger.htm">Encranger</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d<br/>
@@ -1894,7 +1894,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;d-&gt;m_signal_close.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;WtTest<a href="CppNewick.htm">Newick</a><a href="CppApplication.htm">Application</a>::ShowMain,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a><a href="CppApplication.htm">Application</a>::ShowMain,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;clear();<br/>
@@ -1906,13 +1906,13 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <a href="CppWApplication.htm">Wt::WApplication</a> *create<a href="CppApplication.htm">Application</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> WtTest<a href="CppNewick.htm">Newick</a><a href="CppApplication.htm">Application</a>(env);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a><a href="CppApplication.htm">Application</a>(env);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> Test<a href="CppNewick.htm">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> <a href="ToolTestNewick.htm">TestNewick</a>");<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> docroot;<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_address;<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_port;<br/>
@@ -1990,14 +1990,14 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <a href="CppInclude.htm">#include</a> "<a href="CppAbout.htm">about</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "test<a href="CppNewick.htm">newick</a>dialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> WtTest<a href="CppNewick.htm">Newick</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppWContainerWidget.htm">Wt::WContainerWidget</a><br/>
 {<br/>
-&nbsp;&nbsp;WtTest<a href="CppNewick.htm">Newick</a>Dialog();<br/>
+&nbsp;&nbsp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog();<br/>
 &nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_about;<br/>
 &nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_close;<br/>
 &nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b> ()&gt; m_signal_<a href="CppAny.htm">any</a>_change;<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>Dialog m_dialog;<br/>
+&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>Dialog m_dialog;<br/>
 &nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit_<a href="CppNewick.htm">newick</a>;<br/>
 &nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit_password;<br/>
 &nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * <b><a href="CppConst.htm">const</a></b> m_edit_theta;<br/>
@@ -2050,7 +2050,7 @@ Test<a href="CppNewick.htm">Newick</a>Dialog::Test<a href="CppNewick.htm">Newick
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "wttest<a href="CppNewick.htm">newick</a>dialog.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-WtTest<a href="CppNewick.htm">Newick</a>Dialog::WtTest<a href="CppNewick.htm">Newick</a>Dialog()<br/>
+<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog()<br/>
 &nbsp;&nbsp;: m_edit_<a href="CppNewick.htm">newick</a>(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>("((2,2),2)")),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_password(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_theta(<b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>("10")),<br/>
@@ -2059,7 +2059,7 @@ WtTest<a href="CppNewick.htm">Newick</a>Dialog::WtTest<a href="CppNewick.htm">Ne
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setContentAlignment(<a href="CppWt.htm">Wt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWText.htm">Wt::WText</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">Wt::WText</a>("Test<a href="CppNewick.htm">Newick</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppWText.htm">Wt::WText</a> * <b><a href="CppConst.htm">const</a></b> title <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">Wt::WText</a>("<a href="ToolTestNewick.htm">TestNewick</a>");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;title-&gt;setStyleClass("title");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(title);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWBreak.htm">Wt::WBreak</a>);<br/>
@@ -2103,15 +2103,15 @@ WtTest<a href="CppNewick.htm">Newick</a>Dialog::WtTest<a href="CppNewick.htm">Ne
 &nbsp;&nbsp;<a href="CppWPushButton.htm">Wt::WPushButton</a> * <b><a href="CppConst.htm">const</a></b> button_close <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWPushButton.htm">Wt::WPushButton</a>("Close",<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;button_calculate-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;WtTest<a href="CppNewick.htm">Newick</a>Dialog::OnCalculate);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::OnCalculate);<br/>
 &nbsp;&nbsp;button_about-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;WtTest<a href="CppNewick.htm">Newick</a>Dialog::On<a href="CppAbout.htm">About</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::On<a href="CppAbout.htm">About</a>);<br/>
 &nbsp;&nbsp;button_close-&gt;clicked().connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;WtTest<a href="CppNewick.htm">Newick</a>Dialog::OnClose);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::OnClose);<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtTest<a href="CppNewick.htm">Newick</a>Dialog::Display()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::Display()<br/>
 {<br/>
 &nbsp;&nbsp;m_text-&gt;setText(m_dialog.GetText().c_str());<br/>
 <br/>
@@ -2124,7 +2124,7 @@ WtTest<a href="CppNewick.htm">Newick</a>Dialog::WtTest<a href="CppNewick.htm">Ne
 &nbsp;&nbsp;m_table-&gt;elementAt(0, 3)-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">Wt::WText</a>("Probability"));<br/>
 &nbsp;&nbsp;m_table-&gt;elementAt(0, 4)-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWText.htm">Wt::WText</a>("<a href="CppTime.htm">Time</a> (sec)"));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;Test<a href="CppNewick.htm">Newick</a>Result&gt;&amp; table <a href="CppOperatorAssign.htm">=</a> m_dialog.GetTable();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="ToolTestNewick.htm">TestNewick</a>Result&gt;&amp; table <a href="CppOperatorAssign.htm">=</a> m_dialog.GetTable();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_results <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(table.size());<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> result <a href="CppOperatorAssign.htm">=</a> 0; result<a href="CppOperatorNotEqual.htm">!=</a>n_results; <a href="CppOperatorIncrement.htm">++</a>result)<br/>
@@ -2147,13 +2147,13 @@ WtTest<a href="CppNewick.htm">Newick</a>Dialog::WtTest<a href="CppNewick.htm">Ne
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtTest<a href="CppNewick.htm">Newick</a>Dialog::On<a href="CppAbout.htm">About</a>()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::On<a href="CppAbout.htm">About</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppEmit.htm">Emit</a> that <a href="CppAbout.htm">about</a> is clicked<br/>
 &nbsp;&nbsp;m_signal_about();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtTest<a href="CppNewick.htm">Newick</a>Dialog::OnCalculate()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::OnCalculate()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> m_edit_password-&gt;text().toUTF8();<br/>
@@ -2175,7 +2175,7 @@ WtTest<a href="CppNewick.htm">Newick</a>Dialog::WtTest<a href="CppNewick.htm">Ne
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> WtTest<a href="CppNewick.htm">Newick</a>Dialog::OnClose()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppWt.htm">Wt</a><a href="ToolTestNewick.htm">TestNewick</a>Dialog::OnClose()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppEmit.htm">emit</a></b> that <b><a href="CppThis.htm">this</a></b> dialog closes<br/>
 &nbsp;&nbsp;m_signal_close();<br/>

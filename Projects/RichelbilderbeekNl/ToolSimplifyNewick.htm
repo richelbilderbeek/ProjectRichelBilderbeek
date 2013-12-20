@@ -407,6 +407,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog *ui;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnAnyEditChange() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
@@ -505,6 +509,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen center<br/>
@@ -641,59 +648,18 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;OnAnyEditChange();<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppIntToStrWithSep.htm">IntToStrWithSep</a> <a href="CppConvert.htm">converts</a> an <a href="CppInt.htm">integer</a> to <a href="CppString.htm">std::string</a><br/>
-<a href="CppComment.htm">///</a>and adds thousands seperators.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>.htm<br/>
-<a href="CppComment.htm">/*</a><br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppIntToStrWithSep.htm">IntToStrWithSep</a>(<a href="CppCl_I.htm">cln::cl_I</a> i)<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCln.htm">cln</a>::mod(i,10));<br/>
-&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::floor1(i,10);<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> d <a href="CppOperatorAssign.htm">=</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!<a href="CppCln.htm">cln</a>::zerop(i))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCln.htm">cln</a>::mod(i,10))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> (d <a href="CppOperatorModulus.htm">%</a> 3 <a href="CppOperatorEqual.htm">==</a> 0 ? "," : "")<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;i <a href="CppOperatorAssign.htm">=</a> <a href="CppCln.htm">cln</a>::floor1(i,10);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>d;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test successfully");<br/>
 }<br/>
-<a href="CppComment.htm">*/</a><br/>
-<br/>
-<a href="CppComment.htm">///</a><a href="CppSafeIntToCli.htm">SafeIntToCli</a> <a href="CppConvert.htm">converts</a> an <b><a href="CppInt.htm">int</a></b> to <a href="CppCl_I.htm">cln::cl_I</a> safely.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSafeIntToCli.htm">SafeIntToCli</a>.htm<br/>
-<a href="CppComment.htm">/*</a><br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppCl_I.htm">cln::cl_I</a> <a href="CppSafeIntToCli.htm">SafeIntToCli</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppCl_I.htm">cln::cl_I</a> can handle <a href="CppInt.htm">integer</a> values to 2^29 in its <a href="CppConstructor.htm">constructor</a><br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i &lt; 536870912)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCl_I.htm">cln::cl_I</a>(i);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(i);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppCl_I.htm">cln::cl_I</a>(s.c_str());<br/>
-}<br/>
-<a href="CppComment.htm">*/</a><br/>
-<br/>
-<a href="CppComment.htm">/*</a><br/>
-<a href="CppComment.htm">///</a><a href="CppGetMaxInt.htm">GetMaxInt</a> <a href="CppReturn.htm">returns</a> the highest possible value of a <b><a href="CppInt.htm">int</a></b>.<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetMaxInt.htm">GetMaxInt</a>.htm<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppGetMaxInt.htm">GetMaxInt</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::numeric::bounds&lt;<b><a href="CppInt.htm">int</a></b>&gt;::highest();<br/>
-}<br/>
-<br/>
-<br/>
-<br/>
-<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRandomizeTimer.htm">RandomizeTimer</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRandomizeTimer.htm">RandomizeTimer</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppSrand.htm">std::srand</a>(<a href="CppTime.htm">std::time</a>(0));<br/>
-}<br/>
-<a href="CppComment.htm">*/</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -732,14 +698,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog *ui;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -803,7 +769,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -870,6 +836,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppSumSecond.htm">SumSecond</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;,<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -979,7 +948,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test<a href="CppNewick.htm">Newick</a>MustFail(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::<a href="ToolTestNewick.htm">TestNewick</a>MustFail(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -995,7 +964,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>(err_msg.str());<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test<a href="CppNewick.htm">Newick</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::<a href="ToolTestNewick.htm">TestNewick</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppNewickVector.htm">NewickVector</a> n(s);<br/>
 &nbsp;&nbsp;<a href="CppCout.htm">std::cout</a>&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Obtaining simpler <a href="CppNewick.htm">newick</a>s of " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s;<br/>
@@ -1013,7 +982,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test<a href="CppNewick.htm">Newick</a>sFromFile()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::<a href="ToolTestNewick.htm">TestNewick</a>sFromFile()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileExists.htm">FileExists</a>("subs_in.txt")) <b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>("File subs_in.txt must exist");<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppNewick.htm">newick</a>s <a href="CppOperatorAssign.htm">=</a> <a href="CppFileToVector.htm">FileToVector</a>("subs_in.txt");<br/>
@@ -1047,11 +1016,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> ( ; <a href="CppNewick.htm">newick</a>_str<a href="CppOperatorNotEqual.htm">!=</a>last_<a href="CppNewick.htm">newick</a>_str; <a href="CppOperatorIncrement.htm">++</a><a href="CppNewick.htm">newick</a>_str)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>(*<a href="CppNewick.htm">newick</a>_str);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>(*<a href="CppNewick.htm">newick</a>_str);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::Test<a href="CppNewick.htm">Newick</a>sManually()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MainDialog::<a href="ToolTestNewick.htm">TestNewick</a>sManually()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1060,7 +1029,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.empty()) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Test<a href="CppNewick.htm">Newick</a>(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolTestNewick.htm">TestNewick</a>(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppInvalid_argument.htm">std::invalid_argument</a>&amp; e)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -1184,6 +1153,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -1229,6 +1202,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1293,6 +1269,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-11-05: <a href="CppVersion.htm">version</a> 3.1: conformized <b><a href="CppFor.htm">for</a></b> <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>Console"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="ToolSimplifyNewick.htm">ToolSimplifyNewick</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

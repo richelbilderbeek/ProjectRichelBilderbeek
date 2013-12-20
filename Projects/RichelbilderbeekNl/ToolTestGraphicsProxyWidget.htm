@@ -116,7 +116,7 @@ unix {<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog w;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
@@ -198,9 +198,9 @@ unix {<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
 <b><a href="CppStruct.htm">struct</a></b> SomeDialog;<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQGraphicsView.htm">QGraphicsView</a><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
@@ -238,7 +238,7 @@ unix {<br/>
 <a href="CppInclude.htm">#include</a> "somedialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppQt.htm">Qt</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>::<a href="CppQt.htm">Qt</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQGraphicsView.htm">QGraphicsView</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialogs{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_proxies{},<br/>
@@ -278,7 +278,7 @@ unix {<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;m_scene-&gt;setSceneRect(<b><a href="CppThis.htm">this</a></b>-&gt;rect());<br/>
 }<br/>
@@ -366,21 +366,21 @@ SomeDialog::~SomeDialog()<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog;<br/>
+<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog;<br/>
 }<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;~<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;~<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog *ui;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog *ui;<br/>
 };<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TOOLTESTGRAPHICSPROXYWIDGETMAINDIALOG_H<br/>
@@ -402,15 +402,15 @@ SomeDialog::~SomeDialog()<br/>
 <a href="CppInclude.htm">#include</a> "ui_<a href="Tools.htm">tool</a>testgraphicsproxy<a href="CppWidget.htm">widget</a>maindialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog::<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>(<b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
-<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog::~<a href="Tools.htm">Tool</a>TestGraphicsProxy<a href="CppWidget.htm">Widget</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog::~<a href="Tools.htm">Tool</a><a href="ToolTestGraphicsProxyWidget.htm">TestGraphicsProxyWidget</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>

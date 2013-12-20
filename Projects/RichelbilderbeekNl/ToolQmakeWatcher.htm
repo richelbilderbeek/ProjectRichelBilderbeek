@@ -250,13 +250,13 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "q<a href="CppMake.htm">make</a>watchermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolQmakeWatcher.htm">qmakewatcher</a>menudialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; args { <a href="CppRibi.htm">ribi</a>::MenuDialog::<a href="CppConvert.htm">Convert</a>Arguments(<a href="CppArgc.htm">argc</a>,<a href="CppArgc.htm">argv</a>) };<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog d;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d.Execute(args);<br/>
 }<br/>
 </code></td></tr></table>
@@ -272,7 +272,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <table summary="./ToolQmakeWatcher/qmakewatchermenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -297,7 +297,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> Q<a href="CppMake.htm">make</a>WatcherMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -308,6 +308,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -326,7 +329,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolQmakeWatcher/qmakewatchermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -348,12 +351,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "q<a href="CppMake.htm">make</a>watchermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolQmakeWatcher.htm">qmakewatcher</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -364,11 +370,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> a {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Q<a href="CppMake.htm">make</a>Watcher",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 20th of September 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2013",<br/>
@@ -382,7 +388,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Help(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle(),<br/>
@@ -396,27 +402,40 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> ProgramQ<a href="CppMake.htm">make</a>Watcher<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Program<a href="ToolQmakeWatcher.htm">QmakeWatcher</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-09-20: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>, conformized <b><a href="CppFor.htm">for</a></b> <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-11-04: <a href="CppVersion.htm">version</a> 1.1: conformized <b><a href="CppFor.htm">for</a></b> <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>Console"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -430,7 +449,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolQmakeWatcher/qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -452,13 +471,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtq<a href="CppMake.htm">make</a>watchermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolQmakeWatcher.htm">qmakewatcher</a>menudialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -475,7 +494,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolQmakeWatcher/qtqmakewatchermaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -505,23 +524,27 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnQ<a href="CppMake.htm">make</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -543,7 +566,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolQmakeWatcher/qtqmakewatchermaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -564,7 +587,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "qtq<a href="CppMake.htm">make</a>watchermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolQmakeWatcher.htm">qmakewatcher</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -573,20 +596,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
-<br/>
-<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtq<a href="CppMake.htm">make</a>watchermaindialog.h"<br/>
-<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolQmakeWatcher.htm">qmakewatcher</a>maindialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
-&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent), <a href="CppComment.htm">//</a>Removed <a href="CppQt.htm">Qt</a>::Window flag<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;ui-&gt;edit_pro-&gt;setWordWrapMode(QTextOption::NoWrap);<br/>
 &nbsp;&nbsp;ui-&gt;edit_<a href="CppMakefile.htm">makefile</a>-&gt;setWordWrapMode(QTextOption::NoWrap);<br/>
@@ -603,12 +627,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;move( screen.center() <a href="CppOperatorMinus.htm">-</a> <b><a href="CppThis.htm">this</a></b>-&gt;rect().center() );<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog::~<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog::OnQ<a href="CppMake.htm">make</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog::OnQ<a href="CppMake.htm">make</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Save text to file<br/>
 &nbsp;&nbsp;{<br/>
@@ -666,6 +690,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -679,7 +716,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolQmakeWatcher/qtqmakewatchermenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -706,35 +743,35 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -753,7 +790,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolQmakeWatcher/qtqmakewatchermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Q<a href="CppMake.htm">make</a>Watcher, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
+<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>, <a href="Tools.htm">tool</a> to watch q<a href="CppMake.htm">make</a>'s .pro to <a href="CppMakefile.htm">Makefile</a> con<a href="CppVersion.htm">version</a><br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -773,22 +810,22 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qtq<a href="CppMake.htm">make</a>watchermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolQmakeWatcher.htm">qmakewatcher</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "q<a href="CppMake.htm">make</a>watchermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolQmakeWatcher.htm">qmakewatcher</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtq<a href="CppMake.htm">make</a>watchermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolQmakeWatcher.htm">qmakewatcher</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtq<a href="CppMake.htm">make</a>watchermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolQmakeWatcher.htm">qmakewatcher</a>menudialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) <b><a href="CppNoexcept.htm">noexcept</a></b> :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) <b><a href="CppNoexcept.htm">noexcept</a></b> :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -796,19 +833,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::~<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * event) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (event-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Escape) { close(); <b><a href="CppReturn.htm">return</a></b>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::Q<a href="CppMake.htm">make</a>WatcherMenuDialog().GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog().GetAbout();<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
@@ -816,28 +853,28 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog d;<br/>
 &nbsp;&nbsp;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::Test");<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMainDialog();<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppQt.htm">Qt</a>Q<a href="CppMake.htm">make</a>WatcherMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MainDialog();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppQt.htm">Qt</a><a href="ToolQmakeWatcher.htm">QmakeWatcher</a>MenuDialog::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>

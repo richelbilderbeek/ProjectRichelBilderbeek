@@ -284,6 +284,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -330,18 +334,25 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -392,7 +403,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2007-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> as part of K3OpEenRij",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2007-xx-xx: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> as part of <a href="GameK3OpEenRij.htm">K3OpEenRij</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-01-10: <a href="CppVersion.htm">version</a> 5.0: initial <a href="CppQt.htm">Qt</a>4 <a href="CppVersion.htm">version</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-01-11: <a href="CppVersion.htm">version</a> 5.2: support that the game can end in a draw",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-04-22: <a href="CppVersion.htm">version</a> 6.0: major architectural changes",<br/>
@@ -400,9 +411,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2011-04-25: <a href="CppVersion.htm">version</a> 6.2: hopefully fixed the <a href="CppBug.htm">bug</a> as in 6.1, fixed desktop <a href="CppVersion.htm">version</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-07-11: <a href="CppVersion.htm">version</a> 6.3: transitioned to <a href="CppQt.htm">Qt</a>5 and <a href="CppBoost.htm">Boost</a> 1.54.0",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-07-21: <a href="CppVersion.htm">version</a> 6.4: improved looks",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-06: <a href="CppVersion.htm">version</a> 6.5: facilitate K3OpEenRij <b><a href="CppUsing.htm">using</a></b> <a href="CppConnectThree.htm">ConnectThree</a> <b><a href="CppClass.htm">classes</a></b>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-06: <a href="CppVersion.htm">version</a> 6.5: facilitate <a href="GameK3OpEenRij.htm">K3OpEenRij</a> <b><a href="CppUsing.htm">using</a></b> <a href="CppConnectThree.htm">ConnectThree</a> <b><a href="CppClass.htm">classes</a></b>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -767,6 +792,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/is either terminated, or the next player can <b><a href="CppDo.htm">do</a></b><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/his/her move.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnValidMove() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -814,17 +843,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="CppConnectThree.htm">connectthree</a>resources.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="CppConnectThree.htm">connectthree</a>gamedialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppConnectThree.htm">connectthree</a>gamedialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtConnectThreeWidget.htm">qtconnectthreewidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtshowwinnerdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; is_player_human) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent), <a href="CppComment.htm">//</a>Removed <a href="CppQt.htm">Qt</a>::Window flag<br/>
+&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_close{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_board(<br/>
@@ -834,6 +865,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_is_player_human(is_player_human),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_resources(resources)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> board <a href="CppWidget.htm">widget</a><br/>
@@ -929,6 +964,25 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;close();<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(resources);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog&gt; d {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog(resources,<b><a href="CppNullptr.htm">nullptr</a></b>,<a href="CppBitset.htm">std::bitset</a>&lt;3&gt;(<b><a href="CppFalse.htm">false</a></b>))<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1052,6 +1106,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtConnectThreeWidget.htm">qtconnectthreewidget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="CppConnectThree.htm">connectthree</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
@@ -1073,18 +1128,6 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-{<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog d(resources,<b><a href="CppNullptr.htm">nullptr</a></b>,<a href="CppBitset.htm">std::bitset</a>&lt;3&gt;(<b><a href="CppFalse.htm">false</a></b>));<br/>
-}<br/>
-<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
@@ -1108,6 +1151,22 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppConnectThree.htm">ConnectThree</a>MenuDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>Resources);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog d(resources,<b><a href="CppNullptr.htm">nullptr</a></b>,<a href="CppBitset.htm">std::bitset</a>&lt;3&gt;(<b><a href="CppFalse.htm">false</a></b>));<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

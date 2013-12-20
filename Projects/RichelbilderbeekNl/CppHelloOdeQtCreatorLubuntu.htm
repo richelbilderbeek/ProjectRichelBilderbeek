@@ -259,10 +259,10 @@
 <br/>
 <a href="CppComment.htm">//</a> simulation loop<br/>
 <br/>
-<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> simLoop (<b><a href="CppInt.htm">int</a></b> pause)<br/>
+<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> simLoop (<b><a href="CppInt.htm">int</a></b> <a href="ToolPause.htm">pause</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!pause) {<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="ToolPause.htm">pause</a>) {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a> motor<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamVel2,-speed);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dJointSetHinge2Param (joint[0],dParamFMax2,0.1);<br/>

@@ -520,7 +520,7 @@ const std::vector&lt;std::string&gt; ribi::QtCreatorProFile::SeperateString(<br/
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::QtCreatorProFile::Test()<br/>
+void ribi::QtCreatorProFile::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Test exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -978,7 +978,7 @@ struct QtCreatorProFile<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test QtCreatorProFile<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const QtCreatorProFile&amp; p);<br/>
@@ -1099,7 +1099,8 @@ const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::strin
 {<br/>
 &nbsp;&nbsp;assert(fileio::IsFolder(source_folder));<br/>
 <br/>
-&nbsp;&nbsp;const std::vector&lt;std::string&gt; pro_filenames = GetProFilesInFolder(source_folder);<br/>
+&nbsp;&nbsp;//Also include .pri files<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt; pro_filenames = GetProAndPriFilesInFolder(source_folder);<br/>
 <br/>
 &nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;const QtCreatorProFileZipScript&gt; &gt; scripts;<br/>
 <br/>
@@ -1145,6 +1146,8 @@ const std::set&lt;std::string&gt; ribi::QtCreatorProFileZipScript::ExtractFilena
 &nbsp;&nbsp;std::copy(pro_file-&gt;GetOtherFiles().begin(),pro_file-&gt;GetOtherFiles().end(),std::back_inserter(v));<br/>
 &nbsp;&nbsp;std::copy(pro_file-&gt;GetResources().begin(),pro_file-&gt;GetResources().end(),std::back_inserter(v));<br/>
 &nbsp;&nbsp;std::copy(pro_file-&gt;GetSources().begin(),pro_file-&gt;GetSources().end(),std::back_inserter(v));<br/>
+<br/>
+<br/>
 &nbsp;&nbsp;//Copy all resources<br/>
 &nbsp;&nbsp;for (const std::string qrc_filename_raw: pro_file-&gt;GetResources())<br/>
 &nbsp;&nbsp;{<br/>
@@ -1228,22 +1231,29 @@ const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept<br/>
 &nbsp;&nbsp;return a;<br/>
 }<br/>
 <br/>
-const std::vector&lt;std::string&gt; ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string&amp; folder)<br/>
+//const std::vector&lt;std::string&gt; ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string&amp; folder)<br/>
+//{<br/>
+//&nbsp;&nbsp;assert(fileio::IsFolder(folder));<br/>
+//&nbsp;&nbsp;return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\&gt;");<br/>
+//}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::QtCreatorProFileZipScript::GetProAndPriFilesInFolder(const std::string&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;assert(fileio::IsFolder(folder));<br/>
-&nbsp;&nbsp;return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\&gt;");<br/>
+&nbsp;&nbsp;return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro|pri)\\&gt;");<br/>
 }<br/>
 <br/>
 const std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept<br/>
 {<br/>
-&nbsp;&nbsp;return "1.0";<br/>
+&nbsp;&nbsp;return "1.2";<br/>
 }<br/>
 <br/>
 const std::vector&lt;std::string&gt; ribi::QtCreatorProFileZipScript::GetVersionHistory() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;return {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-05-19: version 1.0: initial version",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-08-19: version 1.1: replaced Boost.Regex by Boost.Xpressive",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-12-05: version 1.2: add support for .pri files"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
@@ -1320,7 +1330,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::remove(tmp_pro_filename.c_str());<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Count the current number of .pro files<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::size_t n = GetProFilesInFolder("").size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::size_t n = GetProAndPriFilesInFolder("").size();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Add a .pro file<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -1329,8 +1339,8 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(ribi::fileio::IsRegularFile(tmp_pro_filename));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Count the current number of .pro files again<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::size_t p = GetProFilesInFolder("").size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Count the current number of .pro and .pri files again<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::size_t p = GetProAndPriFilesInFolder("").size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (n != p-1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -1339,7 +1349,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(n == p - 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::remove("tmp23465278.pro");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::size_t q = GetProFilesInFolder("").size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::size_t q = GetProAndPriFilesInFolder("").size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(n == q);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;TRACE("Finished ribi::QtCreatorProFileZipScript::Test successfully");<br/>
@@ -1592,7 +1602,8 @@ struct QtCreatorProFileZipScript<br/>
 <br/>
 &nbsp;&nbsp;///Get all the .pro files in a folder<br/>
 &nbsp;&nbsp;//From http://www.richelbilderbeek.nl/CppGetProFilesInFolder.htm<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetProFilesInFolder(const std::string&amp; folder);<br/>
+&nbsp;&nbsp;//static const std::vector&lt;std::string&gt; GetProFilesInFolder(const std::string&amp; folder);<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetProAndPriFilesInFolder(const std::string&amp; folder);<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>

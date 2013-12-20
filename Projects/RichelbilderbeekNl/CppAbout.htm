@@ -308,6 +308,9 @@ struct About<br/>
 &nbsp;&nbsp;///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm<br/>
 &nbsp;&nbsp;static const std::string GetBoostVersion() noexcept;<br/>
 <br/>
+&nbsp;&nbsp;///Get the author of my classes<br/>
+&nbsp;&nbsp;static const std::string GetDefaultAuthor() noexcept { return "Richel Bilderbeek"; }<br/>
+<br/>
 &nbsp;&nbsp;///Get the file/class/program its description<br/>
 &nbsp;&nbsp;const std::string&amp; GetFileDescription() const noexcept { return m_file_description; }<br/>
 <br/>

@@ -293,7 +293,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> K3OpEenRijMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -303,6 +303,10 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -319,32 +323,38 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameK3OpEenRij/k3opeenrijmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "k3opeenrijmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameK3OpEenRij.htm">k3opeenrij</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppConnectThree.htm">connectthree</a><a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::K3OpEenRijMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::K3OpEenRijMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRij",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"connect-three game",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"K3-themed connect-three game",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 6th of August 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="GameK3OpEenRij.htm">GameK3OpEenRij</a>.htm",<br/>
@@ -356,7 +366,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::K3OpEenRijMenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Help(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle(),<br/>
@@ -370,21 +380,21 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::K3OpEenRijMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> ProgramK3OpEenRij<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Program<a href="GameK3OpEenRij.htm">K3OpEenRij</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::K3OpEenRijMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "6.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::K3OpEenRijMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-01-03: <a href="CppVersion.htm">version</a> 3.0: initial <a href="CppBuilder.htm">C++ Builder</a> verion",<br/>
@@ -394,6 +404,19 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-08-09: <a href="CppVersion.htm">version</a> 6.0: implemented suggestions and <a href="CppBug.htm">bug</a>fixes from Mark Wiering's report"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -422,23 +445,23 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 &nbsp;&nbsp;<br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog *ui;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -457,18 +480,18 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <table summary="./GameK3OpEenRij/qtk3opeenrijinstructionsdialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijinstructionsdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtk3opeenrijinstructionsdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>instructionsdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>instructionsdialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog(<a href="CppQWidget.htm">QWidget</a> *parent) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog::~<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog::~<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
@@ -496,30 +519,30 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>;<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Won't <b><a href="CppThrow.htm">throw</a></b>, as all resources are present<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources,<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog *ui;<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>&gt; m_select;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>&gt; m_select;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 <br/>
@@ -550,24 +573,25 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <table summary="./GameK3OpEenRij/qtk3opeenrijmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>menudialog.h"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "k3opeenrijmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameK3OpEenRij.htm">k3opeenrij</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="CppConnectThree.htm">connectthree</a>gamedialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtConnectThreeWidget.htm">qtconnectthreewidget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijresources.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijinstructionsdialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtk3opeenrijmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>resources.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>instructionsdialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>selectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources,<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_select(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>(resources))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_select(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>(resources))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -577,36 +601,14 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;ui-&gt;layout_horizontal-&gt;addWidget(m_select.get());<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::~<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog d(resources,<b><a href="CppNullptr.htm">nullptr</a></b>,<a href="CppBitset.htm">std::bitset</a>&lt;3&gt;(<b><a href="CppFalse.htm">false</a></b>));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog d;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> K3OpEenRijMenuDialog().GetAbout();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="CppAbout.htm">about</a>);<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_about_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> K3OpEenRijMenuDialog().GetAbout();<br/>
+&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> <a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog().GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">about</a>.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppQtConnectThreeWidget.htm">QtConnectThreeWidget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="CppAbout.htm">about</a>);<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
@@ -614,34 +616,59 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_instructions_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::on_button_instructions_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijInstructionsDialog d;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::on_button_quit_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog::on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::on_button_start_clicked() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Supply the correct resources, depending on <b><a href="CppIf.htm">if</a></b> player 3 chose Kathleen or Josje<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources(m_select-&gt;GetIsPlayer3Kathleen()));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources(m_select-&gt;GetIsPlayer3Kathleen()));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog d(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;resources,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNullptr.htm">nullptr</a></b>,<b><a href="CppThis.htm">this</a></b>-&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_select-&gt;GetIsPlayerHuman());<br/>
-&nbsp;&nbsp;d.setWindowTitle("K3OpEenRij (C) 2007-2013");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNullptr.htm">nullptr</a></b>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_select-&gt;GetIsPlayerHuman()<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;d.setWindowTitle("<a href="GameK3OpEenRij.htm">K3OpEenRij</a> (C) 2007-2013");<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;d.setWindowIcon(<b><a href="CppThis.htm">this</a></b>-&gt;windowIcon());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
 &nbsp;&nbsp;d.exec();<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppConnectThree.htm">ConnectThree</a>GameDialog d(resources,<b><a href="CppNullptr.htm">nullptr</a></b>,<a href="CppBitset.htm">std::bitset</a>&lt;3&gt;(<b><a href="CppFalse.htm">false</a></b>));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>InstructionsDialog d;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a> <a href="CppOperatorAssign.htm">=</a> <a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog().GetAbout();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(<a href="CppAbout.htm">about</a>);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -665,14 +692,14 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>K3OpEenRijResources is a <b><a href="CppClass.htm">class</a></b> containing<br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources is a <b><a href="CppClass.htm">class</a></b> containing<br/>
 <a href="CppComment.htm">///</a>all filenames to be used by the program<br/>
 <a href="CppComment.htm">///</a>Its <a href="CppBaseClass.htm">base class</a>, <a href="CppConnectThree.htm">ConnectThree</a>Resources,<br/>
 <a href="CppComment.htm">///</a>ensures the files needed are present upon <a href="CppConstructor.htm">construct</a>ion.<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources<br/>
 &nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> <a href="CppConnectThree.htm">ConnectThree</a>Resources<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>K3OpEenRijResources(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
@@ -696,28 +723,28 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <table summary="./GameK3OpEenRij/qtk3opeenrijresources.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijresources.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>resources.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources::<a href="CppQt.htm">Qt</a>K3OpEenRijResources(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
 &nbsp;&nbsp;: <a href="CppConnectThree.htm">ConnectThree</a>Resources(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer1.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer2.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer3.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Computer1.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Computer2.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Computer3.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputerGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRij.css",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijEmpty.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijIcon.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>ComputerGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>.css",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Empty.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Icon.png",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijInstructions1.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijInstructions2.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Instructions1.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Instructions2.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijInstructions3.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Instructions3.png",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CreatePlayerNames(is_player3_kathleen),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CreatePlayerGreyNames(is_player3_kathleen),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Stoppen",<br/>
@@ -727,24 +754,24 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources::CreatePlayerNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources::CreatePlayerNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_player3_kathleen)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKaren.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKristel.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKathleen.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Karen.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Kristel.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Kathleen.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (!is_player3_kathleen)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKaren.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKristel.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijJosje.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Karen.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Kristel.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Josje.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
@@ -752,32 +779,32 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(is_player3_kathleen <a href="CppOperatorEqual.htm">==</a> <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKaren.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKristel.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKathleen.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijJosje.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Karen.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Kristel.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Kathleen.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Josje.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources::CreatePlayerGreyNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources::CreatePlayerGreyNames(<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> is_player3_kathleen)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_player3_kathleen)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKarenGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKristelGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKathleenGrey.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KarenGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KristelGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KathleenGrey.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (!is_player3_kathleen)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKarenGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKristelGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijJosjeGrey.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KarenGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KristelGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>JosjeGrey.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
@@ -785,10 +812,10 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(is_player3_kathleen <a href="CppOperatorEqual.htm">==</a> <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKarenGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKristelGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijKathleenGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijJosjeGrey.png"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KarenGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KristelGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>KathleenGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>JosjeGrey.png"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -818,14 +845,14 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQWidget.htm">QWidget</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources,<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBitset.htm">std::bitset</a>&lt;3&gt;&amp; GetIsPlayerHuman() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_player_human; }<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> GetIsPlayer3Kathleen() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_is_player3_kathleen; }<br/>
@@ -870,19 +897,19 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 <table summary="./GameK3OpEenRij/qtk3opeenrijselectplayerwidget.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijselectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>selectplayer<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijresources.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>resources.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_height <a href="CppOperatorAssign.htm">=</a> 50;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 50;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_height <a href="CppOperatorAssign.htm">=</a> 50;<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::m_sprite_width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 50;<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources,<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQWidget.htm">QWidget</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_is_player3_kathleen(<b><a href="CppFalse.htm">false</a></b>), <a href="CppComment.htm">//</a>Set <b><a href="CppDefault.htm">default</a></b> to Josje<br/>
@@ -911,7 +938,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMaximumHeight(3 * m_sprite_height);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_x <a href="CppOperatorAssign.htm">=</a> e-&gt;x();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> mouse_y <a href="CppOperatorAssign.htm">=</a> e-&gt;y();<br/>
@@ -924,7 +951,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameK3OpEenRij.htm">GameK3O
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;repaint();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijSelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>SelectPlayer<a href="CppWidget.htm">Widget</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;painter.drawImage(0 * m_sprite_width,0 * m_sprite_height,m_is_player_human[0] ? m_karen : m_karen_grey);<br/>
@@ -978,8 +1005,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQIcon.htm">QIcon</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijresources.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtk3opeenrijmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>resources.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameK3OpEenRij.htm">k3opeenrij</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -1028,11 +1055,11 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 <br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources);<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijMenuDialog w(resources);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources&gt; resources(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>MenuDialog w(resources);<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>K3OpEenRijResources resources2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="GameK3OpEenRij.htm">K3OpEenRij</a>Resources resources2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> icon_filename <a href="CppOperatorAssign.htm">=</a> resources2.GetIconFilename();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQFile.htm">QFile</a>::exists(icon_filename.c_str()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qApp-&gt;setWindowIcon(<a href="CppQIcon.htm">QIcon</a>(<a href="CppQPixmap.htm">QPixmap</a>(icon_filename.c_str())));<br/>
@@ -1089,17 +1116,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> K3OpEenRij<a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="GameK3OpEenRij.htm">K3OpEenRij</a><a href="CppApplication.htm">Application</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppWApplication.htm">Wt::WApplication</a><br/>
 {<br/>
-&nbsp;&nbsp;K3OpEenRij<a href="CppApplication.htm">Application</a>(<br/>
+&nbsp;&nbsp;<a href="GameK3OpEenRij.htm">K3OpEenRij</a><a href="CppApplication.htm">Application</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppWEnvironment.htm">Wt::WEnvironment</a>&amp; env,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a>&amp; <a href="CppAbout.htm">about</a>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources&amp; resources)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: <a href="CppWApplication.htm">Wt::WApplication</a>(env)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("K3OpEenRij (C) 2007-2013 Richel Bilderbeek");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setTitle("<a href="GameK3OpEenRij.htm">K3OpEenRij</a> (C) 2007-2013 Richel Bilderbeek");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;useStyleSheet(resources.GetCss());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(resources,"K3OpEenRij"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;root()-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppWt.htm">Wt</a><a href="CppConnectThree.htm">ConnectThree</a>MenuDialog(resources,"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>"));<br/>
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
@@ -1127,20 +1154,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Resources();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppConnectThree.htm">ConnectThree</a>Filenames filenames(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijBackground.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer1.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer2.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputer3.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijComputerGrey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRij.css",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijEmpty.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer1.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer1Grey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer2.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer2Grey.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer3.png",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"K3OpEenRijPlayer3Grey.png");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::K3OpEenRij<a href="CppApplication.htm">Application</a>(env,Create<a href="CppAbout.htm">About</a>(),filenames);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Background.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Computer1.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Computer2.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Computer3.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>ComputerGrey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>.css",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Empty.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Player1.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Player1Grey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Player2.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Player2Grey.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Player3.png",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameK3OpEenRij.htm">K3OpEenRij</a>Player3Grey.png");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameK3OpEenRij.htm">K3OpEenRij</a><a href="CppApplication.htm">Application</a>(env,Create<a href="CppAbout.htm">About</a>(),filenames);<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> **<a href="CppArgc.htm">argv</a>)<br/>

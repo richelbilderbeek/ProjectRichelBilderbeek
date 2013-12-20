@@ -247,6 +247,10 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Y-X ordered<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a> VectorToImage(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; m);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -263,7 +267,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolFilterOperationer/filteroperationermaindialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "filteroperationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolFilterOperationer.htm">filteroperationer</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
@@ -536,8 +540,8 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolFilterOperationer/filteroperationermenudialog.h" border = "1"><tr><td><code>
-<a href="CppIfndef.htm">#ifndef</a> HISTOGRAMEQUALIZATIONERMENUDIALOG_H<br/>
-<a href="CppDefine.htm">#define</a> HISTOGRAMEQUALIZATIONERMENUDIALOG_H<br/>
+<a href="CppIfndef.htm">#ifndef</a> FILTEROPERATIONERMENUDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> FILTEROPERATIONERMENUDIALOG_H<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "menudialog.h"<br/>
 <br/>
@@ -555,11 +559,14 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
-<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> HISTOGRAMEQUALIZATIONERMENUDIALOG_H<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> FILTEROPERATIONERMENUDIALOG_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -571,13 +578,18 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolFilterOperationer/filteroperationermenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "filteroperationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolFilterOperationer.htm">filteroperationer</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -593,9 +605,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolFilterOperationer.htm">FilterOperationer</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to perform image filter operations",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"on the 29th of November 2013",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2008-2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="ToolFilterOperationer.htm">ToolFilterOperationer</a>.htm",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
@@ -622,7 +634,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::ProgramGaborFilter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::Program<a href="ToolFilterOperationer.htm">FilterOperationer</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
@@ -637,9 +649,23 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2008-xx-17: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppWindows.htm">Windows</a>-only <a href="CppVersion.htm">version</a>",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-11-29: <a href="CppVersion.htm">version</a> 2.0: port to <a href="CppQt.htm">Qt</a>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-11-29: <a href="CppVersion.htm">version</a> 2.0: port to <a href="CppQt.htm">Qt</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-12-19: <a href="CppVersion.htm">version</a> 2.1: allowed saving of images in desktop <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -651,7 +677,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolFilterOperationer/main.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "filteroperationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolFilterOperationer.htm">filteroperationer</a>menudialog.h"<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> agc, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
@@ -704,6 +730,8 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_do_clicked();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_load_clicked();<br/>
 <br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_save_clicked();<br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog *ui;<br/>
 <br/>
@@ -737,17 +765,17 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "qtfilteroperationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolFilterOperationer.htm">filteroperationer</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "filteroperationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolFilterOperationer.htm">filteroperationer</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppMatrix.htm">matrix</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtUblasMatrixDoubleModel.htm">qtublasmatrixdoublemodel</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtfilteroperationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolFilterOperationer.htm">filteroperationer</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -758,6 +786,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;m_result{<b><a href="CppNullptr.htm">nullptr</a></b>},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_source{<b><a href="CppNullptr.htm">nullptr</a></b>}<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;filter-&gt;setModel(m_model);<br/>
@@ -774,7 +805,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;m_model-&gt;SetRawData(m);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> p(":/filteroperationer/images/<a href="ToolFilterOperationer.htm">ToolFilterOperationer</a>Test.png");<br/>
+&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> p(":/<a href="ToolFilterOperationer.htm">filteroperationer</a>/images/<a href="ToolFilterOperationer.htm">ToolFilterOperationer</a>Test.png");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p.isNull());<br/>
 &nbsp;&nbsp;ShowLoadedPixmap(p);<br/>
 }<br/>
@@ -797,7 +828,19 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (pixmap.isNull()) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ShowLoadedPixmap(pixmap);<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;showNormal();<br/>
 <br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog::on_button_save_clicked()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a>Dialog::getSaveFileName(0,"Please select a file").toStdString()<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filename.empty()) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_result) <b><a href="CppReturn.htm">return</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;m_result-&gt;pixmap()-&gt;toImage().save(filename.c_str());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog::ShowLoadedPixmap(<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a>&amp; pixmap)<br/>
@@ -817,415 +860,11 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;m_source <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;layout-&gt;addWidget(m_source);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_source-&gt;setPixmap(pixmap);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_source-&gt;setAlignment(<a href="CppQt.htm">Qt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_source);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_source-&gt;pixmap()-&gt;isNull());<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
-<br/>
-<a href="CppComment.htm">/*</a><br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::OnStringGridFilterChange(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;ButtonDo-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> CanDoFilterOperation(ImageSource, StringGridFilter, ImageTarget);<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::ButtonDoClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check StringGrid <b><a href="CppFor.htm">for</a></b> valid strings<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanDoFilterOperation(ImageSource, StringGridFilter, ImageTarget)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> StringGrid to <a href="CppVector.htm">std::vector</a> and then the other way round,<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>to clean up the StringGrid after lousy input<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> StringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(StringGridFilter);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.empty()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxy&gt;0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> v[0].size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(maxx&gt;0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StringGridFilter-&gt;Cells[x][y] <a href="CppOperatorAssign.htm">=</a> v[y][x];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;DoFilterOperation(ImageSource, StringGridFilter, ImageTarget);<br/>
-&nbsp;&nbsp;ImageTarget-&gt;Visible <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;ImageTarget-&gt;Refresh();<br/>
-&nbsp;&nbsp;ButtonSaveResult-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;ButtonEnhance-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
-<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::ButtonEnhanceClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;ImageEnhanced-&gt;Picture-&gt;Graphic <a href="CppOperatorAssign.htm">=</a> ImageTarget-&gt;Picture-&gt;Graphic;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> averageGreynessOld <a href="CppOperatorAssign.htm">=</a> GetAverageGreyness(ImageEnhanced);<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;EnhanceContrast(ImageEnhanced);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> averageGreynessNew <a href="CppOperatorAssign.htm">=</a> GetAverageGreyness(ImageEnhanced);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppFabs.htm">std::fabs</a>(averageGreynessOld <a href="CppOperatorMinus.htm">-</a> averageGreynessNew) &lt; 1.0 );<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;ImageEnhanced-&gt;Visible <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;ImageEnhanced-&gt;Refresh();<br/>
-&nbsp;&nbsp;ButtonSaveEnhanced-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
-<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::ButtonSaveResultClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (SaveDialog1-&gt;Execute()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;ImageTarget-&gt;Picture-&gt;SaveToFile(SaveDialog1-&gt;FileName);<br/>
-&nbsp;&nbsp;ShowMessage("Image saved successfully");<br/>
-&nbsp;&nbsp;PageControl-&gt;ActivePageIndex<a href="CppOperatorPlusAssign.htm">+=</a>2;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::Item<a href="CppAdd.htm">Add</a>ColClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>StringGridFilter-&gt;ColCount;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::Item<a href="CppAdd.htm">Add</a>RowClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>StringGridFilter-&gt;RowCount;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::ItemRemoveColClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (StringGridFilter-&gt;ColCount &gt; 1) <a href="CppOperatorDecrement.htm">--</a>StringGridFilter-&gt;ColCount;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::ItemRemoveRowClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (StringGridFilter-&gt;RowCount &gt; 1) <a href="CppOperatorDecrement.htm">--</a>StringGridFilter-&gt;RowCount;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::ButtonSaveEnhancedClick(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (SaveDialog1-&gt;Execute()<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b>;<br/>
-&nbsp;&nbsp;ImageEnhanced-&gt;Picture-&gt;SaveToFile(SaveDialog1-&gt;FileName);<br/>
-&nbsp;&nbsp;ShowMessage("Image saved successfully");<br/>
-&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>PageControl-&gt;ActivePageIndex;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TForm<a href="ToolFilterOperationer.htm">FilterOperationer</a>::Panel<a href="CppAbout.htm">About</a>3Click(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;ImageSource-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImageRichel-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageSource-&gt;Refresh();<br/>
-&nbsp;&nbsp;ImageSource-&gt;Visible <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;ButtonDo-&gt;Enabled <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;PageControl-&gt;ActivePageIndex <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-}<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> CanDoFilterOperation(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageSource,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TStringGrid * <b><a href="CppConst.htm">const</a></b> stringGridFilter,<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageTarget)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource-&gt;Picture-&gt;Bitmap <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageSource-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorNotEqual.htm">!=</a> pf24bit) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget-&gt;Picture-&gt;Bitmap <a href="CppOperatorEqual.htm">==</a> 0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (imageTarget-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorNotEqual.htm">!=</a> pf24bit) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;ColCount &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;RowCount &lt; 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGridFilter-&gt;ColCount <a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> stringGridFilter-&gt;RowCount <a href="CppOperatorEqual.htm">==</a> 1) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (CanStringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Does the filter yield a valid filter range?<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; filter <a href="CppOperatorAssign.htm">=</a> StringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; filterRange <a href="CppOperatorAssign.htm">=</a> GetFilterRange(filter);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (filterRange.first <a href="CppOperatorEqual.htm">==</a> filterRange.second) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> DoFilterOperation(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageSource,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> TStringGrid * <b><a href="CppConst.htm">const</a></b> stringGridFilter,<br/>
-&nbsp;&nbsp;<a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> imageTarget)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageSource <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageSource-&gt;Picture-&gt;Bitmap <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageSource-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource must be a 24-bit bitmap");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGridFilter <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageTarget <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageTarget must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageTarget-&gt;Picture-&gt;Bitmap <a href="CppOperatorNotEqual.htm">!=</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageSource bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(imageTarget-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "imageTarget must be a 24-bit bitmap");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGridFilter-&gt;ColCount <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must have at least one collumn");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGridFilter-&gt;RowCount <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must have at least one row");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( (stringGridFilter-&gt;ColCount &gt; 1 <a href="CppOperatorLogicalOr.htm">||</a> stringGridFilter-&gt;RowCount &gt; 1)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter must be larger then 1x1 cell");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanStringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "stringGridFilter's content must be <a href="CppConvert.htm">convert</a>able to <b><a href="CppDouble.htm">double</a></b>s");<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; source <a href="CppOperatorAssign.htm">=</a> ImageToVector(imageSource);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; &gt; filter <a href="CppOperatorAssign.htm">=</a> StringGridToVector&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(stringGridFilter);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!source.empty());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!filter.empty());<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; filterRange <a href="CppOperatorAssign.htm">=</a> GetFilterRange(filter);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(filterRange.first <a href="CppOperatorNotEqual.htm">!=</a> filterRange.second <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Filter must have a valid range");<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; result <a href="CppOperatorAssign.htm">=</a> DoFilterOperation(source,filter);<br/>
-&nbsp;&nbsp;VectorToImage(result,imageTarget);<br/>
-}<br/>
-<br/>
-<a href="CppComment.htm">//</a>VCL dependent<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppStringGridToVector.htm<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; StringGridToVector(<b><a href="CppConst.htm">const</a></b> TStringGrid * <b><a href="CppConst.htm">const</a></b> stringGrid)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanStringGridToVector&lt;T&gt;(stringGrid)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(stringGrid<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "StringGrid must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;RowCount;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;ColCount;<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;T&gt; &gt; v(height,<a href="CppVector.htm">std::vector</a>&lt;T&gt;(width));<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; line <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Don't have the guts to <b><a href="CppDo.htm">do</a></b> a line-access on a TStringGrid...<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a>0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(line.size()) );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst_cast.htm">const_cast</a></b> because the VCL is not <b><a href="CppConst.htm">const</a></b>-correct. Grumble, grumble...<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;TStringGrid*&gt;(stringGrid)-&gt;Cells[x][y]).c_str();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> T t <a href="CppOperatorAssign.htm">=</a> <a href="CppLexicalCast.htm">LexicalCast</a>&lt;T&gt;(s);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x] <a href="CppOperatorAssign.htm">=</a> t;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<br/>
-<a href="CppComment.htm">//</a>VCL dependent<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CanStringGridToVector.htm<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> CanStringGridToVector(<b><a href="CppConst.htm">const</a></b> TStringGrid * <b><a href="CppConst.htm">const</a></b> stringGrid)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (stringGrid<a href="CppOperatorEqual.htm">==</a>0) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;RowCount;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> stringGrid-&gt;ColCount;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst_cast.htm">const_cast</a></b> because the VCL is not <b><a href="CppConst.htm">const</a></b>-correct. Grumble, grumble...<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> (<b><a href="CppConst_cast.htm">const_cast</a></b>&lt;TStringGrid*&gt;(stringGrid)-&gt;Cells[x][y]).c_str();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppCanCast.htm">CanCast</a>&lt;T&gt;(s) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-}<br/>
-<br/>
-<a href="CppComment.htm">//</a>VCL independent<br/>
-<a href="CppComment.htm">//</a>Creates a 2D-<a href="CppVector.htm">std::vector</a> (y-x-ordered) from a <a href="CppTImage.htm">TImage</a><br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppImageToVector.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; ImageToVector(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; v(height,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(width));<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(vLine.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vLine[x] <a href="CppOperatorAssign.htm">=</a> grey;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(grey<a href="CppOperatorGreaterEqual.htm">&gt;=</a>0.0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> grey&lt;256.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
-}<br/>
-<br/>
-<a href="CppComment.htm">//</a>VCL independent<br/>
-<a href="CppComment.htm">//</a>Creates a 2D-<a href="CppVector.htm">std::vector</a> (y-x-ordered) from a <a href="CppTImage.htm">TImage</a><br/>
-<a href="CppComment.htm">//</a>Draws a (grey) <a href="CppTImage.htm">TImage</a> from a 2D-<a href="CppVector.htm">std::vector</a> (y-x-ordered)<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppVectorToImage.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> VectorToImage(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt;&amp; v, <b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Image must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Bitmap must be 24 bit");<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> v[0].size();<br/>
-<br/>
-&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> height;<br/>
-&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> width;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; vLine <a href="CppOperatorAssign.htm">=</a> v[y];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(vLine.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> grey <a href="CppOperatorAssign.htm">=</a> vLine[x];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> grey; <a href="CppComment.htm">//</a>Red<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> grey; <a href="CppComment.htm">//</a>Green<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> grey; <a href="CppComment.htm">//</a>Blue<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppEnhanceContrast.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> EnhanceContrast(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find lowest and highest value<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must be 24 bit");<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the width and height from the source<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> averageGreyness <a href="CppOperatorAssign.htm">=</a> GetAverageGreyness(image);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> stretch <a href="CppOperatorAssign.htm">=</a> 1000.0; <a href="CppComment.htm">//</a>Way too much <b><a href="CppFor.htm">for</a></b> nearly all images<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> diff <a href="CppOperatorAssign.htm">=</a> grey <a href="CppOperatorMinus.htm">-</a> averageGreyness;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (diff &lt; 0.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>pixel was darker then average<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <b><a href="CppNew.htm">new</a></b>Stretch <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>averageGreyness <a href="CppOperatorDivide.htm">/</a> diff;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppNew.htm">new</a></b>Stretch <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppNew.htm">new</a></b>Stretch &lt; stretch) stretch <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b>Stretch;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (diff &gt; 0.0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>pixel was lighter then average<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> <b><a href="CppNew.htm">new</a></b>Stretch <a href="CppOperatorAssign.htm">=</a> (255.9 <a href="CppOperatorMinus.htm">-</a> averageGreyness)&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> diff;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppNew.htm">new</a></b>Stretch &lt; stretch) stretch <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b>Stretch;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Enhance the contrast<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> diff <a href="CppOperatorAssign.htm">=</a> grey <a href="CppOperatorMinus.htm">-</a> averageGreyness;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> diffGreyNew <a href="CppOperatorAssign.htm">=</a> averageGreyness <a href="CppOperatorPlus.htm">+</a> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(diff) * stretch);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <b><a href="CppNew.htm">new</a></b>Grey <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(diffGreyNew);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppNew.htm">new</a></b>Grey <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp; 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppNew.htm">new</a></b>Grey &lt;&nbsp;&nbsp;256);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+2] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b>Grey; <a href="CppComment.htm">//</a>Red<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+1] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b>Grey; <a href="CppComment.htm">//</a>Green<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line[x*3+0] <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b>Grey; <a href="CppComment.htm">//</a>Blue<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetAverageGreyness.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> GetAverageGreyness(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> image)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap<a href="CppOperatorNotEqual.htm">!=</a>0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must not be <a href="CppNULL.htm">NULL</a>");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(image-&gt;Picture-&gt;Bitmap-&gt;PixelFormat <a href="CppOperatorEqual.htm">==</a> pf24bit <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "image bitmap must be 24 bit");<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Get the width and height from the source<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Width;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> image-&gt;Picture-&gt;Bitmap-&gt;Height;<br/>
-&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; image-&gt;Picture-&gt;Bitmap-&gt;Height);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> * line<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppUnsigned.htm">unsigned</a></b> <b><a href="CppChar.htm">char</a></b> *&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;image-&gt;Picture-&gt;Bitmap-&gt;ScanLine[y]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; image-&gt;Picture-&gt;Bitmap-&gt;Width);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> grey<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(line[x*3+0] <a href="CppOperatorPlus.htm">+</a> line[x*3+1] <a href="CppOperatorPlus.htm">+</a> line[x*3+2])<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum <a href="CppOperatorPlusAssign.htm">+=</a> grey;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> surface <a href="CppOperatorAssign.htm">=</a> width * height;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(surface&gt;0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> average <a href="CppOperatorAssign.htm">=</a> sum <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(surface);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average <a href="CppOperatorGreaterEqual.htm">&gt;=</a>&nbsp;&nbsp;&nbsp;&nbsp;0.0);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(average&nbsp;&nbsp;&lt;&nbsp;&nbsp;256.0);<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> average;<br/>
-}<br/>
-<br/>
-<br/>
-<a href="CppComment.htm">*/</a><br/>
-<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog::on_box_filter_rows_valueChanged(<b><a href="CppConst.htm">const</a></b> <a href="CppQString.htm">QString</a> &amp;)<br/>
 {<br/>
@@ -1260,6 +899,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;ui-&gt;content_result-&gt;setLayout(layout);<br/>
 &nbsp;&nbsp;m_result <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQLabel.htm">QLabel</a>;<br/>
 &nbsp;&nbsp;layout-&gt;addWidget(m_result);<br/>
+&nbsp;&nbsp;m_result-&gt;setAlignment(<a href="CppQt.htm">Qt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;m_result-&gt;setPixmap(q);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_result);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_result-&gt;pixmap()-&gt;isNull());<br/>
@@ -1341,12 +981,12 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <table summary="./ToolFilterOperationer/qtfilteroperationermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qtfilteroperationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolFilterOperationer.htm">filteroperationer</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "filteroperationermenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qtfilteroperationermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qtfilteroperationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolFilterOperationer.htm">filteroperationer</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolFilterOperationer.htm">filteroperationer</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolFilterOperationer.htm">filteroperationer</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -1410,15 +1050,15 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qtfilteroperationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolFilterOperationer.htm">filteroperationer</a>menudialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MainDialog w;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;w.show();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
+&nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolFilterOperationer.htm">FilterOperationer</a>MenuDialog w;<br/>
+&nbsp;&nbsp;w.show();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

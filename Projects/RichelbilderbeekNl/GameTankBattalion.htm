@@ -142,7 +142,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TankBattalionGameDialog w;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
@@ -170,23 +170,27 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TankBattalionGameDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog;<br/>
 }<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TankBattalionGameDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>TankBattalionGameDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TankBattalionGameDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TankBattalionGameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TankBattalionGameDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>TankBattalionGameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>TankBattalionGameDialog();<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog();<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>&gt; m_game;<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TankBattalionGameDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTANKBATTALIONGAMEDIALOG<br/>
@@ -209,16 +213,16 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <a href="CppInclude.htm">#include</a> "ui_qttankbattaliongamedialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TankBattalionGameDialog::<a href="CppQt.htm">Qt</a>TankBattalionGameDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog::<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQDialog.htm">QDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_game(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TankBattalionGameDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;ui-&gt;layout-&gt;addWidget(m_game.get());<br/>
 }<br/>
 <br/>
-<a href="CppQt.htm">Qt</a>TankBattalionGameDialog::~<a href="CppQt.htm">Qt</a>TankBattalionGameDialog()<br/>
+<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog::~<a href="CppQt.htm">Qt</a><a href="GameTankBattalion.htm">TankBattalion</a>GameDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
@@ -257,7 +261,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMap.htm">std::map</a>&lt;TankBattalion::SpriteType,<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; &gt; SpriteMap;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMap.htm">std::map</a>&lt;<a href="GameTankBattalion.htm">TankBattalion</a>::SpriteType,<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; &gt; SpriteMap;<br/>
 &nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
@@ -265,7 +269,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <b><a href="CppPublic.htm">public</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpriteMap CreateSprites() <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; GetImage(<b><a href="CppConst.htm">const</a></b> TankBattalion::SpriteType&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; GetImage(<b><a href="CppConst.htm">const</a></b> <a href="GameTankBattalion.htm">TankBattalion</a>::SpriteType&amp; s) <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpriteMap m_sprites;<br/>
 };<br/>
 <br/>
@@ -302,15 +306,15 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::SpriteMap <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::CreateSprites() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;SpriteMap m;<br/>
-&nbsp;&nbsp;m[TankBattalion::arena] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/Arena.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_down] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerDown.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_left] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerLeft.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_right] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerRight.png"));<br/>
-&nbsp;&nbsp;m[TankBattalion::player_up] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerUp.png"));<br/>
+&nbsp;&nbsp;m[<a href="GameTankBattalion.htm">TankBattalion</a>::arena] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/Arena.png"));<br/>
+&nbsp;&nbsp;m[<a href="GameTankBattalion.htm">TankBattalion</a>::player_down] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerDown.png"));<br/>
+&nbsp;&nbsp;m[<a href="GameTankBattalion.htm">TankBattalion</a>::player_left] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerLeft.png"));<br/>
+&nbsp;&nbsp;m[<a href="GameTankBattalion.htm">TankBattalion</a>::player_right] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerRight.png"));<br/>
+&nbsp;&nbsp;m[<a href="GameTankBattalion.htm">TankBattalion</a>::player_up] <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt;(<b><a href="CppNew.htm">new</a></b> <a href="CppQImage.htm">QImage</a>(":/images/PlayerUp.png"));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::GetImage(<b><a href="CppConst.htm">const</a></b> TankBattalion::SpriteType&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; <a href="CppQt.htm">Qt</a>Game<a href="CppWidget.htm">Widget</a>::GetImage(<b><a href="CppConst.htm">const</a></b> <a href="GameTankBattalion.htm">TankBattalion</a>::SpriteType&amp; s) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> SpriteMap::const_iterator i<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> m_sprites.find(s);<br/>
@@ -325,18 +329,18 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;height();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale_x<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(width)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> TankBattalion::GetArenaWidth();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <a href="GameTankBattalion.htm">TankBattalion</a>::GetArenaWidth();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale_y<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(height)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> TankBattalion::GetArenaHeight();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorDivide.htm">/</a> <a href="GameTankBattalion.htm">TankBattalion</a>::GetArenaHeight();<br/>
 &nbsp;&nbsp;painter.setBackgroundMode(<a href="CppQt.htm">Qt</a>::TransparentMode);<br/>
 &nbsp;&nbsp;painter.drawImage(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;rect(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;*GetImage(TankBattalion::arena).get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*GetImage(<a href="GameTankBattalion.htm">TankBattalion</a>::arena).get());<br/>
 <br/>
 &nbsp;&nbsp;painter.drawImage(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQRect.htm">QRect</a>(0,0,scale_x * 16.0, scale_y * 16.0),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;*GetImage(TankBattalion::player_left).get());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*GetImage(<a href="GameTankBattalion.htm">TankBattalion</a>::player_left).get());<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -353,7 +357,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <a href="CppIfndef.htm">#ifndef</a> TANKBATTALION_H<br/>
 <a href="CppDefine.htm">#define</a> TANKBATTALION_H<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppStruct.htm">struct</a></b> TankBattalion<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="GameTankBattalion.htm">TankBattalion</a><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> SpriteType<br/>
 &nbsp;&nbsp;{<br/>
@@ -367,11 +371,11 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> y;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;TankBattalion::SpriteType type;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="GameTankBattalion.htm">TankBattalion</a>::SpriteType type;<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;TankBattalion();<br/>
+&nbsp;&nbsp;<a href="GameTankBattalion.htm">TankBattalion</a>();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> PressKeyDown();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> PressKeyLeft();<br/>
@@ -401,7 +405,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTankBattalion.htm">Game
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> "tankbattalion.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-TankBattalion::TankBattalion()<br/>
+<a href="GameTankBattalion.htm">TankBattalion</a>::<a href="GameTankBattalion.htm">TankBattalion</a>()<br/>
 {<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -423,7 +427,7 @@ TankBattalion::TankBattalion()<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> TankBattalionMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -433,6 +437,10 @@ TankBattalion::TankBattalion()<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -457,7 +465,7 @@ TankBattalion::TankBattalion()<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::TankBattalionMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
@@ -469,11 +477,11 @@ TankBattalion::TankBattalion()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::TankBattalionMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"TankBattalion",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameTankBattalion.htm">TankBattalion</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
@@ -484,7 +492,7 @@ TankBattalion::TankBattalion()<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::TankBattalionMenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::<a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Help(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle(),<br/>
@@ -498,21 +506,21 @@ TankBattalion::TankBattalion()<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::TankBattalionMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> ProgramTankBattalion<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Program<a href="GameTankBattalion.htm">TankBattalion</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TankBattalionMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "0.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TankBattalionMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameTankBattalion.htm">TankBattalion</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-11-07: <a href="CppVersion.htm">version</a> 0.1: conformized to <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>Console"<br/>

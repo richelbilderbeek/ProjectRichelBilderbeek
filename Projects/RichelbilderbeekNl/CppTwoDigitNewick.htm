@@ -912,7 +912,7 @@ void ribi::TwoDigitNewick::SetTheta(const double theta)<br/>
 &nbsp;&nbsp;sm_theta = theta;<br/>
 }<br/>
 <br/>
-void ribi::TwoDigitNewick::Test()<br/>
+void ribi::TwoDigitNewick::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;ribi::TwoDigitNewick::SetTheta(10.0);<br/>
 &nbsp;&nbsp;const std::vector&lt;std::string&gt; v = Newick::CreateValidNewicks();<br/>
@@ -1042,7 +1042,7 @@ struct TwoDigitNewick<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; newick,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const double theta);<br/>
 <br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 };<br/>
 <br/>

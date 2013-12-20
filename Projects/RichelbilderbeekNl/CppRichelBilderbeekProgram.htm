@@ -766,6 +766,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 #include "richelbilderbeekprogramtypes.h"<br/>
 #include "richelbilderbeekprogramstatus.h"<br/>
+#include "trace.h"<br/>
 #pragma GCC diagnostic pop<br/>
 <br/>
 const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const ProgramType type) noexcept<br/>
@@ -775,23 +776,28 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::aminoAcidFighter: p.reset(new ProgramAminoAcidFighter); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::asciiArter: p.reset(new ProgramAsciiArter); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::asciiArterVcl: p.reset(new ProgramAsciiArterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::barbaImage: p.reset(new ProgramBarbaImage); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::beerWanter: p.reset(new ProgramBeerWanter); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::beerWanterVcl: p.reset(new ProgramBeerWanterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::athleticLand: p.reset(new ProgramAthleticLand); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::athleticLandVcl: p.reset(new ProgramAthleticLandVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::bochum: p.reset(new ProgramBochum); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::boenken: p.reset(new ProgramBoenken); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::boenkenVcl: p.reset(new ProgramBoenkenVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::brainweaver: p.reset(new ProgramBrainweaver); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::bristol: p.reset(new ProgramBristol); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::chrisWiley: p.reset(new ProgramChrisWiley); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::codeToHtml: p.reset(new ProgramCodeToHtml); break;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::connectThree: p.reset(new ProgramCodeToHtml); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::connectThree: p.reset(new ProgramConnectThree); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::corridor: p.reset(new ProgramCorridor); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::createGlossary: p.reset(new ProgramCreateGlossary); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::createQtProjectZipFile: p.reset(new ProgramCreateQtProjectZipFile); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::crossPoll: p.reset(new ProgramCrossPoll); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::dasWahreSchlagerfest: p.reset(new ProgramDasWahreSchlagerfest); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::dasWahreSchlagerfestVcl: p.reset(new ProgramDasWahreSchlagerfestVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::dotMatrix: p.reset(new ProgramDotMatrix); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::dotMatrixVcl: p.reset(new ProgramDotMatrixVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::encranger: p.reset(new ProgramEncranger); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::everythingToPiecesShooter: p.reset(new ProgramEverythingToPiecesShooter); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::fakeEvy: p.reset(new ProgramFakeEvy); break;<br/>
@@ -799,19 +805,25 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::filterOperationerVcl: p.reset(new ProgramFilterOperationerVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::fryskLeareLieder: p.reset(new ProgramFryskLeareLieder); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::functionPlotter: p.reset(new ProgramFunctionPlotter); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::functionPlotterVcl: p.reset(new ProgramFunctionPlotterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::gaborFilter: p.reset(new ProgramGaborFilter); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::gaborFilterVcl: p.reset(new ProgramGaborFilterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::grayCoder: p.reset(new ProgramGrayCoder); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::grayCoderVcl: p.reset(new ProgramGrayCoderVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::gtst: p.reset(new ProgramGtst); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::histogramEqualizationer: p.reset(new ProgramHistogramEqualizationer); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::histogramEqualizationerVcl: p.reset(new ProgramHistogramEqualizationerVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::hometrainer: p.reset(new ProgramHometrainer); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::hometrainerVcl: p.reset(new ProgramHometrainerVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::imageRotater: p.reset(new ProgramImageRotater); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::imageRotaterClx: p.reset(new ProgramImageRotaterClx); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::imageRotaterVcl: p.reset(new ProgramImageRotaterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::k3OpEenRij: p.reset(new ProgramK3OpEenRij); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::k3OpEenRijVcl: p.reset(new ProgramK3OpEenRijVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::kalmanFilterer: p.reset(new ProgramKalmanFilterer); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::keySender: p.reset(new ProgramKeySender); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::knokfighter: p.reset(new ProgramKnokfighter); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::knokfighterVcl: p.reset(new ProgramKnokfighterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::kTouchLectureCreator: p.reset(new ProgramKTouchLectureCreator); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::lambdaBot: p.reset(new ProgramLambdaBot); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::learyCircumplex: p.reset(new ProgramLearyCircumplex); break;<br/>
@@ -819,11 +831,15 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::loose: p.reset(new ProgramLoose); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::martianCafeTuinemaTycoon: p.reset(new ProgramMartianCafeTuinemaTycoon); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::mazeCreator: p.reset(new ProgramMazeCreator); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::mazeCreatorVcl: p.reset(new ProgramMazeCreatorVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::maziak: p.reset(new ProgramMaziak); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::maziakVcl: p.reset(new ProgramMaziakVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::metZnDrieen: p.reset(new ProgramMetZnDrieen); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::metZnDrieenVcl: p.reset(new ProgramMetZnDrieenVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::midiLessonCreator: p.reset(new ProgramMidiLessonCreator); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::morpher: p.reset(new ProgramMorpher); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::multiEncranger: p.reset(new ProgramMultiEncranger); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::multiEncrangerVcl: p.reset(new ProgramMultiEncrangerVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::muscaDomestica: p.reset(new ProgramMuscaDomestica); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::musicTheory: p.reset(new ProgramMusicTheory); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::ndsmake: p.reset(new ProgramNdsmake); break;<br/>
@@ -836,13 +852,15 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::pixelatorVcl: p.reset(new ProgramPixelatorVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::pokeVolley: p.reset(new ProgramPokeVolley); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::pong: p.reset(new ProgramPong); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::preDickAdvocaTor: p.reset(new ProgramPreDickAdvocaTor); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::primeExpert: p.reset(new ProgramPrimeExpert); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::projectRichelBilderbeek: p.reset(new ProgramProjectRichelBilderbeek); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::pylos: p.reset(new ProgramPylos); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::qmakeWatcher: p.reset(new ProgramQmakeWatcher); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::quadraticSolver: p.reset(new ProgramQuadraticSolver); break;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::rampal: p.reset(new ProgramRampal); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::rampalEtienne: p.reset(new ProgramRampalEtienne); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::randomCode: p.reset(new ProgramRandomCode); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::randomCodeVcl: p.reset(new ProgramRandomCodeVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::rasper: p.reset(new ProgramRasper); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::refrigeratorPuzzleSolver: p.reset(new ProgramRefrigeratorPuzzleSolver); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::regexTester: p.reset(new ProgramRegexTester); break;<br/>
@@ -850,8 +868,11 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::richelBilderbeekGallery: p.reset(new ProgramRichelBilderbeekGallery); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new ProgramRichelBilderbeekNlSitemapGenerator); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::rubiksClock: p.reset(new ProgramRubiksClock); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::rubiksClockVcl: p.reset(new ProgramRubiksClockVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::searchAndDestroyChess: p.reset(new ProgramSearchAndDestroyChess); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::searchAndDestroyChessVcl: p.reset(new ProgramSearchAndDestroyChessVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::secretMessage: p.reset(new ProgramSecretMessage); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::secretMessageVcl: p.reset(new ProgramSecretMessageVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::simBrainiac: p.reset(new ProgramSimBrainiac); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::simImmuneResponse: p.reset(new ProgramSimImmuneResponse); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::simMysteryMachine: p.reset(new ProgramSimMysteryMachine); break;<br/>
@@ -861,11 +882,13 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::soaSim: p.reset(new ProgramSoaSim); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::solvePuzzleX: p.reset(new ProgramSolvePuzzleX); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::spaceHarry: p.reset(new ProgramSpaceHarry); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::spaceHarryVcl: p.reset(new ProgramSpaceHarryVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::staircaseCardCreator: p.reset(new ProgramStaircaseCardCreator); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::stateObserver: p.reset(new ProgramStateObserver); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::styleSheetSetter: p.reset(new ProgramStyleSheetSetter); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::superNsanaBros: p.reset(new ProgramSuperNsanaBros); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::surfacePlotter: p.reset(new ProgramSurfacePlotter); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::surfacePlotterVcl: p.reset(new ProgramSurfacePlotterVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::tankBattalion: p.reset(new ProgramTankBattalion); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testAbout: p.reset(new ProgramTestAbout); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testApproximator: p.reset(new ProgramTestApproximator); break;<br/>
@@ -885,7 +908,7 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testGravityWidget: p.reset(new ProgramTestGravityWidget); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testGroupWidget: p.reset(new ProgramTestGroupWidget); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testHugeVector: p.reset(new ProgramTestHugeVector); break;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testLazy_init: p.reset(new ProgramTestTestLazy_init); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testLazy_init: p.reset(new ProgramTestLazy_init); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testLed: p.reset(new ProgramTestLed); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testManyDigitNewick: p.reset(new ProgramTestManyDigitNewick); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testMultiApproximator: p.reset(new ProgramTestMultiApproximator); break;<br/>
@@ -921,13 +944,14 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testToggleButton: p.reset(new ProgramTestToggleButton); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::testTwoDigitNewick: p.reset(new ProgramTestTwoDigitNewick); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::thorVeen: p.reset(new ProgramThorVeen); break;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::thresholdFilterer: p.reset(new ProgramTestAbout); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::thresholdFiltererVcl: p.reset(new ProgramThresholdFiltererVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::ticTacToe: p.reset(new ProgramTicTacToe); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::ticTacToeLearner: p.reset(new ProgramTicTacToeLearner); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::ticTacToeValuer: p.reset(new ProgramTicTacToeValuer); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::timePoll: p.reset(new ProgramTimePoll); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::tronCollection: p.reset(new ProgramTronCollection); break;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::tronCollectionVcl: p.reset(new ProgramTronCollectionVcl); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::ubuntuOneWatcher: p.reset(new ProgramUbuntuOneWatcher); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::vanDenBogaart: p.reset(new ProgramVanDenBogaart); break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;<br/>
@@ -938,7 +962,23 @@ const boost::shared_ptr&lt;ribi::Program&gt; ribi::Program::CreateProgram(const 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!"Unimplemented RichelBilderbeek::ProgramType");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw std::logic_error("Unimplemented RichelBilderbeek::ProgramType");<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;if (!p)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(ProgramTypes::ProgramTypeToEnumName(type));<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;assert(p);<br/>
+&nbsp;&nbsp;if (p-&gt;GetType() != type)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(p-&gt;GetName());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(ProgramTypes::ProgramTypeToEnumName(type));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(ProgramTypes::ProgramTypeToEnumName(p-&gt;GetType()));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;assert(p-&gt;GetType() == type<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "type and Program::GetType must match");<br/>
+<br/>
 &nbsp;&nbsp;return p;<br/>
 }<br/>
 <br/>
@@ -1168,13 +1208,13 @@ struct ProgramAminoAcidFighter : public ProgramGame<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::aminoAcidFighter; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameBeerAminoAcidFighter.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameAminoAcidFighter.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramAthleticLand : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameAthleticLand_0_9.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Athletic Land"; }<br/>
@@ -1195,8 +1235,8 @@ struct ProgramAthleticLandVcl : public ProgramGame<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Athletic Land (VCL)"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::athleticLandVcl; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameAthleticLandVcl.htm"; }<br/>
 };<br/>
@@ -1205,15 +1245,30 @@ struct ProgramAsciiArter : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolAsciiArter_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolTestAsciiArter_4_1.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "AsciiArter"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::asciiArter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolAsciiArter.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramAsciiArterVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolAsciiArter_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "AsciiArter (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::asciiArterVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolAsciiArterVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramBarbaImage : public ProgramTool<br/>
@@ -1235,15 +1290,30 @@ struct ProgramBeerWanter : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameBeerWanter5.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBeerWanter3.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "BeerWanter"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::beerWanter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameBeerWanter.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramBeerWanterVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBeerWanter3.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "BeerWanter (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::beerWanterVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameBeerWanterVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramBochum : public ProgramProject<br/>
@@ -1253,10 +1323,10 @@ struct ProgramBochum : public ProgramProject<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Project Bochum"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::bochum; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectBochum.htm"; }<br/>
 };<br/>
@@ -1265,15 +1335,30 @@ struct ProgramBoenken : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameBoenken_4_1.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBoenken_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Boenken"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::boenken; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameBoenken.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramBoenkenVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameBoenken_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Boenken (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::boenkenVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameBoenkenVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramBrainweaver : public ProgramProject<br/>
@@ -1283,7 +1368,7 @@ struct ProgramBrainweaver : public ProgramProject<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Brainweaver"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
@@ -1298,11 +1383,11 @@ struct ProgramBristol : public ProgramProject<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Bristol"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::brainweaver; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::bristol; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectBristol.htm"; }<br/>
 };<br/>
 <br/>
@@ -1313,10 +1398,10 @@ struct ProgramChrisWiley : public ProgramProject<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectChrisWiley_1_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Project Chris Wiley"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::chrisWiley; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectChrisWiley.htm"; }<br/>
 };<br/>
@@ -1358,10 +1443,10 @@ struct ProgramCorridor : public ProgramGame<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Corridor"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::corridor; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameCorridor.htm"; }<br/>
 };<br/>
@@ -1369,7 +1454,7 @@ struct ProgramCorridor : public ProgramGame<br/>
 struct ProgramCreateGlossary : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolCreateGlossary_1_2.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "CreateGlossary"; }<br/>
@@ -1403,10 +1488,10 @@ struct ProgramCrossPoll : public ProgramProject<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectCrossPoll3.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "CrossPoll"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::crossPoll; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectCrossPoll.htm"; }<br/>
 };<br/>
@@ -1415,30 +1500,60 @@ struct ProgramDasWahreSchlagerfest : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameDasWahreSchlagerfest_2_2.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameDasWahreSchlagerfest_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::dasWahreSchlagerfest; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfest.htm"; }<br/>
 };<br/>
 <br/>
+struct ProgramDasWahreSchlagerfestVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameDasWahreSchlagerfest_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::dasWahreSchlagerfestVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameDasWahreSchlagerfestVcl.htm"; }<br/>
+};<br/>
+<br/>
 struct ProgramDotMatrix : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolDotMatrix_2_1.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "DotMatrix"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::dotMatrix; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolDotMatrix.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramDotMatrixVcl : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolDotMatrix_1_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "DotMatrix"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "DotMatrix (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::dotMatrix; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolDotMatrix.htm"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::dotMatrixVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolDotMatrixVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramEverythingToPiecesShooter : public ProgramGame<br/>
@@ -1448,10 +1563,10 @@ struct ProgramEverythingToPiecesShooter : public ProgramGame<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "EverythingToPiecesShooter"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::everythingToPiecesShooter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameEverythingToPiecesShooter.htm"; }<br/>
 };<br/>
@@ -1474,14 +1589,14 @@ struct ProgramFakeEvy : public ProgramTool<br/>
 struct ProgramFilterOperationer : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolFilterOperationer_2_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "FilterOperationer"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::unk; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::filterOperationer; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolFilterOperationer.htm"; }<br/>
 };<br/>
@@ -1508,10 +1623,10 @@ struct ProgramFryskLeareLieder : public ProgramTool<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFryskLeareLieder_1_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "FryskLeareLieder"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::fryskLeareLieder; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolFryskLeareLieder.htm"; }<br/>
 };<br/>
@@ -1519,46 +1634,91 @@ struct ProgramFryskLeareLieder : public ProgramTool<br/>
 struct ProgramFunctionPlotter : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFunctionPlotter_1_1.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolFunctionPlotter_2_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "FunctionPlotter"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::functionPlotter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolFunctionPlotter.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramFunctionPlotterVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolFunctionPlotter_1_1.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "FunctionPlotter (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::functionPlotterVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolFunctionPlotterVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramGaborFilter : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolGaborFilter_2_0.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGaborFilter_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "GaborFilter"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::gaborFilter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolGaborFilter.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramGaborFilterVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGaborFilter_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "GaborFilter (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::gaborFilterVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolGaborFilterVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramGrayCoder : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolGrayCoder_2_1.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGrayCoder_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "GrayCoder"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::grayCoder; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GrayCoder.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolGrayCoder.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramGrayCoderVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolGrayCoder_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "GrayCoder (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::grayCoderVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolGrayCoderVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramGtst : public ProgramProject<br/>
@@ -1579,7 +1739,7 @@ struct ProgramGtst : public ProgramProject<br/>
 struct ProgramHistogramEqualizationer : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolHistogramEqualizationer_2_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "HistogramEqualizationer"; }<br/>
@@ -1610,21 +1770,36 @@ struct ProgramHometrainer : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolHometrainer_1_8.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolHometrainer_2_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Hometrainer"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::hometrainer; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolHometrainer.htm"; }<br/>
 };<br/>
 <br/>
-struct ProgramImageRotater : public ProgramTool<br/>
+struct ProgramHometrainerVcl : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolHometrainer_1_8.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Hometrainer (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::hometrainerVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolHometrainerVcl.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramImageRotater : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolImageRotater_2_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "ImageRotater"; }<br/>
@@ -1663,7 +1838,7 @@ struct ProgramImageRotaterVcl : public ProgramTool<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::imageRotaterClx; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::imageRotaterVcl; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolImageRotaterVcl.htm"; }<br/>
 };<br/>
 <br/>
@@ -1671,22 +1846,37 @@ struct ProgramK3OpEenRij : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameK3OpEenRij_6_0.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameK3OpEenRij_4_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "GameK3OpEenRij_5_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "K3 Op Een Rij"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::k3OpEenRij; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameK3OpEenRij.htm"; }<br/>
 };<br/>
 <br/>
+struct ProgramK3OpEenRijVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameK3OpEenRij_4_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "K3 Op Een Rij (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::k3OpEenRijVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameK3OpEenRijVcl.htm"; }<br/>
+};<br/>
+<br/>
 struct ProgramKalmanFilterer : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolKalmanFilterer_1_11.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolKalmanFilterer_1_4.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "KalmanFilterer"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
@@ -1716,16 +1906,32 @@ struct ProgramKnokfighter : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameKnokfighter_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Knokfighter"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::knokfighter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameKnokfighter.htm"; }<br/>
 };<br/>
+<br/>
+struct ProgramKnokfighterVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameKnokfighter_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Knokfighter (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::knokfighterVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameKnokfighterVcl.htm"; }<br/>
+};<br/>
+<br/>
 <br/>
 struct ProgramKTouchLectureCreator : public ProgramTool<br/>
 {<br/>
@@ -1821,45 +2027,90 @@ struct ProgramMazeCreator : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolMazeCreator_2_0.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMazeCreator_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MazeCreator"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::mazeCreator; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolMazeCreator.htm"; }<br/>
 };<br/>
 <br/>
+struct ProgramMazeCreatorVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMazeCreator_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MazeCreator (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::mazeCreatorVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolMazeCreatorVcl.htm"; }<br/>
+};<br/>
+<br/>
 struct ProgramMaziak : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameMaziak_1_3.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMaziak_2_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Maziak"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::maziak; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameMaziak.htm"; }<br/>
 };<br/>
 <br/>
+struct ProgramMaziakVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMaziak_2_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Maziak (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::maziakVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameMaziakVcl.htm"; }<br/>
+};<br/>
+<br/>
 struct ProgramMetZnDrieen : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MetZnDrieen"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::metZnDrieen; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameMetZnDrieen.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramMetZnDrieenVcl : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameMetZnDrieen_1_3.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MetZnDrieen"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MetZnDrieen (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::metZnDrieen; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameMetZnDrieen.htm"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::metZnDrieenVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameMetZnDrieenVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramMidiLessonCreator : public ProgramTool<br/>
@@ -1896,15 +2147,30 @@ struct ProgramMultiEncranger : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMultiEncranger_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MultiEncranger"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::multiEncranger; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolMultiEncranger.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramMultiEncrangerVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolMultiEncranger_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "MultiEncranger (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::multiEncrangerVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolMultiEncrangerVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramMuscaDomestica : public ProgramProject<br/>
@@ -1949,7 +2215,7 @@ struct ProgramNdsmake : public ProgramClass<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::ndsmake; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "CppNdsmake.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolNdsmake.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramNdsPaint : public ProgramTool<br/>
@@ -1964,7 +2230,7 @@ struct ProgramNdsPaint : public ProgramTool<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::ndsPaint; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "CppNdsPaint.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolNdsPaint.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramPaperRockScissors : public ProgramTool<br/>
@@ -2053,7 +2319,7 @@ struct ProgramPixelatorVcl : public ProgramTool<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::pixelator; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::pixelatorVcl; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolPixelatorVcl.htm"; }<br/>
 };<br/>
 <br/>
@@ -2085,6 +2351,21 @@ struct ProgramPong : public ProgramGame<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::pong; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GamePong.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramPreDickAdvocaTor : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "PreDickAdvocaTor"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::preDickAdvocaTor; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolPreDickAdvocaTor.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramPrimeExpert : public ProgramTool<br/>
@@ -2163,34 +2444,49 @@ struct ProgramQuadraticSolver : public ProgramTool<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolQuadraticSolver.htm"; }<br/>
 };<br/>
 <br/>
-struct ProgramRampal : public ProgramProject<br/>
+struct ProgramRampalEtienne : public ProgramProject<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "ProjectRampal"; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "ProjectRampalEtienne"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::rampal; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectRampal.htm"; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::rampalEtienne; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectRampalEtienne.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramRandomCode : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolRandomCode_4_2.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolRandomCode_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolRandomCode_3_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "RandomCode"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::randomCode; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolRandomCode.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramRandomCodeVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolRandomCode_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "RandomCode (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::randomCodeVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolRandomCodeVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramRasper : public ProgramTool<br/>
@@ -2281,52 +2577,97 @@ struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::richelbilderbeekNlSitemapGenerator; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramRubiksClock : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "GameRubiksClockDesktop_2_2.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameRubiksClock_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "GameRubiksClock_2_1.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Rubik's Clock"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::rubiksClock; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameRubiksClock.htm"; }<br/>
 };<br/>
 <br/>
+struct ProgramRubiksClockVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameRubiksClock_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Rubik's Clock (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::rubiksClockVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameRubiksClockVcl.htm"; }<br/>
+};<br/>
+<br/>
 struct ProgramSearchAndDestroyChess : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Search And Destroy Chess"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::searchAndDestroyChess; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameSearchAndDestroyChess.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramSearchAndDestroyChessVcl : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return "GameSearchAndDestroyChessConsole_1_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSearchAndDestroyChess_2_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Search And Destroy Chess"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Search And Destroy Chess (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::searchAndDestroyChess; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameSearchAndDestroyChess.htm"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::searchAndDestroyChessVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameSearchAndDestroyChessVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramSecretMessage : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSecretMessage_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "SecretMessage"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::secretMessage; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolSecretMessage.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramSecretMessageVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSecretMessage_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "SecretMessage (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::secretMessageVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolSecretMessageVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramSimBrainiac : public ProgramTool<br/>
@@ -2402,7 +2743,7 @@ struct ProgramSimPredator : public ProgramGame<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::simPredator; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolSimPredator.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameSimPredator.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramSimStagecraft : public ProgramTool<br/>
@@ -2454,15 +2795,30 @@ struct ProgramSpaceHarry : public ProgramGame<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSpaceHarry_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Space Harry"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::spaceHarry; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameSpaceHarry.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramSpaceHarryVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "GameSpaceHarry_1_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Space Harry (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::spaceHarryVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameSpaceHarryVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramStaircaseCardCreator : public ProgramTool<br/>
@@ -2528,16 +2884,31 @@ struct ProgramSuperNsanaBros : public ProgramGame<br/>
 struct ProgramSurfacePlotter : public ProgramTool<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSurfacePlotter_1_2.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolSurfacePlotter_2_0.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "SurfacePlotter"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::surfacePlotter; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolSurfacePlotter.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramSurfacePlotterVcl : public ProgramTool<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolSurfacePlotter_1_2.png"; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "SurfacePlotter (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::surfacePlotterVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolSurfacePlotterVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramTankBattalion : public ProgramGame<br/>
@@ -2593,7 +2964,7 @@ struct ProgramTestBinaryNewickVector : public ProgramTool<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TestBinaryNewickVector"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::testBinaryNewickVector; }<br/>
@@ -2638,7 +3009,7 @@ struct ProgramTestBroadcastServer : public ProgramClass<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolTestBroadcastServer_1_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TestBroadcastServer"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::n_a; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::n_a; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::testBroadcastServer; }<br/>
@@ -2668,7 +3039,7 @@ struct ProgramTestChess : public ProgramClass<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolTestChess20120207.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TestChess"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::testChess; }<br/>
@@ -2698,7 +3069,7 @@ struct ProgramTestDial : public ProgramClass<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolTestDial_1_1.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TestDial"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::testDial; }<br/>
@@ -2728,7 +3099,7 @@ struct ProgramTestEntrance : public ProgramClass<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return "ToolTestEntrance_1_0.png"; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TestEntrance"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::n_a; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::n_a; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::n_a; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::testEntrance; }<br/>
@@ -2840,7 +3211,7 @@ struct ProgramTestHugeVector : public ProgramClass<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolTestHugeVector.htm"; }<br/>
 };<br/>
 <br/>
-struct ProgramTestTestLazy_init : public ProgramClass<br/>
+struct ProgramTestLazy_init : public ProgramClass<br/>
 {<br/>
 &nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
@@ -3302,7 +3673,7 @@ struct ProgramTestTextPositionWidget : public ProgramClass<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::testTextPositionWidget; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolTextPositionWidget.htm"; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolTestTextPositionWidget.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramTestTicTacToe : public ProgramClass<br/>
@@ -3372,10 +3743,10 @@ struct ProgramThorVeen : public ProgramProject<br/>
 &nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ProjectThorVeen_0_9.png"; }<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "Project ThorVeen"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::thorVeen; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ProjectThorVeen.htm"; }<br/>
 };<br/>
@@ -3478,11 +3849,26 @@ struct ProgramTronCollection : public ProgramGame<br/>
 &nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
 &nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TronCollection"; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }<br/>
 &nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
 &nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::tronCollection; }<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameTronCollection.htm"; }<br/>
+};<br/>
+<br/>
+struct ProgramTronCollectionVcl : public ProgramGame<br/>
+{<br/>
+&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
+&nbsp;&nbsp;const std::string GetScreenName() const noexcept { return "TronCollection (VCL)"; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::nvr; }<br/>
+&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::tronCollectionVcl; }<br/>
+&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "GameTronCollectionVcl.htm"; }<br/>
 };<br/>
 <br/>
 struct ProgramUbuntuOneWatcher : public ProgramTool<br/>
@@ -3643,20 +4029,6 @@ struct ProgramEncranger : public ProgramTool<br/>
 &nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolEncranger.htm"; }<br/>
 };<br/>
 <br/>
-struct ProgramRichelBilderbeekNlSitemapGenerator : public ProgramTool<br/>
-{<br/>
-&nbsp;&nbsp;const std::string GetFilenameConsole() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktop() const noexcept { return "ToolRichelbilderbeekNlSitemapGenerator_2_0.png"; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetFilenameWeb() const noexcept { return ""; }<br/>
-&nbsp;&nbsp;const std::string GetName() const { return "RichelBilderbeekNlSitemapGenerator"; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }<br/>
-&nbsp;&nbsp;ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }<br/>
-&nbsp;&nbsp;ProgramType GetType() const noexcept { return ProgramType::richelBilderbeekNlSitemapGenerator; }<br/>
-&nbsp;&nbsp;const std::string GetUrl() const noexcept { return "ToolRichelBilderbeekNlSitemapGenerator.htm"; }<br/>
-};<br/>
 */<br/>
 <br/>
 std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Program&amp; p) noexcept;<br/>
@@ -3868,10 +4240,13 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;athleticLand,<br/>
 &nbsp;&nbsp;athleticLandVcl,<br/>
 &nbsp;&nbsp;asciiArter,<br/>
+&nbsp;&nbsp;asciiArterVcl,<br/>
 &nbsp;&nbsp;barbaImage,<br/>
 &nbsp;&nbsp;beerWanter,<br/>
+&nbsp;&nbsp;beerWanterVcl,<br/>
 &nbsp;&nbsp;bochum,<br/>
 &nbsp;&nbsp;boenken,<br/>
+&nbsp;&nbsp;boenkenVcl,<br/>
 &nbsp;&nbsp;brainweaver,<br/>
 &nbsp;&nbsp;bristol,<br/>
 &nbsp;&nbsp;chrisWiley,<br/>
@@ -3882,7 +4257,9 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;createQtProjectZipFile,<br/>
 &nbsp;&nbsp;crossPoll,<br/>
 &nbsp;&nbsp;dasWahreSchlagerfest,<br/>
+&nbsp;&nbsp;dasWahreSchlagerfestVcl,<br/>
 &nbsp;&nbsp;dotMatrix,<br/>
+&nbsp;&nbsp;dotMatrixVcl,<br/>
 &nbsp;&nbsp;encranger,<br/>
 &nbsp;&nbsp;everythingToPiecesShooter,<br/>
 &nbsp;&nbsp;fakeEvy,<br/>
@@ -3890,19 +4267,25 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;filterOperationerVcl,<br/>
 &nbsp;&nbsp;fryskLeareLieder,<br/>
 &nbsp;&nbsp;functionPlotter,<br/>
+&nbsp;&nbsp;functionPlotterVcl,<br/>
 &nbsp;&nbsp;gaborFilter,<br/>
+&nbsp;&nbsp;gaborFilterVcl,<br/>
 &nbsp;&nbsp;grayCoder,<br/>
+&nbsp;&nbsp;grayCoderVcl,<br/>
 &nbsp;&nbsp;gtst,<br/>
 &nbsp;&nbsp;histogramEqualizationer,<br/>
 &nbsp;&nbsp;histogramEqualizationerVcl,<br/>
 &nbsp;&nbsp;hometrainer,<br/>
+&nbsp;&nbsp;hometrainerVcl,<br/>
 &nbsp;&nbsp;imageRotater,<br/>
 &nbsp;&nbsp;imageRotaterClx,<br/>
 &nbsp;&nbsp;imageRotaterVcl,<br/>
 &nbsp;&nbsp;k3OpEenRij,<br/>
+&nbsp;&nbsp;k3OpEenRijVcl,<br/>
 &nbsp;&nbsp;kalmanFilterer,<br/>
 &nbsp;&nbsp;keySender,<br/>
 &nbsp;&nbsp;knokfighter,<br/>
+&nbsp;&nbsp;knokfighterVcl,<br/>
 &nbsp;&nbsp;kTouchLectureCreator,<br/>
 &nbsp;&nbsp;lambdaBot,<br/>
 &nbsp;&nbsp;learyCircumplex,<br/>
@@ -3910,11 +4293,15 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;loose,<br/>
 &nbsp;&nbsp;martianCafeTuinemaTycoon,<br/>
 &nbsp;&nbsp;mazeCreator,<br/>
+&nbsp;&nbsp;mazeCreatorVcl,<br/>
 &nbsp;&nbsp;maziak,<br/>
+&nbsp;&nbsp;maziakVcl,<br/>
 &nbsp;&nbsp;metZnDrieen,<br/>
+&nbsp;&nbsp;metZnDrieenVcl,<br/>
 &nbsp;&nbsp;midiLessonCreator,<br/>
 &nbsp;&nbsp;morpher,<br/>
 &nbsp;&nbsp;multiEncranger,<br/>
+&nbsp;&nbsp;multiEncrangerVcl,<br/>
 &nbsp;&nbsp;muscaDomestica,<br/>
 &nbsp;&nbsp;musicTheory,<br/>
 &nbsp;&nbsp;ndsmake,<br/>
@@ -3927,13 +4314,15 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;pixelatorVcl,<br/>
 &nbsp;&nbsp;pokeVolley,<br/>
 &nbsp;&nbsp;pong,<br/>
+&nbsp;&nbsp;preDickAdvocaTor,<br/>
 &nbsp;&nbsp;primeExpert,<br/>
 &nbsp;&nbsp;projectRichelBilderbeek,<br/>
 &nbsp;&nbsp;pylos,<br/>
 &nbsp;&nbsp;qmakeWatcher,<br/>
 &nbsp;&nbsp;quadraticSolver,<br/>
-&nbsp;&nbsp;rampal,<br/>
+&nbsp;&nbsp;rampalEtienne,<br/>
 &nbsp;&nbsp;randomCode,<br/>
+&nbsp;&nbsp;randomCodeVcl,<br/>
 &nbsp;&nbsp;rasper,<br/>
 &nbsp;&nbsp;refrigeratorPuzzleSolver,<br/>
 &nbsp;&nbsp;regexTester,<br/>
@@ -3941,8 +4330,11 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;richelBilderbeekGallery,<br/>
 &nbsp;&nbsp;richelbilderbeekNlSitemapGenerator,<br/>
 &nbsp;&nbsp;rubiksClock,<br/>
+&nbsp;&nbsp;rubiksClockVcl,<br/>
 &nbsp;&nbsp;searchAndDestroyChess,<br/>
+&nbsp;&nbsp;searchAndDestroyChessVcl,<br/>
 &nbsp;&nbsp;secretMessage,<br/>
+&nbsp;&nbsp;secretMessageVcl,<br/>
 &nbsp;&nbsp;simBrainiac,<br/>
 &nbsp;&nbsp;simImmuneResponse,<br/>
 &nbsp;&nbsp;simMysteryMachine,<br/>
@@ -3952,11 +4344,13 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;soaSim,<br/>
 &nbsp;&nbsp;solvePuzzleX,<br/>
 &nbsp;&nbsp;spaceHarry,<br/>
+&nbsp;&nbsp;spaceHarryVcl,<br/>
 &nbsp;&nbsp;staircaseCardCreator,<br/>
 &nbsp;&nbsp;stateObserver,<br/>
 &nbsp;&nbsp;styleSheetSetter,<br/>
 &nbsp;&nbsp;superNsanaBros,<br/>
 &nbsp;&nbsp;surfacePlotter,<br/>
+&nbsp;&nbsp;surfacePlotterVcl,<br/>
 &nbsp;&nbsp;tankBattalion,<br/>
 &nbsp;&nbsp;testAbout,<br/>
 &nbsp;&nbsp;testApproximator,<br/>
@@ -4019,6 +4413,7 @@ enum class ProgramType<br/>
 &nbsp;&nbsp;ticTacToeValuer,<br/>
 &nbsp;&nbsp;timePoll,<br/>
 &nbsp;&nbsp;tronCollection,<br/>
+&nbsp;&nbsp;tronCollectionVcl,<br/>
 &nbsp;&nbsp;ubuntuOneWatcher,<br/>
 &nbsp;&nbsp;vanDenBogaart,<br/>
 &nbsp;&nbsp;virtualBastard,<br/>
@@ -4070,10 +4465,13 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::athleticLand,std::string("athleticLand")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::athleticLandVcl,std::string("athleticLandVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::asciiArter,std::string("asciiArter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::asciiArterVcl,std::string("asciiArterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::barbaImage,std::string("barbaImage")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::beerWanter,std::string("beerWanter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::beerWanterVcl,std::string("beerWanterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::bochum,std::string("bochum")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::boenken,std::string("boenken")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::boenkenVcl,std::string("boenkenVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::brainweaver,std::string("brainweaver")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::bristol,std::string("bristol")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::chrisWiley,std::string("chrisWiley")));<br/>
@@ -4084,7 +4482,9 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::createQtProjectZipFile,std::string("createQtProjectZipFile")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::crossPoll,std::string("crossPoll")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::dasWahreSchlagerfest,std::string("dasWahreSchlagerfest")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::dasWahreSchlagerfestVcl,std::string("dasWahreSchlagerfestVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::dotMatrix,std::string("dotMatrix")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::dotMatrixVcl,std::string("dotMatrixVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::encranger,std::string("encranger")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::everythingToPiecesShooter,std::string("everythingToPiecesShooter")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::fakeEvy,std::string("fakeEvy")));<br/>
@@ -4092,19 +4492,25 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::filterOperationerVcl,std::string("filterOperationerVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::fryskLeareLieder,std::string("fryskLeareLieder")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::functionPlotter,std::string("functionPlotter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::functionPlotterVcl,std::string("functionPlotterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::gaborFilter,std::string("gaborFilter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::gaborFilterVcl,std::string("gaborFilterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::grayCoder,std::string("grayCoder")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::grayCoderVcl,std::string("grayCoderVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::gtst,std::string("gtst")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::histogramEqualizationer,std::string("histogramEqualizationer")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::histogramEqualizationerVcl,std::string("histogramEqualizationerVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::hometrainer,std::string("hometrainer")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::hometrainerVcl,std::string("hometrainerVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::imageRotater,std::string("imageRotater")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::imageRotaterClx,std::string("imageRotaterClx")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::imageRotaterVcl,std::string("imageRotaterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::k3OpEenRij,std::string("k3OpEenRij")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::k3OpEenRijVcl,std::string("k3OpEenRijVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::kalmanFilterer,std::string("kalmanFilterer")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::keySender,std::string("keySender")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::knokfighter,std::string("knokfighter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::knokfighterVcl,std::string("knokfighterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::kTouchLectureCreator,std::string("kTouchLectureCreator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::lambdaBot,std::string("lambdaBot")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::learyCircumplex,std::string("learyCircumplex")));<br/>
@@ -4112,11 +4518,15 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::loose,std::string("loose")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::martianCafeTuinemaTycoon,std::string("martianCafeTuinemaTycoon")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::mazeCreator,std::string("mazeCreator")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::mazeCreatorVcl,std::string("mazeCreatorVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::maziak,std::string("maziak")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::maziakVcl,std::string("maziakVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::metZnDrieen,std::string("metZnDrieen")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::metZnDrieenVcl,std::string("metZnDrieenVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::midiLessonCreator,std::string("midiLessonCreator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::morpher,std::string("morpher")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::multiEncranger,std::string("multiEncranger")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::multiEncrangerVcl,std::string("multiEncrangerVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::muscaDomestica,std::string("muscaDomestica")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::musicTheory,std::string("musicTheory")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::ndsmake,std::string("ndsmake")));<br/>
@@ -4129,13 +4539,15 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pixelatorVcl,std::string("pixelatorVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pokeVolley,std::string("pokeVolley")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pong,std::string("pong")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::preDickAdvocaTor,std::string("preDickAdvocaTor")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::primeExpert,std::string("primeExpert")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::projectRichelBilderbeek,std::string("projectRichelBilderbeek")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pylos,std::string("pylos")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::qmakeWatcher,std::string("qmakeWatcher")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::quadraticSolver,std::string("quadraticSolver")));<br/>
-&nbsp;&nbsp;m.insert(Pair(ProgramType::rampal,std::string("rampal")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::rampalEtienne,std::string("rampalEtienne")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::randomCode,std::string("randomCode")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::randomCodeVcl,std::string("randomCodeVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::rasper,std::string("rasper")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::refrigeratorPuzzleSolver,std::string("refrigeratorPuzzleSolver")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::regexTester,std::string("regexTester")));<br/>
@@ -4143,8 +4555,11 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::richelBilderbeekGallery,std::string("richelBilderbeekGallery")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::richelbilderbeekNlSitemapGenerator,std::string("richelbilderbeekNlSitemapGenerator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::rubiksClock,std::string("rubiksClock")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::rubiksClockVcl,std::string("rubiksClockVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::searchAndDestroyChess,std::string("searchAndDestroyChess")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::searchAndDestroyChessVcl,std::string("searchAndDestroyChessVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::secretMessage,std::string("secretMessage")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::secretMessageVcl,std::string("secretMessageVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::simBrainiac,std::string("simBrainiac")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::simImmuneResponse,std::string("simImmuneResponse")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::simMysteryMachine,std::string("simMysteryMachine")));<br/>
@@ -4154,11 +4569,13 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::soaSim,std::string("soaSim")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::solvePuzzleX,std::string("solvePuzzleX")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::spaceHarry,std::string("spaceHarry")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::spaceHarryVcl,std::string("spaceHarryVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::staircaseCardCreator,std::string("staircaseCardCreator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::stateObserver,std::string("stateObserver")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::styleSheetSetter,std::string("styleSheetSetter")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::superNsanaBros,std::string("superNsanaBros")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::surfacePlotter,std::string("surfacePlotter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::surfacePlotterVcl,std::string("surfacePlotterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::tankBattalion,std::string("tankBattalion")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::testAbout,std::string("testAbout")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::testApproximator,std::string("testApproximator")));<br/>
@@ -4221,6 +4638,7 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::ticTacToeValuer,std::string("ticTacToeValuer")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::timePoll,std::string("timePoll")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::tronCollection,std::string("tronCollection")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::tronCollectionVcl,std::string("tronCollectionVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::ubuntuOneWatcher,std::string("ubuntuOneWatcher")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::vanDenBogaart,std::string("vanDenBogaart")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::virtualBastard,std::string("virtualBastard")));<br/>
@@ -4253,12 +4671,15 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;///where A1 to Ax contain the programType enum values<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::aminoAcidFighter,std::string("Amino Acid Fighter")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::asciiArter,std::string("AsciiArter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::asciiArterVcl,std::string("AsciiArter (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::athleticLand,std::string("Athletic Land")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::athleticLandVcl,std::string("Athletic Land (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::barbaImage,std::string("BarbaImage")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::beerWanter,std::string("BeerWanter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::beerWanterVcl,std::string("BeerWanter (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::bochum,std::string("Bochum")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::boenken,std::string("Boenken")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::boenkenVcl,std::string("Boenken (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::brainweaver,std::string("Brainweaver")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::bristol,std::string("Bristol")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::chrisWiley,std::string("Chris Wiley")));<br/>
@@ -4269,7 +4690,9 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::createQtProjectZipFile,std::string("CreateQtProjectZipFile")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::crossPoll,std::string("CrossPoll")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::dasWahreSchlagerfest,std::string("Das Wahre Schlagerfest")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::dasWahreSchlagerfestVcl,std::string("Das Wahre Schlagerfest (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::dotMatrix,std::string("DotMatrix")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::dotMatrixVcl,std::string("DotMatrix (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::encranger,std::string("Encranger")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::everythingToPiecesShooter,std::string("EverythingToPiecesShooter")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::fakeEvy,std::string("Fake Evy")));<br/>
@@ -4277,19 +4700,25 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::filterOperationerVcl,std::string("FilterOperationer (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::fryskLeareLieder,std::string("Frysk Leare Lieder")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::functionPlotter,std::string("FunctionPlotter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::functionPlotterVcl,std::string("FunctionPlotter (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::gaborFilter,std::string("GaborFilter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::gaborFilterVcl,std::string("GaborFilter (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::grayCoder,std::string("GrayCoder")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::grayCoderVcl,std::string("GrayCoder (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::gtst,std::string("GTST")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::histogramEqualizationer,std::string("HistogramEqualizationer")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::histogramEqualizationerVcl,std::string("HistogramEqualizationer (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::hometrainer,std::string("Hometrainer")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::hometrainerVcl,std::string("Hometrainer (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::imageRotater,std::string("ImageRotater")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::imageRotaterClx,std::string("ImageRotater (CLX)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::imageRotaterVcl,std::string("ImageRotater (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::k3OpEenRij,std::string("K3 Op Een Rij")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::k3OpEenRijVcl,std::string("K3 Op Een Rij (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::kalmanFilterer,std::string("KalmanFilterer")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::keySender,std::string("KeySender")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::knokfighter,std::string("Knokfighter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::knokfighterVcl,std::string("KnokfighterVcl")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::kTouchLectureCreator,std::string("KTouch Lecture Creator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::lambdaBot,std::string("LambdaBot")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::learyCircumplex,std::string("LearyCircumplex")));<br/>
@@ -4297,11 +4726,15 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::loose,std::string("Loose")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::martianCafeTuinemaTycoon,std::string("MartianCafeTuinemaTycoon")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::mazeCreator,std::string("MazeCreator")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::mazeCreatorVcl,std::string("MazeCreator (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::maziak,std::string("Maziak")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::maziakVcl,std::string("Maziak (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::metZnDrieen,std::string("Met Z'n Drieen")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::metZnDrieenVcl,std::string("Met Z'n Drieen (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::midiLessonCreator,std::string("MIDI Lesson Creator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::morpher,std::string("Morpher")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::multiEncranger,std::string("MultiEncranger")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::multiEncrangerVcl,std::string("MultiEncranger (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::muscaDomestica,std::string("MuscaDomestica")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::musicTheory,std::string("MusicTheory")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::ndsmake,std::string("ndsmake")));<br/>
@@ -4314,13 +4747,15 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pixelatorVcl,std::string("Pixelator (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pokeVolley,std::string("PokeVolley")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pong,std::string("Pong")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::preDickAdvocaTor,std::string("PreDickAdvocaTor")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::primeExpert,std::string("PrimeExpert")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::projectRichelBilderbeek,std::string("ProjectRichelBilderbeek")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::pylos,std::string("Pylos")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::qmakeWatcher,std::string("qmake Watcher")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::quadraticSolver,std::string("QuadraticSolver")));<br/>
-&nbsp;&nbsp;m.insert(Pair(ProgramType::rampal,std::string("Rampal")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::rampalEtienne,std::string("RampalEtienne")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::randomCode,std::string("RandomCode")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::randomCodeVcl,std::string("RandomCode (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::rasper,std::string("Rasper")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::refrigeratorPuzzleSolver,std::string("RefrigeratorPuzzleSolver")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::regexTester,std::string("RegexTester")));<br/>
@@ -4328,8 +4763,11 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::richelBilderbeekGallery,std::string("RichelBilderbeekGallery")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::richelbilderbeekNlSitemapGenerator,std::string("RichelbilderbeekNlSitemapGenerator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::rubiksClock,std::string("Rubik's Clock")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::rubiksClockVcl,std::string("Rubik's Clock (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::searchAndDestroyChess,std::string("SearchAndDestroyChess")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::searchAndDestroyChessVcl,std::string("SearchAndDestroyChess (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::secretMessage,std::string("SecretMessage")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::secretMessageVcl,std::string("SecretMessage (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::simBrainiac,std::string("SimBrainiac")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::simImmuneResponse,std::string("SimImmuneResponse")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::simMysteryMachine,std::string("SimMysteryMachine")));<br/>
@@ -4339,11 +4777,13 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::soaSim,std::string("SoaSim")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::solvePuzzleX,std::string("SolvePuzzleX")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::spaceHarry,std::string("SpaceHarry")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::spaceHarryVcl,std::string("SpaceHarry (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::staircaseCardCreator,std::string("StaircaseCardCreator")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::stateObserver,std::string("StateObserver")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::styleSheetSetter,std::string("StyleSheetSetter")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::superNsanaBros,std::string("Super Nsana Bros")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::surfacePlotter,std::string("SurfacePlotter")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::surfacePlotterVcl,std::string("SurfacePlotter (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::tankBattalion,std::string("Tank Battalion")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::testAbout,std::string("Test About")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::testApproximator,std::string("Test Approximator")));<br/>
@@ -4406,6 +4846,7 @@ const boost::bimap&lt;ribi::ProgramType,std::string&gt; ribi::ProgramTypes::Crea
 &nbsp;&nbsp;m.insert(Pair(ProgramType::ticTacToeValuer,std::string("TicTacToe Valuer")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::timePoll,std::string("TimePoll")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::tronCollection,std::string("Tron Collection")));<br/>
+&nbsp;&nbsp;m.insert(Pair(ProgramType::tronCollectionVcl,std::string("Tron Collection (VCL)")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::ubuntuOneWatcher,std::string("UbuntuOne Watcher")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::vanDenBogaart,std::string("Van Den Bogaart")));<br/>
 &nbsp;&nbsp;m.insert(Pair(ProgramType::virtualBastard,std::string("Virtual Bastard")));<br/>
@@ -4482,7 +4923,7 @@ const std::string ribi::ProgramTypes::ProgramTypeToScreenName(const ProgramType 
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::ProgramTypes::Test()<br/>
+void ribi::ProgramTypes::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -4545,7 +4986,7 @@ struct ProgramTypes<br/>
 &nbsp;&nbsp;static const boost::bimap&lt;ProgramType,std::string&gt; CreateScreenNameMap();<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 };<br/>
 <br/>

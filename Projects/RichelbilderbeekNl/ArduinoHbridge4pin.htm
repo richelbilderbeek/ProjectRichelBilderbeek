@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ArduinoHbridge4pin</title>
+  <meta name="description" content="C++ ArduinoHbridge4pin"/>
+  <meta name="keywords" content="C++ ArduinoHbridge4pin "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="ArduinoHbridge4pin.htm">ArduinoHbridge4pin</a></h1>
+<p>&nbsp;</p>
+<h2>./ArduinoHbridge4pin/ArduinoHbridge4pin.ino</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ArduinoHbridge4pin/ArduinoHbridge4pin.ino" border = "1"><tr><td><code>
+//&nbsp;&nbsp;+-V_high -+<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+//&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+//&nbsp;&nbsp;+---M-----+<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+//&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+//&nbsp;&nbsp;+-V_low---+<br/>
+//<br/>
+// Route A<br/>
+//<br/>
+//&nbsp;&nbsp;+-V_high -+<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+//&nbsp;&nbsp;+---M-----+<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+//&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+//&nbsp;&nbsp;+-V_low---+<br/>
+//<br/>
+// Route A<br/>
+//<br/>
+//&nbsp;&nbsp;+-V_high -+<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+//&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+//&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+//&nbsp;&nbsp;+---M-----+<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+//&nbsp;&nbsp;+-V_low---+<br/>
+<br/>
+<br/>
+const int pin_1 = 2;<br/>
+const int pin_2 = 3;<br/>
+const int pin_3 = 4;<br/>
+const int pin_4 = 5;<br/>
+<br/>
+void setup()<br/>
+{<br/>
+&nbsp;&nbsp;pinMode(pin_1,OUTPUT);<br/>
+&nbsp;&nbsp;pinMode(pin_2,OUTPUT);<br/>
+&nbsp;&nbsp;pinMode(pin_3,OUTPUT);<br/>
+&nbsp;&nbsp;pinMode(pin_4,OUTPUT);<br/>
+&nbsp;&nbsp;<br/>
+}<br/>
+<br/>
+void loop()<br/>
+{<br/>
+&nbsp;&nbsp;//The time between a change in current direction<br/>
+&nbsp;&nbsp;const int my_toggle_delay = 1000; //msec<br/>
+&nbsp;&nbsp;//Route A<br/>
+&nbsp;&nbsp;digitalWrite(pin_1,LOW);<br/>
+&nbsp;&nbsp;digitalWrite(pin_2,LOW);<br/>
+&nbsp;&nbsp;digitalWrite(pin_3,LOW);<br/>
+&nbsp;&nbsp;digitalWrite(pin_4,LOW);<br/>
+&nbsp;&nbsp;delay(50);<br/>
+&nbsp;&nbsp;digitalWrite(pin_1,HIGH);<br/>
+&nbsp;&nbsp;digitalWrite(pin_4,HIGH);<br/>
+<br/>
+&nbsp;&nbsp;delay(my_toggle_delay);<br/>
+&nbsp;&nbsp;<br/>
+&nbsp;&nbsp;//Route B<br/>
+&nbsp;&nbsp;digitalWrite(pin_1,LOW);<br/>
+&nbsp;&nbsp;digitalWrite(pin_2,LOW);<br/>
+&nbsp;&nbsp;digitalWrite(pin_3,LOW);<br/>
+&nbsp;&nbsp;digitalWrite(pin_4,LOW);<br/>
+&nbsp;&nbsp;delay(50);<br/>
+&nbsp;&nbsp;digitalWrite(pin_2,HIGH);<br/>
+&nbsp;&nbsp;digitalWrite(pin_3,HIGH);<br/>
+&nbsp;&nbsp;delay(my_toggle_delay);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

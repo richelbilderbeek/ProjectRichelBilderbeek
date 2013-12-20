@@ -317,7 +317,7 @@ include(../../<a href="Tools.htm">Tools</a>/<a href="ToolRegexTester.htm">ToolRe
 <table summary="./ToolRegexTester/main.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -342,13 +342,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppProgram_options.htm">boost/program_options.hpp</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppBoost.htm">boost</a><a href="CppRegex.htm">regex</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppBoost.htm">boost</a><a href="CppBoostXpressive.htm">xpressive</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testercpp11maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppTr1.htm">tr1</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testerqtmaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppBoost.htm">boost</a><a href="CppRegex.htm">regex</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppBoost.htm">boost</a><a href="CppBoostXpressive.htm">xpressive</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>cpp11maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppTr1.htm">tr1</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>qtmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>menudialog.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -358,7 +358,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> r;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d("Allowed options <b><a href="CppFor.htm">for</a></b> <a href="CppRegex.htm">Regex</a>Tester");<br/>
+&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d("Allowed options <b><a href="CppFor.htm">for</a></b> <a href="ToolRegexTester.htm">RegexTester</a>");<br/>
 &nbsp;&nbsp;d.add_options()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
@@ -387,13 +387,13 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("a"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::GetAbout() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::GetAbout() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("v"))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::Get<a href="CppVersion.htm">Version</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -401,29 +401,29 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppRegex.htm">Regex</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> r <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; &gt; dialogs;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; &gt; dialogs;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot get my cross<a href="CppCompiler.htm">compiler</a> to support <a href="CppRegex.htm">-lboost_regex</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogs.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> _WIN32<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogs.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogs.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdRegex.htm">std::regex</a> not implemented in GCC<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> __GNUC__<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogs.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
@@ -431,14 +431,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a> not implemented in GCC<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> __GNUC__<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dialogs.push_back(p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(dialogs.begin(),dialogs.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[&amp;r, &amp;s](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; dialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;r, &amp;s](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; dialog)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Using: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> dialog-&gt;GetUsedImplementation() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppBoolalpha.htm">std::boolalpha</a><br/>
@@ -465,7 +465,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/qtmain.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -486,7 +486,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppRegex.htm">regex</a>testermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolRegexTester.htm">regextester</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -494,7 +494,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -511,7 +511,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/qtregextestermaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -539,32 +539,36 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog;<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog;<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; dialog,<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; dialog,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
 <br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; m_dialog;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; m_dialog;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onAnyChange();<br/>
@@ -586,7 +590,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/qtregextestermaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -606,22 +610,26 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; dialog,<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; dialog,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialog(dialog)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;edit_line,<a href="CppSignalMacro.htm">SIGNAL</a>(textEdited(<a href="CppQString.htm">QString</a>)),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(onAnyChange()));<br/>
@@ -634,18 +642,18 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;onAnyChange();<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog::~<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog::~<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog::onAnyChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog::onAnyChange()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRegex.htm">regex</a>_str <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_<a href="CppRegex.htm">regex</a>-&gt;text().toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> line <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_line-&gt;text().toStdString();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> format <a href="CppOperatorAssign.htm">=</a> ui-&gt;edit_format-&gt;text().toStdString();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; dialog <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;Clone();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; dialog <a href="CppOperatorAssign.htm">=</a> m_dialog-&gt;Clone();<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;label_<a href="CppRegex.htm">regex</a>_valid-&gt;setText(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQString.htm">QString</a>("<a href="CppRegex.htm">Regex</a> valid: ") <a href="CppOperatorPlus.htm">+</a> (dialog-&gt;Get<a href="CppRegex.htm">Regex</a>Valid(<a href="CppRegex.htm">regex</a>_str) ? "yes" : "no"));<br/>
@@ -683,6 +691,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;ui-&gt;edit_replaced_<a href="CppRegex.htm">regex</a>es-&gt;setPlainText( dialog-&gt;Get<a href="CppRegex.htm">Regex</a>Replace(line,<a href="CppRegex.htm">regex</a>_str,format).c_str());<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -696,7 +717,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/qtregextestermenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -723,26 +744,26 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog;<br/>
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog *ui;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
@@ -770,7 +791,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/qtregextestermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2012 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -790,7 +811,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppRegex.htm">regex</a>testermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolRegexTester.htm">regextester</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -801,20 +822,20 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQIcon.htm">QIcon</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "qt<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppBoost.htm">boost</a><a href="CppRegex.htm">regex</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppBoost.htm">boost</a><a href="CppBoostXpressive.htm">xpressive</a>maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testercpp11maindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testerqtmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppBoost.htm">boost</a><a href="CppRegex.htm">regex</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppBoost.htm">boost</a><a href="CppBoostXpressive.htm">xpressive</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>cpp11maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>qtmaindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qt<a href="CppRegex.htm">regex</a>testermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolRegexTester.htm">regextester</a>menudialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -823,46 +844,46 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::~<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::~<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::on_button_about_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="CppRegex.htm">Regex</a>TesterMenuDialog().GetAbout();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> <a href="ToolRegexTester.htm">RegexTester</a>MenuDialog().GetAbout();<br/>
 &nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(a);<br/>
 &nbsp;&nbsp;d.setStyleSheet(<b><a href="CppThis.htm">this</a></b>-&gt;styleSheet());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::on_button_cpp11_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::on_button_cpp11_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog qd(d);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog qd(d);<br/>
 &nbsp;&nbsp;qd.setWindowIcon(<a href="CppQIcon.htm">QIcon</a>(<a href="CppQPixmap.htm">QPixmap</a>(":/images/PicCpp11.png")));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;qd);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::on_button_qt_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::on_button_qt_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog qd(d);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog qd(d);<br/>
 &nbsp;&nbsp;qd.setWindowIcon(<a href="CppQIcon.htm">QIcon</a>(<a href="CppQPixmap.htm">QPixmap</a>(":/images/Pic<a href="CppQt.htm">Qt</a>.png")));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;qd);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::on_button_<a href="CppBoost.htm">boost</a>_<a href="CppRegex.htm">regex</a>_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::on_button_<a href="CppBoost.htm">boost</a>_<a href="CppRegex.htm">regex</a>_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TOOLREGEXTESTER_ADD_BOOST_REGEX<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog qd(d);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog qd(d);<br/>
 &nbsp;&nbsp;qd.setWindowIcon(<a href="CppQIcon.htm">QIcon</a>(<a href="CppQPixmap.htm">QPixmap</a>(":/images/Pic<a href="CppBoost.htm">Boost</a>.png")));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;qd);<br/>
 &nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
@@ -870,46 +891,46 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::on_button_<a href="CppBoost.htm">boost</a>_<a href="CppBoostXpressive.htm">xpressive</a>_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::on_button_<a href="CppBoost.htm">boost</a>_<a href="CppBoostXpressive.htm">xpressive</a>_clicked()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMainDialog qd(d);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog qd(d);<br/>
 &nbsp;&nbsp;qd.setWindowIcon(<a href="CppQIcon.htm">QIcon</a>(<a href="CppQPixmap.htm">QPixmap</a>(":/images/Pic<a href="CppBoost.htm">Boost</a>.png")));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;qd);<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Test");<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> TOOLREGEXTESTER_ADD_BOOST_REGEX<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppRegex.htm">Regex</a>TesterMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -925,7 +946,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextesterboostregexmaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -951,16 +972,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <br/>
 <a href="CppComment.htm">//</a><b><a href="CppNamespace.htm">namespace</a></b> <a href="CppBoost.htm">boost</a> { <b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">regex</a>; };<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog() {}<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Clone <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get an example format used to replace <a href="CppRegex.htm">regex</a> matches<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetExampleFormat() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "$0"; }<br/>
@@ -1016,7 +1037,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextesterboostregexmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1036,21 +1057,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppBoost.htm">boost</a><a href="CppRegex.htm">regex</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppBoost.htm">boost</a><a href="CppRegex.htm">regex</a>maindialog.h"<br/>
 <br/>
 <a href="CppIfdef.htm">#ifdef</a> TOOLREGEXTESTER_ADD_BOOST_REGEX<br/>
 <br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppRegex.htm">regex</a>.hpp&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Clone() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Clone() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; r) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -1060,7 +1081,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a>&amp; r)<br/>
 {<br/>
@@ -1081,7 +1102,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Get<a href="CppRegex.htm">Regex</a>Valid(<a href="CppRegex.htm">regex</a>_str)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1089,7 +1110,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">boost::regex_match</a>(line,r);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; format_str) <b><a href="CppConst.htm">const</a></b><br/>
@@ -1106,7 +1127,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppRegex.htm">Regex</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> <a href="CppRegex.htm">regex</a>_temp(<a href="CppRegex.htm">regex</a>_str); }<br/>
@@ -1127,7 +1148,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextesterboostxpressivemaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1153,16 +1174,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>_fwd.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog();<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Clone <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get an example format used to replace <a href="CppRegex.htm">regex</a> matches<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetExampleFormat() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "$1$3\n"; }<br/>
@@ -1219,7 +1240,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextesterboostxpressivemaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1240,7 +1261,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppBoost.htm">boost</a><a href="CppBoostXpressive.htm">xpressive</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppBoost.htm">boost</a><a href="CppBoostXpressive.htm">xpressive</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBoostXpressive.htm">xpressive</a>/<a href="CppBoostXpressive.htm">xpressive</a>.hpp&gt;<br/>
 <br/>
@@ -1249,7 +1270,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -1257,16 +1278,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; r) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -1277,7 +1298,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>&amp; r)<br/>
 {<br/>
@@ -1302,7 +1323,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Get<a href="CppRegex.htm">Regex</a>Valid(<a href="CppRegex.htm">regex</a>_str)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1311,7 +1332,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(line,r);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; format_str) <b><a href="CppConst.htm">const</a></b><br/>
@@ -1334,7 +1355,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
@@ -1346,15 +1367,15 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Started <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Test")<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog d;<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Started <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Test")<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog d;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!d.GetExample<a href="CppRegex.htm">Regex</a>().empty());<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> v: d.GetTest<a href="CppRegex.htm">Regex</a>es() )<br/>
 &nbsp;&nbsp;{<br/>
@@ -1383,7 +1404,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Test successfully")<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppBoost.htm">Boost</a><a href="CppBoostXpressive.htm">Xpressive</a>MainDialog::Test successfully")<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -1399,7 +1420,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestercpp11maindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1425,16 +1446,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppTribool.htm">boost/logic/tribool.hpp</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog() {}<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Clone <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get an example format used to replace <a href="CppRegex.htm">regex</a> matches<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetExampleFormat() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "$0"; }<br/>
@@ -1487,7 +1508,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestercpp11maindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1507,20 +1528,20 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testercpp11maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>cpp11maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppRegexH.htm">regex</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt;<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog::Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog::Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; r) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -1529,7 +1550,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> s <a href="CppComment.htm">*/</a>,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdRegex.htm">std::regex</a>&amp; <a href="CppComment.htm">/*</a> r <a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -1555,7 +1576,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;<a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Get<a href="CppRegex.htm">Regex</a>Valid(<a href="CppRegex.htm">regex</a>_str)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -1563,7 +1584,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">std::regex_match</a>(line,r);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppRegex.htm">regex</a>_str,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; format_str) <b><a href="CppConst.htm">const</a></b><br/>
@@ -1581,7 +1602,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterCpp11MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Cpp11MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;<a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppStdRegex.htm">std::regex</a> <a href="CppRegex.htm">regex</a>_temp( <a href="CppRegex.htm">regex</a>_str, <a href="CppStdRegex.htm">std::regex</a>_constants::basic ); }<br/>
@@ -1601,7 +1622,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestermaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1633,16 +1654,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppRegex.htm">Regex</a>TesterMainDialog is a Strategy <a href="CppDesignPattern.htm">Design Pattern</a><br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog<br/>
+<a href="CppComment.htm">///</a><a href="ToolRegexTester.htm">RegexTester</a>MainDialog is a Strategy <a href="CppDesignPattern.htm">Design Pattern</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>TesterMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>TesterMainDialog(<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>TesterMainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="CppRegex.htm">Regex</a>TesterMainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog(<b><a href="CppConst.htm">const</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~<a href="ToolRegexTester.htm">RegexTester</a>MainDialog() <b><a href="CppNoexcept.htm">noexcept</a></b> {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Clone <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get an example format used to replace <a href="CppRegex.htm">regex</a> matches<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetExampleFormat() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -1680,6 +1701,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetTest<a href="CppRegex.htm">Regex</a>es() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; GetTestStrings() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -1698,7 +1722,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestermaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1718,10 +1742,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog::GetTest<a href="CppRegex.htm">Regex</a>es() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog::GetTest<a href="CppRegex.htm">Regex</a>es() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -1733,7 +1757,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog::GetTestStrings() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog::GetTestStrings() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b><br/>
 &nbsp;&nbsp;{<br/>
@@ -1754,7 +1778,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestermenudialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1779,7 +1803,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>TesterMenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MenuDialog : <b><a href="CppPublic.htm">public</a></b> MenuDialog<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -1789,6 +1813,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -1807,7 +1835,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1825,13 +1853,18 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolRegexTester.htm">ToolRegexTester</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1842,11 +1875,11 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppRegex.htm">Regex</a>Tester",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolRegexTester.htm">RegexTester</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"regular expression tester",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 16th of July 2013",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2013",<br/>
@@ -1856,7 +1889,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Help <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Help(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle(),<br/>
@@ -1870,21 +1903,21 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Program<a href="CppRegex.htm">Regex</a>Tester<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Program<a href="ToolRegexTester.htm">RegexTester</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.7";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-08-19: <a href="CppVersion.htm">Version</a> 1.3: <a href="CppQt.htm">Qt</a> GUI <a href="CppApplication.htm">application</a>",<br/>
@@ -1894,6 +1927,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-07-16: <a href="CppVersion.htm">Version</a> 1.7: added <a href="CppBoostXpressive.htm">Boost.Xpressive</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1907,7 +1953,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextesterqtmaindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -1931,18 +1977,18 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQRegExp.htm">QRegExp</a>;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog() {}<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Clone <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get an example format used to replace <a href="CppRegex.htm">regex</a> matches<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetExampleFormat() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> "$0"; }<br/>
@@ -1996,7 +2042,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextesterqtmaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -2016,7 +2062,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testerqtmaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>qtmaindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
@@ -2025,14 +2071,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::Clone() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; r) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -2043,7 +2089,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">///</a>Obtain all <a href="CppRegex.htm">regex</a> matches in a <a href="CppString.htm">std::string</a><br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQRegExp.htm">QRegExp</a>&amp; r_original)<br/>
 {<br/>
@@ -2062,7 +2108,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> line <a href="CppComment.htm">*/</a>,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> <a href="CppRegex.htm">regex</a>_str <a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
@@ -2074,7 +2120,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> <a href="CppRegex_match.htm">boost::regex_match</a>(line,r);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Replace(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> str <a href="CppComment.htm">*/</a>,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> <a href="CppRegex.htm">regex</a>_str <a href="CppComment.htm">*/</a>,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> format_str <a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b><br/>
@@ -2083,14 +2129,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; <a href="CppComment.htm">/*</a> <a href="CppRegex.htm">regex</a>_str <a href="CppComment.htm">*/</a>) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppBoostRegex.htm">boost::regex</a> <a href="CppRegex.htm">regex</a>_temp(<a href="CppRegex.htm">regex</a>_str); }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppCatch.htm">catch</a></b> (boost::regex_error&amp; e) { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>("TODO: <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>Tester<a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>("TODO: <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a><a href="CppQt.htm">Qt</a>MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid");<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2105,7 +2151,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestertr1maindialog.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -2136,14 +2182,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppTr1.htm">tr1</a>/<a href="CppRegex.htm">regex</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppTribool.htm">boost/logic/tribool.hpp</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>testermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a>maindialog.h"<br/>
 <br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppRegex.htm">Regex</a>TesterTr1MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppRegex.htm">Regex</a>TesterMainDialog<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog : <b><a href="CppPublic.htm">public</a></b> <a href="ToolRegexTester.htm">RegexTester</a>MainDialog<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog() {}<br/>
+&nbsp;&nbsp;<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog() {}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Clone <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; Clone() <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get an example format used to replace <a href="CppRegex.htm">regex</a> matches<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> GetExampleFormat() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> "$0"; }<br/>
@@ -2191,7 +2237,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolRegexTester/regextestertr1maindialog.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-<a href="CppRegex.htm">Regex</a>Tester, regular expression tester<br/>
+<a href="ToolRegexTester.htm">RegexTester</a>, regular expression tester<br/>
 Copyright (C) 2010-2013 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -2214,19 +2260,19 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppComment.htm">//</a><a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a> not implemented in GCC<br/>
 <a href="CppIfndef.htm">#ifndef</a> __GNUC__<br/>
-<a href="CppInclude.htm">#include</a> "<a href="CppRegex.htm">regex</a>tester<a href="CppTr1.htm">tr1</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolRegexTester.htm">regextester</a><a href="CppTr1.htm">tr1</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppTr1.htm">tr1</a>/<a href="CppRegex.htm">regex</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog::Clone() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog::Clone() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRegex.htm">Regex</a>TesterMainDialog&gt; d(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRegex.htm">Regex</a>TesterTr1MainDialog);<br/>
+&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="ToolRegexTester.htm">RegexTester</a>MainDialog&gt; d(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> d;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; r) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
@@ -2235,7 +2281,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRegexMatches.htm">GetRegexMatches</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog::<a href="CppGetRegexMatches.htm">GetRegexMatches</a>(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp;,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a>&amp;)<br/>
 {<br/>
@@ -2245,14 +2291,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 }<br/>
 <br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;<a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog::Get<a href="CppRegex.htm">Regex</a>MatchLine(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;line, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;<a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!Get<a href="CppRegex.htm">Regex</a>Valid(<a href="CppRegex.htm">regex</a>_str)) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a> r(<a href="CppRegex.htm">regex</a>_str, <a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a>_constants::basic);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a>_match(line,r);<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppRegex.htm">Regex</a>TesterTr1MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;<a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolRegexTester.htm">RegexTester</a>Tr1MainDialog::Get<a href="CppRegex.htm">Regex</a>Valid(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;<a href="CppRegex.htm">regex</a>_str) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b> { <b><a href="CppConst.htm">const</a></b> <a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a> <a href="CppRegex.htm">regex</a>_temp( <a href="CppRegex.htm">regex</a>_str, <a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a>_constants::basic ); }<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppTr1.htm">std::tr1</a>::<a href="CppRegex.htm">regex</a>_error&amp; e) { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>; }<br/>

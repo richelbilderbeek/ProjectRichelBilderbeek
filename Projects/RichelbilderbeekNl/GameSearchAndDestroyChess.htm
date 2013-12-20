@@ -792,7 +792,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>GameDialog *ui;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -814,7 +816,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "qtsearchanddestroy<a href="CppChess.htm">chess</a>gamedialog.h"<br/>
 <br/>
+<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 <a href="CppInclude.htm">#include</a> &lt;future&gt;<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "ui_qtsearchanddestroy<a href="CppChess.htm">chess</a>gamedialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -834,22 +838,28 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>GameDialog::Test()<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>GameDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppChess.htm">Chess</a>::<a href="CppQt.htm">Qt</a><a href="CppChess.htm">Chess</a>BoardWidget();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 }<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -883,10 +893,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog();<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
-<br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog *ui;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_about_clicked();<br/>
@@ -921,16 +933,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtsearchanddestroy<a href="CppChess.htm">chess</a>gamedialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qtsearchanddestroy<a href="CppChess.htm">chess</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::sadc::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog)<br/>
 {<br/>
-&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>TODO: <a href="CppAdd.htm">Add</a> transparency to the resources<br/>
 }<br/>
@@ -958,21 +971,27 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;close();<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::sadc::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog::Test()<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::sadc::<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>SearchAndDestroy<a href="CppChess.htm">Chess</a>GameDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1063,8 +1082,9 @@ GameDialog::GameDialog()<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
@@ -1093,11 +1113,36 @@ GameDialog::GameDialog()<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <br/>
-<a href="CppIfdef.htm">#ifdef</a> SADC_USE_THREADS<br/>
+<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppThreadH.htm">thread</a>&gt;<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>game.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a><a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>squareselector.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>squarefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>square.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>score.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>rank.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>player.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>piecefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>piece.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>moves.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>movefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>move.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>helper.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>game<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>game.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>fwd.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>file.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>color.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>castling.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>board<a href="CppWidget.htm">widget</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>boardfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>board.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppChess.htm">chess</a>bitboard.h"<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
@@ -1127,6 +1172,9 @@ GameDialog::GameDialog()<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::sadc::MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -1150,7 +1198,18 @@ GameDialog::GameDialog()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("Artwork from GNU XBoard");<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Board2d <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Board2d::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::<a href="CppWidget.htm">widget</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::<a href="CppChess.htm">Chess</a><a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::SquareSelector <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::SquareSelector::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Square: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Square::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Score: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Score::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Rank: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Rank::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Moves: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Moves::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Move: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Move::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Game: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Game::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Game<a href="CppWidget.htm">Widget</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Game<a href="CppWidget.htm">Widget</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::File: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::File::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::Board: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::Board::Get<a href="CppVersion.htm">Version</a>());<br/>
+&nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppChess.htm">Chess</a>::BoardWidget: " <a href="CppOperatorPlus.htm">+</a> <a href="CppChess.htm">Chess</a>::BoardWidget::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;a.<a href="CppAdd.htm">Add</a><a href="CppLibrary.htm">Library</a>("<a href="CppTrace.htm">Trace</a> <a href="CppVersion.htm">version</a>: " <a href="CppOperatorPlus.htm">+</a> <a href="CppTrace.htm">Trace</a>::Get<a href="CppVersion.htm">Version</a>());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a;<br/>
 }<br/>
@@ -1193,14 +1252,14 @@ GameDialog::GameDialog()<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::sadc::MenuDialog::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::sadc::MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> SADC_USE_THREADS<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;<a href="CppThread.htm">std::thread</a> t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -1209,7 +1268,7 @@ GameDialog::GameDialog()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MenuDialog();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppChess.htm">Chess</a>::Game();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> SADC_USE_THREADS<br/>
+&nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>

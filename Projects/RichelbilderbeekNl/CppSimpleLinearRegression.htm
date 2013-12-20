@@ -848,7 +848,7 @@ const std::vector&lt;std::string&gt; ribi::SimpleLinearRegression::GetVersionHis
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::SimpleLinearRegression::Test()<br/>
+void ribi::SimpleLinearRegression::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested { false };<br/>
@@ -983,7 +983,7 @@ private:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;double&gt;&amp; v);<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 };<br/>
 <br/>

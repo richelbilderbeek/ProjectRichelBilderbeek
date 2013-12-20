@@ -196,6 +196,10 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppVoid.htm">void</a></b> <a href="CppConvert.htm">Convert</a>ToGrey(<b><a href="CppConst.htm">const</a></b> <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> source, <a href="CppTImage.htm">TImage</a> * <b><a href="CppConst.htm">const</a></b> target);<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; GetImageHistogram(<b><a href="CppConst.htm">const</a></b> <a href="CppQImage.htm">QImage</a>&amp; image) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 <a href="CppComment.htm">//</a>From htpp:<a href="CppComment.htm">//</a>www.richelbilderbeek.nl/CppGetCumulativeHistogram.htm<br/>
@@ -245,7 +249,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolHistogramEqualizationer.htm">ToolHistogramEqualizationer</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppInclude.htm">#include</a> "histogramequalizationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>maindialog.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
@@ -410,6 +414,9 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -426,13 +433,18 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./ToolHistogramEqualizationer/histogramequalizationermenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "histogramequalizationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -475,7 +487,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::ProgramGaborFilter<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::Program<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
@@ -493,6 +505,19 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-11-28: <a href="CppVersion.htm">version</a> 2.0: port to <a href="CppQt.htm">Qt</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -586,16 +611,16 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
-<a href="CppInclude.htm">#include</a> "q<b><a href="CppThis.htm">this</a></b>togramequalizationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>maindialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQLabel.htm">QLabel</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "histogramequalizationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_q<b><a href="CppThis.htm">this</a></b>togramequalizationermaindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>maindialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MainDialog::<a href="CppQt.htm">Qt</a><a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MainDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
@@ -649,6 +674,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!target.isNull());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_target-&gt;setPixmap(target);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_target-&gt;setAlignment(<a href="CppQt.htm">Qt</a>::AlignCenter);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -671,7 +697,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MainDialog::Test");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> source(":/histogramequalizationer/images/<a href="ToolHistogramEqualizationer.htm">ToolHistogramEqualizationer</a>Test.png");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> source(":/<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>/images/<a href="ToolHistogramEqualizationer.htm">ToolHistogramEqualizationer</a>Test.png");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!source.isNull());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> target {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolHistogramEqualizationer.htm">HistogramEqualizationer</a>MainDialog::DoHistogramEqualization(source)<br/>
@@ -750,12 +776,12 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <table summary="./ToolHistogramEqualizationer/qthistogramequalizationermenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "q<b><a href="CppThis.htm">this</a></b>togramequalizationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "histogramequalizationermenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "q<b><a href="CppThis.htm">this</a></b>togramequalizationermaindialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_q<b><a href="CppThis.htm">this</a></b>togramequalizationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -819,7 +845,7 @@ along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "q<b><a href="CppThis.htm">this</a></b>togramequalizationermenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="ToolHistogramEqualizationer.htm">histogramequalizationer</a>menudialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>

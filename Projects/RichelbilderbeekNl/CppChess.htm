@@ -78,7 +78,7 @@ bool ribi::Chess::BitBoard::Get(const boost::shared_ptr&lt;const Square&gt; s) c
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
-void ribi::Chess::BitBoard::Test()<br/>
+void ribi::Chess::BitBoard::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Testing Chess::BitBoard exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -86,7 +86,7 @@ void ribi::Chess::BitBoard::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -100,7 +100,7 @@ void ribi::Chess::BitBoard::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b.Set(SquareFactory::Create("g8"),false);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!b.Get(SquareFactory::Create(("g8"))));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -164,7 +164,7 @@ struct BitBoard<br/>
 &nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory();<br/>
 <br/>
 &nbsp;&nbsp;///Test the BitBoard<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;///An 8x8 std::vector of bools<br/>
@@ -1418,7 +1418,7 @@ struct Board<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Tests the Board2d class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;//friend bool operator==(const Board&amp; lhs, const Board&amp; rhs);<br/>
@@ -1552,7 +1552,7 @@ struct BoardFactory<br/>
 #include "trace.h"<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Chess::Board::Test()<br/>
+void ribi::Chess::Board::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Testing boost::shared_ptr&lt;Chess::Board&gt; exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -1560,7 +1560,7 @@ void ribi::Chess::Board::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -2128,7 +2128,7 @@ void ribi::Chess::Board::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -2149,7 +2149,11 @@ void ribi::Chess::Board::Test()<br/>
 <br/>
 #include &lt;cassert&gt;<br/>
 #include &lt;exception&gt;<br/>
+<br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;future&gt;<br/>
+#endif<br/>
+<br/>
 #pragma GCC diagnostic push<br/>
 #pragma GCC diagnostic ignored "-Weffc++"<br/>
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -2279,7 +2283,7 @@ void ribi::Chess::BoardWidget::SetActivePlayer(const Player player)<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-void ribi::Chess::BoardWidget::Test()<br/>
+void ribi::Chess::BoardWidget::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Testing Chess::Piece exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -2287,8 +2291,10 @@ void ribi::Chess::BoardWidget::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 <br/>
@@ -2379,8 +2385,10 @@ void ribi::Chess::BoardWidget::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
+&nbsp;&nbsp;#endif<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -2438,7 +2446,7 @@ struct BoardWidget : public Chess::ChessWidget<br/>
 &nbsp;&nbsp;void SetActivePlayer(const Player player);<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
 <br/>
@@ -2713,7 +2721,7 @@ bool operator!=(const Player player, const Color color);<br/>
 #include &lt;cassert&gt;<br/>
 #include &lt;stdexcept&gt;<br/>
 <br/>
-#ifdef SADC_USE_THREADS<br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;thread&gt;<br/>
 #endif<br/>
 <br/>
@@ -2773,14 +2781,14 @@ std::string ribi::Chess::File::IntToCharToStr(const int x)<br/>
 &nbsp;&nbsp;return boost::lexical_cast&lt;std::string&gt;(c);<br/>
 }<br/>
 <br/>
-void ribi::Chess::File::Test()<br/>
+void ribi::Chess::File::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -2857,7 +2865,7 @@ void ribi::Chess::File::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(f.ToInt() == 7);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -2931,7 +2939,7 @@ struct File<br/>
 &nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory();<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Convert a File to its single-character string.<br/>
 &nbsp;&nbsp;///For example, file "a" has x-coordinat 0<br/>
@@ -3176,14 +3184,14 @@ const boost::shared_ptr&lt;ribi::Chess::Score&gt;&amp; ribi::Chess::Game::Score(
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Chess::Game::Test()<br/>
+void ribi::Chess::Game::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -3191,7 +3199,7 @@ void ribi::Chess::Game::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FTRACE("Testing Game");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chess::Game();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -3323,7 +3331,7 @@ struct Game<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Tests the Game class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
@@ -3360,7 +3368,9 @@ bool operator!=(const Game&amp; lhs, const Game&amp; rhs);<br/>
 <br/>
 #include &lt;cassert&gt;<br/>
 #include &lt;string&gt;<br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;thread&gt;<br/>
+#endif<br/>
 <br/>
 #include "chessboard.h"<br/>
 #include "chessgame.h"<br/>
@@ -3368,6 +3378,13 @@ bool operator!=(const Game&amp; lhs, const Game&amp; rhs);<br/>
 #include "chesssquarefactory.h"<br/>
 #include "chesssquareselector.h"<br/>
 #include "chessmovefactory.h"<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
 //ribi::Chess::GameWidget::GameWidget()<br/>
 //&nbsp;&nbsp;: Chess::Widget(Rect(0,0,0,0))<br/>
 //{<br/>
@@ -3415,7 +3432,7 @@ bool ribi::Chess::GameWidget::CanDoMove(<br/>
 &nbsp;&nbsp;for (int i=0; i!=32; ++i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::string s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= std::to_string(piece-&gt;GetNameChar())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= boost::lexical_cast&lt;std::string&gt;(piece-&gt;GetNameChar())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ from-&gt;ToStr()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ( (i / 1) % 2 ? " " : "x")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ to-&gt;ToStr();<br/>
@@ -3449,7 +3466,7 @@ void ribi::Chess::GameWidget::DoMove(<br/>
 &nbsp;&nbsp;for (int i=0; i!=32; ++i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::string s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= std::to_string(piece-&gt;GetNameChar())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= boost::lexical_cast&lt;std::string&gt;(piece-&gt;GetNameChar())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ from-&gt;ToStr()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ ( (i / 1) % 2 ? " " : "x")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ to-&gt;ToStr();<br/>
@@ -3476,7 +3493,7 @@ void ribi::Chess::GameWidget::DoMove(<br/>
 <br/>
 }<br/>
 <br/>
-void ribi::Chess::GameWidget::Test()<br/>
+void ribi::Chess::GameWidget::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Testing Chess::Piece exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -3484,8 +3501,10 @@ void ribi::Chess::GameWidget::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Chess::Game&gt; game(new Chess::Game);<br/>
@@ -3569,7 +3588,9 @@ void ribi::Chess::GameWidget::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert( game-&gt;GetBoard()-&gt;GetPiece(SquareFactory::Create("e4")));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;#endif<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -3624,7 +3645,7 @@ struct GameWidget : public Chess::ChessWidget<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;Chess::Game&gt; GetGame() const { return m_game; }<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;~GameWidget() {}<br/>
@@ -4141,7 +4162,7 @@ struct Move<br/>
 &nbsp;&nbsp;///Tests all moves that are potentially valid,<br/>
 &nbsp;&nbsp;///that is, there must be situations possible<br/>
 &nbsp;&nbsp;///in which these are valid.<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the square the piece is moving to<br/>
@@ -4863,14 +4884,14 @@ struct Moves<br/>
 <br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Chess::Move::Test()<br/>
+void ribi::Chess::Move::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -5175,7 +5196,7 @@ void ribi::Chess::Move::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -6198,7 +6219,7 @@ struct Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test all Pieces<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6245,7 +6266,7 @@ struct PieceBishop : public Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test Bishop<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6284,7 +6305,7 @@ struct PieceKing : public Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test PieceKing<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6325,7 +6346,7 @@ struct PieceKnight : public Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test PieceKnight<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6357,7 +6378,7 @@ struct PiecePawn : public Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test PiecePawn<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6390,7 +6411,7 @@ struct PieceQueen : public Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test PieceQueen<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6424,7 +6445,7 @@ struct PieceRook : public Piece<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test PieceRook<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Piece to std::string for operator&lt;&lt;<br/>
@@ -6665,7 +6686,7 @@ bool IsPresent(boost::shared_ptr&lt;T&gt; p,const std::vector&lt;boost::shared_p
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Chess::Piece::Test()<br/>
+void ribi::Chess::Piece::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Testing Chess::Piece exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -6673,7 +6694,7 @@ void ribi::Chess::Piece::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -6698,21 +6719,21 @@ void ribi::Chess::Piece::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::Chess::PieceQueen::Test();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::Chess::PieceRook::Test();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
 <br/>
-void ribi::Chess::PieceBishop::Test()<br/>
+void ribi::Chess::PieceBishop::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -6798,20 +6819,20 @@ void ribi::Chess::PieceBishop::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
-void ribi::Chess::PieceKing::Test()<br/>
+void ribi::Chess::PieceKing::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -6882,20 +6903,20 @@ void ribi::Chess::PieceKing::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
-void ribi::Chess::PieceKnight::Test()<br/>
+void ribi::Chess::PieceKnight::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7003,20 +7024,20 @@ void ribi::Chess::PieceKnight::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Nb1 c3")) != moves.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
-void ribi::Chess::PiecePawn::Test()<br/>
+void ribi::Chess::PiecePawn::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7314,20 +7335,20 @@ void ribi::Chess::PiecePawn::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(moves.size() == 3 * 3); //*3 due to non-check, check and checkmate moves<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
-void ribi::Chess::PieceQueen::Test()<br/>
+void ribi::Chess::PieceQueen::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7432,20 +7453,20 @@ void ribi::Chess::PieceQueen::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//assert(std::find(moves.begin(),moves.end(),MoveFactory::Create("Qb1 b8")) != moves.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
-void ribi::Chess::PieceRook::Test()<br/>
+void ribi::Chess::PieceRook::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7515,7 +7536,7 @@ void ribi::Chess::PieceRook::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7654,14 +7675,14 @@ const std::vector&lt;std::string&gt; ribi::Chess::Rank::GetVersionHistory()<br/>
 &nbsp;&nbsp;return v;<br/>
 }<br/>
 <br/>
-void ribi::Chess::Rank::Test()<br/>
+void ribi::Chess::Rank::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7738,7 +7759,7 @@ void ribi::Chess::Rank::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(r.ToInt() == 7);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7814,7 +7835,7 @@ struct Rank<br/>
 &nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory();<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Convert the Rank to its y coordinat on the Board, for example 0 for square h1<br/>
 &nbsp;&nbsp;int ToInt() const;<br/>
@@ -7894,14 +7915,14 @@ const std::vector&lt;std::string&gt; ribi::Chess::Score::GetVersionHistory()<br/
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Chess::Score::Test()<br/>
+void ribi::Chess::Score::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -7945,7 +7966,7 @@ void ribi::Chess::Score::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -8017,7 +8038,7 @@ struct Score<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test if Score is working correctly<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert a Score to string<br/>
@@ -8108,14 +8129,14 @@ const std::vector&lt;std::string&gt; ribi::Chess::Square::GetVersionHistory()<br
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Chess::Square::Test()<br/>
+void ribi::Chess::Square::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -8232,7 +8253,7 @@ void ribi::Chess::Square::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FTRACE("Tested Chess::Square successfully");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#ifdef SADC_USE_THREADS<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -8313,7 +8334,7 @@ struct Square<br/>
 <br/>
 &nbsp;&nbsp;///Test the correct working of Square<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Convert the Square to a string<br/>
@@ -8763,7 +8784,10 @@ struct SquareSelector<br/>
 #include "chesswidget.h"<br/>
 <br/>
 #include &lt;cassert&gt;<br/>
+<br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;thread&gt;<br/>
+#endif<br/>
 <br/>
 #include "chessboard.h"<br/>
 #include "chesspiece.h"<br/>
@@ -8845,7 +8869,7 @@ void ribi::Chess::ChessWidget::PressKey(const ChessWidget::Key key)<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-void ribi::Chess::ChessWidget::Test()<br/>
+void ribi::Chess::ChessWidget::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//Testing Chess::Widget exactly once<br/>
 &nbsp;&nbsp;{<br/>
@@ -8853,8 +8877,10 @@ void ribi::Chess::ChessWidget::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Widget &gt; w(new Widget);<br/>
@@ -8862,8 +8888,11 @@ void ribi::Chess::ChessWidget::Test()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Nothing to test<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -8945,7 +8974,7 @@ struct ChessWidget : public ribi::Widget<br/>
 &nbsp;&nbsp;void PressKey(const Chess::ChessWidget::Key key);<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///The Selector (a cursor and possibly a selected square)<br/>
 &nbsp;&nbsp;boost::scoped_ptr&lt;Chess::SquareSelector&gt; m_selector;<br/>

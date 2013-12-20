@@ -85,24 +85,27 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.ht
 <!-- start of code -->
 <table summary="./ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro" border = "1"><tr><td><code>
 include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
-<br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
 <br/>
+#Console, general<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
-include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>/<a href="CppRichelBilderbeekProgram.htm">CppRichelBilderbeekProgram</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
 <br/>
+#Desktop, general<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>/<a href="CppQtAboutDialog.htm">CppQtAboutDialog</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>/<a href="CppQtHideAndShowDialog.htm">CppQtHideAndShowDialog</a>.pri)<br/>
 <br/>
-include(<a href="ToolCreateQtProjectZipFile.htm">ToolCreateQtProjectZipFile</a>Desktop.pri)<br/>
-<br/>
+#Console, specific<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQrcFile.htm">CppQrcFile</a>/<a href="CppQrcFile.htm">CppQrcFile</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>/<a href="CppQtCreatorProFile.htm">CppQtCreatorProFile</a>.pri)<br/>
+<br/>
+#Desktop, specific<br/>
+include(<a href="ToolCreateQtProjectZipFile.htm">ToolCreateQtProjectZipFile</a>Desktop.pri)<br/>
+<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += qt<a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
@@ -186,6 +189,10 @@ include(../../<a href="Tools.htm">Tools</a>/<a href="ToolCreateQtProjectZipFile.
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_script;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -203,14 +210,34 @@ include(../../<a href="Tools.htm">Tools</a>/<a href="ToolCreateQtProjectZipFile.
 <!-- start of code -->
 <table summary="./ToolCreateQtProjectZipFile/createqtprojectzipfilemaindialog.cpp" border = "1"><tr><td><code>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCreateQtProjectZipFile.htm">createqtprojectzipfile</a>maindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>zipscript.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog::Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; source_folder)<br/>
 &nbsp;&nbsp;: m_script(<a href="CppQtCreatorProFile.htm">QtCreatorProFile</a>ZipScript::CreateScript(source_folder))<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -427,7 +454,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::MenuDialog::Test()");<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::MenuDialog::Test()");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::MenuDialog::Test() successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -524,7 +551,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetSubFolder(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Converts</a> a Path to a string<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/For example,<br/>
@@ -612,9 +639,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::ExtractFilename(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator <a href="CppOperatorAssign.htm">=</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator()[0];<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppSplit.htm">boost::algorithm::split</a>(v,filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),'/'),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v.size() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1) <b><a href="CppReturn.htm">return</a></b> v[ v.size() <a href="CppOperatorMinus.htm">-</a> 1];<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppReturn.htm">return</a></b> <a href="CppString.htm">std::string</a>();<br/>
@@ -622,9 +650,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::ExtractMainFolder(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator <a href="CppOperatorAssign.htm">=</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator()[0];<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppSplit.htm">boost::algorithm::split</a>(v,filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),'/'),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> (v.size() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 3 ? v[ v.size() <a href="CppOperatorMinus.htm">-</a> 3] : <a href="CppString.htm">std::string</a>());<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -632,15 +661,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t<a href="CppOperatorNotEqual.htm">!=</a>"r");<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (t<a href="CppOperatorEqual.htm">==</a>"..") t <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (t<a href="CppOperatorEqual.htm">==</a>"fparser4.5.1") <b><a href="CppReturn.htm">return</a></b> "<a href="CppLibrary.htm">Libraries</a>/fparser4.5.1";<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (t<a href="CppOperatorEqual.htm">==</a>"fparser4.5.1") <b><a href="CppReturn.htm">return</a></b> "<a href="CppLibrary.htm">Libraries</a>" <a href="CppOperatorPlus.htm">+</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a>"fparser4.5.1";<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::ExtractSubFolder(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> seperator <a href="CppOperatorAssign.htm">=</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator()[0];<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<a href="CppSplit.htm">boost::algorithm::split</a>(v,filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),'/'),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind2nd.htm">std::bind2nd</a>(<a href="CppEqual_to.htm">std::equal_to</a>&lt;<b><a href="CppChar.htm">char</a></b>&gt;(),seperator),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppAlgorithm.htm">algorithm</a>::token_compress_on);<br/>
 &nbsp;&nbsp;<a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> (v.size() <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 2 ? v[ v.size() <a href="CppOperatorMinus.htm">-</a> 2] : <a href="CppString.htm">std::string</a>());<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -660,7 +690,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::IsPresent() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> path <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("../../") <a href="CppOperatorPlus.htm">+</a> ToStr();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> path<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("..")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ".."<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> <a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> ToStr();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(path);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(path);<br/>
 }<br/>
@@ -675,14 +710,14 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_sub_folder <a href="CppOperatorAssign.htm">=</a> s;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::Test()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test exactly once<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::Test()");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Path p("home/richel/x/y/z.txt");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.GetMainFolder() <a href="CppOperatorEqual.htm">==</a> "x");<br/>
@@ -697,11 +732,12 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.GetFilename() <a href="CppOperatorEqual.htm">==</a> "z.txt");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.ToStr() <a href="CppOperatorEqual.htm">==</a> "x/y/z.txt");<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::Test() successfully");<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Create<a href="CppQt.htm">Qt</a>ProjectZipFile::Path::ToStr() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_main_folder <a href="CppOperatorPlus.htm">+</a> "/" <a href="CppOperatorPlus.htm">+</a> m_sub_folder <a href="CppOperatorPlus.htm">+</a> "/" <a href="CppOperatorPlus.htm">+</a> m_filename;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_main_folder <a href="CppOperatorPlus.htm">+</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> m_sub_folder <a href="CppOperatorPlus.htm">+</a> <a href="CppFileIo.htm">fileio</a>::<a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> m_filename;<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -734,17 +770,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="ToolCreateQtProjectZipFile.htm">ToolCreateQtProjectZipFile</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppIteratorH.htm">iterator</a>&gt;<br/>
-<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCreateQtProjectZipFile.htm">createqtprojectzipfile</a>menudialog.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>zipscript.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -820,9 +849,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
@@ -889,10 +916,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog)<br/>
 {<br/>
-&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog::<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMainDialog");<br/>
 &nbsp;&nbsp;ui-&gt;lineEdit-&gt;setText("<a href="Tools.htm">Tools</a>/<a href="ToolCreateQtProjectZipFile.htm">ToolCreateQtProjectZipFile</a>");<br/>
@@ -1078,7 +1105,6 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMenuDialog *ui;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
@@ -1133,10 +1159,10 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMenuDialog)<br/>
 {<br/>
-&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMenuDialog::~<a href="CppQt.htm">Qt</a>Create<a href="CppQt.htm">Qt</a>ProjectZipFileMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>

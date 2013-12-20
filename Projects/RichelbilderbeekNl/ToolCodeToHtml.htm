@@ -92,14 +92,11 @@ include(../../<a href="Tools.htm">Tools</a>/<a href="ToolCodeToHtml.htm">ToolCod
 <!-- start of code -->
 <table summary="./ToolCodeToHtml/ToolCodeToHtmlDesktop.pro" border = "1"><tr><td><code>
 include(../../<a href="CppDesktopApplication.htm">DesktopApplication</a>.pri)<br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBigInt.htm">BigInteger</a>.pri)<br/>
+#include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppBigInt.htm">BigInteger</a>.pri)<br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/Fparser.pri)<br/>
-<br/>
-include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri)<br/>
+#include(../../<a href="CppLibrary.htm">Libraries</a>/Fparser.pri)<br/>
 <br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAbout.htm">CppAbout</a>/<a href="CppAbout.htm">CppAbout</a>.pri)<br/>
-#include(../../<a href="CppClass.htm">Classes</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>/<a href="CppAsciiArter.htm">CppAsciiArter</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppHelp.htm">CppHelp</a>/<a href="CppHelp.htm">CppHelp</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>/<a href="CppMenuDialog.htm">CppMenuDialog</a>.pri)<br/>
@@ -420,7 +417,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQrcFile.htm">qrcfile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtcreator<a href="CppProFile.htm">profile</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>dialog.h"<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>techinfotype.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="ToolCodeToHtml.htm">codetohtml</a>info.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -628,6 +625,49 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::c2h::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Test()");<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Info&gt; info(<b><a href="CppNew.htm">new</a></b> c2h::Info);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; html {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info-&gt;ToHtml("non_existing_page_762538762539827382309728")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(html.size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> no_info_str <a href="CppOperatorAssign.htm">=</a> "&lt;!<a href="CppOperatorDecrement.htm">--</a> No <a href="ToolCodeToHtml.htm">CodeToHtml</a>Info <a href="CppAbout.htm">about</a> <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b>";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> html_str <a href="CppOperatorAssign.htm">=</a> html[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(html_str.substr(0,no_info_str.size()) <a href="CppOperatorEqual.htm">==</a> no_info_str);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Every Program must have some <a href="ToolCodeToHtml.htm">CodeToHtml</a> info<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; programs { Program::GetAllPrograms() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; pagenames;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(programs.begin(),programs.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(pagenames),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; program)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> program-&gt;GetUrl();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.substr(s.size() <a href="CppOperatorMinus.htm">-</a> 4, 4) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>(".htm"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s.substr(0,s.size() <a href="CppOperatorMinus.htm">-</a> 4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> pagename: pagenames)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> c2h::Info&gt; info(<b><a href="CppNew.htm">new</a></b> c2h::Info);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; html {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info-&gt;ToHtml(pagename)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!html.empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> no_info_str <a href="CppOperatorAssign.htm">=</a> "&lt;!<a href="CppOperatorDecrement.htm">--</a> No <a href="ToolCodeToHtml.htm">CodeToHtml</a>Info <a href="CppAbout.htm">about</a> <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b>";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> html_str <a href="CppOperatorAssign.htm">=</a> html[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(html_str.substr(0,no_info_str.size()) <a href="CppOperatorEqual.htm">==</a> no_info_str)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("No info <b><a href="CppFor.htm">for</a></b> page:");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(pagename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(html_str.substr(0,no_info_str.size()) <a href="CppOperatorNotEqual.htm">!=</a> no_info_str<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "For every programType there must be HTML info");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::c2h::<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Test()");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -1246,6 +1286,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog();<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MainDialog();<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppQt.htm">Qt</a><a href="ToolCodeToHtml.htm">CodeToHtml</a>MenuDialog::Test successfully");<br/>
 }<br/>

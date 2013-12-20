@@ -1251,7 +1251,7 @@ void ribi::Pylos::Board::Remove(const std::vector&lt;Coordinat&gt;&amp; v, const
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Pylos::Board::Test()<br/>
+void ribi::Pylos::Board::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;static bool tested = false;<br/>
 &nbsp;&nbsp;if (tested) return;<br/>
@@ -2070,7 +2070,7 @@ struct Board<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;//Friends<br/>
@@ -3280,7 +3280,7 @@ void ribi::Pylos::Game::Set(const Coordinat&amp; c)<br/>
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::Pylos::Game::Test()<br/>
+void ribi::Pylos::Game::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;static bool tested = false;<br/>
 &nbsp;&nbsp;if (tested) return;<br/>
@@ -3913,7 +3913,7 @@ struct Game<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test the Game class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///TogglePlayer toggles between player1 and player2 and saves the current<br/>

@@ -149,7 +149,7 @@ unix : <a href="CppQmakeLibs.htm">LIBS</a> += -L/usr/local/lib <a href="CppRegex
 <table summary="./ToolTestManyDigitNewick/dialogtestmanydigitnewick.h" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
+<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -165,7 +165,7 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppIfndef.htm">#ifndef</a> DIALOGTEST_H<br/>
 <a href="CppDefine.htm">#define</a> DIALOGTEST_H<br/>
@@ -173,16 +173,16 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppNamespace.htm">namespace</a></b> Ui {<br/>
-&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppClass.htm">class</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
+<b><a href="CppClass.htm">class</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppQDialog.htm">QDialog</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQ_OBJECT.htm">Q_OBJECT</a><br/>
 <br/>
 <b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
-&nbsp;&nbsp;~DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppExplicit.htm">explicit</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>(<a href="CppQWidget.htm">QWidget</a> *parent <a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;~Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
 <br/>
@@ -190,7 +190,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> changeEvent(<a href="CppQEvent.htm">QEvent</a> *e);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> *ui;<br/>
+&nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a> *ui;<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on_button_calculate_clicked();<br/>
@@ -214,7 +214,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <table summary="./ToolTestManyDigitNewick/dialogtestmanydigitnewick.cpp" border = "1"><tr><td><code>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">/*</a><br/>
-Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
+<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>, <a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture<br/>
 Copyright (C) 2010 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
@@ -230,7 +230,7 @@ You should have received a copy of the GNU General Public License<br/>
 along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">*/</a><br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>.htm<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>.htm<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
@@ -254,9 +254,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTwoDigitNewick.htm">twodigitnewick</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_dialogtest<a href="CppManyDigitNewick.htm">manydigitnewick</a>.h"<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
+Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>(<a href="CppQWidget.htm">QWidget</a> *parent) :<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>(parent,<a href="CppQt.htm">Qt</a>::Window),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>)<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(ui-&gt;edit_<a href="CppNewick.htm">newick</a>,<a href="CppSignalMacro.htm">SIGNAL</a>(textChanged(<a href="CppQString.htm">QString</a>)),<br/>
@@ -351,12 +351,12 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::DialogTest<a hre
 &nbsp;&nbsp;OnAnyChange();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>()<br/>
+Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::~Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::changeEvent(<a href="CppQEvent.htm">QEvent</a> *e)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDialog.htm">QDialog</a>::changeEvent(e);<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (e-&gt;type()) {<br/>
@@ -369,24 +369,24 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetRandomUniform.htm">GetRandomUniform</a>.htm<br/>
-<b><a href="CppDouble.htm">double</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::<a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
+<b><a href="CppDouble.htm">double</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::<a href="CppGetRandomUniform.htm">GetRandomUniform</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-03-02: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a> copied and from <a href="ToolTestTwoDigitNewick.htm">TestTwoDigitNewick</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::OnAnyChange()<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::OnAnyChange()<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;button_calculate-&gt;setEnabled(<b><a href="CppFalse.htm">false</a></b>);<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
@@ -549,15 +549,15 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::On<a href="CppAbout.htm">About</a>Click()<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::On<a href="CppAbout.htm">About</a>Click()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> <a href="CppAbout.htm">about</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="Tools.htm">tool</a> to test the two-digit-<a href="CppNewick.htm">Newick</a> architecture",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"the 20th of February 2011",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2010-2011",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a>Test<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"http://www.richelbilderbeek.nl/<a href="Tools.htm">Tool</a><a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Get<a href="CppVersion.htm">Version</a>History());<br/>
 <br/>
@@ -570,7 +570,7 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::on_button_calculate_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a>::on_button_calculate_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;ui-&gt;edit_text-&gt;clear();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <a href="CppNewick.htm">Newick</a>s<br/>
@@ -624,7 +624,7 @@ DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a>::~DialogTest<a hr
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;DialogTest<a href="CppManyDigitNewick.htm">ManyDigitNewick</a> w;<br/>
+&nbsp;&nbsp;Dialog<a href="ToolTestManyDigitNewick.htm">TestManyDigitNewick</a> w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>

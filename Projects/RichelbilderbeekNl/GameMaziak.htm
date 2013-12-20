@@ -180,6 +180,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -223,16 +227,23 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::MaziakMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"TODO");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppAbout.htm">About</a> <a href="CppRibi.htm">ribi</a>::MaziakMenuDialog::GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -290,6 +301,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2007-10-22: <a href="CppVersion.htm">version</a> 1.0: Initial <a href="CppVersion.htm">version</a>"<br/>
 &nbsp;&nbsp;};<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::MaziakMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::MaziakMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::MaziakMenuDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -959,6 +983,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> * event);<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 <b><a href="CppPrivate.htm">private</a></b> <b><a href="CppSlots.htm">slots</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppTime.htm">Time</a>rPressKey();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppTime.htm">Time</a>rEnemy();<br/>
@@ -1080,11 +1108,12 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>gameoverdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>gamewondialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>maindialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::<a href="CppQt.htm">Qt</a>MaziakMainDialog(<a href="CppQWidget.htm">QWidget</a> *parent, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maze_size)<br/>
-&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent), <a href="CppComment.htm">//</a>Removed <a href="CppQt.htm">Qt</a>::Window flag<br/>
+&nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Floor<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_pixmap_empty(<b><a href="CppNew.htm">new</a></b> <a href="CppQPixmap.htm">QPixmap</a>(":/images/Empty.png")),<br/>
@@ -1154,6 +1183,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mMaze{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mDistances{}<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_pixmap_empty);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_pixmap_empty-&gt;isNull());<br/>
@@ -1976,6 +2008,20 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Bump into empty/enemy/exit, so player can move there<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
 }<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>MaziakMainDialog(0,99);<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMainDialog::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2046,6 +2092,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onStart();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> onInstructions();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> on<a href="CppAbout.htm">About</a>();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -2103,6 +2153,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>instructionsdialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="GameMaziak.htm">maziak</a>maindialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "ui_qt<a href="GameMaziak.htm">maziak</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -2111,6 +2162,9 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_difficulty(easy)<br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put the dialog in the screen's center<br/>
@@ -2304,9 +2358,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::onStart()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog(0,getMazeSize()));<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;hide();<br/>
-&nbsp;&nbsp;d-&gt;exec();<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;show();<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(d.get());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::onInstructions()<br/>
@@ -2334,145 +2386,31 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unsupported value of mDifficulty");<br/>
 }<br/>
 <br/>
-<br/>
-<br/>
-<a href="CppComment.htm">/*</a><br/>
-<a href="CppInclude.htm">#include</a> &lt;vcl.h&gt;<br/>
-<a href="CppPragma.htm">#pragma</a> hdrstop<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCtimeH.htm">ctime</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppScoped_ptr.htm">scoped_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> "UnitMazeCreater.h"<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormMaziakMenu.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormMaziak<a href="CppAbout.htm">About</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormMaziakGame.h"<br/>
-<a href="CppInclude.htm">#include</a> "UnitFormMaziakInstructions.h"<br/>
-<br/>
-<a href="CppPragma.htm">#pragma</a> package(smart_init)<br/>
-<a href="CppPragma.htm">#pragma</a> resource "*.dfm"<br/>
-TFormMaziakMenu *FormMaziakMenu;<br/>
-<br/>
-__fastcall TFormMaziakMenu::TFormMaziakMenu(T<a href="CppComponent.htm">Component</a>* Owner)<br/>
-&nbsp;&nbsp;: TForm(Owner),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mDifficulty(easy)<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRandomizeTimer.htm">RandomizeTimer</a>();<br/>
-&nbsp;&nbsp;ImageEasyClick(0);<br/>
-}<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> TFormMaziakMenu::GetSize() <b><a href="CppConst.htm">const</a></b><br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (mDifficulty)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> easy&nbsp;&nbsp;: <b><a href="CppReturn.htm">return</a></b>&nbsp;&nbsp;99;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> medium: <b><a href="CppReturn.htm">return</a></b> 499;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> hard&nbsp;&nbsp;: <b><a href="CppReturn.htm">return</a></b> 999;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unsupported value of mDifficulty");<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::ImageStartClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;TFormMaziakGame&gt; f(<b><a href="CppNew.htm">new</a></b> TFormMaziakGame(0,GetSize()));<br/>
-&nbsp;&nbsp;f-&gt;Window<a href="CppState.htm">State</a> <a href="CppOperatorAssign.htm">=</a> wsMaximized;<br/>
-&nbsp;&nbsp;f-&gt;ShowModal();<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::Image<a href="CppAbout.htm">About</a>Click(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;TFormMaziak<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TFormMaziak<a href="CppAbout.htm">About</a>(0));<br/>
-&nbsp;&nbsp;f-&gt;ShowModal();<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::ImageQuitClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;Close();<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::FormKeyDown(TObject *Sender, WORD &amp;Key,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift)<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (Key)<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::Test");<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 's': <b><a href="CppCase.htm">case</a></b> 'S': ImageStartClick(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'i': <b><a href="CppCase.htm">case</a></b> 'I': ImageInstructionsClick(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'a': <b><a href="CppCase.htm">case</a></b> 'A': Image<a href="CppAbout.htm">About</a>Click(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 'q': <b><a href="CppCase.htm">case</a></b> 'Q': ImageQuitClick(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> '+': <b><a href="CppCase.htm">case</a></b> VK_NEXT: <b><a href="CppCase.htm">case</a></b> VK_DOWN: <b><a href="CppCase.htm">case</a></b> VK_ADD: <b><a href="CppCase.htm">case</a></b> VK_RIGHT:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (mDifficulty)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> easy&nbsp;&nbsp;: ImageMediumClick(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> medium: ImageHardClick(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> hard&nbsp;&nbsp;: <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> '-': <b><a href="CppCase.htm">case</a></b> VK_PRIOR: <b><a href="CppCase.htm">case</a></b> VK_UP: <b><a href="CppCase.htm">case</a></b> VK_SUBTRACT: <b><a href="CppCase.htm">case</a></b> VK_LEFT:<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (mDifficulty)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> easy&nbsp;&nbsp;: <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> medium: ImageEasyClick(0); <b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> hard&nbsp;&nbsp;: ImageMediumClick(0);<b><a href="CppBreak.htm">break</a></b>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQt.htm">Qt</a>MaziakMainDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>MaziakMainDialog(0,99));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQt.htm">Qt</a>MaziakInstructionsDialog&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>MaziakInstructionsDialog);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> a <a href="CppOperatorAssign.htm">=</a> MaziakMenuDialog().GetAbout();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppQtAboutDialog.htm">QtAboutDialog</a>&gt; d(<b><a href="CppNew.htm">new</a></b> <a href="CppQtAboutDialog.htm">QtAboutDialog</a>(a));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>MaziakMenuDialog::Test successfully");<br/>
 }<br/>
-<br/>
-<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRandomizeTimer.htm">RandomizeTimer</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRandomizeTimer.htm">RandomizeTimer</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppSrand.htm">std::srand</a>(<a href="CppTime.htm">std::time</a>(0));<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::ImageInstructionsClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;TFormMaziakInstructions&gt; f(<b><a href="CppNew.htm">new</a></b> TFormMaziakInstructions(0));<br/>
-&nbsp;&nbsp;f-&gt;ShowModal();<br/>
-}<br/>
-<br/>
-<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::ImageEasyClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;ImageEasy-&gt;Picture&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> ImageEasySelected-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageMedium-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImageMediumNotSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageHard-&gt;Picture&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> ImageHardNotSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;mDifficulty <a href="CppOperatorAssign.htm">=</a> easy;<br/>
-&nbsp;&nbsp;ImagePlayer-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImagePlayerEasy-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageEnemy-&gt;Picture&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ImageEnemyEasy-&gt;Picture;<br/>
-}<br/>
-<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::ImageMediumClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;ImageEasy-&gt;Picture&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> ImageEasyNotSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageMedium-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImageMediumSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageHard-&gt;Picture&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> ImageHardNotSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;mDifficulty <a href="CppOperatorAssign.htm">=</a> medium;<br/>
-&nbsp;&nbsp;ImagePlayer-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImagePlayerMedium-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageEnemy-&gt;Picture&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ImageEnemyMedium-&gt;Picture;<br/>
-}<br/>
-<br/>
-<b><a href="CppVoid.htm">void</a></b> __fastcall TFormMaziakMenu::ImageHardClick(TObject *Sender)<br/>
-{<br/>
-&nbsp;&nbsp;ImageEasy-&gt;Picture&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> ImageEasyNotSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageMedium-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImageMediumNotSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageHard-&gt;Picture&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> ImageHardSelected-&gt;Picture;<br/>
-&nbsp;&nbsp;mDifficulty <a href="CppOperatorAssign.htm">=</a> hard;<br/>
-&nbsp;&nbsp;ImagePlayer-&gt;Picture <a href="CppOperatorAssign.htm">=</a> ImagePlayerHard-&gt;Picture;<br/>
-&nbsp;&nbsp;ImageEnemy-&gt;Picture&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> ImageEnemyHard-&gt;Picture;<br/>
-}<br/>
-<br/>
-<a href="CppComment.htm">*/</a><br/>
+<a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

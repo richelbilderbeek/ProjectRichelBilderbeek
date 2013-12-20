@@ -428,7 +428,7 @@ void ribi::kalman::FixedLagSmootherKalmanFilter::SupplyMeasurementAndInput(<br/
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::kalman::FixedLagSmootherKalmanFilter::Test()<br/>
+void ribi::kalman::FixedLagSmootherKalmanFilter::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -762,7 +762,7 @@ struct FixedLagSmootherKalmanFilter : public KalmanFilter<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 };<br/>
 <br/>
@@ -4117,7 +4117,7 @@ bool ribi::kalman::KalmanFilterExperimentParameter::IsVector(const KalmanFilterE
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::kalman::KalmanFilterExperimentParameter::Test()<br/>
+void ribi::kalman::KalmanFilterExperimentParameter::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -4388,7 +4388,7 @@ struct KalmanFilterExperimentParameter<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;static const std::vector&lt;std::pair&lt;KalmanFilterParameterType,KalmanFilterExperimentParameterType&gt; &gt; m_map_kalman_filter;<br/>
@@ -5092,7 +5092,7 @@ const std::vector&lt;ribi::kalman::KalmanFilterType&gt; ribi::kalman::KalmanFilt
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::kalman::KalmanFilterTypes::Test()<br/>
+void ribi::kalman::KalmanFilterTypes::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -5171,7 +5171,7 @@ struct KalmanFilterTypes<br/>
 &nbsp;&nbsp;static const boost::bimap&lt;KalmanFilterType,std::string&gt; CreateMap();<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 };<br/>
 <br/>
@@ -8841,7 +8841,7 @@ const std::vector&lt;ribi::kalman::WhiteNoiseSystemType&gt; ribi::kalman::WhiteN
 }<br/>
 <br/>
 #ifndef NDEBUG<br/>
-void ribi::kalman::WhiteNoiseSystemTypes::Test()<br/>
+void ribi::kalman::WhiteNoiseSystemTypes::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
@@ -8918,7 +8918,7 @@ struct WhiteNoiseSystemTypes<br/>
 &nbsp;&nbsp;static const boost::bimap&lt;WhiteNoiseSystemType,std::string&gt; CreateMap();<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 };<br/>

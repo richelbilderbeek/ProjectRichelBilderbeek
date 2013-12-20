@@ -758,7 +758,10 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 #include "qtchessboardwidget.h"<br/>
 <br/>
+#ifdef MXE_SUPPORTS_THREADS<br/>
 #include &lt;future&gt;<br/>
+#endif<br/>
+<br/>
 #include &lt;iostream&gt;<br/>
 #include &lt;boost/bind.hpp&gt;<br/>
 #include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
@@ -1016,20 +1019,24 @@ void ribi::Chess::QtChessBoardWidget::resizeEvent(QResizeEvent *)<br/>
 }<br/>
 <br/>
 <br/>
-void ribi::Chess::QtChessBoardWidget::Test()<br/>
+void ribi::Chess::QtChessBoardWidget::Test() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;std::thread t(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[]<br/>
+&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtChessBoardWidget();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#ifdef MXE_SUPPORTS_THREADS<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.join();<br/>
+&nbsp;&nbsp;#endif<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -1153,7 +1160,7 @@ struct QtChessBoardWidget : public QWidget<br/>
 &nbsp;&nbsp;///Repaint the QtChessBoardWidget<br/>
 &nbsp;&nbsp;void DoRepaint();<br/>
 <br/>
-&nbsp;&nbsp;static void Test();<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;///Respond to mouse click<br/>
 &nbsp;&nbsp;//void OnClicked(const Wt::WMouseEvent&amp; e);<br/>
 };<br/>

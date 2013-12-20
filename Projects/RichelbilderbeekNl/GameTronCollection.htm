@@ -138,13 +138,13 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQApplication.htm">QApplication</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> "qttrongamedialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameTronCollection.htm">tron</a>gamedialog.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b> *<a href="CppArgc.htm">argv</a>[])<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQApplication.htm">QApplication</a> a(<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>);<br/>
-&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog w;<br/>
+&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog w;<br/>
 &nbsp;&nbsp;w.show();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> a.exec();<br/>
 }<br/>
@@ -171,7 +171,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "tronplayer.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>player.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQGraphicsScene.htm">QGraphicsScene</a>;<br/>
@@ -183,7 +183,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <b><a href="CppNamespace.htm">namespace</a></b> Ui { <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TronGameDialog; }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> tron {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Player;<br/>
 <br/>
@@ -209,9 +209,13 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; CreatePlayers();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> tron<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a><br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DIALOGGAME_H<br/>
@@ -241,14 +245,14 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQTimer.htm">QTimer</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "qttrongamedialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameTronCollection.htm">tron</a>gamedialog.h"<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "tronplayer.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qttrongamedialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "tronworldtype.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>player.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="GameTronCollection.htm">tron</a>gamedialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>worldtype.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog::<a href="CppQt.htm">Qt</a>TronGameDialog(<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog::<a href="CppQt.htm">Qt</a>TronGameDialog(<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a> *parent, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; players)<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TronGameDialog),<br/>
@@ -260,21 +264,21 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <br/>
 &nbsp;&nbsp;Player::m_world.reset(<b><a href="CppNew.htm">new</a></b> WorldTypeDonut(320,200));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,<a href="CppSignalMacro.htm">SIGNAL</a>(<a href="CppTime.htm">time</a>out()),<b><a href="CppThis.htm">this</a></b>,<a href="CppSLOT.htm">SLOT</a>(repaint()));<br/>
-&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,&amp;<a href="CppQTimer.htm">QTimer</a>::<a href="CppTime.htm">time</a>out,<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog::On<a href="CppTime.htm">Time</a>r);<br/>
+&nbsp;&nbsp;<a href="CppQObject.htm">QObject</a>::connect(m_<a href="CppTime.htm">time</a>r,&amp;<a href="CppQTimer.htm">QTimer</a>::<a href="CppTime.htm">time</a>out,<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog::On<a href="CppTime.htm">Time</a>r);<br/>
 &nbsp;&nbsp;m_<a href="CppTime.htm">time</a>r-&gt;start(20);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog::~<a href="CppQt.htm">Qt</a>TronGameDialog()<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog::~<a href="CppQt.htm">Qt</a>TronGameDialog()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog::resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a>*)<br/>
 {<br/>
 <br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog::On<a href="CppTime.htm">Time</a>r()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog::On<a href="CppTime.htm">Time</a>r()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; player: m_players)<br/>
 &nbsp;&nbsp;{<br/>
@@ -290,7 +294,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 &nbsp;&nbsp;ui-&gt;label-&gt;setPixmap(<a href="CppQPixmap.htm">QPixmap</a>::fromImage(*m_image));<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::tron::Player&gt; &gt; <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronGameDialog::CreatePlayers()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::Player&gt; &gt; <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronGameDialog::CreatePlayers()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Player&gt; &gt; v;<br/>
 &nbsp;&nbsp;{<br/>
@@ -327,7 +331,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 }<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> tron {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a> {<br/>
 <br/>
 <b><a href="CppClass.htm">class</a></b> <a href="CppQt.htm">Qt</a>TronMenuDialog : <b><a href="CppPublic.htm">public</a></b> <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a><br/>
 {<br/>
@@ -346,12 +350,13 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog *ui;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> tron<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a><br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTTRONCOLLECTIONMENUDIALOG_H<br/>
@@ -368,16 +373,16 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <table summary="./GameTronCollection/qttronmenudialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppInclude.htm">#include</a> "qttronmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameTronCollection.htm">tron</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtAboutDialog.htm">qtaboutdialog</a>.h"<br/>
-<a href="CppInclude.htm">#include</a> "tronmenudialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "qttrongamedialog.h"<br/>
-<a href="CppInclude.htm">#include</a> "ui_qttronmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>menudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "qt<a href="GameTronCollection.htm">tron</a>gamedialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "ui_qt<a href="GameTronCollection.htm">tron</a>menudialog.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::<a href="CppQt.htm">Qt</a>TronMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
+<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::<a href="CppQt.htm">Qt</a>TronMenuDialog(<a href="CppQWidget.htm">QWidget</a> *parent)<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog)<br/>
 {<br/>
@@ -387,39 +392,39 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 &nbsp;&nbsp;ui-&gt;setupUi(<b><a href="CppThis.htm">this</a></b>);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::~<a href="CppQt.htm">Qt</a>TronMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::~<a href="CppQt.htm">Qt</a>TronMenuDialog() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> ui;<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::on_button_start_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::on_button_start_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TronGameDialog d;<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::on_button_about_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::on_button_about_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQtAboutDialog.htm">QtAboutDialog</a> d(TronMenuDialog().GetAbout());<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;ShowChild(&amp;d);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::on_button_quit_clicked()<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::on_button_quit_clicked()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;close();<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::Test");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::Test");<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>TronGameDialog();<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::tron::<a href="CppQt.htm">Qt</a>TronMenuDialog::Test successfully");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::<a href="CppQt.htm">Qt</a>TronMenuDialog::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -454,6 +459,10 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -470,7 +479,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameTronCollection/tronmenudialog.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "tronmenudialog.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>menudialog.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
@@ -494,7 +503,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 {<br/>
 &nbsp;&nbsp;<a href="CppAbout.htm">About</a> a(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Richel Bilderbeek",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"TronCollection",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="GameTronCollection.htm">TronCollection</a>",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"",<br/>
@@ -522,7 +531,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; <a href="CppRibi.htm">ribi</a>::TronMenuDialog::GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::Program&gt; p {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> ProgramTronCollection<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Program<a href="GameTronCollection.htm">TronCollection</a><br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
@@ -561,11 +570,11 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/cast.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> "tronworldtype.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>worldtype.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> tron {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Player<br/>
 {<br/>
@@ -644,7 +653,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_direction;<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> tron<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a><br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> PLAYER_H<br/>
@@ -659,10 +668,10 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameTronCollection/tronplayer.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "tronplayer.h"<br/>
-<a href="CppInclude.htm">#include</a> "tronworldtype.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>player.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>worldtype.h"<br/>
 <br/>
-<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::tron::WorldType&gt; <a href="CppRibi.htm">ribi</a>::tron::Player::m_world;<br/>
+<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::WorldType&gt; <a href="CppRibi.htm">ribi</a>::<a href="GameTronCollection.htm">tron</a>::Player::m_world;<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -684,7 +693,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
-<b><a href="CppNamespace.htm">namespace</a></b> tron {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> WorldType<br/>
 {<br/>
@@ -725,7 +734,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> tron<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="GameTronCollection.htm">tron</a><br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> WORLDTYPE_H<br/>
@@ -740,7 +749,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GameTronCollection.htm">Gam
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./GameTronCollection/tronworldtype.cpp" border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> "tronworldtype.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="GameTronCollection.htm">tron</a>worldtype.h"<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

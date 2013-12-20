@@ -809,7 +809,6 @@ void ribi::QtHideAndShowDialog::ShowChild(QtHideAndShowDialog * const dialog)<br
 &nbsp;&nbsp;this-&gt;hide();<br/>
 <br/>
 &nbsp;&nbsp;QObject::connect(dialog,&amp;QtHideAndShowDialog::close_me,this,&amp;QtHideAndShowDialog::close_child);<br/>
-&nbsp;&nbsp;//QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));<br/>
 &nbsp;&nbsp;m_show_child = true;<br/>
 &nbsp;&nbsp;while (m_show_child)<br/>
 &nbsp;&nbsp;{<br/>
@@ -822,7 +821,6 @@ void ribi::QtHideAndShowDialog::ShowModal(QtHideAndShowDialog * const dialog)<br
 {<br/>
 &nbsp;&nbsp;assert(dialog);<br/>
 &nbsp;&nbsp;this-&gt;setEnabled(false);<br/>
-&nbsp;&nbsp;//QObject::connect(dialog,SIGNAL(close_me()),this,SLOT(close_child()));<br/>
 &nbsp;&nbsp;QObject::connect(dialog,&amp;QtHideAndShowDialog::close_me,this,&amp;QtHideAndShowDialog::close_child);<br/>
 &nbsp;&nbsp;m_show_child = true;<br/>
 &nbsp;&nbsp;while (m_show_child)<br/>
