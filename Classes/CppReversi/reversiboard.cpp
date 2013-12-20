@@ -1,5 +1,6 @@
 #include "reversiboard.h"
 
+#include <algorithm>
 #include <cassert>
 #include <stdexcept>
 
@@ -158,11 +159,13 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const int player) no
 
 int ribi::reversi::Board::Get(const int x, const int y) const noexcept
 {
+  #ifndef NDEBUG
   const int sz = GetSize();
   assert(x >= 0);
   assert(y >= 0);
   assert(x < sz);
   assert(y < sz);
+  #endif
   return m_board[y][x];
 }
 

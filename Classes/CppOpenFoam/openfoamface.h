@@ -55,6 +55,9 @@ struct Face
   friend std::ostream& operator<<(std::ostream& os, const Face& face);
 };
 
+///Calculate the center of the Face
+ribi::Coordinat3D CalcCenter(const Face& face) noexcept;
+
 std::ostream& operator<<(std::ostream& os, const Face& face);
 
 } //~namespace foam

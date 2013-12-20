@@ -11,8 +11,10 @@ namespace foam {
 ///An item in an OpenFOAM boundary file
 struct NeighbourFileItem
 {
-  explicit NeighbourFileItem(const CellIndex face_index = CellIndex(0));
+  ///A CellIndex of -1 denotes that a Face has no Neighbour
+  explicit NeighbourFileItem(const CellIndex face_index = CellIndex(-1));
 
+  ///A CellIndex of -1 denotes that a Face has no Neighbour
   const CellIndex GetCellIndex() const noexcept { return m_cell_index; }
 
   private:

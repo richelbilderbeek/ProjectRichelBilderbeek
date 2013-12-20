@@ -73,11 +73,15 @@ struct Mesh
   ///same Boundary
   bool AreFacesOrdered() const noexcept;
 
-  static double CalcSimilarity(
+  static double CalcSimilaritySlow(
     const std::vector<ribi::Coordinat3D>& v,
     const std::vector<ribi::Coordinat3D>& w) noexcept;
 
-  static double CalcSimilarity(
+  static double CalcSimilarityFaster(
+    const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
+    const std::vector<ribi::Coordinat3D>& w) noexcept;
+
+  static double CalcSimilaritySlow(
     const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
     const std::vector<ribi::Coordinat3D>& w) noexcept;
 

@@ -64,6 +64,16 @@ const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > ribi::foam::Face:
   return v;
 }
 
+ribi::Coordinat3D ribi::foam::CalcCenter(const Face& face) noexcept
+{
+  Coordinat3D d;
+  for (boost::shared_ptr<const ribi::Coordinat3D> c: face.GetPoints())
+  {
+    d += *c;
+  }
+  d /= static_cast<double>(face.GetPoints().size());
+  return d;
+}
 
 std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Face& face)
 {

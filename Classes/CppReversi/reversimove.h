@@ -21,6 +21,8 @@ struct Move
   ///- [empty] -> MovePass
   static const boost::shared_ptr<Move> Parse(const std::string& s) noexcept;
 
+  virtual const std::string ToStr() const noexcept = 0;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
@@ -33,6 +35,8 @@ struct MovePlacePiece : public Move
   int GetX() const noexcept { return m_x; }
   int GetY() const noexcept { return m_y; }
 
+  const std::string ToStr() const noexcept;
+
   private:
   const int m_x;
   const int m_y;
@@ -41,6 +45,8 @@ struct MovePlacePiece : public Move
 struct MovePass : public Move
 {
   MovePass() {}
+
+  const std::string ToStr() const noexcept { return "pass"; }
 };
 
 

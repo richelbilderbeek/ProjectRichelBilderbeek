@@ -33,7 +33,8 @@ struct Widget
 
   int GetCurrentPlayer() const noexcept { return m_current_player; }
 
-  const std::vector< std::pair<int,int> > GetValidMoves() const noexcept;
+  const std::vector<boost::shared_ptr<Move>> GetValidMoves() const noexcept;
+
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
   int GetWinner() const noexcept;

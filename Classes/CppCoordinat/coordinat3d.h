@@ -31,6 +31,9 @@ struct Coordinat3D
   Coordinat3D& operator+=(const Coordinat3D& rhs) noexcept;
   Coordinat3D& operator-=(const Coordinat3D& rhs) noexcept;
 
+  Coordinat3D& operator/=(const double f);
+  Coordinat3D& operator*=(const double f) noexcept;
+
   private:
   static const int dimensionality = 3;
   std::array<double,dimensionality> m_co;
@@ -46,6 +49,16 @@ const Coordinat3D operator-(
 const Coordinat3D operator+(
   const Coordinat3D& v1,
   const Coordinat3D& v2);
+
+///Divide all components of the coordinat by f
+const Coordinat3D operator/(
+  const Coordinat3D& c,
+  const double f);
+
+///Multipl all components of the coordinat by f
+const Coordinat3D operator*(
+  const Coordinat3D& c,
+  const double f) noexcept;
 
 ///Calculate the distance between two coordinats
 double Distance(const Coordinat3D& lhs,const Coordinat3D& rhs);

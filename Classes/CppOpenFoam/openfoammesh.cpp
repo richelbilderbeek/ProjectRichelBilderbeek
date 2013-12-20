@@ -128,6 +128,7 @@ ribi::foam::Mesh::Mesh(
       const CellIndex neighbour_index {
         files.GetNeighbour()->GetItem(index).GetCellIndex()
       };
+      assert(i >= 0);
       assert(i < static_cast<int>(m_faces.size()));
       assert(neighbour_index.Get() < static_cast<int>(m_cells.size()));
       assert(!m_faces[i]->GetNeighbour());
@@ -205,8 +206,25 @@ bool ribi::foam::Mesh::AreFacesOrdered() const noexcept
   return true;
 }
 
+double ribi::foam::Mesh::CalcSimilarityFaster(
+  const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
+  const std::vector<ribi::Coordinat3D>& w) noexcept
+{
+  if (v.size() != w.size()) return std::numeric_limits<double>::max();
+  //Sum all coordinats, distance equals the distance between the center points
+  const Coordinat3D a = std::accumulate(v.begin(),v.end(),Coordinat3D(),
+    [](const Coordinat3D& init, const boost::shared_ptr<const ribi::Coordinat3D> c)
+    {
+      return init + (*c);
+    }
+  );
+  //for (const boost::shared_ptr<const ribi::Coordinat3D> c: v) { a += (*c); }
+  const Coordinat3D b = std::accumulate(w.begin(),w.end(),Coordinat3D());
+  return Distance(a,b);
+}
 
-double ribi::foam::Mesh::CalcSimilarity(
+
+double ribi::foam::Mesh::CalcSimilaritySlow(
   const std::vector<ribi::Coordinat3D>& v,
   const std::vector<ribi::Coordinat3D>& w) noexcept
 {
@@ -231,7 +249,7 @@ double ribi::foam::Mesh::CalcSimilarity(
   return distance;
 }
 
-double ribi::foam::Mesh::CalcSimilarity(
+double ribi::foam::Mesh::CalcSimilaritySlow(
   const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
   const std::vector<ribi::Coordinat3D>& w) noexcept
 {
@@ -240,6 +258,7 @@ double ribi::foam::Mesh::CalcSimilarity(
     std::accumulate(v.begin(),v.end(),0.0,
       [w](const double init,const boost::shared_ptr<const ribi::Coordinat3D>& c)
       {
+
         //Find the closest coordinat in w to c
         const std::vector<ribi::Coordinat3D>::const_iterator closest {
           std::min_element(w.begin(),w.end(),
@@ -613,12 +632,12 @@ const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimila
 {
   ///Obtain the distance from focal coordinats to each face its coordinat
   std::vector<double> distances;
-  const std::size_t sz = m_faces.size(); //Was a bug
+  const std::size_t sz = m_faces.size();
   for (std::size_t i=0; i!=sz; ++i)
   {
     assert(i < m_faces.size());
     assert(m_faces[i]);
-    const double distance = CalcSimilarity(
+    const double distance = CalcSimilarityFaster(
       m_faces[i]->GetPoints(),
       coordinats
     );
@@ -748,7 +767,7 @@ void ribi::foam::Mesh::Test() noexcept
   {
     std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
     std::vector<ribi::Coordinat3D> w;
-    assert(CalcSimilarity(v,w) < 0.001);
+    assert(CalcSimilarityFaster(v,w) < 0.001);
   }
   //CalcSimilarity: one point
   {
@@ -764,7 +783,7 @@ void ribi::foam::Mesh::Test() noexcept
       w.push_back(c);
       v.push_back(d);
     }
-    assert(CalcSimilarity(v,w) < 0.001);
+    assert(CalcSimilarityFaster(v,w) < 0.001);
   }
   //CalcSimilarity: two points
   {
@@ -790,7 +809,7 @@ void ribi::foam::Mesh::Test() noexcept
       w.push_back(c);
       v.push_back(d);
     }
-    assert(CalcSimilarity(v,w) < 0.001);
+    assert(CalcSimilarityFaster(v,w) < 0.001);
   }
   //CalcSimilarity: one versus two points
   {
@@ -810,7 +829,7 @@ void ribi::foam::Mesh::Test() noexcept
       const ribi::Coordinat3D c(2.2,3.3,4.4);
       w.push_back(c);
     }
-    assert(CalcSimilarity(v,w) > 1000000000.0);
+    assert(CalcSimilarityFaster(v,w) > 1000000000.0);
   }
   //Find most similar Faces
   {

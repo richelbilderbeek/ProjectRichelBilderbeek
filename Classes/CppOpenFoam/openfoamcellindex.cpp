@@ -12,8 +12,8 @@ ribi::foam::CellIndex::CellIndex(const int index)
   Test();
   #endif
 
-  assert(m_index >= 0
-    && "A CellIndex must be zero or a positive value");
+  assert(m_index >= -1
+    && "A CellIndex must be minus one or higher");
 }
 
 ribi::foam::CellIndex& ribi::foam::CellIndex::operator++() noexcept
@@ -55,15 +55,15 @@ void ribi::foam::CellIndex::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const CellIndex& face_index)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const CellIndex& cell_index)
 {
-  os << face_index.Get();
+  os << cell_index.Get();
   return os;
 }
 
-std::istream& ribi::foam::operator>>(std::istream& is, CellIndex& face_index)
+std::istream& ribi::foam::operator>>(std::istream& is, CellIndex& cell_index)
 {
-  is >> face_index.m_index;
+  is >> cell_index.m_index;
   #ifndef NDEBUG
   if (!is)
   {

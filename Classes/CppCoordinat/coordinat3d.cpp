@@ -25,6 +25,23 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator-=(const Coordinat3D& rhs) noexcep
   return *this;
 }
 
+ribi::Coordinat3D& ribi::Coordinat3D::operator/=(const double f)
+{
+  assert(f != 0.0);
+  m_co[0] /= f;
+  m_co[1] /= f;
+  m_co[2] /= f;
+  return *this;
+}
+
+ribi::Coordinat3D& ribi::Coordinat3D::operator*=(const double f) noexcept
+{
+  m_co[0] *= f;
+  m_co[1] *= f;
+  m_co[2] *= f;
+  return *this;
+}
+
 double ribi::Distance(const Coordinat3D& lhs,const Coordinat3D& rhs)
 {
   const double dx = lhs.GetX() - rhs.GetX();
@@ -68,6 +85,28 @@ const ribi::Coordinat3D ribi::operator+(
   );
 }
 
+const ribi::Coordinat3D ribi::operator/(
+  const Coordinat3D& c,
+  const double f)
+{
+  assert(f != 0.0);
+  return Coordinat3D(
+    c.GetX() / f,
+    c.GetY() / f,
+    c.GetZ() / f
+  );
+}
+
+const ribi::Coordinat3D ribi::operator*(
+  const Coordinat3D& c,
+  const double f) noexcept
+{
+  return Coordinat3D(
+    c.GetX() * f,
+    c.GetY() * f,
+    c.GetZ() * f
+  );
+}
 
 
 bool ribi::operator==(const Coordinat3D& lhs, const Coordinat3D& rhs)

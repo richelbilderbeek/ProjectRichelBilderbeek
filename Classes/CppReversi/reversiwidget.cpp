@@ -70,6 +70,7 @@ void ribi::reversi::Widget::DoMove(const boost::shared_ptr<const ribi::reversi::
   if (boost::dynamic_pointer_cast<const ribi::reversi::MovePass>(move))
   {
     DoMovePass();
+    return;
   }
   const boost::shared_ptr<const ribi::reversi::MovePlacePiece> place {
     boost::dynamic_pointer_cast<const ribi::reversi::MovePlacePiece>(move)
@@ -90,6 +91,24 @@ void ribi::reversi::Widget::DoMove(const int x, const int y) noexcept
 void ribi::reversi::Widget::DoMovePass() noexcept
 {
   TogglePlayer();
+}
+
+const std::vector<boost::shared_ptr<ribi::reversi::Move>> ribi::reversi::Widget::GetValidMoves() const noexcept
+{
+  std::vector<boost::shared_ptr<Move>> moves;
+  for (const std::pair<int,int> p: m_board->GetValidMoves(GetCurrentPlayer()))
+  {
+    const boost::shared_ptr<Move> move {
+      new MovePlacePiece(p.first,p.second)
+    };
+    assert(move);
+    moves.push_back(move);
+  }
+  const boost::shared_ptr<Move> move_pass {
+    new MovePass
+  };
+  moves.push_back(move_pass);
+  return moves;
 }
 
 const std::string ribi::reversi::Widget::GetVersion() noexcept
@@ -113,12 +132,6 @@ void ribi::reversi::Widget::TogglePlayer()
     case player2: m_current_player = player1; return;
     default: assert(!"Should not get here");
   }
-}
-
-
-const std::vector<std::pair<int,int>> ribi::reversi::Widget::GetValidMoves() const noexcept
-{
-  return m_board->GetValidMoves(GetCurrentPlayer());
 }
 
 int ribi::reversi::Widget::GetOtherPlayer() const noexcept
@@ -151,7 +164,6 @@ int ribi::reversi::Widget::GetWinner() const noexcept
       if (n_2 > n_1) return ribi::reversi::Widget::player2;
       assert(n_1 == n_2);
       return ribi::reversi::Widget::draw;
-
     }
   }
   return ribi::reversi::Widget::empty;
@@ -169,36 +181,26 @@ void ribi::reversi::Widget::Test() noexcept
   {
     ribi::reversi::Widget r(4);
     assert(r.GetCurrentPlayer() == Board::player1);
-    assert(r.GetBoard()->Get(1,1) == Board::player1);
-    assert(r.GetBoard()->Get(1,2) == Board::player2);
-    assert(r.GetBoard()->Get(2,1) == Board::player2);
-    assert(r.GetBoard()->Get(2,2) == Board::player1);
-    assert(r.GetBoard()->Get(0,0) == Board::empty);
-    assert(r.GetBoard()->Get(2,0) == Board::empty);
-    assert(r.CanDoMove(2,0));
-    assert(r.CanDoMove(3,1));
-    assert(r.CanDoMove(0,2));
-    assert(r.CanDoMove(1,3));
-    assert(r.GetValidMoves().size() == 4);
+    assert(r.GetValidMoves().size() == 5); //4 place moves and one pass
   }
   //Play random games
   for (int sz = 4; sz != 10; ++sz)
   {
     ribi::reversi::Widget r(sz);
-    while (!r.GetValidMoves().empty())
+    while (r.GetValidMoves().size() > 1) //Pass is always allowed
     {
       static_assert(static_cast<int>(ribi::reversi::Widget::empty  ) == static_cast<int>(Board::empty  ),"enums must have same value");
       static_assert(static_cast<int>(ribi::reversi::Widget::player1) == static_cast<int>(Board::player1),"enums must have same value");
       static_assert(static_cast<int>(ribi::reversi::Widget::player2) == static_cast<int>(Board::player2),"enums must have same value");
       assert(r.GetWinner() == ribi::reversi::Widget::empty);
-      std::vector<std::pair<int,int>> m {
+      std::vector<boost::shared_ptr<ribi::reversi::Move>> m {
         r.GetValidMoves()
       };
       assert(!m.empty());
       std::random_shuffle(m.begin(),m.end());
-      const std::pair<int,int> move = m[0];
-      assert(r.CanDoMove(move.first,move.second));
-      r.DoMove(move.first,move.second);
+      const boost::shared_ptr<ribi::reversi::Move> move = m[0];
+      assert(r.CanDoMove(move));
+      r.DoMove(move);
     }
   }
   TRACE("Finished ribi::TestReversiMenuDialog::Test()");
