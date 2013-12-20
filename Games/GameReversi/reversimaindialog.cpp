@@ -35,13 +35,19 @@ void ribi::reversi::MainDialog::Execute(const int size)
     if (!move)
     {
       std::cout << "Invalid move. Possible moves:\n"
-        << "x,y : put a piece at coordinat x,y\n"
-        << "  (no text, just press enter): pass\n"
+        << "x,y : put a piece at coordinat x,y, for example '0,0'\n"
+        << "p: pass\n"
         << "quit: quit game\n"
         << '\n';
       continue;
     }
-
+    if (!w.CanDoMove(move))
+    {
+      std::cout << "Move is not allowed\n"
+        << '\n';
+      continue;
+    }
+    w.DoMove(move);
   }
 }
 

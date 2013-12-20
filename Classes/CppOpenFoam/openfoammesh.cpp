@@ -611,15 +611,18 @@ const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimila
   const std::vector<ribi::Coordinat3D>& coordinats
   ) const
 {
-  ///Obtain the distance from focal coordindat to each face its coordinat
+  ///Obtain the distance from focal coordinats to each face its coordinat
   std::vector<double> distances;
-  const std::size_t sz = coordinats.size();
+  const std::size_t sz = m_faces.size(); //Was a bug
   for (std::size_t i=0; i!=sz; ++i)
   {
+    assert(i < m_faces.size());
+    assert(m_faces[i]);
     const double distance = CalcSimilarity(
       m_faces[i]->GetPoints(),
       coordinats
     );
+    TRACE(distance);
     distances.push_back(distance);
   }
 
@@ -741,19 +744,91 @@ void ribi::foam::Mesh::Test() noexcept
       );
     }
   }
+  //CalcSimilarity: empty
+  {
+    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
+    std::vector<ribi::Coordinat3D> w;
+    assert(CalcSimilarity(v,w) < 0.001);
+  }
+  //CalcSimilarity: one point
+  {
+    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
+    std::vector<ribi::Coordinat3D> w;
+    {
+      const ribi::Coordinat3D c(1.1,2.2,3.3);
+      boost::shared_ptr<const ribi::Coordinat3D> d {
+        new ribi::Coordinat3D(c)
+      };
+      assert(c == *d); //Exact comparison
+      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      w.push_back(c);
+      v.push_back(d);
+    }
+    assert(CalcSimilarity(v,w) < 0.001);
+  }
+  //CalcSimilarity: two points
+  {
+    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
+    std::vector<ribi::Coordinat3D> w;
+    {
+      const ribi::Coordinat3D c(1.1,2.2,3.3);
+      boost::shared_ptr<const ribi::Coordinat3D> d {
+        new ribi::Coordinat3D(c)
+      };
+      assert(c == *d); //Exact comparison
+      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      w.push_back(c);
+      v.push_back(d);
+    }
+    {
+      const ribi::Coordinat3D c(2.2,3.3,4.4);
+      boost::shared_ptr<const ribi::Coordinat3D> d {
+        new ribi::Coordinat3D(c)
+      };
+      assert(c == *d); //Exact comparison
+      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      w.push_back(c);
+      v.push_back(d);
+    }
+    assert(CalcSimilarity(v,w) < 0.001);
+  }
+  //CalcSimilarity: one versus two points
+  {
+    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
+    std::vector<ribi::Coordinat3D> w;
+    {
+      const ribi::Coordinat3D c(1.1,2.2,3.3);
+      boost::shared_ptr<const ribi::Coordinat3D> d {
+        new ribi::Coordinat3D(c)
+      };
+      assert(c == *d); //Exact comparison
+      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      w.push_back(c);
+      v.push_back(d);
+    }
+    {
+      const ribi::Coordinat3D c(2.2,3.3,4.4);
+      w.push_back(c);
+    }
+    assert(CalcSimilarity(v,w) > 1000000000.0);
+  }
   //Find most similar Faces
   {
     //Handcraft Faces, put these in mesh
 
-    //Points as log 12 page 48
+    //For the Points, I used the same setup as in Classes/CppOpenFoam/points_1x1x1:
+    //
+    // 8((0 0 0) (1 0 0) (0 1 0) (1 1 0) (0 0 1) (1 0 1) (0 1 1) (1 1 1))
+    //
+    // The order of points is determined by blockMesh
     const boost::shared_ptr<ribi::Coordinat3D> p0 { new ribi::Coordinat3D(0.0,0.0,0.0) };
     const boost::shared_ptr<ribi::Coordinat3D> p1 { new ribi::Coordinat3D(1.0,0.0,0.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p2 { new ribi::Coordinat3D(1.0,1.0,0.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p3 { new ribi::Coordinat3D(0.0,1.0,0.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p2 { new ribi::Coordinat3D(0.0,1.0,0.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p3 { new ribi::Coordinat3D(1.0,1.0,0.0) };
     const boost::shared_ptr<ribi::Coordinat3D> p4 { new ribi::Coordinat3D(0.0,0.0,1.0) };
     const boost::shared_ptr<ribi::Coordinat3D> p5 { new ribi::Coordinat3D(1.0,0.0,1.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p6 { new ribi::Coordinat3D(1.0,1.0,1.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p7 { new ribi::Coordinat3D(0.0,1.0,1.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p6 { new ribi::Coordinat3D(0.0,1.0,1.0) };
+    const boost::shared_ptr<ribi::Coordinat3D> p7 { new ribi::Coordinat3D(1.0,1.0,1.0) };
     assert(p0); assert(p1); assert(p2); assert(p3);
     assert(p4); assert(p5); assert(p6); assert(p7);
     const boost::shared_ptr<Cell> cell { new Cell };
@@ -773,6 +848,20 @@ void ribi::foam::Mesh::Test() noexcept
     const boost::shared_ptr<Cell> own5 { cell }; //The only Cell owns all Faces
 
     const std::vector<boost::shared_ptr<ribi::Coordinat3D>> points { p0,p1,p2,p3,p4,p5,p6,p7 };
+    //For the Faces, I used the same setup as in Classes/CppOpenFoam/faces_1x1x1:
+    //
+    //
+    //  6
+    //  (
+    //  4(0 2 3 1)
+    //  4(0 4 6 2)
+    //  4(0 1 5 4)
+    //  4(1 3 7 5)
+    //  4(2 6 7 3)
+    //  4(4 5 7 6)
+    //  )
+    //
+    // The order of faces is determined by blockMesh
     const boost::shared_ptr<Face> f0 { new Face(n0,own0, { p0, p2, p3, p1 } ) };
     const boost::shared_ptr<Face> f1 { new Face(n1,own1, { p0, p4, p6, p2 } ) };
     const boost::shared_ptr<Face> f2 { new Face(n2,own2, { p0, p1, p5, p4 } ) };
@@ -810,12 +899,15 @@ void ribi::foam::Mesh::Test() noexcept
         m.FindMostSimilarFace(coordinats)
       };
       assert(result);
-      TRACE(*face);
-      TRACE(*result);
+      if (face != result)
+      {
+        TRACE("ERROR");
+        TRACE(*face);
+        TRACE(*result);
+      }
       assert(result == face);
     }
   }
-  assert(1==2);
   TRACE("Finished ribi::foam::Mesh::Test successfully");
 }
 #endif

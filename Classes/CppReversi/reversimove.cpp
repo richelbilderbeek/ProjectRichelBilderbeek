@@ -11,7 +11,8 @@ const boost::shared_ptr<ribi::reversi::Move> ribi::reversi::Move::Parse(
 {
   boost::shared_ptr<ribi::reversi::Move> move;
 
-  if (s.empty())
+  if (s.empty()) return move;
+  if (s == "p" || s == "P" || s == "pass" || s == "Pass" || s == "PASS")
   {
     move.reset(new MovePass);
     return move;

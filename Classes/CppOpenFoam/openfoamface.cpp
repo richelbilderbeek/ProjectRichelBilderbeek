@@ -74,7 +74,8 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Face& f
     os << face.m_neighbour;
   }
   os << '\n';
-  if (face.m_owner)
+  assert(face.m_owner && "Every Face has an owner");
+  //if (face.m_owner)
   {
     //Only display the address of a owner to prevent recursion
     assert(face.m_owner);

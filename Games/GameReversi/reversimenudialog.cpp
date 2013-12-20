@@ -17,14 +17,13 @@ int ribi::reversi::MenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+  MainDialog d;
+  d.Execute(4);
   return 0;
 }
 
