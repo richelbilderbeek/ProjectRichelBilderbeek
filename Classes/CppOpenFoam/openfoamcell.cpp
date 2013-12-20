@@ -64,6 +64,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Cell& c
 {
   for (boost::shared_ptr<Face> face: cell.m_owned_faces)
   {
+    assert(face);
     os << *face << '\n';
   }
   //os << *cell.m_neighbour;

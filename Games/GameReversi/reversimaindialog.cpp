@@ -8,6 +8,7 @@
 
 #include "reversiboard.h"
 #include "reversiwidget.h"
+#include "reversimove.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -27,7 +28,20 @@ void ribi::reversi::MainDialog::Execute(const int size)
     std::cout
       << w << '\n'
       << "Please enter a move: ";
-    std::cin >>
+    std::string s;
+    std::cin >> s;
+    if (s == "quit" || s == "bye" || s == "exit") return;
+    const boost::shared_ptr<Move> move { Move::Parse(s) };
+    if (!move)
+    {
+      std::cout << "Invalid move. Possible moves:\n"
+        << "x,y : put a piece at coordinat x,y\n"
+        << "  (no text, just press enter): pass\n"
+        << "quit: quit game\n"
+        << '\n';
+      continue;
+    }
+
   }
 }
 

@@ -290,6 +290,7 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
   const std::string& foldername) noexcept
 {
   std::vector<std::string> v;
+  //Header
   {
     HeaderType header_type = HeaderType::cpp;
     const std::vector<std::string> w {
@@ -297,6 +298,7 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
     };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
+  //Collect files
   {
     const std::vector<std::string> pro_files_no_path {
       GetProFilesInFolder(foldername)
@@ -324,8 +326,17 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
       assert(ribi::fileio::IsRegularFile(pro_file));
     }
     #endif
+    //Info
+    {
+      const boost::shared_ptr<const Info> info(new Info);
+      const std::vector<std::string> w {
+        info->ToHtml(ExtractPageName(foldername))
+      };
+      std::copy(w.begin(),w.end(),std::back_inserter(v));
+    }
 
-    const boost::shared_ptr<TechInfo> techInfo(new TechInfo(pro_files));
+    //TechInfo
+    const boost::shared_ptr<const TechInfo> techInfo(new TechInfo(pro_files));
     const std::vector<std::string> w = techInfo->ToHtml();
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
@@ -499,11 +510,13 @@ void ribi::c2h::Dialog::Test() noexcept
   //GetProFiles
   {
     //Always first remove the temp file
-    std::remove("tmp23465278.pro");
+    const std::string filename = fileio::GetTempFileName() + ".pro";
+    if (ribi::fileio::IsRegularFile(filename)) { ribi::fileio::DeleteFile(filename); }
+    assert(!ribi::fileio::IsRegularFile(filename));
 
     const std::size_t n = GetProFilesInFolder("").size();
     {
-      std::ofstream f("tmp23465278.pro");
+      std::ofstream f(filename.c_str());
       f << "tmp";
       f.close();
     }
@@ -515,10 +528,14 @@ void ribi::c2h::Dialog::Test() noexcept
       for (std::string s: GetProFilesInFolder("")) TRACE(s);
     }
     assert(n == p - 1);
-    std::remove("tmp23465278.pro");
+    ribi::fileio::DeleteFile(filename);
+    assert(!ribi::fileio::IsRegularFile(filename));
     const std::size_t q = GetProFilesInFolder("").size();
     assert(n == q);
   }
+  //DeduceFolderType
+
+  //Check if Info is added
 
   //Check if CodeToHtml creates a clean HTML file when it converts itself
   #ifndef _WIN32

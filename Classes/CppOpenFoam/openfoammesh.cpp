@@ -794,18 +794,25 @@ void ribi::foam::Mesh::Test() noexcept
     );
     for (const boost::shared_ptr<Face> face: faces)
     {
-      const auto points { face->GetPoints() };
+      assert(face);
+      const std::vector<boost::shared_ptr<const ribi::Coordinat3D>> points { face->GetPoints() };
       std::vector<ribi::Coordinat3D> coordinats;
       std::transform(points.begin(),points.end(),
         std::back_inserter(coordinats),
         [](const boost::shared_ptr<const ribi::Coordinat3D> shared_coordinat)
         {
-          return *shared_coordinat;
+          return ribi::Coordinat3D(*shared_coordinat);
         }
       );
       //For every Face, extract the coordinats
       //FindMostSimilar should find back the original Face
-      assert(m.FindMostSimilarFace(coordinats) == face);
+      const boost::shared_ptr<const ribi::foam::Face> result {
+        m.FindMostSimilarFace(coordinats)
+      };
+      assert(result);
+      TRACE(*face);
+      TRACE(*result);
+      assert(result == face);
     }
   }
   assert(1==2);

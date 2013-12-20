@@ -25,12 +25,9 @@ struct Widget
 
   Widget(const int size = 10);
 
-  bool CanDoMove(const int x, const int y) const noexcept;
-  bool CanDoMovePass() const noexcept;
-  void DoMove(const int x, const int y) noexcept;
-  void DoMovePass() noexcept;
+  bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
-  //void DoMove(const boost::shared_ptr<Move> move) const noexcept;
+  void DoMove(const boost::shared_ptr<const Move> move) noexcept;
 
   const boost::shared_ptr<const Board> GetBoard() const noexcept { return m_board; }
 
@@ -45,6 +42,11 @@ struct Widget
   boost::shared_ptr<Board> m_board;
   int m_current_player;
 
+  bool CanDoMove(const int x, const int y) const noexcept;
+  bool CanDoMovePass() const noexcept;
+
+  void DoMove(const int x, const int y) noexcept;
+  void DoMovePass() noexcept;
 
   ///Create the delta-x and delta-y to search in the 8 directions
   static const std::vector<std::pair<int,int>> CreateDeltas() noexcept;

@@ -69,12 +69,16 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Face& f
 {
   if (face.m_neighbour)
   {
-    os << *face.m_neighbour;
+    //Only display the address of a neighbour to prevent recursion
+    assert(face.m_neighbour);
+    os << face.m_neighbour;
   }
   os << '\n';
   if (face.m_owner)
   {
-    os << *face.m_owner;
+    //Only display the address of a owner to prevent recursion
+    assert(face.m_owner);
+    os << face.m_owner;
   }
   os << '\n';
   for (const boost::shared_ptr<ribi::Coordinat3D> coordinat: face.m_points)

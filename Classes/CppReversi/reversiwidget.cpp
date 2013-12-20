@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 
+#include "reversimove.h"
 #include "reversiboard.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -42,10 +43,42 @@ ribi::reversi::Widget::Widget(const int size)
   #endif
 }
 
+bool ribi::reversi::Widget::CanDoMove(const boost::shared_ptr<const ribi::reversi::Move> move) const noexcept
+{
+  assert(move);
+  if (boost::dynamic_pointer_cast<const ribi::reversi::MovePass>(move))
+  {
+    //Can always pass for now
+    return true;
+  }
+  const boost::shared_ptr<const ribi::reversi::MovePlacePiece> place {
+    boost::dynamic_pointer_cast<const ribi::reversi::MovePlacePiece>(move)
+  };
+  assert(place);
+  return CanDoMove(place->GetX(),place->GetY());
+}
+
 bool ribi::reversi::Widget::CanDoMove(const int x, const int y) const noexcept
 {
   return m_board->CanDoMove(x,y,GetCurrentPlayer());
 }
+
+void ribi::reversi::Widget::DoMove(const boost::shared_ptr<const ribi::reversi::Move> move) noexcept
+{
+  assert(CanDoMove(move));
+  assert(move);
+  if (boost::dynamic_pointer_cast<const ribi::reversi::MovePass>(move))
+  {
+    DoMovePass();
+  }
+  const boost::shared_ptr<const ribi::reversi::MovePlacePiece> place {
+    boost::dynamic_pointer_cast<const ribi::reversi::MovePlacePiece>(move)
+  };
+  assert(place);
+  assert(CanDoMove(place->GetX(),place->GetY()));
+  DoMove(place->GetX(),place->GetY());
+}
+
 
 void ribi::reversi::Widget::DoMove(const int x, const int y) noexcept
 {
