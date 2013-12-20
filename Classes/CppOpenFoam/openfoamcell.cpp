@@ -6,21 +6,22 @@
 #include "openfoamface.h"
 #include "trace.h"
 
-ribi::foam::Cell::Cell()
-  : m_owned_faces{}
-    //,m_neighbour{}
+ribi::foam::Cell::Cell(
+  const std::vector<boost::shared_ptr<Face>> owned_faces,
+  const std::vector<boost::shared_ptr<Face>> all_faces
+  )
+  : m_all_faces{all_faces},
+    m_owned_faces{owned_faces}
 {
-
+  #ifndef NDEBUG
+  for (const std::vector<boost::shared_ptr<Face>> face: m_owned_faces)
+  {
+    assert(face);
+    assert(std::count(m_all_faces.begin(),m_all_faces.end(),face) == 1
+      && "m_owned_faces must be a subset of m_all_faces");
+  }
+  #endif
 }
-
-/*
-void ribi::foam::Cell::AssignNeighbour(const boost::shared_ptr<ribi::foam::Cell> neighbour) noexcept
-{
-  assert(!m_neighbour && "neighbour can only be assigned once");
-  assert(neighbour);
-  m_neighbour = neighbour;
-}
-*/
 
 void ribi::foam::Cell::AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces)
 {
@@ -28,13 +29,6 @@ void ribi::foam::Cell::AssignOwnedFaces(const std::vector<boost::shared_ptr<Face
   assert(!owned_faces.empty());
   m_owned_faces = owned_faces;
 }
-
-/*
-const boost::shared_ptr<const ribi::foam::Cell> ribi::foam::Cell::GetNeighbour() const noexcept
-{
-  return m_neighbour;
-}
-*/
 
 const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Cell::GetOwnedFaces() const noexcept
 {
@@ -60,6 +54,30 @@ const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Cell::
   return v;
 }
 
+bool ribi::foam::Cell::HasFace(const boost::shared_ptr<const ribi::foam::Face> face) const noexcept
+{
+  #ifndef NDEBUG
+  assert(m_all_faces.size() >= m_owned_faces
+    && "m_owned_faces must be a subset of m_all_faces: there should be more m_all_faces"
+  );
+  for (const std::vector<boost::shared_ptr<Face>> face: m_owned_faces)
+  {
+    assert(face);
+    assert(std::count(m_all_faces.begin(),m_all_faces.end(),face) == 1
+      && "m_owned_faces must be a subset of m_all_faces: every owned Face must be in m_all_faces"
+    );
+  }
+  #endif
+
+  return std::count(m_all_faces.begin(),m_all_faces.end(),face);
+}
+
+bool ribi::foam::Cell::OwnsFace(const boost::shared_ptr<const ribi::foam::Face> face) const noexcept
+{
+  return std::count(m_owned_faces.begin(),m_owned_faces.end(),face);
+
+}
+
 std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Cell& cell)
 {
   for (boost::shared_ptr<Face> face: cell.m_owned_faces)
@@ -67,6 +85,5 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Cell& c
     assert(face);
     os << *face << '\n';
   }
-  //os << *cell.m_neighbour;
   return os;
 }

@@ -25,7 +25,8 @@ static_assert(
 
 ribi::reversi::Widget::Widget(const int size)
   : m_board(new Board(size)),
-    m_current_player(player1)
+    m_current_player(player1),
+    m_undo{}
 {
   #ifndef NDEBUG
   Test();
@@ -65,6 +66,16 @@ bool ribi::reversi::Widget::CanDoMove(const int x, const int y) const noexcept
 
 void ribi::reversi::Widget::DoMove(const boost::shared_ptr<const ribi::reversi::Move> move) noexcept
 {
+  #ifndef NDEBUG
+  assert(move);
+  if(!CanDoMove(move))
+  {
+    TRACE("ERROR");
+    TRACE(*this);
+    TRACE(move->ToStr());
+    TRACE("ERROR");
+  }
+  #endif
   assert(CanDoMove(move));
   assert(move);
   if (boost::dynamic_pointer_cast<const ribi::reversi::MovePass>(move))
@@ -77,6 +88,15 @@ void ribi::reversi::Widget::DoMove(const boost::shared_ptr<const ribi::reversi::
   };
   assert(place);
   assert(CanDoMove(place->GetX(),place->GetY()));
+
+  //Undo
+  {
+    const boost::shared_ptr<Widget> prev_widget {
+      new Widget(*this)
+    };
+    m_undo.push(std::make_pair(prev_widget,move));
+  }
+
   DoMove(place->GetX(),place->GetY());
 }
 
@@ -203,9 +223,53 @@ void ribi::reversi::Widget::Test() noexcept
       r.DoMove(move);
     }
   }
+  //Test undo functionality in a single game
+  {
+    const int sz = 4;
+    ribi::reversi::Widget r(sz);
+    while (r.GetValidMoves().size() > 1) //Pass is always allowed
+    {
+      static_assert(static_cast<int>(ribi::reversi::Widget::empty  ) == static_cast<int>(Board::empty  ),"enums must have same value");
+      static_assert(static_cast<int>(ribi::reversi::Widget::player1) == static_cast<int>(Board::player1),"enums must have same value");
+      static_assert(static_cast<int>(ribi::reversi::Widget::player2) == static_cast<int>(Board::player2),"enums must have same value");
+      assert(r.GetWinner() == ribi::reversi::Widget::empty);
+      std::vector<boost::shared_ptr<ribi::reversi::Move>> m {
+        r.GetValidMoves()
+      };
+      assert(!m.empty());
+      std::random_shuffle(m.begin(),m.end());
+      const boost::shared_ptr<ribi::reversi::Move> move = m[0];
+      assert(r.CanDoMove(move));
+      const Widget before(r);
+      r.DoMove(move);
+      assert(before != r);
+      r.Undo();
+      assert(before == r);
+      r.DoMove(move);
+    }
+  }
   TRACE("Finished ribi::TestReversiMenuDialog::Test()");
 }
 #endif
+
+void ribi::reversi::Widget::Undo()
+{
+  assert(!m_undo.empty());
+  this->m_board = (m_undo.top().first)->GetBoard();
+  this->m_current_player = (m_undo.top().first)->GetCurrentPlayer();
+  m_undo.pop();
+}
+
+bool ribi::reversi::operator==(const ribi::reversi::Widget& lhs, const ribi::reversi::Widget& rhs)
+{
+  return *lhs.GetBoard() == *rhs.GetBoard()
+    && lhs.GetCurrentPlayer() == rhs.GetCurrentPlayer();
+}
+
+bool ribi::reversi::operator!=(const ribi::reversi::Widget& lhs, const ribi::reversi::Widget& rhs)
+{
+  return !(lhs == rhs);
+}
 
 std::ostream& ribi::reversi::operator<<(std::ostream& os, const ribi::reversi::Widget& r)
 {

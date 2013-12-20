@@ -7,8 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include "openfoamfwd.h"
-#include "openfoamcellindex.h"
-//#include "openfoampoint.h"
+//#include "openfoamcellindex.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -33,6 +32,7 @@ struct Face
   ///Can only assign once
   void AssignNeighbour(const boost::shared_ptr<Cell> neighbour) noexcept;
 
+  ///Can only assign once
   void AssignOwner(const boost::shared_ptr<Cell> owner) noexcept;
 
   const boost::shared_ptr<const Cell> GetNeighbour() const noexcept { return m_neighbour; }
@@ -41,6 +41,7 @@ struct Face
   const boost::shared_ptr<      Cell> GetOwner()       noexcept;
 
   const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > GetPoints() const noexcept;
+  const std::vector<boost::shared_ptr<      ribi::Coordinat3D> >&GetPoints()       noexcept { return m_points; }
 
   private:
   ///If this Face has no Neighbour, this is nullptr

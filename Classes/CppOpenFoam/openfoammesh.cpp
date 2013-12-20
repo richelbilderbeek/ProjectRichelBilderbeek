@@ -115,7 +115,7 @@ ribi::foam::Mesh::Mesh(
       p.first->AssignOwnedFaces(p.second);
     }
   }
-  //Add neighbours to Cells
+  //Add neighbours to Faces
   {
     const int n_faces = static_cast<int>(m_faces.size());
     for (int i=0; i!=n_faces; ++i)
@@ -389,6 +389,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Cell> > ribi::foam::Mesh::Create
 {
   std::vector<boost::shared_ptr<ribi::foam::Cell> > cells;
   const CellIndex n_cells = files.GetNeighbour()->CountNumberOfCells();
+  assert(n_cells == files.GetOwner()->CountNumberOfCells());
   assert(n_cells > CellIndex(0));
   for (CellIndex i=CellIndex(0); i!=n_cells; ++i)
   {

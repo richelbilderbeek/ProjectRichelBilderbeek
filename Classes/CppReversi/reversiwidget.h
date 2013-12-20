@@ -2,6 +2,7 @@
 #define REVERSIWIDGET_H
 
 #include <string>
+#include <stack>
 #include <vector>
 
 #pragma GCC diagnostic push
@@ -30,6 +31,7 @@ struct Widget
   void DoMove(const boost::shared_ptr<const Move> move) noexcept;
 
   const boost::shared_ptr<const Board> GetBoard() const noexcept { return m_board; }
+  const boost::shared_ptr<      Board> GetBoard()       noexcept { return m_board; }
 
   int GetCurrentPlayer() const noexcept { return m_current_player; }
 
@@ -39,24 +41,30 @@ struct Widget
   static const std::vector<std::string> GetVersionHistory() noexcept;
   int GetWinner() const noexcept;
 
+  void Undo();
+
   private:
   boost::shared_ptr<Board> m_board;
   int m_current_player;
 
+  //The undo stack:
+  //first: the Widget before the Move
+  //second: the last Move done in the game
+  std::stack<std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Move>>> m_undo;
+
   bool CanDoMove(const int x, const int y) const noexcept;
   bool CanDoMovePass() const noexcept;
-
-  void DoMove(const int x, const int y) noexcept;
-  void DoMovePass() noexcept;
 
   ///Create the delta-x and delta-y to search in the 8 directions
   static const std::vector<std::pair<int,int>> CreateDeltas() noexcept;
 
+  void DoMove(const int x, const int y) noexcept;
+  void DoMovePass() noexcept;
 
   int GetOtherPlayer() const noexcept;
 
   //Simply sets a square
-  void Set(const int x, const int y, const int state) noexcept;
+  //void Set(const int x, const int y, const int state) noexcept;
 
   void TogglePlayer();
 
@@ -65,6 +73,9 @@ struct Widget
   #endif
 
 };
+
+bool operator==(const Widget& lhs, const Widget& rhs);
+bool operator!=(const Widget& lhs, const Widget& rhs);
 
 std::ostream& operator<<(std::ostream& os, const Widget& r);
 

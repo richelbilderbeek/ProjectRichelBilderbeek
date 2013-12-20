@@ -30,6 +30,19 @@ ribi::reversi::Board::Board(const int size)
   Set(x+1,y+1,player1);
 }
 
+/*
+ribi::reversi::Board::Board(const Board& other)
+  : m_board(other.m_board)
+{
+
+}
+ribi::reversi::Board& ribi::reversi::Board::operator=(const Board& other)
+{
+  m_board = other.m_board;
+  return *this;
+}
+*/
+
 bool ribi::reversi::Board::CanDoMove(const int x, const int y, const int player) const noexcept
 {
   assert(x >= 0);

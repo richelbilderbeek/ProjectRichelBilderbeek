@@ -23,9 +23,11 @@ struct NeighbourFile
   ///If the FaceIndex is present
   bool CanGetItem(const FaceIndex& face_index) const noexcept;
 
+  //DON'T: Use OwnerFile::CountNumberOfCells instead
+  //WHY: because all cell indices are detected in owner
   ///Find the first CellIndex beyond the cell indices present
   ///Or: find the first CellIndex that does not exist anymore
-  const CellIndex CountNumberOfCells() const noexcept;
+  //const CellIndex CountNumberOfCells() const noexcept;
 
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }

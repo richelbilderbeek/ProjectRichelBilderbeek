@@ -52,13 +52,13 @@ struct Mesh
   private:
 
   ///Order is not important
-  std::vector<boost::shared_ptr<Boundary> > m_boundaries;
+  std::vector<boost::shared_ptr<Boundary>> m_boundaries;
 
   ///Order is not important
-  std::vector<boost::shared_ptr<Cell> > m_cells;
+  std::vector<boost::shared_ptr<Cell>> m_cells;
 
   ///Order is important for ReorderFaces only
-  std::vector<boost::shared_ptr<Face> > m_faces;
+  std::vector<boost::shared_ptr<Face>> m_faces;
 
   ///Order is not important
   std::vector<boost::shared_ptr<ribi::Coordinat3D>> m_points;
@@ -133,7 +133,8 @@ struct Mesh
   ///at indices 0 and 1, and the faces belonging to 'boundary_right'
   ///at indices 2 and 3.
   ///
-  ///These ordering of Faces in m_faces is unimportant, except for this
+  ///Because this is an indexless structure, the ordering of Faces in
+  ///m_faces is unimportant, except for this: when writing to file
   void ReorderFaces();
 
   #ifndef NDEBUG

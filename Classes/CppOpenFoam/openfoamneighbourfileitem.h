@@ -8,11 +8,29 @@
 namespace ribi {
 namespace foam {
 
-///An item in an OpenFOAM boundary file
+///An item in an OpenFOAM 'neighbour' file
+///A neighbour files contains, for every face, the cell index of which the face is a neighbour of
+///
+///For example, from /Classes/CppOpenFoam/neighbour_1x2x2:
+///
+///4(1 2 3 3)
+///
+///Equivalent to, as faces_1x2x2 contains twenty faces:
+///
+///20(1 2 3 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1)
+///
+///This means that:
+/// - Face 0 has Cell 1 as its neighbour, and is thus an internal face
+/// - Face 1 has Cell 2 as its neighbour, and is thus an internal face
+/// - Face 2 has Cell 3 as its neighbour, and is thus an internal face
+/// - Face 3 has Cell 3 as its neighbour, and is thus an internal face
+/// - All other Faces have no neighbours, and are thus boundary faces
+///
+///The file 'neighbour' has path '[case_folder]/constant/polyMesh/neighbour'
 struct NeighbourFileItem
 {
   ///A CellIndex of -1 denotes that a Face has no Neighbour
-  explicit NeighbourFileItem(const CellIndex face_index = CellIndex(-1));
+  explicit NeighbourFileItem(const CellIndex cell_index = CellIndex(-1));
 
   ///A CellIndex of -1 denotes that a Face has no Neighbour
   const CellIndex GetCellIndex() const noexcept { return m_cell_index; }

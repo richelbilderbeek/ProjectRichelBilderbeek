@@ -20,10 +20,15 @@ struct OwnerFile
     const Header header = GetDefaultHeader(),
     const std::vector<OwnerFileItem>& items = {});
 
+  ///Find the first CellIndex beyond the cell indices present
+  ///Or: find the first CellIndex that does not exist anymore
+  const CellIndex CountNumberOfCells() const noexcept;
+
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<OwnerFileItem> GetItems() const noexcept { return m_items; }
   const OwnerFileItem& GetItem(const FaceIndex& face_index) const noexcept;
+
 
   void SetItem(const FaceIndex& face_index, const OwnerFileItem& item) noexcept;
 

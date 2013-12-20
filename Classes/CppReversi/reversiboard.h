@@ -17,6 +17,9 @@ struct Board
   enum { player2 = 2};
 
   Board(const int size = 10);
+  //Board(const Board& other);
+  //Board& operator=(const Board& other);
+  //~Board() noexcept {}
 
   bool CanDoMove(const int x, const int y, const int player) const noexcept;
 

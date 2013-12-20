@@ -42,6 +42,7 @@ bool ribi::foam::NeighbourFile::CanGetItem(
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
+/*
 const ribi::foam::CellIndex ribi::foam::NeighbourFile::CountNumberOfCells() const noexcept
 {
   //NOT CONFIDENT ABOUT THIS
@@ -67,6 +68,7 @@ const ribi::foam::CellIndex ribi::foam::NeighbourFile::CountNumberOfCells() cons
   ++i;
   return i;
 }
+*/
 
 const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
 {

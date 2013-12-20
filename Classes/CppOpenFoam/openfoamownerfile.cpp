@@ -35,6 +35,23 @@ ribi::foam::OwnerFile::OwnerFile(
   #endif
 }
 
+const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const noexcept
+{
+  assert(!m_items.empty());
+
+  const CellIndex i = (*std::max_element(
+    m_items.begin(),
+    m_items.end(),
+    [](const OwnerFileItem& lhs, const OwnerFileItem& rhs)
+    {
+      return lhs.GetCellIndex() < rhs.GetCellIndex();
+    }
+  )).GetCellIndex();
+
+  // +1, because if the highest cell index found is x, there are x+1 cells
+  return i + 1;
+}
+
 const ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept
 {
   return Header("labelList","constant/polyMesh","","owner");
