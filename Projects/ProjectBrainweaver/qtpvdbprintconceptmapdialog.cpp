@@ -13,8 +13,11 @@
 #include <QPrinter>
 
 #include "pvdbfile.h"
+#include "conceptmapconcept.h"
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
+#include "qtconceptmapnode.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapratedconceptwidget.h"
 #include "qtpvdbfiledialog.h"
 #include "ui_qtpvdbprintconceptmapdialog.h"
@@ -137,8 +140,6 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
   {
-    //const boost::shared_ptr<ribi::cmap::ConceptMap> copy_concept_map
-    //  = m_file->GetConceptMap();
     assert(m_widget);
     assert(m_widget->GetConceptMap());
 
@@ -147,7 +148,20 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     m_widget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_widget->setMinimumHeight(m_widget->scene()->itemsBoundingRect().height() + 2);
     //Fit concept map to widget
-    m_widget->fitInView(m_widget->scene()->itemsBoundingRect());
+    const QRectF all_items_rect {
+      m_widget->scene()->itemsBoundingRect() //Does not work
+      //m_widget->scene()->sceneRect() //Does not work
+    };
+    #ifndef NDEBUG
+    for (const ribi::cmap::QtNode * const qtnode: m_widget->GetQtNodes())
+    {
+      //All QtNodes' their rectangles should be within all_items_rect
+      assert(qtnode);
+      assert(all_items_rect.contains(qtnode->boundingRect()));
+    }
+    #endif
+    m_widget->fitInView(all_items_rect); //Does not work
+    //m_widget->ensureVisible(all_items_rect,0,0); //Does not work
 
     assert(m_widget->scene()->items().count()
       >= boost::numeric_cast<int>(

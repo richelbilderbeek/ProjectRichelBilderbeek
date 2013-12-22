@@ -135,6 +135,26 @@ ribi::cmap::QtRateConceptDialogNewName::~QtRateConceptDialogNewName() noexcept
 void ribi::cmap::QtRateConceptDialogNewName::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Assess cluster");
+    ui->button_ok->setText("OK");
+    ui->button_tally_relevancies->setText("Evaluate illustrations");
+    ui->label_complexity->setText("Complexity");
+    ui->label_concreteness->setText("Concreteness");
+    ui->label_specificity->setText("Specificity");
+/*
+
+De relevantie van voorbeelden en relaties		Relevance of illustrations
+Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
+
+*/
+    return;
+  }
+
   //QDialog::keyPressEvent(e);
 }
 

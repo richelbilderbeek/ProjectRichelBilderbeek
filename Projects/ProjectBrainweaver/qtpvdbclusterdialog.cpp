@@ -192,6 +192,20 @@ void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
     box.exec();
     return;
   }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Association screen");
+    ui->label_text_top->setText("If you reflect on the focus statement:");
+    ui->label_text_middle->setText("Which important aspects of knowledge and attitude, examples, experiences and ideals do cross your mind?");
+    ui->label_text_bottom->setText("Make a list and group the items.");
+    ui->button_add->setText("Insert");
+    ui->button_next->setText("Construct concept map");
+    ui->button_save->setText("Save list");
+    return;
+  }
   QDialog::keyPressEvent(e);
 
   #ifndef NDEBUG

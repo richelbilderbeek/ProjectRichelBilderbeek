@@ -83,6 +83,20 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
   if ((e->modifiers() & Qt::ControlModifier) && e->key() == Qt::Key_S) { Save(); return; }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Evaluate concept map");
+    ui->button_next->setText("Generate parameters");
+    ui->button_save->setText("Save assessment");
+    ui->label_keys->setText("F1: assess concept, F2: classify examples");
+    ui->label_name->setText("Name");
+    ui->label_todo->setText("Click on a concept to assess it");
+    return;
+  }
+
   QDialog::keyPressEvent(e);
 }
 

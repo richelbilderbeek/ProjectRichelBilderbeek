@@ -34,7 +34,8 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtRateConceptTallyDialogNewName),
-    m_data(CreateData(sub_concept_map))
+    m_data(CreateData(sub_concept_map)),
+    m_focus_name(GetFocusName(sub_concept_map))
 {
   #ifndef NDEBUG
   Test();  
@@ -129,18 +130,9 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
   }
 
   //Set text on top
-  if (sub_concept_map)
-  {
-    assert(!sub_concept_map->GetNodes().empty());
-    const boost::shared_ptr<const ribi::cmap::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
-    assert(focal_concept);
-    ui->label_concept_name->setText(
-      (std::string("Voorbeelden/toelichting bij concept: ") + focal_concept->GetName()).c_str() );
-  }
-  else
-  {
-    ui->label_concept_name->setText("Voorbeelden/toelichting bij concept: (geen concept)");
-  }
+  ui->label_concept_name->setText(
+    (std::string("Voorbeelden/toelichting bij concept: ") + m_focus_name).c_str()
+  );
 
   ui->table->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
@@ -250,6 +242,22 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   return sub_concept_map;
 }
 
+const std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
+  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
+{
+  if (sub_concept_map)
+  {
+    assert(!sub_concept_map->GetNodes().empty());
+    const boost::shared_ptr<const ribi::cmap::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
+    assert(focal_concept);
+    return focal_concept->GetName();
+  }
+  else
+  {
+    return "(geen concept)";
+  }
+}
+
 int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedComplexity() const
 {
   //Tally the edges that contribute to complexity
@@ -321,6 +329,32 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedSpecificity() const
 void ribi::cmap::QtRateConceptTallyDialogNewName::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
+  if ( (event->modifiers() & Qt::ControlModifier)
+    && (event->modifiers() & Qt::ShiftModifier)
+    && event->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Relevance of illustrations");
+    {
+      ui->label_concept_name->setText(
+        (std::string("Illustrations and relations of the cluster:") + m_focus_name).c_str()
+      );
+    }
+    {
+      QTableWidgetItem * const item = new QTableWidgetItem;
+      item->setText("Voorbeelden/toelichting bij concept:");
+      ui->table->setHorizontalHeaderItem(4,item);
+    }
+    {
+      const int x = GetSuggestedComplexity();
+      const int c = GetSuggestedConcreteness();
+      const int s = GetSuggestedSpecificity();
+      std::stringstream m;
+      m << "Complexity: " << x << ", concreteness: " << c << ", specificity: " << s;
+      ui->label_debug->setText(m.str().c_str());
+    }
+    return;
+  }
 }
 
 void ribi::cmap::QtRateConceptTallyDialogNewName::OnCellChanged(int row_index, int col)

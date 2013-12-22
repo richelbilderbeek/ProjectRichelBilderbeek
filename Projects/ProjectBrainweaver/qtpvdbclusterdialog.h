@@ -44,9 +44,10 @@ public:
 
 
 protected:
-  //Respond to the following keys:
-  //F2: edit current item
-  //Delete: remove current item
+  ///Respond to the following keys:
+  ///F2: edit current item
+  ///Delete: remove current item
+  ///CTRL-SHIFT-T: translate to English
   void keyPressEvent(QKeyEvent *);
 
 private slots:

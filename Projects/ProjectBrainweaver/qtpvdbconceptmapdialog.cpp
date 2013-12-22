@@ -251,6 +251,16 @@ void ribi::pvdb::QtPvdbConceptMapDialog::keyPressEvent(QKeyEvent* e)
     box.exec();
     return;
   }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Construction screen");
+    ui->button_print->setText("Save as PDF-format");
+    ui->button_save->setText("Save concept map");
+    return;
+  }
 
   QDialog::keyPressEvent(e);
 }

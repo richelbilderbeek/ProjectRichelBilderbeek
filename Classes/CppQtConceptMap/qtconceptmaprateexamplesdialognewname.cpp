@@ -128,6 +128,25 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::QtRateExamplesDialogNe
 void ribi::cmap::QtRateExamplesDialogNewName::keyPressEvent(QKeyEvent* e)
 {
   if (e->key()  == Qt::Key_Escape) { close(); return; }
+  if ( (e->modifiers() & Qt::ControlModifier)
+    && (e->modifiers() & Qt::ShiftModifier)
+    && e->key() == Qt::Key_T)
+  {
+    //Translate
+    this->setWindowTitle("Classification screen");
+    ui->button_misc->setText("Other knowledge");
+    ui->button_ok->setText("OK");
+    ui->button_organisations->setText("Organisational knowledge");
+    ui->button_prof->setText("Vocational domain knowledge");
+    ui->button_prof_development->setText("Knowledge relevant for personal development");
+    ui->button_social->setText("Knowledge of ones own social environment");
+    ui->button_target_audience->setText("Target group knowledge");
+    ui->button_ti_knowledge->setText("Technical-instrumental knowledge");
+    ui->label_above_list->setText("Illustrations");
+    //ui->label_concept_name->setText(""); Read from concept map
+    ui->groupBox->setTitle("Mark text");
+    return;
+  }
   QDialog::keyPressEvent(e);
 }
 

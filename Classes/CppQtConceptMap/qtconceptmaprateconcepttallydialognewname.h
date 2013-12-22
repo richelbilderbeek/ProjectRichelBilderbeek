@@ -59,8 +59,14 @@ private:
   typedef std::pair<boost::shared_ptr<ribi::cmap::Concept>,int> Row;
   const std::vector<Row> m_data;
 
+  ///The name of this concept, for example 'my own development'
+  const std::string m_focus_name;
+
   static const std::vector<Row>
     CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map);
+
+  static const std::string
+    GetFocusName(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map);
 
   #ifndef NDEBUG
   static void Test() noexcept;
