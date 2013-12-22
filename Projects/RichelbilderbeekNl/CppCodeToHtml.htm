@@ -737,6 +737,7 @@ const std::vector&lt;std::string&gt; ribi::c2h::Dialog::ProFolderToHtml(<br/>
 &nbsp;&nbsp;const std::string&amp; foldername) noexcept<br/>
 {<br/>
 &nbsp;&nbsp;std::vector&lt;std::string&gt; v;<br/>
+&nbsp;&nbsp;//Header<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;HeaderType header_type = HeaderType::cpp;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; w {<br/>
@@ -744,6 +745,7 @@ const std::vector&lt;std::string&gt; ribi::c2h::Dialog::ProFolderToHtml(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::copy(w.begin(),w.end(),std::back_inserter(v));<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//Collect files<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; pro_files_no_path {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetProFilesInFolder(foldername)<br/>
@@ -771,8 +773,17 @@ const std::vector&lt;std::string&gt; ribi::c2h::Dialog::ProFolderToHtml(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(ribi::fileio::IsRegularFile(pro_file));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Info<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const Info&gt; info(new Info);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; w {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info-&gt;ToHtml(ExtractPageName(foldername))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::copy(w.begin(),w.end(),std::back_inserter(v));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;TechInfo&gt; techInfo(new TechInfo(pro_files));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//TechInfo<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const TechInfo&gt; techInfo(new TechInfo(pro_files));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; w = techInfo-&gt;ToHtml();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::copy(w.begin(),w.end(),std::back_inserter(v));<br/>
 &nbsp;&nbsp;}<br/>
@@ -946,11 +957,13 @@ void ribi::c2h::Dialog::Test() noexcept<br/>
 &nbsp;&nbsp;//GetProFiles<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Always first remove the temp file<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::remove("tmp23465278.pro");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string filename = fileio::GetTempFileName() + ".pro";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (ribi::fileio::IsRegularFile(filename)) { ribi::fileio::DeleteFile(filename); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!ribi::fileio::IsRegularFile(filename));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::size_t n = GetProFilesInFolder("").size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f("tmp23465278.pro");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::ofstream f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f &lt;&lt; "tmp";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.close();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -962,10 +975,14 @@ void ribi::c2h::Dialog::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (std::string s: GetProFilesInFolder("")) TRACE(s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(n == p - 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::remove("tmp23465278.pro");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ribi::fileio::DeleteFile(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!ribi::fileio::IsRegularFile(filename));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::size_t q = GetProFilesInFolder("").size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(n == q);<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//DeduceFolderType<br/>
+<br/>
+&nbsp;&nbsp;//Check if Info is added<br/>
 <br/>
 &nbsp;&nbsp;//Check if CodeToHtml creates a clean HTML file when it converts itself<br/>
 &nbsp;&nbsp;#ifndef _WIN32<br/>

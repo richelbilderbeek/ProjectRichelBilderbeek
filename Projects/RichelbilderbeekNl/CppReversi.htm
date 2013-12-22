@@ -738,6 +738,7 @@ Public License instead of this License.&nbsp;&nbsp;But first, please read<br/>
 <table summary="./CppReversi/reversiboard.cpp" border = "1"><tr><td><code>
 #include "reversiboard.h"<br/>
 <br/>
+#include &lt;algorithm&gt;<br/>
 #include &lt;cassert&gt;<br/>
 #include &lt;stdexcept&gt;<br/>
 <br/>
@@ -766,6 +767,19 @@ ribi::reversi::Board::Board(const int size)<br/>
 &nbsp;&nbsp;Set(x&nbsp;&nbsp;,y+1,player2);<br/>
 &nbsp;&nbsp;Set(x+1,y+1,player1);<br/>
 }<br/>
+<br/>
+/*<br/>
+ribi::reversi::Board::Board(const Board&amp; other)<br/>
+&nbsp;&nbsp;: m_board(other.m_board)<br/>
+{<br/>
+<br/>
+}<br/>
+ribi::reversi::Board&amp; ribi::reversi::Board::operator=(const Board&amp; other)<br/>
+{<br/>
+&nbsp;&nbsp;m_board = other.m_board;<br/>
+&nbsp;&nbsp;return *this;<br/>
+}<br/>
+*/<br/>
 <br/>
 bool ribi::reversi::Board::CanDoMove(const int x, const int y, const int player) const noexcept<br/>
 {<br/>
@@ -896,11 +910,13 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const int player) no
 <br/>
 int ribi::reversi::Board::Get(const int x, const int y) const noexcept<br/>
 {<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;const int sz = GetSize();<br/>
 &nbsp;&nbsp;assert(x &gt;= 0);<br/>
 &nbsp;&nbsp;assert(y &gt;= 0);<br/>
 &nbsp;&nbsp;assert(x &lt; sz);<br/>
 &nbsp;&nbsp;assert(y &lt; sz);<br/>
+&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;return m_board[y][x];<br/>
 }<br/>
 <br/>
@@ -1155,6 +1171,9 @@ struct Board<br/>
 &nbsp;&nbsp;enum { player2 = 2};<br/>
 <br/>
 &nbsp;&nbsp;Board(const int size = 10);<br/>
+&nbsp;&nbsp;//Board(const Board&amp; other);<br/>
+&nbsp;&nbsp;//Board&amp; operator=(const Board&amp; other);<br/>
+&nbsp;&nbsp;//~Board() noexcept {}<br/>
 <br/>
 &nbsp;&nbsp;bool CanDoMove(const int x, const int y, const int player) const noexcept;<br/>
 <br/>
@@ -1237,6 +1256,52 @@ struct Widget;<br/>
 <!-- start of code -->
 <table summary="./CppReversi/reversimove.cpp" border = "1"><tr><td><code>
 #include "reversimove.h"<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+const std::string ribi::reversi::MovePlacePiece::ToStr() const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;std::stringstream s;<br/>
+&nbsp;&nbsp;s &lt;&lt; this-&gt;GetX() &lt;&lt; ',' &lt;&lt; this-&gt;GetY();<br/>
+&nbsp;&nbsp;return s.str();<br/>
+}<br/>
+<br/>
+const boost::shared_ptr&lt;ribi::reversi::Move&gt; ribi::reversi::Move::Parse(<br/>
+&nbsp;&nbsp;const std::string&amp; s) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;boost::shared_ptr&lt;ribi::reversi::Move&gt; move;<br/>
+<br/>
+&nbsp;&nbsp;if (s.empty()) return move;<br/>
+&nbsp;&nbsp;if (s == "p" || s == "P" || s == "pass" || s == "Pass" || s == "PASS")<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;move.reset(new MovePass);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return move;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;const std::size_t i = s.find(',');<br/>
+&nbsp;&nbsp;if (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i != std::string::npos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; i != 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; i != s.size() - 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; std::count(s.begin(),s.end(),',') == 1<br/>
+&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string a = s.substr(0,i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string b = s.substr(i + 1,s.size() - i - 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(std::count(a.begin(),a.end(),',') == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(std::count(b.begin(),b.end(),',') == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int x = boost::lexical_cast&lt;int&gt;(a);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int y = boost::lexical_cast&lt;int&gt;(b);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;move.reset(new MovePlacePiece(x,y));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return move;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(move || !move);<br/>
+&nbsp;&nbsp;return move;<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1248,33 +1313,62 @@ struct Widget;<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppReversi/reversimove.h" border = "1"><tr><td><code>
-#ifndef CPPREVERSIMOVE_H<br/>
-#define CPPREVERSIMOVE_H<br/>
+#ifndef REVERSIMOVE_H<br/>
+#define REVERSIMOVE_H<br/>
 <br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#include &lt;boost/shared_ptr.hpp&gt;<br/>
+#pragma GCC diagnostic pop<br/>
 <br/>
 namespace ribi {<br/>
 namespace reversi {<br/>
 <br/>
 struct Move<br/>
 {<br/>
-&nbsp;&nbsp;virtual ~Move() {}<br/>
+&nbsp;&nbsp;virtual ~Move() noexcept {}<br/>
+<br/>
+&nbsp;&nbsp;///Create a Move from a std::string<br/>
+&nbsp;&nbsp;///Returns a nullptr if the Move cannot be parsed<br/>
+&nbsp;&nbsp;///<br/>
+&nbsp;&nbsp;///Notation:<br/>
+&nbsp;&nbsp;///- x,y -&gt; MovePlacePiece<br/>
+&nbsp;&nbsp;///- [empty] -&gt; MovePass<br/>
+&nbsp;&nbsp;static const boost::shared_ptr&lt;Move&gt; Parse(const std::string&amp; s) noexcept;<br/>
+<br/>
+&nbsp;&nbsp;virtual const std::string ToStr() const noexcept = 0;<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
+&nbsp;&nbsp;#endif<br/>
 };<br/>
 <br/>
 struct MovePlacePiece : public Move<br/>
 {<br/>
-&nbsp;&nbsp;MovePlacePiece(const int x, const int y);<br/>
+&nbsp;&nbsp;MovePlacePiece(const int x, const int y) : m_x(x), m_y(y) {}<br/>
+<br/>
+&nbsp;&nbsp;int GetX() const noexcept { return m_x; }<br/>
+&nbsp;&nbsp;int GetY() const noexcept { return m_y; }<br/>
+<br/>
+&nbsp;&nbsp;const std::string ToStr() const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;const int m_x;<br/>
+&nbsp;&nbsp;const int m_y;<br/>
 };<br/>
 <br/>
 struct MovePass : public Move<br/>
 {<br/>
-&nbsp;&nbsp;MovePass();<br/>
+&nbsp;&nbsp;MovePass() {}<br/>
+<br/>
+&nbsp;&nbsp;const std::string ToStr() const noexcept { return "pass"; }<br/>
 };<br/>
 <br/>
 <br/>
 } //~namespace reversi<br/>
 } //~namespace ribi<br/>
 <br/>
-#endif // CPPREVERSIMOVE_H<br/>
+#endif // REVERSIMOVE_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1296,6 +1390,7 @@ struct MovePass : public Move<br/>
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 #include &lt;boost/foreach.hpp&gt;<br/>
 <br/>
+#include "reversimove.h"<br/>
 #include "reversiboard.h"<br/>
 #include "trace.h"<br/>
 #pragma GCC diagnostic pop<br/>
@@ -1312,7 +1407,8 @@ static_assert(<br/>
 <br/>
 ribi::reversi::Widget::Widget(const int size)<br/>
 &nbsp;&nbsp;: m_board(new Board(size)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_current_player(player1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_current_player(player1),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_undo{}<br/>
 {<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;Test();<br/>
@@ -1330,10 +1426,62 @@ ribi::reversi::Widget::Widget(const int size)<br/>
 &nbsp;&nbsp;#endif<br/>
 }<br/>
 <br/>
+bool ribi::reversi::Widget::CanDoMove(const boost::shared_ptr&lt;const ribi::reversi::Move&gt; move) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;assert(move);<br/>
+&nbsp;&nbsp;if (boost::dynamic_pointer_cast&lt;const ribi::reversi::MovePass&gt;(move))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Can always pass for now<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::reversi::MovePlacePiece&gt; place {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::dynamic_pointer_cast&lt;const ribi::reversi::MovePlacePiece&gt;(move)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;assert(place);<br/>
+&nbsp;&nbsp;return CanDoMove(place-&gt;GetX(),place-&gt;GetY());<br/>
+}<br/>
+<br/>
 bool ribi::reversi::Widget::CanDoMove(const int x, const int y) const noexcept<br/>
 {<br/>
 &nbsp;&nbsp;return m_board-&gt;CanDoMove(x,y,GetCurrentPlayer());<br/>
 }<br/>
+<br/>
+void ribi::reversi::Widget::DoMove(const boost::shared_ptr&lt;const ribi::reversi::Move&gt; move) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;assert(move);<br/>
+&nbsp;&nbsp;if(!CanDoMove(move))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(*this);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(move-&gt;ToStr());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE("ERROR");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;assert(CanDoMove(move));<br/>
+&nbsp;&nbsp;assert(move);<br/>
+&nbsp;&nbsp;if (boost::dynamic_pointer_cast&lt;const ribi::reversi::MovePass&gt;(move))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;DoMovePass();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::reversi::MovePlacePiece&gt; place {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::dynamic_pointer_cast&lt;const ribi::reversi::MovePlacePiece&gt;(move)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;assert(place);<br/>
+&nbsp;&nbsp;assert(CanDoMove(place-&gt;GetX(),place-&gt;GetY()));<br/>
+<br/>
+&nbsp;&nbsp;//Undo<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Widget&gt; prev_widget {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new Widget(*this)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_undo.push(std::make_pair(prev_widget,move));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;DoMove(place-&gt;GetX(),place-&gt;GetY());<br/>
+}<br/>
+<br/>
 <br/>
 void ribi::reversi::Widget::DoMove(const int x, const int y) noexcept<br/>
 {<br/>
@@ -1345,6 +1493,24 @@ void ribi::reversi::Widget::DoMove(const int x, const int y) noexcept<br/>
 void ribi::reversi::Widget::DoMovePass() noexcept<br/>
 {<br/>
 &nbsp;&nbsp;TogglePlayer();<br/>
+}<br/>
+<br/>
+const std::vector&lt;boost::shared_ptr&lt;ribi::reversi::Move&gt;&gt; ribi::reversi::Widget::GetValidMoves() const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Move&gt;&gt; moves;<br/>
+&nbsp;&nbsp;for (const std::pair&lt;int,int&gt; p: m_board-&gt;GetValidMoves(GetCurrentPlayer()))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Move&gt; move {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new MovePlacePiece(p.first,p.second)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(move);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;moves.push_back(move);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;Move&gt; move_pass {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;new MovePass<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;moves.push_back(move_pass);<br/>
+&nbsp;&nbsp;return moves;<br/>
 }<br/>
 <br/>
 const std::string ribi::reversi::Widget::GetVersion() noexcept<br/>
@@ -1368,12 +1534,6 @@ void ribi::reversi::Widget::TogglePlayer()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case player2: m_current_player = player1; return;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;default: assert(!"Should not get here");<br/>
 &nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<br/>
-const std::vector&lt;std::pair&lt;int,int&gt;&gt; ribi::reversi::Widget::GetValidMoves() const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return m_board-&gt;GetValidMoves(GetCurrentPlayer());<br/>
 }<br/>
 <br/>
 int ribi::reversi::Widget::GetOtherPlayer() const noexcept<br/>
@@ -1406,7 +1566,6 @@ int ribi::reversi::Widget::GetWinner() const noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (n_2 &gt; n_1) return ribi::reversi::Widget::player2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(n_1 == n_2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ribi::reversi::Widget::draw;<br/>
-<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;return ribi::reversi::Widget::empty;<br/>
@@ -1424,41 +1583,75 @@ void ribi::reversi::Widget::Test() noexcept<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ribi::reversi::Widget r(4);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetCurrentPlayer() == Board::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetBoard()-&gt;Get(1,1) == Board::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetBoard()-&gt;Get(1,2) == Board::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetBoard()-&gt;Get(2,1) == Board::player2);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetBoard()-&gt;Get(2,2) == Board::player1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetBoard()-&gt;Get(0,0) == Board::empty);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetBoard()-&gt;Get(2,0) == Board::empty);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(2,0));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(3,1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(0,2));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(1,3));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetValidMoves().size() == 4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetValidMoves().size() == 5); //4 place moves and one pass<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//Play random games<br/>
 &nbsp;&nbsp;for (int sz = 4; sz != 10; ++sz)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ribi::reversi::Widget r(sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;while (!r.GetValidMoves().empty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;while (r.GetValidMoves().size() &gt; 1) //Pass is always allowed<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_assert(static_cast&lt;int&gt;(ribi::reversi::Widget::empty&nbsp;&nbsp;) == static_cast&lt;int&gt;(Board::empty&nbsp;&nbsp;),"enums must have same value");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_assert(static_cast&lt;int&gt;(ribi::reversi::Widget::player1) == static_cast&lt;int&gt;(Board::player1),"enums must have same value");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_assert(static_cast&lt;int&gt;(ribi::reversi::Widget::player2) == static_cast&lt;int&gt;(Board::player2),"enums must have same value");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetWinner() == ribi::reversi::Widget::empty);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;std::pair&lt;int,int&gt;&gt; m {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;ribi::reversi::Move&gt;&gt; m {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.GetValidMoves()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!m.empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::random_shuffle(m.begin(),m.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::pair&lt;int,int&gt; move = m[0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(move.first,move.second));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.DoMove(move.first,move.second);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::reversi::Move&gt; move = m[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(move));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.DoMove(move);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//Test undo functionality in a single game<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int sz = 4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ribi::reversi::Widget r(sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;while (r.GetValidMoves().size() &gt; 1) //Pass is always allowed<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_assert(static_cast&lt;int&gt;(ribi::reversi::Widget::empty&nbsp;&nbsp;) == static_cast&lt;int&gt;(Board::empty&nbsp;&nbsp;),"enums must have same value");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_assert(static_cast&lt;int&gt;(ribi::reversi::Widget::player1) == static_cast&lt;int&gt;(Board::player1),"enums must have same value");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;static_assert(static_cast&lt;int&gt;(ribi::reversi::Widget::player2) == static_cast&lt;int&gt;(Board::player2),"enums must have same value");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(r.GetWinner() == ribi::reversi::Widget::empty);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;ribi::reversi::Move&gt;&gt; m {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.GetValidMoves()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!m.empty());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::random_shuffle(m.begin(),m.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::reversi::Move&gt; move = m[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(r.CanDoMove(move));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const Widget before(r);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.DoMove(move);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(before != r);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.Undo();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(before == r);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r.DoMove(move);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;TRACE("Finished ribi::TestReversiMenuDialog::Test()");<br/>
 }<br/>
 #endif<br/>
+<br/>
+void ribi::reversi::Widget::Undo()<br/>
+{<br/>
+&nbsp;&nbsp;assert(!m_undo.empty());<br/>
+&nbsp;&nbsp;this-&gt;m_board = (m_undo.top().first)-&gt;GetBoard();<br/>
+&nbsp;&nbsp;this-&gt;m_current_player = (m_undo.top().first)-&gt;GetCurrentPlayer();<br/>
+&nbsp;&nbsp;m_undo.pop();<br/>
+}<br/>
+<br/>
+bool ribi::reversi::operator==(const ribi::reversi::Widget&amp; lhs, const ribi::reversi::Widget&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;return *lhs.GetBoard() == *rhs.GetBoard()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; lhs.GetCurrentPlayer() == rhs.GetCurrentPlayer();<br/>
+}<br/>
+<br/>
+bool ribi::reversi::operator!=(const ribi::reversi::Widget&amp; lhs, const ribi::reversi::Widget&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;return !(lhs == rhs);<br/>
+}<br/>
 <br/>
 std::ostream&amp; ribi::reversi::operator&lt;&lt;(std::ostream&amp; os, const ribi::reversi::Widget&amp; r)<br/>
 {<br/>
@@ -1483,6 +1676,7 @@ std::ostream&amp; ribi::reversi::operator&lt;&lt;(std::ostream&amp; os, const ri
 #define REVERSIWIDGET_H<br/>
 <br/>
 #include &lt;string&gt;<br/>
+#include &lt;stack&gt;<br/>
 #include &lt;vector&gt;<br/>
 <br/>
 #pragma GCC diagnostic push<br/>
@@ -1506,35 +1700,45 @@ struct Widget<br/>
 <br/>
 &nbsp;&nbsp;Widget(const int size = 10);<br/>
 <br/>
-&nbsp;&nbsp;bool CanDoMove(const int x, const int y) const noexcept;<br/>
-&nbsp;&nbsp;bool CanDoMovePass() const noexcept;<br/>
-&nbsp;&nbsp;void DoMove(const int x, const int y) noexcept;<br/>
-&nbsp;&nbsp;void DoMovePass() noexcept;<br/>
+&nbsp;&nbsp;bool CanDoMove(const boost::shared_ptr&lt;const Move&gt; move) const noexcept;<br/>
 <br/>
-&nbsp;&nbsp;//void DoMove(const boost::shared_ptr&lt;Move&gt; move) const noexcept;<br/>
+&nbsp;&nbsp;void DoMove(const boost::shared_ptr&lt;const Move&gt; move) noexcept;<br/>
 <br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;const Board&gt; GetBoard() const noexcept { return m_board; }<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Board&gt; GetBoard()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; noexcept { return m_board; }<br/>
 <br/>
 &nbsp;&nbsp;int GetCurrentPlayer() const noexcept { return m_current_player; }<br/>
 <br/>
-&nbsp;&nbsp;const std::vector&lt; std::pair&lt;int,int&gt; &gt; GetValidMoves() const noexcept;<br/>
+&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;Move&gt;&gt; GetValidMoves() const noexcept;<br/>
+<br/>
 &nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
 &nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
 &nbsp;&nbsp;int GetWinner() const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;void Undo();<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;boost::shared_ptr&lt;Board&gt; m_board;<br/>
 &nbsp;&nbsp;int m_current_player;<br/>
 <br/>
+&nbsp;&nbsp;//The undo stack:<br/>
+&nbsp;&nbsp;//first: the Widget before the Move<br/>
+&nbsp;&nbsp;//second: the last Move done in the game<br/>
+&nbsp;&nbsp;std::stack&lt;std::pair&lt;boost::shared_ptr&lt;Widget&gt;,boost::shared_ptr&lt;const Move&gt;&gt;&gt; m_undo;<br/>
+<br/>
+&nbsp;&nbsp;bool CanDoMove(const int x, const int y) const noexcept;<br/>
+&nbsp;&nbsp;bool CanDoMovePass() const noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Create the delta-x and delta-y to search in the 8 directions<br/>
 &nbsp;&nbsp;static const std::vector&lt;std::pair&lt;int,int&gt;&gt; CreateDeltas() noexcept;<br/>
 <br/>
+&nbsp;&nbsp;void DoMove(const int x, const int y) noexcept;<br/>
+&nbsp;&nbsp;void DoMovePass() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;int GetOtherPlayer() const noexcept;<br/>
 <br/>
 &nbsp;&nbsp;//Simply sets a square<br/>
-&nbsp;&nbsp;void Set(const int x, const int y, const int state) noexcept;<br/>
+&nbsp;&nbsp;//void Set(const int x, const int y, const int state) noexcept;<br/>
 <br/>
 &nbsp;&nbsp;void TogglePlayer();<br/>
 <br/>
@@ -1543,6 +1747,9 @@ struct Widget<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 };<br/>
+<br/>
+bool operator==(const Widget&amp; lhs, const Widget&amp; rhs);<br/>
+bool operator!=(const Widget&amp; lhs, const Widget&amp; rhs);<br/>
 <br/>
 std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Widget&amp; r);<br/>
 <br/>

@@ -2930,21 +2930,22 @@ bool operator&lt;=(const BoundaryIndex&amp; lhs, const BoundaryIndex&amp; rhs) n
 #include "openfoamface.h"<br/>
 #include "trace.h"<br/>
 <br/>
-ribi::foam::Cell::Cell()<br/>
-&nbsp;&nbsp;: m_owned_faces{}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//,m_neighbour{}<br/>
+ribi::foam::Cell::Cell(<br/>
+&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; owned_faces,<br/>
+&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; all_faces<br/>
+&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;: m_all_faces{all_faces},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_owned_faces{owned_faces}<br/>
 {<br/>
-<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;for (const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; face: m_owned_faces)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(std::count(m_all_faces.begin(),m_all_faces.end(),face) == 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "m_owned_faces must be a subset of m_all_faces");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
 }<br/>
-<br/>
-/*<br/>
-void ribi::foam::Cell::AssignNeighbour(const boost::shared_ptr&lt;ribi::foam::Cell&gt; neighbour) noexcept<br/>
-{<br/>
-&nbsp;&nbsp;assert(!m_neighbour &amp;&amp; "neighbour can only be assigned once");<br/>
-&nbsp;&nbsp;assert(neighbour);<br/>
-&nbsp;&nbsp;m_neighbour = neighbour;<br/>
-}<br/>
-*/<br/>
 <br/>
 void ribi::foam::Cell::AssignOwnedFaces(const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt;&amp; owned_faces)<br/>
 {<br/>
@@ -2952,13 +2953,6 @@ void ribi::foam::Cell::AssignOwnedFaces(const std::vector&lt;boost::shared_ptr&l
 &nbsp;&nbsp;assert(!owned_faces.empty());<br/>
 &nbsp;&nbsp;m_owned_faces = owned_faces;<br/>
 }<br/>
-<br/>
-/*<br/>
-const boost::shared_ptr&lt;const ribi::foam::Cell&gt; ribi::foam::Cell::GetNeighbour() const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return m_neighbour;<br/>
-}<br/>
-*/<br/>
 <br/>
 const std::vector&lt;boost::shared_ptr&lt;const ribi::foam::Face&gt; &gt; ribi::foam::Cell::GetOwnedFaces() const noexcept<br/>
 {<br/>
@@ -2984,13 +2978,37 @@ const std::vector&lt;boost::shared_ptr&lt;const ribi::foam::Face&gt; &gt; ribi::
 &nbsp;&nbsp;return v;<br/>
 }<br/>
 <br/>
+bool ribi::foam::Cell::HasFace(const boost::shared_ptr&lt;const ribi::foam::Face&gt; face) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;assert(m_all_faces.size() &gt;= m_owned_faces<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "m_owned_faces must be a subset of m_all_faces: there should be more m_all_faces"<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;for (const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; face: m_owned_faces)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(std::count(m_all_faces.begin(),m_all_faces.end(),face) == 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "m_owned_faces must be a subset of m_all_faces: every owned Face must be in m_all_faces"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;return std::count(m_all_faces.begin(),m_all_faces.end(),face);<br/>
+}<br/>
+<br/>
+bool ribi::foam::Cell::OwnsFace(const boost::shared_ptr&lt;const ribi::foam::Face&gt; face) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return std::count(m_owned_faces.begin(),m_owned_faces.end(),face);<br/>
+<br/>
+}<br/>
+<br/>
 std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const ribi::foam::Cell&amp; cell)<br/>
 {<br/>
 &nbsp;&nbsp;for (boost::shared_ptr&lt;Face&gt; face: cell.m_owned_faces)<br/>
 &nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; *face &lt;&lt; '\n';<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//os &lt;&lt; *cell.m_neighbour;<br/>
 &nbsp;&nbsp;return os;<br/>
 }<br/>
 </code></td></tr></table>
@@ -3020,14 +3038,21 @@ namespace ribi {<br/>
 namespace foam {<br/>
 <br/>
 ///A Cell contains Faces that enclose a volume<br/>
-///Every Cell has at least one Face it shares with another Cell. This other<br/>
-///Cell is called a neighbour<br/>
+///These Faces are<br/>
+///- owned/managed by this Cell: m_owned_faces<br/>
+///- owned/managed by a neighbouring Cell: m_faces<br/>
+///Faces know<br/>
+///- the Cell that owns them<br/>
+///- optionally, the Cell they are also a member of, called 'neighbour'.<br/>
+///&nbsp;&nbsp;If this is nullptr, the Face is a boundary face<br/>
+///If a Cell contains a boundary Face, it is a boundary cell<br/>
 struct Cell<br/>
 {<br/>
-&nbsp;&nbsp;Cell();<br/>
-<br/>
-&nbsp;&nbsp;///Can only assign once<br/>
-&nbsp;&nbsp;//void AssignNeighbour(const boost::shared_ptr&lt;Cell&gt; neighbour) noexcept;<br/>
+&nbsp;&nbsp;///owned_faces is a subset of all_faces<br/>
+&nbsp;&nbsp;Cell(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; owned_faces = {},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; all_faces = {}<br/>
+&nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;///Can only assign once<br/>
 &nbsp;&nbsp;void AssignOwnedFaces(const std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt;&amp; owned_faces);<br/>
@@ -3035,11 +3060,16 @@ struct Cell<br/>
 &nbsp;&nbsp;//const boost::shared_ptr&lt;const Cell&gt; GetNeighbour() const noexcept;<br/>
 &nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const Face&gt; &gt; GetOwnedFaces() const noexcept;<br/>
 <br/>
+&nbsp;&nbsp;bool HasFace(const boost::shared_ptr&lt;const Face&gt; face) const noexcept;<br/>
+&nbsp;&nbsp;bool OwnsFace(const boost::shared_ptr&lt;const Face&gt; face) const noexcept;<br/>
+<br/>
 &nbsp;&nbsp;private:<br/>
 <br/>
-&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; m_owned_faces;<br/>
+&nbsp;&nbsp;///m_owned_faces is a subset of m_all_faces<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; m_all_faces;<br/>
 <br/>
-&nbsp;&nbsp;//boost::shared_ptr&lt;Cell&gt; m_neighbour;<br/>
+&nbsp;&nbsp;///m_owned_faces is a subset of m_all_faces<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; m_owned_faces;<br/>
 <br/>
 &nbsp;&nbsp;friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Cell&amp; cell);<br/>
 };<br/>
@@ -3075,8 +3105,8 @@ ribi::foam::CellIndex::CellIndex(const int index)<br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
-&nbsp;&nbsp;assert(m_index &gt;= 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "A CellIndex must be zero or a positive value");<br/>
+&nbsp;&nbsp;assert(m_index &gt;= -1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "A CellIndex must be minus one or higher");<br/>
 }<br/>
 <br/>
 ribi::foam::CellIndex&amp; ribi::foam::CellIndex::operator++() noexcept<br/>
@@ -3118,15 +3148,15 @@ void ribi::foam::CellIndex::Test() noexcept<br/>
 }<br/>
 #endif<br/>
 <br/>
-std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const CellIndex&amp; face_index)<br/>
+std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const CellIndex&amp; cell_index)<br/>
 {<br/>
-&nbsp;&nbsp;os &lt;&lt; face_index.Get();<br/>
+&nbsp;&nbsp;os &lt;&lt; cell_index.Get();<br/>
 &nbsp;&nbsp;return os;<br/>
 }<br/>
 <br/>
-std::istream&amp; ribi::foam::operator&gt;&gt;(std::istream&amp; is, CellIndex&amp; face_index)<br/>
+std::istream&amp; ribi::foam::operator&gt;&gt;(std::istream&amp; is, CellIndex&amp; cell_index)<br/>
 {<br/>
-&nbsp;&nbsp;is &gt;&gt; face_index.m_index;<br/>
+&nbsp;&nbsp;is &gt;&gt; cell_index.m_index;<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;if (!is)<br/>
 &nbsp;&nbsp;{<br/>
@@ -3187,7 +3217,7 @@ namespace foam {<br/>
 <br/>
 struct CellIndex<br/>
 {<br/>
-&nbsp;&nbsp;explicit CellIndex(const int index = 0);<br/>
+&nbsp;&nbsp;explicit CellIndex(const int index = -1);<br/>
 &nbsp;&nbsp;int Get() const noexcept { return m_index; }<br/>
 <br/>
 &nbsp;&nbsp;CellIndex&amp; operator++() noexcept;&nbsp;&nbsp; //Prefix<br/>
@@ -3195,15 +3225,15 @@ struct CellIndex<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;int m_index;<br/>
-&nbsp;&nbsp;friend std::istream&amp; operator&gt;&gt;(std::istream&amp; is, CellIndex&amp; face_index);<br/>
+&nbsp;&nbsp;friend std::istream&amp; operator&gt;&gt;(std::istream&amp; is, CellIndex&amp; cell_index);<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;static void Test() noexcept;<br/>
 &nbsp;&nbsp;#endif<br/>
 };<br/>
 <br/>
-std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const CellIndex&amp; face_index);<br/>
-std::istream&amp; operator&gt;&gt;(std::istream&amp; is, CellIndex&amp; face_index);<br/>
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const CellIndex&amp; cell_index);<br/>
+std::istream&amp; operator&gt;&gt;(std::istream&amp; is, CellIndex&amp; cell_index);<br/>
 <br/>
 bool operator==(const CellIndex&amp; lhs, const CellIndex&amp; rhs) noexcept;<br/>
 bool operator!=(const CellIndex&amp; lhs, const CellIndex&amp; rhs) noexcept;<br/>
@@ -3293,17 +3323,32 @@ const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt; ribi:
 &nbsp;&nbsp;return v;<br/>
 }<br/>
 <br/>
+ribi::Coordinat3D ribi::foam::CalcCenter(const Face&amp; face) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;Coordinat3D d;<br/>
+&nbsp;&nbsp;for (boost::shared_ptr&lt;const ribi::Coordinat3D&gt; c: face.GetPoints())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;d += *c;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;d /= static_cast&lt;double&gt;(face.GetPoints().size());<br/>
+&nbsp;&nbsp;return d;<br/>
+}<br/>
 <br/>
 std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const ribi::foam::Face&amp; face)<br/>
 {<br/>
 &nbsp;&nbsp;if (face.m_neighbour)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; *face.m_neighbour;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Only display the address of a neighbour to prevent recursion<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(face.m_neighbour);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; face.m_neighbour;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;os &lt;&lt; '\n';<br/>
-&nbsp;&nbsp;if (face.m_owner)<br/>
+&nbsp;&nbsp;assert(face.m_owner &amp;&amp; "Every Face has an owner");<br/>
+&nbsp;&nbsp;//if (face.m_owner)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; *face.m_owner;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Only display the address of a owner to prevent recursion<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(face.m_owner);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os &lt;&lt; face.m_owner;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;os &lt;&lt; '\n';<br/>
 &nbsp;&nbsp;for (const boost::shared_ptr&lt;ribi::Coordinat3D&gt; coordinat: face.m_points)<br/>
@@ -3334,8 +3379,7 @@ std::ostream&amp; ribi::foam::operator&lt;&lt;(std::ostream&amp; os, const ribi:
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 #include &lt;boost/shared_ptr.hpp&gt;<br/>
 #include "openfoamfwd.h"<br/>
-#include "openfoamcellindex.h"<br/>
-//#include "openfoampoint.h"<br/>
+//#include "openfoamcellindex.h"<br/>
 #pragma GCC diagnostic pop<br/>
 <br/>
 namespace ribi {<br/>
@@ -3360,6 +3404,7 @@ struct Face<br/>
 &nbsp;&nbsp;///Can only assign once<br/>
 &nbsp;&nbsp;void AssignNeighbour(const boost::shared_ptr&lt;Cell&gt; neighbour) noexcept;<br/>
 <br/>
+&nbsp;&nbsp;///Can only assign once<br/>
 &nbsp;&nbsp;void AssignOwner(const boost::shared_ptr&lt;Cell&gt; owner) noexcept;<br/>
 <br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;const Cell&gt; GetNeighbour() const noexcept { return m_neighbour; }<br/>
@@ -3368,6 +3413,7 @@ struct Face<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cell&gt; GetOwner()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; noexcept;<br/>
 <br/>
 &nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt; GetPoints() const noexcept;<br/>
+&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::Coordinat3D&gt; &gt;&amp;GetPoints()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; noexcept { return m_points; }<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;///If this Face has no Neighbour, this is nullptr<br/>
@@ -3381,6 +3427,9 @@ struct Face<br/>
 <br/>
 &nbsp;&nbsp;friend std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Face&amp; face);<br/>
 };<br/>
+<br/>
+///Calculate the center of the Face<br/>
+ribi::Coordinat3D CalcCenter(const Face&amp; face) noexcept;<br/>
 <br/>
 std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, const Face&amp; face);<br/>
 <br/>
@@ -5849,7 +5898,7 @@ ribi::foam::Mesh::Mesh(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.first-&gt;AssignOwnedFaces(p.second);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//Add neighbours to Cells<br/>
+&nbsp;&nbsp;//Add neighbours to Faces<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const int n_faces = static_cast&lt;int&gt;(m_faces.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=n_faces; ++i)<br/>
@@ -5862,6 +5911,7 @@ ribi::foam::Mesh::Mesh(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const CellIndex neighbour_index {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;files.GetNeighbour()-&gt;GetItem(index).GetCellIndex()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(i &gt;= 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(i &lt; static_cast&lt;int&gt;(m_faces.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(neighbour_index.Get() &lt; static_cast&lt;int&gt;(m_cells.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!m_faces[i]-&gt;GetNeighbour());<br/>
@@ -5939,8 +5989,25 @@ bool ribi::foam::Mesh::AreFacesOrdered() const noexcept<br/>
 &nbsp;&nbsp;return true;<br/>
 }<br/>
 <br/>
+double ribi::foam::Mesh::CalcSimilarityFaster(<br/>
+&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; w) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;if (v.size() != w.size()) return std::numeric_limits&lt;double&gt;::max();<br/>
+&nbsp;&nbsp;//Sum all coordinats, distance equals the distance between the center points<br/>
+&nbsp;&nbsp;const Coordinat3D a = std::accumulate(v.begin(),v.end(),Coordinat3D(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](const Coordinat3D&amp; init, const boost::shared_ptr&lt;const ribi::Coordinat3D&gt; c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (*c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;//for (const boost::shared_ptr&lt;const ribi::Coordinat3D&gt; c: v) { a += (*c); }<br/>
+&nbsp;&nbsp;const Coordinat3D b = std::accumulate(w.begin(),w.end(),Coordinat3D());<br/>
+&nbsp;&nbsp;return Distance(a,b);<br/>
+}<br/>
 <br/>
-double ribi::foam::Mesh::CalcSimilarity(<br/>
+<br/>
+double ribi::foam::Mesh::CalcSimilaritySlow(<br/>
 &nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; v,<br/>
 &nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; w) noexcept<br/>
 {<br/>
@@ -5965,7 +6032,7 @@ double ribi::foam::Mesh::CalcSimilarity(<br/>
 &nbsp;&nbsp;return distance;<br/>
 }<br/>
 <br/>
-double ribi::foam::Mesh::CalcSimilarity(<br/>
+double ribi::foam::Mesh::CalcSimilaritySlow(<br/>
 &nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt;&amp; v,<br/>
 &nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; w) noexcept<br/>
 {<br/>
@@ -5974,6 +6041,7 @@ double ribi::foam::Mesh::CalcSimilarity(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;std::accumulate(v.begin(),v.end(),0.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[w](const double init,const boost::shared_ptr&lt;const ribi::Coordinat3D&gt;&amp; c)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Find the closest coordinat in w to c<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;::const_iterator closest {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::min_element(w.begin(),w.end(),<br/>
@@ -6104,6 +6172,7 @@ const std::vector&lt;boost::shared_ptr&lt;ribi::foam::Cell&gt; &gt; ribi::foam::
 {<br/>
 &nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;ribi::foam::Cell&gt; &gt; cells;<br/>
 &nbsp;&nbsp;const CellIndex n_cells = files.GetNeighbour()-&gt;CountNumberOfCells();<br/>
+&nbsp;&nbsp;assert(n_cells == files.GetOwner()-&gt;CountNumberOfCells());<br/>
 &nbsp;&nbsp;assert(n_cells &gt; CellIndex(0));<br/>
 &nbsp;&nbsp;for (CellIndex i=CellIndex(0); i!=n_cells; ++i)<br/>
 &nbsp;&nbsp;{<br/>
@@ -6345,15 +6414,18 @@ const boost::shared_ptr&lt;const ribi::foam::Face&gt; ribi::foam::Mesh::FindMost
 &nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; coordinats<br/>
 &nbsp;&nbsp;) const<br/>
 {<br/>
-&nbsp;&nbsp;///Obtain the distance from focal coordindat to each face its coordinat<br/>
+&nbsp;&nbsp;///Obtain the distance from focal coordinats to each face its coordinat<br/>
 &nbsp;&nbsp;std::vector&lt;double&gt; distances;<br/>
-&nbsp;&nbsp;const std::size_t sz = coordinats.size();<br/>
+&nbsp;&nbsp;const std::size_t sz = m_faces.size();<br/>
 &nbsp;&nbsp;for (std::size_t i=0; i!=sz; ++i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const double distance = CalcSimilarity(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(i &lt; m_faces.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_faces[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const double distance = CalcSimilarityFaster(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_faces[i]-&gt;GetPoints(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coordinats<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACE(distance);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;distances.push_back(distance);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -6475,19 +6547,91 @@ void ribi::foam::Mesh::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//CalcSimilarity: empty<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;ribi::Coordinat3D&gt; w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(CalcSimilarityFaster(v,w) &lt; 0.001);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//CalcSimilarity: one point<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;ribi::Coordinat3D&gt; w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const ribi::Coordinat3D c(1.1,2.2,3.3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; d {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new ribi::Coordinat3D(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(c == *d); //Exact comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(Distance(c,*d) &lt; 0.0000001); //Fuzzier comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(CalcSimilarityFaster(v,w) &lt; 0.001);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//CalcSimilarity: two points<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;ribi::Coordinat3D&gt; w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const ribi::Coordinat3D c(1.1,2.2,3.3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; d {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new ribi::Coordinat3D(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(c == *d); //Exact comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(Distance(c,*d) &lt; 0.0000001); //Fuzzier comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const ribi::Coordinat3D c(2.2,3.3,4.4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; d {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new ribi::Coordinat3D(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(c == *d); //Exact comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(Distance(c,*d) &lt; 0.0000001); //Fuzzier comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(CalcSimilarityFaster(v,w) &lt; 0.001);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//CalcSimilarity: one versus two points<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt; v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;ribi::Coordinat3D&gt; w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const ribi::Coordinat3D c(1.1,2.2,3.3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; d {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new ribi::Coordinat3D(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(c == *d); //Exact comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(Distance(c,*d) &lt; 0.0000001); //Fuzzier comparison<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const ribi::Coordinat3D c(2.2,3.3,4.4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w.push_back(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(CalcSimilarityFaster(v,w) &gt; 1000000000.0);<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;//Find most similar Faces<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Handcraft Faces, put these in mesh<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Points as log 12 page 48<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//For the Points, I used the same setup as in Classes/CppOpenFoam/points_1x1x1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;// 8((0 0 0) (1 0 0) (0 1 0) (1 1 0) (0 0 1) (1 0 1) (0 1 1) (1 1 1))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;// The order of points is determined by blockMesh<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p0 { new ribi::Coordinat3D(0.0,0.0,0.0) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p1 { new ribi::Coordinat3D(1.0,0.0,0.0) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p2 { new ribi::Coordinat3D(1.0,1.0,0.0) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p3 { new ribi::Coordinat3D(0.0,1.0,0.0) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p2 { new ribi::Coordinat3D(0.0,1.0,0.0) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p3 { new ribi::Coordinat3D(1.0,1.0,0.0) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p4 { new ribi::Coordinat3D(0.0,0.0,1.0) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p5 { new ribi::Coordinat3D(1.0,0.0,1.0) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p6 { new ribi::Coordinat3D(1.0,1.0,1.0) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p7 { new ribi::Coordinat3D(0.0,1.0,1.0) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p6 { new ribi::Coordinat3D(0.0,1.0,1.0) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::Coordinat3D&gt; p7 { new ribi::Coordinat3D(1.0,1.0,1.0) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(p0); assert(p1); assert(p2); assert(p3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(p4); assert(p5); assert(p6); assert(p7);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Cell&gt; cell { new Cell };<br/>
@@ -6507,6 +6651,20 @@ void ribi::foam::Mesh::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Cell&gt; own5 { cell }; //The only Cell owns all Faces<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::Coordinat3D&gt;&gt; points { p0,p1,p2,p3,p4,p5,p6,p7 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//For the Faces, I used the same setup as in Classes/CppOpenFoam/faces_1x1x1:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;4(0 2 3 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;4(0 4 6 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;4(0 1 5 4)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;4(1 3 7 5)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;4(2 6 7 3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;4(4 5 7 6)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;// The order of faces is determined by blockMesh<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Face&gt; f0 { new Face(n0,own0, { p0, p2, p3, p1 } ) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Face&gt; f1 { new Face(n1,own1, { p0, p4, p6, p2 } ) };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Face&gt; f2 { new Face(n2,own2, { p0, p1, p5, p4 } ) };<br/>
@@ -6528,21 +6686,31 @@ void ribi::foam::Mesh::Test() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;for (const boost::shared_ptr&lt;Face&gt; face: faces)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const auto points { face-&gt;GetPoints() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt;&gt; points { face-&gt;GetPoints() };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::vector&lt;ribi::Coordinat3D&gt; coordinats;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::transform(points.begin(),points.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::back_inserter(coordinats),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](const boost::shared_ptr&lt;const ribi::Coordinat3D&gt; shared_coordinat)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return *shared_coordinat;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ribi::Coordinat3D(*shared_coordinat);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//For every Face, extract the coordinats<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//FindMostSimilar should find back the original Face<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(m.FindMostSimilarFace(coordinats) == face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::foam::Face&gt; result {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m.FindMostSimilarFace(coordinats)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(result);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (face != result)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("ERROR");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(*face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(*result);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(result == face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;assert(1==2);<br/>
 &nbsp;&nbsp;TRACE("Finished ribi::foam::Mesh::Test successfully");<br/>
 }<br/>
 #endif<br/>
@@ -6667,13 +6835,13 @@ struct Mesh<br/>
 &nbsp;&nbsp;private:<br/>
 <br/>
 &nbsp;&nbsp;///Order is not important<br/>
-&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Boundary&gt; &gt; m_boundaries;<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Boundary&gt;&gt; m_boundaries;<br/>
 <br/>
 &nbsp;&nbsp;///Order is not important<br/>
-&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Cell&gt; &gt; m_cells;<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Cell&gt;&gt; m_cells;<br/>
 <br/>
 &nbsp;&nbsp;///Order is important for ReorderFaces only<br/>
-&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Face&gt; &gt; m_faces;<br/>
+&nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;Face&gt;&gt; m_faces;<br/>
 <br/>
 &nbsp;&nbsp;///Order is not important<br/>
 &nbsp;&nbsp;std::vector&lt;boost::shared_ptr&lt;ribi::Coordinat3D&gt;&gt; m_points;<br/>
@@ -6688,11 +6856,15 @@ struct Mesh<br/>
 &nbsp;&nbsp;///same Boundary<br/>
 &nbsp;&nbsp;bool AreFacesOrdered() const noexcept;<br/>
 <br/>
-&nbsp;&nbsp;static double CalcSimilarity(<br/>
+&nbsp;&nbsp;static double CalcSimilaritySlow(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; v,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; w) noexcept;<br/>
 <br/>
-&nbsp;&nbsp;static double CalcSimilarity(<br/>
+&nbsp;&nbsp;static double CalcSimilarityFaster(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt;&amp; v,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; w) noexcept;<br/>
+<br/>
+&nbsp;&nbsp;static double CalcSimilaritySlow(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;const ribi::Coordinat3D&gt; &gt;&amp; v,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;ribi::Coordinat3D&gt;&amp; w) noexcept;<br/>
 <br/>
@@ -6744,7 +6916,8 @@ struct Mesh<br/>
 &nbsp;&nbsp;///at indices 0 and 1, and the faces belonging to 'boundary_right'<br/>
 &nbsp;&nbsp;///at indices 2 and 3.<br/>
 &nbsp;&nbsp;///<br/>
-&nbsp;&nbsp;///These ordering of Faces in m_faces is unimportant, except for this<br/>
+&nbsp;&nbsp;///Because this is an indexless structure, the ordering of Faces in<br/>
+&nbsp;&nbsp;///m_faces is unimportant, except for this: when writing to file<br/>
 &nbsp;&nbsp;void ReorderFaces();<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
@@ -6815,6 +6988,7 @@ bool ribi::foam::NeighbourFile::CanGetItem(<br/>
 &nbsp;&nbsp;return face_index.Get() &lt; static_cast&lt;int&gt;(m_items.size());<br/>
 }<br/>
 <br/>
+/*<br/>
 const ribi::foam::CellIndex ribi::foam::NeighbourFile::CountNumberOfCells() const noexcept<br/>
 {<br/>
 &nbsp;&nbsp;//NOT CONFIDENT ABOUT THIS<br/>
@@ -6840,6 +7014,7 @@ const ribi::foam::CellIndex ribi::foam::NeighbourFile::CountNumberOfCells() cons
 &nbsp;&nbsp;++i;<br/>
 &nbsp;&nbsp;return i;<br/>
 }<br/>
+*/<br/>
 <br/>
 const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept<br/>
 {<br/>
@@ -7138,9 +7313,11 @@ struct NeighbourFile<br/>
 &nbsp;&nbsp;///If the FaceIndex is present<br/>
 &nbsp;&nbsp;bool CanGetItem(const FaceIndex&amp; face_index) const noexcept;<br/>
 <br/>
+&nbsp;&nbsp;//DON'T: Use OwnerFile::CountNumberOfCells instead<br/>
+&nbsp;&nbsp;//WHY: because all cell indices are detected in owner<br/>
 &nbsp;&nbsp;///Find the first CellIndex beyond the cell indices present<br/>
 &nbsp;&nbsp;///Or: find the first CellIndex that does not exist anymore<br/>
-&nbsp;&nbsp;const CellIndex CountNumberOfCells() const noexcept;<br/>
+&nbsp;&nbsp;//const CellIndex CountNumberOfCells() const noexcept;<br/>
 <br/>
 &nbsp;&nbsp;static const Header GetDefaultHeader() noexcept;<br/>
 &nbsp;&nbsp;const Header&amp; GetHeader() const noexcept { return m_header; }<br/>
@@ -7280,11 +7457,31 @@ std::istream&amp; ribi::foam::operator&gt;&gt;(std::istream&amp; is, NeighbourFi
 namespace ribi {<br/>
 namespace foam {<br/>
 <br/>
-///An item in an OpenFOAM boundary file<br/>
+///An item in an OpenFOAM 'neighbour' file<br/>
+///A neighbour files contains, for every face, the cell index of which the face is a neighbour of<br/>
+///<br/>
+///For example, from /Classes/CppOpenFoam/neighbour_1x2x2:<br/>
+///<br/>
+///4(1 2 3 3)<br/>
+///<br/>
+///Equivalent to, as faces_1x2x2 contains twenty faces:<br/>
+///<br/>
+///20(1 2 3 3 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1)<br/>
+///<br/>
+///This means that:<br/>
+/// - Face 0 has Cell 1 as its neighbour, and is thus an internal face<br/>
+/// - Face 1 has Cell 2 as its neighbour, and is thus an internal face<br/>
+/// - Face 2 has Cell 3 as its neighbour, and is thus an internal face<br/>
+/// - Face 3 has Cell 3 as its neighbour, and is thus an internal face<br/>
+/// - All other Faces have no neighbours, and are thus boundary faces<br/>
+///<br/>
+///The file 'neighbour' has path '[case_folder]/constant/polyMesh/neighbour'<br/>
 struct NeighbourFileItem<br/>
 {<br/>
-&nbsp;&nbsp;explicit NeighbourFileItem(const CellIndex face_index = CellIndex(0));<br/>
+&nbsp;&nbsp;///A CellIndex of -1 denotes that a Face has no Neighbour<br/>
+&nbsp;&nbsp;explicit NeighbourFileItem(const CellIndex cell_index = CellIndex(-1));<br/>
 <br/>
+&nbsp;&nbsp;///A CellIndex of -1 denotes that a Face has no Neighbour<br/>
 &nbsp;&nbsp;const CellIndex GetCellIndex() const noexcept { return m_cell_index; }<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
@@ -7354,6 +7551,23 @@ ribi::foam::OwnerFile::OwnerFile(<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;#endif<br/>
+}<br/>
+<br/>
+const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;assert(!m_items.empty());<br/>
+<br/>
+&nbsp;&nbsp;const CellIndex i = (*std::max_element(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_items.begin(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_items.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[](const OwnerFileItem&amp; lhs, const OwnerFileItem&amp; rhs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return lhs.GetCellIndex() &lt; rhs.GetCellIndex();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;)).GetCellIndex();<br/>
+<br/>
+&nbsp;&nbsp;// +1, because if the highest cell index found is x, there are x+1 cells<br/>
+&nbsp;&nbsp;return i + 1;<br/>
 }<br/>
 <br/>
 const ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept<br/>
@@ -7661,10 +7875,15 @@ struct OwnerFile<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const Header header = GetDefaultHeader(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;OwnerFileItem&gt;&amp; items = {});<br/>
 <br/>
+&nbsp;&nbsp;///Find the first CellIndex beyond the cell indices present<br/>
+&nbsp;&nbsp;///Or: find the first CellIndex that does not exist anymore<br/>
+&nbsp;&nbsp;const CellIndex CountNumberOfCells() const noexcept;<br/>
+<br/>
 &nbsp;&nbsp;static const Header GetDefaultHeader() noexcept;<br/>
 &nbsp;&nbsp;const Header&amp; GetHeader() const noexcept { return m_header; }<br/>
 &nbsp;&nbsp;const std::vector&lt;OwnerFileItem&gt; GetItems() const noexcept { return m_items; }<br/>
 &nbsp;&nbsp;const OwnerFileItem&amp; GetItem(const FaceIndex&amp; face_index) const noexcept;<br/>
+<br/>
 <br/>
 &nbsp;&nbsp;void SetItem(const FaceIndex&amp; face_index, const OwnerFileItem&amp; item) noexcept;<br/>
 <br/>

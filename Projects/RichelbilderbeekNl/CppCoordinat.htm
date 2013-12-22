@@ -295,6 +295,23 @@ ribi::Coordinat3D&amp; ribi::Coordinat3D::operator-=(const Coordinat3D&amp; rhs)
 &nbsp;&nbsp;return *this;<br/>
 }<br/>
 <br/>
+ribi::Coordinat3D&amp; ribi::Coordinat3D::operator/=(const double f)<br/>
+{<br/>
+&nbsp;&nbsp;assert(f != 0.0);<br/>
+&nbsp;&nbsp;m_co[0] /= f;<br/>
+&nbsp;&nbsp;m_co[1] /= f;<br/>
+&nbsp;&nbsp;m_co[2] /= f;<br/>
+&nbsp;&nbsp;return *this;<br/>
+}<br/>
+<br/>
+ribi::Coordinat3D&amp; ribi::Coordinat3D::operator*=(const double f) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;m_co[0] *= f;<br/>
+&nbsp;&nbsp;m_co[1] *= f;<br/>
+&nbsp;&nbsp;m_co[2] *= f;<br/>
+&nbsp;&nbsp;return *this;<br/>
+}<br/>
+<br/>
 double ribi::Distance(const Coordinat3D&amp; lhs,const Coordinat3D&amp; rhs)<br/>
 {<br/>
 &nbsp;&nbsp;const double dx = lhs.GetX() - rhs.GetX();<br/>
@@ -338,6 +355,28 @@ const ribi::Coordinat3D ribi::operator+(<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
+const ribi::Coordinat3D ribi::operator/(<br/>
+&nbsp;&nbsp;const Coordinat3D&amp; c,<br/>
+&nbsp;&nbsp;const double f)<br/>
+{<br/>
+&nbsp;&nbsp;assert(f != 0.0);<br/>
+&nbsp;&nbsp;return Coordinat3D(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c.GetX() / f,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c.GetY() / f,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c.GetZ() / f<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
+<br/>
+const ribi::Coordinat3D ribi::operator*(<br/>
+&nbsp;&nbsp;const Coordinat3D&amp; c,<br/>
+&nbsp;&nbsp;const double f) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return Coordinat3D(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c.GetX() * f,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c.GetY() * f,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;c.GetZ() * f<br/>
+&nbsp;&nbsp;);<br/>
+}<br/>
 <br/>
 <br/>
 bool ribi::operator==(const Coordinat3D&amp; lhs, const Coordinat3D&amp; rhs)<br/>
@@ -403,6 +442,9 @@ struct Coordinat3D<br/>
 &nbsp;&nbsp;Coordinat3D&amp; operator+=(const Coordinat3D&amp; rhs) noexcept;<br/>
 &nbsp;&nbsp;Coordinat3D&amp; operator-=(const Coordinat3D&amp; rhs) noexcept;<br/>
 <br/>
+&nbsp;&nbsp;Coordinat3D&amp; operator/=(const double f);<br/>
+&nbsp;&nbsp;Coordinat3D&amp; operator*=(const double f) noexcept;<br/>
+<br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;static const int dimensionality = 3;<br/>
 &nbsp;&nbsp;std::array&lt;double,dimensionality&gt; m_co;<br/>
@@ -418,6 +460,16 @@ const Coordinat3D operator-(<br/>
 const Coordinat3D operator+(<br/>
 &nbsp;&nbsp;const Coordinat3D&amp; v1,<br/>
 &nbsp;&nbsp;const Coordinat3D&amp; v2);<br/>
+<br/>
+///Divide all components of the coordinat by f<br/>
+const Coordinat3D operator/(<br/>
+&nbsp;&nbsp;const Coordinat3D&amp; c,<br/>
+&nbsp;&nbsp;const double f);<br/>
+<br/>
+///Multipl all components of the coordinat by f<br/>
+const Coordinat3D operator*(<br/>
+&nbsp;&nbsp;const Coordinat3D&amp; c,<br/>
+&nbsp;&nbsp;const double f) noexcept;<br/>
 <br/>
 ///Calculate the distance between two coordinats<br/>
 double Distance(const Coordinat3D&amp; lhs,const Coordinat3D&amp; rhs);<br/>

@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>ConstExample2</title>
+  <meta name="description" content="C++ ConstExample2"/>
+  <meta name="keywords" content="C++ ConstExample2 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppConstExample2.htm">ConstExample2</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppConstExample2-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppConstExample2/CppConstExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppConstExample2/CppConstExample2.pro" border = "1"><tr><td><code>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<br/>
+#<br/>
+#<br/>
+# Type of compile<br/>
+#<br/>
+#<br/>
+<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+&nbsp;&nbsp;<a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+}<br/>
+<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+<br/>
+unix {<br/>
+&nbsp;&nbsp;<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+}<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppConstExample2/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppConstExample2/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Non-<b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to non-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*p <a href="CppOperatorAssign.htm">=</a> 24;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 24);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Const <a href="CppPointer.htm">pointer</a> to non-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;*p <a href="CppOperatorAssign.htm">=</a> 24;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 24);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Non-<b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> * p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>*p <a href="CppOperatorAssign.htm">=</a> 24;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 24);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Const <a href="CppPointer.htm">pointer</a> to <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> * <b><a href="CppConst.htm">const</a></b> p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 42);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>*p <a href="CppOperatorAssign.htm">=</a> 24;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(*p <a href="CppOperatorEqual.htm">==</a> 24);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> p; <a href="CppComment.htm">//</a>It is still possible to <b><a href="CppDelete.htm">delete</a></b> p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!p);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
