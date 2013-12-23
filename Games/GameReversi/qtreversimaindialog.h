@@ -10,26 +10,26 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestReversiMainDialog;
+  class QtReversiMainDialog;
 }
 
 namespace ribi {
 
 struct ReversiWidget;
 
-class QtTestReversiMainDialog : public QtHideAndShowDialog
+class QtReversiMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestReversiMainDialog(QWidget *parent = 0);
-  QtTestReversiMainDialog(const QtTestReversiMainDialog&) = delete;
-  QtTestReversiMainDialog& operator=(const QtTestReversiMainDialog&) = delete;
-  ~QtTestReversiMainDialog();
+  explicit QtReversiMainDialog(QWidget *parent = 0);
+  QtReversiMainDialog(const QtReversiMainDialog&) = delete;
+  QtReversiMainDialog& operator=(const QtReversiMainDialog&) = delete;
+  ~QtReversiMainDialog();
 
 
 private:
-  Ui::QtTestReversiMainDialog *ui;
+  Ui::QtReversiMainDialog *ui;
   boost::shared_ptr<ReversiWidget> m_reversi;
 };
 

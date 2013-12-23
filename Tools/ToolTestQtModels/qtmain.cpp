@@ -18,19 +18,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestQtModels.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
 #include "qttooltestqtmodelsmenudialog.h"
+#pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  QtToolTestQtModelsMenuDialog w;
+  ribi::QtToolTestQtModelsMenuDialog w;
   w.show();
-  
   return a.exec();
 }

@@ -6,6 +6,13 @@
 #include <sstream>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lexical_cast.hpp>
+#pragma GCC diagnostic pop
+
+
 #include "reversiboard.h"
 #include "reversiwidget.h"
 #include "reversimaindialog.h"
@@ -17,13 +24,43 @@ int ribi::reversi::MenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc != 1)
+  if (argc > 3)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
+  int size = 4;
+  if (argc == 3)
+  {
+    if (
+         argv[1] != "-s" && argv[1] != "--size" && argv[1] != "-sz"
+      && argv[1] !=  "s" && argv[1] !=  "size" && argv[1] !=  "sz"
+    )
+    {
+      std::cout << "Warning: the correct argument flag should be '-s' or '--size'" << '\n';
+      //Parse next value anyway
+    }
+  }
+  if (argc > 1)
+  {
+    try
+    {
+      size = boost::lexical_cast<int>(argv[ argc - 1]);
+    }
+    catch (boost::bad_lexical_cast&)
+    {
+      std::cout << "Error: size must be an integer" << '\n';
+      return 1;
+    }
+  }
+  if (size < 4)
+  {
+    std::cout << "Error: the minimum board size is 4x4. Please supply a supported size" << '\n';
+    return 1;
+  }
+
   MainDialog d;
-  d.Execute(4);
+  d.Execute(size);
   return 0;
 }
 
@@ -48,10 +85,12 @@ const ribi::Help ribi::reversi::MenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('s',"size","set the size of the board (flag can also be omitted, default is 4)")
     },
     {
-
+      "reversi -s 10",
+      "reversi 10",
+      "reversi"
     }
   );
 }

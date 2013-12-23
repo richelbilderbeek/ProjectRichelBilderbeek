@@ -355,14 +355,12 @@ std::ostream& ribi::reversi::operator<<(std::ostream& os, const ribi::reversi::B
 
 std::istream& ribi::reversi::operator>>(std::istream& is, ribi::reversi::Board& r)
 {
-  TRACE_FUNC();
   std::vector<std::string> v;
   {
     //Read first line
     {
       std::string s;
       is >> s;
-      TRACE(s);
       assert(is);
       v.push_back(s);
     }
@@ -373,9 +371,6 @@ std::istream& ribi::reversi::operator>>(std::istream& is, ribi::reversi::Board& 
     {
       std::string s;
       is >> s;
-      TRACE(i);
-      TRACE(size);
-      TRACE(s);
       assert(is);
       assert(s.size() == v[0].size());
       v.push_back(s);

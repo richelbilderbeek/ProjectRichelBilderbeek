@@ -1,14 +1,14 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttestreversimaindialog.h"
+#include "qtreversimaindialog.h"
 #include "reversiwidget.h"
-#include "ui_qttestreversimaindialog.h"
+#include "ui_qtreversimaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestReversiMainDialog::QtTestReversiMainDialog(QWidget *parent) :
+ribi::QtReversiMainDialog::QtReversiMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestReversiMainDialog),
+  ui(new Ui::QtReversiMainDialog),
   m_reversi(new ReversiWidget)
 {
   ui->setupUi(this);
@@ -16,7 +16,7 @@ ribi::QtTestReversiMainDialog::QtTestReversiMainDialog(QWidget *parent) :
   ui->layout->addWidget(m_reversi.get());
 }
 
-ribi::QtTestReversiMainDialog::~QtTestReversiMainDialog()
+ribi::QtReversiMainDialog::~QtReversiMainDialog()
 {
   delete ui;
 }

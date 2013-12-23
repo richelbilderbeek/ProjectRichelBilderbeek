@@ -39,7 +39,7 @@ const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const no
 {
   assert(!m_items.empty());
 
-  const CellIndex i = (*std::max_element(
+  CellIndex i = (*std::max_element(
     m_items.begin(),
     m_items.end(),
     [](const OwnerFileItem& lhs, const OwnerFileItem& rhs)
@@ -49,7 +49,7 @@ const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const no
   )).GetCellIndex();
 
   // +1, because if the highest cell index found is x, there are x+1 cells
-  return i + 1;
+  return ++i;
 }
 
 const ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept

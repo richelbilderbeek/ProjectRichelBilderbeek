@@ -1,12 +1,10 @@
-INCLUDEPATH += \
-    ../../Games/GameReversi
+include(../../Games/GameReversi/GameReversiConsole.pri)
+
+FORMS += \
+    ../../Games/GameReversi/qtreversimaindialog.ui
 
 SOURCES += \
-    ../../Games/GameReversi/reversimenudialog.cpp
+    ../../Games/GameReversi/qtreversimaindialog.cpp
 
-HEADERS  += \
-    ../../Games/GameReversi/reversimenudialog.h
-
-OTHER_FILES += \
-    ../../Games/GameReversi/Licence.txt
-
+HEADERS += \
+    ../../Games/GameReversi/qtreversimaindialog.h

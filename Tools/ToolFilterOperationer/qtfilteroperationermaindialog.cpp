@@ -102,16 +102,6 @@ void ribi::QtFilterOperationerMainDialog::ShowLoadedPixmap(const QPixmap& pixmap
   }
 }
 
-void ribi::QtFilterOperationerMainDialog::on_box_filter_rows_valueChanged(const QString &)
-{
-  //
-}
-
-void ribi::QtFilterOperationerMainDialog::on_box_filter_cols_valueChanged(const QString &)
-{
-  //
-}
-
 void ribi::QtFilterOperationerMainDialog::on_button_do_clicked()
 {
   const QPixmap& p { *m_source->pixmap() };
@@ -155,3 +145,85 @@ void ribi::QtFilterOperationerMainDialog::Test() noexcept
 }
 #endif
 
+
+void ribi::QtFilterOperationerMainDialog::on_box_filter_cols_valueChanged(int arg1)
+{
+  QAbstractTableModel * const abstract_model
+    = dynamic_cast<QAbstractTableModel *>(ui->filter->model());
+  assert(abstract_model);
+  QtUblasMatrixDoubleModel * const model = dynamic_cast<QtUblasMatrixDoubleModel*>(abstract_model);
+  assert(model);
+  {
+    const boost::numeric::ublas::matrix<double> v = model->GetRawData();
+    const int n_rows = v.size1();
+    //const int n_cols = v.size2();
+    const int n_cols = arg1;
+    boost::numeric::ublas::matrix<double> w(n_rows,n_cols);
+    for (int y = 0; y != n_rows; ++y)
+    {
+      for (int x = 0; x != n_cols; ++x)
+      {
+        //In old range?
+        if (y < static_cast<int>(v.size1()) && x < static_cast<int>(v.size2()))
+        {
+          w(y,x) = v(y,x);
+        }
+        else
+        {
+          w(y,x) = 0.0;
+        }
+      }
+    }
+    model->SetRawData(w);
+  }
+  OnAnyChange();
+}
+
+void ribi::QtFilterOperationerMainDialog::on_box_filter_rows_valueChanged(int arg1)
+{
+  QAbstractTableModel * const abstract_model
+    = dynamic_cast<QAbstractTableModel *>(ui->filter->model());
+  assert(abstract_model);
+  QtUblasMatrixDoubleModel * const model = dynamic_cast<QtUblasMatrixDoubleModel*>(abstract_model);
+  assert(model);
+  {
+    const boost::numeric::ublas::matrix<double> v = model->GetRawData();
+    //const int n_rows = v.size1();
+    const int n_rows = arg1;
+    const int n_cols = v.size2();
+    //const int n_cols = arg1;
+    boost::numeric::ublas::matrix<double> w(n_rows,n_cols);
+    for (int y = 0; y != n_rows; ++y)
+    {
+      for (int x = 0; x != n_cols; ++x)
+      {
+        //In old range?
+        if (y < v.size1() && x < v.size2())
+        {
+          w(y,x) = v(y,x);
+        }
+        else
+        {
+          w(y,x) = 0.0;
+        }
+      }
+    }
+    model->SetRawData(w);
+  }
+  OnAnyChange();
+}
+
+void ribi::QtFilterOperationerMainDialog::OnAnyChange() noexcept
+{
+  QAbstractTableModel * const abstract_model
+    = dynamic_cast<QAbstractTableModel *>(ui->filter->model());
+  assert(abstract_model);
+  QtUblasMatrixDoubleModel * const model = dynamic_cast<QtUblasMatrixDoubleModel*>(abstract_model);
+  assert(model);
+  const boost::numeric::ublas::matrix<double> v = model->GetRawData();
+  const int n_rows = v.size1();
+  const int n_cols = v.size2();
+  assert(n_rows > 0);
+  assert(n_cols > 0);
+  ui->button_do->setEnabled(n_rows > 1 || n_cols > 1);
+}

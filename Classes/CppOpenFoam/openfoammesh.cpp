@@ -388,7 +388,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Cell> > ribi::foam::Mesh::Create
   const Files& files)
 {
   std::vector<boost::shared_ptr<ribi::foam::Cell> > cells;
-  const CellIndex n_cells = files.GetNeighbour()->CountNumberOfCells();
+  const CellIndex n_cells = files.GetOwner()->CountNumberOfCells();
   assert(n_cells == files.GetOwner()->CountNumberOfCells());
   assert(n_cells > CellIndex(0));
   for (CellIndex i=CellIndex(0); i!=n_cells; ++i)

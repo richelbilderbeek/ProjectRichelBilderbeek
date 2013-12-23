@@ -35,6 +35,7 @@ struct Cell
 
   //const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
   const std::vector<boost::shared_ptr<const Face> > GetOwnedFaces() const noexcept;
+  const std::vector<boost::shared_ptr<      Face> > GetOwnedFaces()       noexcept { return m_owned_faces; }
 
   bool HasFace(const boost::shared_ptr<const Face> face) const noexcept;
   bool OwnsFace(const boost::shared_ptr<const Face> face) const noexcept;

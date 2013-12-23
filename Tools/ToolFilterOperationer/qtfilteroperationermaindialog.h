@@ -29,12 +29,14 @@ public:
   ~QtFilterOperationerMainDialog();
 
 private slots:
-  void on_box_filter_cols_valueChanged(const QString &arg1);
-  void on_box_filter_rows_valueChanged(const QString &arg1);
   void on_button_do_clicked();
   void on_button_load_clicked();
 
   void on_button_save_clicked();
+
+  void on_box_filter_cols_valueChanged(int arg1);
+
+  void on_box_filter_rows_valueChanged(int arg1);
 
 private:
   Ui::QtFilterOperationerMainDialog *ui;
@@ -46,6 +48,7 @@ private:
   ///The source
   QLabel * m_source;
 
+  void OnAnyChange() noexcept;
   void ShowLoadedPixmap(const QPixmap& pixmap);
   #ifndef NDEBUG
   static void Test() noexcept;

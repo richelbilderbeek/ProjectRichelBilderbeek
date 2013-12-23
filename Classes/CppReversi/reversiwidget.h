@@ -2,7 +2,6 @@
 #define REVERSIWIDGET_H
 
 #include <string>
-#include <stack>
 #include <vector>
 
 #pragma GCC diagnostic push
@@ -26,6 +25,12 @@ struct Widget
 
   Widget(const int size = 10);
 
+  //Need deep copies, due to m_board
+  Widget(const Widget& other);
+
+  //Need deep copies, due to m_board
+  Widget& operator=(const Widget& other);
+
   bool CanDoMove(const boost::shared_ptr<const Move> move) const noexcept;
 
   void DoMove(const boost::shared_ptr<const Move> move) noexcept;
@@ -47,10 +52,10 @@ struct Widget
   boost::shared_ptr<Board> m_board;
   int m_current_player;
 
-  //The undo stack:
+  //The undo stack (use std::vector because it is a true STL container)
   //first: the Widget before the Move
   //second: the last Move done in the game
-  std::stack<std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Move>>> m_undo;
+  std::vector<std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Move>>> m_undo;
 
   bool CanDoMove(const int x, const int y) const noexcept;
   bool CanDoMovePass() const noexcept;
@@ -72,6 +77,7 @@ struct Widget
   static void Test() noexcept;
   #endif
 
+  friend bool operator==(const Widget& lhs, const Widget& rhs);
 };
 
 bool operator==(const Widget& lhs, const Widget& rhs);

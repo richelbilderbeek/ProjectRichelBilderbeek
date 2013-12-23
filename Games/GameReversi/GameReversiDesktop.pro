@@ -13,6 +13,7 @@ include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
 #Specific
+include(../../Classes/CppReversi/CppReversi.pri)
 include(GameReversiDesktop.pri)
 
 #Won't link: no main

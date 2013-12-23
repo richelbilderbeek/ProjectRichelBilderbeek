@@ -17,7 +17,7 @@
    <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab_original">
       <attribute name="title">
@@ -41,8 +41,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>526</width>
-            <height>385</height>
+            <width>63</width>
+            <height>16</height>
            </rect>
           </property>
          </widget>
@@ -59,14 +59,14 @@
         <widget class="QWidget" name="widget_filter_rows" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLabel" name="label_filter_rows">
+           <widget class="QLabel" name="label_filter_cols">
             <property name="text">
-             <string>Rows</string>
+             <string>Columns</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="box_filter_rows">
+           <widget class="QSpinBox" name="box_filter_cols">
             <property name="minimum">
              <number>1</number>
             </property>
@@ -98,14 +98,14 @@
         <widget class="QWidget" name="widget_filter_cols" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
-           <widget class="QLabel" name="label_filter_cols">
+           <widget class="QLabel" name="label_filter_rows">
             <property name="text">
-             <string>Columns</string>
+             <string>Rows</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="box_filter_cols">
+           <widget class="QSpinBox" name="box_filter_rows">
             <property name="minimum">
              <number>1</number>
             </property>
@@ -173,8 +173,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>526</width>
-            <height>367</height>
+            <width>63</width>
+            <height>16</height>
            </rect>
           </property>
          </widget>

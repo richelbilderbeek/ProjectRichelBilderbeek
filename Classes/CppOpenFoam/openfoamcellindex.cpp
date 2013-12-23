@@ -103,3 +103,4 @@ bool ribi::foam::operator<=(const CellIndex& lhs, const CellIndex& rhs) noexcept
 {
   return !(lhs > rhs);
 }
+

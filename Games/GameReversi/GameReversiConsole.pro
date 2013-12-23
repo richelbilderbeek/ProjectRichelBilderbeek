@@ -2,7 +2,7 @@ include(../../ConsoleApplication.pri)
 
 #Libs
 include(../../Libraries/Boost.pri)
-include(../../Libraries/Fparser.pri)
+#include(../../Libraries/Fparser.pri)
 
 #Console
 include(../../Classes/CppAbout/CppAbout.pri)
