@@ -220,7 +220,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
       const boost::shared_ptr<ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
       assert(old_concept);
       assert(concept != old_concept);
-      assert(IsEqual(*concept,*old_concept));
+      assert(*concept == *old_concept);
       {
         QtRateConceptDialogNewName d(concept_map);
         assert(concept->GetRatingComplexity() == d.ui->box_complexity->currentIndex());
@@ -234,7 +234,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
         d.close();
         //Need to call the destructor
       }
-      assert(IsEqual(*concept,*old_concept) && "Without clicking OK, QtRateStrategyDialog must not change the concept");
+      assert(*concept == *old_concept && "Without clicking OK, QtRateStrategyDialog must not change the concept");
     }
   }
   {
@@ -256,7 +256,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
 
       assert(old_concept);
       assert(concept != old_concept);
-      assert(IsEqual(*concept,*old_concept));
+      assert(*concept == *old_concept);
       QtRateConceptDialogNewName d(concept_map);
       assert(concept->GetRatingComplexity()   == d.ui->box_complexity->currentIndex());
       assert(concept->GetRatingConcreteness() == d.ui->box_concreteness->currentIndex());
@@ -266,7 +266,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
       d.ui->box_concreteness->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
       d.ui->box_specificity->setCurrentIndex(((d.ui->box_complexity->currentIndex() + 2) % 4) - 1);
       d.ui->button_ok->click();
-      assert(!IsEqual(*concept,*old_concept) && "QtRateStrategyDialog must change the concept when clicked OK");
+      assert(*concept != *old_concept && "QtRateStrategyDialog must change the concept when clicked OK");
     }
   }
   TRACE("Finished ribi::cmap::QtRateStrategyDialog::Test successfully");

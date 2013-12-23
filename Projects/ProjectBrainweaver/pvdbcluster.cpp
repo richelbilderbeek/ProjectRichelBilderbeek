@@ -108,7 +108,7 @@ bool ribi::pvdb::IsEqual(const ribi::pvdb::Cluster& lhs, const ribi::pvdb::Clust
   {
     assert(lhs_concepts[i]);
     assert(rhs_concepts[i]);
-    if (!IsEqual(*lhs_concepts[i],*rhs_concepts[i])) return false;
+    if (*lhs_concepts[i] != *rhs_concepts[i]) return false;
   }
   return true;
 }

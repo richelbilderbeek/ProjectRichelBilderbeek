@@ -172,11 +172,11 @@ void ribi::cmap::QtRateExamplesDialogNewName::Test() noexcept
         assert(a != b);
         if (i == j)
         {
-          assert(IsEqual(*a,*b));
+          assert(*a == *b);
         }
         else
         {
-          assert(!IsEqual(*a,*b));
+          assert(*a != *b);
         }
       }
     }

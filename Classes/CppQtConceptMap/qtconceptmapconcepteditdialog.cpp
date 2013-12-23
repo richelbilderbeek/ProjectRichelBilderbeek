@@ -153,14 +153,14 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
       {
         const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
         assert(concept != old_concept);
-        assert(IsEqual(*concept,*old_concept));
+        assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         //Do nothing...
         d.on_button_ok_clicked();
         #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         assert(d.WriteToConcept() == old_concept);
         #else
-        assert(IsEqual(*concept,*old_concept));
+        assert(*concept == *old_concept);
         #endif
       }
     );
@@ -172,7 +172,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
         const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
-        assert(IsEqual(*concept,*old_concept));
+        assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
         d.on_button_ok_clicked();
@@ -192,7 +192,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
         const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
-        assert(IsEqual(*concept,*old_concept));
+        assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         assert(d.ui->edit_text->text().isEmpty());
         d.ui->edit_text->setText("TO BE ADDED EXAMPLE");
@@ -215,7 +215,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
         const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
-        assert(IsEqual(*concept,*old_concept));
+        assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         //Change name
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
@@ -227,7 +227,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
         #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         TRACE("TODO");
         #else
-        assert(IsEqual(*concept,*old_concept));
+        assert(*concept == *old_concept);
         #endif
       }
     );

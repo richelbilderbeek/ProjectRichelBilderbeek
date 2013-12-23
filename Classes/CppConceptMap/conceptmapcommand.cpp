@@ -26,7 +26,7 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) const noexcept
 bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->GetConceptMap();
+  return widget->GetConceptMap().get();
 }
 
 void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widget) const noexcept

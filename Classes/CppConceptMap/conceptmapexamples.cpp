@@ -240,17 +240,21 @@ bool ribi::cmap::operator==(const cmap::Examples& lhs, const cmap::Examples& rhs
   );
 }
 
-bool ribi::cmap::operator<(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs)
+bool ribi::cmap::operator!=(const cmap::Examples& lhs, const cmap::Examples& rhs)
 {
-  assert(lhs && rhs);
-  if (lhs->Get().size() < rhs->Get().size()) return true;
-  if (lhs->Get().size() > rhs->Get().size()) return false;
-  assert(lhs->Get().size() == rhs->Get().size());
-  const int sz = lhs->Get().size();
+  return !(lhs == rhs);
+}
+
+bool ribi::cmap::operator<(const cmap::Examples& lhs, const cmap::Examples& rhs)
+{
+  if (lhs.Get().size() < rhs.Get().size()) return true;
+  if (lhs.Get().size() > rhs.Get().size()) return false;
+  assert(lhs.Get().size() == rhs.Get().size());
+  const int sz = lhs.Get().size();
   for (int i = 0; i!=sz; ++i)
   {
-    if (lhs->Get()[i] < rhs->Get()[i]) return true;
-    if (lhs->Get()[i] > rhs->Get()[i]) return false;
+    if (lhs.Get()[i] < rhs.Get()[i]) return true;
+    if (lhs.Get()[i] > rhs.Get()[i]) return false;
   }
   return false;
 }

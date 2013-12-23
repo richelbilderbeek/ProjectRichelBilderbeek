@@ -273,7 +273,12 @@ bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs)
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
   return
-       operator==(*lhs.GetConcept(),*rhs.GetConcept())
+       *lhs.GetConcept() == *rhs.GetConcept()
     && lhs.GetX() == rhs.GetX()
     && lhs.GetY() == rhs.GetY();
+}
+
+bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs)
+{
+  return !(lhs == rhs);
 }

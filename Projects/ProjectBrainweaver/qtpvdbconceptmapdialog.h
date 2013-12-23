@@ -79,7 +79,7 @@ private:
   static cmap::QtConceptMapEditWidget * CreateWidget(const boost::shared_ptr<pvdb::File> file);
 
   ///NEW 2013-01-07
-  void OnConceptMapItemRequestsEdit(cmap::QtConceptMapItem* const item);
+  void OnConceptMapItemRequestsEdit(cmap::QtConceptMapElement* const item);
 
   #ifndef NDEBUG
   ///Test this class

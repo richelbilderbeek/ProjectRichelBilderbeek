@@ -582,7 +582,7 @@ bool ribi::pvdb::IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
      )
   && (
        (!lhs.GetConceptMap() && !rhs.GetConceptMap())
-       || IsEqual(*lhs.GetConceptMap(),*rhs.GetConceptMap())
+       || *lhs.GetConceptMap() == *rhs.GetConceptMap()
      )
   && lhs.GetStudentName() == rhs.GetStudentName()
   && lhs.GetVersion() == rhs.GetVersion();

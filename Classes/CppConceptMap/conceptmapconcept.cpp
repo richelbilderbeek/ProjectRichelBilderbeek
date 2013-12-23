@@ -201,7 +201,8 @@ bool ribi::cmap::operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Co
   assert(lhs_examples);
   const boost::shared_ptr<const cmap::Examples> rhs_examples = rhs.GetExamples();
   assert(rhs_examples);
-  return operator==(*lhs_examples,*rhs_examples)
+  return
+      *lhs_examples               == *rhs_examples
     && lhs.GetIsComplex()          == rhs.GetIsComplex()
     && lhs.GetName()               == rhs.GetName()
     && lhs.GetRatingComplexity()   == rhs.GetRatingComplexity()
@@ -209,6 +210,27 @@ bool ribi::cmap::operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Co
     && lhs.GetRatingSpecificity()  == rhs.GetRatingSpecificity();
 }
 
+bool ribi::cmap::operator!=(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)
+{
+  return !(lhs == rhs);
+}
+
+bool ribi::cmap::operator<(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)
+{
+  if (lhs.GetName() < rhs.GetName()) return true;
+  if (lhs.GetName() > rhs.GetName()) return false;
+  if (*lhs.GetExamples() < *rhs.GetExamples()) return true;
+  if (*lhs.GetExamples() != *rhs.GetExamples()) return false;
+  assert(*lhs.GetExamples() == *rhs.GetExamples());
+  if (lhs.GetRatingComplexity() < rhs.GetRatingComplexity()) return true;
+  if (lhs.GetRatingComplexity() > rhs.GetRatingComplexity()) return false;
+  if (lhs.GetRatingConcreteness() < rhs.GetRatingConcreteness()) return true;
+  if (lhs.GetRatingConcreteness() > rhs.GetRatingConcreteness()) return false;
+  return lhs.GetRatingSpecificity() < rhs.GetRatingSpecificity();
+
+}
+
+/*
 bool ribi::cmap::operator<(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs)
 {
   assert(lhs); assert(rhs);
@@ -241,3 +263,4 @@ bool ribi::cmap::operator<(const boost::shared_ptr<ribi::cmap::Concept>& lhs, co
   assert(lhs); assert(rhs);
   return boost::shared_ptr<const ribi::cmap::Concept>(lhs) < boost::shared_ptr<const ribi::cmap::Concept>(rhs);
 }
+*/

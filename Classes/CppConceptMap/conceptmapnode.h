@@ -95,6 +95,7 @@ struct Node : public Element
 };
 
 bool operator==(const cmap::Node& lhs, const cmap::Node& rhs);
+bool operator!=(const cmap::Node& lhs, const cmap::Node& rhs);
 
 } //~namespace cmap
 

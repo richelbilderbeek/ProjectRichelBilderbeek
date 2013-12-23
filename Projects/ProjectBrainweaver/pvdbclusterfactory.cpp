@@ -34,7 +34,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCop
       const boost::shared_ptr<ribi::cmap::Concept> d = ribi::cmap::ConceptFactory::DeepCopy(c);
       assert(d);
       assert(c != d);
-      assert(IsEqual(*c,*d));
+      assert(*c == *d);
       return d;
     }
   );

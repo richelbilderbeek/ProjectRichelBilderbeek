@@ -55,11 +55,11 @@ struct ConceptMap
   bool Empty() const;
 
   ///Get the edges
-  const std::vector<boost::shared_ptr<const cmap::Edge> >  GetEdges() const;
+  const std::vector<boost::shared_ptr<const Edge> >  GetEdges() const;
   const std::vector<boost::shared_ptr<      Edge> >& GetEdges() { return m_edges; }
 
   ///Get the nodes
-  const std::vector<boost::shared_ptr<const cmap::Node> >  GetNodes() const;
+  const std::vector<boost::shared_ptr<const Node> >  GetNodes() const;
   const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
 
   ///Get the focus question

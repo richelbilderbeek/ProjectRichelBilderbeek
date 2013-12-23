@@ -63,6 +63,7 @@ struct Widget
   #endif
 
   //friend class Command;
+  friend class CommandDeleteConceptMap;
   friend class CommandStartConceptMap;
   friend bool operator==(const Widget& lhs, const Widget& rhs);
 

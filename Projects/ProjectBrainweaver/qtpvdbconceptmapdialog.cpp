@@ -27,7 +27,7 @@
 #include "conceptmapnode.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapeditwidget.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "qtconceptmap.h"
 #include "qtconceptmapedge.h"
 #include "qtpvdbfiledialog.h"
@@ -272,7 +272,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::on_button_print_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(cmap::QtConceptMapItem* const item)
+void ribi::pvdb::QtPvdbConceptMapDialog::OnConceptMapItemRequestsEdit(cmap::QtConceptMapElement* const item)
 {
   assert(item);
   {

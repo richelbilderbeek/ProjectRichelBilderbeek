@@ -24,15 +24,15 @@ struct Edge : public Element
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
   const boost::shared_ptr<const ribi::cmap::Concept> GetConcept() const { return m_concept; }
-  const boost::shared_ptr< ribi::cmap::Concept> GetConcept() { return m_concept; }
+  const boost::shared_ptr<      ribi::cmap::Concept> GetConcept()       { return m_concept; }
 
   ///Get the Node this edge originates from
   const boost::shared_ptr<const cmap::Node> GetFrom() const { return m_from; }
-  const boost::shared_ptr< cmap::Node> GetFrom() { return m_from; }
+  const boost::shared_ptr<      cmap::Node> GetFrom()       { return m_from; }
 
   ///Get the Node index this edge goes to
   const boost::shared_ptr<const cmap::Node> GetTo() const { return m_to; }
-  const boost::shared_ptr< cmap::Node> GetTo() { return m_to; }
+  const boost::shared_ptr<      cmap::Node> GetTo()       { return m_to; }
 
   ///Get the x coordinat
   double GetX() const { return m_x; }
@@ -136,6 +136,7 @@ struct Edge : public Element
 };
 
 bool operator==(const cmap::Edge& lhs, const cmap::Edge& rhs);
+bool operator!=(const cmap::Edge& lhs, const cmap::Edge& rhs);
 
 ///Notes:
 /// [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior

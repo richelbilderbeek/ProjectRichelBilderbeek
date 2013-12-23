@@ -201,20 +201,25 @@ bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge&
 {
   assert(lhs.GetConcept()); assert(rhs.GetConcept());
   #ifndef NDEBUG
-  if (!operator==(*lhs.GetConcept(),*rhs.GetConcept())) TRACE("Concept differs");
-  if (!operator==(*lhs.GetFrom(),*rhs.GetFrom())) TRACE("From node differs");
-  if (!operator==(*lhs.GetTo(),*rhs.GetTo())) TRACE("To node differs");
-  if (!lhs.GetX()         == rhs.GetX()) TRACE("X differs");
-  if (!lhs.GetY()         == rhs.GetY()) TRACE("Y differs");
-  if (!lhs.HasHeadArrow() == rhs.HasHeadArrow()) TRACE("Has head arrow differs");
-  if (!lhs.HasTailArrow() == rhs.HasTailArrow()) TRACE("Has tail arrow differs");
+  if (*lhs.GetConcept()   != *rhs.GetConcept()) TRACE("Concept differs");
+  if (*lhs.GetFrom()      != *rhs.GetFrom()) TRACE("From node differs");
+  if (*lhs.GetTo()        != *rhs.GetTo()) TRACE("To node differs");
+  if ( lhs.GetX()         != rhs.GetX()) TRACE("X differs");
+  if ( lhs.GetY()         != rhs.GetY()) TRACE("Y differs");
+  if ( lhs.HasHeadArrow() != rhs.HasHeadArrow()) TRACE("Has head arrow differs");
+  if ( lhs.HasTailArrow() != rhs.HasTailArrow()) TRACE("Has tail arrow differs");
   #endif
   return
-       operator==(*lhs.GetConcept(),*rhs.GetConcept())
-    && operator==(*lhs.GetFrom(),*rhs.GetFrom())
-    && operator==(*lhs.GetTo(),*rhs.GetTo())
-    && lhs.GetX()         == rhs.GetX()
-    && lhs.GetY()         == rhs.GetY()
-    && lhs.HasHeadArrow() == rhs.HasHeadArrow()
-    && lhs.HasTailArrow() == rhs.HasTailArrow();
+       *lhs.GetConcept()   == *rhs.GetConcept()
+    && *lhs.GetFrom()      == *rhs.GetFrom()
+    && *lhs.GetTo()        == *rhs.GetTo()
+    &&  lhs.GetX()         == rhs.GetX()
+    &&  lhs.GetY()         == rhs.GetY()
+    &&  lhs.HasHeadArrow() == rhs.HasHeadArrow()
+    &&  lhs.HasTailArrow() == rhs.HasTailArrow();
+}
+
+bool ribi::cmap::operator!=(const cmap::Edge& lhs, const cmap::Edge& rhs)
+{
+  return !(lhs == rhs);
 }

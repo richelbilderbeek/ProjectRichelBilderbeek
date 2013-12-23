@@ -332,16 +332,25 @@ bool ribi::cmap::ConceptMap::HasSameContent(
   const ribi::cmap::ConceptMap& lhs,
   const ribi::cmap::ConceptMap& rhs)
 {
+  const bool trace_verbose = true;
   if (lhs.GetQuestion() != rhs.GetQuestion())
   {
+    if (trace_verbose) { TRACE("Questions differ"); }
     return false;
   }
   if (lhs.GetEdges().size() != rhs.GetEdges().size())
   {
+    if (trace_verbose) { TRACE("Number of edges differ"); }
     return false;
   }
   if (lhs.GetNodes().size() != rhs.GetNodes().size())
   {
+    if (trace_verbose)
+    {
+      TRACE("Number of nodes differ");
+      TRACE(lhs.GetNodes().size());
+      TRACE(rhs.GetNodes().size());
+    }
     return false;
   }
   //Same Concepts
@@ -372,11 +381,12 @@ bool ribi::cmap::ConceptMap::HasSameContent(
       [](const boost::shared_ptr<const ribi::cmap::Concept>& a,
         const boost::shared_ptr<const ribi::cmap::Concept>& b)
         {
-          return operator==(*a,*b);
+          return *a == *b;
         }
       )
       != std::make_pair(concepts_lhs.end(),concepts_rhs.end()))
     {
+      if (trace_verbose) { TRACE("Node concepts differ"); }
       return false;
     }
   }
@@ -408,11 +418,12 @@ bool ribi::cmap::ConceptMap::HasSameContent(
       [](const boost::shared_ptr<const ribi::cmap::Concept>& a,
         const boost::shared_ptr<const ribi::cmap::Concept>& b)
         {
-          return operator==(*a,*b);
+          return *a == *b;
         }
       )
       != std::make_pair(concepts_lhs.end(),concepts_rhs.end()))
     {
+      if (trace_verbose) { TRACE("Edge concepts differ"); }
       return false;
     }
   }
@@ -488,6 +499,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
     std::sort(w.begin(),w.end());
     if (v != w)
     {
+      #define REALLY_SHOW_ME_THIS_7364894385876473475934758934753
       #ifdef REALLY_SHOW_ME_THIS_7364894385876473475934758934753
       #ifndef NDEBUG
       for (int i=0; i!=sz; ++i)
@@ -498,7 +510,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
           << ") , ("
           << std::get<0>(w[i]) << "," << std::get<1>(w[i]) << "," << std::get<2>(w[i])
           << ")";
-
+        TRACE(s);
       }
       #endif
       #endif

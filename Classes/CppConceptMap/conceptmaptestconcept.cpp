@@ -44,32 +44,32 @@ void ribi::cmap::Concept::Test() noexcept
       assert(b); //FAILS AT CROSSCOMPILER
       assert(a);
       assert(a!=b);
-      assert(operator==(*a,*a));
-      assert(operator==(*b,*a));
-      assert(operator==(*a,*b));
-      assert(operator==(*b,*b));
+      assert(*a == *a);
+      assert(*b == *a);
+      assert(*a == *b);
+      assert(*b == *b);
       for (int j=0; j!=sz; ++j)
       {
         const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::GetTests().at(j);
         const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::GetTests().at(j);
         assert(c); assert(d);
-        assert(operator==(*c,*c));
-        assert(operator==(*d,*c));
-        assert(operator==(*c,*d));
-        assert(operator==(*d,*d));
+        assert(*c == *c);
+        assert(*d == *c);
+        assert(*c == *d);
+        assert(*d == *d);
         if (i==j)
         {
-          assert(operator==(*a,*c)); assert(operator==(*a,*d));
-          assert(operator==(*b,*c)); assert(operator==(*b,*d));
-          assert(operator==(*c,*a)); assert(operator==(*c,*b));
-          assert(operator==(*d,*a)); assert(operator==(*d,*b));
+          assert(*a == *c); assert(*a == *d);
+          assert(*b == *c); assert(*b == *d);
+          assert(*c == *a); assert(*c == *b);
+          assert(*d == *a); assert(*d == *b);
         }
         else
         {
-          assert(!operator==(*a,*c)); assert(!operator==(*a,*d));
-          assert(!operator==(*b,*c)); assert(!operator==(*b,*d));
-          assert(!operator==(*c,*a)); assert(!operator==(*c,*b));
-          assert(!operator==(*d,*a)); assert(!operator==(*d,*b));
+          assert(*a != *c); assert(*a != *d);
+          assert(*b != *c); assert(*b != *d);
+          assert(*c != *a); assert(*c != *b);
+          assert(*d != *a); assert(*d != *b);
         }
       }
     }
@@ -83,8 +83,8 @@ void ribi::cmap::Concept::Test() noexcept
       const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::Create("2");
       const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::Create("2");
       assert(a); assert(b); assert(c); assert(d);
-      assert(a < c); assert(a < d);
-      assert(b < c); assert(b < d);
+      assert(*a < *c); assert(*a < *d);
+      assert(*b < *c); assert(*b < *d);
     }
     //Check correct ordering by examples' size, sizes 0 versus 1
     {
@@ -93,8 +93,8 @@ void ribi::cmap::Concept::Test() noexcept
       const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2",Competency::misc} } );
       const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"2",Competency::misc} } );
       assert(a); assert(b); assert(c); assert(d);
-      assert(a < c); assert(a < d);
-      assert(b < c); assert(b < d);
+      assert(*a < *c); assert(*a < *d);
+      assert(*b < *c); assert(*b < *d);
     }
     //Check correct ordering by examples' size, sizes 1 versus 2
     {
@@ -103,8 +103,8 @@ void ribi::cmap::Concept::Test() noexcept
       const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2",Competency::misc},{"3",Competency::misc} } );
       const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"2",Competency::misc},{"3",Competency::misc} } );
       assert(a); assert(b); assert(c); assert(d);
-      assert(a < c); assert(a < d);
-      assert(b < c); assert(b < d);
+      assert(*a < *c); assert(*a < *d);
+      assert(*b < *c); assert(*b < *d);
     }
     //Check correct ordering for equal examples' size, lexicographically in the 2nd text
     {
@@ -113,8 +113,8 @@ void ribi::cmap::Concept::Test() noexcept
       const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2",Competency::misc},{"4",Competency::misc} } );
       const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"2",Competency::misc},{"4",Competency::misc} } );
       assert(a); assert(b); assert(c); assert(d);
-      assert(a < c); assert(a < d);
-      assert(b < c); assert(b < d);
+      assert(*a < *c); assert(*a < *d);
+      assert(*b < *c); assert(*b < *d);
     }
   }
   //Test XML conversion
@@ -134,7 +134,7 @@ void ribi::cmap::Concept::Test() noexcept
         const std::string s = ToXml(c);
         const boost::shared_ptr<ribi::cmap::Concept> d = FromXml(s);
         assert(d);
-        assert(operator==(*c,*d));
+        assert(*c == *d);
       }
     );
   }

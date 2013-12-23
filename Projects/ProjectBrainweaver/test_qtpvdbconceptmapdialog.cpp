@@ -29,7 +29,7 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "qtconceptmap.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapnode.h"
@@ -288,7 +288,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<pvdb::File> file_again = pvdb::File::Load(pvdb::File::GetTestFileName());
 
     assert(cmap::ConceptMap::HasSameContent(*file->GetConceptMap(),*file_again->GetConceptMap()));
-    assert(IsEqual(*file->GetConceptMap(),*file_again->GetConceptMap())
+    assert(*file->GetConceptMap() == *file_again->GetConceptMap()
       && "Save and load must yield identical concept maps");
 
     assert(file_again->GetConceptMap());
@@ -298,7 +298,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 
     //Let another dialog keep the node positions in the same place
     const QtPvdbConceptMapDialog d_again(file_again);
-    assert(IsEqual(*file->GetConceptMap(),*file_again->GetConceptMap())
+    assert(*file->GetConceptMap() == *file_again->GetConceptMap()
       && "QtPvdbConceptMapDialog must not reposition concept maps");
 
     std::remove(pvdb::File::GetTestFileName().c_str());

@@ -155,32 +155,28 @@ struct Concept
     const int rating_concreteness,
     const int rating_specificity);
   friend ConceptFactory;
-
 };
 
-
 bool operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
+bool operator!=(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
 
 ///Two Concept instances are ordered as follows:
 ///(1) Alphabetically on the name
 ///(2) (if the names are equal) On their Examples
-bool operator<(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs);
-bool operator<(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs);
-bool operator<(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs);
-bool operator<(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs);
+bool operator<(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
 
-bool operator<=(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
-bool operator>(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<const ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<ribi::cmap::Concept>& lhs, const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<ribi::cmap::Concept>& lhs,
+  const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
+  const boost::shared_ptr<      ribi::cmap::Concept>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<      ribi::cmap::Concept>& lhs,
+  const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
+  const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
 
 } //~namespace cmap
 } //~namespace ribi

@@ -49,10 +49,14 @@ private:
 
 
 bool operator==(const cmap::Examples& lhs, const cmap::Examples& rhs);
+bool operator!=(const cmap::Examples& lhs, const cmap::Examples& rhs);
 
 ///Two cmap::Examples instances are sorted as follows:
 ///(1) By their number of examples
 ///(2) (if the sizes are equal) Alphabetically on the first different example
+bool operator<(const cmap::Examples& lhs, const cmap::Examples& rhs);
+
+/*
 bool operator<(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs);
 bool operator<(const boost::shared_ptr<const cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs);
 bool operator<(const boost::shared_ptr<ribi::cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs);
@@ -69,6 +73,7 @@ bool operator>=(const boost::shared_ptr<const cmap::Examples>& lhs, const boost:
 bool operator>=(const boost::shared_ptr<const cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator>=(const boost::shared_ptr<ribi::cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator>=(const boost::shared_ptr<ribi::cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+*/
 
 } //~namespace cmap
 } //~namespace ribi
