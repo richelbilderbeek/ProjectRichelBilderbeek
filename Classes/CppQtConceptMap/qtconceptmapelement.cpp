@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 
 #include <QCursor>
 
@@ -12,7 +12,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-void ribi::cmap::QtConceptMapItem::OnConceptRequestsEdit()
+void ribi::cmap::QtConceptMapElement::OnConceptRequestsEdit()
 {
   assert(this);
   assert(this->GetConcept());
@@ -21,7 +21,7 @@ void ribi::cmap::QtConceptMapItem::OnConceptRequestsEdit()
   m_signal_conceptmapitem_requests_edit(this);
 }
 
-void ribi::cmap::QtConceptMapItem::hoverMoveEvent(QGraphicsSceneHoverEvent *)
+void ribi::cmap::QtConceptMapElement::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }

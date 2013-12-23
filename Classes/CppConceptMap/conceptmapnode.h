@@ -8,6 +8,7 @@
 #include <boost/signals2.hpp>
 #include <boost/shared_ptr.hpp>
 #include "conceptmapfwd.h"
+#include "conceptmapelement.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -17,7 +18,7 @@ namespace cmap {
 struct NodeFactory;
 
 ///A Node is the GUI independent part as used in QtConceptMapItem
-struct Node
+struct Node : public Element
 {
   Node(const Node&) = delete;
   Node& operator=(const Node&) = delete;
@@ -93,7 +94,7 @@ struct Node
 
 };
 
-bool IsEqual(const cmap::Node& lhs, const cmap::Node& rhs);
+bool operator==(const cmap::Node& lhs, const cmap::Node& rhs);
 
 } //~namespace cmap
 

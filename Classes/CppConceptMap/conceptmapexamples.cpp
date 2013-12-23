@@ -114,31 +114,31 @@ void ribi::cmap::Examples::Test() noexcept
     {
       boost::shared_ptr<const cmap::Examples> a = ExamplesFactory::GetTests().at(i);
       boost::shared_ptr<      Examples> b = ExamplesFactory::GetTests().at(i);
-      assert(IsEqual(*a,*a));
-      assert(IsEqual(*a,*b));
-      assert(IsEqual(*b,*a));
-      assert(IsEqual(*b,*b));
+      assert(operator==(*a,*a));
+      assert(operator==(*a,*b));
+      assert(operator==(*b,*a));
+      assert(operator==(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         boost::shared_ptr<const cmap::Examples> c = ExamplesFactory::GetTests().at(j);
         boost::shared_ptr<      Examples> d = ExamplesFactory::GetTests().at(j);
-        assert(IsEqual(*c,*c));
-        assert(IsEqual(*c,*d));
-        assert(IsEqual(*d,*c));
-        assert(IsEqual(*d,*d));
+        assert(operator==(*c,*c));
+        assert(operator==(*c,*d));
+        assert(operator==(*d,*c));
+        assert(operator==(*d,*d));
         if (i==j)
         {
-          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
-          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
-          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
-          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
+          assert(operator==(*a,*c)); assert(operator==(*a,*d));
+          assert(operator==(*b,*c)); assert(operator==(*b,*d));
+          assert(operator==(*c,*a)); assert(operator==(*c,*b));
+          assert(operator==(*d,*a)); assert(operator==(*d,*b));
         }
         else
         {
-          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
-          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
-          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
-          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
+          assert(!operator==(*a,*c)); assert(!operator==(*a,*d));
+          assert(!operator==(*b,*c)); assert(!operator==(*b,*d));
+          assert(!operator==(*c,*a)); assert(!operator==(*c,*b));
+          assert(!operator==(*d,*a)); assert(!operator==(*d,*b));
         }
       }
     }
@@ -152,7 +152,7 @@ void ribi::cmap::Examples::Test() noexcept
         assert(e);
         const std::string s = ribi::cmap::Examples::ToXml(e);
         const boost::shared_ptr<const cmap::Examples> f(Examples::FromXml(s));
-        assert(IsEqual(*e,*f));
+        assert(operator==(*e,*f));
       }
     );
   }
@@ -169,12 +169,12 @@ void ribi::cmap::Examples::Test() noexcept
         const std::string t = ribi::cmap::Examples::ToXml(f);
         if (i == j)
         {
-          assert(IsEqual(*e,*f));
+          assert(operator==(*e,*f));
           assert(s == t);
         }
         else
         {
-          assert(!IsEqual(*e,*f));
+          assert(!operator==(*e,*f));
           assert(s != t);
         }
       }
@@ -185,18 +185,18 @@ void ribi::cmap::Examples::Test() noexcept
     const boost::shared_ptr<cmap::Example> a = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<cmap::Example> b = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<cmap::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
-    assert( IsEqual(*a,*a)); assert( IsEqual(*a,*b)); assert(!IsEqual(*a,*c));
-    assert( IsEqual(*b,*a)); assert( IsEqual(*b,*b)); assert(!IsEqual(*b,*c));
-    assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b)); assert( IsEqual(*c,*c));
+    assert( operator==(*a,*a)); assert( operator==(*a,*b)); assert(!operator==(*a,*c));
+    assert( operator==(*b,*a)); assert( operator==(*b,*b)); assert(!operator==(*b,*c));
+    assert(!operator==(*c,*a)); assert(!operator==(*c,*b)); assert( operator==(*c,*c));
     std::vector<boost::shared_ptr<const cmap::Example> > v; v.push_back(a);
     std::vector<boost::shared_ptr<const cmap::Example> > w; w.push_back(b);
     std::vector<boost::shared_ptr<const cmap::Example> > x; x.push_back(c);
     const boost::shared_ptr<ribi::cmap::Examples> d = ExamplesFactory::Create(v);
     const boost::shared_ptr<ribi::cmap::Examples> e = ExamplesFactory::Create(w);
     const boost::shared_ptr<ribi::cmap::Examples> f = ExamplesFactory::Create(x);
-    assert( IsEqual(*d,*d)); assert( IsEqual(*d,*e)); assert(!IsEqual(*d,*f));
-    assert( IsEqual(*e,*d)); assert( IsEqual(*e,*e)); assert(!IsEqual(*e,*f));
-    assert(!IsEqual(*f,*d)); assert(!IsEqual(*f,*e)); assert( IsEqual(*f,*f));
+    assert( operator==(*d,*d)); assert( operator==(*d,*e)); assert(!operator==(*d,*f));
+    assert( operator==(*e,*d)); assert( operator==(*e,*e)); assert(!operator==(*e,*f));
+    assert(!operator==(*f,*d)); assert(!operator==(*f,*e)); assert( operator==(*f,*f));
   }
   TRACE("Examples::Test finished successfully");
 }
@@ -223,7 +223,7 @@ const std::string ribi::cmap::Examples::ToXml(const boost::shared_ptr<const cmap
   return r;
 }
 
-bool ribi::cmap::IsEqual(const cmap::Examples& lhs, const cmap::Examples& rhs)
+bool ribi::cmap::operator==(const cmap::Examples& lhs, const cmap::Examples& rhs)
 {
   if (lhs.Get().size() != rhs.Get().size())
   {
@@ -235,7 +235,7 @@ bool ribi::cmap::IsEqual(const cmap::Examples& lhs, const cmap::Examples& rhs)
   return std::equal(v.begin(),v.end(),w.begin(),
     [](const boost::shared_ptr<const cmap::Example>& a, const boost::shared_ptr<const cmap::Example>& b)
     {
-      return IsEqual(*a,*b);
+      return operator==(*a,*b);
     }
   );
 }

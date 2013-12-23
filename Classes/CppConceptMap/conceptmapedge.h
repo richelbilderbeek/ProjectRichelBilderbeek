@@ -8,6 +8,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include "conceptmapfwd.h"
+#include "conceptmapelement.h"
 #pragma GCC diagnostic pop
 
 
@@ -18,7 +19,7 @@ struct EdgeFactory;
 
 ///An Edge is the GUI-independent part of the edges used in QtConceptMap.
 ///An Edge goes from one Node to another, which must a different Node
-struct Edge
+struct Edge : public Element
 {
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
@@ -134,7 +135,7 @@ struct Edge
 
 };
 
-bool IsEqual(const cmap::Edge& lhs, const cmap::Edge& rhs);
+bool operator==(const cmap::Edge& lhs, const cmap::Edge& rhs);
 
 ///Notes:
 /// [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior

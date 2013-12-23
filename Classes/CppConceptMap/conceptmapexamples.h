@@ -48,7 +48,7 @@ private:
 };
 
 
-bool IsEqual(const cmap::Examples& lhs, const cmap::Examples& rhs);
+bool operator==(const cmap::Examples& lhs, const cmap::Examples& rhs);
 
 ///Two cmap::Examples instances are sorted as follows:
 ///(1) By their number of examples

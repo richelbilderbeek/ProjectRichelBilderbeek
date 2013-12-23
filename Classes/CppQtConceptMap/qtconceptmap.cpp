@@ -29,7 +29,7 @@
 #include "qtconceptmapbrushfactory.h"
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapitemhighlighter.h"
@@ -631,7 +631,7 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
     assert(v.size() == w.size() && "All edges must be unique");
   }
   {
-    std::set<QtConceptMapItem*> v;
+    std::set<QtConceptMapElement*> v;
     const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
     std::copy(node_concepts.begin(),node_concepts.end(),std::inserter(v,v.begin()));
     const std::vector<QtEdge*> edge_concepts = Collect<QtEdge>(scene());

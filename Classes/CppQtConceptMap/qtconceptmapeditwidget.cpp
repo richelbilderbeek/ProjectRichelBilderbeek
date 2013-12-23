@@ -22,7 +22,7 @@
 #include "conceptmapnode.h"
 #include "qtconceptmapcenternodeitem.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapexamplesitem.h"
 #include "qtconceptmapitemhighlighter.h"
@@ -613,7 +613,7 @@ void ribi::cmap::QtConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
   }
 }
 
-void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptMapItem* const item)
+void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptMapElement* const item)
 {
 
   //assert(item->GetConcept());
@@ -643,7 +643,7 @@ void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptM
 void ribi::cmap::QtConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapItem*>(item));
+  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
 

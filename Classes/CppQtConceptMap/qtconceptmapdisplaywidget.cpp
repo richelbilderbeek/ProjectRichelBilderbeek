@@ -218,10 +218,10 @@ void ribi::cmap::QtConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraph
 {
   assert(GetExamplesItem());
   assert(item);
-  assert(dynamic_cast<const QtConceptMapItem*>(item));
+  assert(dynamic_cast<const QtConceptMapElement*>(item));
   if (GetExamplesItem()->GetBuddyItem() != item)
   {
-    GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapItem*>(item));
+    GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
     assert(this->scene());
     scene()->update();
   }

@@ -4,6 +4,9 @@
 #include <iostream>
 
 //#include "qtconceptmapratewidget.h"
+#include "conceptmap.h"
+#include "conceptmapwidget.h"
+#include "trace.h"
 
 ribi::TestConceptMapMenuDialog::TestConceptMapMenuDialog()
 {
@@ -38,7 +41,8 @@ const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("QtConceptMap version: " + cmap::QtConceptMap::GetVersion());
+  a.AddLibrary("ConceptMap version: " + cmap::ConceptMap::GetVersion());
+  a.AddLibrary("ConceptMapWidget version: " + cmap::Widget().GetVersion());
   //a.AddLibrary("Test image from http://sipi.usc.edu");
 
   return a;
@@ -82,6 +86,13 @@ const std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory
 #ifndef NDEBUG
 void ribi::TestConceptMapMenuDialog::Test() noexcept
 {
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started ribi::TestConceptMapMenuDialog::Test");
 
+  TRACE("ribi::TestConceptMapMenuDialog finished successfully");
 }
 #endif

@@ -24,7 +24,9 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmaphelper.h \
     ../../Classes/CppConceptMap/conceptmapedge.h \
     ../../Classes/CppConceptMap/conceptmapwidget.h \
-    ../../Classes/CppConceptMap/conceptmapcommand.h
+    ../../Classes/CppConceptMap/conceptmapcommand.h \
+    ../../Classes/CppConceptMap/conceptmapelement.h \
+    ../../Classes/CppConceptMap/conceptmapcommandfactory.h
 
 SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcenternode.cpp \
@@ -46,4 +48,6 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmaptestconceptmap.cpp \
     ../../Classes/CppConceptMap/conceptmaptestconcept.cpp \
     ../../Classes/CppConceptMap/conceptmapwidget.cpp \
-    ../../Classes/CppConceptMap/conceptmapcommand.cpp
+    ../../Classes/CppConceptMap/conceptmapcommand.cpp \
+    ../../Classes/CppConceptMap/conceptmapelement.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandfactory.cpp

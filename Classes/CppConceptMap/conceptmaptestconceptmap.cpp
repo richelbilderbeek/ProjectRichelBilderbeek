@@ -60,11 +60,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
         {
           //Test copy constructor
           const boost::shared_ptr<ribi::cmap::ConceptMap> c(cmap::ConceptMapFactory::DeepCopy(m));
-          assert(IsEqual(*c,*m));
+          assert(operator==(*c,*m));
           //Test XML conversions
           const std::string s = ToXml(c);
           const boost::shared_ptr<ribi::cmap::ConceptMap> d = ribi::cmap::ConceptMapFactory::FromXml(s);
-          assert(IsEqual(*c,*d));
+          assert(operator==(*c,*d));
         }
       }
     );
@@ -322,13 +322,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
         {
           const boost::shared_ptr<const ribi::cmap::ConceptMap> a(cmap::ConceptMapFactory::DeepCopy(v[i]));
           assert(a);
-          assert(IsEqual(*a,*v[i])); assert(IsEqual(*v[i],*a));
+          assert(operator==(*a,*v[i])); assert(operator==(*v[i],*a));
           const boost::shared_ptr<const ribi::cmap::ConceptMap> b(cmap::ConceptMapFactory::DeepCopy(v[j]));
-          assert(IsEqual(*b,*v[j]));
+          assert(operator==(*b,*v[j]));
           if (i == j)
           {
             assert(cmap::ConceptMap::HasSameContent(*a,*b));
-            assert(IsEqual(*a,*b));
+            assert(operator==(*a,*b));
           }
           else
           {
@@ -355,10 +355,10 @@ void ribi::cmap::ConceptMap::Test() noexcept
         {
           const boost::shared_ptr<const ribi::cmap::ConceptMap> a(cmap::ConceptMapFactory::DeepCopy(v[i]));
           assert(a);
-          assert(IsEqual(*a,*v[i]));
+          assert(operator==(*a,*v[i]));
           const boost::shared_ptr<const ribi::cmap::ConceptMap> b(cmap::ConceptMapFactory::DeepCopy(v[j]));
           assert(b);
-          assert(IsEqual(*b,*v[j]));
+          assert(operator==(*b,*v[j]));
           assert(a != b);
           if (i == j)
           {
@@ -387,10 +387,10 @@ void ribi::cmap::ConceptMap::Test() noexcept
         for (int j = 0; j!=sz; ++j)
         {
           const boost::shared_ptr<const ribi::cmap::ConceptMap> a(cmap::ConceptMapFactory::DeepCopy(v[i]));
-          assert(IsEqual(*a,*v[i]));
+          assert(operator==(*a,*v[i]));
           const boost::shared_ptr<const ribi::cmap::ConceptMap> b(cmap::ConceptMapFactory::DeepCopy(v[j]));
           assert(a != b);
-          assert(IsEqual(*b,*v[j]));
+          assert(operator==(*b,*v[j]));
           if (i != j)
           {
             assert(cmap::ConceptMap::HasSameContent(*a,*b));

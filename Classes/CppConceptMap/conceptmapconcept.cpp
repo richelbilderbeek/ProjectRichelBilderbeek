@@ -195,13 +195,13 @@ const std::string ribi::cmap::Concept::ToXml(const boost::shared_ptr<const ribi:
   return r;
 }
 
-bool ribi::cmap::IsEqual(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)
+bool ribi::cmap::operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs)
 {
   const boost::shared_ptr<const cmap::Examples> lhs_examples = lhs.GetExamples();
   assert(lhs_examples);
   const boost::shared_ptr<const cmap::Examples> rhs_examples = rhs.GetExamples();
   assert(rhs_examples);
-  return IsEqual(*lhs_examples,*rhs_examples)
+  return operator==(*lhs_examples,*rhs_examples)
     && lhs.GetIsComplex()          == rhs.GetIsComplex()
     && lhs.GetName()               == rhs.GetName()
     && lhs.GetRatingComplexity()   == rhs.GetRatingComplexity()

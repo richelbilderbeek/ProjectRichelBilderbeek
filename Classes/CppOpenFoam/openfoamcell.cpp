@@ -14,7 +14,7 @@ ribi::foam::Cell::Cell(
     m_owned_faces{owned_faces}
 {
   #ifndef NDEBUG
-  for (const std::vector<boost::shared_ptr<Face>> face: m_owned_faces)
+  for (const boost::shared_ptr<Face> face: m_owned_faces)
   {
     assert(face);
     assert(std::count(m_all_faces.begin(),m_all_faces.end(),face) == 1
@@ -57,10 +57,10 @@ const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Cell::
 bool ribi::foam::Cell::HasFace(const boost::shared_ptr<const ribi::foam::Face> face) const noexcept
 {
   #ifndef NDEBUG
-  assert(m_all_faces.size() >= m_owned_faces
+  assert(m_all_faces.size() >= m_owned_faces.size()
     && "m_owned_faces must be a subset of m_all_faces: there should be more m_all_faces"
   );
-  for (const std::vector<boost::shared_ptr<Face>> face: m_owned_faces)
+  for (const boost::shared_ptr<Face> face: m_owned_faces)
   {
     assert(face);
     assert(std::count(m_all_faces.begin(),m_all_faces.end(),face) == 1

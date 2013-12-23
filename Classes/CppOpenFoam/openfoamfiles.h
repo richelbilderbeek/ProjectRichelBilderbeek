@@ -38,8 +38,8 @@ struct Files
     const boost::shared_ptr<OwnerFile> owner = CreateDefaultOwner(),
     const boost::shared_ptr<PointsFile> points = CreateDefaultPoints()
   );
-  //Files(const Files&) = delete;
-  //Files& operator=(const Files&) = delete;
+  Files(const Files& other);
+  Files& operator=(const Files& rhs) = delete;
 
   ///Create a copy of the complete file structure of Files in the copy folder name
   static void CreateCopy(const Files& files, const std::string copy_folder_name) noexcept;

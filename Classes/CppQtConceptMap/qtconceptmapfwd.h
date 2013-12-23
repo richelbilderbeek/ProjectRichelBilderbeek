@@ -12,7 +12,7 @@ namespace cmap {
 struct QtConceptMap;
 struct QtConceptMapDisplayWidget;
 struct QtConceptMapEditWidget;
-struct QtConceptMapItem;
+struct QtConceptMapElement;
 struct QtConceptMapRateWidget;
 struct QtDisplayStrategy;
 struct QtEdge;

@@ -140,21 +140,21 @@ void ribi::cmap::Edge::Test() noexcept
       assert(edge);
       const boost::shared_ptr<const cmap::Edge> c = cmap::EdgeFactory::DeepCopy(edge,node_from,node_to);
       assert(c);
-      assert(IsEqual(*edge,*c)); assert(IsEqual(*c,*edge));
-      assert(IsEqual(*c->GetFrom(),*node_from));
-      assert(IsEqual(*c->GetFrom(),*nodes[0]));
-      assert(IsEqual(*c->GetTo(),*node_to));
-      assert(IsEqual(*c->GetTo(),*nodes[1]));
+      assert(operator==(*edge,*c)); assert(operator==(*c,*edge));
+      assert(operator==(*c->GetFrom(),*node_from));
+      assert(operator==(*c->GetFrom(),*nodes[0]));
+      assert(operator==(*c->GetTo(),*node_to));
+      assert(operator==(*c->GetTo(),*nodes[1]));
       const std::string s = ToXml(c,AddConst(nodes));
       const boost::shared_ptr<ribi::cmap::Edge> d = cmap::EdgeFactory::FromXml(s,nodes);
       assert(d);
-      if (!IsEqual(*c,*d))
+      if (!operator==(*c,*d))
       {
         TRACE("BREAK");
         TRACE(ToXml(c,AddConst(nodes)));
         TRACE(ToXml(d,AddConst(nodes)));
       }
-      assert(IsEqual(*c,*d)); //HIERO
+      assert(operator==(*c,*d)); //HIERO
     }
   }
   TRACE("Edge::Test finished successfully");
@@ -197,22 +197,22 @@ const std::string ribi::cmap::Edge::ToXml(
   return r;
 }
 
-bool ribi::cmap::IsEqual(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge& rhs)
+bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge& rhs)
 {
   assert(lhs.GetConcept()); assert(rhs.GetConcept());
   #ifndef NDEBUG
-  if (!IsEqual(*lhs.GetConcept(),*rhs.GetConcept())) TRACE("Concept differs");
-  if (!IsEqual(*lhs.GetFrom(),*rhs.GetFrom())) TRACE("From node differs");
-  if (!IsEqual(*lhs.GetTo(),*rhs.GetTo())) TRACE("To node differs");
+  if (!operator==(*lhs.GetConcept(),*rhs.GetConcept())) TRACE("Concept differs");
+  if (!operator==(*lhs.GetFrom(),*rhs.GetFrom())) TRACE("From node differs");
+  if (!operator==(*lhs.GetTo(),*rhs.GetTo())) TRACE("To node differs");
   if (!lhs.GetX()         == rhs.GetX()) TRACE("X differs");
   if (!lhs.GetY()         == rhs.GetY()) TRACE("Y differs");
   if (!lhs.HasHeadArrow() == rhs.HasHeadArrow()) TRACE("Has head arrow differs");
   if (!lhs.HasTailArrow() == rhs.HasTailArrow()) TRACE("Has tail arrow differs");
   #endif
   return
-       IsEqual(*lhs.GetConcept(),*rhs.GetConcept())
-    && IsEqual(*lhs.GetFrom(),*rhs.GetFrom())
-    && IsEqual(*lhs.GetTo(),*rhs.GetTo())
+       operator==(*lhs.GetConcept(),*rhs.GetConcept())
+    && operator==(*lhs.GetFrom(),*rhs.GetFrom())
+    && operator==(*lhs.GetTo(),*rhs.GetTo())
     && lhs.GetX()         == rhs.GetX()
     && lhs.GetY()         == rhs.GetY()
     && lhs.HasHeadArrow() == rhs.HasHeadArrow()

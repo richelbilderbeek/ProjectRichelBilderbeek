@@ -1,6 +1,7 @@
 #include "openfoammesh.h"
 
 #include <cassert>
+#include <iostream>
 #include <ostream>
 #include <map>
 
@@ -12,6 +13,7 @@
 #include "openfoamface.h"
 #include "openfoamfacesfile.h"
 #include "openfoamfiles.h"
+#include "helper.h"
 #include "openfoamneighbourfile.h"
 #include "openfoamownerfile.h"
 #include "openfoampoint.h"
@@ -43,6 +45,7 @@ ribi::foam::Mesh::Mesh(
 
   if (!AreFacesOrdered())
   {
+    std::cout << "Reordering faces" << std::endl;
     ReorderFaces();
   }
 
@@ -639,7 +642,7 @@ const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimila
     assert(i < m_faces.size());
     assert(m_faces[i]);
     const double distance = CalcSimilarityFaster(
-      m_faces[i]->GetPoints(),
+      AddConst(m_faces[i]->GetPoints()),
       coordinats
     );
     TRACE(distance);
@@ -904,7 +907,7 @@ void ribi::foam::Mesh::Test() noexcept
     for (const boost::shared_ptr<Face> face: faces)
     {
       assert(face);
-      const std::vector<boost::shared_ptr<const ribi::Coordinat3D>> points { face->GetPoints() };
+      const std::vector<boost::shared_ptr<const ribi::Coordinat3D>> points { AddConst(face->GetPoints()) };
       std::vector<ribi::Coordinat3D> coordinats;
       std::transform(points.begin(),points.end(),
         std::back_inserter(coordinats),

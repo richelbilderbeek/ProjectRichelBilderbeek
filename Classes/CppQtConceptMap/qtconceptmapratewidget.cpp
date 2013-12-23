@@ -282,7 +282,7 @@ void ribi::cmap::QtConceptMapRateWidget::DoRandomStuff()
 
 void ribi::cmap::QtConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapItem*>(item));
+  GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
 

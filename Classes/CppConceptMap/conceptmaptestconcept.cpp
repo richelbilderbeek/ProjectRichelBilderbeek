@@ -44,32 +44,32 @@ void ribi::cmap::Concept::Test() noexcept
       assert(b); //FAILS AT CROSSCOMPILER
       assert(a);
       assert(a!=b);
-      assert(IsEqual(*a,*a));
-      assert(IsEqual(*b,*a));
-      assert(IsEqual(*a,*b));
-      assert(IsEqual(*b,*b));
+      assert(operator==(*a,*a));
+      assert(operator==(*b,*a));
+      assert(operator==(*a,*b));
+      assert(operator==(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::GetTests().at(j);
         const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::GetTests().at(j);
         assert(c); assert(d);
-        assert(IsEqual(*c,*c));
-        assert(IsEqual(*d,*c));
-        assert(IsEqual(*c,*d));
-        assert(IsEqual(*d,*d));
+        assert(operator==(*c,*c));
+        assert(operator==(*d,*c));
+        assert(operator==(*c,*d));
+        assert(operator==(*d,*d));
         if (i==j)
         {
-          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
-          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
-          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
-          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
+          assert(operator==(*a,*c)); assert(operator==(*a,*d));
+          assert(operator==(*b,*c)); assert(operator==(*b,*d));
+          assert(operator==(*c,*a)); assert(operator==(*c,*b));
+          assert(operator==(*d,*a)); assert(operator==(*d,*b));
         }
         else
         {
-          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
-          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
-          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
-          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
+          assert(!operator==(*a,*c)); assert(!operator==(*a,*d));
+          assert(!operator==(*b,*c)); assert(!operator==(*b,*d));
+          assert(!operator==(*c,*a)); assert(!operator==(*c,*b));
+          assert(!operator==(*d,*a)); assert(!operator==(*d,*b));
         }
       }
     }
@@ -126,15 +126,15 @@ void ribi::cmap::Concept::Test() noexcept
         //Test copy constructor and operator==
         boost::shared_ptr<ribi::cmap::Concept> c = ConceptFactory::DeepCopy(original);
         assert(c);
-        assert(IsEqual(*c,*original));
+        assert(operator==(*c,*original));
         //Test operator!=
         c->m_name = c->m_name + " (modified)";
-        assert(!IsEqual(*c,*original));
+        assert(!operator==(*c,*original));
         //Test ToXml and FromXml
         const std::string s = ToXml(c);
         const boost::shared_ptr<ribi::cmap::Concept> d = FromXml(s);
         assert(d);
-        assert(IsEqual(*c,*d));
+        assert(operator==(*c,*d));
       }
     );
   }

@@ -21,11 +21,11 @@ struct QtExamplesItem : public QtRoundedEditRectItem
   QtExamplesItem& operator=(const QtExamplesItem&) = delete;
   ~QtExamplesItem() noexcept {}
   ///Check the buddy item
-  const QtConceptMapItem* GetBuddyItem() const noexcept { return m_item; }
+  const QtConceptMapElement* GetBuddyItem() const noexcept { return m_item; }
 
   ///Set the concept this item displays the examples of.
   ///If the concept is nullptr, this item hides
-  void SetBuddyItem(const QtConceptMapItem* const item);
+  void SetBuddyItem(const QtConceptMapElement* const item);
 
   ///Request update of QGraphicsScene, because this item has changed
   mutable boost::signals2::signal<void() > m_signal_request_scene_update;
@@ -38,7 +38,7 @@ private:
 
   ///The concept this item displays the examples of.
   ///If m_concept is nullptr, this item hides
-  const QtConceptMapItem* m_item;
+  const QtConceptMapElement* m_item;
 
   ///Item has updated, Examples must follow
   void OnItemUpdated();

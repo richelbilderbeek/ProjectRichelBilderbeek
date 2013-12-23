@@ -20,7 +20,7 @@
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "qtconceptmapnode.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
@@ -89,8 +89,8 @@ ribi::cmap::QtEdge::QtEdge(
   this->setRect(m_concept_item->boundingRect()); //NEW
   this->update();
 
-  assert( ( m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
-    || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect() )
+  assert( ( m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
+    || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect() )
     && "Bounding rects of edge and concept item might differ");
 
   //Qt things
@@ -121,7 +121,7 @@ ribi::cmap::QtEdge::QtEdge(
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
-        &QtConceptMapItem::OnConceptRequestsEdit,
+        &QtConceptMapElement::OnConceptRequestsEdit,
         this
       )
     );
@@ -133,12 +133,12 @@ ribi::cmap::QtEdge::QtEdge(
 
 QRectF ribi::cmap::QtEdge::boundingRect() const
 {
-  assert((m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
-      || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect())
+  assert((m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
+      || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect())
     && "Bounding rects should be synced, but this member function is used to sync them,"
     && "so this must be checked on a higher level");
 
-  return QtConceptMapItem::boundingRect() //2013-07-06: Bypassed going via m_concept_item
+  return QtConceptMapElement::boundingRect() //2013-07-06: Bypassed going via m_concept_item
     .united(m_arrow->boundingRect().translated(-this->pos()));
   //return m_concept_item->boundingRect()
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
@@ -218,7 +218,7 @@ void ribi::cmap::QtEdge::keyPressEvent(QKeyEvent *event)
     assert(m_edge->HasHeadArrow() == m_arrow->HasHead());
     assert(m_edge->HasTailArrow() == m_arrow->HasTail());
   }
-  QtConceptMapItem::keyPressEvent(event);
+  QtConceptMapElement::keyPressEvent(event);
 }
 
 void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -261,7 +261,7 @@ void ribi::cmap::QtEdge::mousePressEvent(QGraphicsSceneMouseEvent *event)
       return;
     }
   }
-  QtConceptMapItem::mousePressEvent(event);
+  QtConceptMapElement::mousePressEvent(event);
 }
 
 void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)
@@ -293,8 +293,8 @@ void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)
 
   this->setRect(m_concept_item->boundingRect());
 
-  assert( ( m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
-    || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect() )
+  assert( ( m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
+    || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect() )
     && "Bounding rects of edge and concept item might differ");
 
 }
@@ -309,8 +309,8 @@ void ribi::cmap::QtEdge::OnItemHasUpdated()
 
   //this->setRect(QtConceptMapItem::boundingRect());
   this->setRect(m_concept_item->boundingRect());
-  assert( ( m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
-    || m_concept_item->boundingRect() != QtConceptMapItem::boundingRect() )
+  assert( ( m_concept_item->boundingRect() == QtConceptMapElement::boundingRect()
+    || m_concept_item->boundingRect() != QtConceptMapElement::boundingRect() )
     && "Bounding rects might differ between edge and concept item");
 
   this->update();

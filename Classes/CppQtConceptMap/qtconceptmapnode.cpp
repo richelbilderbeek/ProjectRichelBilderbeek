@@ -79,7 +79,7 @@ ribi::cmap::QtNode::QtNode(
   {
     edit_concept->m_signal_request_edit.connect(
       boost::bind(
-        &QtConceptMapItem::OnConceptRequestsEdit,
+        &QtConceptMapElement::OnConceptRequestsEdit,
         this
       )
     );
@@ -190,7 +190,7 @@ void ribi::cmap::QtNode::keyPressEvent(QKeyEvent *event)
     case Qt::Key_F2:
     return;
   }
-  QtConceptMapItem::keyPressEvent(event);
+  QtConceptMapElement::keyPressEvent(event);
 }
 
 void ribi::cmap::QtNode::OnItemHasUpdated()

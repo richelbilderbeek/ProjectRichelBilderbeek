@@ -9,9 +9,9 @@
 
 #include "conceptmapexample.h"
 #include "conceptmapexamples.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "conceptmapconcept.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "conceptmaphelper.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapbrushfactory.h"
@@ -57,7 +57,7 @@ void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGrap
   QtRoundedEditRectItem::paint(painter,option,widget);
 }
 
-void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapItem* const item)
+void ribi::cmap::QtExamplesItem::SetBuddyItem(const QtConceptMapElement* const item)
 {
   if (m_item != item)
   {

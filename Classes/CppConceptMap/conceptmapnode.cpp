@@ -81,7 +81,7 @@ bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>&
 {
   assert(lhs);
   assert(rhs);
-  return IsEqual(*lhs->GetConcept(),*rhs->GetConcept());
+  return operator==(*lhs->GetConcept(),*rhs->GetConcept());
 }
 
 void ribi::cmap::Node::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept)
@@ -129,11 +129,11 @@ void ribi::cmap::Node::Test() noexcept
         assert(node);
         const boost::shared_ptr<const cmap::Node> c = NodeFactory::DeepCopy(node);
         assert(c);
-        assert(IsEqual(*node,*c));
+        assert(operator==(*node,*c));
         const std::string s = ToXml(c);
         const boost::shared_ptr<ribi::cmap::Node> d = FromXml(s);
         assert(d);
-        assert(IsEqual(*c,*d));
+        assert(operator==(*c,*d));
       }
     );
   }
@@ -142,13 +142,13 @@ void ribi::cmap::Node::Test() noexcept
     {
       const boost::shared_ptr<ribi::cmap::Concept> c(cmap::ConceptFactory::Create("1"));
       const boost::shared_ptr<ribi::cmap::Concept> d(cmap::ConceptFactory::Create("1"));
-      assert(IsEqual(*c,*d));
+      assert(operator==(*c,*d));
       const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
       const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
       assert(a);
       assert(b);
       assert(HasSameContent(a,b));
-      assert(IsEqual(*a,*b));
+      assert(operator==(*a,*b));
     }
     const int sz = static_cast<int>(ConceptFactory::GetTests().size());
     for (int i=0; i!=sz; ++i)
@@ -156,7 +156,7 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized} } );
       const boost::shared_ptr<ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized} } );
       assert(c != d);
-      assert(IsEqual(*c,*d));
+      assert(operator==(*c,*d));
       const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
       const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
       assert(HasSameContent(a,b));
@@ -167,18 +167,18 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
       const boost::shared_ptr<ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
       assert(c != d);
-      assert(IsEqual(*c,*d));
+      assert(operator==(*c,*d));
       const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
       const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
       assert(HasSameContent(a,b));
-      assert(IsEqual(*a,*b));
+      assert(operator==(*a,*b));
     }
     {
       //Cannot shuffle Concept its examples. No need to as well: the order is important
       const boost::shared_ptr<ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
       const boost::shared_ptr<ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"3", cmap::Competency::uninitialized},{"2", cmap::Competency::uninitialized} } );
       assert(c != d);
-      assert(!IsEqual(*c,*d));
+      assert(!operator==(*c,*d));
       const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
       const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
       assert(!HasSameContent(a,b) && "Order in examples is important and cannot be shuffled");
@@ -189,12 +189,12 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<ribi::cmap::Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
       const boost::shared_ptr<ribi::cmap::Concept> d = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized} } );
       assert(c != d);
-      assert(!IsEqual(*c,*d));
+      assert(!operator==(*c,*d));
       const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
       const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
       assert(a != b);
       assert(!HasSameContent(a,b));
-      assert(!IsEqual(*a,*b));
+      assert(!operator==(*a,*b));
     }
   }
   //Test ConceptFactory reproductions
@@ -205,12 +205,12 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<ribi::cmap::Concept> c = ConceptFactory::GetTests()[i];
       const boost::shared_ptr<ribi::cmap::Concept> d = ConceptFactory::GetTests()[i];
       assert(c != d);
-      assert(IsEqual(*c,*d));
+      assert(operator==(*c,*d));
       const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
       const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
       assert(a != b);
       assert(HasSameContent(a,b));
-      assert(IsEqual(*a,*b));
+      assert(operator==(*a,*b));
     }
   }
   //Test ConceptFactory reproductions
@@ -227,21 +227,21 @@ void ribi::cmap::Node::Test() noexcept
         assert(c != d);
         if (i!=j)
         {
-          assert(!IsEqual(*c,*d));
+          assert(!operator==(*c,*d));
           const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
           const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
           assert(a != b);
           assert(!HasSameContent(a,b));
-          assert(!IsEqual(*a,*b));
+          assert(!operator==(*a,*b));
         }
         else
         {
-          assert(IsEqual(*c,*d));
+          assert(operator==(*c,*d));
           const boost::shared_ptr<ribi::cmap::Node> a(new Node(c));
           const boost::shared_ptr<ribi::cmap::Node> b(new Node(d));
           assert(a != b);
           assert(HasSameContent(a,b));
-          assert(IsEqual(*a,*b));
+          assert(operator==(*a,*b));
         }
       }
     }
@@ -268,12 +268,12 @@ const std::string ribi::cmap::Node::ToXml(const boost::shared_ptr<const cmap::No
   return r;
 }
 
-bool ribi::cmap::IsEqual(const cmap::Node& lhs, const cmap::Node& rhs)
+bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs)
 {
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
   return
-       IsEqual(*lhs.GetConcept(),*rhs.GetConcept())
+       operator==(*lhs.GetConcept(),*rhs.GetConcept())
     && lhs.GetX() == rhs.GetX()
     && lhs.GetY() == rhs.GetY();
 }

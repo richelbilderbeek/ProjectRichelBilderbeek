@@ -159,7 +159,7 @@ struct Concept
 };
 
 
-bool IsEqual(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
+bool operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
 
 ///Two Concept instances are ordered as follows:
 ///(1) Alphabetically on the name

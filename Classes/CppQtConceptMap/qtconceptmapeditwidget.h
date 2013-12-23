@@ -39,7 +39,7 @@ struct QtConceptMapEditWidget : public QtConceptMap
   #endif
 
   ///Signal emitted when a concept map item requests to be edited
-  boost::signals2::signal<void(QtConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
+  boost::signals2::signal<void(QtConceptMapElement*)> m_signal_conceptmapitem_requests_edit;
 
 protected:
 
@@ -81,7 +81,7 @@ private:
   const std::vector<QtNode *> GetQtNodes();
 
   ///Called when an item wants to be edited
-  void OnConceptMapItemRequestsEdit(QtConceptMapItem * const item);
+  void OnConceptMapItemRequestsEdit(QtConceptMapElement * const item);
 
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted

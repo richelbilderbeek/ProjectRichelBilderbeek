@@ -71,6 +71,42 @@ ribi::foam::Files::Files(
 
 }
 
+ribi::foam::Files::Files(const Files& other)
+  : m_boundary(boost::shared_ptr<BoundaryFile>(new BoundaryFile(*other.m_boundary))),
+    m_faces(boost::shared_ptr<FacesFile>(new FacesFile(*other.m_faces))),
+    m_neighbour(boost::shared_ptr<NeighbourFile>(new NeighbourFile(*other.m_neighbour))),
+    m_owner(boost::shared_ptr<OwnerFile>(new OwnerFile(*other.m_owner))),
+    m_points(boost::shared_ptr<PointsFile>(new PointsFile(*other.m_points)))
+{
+
+  #ifndef NDEBUG
+  Test();
+  #endif
+  assert(m_boundary);
+  assert(m_faces);
+  assert(m_neighbour);
+  assert(m_owner);
+  assert(m_points);
+
+  assert(*m_boundary == *other.m_boundary && "Must be a copy");
+  assert( m_boundary !=  other.m_boundary && "Must be a deep copy");
+  assert(*m_faces == *other.m_faces && "Must be a copy");
+  assert( m_faces !=  other.m_faces && "Must be a deep copy");
+
+  assert(*m_neighbour == *other.m_neighbour && "Must be a copy");
+  assert( m_neighbour !=  other.m_neighbour && "Must be a deep copy");
+
+  assert(*m_owner == *other.m_owner && "Must be a copy");
+  assert( m_owner !=  other.m_owner && "Must be a deep copy");
+
+  assert(*m_points == *other.m_points && "Must be a copy");
+  assert( m_points !=  other.m_points && "Must be a deep copy");
+
+  #ifndef NDEBUG
+  CheckMe();
+  #endif
+}
+
 void ribi::foam::Files::CheckMe() const
 {
   TRACE_FUNC();
@@ -163,35 +199,43 @@ void ribi::foam::Files::CheckMe() const
       }
     }
   }
-  TRACE("CheckMe: 'faces' files: detect doublures");
+  const bool do_check_doubles = false;
+  if (do_check_doubles)
   {
-    for (FaceIndex i = FaceIndex(0); i!=n_faces; ++i)
+    TRACE("CheckMe: 'faces' files: detect doublures: START");
     {
-      std::vector<PointIndex> v_i { m_faces->GetItem(i).GetPointIndices() };
-      std::sort(v_i.begin(),v_i.end());
-      for (FaceIndex j = FaceIndex(0); j!=n_faces; ++j)
+      for (FaceIndex i = FaceIndex(0); i!=n_faces; ++i)
       {
-        if (i == j) continue;
-        std::vector<PointIndex> v_j { m_faces->GetItem(j).GetPointIndices() };
-        std::sort(v_j.begin(),v_j.end());
-        if (v_i == v_j)
+        std::vector<PointIndex> v_i { m_faces->GetItem(i).GetPointIndices() };
+        std::sort(v_i.begin(),v_i.end());
+        for (FaceIndex j = FaceIndex(0); j!=n_faces; ++j)
         {
-          std::stringstream s;
-          s << "Error in 'faces' file in these items:\n"
-            << "\n"
-            << "Item " << i << ": " << m_faces->GetItem(i) << '\n'
-            << "Item " << j << ": " << m_faces->GetItem(j) << '\n'
-            << "\n"
-            << "Faces at index " << i << " and " << j << " consist of the same Point indices";
-          ;
-          throw std::logic_error(s.str());
+          if (i == j) continue;
+          std::vector<PointIndex> v_j { m_faces->GetItem(j).GetPointIndices() };
+          std::sort(v_j.begin(),v_j.end());
+          if (v_i == v_j)
+          {
+            std::stringstream s;
+            s << "Error in 'faces' file in these items:\n"
+              << "\n"
+              << "Item " << i << ": " << m_faces->GetItem(i) << '\n'
+              << "Item " << j << ": " << m_faces->GetItem(j) << '\n'
+              << "\n"
+              << "Faces at index " << i << " and " << j << " consist of the same Point indices";
+            ;
+            throw std::logic_error(s.str());
 
+          }
         }
+
       }
-
     }
-
   }
+  else
+  {
+    TRACE("CheckMe: 'faces' files: detect doublures: SKIP");
+  }
+
   TRACE("CheckMe: 'owner' files");
   if (m_owner->GetItems().size() != m_faces->GetItems().size())
   {

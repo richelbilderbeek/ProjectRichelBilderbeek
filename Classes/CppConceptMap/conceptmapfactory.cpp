@@ -84,7 +84,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
       new_node = cmap::NodeFactory::DeepCopy(node);
     }
     assert(new_node);
-    assert(IsEqual(*new_node,*node));
+    assert(operator==(*new_node,*node));
     new_nodes.push_back(new_node);
   }
 
@@ -115,14 +115,14 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
     assert(from != to);
     const boost::shared_ptr<ribi::cmap::Edge> new_edge = cmap::EdgeFactory::DeepCopy(edge,from,to);
     assert(new_edge);
-    assert(IsEqual(*new_edge,*edge));
+    assert(operator==(*new_edge,*edge));
     new_edges.push_back(new_edge);
   }
 
   const boost::shared_ptr<ribi::cmap::ConceptMap> p = Create(new_nodes,new_edges);
   assert(p);
   assert(p!=map && "Must be a DEEP copy");
-  assert(IsEqual(*p,*map) && "Must be a deep COPY");
+  assert(operator==(*p,*map) && "Must be a deep COPY");
   assert(p->IsValid() && "Must be a valid copy");
   return p;
 }
@@ -169,7 +169,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
       const boost::shared_ptr<cmap::CenterNode> center_node(
         new cmap::CenterNode(concept,x,y));
       nodes[0] = center_node;
-      assert(IsEqual(*old_node,*center_node));
+      assert(operator==(*old_node,*center_node));
     }
   }
   std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges;

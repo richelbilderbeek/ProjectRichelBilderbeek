@@ -13,12 +13,12 @@
 namespace ribi {
 namespace cmap {
 
-///Either a Node or Edge of a ConceptMap
+///A focusable element of a concept map, which is either a Node or an Edge
 ///QtRoundedTextRectItem: single line
 ///QtRoundedEditRectItem: multiple lines
-struct QtConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
+struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
 {
-  virtual ~QtConceptMapItem() noexcept {}
+  virtual ~QtConceptMapElement() noexcept {}
 
   virtual void DisableAll() = 0;
   virtual void EnableAll() = 0;
@@ -44,7 +44,7 @@ struct QtConceptMapItem : public QtRoundedEditRectItem //NEW 2013-09-15
 
   ///A more specific signal: a Concept requests an edit, this is passed to
   ///OnConceptRequestsEdit, which lets this QtConceptMapItem request for an edit
-  boost::signals2::signal<void(QtConceptMapItem*)> m_signal_conceptmapitem_requests_edit;
+  boost::signals2::signal<void(QtConceptMapElement*)> m_signal_conceptmapitem_requests_edit;
 
   ///Slot for a Concept its signal to be edited, all it does is add the ConceptMapItem
   ///the Concept is a member of

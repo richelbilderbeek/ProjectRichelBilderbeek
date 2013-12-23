@@ -226,7 +226,7 @@ void ribi::reversi::Widget::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::TestReversiMenuDialog::Test()");
+  TRACE("Starting ribi::reversi::Widget::Test()");
   {
     ribi::reversi::Widget r(4);
     assert(r.GetCurrentPlayer() == Board::player1);
@@ -313,7 +313,7 @@ void ribi::reversi::Widget::Test() noexcept
       r.DoMove(move);
     }
   }
-  TRACE("Finished ribi::TestReversiMenuDialog::Test()");
+  TRACE("Finished ribi::reversi::Widget::Test()");
 }
 #endif
 

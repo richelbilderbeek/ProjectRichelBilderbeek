@@ -37,7 +37,9 @@ ribi::foam::OwnerFile::OwnerFile(
 
 const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const noexcept
 {
-  assert(!m_items.empty());
+  assert( (!m_items.empty() || m_items.empty())
+    && "If an OwnerFile is empty, there is 1 cell, otherwise 1+max_value_found");
+  if (m_items.empty()) return CellIndex(1);
 
   CellIndex i = (*std::max_element(
     m_items.begin(),

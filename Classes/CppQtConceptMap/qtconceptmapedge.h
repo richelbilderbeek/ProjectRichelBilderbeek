@@ -3,7 +3,7 @@
 
 #include <boost/shared_ptr.hpp>
 #include "qtconceptmapeditstrategy.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 
 #include "qtconceptmapfwd.h"
 
@@ -14,7 +14,7 @@ namespace cmap {
 ///The QtEdge is a QtEditStrategy that
 ///draws a bezier curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
-struct QtEdge : public QtConceptMapItem
+struct QtEdge : public QtConceptMapElement
 {
 
   QtEdge(

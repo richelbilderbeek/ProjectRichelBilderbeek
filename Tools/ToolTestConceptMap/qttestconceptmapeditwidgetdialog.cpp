@@ -15,7 +15,7 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 #include "conceptmapexamplesfactory.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapedge.h"

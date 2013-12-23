@@ -63,7 +63,13 @@ struct ConceptMap
   const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
 
   ///Get the focus question
-  const std::string GetQuestion() const;
+  const std::string GetQuestion() const noexcept;
+
+  ///Obtain the version
+  static const std::string GetVersion() noexcept;
+
+  ///Obtain the version history
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
   static bool HasSameContent(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
@@ -85,7 +91,6 @@ private:
   std::vector<boost::shared_ptr<ribi::cmap::Node> > m_nodes;
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 
@@ -107,7 +112,8 @@ private:
   friend void boost::checked_delete<>(ConceptMap* x);
 };
 
-bool IsEqual(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
+bool operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
+bool operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
 
 } //~namespace cmap
 } //~namespace ribi

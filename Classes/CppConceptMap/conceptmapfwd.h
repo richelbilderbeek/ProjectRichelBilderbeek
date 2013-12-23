@@ -9,15 +9,18 @@ namespace cmap {
 
 struct CenterNode;
 //struct Cluster; //Remove for now, must be added at ProjectBrainweaver later
+struct Command;
 struct Concept;
 struct ConceptFactory;
 struct ConceptMap;
+struct ConceptMapFactory;
 struct Edge;
+struct Element;
 struct Example;
 struct Examples;
 //struct File;
 struct Node;
-
+struct Widget;
 
 } //~namespace cmap
 } //~namespace ribi

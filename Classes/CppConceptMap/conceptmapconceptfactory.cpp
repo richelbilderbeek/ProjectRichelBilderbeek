@@ -44,7 +44,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCop
   const boost::shared_ptr<ribi::cmap::Examples> examples
     = ExamplesFactory::Create(concept->GetExamples());
   assert(examples);
-  assert(IsEqual(*examples,*concept->GetExamples()));
+  assert(operator==(*examples,*concept->GetExamples()));
 
   assert(concept->GetRatingComplexity() >= -1);
   assert(concept->GetRatingComplexity() <=  2);
@@ -59,7 +59,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCop
       concept->GetRatingSpecificity());
   assert(q);
   assert(q->GetExamples());
-  assert(IsEqual(*concept,*q));
+  assert(operator==(*concept,*q));
   return q;
 }
 #endif

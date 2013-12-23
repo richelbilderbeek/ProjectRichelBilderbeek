@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include "qtroundedtextrectitem.h"
-#include "qtconceptmapitem.h"
+#include "qtconceptmapelement.h"
 
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
@@ -17,7 +17,7 @@ namespace ribi {
 namespace cmap {
 
 ///QtNode displays a Node
-struct QtNode : public QtConceptMapItem
+struct QtNode : public QtConceptMapElement
 {
   virtual ~QtNode() noexcept {}
 

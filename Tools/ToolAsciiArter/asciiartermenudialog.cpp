@@ -30,6 +30,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+#include <QFile>
+
 #include "asciiarter.h"
 #include "asciiartermaindialog.h"
 #include "fileio.h"
@@ -169,6 +171,20 @@ void ribi::AsciiArterMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::AsciiArterMenuDialog::Test()");
+  const std::string temp_filename = fileio::GetTempFileName();
+  assert(!fileio::IsRegularFile(temp_filename));
+  {
+    QFile qfile(":/ToolAsciiArter/images/R.png");
+    qfile.copy(temp_filename.c_str());
+  }
+  assert(fileio::IsRegularFile(temp_filename)
+    && "Resource file must exist");
+
+  const AsciiArterMainDialog d(temp_filename,20);
+  assert(!d.GetAsciiArt().empty());
+
+  fileio::DeleteFile(temp_filename);
+  assert(!fileio::IsRegularFile(temp_filename));
   TRACE("Finished ribi::AsciiArterMenuDialog::Test()");
 }
 #endif

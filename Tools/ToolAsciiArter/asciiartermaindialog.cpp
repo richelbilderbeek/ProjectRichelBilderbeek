@@ -27,8 +27,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QImage>
+#include <QFile>
+
 #include "asciiarter.h"
 #include "fileio.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::AsciiArterMainDialog::AsciiArterMainDialog(
@@ -36,7 +39,9 @@ ribi::AsciiArterMainDialog::AsciiArterMainDialog(
   const int n_cols)
   : m_asciiart{ CreateAsciiArt(filename,n_cols) }
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 const std::vector<std::vector<double> >
@@ -91,3 +96,30 @@ const std::vector<std::string> ribi::AsciiArterMainDialog::CreateAsciiArt(
 
   return AsciiArter::ImageToAscii(image,n_cols);
 }
+
+#ifndef NDEBUG
+void ribi::AsciiArterMainDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::AsciiArterMainDialog::Test()");
+  const std::string temp_filename = fileio::GetTempFileName();
+  assert(!fileio::IsRegularFile(temp_filename));
+  {
+    QFile qfile(":/ToolAsciiArter/images/R.png");
+    qfile.copy(temp_filename.c_str());
+  }
+  assert(fileio::IsRegularFile(temp_filename)
+    && "Resource file must exist");
+
+  const AsciiArterMainDialog d(temp_filename,20);
+  assert(!d.GetAsciiArt().empty());
+
+  fileio::DeleteFile(temp_filename);
+  assert(!fileio::IsRegularFile(temp_filename));
+  TRACE("Finished ribi::AsciiArterMainDialog::Test()");
+}
+#endif
