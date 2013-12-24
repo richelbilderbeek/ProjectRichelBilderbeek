@@ -83,7 +83,6 @@ void ribi::cmap::Widget::Test() noexcept
   for (const boost::shared_ptr<ribi::cmap::ConceptMap> map:
     ribi::cmap::ConceptMapFactory::GetAllTests())
   {
-    TRACE_FUNC();
     assert(map || !map);
     ribi::cmap::Widget widget(map);
     assert(widget == widget);
@@ -91,22 +90,14 @@ void ribi::cmap::Widget::Test() noexcept
     for (const boost::shared_ptr<Command> command: CommandFactory::CreateTestCommands())
     {
       assert(command);
-      TRACE(command->ToStr());
       if (widget.CanDoCommand(command))
       {
-        TRACE(command->ToStr());
         const ribi::cmap::Widget prev_widget(widget);
-        TRACE(command->ToStr());
         assert(prev_widget == widget);
-        TRACE(command->ToStr());
         widget.DoCommand(command);
-        TRACE(command->ToStr());
         assert(prev_widget != widget);
-        TRACE(command->ToStr());
         widget.Undo();
-        TRACE(command->ToStr());
         assert(prev_widget == widget);
-        TRACE(command->ToStr());
       }
     }
   }

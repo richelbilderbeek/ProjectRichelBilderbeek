@@ -332,7 +332,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
   const ribi::cmap::ConceptMap& lhs,
   const ribi::cmap::ConceptMap& rhs)
 {
-  const bool trace_verbose = true;
+  const bool trace_verbose = false;
   if (lhs.GetQuestion() != rhs.GetQuestion())
   {
     if (trace_verbose) { TRACE("Questions differ"); }
@@ -353,31 +353,34 @@ bool ribi::cmap::ConceptMap::HasSameContent(
     }
     return false;
   }
+  //Function to compare Concept smart pointers
+  typedef boost::shared_ptr<const ribi::cmap::Concept> ConstConceptPtr;
+  const std::function<bool(const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
+    const boost::shared_ptr<const ribi::cmap::Concept>& rhs)> concept_cmp
+    = [](const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
+         const boost::shared_ptr<const ribi::cmap::Concept>& rhs)
+      {
+        return *lhs < *rhs;
+      };
+
   //Same Concepts
   {
     const std::vector<boost::shared_ptr<const cmap::Node> > nodes_lhs = lhs.GetNodes();
-
-    typedef boost::shared_ptr<const ribi::cmap::Concept> ConceptPtr;
-    std::multiset<ConceptPtr,std::function<bool(const ConceptPtr& lhs,const ConceptPtr& rhs)>> concepts_lhs(
-      [](const ConceptPtr& lhs,const ConceptPtr& rhs)
-      {
-        return *lhs < *rhs;
-      }
-    );
+    std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_lhs(concept_cmp);
     std::transform(nodes_lhs.begin(),nodes_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
       [](boost::shared_ptr<const cmap::Node> node)
       {
         assert(node);
         assert(node->GetConcept());
-        ConceptPtr concept = node->GetConcept();
+        ConstConceptPtr concept = node->GetConcept();
         return concept;
       }
     );
 
     const std::vector<boost::shared_ptr<const cmap::Node> > nodes_rhs = rhs.GetNodes();
+    std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_rhs(concept_cmp);
 
-    std::multiset<boost::shared_ptr<const ribi::cmap::Concept> > concepts_rhs;
     std::transform(nodes_rhs.begin(),nodes_rhs.end(),
       std::inserter(concepts_rhs,concepts_rhs.begin()),
       [](const boost::shared_ptr<const cmap::Node>& node)
@@ -386,8 +389,8 @@ bool ribi::cmap::ConceptMap::HasSameContent(
       }
     );
     if (std::mismatch(concepts_lhs.begin(),concepts_lhs.end(),concepts_rhs.begin(),
-      [](const boost::shared_ptr<const ribi::cmap::Concept>& a,
-        const boost::shared_ptr<const ribi::cmap::Concept>& b)
+      [](const ConstConceptPtr& a,
+         const ConstConceptPtr& b)
         {
           return *a == *b;
         }
@@ -401,7 +404,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
   //Same Edges
   {
     const std::vector<boost::shared_ptr<const cmap::Edge> > edges_lhs = lhs.GetEdges();
-    std::multiset<boost::shared_ptr<const ribi::cmap::Concept> > concepts_lhs;
+    std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_lhs(concept_cmp);
     std::transform(edges_lhs.begin(),edges_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
       [](const boost::shared_ptr<const cmap::Edge>& edge)
@@ -414,7 +417,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
 
     const std::vector<boost::shared_ptr<const cmap::Edge> > edges_rhs = rhs.GetEdges();
 
-    std::multiset<boost::shared_ptr<const ribi::cmap::Concept> > concepts_rhs;
+    std::multiset<ConstConceptPtr,decltype(concept_cmp)> concepts_rhs(concept_cmp);
     std::transform(edges_rhs.begin(),edges_rhs.end(),
       std::inserter(concepts_rhs,concepts_rhs.begin()),
       [](const boost::shared_ptr<const cmap::Edge>& edge)
@@ -423,8 +426,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
       }
     );
     if (std::mismatch(concepts_lhs.begin(),concepts_lhs.end(),concepts_rhs.begin(),
-      [](const boost::shared_ptr<const ribi::cmap::Concept>& a,
-        const boost::shared_ptr<const ribi::cmap::Concept>& b)
+      [](const ConstConceptPtr& a,const ConstConceptPtr& b)
         {
           return *a == *b;
         }
@@ -507,7 +509,7 @@ bool ribi::cmap::ConceptMap::HasSameContent(
     std::sort(w.begin(),w.end());
     if (v != w)
     {
-      #define REALLY_SHOW_ME_THIS_7364894385876473475934758934753
+      //#define REALLY_SHOW_ME_THIS_7364894385876473475934758934753
       #ifdef REALLY_SHOW_ME_THIS_7364894385876473475934758934753
       #ifndef NDEBUG
       for (int i=0; i!=sz; ++i)

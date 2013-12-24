@@ -24,11 +24,11 @@ struct Node : public Element
   Node& operator=(const Node&) = delete;
 
   ///Obtain a Node from an XML std::string
-  static const boost::shared_ptr<ribi::cmap::Node> FromXml(const std::string& s);
+  static const boost::shared_ptr<Node> FromXml(const std::string& s);
 
   ///Get the Concept
-  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const noexcept { return m_concept; }
-  const boost::shared_ptr<      ribi::cmap::Concept>& GetConcept()       noexcept { return m_concept; }
+  const boost::shared_ptr<const Concept>  GetConcept() const noexcept { return m_concept; }
+  const boost::shared_ptr<      Concept>& GetConcept()       noexcept { return m_concept; }
 
   #ifndef NDEBUG
   ///Get boost::shared_ptr::use_count
@@ -36,10 +36,10 @@ struct Node : public Element
   #endif
 
   ///Get some test nodes
-  static const std::vector<boost::shared_ptr<ribi::cmap::Node> > GetTests();
+  static const std::vector<boost::shared_ptr<Node> > GetTests();
 
   ///Similar to operator==, except that GUI elements are not tested for equality
-  static bool HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs);
+  static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs);
 
   ///Get the x coordinat
   double GetX() const { return m_x; }
@@ -48,7 +48,7 @@ struct Node : public Element
   double GetY() const { return m_y; }
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept);
+  void SetConcept(const boost::shared_ptr<Concept> concept);
 
   ///Set the position
   void SetPos(const double x, const double y) { SetX(x); SetY(y); }
@@ -60,9 +60,9 @@ struct Node : public Element
   void SetY(const double y);
 
   ///Convert a Node from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const cmap::Node>& c);
+  static const std::string ToXml(const boost::shared_ptr<const Node>& c);
 
-  boost::signals2::signal<void(const cmap::Node *)> m_signal_node_changed;
+  boost::signals2::signal<void(const Node *)> m_signal_node_changed;
 
   protected:
   ///Block construction, except for NodeFactory and derived classes
@@ -70,7 +70,7 @@ struct Node : public Element
   friend NodeFactory;
 
   explicit Node(
-    const boost::shared_ptr<ribi::cmap::Concept>& concept,
+    const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 
@@ -81,7 +81,7 @@ struct Node : public Element
   private:
 
   ///The Concept
-  boost::shared_ptr<ribi::cmap::Concept> m_concept;
+  boost::shared_ptr<Concept> m_concept;
 
   ///The x-coordinat
   double m_x;
@@ -94,8 +94,21 @@ struct Node : public Element
 
 };
 
-bool operator==(const cmap::Node& lhs, const cmap::Node& rhs);
-bool operator!=(const cmap::Node& lhs, const cmap::Node& rhs);
+bool operator==(const Node& lhs, const Node& rhs);
+bool operator!=(const Node& lhs, const Node& rhs);
+
+bool operator<(
+  const boost::shared_ptr<Node>& lhs,
+  const boost::shared_ptr<Node>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<const Node>& lhs,
+  const boost::shared_ptr<      Node>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<      Node>& lhs,
+  const boost::shared_ptr<const Node>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<const Node>& lhs,
+  const boost::shared_ptr<const Node>& rhs) = delete;
 
 } //~namespace cmap
 

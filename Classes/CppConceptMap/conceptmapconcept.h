@@ -23,15 +23,15 @@ struct ConceptFactory;
 struct Concept
 {
   ///Block copying, as signals cannot be copied
-  Concept(const ribi::cmap::Concept& other) = delete;
-  Concept& operator=(const ribi::cmap::Concept& other) = delete;
+  Concept(const Concept& other) = delete;
+  Concept& operator=(const Concept& other) = delete;
 
   ///Read concept from a std::string read from file
-  static const boost::shared_ptr<ribi::cmap::Concept> FromXml(const std::string& s);
+  static const boost::shared_ptr<Concept> FromXml(const std::string& s);
 
   ///Get the examples of the concept, e.g. 'Plato', 'Aristotle'
   const boost::shared_ptr<const cmap::Examples> GetExamples() const;
-  const boost::shared_ptr<ribi::cmap::Examples>& GetExamples() { return m_examples; }
+  const boost::shared_ptr<Examples>& GetExamples() { return m_examples; }
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
@@ -61,22 +61,22 @@ struct Concept
   void SetIsComplex(const bool is_complex) { m_is_complex = is_complex; }
 
   ///Emitted when the examples are changed
-  mutable boost::signals2::signal<void(const ribi::cmap::Concept*)> m_signal_examples_changed;
+  mutable boost::signals2::signal<void(const Concept*)> m_signal_examples_changed;
 
   ///Emitted when the name is changed
-  mutable boost::signals2::signal<void(const ribi::cmap::Concept*)> m_signal_name_changed;
+  mutable boost::signals2::signal<void(const Concept*)> m_signal_name_changed;
 
   ///Emitted when the rating of the complexity is changed
-  mutable boost::signals2::signal<void(const ribi::cmap::Concept*)> m_signal_rating_complexity_changed;
+  mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_complexity_changed;
 
   ///Emitted when the rating of the complexity is changed
-  mutable boost::signals2::signal<void(const ribi::cmap::Concept*)> m_signal_rating_concreteness_changed;
+  mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_concreteness_changed;
 
   ///Emitted when the rating of the specificity is changed
-  mutable boost::signals2::signal<void(const ribi::cmap::Concept*)> m_signal_rating_specificity_changed;
+  mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_specificity_changed;
 
   ///Convert Concept to a std::string to write to file
-  static const std::string ToXml(const boost::shared_ptr<const ribi::cmap::Concept>& t);
+  static const std::string ToXml(const boost::shared_ptr<const Concept>& t);
 
   private:
 
@@ -96,7 +96,7 @@ struct Concept
   friend class QtTestNodeItemDialog;
 
   ///Set the examples
-  void SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples);
+  void SetExamples(const boost::shared_ptr<Examples>& examples);
 
   ///Set the name
   void SetName(const std::string& name);
@@ -116,7 +116,7 @@ struct Concept
   private:
 
   ///Examples of the concept, e.g. 'Plato', 'Aristotle'
-  boost::shared_ptr<ribi::cmap::Examples> m_examples;
+  boost::shared_ptr<Examples> m_examples;
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?
   ///This is something different than m_rating_complexity:
@@ -144,12 +144,12 @@ struct Concept
 
   ///Use checked_delete for destructor
   ~Concept() {}
-  friend void boost::checked_delete<>(ribi::cmap::Concept* x);
+  friend void boost::checked_delete<>(Concept* x);
 
   ///Let only ConceptFactory construct Concepts
   Concept(
     const std::string& name,
-    const boost::shared_ptr<ribi::cmap::Examples>& examples,
+    const boost::shared_ptr<Examples>& examples,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
@@ -157,26 +157,26 @@ struct Concept
   friend ConceptFactory;
 };
 
-bool operator==(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
-bool operator!=(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
+bool operator==(const Concept& lhs, const Concept& rhs);
+bool operator!=(const Concept& lhs, const Concept& rhs);
 
 ///Two Concept instances are ordered as follows:
 ///(1) Alphabetically on the name
 ///(2) (if the names are equal) On their Examples
-bool operator<(const ribi::cmap::Concept& lhs, const ribi::cmap::Concept& rhs);
+bool operator<(const Concept& lhs, const Concept& rhs);
 
 bool operator<(
-  const boost::shared_ptr<ribi::cmap::Concept>& lhs,
-  const boost::shared_ptr<ribi::cmap::Concept>& rhs) = delete;
+  const boost::shared_ptr<Concept>& lhs,
+  const boost::shared_ptr<Concept>& rhs) = delete;
 bool operator<(
-  const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
-  const boost::shared_ptr<      ribi::cmap::Concept>& rhs) = delete;
+  const boost::shared_ptr<const Concept>& lhs,
+  const boost::shared_ptr<      Concept>& rhs) = delete;
 bool operator<(
-  const boost::shared_ptr<      ribi::cmap::Concept>& lhs,
-  const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
+  const boost::shared_ptr<      Concept>& lhs,
+  const boost::shared_ptr<const Concept>& rhs) = delete;
 bool operator<(
-  const boost::shared_ptr<const ribi::cmap::Concept>& lhs,
-  const boost::shared_ptr<const ribi::cmap::Concept>& rhs) = delete;
+  const boost::shared_ptr<const Concept>& lhs,
+  const boost::shared_ptr<const Concept>& rhs) = delete;
 
 } //~namespace cmap
 } //~namespace ribi

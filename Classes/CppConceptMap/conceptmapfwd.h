@@ -15,6 +15,7 @@ struct ConceptFactory;
 struct ConceptMap;
 struct ConceptMapFactory;
 struct Edge;
+struct EdgeFactory;
 struct Element;
 struct Example;
 struct Examples;

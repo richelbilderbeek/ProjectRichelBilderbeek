@@ -23,16 +23,16 @@ struct Edge : public Element
 {
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
-  const boost::shared_ptr<const ribi::cmap::Concept> GetConcept() const { return m_concept; }
-  const boost::shared_ptr<      ribi::cmap::Concept> GetConcept()       { return m_concept; }
+  const boost::shared_ptr<const Concept> GetConcept() const { return m_concept; }
+  const boost::shared_ptr<      Concept> GetConcept()       { return m_concept; }
 
   ///Get the Node this edge originates from
-  const boost::shared_ptr<const cmap::Node> GetFrom() const { return m_from; }
-  const boost::shared_ptr<      cmap::Node> GetFrom()       { return m_from; }
+  const boost::shared_ptr<const Node> GetFrom() const { return m_from; }
+  const boost::shared_ptr<      Node> GetFrom()       { return m_from; }
 
   ///Get the Node index this edge goes to
-  const boost::shared_ptr<const cmap::Node> GetTo() const { return m_to; }
-  const boost::shared_ptr<      cmap::Node> GetTo()       { return m_to; }
+  const boost::shared_ptr<const Node> GetTo() const { return m_to; }
+  const boost::shared_ptr<      Node> GetTo()       { return m_to; }
 
   ///Get the x coordinat
   double GetX() const { return m_x; }
@@ -44,16 +44,16 @@ struct Edge : public Element
   bool HasHeadArrow() const { return m_head_arrow; }
 
   //Similar to operator==, except that the coordinats are not checked
-  static bool HasSameContent(const boost::shared_ptr<const cmap::Edge>& lhs, const boost::shared_ptr<const cmap::Edge>& rhs);
+  static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs);
 
   ///Does the edge have an arrow at the tail?
   bool HasTailArrow() const { return m_tail_arrow; }
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) { m_concept = concept; }
+  void SetConcept(const boost::shared_ptr<Concept> concept) { m_concept = concept; }
 
   ///Set the Node index this edge originates from
-  void SetFrom(const boost::shared_ptr<ribi::cmap::Node> from);
+  void SetFrom(const boost::shared_ptr<Node> from);
 
   ///Set if the head has an arrow
   void SetHeadArrow(const bool has_head_arrow);
@@ -65,7 +65,7 @@ struct Edge : public Element
   void SetTailArrow(const bool has_tail_arrow);
 
   ///Set the Node index this edge goes to
-  void SetTo(const boost::shared_ptr<ribi::cmap::Node> to);
+  void SetTo(const boost::shared_ptr<Node> to);
 
   ///Set the x coordinat of the concept at the center of the node
   void SetX(const double x);
@@ -77,8 +77,8 @@ struct Edge : public Element
   ///The container of nodes is needed to convert the 'to' and 'from'
   ///field to indices
   static const std::string ToXml(
-    const boost::shared_ptr<const cmap::Edge>& c,
-    const std::vector<boost::shared_ptr<const cmap::Node> >& nodes
+    const boost::shared_ptr<const Edge>& c,
+    const std::vector<boost::shared_ptr<const Node> >& nodes
     );
 
   ///Emitted when an Edge attribute has changed
@@ -87,11 +87,11 @@ struct Edge : public Element
   private:
 
   ///The Concept on the Edge
-  boost::shared_ptr<ribi::cmap::Concept> m_concept;
+  boost::shared_ptr<Concept> m_concept;
 
   ///The Node index this edge originates from
   ///Cannot be an index, see [1] below
-  boost::shared_ptr<ribi::cmap::Node> m_from;
+  boost::shared_ptr<Node> m_from;
 
   ///Is there an arrowhead at the 'to' node?
   bool m_head_arrow;
@@ -101,7 +101,7 @@ struct Edge : public Element
 
   ///The Node index this edge goes to
   ///Cannot be an index, see [1] below
-  boost::shared_ptr<ribi::cmap::Node> m_to;
+  boost::shared_ptr<Node> m_to;
 
   ///The x-coordinat
   double m_x;
@@ -125,18 +125,31 @@ struct Edge : public Element
   ///Block constructor, except for EdgeFactory
   friend EdgeFactory;
   Edge(
-    const boost::shared_ptr<ribi::cmap::Concept> & concept,
+    const boost::shared_ptr<Concept> & concept,
     const double concept_x,
     const double concept_y,
-    const boost::shared_ptr<ribi::cmap::Node> from,
+    const boost::shared_ptr<Node> from,
     const bool tail_arrow,
-    const boost::shared_ptr<ribi::cmap::Node> to,
+    const boost::shared_ptr<Node> to,
     const bool head_arrow);
 
 };
 
-bool operator==(const cmap::Edge& lhs, const cmap::Edge& rhs);
-bool operator!=(const cmap::Edge& lhs, const cmap::Edge& rhs);
+bool operator==(const Edge& lhs, const Edge& rhs);
+bool operator!=(const Edge& lhs, const Edge& rhs);
+
+bool operator<(
+  const boost::shared_ptr<Edge>& lhs,
+  const boost::shared_ptr<Edge>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<const Edge>& lhs,
+  const boost::shared_ptr<      Edge>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<      Edge>& lhs,
+  const boost::shared_ptr<const Edge>& rhs) = delete;
+bool operator<(
+  const boost::shared_ptr<const Edge>& lhs,
+  const boost::shared_ptr<const Edge>& rhs) = delete;
 
 ///Notes:
 /// [1] Node::m_from and Node::m_to cannot be indices, because of the desired copying behavior
