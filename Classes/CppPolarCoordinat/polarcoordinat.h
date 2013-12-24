@@ -9,13 +9,16 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/math/constants/constants.hpp>
+#include <boost/units/base_units/angle/radian.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/area.hpp>
+#include <boost/units/systems/si/io.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/prefixes.hpp>
-#include "is_about_equal.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
+
+namespace ribi {
 
 template <class Angle, class Length>
 struct PolarCoordinat
@@ -98,7 +101,7 @@ const Angle PolarCoordinat<Angle,Length>::CalcAngle(const Length& dx, const Leng
   const double half_pi = boost::math::constants::half_pi<double>();
   return Angle(
     (half_pi + std::atan2(dy.value(),dx.value()))
-    * boost::units::si::radian);
+    * boost::units::si::radians);
 }
 
 
@@ -228,5 +231,7 @@ void PolarCoordinat<Angle,Length>::Translate(const Coordinat<Length>& c)
   m_angle = new_coordinat.GetAngle();
   m_length = new_coordinat.GetLength();
 }
+
+} //~namespace ribi
 
 #endif // POLARCOORDINAT_H

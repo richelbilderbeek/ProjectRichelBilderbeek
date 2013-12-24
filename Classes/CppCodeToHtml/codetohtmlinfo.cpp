@@ -451,6 +451,235 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppBoostUnitsExample1",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample1.htm\">Boost.Units example 1: example from Boost</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample1.zip\">Download the Qt Creator project 'CppBoostUnitsExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample2",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample2.htm\">Boost.Units example 2: calculate the area from two lengths</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample2.zip\">Download the Qt Creator project 'CppBoostUnitsExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample3",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample3.htm\">Boost.Units example 3: creating a Length, Width and Area classes</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample3.zip\">Download the Qt Creator project 'CppBoostUnitsExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample4",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample4.htm\">Boost.Units example 4: creating a Length, Width and Area classes with some typedefs</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample4.zip\">Download the Qt Creator project 'CppBoostUnitsExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample5",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample5.htm\">Boost.Units example 5: averaging multiple lengths</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample5.zip\">Download the Qt Creator project 'CppBoostUnitsExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample6",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample6.htm\">Boost.Units example 6: using an angle</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample6.zip\">Download the Qt Creator project 'CppBoostUnitsExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample7",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample7.htm\">Boost.Units example 7: calculating a force from a mass and an acceleration</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample7.zip\">Download the Qt Creator project 'CppBoostUnitsExample7' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample8",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample8.htm\">Boost.Units example 8: calculating mass from a volume and a mass density</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample8.zip\">Download the Qt Creator project 'CppBoostUnitsExample8' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample9",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample9.htm\">Boost.Units example 9: calculating pressure from a force and an area</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample9.zip\">Download the Qt Creator project 'CppBoostUnitsExample9' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample10",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample10.htm\">Boost.Units example 10: calculating angular acceleration and torque</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample10.zip\">Download the Qt Creator project 'CppBoostUnitsExample10' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample11",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample11.htm\">Boost.Units example 11: creating the quantity volumetric flow</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample11.zip\">Download the Qt Creator project 'CppBoostUnitsExample11' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostUnitsExample12",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsExample12.htm\">Boost.Units example 12: creating the quantity volumetric flow and mass flow</a>",
+        "  is a <a href=\"CppBoostUnits.htm\">Boost.Units</a> example.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsExample12.zip\">Download the Qt Creator project 'CppBoostUnitsExample12' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppCallStackCounter",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -5909,6 +6138,13 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+
+
+
+
+
+
   m.push_back(
     { "CppVectorExample1",
       {

@@ -5,7 +5,7 @@
 
 #include <set>
 #include <sstream>
-
+#include <functional>
 #include "conceptmapcenternode.h"
 #include "conceptmapcenternodefactory.h"
 #include "conceptmapconcept.h"
@@ -356,14 +356,22 @@ bool ribi::cmap::ConceptMap::HasSameContent(
   //Same Concepts
   {
     const std::vector<boost::shared_ptr<const cmap::Node> > nodes_lhs = lhs.GetNodes();
-    std::multiset<boost::shared_ptr<const ribi::cmap::Concept> > concepts_lhs;
+
+    typedef boost::shared_ptr<const ribi::cmap::Concept> ConceptPtr;
+    std::multiset<ConceptPtr,std::function<bool(const ConceptPtr& lhs,const ConceptPtr& rhs)>> concepts_lhs(
+      [](const ConceptPtr& lhs,const ConceptPtr& rhs)
+      {
+        return *lhs < *rhs;
+      }
+    );
     std::transform(nodes_lhs.begin(),nodes_lhs.end(),
       std::inserter(concepts_lhs,concepts_lhs.begin()),
-      [](const boost::shared_ptr<const cmap::Node>& node)
+      [](boost::shared_ptr<const cmap::Node> node)
       {
         assert(node);
         assert(node->GetConcept());
-        return node->GetConcept();
+        ConceptPtr concept = node->GetConcept();
+        return concept;
       }
     );
 

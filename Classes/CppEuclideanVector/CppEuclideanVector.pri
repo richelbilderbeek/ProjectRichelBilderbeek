@@ -1,12 +1,11 @@
 INCLUDEPATH += \
-    ../../Classes/CppCanvas
+    ../../Classes/CppEuclideanVector
 
 SOURCES += \
-    ../../Classes/CppCanvas/canvas.cpp
+    ../../Classes/CppEuclideanVector/euclideanvector.cpp
 
-HEADERS  += \
-    ../../Classes/CppCanvas/canvas.h
+HEADERS += \
+    ../../Classes/CppEuclideanVector/euclideanvector.h
 
 OTHER_FILES += \
-    ../../Classes/CppCanvas/Licence.txt
-
+    ../../Classes/CppEuclideanVector/Licence.txt

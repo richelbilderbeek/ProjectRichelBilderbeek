@@ -1,12 +1,11 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppPolarCoordinat
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppPolarCoordinat/polarcoordinat.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppPolarCoordinat/polarcoordinat.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
-
+    ../../Classes/CppPolarCoordinat/Licence.txt

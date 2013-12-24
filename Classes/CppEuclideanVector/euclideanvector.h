@@ -3,6 +3,8 @@
 #include <cassert>
 #include <utility>
 
+namespace ribi {
+
 //A Euclidean vector
 template <class T>
 struct EuclideanVector
@@ -67,6 +69,7 @@ const EuclideanVector<T> operator/(const EuclideanVector<U>& lhs, const V& rhs)
   return EuclideanVector<T>(lhs.x / rhs, lhs.y / rhs);
 }
 
+} //~namespace ribi
 
 
 #endif // EUCLIDEANVECTOR_H

@@ -27,8 +27,8 @@ struct Node : public Element
   static const boost::shared_ptr<ribi::cmap::Node> FromXml(const std::string& s);
 
   ///Get the Concept
-  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const { return m_concept; }
-  const boost::shared_ptr<      ribi::cmap::Concept>& GetConcept() { return m_concept; }
+  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const noexcept { return m_concept; }
+  const boost::shared_ptr<      ribi::cmap::Concept>& GetConcept()       noexcept { return m_concept; }
 
   #ifndef NDEBUG
   ///Get boost::shared_ptr::use_count
