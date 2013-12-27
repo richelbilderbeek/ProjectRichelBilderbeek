@@ -11,25 +11,26 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestEditConceptMapWidgetDialog;
+  class QtTestConceptMapWidgetDialog;
 }
 
 namespace ribi {
 namespace cmap {
 
-class QtTestEditConceptMapWidgetDialog : public ribi::QtHideAndShowDialog
+class QtTestConceptMapWidgetDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTestEditConceptMapWidgetDialog(QWidget *parent = 0);
-  QtTestEditConceptMapWidgetDialog(const QtTestEditConceptMapWidgetDialog&) = delete;
-  QtTestEditConceptMapWidgetDialog& operator=(const QtTestEditConceptMapWidgetDialog&) = delete;
-  ~QtTestEditConceptMapWidgetDialog() noexcept;
+  explicit QtTestConceptMapWidgetDialog(QWidget *parent = 0);
+  QtTestConceptMapWidgetDialog(const QtTestConceptMapWidgetDialog&) = delete;
+  QtTestConceptMapWidgetDialog& operator=(const QtTestConceptMapWidgetDialog&) = delete;
+  ~QtTestConceptMapWidgetDialog() noexcept;
 
 private:
-  Ui::QtTestEditConceptMapWidgetDialog *ui;
-  boost::shared_ptr<QtTestEditConceptMapWidgetDialog> m_widget;
+  Ui::QtTestConceptMapWidgetDialog *ui;
+
+  boost::shared_ptr<QtTestConceptMapWidgetDialog> m_widget;
 };
 
 } //~namespace cmap

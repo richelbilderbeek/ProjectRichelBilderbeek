@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>697</width>
-    <height>542</height>
+    <height>554</height>
    </rect>
   </property>
   <property name="font">
@@ -115,23 +115,9 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QPushButton" name="button_readonly_conceptmapwidget">
-           <property name="text">
-            <string>Read-only</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="button_edit_conceptmapwidget">
-           <property name="text">
-            <string>Editable</string>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QPushButton" name="button_rate_conceptmapwidget">
            <property name="text">
-            <string>Rateable</string>
+            <string>Any type</string>
            </property>
           </widget>
          </item>

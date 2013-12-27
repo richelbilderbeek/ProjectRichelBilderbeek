@@ -1,4 +1,4 @@
-#include "qtconceptmaptesteditconceptmapwidget.h"
+#include "qttestconceptmapwidgetdialog.h"
 
 #include <cassert>
 
@@ -7,13 +7,12 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "qtconceptmapwidget.h"
-#include "ui_qtconceptmaptesteditconceptmapwidget.h"
+#include "ui_qttestconceptmapwidgetdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtTestEditConceptMapWidgetDialog::QtTestEditConceptMapWidgetDialog(QWidget *parent) :
+ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestEditConceptMapWidgetDialog),
-  m_widget(new QtTestEditConceptMapWidgetDialog)
+  ui(new Ui::QtTestConceptMapWidgetDialog m_widget(new QtTestConceptMapWidgetDialog))
 {
   ui->setupUi(this);
   //Add the conceptmap widget
@@ -25,7 +24,7 @@ ribi::cmap::QtTestEditConceptMapWidgetDialog::QtTestEditConceptMapWidgetDialog(Q
 
 }
 
-ribi::cmap::QtTestEditConceptMapWidgetDialog::~QtTestEditConceptMapWidgetDialog()
+ribi::cmap::QtTestConceptMapWidgetDialog::~QtTestConceptMapWidgetDialog()
 {
   delete ui;
 }
