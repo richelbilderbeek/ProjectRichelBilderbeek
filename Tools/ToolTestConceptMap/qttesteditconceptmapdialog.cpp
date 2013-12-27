@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qttestconceptmapeditwidgetdialog.h"
+#include "qttesteditconceptmapdialog.h"
 
 #include <cassert>
 
@@ -22,17 +22,17 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnode.h"
 #include "qtconceptmapratestrategy.h"
-#include "qtconceptmapeditwidget.h"
+#include "qteditconceptmap.h"
 #include "trace.h"
-#include "ui_qttestconceptmapeditwidgetdialog.h"
+#include "ui_qttesteditconceptmapdialog.h"
 #pragma GCC diagnostic pop
 
 
-ribi::cmap::QtTestConceptMapEditWidgetDialog::QtTestConceptMapEditWidgetDialog(QWidget *parent) :
+ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestConceptMapEditWidgetDialog),
+  ui(new Ui::QtTestEditConceptMapDialog),
   m_concept_map(
-    new QtConceptMapEditWidget(
+    new QtEditConceptMap(
       ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
     )
   )
@@ -46,12 +46,12 @@ ribi::cmap::QtTestConceptMapEditWidgetDialog::QtTestConceptMapEditWidgetDialog(Q
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-ribi::cmap::QtTestConceptMapEditWidgetDialog::~QtTestConceptMapEditWidgetDialog() noexcept
+ribi::cmap::QtTestEditConceptMapDialog::~QtTestEditConceptMapDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::cmap::QtTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *event)
+void ribi::cmap::QtTestEditConceptMapDialog::keyPressEvent(QKeyEvent *event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
   if (event->key() == Qt::Key_1
@@ -62,15 +62,15 @@ void ribi::cmap::QtTestConceptMapEditWidgetDialog::keyPressEvent(QKeyEvent *even
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtTestConceptMapEditWidgetDialog::Test() noexcept
+void ribi::cmap::QtTestEditConceptMapDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("ribi::cmap::QtTestConceptMapEditWidgetDialog::Test started");
-  QtTestConceptMapEditWidgetDialog d;
+  TRACE("ribi::cmap::QtTestEditConceptMapDialog::Test started");
+  QtTestEditConceptMapDialog d;
   d.DoSomethingRandom();
   TRACE("TODO");
   /*
@@ -132,11 +132,11 @@ void ribi::cmap::QtTestConceptMapEditWidgetDialog::Test() noexcept
     assert(d.m_rate_node->brush()    == QtBrushFactory::CreateGreenGradientBrush());
     */
   }
-  TRACE("ribi::cmap::QtTestConceptMapEditWidgetDialog::Test finished successfully");
+  TRACE("ribi::cmap::QtTestEditConceptMapDialog::Test finished successfully");
 }
 #endif
 
-void ribi::cmap::QtTestConceptMapEditWidgetDialog::DoSomethingRandom()
+void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
 {
 
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();

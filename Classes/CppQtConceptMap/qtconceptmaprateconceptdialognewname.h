@@ -63,7 +63,7 @@ private:
   ///Cannot be const, only used in calculating the suggestions
   const boost::shared_ptr<ribi::cmap::ConceptMap> m_sub_concept_map;
 
-  const boost::shared_ptr<QtConceptMapRateWidget> m_widget;
+  const boost::shared_ptr<QtRateConceptMap> m_widget;
   //QtConceptMapRateWidget * const m_widget; //WHY DID I DO THIS???
 
   void OnRatingComplexityChanged(const ribi::cmap::Concept* concept);

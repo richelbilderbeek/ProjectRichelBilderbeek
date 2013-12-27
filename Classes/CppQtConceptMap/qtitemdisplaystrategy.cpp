@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptitem.h"
+#include "qtitemdisplaystrategy.h"
 
 #include <string>
 #include <boost/lexical_cast.hpp>
@@ -51,7 +51,6 @@ ribi::cmap::QtItemDisplayStrategy::QtItemDisplayStrategy(
 
   this->SetPadding(Base::Padding(1.0,6.0,1.0,2.0));
 
-  //?FIX 2013-01-06 22:47
   GetConcept()->m_signal_name_changed.connect(
     boost::bind(&ribi::cmap::QtItemDisplayStrategy::OnConceptNameChanged,this)); //Obligatory
 

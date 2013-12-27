@@ -28,7 +28,7 @@ public:
   QtPvdbRateConceptMapDialog& operator=(const QtPvdbRateConceptMapDialog&) = delete;
   ~QtPvdbRateConceptMapDialog() noexcept;
 
-  cmap::QtConceptMapRateWidget * GetWidget();
+  cmap::QtRateConceptMap * GetWidget();
 
   ///Respond to key press
   void keyPressEvent(QKeyEvent *);
@@ -44,7 +44,7 @@ private slots:
 private:
   Ui::QtPvdbRateConceptMapDialog *ui;
   boost::shared_ptr<pvdb::File> m_file;
-  cmap::QtConceptMapRateWidget * const m_widget;
+  cmap::QtRateConceptMap * const m_widget;
 
   ///The widget requested for a rating of the already supplied sub concept map,
   ///with the focal concept item as the central node

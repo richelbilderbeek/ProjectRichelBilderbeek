@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPTESTCONCEPTMAPRATEWIDGETDIALOG_H
-#define QTCONCEPTMAPTESTCONCEPTMAPRATEWIDGETDIALOG_H
+#ifndef QTCONCEPTMAPTESTDISPLAYCONCEPTMAPDIALOG_H
+#define QTCONCEPTMAPTESTDISPLAYCONCEPTMAPDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -11,23 +11,24 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtTestConceptMapRateWidgetDialog; }
+namespace Ui { class QtTestDisplayConceptMapDialog; }
 
 namespace ribi {
+
 namespace cmap {
 
 ///Tests all QtConceptMaps
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtTestConceptMapRateWidgetDialog : public ribi::QtHideAndShowDialog
+class QtTestDisplayConceptMapDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtTestConceptMapRateWidgetDialog(QWidget *parent = 0);
-  QtTestConceptMapRateWidgetDialog(const QtTestConceptMapRateWidgetDialog&) = delete;
-  QtTestConceptMapRateWidgetDialog& operator=(const QtTestConceptMapRateWidgetDialog&) = delete;
-  ~QtTestConceptMapRateWidgetDialog() noexcept;
+  explicit QtTestDisplayConceptMapDialog(QWidget *parent = 0);
+  QtTestDisplayConceptMapDialog(const QtTestDisplayConceptMapDialog&) = delete;
+  QtTestDisplayConceptMapDialog& operator=(const QtTestDisplayConceptMapDialog&) = delete;
+  ~QtTestDisplayConceptMapDialog() noexcept;
 
 protected:
 
@@ -35,14 +36,14 @@ protected:
 
 private slots:
 
+  void on_button_test_modify_clicked();
+
 private:
 
-  Ui::QtTestConceptMapRateWidgetDialog *ui;
+  Ui::QtTestDisplayConceptMapDialog *ui;
 
   ///The to-be-tested concept map
-  boost::shared_ptr<QtConceptMapRateWidget> m_concept_map;
-
-  void DoSomethingRandom();
+  boost::shared_ptr<QtDisplayConceptMap> m_concept_map;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -50,7 +51,6 @@ private:
 };
 
 } //~namespace cmap
-
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPTESTCONCEPTMAPRATEWIDGETDIALOG_H
+#endif // QTCONCEPTMAPTESTDISPLAYCONCEPTMAPDIALOG_H

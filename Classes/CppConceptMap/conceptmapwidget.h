@@ -52,9 +52,8 @@ struct Widget
   Element * m_focus;
 
   //The undo stack (use std::vector because it is a true STL container)
-  //first: the ConceptMap before the command
-  //second: the last Command done to the Widget
-  std::vector<std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Command>>> m_undo;
+  //The Commands aren't const, because Command::Undo changes their state
+  std::vector<boost::shared_ptr<Command>> m_undo;
 
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept { m_conceptmap = conceptmap; }
 

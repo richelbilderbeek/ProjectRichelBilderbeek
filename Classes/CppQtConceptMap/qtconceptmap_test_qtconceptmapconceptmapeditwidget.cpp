@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapeditwidget.h"
+#include "qteditconceptmap.h"
 
 #ifdef COMPILER_SUPPORTS_THREADS_20130507
 #include <thread>
@@ -14,7 +14,7 @@
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapEditWidget::Test() noexcept
+void ribi::cmap::QtEditConceptMap::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -90,7 +90,7 @@ void ribi::cmap::QtConceptMapEditWidget::Test() noexcept
       }
     }
   }
-  TRACE("ribi::cmap::QtConceptMapEditWidget::Test finished successfully");
+  TRACE("ribi::cmap::QtEditConceptMap::Test finished successfully");
   #ifdef COMPILER_SUPPORTS_THREADS_20130507
     }
   );

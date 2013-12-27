@@ -90,8 +90,8 @@ struct Concept
   friend class QtNode;
   friend class QtRateExamplesDialogNewName;
   friend class QtStudentMenuDialog;
-  friend class QtTestConceptMapEditWidgetDialog;
-  friend class QtTestConceptMapRateWidgetDialog;
+  friend class QtTestEditConceptMapDialog;
+  friend class QtTestRateConceptMapDialog;
   friend class QtTestEdgeItemDialog;
   friend class QtTestNodeItemDialog;
 

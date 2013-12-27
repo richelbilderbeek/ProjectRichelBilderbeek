@@ -15,9 +15,9 @@
 
 #include "conceptmap.h"
 #include "conceptmapfactory.h"
-#include "qtconceptmapdisplaywidget.h"
-#include "qtconceptmapeditwidget.h"
-#include "qtconceptmapratewidget.h"
+#include "qtdisplayconceptmap.h"
+#include "qteditconceptmap.h"
+#include "qtrateconceptmap.h"
 #include "qtconceptmap.h"
 #include "trace.h"
 #include "ui_qtconceptmapviewtestsdialog.h"
@@ -142,25 +142,25 @@ ribi::cmap::QtConceptMapViewTestsDialog::~QtConceptMapViewTestsDialog() noexcept
 
 boost::shared_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapViewTestsDialog::CreateWidget(
   const int type,
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map)
+  const boost::shared_ptr<ConceptMap> concept_map)
 {
   switch (type)
   {
     case 0:
     {
-      boost::shared_ptr<cmap::QtConceptMap> p(new cmap::QtConceptMapDisplayWidget(concept_map));
+      boost::shared_ptr<QtConceptMap> p(new QtDisplayConceptMap(concept_map));
       assert(p);
       return p;
     }
     case 1:
     {
-      boost::shared_ptr<cmap::QtConceptMap> p(new cmap::QtConceptMapEditWidget(concept_map));
+      boost::shared_ptr<QtConceptMap> p(new QtEditConceptMap(concept_map));
       assert(p);
       return p;
     }
     case 2:
     {
-      boost::shared_ptr<cmap::QtConceptMap> p(new cmap::QtConceptMapRateWidget(concept_map));
+      boost::shared_ptr<QtConceptMap> p(new QtRateConceptMap(concept_map));
       assert(p);
       return p;
     }

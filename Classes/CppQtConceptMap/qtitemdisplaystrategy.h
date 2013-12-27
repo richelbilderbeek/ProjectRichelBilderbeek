@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPCONCEPT_H
-#define QTCONCEPTMAPCONCEPT_H
+#ifndef QTCONCEPTMAPITEMDISPLAYSTRATEGY_H
+#define QTCONCEPTMAPITEMDISPLAYSTRATEGY_H
 
 #include <string>
 #include <vector>
@@ -25,7 +25,7 @@ namespace cmap {
 
 ///A QtItemDisplayStrategy shows a Concept
 ///A Concept can be shown in multiple different ways, which is performed by its derived classes.
-struct QtItemDisplayStrategy : public QtRoundedEditRectItem //NEW 2013-09-15
+struct QtItemDisplayStrategy : public QtRoundedEditRectItem
 {
   typedef QtRoundedEditRectItem Base;
 
@@ -103,7 +103,7 @@ private:
 
   ///The concept on the node
   ///m_concept cannot be const: the user might edit it
-  const boost::shared_ptr<ribi::cmap::Concept> m_concept;
+  const boost::shared_ptr<Concept> m_concept;
 
   ///The brush by which the indicator is filled
   QBrush m_indicator_brush;
@@ -122,4 +122,4 @@ private:
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPCONCEPT_H
+#endif // QTCONCEPTMAPITEMDISPLAYSTRATEGY_H

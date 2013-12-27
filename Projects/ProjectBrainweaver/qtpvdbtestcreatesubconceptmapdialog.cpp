@@ -8,7 +8,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 #include "conceptmapfactory.h"
 #include "conceptmap.h"
-#include "qtconceptmapdisplaywidget.h"
+#include "qtdisplayconceptmap.h"
 #include "ui_qtpvdbtestcreatesubconceptmapdialog.h"
 #pragma GCC diagnostic pop
 
@@ -54,7 +54,7 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
   }
 
   assert(ui->widget_concept_map->layout());
-  m_concept_map.reset(new cmap::QtConceptMapDisplayWidget(concept_map));
+  m_concept_map.reset(new cmap::QtDisplayConceptMap(concept_map));
   ui->widget_concept_map->layout()->addWidget(m_concept_map.get());
 
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > subs = concept_map->CreateSubs();
@@ -82,7 +82,7 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
   }
 
   assert(ui->widget_sub_concept_map->layout());
-  m_sub_concept_map.reset(new cmap::QtConceptMapDisplayWidget(sub));
+  m_sub_concept_map.reset(new cmap::QtDisplayConceptMap(sub));
   ui->widget_sub_concept_map->layout()->addWidget(m_sub_concept_map.get());
 }
 

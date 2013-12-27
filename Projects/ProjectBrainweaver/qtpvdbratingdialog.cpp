@@ -17,7 +17,7 @@
 #include "conceptmap.h"
 #include "qtconceptmap.h"
 #include "qtpvdbprintratingdialog.h"
-#include "qtconceptmapeditwidget.h"
+#include "qteditconceptmap.h"
 #include "qtpvdbdisplay.h"
 #include "qtpvdbfiledialog.h"
 #include "qtconceptmapdisplaystrategy.h"

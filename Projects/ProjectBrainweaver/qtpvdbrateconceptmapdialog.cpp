@@ -20,7 +20,7 @@
 #include "qtpvdbfiledialog.h"
 #include "qtscopeddisable.h"
 #include "pvdbfile.h"
-#include "qtconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 #include "trace.h"
 #include "qtpvdbratingdialog.h"
 #include "qtconceptmaprateconceptdialognewname.h"
@@ -33,7 +33,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   : QtHideAndShowDialog(parent),
   ui(new Ui::QtPvdbRateConceptMapDialog),
   m_file(file),
-  m_widget(new cmap::QtConceptMapRateWidget(file->GetConceptMap()))
+  m_widget(new cmap::QtRateConceptMap(file->GetConceptMap()))
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -73,7 +73,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::~QtPvdbRateConceptMapDialog() noexcept
   delete ui;
 }
 
-ribi::cmap::QtConceptMapRateWidget * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
+ribi::cmap::QtRateConceptMap * ribi::pvdb::QtPvdbRateConceptMapDialog::GetWidget()
 {
   assert(m_widget);
   return m_widget;

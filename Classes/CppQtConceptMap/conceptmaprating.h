@@ -1,5 +1,5 @@
-#ifndef CONCEPTMAPRATING_H
-#define CONCEPTMAPRATING_H
+#ifndef QTCONCEPTMAPRATING_H
+#define QTCONCEPTMAPRATING_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -38,4 +38,4 @@ struct Rating
 } //~namespace pvdb
 } //~namespace ribi
 
-#endif // CONCEPTMAPRATING_H
+#endif // QTCONCEPTMAPRATING_H

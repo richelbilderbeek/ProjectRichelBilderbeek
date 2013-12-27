@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapeditwidget.h"
+#include "qteditconceptmap.h"
 
 #include <boost/lambda/lambda.hpp>
 
@@ -51,7 +51,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-ribi::cmap::QtConceptMapEditWidget::QtConceptMapEditWidget(
+ribi::cmap::QtEditConceptMap::QtEditConceptMap(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
   : QtConceptMap(concept_map,parent),
@@ -85,7 +85,7 @@ ribi::cmap::QtConceptMapEditWidget::QtConceptMapEditWidget(
   #endif
 }
 
-ribi::cmap::QtConceptMapEditWidget::~QtConceptMapEditWidget() noexcept
+ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
 {
   m_tools = nullptr;
   assert(m_highlighter);
@@ -93,7 +93,7 @@ ribi::cmap::QtConceptMapEditWidget::~QtConceptMapEditWidget() noexcept
   m_arrow = nullptr;
 }
 
-void ribi::cmap::QtConceptMapEditWidget::AddEdge(
+void ribi::cmap::QtEditConceptMap::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -128,7 +128,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtedge->scene());
@@ -149,7 +149,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
+void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
 {
   assert(qt_from);
   assert(qt_to);
@@ -226,7 +226,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtNode * const qt_from, QtNode*
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtedge->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
 
@@ -241,7 +241,7 @@ void ribi::cmap::QtConceptMapEditWidget::AddEdge(QtNode * const qt_from, QtNode*
   this->scene()->update();
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMapEditWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
@@ -263,7 +263,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapEditWidget::AddNode(const boost::sh
   //Specific for Edit widget: inform an Observer of a request for a text edit
   qtnode->m_signal_conceptmapitem_requests_edit.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit,
+      &ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtnode->scene());
@@ -285,7 +285,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapEditWidget::AddNode(const boost::sh
   return qtnode;
 }
 
-void ribi::cmap::QtConceptMapEditWidget::CleanMe()
+void ribi::cmap::QtEditConceptMap::CleanMe()
 {
   //Prepare cleaning the scene
   assert(GetExamplesItem());
@@ -311,7 +311,7 @@ void ribi::cmap::QtConceptMapEditWidget::CleanMe()
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapEditWidget::OnRequestSceneUpdate,this));
+        &ribi::cmap::QtEditConceptMap::OnRequestSceneUpdate,this));
     item->setVisible(false);
     assert(!item->scene());
     this->scene()->addItem(item);
@@ -323,7 +323,7 @@ void ribi::cmap::QtConceptMapEditWidget::CleanMe()
     m_tools = new QtTool;
     m_tools->m_signal_clicked.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapEditWidget::OnToolsClicked,
+        &ribi::cmap::QtEditConceptMap::OnToolsClicked,
         this));
     assert(!m_tools->scene());
     this->scene()->addItem(m_tools);
@@ -331,7 +331,7 @@ void ribi::cmap::QtConceptMapEditWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapEditWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtEditConceptMap::CreateNewDerived() const
 {
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
@@ -341,7 +341,7 @@ std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapEditWidget::Cr
 }
 #endif
 
-void ribi::cmap::QtConceptMapEditWidget::DeleteEdge(QtEdge * const qtedge)
+void ribi::cmap::QtEditConceptMap::DeleteEdge(QtEdge * const qtedge)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -365,7 +365,7 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteEdge(QtEdge * const qtedge)
 }
 
 #ifdef BELIEF_THIS_IS_A_GOOD_MEMBER_FUNCTION_20130629_723648723687
-void ribi::cmap::QtConceptMapEditWidget::DeleteLeftovers()
+void ribi::cmap::QtEditConceptMap::DeleteLeftovers()
 {
   //assert(m_edge_concepts.size() == m_arrows.size());
   bool done = true;
@@ -406,7 +406,7 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteLeftovers()
 }
 #endif
 
-void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtNode * const qtnode)
+void ribi::cmap::QtEditConceptMap::DeleteNode(QtNode * const qtnode)
 {
   #ifndef NDEBUG
   const int n_items_before = this->scene()->items().count();
@@ -441,7 +441,7 @@ void ribi::cmap::QtConceptMapEditWidget::DeleteNode(QtNode * const qtnode)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapEditWidget::DoRandomStuff()
+void ribi::cmap::QtEditConceptMap::DoRandomStuff()
 {
   //this->mouseDoubleClickEvent(0); //CAUSES ACCESS VIOLATION
 
@@ -466,7 +466,7 @@ void ribi::cmap::QtConceptMapEditWidget::DoRandomStuff()
 
 
 
-const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMapEditWidget::GetQtEdges()
+const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtEditConceptMap::GetQtEdges()
 {
   const std::vector<QtEdge *> qtedges
     = Collect<QtEdge>(this->scene());
@@ -476,7 +476,7 @@ const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMapEditWidget::GetQ
   return qtedges;
 }
 
-const std::vector<ribi::cmap::QtNode *> ribi::cmap::QtConceptMapEditWidget::GetQtNodes()
+const std::vector<ribi::cmap::QtNode *> ribi::cmap::QtEditConceptMap::GetQtNodes()
 {
   const std::vector<QtNode *> qtnodes
     = Collect<QtNode>(this->scene());
@@ -491,7 +491,7 @@ const std::vector<ribi::cmap::QtNode *> ribi::cmap::QtConceptMapEditWidget::GetQ
   return qtnodes;
 }
 
-void ribi::cmap::QtConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noexcept
+void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept
 {
   switch (event->key())
   {
@@ -549,7 +549,7 @@ void ribi::cmap::QtConceptMapEditWidget::keyPressEvent(QKeyEvent* event) noexcep
   QtConceptMap::keyPressEvent(event);
 }
 
-void ribi::cmap::QtConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *event)
+void ribi::cmap::QtEditConceptMap::mouseDoubleClickEvent(QMouseEvent *event)
 {
   const boost::shared_ptr<ribi::cmap::Concept> concept(
     ribi::cmap::ConceptFactory::Create("..."));
@@ -568,7 +568,7 @@ void ribi::cmap::QtConceptMapEditWidget::mouseDoubleClickEvent(QMouseEvent *even
     && "GUI and non-GUI concept map must match");
 }
 
-void ribi::cmap::QtConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
+void ribi::cmap::QtEditConceptMap::mouseMoveEvent(QMouseEvent * event)
 {
   if (m_arrow)
   {
@@ -587,7 +587,7 @@ void ribi::cmap::QtConceptMapEditWidget::mouseMoveEvent(QMouseEvent * event)
   QtConceptMap::mouseMoveEvent(event);
 }
 
-void ribi::cmap::QtConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
+void ribi::cmap::QtEditConceptMap::mousePressEvent(QMouseEvent *event)
 {
   assert(m_highlighter);
   if (m_arrow) //&& m_highlighter->GetItem())
@@ -613,7 +613,7 @@ void ribi::cmap::QtConceptMapEditWidget::mousePressEvent(QMouseEvent *event)
   }
 }
 
-void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptMapElement* const item)
+void ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit(QtConceptMapElement* const item)
 {
 
   //assert(item->GetConcept());
@@ -640,14 +640,14 @@ void ribi::cmap::QtConceptMapEditWidget::OnConceptMapItemRequestsEdit(QtConceptM
   this->OnItemRequestsUpdate(item);
 }
 
-void ribi::cmap::QtConceptMapEditWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::cmap::QtEditConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
 
-void ribi::cmap::QtConceptMapEditWidget::OnToolsClicked()
+void ribi::cmap::QtEditConceptMap::OnToolsClicked()
 {
   const QPointF cursor_pos_approx(
     m_tools->GetBuddyItem()->pos().x(),

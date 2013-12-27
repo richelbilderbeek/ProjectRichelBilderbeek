@@ -22,9 +22,9 @@
 //#include "conceptmapfile.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-#include "qtconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 #include "conceptmaprating.h"
-#include "qtconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 #include "qtconceptmaprateconcepttallydialognewname.h"
 #include "trace.h"
 #include "ui_qtconceptmaprateconceptdialognewname.h"
@@ -50,7 +50,7 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
       : -1),
 
     m_sub_concept_map(sub_concept_map),
-    m_widget(new QtConceptMapRateWidget(sub_concept_map))
+    m_widget(new QtRateConceptMap(sub_concept_map))
 {
   ui->setupUi(this);
   #ifndef NDEBUG

@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qttestconceptmapratewidgetdialog.h"
+#include "qttestdisplayconceptmapdialog.h"
 
 #include <cassert>
 #include <cstdlib>
@@ -22,26 +22,24 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapratewidget.h"
+#include "qtdisplayconceptmap.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapnode.h"
 #include "qtconceptmapratestrategy.h"
 #include "trace.h"
-#include "ui_qttestconceptmapratewidgetdialog.h"
+#include "ui_qttestdisplayconceptmapdialog.h"
 #pragma GCC diagnostic pop
 
-
-ribi::cmap::QtTestConceptMapRateWidgetDialog::QtTestConceptMapRateWidgetDialog(QWidget *parent) :
+ribi::cmap::QtTestDisplayConceptMapDialog::QtTestDisplayConceptMapDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestConceptMapRateWidgetDialog),
+  ui(new Ui::QtTestDisplayConceptMapDialog),
   m_concept_map(
-    new QtConceptMapRateWidget(
+    new QtDisplayConceptMap(
       ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
     )
   )
-
 {
   ui->setupUi(this);
   #ifndef NDEBUG
@@ -51,14 +49,33 @@ ribi::cmap::QtTestConceptMapRateWidgetDialog::QtTestConceptMapRateWidgetDialog(Q
   ui->widget->layout()->addWidget(m_concept_map.get());
 }
 
-ribi::cmap::QtTestConceptMapRateWidgetDialog::~QtTestConceptMapRateWidgetDialog() noexcept
+ribi::cmap::QtTestDisplayConceptMapDialog::~QtTestDisplayConceptMapDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::cmap::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
+void ribi::cmap::QtTestDisplayConceptMapDialog::keyPressEvent(QKeyEvent *event)
 {
+  if (event->key() == Qt::Key_Escape) { close(); return; }
+}
 
+#ifndef NDEBUG
+void ribi::cmap::QtTestDisplayConceptMapDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("ribi::cmap::QtTestDisplayConceptMapDialog::Test started");
+  QtTestDisplayConceptMapDialog d;
+  for (int i=0; i!=100; ++i) d.on_button_test_modify_clicked();
+  TRACE("ribi::cmap::QtTestDisplayConceptMapDialog::Test finished successfully");
+}
+#endif
+
+void ribi::cmap::QtTestDisplayConceptMapDialog::on_button_test_modify_clicked()
+{
   const QList<QGraphicsItem *> v = m_concept_map->GetScene()->items();
   std::for_each(v.begin(),v.end(),
     [](QGraphicsItem * const item)
@@ -68,12 +85,9 @@ void ribi::cmap::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
         assert(qtitem->GetConcept());
         assert(!qtitem->GetConcept()->GetName().empty());
         assert(qtitem->GetConcept()->GetExamples());
-        const int rating_complexity = -1 + (std::rand() % 4);
-        assert(rating_complexity >= -1);
-        assert(rating_complexity <=  2);
-        qtitem->GetConcept()->SetRatingComplexity(rating_complexity);
-        qtitem->GetConcept()->SetRatingConcreteness(-1 + (std::rand() % 4));
-        qtitem->GetConcept()->SetRatingSpecificity(-1 + (std::rand() % 4));
+        //qtitem->GetConcept()->SetRatingComplexity(rating_complexity);
+        //qtitem->GetConcept()->SetRatingConcreteness(-1 + (std::rand() % 4));
+        //qtitem->GetConcept()->SetRatingSpecificity(-1 + (std::rand() % 4));
         const auto v = qtitem->GetConcept()->GetExamples()->Get();
         std::for_each(v.begin(),v.end(),
           [](const boost::shared_ptr<cmap::Example>& example)
@@ -96,31 +110,3 @@ void ribi::cmap::QtTestConceptMapRateWidgetDialog::DoSomethingRandom()
   );
   m_concept_map->GetScene()->update();
 }
-
-void ribi::cmap::QtTestConceptMapRateWidgetDialog::keyPressEvent(QKeyEvent *e)
-{
-  if (e->key() == Qt::Key_Escape) { close(); return; }
-  if (e->modifiers() & Qt::AltModifier && e->key() == Qt::Key_1)
-  {
-    DoSomethingRandom();
-    return;
-  }
-}
-
-#ifndef NDEBUG
-void ribi::cmap::QtTestConceptMapRateWidgetDialog::Test() noexcept
-{
-  {
-    static bool is_tested = false;
-    if (is_tested) return;
-    is_tested = true;
-  }
-  TRACE("ribi::cmap::QtTestConceptMapRateWidgetDialog::Test started");
-  //Doing random stuff
-  {
-    QtTestConceptMapRateWidgetDialog d;
-    for (int i=0; i!=100; ++i) d.DoSomethingRandom();
-  }
-  TRACE("ribi::cmap::QtTestConceptMapRateWidgetDialog::Test finished successfully");
-}
-#endif

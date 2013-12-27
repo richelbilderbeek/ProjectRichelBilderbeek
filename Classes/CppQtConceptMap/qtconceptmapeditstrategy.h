@@ -6,7 +6,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
-#include "qtconceptitem.h"
+#include "qtitemdisplaystrategy.h"
 #include "conceptmapfwd.h"
 #pragma GCC diagnostic pop
 

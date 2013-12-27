@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 
 #include <boost/lambda/lambda.hpp>
 
@@ -46,7 +46,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-ribi::cmap::QtConceptMapRateWidget::QtConceptMapRateWidget(
+ribi::cmap::QtRateConceptMap::QtRateConceptMap(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
   : QtConceptMap(concept_map,parent),
@@ -65,7 +65,7 @@ ribi::cmap::QtConceptMapRateWidget::QtConceptMapRateWidget(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
-void ribi::cmap::QtConceptMapRateWidget::AddEdge(
+void ribi::cmap::QtRateConceptMap::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -125,7 +125,7 @@ void ribi::cmap::QtConceptMapRateWidget::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   const boost::shared_ptr<QtRateStrategy> qtconcept(new QtRateStrategy(node->GetConcept()));
   assert(qtconcept);
@@ -143,13 +143,13 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::sh
   //Specific: inform an Observer that the Node requests its Concept being rated
   qtnode->m_signal_node_requests_rate_concept.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept,
+      &ribi::cmap::QtRateConceptMap::OnNodeRequestsRateConcept,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   //Specific: inform an Observer that the Node requests its Examples being rated
   qtnode->m_signal_node_requests_rate_examples.connect(
     boost::bind(
-      &ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples,
+      &ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples,
       this, boost::lambda::_1)); //Do not forget the placeholder!
 
   assert(!qtnode->scene());
@@ -170,7 +170,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapRateWidget::AddNode(const boost::sh
   return qtnode;
 }
 
-void ribi::cmap::QtConceptMapRateWidget::CleanMe()
+void ribi::cmap::QtRateConceptMap::CleanMe()
 {
   //Prepare cleaning the scene
   assert(GetExamplesItem());
@@ -189,7 +189,7 @@ void ribi::cmap::QtConceptMapRateWidget::CleanMe()
     SetExamplesItem(item);
     item->m_signal_request_scene_update.connect(
       boost::bind(
-        &ribi::cmap::QtConceptMapRateWidget::OnRequestSceneUpdate,this));
+        &ribi::cmap::QtRateConceptMap::OnRequestSceneUpdate,this));
     item->setVisible(false);
     assert(!item->scene());
     this->scene()->addItem(item);
@@ -198,7 +198,7 @@ void ribi::cmap::QtConceptMapRateWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapRateWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtRateConceptMap::CreateNewDerived() const
 {
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
@@ -208,7 +208,7 @@ std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapRateWidget::Cr
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateWidget::CreateSubConceptMap(QtNode * const item)
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::CreateSubConceptMap(QtNode * const item)
 {
   assert(item);
   //Collect all nodes first
@@ -273,20 +273,20 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtConceptMapRateWidg
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapRateWidget::DoRandomStuff()
+void ribi::cmap::QtRateConceptMap::DoRandomStuff()
 {
   assert(!"TODO");
 }
 #endif
 
 
-void ribi::cmap::QtConceptMapRateWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
 
-void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtNode * const item)
+void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateConcept(QtNode * const item)
 {
   assert(item);
   assert(item->GetNode()->GetConcept());
@@ -314,7 +314,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateConcept(QtNode * cons
   this->OnItemRequestsUpdate(item);
 }
 
-void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtNode * const item)
+void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples(QtNode * const item)
 {
   assert(item);
   if (item->GetConcept()->GetExamples()->Get().empty())
@@ -323,7 +323,7 @@ void ribi::cmap::QtConceptMapRateWidget::OnNodeRequestsRateExamples(QtNode * con
   }
   //Start edit
   {
-    QtScopedDisable<QtConceptMapRateWidget> disable(this);
+    QtScopedDisable<QtRateConceptMap> disable(this);
     const boost::shared_ptr<ribi::cmap::Concept> concept = item->GetConcept();
     assert(concept);
     assert(item->GetConcept().get() == concept.get());

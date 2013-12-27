@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapratedconceptwidget.h"
+#include "qtconceptmapratedconceptdialog.h"
 
 #include <cassert>
 
@@ -17,15 +17,16 @@
 #include "conceptmapexample.h"
 #include "conceptmapexamples.h"
 #include "conceptmapnode.h"
-#include "ui_qtconceptmapratedconceptwidget.h"
+
+#include "ui_qtconceptmapratedconceptdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtConceptMapRatedConceptWidget::QtConceptMapRatedConceptWidget(
+ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
   const boost::shared_ptr<const ribi::cmap::ConceptMap> concept_map,
   const boost::shared_ptr<const cmap::Node> node,
   QWidget *parent)
   : QDialog(parent),
-    ui(new Ui::QtConceptMapRatedConceptWidget),
+    ui(new Ui::QtConceptMapRatedConceptDialog),
     m_timer(new QTimer)
 {
   ui->setupUi(this);
@@ -91,7 +92,6 @@ ribi::cmap::QtConceptMapRatedConceptWidget::QtConceptMapRatedConceptWidget(
           = first_arrow
           + edge->GetConcept()->GetName()
           + second_arrow
-        //  + node->GetConcept()->GetName(); //20131216
           + edge->GetFrom()->GetConcept()->GetName();
         ui->list_cluster_relations->addItem(new QListWidgetItem(text.c_str()));
       }
@@ -109,24 +109,24 @@ ribi::cmap::QtConceptMapRatedConceptWidget::QtConceptMapRatedConceptWidget(
 
   QObject::connect(
     m_timer,&QTimer::timeout,
-    this,&ribi::cmap::QtConceptMapRatedConceptWidget::DoResizeLists);
+    this,&ribi::cmap::QtConceptMapRatedConceptDialog::DoResizeLists);
   m_timer->setInterval(1);
   m_timer->start();
 }
 
-ribi::cmap::QtConceptMapRatedConceptWidget::~QtConceptMapRatedConceptWidget()
+ribi::cmap::QtConceptMapRatedConceptDialog::~QtConceptMapRatedConceptDialog()
 {
   delete ui;
 }
 
-void ribi::cmap::QtConceptMapRatedConceptWidget::HideRating()
+void ribi::cmap::QtConceptMapRatedConceptDialog::HideRating()
 {
   ui->label_complexity->hide();
   ui->label_concreteness->hide();
   ui->label_specificity->hide();
 }
 
-void ribi::cmap::QtConceptMapRatedConceptWidget::DoResizeLists()
+void ribi::cmap::QtConceptMapRatedConceptDialog::DoResizeLists()
 {
   //Set the list displaying the concept its height and widt
   bool done = true;

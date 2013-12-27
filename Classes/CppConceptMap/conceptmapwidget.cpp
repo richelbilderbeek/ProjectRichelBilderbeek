@@ -47,12 +47,7 @@ void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noe
   assert(CanDoCommand(command));
 
   //Undo
-  {
-    const boost::shared_ptr<Widget> prev_widget {
-      new Widget(*this)
-    };
-    m_undo.push_back(std::make_pair(prev_widget,command));
-  }
+  m_undo.push_back(command);
 
   //Actually do the move
   command->DoCommand(this);
@@ -80,6 +75,7 @@ void ribi::cmap::Widget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::Widget::Test()");
+  //Test all commands do and undo
   for (const boost::shared_ptr<ribi::cmap::ConceptMap> map:
     ribi::cmap::ConceptMapFactory::GetAllTests())
   {
@@ -108,8 +104,8 @@ void ribi::cmap::Widget::Test() noexcept
 void ribi::cmap::Widget::Undo()
 {
   assert(!m_undo.empty());
-  this->m_conceptmap = (*m_undo.back().first).GetConceptMap();
-  assert(!m_conceptmap || *m_conceptmap == *(*m_undo.back().first).GetConceptMap());
+  assert(m_undo.back());
+  m_undo.back()->Undo();
   m_undo.pop_back();
 }
 
@@ -127,11 +123,10 @@ bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs)
     std::begin(lhs.m_undo),
     std::end(lhs.m_undo),
     std::begin(rhs.m_undo),
-    [](const std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Command>> p,
-       const std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Command>> q)
+    [](boost::shared_ptr<const Command> p,
+       boost::shared_ptr<const Command> q)
     {
-      return *p.first == *q.first
-        && p.second->ToStr() == q.second->ToStr();
+      return p->ToStr() == q->ToStr();
     }
   );
 }

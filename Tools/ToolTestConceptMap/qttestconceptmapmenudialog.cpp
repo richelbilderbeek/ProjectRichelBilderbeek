@@ -4,13 +4,16 @@
 
 #include "qtaboutdialog.h"
 #include "testconceptmapmenudialog.h"
-#include "qttestconceptmapdisplaywidgetdialog.h"
-#include "qttestconceptmapeditwidgetdialog.h"
-#include "qttestconceptmapratewidgetdialog.h"
+#include "qttestdisplayconceptmapdialog.h"
+#include "qttesteditconceptmapdialog.h"
+#include "qttestrateconceptmapdialog.h"
 #include "qtconceptmapviewtestsdialog.h"
 #include "qtconceptmaptestconceptitemdialog.h"
 #include "qtconceptmaptestedgeitemdialog.h"
 #include "qtconceptmaptestnodeitemdialog.h"
+
+#include "qtconceptmaptesteditconceptmapwidget.h"
+
 #include "ui_qttestconceptmapmenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -50,28 +53,28 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtTestConceptMapMenuDialog::Test");
-  QtTestConceptMapDisplayWidgetDialog();
-  QtTestConceptMapEditWidgetDialog();
-  QtTestConceptMapRateWidgetDialog();
+  QtTestDisplayConceptMapDialog();
+  QtTestEditConceptMapDialog();
+  QtTestRateConceptMapDialog();
   TRACE("Finished ribi::cmap::QtTestConceptMapMenuDialog::Test successfully");
 }
 #endif
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_readonly_conceptmap_clicked()
 {
-  QtTestConceptMapDisplayWidgetDialog d;
+  QtTestDisplayConceptMapDialog d;
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edit_conceptmap_clicked()
 {
-  QtTestConceptMapEditWidgetDialog d;
+  QtTestEditConceptMapDialog d;
   this->ShowChild(&d);
 }
 
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_rate_conceptmap_clicked()
 {
-  QtTestConceptMapRateWidgetDialog d;
+  QtTestRateConceptMapDialog d;
   this->ShowChild(&d);
 }
 
@@ -96,5 +99,11 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edge_clicked()
 void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked()
 {
   QtConceptMapViewTestsDialog d;
+  this->ShowChild(&d);
+}
+
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edit_conceptmapwidget_clicked()
+{
+  QtTestEditConceptMapWidgetDialog d;
   this->ShowChild(&d);
 }

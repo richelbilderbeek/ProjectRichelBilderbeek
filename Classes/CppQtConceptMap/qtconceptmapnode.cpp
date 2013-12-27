@@ -18,7 +18,7 @@
 #include "qtconceptmapeditstrategy.h"
 #include "qtconceptmapratestrategy.h"
 #include "conceptmapconcept.h"
-#include "qtconceptitem.h"
+#include "qtitemdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

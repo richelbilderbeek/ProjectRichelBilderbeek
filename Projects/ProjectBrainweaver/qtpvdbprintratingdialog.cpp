@@ -23,9 +23,9 @@
 #include "conceptmapexample.h"
 #include "conceptmapexamples.h"
 #include "conceptmap.h"
-#include "qtconceptmapratedconceptwidget.h"
+#include "qtconceptmapratedconceptdialog.h"
 #include "qtpvdbdisplay.h"
-#include "qtconceptmapratewidget.h"
+#include "qtrateconceptmap.h"
 #include "ui_qtpvdbprintratingdialog.h"
 #pragma GCC diagnostic pop
 
@@ -35,7 +35,7 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtPvdbPrintRatingDialog),
     m_file(file),
-    m_widget(new cmap::QtConceptMapRateWidget(file->GetConceptMap()))
+    m_widget(new cmap::QtRateConceptMap(file->GetConceptMap()))
 {
   ui->setupUi(this);    
   assert(m_file);
@@ -188,8 +188,8 @@ void ribi::pvdb::QtPvdbPrintRatingDialog::showEvent(QShowEvent *)
     {
       const auto node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
-      cmap::QtConceptMapRatedConceptWidget * const widget
-        = new cmap::QtConceptMapRatedConceptWidget(m_file->GetConceptMap(),node);
+      cmap::QtConceptMapRatedConceptDialog * const widget
+        = new cmap::QtConceptMapRatedConceptDialog(m_file->GetConceptMap(),node);
       assert(widget);
       ui->widget_concept_map_as_text->layout()->addWidget(widget);
     }

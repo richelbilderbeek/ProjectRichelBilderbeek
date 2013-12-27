@@ -60,7 +60,7 @@ const boost::shared_ptr<const ribi::Program> ribi::PreDickAdvocaTorMenuDialog::G
 
 const std::string ribi::PreDickAdvocaTorMenuDialog::GetVersion() const noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 const std::vector<std::string> ribi::PreDickAdvocaTorMenuDialog::GetVersionHistory() const noexcept
@@ -68,6 +68,7 @@ const std::vector<std::string> ribi::PreDickAdvocaTorMenuDialog::GetVersionHisto
   return {
     "2010-xx-xx: version 1.0: initial version",
     "2013-12-03: version 2.0: improved user experience, prepare for next WC"
+    "2013-12-27: version 2.1: put 2014 WC teams in"
   };
 }
 

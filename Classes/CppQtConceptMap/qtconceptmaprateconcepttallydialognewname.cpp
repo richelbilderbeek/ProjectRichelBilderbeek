@@ -183,7 +183,6 @@ const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
     if (boost::dynamic_pointer_cast<cmap::CenterNode>(edge->GetTo())
       || boost::dynamic_pointer_cast<cmap::CenterNode>(edge->GetFrom()))
     {
-      TRACE("X");
       continue;
     }
 
@@ -337,13 +336,13 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::keyPressEvent(QKeyEvent * even
     this->setWindowTitle("Relevance of illustrations");
     {
       ui->label_concept_name->setText(
-        (std::string("Illustrations and relations of the cluster:") + m_focus_name).c_str()
+        (std::string("Illustrations and relations of the cluster: ") + m_focus_name).c_str()
       );
     }
     {
       QTableWidgetItem * const item = new QTableWidgetItem;
-      item->setText("Voorbeelden/toelichting bij concept:");
-      ui->table->setHorizontalHeaderItem(4,item);
+      item->setText("Illustrations and relations of the cluster:");
+      ui->table->setHorizontalHeaderItem(3,item);
     }
     {
       const int x = GetSuggestedComplexity();

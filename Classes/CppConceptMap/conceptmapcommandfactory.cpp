@@ -8,14 +8,14 @@ const std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFa
 {
   std::vector<boost::shared_ptr<ribi::cmap::Command> > v;
   {
-    boost::shared_ptr<ribi::cmap::Command> p {
+    const boost::shared_ptr<ribi::cmap::Command> p {
       new CommandDeleteConceptMap
     };
     assert(p);
     v.push_back(p);
   }
   {
-    boost::shared_ptr<ribi::cmap::Command> p {
+    const boost::shared_ptr<ribi::cmap::Command> p {
       new CommandStartConceptMap
     };
     assert(p);

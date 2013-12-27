@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-#include "qtconceptmapdisplaywidget.h"
+#include "qtdisplayconceptmap.h"
 
 #include <boost/lambda/lambda.hpp>
 
@@ -40,7 +40,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
   return v;
 }
 
-ribi::cmap::QtConceptMapDisplayWidget::QtConceptMapDisplayWidget(
+ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)
   : QtConceptMap(concept_map,parent)
@@ -57,7 +57,7 @@ ribi::cmap::QtConceptMapDisplayWidget::QtConceptMapDisplayWidget(
 }
 
 
-void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
+void ribi::cmap::QtDisplayConceptMap::AddEdge(
   const boost::shared_ptr<ribi::cmap::Edge> edge)
 {
   assert(edge);
@@ -117,7 +117,7 @@ void ribi::cmap::QtConceptMapDisplayWidget::AddEdge(
   #endif
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMapDisplayWidget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
   assert(node);
   assert(node->GetConcept());
@@ -152,7 +152,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMapDisplayWidget::AddNode(const boost:
   return qtnode;
 }
 
-void ribi::cmap::QtConceptMapDisplayWidget::CleanMe()
+void ribi::cmap::QtDisplayConceptMap::CleanMe()
 {
   //Prepare clearing the scene
   assert(GetExamplesItem());
@@ -178,19 +178,19 @@ void ribi::cmap::QtConceptMapDisplayWidget::CleanMe()
 }
 
 #ifndef NDEBUG
-std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtConceptMapDisplayWidget::CreateNewDerived() const
+std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtDisplayConceptMap::CreateNewDerived() const
 {
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMap> p(new QtConceptMapDisplayWidget(concept_map));
+  std::unique_ptr<QtConceptMap> p(new QtDisplayConceptMap(concept_map));
   assert(p);
   return p;
 }
 #endif
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMapDisplayWidget::DoRandomStuff()
+void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
 {
   assert(this->GetConceptMap());
   const int n_edges_before = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
@@ -214,7 +214,7 @@ void ribi::cmap::QtConceptMapDisplayWidget::DoRandomStuff()
 }
 #endif
 
-void ribi::cmap::QtConceptMapDisplayWidget::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
+void ribi::cmap::QtDisplayConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
   assert(GetExamplesItem());
   assert(item);

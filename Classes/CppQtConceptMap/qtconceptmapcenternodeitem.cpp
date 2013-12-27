@@ -5,7 +5,7 @@
 #include "qtconceptmapcenternodeitem.h"
 
 #include "conceptmapcenternode.h"
-#include "qtconceptitem.h"
+#include "qtitemdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapdisplaystrategy.h"

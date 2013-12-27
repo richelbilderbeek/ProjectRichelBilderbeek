@@ -20,37 +20,54 @@ struct Command
 {
   virtual ~Command() noexcept {}
   bool CanDoCommand(const Widget * const widget) const noexcept;
-  void DoCommand(Widget * const widget) const noexcept;
+  void DoCommand(Widget * const widget) noexcept;
   virtual const std::string ToStr() const noexcept = 0;
+  virtual void Undo() noexcept = 0;
 
   private:
   ///Hook
   virtual bool CanDoCommandSpecific(const Widget * const widget) const noexcept = 0;
 
   ///Hook
-  virtual void DoCommandSpecific(Widget * const widget) const noexcept = 0;
+  virtual void DoCommandSpecific(Widget * const widget) noexcept = 0;
 };
 
 ///Delete a concept map
 ///-Can be used only when there is an existing concept map
-///-Inverse: StartConceptMap
 struct CommandDeleteConceptMap : public Command
 {
+  CommandDeleteConceptMap() : m_deleted_concept_map{}, m_widget{} {}
+  CommandDeleteConceptMap(const CommandDeleteConceptMap&) = delete;
+  CommandDeleteConceptMap& operator=(const CommandDeleteConceptMap&) = delete;
+  ~CommandDeleteConceptMap() noexcept {}
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) const noexcept;
+  void DoCommandSpecific(Widget * const widget) noexcept;
   const std::string ToStr() const noexcept { return "delete concept map"; }
+  void Undo() noexcept;
+
+  private:
+  boost::shared_ptr<ConceptMap> m_deleted_concept_map;
+  Widget * m_widget;
+
 };
 
 ///Start a new concept map
 ///-Can be used only when there is no existing concept map
-///-Inverse: DeleteConceptMap
 struct CommandStartConceptMap : public Command
 {
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) const noexcept;
-  const std::string ToStr() const noexcept { return "start concept map"; }
-};
+  CommandStartConceptMap() : m_widget{} {}
+  CommandStartConceptMap(const CommandStartConceptMap&) = delete;
+  CommandStartConceptMap& operator=(const CommandStartConceptMap&) = delete;
+  ~CommandStartConceptMap() noexcept {}
 
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
+  void DoCommandSpecific(Widget * const widget) noexcept;
+  const std::string ToStr() const noexcept { return "start concept map"; }
+  void Undo() noexcept;
+
+  private:
+  Widget * m_widget;
+};
 
 } //~namespace cmap
 } //~namespace ribi

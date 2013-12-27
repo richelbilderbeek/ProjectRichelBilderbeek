@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPRATEDCONCEPTWIDGET_H
-#define QTCONCEPTMAPRATEDCONCEPTWIDGET_H
+#ifndef QTCONCEPTMAPRATEDCONCEPTDIALOG_H
+#define QTCONCEPTMAPRATEDCONCEPTDIALOG_H
 
 
 #include <string>
@@ -14,24 +14,24 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtConceptMapRatedConceptWidget; }
+namespace Ui { class QtConceptMapRatedConceptDialog; }
 
 namespace ribi {
 namespace cmap {
 
-class QtConceptMapRatedConceptWidget : public QDialog
+class QtConceptMapRatedConceptDialog : public QDialog
 {
   Q_OBJECT
   
 public:
 
-  explicit QtConceptMapRatedConceptWidget(
+  explicit QtConceptMapRatedConceptDialog(
     const boost::shared_ptr<const ribi::cmap::ConceptMap> concept_map,
     const boost::shared_ptr<const cmap::Node> node,
     QWidget *parent = 0);
-  QtConceptMapRatedConceptWidget(const QtConceptMapRatedConceptWidget&) = delete;
-  QtConceptMapRatedConceptWidget& operator=(const QtConceptMapRatedConceptWidget&) = delete;
-  ~QtConceptMapRatedConceptWidget();
+  QtConceptMapRatedConceptDialog(const QtConceptMapRatedConceptDialog&) = delete;
+  QtConceptMapRatedConceptDialog& operator=(const QtConceptMapRatedConceptDialog&) = delete;
+  ~QtConceptMapRatedConceptDialog();
 
   ///Hides the rating. This is used when a student views his/her
   ///work before an assessor has rated his/her work
@@ -41,7 +41,7 @@ private slots:
   void DoResizeLists();
 
 private:
-  Ui::QtConceptMapRatedConceptWidget *ui;
+  Ui::QtConceptMapRatedConceptDialog *ui;
   QTimer * const m_timer;
 
 };
@@ -50,4 +50,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPRATEDCONCEPTWIDGET_H
+#endif // QTCONCEPTMAPRATEDCONCEPTDIALOG_H

@@ -40,6 +40,8 @@ private slots:
 
   void on_button_view_concept_maps_clicked();
 
+  void on_button_edit_conceptmapwidget_clicked();
+
 private:
   Ui::QtTestConceptMapMenuDialog *ui;
 

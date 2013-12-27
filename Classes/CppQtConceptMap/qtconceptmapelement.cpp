@@ -8,7 +8,7 @@
 
 #include "conceptmapconcept.h"
 #include "conceptmapexamples.h"
-#include "qtconceptitem.h"
+#include "qtitemdisplaystrategy.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

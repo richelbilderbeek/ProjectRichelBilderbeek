@@ -110,7 +110,6 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 {
-  TRACE("***");
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);

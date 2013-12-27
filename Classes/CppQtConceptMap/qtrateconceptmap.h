@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPCONCEPTMAPRATEWIDGET_H
-#define QTCONCEPTMAPCONCEPTMAPRATEWIDGET_H
+#ifndef QTCONCEPTMAPRATECONCEPTMAP_H
+#define QTCONCEPTMAPRATECONCEPTMAP_H
 
 #include "qtconceptmap.h"
 
@@ -9,17 +9,18 @@ namespace ribi {
 
 namespace cmap {
 
-///QtConceptMap for creation and editing of a ConceptMap
-struct QtConceptMapRateWidget : public QtConceptMap
+///Rateable QtConceptMap with a low-level interface
+///Use QtRateConceptMapWidget for a Command driven interface
+struct QtRateConceptMap : public QtConceptMap
 {
-  typedef QtConceptMapRateWidget This_t;
+  typedef QtRateConceptMap This_t;
 
-  QtConceptMapRateWidget(
+  QtRateConceptMap(
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtConceptMapRateWidget() noexcept {}
-  QtConceptMapRateWidget(const QtConceptMapRateWidget& other) = delete;
-  QtConceptMapRateWidget& operator=(const QtConceptMapRateWidget& other) = delete;
+  ~QtRateConceptMap() noexcept {}
+  QtRateConceptMap(const QtRateConceptMap& other) = delete;
+  QtRateConceptMap& operator=(const QtRateConceptMap& other) = delete;
 
   #ifndef NDEBUG
   ///Creates a new derived class
@@ -87,4 +88,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPCONCEPTMAPRATEWIDGET_H
+#endif // QTCONCEPTMAPRATECONCEPTMAP_H

@@ -11,7 +11,7 @@
 #include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
-namespace Ui { class QtTestConceptMapEditWidgetDialog; }
+namespace Ui { class QtTestEditConceptMapDialog; }
 
 namespace ribi {
 namespace cmap {
@@ -19,15 +19,15 @@ namespace cmap {
 ///Tests all QtConceptMaps
 ///especially the connection between the pointer and its displayal items:
 ///If something via the pointer is changed, this must be displayed directly
-class QtTestConceptMapEditWidgetDialog : public ribi::QtHideAndShowDialog
+class QtTestEditConceptMapDialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtTestConceptMapEditWidgetDialog(QWidget *parent = 0);
-  QtTestConceptMapEditWidgetDialog(const QtTestConceptMapEditWidgetDialog&) = delete;
-  QtTestConceptMapEditWidgetDialog& operator=(const QtTestConceptMapEditWidgetDialog&) = delete;
-  ~QtTestConceptMapEditWidgetDialog() noexcept;
+  explicit QtTestEditConceptMapDialog(QWidget *parent = 0);
+  QtTestEditConceptMapDialog(const QtTestEditConceptMapDialog&) = delete;
+  QtTestEditConceptMapDialog& operator=(const QtTestEditConceptMapDialog&) = delete;
+  ~QtTestEditConceptMapDialog() noexcept;
 
 protected:
 
@@ -38,10 +38,10 @@ private slots:
 
 private:
 
-  Ui::QtTestConceptMapEditWidgetDialog *ui;
+  Ui::QtTestEditConceptMapDialog *ui;
 
   ///The to-be-tested concept map
-  boost::shared_ptr<QtConceptMapEditWidget> m_concept_map;
+  boost::shared_ptr<QtEditConceptMap> m_concept_map;
 
   #ifndef NDEBUG
   static void Test() noexcept;

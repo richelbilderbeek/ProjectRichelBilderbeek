@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPCONCEPTMAPDISPLAYWIDGET_H
-#define QTCONCEPTMAPCONCEPTMAPDISPLAYWIDGET_H
+#ifndef QTCONCEPTMAPDISPLAYCONCEPTMAP_H
+#define QTCONCEPTMAPDISPLAYCONCEPTMAP_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -19,14 +19,14 @@ namespace ribi {
 namespace cmap {
 
 ///QtConceptMap for displayal of a ConceptMap in a read-only fashion
-struct QtConceptMapDisplayWidget : public QtConceptMap
+struct QtDisplayConceptMap : public QtConceptMap
 {
-  typedef QtConceptMapDisplayWidget This_t;
+  typedef QtDisplayConceptMap This_t;
 
-  QtConceptMapDisplayWidget(
+  QtDisplayConceptMap(
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
     QWidget* parent = 0);
-  ~QtConceptMapDisplayWidget() noexcept {}
+  ~QtDisplayConceptMap() noexcept {}
 
   #ifndef NDEBUG
   ///Creates a new derived class
@@ -56,11 +56,13 @@ private:
   ///QGraphicsItem cannot be const: some items request for an update via-via
   void OnItemRequestUpdateImpl(const QGraphicsItem* const);
 
+  #ifndef NDEBUG
   ///Test this class
   static void Test() {}
+  #endif
 };
 
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPCONCEPTMAPDISPLAYWIDGET_H
+#endif // QTCONCEPTMAPDISPLAYCONCEPTMAP_H

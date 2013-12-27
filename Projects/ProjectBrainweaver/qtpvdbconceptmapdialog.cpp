@@ -26,7 +26,7 @@
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapeditwidget.h"
+#include "qteditconceptmap.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmap.h"
 #include "qtconceptmapedge.h"
@@ -132,23 +132,24 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::QtPvdbConceptMapDial
   return p;
 }
 
-ribi::cmap::QtConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
+ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(const boost::shared_ptr<pvdb::File> file)
 {
   assert(file);
+  const bool trace_verbose = false;
 
   const bool had_cluster = file->GetCluster().get();
   const bool had_concept_map = file->GetConceptMap().get();
 
   if (!had_cluster && !had_concept_map)
   {
-    TRACE("User starts building a concept map from scratch");
+    if (trace_verbose) { TRACE("User starts building a concept map from scratch"); }
     boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
       = ribi::cmap::ConceptMapFactory::Create(file->GetQuestion());
     file->SetConceptMap(concept_map);
   }
   else if ( had_cluster && !had_concept_map)
   {
-    TRACE("User supplied a filled-in cluster");
+    if (trace_verbose) { TRACE("User supplied a filled-in cluster"); }
     assert(file->GetCluster());
 
     boost::shared_ptr<ribi::cmap::ConceptMap> concept_map {
@@ -187,7 +188,7 @@ ribi::cmap::QtConceptMapEditWidget * ribi::pvdb::QtPvdbConceptMapDialog::CreateW
     assert( file->GetConceptMap());
   }
 
-  cmap::QtConceptMapEditWidget * const widget = new cmap::QtConceptMapEditWidget(file->GetConceptMap());
+  cmap::QtEditConceptMap * const widget = new cmap::QtEditConceptMap(file->GetConceptMap());
   assert(widget);
   return widget;
 }

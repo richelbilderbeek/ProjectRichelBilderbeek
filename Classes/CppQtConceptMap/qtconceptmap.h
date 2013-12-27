@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPCONCEPTMAPWIDGET_H
-#define QTCONCEPTMAPCONCEPTMAPWIDGET_H
+#ifndef QTCONCEPTMAPCONCEPTMAP_H
+#define QTCONCEPTMAPCONCEPTMAP_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -39,11 +39,11 @@ public:
         boost::shared_ptr<      ribi::cmap::ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the read-only Qt edge items
-  ///Read-and-write Qt edge items are only supported for QtConceptMapEditWidget
+  ///Read-and-write Qt edge items are only supported for QtEditConceptMap
   const std::vector<const QtEdge *> GetQtEdges() const;
 
   ///Obtain the read-only Qt node items
-  ///Read-and-write Qt node items are only supported for QtConceptMapEditWidget
+  ///Read-and-write Qt node items are only supported for QtEditConceptMap
   const std::vector<const QtNode *> GetQtNodes() const;
 
   ///Obtain the QGraphicsScene
@@ -154,4 +154,4 @@ public slots:
 
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPCONCEPTMAPWIDGET_H
+#endif // QTCONCEPTMAPCONCEPTMAP_H

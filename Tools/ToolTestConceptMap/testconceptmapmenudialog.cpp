@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 
-//#include "qtconceptmapratewidget.h"
+//#include "qtrateconceptmap.h"
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
 #include "trace.h"
