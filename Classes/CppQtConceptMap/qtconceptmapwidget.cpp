@@ -5,12 +5,13 @@
 #include "conceptmapcommand.h"
 #include "conceptmapwidget.h"
 
+
 ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   const boost::shared_ptr<QtConceptMap> qtconceptmap)
   : m_qtconceptmap(qtconceptmap),
     m_widget(new Widget(qtconceptmap->GetConceptMap()))
 {
-
+  this->setScene(m_qtconceptmap->GetScene());
 }
 
 

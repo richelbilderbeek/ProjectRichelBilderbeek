@@ -115,7 +115,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QPushButton" name="button_rate_conceptmapwidget">
+          <widget class="QPushButton" name="button_conceptmapwidget">
            <property name="text">
             <string>Any type</string>
            </property>

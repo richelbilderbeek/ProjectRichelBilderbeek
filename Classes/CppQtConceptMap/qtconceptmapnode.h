@@ -24,7 +24,7 @@ struct QtNode : public QtConceptMapElement
   ///Node cannot be const as it contains a Concept that the user might want to edit
   ///concept_item contains the Stategy to display (and respond to the concept)
   explicit QtNode(
-    const boost::shared_ptr<ribi::cmap::Node> node,
+    const boost::shared_ptr<Node> node,
     const boost::shared_ptr<QtItemDisplayStrategy> concept_item);
 
   virtual QRectF boundingRect() const;
@@ -37,8 +37,8 @@ struct QtNode : public QtConceptMapElement
   const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
   const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
 
-  const boost::shared_ptr<const QtItemDisplayStrategy> GetConceptItem() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtItemDisplayStrategy> GetConceptItem()       final { return m_concept_item; }
+  const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_display_strategy; }
+  const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_display_strategy; }
 
   const boost::shared_ptr<const cmap::Node>  GetNode() const { return m_node; }
   const boost::shared_ptr<      cmap::Node>& GetNode()       { return m_node; }
@@ -75,7 +75,7 @@ protected:
 private:
 
   ///The Strategy for displaying a Concept
-  const boost::shared_ptr<QtItemDisplayStrategy> m_concept_item;
+  const boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
 
   const QPen m_contour_pen;
   const QPen m_focus_pen;

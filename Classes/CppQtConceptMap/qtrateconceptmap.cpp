@@ -18,7 +18,7 @@
 #include "conceptmapfactory.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
-#include "qtconceptmapcenternodeitem.h"
+#include "qtconceptmapcenternode.h"
 #include "qtconceptmapedge.h"
 #include "qtquadbezierarrowitem.h"
 #include "qtconceptmaprateexamplesdialognewname.h"
@@ -86,7 +86,7 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
   //Edges connected to the center node do not show their concepts
   if (IsCenterNode(from) || IsCenterNode(to))
   {
-    assert(qtconcept == qtedge->GetConceptItem());
+    assert(qtconcept == qtedge->GetDisplayStrategy());
     qtconcept->setVisible(false);
   }
 
@@ -127,9 +127,10 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
 
 ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
 {
-  const boost::shared_ptr<QtRateStrategy> qtconcept(new QtRateStrategy(node->GetConcept()));
-  assert(qtconcept);
-  QtNode * const qtnode = new QtNode(node,qtconcept);
+  //const boost::shared_ptr<QtRateStrategy> display_strategy(new QtRateStrategy(node->GetConcept()));
+  //assert(display_strategy);
+  //QtNode * const qtnode = new QtNode(node,display_strategy);
+  QtNode * const qtnode = new QtNode(node,GetDisplayStrategy(node->GetConcept()));
   assert(qtnode);
 
   //General: inform an Observer that this item has changed
@@ -279,6 +280,16 @@ void ribi::cmap::QtRateConceptMap::DoRandomStuff()
 }
 #endif
 
+const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateConceptMap::GetDisplayStrategy(
+  const boost::shared_ptr<ribi::cmap::Concept> concept) const noexcept
+{
+  assert(concept);
+  const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {
+    new QtRateStrategy(concept)
+  };
+  assert(display_strategy);
+  return display_strategy;
+}
 
 void ribi::cmap::QtRateConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {

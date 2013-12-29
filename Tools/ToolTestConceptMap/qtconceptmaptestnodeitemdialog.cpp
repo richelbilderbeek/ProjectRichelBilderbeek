@@ -48,8 +48,8 @@ ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidg
   assert(m_node->GetConcept().use_count() == 1);
 
   {
-    const boost::shared_ptr<QtDisplayStrategy> item(new QtDisplayStrategy(m_node->GetConcept()));
-    m_display_node = new cmap::QtNode(m_node,item);
+    const boost::shared_ptr<QtDisplayStrategy> display_strategy(new QtDisplayStrategy(m_node->GetConcept()));
+    m_display_node = new cmap::QtNode(m_node,display_strategy);
     m_display_node->m_signal_request_scene_update.connect(
       boost::bind(
         &ribi::cmap::QtConceptMapTestNodeItemDialog::OnRequestsSceneUpdate,
@@ -152,7 +152,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
         {
           const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
-          return dynamic_cast<const QtDisplayStrategy*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtDisplayStrategy*>(node_item->GetDisplayStrategy().get());
         }
       );
       assert(iter!=v.end());
@@ -168,7 +168,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
         {
           const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
-          return dynamic_cast<const QtEditStrategy*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtEditStrategy*>(node_item->GetDisplayStrategy().get());
         }
       );
       assert(iter!=v.end());
@@ -184,7 +184,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestNodeItemDi
         {
           const cmap::QtNode* const node_item = dynamic_cast<const cmap::QtNode*>(item);
           assert(node_item);
-          return dynamic_cast<const QtRateStrategy*>(node_item->GetConceptItem().get());
+          return dynamic_cast<const QtRateStrategy*>(node_item->GetDisplayStrategy().get());
         }
       );
       assert(iter!=v.end());

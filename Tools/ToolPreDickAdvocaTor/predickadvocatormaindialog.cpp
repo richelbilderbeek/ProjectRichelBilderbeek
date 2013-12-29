@@ -1,5 +1,6 @@
 #include "predickadvocatormaindialog.h"
 
+#include <algorithm>
 #include <cassert>
 #include <cstdlib>
 

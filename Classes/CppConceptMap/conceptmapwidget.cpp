@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmap.h"
+#include "conceptmapfactory.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommandfactory.h"
 #include "trace.h"
@@ -22,6 +23,7 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     && "Allow a widget with and without an actual concept map");
 }
 
+#ifndef NDEBUG
 ribi::cmap::Widget::Widget(const Widget& other)
   : m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
     m_focus{nullptr},
@@ -36,6 +38,7 @@ ribi::cmap::Widget::Widget(const Widget& other)
   assert( (m_undo == other.m_undo || m_undo != other.m_undo)
     && "Cannot copy undo");
 }
+#endif
 
 bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<Command> command) const noexcept
 {

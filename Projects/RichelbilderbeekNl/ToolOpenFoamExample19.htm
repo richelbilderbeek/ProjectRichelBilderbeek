@@ -1,0 +1,2459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>OpenFoamExample19</title>
+  <meta name="description" content="OpenFOAM OpenFoamExample19"/>
+  <meta name="keywords" content="OpenFOAM OpenFoamExample19 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="ToolOpenFoam.htm">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="ToolOpenFoam.htm">OpenFOAM</a>) <a href="ToolOpenFoamExample19.htm">OpenFoamExample19</a></h1>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/About.txt</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/About.txt" border = "1"><tr><td><code>
+Create mesh with hexSnappyMesh<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/case.foam</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/case.foam" border = "1"><tr><td><code>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/Clean.bat</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/Clean.bat" border = "1"><tr><td><code>
+del constant\polyMesh\boundary<br/>
+del constant\polyMesh\cellZones<br/>
+del constant\polyMesh\faces<br/>
+del constant\polyMesh\neighbour<br/>
+del constant\polyMesh\owner<br/>
+del constant\polyMesh\points<br/>
+del constant\polyMesh\sets\inlet<br/>
+del constant\polyMesh\sets\outlet<br/>
+rmdir constant\polyMesh\sets<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/ToolOpenFoamExample19.bat</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/ToolOpenFoamExample19.bat" border = "1"><tr><td><code>
+hexSnappyMesh<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/system/controlDict</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/system/controlDict" border = "1"><tr><td><code>
+/*--------------------------------*- C++ -*----------------------------------*\<br/>
+| =========&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+| \\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;F ield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OpenFOAM: The Open Source CFD Toolbox&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp; O peration&nbsp;&nbsp;&nbsp;&nbsp; | Version:&nbsp;&nbsp;2.1.x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp; \\&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;A nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;www.OpenFOAM.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+|&nbsp;&nbsp;&nbsp;&nbsp;\\/&nbsp;&nbsp;&nbsp;&nbsp; M anipulation&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+FoamFile<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp; 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ascii;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dictionary;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;&nbsp;&nbsp;&nbsp;"system";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;controlDict;<br/>
+}<br/>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //<br/>
+<br/>
+application&nbsp;&nbsp;&nbsp;&nbsp; rhoSimplecFoam;<br/>
+<br/>
+startFrom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; startTime;<br/>
+<br/>
+startTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0;<br/>
+<br/>
+stopAt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endTime;<br/>
+<br/>
+endTime&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10.0;<br/>
+<br/>
+deltaT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0;<br/>
+<br/>
+writeControl&nbsp;&nbsp;&nbsp;&nbsp;timeStep;<br/>
+<br/>
+writeInterval&nbsp;&nbsp; 1;<br/>
+<br/>
+purgeWrite&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0;<br/>
+<br/>
+writeFormat&nbsp;&nbsp;&nbsp;&nbsp; ascii;<br/>
+<br/>
+writePrecision&nbsp;&nbsp;6;<br/>
+<br/>
+writeCompression off;<br/>
+<br/>
+timeFormat&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;general;<br/>
+<br/>
+timePrecision&nbsp;&nbsp; 6;<br/>
+<br/>
+graphFormat&nbsp;&nbsp;&nbsp;&nbsp; raw;<br/>
+<br/>
+runTimeModifiable true;<br/>
+<br/>
+<br/>
+// ************************************************************************* //<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/system/fvSchemes</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/system/fvSchemes" border = "1"><tr><td><code>
+/*--------------------------------*- C++ -*----------------------------------*\<br/>
+| =========&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+| \\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;F ield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OpenFOAM: The Open Source CFD Toolbox&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp; O peration&nbsp;&nbsp;&nbsp;&nbsp; | Version:&nbsp;&nbsp;2.1.x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp; \\&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;A nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;www.OpenFOAM.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+|&nbsp;&nbsp;&nbsp;&nbsp;\\/&nbsp;&nbsp;&nbsp;&nbsp; M anipulation&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+FoamFile<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp; 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ascii;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dictionary;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;&nbsp;&nbsp;&nbsp;"system";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fvSchemes;<br/>
+}<br/>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //<br/>
+<br/>
+ddtSchemes<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; steadyState;<br/>
+}<br/>
+<br/>
+gradSchemes<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gauss linear;<br/>
+}<br/>
+<br/>
+divSchemes<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; none;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div(phi,U)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss upwind;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div((muEff*dev2(T(grad(U)))))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss linear;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div(phi,h)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss upwind;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div(phi,epsilon)&nbsp;&nbsp;&nbsp;&nbsp;Gauss upwind;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div(phi,k)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss upwind;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div(phid,p)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gauss upwind;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;div(phi,K)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss upwind;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//div((phi|interpolate(rho)),p)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gauss upwind; //NEW<br/>
+}<br/>
+<br/>
+laplacianSchemes<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Gauss linear corrected;<br/>
+}<br/>
+<br/>
+interpolationSchemes<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; linear;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;UD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upwind phid;<br/>
+}<br/>
+<br/>
+snGradSchemes<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; corrected;<br/>
+}<br/>
+<br/>
+fluxRequired<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;default&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; no;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;pCorr;<br/>
+}<br/>
+<br/>
+// ************************************************************************* //<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/system/fvSolution</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/system/fvSolution" border = "1"><tr><td><code>
+/*--------------------------------*- C++ -*----------------------------------*\<br/>
+| =========&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+| \\&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;F ield&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | OpenFOAM: The Open Source CFD Toolbox&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp;\\&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp; O peration&nbsp;&nbsp;&nbsp;&nbsp; | Version:&nbsp;&nbsp;2.1.x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+|&nbsp;&nbsp; \\&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;A nd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Web:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;www.OpenFOAM.org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br/>
+|&nbsp;&nbsp;&nbsp;&nbsp;\\/&nbsp;&nbsp;&nbsp;&nbsp; M anipulation&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |<br/>
+\*---------------------------------------------------------------------------*/<br/>
+FoamFile<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp; 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ascii;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dictionary;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;location&nbsp;&nbsp;&nbsp;&nbsp;"system";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fvSolution;<br/>
+}<br/>
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //<br/>
+<br/>
+solvers<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GAMG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tolerance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1e-08;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relTol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smoother&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GaussSeidel;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nPreSweeps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nPostSweeps&nbsp;&nbsp;&nbsp;&nbsp; 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nFinestSweeps&nbsp;&nbsp; 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cacheAgglomeration true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nCellsInCoarsestLevel 20;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agglomerator&nbsp;&nbsp;&nbsp;&nbsp;faceAreaPair;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mergeLevels&nbsp;&nbsp;&nbsp;&nbsp; 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"(U|h|k|epsilon)"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solver&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GAMG;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tolerance&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1e-08;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;relTol&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smoother&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GaussSeidel;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nPreSweeps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nPostSweeps&nbsp;&nbsp;&nbsp;&nbsp; 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nFinestSweeps&nbsp;&nbsp; 2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cacheAgglomeration true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nCellsInCoarsestLevel 20;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;agglomerator&nbsp;&nbsp;&nbsp;&nbsp;faceAreaPair;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mergeLevels&nbsp;&nbsp;&nbsp;&nbsp; 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+SIMPLE<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;nNonOrthogonalCorrectors 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rhoMin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rhoMin [1 -3 0 0 0] 0.1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;rhoMax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rhoMax [1 -3 0 0 0] 1.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;transonic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yes;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;convergence&nbsp;&nbsp;&nbsp;&nbsp; 0.01;<br/>
+}<br/>
+<br/>
+relaxationFactors<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;fields<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;equations<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.8;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;k&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;epsilon&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.9;<br/>
+		pEqn			0.3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+// ************************************************************************* //<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/constant/polyMesh/19.stl</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/constant/polyMesh/19.stl" border = "1"><tr><td><code>
+solid ascii<br/>
+ facet normal 0.999937 0 -0.0112604<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 10 2.5 0<br/>
+&nbsp;&nbsp; vertex 10 -2.5 0<br/>
+&nbsp;&nbsp; vertex 9.99746 -2.5 -0.225185<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.99943 0 -0.0337726<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.99746 2.5 -0.225185<br/>
+&nbsp;&nbsp; vertex 9.99746 -2.5 -0.225185<br/>
+&nbsp;&nbsp; vertex 9.98986 -2.5 -0.450255<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.998415 0 -0.0562721<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.98986 2.5 -0.450255<br/>
+&nbsp;&nbsp; vertex 9.98986 -2.5 -0.450255<br/>
+&nbsp;&nbsp; vertex 9.97719 -2.5 -0.675097<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.996895 0 -0.078742<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.97719 2.5 -0.675097<br/>
+&nbsp;&nbsp; vertex 9.97719 -2.5 -0.675097<br/>
+&nbsp;&nbsp; vertex 9.95945 -2.5 -0.899597<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.99487 0 -0.101165<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.95945 2.5 -0.899597<br/>
+&nbsp;&nbsp; vertex 9.95945 -2.5 -0.899597<br/>
+&nbsp;&nbsp; vertex 9.93667 -2.5 -1.12364<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.992339 0 -0.123546<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.93667 2.5 -1.12364<br/>
+&nbsp;&nbsp; vertex 9.93667 -2.5 -1.12364<br/>
+&nbsp;&nbsp; vertex 9.90885 -2.5 -1.34711<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.989305 0 -0.145859<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.90885 2.5 -1.34711<br/>
+&nbsp;&nbsp; vertex 9.90885 -2.5 -1.34711<br/>
+&nbsp;&nbsp; vertex 9.876 -2.5 -1.56991<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.98577 0 -0.168101<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.876 2.5 -1.56991<br/>
+&nbsp;&nbsp; vertex 9.876 -2.5 -1.56991<br/>
+&nbsp;&nbsp; vertex 9.83815 -2.5 -1.7919<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.981734 0 -0.190257<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.83815 2.5 -1.7919<br/>
+&nbsp;&nbsp; vertex 9.83815 -2.5 -1.7919<br/>
+&nbsp;&nbsp; vertex 9.7953 -2.5 -2.01299<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.977201 0 -0.212316<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.7953 2.5 -2.01299<br/>
+&nbsp;&nbsp; vertex 9.7953 -2.5 -2.01299<br/>
+&nbsp;&nbsp; vertex 9.74749 -2.5 -2.23305<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.972173 0 -0.234265<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.74749 2.5 -2.23305<br/>
+&nbsp;&nbsp; vertex 9.74749 -2.5 -2.23305<br/>
+&nbsp;&nbsp; vertex 9.69473 -2.5 -2.45198<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.96665 0 -0.2561<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.69473 2.5 -2.45198<br/>
+&nbsp;&nbsp; vertex 9.69473 -2.5 -2.45198<br/>
+&nbsp;&nbsp; vertex 9.63706 -2.5 -2.66967<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.960639 0 -0.277799<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.63706 2.5 -2.66967<br/>
+&nbsp;&nbsp; vertex 9.63706 -2.5 -2.66967<br/>
+&nbsp;&nbsp; vertex 9.5745 -2.5 -2.88601<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.954138 0 -0.299367<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.5745 2.5 -2.88601<br/>
+&nbsp;&nbsp; vertex 9.5745 -2.5 -2.88601<br/>
+&nbsp;&nbsp; vertex 9.50708 -2.5 -3.10088<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.947157 0 -0.32077<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.50708 2.5 -3.10088<br/>
+&nbsp;&nbsp; vertex 9.50708 -2.5 -3.10088<br/>
+&nbsp;&nbsp; vertex 9.43484 -2.5 -3.31418<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.939693 0 -0.34202<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.43484 2.5 -3.31418<br/>
+&nbsp;&nbsp; vertex 9.43484 -2.5 -3.31418<br/>
+&nbsp;&nbsp; vertex 9.35782 -2.5 -3.52579<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.931752 0 -0.363096<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.35782 2.5 -3.52579<br/>
+&nbsp;&nbsp; vertex 9.35782 -2.5 -3.52579<br/>
+&nbsp;&nbsp; vertex 9.27605 -2.5 -3.73562<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.92334 0 -0.383983<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.27605 2.5 -3.73562<br/>
+&nbsp;&nbsp; vertex 9.27605 -2.5 -3.73562<br/>
+&nbsp;&nbsp; vertex 9.18958 -2.5 -3.94356<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.914459 0 -0.404678<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.18958 2.5 -3.94356<br/>
+&nbsp;&nbsp; vertex 9.18958 -2.5 -3.94356<br/>
+&nbsp;&nbsp; vertex 9.09844 -2.5 -4.14949<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.905115 0 -0.425166<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.09844 2.5 -4.14949<br/>
+&nbsp;&nbsp; vertex 9.09844 -2.5 -4.14949<br/>
+&nbsp;&nbsp; vertex 9.0027 -2.5 -4.35332<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.895311 0 -0.445443<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.0027 2.5 -4.35332<br/>
+&nbsp;&nbsp; vertex 9.0027 -2.5 -4.35332<br/>
+&nbsp;&nbsp; vertex 8.90238 -2.5 -4.55495<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.885053 0 -0.46549<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.90238 2.5 -4.55495<br/>
+&nbsp;&nbsp; vertex 8.90238 -2.5 -4.55495<br/>
+&nbsp;&nbsp; vertex 8.79756 -2.5 -4.75426<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.874345 0 -0.485304<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.79756 2.5 -4.75426<br/>
+&nbsp;&nbsp; vertex 8.79756 -2.5 -4.75426<br/>
+&nbsp;&nbsp; vertex 8.68827 -2.5 -4.95116<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.863198 0 -0.504865<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.68827 2.5 -4.95116<br/>
+&nbsp;&nbsp; vertex 8.68827 -2.5 -4.95116<br/>
+&nbsp;&nbsp; vertex 8.57457 -2.5 -5.14555<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.851608 0 -0.524179<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.57457 2.5 -5.14555<br/>
+&nbsp;&nbsp; vertex 8.57457 -2.5 -5.14555<br/>
+&nbsp;&nbsp; vertex 8.45653 -2.5 -5.33734<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.83959 0 -0.543221<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.45653 2.5 -5.33734<br/>
+&nbsp;&nbsp; vertex 8.45653 -2.5 -5.33734<br/>
+&nbsp;&nbsp; vertex 8.33419 -2.5 -5.52641<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.827143 0 -0.561992<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.33419 2.5 -5.52641<br/>
+&nbsp;&nbsp; vertex 8.33419 -2.5 -5.52641<br/>
+&nbsp;&nbsp; vertex 8.20763 -2.5 -5.71268<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.814279 0 -0.580473<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.20763 2.5 -5.71268<br/>
+&nbsp;&nbsp; vertex 8.20763 -2.5 -5.71268<br/>
+&nbsp;&nbsp; vertex 8.07691 -2.5 -5.89606<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.801002 0 -0.598662<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.07691 2.5 -5.89606<br/>
+&nbsp;&nbsp; vertex 8.07691 -2.5 -5.89606<br/>
+&nbsp;&nbsp; vertex 7.94209 -2.5 -6.07644<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.787317 0 -0.616548<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.94209 2.5 -6.07644<br/>
+&nbsp;&nbsp; vertex 7.94209 -2.5 -6.07644<br/>
+&nbsp;&nbsp; vertex 7.80325 -2.5 -6.25374<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.773233 0 -0.634122<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.80325 2.5 -6.25374<br/>
+&nbsp;&nbsp; vertex 7.80325 -2.5 -6.25374<br/>
+&nbsp;&nbsp; vertex 7.66044 -2.5 -6.42788<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.758758 0 -0.651372<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.66044 2.5 -6.42788<br/>
+&nbsp;&nbsp; vertex 7.66044 -2.5 -6.42788<br/>
+&nbsp;&nbsp; vertex 7.51376 -2.5 -6.59875<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.743898 0 -0.668294<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.51376 2.5 -6.59875<br/>
+&nbsp;&nbsp; vertex 7.51376 -2.5 -6.59875<br/>
+&nbsp;&nbsp; vertex 7.36326 -2.5 -6.76627<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.728662 0 -0.684874<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.36326 2.5 -6.76627<br/>
+&nbsp;&nbsp; vertex 7.36326 -2.5 -6.76627<br/>
+&nbsp;&nbsp; vertex 7.20902 -2.5 -6.93037<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.713053 0 -0.70111<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.20902 2.5 -6.93037<br/>
+&nbsp;&nbsp; vertex 7.20902 -2.5 -6.93037<br/>
+&nbsp;&nbsp; vertex 7.05113 -2.5 -7.09095<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.697084 0 -0.71699<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.05113 2.5 -7.09095<br/>
+&nbsp;&nbsp; vertex 7.05113 -2.5 -7.09095<br/>
+&nbsp;&nbsp; vertex 6.88967 -2.5 -7.24793<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.680762 0 -0.732505<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.88967 2.5 -7.24793<br/>
+&nbsp;&nbsp; vertex 6.88967 -2.5 -7.24793<br/>
+&nbsp;&nbsp; vertex 6.72471 -2.5 -7.40123<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.664095 0 -0.747648<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.72471 2.5 -7.40123<br/>
+&nbsp;&nbsp; vertex 6.72471 -2.5 -7.40123<br/>
+&nbsp;&nbsp; vertex 6.55634 -2.5 -7.55079<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.64709 0 -0.762414<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.55634 2.5 -7.55079<br/>
+&nbsp;&nbsp; vertex 6.55634 -2.5 -7.55079<br/>
+&nbsp;&nbsp; vertex 6.38465 -2.5 -7.69651<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.629757 0 -0.776792<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.38465 2.5 -7.69651<br/>
+&nbsp;&nbsp; vertex 6.38465 -2.5 -7.69651<br/>
+&nbsp;&nbsp; vertex 6.20971 -2.5 -7.83833<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.612108 0 -0.790774<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.20971 2.5 -7.83833<br/>
+&nbsp;&nbsp; vertex 6.20971 -2.5 -7.83833<br/>
+&nbsp;&nbsp; vertex 6.03163 -2.5 -7.97618<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.594143 0 -0.804359<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.03163 2.5 -7.97618<br/>
+&nbsp;&nbsp; vertex 6.03163 -2.5 -7.97618<br/>
+&nbsp;&nbsp; vertex 5.85049 -2.5 -8.10998<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.575879 0 -0.817535<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.85049 2.5 -8.10998<br/>
+&nbsp;&nbsp; vertex 5.85049 -2.5 -8.10998<br/>
+&nbsp;&nbsp; vertex 5.66638 -2.5 -8.23967<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.557325 0 -0.830294<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.66638 2.5 -8.23967<br/>
+&nbsp;&nbsp; vertex 5.66638 -2.5 -8.23967<br/>
+&nbsp;&nbsp; vertex 5.4794 -2.5 -8.36518<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.538485 0 -0.842635<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.4794 2.5 -8.36518<br/>
+&nbsp;&nbsp; vertex 5.4794 -2.5 -8.36518<br/>
+&nbsp;&nbsp; vertex 5.28964 -2.5 -8.48644<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.519374 0 -0.854547<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.28964 2.5 -8.48644<br/>
+&nbsp;&nbsp; vertex 5.28964 -2.5 -8.48644<br/>
+&nbsp;&nbsp; vertex 5.0972 -2.5 -8.6034<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.5 0 -0.866025<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.0972 2.5 -8.6034<br/>
+&nbsp;&nbsp; vertex 5.0972 -2.5 -8.6034<br/>
+&nbsp;&nbsp; vertex 4.90217 -2.5 -8.716<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.480374 0 -0.877064<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.90217 2.5 -8.716<br/>
+&nbsp;&nbsp; vertex 4.90217 -2.5 -8.716<br/>
+&nbsp;&nbsp; vertex 4.70465 -2.5 -8.82418<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.460498 0 -0.887661<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.70465 2.5 -8.82418<br/>
+&nbsp;&nbsp; vertex 4.70465 -2.5 -8.82418<br/>
+&nbsp;&nbsp; vertex 4.50475 -2.5 -8.92789<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.440394 0 -0.897804<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.50475 2.5 -8.92789<br/>
+&nbsp;&nbsp; vertex 4.50475 -2.5 -8.92789<br/>
+&nbsp;&nbsp; vertex 4.30257 -2.5 -9.02706<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.420067 0 -0.907493<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.30257 2.5 -9.02706<br/>
+&nbsp;&nbsp; vertex 4.30257 -2.5 -9.02706<br/>
+&nbsp;&nbsp; vertex 4.0982 -2.5 -9.12166<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.399521 0 -0.916724<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.0982 2.5 -9.12166<br/>
+&nbsp;&nbsp; vertex 4.0982 -2.5 -9.12166<br/>
+&nbsp;&nbsp; vertex 3.89176 -2.5 -9.21163<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.378782 0 -0.925486<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.89176 2.5 -9.21163<br/>
+&nbsp;&nbsp; vertex 3.89176 -2.5 -9.21163<br/>
+&nbsp;&nbsp; vertex 3.68334 -2.5 -9.29694<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.357841 0 -0.933782<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.68334 2.5 -9.29694<br/>
+&nbsp;&nbsp; vertex 3.68334 -2.5 -9.29694<br/>
+&nbsp;&nbsp; vertex 3.47305 -2.5 -9.37752<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.336723 0 -0.941604<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.47305 2.5 -9.37752<br/>
+&nbsp;&nbsp; vertex 3.47305 -2.5 -9.37752<br/>
+&nbsp;&nbsp; vertex 3.261 -2.5 -9.45335<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.315438 0 -0.948946<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.261 2.5 -9.45335<br/>
+&nbsp;&nbsp; vertex 3.261 -2.5 -9.45335<br/>
+&nbsp;&nbsp; vertex 3.0473 -2.5 -9.52439<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.293985 0 -0.95581<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.0473 2.5 -9.52439<br/>
+&nbsp;&nbsp; vertex 3.0473 -2.5 -9.52439<br/>
+&nbsp;&nbsp; vertex 2.83206 -2.5 -9.59059<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.272387 0 -0.962188<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.83206 2.5 -9.59059<br/>
+&nbsp;&nbsp; vertex 2.83206 -2.5 -9.59059<br/>
+&nbsp;&nbsp; vertex 2.61537 -2.5 -9.65193<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.250654 0 -0.968077<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.61537 2.5 -9.65193<br/>
+&nbsp;&nbsp; vertex 2.61537 -2.5 -9.65193<br/>
+&nbsp;&nbsp; vertex 2.39736 -2.5 -9.70838<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.22879 0 -0.973476<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.39736 2.5 -9.70838<br/>
+&nbsp;&nbsp; vertex 2.39736 -2.5 -9.70838<br/>
+&nbsp;&nbsp; vertex 2.17814 -2.5 -9.7599<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.206811 0 -0.978381<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.17814 2.5 -9.7599<br/>
+&nbsp;&nbsp; vertex 2.17814 -2.5 -9.7599<br/>
+&nbsp;&nbsp; vertex 1.95781 -2.5 -9.80648<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.184726 0 -0.98279<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.95781 2.5 -9.80648<br/>
+&nbsp;&nbsp; vertex 1.95781 -2.5 -9.80648<br/>
+&nbsp;&nbsp; vertex 1.73648 -2.5 -9.84808<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.162549 0 -0.986701<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.73648 2.5 -9.84808<br/>
+&nbsp;&nbsp; vertex 1.73648 -2.5 -9.84808<br/>
+&nbsp;&nbsp; vertex 1.51428 -2.5 -9.88468<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.140286 0 -0.990111<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.51428 2.5 -9.88468<br/>
+&nbsp;&nbsp; vertex 1.51428 -2.5 -9.88468<br/>
+&nbsp;&nbsp; vertex 1.29131 -2.5 -9.91628<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.117956 0 -0.993019<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.29131 2.5 -9.91628<br/>
+&nbsp;&nbsp; vertex 1.29131 -2.5 -9.91628<br/>
+&nbsp;&nbsp; vertex 1.06768 -2.5 -9.94284<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0955669 0 -0.995423<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.06768 2.5 -9.94284<br/>
+&nbsp;&nbsp; vertex 1.06768 -2.5 -9.94284<br/>
+&nbsp;&nbsp; vertex 0.843511 -2.5 -9.96436<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0731266 0 -0.997323<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.843511 2.5 -9.96436<br/>
+&nbsp;&nbsp; vertex 0.843511 -2.5 -9.96436<br/>
+&nbsp;&nbsp; vertex 0.618915 -2.5 -9.98083<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0506483 0 -0.998717<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.618915 2.5 -9.98083<br/>
+&nbsp;&nbsp; vertex 0.618915 -2.5 -9.98083<br/>
+&nbsp;&nbsp; vertex 0.394005 -2.5 -9.99224<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0281445 0 -0.999604<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.394005 2.5 -9.99224<br/>
+&nbsp;&nbsp; vertex 0.394005 -2.5 -9.99224<br/>
+&nbsp;&nbsp; vertex 0.168895 -2.5 -9.99857<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.00563229 0 -0.999984<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.168895 2.5 -9.99857<br/>
+&nbsp;&nbsp; vertex 0.168895 -2.5 -9.99857<br/>
+&nbsp;&nbsp; vertex -0.0563006 -2.5 -9.99984<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0168884 0 -0.999857<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.0563006 2.5 -9.99984<br/>
+&nbsp;&nbsp; vertex -0.0563006 -2.5 -9.99984<br/>
+&nbsp;&nbsp; vertex -0.281468 -2.5 -9.99604<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0394006 0 -0.999223<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.281468 2.5 -9.99604<br/>
+&nbsp;&nbsp; vertex -0.281468 -2.5 -9.99604<br/>
+&nbsp;&nbsp; vertex -0.506492 -2.5 -9.98717<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0618917 0 -0.998083<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.506492 2.5 -9.98717<br/>
+&nbsp;&nbsp; vertex -0.506492 -2.5 -9.98717<br/>
+&nbsp;&nbsp; vertex -0.731259 -2.5 -9.97323<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0843531 0 -0.996436<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.731259 2.5 -9.97323<br/>
+&nbsp;&nbsp; vertex -0.731259 -2.5 -9.97323<br/>
+&nbsp;&nbsp; vertex -0.955655 -2.5 -9.95423<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.106768 0 -0.994284<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.955655 2.5 -9.95423<br/>
+&nbsp;&nbsp; vertex -0.955655 -2.5 -9.95423<br/>
+&nbsp;&nbsp; vertex -1.17957 -2.5 -9.93019<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.129132 0 -0.991627<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.17957 2.5 -9.93019<br/>
+&nbsp;&nbsp; vertex -1.17957 -2.5 -9.93019<br/>
+&nbsp;&nbsp; vertex -1.40288 -2.5 -9.90111<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.151424 0 -0.988469<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.40288 2.5 -9.90111<br/>
+&nbsp;&nbsp; vertex -1.40288 -2.5 -9.90111<br/>
+&nbsp;&nbsp; vertex -1.62548 -2.5 -9.86701<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.173648 0 -0.984808<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.62548 2.5 -9.86701<br/>
+&nbsp;&nbsp; vertex -1.62548 -2.5 -9.86701<br/>
+&nbsp;&nbsp; vertex -1.84726 -2.5 -9.8279<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.195784 0 -0.980647<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.84726 2.5 -9.8279<br/>
+&nbsp;&nbsp; vertex -1.84726 -2.5 -9.8279<br/>
+&nbsp;&nbsp; vertex -2.0681 -2.5 -9.78381<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.217813 0 -0.975991<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.0681 2.5 -9.78381<br/>
+&nbsp;&nbsp; vertex -2.0681 -2.5 -9.78381<br/>
+&nbsp;&nbsp; vertex -2.28789 -2.5 -9.73476<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.239737 0 -0.970838<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.28789 2.5 -9.73476<br/>
+&nbsp;&nbsp; vertex -2.28789 -2.5 -9.73476<br/>
+&nbsp;&nbsp; vertex -2.50653 -2.5 -9.68077<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.261537 0 -0.965193<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.50653 2.5 -9.68077<br/>
+&nbsp;&nbsp; vertex -2.50653 -2.5 -9.68077<br/>
+&nbsp;&nbsp; vertex -2.72389 -2.5 -9.62187<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.283203 0 -0.95906<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.72389 2.5 -9.62187<br/>
+&nbsp;&nbsp; vertex -2.72389 -2.5 -9.62187<br/>
+&nbsp;&nbsp; vertex -2.93987 -2.5 -9.5581<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.304732 0 -0.952438<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.93987 2.5 -9.5581<br/>
+&nbsp;&nbsp; vertex -2.93987 -2.5 -9.5581<br/>
+&nbsp;&nbsp; vertex -3.15435 -2.5 -9.48947<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.326101 0 -0.945335<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.15435 2.5 -9.48947<br/>
+&nbsp;&nbsp; vertex -3.15435 -2.5 -9.48947<br/>
+&nbsp;&nbsp; vertex -3.36724 -2.5 -9.41603<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.347305 0 -0.937752<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.36724 2.5 -9.41603<br/>
+&nbsp;&nbsp; vertex -3.36724 -2.5 -9.41603<br/>
+&nbsp;&nbsp; vertex -3.57842 -2.5 -9.33782<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.368331 0 -0.929695<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.57842 2.5 -9.33782<br/>
+&nbsp;&nbsp; vertex -3.57842 -2.5 -9.33782<br/>
+&nbsp;&nbsp; vertex -3.78779 -2.5 -9.25487<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.389178 0 -0.921162<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.78779 2.5 -9.25487<br/>
+&nbsp;&nbsp; vertex -3.78779 -2.5 -9.25487<br/>
+&nbsp;&nbsp; vertex -3.99523 -2.5 -9.16723<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.409819 0 -0.912167<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.99523 2.5 -9.16723<br/>
+&nbsp;&nbsp; vertex -3.99523 -2.5 -9.16723<br/>
+&nbsp;&nbsp; vertex -4.20065 -2.5 -9.07494<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.430257 0 -0.902707<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.20065 2.5 -9.07494<br/>
+&nbsp;&nbsp; vertex -4.20065 -2.5 -9.07494<br/>
+&nbsp;&nbsp; vertex -4.40394 -2.5 -8.97805<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.450477 0 -0.892788<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.40394 2.5 -8.97805<br/>
+&nbsp;&nbsp; vertex -4.40394 -2.5 -8.97805<br/>
+&nbsp;&nbsp; vertex -4.605 -2.5 -8.8766<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.470462 0 -0.88242<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.605 2.5 -8.8766<br/>
+&nbsp;&nbsp; vertex -4.605 -2.5 -8.8766<br/>
+&nbsp;&nbsp; vertex -4.80372 -2.5 -8.77065<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.490217 0 -0.8716<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.80372 2.5 -8.77065<br/>
+&nbsp;&nbsp; vertex -4.80372 -2.5 -8.77065<br/>
+&nbsp;&nbsp; vertex -5 -2.5 -8.66025<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.509721 0 -0.860339<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5 2.5 -8.66025<br/>
+&nbsp;&nbsp; vertex -5 -2.5 -8.66025<br/>
+&nbsp;&nbsp; vertex -5.19375 -2.5 -8.54547<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.528963 0 -0.848645<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.19375 2.5 -8.54547<br/>
+&nbsp;&nbsp; vertex -5.19375 -2.5 -8.54547<br/>
+&nbsp;&nbsp; vertex -5.38486 -2.5 -8.42634<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.547941 0 -0.836517<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.38486 2.5 -8.42634<br/>
+&nbsp;&nbsp; vertex -5.38486 -2.5 -8.42634<br/>
+&nbsp;&nbsp; vertex -5.57324 -2.5 -8.30295<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.566638 0 -0.823967<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.57324 2.5 -8.30295<br/>
+&nbsp;&nbsp; vertex -5.57324 -2.5 -8.30295<br/>
+&nbsp;&nbsp; vertex -5.7588 -2.5 -8.17534<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.58505 0 -0.810997<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.7588 2.5 -8.17534<br/>
+&nbsp;&nbsp; vertex -5.7588 -2.5 -8.17534<br/>
+&nbsp;&nbsp; vertex -5.94144 -2.5 -8.04359<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.603162 0 -0.797619<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.94144 2.5 -8.04359<br/>
+&nbsp;&nbsp; vertex -5.94144 -2.5 -8.04359<br/>
+&nbsp;&nbsp; vertex -6.12106 -2.5 -7.90776<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.620971 0 -0.783833<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.12106 2.5 -7.90776<br/>
+&nbsp;&nbsp; vertex -6.12106 -2.5 -7.90776<br/>
+&nbsp;&nbsp; vertex -6.29758 -2.5 -7.76792<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.638465 0 -0.769651<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.29758 2.5 -7.76792<br/>
+&nbsp;&nbsp; vertex -6.29758 -2.5 -7.76792<br/>
+&nbsp;&nbsp; vertex -6.4709 -2.5 -7.62413<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.655633 0 -0.755079<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.4709 2.5 -7.62413<br/>
+&nbsp;&nbsp; vertex -6.4709 -2.5 -7.62413<br/>
+&nbsp;&nbsp; vertex -6.64095 -2.5 -7.47649<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.672472 0 -0.740123<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.64095 2.5 -7.47649<br/>
+&nbsp;&nbsp; vertex -6.64095 -2.5 -7.47649<br/>
+&nbsp;&nbsp; vertex -6.80762 -2.5 -7.32505<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.688967 0 -0.724793<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.80762 2.5 -7.32505<br/>
+&nbsp;&nbsp; vertex -6.80762 -2.5 -7.32505<br/>
+&nbsp;&nbsp; vertex -6.97084 -2.5 -7.16989<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.705113 0 -0.709095<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.97084 2.5 -7.16989<br/>
+&nbsp;&nbsp; vertex -6.97084 -2.5 -7.16989<br/>
+&nbsp;&nbsp; vertex -7.13053 -2.5 -7.0111<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.720902 0 -0.693037<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.13053 2.5 -7.0111<br/>
+&nbsp;&nbsp; vertex -7.13053 -2.5 -7.0111<br/>
+&nbsp;&nbsp; vertex -7.2866 -2.5 -6.84875<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.736327 0 -0.676626<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.2866 2.5 -6.84875<br/>
+&nbsp;&nbsp; vertex -7.2866 -2.5 -6.84875<br/>
+&nbsp;&nbsp; vertex -7.43898 -2.5 -6.68293<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.751376 0 -0.659874<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.43898 2.5 -6.68293<br/>
+&nbsp;&nbsp; vertex -7.43898 -2.5 -6.68293<br/>
+&nbsp;&nbsp; vertex -7.58758 -2.5 -6.51372<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.766044 0 -0.642788<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.58758 2.5 -6.51372<br/>
+&nbsp;&nbsp; vertex -7.58758 -2.5 -6.51372<br/>
+&nbsp;&nbsp; vertex -7.73234 -2.5 -6.34121<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.780325 0 -0.625374<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.73234 2.5 -6.34121<br/>
+&nbsp;&nbsp; vertex -7.73234 -2.5 -6.34121<br/>
+&nbsp;&nbsp; vertex -7.87317 -2.5 -6.16548<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.794209 0 -0.607645<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.87317 2.5 -6.16548<br/>
+&nbsp;&nbsp; vertex -7.87317 -2.5 -6.16548<br/>
+&nbsp;&nbsp; vertex -8.01001 -2.5 -5.98663<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.80769 0 -0.589607<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.01001 2.5 -5.98663<br/>
+&nbsp;&nbsp; vertex -8.01001 -2.5 -5.98663<br/>
+&nbsp;&nbsp; vertex -8.14279 -2.5 -5.80474<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.820764 0 -0.571268<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.14279 2.5 -5.80474<br/>
+&nbsp;&nbsp; vertex -8.14279 -2.5 -5.80474<br/>
+&nbsp;&nbsp; vertex -8.27144 -2.5 -5.6199<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.833419 0 -0.552641<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.27144 2.5 -5.6199<br/>
+&nbsp;&nbsp; vertex -8.27144 -2.5 -5.6199<br/>
+&nbsp;&nbsp; vertex -8.39589 -2.5 -5.43222<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.845653 0 -0.533734<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.39589 2.5 -5.43222<br/>
+&nbsp;&nbsp; vertex -8.39589 -2.5 -5.43222<br/>
+&nbsp;&nbsp; vertex -8.51609 -2.5 -5.24178<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.857458 0 -0.514555<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.51609 2.5 -5.24178<br/>
+&nbsp;&nbsp; vertex -8.51609 -2.5 -5.24178<br/>
+&nbsp;&nbsp; vertex -8.63197 -2.5 -5.04868<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.868826 0 -0.495117<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.63197 2.5 -5.04868<br/>
+&nbsp;&nbsp; vertex -8.63197 -2.5 -5.04868<br/>
+&nbsp;&nbsp; vertex -8.74347 -2.5 -4.85302<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.879756 0 -0.475425<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.74347 2.5 -4.85302<br/>
+&nbsp;&nbsp; vertex -8.74347 -2.5 -4.85302<br/>
+&nbsp;&nbsp; vertex -8.85053 -2.5 -4.6549<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.890238 0 -0.455495<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.85053 2.5 -4.6549<br/>
+&nbsp;&nbsp; vertex -8.85053 -2.5 -4.6549<br/>
+&nbsp;&nbsp; vertex -8.95311 -2.5 -4.45442<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.900271 0 -0.43533<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.95311 2.5 -4.45442<br/>
+&nbsp;&nbsp; vertex -8.95311 -2.5 -4.45442<br/>
+&nbsp;&nbsp; vertex -9.05114 -2.5 -4.25168<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.909844 0 -0.414952<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.05114 2.5 -4.25168<br/>
+&nbsp;&nbsp; vertex -9.05114 -2.5 -4.25168<br/>
+&nbsp;&nbsp; vertex -9.14459 -2.5 -4.04678<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.918959 0 -0.394354<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.14459 2.5 -4.04678<br/>
+&nbsp;&nbsp; vertex -9.14459 -2.5 -4.04678<br/>
+&nbsp;&nbsp; vertex -9.2334 -2.5 -3.83983<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.927604 0 -0.373564<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.2334 2.5 -3.83983<br/>
+&nbsp;&nbsp; vertex -9.2334 -2.5 -3.83983<br/>
+&nbsp;&nbsp; vertex -9.31753 -2.5 -3.63094<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.935782 0 -0.352578<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.31753 2.5 -3.63094<br/>
+&nbsp;&nbsp; vertex -9.31753 -2.5 -3.63094<br/>
+&nbsp;&nbsp; vertex -9.39693 -2.5 -3.4202<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.943483 0 -0.33142<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.39693 2.5 -3.4202<br/>
+&nbsp;&nbsp; vertex -9.39693 -2.5 -3.4202<br/>
+&nbsp;&nbsp; vertex -9.47156 -2.5 -3.20773<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.950709 0 -0.310085<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.47156 2.5 -3.20773<br/>
+&nbsp;&nbsp; vertex -9.47156 -2.5 -3.20773<br/>
+&nbsp;&nbsp; vertex -9.54139 -2.5 -2.99363<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.957449 0 -0.288602<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.54139 2.5 -2.99363<br/>
+&nbsp;&nbsp; vertex -9.54139 -2.5 -2.99363<br/>
+&nbsp;&nbsp; vertex -9.60639 -2.5 -2.77801<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.963706 0 -0.266967<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.60639 2.5 -2.77801<br/>
+&nbsp;&nbsp; vertex -9.60639 -2.5 -2.77801<br/>
+&nbsp;&nbsp; vertex -9.66651 -2.5 -2.56099<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.969473 0 -0.2452<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.66651 2.5 -2.56099<br/>
+&nbsp;&nbsp; vertex -9.66651 -2.5 -2.56099<br/>
+&nbsp;&nbsp; vertex -9.72172 -2.5 -2.34266<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.974748 0 -0.223306<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.72172 2.5 -2.34266<br/>
+&nbsp;&nbsp; vertex -9.72172 -2.5 -2.34266<br/>
+&nbsp;&nbsp; vertex -9.77201 -2.5 -2.12315<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.97953 0 -0.201297<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.77201 2.5 -2.12315<br/>
+&nbsp;&nbsp; vertex -9.77201 -2.5 -2.12315<br/>
+&nbsp;&nbsp; vertex -9.81734 -2.5 -1.90256<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.983815 0 -0.179187<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.81734 2.5 -1.90256<br/>
+&nbsp;&nbsp; vertex -9.81734 -2.5 -1.90256<br/>
+&nbsp;&nbsp; vertex -9.8577 -2.5 -1.68101<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.9876 0 -0.156993<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.8577 2.5 -1.68101<br/>
+&nbsp;&nbsp; vertex -9.8577 -2.5 -1.68101<br/>
+&nbsp;&nbsp; vertex -9.89305 -2.5 -1.4586<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.990885 0 -0.134709<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.89305 2.5 -1.4586<br/>
+&nbsp;&nbsp; vertex -9.89305 -2.5 -1.4586<br/>
+&nbsp;&nbsp; vertex -9.92339 -2.5 -1.23546<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.993667 0 -0.112366<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.92339 2.5 -1.23546<br/>
+&nbsp;&nbsp; vertex -9.92339 -2.5 -1.23546<br/>
+&nbsp;&nbsp; vertex -9.94869 -2.5 -1.01168<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.995945 0 -0.08996<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.94869 2.5 -1.01168<br/>
+&nbsp;&nbsp; vertex -9.94869 -2.5 -1.01168<br/>
+&nbsp;&nbsp; vertex -9.96895 -2.5 -0.787397<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.997719 0 -0.0675113<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.96895 2.5 -0.787397<br/>
+&nbsp;&nbsp; vertex -9.96895 -2.5 -0.787397<br/>
+&nbsp;&nbsp; vertex -9.98416 -2.5 -0.562712<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.998986 0 -0.0450245<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.98416 2.5 -0.562712<br/>
+&nbsp;&nbsp; vertex -9.98416 -2.5 -0.562712<br/>
+&nbsp;&nbsp; vertex -9.9943 -2.5 -0.337741<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.999746 0 -0.0225165<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.9943 2.5 -0.337741<br/>
+&nbsp;&nbsp; vertex -9.9943 -2.5 -0.337741<br/>
+&nbsp;&nbsp; vertex -9.99937 -2.5 -0.1126<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -1 0 0<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.99937 2.5 -0.1126<br/>
+&nbsp;&nbsp; vertex -9.99937 -2.5 -0.1126<br/>
+&nbsp;&nbsp; vertex -9.99937 -2.5 0.1126<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.999746 0 0.0225165<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.99937 2.5 0.1126<br/>
+&nbsp;&nbsp; vertex -9.99937 -2.5 0.1126<br/>
+&nbsp;&nbsp; vertex -9.9943 -2.5 0.337741<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.998986 0 0.0450245<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.9943 2.5 0.337741<br/>
+&nbsp;&nbsp; vertex -9.9943 -2.5 0.337741<br/>
+&nbsp;&nbsp; vertex -9.98416 -2.5 0.562712<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.997719 0 0.0675113<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.98416 2.5 0.562712<br/>
+&nbsp;&nbsp; vertex -9.98416 -2.5 0.562712<br/>
+&nbsp;&nbsp; vertex -9.96895 -2.5 0.787397<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.995945 0 0.08996<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.96895 2.5 0.787397<br/>
+&nbsp;&nbsp; vertex -9.96895 -2.5 0.787397<br/>
+&nbsp;&nbsp; vertex -9.94869 -2.5 1.01168<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.993667 0 0.112366<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.94869 2.5 1.01168<br/>
+&nbsp;&nbsp; vertex -9.94869 -2.5 1.01168<br/>
+&nbsp;&nbsp; vertex -9.92339 -2.5 1.23546<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.990885 0 0.134709<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.92339 2.5 1.23546<br/>
+&nbsp;&nbsp; vertex -9.92339 -2.5 1.23546<br/>
+&nbsp;&nbsp; vertex -9.89305 -2.5 1.4586<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.9876 0 0.156993<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.89305 2.5 1.4586<br/>
+&nbsp;&nbsp; vertex -9.89305 -2.5 1.4586<br/>
+&nbsp;&nbsp; vertex -9.8577 -2.5 1.68101<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.983815 0 0.179187<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.8577 2.5 1.68101<br/>
+&nbsp;&nbsp; vertex -9.8577 -2.5 1.68101<br/>
+&nbsp;&nbsp; vertex -9.81734 -2.5 1.90256<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.97953 0 0.201297<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.81734 2.5 1.90256<br/>
+&nbsp;&nbsp; vertex -9.81734 -2.5 1.90256<br/>
+&nbsp;&nbsp; vertex -9.77201 -2.5 2.12315<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.974748 0 0.223306<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.77201 2.5 2.12315<br/>
+&nbsp;&nbsp; vertex -9.77201 -2.5 2.12315<br/>
+&nbsp;&nbsp; vertex -9.72172 -2.5 2.34266<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.969473 0 0.2452<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.72172 2.5 2.34266<br/>
+&nbsp;&nbsp; vertex -9.72172 -2.5 2.34266<br/>
+&nbsp;&nbsp; vertex -9.66651 -2.5 2.56099<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.963706 0 0.266967<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.66651 2.5 2.56099<br/>
+&nbsp;&nbsp; vertex -9.66651 -2.5 2.56099<br/>
+&nbsp;&nbsp; vertex -9.60639 -2.5 2.77801<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.957449 0 0.288602<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.60639 2.5 2.77801<br/>
+&nbsp;&nbsp; vertex -9.60639 -2.5 2.77801<br/>
+&nbsp;&nbsp; vertex -9.54139 -2.5 2.99363<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.950709 0 0.310085<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.54139 2.5 2.99363<br/>
+&nbsp;&nbsp; vertex -9.54139 -2.5 2.99363<br/>
+&nbsp;&nbsp; vertex -9.47156 -2.5 3.20773<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.943483 0 0.33142<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.47156 2.5 3.20773<br/>
+&nbsp;&nbsp; vertex -9.47156 -2.5 3.20773<br/>
+&nbsp;&nbsp; vertex -9.39693 -2.5 3.4202<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.935782 0 0.352578<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.39693 2.5 3.4202<br/>
+&nbsp;&nbsp; vertex -9.39693 -2.5 3.4202<br/>
+&nbsp;&nbsp; vertex -9.31753 -2.5 3.63094<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.927604 0 0.373564<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.31753 2.5 3.63094<br/>
+&nbsp;&nbsp; vertex -9.31753 -2.5 3.63094<br/>
+&nbsp;&nbsp; vertex -9.2334 -2.5 3.83983<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.918959 0 0.394354<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.2334 2.5 3.83983<br/>
+&nbsp;&nbsp; vertex -9.2334 -2.5 3.83983<br/>
+&nbsp;&nbsp; vertex -9.14459 -2.5 4.04678<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.909844 0 0.414952<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.14459 2.5 4.04678<br/>
+&nbsp;&nbsp; vertex -9.14459 -2.5 4.04678<br/>
+&nbsp;&nbsp; vertex -9.05114 -2.5 4.25168<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.900271 0 0.43533<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -9.05114 2.5 4.25168<br/>
+&nbsp;&nbsp; vertex -9.05114 -2.5 4.25168<br/>
+&nbsp;&nbsp; vertex -8.95311 -2.5 4.45442<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.890238 0 0.455495<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.95311 2.5 4.45442<br/>
+&nbsp;&nbsp; vertex -8.95311 -2.5 4.45442<br/>
+&nbsp;&nbsp; vertex -8.85053 -2.5 4.6549<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.879756 0 0.475425<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.85053 2.5 4.6549<br/>
+&nbsp;&nbsp; vertex -8.85053 -2.5 4.6549<br/>
+&nbsp;&nbsp; vertex -8.74347 -2.5 4.85302<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.868826 0 0.495117<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.74347 2.5 4.85302<br/>
+&nbsp;&nbsp; vertex -8.74347 -2.5 4.85302<br/>
+&nbsp;&nbsp; vertex -8.63197 -2.5 5.04868<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.857458 0 0.514555<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.63197 2.5 5.04868<br/>
+&nbsp;&nbsp; vertex -8.63197 -2.5 5.04868<br/>
+&nbsp;&nbsp; vertex -8.51609 -2.5 5.24178<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.845653 0 0.533734<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.51609 2.5 5.24178<br/>
+&nbsp;&nbsp; vertex -8.51609 -2.5 5.24178<br/>
+&nbsp;&nbsp; vertex -8.39589 -2.5 5.43222<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.833419 0 0.552641<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.39589 2.5 5.43222<br/>
+&nbsp;&nbsp; vertex -8.39589 -2.5 5.43222<br/>
+&nbsp;&nbsp; vertex -8.27144 -2.5 5.6199<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.820764 0 0.571268<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.27144 2.5 5.6199<br/>
+&nbsp;&nbsp; vertex -8.27144 -2.5 5.6199<br/>
+&nbsp;&nbsp; vertex -8.14279 -2.5 5.80474<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.80769 0 0.589607<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.14279 2.5 5.80474<br/>
+&nbsp;&nbsp; vertex -8.14279 -2.5 5.80474<br/>
+&nbsp;&nbsp; vertex -8.01001 -2.5 5.98663<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.794209 0 0.607645<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -8.01001 2.5 5.98663<br/>
+&nbsp;&nbsp; vertex -8.01001 -2.5 5.98663<br/>
+&nbsp;&nbsp; vertex -7.87317 -2.5 6.16548<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.780325 0 0.625374<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.87317 2.5 6.16548<br/>
+&nbsp;&nbsp; vertex -7.87317 -2.5 6.16548<br/>
+&nbsp;&nbsp; vertex -7.73234 -2.5 6.34121<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.766044 0 0.642788<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.73234 2.5 6.34121<br/>
+&nbsp;&nbsp; vertex -7.73234 -2.5 6.34121<br/>
+&nbsp;&nbsp; vertex -7.58758 -2.5 6.51372<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.751376 0 0.659874<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.58758 2.5 6.51372<br/>
+&nbsp;&nbsp; vertex -7.58758 -2.5 6.51372<br/>
+&nbsp;&nbsp; vertex -7.43898 -2.5 6.68293<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.736327 0 0.676626<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.43898 2.5 6.68293<br/>
+&nbsp;&nbsp; vertex -7.43898 -2.5 6.68293<br/>
+&nbsp;&nbsp; vertex -7.2866 -2.5 6.84875<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.720902 0 0.693037<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.2866 2.5 6.84875<br/>
+&nbsp;&nbsp; vertex -7.2866 -2.5 6.84875<br/>
+&nbsp;&nbsp; vertex -7.13053 -2.5 7.0111<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.705113 0 0.709095<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -7.13053 2.5 7.0111<br/>
+&nbsp;&nbsp; vertex -7.13053 -2.5 7.0111<br/>
+&nbsp;&nbsp; vertex -6.97084 -2.5 7.16989<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.688967 0 0.724793<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.97084 2.5 7.16989<br/>
+&nbsp;&nbsp; vertex -6.97084 -2.5 7.16989<br/>
+&nbsp;&nbsp; vertex -6.80762 -2.5 7.32505<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.672472 0 0.740123<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.80762 2.5 7.32505<br/>
+&nbsp;&nbsp; vertex -6.80762 -2.5 7.32505<br/>
+&nbsp;&nbsp; vertex -6.64095 -2.5 7.47649<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.655633 0 0.755079<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.64095 2.5 7.47649<br/>
+&nbsp;&nbsp; vertex -6.64095 -2.5 7.47649<br/>
+&nbsp;&nbsp; vertex -6.4709 -2.5 7.62413<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.638465 0 0.769651<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.4709 2.5 7.62413<br/>
+&nbsp;&nbsp; vertex -6.4709 -2.5 7.62413<br/>
+&nbsp;&nbsp; vertex -6.29758 -2.5 7.76792<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.620971 0 0.783833<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.29758 2.5 7.76792<br/>
+&nbsp;&nbsp; vertex -6.29758 -2.5 7.76792<br/>
+&nbsp;&nbsp; vertex -6.12106 -2.5 7.90776<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.603162 0 0.797619<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -6.12106 2.5 7.90776<br/>
+&nbsp;&nbsp; vertex -6.12106 -2.5 7.90776<br/>
+&nbsp;&nbsp; vertex -5.94144 -2.5 8.04359<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.58505 0 0.810997<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.94144 2.5 8.04359<br/>
+&nbsp;&nbsp; vertex -5.94144 -2.5 8.04359<br/>
+&nbsp;&nbsp; vertex -5.7588 -2.5 8.17534<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.566638 0 0.823967<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.7588 2.5 8.17534<br/>
+&nbsp;&nbsp; vertex -5.7588 -2.5 8.17534<br/>
+&nbsp;&nbsp; vertex -5.57324 -2.5 8.30295<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.547941 0 0.836517<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.57324 2.5 8.30295<br/>
+&nbsp;&nbsp; vertex -5.57324 -2.5 8.30295<br/>
+&nbsp;&nbsp; vertex -5.38486 -2.5 8.42634<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.528963 0 0.848645<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.38486 2.5 8.42634<br/>
+&nbsp;&nbsp; vertex -5.38486 -2.5 8.42634<br/>
+&nbsp;&nbsp; vertex -5.19375 -2.5 8.54547<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.509721 0 0.860339<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5.19375 2.5 8.54547<br/>
+&nbsp;&nbsp; vertex -5.19375 -2.5 8.54547<br/>
+&nbsp;&nbsp; vertex -5 -2.5 8.66025<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.490217 0 0.8716<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -5 2.5 8.66025<br/>
+&nbsp;&nbsp; vertex -5 -2.5 8.66025<br/>
+&nbsp;&nbsp; vertex -4.80372 -2.5 8.77065<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.470462 0 0.88242<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.80372 2.5 8.77065<br/>
+&nbsp;&nbsp; vertex -4.80372 -2.5 8.77065<br/>
+&nbsp;&nbsp; vertex -4.605 -2.5 8.8766<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.450477 0 0.892788<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.605 2.5 8.8766<br/>
+&nbsp;&nbsp; vertex -4.605 -2.5 8.8766<br/>
+&nbsp;&nbsp; vertex -4.40394 -2.5 8.97805<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.430257 0 0.902707<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.40394 2.5 8.97805<br/>
+&nbsp;&nbsp; vertex -4.40394 -2.5 8.97805<br/>
+&nbsp;&nbsp; vertex -4.20065 -2.5 9.07494<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.409819 0 0.912167<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -4.20065 2.5 9.07494<br/>
+&nbsp;&nbsp; vertex -4.20065 -2.5 9.07494<br/>
+&nbsp;&nbsp; vertex -3.99523 -2.5 9.16723<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.389178 0 0.921162<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.99523 2.5 9.16723<br/>
+&nbsp;&nbsp; vertex -3.99523 -2.5 9.16723<br/>
+&nbsp;&nbsp; vertex -3.78779 -2.5 9.25487<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.368331 0 0.929695<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.78779 2.5 9.25487<br/>
+&nbsp;&nbsp; vertex -3.78779 -2.5 9.25487<br/>
+&nbsp;&nbsp; vertex -3.57842 -2.5 9.33782<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.347305 0 0.937752<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.57842 2.5 9.33782<br/>
+&nbsp;&nbsp; vertex -3.57842 -2.5 9.33782<br/>
+&nbsp;&nbsp; vertex -3.36724 -2.5 9.41603<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.326101 0 0.945335<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.36724 2.5 9.41603<br/>
+&nbsp;&nbsp; vertex -3.36724 -2.5 9.41603<br/>
+&nbsp;&nbsp; vertex -3.15435 -2.5 9.48947<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.304732 0 0.952438<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -3.15435 2.5 9.48947<br/>
+&nbsp;&nbsp; vertex -3.15435 -2.5 9.48947<br/>
+&nbsp;&nbsp; vertex -2.93987 -2.5 9.5581<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.283203 0 0.95906<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.93987 2.5 9.5581<br/>
+&nbsp;&nbsp; vertex -2.93987 -2.5 9.5581<br/>
+&nbsp;&nbsp; vertex -2.72389 -2.5 9.62187<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.261537 0 0.965193<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.72389 2.5 9.62187<br/>
+&nbsp;&nbsp; vertex -2.72389 -2.5 9.62187<br/>
+&nbsp;&nbsp; vertex -2.50653 -2.5 9.68077<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.239737 0 0.970838<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.50653 2.5 9.68077<br/>
+&nbsp;&nbsp; vertex -2.50653 -2.5 9.68077<br/>
+&nbsp;&nbsp; vertex -2.28789 -2.5 9.73476<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.217813 0 0.975991<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.28789 2.5 9.73476<br/>
+&nbsp;&nbsp; vertex -2.28789 -2.5 9.73476<br/>
+&nbsp;&nbsp; vertex -2.0681 -2.5 9.78381<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.195784 0 0.980647<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -2.0681 2.5 9.78381<br/>
+&nbsp;&nbsp; vertex -2.0681 -2.5 9.78381<br/>
+&nbsp;&nbsp; vertex -1.84726 -2.5 9.8279<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.173648 0 0.984808<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.84726 2.5 9.8279<br/>
+&nbsp;&nbsp; vertex -1.84726 -2.5 9.8279<br/>
+&nbsp;&nbsp; vertex -1.62548 -2.5 9.86701<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.151424 0 0.988469<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.62548 2.5 9.86701<br/>
+&nbsp;&nbsp; vertex -1.62548 -2.5 9.86701<br/>
+&nbsp;&nbsp; vertex -1.40288 -2.5 9.90111<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.129132 0 0.991627<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.40288 2.5 9.90111<br/>
+&nbsp;&nbsp; vertex -1.40288 -2.5 9.90111<br/>
+&nbsp;&nbsp; vertex -1.17957 -2.5 9.93019<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.106768 0 0.994284<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -1.17957 2.5 9.93019<br/>
+&nbsp;&nbsp; vertex -1.17957 -2.5 9.93019<br/>
+&nbsp;&nbsp; vertex -0.955655 -2.5 9.95423<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0843531 0 0.996436<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.955655 2.5 9.95423<br/>
+&nbsp;&nbsp; vertex -0.955655 -2.5 9.95423<br/>
+&nbsp;&nbsp; vertex -0.731259 -2.5 9.97323<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0618917 0 0.998083<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.731259 2.5 9.97323<br/>
+&nbsp;&nbsp; vertex -0.731259 -2.5 9.97323<br/>
+&nbsp;&nbsp; vertex -0.506492 -2.5 9.98717<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0394006 0 0.999223<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.506492 2.5 9.98717<br/>
+&nbsp;&nbsp; vertex -0.506492 -2.5 9.98717<br/>
+&nbsp;&nbsp; vertex -0.281468 -2.5 9.99604<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0.0168884 0 0.999857<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.281468 2.5 9.99604<br/>
+&nbsp;&nbsp; vertex -0.281468 -2.5 9.99604<br/>
+&nbsp;&nbsp; vertex -0.0563006 -2.5 9.99984<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.00563229 -0 0.999984<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex -0.0563006 2.5 9.99984<br/>
+&nbsp;&nbsp; vertex -0.0563006 -2.5 9.99984<br/>
+&nbsp;&nbsp; vertex 0.168895 -2.5 9.99857<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0281445 -0 0.999604<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.168895 2.5 9.99857<br/>
+&nbsp;&nbsp; vertex 0.168895 -2.5 9.99857<br/>
+&nbsp;&nbsp; vertex 0.394005 -2.5 9.99224<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0506483 -0 0.998717<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.394005 2.5 9.99224<br/>
+&nbsp;&nbsp; vertex 0.394005 -2.5 9.99224<br/>
+&nbsp;&nbsp; vertex 0.618915 -2.5 9.98083<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0731266 -0 0.997323<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.618915 2.5 9.98083<br/>
+&nbsp;&nbsp; vertex 0.618915 -2.5 9.98083<br/>
+&nbsp;&nbsp; vertex 0.843511 -2.5 9.96436<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.0955669 -0 0.995423<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 0.843511 2.5 9.96436<br/>
+&nbsp;&nbsp; vertex 0.843511 -2.5 9.96436<br/>
+&nbsp;&nbsp; vertex 1.06768 -2.5 9.94284<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.117956 -0 0.993019<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.06768 2.5 9.94284<br/>
+&nbsp;&nbsp; vertex 1.06768 -2.5 9.94284<br/>
+&nbsp;&nbsp; vertex 1.29131 -2.5 9.91628<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.140286 -0 0.990111<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.29131 2.5 9.91628<br/>
+&nbsp;&nbsp; vertex 1.29131 -2.5 9.91628<br/>
+&nbsp;&nbsp; vertex 1.51428 -2.5 9.88468<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.162549 -0 0.986701<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.51428 2.5 9.88468<br/>
+&nbsp;&nbsp; vertex 1.51428 -2.5 9.88468<br/>
+&nbsp;&nbsp; vertex 1.73648 -2.5 9.84808<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.184726 -0 0.98279<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.73648 2.5 9.84808<br/>
+&nbsp;&nbsp; vertex 1.73648 -2.5 9.84808<br/>
+&nbsp;&nbsp; vertex 1.95781 -2.5 9.80648<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.206811 -0 0.978381<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 1.95781 2.5 9.80648<br/>
+&nbsp;&nbsp; vertex 1.95781 -2.5 9.80648<br/>
+&nbsp;&nbsp; vertex 2.17814 -2.5 9.7599<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.22879 -0 0.973476<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.17814 2.5 9.7599<br/>
+&nbsp;&nbsp; vertex 2.17814 -2.5 9.7599<br/>
+&nbsp;&nbsp; vertex 2.39736 -2.5 9.70838<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.250654 -0 0.968077<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.39736 2.5 9.70838<br/>
+&nbsp;&nbsp; vertex 2.39736 -2.5 9.70838<br/>
+&nbsp;&nbsp; vertex 2.61537 -2.5 9.65193<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.272387 -0 0.962188<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.61537 2.5 9.65193<br/>
+&nbsp;&nbsp; vertex 2.61537 -2.5 9.65193<br/>
+&nbsp;&nbsp; vertex 2.83206 -2.5 9.59059<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.293985 -0 0.95581<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 2.83206 2.5 9.59059<br/>
+&nbsp;&nbsp; vertex 2.83206 -2.5 9.59059<br/>
+&nbsp;&nbsp; vertex 3.0473 -2.5 9.52439<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.315438 -0 0.948946<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.0473 2.5 9.52439<br/>
+&nbsp;&nbsp; vertex 3.0473 -2.5 9.52439<br/>
+&nbsp;&nbsp; vertex 3.261 -2.5 9.45335<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.336723 -0 0.941604<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.261 2.5 9.45335<br/>
+&nbsp;&nbsp; vertex 3.261 -2.5 9.45335<br/>
+&nbsp;&nbsp; vertex 3.47305 -2.5 9.37752<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.357841 -0 0.933782<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.47305 2.5 9.37752<br/>
+&nbsp;&nbsp; vertex 3.47305 -2.5 9.37752<br/>
+&nbsp;&nbsp; vertex 3.68334 -2.5 9.29694<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.378782 -0 0.925486<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.68334 2.5 9.29694<br/>
+&nbsp;&nbsp; vertex 3.68334 -2.5 9.29694<br/>
+&nbsp;&nbsp; vertex 3.89176 -2.5 9.21163<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.399521 -0 0.916724<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 3.89176 2.5 9.21163<br/>
+&nbsp;&nbsp; vertex 3.89176 -2.5 9.21163<br/>
+&nbsp;&nbsp; vertex 4.0982 -2.5 9.12166<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.420067 -0 0.907493<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.0982 2.5 9.12166<br/>
+&nbsp;&nbsp; vertex 4.0982 -2.5 9.12166<br/>
+&nbsp;&nbsp; vertex 4.30257 -2.5 9.02706<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.440394 -0 0.897804<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.30257 2.5 9.02706<br/>
+&nbsp;&nbsp; vertex 4.30257 -2.5 9.02706<br/>
+&nbsp;&nbsp; vertex 4.50475 -2.5 8.92789<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.460498 -0 0.887661<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.50475 2.5 8.92789<br/>
+&nbsp;&nbsp; vertex 4.50475 -2.5 8.92789<br/>
+&nbsp;&nbsp; vertex 4.70465 -2.5 8.82418<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.480374 -0 0.877064<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.70465 2.5 8.82418<br/>
+&nbsp;&nbsp; vertex 4.70465 -2.5 8.82418<br/>
+&nbsp;&nbsp; vertex 4.90217 -2.5 8.716<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.5 -0 0.866025<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 4.90217 2.5 8.716<br/>
+&nbsp;&nbsp; vertex 4.90217 -2.5 8.716<br/>
+&nbsp;&nbsp; vertex 5.0972 -2.5 8.6034<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.519374 -0 0.854547<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.0972 2.5 8.6034<br/>
+&nbsp;&nbsp; vertex 5.0972 -2.5 8.6034<br/>
+&nbsp;&nbsp; vertex 5.28964 -2.5 8.48644<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.538485 -0 0.842635<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.28964 2.5 8.48644<br/>
+&nbsp;&nbsp; vertex 5.28964 -2.5 8.48644<br/>
+&nbsp;&nbsp; vertex 5.4794 -2.5 8.36518<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.557325 -0 0.830294<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.4794 2.5 8.36518<br/>
+&nbsp;&nbsp; vertex 5.4794 -2.5 8.36518<br/>
+&nbsp;&nbsp; vertex 5.66638 -2.5 8.23967<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.575879 -0 0.817535<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.66638 2.5 8.23967<br/>
+&nbsp;&nbsp; vertex 5.66638 -2.5 8.23967<br/>
+&nbsp;&nbsp; vertex 5.85049 -2.5 8.10998<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.594143 -0 0.804359<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 5.85049 2.5 8.10998<br/>
+&nbsp;&nbsp; vertex 5.85049 -2.5 8.10998<br/>
+&nbsp;&nbsp; vertex 6.03163 -2.5 7.97618<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.612108 -0 0.790774<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.03163 2.5 7.97618<br/>
+&nbsp;&nbsp; vertex 6.03163 -2.5 7.97618<br/>
+&nbsp;&nbsp; vertex 6.20971 -2.5 7.83833<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.629757 -0 0.776792<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.20971 2.5 7.83833<br/>
+&nbsp;&nbsp; vertex 6.20971 -2.5 7.83833<br/>
+&nbsp;&nbsp; vertex 6.38465 -2.5 7.69651<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.64709 -0 0.762414<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.38465 2.5 7.69651<br/>
+&nbsp;&nbsp; vertex 6.38465 -2.5 7.69651<br/>
+&nbsp;&nbsp; vertex 6.55634 -2.5 7.55079<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.664095 -0 0.747648<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.55634 2.5 7.55079<br/>
+&nbsp;&nbsp; vertex 6.55634 -2.5 7.55079<br/>
+&nbsp;&nbsp; vertex 6.72471 -2.5 7.40123<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.680762 -0 0.732505<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.72471 2.5 7.40123<br/>
+&nbsp;&nbsp; vertex 6.72471 -2.5 7.40123<br/>
+&nbsp;&nbsp; vertex 6.88967 -2.5 7.24793<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.697084 -0 0.71699<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 6.88967 2.5 7.24793<br/>
+&nbsp;&nbsp; vertex 6.88967 -2.5 7.24793<br/>
+&nbsp;&nbsp; vertex 7.05113 -2.5 7.09095<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.713053 -0 0.70111<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.05113 2.5 7.09095<br/>
+&nbsp;&nbsp; vertex 7.05113 -2.5 7.09095<br/>
+&nbsp;&nbsp; vertex 7.20902 -2.5 6.93037<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.728662 -0 0.684874<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.20902 2.5 6.93037<br/>
+&nbsp;&nbsp; vertex 7.20902 -2.5 6.93037<br/>
+&nbsp;&nbsp; vertex 7.36326 -2.5 6.76627<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.743898 -0 0.668294<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.36326 2.5 6.76627<br/>
+&nbsp;&nbsp; vertex 7.36326 -2.5 6.76627<br/>
+&nbsp;&nbsp; vertex 7.51376 -2.5 6.59875<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.758758 -0 0.651372<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.51376 2.5 6.59875<br/>
+&nbsp;&nbsp; vertex 7.51376 -2.5 6.59875<br/>
+&nbsp;&nbsp; vertex 7.66044 -2.5 6.42788<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.773233 -0 0.634122<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.66044 2.5 6.42788<br/>
+&nbsp;&nbsp; vertex 7.66044 -2.5 6.42788<br/>
+&nbsp;&nbsp; vertex 7.80325 -2.5 6.25374<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.787317 -0 0.616548<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.80325 2.5 6.25374<br/>
+&nbsp;&nbsp; vertex 7.80325 -2.5 6.25374<br/>
+&nbsp;&nbsp; vertex 7.94209 -2.5 6.07644<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.801002 -0 0.598662<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 7.94209 2.5 6.07644<br/>
+&nbsp;&nbsp; vertex 7.94209 -2.5 6.07644<br/>
+&nbsp;&nbsp; vertex 8.07691 -2.5 5.89606<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.814279 -0 0.580473<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.07691 2.5 5.89606<br/>
+&nbsp;&nbsp; vertex 8.07691 -2.5 5.89606<br/>
+&nbsp;&nbsp; vertex 8.20763 -2.5 5.71268<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.827143 -0 0.561992<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.20763 2.5 5.71268<br/>
+&nbsp;&nbsp; vertex 8.20763 -2.5 5.71268<br/>
+&nbsp;&nbsp; vertex 8.33419 -2.5 5.52641<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.83959 -0 0.543221<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.33419 2.5 5.52641<br/>
+&nbsp;&nbsp; vertex 8.33419 -2.5 5.52641<br/>
+&nbsp;&nbsp; vertex 8.45653 -2.5 5.33734<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.851608 -0 0.524179<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.45653 2.5 5.33734<br/>
+&nbsp;&nbsp; vertex 8.45653 -2.5 5.33734<br/>
+&nbsp;&nbsp; vertex 8.57457 -2.5 5.14555<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.863198 -0 0.504865<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.57457 2.5 5.14555<br/>
+&nbsp;&nbsp; vertex 8.57457 -2.5 5.14555<br/>
+&nbsp;&nbsp; vertex 8.68827 -2.5 4.95116<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.874345 -0 0.485304<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.68827 2.5 4.95116<br/>
+&nbsp;&nbsp; vertex 8.68827 -2.5 4.95116<br/>
+&nbsp;&nbsp; vertex 8.79756 -2.5 4.75426<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.885053 -0 0.46549<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.79756 2.5 4.75426<br/>
+&nbsp;&nbsp; vertex 8.79756 -2.5 4.75426<br/>
+&nbsp;&nbsp; vertex 8.90238 -2.5 4.55495<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.895311 -0 0.445443<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 8.90238 2.5 4.55495<br/>
+&nbsp;&nbsp; vertex 8.90238 -2.5 4.55495<br/>
+&nbsp;&nbsp; vertex 9.0027 -2.5 4.35332<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.905115 -0 0.425166<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.0027 2.5 4.35332<br/>
+&nbsp;&nbsp; vertex 9.0027 -2.5 4.35332<br/>
+&nbsp;&nbsp; vertex 9.09844 -2.5 4.14949<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.914459 -0 0.404678<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.09844 2.5 4.14949<br/>
+&nbsp;&nbsp; vertex 9.09844 -2.5 4.14949<br/>
+&nbsp;&nbsp; vertex 9.18958 -2.5 3.94356<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.92334 -0 0.383983<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.18958 2.5 3.94356<br/>
+&nbsp;&nbsp; vertex 9.18958 -2.5 3.94356<br/>
+&nbsp;&nbsp; vertex 9.27605 -2.5 3.73562<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.931752 -0 0.363096<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.27605 2.5 3.73562<br/>
+&nbsp;&nbsp; vertex 9.27605 -2.5 3.73562<br/>
+&nbsp;&nbsp; vertex 9.35782 -2.5 3.52579<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.939693 -0 0.34202<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.35782 2.5 3.52579<br/>
+&nbsp;&nbsp; vertex 9.35782 -2.5 3.52579<br/>
+&nbsp;&nbsp; vertex 9.43484 -2.5 3.31418<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.947157 -0 0.32077<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.43484 2.5 3.31418<br/>
+&nbsp;&nbsp; vertex 9.43484 -2.5 3.31418<br/>
+&nbsp;&nbsp; vertex 9.50708 -2.5 3.10088<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.954138 -0 0.299367<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.50708 2.5 3.10088<br/>
+&nbsp;&nbsp; vertex 9.50708 -2.5 3.10088<br/>
+&nbsp;&nbsp; vertex 9.5745 -2.5 2.88601<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.960639 -0 0.277799<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.5745 2.5 2.88601<br/>
+&nbsp;&nbsp; vertex 9.5745 -2.5 2.88601<br/>
+&nbsp;&nbsp; vertex 9.63706 -2.5 2.66967<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.96665 -0 0.2561<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.63706 2.5 2.66967<br/>
+&nbsp;&nbsp; vertex 9.63706 -2.5 2.66967<br/>
+&nbsp;&nbsp; vertex 9.69473 -2.5 2.45198<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.972173 -0 0.234265<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.69473 2.5 2.45198<br/>
+&nbsp;&nbsp; vertex 9.69473 -2.5 2.45198<br/>
+&nbsp;&nbsp; vertex 9.74749 -2.5 2.23305<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.977201 -0 0.212316<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.74749 2.5 2.23305<br/>
+&nbsp;&nbsp; vertex 9.74749 -2.5 2.23305<br/>
+&nbsp;&nbsp; vertex 9.7953 -2.5 2.01299<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.981734 -0 0.190257<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.7953 2.5 2.01299<br/>
+&nbsp;&nbsp; vertex 9.7953 -2.5 2.01299<br/>
+&nbsp;&nbsp; vertex 9.83815 -2.5 1.7919<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.98577 -0 0.168101<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.83815 2.5 1.7919<br/>
+&nbsp;&nbsp; vertex 9.83815 -2.5 1.7919<br/>
+&nbsp;&nbsp; vertex 9.876 -2.5 1.56991<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.989305 -0 0.145859<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.876 2.5 1.56991<br/>
+&nbsp;&nbsp; vertex 9.876 -2.5 1.56991<br/>
+&nbsp;&nbsp; vertex 9.90885 -2.5 1.34711<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.992339 -0 0.123546<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.90885 2.5 1.34711<br/>
+&nbsp;&nbsp; vertex 9.90885 -2.5 1.34711<br/>
+&nbsp;&nbsp; vertex 9.93667 -2.5 1.12364<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.99487 -0 0.101165<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.93667 2.5 1.12364<br/>
+&nbsp;&nbsp; vertex 9.93667 -2.5 1.12364<br/>
+&nbsp;&nbsp; vertex 9.95945 -2.5 0.899597<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.996895 -0 0.078742<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.95945 2.5 0.899597<br/>
+&nbsp;&nbsp; vertex 9.95945 -2.5 0.899597<br/>
+&nbsp;&nbsp; vertex 9.97719 -2.5 0.675097<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.998415 -0 0.0562721<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.97719 2.5 0.675097<br/>
+&nbsp;&nbsp; vertex 9.97719 -2.5 0.675097<br/>
+&nbsp;&nbsp; vertex 9.98986 -2.5 0.450255<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.99943 -0 0.0337726<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.98986 2.5 0.450255<br/>
+&nbsp;&nbsp; vertex 9.98986 -2.5 0.450255<br/>
+&nbsp;&nbsp; vertex 9.99746 -2.5 0.225185<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0.999937 -0 0.0112604<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.99746 2.5 0.225185<br/>
+&nbsp;&nbsp; vertex 9.99746 -2.5 0.225185<br/>
+&nbsp;&nbsp; vertex 10 -2.5 0<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal 0 1 -0<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 10 2.5 0<br/>
+&nbsp;&nbsp; vertex 9.99746 2.5 -0.225185<br/>
+&nbsp;&nbsp; vertex 9.98986 2.5 -0.450255<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+ facet normal -0 -1 -0<br/>
+&nbsp;&nbsp;outer loop<br/>
+&nbsp;&nbsp; vertex 9.99746 -2.5 0.225185<br/>
+&nbsp;&nbsp; vertex 9.98986 -2.5 0.450255<br/>
+&nbsp;&nbsp; vertex 9.97719 -2.5 0.675097<br/>
+&nbsp;&nbsp;endloop<br/>
+ endfacet<br/>
+endsolid<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/constant/polyMesh/blockMeshDict</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/constant/polyMesh/blockMeshDict" border = "1"><tr><td><code>
+FoamFile<br/>
+{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;version&nbsp;&nbsp;&nbsp;&nbsp; 2.0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;format&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ascii;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;class&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dictionary;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;object&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;blockMeshDict;<br/>
+}<br/>
+<br/>
+//The unit of the vertices is 1.0 meter<br/>
+convertToMeters 1.0;<br/>
+<br/>
+//A cube with the following vertex indices:<br/>
+//<br/>
+//&nbsp;&nbsp; 7-----6<br/>
+//&nbsp;&nbsp;/|&nbsp;&nbsp;&nbsp;&nbsp;/|<br/>
+// 4-----5 |<br/>
+// | |&nbsp;&nbsp; | |<br/>
+// | 3---|-2<br/>
+// |/&nbsp;&nbsp;&nbsp;&nbsp;|/<br/>
+// 0-----1<br/>
+//<br/>
+//Each vertex is of the form (x y z)<br/>
+//<br/>
+//The local coordinate system is defined by the order in which the vertices are presented in the block definition according to:<br/>
+//- the axis origin is the first entry in the block definition, vertex 0 in our example;<br/>
+//- the x direction is described by moving from vertex 0 to vertex 1;<br/>
+//- the y direction is described by moving from vertex 1 to vertex 2;<br/>
+//- vertices 0, 1, 2, 3 define the plane z<br/>
+//- vertex 4 is found by moving from vertex 0 in the z direction;<br/>
+//- vertices 5,6 and 7 are similarly found by moving in the z direction from vertices 1,2 and 3<br/>
+vertices<br/>
+(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(0 0 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(1 0 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(1 1 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(0 1 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(0 0 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(1 0 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(1 1 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(0 1 1)<br/>
+);<br/>
+<br/>
+//Ordered list of vertex labels and mesh size<br/>
+blocks<br/>
+(<br/>
+&nbsp;&nbsp;hex&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //The shape is always hex, as blocks are always hexahedra<br/>
+&nbsp;&nbsp;(0 1 2 3 4 5 6 7)&nbsp;&nbsp;&nbsp;&nbsp; // vertex numbers <br/>
+&nbsp;&nbsp;(10 10 10)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// numbers of cells in each direction <br/>
+&nbsp;&nbsp;simpleGrading (1 1 1) // cell expansion ratios <br/>
+);<br/>
+<br/>
+//Used to describe arc or spline edges <br/>
+//Keyword selection | Description&nbsp;&nbsp;&nbsp;&nbsp;| Additional entries <br/>
+//- arc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Circular arc&nbsp;&nbsp; | Single interpolation point<br/>
+//- simpleSpline&nbsp;&nbsp;&nbsp;&nbsp;| Spline curve&nbsp;&nbsp; | List of interpolation points<br/>
+//- polyLine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Set of lines&nbsp;&nbsp; | List of interpolation points<br/>
+//- polySpline&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Set of splines | List of interpolation points<br/>
+//- line&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Straight line&nbsp;&nbsp;| <br/>
+edges<br/>
+(<br/>
+);<br/>
+<br/>
+//List of patches <br/>
+//Do not uncomment this 'patches' part:<br/>
+//it will result in a 'undefined faces' warning<br/>
+//patches<br/>
+//(<br/>
+&nbsp;&nbsp;//Possible values are:<br/>
+&nbsp;&nbsp;//- symmetryPlane<br/>
+&nbsp;&nbsp;//- patch<br/>
+//);<br/>
+<br/>
+boundary<br/>
+(<br/>
+&nbsp;&nbsp;//There are multiple boundary types:<br/>
+&nbsp;&nbsp;//- movingWall:<br/>
+&nbsp;&nbsp;//- fixedWalls:<br/>
+&nbsp;&nbsp;//- frontAndBack: for two dimensional meshes<br/>
+&nbsp;&nbsp;//- inlet<br/>
+&nbsp;&nbsp;//- outlet<br/>
+&nbsp;&nbsp;//- walls<br/>
+<br/>
+&nbsp;&nbsp;my_cube_faces<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp; //There are multiple types:<br/>
+&nbsp;&nbsp; //- wall:<br/>
+&nbsp;&nbsp; //- patch<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//- cyclic<br/>
+&nbsp;&nbsp; type patch;<br/>
+<br/>
+&nbsp;&nbsp; //The vertices that make up the six faces of the cube<br/>
+&nbsp;&nbsp; //<br/>
+&nbsp;&nbsp; //Each block face is defined by a list of 4 vertex numbers. <br/>
+&nbsp;&nbsp; //The order in which the vertices are given must be such that, <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//looking from inside the block and starting with any vertex, <br/>
+&nbsp;&nbsp; //the face must be traversed in a clockwise direction to define the other vertices. <br/>
+&nbsp;&nbsp; faces<br/>
+&nbsp;&nbsp; (<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//bottom<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0 3 2 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(0 4 7 3)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//front<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(1 5 4 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(2 6 5 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//back<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(3 7 6 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//top<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(4 5 6 7)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+);<br/>
+<br/>
+//List of patches to be merged<br/>
+//mergePatchPairs<br/>
+//(<br/>
+//<br/>
+//);<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolOpenFoamExample19/constant/polyMesh/snappyHexMeshDict</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolOpenFoamExample19/constant/polyMesh/snappyHexMeshDict" border = "1"><tr><td><code>
+FoamFile<br/>
+{<br/>
+&nbsp;&nbsp;version 2.0;<br/>
+&nbsp;&nbsp;format ascii;<br/>
+&nbsp;&nbsp;class dictionary;<br/>
+&nbsp;&nbsp;object autoHexMeshDict;<br/>
+}<br/>
+<br/>
+castellatedMesh true;<br/>
+snap true;<br/>
+addLayers false;<br/>
+<br/>
+geometry<br/>
+{<br/>
+&nbsp;&nbsp;19.stl<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type triSurfaceMesh;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;regions<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;secondSolid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Named region in the STL file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name mySecondPatch; // User-defined patch name<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // otherwise given sphere.stl_secondSolid<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+} <br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="ToolOpenFoam.htm">Go back to Richel Bilderbeek's OpenFOAM page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

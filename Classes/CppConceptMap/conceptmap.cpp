@@ -212,7 +212,22 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
     std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges;
 
-    nodes.push_back(focal_node);
+    if (focal_node == m_nodes[0])
+    {
+      assert(boost::dynamic_pointer_cast<CenterNode>(focal_node)
+        && "Assume the center node is known as the center node");
+      //Center node
+      const boost::shared_ptr<CenterNode> centernode {
+        boost::dynamic_pointer_cast<CenterNode>(focal_node)
+      };
+      assert(centernode);
+      nodes.push_back(centernode);
+    }
+    else
+    {
+      //Add ordinary node
+      nodes.push_back(focal_node);
+    }
 
     for (const boost::shared_ptr<ribi::cmap::Edge> focal_edge: m_edges)
     {

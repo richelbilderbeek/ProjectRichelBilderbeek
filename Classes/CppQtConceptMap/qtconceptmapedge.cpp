@@ -67,7 +67,7 @@ ribi::cmap::QtEdge::QtEdge(
 
   //Name
   this->SetName(edge->GetConcept()->GetName());
-  this->GetConceptItem()->SetName(edge->GetConcept()->GetName());
+  this->GetDisplayStrategy()->SetName(edge->GetConcept()->GetName());
   //assert(m_edge->GetConcept()->GetName() == GetName()
   //    && m_edge->GetConcept()->GetName() == m_concept_item->GetText()
   //    && "Names/texts must be in sync");
@@ -75,14 +75,14 @@ ribi::cmap::QtEdge::QtEdge(
 
   //Position
   this->SetPos(edge->GetX(),edge->GetY());
-  this->GetConceptItem()->SetPos(edge->GetX(),edge->GetY());
+  this->GetDisplayStrategy()->SetPos(edge->GetX(),edge->GetY());
 
   #ifndef NDEBUG
   const double epsilon = 0.000001;
   assert(std::abs(this->pos().x() - GetEdge()->GetX()) < epsilon);
-  assert(std::abs(this->pos().x() - this->GetConceptItem()->x()) < epsilon);
+  assert(std::abs(this->pos().x() - this->GetDisplayStrategy()->x()) < epsilon);
   assert(std::abs(this->pos().y() - GetEdge()->GetY()) < epsilon);
-  assert(std::abs(this->pos().y() - this->GetConceptItem()->y()) < epsilon);
+  assert(std::abs(this->pos().y() - this->GetDisplayStrategy()->y()) < epsilon);
   #endif
 
   //Bounding rectangle
@@ -403,12 +403,12 @@ void ribi::cmap::QtEdge::SetX(const double x)
 {
   if ( x != this->pos().x()
     || x != this->GetEdge()->GetX()
-    || x != this->GetConceptItem()->pos().x()
+    || x != this->GetDisplayStrategy()->pos().x()
   )
   {
     this->setX(x);
     this->GetEdge()->SetX(x);
-    this->GetConceptItem()->setX(x);
+    this->GetDisplayStrategy()->setX(x);
     if (!(std::abs(x - this->GetEdge()->GetX()) < 0.000001))
     {
       TRACE(x);
@@ -416,30 +416,30 @@ void ribi::cmap::QtEdge::SetX(const double x)
     }
     assert(std::abs(x - this->pos().x()) < 0.000001);
     assert(std::abs(x - this->GetEdge()->GetX()) < 0.000001);
-    assert(std::abs(x - this->GetConceptItem()->pos().x()) < 0.000001);
+    assert(std::abs(x - this->GetDisplayStrategy()->pos().x()) < 0.000001);
   }
   assert(std::abs(x - this->pos().x()) < 0.000001);
   assert(std::abs(x - this->GetEdge()->GetX()) < 0.000001);
-  assert(std::abs(x - this->GetConceptItem()->pos().x()) < 0.000001);
+  assert(std::abs(x - this->GetDisplayStrategy()->pos().x()) < 0.000001);
 }
 
 void ribi::cmap::QtEdge::SetY(const double y)
 {
   if ( y != this->pos().y()
     || y != this->GetEdge()->GetY()
-    || y != this->GetConceptItem()->pos().y()
+    || y != this->GetDisplayStrategy()->pos().y()
     )
   {
     this->setY(y);
     this->GetEdge()->SetY(y);
-    this->GetConceptItem()->setY(y);
+    this->GetDisplayStrategy()->setY(y);
     assert(std::abs(y - this->pos().y()) < 0.000001);
     assert(std::abs(y - this->GetEdge()->GetY()) < 0.000001);
-    assert(std::abs(y - this->GetConceptItem()->pos().y()) < 0.000001);
+    assert(std::abs(y - this->GetDisplayStrategy()->pos().y()) < 0.000001);
   }
   assert(std::abs(y - this->pos().y()) < 0.000001);
   assert(std::abs(y - this->GetEdge()->GetY()) < 0.000001);
-  assert(std::abs(y - this->GetConceptItem()->pos().y()) < 0.000001);
+  assert(std::abs(y - this->GetDisplayStrategy()->pos().y()) < 0.000001);
 }
 
 QPainterPath ribi::cmap::QtEdge::shape() const
@@ -480,7 +480,7 @@ void ribi::cmap::QtEdge::Test() noexcept
       {
         const double edge_x = edge->GetX();
         const double qtedge_x = qtedge->pos().x();
-        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         if(!(edge_x == qtedge_x && qtedge_x == qtconcept_item_x))
         {
           TRACE(edge_x);
@@ -491,7 +491,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "X coordinat must be in sync");
         const double edge_y = edge->GetY();
         const double qtedge_y = qtedge->pos().y();
-        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(edge_y == qtedge_y && qtedge_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
@@ -507,7 +507,7 @@ void ribi::cmap::QtEdge::Test() noexcept
 
         const double edge_x = edge->GetX();
         const double qtedge_x = qtedge->pos().x();
-        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         if(!(std::abs(new_x - edge_x) < epsilon
           && std::abs(new_x - qtconcept_item_x) < epsilon
           && std::abs(new_x - qtedge_x) < epsilon))
@@ -525,7 +525,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "X coordinat must be in sync");
         const double edge_y = edge->GetY();
         const double qtedge_y = qtedge->pos().y();
-        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(edge_y == qtedge_y && qtedge_y == qtconcept_item_y
          && "Y coordinat must be in sync");
       }
@@ -538,7 +538,7 @@ void ribi::cmap::QtEdge::Test() noexcept
 
         const double edge_x = edge->GetX();
         const double qtedge_x = qtedge->pos().x();
-        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         assert(
             std::abs(new_x - edge_x) < epsilon
          && std::abs(new_x - qtconcept_item_x) < epsilon
@@ -546,7 +546,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "X coordinat must be in sync");
         const double edge_y = edge->GetY();
         const double qtedge_y = qtedge->pos().y();
-        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(
             std::abs(new_y - edge_y) < epsilon
          && std::abs(new_y - qtconcept_item_y) < epsilon
@@ -558,11 +558,11 @@ void ribi::cmap::QtEdge::Test() noexcept
         const double new_y = -8765.4321;
 
         //Change via Qt concept item
-        qtedge->GetConceptItem()->SetPos(new_x,new_y);
+        qtedge->GetDisplayStrategy()->SetPos(new_x,new_y);
 
         const double edge_x = edge->GetX();
         const double qtedge_x = qtedge->pos().x();
-        const double qtconcept_item_x = qtedge->GetConceptItem()->pos().x();
+        const double qtconcept_item_x = qtedge->GetDisplayStrategy()->pos().x();
         assert(
             std::abs(new_x - edge_x) < epsilon
          && std::abs(new_x - qtconcept_item_x) < epsilon
@@ -570,7 +570,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "X coordinat must be in sync");
         const double edge_y = edge->GetY();
         const double qtedge_y = qtedge->pos().y();
-        const double qtconcept_item_y = qtedge->GetConceptItem()->pos().y();
+        const double qtconcept_item_y = qtedge->GetDisplayStrategy()->pos().y();
         assert(
             std::abs(new_y - edge_y) < epsilon
          && std::abs(new_y - qtconcept_item_y) < epsilon
@@ -655,7 +655,7 @@ void ribi::cmap::QtEdge::Test() noexcept
          && "Names/texts must be in sync");
 
         //Change via Qt concept item
-        qtedge->GetConceptItem()->SetName(qtedge->GetConceptItem()->GetName() + " and again");
+        qtedge->GetDisplayStrategy()->SetName(qtedge->GetDisplayStrategy()->GetName() + " and again");
 
         const std::string edge_name_after = edge->GetConcept()->GetName();
         const std::string qtedge_name_after = qtedge->GetName();
@@ -768,7 +768,7 @@ void ribi::cmap::QtEdge::Test() noexcept
           && "The complete edge (including nodes will be at least as high as the concept only");
 
         //Change via Qt concept item
-        qtedge->GetConceptItem()->SetName(qtedge->GetConceptItem()->GetName() + " and again");
+        qtedge->GetDisplayStrategy()->SetName(qtedge->GetDisplayStrategy()->GetName() + " and again");
 
         const QRectF qtedge_rect_after = qtedge->boundingRect();
         const QRectF qtconcept_rect_after = qtconcept_item->boundingRect();

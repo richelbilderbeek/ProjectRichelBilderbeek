@@ -138,6 +138,13 @@ private:
   ///Implemention of OnItemUpdateRequest
   virtual void OnItemRequestUpdateImpl(const QGraphicsItem* const item) = 0;
 
+  ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
+  ///- Display/read-only concept map: DisplayStrategy
+  ///- Editable: EditStrategy
+  ///- Rateable: RateStrategy
+  virtual const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
+    const boost::shared_ptr<Concept> concept) const noexcept = 0;
+
 public slots:
 
   ///Called whenever a concept is clicked or moved

@@ -27,7 +27,7 @@
 #include "qtarrowitem.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapbrushfactory.h"
-#include "qtconceptmapcenternodeitem.h"
+#include "qtconceptmapcenternode.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmapedge.h"
@@ -151,21 +151,16 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
   {
     //Add the main question as the first node
     const boost::shared_ptr<ribi::cmap::Node> node = m_concept_map->GetNodes()[0];
-    QtNode* const qtnode = new QtCenterNode(node);
-    #ifdef USE_NEW_STYLE
-    QtNode* qtnode = nullptr;
-    if (const boost::shared_ptr<cmap::CenterNode> center_node = boost::dynamic_pointer_cast<cmap::CenterNode>(node))
+
+    QtNode * qtnode = nullptr;
+    if (boost::shared_ptr<CenterNode> centernode = boost::dynamic_pointer_cast<ribi::cmap::CenterNode>(node))
     {
-      qtnode = new QtConceptMapCenterNodeItem(center_node);
+      qtnode = new QtCenterNode(centernode);
     }
     else
     {
-      assert(node);
-      const boost::shared_ptr<QtConceptMapItem> item(new QtDisplayStrategy(node->GetConcept()));
-      assert(item);
-      qtnode = new QtNode(node,item);
+      qtnode = new QtNode(node,this->GetDisplayStrategy(node->GetConcept()));
     }
-    #endif
     assert(qtnode);
     //Let the center node respond to mouse clicks
     qtnode->m_signal_request_scene_update.connect(
@@ -309,7 +304,7 @@ const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const
   QList<QGraphicsItem *> v = scene()->items();
   assert(std::count_if(v.begin(),v.end(),
     [this](const QGraphicsItem * const item) { return this->IsCenterNode(item); }
-    ) == 1 && "There must be exactly one center node");
+    ) < 2 && "There is at most one center node (zero for most sub-concept maps, one for a complete concept map");
   const auto iter = std::find_if(v.begin(),v.end(),
     [this](const QGraphicsItem * const item) { return this->IsCenterNode(item); } );
   assert(iter != v.end());
@@ -400,7 +395,7 @@ const std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noe
 bool ribi::cmap::QtConceptMap::IsCenterNode(const QGraphicsItem* const item)
 {
 
-  const QtNode * const qtnode = dynamic_cast<const QtNode*>(item);
+  const QtCenterNode * const qtnode = dynamic_cast<const QtCenterNode*>(item);
   return qtnode && !(item->flags() & QGraphicsItem::ItemIsMovable);
 }
 
@@ -487,10 +482,10 @@ void ribi::cmap::QtConceptMap::RepositionItems()
       #endif
       assert(std::abs(x - qtnode->pos().x()) < epsilon);
       assert(std::abs(x - qtnode->GetNode()->GetX()) < epsilon);
-      assert(std::abs(x - qtnode->GetConceptItem()->pos().x()) < epsilon);
+      assert(std::abs(x - qtnode->GetDisplayStrategy()->pos().x()) < epsilon);
       assert(std::abs(y - qtnode->pos().y()) < epsilon);
       assert(std::abs(y - qtnode->GetNode()->GetY()) < epsilon);
-      assert(std::abs(y - qtnode->GetConceptItem()->pos().y()) < epsilon);
+      assert(std::abs(y - qtnode->GetDisplayStrategy()->pos().y()) < epsilon);
 
     }
   }
@@ -524,30 +519,33 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     const std::vector<QtNode *> qtnodes = Sort(Collect<QtNode>(scene()));
     assert(!qtnodes.empty());
     assert(qtnodes[0]);
-    assert(IsCenterNode(qtnodes[0]));
+    //assert(IsCenterNode(qtnodes[0]));
     const std::vector<QtEdge* > qtedges = Collect<QtEdge>(scene());
-    const QtNode * const center_node
-      = dynamic_cast<const QtNode *>(qtnodes[0]);
-    assert(center_node);
+
+    //First node
+    //const bool is_first_node_center_node {
+    //  boost::dynamic_pointer_cast<QtCenterNode>(qtnodes[0])
+    //};
+    const QtNode * const first_node { qtnodes[0] };
+    assert(first_node);
 
     std::vector<QtRoundedEditRectItem*> nodes_and_edges;
     std::copy(qtnodes.begin(),qtnodes.end(),std::back_inserter(nodes_and_edges));
-    assert(IsCenterNode(nodes_and_edges[0]));
     std::copy(qtedges.begin(),qtedges.end(),std::back_inserter(nodes_and_edges));
 
     //Move the nodes away from the center
     std::for_each(
       nodes_and_edges.begin() + 1, //+1 to skip the center node at [0]
       nodes_and_edges.end(),
-      [center_node,&done](QtRoundedEditRectItem* const node_or_edge)
+      [first_node,&done](QtRoundedEditRectItem* const node_or_edge)
       {
-        if (center_node->boundingRect().intersects(
+        if (first_node->boundingRect().intersects(
           node_or_edge->boundingRect().translated(-node_or_edge->pos())))
         {
           const double cur_x = node_or_edge->pos().x();
           const double cur_y = node_or_edge->pos().y();
-          const double new_x = cur_x + (node_or_edge->pos().x() < center_node->pos().x() ? -1.0 : 1.0);
-          const double new_y = cur_y + (node_or_edge->pos().y() < center_node->pos().y() ? -1.0 : 1.0);
+          const double new_x = cur_x + (node_or_edge->pos().x() < first_node->pos().x() ? -1.0 : 1.0);
+          const double new_y = cur_y + (node_or_edge->pos().y() < first_node->pos().y() ? -1.0 : 1.0);
           if (QtNode * const qtnode = dynamic_cast<QtNode *>(node_or_edge))
           {
             qtnode->GetNode()->SetX(new_x);

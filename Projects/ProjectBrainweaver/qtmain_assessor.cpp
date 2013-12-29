@@ -13,7 +13,7 @@
 #include "qtpvdbclusterwidget.h"
 #include "qtpvdbconceptmapdialog.h"
 #include "qtconceptmapconcepteditdialog.h"
-#include "qtconceptmapeditwidget.h"
+#include "qtconceptmapwidget.h"
 #include "qtpvdbassessormenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

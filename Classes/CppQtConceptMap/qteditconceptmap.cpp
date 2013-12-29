@@ -20,7 +20,7 @@
 #include "conceptmaphelper.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapnode.h"
-#include "qtconceptmapcenternodeitem.h"
+#include "qtconceptmapcenternode.h"
 #include "qtconceptmapconcepteditdialog.h"
 #include "qtconceptmapelement.h"
 #include "qtconceptmapedge.h"
@@ -113,7 +113,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(
   //Edges connected to the center node do not show their concepts
   if (IsCenterNode(from) || IsCenterNode(to))
   {
-    assert(qtconcept == qtedge->GetConceptItem());
+    assert(qtconcept == qtedge->GetDisplayStrategy());
     qtconcept->setVisible(false);
   }
 
@@ -211,7 +211,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
   //Edges connected to the center node do not show their concepts
   if (IsCenterNode(qt_from) || IsCenterNode(qt_to))
   {
-    assert(qtconcept == qtedge->GetConceptItem());
+    assert(qtconcept == qtedge->GetDisplayStrategy());
     qtconcept->setVisible(false);
   }
 
@@ -245,9 +245,10 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
 {
   assert(node);
   assert(node->GetConcept());
-  const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(node->GetConcept()));
-  assert(node);
-  QtNode * const qtnode = new QtNode(node,qtconcept);
+  //const boost::shared_ptr<QtEditStrategy> display_strategy(new QtEditStrategy(node->GetConcept()));
+  //assert(node);
+  //QtNode * const qtnode = new QtNode(node,display_strategy);
+  QtNode * const qtnode = new QtNode(node,GetDisplayStrategy(node->GetConcept()));
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
@@ -463,6 +464,16 @@ void ribi::cmap::QtEditConceptMap::DoRandomStuff()
 }
 #endif
 
+const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtEditConceptMap::GetDisplayStrategy(
+  const boost::shared_ptr<ribi::cmap::Concept> concept) const noexcept
+{
+  assert(concept);
+  const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {
+    new QtEditStrategy(concept)
+  };
+  assert(display_strategy);
+  return display_strategy;
+}
 
 
 

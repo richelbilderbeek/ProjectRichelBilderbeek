@@ -30,9 +30,9 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
   #endif
 }
 
-bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const /* widget */) const noexcept
 {
-  assert(widget);
+  //assert(widget);
   return m_widget;
   //return widget->GetConceptMap().get();
 }

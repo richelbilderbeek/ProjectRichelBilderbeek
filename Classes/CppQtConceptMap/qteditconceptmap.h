@@ -73,6 +73,10 @@ private:
   ///Remove all Qt and non-Qt items
   void CleanMe();
 
+  ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
+  const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
+    const boost::shared_ptr<Concept> concept) const noexcept;
+
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtConceptMap
   const std::vector<QtEdge *> GetQtEdges();

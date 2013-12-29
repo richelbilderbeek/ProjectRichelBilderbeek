@@ -37,8 +37,8 @@ struct QtEdge : public QtConceptMapElement
   const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
   const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
 
-  const boost::shared_ptr<const QtItemDisplayStrategy> GetConceptItem() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtItemDisplayStrategy> GetConceptItem()       final { return m_concept_item; }
+  const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_concept_item; }
+  const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_concept_item; }
 
   const boost::shared_ptr<const cmap::Edge>  GetEdge() const { return m_edge; }
   const boost::shared_ptr<      cmap::Edge>& GetEdge()       { return m_edge; }

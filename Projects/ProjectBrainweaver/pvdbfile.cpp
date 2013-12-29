@@ -460,10 +460,10 @@ void ribi::pvdb::File::Test() noexcept
   }
   {
     ///Continue loop until no file is found
-    for (int i=0; ; ++i)
+    for (int i=0; i!=100; ++i)
     {
       //Testing filenames start at 1
-      const std::string filename = boost::lexical_cast<std::string>(i + 1) + ".cmp";
+      const std::string filename = boost::lexical_cast<std::string>(i) + ".cmp";
       if (!fileio::IsRegularFile(filename))
       {
         //Copy the file from Qt resources to local file
@@ -477,7 +477,7 @@ void ribi::pvdb::File::Test() noexcept
         {
           //TRACE("First filename not found: ");
           //TRACE(filename);
-          break;
+          continue;
         }
 
         QFile file(filename.c_str());

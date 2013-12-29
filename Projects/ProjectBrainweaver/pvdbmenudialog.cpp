@@ -62,7 +62,7 @@ const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram(
 
 const std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
-  return "0.40";
+  return "0.43";
 }
 
 const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
@@ -107,6 +107,7 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const
     "2013-09-15: Version 0.37: minor changes, added wordwrap in concept names",
     "2013-09-21: Version 0.38: minor changes, added wordwrap in examples in concept map widgets",
     "2013-09-29: Version 0.39: minor changes, added wordwrap in examples in rate examples dialog",
-    "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player"
+    "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player",
+    "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality"
   };
 }

@@ -1,5 +1,5 @@
-#ifndef QTCONCEPTMAPCENTERNODEITEM_H
-#define QTCONCEPTMAPCENTERNODEITEM_H
+#ifndef QTCONCEPTMAPCENTERNODE_H
+#define QTCONCEPTMAPCENTERNODE_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -21,8 +21,7 @@ struct QtCenterNode : public QtNode
   ///(that is, when a sub-concept map is created from a concept map and the
   ///focal node needs to be rated)
   ///concept_item is the display Strategy
-  explicit QtCenterNode(
-    const boost::shared_ptr<ribi::cmap::Node> node);
+  explicit QtCenterNode(const boost::shared_ptr<CenterNode> node);
 
   private:
   static const boost::shared_ptr<QtItemDisplayStrategy> CreateConceptItem(const boost::shared_ptr<ribi::cmap::Node> node);
@@ -31,4 +30,4 @@ struct QtCenterNode : public QtNode
 } //~namespace cmap
 } //~namespace ribi
 
-#endif // QTCONCEPTMAPCENTERNODEITEM_H
+#endif // QTCONCEPTMAPCENTERNODE_H

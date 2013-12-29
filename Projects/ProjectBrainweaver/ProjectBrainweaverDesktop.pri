@@ -65,6 +65,3 @@ FORMS    += \
     ../../Projects/ProjectBrainweaver/qtpvdbviewfilesdialog.ui \
     ../../Projects/ProjectBrainweaver/qtpvdbtestcreatesubconceptmapdialog.ui
 
-RESOURCES += \
-    ../../Projects/ProjectBrainweaver/Brainweaver.qrc
-

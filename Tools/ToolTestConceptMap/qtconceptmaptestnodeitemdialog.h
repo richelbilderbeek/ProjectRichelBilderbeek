@@ -45,7 +45,7 @@ private slots:
 private:
 
   Ui::QtConceptMapTestNodeItemDialog *ui;
-  const boost::shared_ptr<ribi::cmap::Node> m_node;
+  const boost::shared_ptr<Node> m_node;
   cmap::QtNode* m_display_node;
   cmap::QtNode* m_edit_node;
   cmap::QtNode* m_rate_node;

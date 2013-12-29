@@ -331,11 +331,11 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
   //Test resizing due to longer text being set
   {
     const std::string s = d->m_edge->GetConcept()->GetName();
-    const double concept_item_width_before = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_width_before = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
     d->m_edge->GetConcept()->SetName(s + "******************************");
     //There must be no discrepancy between these boundingRects
-    const double concept_item_width_after = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_width_after = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
     const double edge_item_width_after = d->m_edge_item->boundingRect().width();
     assert(concept_item_width_after >= concept_item_width_before);
     assert(edge_item_width_after >= edge_item_width_before);
@@ -344,8 +344,8 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
   {
     d->m_edge->GetConcept()->SetName("1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890 1234567890");
 
-    const double concept_item_height_before = d->m_edge_item->GetConceptItem()->boundingRect().height();
-    const double concept_item_width_before = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_height_before = d->m_edge_item->GetDisplayStrategy()->boundingRect().height();
+    const double concept_item_width_before = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
     const double concept_item_area_before = concept_item_width_before * concept_item_height_before;
     const double edge_item_height_before = d->m_edge_item->boundingRect().height();
     const double edge_item_width_before = d->m_edge_item->boundingRect().width();
@@ -353,8 +353,8 @@ void ribi::cmap::QtConceptMapTestEdgeItemDialog::Test() noexcept
 
     d->m_edge->GetConcept()->SetName(std::string(1,'*'));
 
-    const double concept_item_height_after = d->m_edge_item->GetConceptItem()->boundingRect().height();
-    const double concept_item_width_after = d->m_edge_item->GetConceptItem()->boundingRect().width();
+    const double concept_item_height_after = d->m_edge_item->GetDisplayStrategy()->boundingRect().height();
+    const double concept_item_width_after = d->m_edge_item->GetDisplayStrategy()->boundingRect().width();
     const double concept_item_area_after = concept_item_width_after * concept_item_height_after;
     const double edge_item_height_after = d->m_edge_item->boundingRect().height();
     const double edge_item_width_after = d->m_edge_item->boundingRect().width();

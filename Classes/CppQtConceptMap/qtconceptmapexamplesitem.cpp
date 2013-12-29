@@ -48,7 +48,7 @@ void ribi::cmap::QtExamplesItem::paint(QPainter *painter, const QStyleOptionGrap
   this->SetExamples(this->m_item->GetConcept()->GetExamples());
 
   const QPointF p = m_item->pos();
-  const QRectF r = m_item->GetConceptItem()->rect();
+  const QRectF r = m_item->GetDisplayStrategy()->rect();
   this->setPos(
     p.x() + (0.5 * r.width() ) + 4.0 + (0.5 * this->rect().width() ),
     p.y() + (0.5 * r.height()) + 4.0 + (0.5 * this->rect().height())

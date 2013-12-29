@@ -54,6 +54,11 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   QtTestDisplayConceptMapDialog();
   QtTestEditConceptMapDialog();
   QtTestRateConceptMapDialog();
+  QtConceptMapTestConceptItemDialog();
+  QtConceptMapTestNodeItemDialog();
+  QtConceptMapTestEdgeItemDialog();
+  QtConceptMapViewTestsDialog();
+  QtTestConceptMapWidgetDialog();
   TRACE("Finished ribi::cmap::QtTestConceptMapMenuDialog::Test successfully");
 }
 #endif
@@ -100,7 +105,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::on_button_view_concept_maps_clicked
   this->ShowChild(&d);
 }
 
-void ribi::cmap::QtTestConceptMapMenuDialog::on_button_edit_conceptmapwidget_clicked()
+void ribi::cmap::QtTestConceptMapMenuDialog::on_button_conceptmapwidget_clicked()
 {
   QtTestConceptMapWidgetDialog d;
   this->ShowChild(&d);

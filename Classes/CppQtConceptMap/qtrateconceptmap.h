@@ -56,6 +56,10 @@ private:
   ///Item is non-const, as all items can be edited in other contexts
   const boost::shared_ptr<ribi::cmap::ConceptMap> CreateSubConceptMap(QtNode * const item);
 
+  ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
+  const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
+    const boost::shared_ptr<Concept> concept) const noexcept;
+
   ///Called whenever a concept is clicked or moved
   ///If item is nullptr, the last item might be deleted
   ///Use QGraphicsItem* due to QtKeyboardFriendlyGraphicsView working on QGraphicsItems

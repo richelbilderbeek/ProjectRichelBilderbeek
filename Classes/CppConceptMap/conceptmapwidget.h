@@ -22,7 +22,13 @@ namespace cmap {
 struct Widget
 {
   Widget(const boost::shared_ptr<ConceptMap> conceptmap = boost::shared_ptr<ConceptMap>());
-  Widget(const Widget& other);
+
+  #ifndef NDEBUG
+  Widget(const Widget& other); //Only to be used in debugging
+  #else
+  Widget(const Widget& other) = delete;
+  #endif
+
   Widget& operator=(const Widget& rhs) = delete;
 
   bool CanDoCommand(const boost::shared_ptr<Command> command) const noexcept;

@@ -8,6 +8,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
+
+#include "qtconceptmapfwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -27,10 +29,17 @@ public:
   QtTestConceptMapWidgetDialog& operator=(const QtTestConceptMapWidgetDialog&) = delete;
   ~QtTestConceptMapWidgetDialog() noexcept;
 
+private slots:
+  void OnClick();
+
 private:
   Ui::QtTestConceptMapWidgetDialog *ui;
 
-  boost::shared_ptr<QtTestConceptMapWidgetDialog> m_widget;
+  std::vector<QPushButton *> m_buttons;
+  const std::vector<boost::shared_ptr<Command> > m_commands;
+  const std::vector<boost::shared_ptr<QtConceptMapWidget>> m_qtwidgets;
+
+  static const std::vector<boost::shared_ptr<QtConceptMapWidget>> CreateWidgets() noexcept;
 };
 
 } //~namespace cmap

@@ -10,6 +10,8 @@
 
 #include <boost/shared_ptr.hpp>
 #include <QWidget>
+
+#include "qtkeyboardfriendlygraphicsview.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -19,7 +21,7 @@ namespace cmap {
 ///QtConceptMap, driven by Commands
 ///
 ///
-struct QtConceptMapWidget : public QWidget
+struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
   QtConceptMapWidget(const boost::shared_ptr<QtConceptMap> qtconceptmap);
 

@@ -8,7 +8,6 @@ OTHER_FILES += \
 SOURCES += \
     ../../Classes/CppQtConceptMap/conceptmapbrating.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapbrushfactory.cpp \
-    ../../Classes/CppQtConceptMap/qtconceptmapcenternodeitem.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapcompetency.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.cpp \
     ../../Classes/CppQtConceptMap/qtconceptmap.cpp \
@@ -33,11 +32,11 @@ SOURCES += \
     ../../Classes/CppQtConceptMap/qteditconceptmap.cpp \
     ../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \
     ../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \
-    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp
+    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp \
+    ../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp
 
 HEADERS += \
     ../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.h \
-    ../../Classes/CppQtConceptMap/qtconceptmapcenternodeitem.h \
     ../../Classes/CppQtConceptMap/qtconceptmapfwd.h \
     ../../Classes/CppQtConceptMap/qtconceptmapitemhighlighter.h \
     ../../Classes/CppQtConceptMap/qtconceptmapnewarrow.h \
@@ -61,7 +60,8 @@ HEADERS += \
     ../../Classes/CppQtConceptMap/qteditconceptmap.h \
     ../../Classes/CppQtConceptMap/qtdisplayconceptmap.h \
     ../../Classes/CppQtConceptMap/qtrateconceptmap.h \
-    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h
+    ../../Classes/CppQtConceptMap/qtitemdisplaystrategy.h \
+    ../../Classes/CppQtConceptMap/qtconceptmapcenternode.h
 
 FORMS += \
     ../../Classes/CppQtConceptMap/qtconceptmapconcepteditdialog.ui \

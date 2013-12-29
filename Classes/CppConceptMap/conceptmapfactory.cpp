@@ -44,15 +44,17 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::C
   const std::string& focal_question)
 {
   //A single-node ConceptMap contains only the focal question
-  const boost::shared_ptr<ribi::cmap::Node> focal_node = cmap::CenterNodeFactory::Create(focal_question);
+  const boost::shared_ptr<CenterNode> focal_node {
+    CenterNodeFactory::Create(focal_question)
+  };
   assert(focal_node);
-  const std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes = { focal_node };
+  const std::vector<boost::shared_ptr<Node> > nodes = { focal_node };
   assert(nodes.at(0));
-  const boost::shared_ptr<ribi::cmap::ConceptMap> p = Create(nodes);
+  const boost::shared_ptr<ConceptMap> p = Create(nodes);
   assert(p);
   assert(p->IsValid());
   assert(!p->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(p->GetNodes()[0])
+  assert(boost::dynamic_pointer_cast<CenterNode>(p->GetNodes()[0])
     && "The first node in a ConceptMap created from a question must be a CenterNode");
 
   return p;
@@ -121,8 +123,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
 
   const boost::shared_ptr<ribi::cmap::ConceptMap> p = Create(new_nodes,new_edges);
   assert(p);
-  assert(p!=map && "Must be a DEEP copy");
-  assert(operator==(*p,*map) && "Must be a deep COPY");
+  assert(*p == *map && "Must be a copy");
+  assert( p !=  map && "Must be a deep copy");
   assert(p->IsValid() && "Must be a valid copy");
   return p;
 }
