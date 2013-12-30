@@ -438,12 +438,14 @@ void ribi::cmap::ConceptMap::Test() noexcept
   #endif
   //CreateSubs
   {
+    //Count the number of expected sub concept maps
     {
-      const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > maps
+      const std::vector<boost::shared_ptr<ConceptMap> > maps
         = ConceptMapFactory::GetHeteromorphousTestConceptMaps();
-      const int n_heteromorphous_concept_maps = 19;
-      assert(n_heteromorphous_concept_maps == static_cast<int>(maps.size()));
-      const std::vector<int> n_subs_expected = { 1,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5 } ;
+      const int n_heteromorphous_concept_maps = 20;
+      assert(n_heteromorphous_concept_maps == static_cast<int>(maps.size())
+        && "To warn you if you change the number of testing concept maps");
+      const std::vector<int> n_subs_expected = { 1,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5 } ;
       assert(n_heteromorphous_concept_maps == static_cast<int>(n_subs_expected.size()));
       assert(n_subs_expected[ 0] == 1);
       assert(n_subs_expected[ 1] == 2);
@@ -459,9 +461,9 @@ void ribi::cmap::ConceptMap::Test() noexcept
       for (int i=0; i!=sz; ++i)
       {
         if (!maps[i]) continue;
-        const boost::shared_ptr<ribi::cmap::ConceptMap>& map = maps[i];
+        const boost::shared_ptr<ConceptMap>& map = maps[i];
 
-        const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > subs = map->CreateSubs();
+        const std::vector<boost::shared_ptr<ConceptMap> > subs = map->CreateSubs();
         #ifndef NDEBUG
         if (static_cast<int>(subs.size()) != n_subs_expected[i])
         {
@@ -473,16 +475,67 @@ void ribi::cmap::ConceptMap::Test() noexcept
         assert(static_cast<int>(subs.size()) == n_subs_expected[i]);
       }
     }
-    //Just test all
+    //Count the number of CenterNode objects
     {
-      const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > maps = ConceptMapFactory::GetAllTests();
-      const int sz = boost::numeric_cast<int>(maps.size());
-      for (int i=0; i!=sz; ++i)
+      for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
       {
-        if (!maps[i]) continue;
-        const boost::shared_ptr<ribi::cmap::ConceptMap>& map = maps[i];
-        const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > subs = map->CreateSubs();
-        assert(!subs.empty());
+        //Check if these is a CenterNode: if not, all other assumptions will be false
+        {
+          const std::vector<boost::shared_ptr<const Node> > nodes { map->GetNodes() };
+          const int n_centernodes {
+            std::count_if(
+              nodes.begin(),
+              nodes.end(),
+              [](const boost::shared_ptr<const Node> node)
+              {
+                return boost::dynamic_pointer_cast<const CenterNode>(node);
+              }
+            )
+          };
+          assert(n_centernodes == 1);
+        }
+        //Count the edges connected to CenterNode
+        const std::vector<boost::shared_ptr<const Edge> > edges { map->GetEdges() };
+        const int n_center_nodes_expected
+          = std::count_if(edges.begin(),edges.end(),
+            [](const boost::shared_ptr<const Edge> edge)
+            {
+              return boost::dynamic_pointer_cast<const CenterNode>(edge->GetFrom())
+                ||   boost::dynamic_pointer_cast<const CenterNode>(edge->GetTo())
+              ;
+            }
+          )
+        + 1; //+1, because with no edges, you expect the center node only
+
+        //Count the number of sub concept maps with a center node
+        const std::vector<boost::shared_ptr<ConceptMap> > subs = map->CreateSubs();
+        const int n_center_nodes_found {
+          std::count_if(subs.begin(),subs.end(),
+            [](const boost::shared_ptr<const ConceptMap> sub)
+            {
+              const std::vector<boost::shared_ptr<const Edge> > edges_sub { sub->GetEdges() };
+              const int cnt = std::count_if(edges_sub.begin(),edges_sub.end(),
+                [](const boost::shared_ptr<const Edge> edge)
+                {
+                  return boost::dynamic_pointer_cast<const CenterNode>(edge->GetFrom())
+                    ||   boost::dynamic_pointer_cast<const CenterNode>(edge->GetTo())
+                  ;
+                }
+              );
+              assert(cnt <= 1);
+              return cnt;
+            }
+          )
+        };
+        if (n_center_nodes_expected != n_center_nodes_found)
+        {
+          TRACE("ERROR");
+          for (const std::string s: XmlToPretty(ToXml(map))) { TRACE(s); }
+          TRACE(n_center_nodes_expected);
+          TRACE(n_center_nodes_found);
+        }
+        assert(n_center_nodes_expected == n_center_nodes_found);
+
       }
     }
   }

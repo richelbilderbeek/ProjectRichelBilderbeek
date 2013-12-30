@@ -91,10 +91,10 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 {
   //Obtain an empty file
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
-  //Set HeteromorphousTestConceptMap[15]
+  //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
   {
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(19);
     assert(concept_map);
     assert(!file->GetConceptMap() && "Can only set a concept map once");
     file->SetConceptMap(concept_map);

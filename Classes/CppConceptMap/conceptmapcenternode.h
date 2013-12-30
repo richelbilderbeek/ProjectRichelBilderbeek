@@ -27,10 +27,14 @@ struct CenterNode : public cmap::Node
   friend CenterNodeFactory;
   CenterNode() = delete;
   explicit CenterNode(
-    const boost::shared_ptr<ribi::cmap::Concept>& concept,
+    const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 };
+
+///Returns true if Node is of derived class type CenterNode
+///Returns true if Node is Node
+//bool IsCenter(const boost::shared_ptr<Node> node);
 
 } //~namespace cmap
 

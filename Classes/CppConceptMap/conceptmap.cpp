@@ -29,7 +29,7 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question)
   assert(ConceptMap::CanConstruct(m_nodes,m_edges));
   assert(this->GetQuestion() == question);
 
-  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(this->GetNodes()[0])
+  assert(boost::dynamic_pointer_cast<CenterNode>(this->GetNodes()[0])
     && "Assume a CenterNode at the center of ConceptMap");
   #endif
 }
@@ -66,6 +66,9 @@ ribi::cmap::ConceptMap::ConceptMap(
   }
   assert(ConceptMap::CanConstruct(nodes,edges));
   assert(this->GetQuestion() == nodes[0]->GetConcept()->GetName());
+  assert(
+    (boost::dynamic_pointer_cast<CenterNode>(nodes[0]) || !boost::dynamic_pointer_cast<CenterNode>(nodes[0]))
+    && "A sub concept map may not have a center node");
   #endif
 }
 
@@ -116,10 +119,12 @@ bool ribi::cmap::ConceptMap::CanConstruct(
   const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
   const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges)
 {
+  const bool trace_verbose = true;
   //if (question.empty() && "Cannot construct empty questions") return false;
   //Test if first node, which is the focal question, does not have examples
   if (nodes.empty())
   {
+    if (trace_verbose) { TRACE("A concept map must have at least one node"); }
     return false;
   }
   assert(nodes[0]->GetConcept());
@@ -160,12 +165,18 @@ bool ribi::cmap::ConceptMap::CanConstruct(
         const auto b_to   = b->GetTo();
         if (a_from.get() == b_from.get() && a_to.get() == b_to.get())
         {
-          //Cannot have two edges from the same node to the same node
+          if (trace_verbose)
+          {
+            TRACE("Cannot have two edges from the same node to the same node");
+          }
           return false;
         }
         if (a_from.get() == b_to.get() && a_to.get() == b_from.get())
         {
-          //Cannot have two edges from the same node to the same node
+          if (trace_verbose)
+          {
+            TRACE("Cannot have two edges from the same node to the same node");
+          }
           return false;
         }
       }
@@ -200,10 +211,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::ConceptMap::
 
 const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMap::CreateSubs() const
 {
-  assert(m_nodes.size() >= 1 && "Concept map must have a focal question");
+  assert(m_nodes.size() >= 1 && "Concept map must have a at least one node");
 
-  std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v;
-  for (const boost::shared_ptr<ribi::cmap::Node> focal_node: m_nodes)
+  std::vector<boost::shared_ptr<ConceptMap> > v;
+  for (const boost::shared_ptr<Node> focal_node: m_nodes)
   //for (int i=0; i!=n_nodes; ++i)
   {
     assert(focal_node);
@@ -217,14 +228,12 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       assert(boost::dynamic_pointer_cast<CenterNode>(focal_node)
         && "Assume the center node is known as the center node");
       //Center node
-      const boost::shared_ptr<CenterNode> centernode {
-        boost::dynamic_pointer_cast<CenterNode>(focal_node)
-      };
-      assert(centernode);
-      nodes.push_back(centernode);
+      nodes.push_back(focal_node);
     }
     else
     {
+      assert(!boost::dynamic_pointer_cast<CenterNode>(focal_node)
+        && "Assume the non-center node is known as the non-center node");
       //Add ordinary node
       nodes.push_back(focal_node);
     }

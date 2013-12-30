@@ -1,6 +1,6 @@
 include(../../WebApplication.pri)
 include(../../Libraries/BigInteger.pri)
-include(../../Libraries/Boost.pri)
+include(../../Libraries/BoostAll.pri)
 include(../../Libraries/Fparser.pri)
 include(../../Libraries/Qwt.pri)
 include(../../Libraries/Wt.pri)
@@ -129,14 +129,4 @@ include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonWebsite.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickWebsite.pri)
 include(../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekWebsite.pri)
 
-QT += core gui
-
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-
 SOURCES += wtmain.cpp
-
-#win32 {
-#  DEFINES += WIN32
-#}

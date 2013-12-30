@@ -8,6 +8,7 @@ namespace ribi {
 namespace cmap {
 
 struct CenterNode;
+struct CenterNodeFactory;
 //struct Cluster; //Remove for now, must be added at ProjectBrainweaver later
 struct Command;
 struct Concept;

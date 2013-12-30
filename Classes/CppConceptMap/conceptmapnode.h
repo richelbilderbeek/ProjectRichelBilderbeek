@@ -38,14 +38,14 @@ struct Node : public Element
   ///Get some test nodes
   static const std::vector<boost::shared_ptr<Node> > GetTests();
 
-  ///Similar to operator==, except that GUI elements are not tested for equality
-  static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs);
-
   ///Get the x coordinat
   double GetX() const { return m_x; }
 
   ///Get the y coordinat
   double GetY() const { return m_y; }
+
+  ///Similar to operator==, except that GUI elements are not tested for equality
+  static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs);
 
   ///Set the concept
   void SetConcept(const boost::shared_ptr<Concept> concept);
