@@ -37,6 +37,10 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///The nonvisual concept map widget, the Model
   ///The Widget is worked upon, the signal it emits are listened to by the QtConceptMap/View
   boost::shared_ptr<Widget> m_widget;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

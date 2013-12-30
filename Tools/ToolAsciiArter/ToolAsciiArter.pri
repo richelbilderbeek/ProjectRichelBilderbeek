@@ -1,5 +1,5 @@
 INCLUDEPATH += \
-    ../../Classes/CppAbout \
+    ../../Tools/CppAbout \
     ../../Classes/CppAsciiArter \
     ../../Classes/CppFileIo \
     ../../Classes/CppHelp \

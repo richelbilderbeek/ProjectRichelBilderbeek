@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppAbout
+    ../../Classes/CppWtAboutDialog
 
 SOURCES += \
-    ../../Classes/CppAbout/about.cpp
+    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp
 
 HEADERS  += \
-    ../../Classes/CppAbout/about.h
+    ../../Classes/CppWtAboutDialog/wtaboutdialog.h
 
 OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt
+    ../../Classes/CppWtAboutDialog/Licence.txt
 

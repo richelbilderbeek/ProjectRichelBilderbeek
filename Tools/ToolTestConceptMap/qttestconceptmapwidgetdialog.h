@@ -30,6 +30,10 @@ public:
   ~QtTestConceptMapWidgetDialog() noexcept;
 
 private slots:
+  ///Called when user clicks a button
+  ///OnClick determines the clicked button its index
+  ///by finding the focused button. Then it
+  ///calls DoClick
   void OnClick();
 
 private:
@@ -40,6 +44,13 @@ private:
   const std::vector<boost::shared_ptr<QtConceptMapWidget>> m_qtwidgets;
 
   static const std::vector<boost::shared_ptr<QtConceptMapWidget>> CreateWidgets() noexcept;
+
+  ///Click the ith button
+  void DoClick(const int i);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

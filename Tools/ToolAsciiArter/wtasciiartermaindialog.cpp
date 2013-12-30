@@ -21,7 +21,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/filesystem.hpp>
-//#include <boost/foreach.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
@@ -72,7 +71,7 @@ ribi::WtAsciiArterMainDialog::WtAsciiArterMainDialog()
     {
       if (!fileio::IsRegularFile(filename))
       {
-        QFile f( (std::string(":/images/") + filename).c_str() );
+        QFile f( (std::string(":/ToolAsciiArter/images/") + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!fileio::IsRegularFile(filename))

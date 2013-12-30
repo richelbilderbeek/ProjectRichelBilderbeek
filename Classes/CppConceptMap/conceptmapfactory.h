@@ -21,33 +21,33 @@ namespace cmap {
 struct ConceptMapFactory
 {
   //Create an empty-as-can-get ConceptMap
-  static const boost::shared_ptr<ribi::cmap::ConceptMap> Create(
+  static const boost::shared_ptr<ConceptMap> Create(
     const std::string& focal_question);
 
-  static const boost::shared_ptr<ribi::cmap::ConceptMap> Create(
+  static const boost::shared_ptr<ConceptMap> Create(
     const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
     const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges = {});
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<ribi::cmap::ConceptMap> DeepCopy(
-    const boost::shared_ptr<const ribi::cmap::ConceptMap> map);
+  static const boost::shared_ptr<ConceptMap> DeepCopy(
+    const boost::shared_ptr<const ConceptMap> map);
   #endif
 
   ///Obtain a ConceptMap from an XML std::string
-  static const boost::shared_ptr<ribi::cmap::ConceptMap> FromXml(const std::string& s);
+  static const boost::shared_ptr<ConceptMap> FromXml(const std::string& s);
 
   ///Get all the other tests as one vector
-  static const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > GetAllTests();
+  static const std::vector<boost::shared_ptr<ConceptMap> > GetAllTests();
 
   ///Get the documented heteromorphous test concept maps
-  static const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > GetHeteromorphousTestConceptMaps();
+  static const std::vector<boost::shared_ptr<ConceptMap> > GetHeteromorphousTestConceptMaps();
 
   ///Get the documented complex homomorphous test concept maps
-  static const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > GetComplexHomomorphousTestConceptMaps();
+  static const std::vector<boost::shared_ptr<ConceptMap> > GetComplexHomomorphousTestConceptMaps();
 
   ///Get the documented simple homomorphous test concept maps
-  static const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > GetSimpleHomomorphousTestConceptMaps();
+  static const std::vector<boost::shared_ptr<ConceptMap> > GetSimpleHomomorphousTestConceptMaps();
 };
 
 } //~namespace cmap

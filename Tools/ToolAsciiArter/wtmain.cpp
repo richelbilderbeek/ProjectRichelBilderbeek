@@ -45,7 +45,7 @@ struct WtApplication : public Wt::WApplication
     : Wt::WApplication(env),
     m_dialog(new ribi::WtAsciiArterMainDialog)
   {
-    this->setTitle("TestAsciiArter");
+    this->setTitle("AsciiArter");
     this->useStyleSheet("wt.css");
     root()->addWidget(m_dialog);
   }
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 {
   if (!ribi::fileio::IsRegularFile("RichelbilderbeekNlBackground.png"))
   {
-    QFile file(":/images/RichelbilderbeekNlBackground.png");
+    QFile file(":/ToolAsciiArter/images/RichelbilderbeekNlBackground.png");
     file.copy("RichelbilderbeekNlBackground.png");
   }
 

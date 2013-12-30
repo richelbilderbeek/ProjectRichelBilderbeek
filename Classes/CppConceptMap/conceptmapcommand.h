@@ -16,6 +16,10 @@ namespace ribi {
 namespace cmap {
 
 ///Command can be used to do and undo commands to a concept map Widget
+///Command must use a Widget* because a Widget will call a Command with this:
+///
+///  some_command->CanDo(this);
+///
 struct Command
 {
   virtual ~Command() noexcept {}

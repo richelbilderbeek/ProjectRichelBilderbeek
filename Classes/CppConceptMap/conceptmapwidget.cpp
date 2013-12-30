@@ -8,6 +8,7 @@
 #include "conceptmapfactory.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommandfactory.h"
+#include "conceptmapwidgetfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -78,25 +79,79 @@ void ribi::cmap::Widget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::Widget::Test()");
-  //Test all commands do and undo
-  for (const boost::shared_ptr<ribi::cmap::ConceptMap> map:
-    ribi::cmap::ConceptMapFactory::GetAllTests())
+  //Test if individual commands have the intended effect
+  //Delete concept map
   {
-    assert(map || !map);
-    ribi::cmap::Widget widget(map);
-    assert(widget == widget);
+    static int cnt_no = 0;
+    static int cnt_yes = 0;
+    for (const boost::shared_ptr<Widget> widget:
+      WidgetFactory::GetAllTests())
+    {
+      CommandDeleteConceptMap c;
+      if (widget->GetConceptMap())
+      {
+        assert(c.CanDoCommand(widget.get()) && "Can delete a concept map when present");
+        c.DoCommand(widget.get());
+        assert(!widget->GetConceptMap() && "Concept map must be deleted");
+        c.Undo();
+        assert(widget->GetConceptMap() && "Concept map must be restored by undo");
+        ++cnt_yes;
+      }
+      else
+      {
+        assert(!widget->GetConceptMap());
+        assert(!c.CanDoCommand(widget.get()) && "Cannot delete a concept map when absent");
+        ++cnt_no;
+      }
+    }
+    assert(cnt_no > 0);
+    assert(cnt_yes > 0);
+  }
+  //Start concept map
+  {
+    static int cnt_no = 0;
+    static int cnt_yes = 0;
+
+    for (const boost::shared_ptr<Widget> widget:
+      WidgetFactory::GetAllTests())
+    {
+      CommandStartConceptMap c;
+      if (!widget->GetConceptMap())
+      {
+        assert(c.CanDoCommand(widget.get()) && "Can start a concept map when none is present");
+        c.DoCommand(widget.get());
+        assert(widget->GetConceptMap() && "Concept map must be created");
+        c.Undo();
+        assert(!widget->GetConceptMap() && "Concept map must be deleted by undo");
+        ++cnt_yes;
+      }
+      else
+      {
+        assert(widget->GetConceptMap());
+        assert(!c.CanDoCommand(widget.get()) && "Cannot start when a concept map already exists");
+        ++cnt_no;
+      }
+    }
+    assert(cnt_no > 0);
+    assert(cnt_yes > 0);
+  }
+  //Test all commands do and undo
+  for (const boost::shared_ptr<Widget> widget:
+    WidgetFactory::GetAllTests())
+  {
+    assert(widget);
 
     for (const boost::shared_ptr<Command> command: CommandFactory::CreateTestCommands())
     {
       assert(command);
-      if (widget.CanDoCommand(command))
+      if (widget->CanDoCommand(command))
       {
-        const ribi::cmap::Widget prev_widget(widget);
-        assert(prev_widget == widget);
-        widget.DoCommand(command);
-        assert(prev_widget != widget);
-        widget.Undo();
-        assert(prev_widget == widget);
+        const ribi::cmap::Widget prev_widget(*widget);
+        assert(prev_widget == *widget);
+        widget->DoCommand(command);
+        assert(prev_widget != *widget);
+        widget->Undo();
+        assert(prev_widget == *widget);
       }
     }
   }

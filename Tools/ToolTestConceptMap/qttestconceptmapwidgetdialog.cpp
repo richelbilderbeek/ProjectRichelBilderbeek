@@ -27,6 +27,9 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
     m_commands(CommandFactory::CreateTestCommands()),
     m_qtwidgets(CreateWidgets())
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   ui->setupUi(this);
   //Add the three conceptmap widgets
 
@@ -65,7 +68,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
       m_buttons.push_back(button);
       button->setText(command->ToStr().c_str());
       layout->addWidget(button);
-      QObject::connect(button,&QPushButton::click,this,&QtTestConceptMapWidgetDialog::OnClick);
+      QObject::connect(button,&QPushButton::clicked,this,&QtTestConceptMapWidgetDialog::OnClick);
     }
 
     assert(m_buttons.size() == m_commands.size());
@@ -111,6 +114,30 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   return v;
 }
 
+
+void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
+{
+  const QPushButton * const button =  m_buttons[button_index];
+  const std::string text = button->text().toStdString();
+  const auto command_iter = std::find_if(m_commands.begin(),m_commands.end(),
+    [text](boost::shared_ptr<Command> command)
+    {
+      assert(command);
+      return command->ToStr() == text;
+    }
+  );
+  assert(command_iter != m_commands.end());
+  assert(*command_iter);
+  for (boost::shared_ptr<QtConceptMapWidget> qtwidget: m_qtwidgets)
+  {
+    assert(qtwidget);
+    if (qtwidget->CanDoCommand(*command_iter))
+    {
+      qtwidget->DoCommand(*command_iter);
+    }
+  }
+}
+
 void ribi::cmap::QtTestConceptMapWidgetDialog::OnClick()
 {
   TRACE_FUNC();
@@ -118,16 +145,37 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::OnClick()
     [](QPushButton * const button) { return button->hasFocus(); }
   );
   if (button_iter == m_buttons.end()) return;
-  const std::string text = (*button_iter)->text().toStdString();
-  const auto command_iter = std::find_if(m_commands.begin(),m_commands.end(),
-    [text](boost::shared_ptr<Command> command) { return command->ToStr() == text; }
-  );
-  assert(command_iter != m_commands.end());
-  for (boost::shared_ptr<QtConceptMapWidget> qtwidget: m_qtwidgets)
-  {
-    if (qtwidget->CanDoCommand(*command_iter))
-    {
-      qtwidget->DoCommand(*command_iter);
-    }
-  }
+  const int button_index {
+    std::distance(
+      m_buttons.begin(),
+      button_iter
+    )
+  };
+  assert(button_index >= 0);
+  assert(button_index < static_cast<int>(m_buttons.size()));
+  DoClick(button_index);
 }
+
+#ifndef NDEBUG
+void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::cmap::QtTestConceptMapWidgetDialog::Test");
+  {
+    QtTestConceptMapWidgetDialog d;
+    //Need to set focus
+    assert(d.m_buttons.size() >= 2);
+    assert(d.m_buttons[0]);
+    d.DoClick(0);
+    d.DoClick(0);
+    d.DoClick(0);
+    d.DoClick(1);
+    d.DoClick(0);
+  }
+  TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
+}
+#endif

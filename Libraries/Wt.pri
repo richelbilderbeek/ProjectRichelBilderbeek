@@ -1,3 +1,6 @@
 INCLUDEPATH += \
-  ../../Libraries/wt/src \
-  wt/src
+  ../../Libraries/wt/src
+
+unix {
+  LIBS += -lwt -lwthttp
+}

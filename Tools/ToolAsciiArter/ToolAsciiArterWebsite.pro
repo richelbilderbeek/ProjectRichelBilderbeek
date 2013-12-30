@@ -1,45 +1,22 @@
-QT       += core gui
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+include(../../WebApplication.pri)
 
-include( ToolAsciiArter.pri )
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppWtAboutDialog \
-  ../../Classes/CppWtAutoConfig
+#General, website
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
-SOURCES += \
-  wtmain.cpp \
-  wtasciiartermaindialog.cpp \
-  ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-  ../../Classes/CppWtAutoConfig/wtautoconfig.cpp
+#Specific
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Tools/ToolAsciiArter/ToolAsciiArterWebsite.pri)
 
-HEADERS  += \
-  wtasciiartermaindialog.h \
-  ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-  ../../Classes/CppWtAutoConfig/wtautoconfig.h
-
-RESOURCES += \
-    ToolAsciiArter.qrc
-
-#
-#
-# Boost
-#
-#
-
-LIBS += \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_signals \
-  -lboost_system
-
-
-#
-#
-# Wt
-#
-#
-
-LIBS += -lwt -lwthttp
+SOURCES += wtmain.cpp

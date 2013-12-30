@@ -9,6 +9,7 @@
 #pragma GCC diagnostic pop
 
 #include "conceptmapwidget.h"
+#include "trace.h"
 
 bool ribi::cmap::Command::CanDoCommand(const Widget * const widget) const noexcept
 {
@@ -30,11 +31,10 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
   #endif
 }
 
-bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const /* widget */) const noexcept
+bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
-  //assert(widget);
-  return m_widget;
-  //return widget->GetConceptMap().get();
+  assert(widget);
+  return widget->GetConceptMap().get();
 }
 
 void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widget) noexcept
@@ -43,6 +43,12 @@ void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widge
   assert(CanDoCommandSpecific(widget));
   assert(widget->GetConceptMap().get());
   //Correct pre state
+  #ifndef NDEBUG
+  if (m_widget)
+  {
+    TRACE("BREAK");
+  }
+  #endif
   assert(!m_widget);
   assert(!m_deleted_concept_map);
 
@@ -55,7 +61,7 @@ void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widge
   assert(m_widget);
   assert(m_deleted_concept_map);
   assert(!widget->GetConceptMap().get());
-  assert(m_widget->GetConceptMap().get());
+  assert(!m_widget->GetConceptMap().get());
 }
 
 void ribi::cmap::CommandDeleteConceptMap::Undo() noexcept

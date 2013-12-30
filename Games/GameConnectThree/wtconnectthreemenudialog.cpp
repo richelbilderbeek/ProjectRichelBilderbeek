@@ -112,7 +112,7 @@ ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog(
 
 ribi::WtAboutDialog * ribi::WtConnectThreeMenuDialog::CreateNewAboutDialog()
 {
-  About a = ConnectThreeMenuDialog::GetAbout();
+  About a = ConnectThreeMenuDialog().GetAbout();
   a.AddLibrary("WtConnectThreeWidget version: " + WtConnectThreeWidget::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);

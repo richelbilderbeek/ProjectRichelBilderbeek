@@ -1,53 +1,21 @@
-QT += core
-QT -= gui
-SOURCES += \
-    beerwanter.cpp \
-    mainWt.cpp \
-    beerwanterwtwidget.cpp
-HEADERS  += \
-    beerwanter.h \
-    beerwanterwtwidget.h \
-    myassert.h
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+include(../../WebApplication.pri)
 
+#General
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-CONFIG   += console
-CONFIG   += qt
-CONFIG   -= app_bundle
-TEMPLATE = app
+#Website general
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
-#
-#
-# Type of compile
-#
-#
+#Specific
+include(../../Games/GameBeerWanter/GameBeerWanterWebsite.pri)
 
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-#
-#
-# Wt
-#
-#
-
-unix {
-  LIBS += -lwt -lwthttp
-}
+SOURCES += wtmain.cpp
