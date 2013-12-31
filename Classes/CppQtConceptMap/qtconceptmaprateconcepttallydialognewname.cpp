@@ -45,12 +45,12 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
   const int n_rows = static_cast<int>(m_data.size());
   const int n_cols = 4;
   ui->table->setRowCount(n_rows);
-  ui->table->setWordWrap(true); //NEW 2013-09-23
+  ui->table->setWordWrap(true);
   for (int row_index=0; row_index!=n_rows; ++row_index)
   {
     const Row& row = m_data[row_index];
-    const boost::shared_ptr<ribi::cmap::Concept> concept = row.first;
-    const int example_index = row.second;
+    const boost::shared_ptr<ribi::cmap::Concept> concept = std::get<1>(row);
+    const int example_index = std::get<2>(row);
 
     assert(concept);
     if (example_index == -1)
@@ -82,11 +82,24 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
       }
       {
         //Put the relation's name in place
+        //20131231 NEW
         QTableWidgetItem * const i = new QTableWidgetItem;
         i->setFlags(
             Qt::ItemIsSelectable
           | Qt::ItemIsEnabled);
-        const std::string s = concept->GetName();
+        const boost::shared_ptr<const Edge> edge { std::get<0>(row) };
+        assert(edge);
+        const bool center_is_from {
+          edge->GetFrom()->GetConcept() == sub_concept_map->GetNodes().at(0)->GetConcept()
+        };
+        const boost::shared_ptr<const Node> other {
+          center_is_from ? edge->GetTo() : edge->GetFrom()
+        };
+        const std::string s {
+            concept->GetName() + ", is verbonden met '"
+          + other->GetConcept()->GetName()
+          + std::string("'")
+        };
         i->setText(s.c_str());
         const int column = 3;
         ui->table->setItem(row_index, column, i);
@@ -172,7 +185,8 @@ const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
     const int n_examples = boost::numeric_cast<int>(focal_concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
     {
-      data.push_back(std::make_pair(focal_concept,i));
+      boost::shared_ptr<Edge> empty_edge;
+      data.push_back(std::make_tuple(empty_edge,focal_concept,i));
     }
   }
 
@@ -188,11 +202,12 @@ const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
 
 
     const boost::shared_ptr<ribi::cmap::Concept> concept = edge->GetConcept();
-    data.push_back(std::make_pair(concept,-1));
+    data.push_back(std::make_tuple(edge,concept,-1));
     const int n_examples = boost::numeric_cast<int>(concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
     {
-      data.push_back(std::make_pair(concept,i));
+      boost::shared_ptr<Edge> empty_edge;
+      data.push_back(std::make_tuple(empty_edge,concept,i));
     }
   }
   return data;
@@ -236,8 +251,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
     )
   );
   assert(sub_concept_map);
-  assert(!boost::dynamic_pointer_cast<cmap::CenterNode>(sub_concept_map->GetNodes()[0]));
-  assert(!boost::dynamic_pointer_cast<cmap::CenterNode>(sub_concept_map->GetNodes()[1]));
+  assert(!boost::dynamic_pointer_cast<CenterNode>(sub_concept_map->GetNodes()[0]));
+  assert(!boost::dynamic_pointer_cast<CenterNode>(sub_concept_map->GetNodes()[1]));
   return sub_concept_map;
 }
 
@@ -263,7 +278,7 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedComplexity() const
   const int n_edges = std::accumulate(m_data.begin(),m_data.end(),0,
     [](int init, const Row& row)
       {
-        return init + (row.second == -1 && row.first->GetIsComplex() ? 1 : 0);
+        return init + (std::get<2>(row) == -1 && std::get<1>(row)->GetIsComplex() ? 1 : 0);
       }
     );
 
@@ -271,12 +286,12 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedComplexity() const
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
     [](int init, const Row& row)
       {
-        const int index = row.second;
+        const int index = std::get<2>(row);
         if (index == -1) return init + 0;
-        assert(row.first);
-        assert(row.first->GetExamples());
-        assert(index < static_cast<int>(row.first->GetExamples()->Get().size()));
-        return init + (row.first->GetExamples()->Get()[index]->GetIsComplex() ? 1 : 0);
+        assert(std::get<1>(row));
+        assert(std::get<1>(row)->GetExamples());
+        assert(index < static_cast<int>(std::get<1>(row)->GetExamples()->Get().size()));
+        return init + (std::get<1>(row)->GetExamples()->Get()[index]->GetIsComplex() ? 1 : 0);
       }
     );
   const int n_tallied = n_examples + n_edges;
@@ -291,12 +306,12 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedConcreteness() cons
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
     [](int init, const Row& row)
       {
-        const int index = row.second;
+        const int index = std::get<2>(row);
         if (index == -1) return init + 0;
-        assert(row.first);
-        assert(row.first->GetExamples());
-        assert(index < static_cast<int>(row.first->GetExamples()->Get().size()));
-        return init + (row.first->GetExamples()->Get()[index]->GetIsConcrete() ? 1 : 0);
+        assert(std::get<1>(row));
+        assert(std::get<1>(row)->GetExamples());
+        assert(index < static_cast<int>(std::get<1>(row)->GetExamples()->Get().size()));
+        return init + (std::get<1>(row)->GetExamples()->Get()[index]->GetIsConcrete() ? 1 : 0);
       }
     );
   const int n_tallied = n_examples;
@@ -311,12 +326,12 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedSpecificity() const
   const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,
     [](int init, const Row& row)
       {
-        const int index = row.second;
+        const int index = std::get<2>(row);
         if (index == -1) return init + 0;
-        assert(row.first);
-        assert(index < static_cast<int>(row.first->GetExamples()->Get().size()));
-        assert(row.first->GetExamples());
-        return init + (row.first->GetExamples()->Get()[index]->GetIsSpecific() ? 1 : 0);
+        assert(std::get<1>(row));
+        assert(index < static_cast<int>(std::get<1>(row)->GetExamples()->Get().size()));
+        assert(std::get<1>(row)->GetExamples());
+        return init + (std::get<1>(row)->GetExamples()->Get()[index]->GetIsSpecific() ? 1 : 0);
       }
     );
   const int n_tallied = n_examples;
@@ -365,8 +380,8 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::OnCellChanged(int row_index, i
   const QTableWidgetItem * const item = ui->table->item(row_index,col);
   assert(item);
   const Row& row = m_data[row_index];
-  boost::shared_ptr<ribi::cmap::Concept> concept = row.first;
-  const int index = row.second;
+  boost::shared_ptr<ribi::cmap::Concept> concept = std::get<1>(row);
+  const int index = std::get<2>(row);
 
   if (index == -1)
   {
@@ -479,7 +494,12 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->item(1,0)->checkState() == (edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(1,1)->text() == "");
   assert(d.ui->table->item(1,2)->text() == "");
-  assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
+  //NEW 20131231: now the text contains both
+  //- the concept name of the edge
+  //- the name of the node the edge is connected to
+  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetConcept()->GetName()) != std::string::npos);
+  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetTo()->GetConcept()->GetName()) != std::string::npos);
+  //OLD assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
 
   assert(d.ui->table->item(2,0)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,1)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));
@@ -510,7 +530,13 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->item(1,0)->checkState() == (edge->GetConcept()->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(1,1)->text() == "");
   assert(d.ui->table->item(1,2)->text() == "");
-  assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
+
+  //NEW 20131231: now the text contains both
+  //- the concept name of the edge
+  //- the name of the node the edge is connected to
+  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetConcept()->GetName()) != std::string::npos);
+  assert(d.ui->table->item(1,3)->text().toStdString().find(edge->GetTo()->GetConcept()->GetName()) != std::string::npos);
+  //OLD assert(d.ui->table->item(1,3)->text() == QString(edge->GetConcept()->GetName().c_str()));
 
   assert(d.ui->table->item(2,0)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsComplex() ? Qt::Checked : Qt::Unchecked));
   assert(d.ui->table->item(2,1)->checkState() == (edge->GetConcept()->GetExamples()->Get()[0]->GetIsConcrete() ? Qt::Checked : Qt::Unchecked));

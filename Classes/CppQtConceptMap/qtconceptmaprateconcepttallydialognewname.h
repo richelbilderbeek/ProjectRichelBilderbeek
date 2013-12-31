@@ -56,17 +56,18 @@ private:
   ///The boost::shared_ptr<ribi::cmap::Concept> is the concept being judged,
   ///  which might be the concept on the focal node and the concept on the egdes connected to the focal node
   ///The index is the index of the example being judged, or -1, denoting it is the concept name being judged
-  typedef std::pair<boost::shared_ptr<ribi::cmap::Concept>,int> Row;
+  //typedef std::pair<boost::shared_ptr<Concept>,int> Row;
+  typedef std::tuple<boost::shared_ptr<const Edge>,boost::shared_ptr<Concept>,int> Row;
   const std::vector<Row> m_data;
 
   ///The name of this concept, for example 'my own development'
   const std::string m_focus_name;
 
   static const std::vector<Row>
-    CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map);
+    CreateData(const boost::shared_ptr</* const */ ConceptMap> map);
 
   static const std::string
-    GetFocusName(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map);
+    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_concept_map);
 
   #ifndef NDEBUG
   static void Test() noexcept;

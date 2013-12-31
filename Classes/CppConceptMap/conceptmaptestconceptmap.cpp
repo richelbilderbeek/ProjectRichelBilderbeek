@@ -476,6 +476,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       }
     }
     //Count the number of CenterNode objects
+    #ifdef DO_THIS_TEST_20131231
     {
       for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
       {
@@ -538,6 +539,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
 
       }
     }
+    #endif
   }
   //Test IsValid
   {

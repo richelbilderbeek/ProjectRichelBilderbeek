@@ -19,14 +19,7 @@
    <string>TestConceptMap</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="5" column="1">
-    <widget class="QPushButton" name="button_quit">
-     <property name="text">
-      <string>Quit</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
+   <item row="1" column="2">
     <widget class="QGroupBox" name="groupBox_conceptmapwidget">
      <property name="title">
       <string>Widget</string>
@@ -42,14 +35,21 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="1">
+   <item row="3" column="1">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
+   <item row="4" column="1">
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
       <string>Elements</string>
@@ -82,6 +82,14 @@
      </layout>
     </widget>
    </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="button_view_concept_maps">
+     <property name="text">
+      <string>Concept maps
+used in testing</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="1">
     <widget class="QLabel" name="label_title">
      <property name="sizePolicy">
@@ -105,7 +113,7 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="1" column="1">
     <widget class="QGroupBox" name="groupBox_conceptmap">
      <property name="title">
       <string>View</string>
@@ -135,27 +143,6 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="3" column="1">
-    <widget class="QPushButton" name="button_view_concept_maps">
-     <property name="text">
-      <string>Concept maps
-used in testing</string>
-     </property>
-    </widget>
-   </item>
   </layout>
   <zorder>label_title</zorder>
   <zorder>button_view_concept_maps</zorder>
@@ -164,7 +151,6 @@ used in testing</string>
   <zorder>groupBox_conceptmapwidget</zorder>
   <zorder>groupBox_conceptmap</zorder>
   <zorder>groupBox</zorder>
-  <zorder>verticalSpacer</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
