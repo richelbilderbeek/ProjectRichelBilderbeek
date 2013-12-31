@@ -1,16 +1,10 @@
 include(../../Tools/ToolCodeToHtml/ToolCodeToHtmlConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.cpp \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmenudialog.cpp
+    ../../Tools/ToolCodeToHtml/wtcodetohtmlmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.h \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmenudialog.h
-
-FORMS += \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.ui \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmenudialog.ui
+    ../../Tools/ToolCodeToHtml/wtcodetohtmlmenudialog.h
 
 RESOURCES += \
     ../../Tools/ToolCodeToHtml/ToolCodeToHtml.qrc

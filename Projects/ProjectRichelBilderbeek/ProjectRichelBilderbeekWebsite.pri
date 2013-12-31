@@ -1,17 +1,10 @@
 include(../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekConsole.pri)
 
 SOURCES += \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenudialog.cpp \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenuitemwidget.cpp \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekprogram.cpp
+    ../../Projects/ProjectRichelBilderbeek/wtrichelbilderbeekmenudialog.cpp
 
 HEADERS += \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenudialog.h \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenuitemwidget.h \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekprogram.h
-
-FORMS += \
-    ../../Projects/ProjectRichelBilderbeek/qtrichelbilderbeekmenudialog.ui
+    ../../Projects/ProjectRichelBilderbeek/wtrichelbilderbeekmenudialog.h
 
 RESOURCES += \
     ../../Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeek.qrc

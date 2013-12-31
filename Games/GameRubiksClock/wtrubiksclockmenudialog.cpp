@@ -109,7 +109,7 @@ ribi::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
 
 Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewAboutDialog() const
 {
-  About a = RubiksClockMenuDialog::GetAbout();
+  About a = RubiksClockMenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtDialWidget version: " + WtDialWidget::GetVersion());
   a.AddLibrary("WtRubiksClockWidget version: " + WtRubiksClockWidget::GetVersion());

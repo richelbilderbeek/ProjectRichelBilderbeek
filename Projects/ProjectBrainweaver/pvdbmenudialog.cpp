@@ -5,8 +5,11 @@
 #include <cassert>
 #include <iostream>
 
+#include "conceptmap.h"
+#include "fileio.h"
 #include "fuzzy_equal_to.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 int ribi::pvdb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -27,13 +30,16 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
     "Brainweaver",
     "program to create and assess concept maps",
-    "the 29th of September 2013",
+    "the 31st of December 2013",
     "2012-2013",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Trace version: " + Trace::GetVersion());
+
+  a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::GetVersion());
   a.AddLibrary("fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
+  a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
@@ -62,7 +68,7 @@ const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram(
 
 const std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
-  return "0.44";
+  return "0.45";
 }
 
 const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
@@ -109,6 +115,7 @@ const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const
     "2013-09-29: Version 0.39: minor changes, added wordwrap in examples in rate examples dialog",
     "2013-10-03: Version 0.40: minor changes, added wordwrap in some more player",
     "2013-12-29: Version 0.43: bugfixes, renaming, refactoring, preparing for undo functionality",
-    "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed"
+    "2013-12-31: Version 0.44: when tallying the relevancies of a concept its connected examples, the node names connected to the edges are displayed",
+    "2013-12-31: Version 0.45: sub concept map creation bug fixes"
   };
 }
