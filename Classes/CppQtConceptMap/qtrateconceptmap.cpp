@@ -84,7 +84,7 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
   assert(qtedge);
 
   //Edges connected to the center node do not show their concepts
-  if (IsCenterNode(from) || IsCenterNode(to))
+  if (IsQtCenterNode(from) || IsQtCenterNode(to))
   {
     assert(qtconcept == qtedge->GetDisplayStrategy());
     qtconcept->setVisible(false);

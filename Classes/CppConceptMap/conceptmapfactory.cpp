@@ -28,10 +28,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::C
 {
   assert(!nodes.empty());
   assert(
-    (
-        boost::dynamic_pointer_cast<cmap::CenterNode>(nodes[0])
-    || !boost::dynamic_pointer_cast<cmap::CenterNode>(nodes[0])
-    )
+    ( IsCenterNode(nodes[0]) || !IsCenterNode(nodes[0]) )
     && "The first node in a (sub)ConceptMap can be, but does not have to be a CenterNode");
   boost::shared_ptr<ribi::cmap::ConceptMap> p(new ConceptMap(nodes,edges));
   assert(p);

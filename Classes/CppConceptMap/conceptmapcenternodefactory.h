@@ -16,20 +16,20 @@ namespace cmap {
 
 struct CenterNodeFactory
 {
-  static const boost::shared_ptr<cmap::CenterNode> Create(
-    const boost::shared_ptr<ribi::cmap::Concept>& concept,
+  static const boost::shared_ptr<CenterNode> Create(
+    const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 
-  static const boost::shared_ptr<cmap::CenterNode> Create(
+  static const boost::shared_ptr<CenterNode> Create(
     const std::string& name,
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const double x = 0.0,
     const double y = 0.0);
 
   #ifndef NDEBUG
-  static const boost::shared_ptr<cmap::CenterNode> DeepCopy(
-    const boost::shared_ptr<const cmap::CenterNode>& node);
+  static const boost::shared_ptr<CenterNode> DeepCopy(
+    const boost::shared_ptr<const CenterNode>& node);
   #endif
 };
 

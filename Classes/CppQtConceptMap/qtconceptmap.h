@@ -108,7 +108,7 @@ protected:
   QtNode* GetItemBelowCursor(const QPointF& pos) const;
 
   ///Check if this item is the center node
-  static bool IsCenterNode(const QGraphicsItem* const item);
+  static bool IsQtCenterNode(const QGraphicsItem* const item);
 
   ///Have the nodes in the concept map be positioned once already, or must
   ///these be (re)positioned. '(re)', because the nodes are initially positioned at the origin

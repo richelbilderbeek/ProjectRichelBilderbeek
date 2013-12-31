@@ -184,7 +184,24 @@ bool ribi::cmap::ConceptMap::CanConstruct(
       }
     }
   }
-
+  //If there is a CenterNode, it must be at index 0
+  {
+    const std::size_t n_nodes = nodes.size();
+    for (std::size_t i=0; i!=n_nodes; ++i)
+    {
+      if (IsCenterNode(nodes[i]))
+      {
+        if (i != 0)
+        {
+          if (trace_verbose)
+          {
+            TRACE("Cannot have a center node at an index other than zero");
+          }
+          return false;
+        }
+      }
+    }
+  }
   return true;
 }
 
@@ -242,8 +259,12 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       }
     }
     assert(!nodes.empty());
+    //Put CenterNode in front
+    const auto iter = std::find_if(nodes.begin(),nodes.end(),[](const boost::shared_ptr<Node> node) { return IsCenterNode(node); } );
+    if (iter != nodes.end()) { std::swap(*nodes.begin(),*iter); }
     assert(ribi::cmap::ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(new ribi::cmap::ConceptMap(nodes,edges));
+    const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap(nodes,edges));
+    //assert(CountCenterNodes(concept_map) == 0 || concep_map->
     assert(concept_map->IsValid());
     v.push_back(concept_map);
   }

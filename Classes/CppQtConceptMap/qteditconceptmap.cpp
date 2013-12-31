@@ -111,7 +111,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(
   );
 
   //Edges connected to the center node do not show their concepts
-  if (IsCenterNode(from) || IsCenterNode(to))
+  if (IsQtCenterNode(from) || IsQtCenterNode(to))
   {
     assert(qtconcept == qtedge->GetDisplayStrategy());
     qtconcept->setVisible(false);
@@ -209,7 +209,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
   QtEdge * const qtedge = new QtEdge(edge,qtconcept,qt_from,qt_to);
 
   //Edges connected to the center node do not show their concepts
-  if (IsCenterNode(qt_from) || IsCenterNode(qt_to))
+  if (IsQtCenterNode(qt_from) || IsQtCenterNode(qt_to))
   {
     assert(qtconcept == qtedge->GetDisplayStrategy());
     qtconcept->setVisible(false);
@@ -519,7 +519,7 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept
             //Delete a Node Concept
             if (QtNode * const node = dynamic_cast<QtNode *>(item))
             {
-              if (!IsCenterNode(node)) //Cannot delete center node
+              if (!IsQtCenterNode(node)) //Cannot delete center node
               {
                 const std::vector<QtNode*> node_concepts = Collect<QtNode>(scene());
                 assert(std::count(node_concepts.begin(),node_concepts.end(),node) == 1);

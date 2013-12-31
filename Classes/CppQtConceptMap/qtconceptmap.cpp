@@ -150,11 +150,13 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
   //Add the nodes to the scene
   {
     //Add the main question as the first node
-    const boost::shared_ptr<ribi::cmap::Node> node = m_concept_map->GetNodes()[0];
+    const boost::shared_ptr<Node> node = m_concept_map->GetNodes()[0];
 
     QtNode * qtnode = nullptr;
-    if (boost::shared_ptr<CenterNode> centernode = boost::dynamic_pointer_cast<ribi::cmap::CenterNode>(node))
+    if (IsCenterNode(node))
     {
+      const boost::shared_ptr<CenterNode> centernode
+        = boost::dynamic_pointer_cast<CenterNode>(node);
       qtnode = new QtCenterNode(centernode);
     }
     else
@@ -183,6 +185,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
       assert(i < nodes.size());
       boost::shared_ptr<ribi::cmap::Node> node = nodes[i];
       assert(node);
+      assert(!IsCenterNode(node));
       QtNode * const qtnode = AddNode(node);
       qtnodes.push_back(qtnode);
       assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
@@ -303,14 +306,14 @@ const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const
   assert(scene()->items()[0]);
   QList<QGraphicsItem *> v = scene()->items();
   assert(std::count_if(v.begin(),v.end(),
-    [this](const QGraphicsItem * const item) { return this->IsCenterNode(item); }
+    [this](const QGraphicsItem * const item) { return this->IsQtCenterNode(item); }
     ) < 2 && "There is at most one center node (zero for most sub-concept maps, one for a complete concept map");
   const auto iter = std::find_if(v.begin(),v.end(),
-    [this](const QGraphicsItem * const item) { return this->IsCenterNode(item); } );
+    [this](const QGraphicsItem * const item) { return this->IsQtCenterNode(item); } );
   assert(iter != v.end());
   const QtNode * const center_node = dynamic_cast<QtNode*>(*iter);
   assert(center_node);
-  assert(IsCenterNode(center_node));
+  assert(IsQtCenterNode(center_node));
   return center_node;
 }
 
@@ -392,7 +395,7 @@ const std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noe
   };
 }
 
-bool ribi::cmap::QtConceptMap::IsCenterNode(const QGraphicsItem* const item)
+bool ribi::cmap::QtConceptMap::IsQtCenterNode(const QGraphicsItem* const item)
 {
 
   const QtCenterNode * const qtnode = dynamic_cast<const QtCenterNode*>(item);
@@ -581,7 +584,7 @@ void ribi::cmap::QtConceptMap::Shuffle()
   std::for_each(nodes.begin(),nodes.end(),
     [this](QtNode* qtnode)
     {
-      if (!IsCenterNode(qtnode))
+      if (!IsQtCenterNode(qtnode))
       {
         double x = qtnode->pos().x();
         double y = qtnode->pos().y();

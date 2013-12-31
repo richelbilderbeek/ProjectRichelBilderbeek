@@ -199,8 +199,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<ribi::cmap::ConceptMap> map_b(cmap::ConceptMapFactory::Create( { node_d, node_f, node_e } )); //Swap e and f
       assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
-
-      const boost::shared_ptr<ribi::cmap::ConceptMap> map_c(cmap::ConceptMapFactory::Create( { node_d, node_d, node_d } ));
+      const boost::shared_ptr<ribi::cmap::ConceptMap> map_c(cmap::ConceptMapFactory::Create( { node_d, node_c, node_e } ));
       assert(!HasSameContent(*map_a,*map_c));
       assert(!HasSameContent(*map_b,*map_c));
       assert(map_a != map_c);
@@ -477,8 +476,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     //CountCenterNodes
     //Count the number of CenterNode objects
-    #define BRAINWEAVER_ISSUE145
-    #ifdef  BRAINWEAVER_ISSUE145
     {
       for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
       {
@@ -513,7 +510,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
 
       }
     }
-    #endif
   }
   //Test IsValid
   {
