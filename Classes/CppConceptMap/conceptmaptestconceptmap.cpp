@@ -477,7 +477,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     }
     //CountCenterNodes
     //Count the number of CenterNode objects
-    //#define BRAINWEAVER_ISSUE145
+    #define BRAINWEAVER_ISSUE145
     #ifdef  BRAINWEAVER_ISSUE145
     {
       for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
@@ -495,7 +495,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
           std::count_if(subs.begin(),subs.end(),
             [](const boost::shared_ptr<const ConceptMap> sub)
             {
-              return CountCenterNodeEdges(sub) > 0;
+              return CountCenterNodes(sub) > 0;
             }
           )
         };
@@ -503,9 +503,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
         if (n_center_nodes_expected != n_center_nodes_found)
         {
           TRACE("ERROR");
+          TRACE("Original map next:");
           for (const std::string s: XmlToPretty(ToXml(map))) { TRACE(s); }
           TRACE(n_center_nodes_expected);
           TRACE(n_center_nodes_found);
+          TRACE(subs.size());
         }
         assert(n_center_nodes_expected == n_center_nodes_found);
 
