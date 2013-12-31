@@ -32,7 +32,7 @@ struct ConceptFactory
     const int rating_specificity);
 
   static const boost::shared_ptr<ribi::cmap::Concept> Create(
-    const std::string& name = "...", //2013-09-18
+    const std::string& name = "...",
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const bool is_complex = true,
     const int rating_complexity = -1,

@@ -538,7 +538,7 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept
         );
         if (!v.empty())
         {
-          //DeleteLeftovers(); //2013-06-29: Really needed?
+          //DeleteLeftovers();
           GetExamplesItem()->hide();
           this->OnItemRequestsUpdate(0);
         }

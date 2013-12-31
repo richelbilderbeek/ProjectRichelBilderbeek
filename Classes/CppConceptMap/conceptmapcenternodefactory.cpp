@@ -20,7 +20,7 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::C
     )
   );
   assert(node);
-  assert(operator==(*concept,*node->GetConcept()));
+  assert(*concept == *node->GetConcept());
   assert(node->GetX() == x);
   assert(node->GetY() == y);
   return node;
@@ -55,7 +55,7 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::D
   const boost::shared_ptr<ribi::cmap::Concept> new_concept
     = ConceptFactory::DeepCopy(node->GetConcept());
   assert(new_concept);
-  assert(operator==(*node->GetConcept(),*new_concept));
+  assert(*node->GetConcept() == *new_concept);
   const boost::shared_ptr<cmap::CenterNode> new_node
     = Create(new_concept,
       node->GetX(),
@@ -63,7 +63,7 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::D
     );
   assert(new_node);
   assert(new_node->GetConcept());
-  assert(operator==(*node,*new_node));
+  assert(*node == *new_node);
   return new_node;
 }
 #endif

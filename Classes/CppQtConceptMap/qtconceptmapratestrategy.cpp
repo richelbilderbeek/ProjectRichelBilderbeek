@@ -65,21 +65,18 @@ ribi::cmap::QtRateStrategy::QtRateStrategy(const boost::shared_ptr<ribi::cmap::C
 
 ribi::cmap::QtRateStrategy::~QtRateStrategy() noexcept
 {
-  //2013-08-25
   GetConcept()->m_signal_rating_complexity_changed.disconnect(
       boost::bind(
         &ribi::cmap::QtRateStrategy::UpdateBrushesAndPens,
         this
       )
     );
-  //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
         &ribi::cmap::QtRateStrategy::UpdateBrushesAndPens,
         this
       )
     );
-  //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
         &ribi::cmap::QtRateStrategy::UpdateBrushesAndPens,

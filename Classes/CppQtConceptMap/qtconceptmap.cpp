@@ -99,6 +99,9 @@ ribi::cmap::QtConceptMap::QtConceptMap(
 {
   assert( (concept_map || !concept_map)
     && "Also empty concept maps must be displayed");
+  assert(GetConceptMap() == concept_map);
+  assert( (!concept_map || concept_map->IsValid())
+    && "Expect no or a valid concept map");
 
   //Cannot test this ABC here, its derived classes will test themselves
 
@@ -122,9 +125,6 @@ ribi::cmap::QtConceptMap::QtConceptMap(
     this->scene()->setBackgroundBrush(QBrush(QColor(255,255,255)));
   }
 
-  assert(GetConceptMap() == concept_map);
-  assert( (!concept_map || concept_map->IsValid())
-    && "Expect no or a valid concept map");
 }
 
 

@@ -50,7 +50,7 @@ ribi::pvdb::QtPvdbClusterDialog::QtPvdbClusterDialog(
   #ifndef NDEBUG
   Test();
   assert(file);
-  assert(IsEqual(*file,*m_file));
+  assert(operator==(*file,*m_file));
   assert(m_widget || !m_widget);
   assert( (file->GetCluster() || !file->GetCluster())
     && "The dialog creates a cluster when there is no concept map"
@@ -122,11 +122,11 @@ void ribi::pvdb::QtPvdbClusterDialog::DoRandomStuff()
   assert(m_file->GetCluster() == this->GetWidget()->GetCluster());
   const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(m_file->GetCluster());
   assert(before != m_file->GetCluster());
-  assert(IsEqual(*before,*GetWidget()->GetCluster()));
+  assert(operator==(*before,*GetWidget()->GetCluster()));
   #endif
   this->GetWidget()->DoRandomStuff();
   #ifndef NDEBUG
-  assert(!IsEqual(*before,*GetWidget()->GetCluster()));
+  assert(!operator==(*before,*GetWidget()->GetCluster()));
   #endif
   //m_file->SetCluster(this->GetWidget()->GetCluster());
   assert(m_file->GetCluster() == this->GetWidget()->GetCluster());
@@ -241,7 +241,7 @@ void ribi::pvdb::QtPvdbClusterDialog::on_button_add_clicked()
     assert(file != m_file);
     const boost::shared_ptr<pvdb::Cluster> cluster = GetWidget()->GetCluster();
     file->SetCluster(cluster);
-    assert(IsEqual(*file->GetCluster(),*GetWidget()->GetCluster()));
+    assert(operator==(*file->GetCluster(),*GetWidget()->GetCluster()));
   }
   #endif
 }
@@ -342,10 +342,10 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
           const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
           assert(before);
           assert(before != file->GetCluster());
-          assert(IsEqual(*file->GetCluster(),*before));
+          assert(operator==(*file->GetCluster(),*before));
           d->GetWidget()->Add("Modification!");
           //assert(!IsEqual(*file->GetCluster(),*before)); //Does not work, must obtain the cluster from the widget
-          assert(!IsEqual(*d->GetWidget()->GetCluster(),*before)); //Widget updates the cluster
+          assert(!operator==(*d->GetWidget()->GetCluster(),*before)); //Widget updates the cluster
         }
       }
     );
@@ -390,12 +390,12 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
           const boost::shared_ptr<pvdb::Cluster> before = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
           assert(before);
           assert(before != file->GetCluster());
-          assert(IsEqual(*file->GetCluster(),*before));
+          assert(operator==(*file->GetCluster(),*before));
           d->ui->edit->setText("modification");
           if (d->ui->button_add->isEnabled())
           {
             d->on_button_add_clicked();
-            assert(!IsEqual(*before,*d->GetWidget()->GetCluster()));
+            assert(!operator==(*before,*d->GetWidget()->GetCluster()));
           }
         }
       }

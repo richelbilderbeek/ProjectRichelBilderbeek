@@ -58,7 +58,7 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
     edge->HasHeadArrow()
   );
   assert(p);
-  assert(operator==(*edge,*p));
+  assert(*edge == *p);
   return p;
 }
 #endif

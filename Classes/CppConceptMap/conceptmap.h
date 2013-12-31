@@ -112,8 +112,16 @@ private:
   friend void boost::checked_delete<>(ConceptMap* x);
 };
 
-bool operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
-bool operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
+///Count the number of CenterNodes
+///- regular concept map: 1, the focus
+///- sub-concept map: 0 or 1, if the focus is connected to the sub's focus node
+int CountCenterNodes(const boost::shared_ptr<const ConceptMap> conceptmap) noexcept;
+
+///Count the number of Edges connected to a CenterNodes
+int CountCenterNodeEdges(const boost::shared_ptr<const ConceptMap> conceptmap) noexcept;
+
+bool operator==(const ConceptMap& lhs, const ConceptMap& rhs);
+bool operator!=(const ConceptMap& lhs, const ConceptMap& rhs);
 
 } //~namespace cmap
 } //~namespace ribi

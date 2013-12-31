@@ -54,10 +54,10 @@ void ribi::pvdb::Cluster::Test() noexcept
       const boost::shared_ptr<ribi::pvdb::Cluster> b = tmp_tests_b.at(i);
       if (!b) continue;
       assert(a); assert(b);
-      assert(IsEqual(*a,*a));
-      assert(IsEqual(*a,*b));
-      assert(IsEqual(*b,*a));
-      assert(IsEqual(*b,*b));
+      assert(operator==(*a,*a));
+      assert(operator==(*a,*b));
+      assert(operator==(*b,*a));
+      assert(operator==(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
         const std::vector<boost::shared_ptr<ribi::pvdb::Cluster> > tmp_tests_c = ribi::pvdb::ClusterFactory::GetTests(); //For crosscompiler
@@ -68,23 +68,23 @@ void ribi::pvdb::Cluster::Test() noexcept
         const boost::shared_ptr<ribi::pvdb::Cluster> d = tmp_tests_d.at(j);
         if (!d) continue;
         assert(c); assert(d);
-        assert(IsEqual(*c,*c));
-        assert(IsEqual(*c,*d));
-        assert(IsEqual(*d,*c));
-        assert(IsEqual(*d,*d));
+        assert(operator==(*c,*c));
+        assert(operator==(*c,*d));
+        assert(operator==(*d,*c));
+        assert(operator==(*d,*d));
         if (i==j)
         {
-          assert(IsEqual(*a,*c)); assert(IsEqual(*a,*d));
-          assert(IsEqual(*b,*c)); assert(IsEqual(*b,*d));
-          assert(IsEqual(*c,*a)); assert(IsEqual(*c,*b));
-          assert(IsEqual(*d,*a)); assert(IsEqual(*d,*b));
+          assert(operator==(*a,*c)); assert(operator==(*a,*d));
+          assert(operator==(*b,*c)); assert(operator==(*b,*d));
+          assert(operator==(*c,*a)); assert(operator==(*c,*b));
+          assert(operator==(*d,*a)); assert(operator==(*d,*b));
         }
         else
         {
-          assert(!IsEqual(*a,*c)); assert(!IsEqual(*a,*d));
-          assert(!IsEqual(*b,*c)); assert(!IsEqual(*b,*d));
-          assert(!IsEqual(*c,*a)); assert(!IsEqual(*c,*b));
-          assert(!IsEqual(*d,*a)); assert(!IsEqual(*d,*b));
+          assert(!operator==(*a,*c)); assert(!operator==(*a,*d));
+          assert(!operator==(*b,*c)); assert(!operator==(*b,*d));
+          assert(!operator==(*c,*a)); assert(!operator==(*c,*b));
+          assert(!operator==(*d,*a)); assert(!operator==(*d,*b));
         }
       }
     }
@@ -102,7 +102,7 @@ void ribi::pvdb::Cluster::Test() noexcept
         const boost::shared_ptr<ribi::pvdb::Cluster> d = FromXml(s);
         assert(d);
         assert(c != d);
-        assert(IsEqual(*c,*d));
+        assert(operator==(*c,*d));
       }
     );
   }

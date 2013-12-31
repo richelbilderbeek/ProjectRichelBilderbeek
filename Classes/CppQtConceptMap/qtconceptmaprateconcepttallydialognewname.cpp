@@ -82,7 +82,6 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
       }
       {
         //Put the relation's name in place
-        //20131231 NEW
         QTableWidgetItem * const i = new QTableWidgetItem;
         i->setFlags(
             Qt::ItemIsSelectable

@@ -57,7 +57,7 @@ struct Cluster
   friend void boost::checked_delete<>(Cluster* x);
 };
 
-bool IsEqual(const pvdb::Cluster& lhs, const pvdb::Cluster& rhs);
+bool operator==(const pvdb::Cluster& lhs, const pvdb::Cluster& rhs);
 
 } //~namespace pvdb
 } //~namespace ribi

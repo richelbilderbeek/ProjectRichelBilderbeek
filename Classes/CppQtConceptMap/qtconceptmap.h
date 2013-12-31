@@ -77,7 +77,7 @@ protected:
   ///Initialize the widget with the loaded concept map
   ///BuildQtConceptMap changes the concept map entered, by changing some GUI
   ///elements (coordinats of the nodes, for example).
-  ///Instead of using IsEqual use HasSameContent
+  ///Instead of using operator== use HasSameContent
   void BuildQtConceptMap();
 
   ///Remove all Qt and non-Qt items and add new ones

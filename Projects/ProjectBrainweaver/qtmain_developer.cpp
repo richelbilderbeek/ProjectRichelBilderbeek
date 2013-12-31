@@ -139,50 +139,12 @@ int main(int argc, char *argv[])
   return a.exec();
 }
 
-///TODO
-///2013-05-20:
-///- ?DONE: Increase the area of a QtNodeIdem
-///    1) FAILS: by adding 'QPainterPath QtPvdbConceptItem::shape() const'
-///    2) MIGHT WORK: Bypass in cmap::QtNode::boundingRect
-///- ?1st of May, when concluded it's a good thing to implement:
-///  - cluster dialog: allow more than 2 levels in clustering
-///  - concept map dialog: allow examples from concepts to be dragged out and promoted to new conpepts
-///- ?DONE: in assessor printing dialog: too long concepts/examples run off the page
-///- BIG
-
-///BEFORE 2013-03-25:
-///- In assessor final report screen, set the column widths to the correct width (depends on font)
-///
-///DONE:
-///- in assessor printing dialog: resize concept map to page size
-///- FIXED BUG: if an arrow is drawn between two nodes, creating another arrow between these two same nodes
-///    in the opposite direction, program crashes
-///- when saving in the cluster dialog, only save (i.e. do not go back to main menu)
-///- when saving in the create concept map dialog, only save (i.e. do not go back to main menu)
-///- sub-concept maps are messed up: relations are put at origin
-///- let students print like assessors: to PDF
-///- get to cross-compile the Student and Assessor versions again
-///- FIXED BUG: Test concept maps do not show
-
-///TODO PERHAPS ONCE
-///- add Undo functionality to cluster screen
-///- add Undo functionality to concept map screen
-///- Allow copy-paste of XML code to display the corresponding concept map
-///- Allow movement of items by keyboard in cluster dialog
-///- Allow multithreaded testing, gives the following error now:
-///  [xcb] Unknown request in queue while dequeuing
-///  [xcb] Most likely this is a multi-threaded client and XInitThreads has not been called
-///  [xcb] Aborting, sorry about that.
-///  BrainweaverDeveloper: ../../src/xcb_io.c:178: dequeue_pending_request: Assertion `!xcb_xlib_unknown_req_in_deq' failed.
-///- Make Violet Blue meet doktor Light (from Mega Man), assure they marry, so that her name becomes Violet Light-Blue
-///
 ///DO NEVER FORGET
 /// - Do not use std::all_of, because cross-compiler has trouble with it
 /// - Do not change a QGraphicItem (that is: call a paint event) outside of the paint event
 ///   (this was the case by signals that caused a repaint)
 ///   -> trick: check for QGraphicsRectItem::paintingActive()
 /// - Use the default operator== for pointer comparison of smart pointers
-/// - Instead of overloading operator== to compare the content for all combinations of smart pointers,
-///   use IsEqual(const T&,const T&)
+/// - Only overload operator==(const T&,const T&), instead for some smart pointer shortcuts
 /// - If a class connects its signals to some other class with a different lifetime,
 ///   disconnect these signals in its destructor

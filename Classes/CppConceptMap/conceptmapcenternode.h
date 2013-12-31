@@ -34,7 +34,7 @@ struct CenterNode : public cmap::Node
 
 ///Returns true if Node is of derived class type CenterNode
 ///Returns true if Node is Node
-//bool IsCenter(const boost::shared_ptr<Node> node);
+bool IsCenterNode(const boost::shared_ptr<const Node> node) noexcept;
 
 } //~namespace cmap
 

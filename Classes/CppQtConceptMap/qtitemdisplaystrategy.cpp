@@ -82,21 +82,20 @@ void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent
 
 void ribi::cmap::QtItemDisplayStrategy::hoverMoveEvent(QGraphicsSceneHoverEvent *)
 {
-  //std::exit(2);
   this->setCursor(QCursor(Qt::PointingHandCursor));
 }
 
 void ribi::cmap::QtItemDisplayStrategy::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
   Base::mouseMoveEvent(event);
-  //this->m_signal_item_has_updated(); //2013-06-25
+  //this->m_signal_item_has_updated();
   m_signal_request_scene_update();
 }
 
 void ribi::cmap::QtItemDisplayStrategy::mousePressEvent(QGraphicsSceneMouseEvent * event)
 {
   Base::mousePressEvent(event);
-  //this->m_signal_item_has_updated(); //2013-06-25
+  //this->m_signal_item_has_updated();
   m_signal_request_scene_update();
 }
 

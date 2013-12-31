@@ -79,14 +79,12 @@ ribi::cmap::QtDisplayStrategy::~QtDisplayStrategy() noexcept
         this
       )
     );
-  //2013-08-25
   GetConcept()->m_signal_rating_concreteness_changed.disconnect(
       boost::bind(
         &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,
         this
       )
     );
-  //2013-08-25
   GetConcept()->m_signal_rating_specificity_changed.disconnect(
       boost::bind(
         &ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,

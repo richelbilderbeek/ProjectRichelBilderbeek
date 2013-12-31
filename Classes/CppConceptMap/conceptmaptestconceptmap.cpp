@@ -50,9 +50,9 @@ void ribi::cmap::ConceptMap::Test() noexcept
   //typedef std::vector<boost::shared_ptr<ribi::cmap::Edge> > Edges;
   typedef std::vector<boost::shared_ptr<ribi::cmap::Node> > Nodes;
 
-  //Brute force tests
+  //operator==, DeepCopy
   {
-    const std::vector<boost::shared_ptr<const ribi::cmap::ConceptMap> > v = AddConst(cmap::ConceptMapFactory::GetAllTests());
+    const std::vector<boost::shared_ptr<const ConceptMap> > v = AddConst(cmap::ConceptMapFactory::GetAllTests());
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<const ribi::cmap::ConceptMap> m)
       {
@@ -60,11 +60,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
         {
           //Test copy constructor
           const boost::shared_ptr<ribi::cmap::ConceptMap> c(cmap::ConceptMapFactory::DeepCopy(m));
-          assert(operator==(*c,*m));
+          assert(*c == *m);
           //Test XML conversions
           const std::string s = ToXml(c);
           const boost::shared_ptr<ribi::cmap::ConceptMap> d = ribi::cmap::ConceptMapFactory::FromXml(s);
-          assert(operator==(*c,*d));
+          assert(*c == *d);
         }
       }
     );
@@ -475,59 +475,31 @@ void ribi::cmap::ConceptMap::Test() noexcept
         assert(static_cast<int>(subs.size()) == n_subs_expected[i]);
       }
     }
+    //CountCenterNodes
     //Count the number of CenterNode objects
-    #ifdef DO_THIS_TEST_20131231
+    //#define BRAINWEAVER_ISSUE145
+    #ifdef  BRAINWEAVER_ISSUE145
     {
       for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
       {
-        //Check if these is a CenterNode: if not, all other assumptions will be false
-        {
-          const std::vector<boost::shared_ptr<const Node> > nodes { map->GetNodes() };
-          const int n_centernodes {
-            std::count_if(
-              nodes.begin(),
-              nodes.end(),
-              [](const boost::shared_ptr<const Node> node)
-              {
-                return boost::dynamic_pointer_cast<const CenterNode>(node);
-              }
-            )
-          };
-          assert(n_centernodes == 1);
-        }
+        assert(CountCenterNodes(map) == 1 && "Every test concept map must have one CenterNode");
+
         //Count the edges connected to CenterNode
-        const std::vector<boost::shared_ptr<const Edge> > edges { map->GetEdges() };
+        const int n_edges_connected_to_center { CountCenterNodeEdges(map) };
         const int n_center_nodes_expected
-          = std::count_if(edges.begin(),edges.end(),
-            [](const boost::shared_ptr<const Edge> edge)
-            {
-              return boost::dynamic_pointer_cast<const CenterNode>(edge->GetFrom())
-                ||   boost::dynamic_pointer_cast<const CenterNode>(edge->GetTo())
-              ;
-            }
-          )
-        + 1; //+1, because with no edges, you expect the center node only
+          = n_edges_connected_to_center + 1; //+1, because with no edges, you expect the center node only
 
         //Count the number of sub concept maps with a center node
         const std::vector<boost::shared_ptr<ConceptMap> > subs = map->CreateSubs();
-        const int n_center_nodes_found {
+        const int n_center_nodes_here {
           std::count_if(subs.begin(),subs.end(),
             [](const boost::shared_ptr<const ConceptMap> sub)
             {
-              const std::vector<boost::shared_ptr<const Edge> > edges_sub { sub->GetEdges() };
-              const int cnt = std::count_if(edges_sub.begin(),edges_sub.end(),
-                [](const boost::shared_ptr<const Edge> edge)
-                {
-                  return boost::dynamic_pointer_cast<const CenterNode>(edge->GetFrom())
-                    ||   boost::dynamic_pointer_cast<const CenterNode>(edge->GetTo())
-                  ;
-                }
-              );
-              assert(cnt <= 1);
-              return cnt;
+              return CountCenterNodeEdges(sub) > 0;
             }
           )
         };
+        const int n_center_nodes_found = n_center_nodes_here;
         if (n_center_nodes_expected != n_center_nodes_found)
         {
           TRACE("ERROR");

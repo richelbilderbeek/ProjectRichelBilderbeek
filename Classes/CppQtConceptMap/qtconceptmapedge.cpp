@@ -138,7 +138,7 @@ QRectF ribi::cmap::QtEdge::boundingRect() const
     && "Bounding rects should be synced, but this member function is used to sync them,"
     && "so this must be checked on a higher level");
 
-  return QtConceptMapElement::boundingRect() //2013-07-06: Bypassed going via m_concept_item
+  return QtConceptMapElement::boundingRect() //Bypassed going via m_concept_item
     .united(m_arrow->boundingRect().translated(-this->pos()));
   //return m_concept_item->boundingRect()
   //  .united(m_arrow->boundingRect().translated(-this->pos()));
@@ -284,7 +284,7 @@ void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)
   //    && "Names/texts must be in sync before");
 
   //this->SetName(m_concept_item->GetText());
-  this->SetName(edge->GetConcept()->GetName()); //2013-09-15
+  this->SetName(edge->GetConcept()->GetName());
 
 
   //assert(m_edge->GetConcept()->GetName() == GetName()

@@ -316,7 +316,7 @@ void ribi::pvdb::QtPvdbClusterWidget::Test() noexcept
         assert(w.topLevelItemCount() == static_cast<int>(c->Get().size()));
         const boost::shared_ptr<pvdb::Cluster> d = pvdb::ClusterFactory::DeepCopy(w.GetCluster());
         assert(c != d);
-        assert(IsEqual(*c,*d));
+        assert(operator==(*c,*d));
         QtPvdbTreeWidgetItem * const item = new QtPvdbTreeWidgetItem(
           cmap::Competency::misc,true,0,1,2);
         item->setText(0,QString("An extra line"));
@@ -325,9 +325,9 @@ void ribi::pvdb::QtPvdbClusterWidget::Test() noexcept
         const boost::shared_ptr<pvdb::Cluster> e = w.GetCluster();
         assert(c == e);
         assert(c != d);
-        assert(!IsEqual(*c,*d));
-        assert( IsEqual(*c,*e));
-        assert(!IsEqual(*d,*e));
+        assert(!operator==(*c,*d));
+        assert( operator==(*c,*e));
+        assert(!operator==(*d,*e));
       }
     //);
   }

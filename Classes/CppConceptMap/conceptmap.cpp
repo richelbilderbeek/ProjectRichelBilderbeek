@@ -31,6 +31,8 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question)
 
   assert(boost::dynamic_pointer_cast<CenterNode>(this->GetNodes()[0])
     && "Assume a CenterNode at the center of ConceptMap");
+  assert(IsCenterNode(this->GetNodes()[0])
+    && "Assume a CenterNode at the center of ConceptMap");
   #endif
 }
 
@@ -215,32 +217,18 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
 
   std::vector<boost::shared_ptr<ConceptMap> > v;
   for (const boost::shared_ptr<Node> focal_node: m_nodes)
-  //for (int i=0; i!=n_nodes; ++i)
   {
     assert(focal_node);
 
     //Collect all edges connected top the focal node (which is m_nodes[i])
-    std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
-    std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges;
+    std::vector<boost::shared_ptr<Node> > nodes;
+    std::vector<boost::shared_ptr<Edge> > edges;
 
-    if (focal_node == m_nodes[0])
-    {
-      assert(boost::dynamic_pointer_cast<CenterNode>(focal_node)
-        && "Assume the center node is known as the center node");
-      //Center node
-      nodes.push_back(focal_node);
-    }
-    else
-    {
-      assert(!boost::dynamic_pointer_cast<CenterNode>(focal_node)
-        && "Assume the non-center node is known as the non-center node");
-      //Add ordinary node
-      nodes.push_back(focal_node);
-    }
+    nodes.push_back(focal_node);
 
-    for (const boost::shared_ptr<ribi::cmap::Edge> focal_edge: m_edges)
+    for (const boost::shared_ptr<Edge> focal_edge: m_edges)
     {
-      if (focal_edge->GetFrom() == focal_node)
+     if (focal_edge->GetFrom() == focal_node)
       {
         edges.push_back(focal_edge);
         assert(focal_edge->GetTo() != focal_node);
@@ -256,6 +244,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     assert(!nodes.empty());
     assert(ribi::cmap::ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(new ribi::cmap::ConceptMap(nodes,edges));
+    assert(concept_map->IsValid());
     v.push_back(concept_map);
   }
   return v;
@@ -629,6 +618,34 @@ const std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ri
   assert(r.substr(r.size() - 14,14) == std::string("</concept_map>"));
 
   return r;
+}
+
+int ribi::cmap::CountCenterNodes(const boost::shared_ptr<const ConceptMap> conceptmap) noexcept
+{
+  const auto v = conceptmap->GetNodes();
+  const int cnt = std::count_if(v.begin(),v.end(),
+    [](const boost::shared_ptr<const Node> node)
+    {
+      return IsCenterNode(node);
+    }
+  );
+  assert(cnt < 2 && "A concept map can have one or zero (a sub-conceptmap) center nodes");
+  return cnt;
+}
+
+int ribi::cmap::CountCenterNodeEdges(const boost::shared_ptr<const ConceptMap> conceptmap) noexcept
+{
+  const int n_center_nodes = CountCenterNodes(conceptmap);
+  assert(n_center_nodes < 2 && "A concept map can have one or zero (a sub-conceptmap) center nodes");
+  if (n_center_nodes == 0) return 0;
+  const auto v = conceptmap->GetEdges();
+  const int cnt = std::count_if(v.begin(),v.end(),
+    [](const boost::shared_ptr<const Edge> edge)
+    {
+      return IsConnectedToCenterNode(edge);
+    }
+  );
+  return cnt;
 }
 
 bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs)

@@ -119,7 +119,7 @@ QRectF ribi::cmap::QtNode::boundingRect() const
   //assert(m_concept_item->boundingRect() == QtConceptMapItem::boundingRect()
   //  && "Bounding rects must by synced");
   return m_display_strategy->boundingRect();
-  //return QtConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item
+  //return QtConceptMapItem::boundingRect(); //Bypassed going via m_concept_item
 }
 
 QBrush ribi::cmap::QtNode::brush() const
@@ -152,7 +152,7 @@ void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)
 void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
 {
   m_display_strategy->SetContourPen(m_contour_pen); //Updates itself
-  //m_signal_item_has_updated(0); //2013-01-20: causes Examples to get hidden //BUG
+  //m_signal_item_has_updated(0); //causes Examples to get hidden
 }
 
 const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const

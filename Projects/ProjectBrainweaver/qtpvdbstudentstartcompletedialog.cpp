@@ -27,7 +27,7 @@ ribi::pvdb::QtPvdbStudentStartCompleteDialog::QtPvdbStudentStartCompleteDialog(
 {
   ui->setupUi(this);
   assert(m_file);
-  assert(IsEqual(*file,*m_file));
+  assert(operator==(*file,*m_file));
 }
 
 ribi::pvdb::QtPvdbStudentStartCompleteDialog::~QtPvdbStudentStartCompleteDialog() noexcept

@@ -98,7 +98,7 @@ const std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb:
   return r;
 }
 
-bool ribi::pvdb::IsEqual(const ribi::pvdb::Cluster& lhs, const ribi::pvdb::Cluster& rhs)
+bool ribi::pvdb::operator==(const ribi::pvdb::Cluster& lhs, const ribi::pvdb::Cluster& rhs)
 {
   const std::vector<boost::shared_ptr<const ribi::cmap::Concept> > lhs_concepts = lhs.Get(); //For cross-compiler
   const std::vector<boost::shared_ptr<const ribi::cmap::Concept> > rhs_concepts = rhs.Get();

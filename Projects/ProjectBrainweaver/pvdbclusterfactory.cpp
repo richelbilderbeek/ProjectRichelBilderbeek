@@ -42,7 +42,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCop
   boost::shared_ptr<pvdb::Cluster> p(new Cluster(w));
   assert(p);
   assert(p != cluster);
-  assert(IsEqual(*p,*cluster));
+  assert(operator==(*p,*cluster));
   return p;
 }
 #endif

@@ -8,6 +8,7 @@
 #include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
 #include "conceptmapnode.h"
+#include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmaphelper.h"
 #include "trace.h"
@@ -140,21 +141,22 @@ void ribi::cmap::Edge::Test() noexcept
       assert(edge);
       const boost::shared_ptr<const cmap::Edge> c = cmap::EdgeFactory::DeepCopy(edge,node_from,node_to);
       assert(c);
-      assert(operator==(*edge,*c)); assert(operator==(*c,*edge));
-      assert(operator==(*c->GetFrom(),*node_from));
-      assert(operator==(*c->GetFrom(),*nodes[0]));
-      assert(operator==(*c->GetTo(),*node_to));
-      assert(operator==(*c->GetTo(),*nodes[1]));
+      assert(*edge == *c);
+      assert(*c == *edge);
+      assert(*c->GetFrom() == *node_from);
+      assert(*c->GetFrom() == *nodes[0]);
+      assert(*c->GetTo() == *node_to);
+      assert(*c->GetTo() == *nodes[1]);
       const std::string s = ToXml(c,AddConst(nodes));
       const boost::shared_ptr<ribi::cmap::Edge> d = cmap::EdgeFactory::FromXml(s,nodes);
       assert(d);
-      if (!operator==(*c,*d))
+      if (*c != *d)
       {
         TRACE("BREAK");
         TRACE(ToXml(c,AddConst(nodes)));
         TRACE(ToXml(d,AddConst(nodes)));
       }
-      assert(operator==(*c,*d)); //HIERO
+      assert(*c == *d);
     }
   }
   TRACE("Edge::Test finished successfully");
@@ -195,6 +197,14 @@ const std::string ribi::cmap::Edge::ToXml(
   assert(r.substr(r.size() - 7,7) == std::string("</edge>"));
 
   return r;
+}
+
+bool ribi::cmap::IsConnectedToCenterNode(const boost::shared_ptr<const Edge> edge) noexcept
+{
+  assert(!(IsCenterNode(edge->GetFrom()) && IsCenterNode(edge->GetTo()))
+    && "An Edge cannot be connected to two CenterNodes");
+  return IsCenterNode(edge->GetFrom()) || IsCenterNode(edge->GetTo());
+
 }
 
 bool ribi::cmap::operator==(const ribi::cmap::Edge& lhs, const ribi::cmap::Edge& rhs)

@@ -95,8 +95,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
   //Use HeteromorphousTestConceptMap[18] to check for subconcept maps with large texts
   //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
   {
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17);
+    const boost::shared_ptr<cmap::ConceptMap> concept_map
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(19);
     assert(concept_map);
     assert(!file->GetConceptMap() && "Can only set a concept map once");
     file->SetConceptMap(concept_map);
@@ -106,6 +106,8 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
   //Display this random concept map
   const int index = std::rand() % concept_maps.size();
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[ index ];
+  assert( (!concept_map || concept_map->IsValid())
+    && "Expect no or a valid concept map");
   //Create and show the dialog
   boost::shared_ptr<cmap::QtRateConceptDialogNewName> d(
     new cmap::QtRateConceptDialogNewName(concept_map));

@@ -409,16 +409,16 @@ void ribi::pvdb::File::Test() noexcept
     f->SetStudentName("debug student name");
     const boost::shared_ptr<pvdb::File> g = pvdb::FileFactory::DeepCopy(f);
     assert(f != g);
-    assert(IsEqual(*f,*g));
+    assert(operator==(*f,*g));
     //Modify g, to test operator!=
     g->SetStudentName( f->GetStudentName() + " (modified)");
-    assert(!IsEqual(*f,*g));
+    assert(!operator==(*f,*g));
     g->SetStudentName( f->GetStudentName());
-    assert(IsEqual(*f,*g));
+    assert(operator==(*f,*g));
     g->SetAssessorName( f->GetAssessorName() + " (modified)");
-    assert(!IsEqual(*f,*g));
+    assert(!operator==(*f,*g));
     g->SetAssessorName( f->GetAssessorName());
-    assert(IsEqual(*f,*g));
+    assert(operator==(*f,*g));
   }
   //Test Save/Load on empty File
   {
@@ -427,10 +427,10 @@ void ribi::pvdb::File::Test() noexcept
     const boost::shared_ptr<pvdb::File> secondfile(File::Load(tmp_filename));
     assert(firstfile->GetQuestion() == secondfile->GetQuestion());
     assert(firstfile != secondfile);
-    assert(IsEqual(*firstfile,*secondfile));
+    assert(operator==(*firstfile,*secondfile));
     //Modify f, to test operator!=
     firstfile->SetStudentName( firstfile->GetStudentName() + " (modified)");
-    assert(!IsEqual(*firstfile,*secondfile));
+    assert(!operator==(*firstfile,*secondfile));
   }
   //Test Save/Load on file
   {
@@ -453,10 +453,10 @@ void ribi::pvdb::File::Test() noexcept
     const boost::shared_ptr<pvdb::File> second_file(File::Load(tmp_filename));
     assert(second_file);
     assert(second_file->GetQuestion() == firstfile->GetQuestion());
-    assert(IsEqual(*firstfile,*second_file));
+    assert(operator==(*firstfile,*second_file));
     //Modify f, to test operator!=
     firstfile->SetStudentName( firstfile->GetStudentName() + " (modified)");
-    assert(!IsEqual(*firstfile,*second_file));
+    assert(!operator==(*firstfile,*second_file));
   }
   {
     ///Continue loop until no file is found
@@ -568,7 +568,7 @@ const std::string ribi::pvdb::File::DoXpressiveRegexReplace(
   }
 }
 
-bool ribi::pvdb::IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
+bool ribi::pvdb::operator==(const pvdb::File& lhs, const pvdb::File& rhs)
 {
   //assert(lhs.GetCluster());
   //assert(lhs.GetConceptMap());
@@ -578,7 +578,7 @@ bool ribi::pvdb::IsEqual(const pvdb::File& lhs, const pvdb::File& rhs)
      lhs.GetAssessorName() == rhs.GetAssessorName()
   && (
        (!lhs.GetCluster() && !rhs.GetCluster())
-      || IsEqual(*lhs.GetCluster(),*rhs.GetCluster())
+      || operator==(*lhs.GetCluster(),*rhs.GetCluster())
      )
   && (
        (!lhs.GetConceptMap() && !rhs.GetConceptMap())

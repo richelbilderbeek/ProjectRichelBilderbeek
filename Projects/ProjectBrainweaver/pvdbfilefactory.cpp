@@ -29,7 +29,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(cons
   {
     cluster = pvdb::ClusterFactory::DeepCopy(file->GetCluster());
     assert(cluster);
-    assert(IsEqual(*cluster,*file->GetCluster()));
+    assert(operator==(*cluster,*file->GetCluster()));
   }
 
   boost::shared_ptr<ribi::cmap::ConceptMap> concept_map;
@@ -52,7 +52,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::FileFactory::DeepCopy(cons
       file->GetVersion()));
   assert(p);
   assert(file != p && "It must be a DEEP copy");
-  assert(IsEqual(*file,*p) && "It must be a deep COPY");
+  assert(operator==(*file,*p) && "It must be a deep COPY");
   return p;
 }
 #endif
