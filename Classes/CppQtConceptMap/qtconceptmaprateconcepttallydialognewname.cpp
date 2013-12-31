@@ -95,7 +95,8 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
           center_is_from ? edge->GetTo() : edge->GetFrom()
         };
         const std::string s {
-            concept->GetName() + ", is verbonden met '"
+            std::string("via ")
+          + concept->GetName() + " verbonden met '"
           + other->GetConcept()->GetName()
           + std::string("'")
         };
