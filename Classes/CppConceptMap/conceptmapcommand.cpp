@@ -34,7 +34,11 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
 bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->GetConceptMap().get();
+  assert(static_cast<bool>(m_widget) == static_cast<bool>(m_deleted_concept_map));
+  //Cannot delete a concept map, when
+  // - the command already has deleted one, so its internals are non-nullptr
+  // - the offered widget has no concept map
+  return !m_widget && widget->GetConceptMap().get();
 }
 
 void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widget) noexcept
@@ -43,13 +47,11 @@ void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widge
   assert(CanDoCommandSpecific(widget));
   assert(widget->GetConceptMap().get());
   //Correct pre state
-  #ifndef NDEBUG
-  if (m_widget)
-  {
-    TRACE("BREAK");
-  }
-  #endif
-  assert(!m_widget);
+  //Before executing the command,
+  //CommandDeleteConceptMap its internals (m_widget and m_conceptmap)
+  //should both be nullptr
+  assert(!m_widget && "Before deleting a Widget its ConceptMap,"
+    "CommandDeleteConceptMap::m_widget must be nullptr");
   assert(!m_deleted_concept_map);
 
   m_widget = widget;

@@ -165,19 +165,48 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtTestConceptMapWidgetDialog::Test");
-  #ifdef TACKLE_THE_PROBLEM_NOW
+  TRACE("Clicking once");
   {
     QtTestConceptMapWidgetDialog d;
-    //Need to set focus
-    assert(d.m_buttons.size() >= 2);
-    assert(d.m_buttons[0]);
+    TRACE("Clicking button 0");
+    d.DoClick(0);
+  }
+  {
+    QtTestConceptMapWidgetDialog d;
+    TRACE("Clicking button 1");
+    d.DoClick(1);
+  }
+  TRACE("Clicking twice");
+  {
+    QtTestConceptMapWidgetDialog d;
     d.DoClick(0);
     d.DoClick(0);
+  }
+  {
+    QtTestConceptMapWidgetDialog d;
     d.DoClick(0);
+    d.DoClick(1);
+  }
+  {
+    QtTestConceptMapWidgetDialog d;
     d.DoClick(1);
     d.DoClick(0);
   }
-  #endif //~ TACKLE_THE_PROBLEM_NOW
+  {
+    QtTestConceptMapWidgetDialog d;
+    d.DoClick(1);
+    d.DoClick(1);
+  }
+  TRACE("Random clicking");
+  {
+    QtTestConceptMapWidgetDialog d;
+    assert(d.m_buttons.size() >= 2);
+    const int n_buttons = static_cast<int>(d.m_buttons.size());
+    for (int i=0; i!=100; ++i)
+    {
+      d.DoClick( std::rand() % n_buttons);
+    }
+  }
   TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
 }
 #endif

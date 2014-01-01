@@ -176,7 +176,7 @@ struct ProgramAsciiArter : public ProgramTool
   const std::string GetFilenameConsole() const noexcept { return ""; }
   const std::string GetFilenameDesktop() const noexcept { return "ToolAsciiArter_5_1.png"; }
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return "ToolTestAsciiArter_4_1.png"; }
+  const std::string GetFilenameWeb() const noexcept { return "ToolTestAsciiArter_5_2.png"; }
   const std::string GetScreenName() const noexcept { return "AsciiArter"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }

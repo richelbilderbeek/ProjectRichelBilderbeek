@@ -6,17 +6,17 @@
 #include "ui_qtreversimaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtReversiMainDialog::QtReversiMainDialog(QWidget *parent) :
+ribi::reversi::QtReversiMainDialog::QtReversiMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtReversiMainDialog),
-  m_reversi(new ReversiWidget)
+  m_reversi(new Widget)
 {
   ui->setupUi(this);
 
   ui->layout->addWidget(m_reversi.get());
 }
 
-ribi::QtReversiMainDialog::~QtReversiMainDialog()
+ribi::reversi::QtReversiMainDialog::~QtReversiMainDialog()
 {
   delete ui;
 }
