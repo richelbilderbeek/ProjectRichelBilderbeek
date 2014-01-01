@@ -10,6 +10,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 #include "conceptmapfwd.h"
 #include "conceptmapfactory.h"
 
@@ -49,6 +50,9 @@ struct Widget
 
   void Undo();
 
+  ///Emitted when the ConceptMap is modified as a whole: deleted, created or overwritten
+  boost::signals2::signal<void()> m_signal_concept_map_changed;
+
   private:
 
   boost::shared_ptr<ConceptMap> m_conceptmap;
@@ -61,7 +65,8 @@ struct Widget
   //The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
 
-  void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept { m_conceptmap = conceptmap; }
+  ///Start a new concept map
+  void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

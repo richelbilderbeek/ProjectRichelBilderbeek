@@ -1,3 +1,4 @@
+#include "qtreversiwidget.h"
 
 #include <cstdlib>
 
@@ -7,40 +8,29 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "reversi.h"
+//#include "reversi.h"
 #include "reversiwidget.h"
 #pragma GCC diagnostic pop
 
-ribi::ReversiWidget::ReversiWidget(QWidget *parent) :
-  QWidget(parent),
-  m_reversi(new Reversi(4)),
-  m_color_player1(    QColor(255,  0,  0)),
-  m_color_player2(    QColor(  0,  0,255)),
-  m_color_square_even(QColor( 32, 32, 32)),
-  m_color_square_odd( QColor( 64, 64, 64))
+ribi::reversi::QtWidget::QtWidget(QWidget* parent, Qt::WindowFlags f)
+  : QWidget(parent,f),
+    m_reversi(new Widget(4)),
+    m_color_player1(    QColor(255,  0,  0)),
+    m_color_player2(    QColor(  0,  0,255)),
+    m_color_square_even(QColor( 32, 32, 32)),
+    m_color_square_odd( QColor( 64, 64, 64))
 {
   //Allows this widget to respond to mouse moving over it
   //this->setMouseTracking(true);
   //Test the Reversi
   {
-    const int sz = 4;
-    Reversi r(sz);
-    assert(r.GetSize() == sz);
-    assert(r.Get(1,1) == Reversi::player1);
-    assert(r.Get(1,2) == Reversi::player2);
-    assert(r.Get(2,1) == Reversi::player2);
-    assert(r.Get(2,2) == Reversi::player1);
-    assert(r.CanDoMove(2,0));
-    assert(r.CanDoMove(3,1));
-    assert(r.CanDoMove(0,2));
-    assert(r.CanDoMove(1,3));
-
-    //r.
+    Widget(4);
   }
 }
 
-void ribi::ReversiWidget::mousePressEvent(QMouseEvent * e)
+void ribi::reversi::QtWidget::mousePressEvent(QMouseEvent * /*e*/)
 {
+  /*
   const int x = (e->x() * m_reversi->GetSize()) / this->width();
   const int y = (e->y() * m_reversi->GetSize()) / this->height();
   if ( x >=  0 && x < m_reversi->GetSize()
@@ -50,10 +40,12 @@ void ribi::ReversiWidget::mousePressEvent(QMouseEvent * e)
      m_reversi->DoMove(x,y);
      repaint();
   }
+  */
 }
 
-void ribi::ReversiWidget::paintEvent(QPaintEvent *)
+void ribi::reversi::QtWidget::paintEvent(QPaintEvent *)
 {
+  /*
   QPainter painter(this);
   const int width  = this->width();
   const int height = this->height();
@@ -78,5 +70,6 @@ void ribi::ReversiWidget::paintEvent(QPaintEvent *)
       painter.drawRect(x1,y1,x2-x1,y2-y1);
     }
   }
+  */
 }
 

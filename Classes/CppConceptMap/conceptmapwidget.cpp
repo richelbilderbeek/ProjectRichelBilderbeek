@@ -13,7 +13,8 @@
 #pragma GCC diagnostic pop
 
 ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
-  : m_conceptmap(conceptmap),
+  : m_signal_concept_map_changed{}, //Signals first, as these are public
+    m_conceptmap(conceptmap),
     m_focus{nullptr},
     m_undo{}
 {
@@ -26,7 +27,8 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
 
 #ifndef NDEBUG
 ribi::cmap::Widget::Widget(const Widget& other)
-  : m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
+  : m_signal_concept_map_changed{}, //Signals first, as these are public
+    m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
     m_focus{nullptr},
     m_undo{}
 {
@@ -68,6 +70,12 @@ const std::vector<std::string> ribi::cmap::Widget::GetVersionHistory() noexcept
     "2013-12-xx: Version 1.0: initial version",
     "2013-12-23: Version 1.1: started versioning"
   };
+}
+
+void ribi::cmap::Widget::SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept
+{
+  m_conceptmap = conceptmap;
+  m_signal_concept_map_changed();
 }
 
 #ifndef NDEBUG

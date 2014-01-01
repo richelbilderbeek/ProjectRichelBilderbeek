@@ -1676,7 +1676,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       }
       break;
       case ProgramType::regexTester: p.reset(new RegexTesterMenuDialog); break;
-      case ProgramType::reversi: p.reset(new ReversiMenuDialog); break;
+      case ProgramType::reversi: p.reset(new reversi::MenuDialog); break;
       case ProgramType::richelBilderbeekGallery: p.reset(new GalleryMenuDialog); break;
       case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new SitemapGeneratorMenuDialog); break;
       case ProgramType::rubiksClock: p.reset(new RubiksClockMenuDialog); break;

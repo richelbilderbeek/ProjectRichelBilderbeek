@@ -1,5 +1,5 @@
-#ifndef REVERSIWIDGET_H
-#define REVERSIWIDGET_H
+#ifndef QTREVERSIWIDGET_H
+#define QTREVERSIWIDGET_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -7,22 +7,22 @@
 #include <boost/shared_ptr.hpp>
 
 #include <QWidget>
+#include "reversifwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace reversi {
 
-struct Reversi;
-
-class ReversiWidget : public QWidget
+class QtWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit ReversiWidget(QWidget *parent = 0);
+  explicit QtWidget(QWidget* parent = 0, Qt::WindowFlags f = 0);
 
 signals:
 
 private:
-  boost::shared_ptr<Reversi> m_reversi;
+  boost::shared_ptr<Widget> m_reversi;
   QColor m_color_player1;
   QColor m_color_player2;
   QColor m_color_square_even;
@@ -32,6 +32,7 @@ private:
 
 };
 
+} //~namespace reversi
 } //~namespace ribi
 
-#endif // REVERSIWIDGET_H
+#endif // QTREVERSIWIDGET_H

@@ -41,6 +41,10 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  ///Called when Widget emits m_signal_concept_map_changed
+  ///Which is emitted when the ConceptMap changes as a whole
+  void OnConceptMapChanged() noexcept;
 };
 
 } //~namespace cmap

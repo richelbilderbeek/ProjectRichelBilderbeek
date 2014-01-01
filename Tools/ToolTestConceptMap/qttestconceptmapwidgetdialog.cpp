@@ -83,11 +83,12 @@ ribi::cmap::QtTestConceptMapWidgetDialog::~QtTestConceptMapWidgetDialog()
 const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   ribi::cmap::QtTestConceptMapWidgetDialog::CreateWidgets() noexcept
 {
-  const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
-  assert(m);
+  //Each Widget must have its own ConceptMap
   std::vector<boost::shared_ptr<QtConceptMapWidget>> v;
   //Display
   {
+    const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
+    assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtDisplayConceptMap(m));
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
@@ -96,6 +97,8 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   //Edit
   {
+    const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
+    assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m));
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
@@ -104,6 +107,8 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   //Rate
   {
+    const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
+    assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtRateConceptMap(m));
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
@@ -128,12 +133,18 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
   );
   assert(command_iter != m_commands.end());
   assert(*command_iter);
+  TRACE((*command_iter)->ToStr());
   for (boost::shared_ptr<QtConceptMapWidget> qtwidget: m_qtwidgets)
   {
     assert(qtwidget);
     if (qtwidget->CanDoCommand(*command_iter))
     {
+      TRACE("Can do command");
       qtwidget->DoCommand(*command_iter);
+    }
+    else
+    {
+      TRACE("Cannot do command");
     }
   }
 }
@@ -168,43 +179,50 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   TRACE("Clicking once");
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     TRACE("Clicking button 0");
     d.DoClick(0);
   }
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     TRACE("Clicking button 1");
     d.DoClick(1);
   }
   TRACE("Clicking twice");
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     d.DoClick(0);
     d.DoClick(0);
   }
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     d.DoClick(0);
     d.DoClick(1);
   }
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     d.DoClick(1);
     d.DoClick(0);
   }
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     d.DoClick(1);
     d.DoClick(1);
   }
   TRACE("Random clicking");
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     assert(d.m_buttons.size() >= 2);
     const int n_buttons = static_cast<int>(d.m_buttons.size());
     for (int i=0; i!=100; ++i)
     {
-      d.DoClick( std::rand() % n_buttons);
+      d.DoClick(std::rand() % n_buttons);
     }
   }
   TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
