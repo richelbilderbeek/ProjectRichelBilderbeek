@@ -10160,7 +10160,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li>",
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWeb.png\" alt=\"Web\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",
-        "    <a href=\"ToolTestAsciiArter_5_2.png\">View a screenshot of 'AsciiArter' (version 5.2)(png)</a>",
+        "    <a href=\"ToolAsciiArter_5_2.png\">View a screenshot of 'AsciiArter' (version 5.2)(png)</a>",
         "  </li>",
         "  <li>",
         "    <img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicUbuntu.png\" alt=\"Lubuntu\"/><img src=\"PicDesktop.png\" alt=\"Desktop\"/><img src=\"PicSpacer.png\" alt=\" \"/> ",

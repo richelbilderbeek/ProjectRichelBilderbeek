@@ -20,13 +20,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 
 #include <Wt/WBreak>
+#ifndef _WIN32
 #include <Wt/WConfig.h>
+#endif
 #include <Wt/WLabel>
 #include <Wt/WTextArea>
 #include "wtaboutdialog.h"
+#pragma GCC diagnostic pop
 
 ribi::WtAboutDialog::WtAboutDialog(
   const About& about_original,
