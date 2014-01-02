@@ -68,6 +68,7 @@ Libraries/tornado/
 Libraries/vpiano-0.9/
 Libraries/john-1.7.9/
 Libraries/wt/
+Libraries/wt-3.3.1/
 Libraries/libcvautomation/
 Libraries/libcvautomation_readonly/
 Libraries/SikuliX-API/
@@ -1093,11 +1094,9 @@ Test/ToolOpenFoamExample18/constant/polyMesh/owner
 Test/ToolOpenFoamExample18/constant/polyMesh/points
 Test/ToolOpenFoamExample19/0
 Test/ToolOpenFoamExample19/0.*
-Test/ToolOpenFoamExample19/constant/polyMesh/boundary
-Test/ToolOpenFoamExample19/constant/polyMesh/faces
-Test/ToolOpenFoamExample19/constant/polyMesh/neighbour
-Test/ToolOpenFoamExample19/constant/polyMesh/owner
-Test/ToolOpenFoamExample19/constant/polyMesh/points
+Test/ToolOpenFoamExample19/constant/polyMesh/
+Test/ToolOpenFoamExample19/1/
+Test/ToolOpenFoamExample19/2/
 Libraries/hive5/
 Projects/RichelbilderbeekNl/CppAbcFile.htm
 Projects/RichelbilderbeekNl/CppAbout.htm

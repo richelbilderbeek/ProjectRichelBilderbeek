@@ -198,7 +198,7 @@ void ribi::QtFilterOperationerMainDialog::on_box_filter_rows_valueChanged(int ar
       for (int x = 0; x != n_cols; ++x)
       {
         //In old range?
-        if (y < v.size1() && x < v.size2())
+        if (y < static_cast<int>(v.size1()) && x < static_cast<int>(v.size2()))
         {
           w(y,x) = v(y,x);
         }
