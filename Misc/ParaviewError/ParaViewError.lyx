@@ -59,12 +59,217 @@
 
 \begin_body
 
+\begin_layout Title
+ParaView error
+\end_layout
+
+\begin_layout Author
+Richel Bilderbeek
+\end_layout
+
 \begin_layout Section
-Test
+Method
 \end_layout
 
 \begin_layout Standard
-Text
+I did the following protocol with four shapes: cylinder, cone, box and sphere.
+ In the protocol below, I use a cylinder.
+ When saving the file I used both binary (for cone and sphere) and Ascii
+ mode (for cylinder and box), although the error is independent of saving
+ mode.
+\end_layout
+
+\begin_layout Subsection
+Command line: starting ParaView
+\end_layout
+
+\begin_layout Standard
+From the Windows command line I did:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+paraView.exe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ParaView: creating mesh
+\end_layout
+
+\begin_layout Standard
+In paraView I did the following steps:
+\end_layout
+
+\begin_layout Itemize
+From the menu bar, select 'Source | Cylinder' to create a cylinder
+\end_layout
+
+\begin_layout Itemize
+In the bar on the left, click Apply to view the cylinder
+\end_layout
+
+\begin_layout Itemize
+View screenshot 'before.png'.
+ I did rotate the cylinder a bit and chose 'Surface With Edges' 
+\end_layout
+
+\begin_layout Itemize
+'File | Save data', save file as cylinder.stl, choose File type 'Ascii' 
+\end_layout
+
+\begin_layout Itemize
+close paraView
+\end_layout
+
+\begin_layout Subsection
+Command line: viewing mesh
+\end_layout
+
+\begin_layout Standard
+From the Windows command line I did:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+paraView.exe cylinder.stl
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Results
+\end_layout
+
+\begin_layout Subsection
+Cylinder (ASCII)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorAsciiCylinderBefore.png
+	lyxscale 50
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorAsciiCylinderAfter.png
+	lyxscale 50
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Cone (binary)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorBinaryConeBefore.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorBinaryConeAfter.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Box (ASCII)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorAsciiBoxBefore.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorAsciiBoxAfter.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Sphere (binary)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorBinarySphereBefore.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ParaViewErrorBinarySphereAfter.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusion
+\end_layout
+
+\begin_layout Standard
+In creating, saving and loading a cylinder, cone and cube, something unexpected
+ happens in their mesh.
+ The sphere does retain its correct mesh.
 \end_layout
 
 \end_body
