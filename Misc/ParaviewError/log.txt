@@ -1,6 +1,6 @@
 From command prompt:
 
-  paraView
+paraView
 
 In paraView
 - From the menu bar, select 'Source | Cylinder' to create a cylinder

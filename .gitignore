@@ -1097,6 +1097,11 @@ Test/ToolOpenFoamExample19/0.*
 Test/ToolOpenFoamExample19/constant/polyMesh/
 Test/ToolOpenFoamExample19/1/
 Test/ToolOpenFoamExample19/2/
+Test/ToolOpenFoamExample20/0
+Test/ToolOpenFoamExample20/0.*
+Test/ToolOpenFoamExample20/constant/polyMesh/
+Test/ToolOpenFoamExample20/1/
+Test/ToolOpenFoamExample20/2/
 Libraries/hive5/
 Projects/RichelbilderbeekNl/CppAbcFile.htm
 Projects/RichelbilderbeekNl/CppAbout.htm

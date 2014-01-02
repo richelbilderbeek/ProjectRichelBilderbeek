@@ -1,0 +1,98 @@
+FoamFile
+{
+  version 2.0;
+  format ascii;
+  class dictionary;
+  object autoHexMeshDict;
+}
+
+castellatedMesh true;
+snap true;
+addLayers false;
+mergeTolerance 1e-06;
+
+geometry
+{
+  mymesh.stl
+  {
+    type triSurfaceMesh;
+    name mymeshname;
+    //regions
+    //{
+    //  secondSolid           // Named region in the STL file
+    //  {
+    //    name mySecondPatch; // User-defined patch name
+    //  }                     // otherwise given sphere.stl_secondSolid
+    //}
+  }
+} 
+
+castellatedMeshControls
+{
+  maxLocalCells 10000000;
+  maxGlobalCells 2000000;
+  minRefinementCells 0;
+  nCellsBetweenLevels 1;
+  refinementSurfaces
+  {
+    mymeshname
+    {
+      level (4 5);
+    }
+  }
+  resolveFeatureAngle 30;
+  features
+  (
+    {
+      file "mymesh.eMesh"; // file containing edge mesh
+      level 2;              // level of refinement
+    } 
+  );
+  refinementRegions
+  {
+    mymeshname
+    {
+      mode distance;
+      levels ((0.1 5) (0.4 4) (1 2));
+    }
+  }
+  locationInMesh (0.5 0.5 0.5);
+
+  // Whether any faceZones (as specified in the refinementSurfaces)
+  // are only on the boundary of corresponding cellZones or also allow
+  // free-standing zone faces. Not used if there are no faceZones.
+  allowFreeStandingZoneFaces true;
+}
+
+meshQualityControls
+{
+  maxNonOrtho 65;
+  maxBoundarySkewness 20;
+  maxInternalSkewness 4;
+  maxConcave 80;
+  minFlatness 0.5;
+  minVol 1e-13;
+  minArea -1;
+  minTwist 0.05;
+  minDeterminant 0.001;
+  minFaceWeight 0.025;
+  minVolRatio 0.01;
+  minTriangleTwist 0.05;
+  nSmoothScale 4;
+  errorReduction 0.75;
+  
+  minTetQuality 1e-6;
+}
+
+snapControls
+{
+  nSmoothPatch    3;
+  tolerance       4.0;
+  nSolveIter      30;
+  nRelaxIter      5;
+}
+
+addLayersControls
+{
+
+}
