@@ -40,7 +40,6 @@ private:
   Ui::QtTestConceptMapWidgetDialog *ui;
 
   std::vector<QPushButton *> m_buttons;
-  const std::vector<boost::shared_ptr<Command> > m_commands;
   const std::vector<boost::shared_ptr<QtConceptMapWidget>> m_qtwidgets;
 
   static const std::vector<boost::shared_ptr<QtConceptMapWidget>> CreateWidgets() noexcept;

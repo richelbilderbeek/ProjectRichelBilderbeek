@@ -16,7 +16,7 @@ struct QtRateConceptMap : public QtConceptMap
   typedef QtRateConceptMap This_t;
 
   QtRateConceptMap(
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
     QWidget* parent = 0);
   ~QtRateConceptMap() noexcept {}
   QtRateConceptMap(const QtRateConceptMap& other) = delete;

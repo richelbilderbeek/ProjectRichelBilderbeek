@@ -20,6 +20,7 @@ namespace ribi {
 namespace cmap {
 
 ///Widget does the Command-driven communication with ConceptMap
+///Note that a Widget does not know the type of ConceptMap (Display/Edit/Rate)
 struct Widget
 {
   Widget(const boost::shared_ptr<ConceptMap> conceptmap = boost::shared_ptr<ConceptMap>());

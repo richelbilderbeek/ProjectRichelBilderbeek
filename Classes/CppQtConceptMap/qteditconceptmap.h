@@ -16,7 +16,7 @@ struct QtEditConceptMap : public QtConceptMap
 {
   typedef QtEditConceptMap This_t;
   QtEditConceptMap(
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
     QWidget* parent = 0);
   ~QtEditConceptMap() noexcept;
   QtEditConceptMap(const QtEditConceptMap& other) = delete;

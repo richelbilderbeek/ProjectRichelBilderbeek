@@ -24,7 +24,7 @@ struct QtDisplayConceptMap : public QtConceptMap
   typedef QtDisplayConceptMap This_t;
 
   QtDisplayConceptMap(
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+    const boost::shared_ptr<ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
     QWidget* parent = 0);
   ~QtDisplayConceptMap() noexcept {}
 

@@ -24,7 +24,6 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestConceptMapWidgetDialog),
     m_buttons{},
-    m_commands(CommandFactory::CreateTestCommands()),
     m_qtwidgets(CreateWidgets())
 {
   #ifndef NDEBUG
@@ -62,7 +61,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
     //frame->setLayout(layout);
     //assert(frame->layout());
 
-    for (boost::shared_ptr<ribi::cmap::Command> command: m_commands)
+    for (boost::shared_ptr<ribi::cmap::Command> command: CommandFactory::CreateTestCommands())
     {
       QPushButton * const button = new QPushButton(this);
       m_buttons.push_back(button);
@@ -71,7 +70,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
       QObject::connect(button,&QPushButton::clicked,this,&QtTestConceptMapWidgetDialog::OnClick);
     }
 
-    assert(m_buttons.size() == m_commands.size());
+    assert(m_buttons.size() == CommandFactory::CreateTestCommands().size());
   }
 }
 
@@ -87,9 +86,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   std::vector<boost::shared_ptr<QtConceptMapWidget>> v;
   //Display
   {
-    const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
-    assert(m);
-    const boost::shared_ptr<QtConceptMap> c(new QtDisplayConceptMap(m));
+    const boost::shared_ptr<QtConceptMap> c(new QtDisplayConceptMap);
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
@@ -97,9 +94,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   //Edit
   {
-    const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
-    assert(m);
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m));
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap);
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
@@ -107,9 +102,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   //Rate
   {
-    const boost::shared_ptr<ConceptMap> m(ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(17));
-    assert(m);
-    const boost::shared_ptr<QtConceptMap> c(new QtRateConceptMap(m));
+    const boost::shared_ptr<QtConceptMap> c(new QtRateConceptMap);
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
@@ -124,18 +117,21 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
 {
   const QPushButton * const button =  m_buttons[button_index];
   const std::string text = button->text().toStdString();
-  const auto command_iter = std::find_if(m_commands.begin(),m_commands.end(),
-    [text](boost::shared_ptr<Command> command)
-    {
-      assert(command);
-      return command->ToStr() == text;
-    }
-  );
-  assert(command_iter != m_commands.end());
-  assert(*command_iter);
-  TRACE((*command_iter)->ToStr());
   for (boost::shared_ptr<QtConceptMapWidget> qtwidget: m_qtwidgets)
   {
+    //For each widget, create a fresh command
+    const std::vector<boost::shared_ptr<Command>> commands(CommandFactory::CreateTestCommands());
+    const auto command_iter = std::find_if(commands.begin(),commands.end(),
+      [text](boost::shared_ptr<Command> command)
+      {
+        assert(command);
+        return command->ToStr() == text;
+      }
+    );
+    assert(command_iter != commands.end());
+    assert(*command_iter);
+    TRACE((*command_iter)->ToStr());
+
     assert(qtwidget);
     if (qtwidget->CanDoCommand(*command_iter))
     {
