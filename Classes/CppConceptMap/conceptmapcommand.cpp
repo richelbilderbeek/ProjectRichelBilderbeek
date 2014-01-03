@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #pragma GCC diagnostic pop
 
+//Don't include ConceptMap, use Widget its mostly-private-except-for-Command interface only
 #include "conceptmapwidget.h"
 #include "trace.h"
 
@@ -30,6 +31,44 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
   }
   #endif
 }
+
+
+
+
+bool ribi::cmap::CommandCreateNewNode::CanDoCommandSpecific(const Widget * const widget) const noexcept
+{
+  assert(widget);
+  return widget->GetConceptMap().get();
+}
+
+void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) noexcept
+{
+  assert(!m_widget);
+  assert(!m_node);
+  assert(widget);
+  assert(widget->GetConceptMap().get());
+
+  m_widget = widget;
+  m_node = m_widget->CreateNewNode();
+
+  assert(m_widget);
+  assert(m_node);
+}
+
+void ribi::cmap::CommandCreateNewNode::Undo() noexcept
+{
+  assert(m_widget);
+  assert(m_widget->GetConceptMap().get());
+
+  m_widget->DeleteNode(m_node);
+
+  m_widget = nullptr;
+  m_node = boost::shared_ptr<Node>();
+}
+
+
+
+
 
 bool ribi::cmap::CommandDeleteConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
@@ -82,6 +121,20 @@ void ribi::cmap::CommandDeleteConceptMap::Undo() noexcept
   assert(!m_widget);
   assert(!m_deleted_concept_map);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bool ribi::cmap::CommandStartConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {

@@ -62,11 +62,18 @@ struct Widget
   ///nullptr denotes no Element has focus
   Element * m_focus;
 
-  //The undo stack (use std::vector because it is a true STL container)
-  //The Commands aren't const, because Command::Undo changes their state
+  ///The undo stack (use std::vector because it is a true STL container)
+  ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
 
-  ///Start a new concept map
+  ///Creates a new Node in the concept map. The return value is
+  ///that node. This is used by CommandCreateNode::Undo
+  const boost::shared_ptr<Node> CreateNewNode() noexcept;
+
+  ///Delete a Node in the concept map
+  void DeleteNode(const boost::shared_ptr<Node> node) noexcept;
+
+  ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
   #ifndef NDEBUG
@@ -74,7 +81,9 @@ struct Widget
   #endif
 
   //friend class Command;
+  friend class CommandCreateNewNode;
   friend class CommandDeleteConceptMap;
+  friend class CommandDeleteNode;
   friend class CommandStartConceptMap;
   friend bool operator==(const Widget& lhs, const Widget& rhs);
 

@@ -8,6 +8,7 @@
 #include "conceptmapfactory.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommandfactory.h"
+#include "conceptmapnodefactory.h"
 #include "conceptmapwidgetfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -46,6 +47,20 @@ ribi::cmap::Widget::Widget(const Widget& other)
 bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<Command> command) const noexcept
 {
   return command->CanDoCommand(this);
+}
+
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() noexcept
+{
+  const boost::shared_ptr<Node> node {
+    NodeFactory::Create("...")
+  };
+  m_conceptmap->AddNode(node);
+  return node;
+}
+
+void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<ribi::cmap::Node> node) noexcept
+{
+  m_conceptmap->DeleteNode(node);
 }
 
 void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noexcept
@@ -99,6 +114,8 @@ void ribi::cmap::Widget::Test() noexcept
       if (widget->GetConceptMap())
       {
         assert(c.CanDoCommand(widget.get()) && "Can delete a concept map when present");
+        assert(widget->GetConceptMap() && "Concept map must be present before deletion");
+        assert(!widget->GetConceptMap()->GetNodes().empty());
         c.DoCommand(widget.get());
         assert(!widget->GetConceptMap() && "Concept map must be deleted");
         c.Undo();
@@ -129,6 +146,8 @@ void ribi::cmap::Widget::Test() noexcept
         assert(c.CanDoCommand(widget.get()) && "Can start a concept map when none is present");
         c.DoCommand(widget.get());
         assert(widget->GetConceptMap() && "Concept map must be created");
+        assert(widget->GetConceptMap()->GetNodes().size() == 1);
+        assert(widget->GetConceptMap()->GetEdges().size() == 0);
         c.Undo();
         assert(!widget->GetConceptMap() && "Concept map must be deleted by undo");
         ++cnt_yes;
@@ -143,9 +162,34 @@ void ribi::cmap::Widget::Test() noexcept
     assert(cnt_no > 0);
     assert(cnt_yes > 0);
   }
+  //Start a concept map, add some nodes
+  {
+    const boost::shared_ptr<Widget> widget(new Widget);
+    //Cannot add node without a concept map
+    {
+      CommandCreateNewNode c;
+      assert(!c.CanDoCommand(widget.get()));
+    }
+    {
+      CommandStartConceptMap c;
+      assert(c.CanDoCommand(widget.get()));
+      c.DoCommand(widget.get());
+      assert(widget->GetConceptMap()->GetNodes().size() == 1
+        && "Concept map without nodes is not yet supported");
+    }
+    for (int i=0; i!=5; ++i)
+    {
+      assert(static_cast<int>(widget->GetConceptMap()->GetNodes().size()) == i + 1
+        && "Concept map starts with one node, now another one must be added");
+      CommandCreateNewNode c;
+      assert(c.CanDoCommand(widget.get()));
+      c.DoCommand(widget.get());
+      assert(static_cast<int>(widget->GetConceptMap()->GetNodes().size()) == i + 2
+        && "Concept map starts with one node, now another one must be added");
+    }
+  }
   //Test all commands do and undo
-  for (const boost::shared_ptr<Widget> widget:
-    WidgetFactory::GetAllTests())
+  for (const boost::shared_ptr<Widget> widget: WidgetFactory::GetAllTests())
   {
     assert(widget);
 
@@ -163,6 +207,7 @@ void ribi::cmap::Widget::Test() noexcept
       }
     }
   }
+  assert(12==2);
   TRACE("Finished ribi::cmap::Widget::Test()");
 }
 #endif

@@ -24,7 +24,10 @@ struct Command
 {
   virtual ~Command() noexcept {}
   bool CanDoCommand(const Widget * const widget) const noexcept;
+  bool CanDoCommand(const boost::shared_ptr<const Widget> widget) const noexcept { return CanDoCommand(widget.get()); }
   void DoCommand(Widget * const widget) noexcept;
+  void DoCommand(const boost::shared_ptr<Widget> widget) noexcept { DoCommand(widget.get()); }
+
   virtual const std::string ToStr() const noexcept = 0;
   virtual void Undo() noexcept = 0;
 
@@ -34,6 +37,25 @@ struct Command
 
   ///Hook
   virtual void DoCommandSpecific(Widget * const widget) noexcept = 0;
+};
+
+///Start a new node
+///-Can be used only when there is an existing concept map
+struct CommandCreateNewNode : public Command
+{
+  CommandCreateNewNode() : m_node{}, m_widget{} {}
+  CommandCreateNewNode(const CommandCreateNewNode&) = delete;
+  CommandCreateNewNode& operator=(const CommandCreateNewNode&) = delete;
+  ~CommandCreateNewNode() noexcept {}
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
+  void DoCommandSpecific(Widget * const widget) noexcept;
+  const std::string ToStr() const noexcept { return "create new node"; }
+  void Undo() noexcept;
+
+  private:
+  boost::shared_ptr<Node> m_node;
+  Widget * m_widget;
 };
 
 ///Delete a concept map
@@ -52,7 +74,25 @@ struct CommandDeleteConceptMap : public Command
   private:
   boost::shared_ptr<ConceptMap> m_deleted_concept_map;
   Widget * m_widget;
+};
 
+///Select an existing node
+///-Can be used only when there is an existing concept map with at least one node
+struct CommandSelectNode : public Command
+{
+  CommandSelectNode() : m_node{}, m_widget{} {}
+  CommandSelectNode(const CommandSelectNode&) = delete;
+  CommandSelectNode& operator=(const CommandSelectNode&) = delete;
+  ~CommandSelectNode() noexcept {}
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
+  void DoCommandSpecific(Widget * const widget) noexcept;
+  const std::string ToStr() const noexcept { return "select node"; }
+  void Undo() noexcept;
+
+  private:
+  boost::shared_ptr<Node> m_node;
+  Widget * m_widget;
 };
 
 ///Start a new concept map

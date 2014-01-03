@@ -92,7 +92,7 @@ void ribi::TestConceptMapMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::TestConceptMapMenuDialog::Test");
-
+  ribi::cmap::Widget();
   TRACE("ribi::TestConceptMapMenuDialog finished successfully");
 }
 #endif
