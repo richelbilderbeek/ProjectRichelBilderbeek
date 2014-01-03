@@ -141,6 +141,20 @@ Leerdoelen: goede vragen, werkbare leerroute
 \end_layout
 
 \begin_layout Itemize
+Programmeren #1: Hello World
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Leerdoel: writeSerial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 Output #1: LEDje 
 \begin_inset Note Note
 status open
