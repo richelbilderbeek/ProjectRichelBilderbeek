@@ -163,7 +163,13 @@ Stroomschema
 \end_layout
 
 \begin_layout Standard
-[Voorbeeld zo simpel mogelijk stroomschema dat niet kan werken]
+\begin_inset Graphics
+	filename SchematicThatCannotWork.png
+	rotateAngle 270
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -178,7 +184,13 @@ Stroomschema
 \end_layout
 
 \begin_layout Standard
-[Voorbeeld zo simpel mogelijk stroomschema dat onjuist is aangesloten]
+\begin_inset Graphics
+	filename CircuitThatCannotWork.png
+	rotateAngle 90
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -193,7 +205,82 @@ Wat is je programma?
 \end_layout
 
 \begin_layout Standard
-[Voorbeeld zo simpel mogelijk programma dat compiled, maar niet kan werken]
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+void setup() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  setPinMode(2,OUTPUT); 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+void loop()
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+  int x = 0;
+\end_layout
+
+\begin_layout Plain Layout
+
+  if (x == 10) 
+\end_layout
+
+\begin_layout Plain Layout
+
+  {
+\end_layout
+
+\begin_layout Plain Layout
+
+    digitalWrite(2,HIGH);
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+  ++x;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -208,8 +295,109 @@ Wat is je programma?
 \end_layout
 
 \begin_layout Standard
-[Voorbeeld zo simpel mogelijk programma waarbij andere pinnen worden gebruikt
- dan aangesloten zijn, foto onjuist aangesloten Arduino]
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+int led = 13;
+\end_layout
+
+\begin_layout Plain Layout
+
+void setup() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  pinMode(led, OUTPUT); 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+void loop() 
+\end_layout
+
+\begin_layout Plain Layout
+
+{ 
+\end_layout
+
+\begin_layout Plain Layout
+
+  digitalWrite(led, HIGH); 
+\end_layout
+
+\begin_layout Plain Layout
+
+  delay(1000);
+\end_layout
+
+\begin_layout Plain Layout
+
+  digitalWrite(led, LOW);
+\end_layout
+
+\begin_layout Plain Layout
+
+  delay(1000);
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename SchematicThatIsIncorrectlyConnected.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
