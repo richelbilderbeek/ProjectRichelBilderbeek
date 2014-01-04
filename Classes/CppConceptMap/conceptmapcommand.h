@@ -39,6 +39,24 @@ struct Command
   virtual void DoCommandSpecific(Widget * const widget) noexcept = 0;
 };
 
+///Start a new concept map
+///-Can be used only when there is no existing concept map
+struct CommandCreateNewConceptMap : public Command
+{
+  CommandCreateNewConceptMap() : m_widget{} {}
+  CommandCreateNewConceptMap(const CommandCreateNewConceptMap&) = delete;
+  CommandCreateNewConceptMap& operator=(const CommandCreateNewConceptMap&) = delete;
+  ~CommandCreateNewConceptMap() noexcept {}
+
+  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
+  void DoCommandSpecific(Widget * const widget) noexcept;
+  const std::string ToStr() const noexcept { return "create new concept map"; }
+  void Undo() noexcept;
+
+  private:
+  Widget * m_widget;
+};
+
 ///Start a new node
 ///-Can be used only when there is an existing concept map
 struct CommandCreateNewNode : public Command
@@ -78,38 +96,21 @@ struct CommandDeleteConceptMap : public Command
 
 ///Select an existing node
 ///-Can be used only when there is an existing concept map with at least one node
-struct CommandSelectNode : public Command
+/// and the cursor is on the node
+struct CommandSetFocusNode : public Command
 {
-  CommandSelectNode() : m_node{}, m_widget{} {}
-  CommandSelectNode(const CommandSelectNode&) = delete;
-  CommandSelectNode& operator=(const CommandSelectNode&) = delete;
-  ~CommandSelectNode() noexcept {}
+  CommandSetFocusNode() : m_node{}, m_widget{} {}
+  CommandSetFocusNode(const CommandSetFocusNode&) = delete;
+  CommandSetFocusNode& operator=(const CommandSetFocusNode&) = delete;
+  ~CommandSetFocusNode() noexcept {}
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
-  const std::string ToStr() const noexcept { return "select node"; }
+  const std::string ToStr() const noexcept { return "set focus on node"; }
   void Undo() noexcept;
 
   private:
   boost::shared_ptr<Node> m_node;
-  Widget * m_widget;
-};
-
-///Start a new concept map
-///-Can be used only when there is no existing concept map
-struct CommandStartConceptMap : public Command
-{
-  CommandStartConceptMap() : m_widget{} {}
-  CommandStartConceptMap(const CommandStartConceptMap&) = delete;
-  CommandStartConceptMap& operator=(const CommandStartConceptMap&) = delete;
-  ~CommandStartConceptMap() noexcept {}
-
-  bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  void DoCommandSpecific(Widget * const widget) noexcept;
-  const std::string ToStr() const noexcept { return "start concept map"; }
-  void Undo() noexcept;
-
-  private:
   Widget * m_widget;
 };
 

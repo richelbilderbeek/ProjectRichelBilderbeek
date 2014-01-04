@@ -33,7 +33,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFa
   */
   {
     const boost::shared_ptr<ribi::cmap::Command> p {
-      new CommandStartConceptMap
+      new CommandCreateNewConceptMap
     };
     assert(p);
     v.push_back(p);

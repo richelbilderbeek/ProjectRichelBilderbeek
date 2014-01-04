@@ -48,6 +48,7 @@ ribi::cmap::Examples::Examples(const std::vector<boost::shared_ptr<cmap::Example
     ) == 0 && "All Example instances must be initialized");
 }
 
+/*
 void ribi::cmap::Examples::Add(const boost::shared_ptr<cmap::Example>& example)
 {
   assert(example);
@@ -68,6 +69,7 @@ void ribi::cmap::Examples::Add(const boost::shared_ptr<cmap::Example>& example)
   m_v.push_back(example);
   m_signal_examples_changed(this);
 }
+*/
 
 const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::Examples::FromXml(const std::string& s)
 {

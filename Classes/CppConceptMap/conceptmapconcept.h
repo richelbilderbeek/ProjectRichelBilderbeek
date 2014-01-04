@@ -30,7 +30,7 @@ struct Concept
   static const boost::shared_ptr<Concept> FromXml(const std::string& s);
 
   ///Get the examples of the concept, e.g. 'Plato', 'Aristotle'
-  const boost::shared_ptr<const cmap::Examples> GetExamples() const;
+  const boost::shared_ptr<const Examples> GetExamples() const;
   const boost::shared_ptr<Examples>& GetExamples() { return m_examples; }
 
   ///Has an assessor rated the name of this concept as being an addition to the complexity?

@@ -136,13 +136,13 @@ void ribi::cmap::CommandDeleteConceptMap::Undo() noexcept
 
 
 
-bool ribi::cmap::CommandStartConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandCreateNewConceptMap::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
   return !widget->GetConceptMap();
 }
 
-void ribi::cmap::CommandStartConceptMap::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandCreateNewConceptMap::DoCommandSpecific(Widget * const widget) noexcept
 {
   assert(!m_widget);
 
@@ -161,7 +161,7 @@ void ribi::cmap::CommandStartConceptMap::DoCommandSpecific(Widget * const widget
   assert(m_widget->GetConceptMap().get());
 }
 
-void ribi::cmap::CommandStartConceptMap::Undo() noexcept
+void ribi::cmap::CommandCreateNewConceptMap::Undo() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());

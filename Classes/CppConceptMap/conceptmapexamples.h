@@ -21,21 +21,21 @@ struct Examples
   Examples& operator=(const Example& rhs) = delete;
 
 
-  const std::vector<boost::shared_ptr<cmap::Example> >& Get() { return m_v; }
-  const std::vector<boost::shared_ptr<const cmap::Example> > Get() const;
+  const std::vector<boost::shared_ptr<Example> >& Get() { return m_v; }
+  const std::vector<boost::shared_ptr<const Example> > Get() const;
 
-  static const boost::shared_ptr<ribi::cmap::Examples> FromXml(const std::string& s);
+  static const boost::shared_ptr<Examples> FromXml(const std::string& s);
 
-  static const std::string ToXml(const boost::shared_ptr<const cmap::Examples> &c);
+  static const std::string ToXml(const boost::shared_ptr<const Examples> &c);
 
   ///Something of one of the examples was changed
   mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;
 private:
   ~Examples() noexcept {}
 
-  std::vector<boost::shared_ptr<cmap::Example> > m_v;
+  std::vector<boost::shared_ptr<Example> > m_v;
 
-  void Add(const boost::shared_ptr<cmap::Example>& example); //?not used
+  //void Add(const boost::shared_ptr<cmap::Example>& example);
 
   ///All signals emitted from the examples are connected to this member function
   void OnExampleChanged();
@@ -48,13 +48,13 @@ private:
 };
 
 
-bool operator==(const cmap::Examples& lhs, const cmap::Examples& rhs);
-bool operator!=(const cmap::Examples& lhs, const cmap::Examples& rhs);
+bool operator==(const Examples& lhs, const Examples& rhs);
+bool operator!=(const Examples& lhs, const Examples& rhs);
 
 ///Two cmap::Examples instances are sorted as follows:
 ///(1) By their number of examples
 ///(2) (if the sizes are equal) Alphabetically on the first different example
-bool operator<(const cmap::Examples& lhs, const cmap::Examples& rhs);
+bool operator<(const Examples& lhs, const Examples& rhs);
 
 /*
 bool operator<(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs);

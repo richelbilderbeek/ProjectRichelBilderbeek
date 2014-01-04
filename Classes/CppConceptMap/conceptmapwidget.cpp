@@ -102,6 +102,15 @@ void ribi::cmap::Widget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::Widget::Test()");
+  //operator<<
+  /*
+  for (const boost::shared_ptr<Widget> widget:
+    WidgetFactory::GetAllTests())
+  {
+    std::cout << *widget << std::endl;
+  }
+  */
+  assert(1 == 2);
   //Test if individual commands have the intended effect
   //Delete concept map
   {
@@ -140,7 +149,7 @@ void ribi::cmap::Widget::Test() noexcept
     for (const boost::shared_ptr<Widget> widget:
       WidgetFactory::GetAllTests())
     {
-      CommandStartConceptMap c;
+      CommandCreateNewConceptMap c;
       if (!widget->GetConceptMap())
       {
         assert(c.CanDoCommand(widget.get()) && "Can start a concept map when none is present");
@@ -171,7 +180,7 @@ void ribi::cmap::Widget::Test() noexcept
       assert(!c.CanDoCommand(widget.get()));
     }
     {
-      CommandStartConceptMap c;
+      CommandCreateNewConceptMap c;
       assert(c.CanDoCommand(widget.get()));
       c.DoCommand(widget.get());
       assert(widget->GetConceptMap()->GetNodes().size() == 1
@@ -246,3 +255,17 @@ bool ribi::cmap::operator!=(const Widget& lhs, const Widget& rhs)
 {
   return !(lhs == rhs);
 }
+
+/*
+std::ostream& ribi::cmap::operator<<(std::ostream& os, const Widget& w)
+{
+  const boost::shared_ptr<const ConceptMap> concept_map { w.GetConceptMap() };
+  const std::vector<boost::shared_ptr<const Edge> > edges { concept_map->GetEdges() };
+  const std::vector<boost::shared_ptr<const Node> > nodes { concept_map->GetEdges() };
+  //In reverse order of importance
+
+  //Draw edge lines
+
+
+}
+*/

@@ -13,7 +13,7 @@
 #pragma GCC diagnostic pop
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>& widget)
+void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>& concept_map)
 {
   {
     static bool is_tested = false;

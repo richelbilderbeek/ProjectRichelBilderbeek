@@ -57,7 +57,7 @@ public:
   void Shuffle();
 
   ///Test this class with a derived class instance
-  static void Test(const boost::shared_ptr<const QtConceptMap>& widget);
+  static void Test(const boost::shared_ptr<const QtConceptMap>& concept_map);
   #endif
 
 public slots:

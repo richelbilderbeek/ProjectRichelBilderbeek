@@ -81,10 +81,10 @@ struct Widget
   #endif
 
   //friend class Command;
+  friend class CommandCreateNewConceptMap;
   friend class CommandCreateNewNode;
   friend class CommandDeleteConceptMap;
   friend class CommandDeleteNode;
-  friend class CommandStartConceptMap;
   friend bool operator==(const Widget& lhs, const Widget& rhs);
 
 };
@@ -92,7 +92,7 @@ struct Widget
 bool operator==(const Widget& lhs, const Widget& rhs);
 bool operator!=(const Widget& lhs, const Widget& rhs);
 
-std::ostream& operator<<(std::ostream& os, const Widget& w);
+//std::ostream& operator<<(std::ostream& os, const Widget& w);
 
 } //~namespace cmap
 } //~namespace ribi
