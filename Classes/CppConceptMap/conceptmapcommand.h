@@ -96,7 +96,6 @@ struct CommandDeleteConceptMap : public Command
 
 ///Select an existing node
 ///-Can be used only when there is an existing concept map with at least one node
-/// and the cursor is on the node
 struct CommandSetFocusNode : public Command
 {
   CommandSetFocusNode() : m_node{}, m_widget{} {}
