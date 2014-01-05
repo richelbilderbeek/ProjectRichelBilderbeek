@@ -33,7 +33,7 @@ struct Widget
 
   Widget& operator=(const Widget& rhs) = delete;
 
-  bool CanDoCommand(const boost::shared_ptr<Command> command) const noexcept;
+  bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
 
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
@@ -58,9 +58,12 @@ struct Widget
 
   boost::shared_ptr<ConceptMap> m_conceptmap;
 
-  ///The element (either a Node or Edge) having focus
-  ///nullptr denotes no Element has focus
-  Element * m_focus;
+  ///The element in focus, if any. This might be:
+  ///- a true Node
+  ///- the label in the middle of an edge
+  ///- the CenterNode
+  ///nullptr denotes no Node has focus
+  Node * m_focus;
 
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
@@ -73,8 +76,12 @@ struct Widget
   ///Delete a Node in the concept map
   void DeleteNode(const boost::shared_ptr<Node> node) noexcept;
 
+  const Node * GetFocus() const noexcept { return m_focus; }
+
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
+
+  void SetFocus(Node * const node) noexcept { m_focus = node; }
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -85,6 +92,7 @@ struct Widget
   friend class CommandCreateNewNode;
   friend class CommandDeleteConceptMap;
   friend class CommandDeleteNode;
+  friend class CommandLoseFocus;
   friend bool operator==(const Widget& lhs, const Widget& rhs);
 
 };

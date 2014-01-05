@@ -25,8 +25,8 @@ struct ConceptMapFactory
     const std::string& focal_question);
 
   static const boost::shared_ptr<ConceptMap> Create(
-    const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
-    const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges = {});
+    const std::vector<boost::shared_ptr<Node> >& nodes,
+    const std::vector<boost::shared_ptr<Edge> >& edges = {});
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging

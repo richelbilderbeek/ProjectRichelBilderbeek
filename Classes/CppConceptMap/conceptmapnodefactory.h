@@ -20,12 +20,12 @@ struct Node;
 ///Factory for creating Node instances
 struct NodeFactory
 {
-  static const boost::shared_ptr<ribi::cmap::Node> Create(
-    const boost::shared_ptr<ribi::cmap::Concept>& concept,
+  static const boost::shared_ptr<Node> Create(
+    const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
 
-  static const boost::shared_ptr<ribi::cmap::Node> Create(
+  static const boost::shared_ptr<Node> Create(
     const std::string& name,
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const double x = 0.0,
@@ -33,12 +33,12 @@ struct NodeFactory
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<ribi::cmap::Node> DeepCopy(
+  static const boost::shared_ptr<Node> DeepCopy(
     const boost::shared_ptr<const cmap::Node>& node);
   #endif
 
   ///Obtain testing nodes
-  static const std::vector<boost::shared_ptr<ribi::cmap::Node> > GetTests();
+  static const std::vector<boost::shared_ptr<Node> > GetTests();
 };
 
 } //~namespace cmap

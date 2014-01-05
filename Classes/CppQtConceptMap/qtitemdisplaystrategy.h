@@ -30,14 +30,14 @@ struct QtItemDisplayStrategy : public QtRoundedEditRectItem
   typedef QtRoundedEditRectItem Base;
 
   ///concept cannot be const, the user might edit it (in derived classes for example)
-  explicit QtItemDisplayStrategy(const boost::shared_ptr<ribi::cmap::Concept>& concept);
+  explicit QtItemDisplayStrategy(const boost::shared_ptr<Concept>& concept);
   QtItemDisplayStrategy(const QtItemDisplayStrategy& other) = delete;
   QtItemDisplayStrategy& operator=(const QtItemDisplayStrategy& other) = delete;
   virtual ~QtItemDisplayStrategy() noexcept {}
 
   ///Read the Concept
-  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const noexcept;
-  const boost::shared_ptr<      ribi::cmap::Concept>& GetConcept() noexcept { return m_concept; }
+  const boost::shared_ptr<const Concept>  GetConcept() const noexcept;
+  const boost::shared_ptr<      Concept>& GetConcept() noexcept { return m_concept; }
 
   ///Get he brush by which the indicator is filled
   const QBrush& GetIndicatorBrush() const noexcept { return m_indicator_brush; }

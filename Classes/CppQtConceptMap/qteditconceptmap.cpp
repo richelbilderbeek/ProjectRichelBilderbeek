@@ -53,13 +53,16 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 
 ribi::cmap::QtEditConceptMap::QtEditConceptMap(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+  const Mode mode,
   QWidget* parent)
   : QtConceptMap(concept_map,parent),
     m_signal_conceptmapitem_requests_edit{},
     m_arrow(nullptr),
-    m_highlighter(new QtItemHighlighter(0)),
-    m_tools(new QtTool)
+    m_highlighter(mode == Mode::classic ? new QtItemHighlighter(0) : nullptr),
+    m_mode(mode),
+    m_tools(m_mode == Mode::classic ? new QtTool : nullptr)
 {
+  assert(m_highlighter || m_mode != Mode::classic);
   #ifndef NDEBUG
   Test();
   #endif
@@ -67,15 +70,18 @@ ribi::cmap::QtEditConceptMap::QtEditConceptMap(
 
 
   assert(concept_map  && "Only an existing concept map can be edited");
+  assert(m_highlighter || m_mode != Mode::classic);
   BuildQtConceptMap();
 
   assert(scene());
 
-  assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
-  //scene()->addItem(m_tools); //Give m_tools a parent
 
   #ifndef NDEBUG
-  assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
+  if (m_mode == Mode::classic)
+  {
+    assert(m_tools->scene() && "m_tools is added at CleanMe at BuildQtConceptMap");
+    assert(m_highlighter && "m_highlighter does not need to be reset in ClearMe");
+  }
   assert(concept_map->IsValid());
   const auto nodes = concept_map->GetNodes();
   const auto items = Collect<QtNode>(this->scene());
@@ -87,10 +93,13 @@ ribi::cmap::QtEditConceptMap::QtEditConceptMap(
 
 ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
 {
-  m_tools = nullptr;
-  assert(m_highlighter);
-  m_highlighter->SetItem(nullptr); //Do this before destroying items
-  m_arrow = nullptr;
+  if (m_mode == Mode::classic)
+  {
+    m_tools = nullptr;
+    assert(m_highlighter);
+    m_highlighter->SetItem(nullptr); //Do this before destroying items
+    m_arrow = nullptr;
+  }
 }
 
 void ribi::cmap::QtEditConceptMap::AddEdge(
@@ -291,12 +300,15 @@ void ribi::cmap::QtEditConceptMap::CleanMe()
   //Prepare cleaning the scene
   assert(GetExamplesItem());
   SetExamplesItem(nullptr);
-  assert(m_tools);
-  this->m_tools = nullptr;
-  assert(m_highlighter);
-  m_highlighter->SetItem(nullptr); //Do this before destroying items
-  //assert(m_arrow); //Not necessarily true: m_arrow is null when not active
-  this->m_arrow = nullptr;
+  if (m_mode == Mode::classic)
+  {
+    assert(m_tools);
+    this->m_tools = nullptr;
+    assert(m_highlighter || m_mode != Mode::classic);
+    m_highlighter->SetItem(nullptr); //Do this before destroying items
+    //assert(m_arrow); //Not necessarily true: m_arrow is null when not active
+    this->m_arrow = nullptr;
+  }
 
   //Clear the scene, invalidates all scene items copies
   assert(this->scene());
@@ -337,7 +349,7 @@ std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtEditConceptMap::CreateNe
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
-  std::unique_ptr<QtConceptMap> p(new This_t(concept_map));
+  std::unique_ptr<QtConceptMap> p(new This_t(concept_map,this->m_mode));
   return p;
 }
 #endif
@@ -547,12 +559,15 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept
       break;
     case Qt::Key_Escape:
     {
-      //Only remove the 'new arrow' if present
-      //Otherwise let the ESC be handled by the class this one derives from
-      if (m_arrow)
+      if (m_mode == Mode::classic)
       {
-        this->scene()->removeItem(m_arrow);
-        m_arrow = nullptr;
+        //Only remove the 'new arrow' if present
+        //Otherwise let the ESC be handled by the class this one derives from
+        if (m_arrow)
+        {
+          this->scene()->removeItem(m_arrow);
+          m_arrow = nullptr;
+        }
       }
     }
     break;
@@ -581,36 +596,44 @@ void ribi::cmap::QtEditConceptMap::mouseDoubleClickEvent(QMouseEvent *event)
 
 void ribi::cmap::QtEditConceptMap::mouseMoveEvent(QMouseEvent * event)
 {
-  if (m_arrow)
+  if (m_mode == Mode::classic)
   {
-    const QPointF pos = mapToScene(event->pos());
-    m_arrow->SetHeadPos(pos.x(),pos.y());
 
-    //Move the item under the arrow
-    QtNode* const item_below = GetItemBelowCursor(mapToScene(event->pos()));
+    if (m_arrow)
+    {
+      const QPointF pos = mapToScene(event->pos());
+      m_arrow->SetHeadPos(pos.x(),pos.y());
 
-    m_highlighter->SetItem(item_below); //item_below is allowed to be nullptr
-  }
-  else
-  {
-    m_highlighter->SetItem(nullptr); //item_below is allowed to be nullptr
+      //Move the item under the arrow
+      QtNode* const item_below = GetItemBelowCursor(mapToScene(event->pos()));
+
+      m_highlighter->SetItem(item_below); //item_below is allowed to be nullptr
+    }
+    else
+    {
+      m_highlighter->SetItem(nullptr); //item_below is allowed to be nullptr
+    }
   }
   QtConceptMap::mouseMoveEvent(event);
 }
 
 void ribi::cmap::QtEditConceptMap::mousePressEvent(QMouseEvent *event)
 {
-  assert(m_highlighter);
-  if (m_arrow) //&& m_highlighter->GetItem())
+  if (m_mode == Mode::classic)
   {
-    if (m_highlighter->GetItem() && m_arrow->GetFrom() != m_highlighter->GetItem())
+    assert(m_highlighter);
+    if (m_arrow) //&& m_highlighter->GetItem())
     {
-      assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
-      AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
+      if (m_highlighter->GetItem() && m_arrow->GetFrom() != m_highlighter->GetItem())
+      {
+        assert(!dynamic_cast<QtTool*>(m_highlighter->GetItem()) && "Cannot select a ToolsItem");
+        AddEdge( m_arrow->GetFrom(),m_highlighter->GetItem());
+      }
+      this->scene()->removeItem(m_arrow);
+      m_arrow = nullptr;
+      assert(m_highlighter);
+      m_highlighter->SetItem(nullptr);
     }
-    this->scene()->removeItem(m_arrow);
-    m_arrow = nullptr;
-    m_highlighter->SetItem(nullptr);
   }
 
   QtConceptMap::mousePressEvent(event);
@@ -653,20 +676,26 @@ void ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit(QtConceptMapElem
 
 void ribi::cmap::QtEditConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)
 {
-  m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
+  if (m_mode == Mode::classic)
+  {
+    m_tools->SetBuddyItem(dynamic_cast<const QtNode*>(item));
+  }
   GetExamplesItem()->SetBuddyItem(dynamic_cast<const QtConceptMapElement*>(item));
   scene()->update();
 }
 
 void ribi::cmap::QtEditConceptMap::OnToolsClicked()
 {
-  const QPointF cursor_pos_approx(
-    m_tools->GetBuddyItem()->pos().x(),
-    m_tools->GetBuddyItem()->pos().y() - 32.0);
-  m_arrow = new QtNewArrow(
-    m_tools->GetBuddyItem(),cursor_pos_approx);
-  assert(!m_arrow->scene());
-  this->scene()->addItem(m_arrow);
-  m_arrow->update();
-  this->scene()->update();
+  if (m_mode == Mode::classic)
+  {
+    const QPointF cursor_pos_approx(
+      m_tools->GetBuddyItem()->pos().x(),
+      m_tools->GetBuddyItem()->pos().y() - 32.0);
+    m_arrow = new QtNewArrow(
+      m_tools->GetBuddyItem(),cursor_pos_approx);
+    assert(!m_arrow->scene());
+    this->scene()->addItem(m_arrow);
+    m_arrow->update();
+    this->scene()->update();
+  }
 }

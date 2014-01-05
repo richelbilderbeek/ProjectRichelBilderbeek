@@ -28,6 +28,14 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
+  protected:
+  ///QtConceptMapWidget intercepts all user interactions and converts these
+  ///to commands
+  void keyPressEvent(QKeyEvent *) noexcept;
+  void mouseDoubleClickEvent(QMouseEvent *);
+  void mouseMoveEvent(QMouseEvent *);
+  void mousePressEvent(QMouseEvent *);
+
   private:
   ///Displaying the concept map, the View
   ///This display is connected to the Widget/Model by signals

@@ -44,7 +44,7 @@ ribi::cmap::Widget::Widget(const Widget& other)
 }
 #endif
 
-bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<Command> command) const noexcept
+bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept
 {
   return command->CanDoCommand(this);
 }
@@ -110,7 +110,6 @@ void ribi::cmap::Widget::Test() noexcept
     std::cout << *widget << std::endl;
   }
   */
-  assert(1 == 2);
   //Test if individual commands have the intended effect
   //Delete concept map
   {
@@ -216,7 +215,6 @@ void ribi::cmap::Widget::Test() noexcept
       }
     }
   }
-  assert(12==2);
   TRACE("Finished ribi::cmap::Widget::Test()");
 }
 #endif

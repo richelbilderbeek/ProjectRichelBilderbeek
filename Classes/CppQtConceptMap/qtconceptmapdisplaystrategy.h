@@ -19,7 +19,7 @@ struct QtDisplayStrategy : public QtItemDisplayStrategy
   ~QtDisplayStrategy() noexcept;
 
   //concept can be modified (as it is not const), but I can promise I will try to prevent this from happening
-  explicit QtDisplayStrategy(const boost::shared_ptr<ribi::cmap::Concept>& concept);
+  explicit QtDisplayStrategy(const boost::shared_ptr<Concept>& concept);
 
 protected:
   virtual void keyPressEvent(QKeyEvent *) noexcept {} //Do not respond to key presses

@@ -23,7 +23,7 @@ class QtRateExamplesDialogNewName : public ribi::QtHideAndShowDialog
   
 public:
   explicit QtRateExamplesDialogNewName(
-    const boost::shared_ptr<ribi::cmap::Concept> concept,
+    const boost::shared_ptr<Concept> concept,
     QWidget* parent = 0);
   QtRateExamplesDialogNewName(const QtRateExamplesDialogNewName&) = delete;
   QtRateExamplesDialogNewName& operator=(const QtRateExamplesDialogNewName&) = delete;
@@ -47,10 +47,10 @@ private:
 
   ///The concept, which is modified when clicking OK, but remains unmodified when
   ///the user clicks cancel
-  const boost::shared_ptr<ribi::cmap::Concept> m_concept;
+  const boost::shared_ptr<Concept> m_concept;
 
   ///Obtain the rated examples
-  const boost::shared_ptr<ribi::cmap::Examples> GetRatedExamples() const;
+  const boost::shared_ptr<Examples> GetRatedExamples() const;
 
   ///Test this class
   static void Test() noexcept;

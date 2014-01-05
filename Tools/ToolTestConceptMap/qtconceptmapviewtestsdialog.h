@@ -35,13 +35,13 @@ private:
   Ui::QtConceptMapViewTestsDialog *ui;
 
   /// ComplexHomomorphousTestConceptMaps
-  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > m_c;
+  const std::vector<boost::shared_ptr<ConceptMap> > m_c;
 
   /// HeteromorphousTestConceptMaps
-  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > m_h;
+  const std::vector<boost::shared_ptr<ConceptMap> > m_h;
 
   /// SimpleHomomorphousTestConceptMaps
-  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > m_s;
+  const std::vector<boost::shared_ptr<ConceptMap> > m_s;
 
   /// Tha widgets
   std::vector<boost::shared_ptr<cmap::QtConceptMap> > m_widgets;
@@ -52,7 +52,7 @@ private:
 
   static boost::shared_ptr<cmap::QtConceptMap> CreateWidget(
     const int type,
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map);
+    const boost::shared_ptr<ConceptMap> concept_map);
 };
 
 } //~namespace pvdb

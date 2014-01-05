@@ -71,6 +71,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
     }
 
     assert(m_buttons.size() == CommandFactory::CreateTestCommands().size());
+    m_buttons[0]->setFocus();
   }
 }
 
@@ -86,7 +87,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   std::vector<boost::shared_ptr<QtConceptMapWidget>> v;
   //Display
   {
-    const boost::shared_ptr<QtConceptMap> c(new QtDisplayConceptMap);
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
+    assert(m);
+    const boost::shared_ptr<QtConceptMap> c(new QtDisplayConceptMap(m));
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
@@ -94,7 +97,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   //Edit
   {
-    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap);
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
+    assert(m);
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
@@ -102,7 +107,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   //Rate
   {
-    const boost::shared_ptr<QtConceptMap> c(new QtRateConceptMap);
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
+    assert(m);
+    const boost::shared_ptr<QtConceptMap> c(new QtRateConceptMap(m));
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
@@ -175,38 +182,32 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   TRACE("Clicking once");
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     TRACE("Clicking button 0");
     d.DoClick(0);
   }
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     TRACE("Clicking button 1");
     d.DoClick(1);
   }
   TRACE("Clicking twice");
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     d.DoClick(0);
     d.DoClick(0);
   }
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     d.DoClick(0);
     d.DoClick(1);
   }
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     d.DoClick(1);
     d.DoClick(0);
   }
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     d.DoClick(1);
     d.DoClick(1);
   }

@@ -136,7 +136,6 @@ ribi::cmap::QtConceptMap::~QtConceptMap() noexcept
 
 void ribi::cmap::QtConceptMap::BuildQtConceptMap()
 {
-
   CleanMe();
   assert(m_concept_map);
   assert(m_concept_map->IsValid());

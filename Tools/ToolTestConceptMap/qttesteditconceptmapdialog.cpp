@@ -33,7 +33,8 @@ ribi::cmap::QtTestEditConceptMapDialog::QtTestEditConceptMapDialog(QWidget *pare
   ui(new Ui::QtTestEditConceptMapDialog),
   m_concept_map(
     new QtEditConceptMap(
-      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15)
+      ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(15),
+      QtEditConceptMap::Mode::simple
     )
   )
 

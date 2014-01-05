@@ -34,8 +34,8 @@ struct QtNode : public QtConceptMapElement
   void DisableAll();
   void EnableAll();
 
-  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
-  const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
+  const boost::shared_ptr<const Concept>  GetConcept() const;
+  const boost::shared_ptr<      Concept>  GetConcept()      ;
 
   const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_display_strategy; }
   const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_display_strategy; }
@@ -43,7 +43,7 @@ struct QtNode : public QtConceptMapElement
   const boost::shared_ptr<const cmap::Node>  GetNode() const { return m_node; }
   const boost::shared_ptr<      cmap::Node>& GetNode()       { return m_node; }
 
-  void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept);
+  void SetConcept(const boost::shared_ptr<Concept> concept);
 
   void SetName(const std::string& name);
 
@@ -81,7 +81,7 @@ private:
   const QPen m_focus_pen;
 
   ///The node being edited, or displayed and not changed, or rated
-  const boost::shared_ptr<ribi::cmap::Node> m_node;
+  const boost::shared_ptr<Node> m_node;
 
   void OnItemHasUpdated();
 

@@ -59,20 +59,20 @@ bool operator<(const Examples& lhs, const Examples& rhs);
 /*
 bool operator<(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs);
 bool operator<(const boost::shared_ptr<const cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs);
-bool operator<(const boost::shared_ptr<ribi::cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs);
-bool operator<(const boost::shared_ptr<ribi::cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs);
+bool operator<(const boost::shared_ptr<Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs);
+bool operator<(const boost::shared_ptr<Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs);
 bool operator<=(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator<=(const boost::shared_ptr<const cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<ribi::cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
-bool operator<=(const boost::shared_ptr<ribi::cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+bool operator<=(const boost::shared_ptr<Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator>(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator>(const boost::shared_ptr<const cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
-bool operator>(const boost::shared_ptr<ribi::cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
-bool operator>(const boost::shared_ptr<ribi::cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+bool operator>(const boost::shared_ptr<Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+bool operator>(const boost::shared_ptr<Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator>=(const boost::shared_ptr<const cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 bool operator>=(const boost::shared_ptr<const cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<ribi::cmap::Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
-bool operator>=(const boost::shared_ptr<ribi::cmap::Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<Examples>& lhs, const boost::shared_ptr<const cmap::Examples>& rhs) = delete;
+bool operator>=(const boost::shared_ptr<Examples>& lhs, boost::shared_ptr<const cmap::Examples>& rhs) = delete;
 */
 
 } //~namespace cmap

@@ -18,7 +18,7 @@ struct QtEdge : public QtConceptMapElement
 {
 
   QtEdge(
-    const boost::shared_ptr<ribi::cmap::Edge> edge,
+    const boost::shared_ptr<Edge> edge,
     const boost::shared_ptr<QtItemDisplayStrategy> concept_item,
     QtNode* const from,
     QtNode* const to);
@@ -34,8 +34,8 @@ struct QtEdge : public QtConceptMapElement
   const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
   const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }
 
-  const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const;
-  const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()      ;
+  const boost::shared_ptr<const Concept>  GetConcept() const;
+  const boost::shared_ptr<      Concept>  GetConcept()      ;
 
   const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_concept_item; }
   const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_concept_item; }
@@ -54,7 +54,7 @@ struct QtEdge : public QtConceptMapElement
   const QtNode * GetTo() const { return m_to; }
         QtNode * GetTo()       { return m_to; }
 
-  void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept);
+  void SetConcept(const boost::shared_ptr<Concept> concept);
 
   void SetHasHeadArrow(const bool has_head_arrow);
   void SetHasTailArrow(const bool has_tail_arrow);
@@ -92,7 +92,7 @@ private:
   const QPen m_focus_pen;
 
   ///The edge
-  const boost::shared_ptr<ribi::cmap::Edge> m_edge;
+  const boost::shared_ptr<Edge> m_edge;
 
   ///The node item the arrow originates from
   QtNode * const m_from;

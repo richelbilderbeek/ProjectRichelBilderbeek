@@ -25,7 +25,7 @@ public:
   ///concept is not const as user might want to modify it
   ///concept is only modified if user clicks OK
   explicit QtConceptMapConceptEditDialog(
-    const boost::shared_ptr<ribi::cmap::Concept> concept,
+    const boost::shared_ptr<Concept> concept,
     QWidget* parent = 0);
   QtConceptMapConceptEditDialog(const QtConceptMapConceptEditDialog&) = delete;
   QtConceptMapConceptEditDialog& operator=(const QtConceptMapConceptEditDialog&) = delete;
@@ -52,7 +52,7 @@ private:
   const int m_rating_specificity;
 #else
   ///The concept being modified, cannot be const
-  const boost::shared_ptr<ribi::cmap::Concept> m_concept;
+  const boost::shared_ptr<Concept> m_concept;
 
 #endif
 

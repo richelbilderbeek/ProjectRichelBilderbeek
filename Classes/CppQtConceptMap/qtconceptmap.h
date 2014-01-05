@@ -19,7 +19,7 @@ class QtConceptMap : public ribi::QtKeyboardFriendlyGraphicsView
 
 public:
   explicit QtConceptMap(
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+    const boost::shared_ptr<ConceptMap> concept_map,
     QWidget* parent = 0);
   QtConceptMap(const QtConceptMap&) = delete;
   QtConceptMap& operator=(const QtConceptMap&) = delete;
@@ -35,8 +35,8 @@ public:
   #endif
 
   ///Obtain the concept map
-  const boost::shared_ptr<const ribi::cmap::ConceptMap> GetConceptMap() const { return m_concept_map; }
-        boost::shared_ptr<      ribi::cmap::ConceptMap> GetConceptMap()       { return m_concept_map; }
+  const boost::shared_ptr<const ConceptMap> GetConceptMap() const { return m_concept_map; }
+        boost::shared_ptr<      ConceptMap> GetConceptMap()       { return m_concept_map; }
 
   ///Obtain the read-only Qt edge items
   ///Read-and-write Qt edge items are only supported for QtEditConceptMap
@@ -68,11 +68,11 @@ protected:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  virtual void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge) = 0;
+  virtual void AddEdge(const boost::shared_ptr<Edge> edge) = 0;
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
-  virtual QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node) = 0;
+  virtual QtNode * AddNode(const boost::shared_ptr<Node> node) = 0;
 
   ///Initialize the widget with the loaded concept map
   ///BuildQtConceptMap changes the concept map entered, by changing some GUI
@@ -92,7 +92,7 @@ protected:
     const QtNode* const to) const;
 
   ///Find the QtNode containing the Node
-  QtNode * FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const;
+  QtNode * FindQtNode(const boost::shared_ptr<Node> node) const;
 
   ///Obtain the center node
   const QtNode * GetCenterNode() const;
@@ -123,14 +123,14 @@ protected:
   #ifndef NDEBUG
   ///Test the internals of this class:
   ///Does the current content really reflect the map
-  void TestMe(const boost::shared_ptr<const ribi::cmap::ConceptMap> map) const;
+  void TestMe(const boost::shared_ptr<const ConceptMap> map) const;
   #endif
 
 private:
 
   ///The concept map to work on, the Model
   ///m_concept_map->GetNodes()[0] contains the focal node
-  const boost::shared_ptr<ribi::cmap::ConceptMap> m_concept_map;
+  const boost::shared_ptr<ConceptMap> m_concept_map;
 
   ///The item showing the examples
   QtExamplesItem * m_examples_item;

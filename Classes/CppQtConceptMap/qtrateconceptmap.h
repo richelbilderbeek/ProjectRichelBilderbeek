@@ -16,7 +16,7 @@ struct QtRateConceptMap : public QtConceptMap
   typedef QtRateConceptMap This_t;
 
   QtRateConceptMap(
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
+    const boost::shared_ptr<ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
     QWidget* parent = 0);
   ~QtRateConceptMap() noexcept {}
   QtRateConceptMap(const QtRateConceptMap& other) = delete;
@@ -36,25 +36,25 @@ struct QtRateConceptMap : public QtConceptMap
 
   ///If the user wants to rate the focal concept of the already generated sub concept map
   ///the dialog using this widget must display the tally dialog
-  boost::signals2::signal<void (boost::shared_ptr<ribi::cmap::ConceptMap>)> m_signal_request_rate_concept_dialog;
+  boost::signals2::signal<void (boost::shared_ptr<ConceptMap>)> m_signal_request_rate_concept_dialog;
 
 private:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   void AddEdge(
-    const boost::shared_ptr<ribi::cmap::Edge> edge);
+    const boost::shared_ptr<Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///For rating and editing, the node must be non-cost
   ///For display, the node should best be const
-  QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
+  QtNode * AddNode(const boost::shared_ptr<Node> node);
 
   ///Remove all Qt and non-Qt items and add new ones
   void CleanMe();
 
   ///Create a subsection of the concept map, with item at the center
   ///Item is non-const, as all items can be edited in other contexts
-  const boost::shared_ptr<ribi::cmap::ConceptMap> CreateSubConceptMap(QtNode * const item);
+  const boost::shared_ptr<ConceptMap> CreateSubConceptMap(QtNode * const item);
 
   ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
   const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(

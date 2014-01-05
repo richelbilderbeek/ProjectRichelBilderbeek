@@ -15,8 +15,16 @@ namespace cmap {
 struct QtEditConceptMap : public QtConceptMap
 {
   typedef QtEditConceptMap This_t;
+
+  ///Mode is temporary: I want to seperate QtEditConceptMap
+  ///into a class that only does the display (this class)
+  ///and a class that handles the user interaction (QtConceptMapWidget).
+  ///To not break the current build, I switch on Mode
+  enum class Mode { classic, simple };
+
   QtEditConceptMap(
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
+    const boost::shared_ptr<ConceptMap> concept_map = boost::shared_ptr<ConceptMap>(),
+    const Mode mode = Mode::classic,
     QWidget* parent = 0);
   ~QtEditConceptMap() noexcept;
   QtEditConceptMap(const QtEditConceptMap& other) = delete;
@@ -58,17 +66,20 @@ private:
   ///The item highlighter, used when creating a new relation
   QtItemHighlighter * const m_highlighter;
 
+  ///The current mode, to be removed later (see definition of Mode)
+  const Mode m_mode;
+
   ///The item showing the tools
   QtTool * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
+  void AddEdge(const boost::shared_ptr<Edge> edge);
 
   ///Add a new edge
   void AddEdge(QtNode * const from, QtNode* const to);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
-  QtNode * AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
+  QtNode * AddNode(const boost::shared_ptr<Node> node);
 
   ///Remove all Qt and non-Qt items
   void CleanMe();

@@ -22,13 +22,13 @@ class QtRateConceptTallyDialogNewName : public ribi::QtHideAndShowDialog
 public:
   ///Sub concept map is modified by this dialog
   explicit QtRateConceptTallyDialogNewName(
-    const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> sub_concept_map,
+    const boost::shared_ptr</* const */ ConceptMap> sub_concept_map,
     QWidget *parent = 0);
   QtRateConceptTallyDialogNewName(const QtRateConceptTallyDialogNewName&) = delete;
   QtRateConceptTallyDialogNewName& operator=(const QtRateConceptTallyDialogNewName&) = delete;
   ~QtRateConceptTallyDialogNewName() noexcept;
 
-  static const boost::shared_ptr<ribi::cmap::ConceptMap> CreateTestConceptMap();
+  static const boost::shared_ptr<ConceptMap> CreateTestConceptMap();
 
   ///Obtain the suggested complexity, calculated from this dialog
   int GetSuggestedComplexity() const;
@@ -48,12 +48,12 @@ private slots:
 
 private:
   Ui::QtRateConceptTallyDialogNewName *ui;
-  //const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> m_map;
+  //const boost::shared_ptr</* const */ ConceptMap> m_map;
 
   ///The concept map is converted to this data type
   ///The std::vector index equals the row
-  ///Every row is a pair of a boost::shared_ptr<ribi::cmap::Concept> and an integer
-  ///The boost::shared_ptr<ribi::cmap::Concept> is the concept being judged,
+  ///Every row is a pair of a boost::shared_ptr<Concept> and an integer
+  ///The boost::shared_ptr<Concept> is the concept being judged,
   ///  which might be the concept on the focal node and the concept on the egdes connected to the focal node
   ///The index is the index of the example being judged, or -1, denoting it is the concept name being judged
   //typedef std::pair<boost::shared_ptr<Concept>,int> Row;

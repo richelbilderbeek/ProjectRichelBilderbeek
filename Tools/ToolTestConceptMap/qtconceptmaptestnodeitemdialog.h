@@ -51,7 +51,7 @@ private:
   cmap::QtNode* m_rate_node;
 
   ///Get the Node via the route chosen by box_edit
-  const boost::shared_ptr<ribi::cmap::Node> GetNode();
+  const boost::shared_ptr<Node> GetNode();
 
   void OnRequestsSceneUpdate();
 

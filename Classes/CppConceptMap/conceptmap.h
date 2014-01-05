@@ -26,30 +26,30 @@ struct ConceptMap
   ConceptMap& operator=(const ConceptMap&) = delete;
 
   //Add an Edge, assumes that the nodes it points to are in the concept map
-  void AddEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
+  void AddEdge(const boost::shared_ptr<Edge> edge);
 
   //Add a node, always works
-  void AddNode(const boost::shared_ptr<ribi::cmap::Node> node);
+  void AddNode(const boost::shared_ptr<Node> node);
 
   ///Test if this ConceptMap can be constructed successfully
   static bool CanConstruct(
-    const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
-    const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges);
+    const std::vector<boost::shared_ptr<Node> >& nodes,
+    const std::vector<boost::shared_ptr<Edge> >& edges);
 
   ///Prepend the question as a first node, before adding the supplied nodes
-  static const std::vector<boost::shared_ptr<ribi::cmap::Node> > CreateNodes(
+  static const std::vector<boost::shared_ptr<Node> > CreateNodes(
     const std::string& question,
-    const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes);
+    const std::vector<boost::shared_ptr<Node> >& nodes);
 
   ///Create all sub-conceptmaps
   ///Note that CreateSubs()[0] is the concept map around the focal question
-  const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > CreateSubs() const;
+  const std::vector<boost::shared_ptr<ConceptMap> > CreateSubs() const;
 
   ///Delete an edge
-  void DeleteEdge(const boost::shared_ptr<ribi::cmap::Edge> edge);
+  void DeleteEdge(const boost::shared_ptr<Edge> edge);
 
   ///Delete a node and all the edges connected to it
-  void DeleteNode(const boost::shared_ptr<ribi::cmap::Node> node);
+  void DeleteNode(const boost::shared_ptr<Node> node);
 
   ///Check if the ConceptMap is empty
   bool Empty() const;
@@ -72,7 +72,7 @@ struct ConceptMap
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
-  static bool HasSameContent(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs);
+  static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs);
 
   #ifndef NDEBUG
   ///Check if there are no nulls in the edges and nodes
@@ -80,15 +80,15 @@ struct ConceptMap
   #endif
 
   ///Convert a ConceptMap from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> c);
+  static const std::string ToXml(const boost::shared_ptr<const ConceptMap> c);
 
 private:
 
   ///The edges
-  std::vector<boost::shared_ptr<ribi::cmap::Edge> > m_edges;
+  std::vector<boost::shared_ptr<Edge> > m_edges;
 
   ///The nodes
-  std::vector<boost::shared_ptr<ribi::cmap::Node> > m_nodes;
+  std::vector<boost::shared_ptr<Node> > m_nodes;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -98,8 +98,8 @@ private:
   ConceptMap(const std::string& question);
   //Nodes[0] must be the focal question
   ConceptMap(
-    const std::vector<boost::shared_ptr<ribi::cmap::Node> >& nodes,
-    const std::vector<boost::shared_ptr<ribi::cmap::Edge> >& edges = {});
+    const std::vector<boost::shared_ptr<Node> >& nodes,
+    const std::vector<boost::shared_ptr<Edge> >& edges = {});
   ///Create a concept map from a cluster
   #ifdef TO_ADD_TO_PROJECTBRAINWEAVER
   ConceptMap(

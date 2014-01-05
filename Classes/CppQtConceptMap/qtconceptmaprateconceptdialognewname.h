@@ -25,14 +25,14 @@ class QtRateConceptDialogNewName : public ribi::QtHideAndShowDialog
   ///concept is the center node
   ///sub_concept_map[0] is the same as concept and might be changed
   ///sub_concept_map is non-const, as GetRatedConcept will produce a new concept
-  explicit QtRateConceptDialogNewName(const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map,
+  explicit QtRateConceptDialogNewName(const boost::shared_ptr<ConceptMap> sub_concept_map,
     QWidget* parent = 0);
   QtRateConceptDialogNewName(const QtRateConceptDialogNewName&) = delete;
   QtRateConceptDialogNewName& operator=(const QtRateConceptDialogNewName&) = delete;
   ~QtRateConceptDialogNewName() noexcept;
 
   ///Set suggested values for this concept
-  //void MakeSuggestions(const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map);
+  //void MakeSuggestions(const boost::shared_ptr<const ConceptMap> sub_concept_map);
 
 protected:
   void keyPressEvent(QKeyEvent *);
@@ -53,7 +53,7 @@ private:
   bool m_button_ok_clicked;
 
   ///The center concept, may be changed when the user clicks OK
-  const boost::shared_ptr</* NO CONST */ ribi::cmap::Concept> m_concept;
+  const boost::shared_ptr</* NO CONST */ Concept> m_concept;
 
   ///The complexity at this dialog its creation, stored so that the user can cancel the dialog
   const int m_initial_complexity;
@@ -61,14 +61,14 @@ private:
   const int m_initial_specificity;
 
   ///Cannot be const, only used in calculating the suggestions
-  const boost::shared_ptr<ribi::cmap::ConceptMap> m_sub_concept_map;
+  const boost::shared_ptr<ConceptMap> m_sub_concept_map;
 
   const boost::shared_ptr<QtRateConceptMap> m_widget;
   //QtConceptMapRateWidget * const m_widget; //WHY DID I DO THIS???
 
-  void OnRatingComplexityChanged(const ribi::cmap::Concept* concept);
-  void OnRatingConcretenessChanged(const ribi::cmap::Concept* concept);
-  void OnRatingSpecificityChanged(const ribi::cmap::Concept* concept);
+  void OnRatingComplexityChanged(const Concept* concept);
+  void OnRatingConcretenessChanged(const Concept* concept);
+  void OnRatingSpecificityChanged(const Concept* concept);
 
   #ifndef NDEBUG
   ///Test this class

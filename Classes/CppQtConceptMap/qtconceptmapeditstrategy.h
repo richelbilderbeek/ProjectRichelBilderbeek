@@ -18,7 +18,7 @@ namespace cmap {
 struct QtEditStrategy : public QtItemDisplayStrategy
 {
   //concept will be modified
-  explicit QtEditStrategy(const boost::shared_ptr<ribi::cmap::Concept> concept);
+  explicit QtEditStrategy(const boost::shared_ptr<Concept> concept);
   ~QtEditStrategy() noexcept;
   ///Signalled when the user wants to edit
   boost::signals2::signal<void (QtItemDisplayStrategy *)> m_signal_request_edit;

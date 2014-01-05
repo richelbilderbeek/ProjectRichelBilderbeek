@@ -21,7 +21,7 @@ void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr<const QtConceptMap>&
     is_tested = true;
   }
   TRACE("Started ribi::cmap::QtConceptMap::Test");
-  assert(widget);
+  assert(concept_map);
   //#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   #ifdef  I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603
   //Test conversion between widget and concept map for simple homomorphous concept maps

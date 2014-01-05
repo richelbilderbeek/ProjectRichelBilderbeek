@@ -19,22 +19,22 @@ namespace cmap {
 struct ExamplesFactory
 {
   ///Constructor like
-  static const boost::shared_ptr<ribi::cmap::Examples> Create();
+  static const boost::shared_ptr<Examples> Create();
 
   ///Copy-constructor like
-  static const boost::shared_ptr<ribi::cmap::Examples> Create(
+  static const boost::shared_ptr<Examples> Create(
     const boost::shared_ptr<const cmap::Examples>& examples);
 
-  static const boost::shared_ptr<ribi::cmap::Examples> Create(
+  static const boost::shared_ptr<Examples> Create(
     const std::vector<boost::shared_ptr<cmap::Example> >& v);
 
-  static const boost::shared_ptr<ribi::cmap::Examples> Create(
+  static const boost::shared_ptr<Examples> Create(
     const std::vector<boost::shared_ptr<const cmap::Example> >& v);
 
-  static const boost::shared_ptr<ribi::cmap::Examples> Create(
+  static const boost::shared_ptr<Examples> Create(
     const std::vector<std::pair<std::string,Competency> >& v);
 
-  static const std::vector<boost::shared_ptr<ribi::cmap::Examples> > GetTests();
+  static const std::vector<boost::shared_ptr<Examples> > GetTests();
 };
 
 } //~namespace cmap

@@ -41,13 +41,13 @@ private slots:
 
 private:
   Ui::QtConceptMapTestConceptItemDialog *ui;
-  const boost::shared_ptr<ribi::cmap::Concept> m_concept;
+  const boost::shared_ptr<Concept> m_concept;
   cmap::QtDisplayStrategy* m_display_concept;
   cmap::QtEditStrategy* m_edit_concept;
   cmap::QtRateStrategy* m_rate_concept;
 
   ///Get the Concept via the route chosen by box_edit
-  const boost::shared_ptr<ribi::cmap::Concept> GetChosenConcept();
+  const boost::shared_ptr<Concept> GetChosenConcept();
 
   #ifndef NDEBUG
   static void Test() noexcept;

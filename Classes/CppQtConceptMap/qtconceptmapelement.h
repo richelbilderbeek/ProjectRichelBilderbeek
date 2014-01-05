@@ -24,8 +24,8 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   virtual void EnableAll() = 0;
 
   ///Obtain the Concept from either a Node or an Edge
-  virtual const boost::shared_ptr<const ribi::cmap::Concept>  GetConcept() const = 0;
-  virtual const boost::shared_ptr<      ribi::cmap::Concept>  GetConcept()       = 0;
+  virtual const boost::shared_ptr<const Concept>  GetConcept() const = 0;
+  virtual const boost::shared_ptr<      Concept>  GetConcept()       = 0;
 
   virtual const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const = 0;
   virtual const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       = 0;
@@ -59,7 +59,7 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15
   void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;
 
   private:
-  virtual void SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) = 0;
+  virtual void SetConcept(const boost::shared_ptr<Concept> concept) = 0;
 
 };
 

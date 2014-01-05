@@ -19,19 +19,19 @@
 namespace ribi {
 namespace cmap {
 
-///Creates ribi::cmap::Concepts
+///Creates Concepts
 struct ConceptFactory
 {
   //Default and complete Create method
-  static const boost::shared_ptr<ribi::cmap::Concept> Create(
+  static const boost::shared_ptr<Concept> Create(
     const std::string& name,
-    const boost::shared_ptr<ribi::cmap::Examples>& examples,
+    const boost::shared_ptr<Examples>& examples,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
     const int rating_specificity);
 
-  static const boost::shared_ptr<ribi::cmap::Concept> Create(
+  static const boost::shared_ptr<Concept> Create(
     const std::string& name = "...",
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const bool is_complex = true,
@@ -43,12 +43,12 @@ struct ConceptFactory
   #ifndef NDEBUG
   ///Like a Concept deep-copy constructor
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<ribi::cmap::Concept> DeepCopy(
-    const boost::shared_ptr<const ribi::cmap::Concept>& concept);
+  static const boost::shared_ptr<Concept> DeepCopy(
+    const boost::shared_ptr<const Concept>& concept);
   #endif
 
   ///Obtain some testing concepts
-  static const std::vector<boost::shared_ptr<ribi::cmap::Concept> > GetTests();
+  static const std::vector<boost::shared_ptr<Concept> > GetTests();
 };
 
 } //~namespace cmap

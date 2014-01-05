@@ -18,7 +18,7 @@ namespace cmap {
 struct QtRateStrategy : public QtItemDisplayStrategy
 {
   //concept will be modified
-  explicit QtRateStrategy(const boost::shared_ptr<ribi::cmap::Concept>& concept);
+  explicit QtRateStrategy(const boost::shared_ptr<Concept>& concept);
 
   virtual ~QtRateStrategy() noexcept;
 

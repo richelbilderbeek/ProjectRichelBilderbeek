@@ -171,3 +171,106 @@ void ribi::cmap::CommandCreateNewConceptMap::Undo() noexcept
 
   m_widget = nullptr;
 }
+
+
+
+
+
+
+
+
+
+
+
+bool ribi::cmap::CommandLoseFocus::CanDoCommandSpecific(const Widget * const widget) const noexcept
+{
+  assert(widget);
+  return widget->GetFocus();
+}
+
+void ribi::cmap::CommandLoseFocus::DoCommandSpecific(Widget * const widget) noexcept
+{
+  assert(!m_widget);
+  assert(!m_old_focus);
+  assert(widget);
+  assert(widget->m_focus);
+
+  //Transfer focus to this command
+  m_widget = widget;
+  m_old_focus = widget->m_focus;
+  m_widget->m_focus = nullptr;
+
+  assert(m_widget);
+  assert(m_old_focus);
+  assert(!widget->m_focus);
+}
+
+void ribi::cmap::CommandLoseFocus::Undo() noexcept
+{
+  assert(m_widget);
+  assert(m_old_focus);
+  assert(!m_widget->m_focus);
+
+  //Transfer focus to this command
+  m_widget->m_focus = m_old_focus;
+  m_widget = nullptr;
+  m_old_focus = nullptr;
+
+  assert(!m_widget);
+  assert(!m_old_focus);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool ribi::cmap::CommandSetFocus::CanDoCommandSpecific(const Widget * const widget) const noexcept
+{
+  assert(widget);
+  return widget->FindNodeAt(m_x,m_y).get();
+}
+
+void ribi::cmap::CommandSetFocus::DoCommandSpecific(Widget * const widget) noexcept
+{
+  assert(!m_widget);
+  assert(!m_old_focus);
+  assert(widget);
+  assert(widget->m_focus);
+
+  //Transfer focus to this command
+  m_widget = widget;
+  m_old_focus = widget->m_focus;
+  m_widget->m_focus = nullptr;
+
+  assert(m_widget);
+  assert(m_old_focus);
+  assert(!widget->m_focus);
+}
+
+void ribi::cmap::CommandSetFocus::Undo() noexcept
+{
+  assert(m_widget);
+  assert(m_old_focus);
+  assert(!m_widget->m_focus);
+
+  //Transfer focus to this command
+  m_widget->m_focus = m_old_focus;
+  m_widget = nullptr;
+  m_old_focus = nullptr;
+
+  assert(!m_widget);
+  assert(!m_old_focus);
+}
