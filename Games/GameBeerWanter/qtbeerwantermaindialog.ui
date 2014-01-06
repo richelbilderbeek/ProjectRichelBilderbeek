@@ -20,7 +20,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>BeerWanter (C) 2005-2013 Richel Bilderbeek. Beer already got: 0</string>
+   <string>BeerWanter (C) 2005-2014 Richel Bilderbeek. Beer already got: 0</string>
   </property>
   <property name="windowIcon">
    <iconset resource="beerwanter.qrc">

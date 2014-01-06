@@ -71,10 +71,13 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e)
   const bool has_focus = m_widget->CanDoCommand(lose_focus);
   TRACE(has_focus);
 
+  const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
+
   const boost::shared_ptr<CommandSetFocus> set_focus {
-    new CommandSetFocus(e->x(),e->y())
+    new CommandSetFocus(pos.x(),pos.y())
   };
   const bool can_set_focus = m_widget->CanDoCommand(set_focus);
+  TRACE(can_set_focus);
   if (has_focus)
   {
     if (can_set_focus)

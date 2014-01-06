@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Encranger, encryption and de-encryption class
-Copyright (C) 2010-2011 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

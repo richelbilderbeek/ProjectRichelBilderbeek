@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -28,12 +28,12 @@ namespace c2h {
 enum class FileType
 {
   cpp,          //.cpp file
+  license_txt,  //license.txt file
   pri,          //.pri file
   pro,          //.pro file
   py,           //.py file
   sh,           //.sh file
-  txt,          //.txt file or other files
-
+  txt,          //.txt file, to be renamed to txt
   n_types       //Used for debugging
 };
 

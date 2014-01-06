@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 Pylos::Player, Pylos enum class for the players
-Copyright (C) 2010-2012 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

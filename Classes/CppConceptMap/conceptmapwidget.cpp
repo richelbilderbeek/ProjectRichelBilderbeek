@@ -5,9 +5,11 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "conceptmap.h"
+#include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommandfactory.h"
+#include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapwidgetfactory.h"
 #include "trace.h"
@@ -17,6 +19,8 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
   : m_signal_concept_map_changed{}, //Signals first, as these are public
     m_conceptmap(conceptmap),
     m_focus{nullptr},
+    m_font_height(12),
+    m_font_width(6),
     m_undo{}
 {
   #ifndef NDEBUG
@@ -24,6 +28,8 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
   #endif
   assert( (m_conceptmap || !m_conceptmap )
     && "Allow a widget with and without an actual concept map");
+  assert(m_font_height > 0);
+  assert(m_font_width > 0);
 }
 
 #ifndef NDEBUG
@@ -31,6 +37,8 @@ ribi::cmap::Widget::Widget(const Widget& other)
   : m_signal_concept_map_changed{}, //Signals first, as these are public
     m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
     m_focus{nullptr},
+    m_font_height(other.m_font_height),
+    m_font_width(other.m_font_width),
     m_undo{}
 {
   assert(static_cast<bool>(m_conceptmap) == static_cast<bool>(other.m_conceptmap));
@@ -66,12 +74,36 @@ void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<ribi::cmap::Node> no
 void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noexcept
 {
   assert(CanDoCommand(command));
+  TRACE(command->ToStr());
 
   //Undo
   m_undo.push_back(command);
 
   //Actually do the move
   command->DoCommand(this);
+}
+
+const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const double x, const double y) const noexcept
+{
+  assert(this->GetConceptMap());
+  for (const boost::shared_ptr<const Node> node: this->GetConceptMap()->GetNodes())
+  {
+    const double left = node->GetX();
+    const double top  = node->GetY();
+    const double right = left + (m_font_width * node->GetConcept()->GetName().size());
+    const double bottom  = node->GetY() + m_font_height;
+    if (x >= left && x <= right && y >= top && y <= bottom) return node;
+  }
+  return boost::shared_ptr<const Node>();
+}
+
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const double x, const double y) noexcept
+{
+  const boost::shared_ptr<const ribi::cmap::Node> node {
+    const_cast<const Widget*>(this)->FindNodeAt(x,y)
+  };
+  assert(node);
+  return boost::const_pointer_cast<Node>(node);
 }
 
 const std::string ribi::cmap::Widget::GetVersion() noexcept

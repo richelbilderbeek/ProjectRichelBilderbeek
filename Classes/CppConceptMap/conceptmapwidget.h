@@ -65,6 +65,9 @@ struct Widget
   ///nullptr denotes no Node has focus
   Node * m_focus;
 
+  const int m_font_height;
+  const int m_font_width;
+
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
@@ -75,6 +78,11 @@ struct Widget
 
   ///Delete a Node in the concept map
   void DeleteNode(const boost::shared_ptr<Node> node) noexcept;
+
+  ///Find a Node at a coordinat
+  ///Returns nullptr if none is present
+  const boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
+  const boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
   const Node * GetFocus() const noexcept { return m_focus; }
 
@@ -93,6 +101,7 @@ struct Widget
   friend class CommandDeleteConceptMap;
   friend class CommandDeleteNode;
   friend class CommandLoseFocus;
+  friend class CommandSetFocus;
   friend bool operator==(const Widget& lhs, const Widget& rhs);
 
 };

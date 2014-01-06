@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 BeerWanter. A simple game.
-Copyright (C) 2005-2013 Richel Bilderbeek
+Copyright (C) 2005-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@ int ribi::BeerWanterMainDialog::GetRandomWindowShake() const
 
 const std::string ribi::BeerWanterMainDialog::GetWindowTitle() const
 {
-  return std::string("BeerWanter (C) 2005-2013 Richel Bilderbeek. Beer already got: ")
+  return std::string("BeerWanter (C) 2005-2014 Richel Bilderbeek. Beer already got: ")
     + boost::lexical_cast<std::string>(m_level - 1);
 }
 

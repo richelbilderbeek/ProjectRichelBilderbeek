@@ -75,17 +75,17 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>Pylos (C) 2010 Richel Bilderbeek</string>
+   <string>Pylos</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="GamePylos.qrc">
+   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="GamePylos.qrc"/>
+  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
  </resources>
  <connections/>
 </ui>

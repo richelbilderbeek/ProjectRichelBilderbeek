@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Maziak (C) 2007 Richel Bilderbeek</string>
+   <string>Maziak</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="gamemaziak.qrc">
+   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -51,7 +51,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="gamemaziak.qrc"/>
+  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
  </resources>
  <connections/>
 </ui>

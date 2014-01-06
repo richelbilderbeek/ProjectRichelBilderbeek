@@ -2,8 +2,7 @@ INCLUDEPATH += \
     ../../Classes/CppApproximator
 
 SOURCES += \
-    ../../Classes/CppApproximator/approximator.cpp \
-    ../../Classes/CppApproximator/exceptionnoextrapolation.cpp
+    ../../Classes/CppApproximator/approximator.cpp
 
 HEADERS  += \
     ../../Classes/CppApproximator/approximator.h \

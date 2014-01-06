@@ -119,7 +119,7 @@ struct CommandLoseFocus : public Command
 struct CommandSetFocus : public Command
 {
   CommandSetFocus(const int x, const int y)
-    : m_node{}, m_widget{}, m_x(x), m_y(y) {}
+    : m_widget{}, m_x(x), m_y(y) {}
   CommandSetFocus(const CommandSetFocus&) = delete;
   CommandSetFocus& operator=(const CommandSetFocus&) = delete;
   ~CommandSetFocus() noexcept {}
@@ -130,7 +130,6 @@ struct CommandSetFocus : public Command
   void Undo() noexcept;
 
   private:
-  boost::shared_ptr<Node> m_node;
   Widget * m_widget;
   const int m_x;
   const int m_y;

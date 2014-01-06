@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -67,6 +67,7 @@ const std::vector<std::string> ribi::c2h::File::CreateHtml(
   assert(fileio::IsRegularFile(m_filename));
 
   std::vector<std::string> v;
+  if (m_filename == "Licence.txt" || m_filename == "License.txt") return v;
 
   //Add heading
   switch(file_type)
@@ -87,6 +88,9 @@ const std::vector<std::string> ribi::c2h::File::CreateHtml(
     case FileType::txt:
       v.push_back(std::string("<h2>") + m_filename + std::string("</h2>"));
     break;
+    case FileType::license_txt:
+      assert(!"Should not HTML-ify FileType::license_txt");
+      throw std::logic_error("Should not HTML-ify FileType::license_txt");
     case FileType::n_types:
       assert(!"Should never use FileType::n_types");
       throw std::logic_error("Should never use FileType::n_types");

@@ -20,10 +20,10 @@
    <enum>Qt::WheelFocus</enum>
   </property>
   <property name="windowTitle">
-   <string>TestPylos (C) 2010 Richel Bilderbeek</string>
+   <string>TestPylos</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolTestPylos.qrc">
+   <iconset resource="../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -317,7 +317,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="ToolTestPylos.qrc"/>
+  <include location="../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Maziak (C) 2007 Richel Bilderbeek</string>
+   <string>Maziak</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="gamemaziak.qrc">
+   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -30,7 +30,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="gamemaziak.qrc">:/images/InstructionScreen.png</pixmap>
+      <pixmap resource="GameMaziak.qrc">:/images/InstructionScreen.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -43,7 +43,8 @@
   </layout>
  </widget>
  <resources>
-  <include location="gamemaziak.qrc"/>
+  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
+  <include location="GameMaziak.qrc"/>
  </resources>
  <connections/>
 </ui>

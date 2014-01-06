@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -73,6 +73,10 @@ ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& file
   {
     return FileType::sh;
   }
+  else if(filename == "Licence.txt" || filename == "License.txt")
+  {
+    return FileType::license_txt;
+  }
   else if( boost::xpressive::regex_match( filename, what,
     boost::xpressive::sregex::compile( ".*\\.(txt)\\>") ) )
   {
@@ -92,6 +96,7 @@ const std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
   switch (t)
   {
     case FileType::cpp: return "cpp";
+    case FileType::license_txt: return "license_txt";
     case FileType::pri: return "pri";
     case FileType::pro: return "pro";
     case FileType::py: return "py";
@@ -109,6 +114,7 @@ const std::vector<ribi::c2h::FileType> ribi::c2h::FileTypes::GetAllFileTypes() n
 {
   const std::vector<FileType> v {
     FileType::cpp,
+    FileType::license_txt,
     FileType::pri,
     FileType::pro,
     FileType::py,
@@ -123,6 +129,7 @@ ribi::c2h::FileType ribi::c2h::FileTypes::StrToFileType(const std::string& s)
 {
   //if (s == "code_snippet") return FileType::code_snippet;
   if (s == "cpp") return FileType::cpp;
+  if (s == "license_txt") return FileType::license_txt;
   if (s == "pri") return FileType::pri;
   if (s == "pro") return FileType::pro;
   if (s == "py") return FileType::py;

@@ -140,10 +140,10 @@
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Pylos (C) 2010 Richel Bilderbeek</string>
+   <string>Pylos</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="GamePylos.qrc">
+   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -496,6 +496,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
   <include location="GamePylos.qrc"/>
  </resources>
  <connections/>

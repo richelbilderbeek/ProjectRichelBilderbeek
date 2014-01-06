@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -165,6 +165,9 @@ const std::vector<std::string> ribi::c2h::Replacer::ToHtml(
     case FileType::pro:
       get_replacements = &ribi::c2h::Replacer::GetReplacementsPro;
       break;
+    case FileType::license_txt:
+      assert(!"Do not HTML-ify FileType::license_txt");
+      throw std::logic_error("Never HTML-ify FileType::license_txt");
     case FileType::n_types:
       assert(!"Never use FileType::n_types");
       throw std::logic_error("Never use FileType::n_types");

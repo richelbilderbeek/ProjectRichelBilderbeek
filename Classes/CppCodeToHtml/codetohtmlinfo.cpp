@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 CodeToHtml, converts C++ code to HTML
-Copyright (C) 2010-2013  Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -11239,7 +11239,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
         "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
-        "Hometrainer (C) 2009 Richel Bilderbeek<br/>",
+        "Hometrainer (C) 2009-2014 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
         "Humanbody.bmp,Which organ does line 1 point to?,The liver/the liver/Liver/liver<br/>",
@@ -11397,7 +11397,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<!-- start of code -->",
         "<table summary=\"TODO\" border = \"1\"><tr><td><code>",
-        "Hometrainer (C) 2009 Richel Bilderbeek<br/>",
+        "Hometrainer (C) 2009-2014 Richel Bilderbeek<br/>",
         "Humanbody.bmp,Which line points to the liver?,1,2,3,4<br/>",
         "Humanbody.bmp,Which line points to the liver?,1/one/One<br/>",
         "Humanbody.bmp,Which organ does line 1 point to?,The liver/the liver/Liver/liver<br/>",

@@ -51,6 +51,8 @@ void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) 
   m_widget = widget;
   m_node = m_widget->CreateNewNode();
 
+  m_widget->m_signal_concept_map_changed();
+
   assert(m_widget);
   assert(m_node);
 }
@@ -62,8 +64,11 @@ void ribi::cmap::CommandCreateNewNode::Undo() noexcept
 
   m_widget->DeleteNode(m_node);
 
+  m_widget->m_signal_concept_map_changed();
+
   m_widget = nullptr;
   m_node = boost::shared_ptr<Node>();
+
 }
 
 
@@ -98,6 +103,8 @@ void ribi::cmap::CommandDeleteConceptMap::DoCommandSpecific(Widget * const widge
   const boost::shared_ptr<ConceptMap> m;
   widget->SetConceptMap(m);
 
+  m_widget->m_signal_concept_map_changed();
+
   //Correct post state
   assert(m_widget);
   assert(m_deleted_concept_map);
@@ -115,6 +122,7 @@ void ribi::cmap::CommandDeleteConceptMap::Undo() noexcept
   m_widget->SetConceptMap(m_deleted_concept_map);
   boost::shared_ptr<ConceptMap> empty_map;
   m_deleted_concept_map = empty_map;
+  m_widget->m_signal_concept_map_changed();
   m_widget = nullptr;
 
   //Correct post state
@@ -157,6 +165,8 @@ void ribi::cmap::CommandCreateNewConceptMap::DoCommandSpecific(Widget * const wi
   assert(new_map);
   m_widget->SetConceptMap(new_map);
 
+  m_widget->m_signal_concept_map_changed();
+
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());
 }
@@ -169,7 +179,10 @@ void ribi::cmap::CommandCreateNewConceptMap::Undo() noexcept
   boost::shared_ptr<ConceptMap> empty_map;
   m_widget->SetConceptMap(empty_map);
 
+  m_widget->m_signal_concept_map_changed();
+
   m_widget = nullptr;
+
 }
 
 
@@ -198,7 +211,9 @@ void ribi::cmap::CommandLoseFocus::DoCommandSpecific(Widget * const widget) noex
   //Transfer focus to this command
   m_widget = widget;
   m_old_focus = widget->m_focus;
+  m_widget->m_signal_concept_map_changed();
   m_widget->m_focus = nullptr;
+
 
   assert(m_widget);
   assert(m_old_focus);
@@ -213,8 +228,10 @@ void ribi::cmap::CommandLoseFocus::Undo() noexcept
 
   //Transfer focus to this command
   m_widget->m_focus = m_old_focus;
-  m_widget = nullptr;
   m_old_focus = nullptr;
+  m_widget->m_signal_concept_map_changed();
+  m_widget = nullptr;
+
 
   assert(!m_widget);
   assert(!m_old_focus);
@@ -245,32 +262,30 @@ bool ribi::cmap::CommandSetFocus::CanDoCommandSpecific(const Widget * const widg
 
 void ribi::cmap::CommandSetFocus::DoCommandSpecific(Widget * const widget) noexcept
 {
-  assert(!m_widget);
-  assert(!m_old_focus);
   assert(widget);
-  assert(widget->m_focus);
+  assert(!widget->m_focus);
 
-  //Transfer focus to this command
+  //Transfer focus to this Node
   m_widget = widget;
-  m_old_focus = widget->m_focus;
-  m_widget->m_focus = nullptr;
+  m_widget->m_focus = widget->FindNodeAt(m_x,m_y).get();
+
+  m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);
-  assert(m_old_focus);
-  assert(!widget->m_focus);
+  assert(widget);
+  assert(widget->m_focus);
 }
 
 void ribi::cmap::CommandSetFocus::Undo() noexcept
 {
   assert(m_widget);
-  assert(m_old_focus);
+  assert(m_widget->m_focus);
+
+  //Lose focus to this Node
+  m_widget->m_focus = nullptr;
+  m_widget->m_signal_concept_map_changed();
+
+  assert(m_widget);
   assert(!m_widget->m_focus);
 
-  //Transfer focus to this command
-  m_widget->m_focus = m_old_focus;
-  m_widget = nullptr;
-  m_old_focus = nullptr;
-
-  assert(!m_widget);
-  assert(!m_old_focus);
 }
