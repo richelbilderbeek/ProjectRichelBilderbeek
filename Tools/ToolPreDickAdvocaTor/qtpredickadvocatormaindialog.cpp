@@ -36,7 +36,7 @@ ribi::QtPreDickAdvocaTorMainDialog::QtPreDickAdvocaTorMainDialog(
 
 }
 
-ribi::QtPreDickAdvocaTorMainDialog::~QtPreDickAdvocaTorMainDialog()
+ribi::QtPreDickAdvocaTorMainDialog::~QtPreDickAdvocaTorMainDialog() noexcept
 {
   delete ui;
 }

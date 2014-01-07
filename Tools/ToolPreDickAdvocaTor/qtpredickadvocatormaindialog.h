@@ -43,7 +43,7 @@ public:
   QtPreDickAdvocaTorMainDialog(const int seed, QWidget *parent = 0);
   QtPreDickAdvocaTorMainDialog(const QtPreDickAdvocaTorMainDialog&) = delete;
   QtPreDickAdvocaTorMainDialog& operator=(const QtPreDickAdvocaTorMainDialog&) = delete;
-  ~QtPreDickAdvocaTorMainDialog();
+  ~QtPreDickAdvocaTorMainDialog() noexcept;
 
 private:
   Ui::QtPreDickAdvocaTorMainDialog *ui;
