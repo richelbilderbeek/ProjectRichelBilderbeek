@@ -49,7 +49,7 @@ const ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
     "TestLed",
     "tool to test the Led class",
     "the 8th of September 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestLed.htm",
     GetVersion(),
     GetVersionHistory());

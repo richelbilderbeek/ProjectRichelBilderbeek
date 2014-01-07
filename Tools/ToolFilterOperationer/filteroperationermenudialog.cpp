@@ -27,7 +27,7 @@ const ribi::About ribi::FilterOperationerMenuDialog::GetAbout() const noexcept
     "FilterOperationer",
     "tool to perform image filter operations",
     "on the 29th of November 2013",
-    "2008-2013",
+    "2008-2014",
     "http://www.richelbilderbeek.nl/ToolFilterOperationer.htm",
     GetVersion(),
     GetVersionHistory());

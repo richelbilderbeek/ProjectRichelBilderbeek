@@ -250,7 +250,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noex
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
     "the 15th of November 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
     GetVersionHistoryStatic());
@@ -384,7 +384,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
           "AsciiArter (VCL)",
           "tool to create ASCII art",
           "the 21st of June 2008",
-          "2006-2011",
+          "2006-2014",
           "http://www.richelbilderbeek.nl/ToolAsciiArterVcl.htm",
           version,
           version_history
@@ -411,7 +411,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
           "AthleticLand (VCL)",
           "MSX game clone",
           "today",
-          "201x-2012",
+          "201x-2014",
           "http://www.richelbilderbeek.nl/GameAthleticLandVcl.htm",
           version,
           version_history
@@ -466,7 +466,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
           "BeerWanter (VCL)",
           "a simple game",
           "the 22nd of November 2005",
-          "2005",
+          "2005-2014",
           "http://www.richelbilderbeek.nl/GameBeerWanterVcl.htm",
           version,
           version_history

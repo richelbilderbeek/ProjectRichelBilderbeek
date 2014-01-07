@@ -22,14 +22,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "asciiartermaindialog.h"
 
+#include <ostream>
 #include <stdexcept>
 
+#include <boost/scoped_ptr.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
 #include <QImage>
 #include <QFile>
 
 #include "asciiarter.h"
+#include "canvas.h"
+#include "imagecanvas.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -37,48 +41,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::AsciiArterMainDialog::AsciiArterMainDialog(
   const std::string& filename,
   const int n_cols)
-  : m_asciiart{ CreateAsciiArt(filename,n_cols) }
+  //: m_asciiart{ CreateAsciiArt(filename,n_cols) }
+  : m_filename(filename),
+    m_n_cols(n_cols)
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-const std::vector<std::vector<double> >
-  ribi::AsciiArterMainDialog::ConvertToGreyYx(const QImage * const i)
-{
-  const int maxy = i->height();
-  const int maxx = i->width();
-  const int n_bytes = i->bytesPerLine() / maxx;
 
-  std::vector<std::vector<double> > v;
-  for (int y=0; y!=maxy; ++y)
-  {
-    v.push_back(std::vector<double>());
-    const unsigned char * const line = i->scanLine(y);
-    for (int x=0; x!=maxx; ++x)
-    {
-      int sum = 0;
-      for (int byte=0; byte!=n_bytes; ++byte)
-      {
-        sum += line[(x * n_bytes) + byte];
-      }
-      const double greyness
-        = (boost::numeric_cast<double>(sum)
-        / boost::numeric_cast<double>(n_bytes))
-        / 256.0;
-      assert(greyness >= 0.0);
-      assert(greyness <= 1.0);
-      v.back().push_back(greyness);
-    }
-  }
-  return v;
-}
 
-const std::vector<std::string> ribi::AsciiArterMainDialog::CreateAsciiArt(
-  const std::string& filename,
-  const int n_cols)
+const std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcept
 {
+  /*
   if (!fileio::IsRegularFile(filename))
   {
     const std::string s = "AsciiArterMainDialog: file '"+ filename + "' not found";
@@ -95,6 +71,37 @@ const std::vector<std::string> ribi::AsciiArterMainDialog::CreateAsciiArt(
   const std::vector<std::vector<double> > image { ConvertToGreyYx(qimage.get()) };
 
   return AsciiArter::ImageToAscii(image,n_cols);
+  */
+  const boost::shared_ptr<ribi::ImageCanvas> canvas { GetImageCanvas() };
+  std::stringstream s;
+  s << (*canvas);
+  std::string t = s.str();
+  std::vector<std::string> v;
+  while (!t.empty())
+  {
+    //TRACE(t);
+    v.push_back(t.substr(0,m_n_cols));
+    t = t.substr(m_n_cols + 1,t.size() - (m_n_cols + 2)); //+1 because of newline
+  }
+  return v;
+}
+
+const boost::shared_ptr<ribi::ImageCanvas> ribi::AsciiArterMainDialog::GetImageCanvas() const noexcept
+{
+  if (!fileio::IsRegularFile(m_filename))
+  {
+    const std::string s = "AsciiArterMainDialog: file '"+ m_filename + "' not found";
+    throw std::logic_error(s.c_str());
+  }
+  if (m_n_cols < 5)
+  {
+    throw std::logic_error("AsciiArterMainDialog: n_cols < 5");
+  }
+  const boost::shared_ptr<ribi::ImageCanvas> canvas {
+    new ImageCanvas(m_filename,m_n_cols)
+  };
+  assert(canvas);
+  return canvas;
 }
 
 #ifndef NDEBUG
@@ -117,9 +124,19 @@ void ribi::AsciiArterMainDialog::Test() noexcept
 
   const AsciiArterMainDialog d(temp_filename,20);
   assert(!d.GetAsciiArt().empty());
+  std::stringstream s;
+  s << d;
+  assert(!s.str().empty());
+  //TRACE(d);
 
   fileio::DeleteFile(temp_filename);
   assert(!fileio::IsRegularFile(temp_filename));
   TRACE("Finished ribi::AsciiArterMainDialog::Test()");
 }
 #endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const AsciiArterMainDialog& d)
+{
+  os << (*d.GetImageCanvas());
+  return os;
+}

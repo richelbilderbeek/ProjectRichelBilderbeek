@@ -51,7 +51,7 @@ const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
     "TestToggleButton",
     "tool to test the ToggleButton class",
     "the 11st of June 2012",
-    "2011-2012",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestToggleButton.htm",
     GetVersion(),
     GetVersionHistory());

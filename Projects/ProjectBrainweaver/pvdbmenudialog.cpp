@@ -31,7 +31,7 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     "Brainweaver",
     "program to create and assess concept maps",
     "the 31st of December 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ProjectBrainweaver.htm",
     GetVersion(),
     GetVersionHistory());

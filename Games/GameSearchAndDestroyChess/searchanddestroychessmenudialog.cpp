@@ -88,7 +88,7 @@ const ribi::About ribi::sadc::MenuDialog::GetAbout() const noexcept
     "SearchAndDestroyChess",
     "Kriegspiel",
     "the 23rd of Februari 2013",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/GameSearchAndDestroyChess.htm",
     GetVersion(),
     GetVersionHistory());

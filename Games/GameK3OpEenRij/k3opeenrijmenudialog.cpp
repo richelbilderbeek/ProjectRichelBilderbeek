@@ -31,7 +31,7 @@ const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
     "K3OpEenRij",
     "K3-themed connect-three game",
     "the 6th of August 2013",
-    "2007-2013",
+    "2007-2014",
     "http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",
     GetVersion(),
     GetVersionHistory());

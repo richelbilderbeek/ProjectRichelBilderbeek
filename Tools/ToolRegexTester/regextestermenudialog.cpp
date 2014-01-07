@@ -47,7 +47,7 @@ const ribi::About ribi::RegexTesterMenuDialog::GetAbout() const noexcept
     "RegexTester",
     "regular expression tester",
     "the 16th of July 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolRegexTester.htm",
     GetVersion(),
     GetVersionHistory());

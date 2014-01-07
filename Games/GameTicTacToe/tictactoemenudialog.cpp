@@ -47,7 +47,7 @@ const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
     "TicTacToe",
     "tic-tac-toe game",
     "the 16th of April 2011",
-    "2010-2011",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
     GetVersionHistory());

@@ -47,7 +47,7 @@ const ribi::About ribi::PicToCodeMenuDialog::GetAbout() const noexcept
     "PicToCode",
     "tool to convert a picture to C++ code",
     "the 18th of April 2011",
-    "2010-2011",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolPicToCode.htm",
     GetVersion(),
     GetVersionHistory());

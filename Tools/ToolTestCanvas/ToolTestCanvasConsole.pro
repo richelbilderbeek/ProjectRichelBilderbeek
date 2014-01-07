@@ -12,5 +12,6 @@ include(../../Classes/CppTrace/CppTrace.pri)
 #Specific
 include(../../Tools/ToolTestCanvas/ToolTestCanvasConsole.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 
 SOURCES += main.cpp

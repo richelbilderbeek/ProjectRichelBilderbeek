@@ -30,32 +30,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "canvas.h"
+
 #pragma GCC diagnostic pop
 
+/*
 const std::vector<char> ribi::AsciiArter::m_gradient
   = ribi::AsciiArter::GetAsciiArtGradient();
 
 //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
 const std::vector<char> ribi::AsciiArter::GetAsciiArtGradient()
 {
-  std::vector<char> chars;
-  chars.push_back('M');
-  chars.push_back('N');
-  chars.push_back('m');
-  chars.push_back('d');
-  chars.push_back('h');
-  chars.push_back('y');
-  chars.push_back('s');
-  chars.push_back('o');
-  chars.push_back('+');
-  chars.push_back('/');
-  chars.push_back(':');
-  chars.push_back('-');
-  chars.push_back('.');
-  chars.push_back('`');
-  chars.push_back(' ');
-  return chars;
+  return ;
 }
+*/
 
 double ribi::AsciiArter::GetGreyness(
   const std::vector<std::vector<double> >& image,
@@ -171,13 +159,14 @@ double ribi::AsciiArter::GetFractionGrey(
 
 const std::string ribi::AsciiArter::GetVersion() noexcept
 {
-  return "1.0";
+  return "2.0";
 }
 
 const std::vector<std::string> ribi::AsciiArter::GetVersionHistory() noexcept
 {
   return {
-    "2011-03-23: Version 1.0: initial version"
+    "2011-03-23: Version 1.0: initial version",
+    "2014-01-07: Version 2.0: add conversion to Canvas"
   };
 }
 
@@ -240,6 +229,10 @@ const std::vector<std::string> ribi::AsciiArter::ImageToAscii(
 
       const double f = GetFractionGrey(image,x1,y1,x2,y2);
       assert(f >= 0.0 && f <= 1.0);
+
+      const std::vector<char> m_gradient {
+        Canvas::GetAsciiArtGradient()
+      };
       const int i
         = boost::numeric_cast<int>(
           f * boost::numeric_cast<double>(m_gradient.size() - 1));

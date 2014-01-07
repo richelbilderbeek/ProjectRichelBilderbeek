@@ -32,7 +32,7 @@ const ribi::About ribi::MetZnDrieenMenuDialog::GetAbout() const noexcept
     "Met z'n Drieen",
     "Billy-themed connect-three game",
     "today",
-    "200x-2013",
+    "200x-2014",
     "http://www.richelbilderbeek.nl/GameMetZnDrieen.htm",
     GetVersion(),
     GetVersionHistory());

@@ -32,7 +32,7 @@ const ribi::About ribi::PokeVolleyMenuDialog::GetAbout() const noexcept
     "PokeVolley",
     "Pokemon-themed Volley game",
     "today",
-    "200x-2013",
+    "200x-2014",
     "http://www.richelbilderbeek.nl/GamePokeVolley.htm",
     GetVersion(),
     GetVersionHistory());

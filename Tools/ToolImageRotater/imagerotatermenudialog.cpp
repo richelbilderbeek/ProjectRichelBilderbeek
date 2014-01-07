@@ -27,7 +27,7 @@ const ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
     "ImageRotater",
     "tool to rotate images",
     "the 29th of November 2013",
-    "2007-2013",
+    "2007-2014",
     "http://www.richelbilderbeek.nl/Toolimagerotater.htm",
     GetVersion(),
     GetVersionHistory());

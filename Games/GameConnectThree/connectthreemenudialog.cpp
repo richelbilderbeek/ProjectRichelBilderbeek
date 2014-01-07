@@ -56,7 +56,7 @@ const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() const noexcept
     "ConnectThree",
     "connect-three game",
     "the 1st of August 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/GameConnectThree.htm",
     GetVersion(),
     GetVersionHistory());

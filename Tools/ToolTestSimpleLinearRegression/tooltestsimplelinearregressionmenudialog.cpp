@@ -31,7 +31,7 @@ const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout() con
     "ToolTestSimpleLinearRegression",
     "tests a simple linear regression",
     "the 28th of August 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestSimpleLinearRegression.htm",
     GetVersion(),
     GetVersionHistory());

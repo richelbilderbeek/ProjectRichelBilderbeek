@@ -41,7 +41,7 @@ const ribi::About ribi::NsanaBrosMenuDialog::GetAbout() const noexcept
     "Super Nsana Bros",
     "true two-dimensional platform game",
     "the 29th of March 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/GameNsanaBros.htm",
     GetVersion(),
     GetVersionHistory());

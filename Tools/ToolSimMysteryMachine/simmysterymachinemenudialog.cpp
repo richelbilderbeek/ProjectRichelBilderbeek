@@ -59,7 +59,7 @@ const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
     "SimMysteryMachine",
     "simulator of my mystery machine",
     "the 26th of August 2012",
-    "2011-2012",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolSimMysteryMachine.htm",
     GetVersion(),
     GetVersionHistory());

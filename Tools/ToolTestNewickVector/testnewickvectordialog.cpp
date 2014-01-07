@@ -398,7 +398,7 @@ const ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
     "TestNewickVector",
     "tool to test the NewickVector class",
     "at the 25th of April 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestNewickVector.htm",
     GetVersion(),
     GetVersionHistory());

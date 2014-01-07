@@ -49,7 +49,7 @@ const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noex
     "PerfectElasticCollision",
     "tool to investigate a perfect elastic collision",
     "the 7th of March 2012",
-    "2010-2012",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolPerfectElasticCollision.htm",
     GetVersion(),
     GetVersionHistory());

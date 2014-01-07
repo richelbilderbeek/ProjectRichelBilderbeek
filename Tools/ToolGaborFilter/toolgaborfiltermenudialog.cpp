@@ -50,7 +50,7 @@ const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
     "GaborFilter",
     "tool to demonstrate Gabor filtering",
     "the 7th of July 2012",
-    "2012",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolGaborFilter.htm",
     GetVersion(),
     GetVersionHistory());

@@ -51,7 +51,7 @@ const ribi::About ribi::TestQtCreatorProFileMenuDialog::GetAbout() const noexcep
     "TestQtCreatorProFile",
     "tool to test the QtCreatorProFile class",
     "the 18th May 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolTestQtCreatorProFile.htm",
     GetVersion(),
     GetVersionHistory());

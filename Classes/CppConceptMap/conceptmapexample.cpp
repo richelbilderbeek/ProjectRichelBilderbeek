@@ -291,6 +291,11 @@ bool ribi::cmap::operator==(const cmap::Example& lhs, const cmap::Example& rhs)
     && lhs.GetCompetency() == rhs.GetCompetency();
 }
 
+bool ribi::cmap::operator!=(const cmap::Example& lhs, const cmap::Example& rhs)
+{
+  return !(lhs == rhs);
+}
+
 bool ribi::cmap::operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs)
 {
   assert(lhs && rhs);

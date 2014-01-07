@@ -32,7 +32,7 @@ const ribi::About ribi::ToolTestApproximatorMenuDialog::GetAbout() const noexcep
     "ToolTestApproximator",
     "tests the Approximator class",
     "the 28th of August 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestApproximator.htm",
     GetVersion(),
     GetVersionHistory());

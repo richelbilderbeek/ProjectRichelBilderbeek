@@ -37,7 +37,7 @@ const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
     "TestConceptMap",
     "tests the ConceptMap classes",
     "on the 3rd of December 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestConceptMap.htm",
     GetVersion(),
     GetVersionHistory());

@@ -81,7 +81,7 @@ const ribi::About ribi::QrcFile::GetAbout() noexcept
     "QrcFile",
     "class to parse Qt Resource files",
     "the 19th of August 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/CppQrcFile.htm",
     GetVersion(),
     GetVersionHistory());

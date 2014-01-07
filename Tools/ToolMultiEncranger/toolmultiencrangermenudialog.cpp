@@ -131,7 +131,7 @@ const ribi::About ribi::ToolMultiEncrangerMenuDialog::GetAbout() const noexcept
     "ToolMultiEncranger",
     "multi-line Encranger encryption",
     "the 30th of September 2013",
-    "20xx-2013",
+    "20xx-2014",
     "http://www.richelbilderbeek.nl/ToolMultiEncranger.htm",
     GetVersion(),
     GetVersionHistory());

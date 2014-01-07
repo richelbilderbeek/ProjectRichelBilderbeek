@@ -103,7 +103,7 @@ const ribi::About ribi::ToolEncrangerMenuDialog::GetAbout() const noexcept
     "ToolEncranger",
     "tool to test the Encranger class",
     "the 1th of November 2013",
-    "2009-2013",
+    "2009-2014",
     "http://www.richelbilderbeek.nl/ToolEncranger.htm",
     GetVersion(),
     GetVersionHistory());

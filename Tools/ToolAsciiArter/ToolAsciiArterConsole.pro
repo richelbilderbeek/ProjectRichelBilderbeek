@@ -10,6 +10,9 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(ToolAsciiArterConsole.pri )
 
 SOURCES += main.cpp

@@ -771,7 +771,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p><a href=\"CppCompileErrorParseErrorAtBOOST_JOIN.htm\">CppCompileErrorParseErrorAtBOOST_JOIN</a> is a <a href=\"CppBoost.htm\">Boost</a> <a href=\"CppCompileError.htm\">compile error</a>.",
-        "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"CppCompileErrorParseErrorAtBOOST_JOIN.zip\">Download the Qt Creator project 'CppCompileErrorParseErrorAtBOOST_JOIN' (zip)</a></li>",
         "</ul>"
@@ -792,7 +791,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>",
         "  <a href=\"CppConceptMap.htm\">ConceptMap</a> is used in, among others,",
         "  the <a href=\"Tools.htm\">tool</a> <a href=\"ToolTestConceptMap.htm\">TestConceptMap</a>",
-        "  and the <a href=\"Projects.htm\">project</a> <a href=\"ProjectBrainweaver.htm\">Brainweaver</a>."
+        "  and the <a href=\"Projects.htm\">project</a> <a href=\"ProjectBrainweaver.htm\">Brainweaver</a>.",
         "</p>"
       }
     }
@@ -1315,6 +1314,25 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppGetCombinations",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetCombinations.htm\">GetCombinations</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to obtain all combinations of a <a href=\"CppVector.htm\">std::vector</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetPermutations.htm\">GetPermutations</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to obtain all permutations of a <a href=\"CppVector.htm\">std::vector</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppGetExtension",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -1359,6 +1377,23 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"CppGetPath.zip\">Download the Qt Creator project 'CppGetPath' (zip)</a></li>",
         "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppGetPermutations",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetPermutations.htm\">GetPermutations</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to obtain all permutations of a <a href=\"CppVector.htm\">std::vector</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetCombinations.htm\">GetCombinations</a> is a <a href=\"CppCodeSnippets.htm\">code snippet</a>",
+        "  to obtain all combinations of a <a href=\"CppVector.htm\">std::vector</a>.",
+        "</p>"
       }
     }
   );

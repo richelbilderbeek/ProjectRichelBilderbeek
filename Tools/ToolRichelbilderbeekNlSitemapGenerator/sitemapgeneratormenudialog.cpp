@@ -416,7 +416,7 @@ const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
     "RichelbilderbeekNlSitemapGenerator",
     "generates the richelbilderbeek.nl sitemap",
     "the 15th of December 2012",
-    "2010-2012",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolRichelbilderbeekNlSitemapGenerator.htm",
     GetVersion(),
     GetVersionHistory());

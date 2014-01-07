@@ -14,3 +14,7 @@ include(../../Tools/ToolTestConceptMap/ToolTestConceptMapConsole.pri)
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Classes/CppXml/CppXml.pri)
 SOURCES += main.cpp
+
+# gcov
+# QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+# QMAKE_LFLAGS += -lgcov -coverage

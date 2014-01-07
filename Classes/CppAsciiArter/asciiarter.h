@@ -32,6 +32,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+///AsciiArter converts a matrix of grey tints
+///to ASCII art
 struct AsciiArter
 {
   typedef std::vector<int> Pixel;
@@ -43,8 +45,8 @@ struct AsciiArter
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  static const std::vector<char> m_gradient;
-  static const std::vector<char> GetAsciiArtGradient();
+  //static const std::vector<char> m_gradient;
+  //static const std::vector<char> GetAsciiArtGradient();
 
   //Get a pixel's greyness
   static double GetGreyness(

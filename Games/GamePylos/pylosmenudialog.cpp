@@ -57,7 +57,7 @@ const ribi::About ribi::PylosMenuDialog::GetAbout() const noexcept
     "Pylos",
     "Pylos/Pyraos game",
     "the 28th of May 2012",
-    "2010-2012",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/GamePylos.htm",
     GetVersion(),
     GetVersionHistory());

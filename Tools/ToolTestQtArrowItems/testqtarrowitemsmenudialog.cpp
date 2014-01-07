@@ -47,7 +47,7 @@ const ribi::About ribi::TestQtArrowItemsMenuDialog::GetAbout() const noexcept
     "TestQtArrowItems",
     "tool to test Qt arrow QGraphicsItems",
     "the 1st of Januari 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestQtArrowItems.htm",
     GetVersion(),
     GetVersionHistory());

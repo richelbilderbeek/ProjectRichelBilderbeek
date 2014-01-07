@@ -128,7 +128,7 @@ const ribi::About ribi::RandomCode::GetAbout() noexcept
     "RandomCode",
     "generates random c++ code",
     "the 17th of September 2013",
-    "2007-2013",
+    "2007-2014",
     "http://www.richelbilderbeek.nl/ToolRandomCode.htm",
     GetVersion(),
     GetVersionHistory()

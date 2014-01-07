@@ -65,7 +65,7 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
     nullptr,
     m_select->GetIsPlayerHuman()
   );
-  d.setWindowTitle("K3OpEenRij (C) 2007-2013");
+  d.setWindowTitle("K3OpEenRij (C) 2007-2014");
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
   this->hide();

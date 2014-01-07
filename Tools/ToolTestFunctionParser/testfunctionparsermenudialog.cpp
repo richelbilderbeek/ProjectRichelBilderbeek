@@ -47,7 +47,7 @@ const ribi::About ribi::TestFunctionParserMenuDialog::GetAbout() const noexcept
     "TestFunctionParser",
     "tool to demonstrate Warp's FunctionParser class",
     "the 22nd of April 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolTestFunctionParser.htm",
     GetVersion(),
     GetVersionHistory());

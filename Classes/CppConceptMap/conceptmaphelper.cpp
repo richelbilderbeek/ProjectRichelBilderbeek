@@ -61,6 +61,7 @@ const std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& f
   return v;
 }
 
+/*
 const std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
 {
   #ifndef NDEBUG
@@ -86,7 +87,7 @@ const std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
   }
   return v;
 }
-
+*/
 
 #ifndef NDEBUG
 void ribi::cmap::TestHelperFunctions()
@@ -436,6 +437,7 @@ const std::vector<std::string> ribi::cmap::Wordwrap(
   return v;
 }
 
+/*
 const std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
 {
   #ifndef NDEBUG
@@ -460,3 +462,4 @@ const std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
   );
   return v;
 }
+*/

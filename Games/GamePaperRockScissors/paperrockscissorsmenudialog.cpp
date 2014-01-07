@@ -32,7 +32,7 @@ const ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
     "PaperRockScissors",
     "PRS cellular automaton",
     "today",
-    "2000x-2013",
+    "2000x-2014",
     "http://www.richelbilderbeek.nl/GamePaperRockScissors.htm",
     GetVersion(),
     GetVersionHistory());

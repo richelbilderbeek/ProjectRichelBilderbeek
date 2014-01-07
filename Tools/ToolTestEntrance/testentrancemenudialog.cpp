@@ -48,7 +48,7 @@ const ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
     "TestEntrance",
     "tool to test WtEntrance",
     "the 19th of September 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestEntrance.htm",
     GetVersion(),
     GetVersionHistory());

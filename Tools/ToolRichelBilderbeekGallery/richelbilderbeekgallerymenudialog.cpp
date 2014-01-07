@@ -294,7 +294,7 @@ const ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
     "RichelBilderbeekGallery",
     "gallery of Richel Bilderbeek's work",
     "the 20st of February 2012",
-    "2012",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolRichelBilderbeekGallery.htm",
     GetVersion(),
     GetVersionHistory());

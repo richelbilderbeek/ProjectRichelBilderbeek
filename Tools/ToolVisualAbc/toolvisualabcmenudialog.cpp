@@ -27,7 +27,7 @@ const ribi::About ribi::VisualAbcMenuDialog::GetAbout() const noexcept
     "Visual ABC",
     "visual ABC editor",
     "the 5th of May 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolVisualAbc.htm",
     GetVersion(),
     GetVersionHistory());

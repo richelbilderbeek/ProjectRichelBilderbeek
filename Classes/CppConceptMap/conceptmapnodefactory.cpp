@@ -14,13 +14,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
   const double y)
 {
   assert(concept);
-  boost::shared_ptr<ribi::cmap::Node> node(
+  const boost::shared_ptr<ribi::cmap::Node> node(
     new cmap::Node(
       concept,x,y
     )
   );
   assert(node);
-  assert(operator==(*concept,*node->GetConcept()));
+  assert(*concept == *node->GetConcept());
   assert(node->GetX() == x);
   assert(node->GetY() == y);
   return node;
@@ -78,7 +78,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::NodeFactory:
     {
       static int x = 0;
       static int y = 1;
-      boost::shared_ptr<ribi::cmap::Node> p(new Node(c,x,y));
+      const boost::shared_ptr<Node> p(new Node(c,x,y));
       ++x;
       ++y;
       assert(p);

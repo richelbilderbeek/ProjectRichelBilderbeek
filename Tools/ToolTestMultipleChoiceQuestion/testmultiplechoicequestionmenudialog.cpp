@@ -78,7 +78,7 @@ const ribi::About ribi::TestMultipleChoiceQuestionMenuDialog::GetAbout() const n
     "TestMultipleChoiceQuestion",
     "tool to test the MultipleChoiceQuestion and MultipleChoiceQuestionDialog classes",
     "the 20th of August 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolTestMultipleChoiceQuestion.htm",
     GetVersion(),
     GetVersionHistory());

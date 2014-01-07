@@ -36,12 +36,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-//From http://www.richelbilderbeek.nl/CppGetCurrentFolder.htm
-const std::string GetCurrentFolder(const std::string& s)
-{
-  return ribi::fileio::GetPath(s);
-}
-
 int main(int argc, char* argv[])
 {
   START_TRACE();

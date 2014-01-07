@@ -71,7 +71,7 @@ const ribi::About ribi::reversi::MenuDialog::GetAbout() const noexcept
     "Reversi",
     "Reversi clone",
     "today",
-    "200x-2013",
+    "200x-2014",
     "http://www.richelbilderbeek.nl/GameReversi.htm",
     GetVersion(),
     GetVersionHistory());

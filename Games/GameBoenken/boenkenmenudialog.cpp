@@ -50,7 +50,7 @@ const ribi::About ribi::Boenken::MenuDialog::GetAbout() const noexcept
     "Boenken",
     "a multiplayer soccer/billiards game",
     "the 17th of November 2012",
-    "2007-2012",
+    "2007-2014",
     "http://www.richelbilderbeek.nl/GameBoenken.htm",
     GetVersion(),
     GetVersionHistory());

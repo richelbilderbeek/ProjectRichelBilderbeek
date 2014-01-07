@@ -214,7 +214,7 @@ const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
     "QtCreatorProFileZipScript",
     "class to create a zip file from a .pro file",
     "the 19th of May 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/CppQtCreatorProFileZipScript.htm",
     GetVersion(),
     GetVersionHistory());

@@ -27,7 +27,7 @@ const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
     "FunctionPlotter",
     "plots a function",
     "the 5th of December 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/FunctionPlotter.htm",
     GetVersion(),
     GetVersionHistory());

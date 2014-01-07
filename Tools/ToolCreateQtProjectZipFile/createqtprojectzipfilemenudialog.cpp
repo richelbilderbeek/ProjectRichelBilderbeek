@@ -67,7 +67,7 @@ const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noe
     "CreateQtProjectZipFile",
     "tool to create a zip file from a Qt project",
     "the 18th of May 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm",
     GetVersion(),
     GetVersionHistory());

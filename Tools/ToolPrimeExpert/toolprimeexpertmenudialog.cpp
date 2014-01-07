@@ -27,7 +27,7 @@ const ribi::About ribi::PrimeExpertMenuDialog::GetAbout() const noexcept
     "PrimeExpert",
     "prime look-up table",
     "the 11th of Oktober 2013",
-    "2008-2013",
+    "2008-2014",
     "http://www.richelbilderbeek.nl/ToolPrimeExpert.htm",
     GetVersion(),
     GetVersionHistory());

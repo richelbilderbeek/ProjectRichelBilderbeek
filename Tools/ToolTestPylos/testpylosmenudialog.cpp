@@ -47,7 +47,7 @@ const ribi::About ribi::TestPylosMenuDialog::GetAbout() const noexcept
     "TestPylos",
     "tool to test the Pylos board classes",
     "the 29th of April 2012",
-    "2010-2012",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolTestPylos.htm",
     GetVersion(),
     GetVersionHistory());

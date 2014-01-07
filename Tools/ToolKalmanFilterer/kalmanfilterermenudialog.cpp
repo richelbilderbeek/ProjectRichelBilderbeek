@@ -37,7 +37,7 @@ const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexc
     "KalmanFilterer",
     "tool to work with Kalman filters",
     "the 17th of July 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolKalmanFilterer.htm",
     GetVersion(),
     GetVersionHistory()

@@ -47,7 +47,7 @@ const ribi::About ribi::TestKeyboardFriendlyGraphicsViewMenuDialog::GetAbout() c
     "TestKeyboardFriendlyGraphicsView",
     "tests QtKeyboardFriendlyGraphicsView",
     "the 19th of December 2012",
-    "2012",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestKeyboardFriendlyGraphicsView.htm",
     GetVersion(),
     GetVersionHistory());

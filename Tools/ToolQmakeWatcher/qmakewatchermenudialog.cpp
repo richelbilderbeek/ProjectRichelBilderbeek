@@ -48,7 +48,7 @@ const ribi::About ribi::QmakeWatcherMenuDialog::GetAbout() const noexcept
     "QmakeWatcher",
     "tool to watch qmake's .pro to Makefile conversion",
     "the 20th of September 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolQmakeWatcher.htm",
     GetVersion(),
     GetVersionHistory()

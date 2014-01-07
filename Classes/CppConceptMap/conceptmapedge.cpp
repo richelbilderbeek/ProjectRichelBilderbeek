@@ -152,7 +152,7 @@ void ribi::cmap::Edge::Test() noexcept
       assert(d);
       if (*c != *d)
       {
-        TRACE("BREAK");
+        TRACE("ERROR");
         TRACE(ToXml(c,AddConst(nodes)));
         TRACE(ToXml(d,AddConst(nodes)));
       }

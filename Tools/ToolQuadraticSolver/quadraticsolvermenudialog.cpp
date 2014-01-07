@@ -46,7 +46,7 @@ const ribi::About ribi::QuadraticSolverMenuDialog::GetAbout() const noexcept
     "QuadraticSolver",
     "solver of quadratic equations",
     "the 1st of Oktober 2013",
-    "2008-2013",
+    "2008-2014",
     "http://www.richelbilderbeek.nl/ToolQuadraticSolver.htm",
     GetVersion(),
     GetVersionHistory());

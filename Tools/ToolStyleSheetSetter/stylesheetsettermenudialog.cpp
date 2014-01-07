@@ -27,7 +27,7 @@ const ribi::About ribi::StyleSheetSetterMenuDialog::GetAbout() const noexcept
     "StyleSheetSetter",
     "",
     "the 29th of November 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolStyleSheetSetter.htm",
     GetVersion(),
     GetVersionHistory());

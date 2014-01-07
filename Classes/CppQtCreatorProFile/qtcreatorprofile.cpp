@@ -86,7 +86,7 @@ const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
     "QtCreatorProFile",
     "class to parse Qt Project files",
     "the 19th of August 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/CppQtCreatorProFile.htm",
     GetVersion(),
     GetVersionHistory());

@@ -106,7 +106,7 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
     "AsciiArter",
     "tool to create ASCII art",
     "the 12th of July 2013",
-    "2006-2013",
+    "2006-2014",
     "http://www.richelbilderbeek.nl/ToolAsciiArter.htm",
     GetVersion(),
     GetVersionHistory());

@@ -27,7 +27,7 @@ const ribi::About ribi::PreDickAdvocaTorMenuDialog::GetAbout() const noexcept
     "PreDickAdvocaTor",
     "tool to correctly predict WC scores", //if the lucky number is correct and the truth becomes reality
     "the 3rd of December 2013",
-    "20010-2013",
+    "20010-2014",
     "http://www.richelbilderbeek.nl/ToolPreDickAdvocaTor.htm",
     GetVersion(),
     GetVersionHistory());

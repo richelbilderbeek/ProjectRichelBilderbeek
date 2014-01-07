@@ -64,7 +64,7 @@ const ribi::About ribi::TestChessMenuDialog::GetAbout() const noexcept
     "TestChess",
     "testing my chess classes",
     "the 25st of January 2012",
-    "2012",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestChess.htm",
     GetVersion(),
     GetVersionHistory());

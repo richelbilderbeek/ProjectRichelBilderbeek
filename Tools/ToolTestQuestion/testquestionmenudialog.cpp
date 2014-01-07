@@ -82,7 +82,7 @@ const ribi::About ribi::TestQuestionMenuDialog::GetAbout() const noexcept
     "TestQuestion",
     "tool to test the Question and QuestionDialog classes",
     "the 20th of August 2013",
-    "2011-2013",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestQuestion.htm",
     GetVersion(),
     GetVersionHistory());

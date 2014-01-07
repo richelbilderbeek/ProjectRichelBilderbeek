@@ -47,7 +47,7 @@ const ribi::About ribi::ToolSimplifyNewickMenuDialog::GetAbout() const noexcept
     "SimplifyNewick",
     "tool to randomly simplify Newick phylogenies",
     "the 19th of September 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm",
     GetVersion(),
     GetVersionHistory());

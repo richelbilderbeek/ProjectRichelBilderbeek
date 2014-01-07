@@ -1849,7 +1849,6 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "volatile","<b><a href=\"CppVo$latile.htm\">vol$atile</a></b>" },
     { "WPainter","<a href=\"CppWP$ai$nter.htm\">W$P$ai$nter</a>" },
     { "Wt::WPen","<a href=\"C$ppW$P$en.htm\">W$t::W$P$en</a>" },
-
   //7
 
     { "#define","<a href=\"CppDefine.htm\">#de$fine</a>" },
@@ -1859,8 +1858,9 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "_delete","_d$elete" },
     { "_signal","_s$ignal" },
     { "_struct","_s$truct" },
-    { "address","<a href=\"CppAd$dress.htm\">ad$dress</a>" },
-    { "Address","<a href=\"CppAd$dress.htm\">Ad$dress</a>" },
+    { "AbsSort","<a href=\"C$ppA$bsS$ort.htm\">A$bsS$ort</a>" },
+    { "address","<a href=\"C$ppAd$dress.htm\">ad$dress</a>" },
+    { "Address","<a href=\"C$ppAd$dress.htm\">Ad$dress</a>" },
     { "adelete","ad$elete" },
     { "Android","<a href=\"CppA$ndroid.htm\">A$ndroid</a>" },
     { "asignal","as$ignal" },

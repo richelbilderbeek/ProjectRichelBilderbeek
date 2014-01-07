@@ -57,7 +57,7 @@ const ribi::About ribi::TestExerciseMenuDialog::GetAbout() const noexcept
     "TestExercise",
     "tool to test the Exercise class",
     "the 2nd of October 2011",
-    "2011",
+    "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestExercise.htm",
     GetVersion(),
     GetVersionHistory());

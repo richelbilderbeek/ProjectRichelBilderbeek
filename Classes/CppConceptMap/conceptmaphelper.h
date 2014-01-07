@@ -54,7 +54,7 @@ namespace cmap {
 /// {1    } -> { {}, {1}                                         }
 /// {1,2  } -> { {}, {1}, {2},      {1,2}                        }
 /// {1,2,3} -> { {}, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3} }
-//From http://www.richelbilderbeek.nl/CppGetCombinations.htm
+//From http://www.richelbilderbeek.nl/GetPermutations.htm
 template <class T>
 const std::vector<std::vector<T> > GetCombinations(const std::vector<T>& v)
 {
@@ -97,7 +97,7 @@ const std::vector<std::string> SafeFileToVector(const std::string& filename);
 
 ///Split an XML std::string into its parts
 //From http://www.richelbilderbeek.nl/CppSplitXml.htm
-const std::vector<std::string> SplitXml(const std::string& s);
+//const std::vector<std::string> SplitXml(const std::string& s);
 
 #ifndef NDEBUG
 ///Test the helper functions
@@ -113,7 +113,7 @@ const std::vector<std::string> Wordwrap(const std::string& s, const std::size_t 
 
 ///Pretty-print an XML std::string by indenting its elements
 //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
-const std::vector<std::string> XmlToPretty(const std::string& s);
+//const std::vector<std::string> XmlToPretty(const std::string& s);
 
 } //~namespace cmap
 } //~namespace ribi

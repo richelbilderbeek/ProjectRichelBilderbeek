@@ -38,6 +38,7 @@
 #include "qtconceptmaptoolsitem.h"
 #include "qtscopeddisable.h"
 #include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic pop
 
 ///Collect all QGraphicsItems with class T in an unorderly way
@@ -646,7 +647,7 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
       //OH OH, AN ERROR! HELP ME OUT AND GIMME LOTS OF DEBUG INFO!
       {
         const std::vector<std::string> v
-          = cmap::XmlToPretty(cmap::ConceptMap::ToXml(map));
+          = xml::XmlToPretty(cmap::ConceptMap::ToXml(map));
         std::clog << "original map:\n";
         std::clog << "\n";
         std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::clog,"\n"));
@@ -654,7 +655,7 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr<const ribi::cmap::
       }
       {
         const std::vector<std::string> v
-          = cmap::XmlToPretty(cmap::ConceptMap::ToXml(GetConceptMap()));
+          = xml::XmlToPretty(cmap::ConceptMap::ToXml(GetConceptMap()));
         std::clog << "GetConceptMap():\n";
         std::clog << "\n";
         std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(std::clog,"\n"));

@@ -111,6 +111,7 @@ private:
 };
 
 bool operator==(const cmap::Example& lhs, const cmap::Example& rhs);
+bool operator!=(const cmap::Example& lhs, const cmap::Example& rhs);
 
 bool operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs);
 bool operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<cmap::Example>& rhs);

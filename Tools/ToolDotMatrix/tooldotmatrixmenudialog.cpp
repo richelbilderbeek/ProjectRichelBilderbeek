@@ -81,7 +81,7 @@ const ribi::About ribi::ToolDotMatrixMenuDialog::GetAbout() const noexcept
     "DotMatrix",
     "generates a dot matrix font",
     "the 11th of October 2013",
-    "2013",
+    "2013-2014",
     "http://www.richelbilderbeek.nl/ToolDotMatrix.htm",
     GetVersion(),
     GetVersionHistory());
@@ -138,6 +138,14 @@ void ribi::ToolDotMatrixMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolDotMatrixMenuDialog::Test");
+  const std::string text = "Hello world";
+  const int spacing = 1;
+  const boost::shared_ptr<const ribi::DotMatrixString> m {
+    new ribi::DotMatrixString(text,spacing)
+  };
+  std::stringstream s;
+  s << *m;
+  assert(!s.str().empty());
   TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
 }
 #endif

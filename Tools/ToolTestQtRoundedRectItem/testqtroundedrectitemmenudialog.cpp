@@ -27,7 +27,7 @@ const ribi::About ribi::TestQtRoundedRectItemMenuDialog::GetAbout() const noexce
     "TestQtRoundedRectItem",
     "tests QtRoundedRectItemt",
     "the 20th of May 2013",
-    "2012-2013",
+    "2012-2014",
     "http://www.richelbilderbeek.nl/ToolTestQtRoundedRectItem.htm",
     GetVersion(),
     GetVersionHistory());

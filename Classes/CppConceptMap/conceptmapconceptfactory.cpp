@@ -23,7 +23,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
 
-  boost::shared_ptr<ribi::cmap::Concept> concept(
+  boost::shared_ptr<Concept> concept(
     new Concept(
       name,
       examples,
@@ -41,7 +41,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
 const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCopy(
   const boost::shared_ptr<const ribi::cmap::Concept>& concept)
 {
-  const boost::shared_ptr<ribi::cmap::Examples> examples
+  const boost::shared_ptr<Examples> examples
     = ExamplesFactory::Create(concept->GetExamples());
   assert(examples);
   assert(*examples == *concept->GetExamples());
@@ -49,7 +49,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCop
   assert(concept->GetRatingComplexity() >= -1);
   assert(concept->GetRatingComplexity() <=  2);
 
-  const boost::shared_ptr<ribi::cmap::Concept> q
+  const boost::shared_ptr<Concept> q
     = Create(
       concept->GetName(),
       examples,
@@ -96,11 +96,11 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
     }
   );
 
-  const boost::shared_ptr<ribi::cmap::Examples> examples
+  const boost::shared_ptr<Examples> examples
     = ExamplesFactory::Create(w);
   assert(examples);
 
-  const boost::shared_ptr<ribi::cmap::Concept> concept
+  const boost::shared_ptr<Concept> concept
     = Create(
     name,
     examples,
@@ -114,46 +114,48 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
 
 const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFactory::GetTests()
 {
-  std::vector<boost::shared_ptr<ribi::cmap::Concept> > v(6);
+  std::vector<boost::shared_ptr<Concept> > v;
   {
-    const boost::shared_ptr<ribi::cmap::Examples> examples = ExamplesFactory::Create();
+    const boost::shared_ptr<Examples> examples = ExamplesFactory::Create();
     assert(examples);
-    const boost::shared_ptr<ribi::cmap::Concept> p = Create("Concept without examples", examples, false, 0, 1, 2);
+    const boost::shared_ptr<Concept> p = Create("Concept without examples", examples, false, 0, 1, 2);
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
-    v[0] = p;
+    v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::cmap::Concept> p = Create("Concept with one example", { { "Only example", cmap::Competency::profession } }, 1, 2, 0);
+    const boost::shared_ptr<Concept> p = Create("Concept with one example", { { "Only example", cmap::Competency::profession } }, 1, 2, 0);
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
-    v[1] = p;
+    v.push_back(p);
   }
+  /*
   {
-    const boost::shared_ptr<ribi::cmap::Concept> p = Create("Concept with two examples", { { "First example", cmap::Competency::organisations }, { "Second example", cmap::Competency::social_surroundings } }, 2, 0, 1);
+    const boost::shared_ptr<Concept> p = Create("Concept with two examples", { { "First example", cmap::Competency::organisations }, { "Second example", cmap::Competency::social_surroundings } }, 2, 0, 1);
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
-    v[2] = p;
+    v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::cmap::Concept> p = Create("Concept with three examples", { { "Example 1 of 3", cmap::Competency::target_audience }, { "Example 2 of 3", cmap::Competency::ti_knowledge }, { "Example 3 of 3", cmap::Competency::prof_growth } }, 0, 1, 2);
+    const boost::shared_ptr<Concept> p = Create("Concept with three examples", { { "Example 1 of 3", cmap::Competency::target_audience }, { "Example 2 of 3", cmap::Competency::ti_knowledge }, { "Example 3 of 3", cmap::Competency::prof_growth } }, 0, 1, 2);
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
-    v[3] = p;
+    v.push_back(p);
   }
   {
-    const boost::shared_ptr<ribi::cmap::Concept> p = Create("Concept with four Roman examples", { { "Example I/IV", cmap::Competency::misc }, { "Example II/IV", cmap::Competency::uninitialized }, { "Example III/IV", cmap::Competency::profession }, { "Example III/IV", cmap::Competency::social_surroundings } }, 1, 2, 0);
+    const boost::shared_ptr<Concept> p = Create("Concept with four Roman examples", { { "Example I/IV", cmap::Competency::misc }, { "Example II/IV", cmap::Competency::uninitialized }, { "Example III/IV", cmap::Competency::profession }, { "Example III/IV", cmap::Competency::social_surroundings } }, 1, 2, 0);
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
-    v[4] = p;
+    v.push_back(p);
   }
+  */
   {
-    const boost::shared_ptr<ribi::cmap::Concept> p = Create(
+    const boost::shared_ptr<Concept> p = Create(
       "Very long multi-line concept with four Roman examples that also each span multiple lines, that is, eighty characters",
       {
         { "Example I/IV, spanning multiple lines (that is, having at least eight characters) and is rated as cmap::Competency::misc", cmap::Competency::misc },
@@ -165,24 +167,11 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
     assert(p);
     assert(p->GetRatingComplexity() >= -1);
     assert(p->GetRatingComplexity() <=  2);
-    v[5] = p;
+    v.push_back(p);
   }
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ribi::cmap::Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
-  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<ribi::cmap::Concept>& p) { return p; } ));
+  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return !p; } ) == 0); //FIX 2012-01-02
+  //assert(std::all_of(v.begin(),v.end(),[](const boost::shared_ptr<Concept>& p) { return p; } ));
   assert(v[0]->GetExamples());
 
   return v;
-  //Version below appears to work differently in cross compiler
-  /*
-  return
-    {
-      {
-        Create("Concept without examples", ExamplesFactory::Create(), 0, 1, 2),
-        Create("Concept with one example", { { "Only example", cmap::Competency::profession } }, 1, 2, 0),
-        Create("Concept with two examples", { { "First example", cmap::Competency::organisations }, { "Second example", cmap::Competency::social_surroundings } }, 2, 0, 1),
-        Create("Concept with three examples", { { "Example 1 of 3", cmap::Competency::target_audience }, { "Example 2 of 3", cmap::Competency::ti_knowledge }, { "Example 3 of 3", cmap::Competency::prof_growth } }, 0, 1, 2),
-        Create("Concept with four Roman examples", { { "Example I/IV", cmap::Competency::misc }, { "Example II/IV", cmap::Competency::uninitialized }, { "Example III/IV", cmap::Competency::profession }, { "Example III/IV", cmap::Competency::social_surroundings } }, 1, 2, 0)
-      }
-    }; //Double braces not needed in future GCC version
-  */
 }

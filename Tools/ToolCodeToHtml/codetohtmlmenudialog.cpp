@@ -154,7 +154,7 @@ const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
     "CodeToHtml",
     "tool to convert code to heavily-linked HTML",
     "the 26th of November 2013",
-    "2010-2013",
+    "2010-2014",
     "http://www.richelbilderbeek.nl/ToolCodeToHtml.htm",
     GetVersion(),
     GetVersionHistory()
