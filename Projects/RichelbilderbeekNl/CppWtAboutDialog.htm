@@ -25,16 +25,16 @@
 <!-- start of code -->
 <table summary="./CppWtAboutDialog/CppWtAboutDialog.pri" border = "1"><tr><td><code>
 INCLUDEPATH += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppAbout<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppWtAboutDialog<br/>
 <br/>
 SOURCES += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppAbout/about.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppWtAboutDialog/wtaboutdialog.cpp<br/>
 <br/>
 HEADERS&nbsp;&nbsp;+= \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppAbout/about.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppWtAboutDialog/wtaboutdialog.h<br/>
 <br/>
 OTHER_FILES += \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppAbout/Licence.txt<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppWtAboutDialog/Licence.txt<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -304,13 +304,19 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 //---------------------------------------------------------------------------<br/>
 #include &lt;string&gt;<br/>
 <br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 #include &lt;boost/foreach.hpp&gt;<br/>
 <br/>
 #include &lt;Wt/WBreak&gt;<br/>
+#ifndef _WIN32<br/>
 #include &lt;Wt/WConfig.h&gt;<br/>
+#endif<br/>
 #include &lt;Wt/WLabel&gt;<br/>
 #include &lt;Wt/WTextArea&gt;<br/>
 #include "wtaboutdialog.h"<br/>
+#pragma GCC diagnostic pop<br/>
 <br/>
 ribi::WtAboutDialog::WtAboutDialog(<br/>
 &nbsp;&nbsp;const About&amp; about_original,<br/>

@@ -139,19 +139,19 @@ struct Rating<br/>
 &nbsp;&nbsp;static int SuggestComplexity(const int n_edges, const int n_examples);<br/>
 <br/>
 &nbsp;&nbsp;///Calculate a suggested complexity<br/>
-&nbsp;&nbsp;static int SuggestComplexity(const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; m_sub_concept_map);<br/>
+&nbsp;&nbsp;static int SuggestComplexity(const boost::shared_ptr&lt;const ConceptMap&gt; m_sub_concept_map);<br/>
 <br/>
 &nbsp;&nbsp;///Calculate a suggested concreteness<br/>
 &nbsp;&nbsp;static int SuggestConcreteness(const int n_examples);<br/>
 <br/>
 &nbsp;&nbsp;///Calculate a suggested concreteness<br/>
-&nbsp;&nbsp;static int SuggestConcreteness(const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; m_sub_concept_map);<br/>
+&nbsp;&nbsp;static int SuggestConcreteness(const boost::shared_ptr&lt;const ConceptMap&gt; m_sub_concept_map);<br/>
 <br/>
 &nbsp;&nbsp;///Calculate a suggested specificity<br/>
 &nbsp;&nbsp;static int SuggestSpecificity(const int n_examples);<br/>
 <br/>
 &nbsp;&nbsp;///Calculate a suggested specificity<br/>
-&nbsp;&nbsp;static int SuggestSpecificity(const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; m_sub_concept_map);<br/>
+&nbsp;&nbsp;static int SuggestSpecificity(const boost::shared_ptr&lt;const ConceptMap&gt; m_sub_concept_map);<br/>
 };<br/>
 <br/>
 } //~namespace pvdb<br/>
@@ -190,9 +190,6 @@ SOURCES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmapnewarrow.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmapnode.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmapratestrategy.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapconceptmapeditwidget.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapratewidget.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmapwidget.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmaptoolsitem.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmaprateconceptdialognewname.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmaprateconcepttallydialognewname.cpp \<br/>
@@ -204,7 +201,10 @@ SOURCES += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtdisplayconceptmap.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtrateconceptmap.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtitemdisplaystrategy.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmapcenternode.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmap_test_qteditconceptmap.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmap_test_qtrateconceptmap.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmap_test_qtconceptmap.cpp<br/>
 <br/>
 HEADERS += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../Classes/CppQtConceptMap/qtconceptmapexamplesitem.h \<br/>
@@ -1009,6 +1009,7 @@ Public License instead of this License.&nbsp;&nbsp;But first, please read<br/>
 #include "qtconceptmaptoolsitem.h"<br/>
 #include "qtscopeddisable.h"<br/>
 #include "trace.h"<br/>
+#include "xml.h"<br/>
 #pragma GCC diagnostic pop<br/>
 <br/>
 ///Collect all QGraphicsItems with class T in an unorderly way<br/>
@@ -1070,6 +1071,9 @@ ribi::cmap::QtConceptMap::QtConceptMap(<br/>
 {<br/>
 &nbsp;&nbsp;assert( (concept_map || !concept_map)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Also empty concept maps must be displayed");<br/>
+&nbsp;&nbsp;assert(GetConceptMap() == concept_map);<br/>
+&nbsp;&nbsp;assert( (!concept_map || concept_map-&gt;IsValid())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Expect no or a valid concept map");<br/>
 <br/>
 &nbsp;&nbsp;//Cannot test this ABC here, its derived classes will test themselves<br/>
 <br/>
@@ -1093,9 +1097,6 @@ ribi::cmap::QtConceptMap::QtConceptMap(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;setBackgroundBrush(QBrush(QColor(255,255,255)));<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;assert(GetConceptMap() == concept_map);<br/>
-&nbsp;&nbsp;assert( (!concept_map || concept_map-&gt;IsValid())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Expect no or a valid concept map");<br/>
 }<br/>
 <br/>
 <br/>
@@ -1107,7 +1108,6 @@ ribi::cmap::QtConceptMap::~QtConceptMap() noexcept<br/>
 <br/>
 void ribi::cmap::QtConceptMap::BuildQtConceptMap()<br/>
 {<br/>
-<br/>
 &nbsp;&nbsp;CleanMe();<br/>
 &nbsp;&nbsp;assert(m_concept_map);<br/>
 &nbsp;&nbsp;assert(m_concept_map-&gt;IsValid());<br/>
@@ -1121,11 +1121,13 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()<br/>
 &nbsp;&nbsp;//Add the nodes to the scene<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;//Add the main question as the first node<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Node&gt; node = m_concept_map-&gt;GetNodes()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Node&gt; node = m_concept_map-&gt;GetNodes()[0];<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QtNode * qtnode = nullptr;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (boost::shared_ptr&lt;CenterNode&gt; centernode = boost::dynamic_pointer_cast&lt;ribi::cmap::CenterNode&gt;(node))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (IsCenterNode(node))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;CenterNode&gt; centernode<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= boost::dynamic_pointer_cast&lt;CenterNode&gt;(node);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtnode = new QtCenterNode(centernode);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;else<br/>
@@ -1154,6 +1156,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(i &lt; nodes.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;ribi::cmap::Node&gt; node = nodes[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(node);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!IsCenterNode(node));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtNode * const qtnode = AddNode(node);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtnodes.push_back(qtnode);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(Collect&lt;QtNode&gt;(scene()).size() == i + 1 &amp;&amp; "Node is added to scene");<br/>
@@ -1274,14 +1277,14 @@ const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const<br/>
 &nbsp;&nbsp;assert(scene()-&gt;items()[0]);<br/>
 &nbsp;&nbsp;QList&lt;QGraphicsItem *&gt; v = scene()-&gt;items();<br/>
 &nbsp;&nbsp;assert(std::count_if(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[this](const QGraphicsItem * const item) { return this-&gt;IsCenterNode(item); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[this](const QGraphicsItem * const item) { return this-&gt;IsQtCenterNode(item); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;) &lt; 2 &amp;&amp; "There is at most one center node (zero for most sub-concept maps, one for a complete concept map");<br/>
 &nbsp;&nbsp;const auto iter = std::find_if(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[this](const QGraphicsItem * const item) { return this-&gt;IsCenterNode(item); } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[this](const QGraphicsItem * const item) { return this-&gt;IsQtCenterNode(item); } );<br/>
 &nbsp;&nbsp;assert(iter != v.end());<br/>
 &nbsp;&nbsp;const QtNode * const center_node = dynamic_cast&lt;QtNode*&gt;(*iter);<br/>
 &nbsp;&nbsp;assert(center_node);<br/>
-&nbsp;&nbsp;assert(IsCenterNode(center_node));<br/>
+&nbsp;&nbsp;assert(IsQtCenterNode(center_node));<br/>
 &nbsp;&nbsp;return center_node;<br/>
 }<br/>
 <br/>
@@ -1363,7 +1366,7 @@ const std::vector&lt;std::string&gt; ribi::cmap::QtConceptMap::GetVersionHistory
 &nbsp;&nbsp;};<br/>
 }<br/>
 <br/>
-bool ribi::cmap::QtConceptMap::IsCenterNode(const QGraphicsItem* const item)<br/>
+bool ribi::cmap::QtConceptMap::IsQtCenterNode(const QGraphicsItem* const item)<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;const QtCenterNode * const qtnode = dynamic_cast&lt;const QtCenterNode*&gt;(item);<br/>
@@ -1552,7 +1555,7 @@ void ribi::cmap::QtConceptMap::Shuffle()<br/>
 &nbsp;&nbsp;std::for_each(nodes.begin(),nodes.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[this](QtNode* qtnode)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!IsCenterNode(qtnode))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!IsQtCenterNode(qtnode))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double x = qtnode-&gt;pos().x();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double y = qtnode-&gt;pos().y();<br/>
@@ -1615,7 +1618,7 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr&lt;const ribi::cma
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//OH OH, AN ERROR! HELP ME OUT AND GIMME LOTS OF DEBUG INFO!<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= cmap::XmlToPretty(cmap::ConceptMap::ToXml(map));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= xml::XmlToPretty(cmap::ConceptMap::ToXml(map));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::clog &lt;&lt; "original map:\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::clog &lt;&lt; "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::copy(v.begin(),v.end(),std::ostream_iterator&lt;std::string&gt;(std::clog,"\n"));<br/>
@@ -1623,7 +1626,7 @@ void ribi::cmap::QtConceptMap::TestMe(const boost::shared_ptr&lt;const ribi::cma
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;std::string&gt; v<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= cmap::XmlToPretty(cmap::ConceptMap::ToXml(GetConceptMap()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= xml::XmlToPretty(cmap::ConceptMap::ToXml(GetConceptMap()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::clog &lt;&lt; "GetConceptMap():\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::clog &lt;&lt; "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::copy(v.begin(),v.end(),std::ostream_iterator&lt;std::string&gt;(std::clog,"\n"));<br/>
@@ -1671,7 +1674,7 @@ class QtConceptMap : public ribi::QtKeyboardFriendlyGraphicsView<br/>
 <br/>
 public:<br/>
 &nbsp;&nbsp;explicit QtConceptMap(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; concept_map,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;QtConceptMap(const QtConceptMap&amp;) = delete;<br/>
 &nbsp;&nbsp;QtConceptMap&amp; operator=(const QtConceptMap&amp;) = delete;<br/>
@@ -1687,8 +1690,8 @@ public:<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the concept map<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; GetConceptMap() const { return m_concept_map; }<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::cmap::ConceptMap&gt; GetConceptMap()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { return m_concept_map; }<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;const ConceptMap&gt; GetConceptMap() const { return m_concept_map; }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConceptMap&gt; GetConceptMap()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { return m_concept_map; }<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the read-only Qt edge items<br/>
 &nbsp;&nbsp;///Read-and-write Qt edge items are only supported for QtEditConceptMap<br/>
@@ -1709,7 +1712,7 @@ public:<br/>
 &nbsp;&nbsp;void Shuffle();<br/>
 <br/>
 &nbsp;&nbsp;///Test this class with a derived class instance<br/>
-&nbsp;&nbsp;static void Test(const boost::shared_ptr&lt;const QtConceptMap&gt;&amp; widget);<br/>
+&nbsp;&nbsp;static void Test(const boost::shared_ptr&lt;const QtConceptMap&gt;&amp; concept_map);<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 public slots:<br/>
@@ -1720,16 +1723,16 @@ protected:<br/>
 <br/>
 &nbsp;&nbsp;///Adds an Edge and connects (some of) its signals to slots present in the derived classes<br/>
 &nbsp;&nbsp;///Edge cannot be const, as an Edge has a Concept that the user might want to edit<br/>
-&nbsp;&nbsp;virtual void AddEdge(const boost::shared_ptr&lt;ribi::cmap::Edge&gt; edge) = 0;<br/>
+&nbsp;&nbsp;virtual void AddEdge(const boost::shared_ptr&lt;Edge&gt; edge) = 0;<br/>
 <br/>
 &nbsp;&nbsp;///Adds a node and connects (some of) its signals to slots present in the derived classes<br/>
 &nbsp;&nbsp;///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene<br/>
-&nbsp;&nbsp;virtual QtNode * AddNode(const boost::shared_ptr&lt;ribi::cmap::Node&gt; node) = 0;<br/>
+&nbsp;&nbsp;virtual QtNode * AddNode(const boost::shared_ptr&lt;Node&gt; node) = 0;<br/>
 <br/>
 &nbsp;&nbsp;///Initialize the widget with the loaded concept map<br/>
 &nbsp;&nbsp;///BuildQtConceptMap changes the concept map entered, by changing some GUI<br/>
 &nbsp;&nbsp;///elements (coordinats of the nodes, for example).<br/>
-&nbsp;&nbsp;///Instead of using IsEqual use HasSameContent<br/>
+&nbsp;&nbsp;///Instead of using operator== use HasSameContent<br/>
 &nbsp;&nbsp;void BuildQtConceptMap();<br/>
 <br/>
 &nbsp;&nbsp;///Remove all Qt and non-Qt items and add new ones<br/>
@@ -1744,7 +1747,7 @@ protected:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const QtNode* const to) const;<br/>
 <br/>
 &nbsp;&nbsp;///Find the QtNode containing the Node<br/>
-&nbsp;&nbsp;QtNode * FindQtNode(const boost::shared_ptr&lt;ribi::cmap::Node&gt; node) const;<br/>
+&nbsp;&nbsp;QtNode * FindQtNode(const boost::shared_ptr&lt;Node&gt; node) const;<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the center node<br/>
 &nbsp;&nbsp;const QtNode * GetCenterNode() const;<br/>
@@ -1760,7 +1763,7 @@ protected:<br/>
 &nbsp;&nbsp;QtNode* GetItemBelowCursor(const QPointF&amp; pos) const;<br/>
 <br/>
 &nbsp;&nbsp;///Check if this item is the center node<br/>
-&nbsp;&nbsp;static bool IsCenterNode(const QGraphicsItem* const item);<br/>
+&nbsp;&nbsp;static bool IsQtCenterNode(const QGraphicsItem* const item);<br/>
 <br/>
 &nbsp;&nbsp;///Have the nodes in the concept map be positioned once already, or must<br/>
 &nbsp;&nbsp;///these be (re)positioned. '(re)', because the nodes are initially positioned at the origin<br/>
@@ -1775,14 +1778,14 @@ protected:<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test the internals of this class:<br/>
 &nbsp;&nbsp;///Does the current content really reflect the map<br/>
-&nbsp;&nbsp;void TestMe(const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; map) const;<br/>
+&nbsp;&nbsp;void TestMe(const boost::shared_ptr&lt;const ConceptMap&gt; map) const;<br/>
 &nbsp;&nbsp;#endif<br/>
 <br/>
 private:<br/>
 <br/>
 &nbsp;&nbsp;///The concept map to work on, the Model<br/>
 &nbsp;&nbsp;///m_concept_map-&gt;GetNodes()[0] contains the focal node<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; m_concept_map;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; m_concept_map;<br/>
 <br/>
 &nbsp;&nbsp;///The item showing the examples<br/>
 &nbsp;&nbsp;QtExamplesItem * m_examples_item;<br/>
@@ -1821,10 +1824,117 @@ public slots:<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>./CppQtConceptMap/qtconceptmap_test_qtconceptmapconceptmapeditwidget.cpp</h2>
+<h2>./CppQtConceptMap/qtconceptmap_test_qtconceptmap.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="./CppQtConceptMap/qtconceptmap_test_qtconceptmapconceptmapeditwidget.cpp" border = "1"><tr><td><code>
+<table summary="./CppQtConceptMap/qtconceptmap_test_qtconceptmap.cpp" border = "1"><tr><td><code>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+#include "qtconceptmap.h"<br/>
+<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+#include "conceptmap.h"<br/>
+#include "conceptmapfactory.h"<br/>
+#include "trace.h"<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+#ifndef NDEBUG<br/>
+void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr&lt;const QtConceptMap&gt;&amp; concept_map)<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;TRACE("Started ribi::cmap::QtConceptMap::Test");<br/>
+&nbsp;&nbsp;assert(concept_map);<br/>
+&nbsp;&nbsp;//#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
+&nbsp;&nbsp;#ifdef&nbsp;&nbsp;I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
+&nbsp;&nbsp;//Test conversion between widget and concept map for simple homomorphous concept maps<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const auto v = ribi::cmap::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int sz = boost::numeric_cast&lt;int&gt;(v.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=sz; i++)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!cmap::ConceptMap::HasSameContent(*v[i],*n))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("GetSimpleHomomorphousTestConceptMaps");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//Test conversion between widget and concept map for complex homomorphous concept maps<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; &gt; v = ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int sz = v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=sz; i++)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(w);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!cmap::ConceptMap::HasSameContent(*v[i],*n))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("GetComplexHomomorphousTestConceptMaps");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//Test conversion between widget and concept map for heteromorphous concept maps<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const auto v = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int sz = v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=sz; i++)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(v[i]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!cmap::ConceptMap::HasSameContent(*v[i],*n))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("GetHeteromorphousTestConceptMaps");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//Test conversion between widget and concept map for brute-force concept map<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; &gt; maps = ribi::cmap::ConceptMapFactory::GetAllTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::for_each(maps.begin(),maps.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[widget](const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt;&amp; m)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*m,*n));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;#endif<br/>
+&nbsp;&nbsp;TRACE("ribi::cmap::QtConceptMap::Test finished successfully");<br/>
+}<br/>
+#endif<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppQtConceptMap/qtconceptmap_test_qteditconceptmap.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppQtConceptMap/qtconceptmap_test_qteditconceptmap.cpp" border = "1"><tr><td><code>
 #pragma GCC diagnostic push<br/>
 #pragma GCC diagnostic ignored "-Weffc++"<br/>
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -1932,10 +2042,10 @@ void ribi::cmap::QtEditConceptMap::Test() noexcept<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<h2>./CppQtConceptMap/qtconceptmap_test_qtconceptmapratewidget.cpp</h2>
+<h2>./CppQtConceptMap/qtconceptmap_test_qtrateconceptmap.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
-<table summary="./CppQtConceptMap/qtconceptmap_test_qtconceptmapratewidget.cpp" border = "1"><tr><td><code>
+<table summary="./CppQtConceptMap/qtconceptmap_test_qtrateconceptmap.cpp" border = "1"><tr><td><code>
 #pragma GCC diagnostic push<br/>
 #pragma GCC diagnostic ignored "-Weffc++"<br/>
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -1996,113 +2106,6 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;t.detach();<br/>
 &nbsp;&nbsp;#endif<br/>
-}<br/>
-#endif<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>./CppQtConceptMap/qtconceptmap_test_qtconceptmapwidget.cpp</h2>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table summary="./CppQtConceptMap/qtconceptmap_test_qtconceptmapwidget.cpp" border = "1"><tr><td><code>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
-#include "qtconceptmap.h"<br/>
-<br/>
-#include &lt;cassert&gt;<br/>
-#include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
-<br/>
-#include "conceptmap.h"<br/>
-#include "conceptmapfactory.h"<br/>
-#include "trace.h"<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-#ifndef NDEBUG<br/>
-void ribi::cmap::QtConceptMap::Test(const boost::shared_ptr&lt;const QtConceptMap&gt;&amp; widget)<br/>
-{<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;TRACE("Started ribi::cmap::QtConceptMap::Test");<br/>
-&nbsp;&nbsp;assert(widget);<br/>
-&nbsp;&nbsp;//#define I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
-&nbsp;&nbsp;#ifdef&nbsp;&nbsp;I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
-&nbsp;&nbsp;//Test conversion between widget and concept map for simple homomorphous concept maps<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const auto v = ribi::cmap::ConceptMapFactory::GetSimpleHomomorphousTestConceptMaps();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int sz = boost::numeric_cast&lt;int&gt;(v.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=sz; i++)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(w);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(v[i]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!cmap::ConceptMap::HasSameContent(*v[i],*n))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("GetSimpleHomomorphousTestConceptMaps");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//Test conversion between widget and concept map for complex homomorphous concept maps<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; &gt; v = ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int sz = v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=sz; i++)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(w);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(v[i]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!cmap::ConceptMap::HasSameContent(*v[i],*n))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("GetComplexHomomorphousTestConceptMaps");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//Test conversion between widget and concept map for heteromorphous concept maps<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const auto v = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int sz = v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=sz; i++)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(v[i]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!cmap::ConceptMap::HasSameContent(*v[i],*n))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE(i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRACE("GetHeteromorphousTestConceptMaps");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//Test conversion between widget and concept map for brute-force concept map<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; &gt; maps = ribi::cmap::ConceptMapFactory::GetAllTests();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::for_each(maps.begin(),maps.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[widget](const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt;&amp; m)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;auto w = widget-&gt;CreateNewDerived();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//w-&gt;ReadFromConceptMap(m);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; n = w-&gt;GetConceptMap();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(cmap::ConceptMap::HasSameContent(*m,*n));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;#endif<br/>
-&nbsp;&nbsp;TRACE("ribi::cmap::QtConceptMap::Test finished successfully");<br/>
 }<br/>
 #endif<br/>
 </code></td></tr></table>
@@ -2351,7 +2354,7 @@ struct QtCenterNode : public QtNode<br/>
 &nbsp;&nbsp;explicit QtCenterNode(const boost::shared_ptr&lt;CenterNode&gt; node);<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;static const boost::shared_ptr&lt;QtItemDisplayStrategy&gt; CreateConceptItem(const boost::shared_ptr&lt;ribi::cmap::Node&gt; node);<br/>
+&nbsp;&nbsp;static const boost::shared_ptr&lt;QtItemDisplayStrategy&gt; CreateConceptItem(const boost::shared_ptr&lt;Node&gt; node);<br/>
 };<br/>
 <br/>
 } //~namespace cmap<br/>
@@ -2953,7 +2956,7 @@ public:<br/>
 &nbsp;&nbsp;///concept is not const as user might want to modify it<br/>
 &nbsp;&nbsp;///concept is only modified if user clicks OK<br/>
 &nbsp;&nbsp;explicit QtConceptMapConceptEditDialog(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Concept&gt; concept,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;QtConceptMapConceptEditDialog(const QtConceptMapConceptEditDialog&amp;) = delete;<br/>
 &nbsp;&nbsp;QtConceptMapConceptEditDialog&amp; operator=(const QtConceptMapConceptEditDialog&amp;) = delete;<br/>
@@ -2980,7 +2983,7 @@ private:<br/>
 &nbsp;&nbsp;const int m_rating_specificity;<br/>
 #else<br/>
 &nbsp;&nbsp;///The concept being modified, cannot be const<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; m_concept;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;Concept&gt; m_concept;<br/>
 <br/>
 #endif<br/>
 <br/>
@@ -3180,14 +3183,12 @@ ribi::cmap::QtDisplayStrategy::~QtDisplayStrategy() noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;//2013-08-25<br/>
 &nbsp;&nbsp;GetConcept()-&gt;m_signal_rating_concreteness_changed.disconnect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::bind(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;//2013-08-25<br/>
 &nbsp;&nbsp;GetConcept()-&gt;m_signal_rating_specificity_changed.disconnect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::bind(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;ribi::cmap::QtDisplayStrategy::UpdateBrushesAndPens,<br/>
@@ -3336,7 +3337,7 @@ struct QtDisplayStrategy : public QtItemDisplayStrategy<br/>
 &nbsp;&nbsp;~QtDisplayStrategy() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;//concept can be modified (as it is not const), but I can promise I will try to prevent this from happening<br/>
-&nbsp;&nbsp;explicit QtDisplayStrategy(const boost::shared_ptr&lt;ribi::cmap::Concept&gt;&amp; concept);<br/>
+&nbsp;&nbsp;explicit QtDisplayStrategy(const boost::shared_ptr&lt;Concept&gt;&amp; concept);<br/>
 <br/>
 protected:<br/>
 &nbsp;&nbsp;virtual void keyPressEvent(QKeyEvent *) noexcept {} //Do not respond to key presses<br/>
@@ -3504,7 +3505,7 @@ QRectF ribi::cmap::QtEdge::boundingRect() const<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Bounding rects should be synced, but this member function is used to sync them,"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "so this must be checked on a higher level");<br/>
 <br/>
-&nbsp;&nbsp;return QtConceptMapElement::boundingRect() //2013-07-06: Bypassed going via m_concept_item<br/>
+&nbsp;&nbsp;return QtConceptMapElement::boundingRect() //Bypassed going via m_concept_item<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;.united(m_arrow-&gt;boundingRect().translated(-this-&gt;pos()));<br/>
 &nbsp;&nbsp;//return m_concept_item-&gt;boundingRect()<br/>
 &nbsp;&nbsp;//&nbsp;&nbsp;.united(m_arrow-&gt;boundingRect().translated(-this-&gt;pos()));<br/>
@@ -3650,7 +3651,7 @@ void ribi::cmap::QtEdge::OnEdgeChanged(const cmap::Edge * const edge)<br/>
 &nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "Names/texts must be in sync before");<br/>
 <br/>
 &nbsp;&nbsp;//this-&gt;SetName(m_concept_item-&gt;GetText());<br/>
-&nbsp;&nbsp;this-&gt;SetName(edge-&gt;GetConcept()-&gt;GetName()); //2013-09-15<br/>
+&nbsp;&nbsp;this-&gt;SetName(edge-&gt;GetConcept()-&gt;GetName());<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;//assert(m_edge-&gt;GetConcept()-&gt;GetName() == GetName()<br/>
@@ -4189,7 +4190,7 @@ struct QtEdge : public QtConceptMapElement<br/>
 {<br/>
 <br/>
 &nbsp;&nbsp;QtEdge(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Edge&gt; edge,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Edge&gt; edge,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;QtItemDisplayStrategy&gt; concept_item,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QtNode* const from,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QtNode* const to);<br/>
@@ -4205,8 +4206,8 @@ struct QtEdge : public QtConceptMapElement<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;const QtQuadBezierArrowItem&gt;&nbsp;&nbsp;GetArrow() const { return m_arrow; }<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtQuadBezierArrowItem&gt;&amp; GetArrow()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { return m_arrow; }<br/>
 <br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept() const;<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;const Concept&gt;&nbsp;&nbsp;GetConcept() const;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concept&gt;&nbsp;&nbsp;GetConcept()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 <br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;const QtItemDisplayStrategy&gt; GetDisplayStrategy() const final { return m_concept_item; }<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final { return m_concept_item; }<br/>
@@ -4225,7 +4226,7 @@ struct QtEdge : public QtConceptMapElement<br/>
 &nbsp;&nbsp;const QtNode * GetTo() const { return m_to; }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtNode * GetTo()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { return m_to; }<br/>
 <br/>
-&nbsp;&nbsp;void SetConcept(const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept);<br/>
+&nbsp;&nbsp;void SetConcept(const boost::shared_ptr&lt;Concept&gt; concept);<br/>
 <br/>
 &nbsp;&nbsp;void SetHasHeadArrow(const bool has_head_arrow);<br/>
 &nbsp;&nbsp;void SetHasTailArrow(const bool has_tail_arrow);<br/>
@@ -4263,7 +4264,7 @@ private:<br/>
 &nbsp;&nbsp;const QPen m_focus_pen;<br/>
 <br/>
 &nbsp;&nbsp;///The edge<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Edge&gt; m_edge;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;Edge&gt; m_edge;<br/>
 <br/>
 &nbsp;&nbsp;///The node item the arrow originates from<br/>
 &nbsp;&nbsp;QtNode * const m_from;<br/>
@@ -4420,7 +4421,7 @@ namespace cmap {<br/>
 struct QtEditStrategy : public QtItemDisplayStrategy<br/>
 {<br/>
 &nbsp;&nbsp;//concept will be modified<br/>
-&nbsp;&nbsp;explicit QtEditStrategy(const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept);<br/>
+&nbsp;&nbsp;explicit QtEditStrategy(const boost::shared_ptr&lt;Concept&gt; concept);<br/>
 &nbsp;&nbsp;~QtEditStrategy() noexcept;<br/>
 &nbsp;&nbsp;///Signalled when the user wants to edit<br/>
 &nbsp;&nbsp;boost::signals2::signal&lt;void (QtItemDisplayStrategy *)&gt; m_signal_request_edit;<br/>
@@ -4516,8 +4517,8 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15<br/>
 &nbsp;&nbsp;virtual void EnableAll() = 0;<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the Concept from either a Node or an Edge<br/>
-&nbsp;&nbsp;virtual const boost::shared_ptr&lt;const ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept() const = 0;<br/>
-&nbsp;&nbsp;virtual const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br/>
+&nbsp;&nbsp;virtual const boost::shared_ptr&lt;const Concept&gt;&nbsp;&nbsp;GetConcept() const = 0;<br/>
+&nbsp;&nbsp;virtual const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concept&gt;&nbsp;&nbsp;GetConcept()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br/>
 <br/>
 &nbsp;&nbsp;virtual const boost::shared_ptr&lt;const QtItemDisplayStrategy&gt; GetDisplayStrategy() const = 0;<br/>
 &nbsp;&nbsp;virtual const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = 0;<br/>
@@ -4551,7 +4552,7 @@ struct QtConceptMapElement : public QtRoundedEditRectItem //NEW 2013-09-15<br/>
 &nbsp;&nbsp;void hoverMoveEvent(QGraphicsSceneHoverEvent *) final;<br/>
 <br/>
 &nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;virtual void SetConcept(const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept) = 0;<br/>
+&nbsp;&nbsp;virtual void SetConcept(const boost::shared_ptr&lt;Concept&gt; concept) = 0;<br/>
 <br/>
 };<br/>
 <br/>
@@ -4903,7 +4904,6 @@ public:<br/>
 &nbsp;&nbsp;///If set with a nullptr, highlighting the current item stops<br/>
 &nbsp;&nbsp;///If set with the same item twice, nothing new happens<br/>
 &nbsp;&nbsp;void SetItem(QtNode* const item);<br/>
-<br/>
 <br/>
 private:<br/>
 &nbsp;&nbsp;///A simple counter<br/>
@@ -5288,7 +5288,7 @@ QRectF ribi::cmap::QtNode::boundingRect() const<br/>
 &nbsp;&nbsp;//assert(m_concept_item-&gt;boundingRect() == QtConceptMapItem::boundingRect()<br/>
 &nbsp;&nbsp;//&nbsp;&nbsp;&amp;&amp; "Bounding rects must by synced");<br/>
 &nbsp;&nbsp;return m_display_strategy-&gt;boundingRect();<br/>
-&nbsp;&nbsp;//return QtConceptMapItem::boundingRect(); //2013-05-20: Bypassed going via m_concept_item<br/>
+&nbsp;&nbsp;//return QtConceptMapItem::boundingRect(); //Bypassed going via m_concept_item<br/>
 }<br/>
 <br/>
 QBrush ribi::cmap::QtNode::brush() const<br/>
@@ -5321,7 +5321,7 @@ void ribi::cmap::QtNode::focusInEvent(QFocusEvent*)<br/>
 void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)<br/>
 {<br/>
 &nbsp;&nbsp;m_display_strategy-&gt;SetContourPen(m_contour_pen); //Updates itself<br/>
-&nbsp;&nbsp;//m_signal_item_has_updated(0); //2013-01-20: causes Examples to get hidden //BUG<br/>
+&nbsp;&nbsp;//m_signal_item_has_updated(0); //causes Examples to get hidden<br/>
 }<br/>
 <br/>
 const boost::shared_ptr&lt;const ribi::cmap::Concept&gt; ribi::cmap::QtNode::GetConcept() const<br/>
@@ -5654,8 +5654,8 @@ struct QtNode : public QtConceptMapElement<br/>
 &nbsp;&nbsp;void DisableAll();<br/>
 &nbsp;&nbsp;void EnableAll();<br/>
 <br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept() const;<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;const Concept&gt;&nbsp;&nbsp;GetConcept() const;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concept&gt;&nbsp;&nbsp;GetConcept()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 <br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;const QtItemDisplayStrategy&gt; GetDisplayStrategy() const final { return m_display_strategy; }<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtItemDisplayStrategy&gt; GetDisplayStrategy()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; final { return m_display_strategy; }<br/>
@@ -5663,7 +5663,7 @@ struct QtNode : public QtConceptMapElement<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;const cmap::Node&gt;&nbsp;&nbsp;GetNode() const { return m_node; }<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmap::Node&gt;&amp; GetNode()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { return m_node; }<br/>
 <br/>
-&nbsp;&nbsp;void SetConcept(const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept);<br/>
+&nbsp;&nbsp;void SetConcept(const boost::shared_ptr&lt;Concept&gt; concept);<br/>
 <br/>
 &nbsp;&nbsp;void SetName(const std::string&amp; name);<br/>
 <br/>
@@ -5701,7 +5701,7 @@ private:<br/>
 &nbsp;&nbsp;const QPen m_focus_pen;<br/>
 <br/>
 &nbsp;&nbsp;///The node being edited, or displayed and not changed, or rated<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Node&gt; m_node;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;Node&gt; m_node;<br/>
 <br/>
 &nbsp;&nbsp;void OnItemHasUpdated();<br/>
 <br/>
@@ -6086,14 +6086,14 @@ class QtRateConceptDialogNewName : public ribi::QtHideAndShowDialog<br/>
 &nbsp;&nbsp;///concept is the center node<br/>
 &nbsp;&nbsp;///sub_concept_map[0] is the same as concept and might be changed<br/>
 &nbsp;&nbsp;///sub_concept_map is non-const, as GetRatedConcept will produce a new concept<br/>
-&nbsp;&nbsp;explicit QtRateConceptDialogNewName(const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; sub_concept_map,<br/>
+&nbsp;&nbsp;explicit QtRateConceptDialogNewName(const boost::shared_ptr&lt;ConceptMap&gt; sub_concept_map,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;QtRateConceptDialogNewName(const QtRateConceptDialogNewName&amp;) = delete;<br/>
 &nbsp;&nbsp;QtRateConceptDialogNewName&amp; operator=(const QtRateConceptDialogNewName&amp;) = delete;<br/>
 &nbsp;&nbsp;~QtRateConceptDialogNewName() noexcept;<br/>
 <br/>
 &nbsp;&nbsp;///Set suggested values for this concept<br/>
-&nbsp;&nbsp;//void MakeSuggestions(const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; sub_concept_map);<br/>
+&nbsp;&nbsp;//void MakeSuggestions(const boost::shared_ptr&lt;const ConceptMap&gt; sub_concept_map);<br/>
 <br/>
 protected:<br/>
 &nbsp;&nbsp;void keyPressEvent(QKeyEvent *);<br/>
@@ -6114,7 +6114,7 @@ private:<br/>
 &nbsp;&nbsp;bool m_button_ok_clicked;<br/>
 <br/>
 &nbsp;&nbsp;///The center concept, may be changed when the user clicks OK<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;/* NO CONST */ ribi::cmap::Concept&gt; m_concept;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;/* NO CONST */ Concept&gt; m_concept;<br/>
 <br/>
 &nbsp;&nbsp;///The complexity at this dialog its creation, stored so that the user can cancel the dialog<br/>
 &nbsp;&nbsp;const int m_initial_complexity;<br/>
@@ -6122,14 +6122,14 @@ private:<br/>
 &nbsp;&nbsp;const int m_initial_specificity;<br/>
 <br/>
 &nbsp;&nbsp;///Cannot be const, only used in calculating the suggestions<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; m_sub_concept_map;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; m_sub_concept_map;<br/>
 <br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;QtRateConceptMap&gt; m_widget;<br/>
 &nbsp;&nbsp;//QtConceptMapRateWidget * const m_widget; //WHY DID I DO THIS???<br/>
 <br/>
-&nbsp;&nbsp;void OnRatingComplexityChanged(const ribi::cmap::Concept* concept);<br/>
-&nbsp;&nbsp;void OnRatingConcretenessChanged(const ribi::cmap::Concept* concept);<br/>
-&nbsp;&nbsp;void OnRatingSpecificityChanged(const ribi::cmap::Concept* concept);<br/>
+&nbsp;&nbsp;void OnRatingComplexityChanged(const Concept* concept);<br/>
+&nbsp;&nbsp;void OnRatingConcretenessChanged(const Concept* concept);<br/>
+&nbsp;&nbsp;void OnRatingSpecificityChanged(const Concept* concept);<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;///Test this class<br/>
@@ -6398,12 +6398,12 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(<br
 &nbsp;&nbsp;const int n_rows = static_cast&lt;int&gt;(m_data.size());<br/>
 &nbsp;&nbsp;const int n_cols = 4;<br/>
 &nbsp;&nbsp;ui-&gt;table-&gt;setRowCount(n_rows);<br/>
-&nbsp;&nbsp;ui-&gt;table-&gt;setWordWrap(true); //NEW 2013-09-23<br/>
+&nbsp;&nbsp;ui-&gt;table-&gt;setWordWrap(true);<br/>
 &nbsp;&nbsp;for (int row_index=0; row_index!=n_rows; ++row_index)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const Row&amp; row = m_data[row_index];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept = row.first;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int example_index = row.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept = std::get&lt;1&gt;(row);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int example_index = std::get&lt;2&gt;(row);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;if (example_index == -1)<br/>
@@ -6439,7 +6439,20 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(<br
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i-&gt;setFlags(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Qt::ItemIsEnabled);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string s = concept-&gt;GetName();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const Edge&gt; edge { std::get&lt;0&gt;(row) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(edge);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const bool center_is_from {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edge-&gt;GetFrom()-&gt;GetConcept() == sub_concept_map-&gt;GetNodes().at(0)-&gt;GetConcept()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const Node&gt; other {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;center_is_from ? edge-&gt;GetTo() : edge-&gt;GetFrom()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::string s {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::string("via ")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ concept-&gt;GetName() + " verbonden met '"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ other-&gt;GetConcept()-&gt;GetName()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ std::string("'")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i-&gt;setText(s.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int column = 3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ui-&gt;table-&gt;setItem(row_index, column, i);<br/>
@@ -6525,7 +6538,8 @@ const std::vector&lt;ribi::cmap::QtRateConceptTallyDialogNewName::Row&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const int n_examples = boost::numeric_cast&lt;int&gt;(focal_concept-&gt;GetExamples()-&gt;Get().size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=n_examples; ++i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(std::make_pair(focal_concept,i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Edge&gt; empty_edge;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(std::make_tuple(empty_edge,focal_concept,i));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -6541,11 +6555,12 @@ const std::vector&lt;ribi::cmap::QtRateConceptTallyDialogNewName::Row&gt;<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept = edge-&gt;GetConcept();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(std::make_pair(concept,-1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(std::make_tuple(edge,concept,-1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const int n_examples = boost::numeric_cast&lt;int&gt;(concept-&gt;GetExamples()-&gt;Get().size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;for (int i=0; i!=n_examples; ++i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(std::make_pair(concept,i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::shared_ptr&lt;Edge&gt; empty_edge;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(std::make_tuple(empty_edge,concept,i));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;return data;<br/>
@@ -6589,8 +6604,8 @@ const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; ribi::cmap::QtRateConceptT
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;assert(sub_concept_map);<br/>
-&nbsp;&nbsp;assert(!boost::dynamic_pointer_cast&lt;cmap::CenterNode&gt;(sub_concept_map-&gt;GetNodes()[0]));<br/>
-&nbsp;&nbsp;assert(!boost::dynamic_pointer_cast&lt;cmap::CenterNode&gt;(sub_concept_map-&gt;GetNodes()[1]));<br/>
+&nbsp;&nbsp;assert(!boost::dynamic_pointer_cast&lt;CenterNode&gt;(sub_concept_map-&gt;GetNodes()[0]));<br/>
+&nbsp;&nbsp;assert(!boost::dynamic_pointer_cast&lt;CenterNode&gt;(sub_concept_map-&gt;GetNodes()[1]));<br/>
 &nbsp;&nbsp;return sub_concept_map;<br/>
 }<br/>
 <br/>
@@ -6616,7 +6631,7 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedComplexity() const<
 &nbsp;&nbsp;const int n_edges = std::accumulate(m_data.begin(),m_data.end(),0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](int init, const Row&amp; row)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (row.second == -1 &amp;&amp; row.first-&gt;GetIsComplex() ? 1 : 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (std::get&lt;2&gt;(row) == -1 &amp;&amp; std::get&lt;1&gt;(row)-&gt;GetIsComplex() ? 1 : 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
@@ -6624,12 +6639,12 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedComplexity() const<
 &nbsp;&nbsp;const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](int init, const Row&amp; row)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int index = row.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int index = std::get&lt;2&gt;(row);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (index == -1) return init + 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(row.first);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(row.first-&gt;GetExamples());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(index &lt; static_cast&lt;int&gt;(row.first-&gt;GetExamples()-&gt;Get().size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (row.first-&gt;GetExamples()-&gt;Get()[index]-&gt;GetIsComplex() ? 1 : 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::get&lt;1&gt;(row));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::get&lt;1&gt;(row)-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(index &lt; static_cast&lt;int&gt;(std::get&lt;1&gt;(row)-&gt;GetExamples()-&gt;Get().size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (std::get&lt;1&gt;(row)-&gt;GetExamples()-&gt;Get()[index]-&gt;GetIsComplex() ? 1 : 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;const int n_tallied = n_examples + n_edges;<br/>
@@ -6644,12 +6659,12 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedConcreteness() cons
 &nbsp;&nbsp;const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](int init, const Row&amp; row)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int index = row.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int index = std::get&lt;2&gt;(row);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (index == -1) return init + 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(row.first);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(row.first-&gt;GetExamples());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(index &lt; static_cast&lt;int&gt;(row.first-&gt;GetExamples()-&gt;Get().size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (row.first-&gt;GetExamples()-&gt;Get()[index]-&gt;GetIsConcrete() ? 1 : 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::get&lt;1&gt;(row));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::get&lt;1&gt;(row)-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(index &lt; static_cast&lt;int&gt;(std::get&lt;1&gt;(row)-&gt;GetExamples()-&gt;Get().size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (std::get&lt;1&gt;(row)-&gt;GetExamples()-&gt;Get()[index]-&gt;GetIsConcrete() ? 1 : 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;const int n_tallied = n_examples;<br/>
@@ -6664,12 +6679,12 @@ int ribi::cmap::QtRateConceptTallyDialogNewName::GetSuggestedSpecificity() const
 &nbsp;&nbsp;const int n_examples = std::accumulate(m_data.begin(),m_data.end(),0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](int init, const Row&amp; row)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int index = row.second;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int index = std::get&lt;2&gt;(row);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (index == -1) return init + 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(row.first);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(index &lt; static_cast&lt;int&gt;(row.first-&gt;GetExamples()-&gt;Get().size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(row.first-&gt;GetExamples());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (row.first-&gt;GetExamples()-&gt;Get()[index]-&gt;GetIsSpecific() ? 1 : 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::get&lt;1&gt;(row));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(index &lt; static_cast&lt;int&gt;(std::get&lt;1&gt;(row)-&gt;GetExamples()-&gt;Get().size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::get&lt;1&gt;(row)-&gt;GetExamples());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return init + (std::get&lt;1&gt;(row)-&gt;GetExamples()-&gt;Get()[index]-&gt;GetIsSpecific() ? 1 : 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;const int n_tallied = n_examples;<br/>
@@ -6718,8 +6733,8 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::OnCellChanged(int row_index, i
 &nbsp;&nbsp;const QTableWidgetItem * const item = ui-&gt;table-&gt;item(row_index,col);<br/>
 &nbsp;&nbsp;assert(item);<br/>
 &nbsp;&nbsp;const Row&amp; row = m_data[row_index];<br/>
-&nbsp;&nbsp;boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept = row.first;<br/>
-&nbsp;&nbsp;const int index = row.second;<br/>
+&nbsp;&nbsp;boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept = std::get&lt;1&gt;(row);<br/>
+&nbsp;&nbsp;const int index = std::get&lt;2&gt;(row);<br/>
 <br/>
 &nbsp;&nbsp;if (index == -1)<br/>
 &nbsp;&nbsp;{<br/>
@@ -6832,7 +6847,12 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,0)-&gt;checkState() == (edge-&gt;GetConcept()-&gt;GetIsComplex() ? Qt::Checked : Qt::Unchecked));<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,1)-&gt;text() == "");<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,2)-&gt;text() == "");<br/>
-&nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text() == QString(edge-&gt;GetConcept()-&gt;GetName().c_str()));<br/>
+&nbsp;&nbsp;//NEW 20131231: now the text contains both<br/>
+&nbsp;&nbsp;//- the concept name of the edge<br/>
+&nbsp;&nbsp;//- the name of the node the edge is connected to<br/>
+&nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text().toStdString().find(edge-&gt;GetConcept()-&gt;GetName()) != std::string::npos);<br/>
+&nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text().toStdString().find(edge-&gt;GetTo()-&gt;GetConcept()-&gt;GetName()) != std::string::npos);<br/>
+&nbsp;&nbsp;//OLD assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text() == QString(edge-&gt;GetConcept()-&gt;GetName().c_str()));<br/>
 <br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(2,0)-&gt;checkState() == (edge-&gt;GetConcept()-&gt;GetExamples()-&gt;Get()[0]-&gt;GetIsComplex() ? Qt::Checked : Qt::Unchecked));<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(2,1)-&gt;checkState() == (edge-&gt;GetConcept()-&gt;GetExamples()-&gt;Get()[0]-&gt;GetIsConcrete() ? Qt::Checked : Qt::Unchecked));<br/>
@@ -6863,7 +6883,13 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,0)-&gt;checkState() == (edge-&gt;GetConcept()-&gt;GetIsComplex() ? Qt::Checked : Qt::Unchecked));<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,1)-&gt;text() == "");<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,2)-&gt;text() == "");<br/>
-&nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text() == QString(edge-&gt;GetConcept()-&gt;GetName().c_str()));<br/>
+<br/>
+&nbsp;&nbsp;//NEW 20131231: now the text contains both<br/>
+&nbsp;&nbsp;//- the concept name of the edge<br/>
+&nbsp;&nbsp;//- the name of the node the edge is connected to<br/>
+&nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text().toStdString().find(edge-&gt;GetConcept()-&gt;GetName()) != std::string::npos);<br/>
+&nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text().toStdString().find(edge-&gt;GetTo()-&gt;GetConcept()-&gt;GetName()) != std::string::npos);<br/>
+&nbsp;&nbsp;//OLD assert(d.ui-&gt;table-&gt;item(1,3)-&gt;text() == QString(edge-&gt;GetConcept()-&gt;GetName().c_str()));<br/>
 <br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(2,0)-&gt;checkState() == (edge-&gt;GetConcept()-&gt;GetExamples()-&gt;Get()[0]-&gt;GetIsComplex() ? Qt::Checked : Qt::Unchecked));<br/>
 &nbsp;&nbsp;assert(d.ui-&gt;table-&gt;item(2,1)-&gt;checkState() == (edge-&gt;GetConcept()-&gt;GetExamples()-&gt;Get()[0]-&gt;GetIsConcrete() ? Qt::Checked : Qt::Unchecked));<br/>
@@ -6908,13 +6934,13 @@ class QtRateConceptTallyDialogNewName : public ribi::QtHideAndShowDialog<br/>
 public:<br/>
 &nbsp;&nbsp;///Sub concept map is modified by this dialog<br/>
 &nbsp;&nbsp;explicit QtRateConceptTallyDialogNewName(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;/* const */ ribi::cmap::ConceptMap&gt; sub_concept_map,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;/* const */ ConceptMap&gt; sub_concept_map,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget *parent = 0);<br/>
 &nbsp;&nbsp;QtRateConceptTallyDialogNewName(const QtRateConceptTallyDialogNewName&amp;) = delete;<br/>
 &nbsp;&nbsp;QtRateConceptTallyDialogNewName&amp; operator=(const QtRateConceptTallyDialogNewName&amp;) = delete;<br/>
 &nbsp;&nbsp;~QtRateConceptTallyDialogNewName() noexcept;<br/>
 <br/>
-&nbsp;&nbsp;static const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; CreateTestConceptMap();<br/>
+&nbsp;&nbsp;static const boost::shared_ptr&lt;ConceptMap&gt; CreateTestConceptMap();<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the suggested complexity, calculated from this dialog<br/>
 &nbsp;&nbsp;int GetSuggestedComplexity() const;<br/>
@@ -6934,25 +6960,26 @@ private slots:<br/>
 <br/>
 private:<br/>
 &nbsp;&nbsp;Ui::QtRateConceptTallyDialogNewName *ui;<br/>
-&nbsp;&nbsp;//const boost::shared_ptr&lt;/* const */ ribi::cmap::ConceptMap&gt; m_map;<br/>
+&nbsp;&nbsp;//const boost::shared_ptr&lt;/* const */ ConceptMap&gt; m_map;<br/>
 <br/>
 &nbsp;&nbsp;///The concept map is converted to this data type<br/>
 &nbsp;&nbsp;///The std::vector index equals the row<br/>
-&nbsp;&nbsp;///Every row is a pair of a boost::shared_ptr&lt;ribi::cmap::Concept&gt; and an integer<br/>
-&nbsp;&nbsp;///The boost::shared_ptr&lt;ribi::cmap::Concept&gt; is the concept being judged,<br/>
+&nbsp;&nbsp;///Every row is a pair of a boost::shared_ptr&lt;Concept&gt; and an integer<br/>
+&nbsp;&nbsp;///The boost::shared_ptr&lt;Concept&gt; is the concept being judged,<br/>
 &nbsp;&nbsp;///&nbsp;&nbsp;which might be the concept on the focal node and the concept on the egdes connected to the focal node<br/>
 &nbsp;&nbsp;///The index is the index of the example being judged, or -1, denoting it is the concept name being judged<br/>
-&nbsp;&nbsp;typedef std::pair&lt;boost::shared_ptr&lt;ribi::cmap::Concept&gt;,int&gt; Row;<br/>
+&nbsp;&nbsp;//typedef std::pair&lt;boost::shared_ptr&lt;Concept&gt;,int&gt; Row;<br/>
+&nbsp;&nbsp;typedef std::tuple&lt;boost::shared_ptr&lt;const Edge&gt;,boost::shared_ptr&lt;Concept&gt;,int&gt; Row;<br/>
 &nbsp;&nbsp;const std::vector&lt;Row&gt; m_data;<br/>
 <br/>
 &nbsp;&nbsp;///The name of this concept, for example 'my own development'<br/>
 &nbsp;&nbsp;const std::string m_focus_name;<br/>
 <br/>
 &nbsp;&nbsp;static const std::vector&lt;Row&gt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CreateData(const boost::shared_ptr&lt;/* const */ ribi::cmap::ConceptMap&gt; map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CreateData(const boost::shared_ptr&lt;/* const */ ConceptMap&gt; map);<br/>
 <br/>
 &nbsp;&nbsp;static const std::string<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;GetFocusName(const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; sub_concept_map);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;GetFocusName(const boost::shared_ptr&lt;const ConceptMap&gt; sub_concept_map);<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;static void Test() noexcept;<br/>
@@ -7283,7 +7310,7 @@ class QtConceptMapRatedConceptDialog : public QDialog<br/>
 public:<br/>
 <br/>
 &nbsp;&nbsp;explicit QtConceptMapRatedConceptDialog(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const ConceptMap&gt; concept_map,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;const cmap::Node&gt; node,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget *parent = 0);<br/>
 &nbsp;&nbsp;QtConceptMapRatedConceptDialog(const QtConceptMapRatedConceptDialog&amp;) = delete;<br/>
@@ -7751,7 +7778,7 @@ class QtRateExamplesDialogNewName : public ribi::QtHideAndShowDialog<br/>
 &nbsp;&nbsp;<br/>
 public:<br/>
 &nbsp;&nbsp;explicit QtRateExamplesDialogNewName(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; concept,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Concept&gt; concept,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;QtRateExamplesDialogNewName(const QtRateExamplesDialogNewName&amp;) = delete;<br/>
 &nbsp;&nbsp;QtRateExamplesDialogNewName&amp; operator=(const QtRateExamplesDialogNewName&amp;) = delete;<br/>
@@ -7775,10 +7802,10 @@ private:<br/>
 <br/>
 &nbsp;&nbsp;///The concept, which is modified when clicking OK, but remains unmodified when<br/>
 &nbsp;&nbsp;///the user clicks cancel<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Concept&gt; m_concept;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;Concept&gt; m_concept;<br/>
 <br/>
 &nbsp;&nbsp;///Obtain the rated examples<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Examples&gt; GetRatedExamples() const;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;Examples&gt; GetRatedExamples() const;<br/>
 <br/>
 &nbsp;&nbsp;///Test this class<br/>
 &nbsp;&nbsp;static void Test() noexcept;<br/>
@@ -8187,21 +8214,18 @@ ribi::cmap::QtRateStrategy::QtRateStrategy(const boost::shared_ptr&lt;ribi::cmap
 <br/>
 ribi::cmap::QtRateStrategy::~QtRateStrategy() noexcept<br/>
 {<br/>
-&nbsp;&nbsp;//2013-08-25<br/>
 &nbsp;&nbsp;GetConcept()-&gt;m_signal_rating_complexity_changed.disconnect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::bind(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;ribi::cmap::QtRateStrategy::UpdateBrushesAndPens,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;//2013-08-25<br/>
 &nbsp;&nbsp;GetConcept()-&gt;m_signal_rating_concreteness_changed.disconnect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::bind(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;ribi::cmap::QtRateStrategy::UpdateBrushesAndPens,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;//2013-08-25<br/>
 &nbsp;&nbsp;GetConcept()-&gt;m_signal_rating_specificity_changed.disconnect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boost::bind(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;ribi::cmap::QtRateStrategy::UpdateBrushesAndPens,<br/>
@@ -8391,7 +8415,7 @@ namespace cmap {<br/>
 struct QtRateStrategy : public QtItemDisplayStrategy<br/>
 {<br/>
 &nbsp;&nbsp;//concept will be modified<br/>
-&nbsp;&nbsp;explicit QtRateStrategy(const boost::shared_ptr&lt;ribi::cmap::Concept&gt;&amp; concept);<br/>
+&nbsp;&nbsp;explicit QtRateStrategy(const boost::shared_ptr&lt;Concept&gt;&amp; concept);<br/>
 <br/>
 &nbsp;&nbsp;virtual ~QtRateStrategy() noexcept;<br/>
 <br/>
@@ -8621,17 +8645,35 @@ struct QtTool : public QGraphicsPixmapItem<br/>
 #include "qtconceptmapwidget.h"<br/>
 <br/>
 #include &lt;cassert&gt;<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
+#include &lt;QMouseEvent&gt;<br/>
+<br/>
 #include "qtconceptmap.h"<br/>
+#include "qteditconceptmap.h"<br/>
+#include "qtdisplayconceptmap.h"<br/>
+#include "qtrateconceptmap.h"<br/>
 #include "conceptmapcommand.h"<br/>
 #include "conceptmapwidget.h"<br/>
-<br/>
+#include "qtconceptmapdisplaystrategy.h"<br/>
+#include "trace.h"<br/>
+#pragma GCC diagnostic pop<br/>
 <br/>
 ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;QtConceptMap&gt; qtconceptmap)<br/>
 &nbsp;&nbsp;: m_qtconceptmap(qtconceptmap),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_widget(new Widget(qtconceptmap-&gt;GetConceptMap()))<br/>
 {<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;#endif<br/>
 &nbsp;&nbsp;this-&gt;setScene(m_qtconceptmap-&gt;GetScene());<br/>
+&nbsp;&nbsp;m_widget-&gt;m_signal_concept_map_changed.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;boost::bind(&amp;ribi::cmap::QtConceptMapWidget::OnConceptMapChanged,this)<br/>
+&nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
 <br/>
@@ -8644,8 +8686,107 @@ bool ribi::cmap::QtConceptMapWidget::CanDoCommand(<br/>
 void ribi::cmap::QtConceptMapWidget::DoCommand(<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;Command&gt; command) noexcept<br/>
 {<br/>
+&nbsp;&nbsp;assert(command);<br/>
+&nbsp;&nbsp;assert(m_widget.get());<br/>
 &nbsp;&nbsp;command-&gt;DoCommand(m_widget.get());<br/>
 }<br/>
+<br/>
+void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept<br/>
+{<br/>
+&nbsp;&nbsp;TRACE(e);<br/>
+}<br/>
+<br/>
+void ribi::cmap::QtConceptMapWidget::mouseDoubleClickEvent(QMouseEvent * e)<br/>
+{<br/>
+&nbsp;&nbsp;TRACE(e);<br/>
+}<br/>
+<br/>
+void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e)<br/>
+{<br/>
+&nbsp;&nbsp;TRACE(e);<br/>
+}<br/>
+<br/>
+void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e)<br/>
+{<br/>
+&nbsp;&nbsp;//Try to unselect a potentially focused node or edge<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;CommandLoseFocus&gt; lose_focus {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;new CommandLoseFocus<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;const bool has_focus = m_widget-&gt;CanDoCommand(lose_focus);<br/>
+&nbsp;&nbsp;TRACE(has_focus);<br/>
+<br/>
+&nbsp;&nbsp;const QPointF pos = QGraphicsView::mapToScene(e-&gt;x(),e-&gt;y());<br/>
+<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;CommandSetFocus&gt; set_focus {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;new CommandSetFocus(pos.x(),pos.y())<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;const bool can_set_focus = m_widget-&gt;CanDoCommand(set_focus);<br/>
+&nbsp;&nbsp;TRACE(can_set_focus);<br/>
+&nbsp;&nbsp;if (has_focus)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (can_set_focus)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Focus transferred<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_widget-&gt;DoCommand(lose_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(m_widget-&gt;CanDoCommand(set_focus));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_widget-&gt;DoCommand(set_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Lose focus<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!can_set_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_widget-&gt;DoCommand(lose_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!has_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (can_set_focus)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//No focus yet, next will be<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_widget-&gt;DoCommand(set_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!can_set_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Done: currently no focus, next<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;if (boost::dynamic_pointer_cast&lt;QtDisplayConceptMap&gt;(m_qtconceptmap))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap.reset(new QtDisplayConceptMap(this-&gt;m_widget-&gt;GetConceptMap()));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else if (boost::dynamic_pointer_cast&lt;QtEditConceptMap&gt;(m_qtconceptmap))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap.reset(new QtEditConceptMap(this-&gt;m_widget-&gt;GetConceptMap(),QtEditConceptMap::Mode::simple));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else if (boost::dynamic_pointer_cast&lt;QtRateConceptMap&gt;(m_qtconceptmap))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap.reset(new QtRateConceptMap(this-&gt;m_widget-&gt;GetConceptMap()));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!"Should not get here: unknown QtConceptMap derived class");<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+#ifndef NDEBUG<br/>
+void ribi::cmap::QtConceptMapWidget::Test() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;TRACE("Starting ribi::cmap::QtConceptMapWidget::Test()");<br/>
+<br/>
+&nbsp;&nbsp;TRACE("Finished ribi::cmap::QtConceptMapWidget::Test()");<br/>
+}<br/>
+#endif<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -8687,6 +8828,14 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView<br/>
 &nbsp;&nbsp;bool CanDoCommand(const boost::shared_ptr&lt;const Command&gt; command) const noexcept;<br/>
 &nbsp;&nbsp;void DoCommand(const boost::shared_ptr&lt;Command&gt; command) noexcept;<br/>
 <br/>
+&nbsp;&nbsp;protected:<br/>
+&nbsp;&nbsp;///QtConceptMapWidget intercepts all user interactions and converts these<br/>
+&nbsp;&nbsp;///to commands<br/>
+&nbsp;&nbsp;void keyPressEvent(QKeyEvent *) noexcept;<br/>
+&nbsp;&nbsp;void mouseDoubleClickEvent(QMouseEvent *);<br/>
+&nbsp;&nbsp;void mouseMoveEvent(QMouseEvent *);<br/>
+&nbsp;&nbsp;void mousePressEvent(QMouseEvent *);<br/>
+<br/>
 &nbsp;&nbsp;private:<br/>
 &nbsp;&nbsp;///Displaying the concept map, the View<br/>
 &nbsp;&nbsp;///This display is connected to the Widget/Model by signals<br/>
@@ -8696,6 +8845,14 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView<br/>
 &nbsp;&nbsp;///The nonvisual concept map widget, the Model<br/>
 &nbsp;&nbsp;///The Widget is worked upon, the signal it emits are listened to by the QtConceptMap/View<br/>
 &nbsp;&nbsp;boost::shared_ptr&lt;Widget&gt; m_widget;<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;///Called when Widget emits m_signal_concept_map_changed<br/>
+&nbsp;&nbsp;///Which is emitted when the ConceptMap changes as a whole<br/>
+&nbsp;&nbsp;void OnConceptMapChanged() noexcept;<br/>
 };<br/>
 <br/>
 } //~namespace cmap<br/>
@@ -8792,7 +8949,7 @@ void ribi::cmap::QtDisplayConceptMap::AddEdge(<br/>
 &nbsp;&nbsp;assert(qtedge);<br/>
 <br/>
 &nbsp;&nbsp;//Edges connected to the center node do not show their concepts<br/>
-&nbsp;&nbsp;if (IsCenterNode(from) || IsCenterNode(to))<br/>
+&nbsp;&nbsp;if (IsQtCenterNode(from) || IsQtCenterNode(to))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtedge-&gt;GetDisplayStrategy()-&gt;setVisible(false);<br/>
 &nbsp;&nbsp;}<br/>
@@ -8990,7 +9147,7 @@ struct QtDisplayConceptMap : public QtConceptMap<br/>
 &nbsp;&nbsp;typedef QtDisplayConceptMap This_t;<br/>
 <br/>
 &nbsp;&nbsp;QtDisplayConceptMap(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; concept_map = boost::shared_ptr&lt;ConceptMap&gt;(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;~QtDisplayConceptMap() noexcept {}<br/>
 <br/>
@@ -9007,11 +9164,11 @@ private:<br/>
 &nbsp;&nbsp;///Adds an Edge and connects (some of) its signals to slots present in the derived classes<br/>
 &nbsp;&nbsp;///Edge cannot be const, as it has a Concept on it that the user might want to edit<br/>
 &nbsp;&nbsp;///In this derived class, I promise not to change the Edge<br/>
-&nbsp;&nbsp;void AddEdge(const boost::shared_ptr&lt;ribi::cmap::Edge&gt; edge);<br/>
+&nbsp;&nbsp;void AddEdge(const boost::shared_ptr&lt;Edge&gt; edge);<br/>
 <br/>
 &nbsp;&nbsp;///Adds a node and connects (some of) its signals to slots present in the derived classes<br/>
 &nbsp;&nbsp;///In this derived class, I promise not to change the Node<br/>
-&nbsp;&nbsp;QtNode * AddNode(const boost::shared_ptr&lt;ribi::cmap::Node&gt; node);<br/>
+&nbsp;&nbsp;QtNode * AddNode(const boost::shared_ptr&lt;Node&gt; node);<br/>
 <br/>
 &nbsp;&nbsp;void CleanMe();<br/>
 <br/>
@@ -9102,13 +9259,16 @@ std::vector&lt;T*&gt; Collect(const QGraphicsScene* const scene)<br/>
 <br/>
 ribi::cmap::QtEditConceptMap::QtEditConceptMap(<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;const Mode mode,<br/>
 &nbsp;&nbsp;QWidget* parent)<br/>
 &nbsp;&nbsp;: QtConceptMap(concept_map,parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_conceptmapitem_requests_edit{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_arrow(nullptr),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter(new QtItemHighlighter(0)),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_tools(new QtTool)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter(mode == Mode::classic ? new QtItemHighlighter(0) : nullptr),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_mode(mode),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tools(m_mode == Mode::classic ? new QtTool : nullptr)<br/>
 {<br/>
+&nbsp;&nbsp;assert(m_highlighter || m_mode != Mode::classic);<br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;#endif<br/>
@@ -9116,15 +9276,18 @@ ribi::cmap::QtEditConceptMap::QtEditConceptMap(<br/>
 <br/>
 <br/>
 &nbsp;&nbsp;assert(concept_map&nbsp;&nbsp;&amp;&amp; "Only an existing concept map can be edited");<br/>
+&nbsp;&nbsp;assert(m_highlighter || m_mode != Mode::classic);<br/>
 &nbsp;&nbsp;BuildQtConceptMap();<br/>
 <br/>
 &nbsp;&nbsp;assert(scene());<br/>
 <br/>
-&nbsp;&nbsp;assert(m_tools-&gt;scene() &amp;&amp; "m_tools is added at CleanMe at BuildQtConceptMap");<br/>
-&nbsp;&nbsp;//scene()-&gt;addItem(m_tools); //Give m_tools a parent<br/>
 <br/>
 &nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;assert(m_highlighter &amp;&amp; "m_highlighter does not need to be reset in ClearMe");<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_tools-&gt;scene() &amp;&amp; "m_tools is added at CleanMe at BuildQtConceptMap");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_highlighter &amp;&amp; "m_highlighter does not need to be reset in ClearMe");<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;assert(concept_map-&gt;IsValid());<br/>
 &nbsp;&nbsp;const auto nodes = concept_map-&gt;GetNodes();<br/>
 &nbsp;&nbsp;const auto items = Collect&lt;QtNode&gt;(this-&gt;scene());<br/>
@@ -9136,10 +9299,13 @@ ribi::cmap::QtEditConceptMap::QtEditConceptMap(<br/>
 <br/>
 ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept<br/>
 {<br/>
-&nbsp;&nbsp;m_tools = nullptr;<br/>
-&nbsp;&nbsp;assert(m_highlighter);<br/>
-&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr); //Do this before destroying items<br/>
-&nbsp;&nbsp;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tools = nullptr;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_highlighter);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr); //Do this before destroying items<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 void ribi::cmap::QtEditConceptMap::AddEdge(<br/>
@@ -9160,7 +9326,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;//Edges connected to the center node do not show their concepts<br/>
-&nbsp;&nbsp;if (IsCenterNode(from) || IsCenterNode(to))<br/>
+&nbsp;&nbsp;if (IsQtCenterNode(from) || IsQtCenterNode(to))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(qtconcept == qtedge-&gt;GetDisplayStrategy());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtconcept-&gt;setVisible(false);<br/>
@@ -9258,7 +9424,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
 &nbsp;&nbsp;QtEdge * const qtedge = new QtEdge(edge,qtconcept,qt_from,qt_to);<br/>
 <br/>
 &nbsp;&nbsp;//Edges connected to the center node do not show their concepts<br/>
-&nbsp;&nbsp;if (IsCenterNode(qt_from) || IsCenterNode(qt_to))<br/>
+&nbsp;&nbsp;if (IsQtCenterNode(qt_from) || IsQtCenterNode(qt_to))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(qtconcept == qtedge-&gt;GetDisplayStrategy());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtconcept-&gt;setVisible(false);<br/>
@@ -9340,12 +9506,15 @@ void ribi::cmap::QtEditConceptMap::CleanMe()<br/>
 &nbsp;&nbsp;//Prepare cleaning the scene<br/>
 &nbsp;&nbsp;assert(GetExamplesItem());<br/>
 &nbsp;&nbsp;SetExamplesItem(nullptr);<br/>
-&nbsp;&nbsp;assert(m_tools);<br/>
-&nbsp;&nbsp;this-&gt;m_tools = nullptr;<br/>
-&nbsp;&nbsp;assert(m_highlighter);<br/>
-&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr); //Do this before destroying items<br/>
-&nbsp;&nbsp;//assert(m_arrow); //Not necessarily true: m_arrow is null when not active<br/>
-&nbsp;&nbsp;this-&gt;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_tools);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;m_tools = nullptr;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_highlighter || m_mode != Mode::classic);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr); //Do this before destroying items<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//assert(m_arrow); //Not necessarily true: m_arrow is null when not active<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;//Clear the scene, invalidates all scene items copies<br/>
 &nbsp;&nbsp;assert(this-&gt;scene());<br/>
@@ -9386,7 +9555,7 @@ std::unique_ptr&lt;ribi::cmap::QtConceptMap&gt; ribi::cmap::QtEditConceptMap::Cr
 &nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; concept_map<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;= ribi::cmap::ConceptMapFactory::DeepCopy(this-&gt;GetConceptMap());<br/>
 &nbsp;&nbsp;assert(concept_map);<br/>
-&nbsp;&nbsp;std::unique_ptr&lt;QtConceptMap&gt; p(new This_t(concept_map));<br/>
+&nbsp;&nbsp;std::unique_ptr&lt;QtConceptMap&gt; p(new This_t(concept_map,this-&gt;m_mode));<br/>
 &nbsp;&nbsp;return p;<br/>
 }<br/>
 #endif<br/>
@@ -9568,7 +9737,7 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Delete a Node Concept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (QtNode * const node = dynamic_cast&lt;QtNode *&gt;(item))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!IsCenterNode(node)) //Cannot delete center node<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!IsQtCenterNode(node)) //Cannot delete center node<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;QtNode*&gt; node_concepts = Collect&lt;QtNode&gt;(scene());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(std::count(node_concepts.begin(),node_concepts.end(),node) == 1);<br/>
@@ -9587,7 +9756,7 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!v.empty())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//DeleteLeftovers(); //2013-06-29: Really needed?<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//DeleteLeftovers();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetExamplesItem()-&gt;hide();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;OnItemRequestsUpdate(0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
@@ -9596,12 +9765,15 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;case Qt::Key_Escape:<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Only remove the 'new arrow' if present<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Otherwise let the ESC be handled by the class this one derives from<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (m_arrow)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;removeItem(m_arrow);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Only remove the 'new arrow' if present<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Otherwise let the ESC be handled by the class this one derives from<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (m_arrow)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;removeItem(m_arrow);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;break;<br/>
@@ -9630,36 +9802,44 @@ void ribi::cmap::QtEditConceptMap::mouseDoubleClickEvent(QMouseEvent *event)<br/
 <br/>
 void ribi::cmap::QtEditConceptMap::mouseMoveEvent(QMouseEvent * event)<br/>
 {<br/>
-&nbsp;&nbsp;if (m_arrow)<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QPointF pos = mapToScene(event-&gt;pos());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_arrow-&gt;SetHeadPos(pos.x(),pos.y());<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Move the item under the arrow<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QtNode* const item_below = GetItemBelowCursor(mapToScene(event-&gt;pos()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (m_arrow)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const QPointF pos = mapToScene(event-&gt;pos());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_arrow-&gt;SetHeadPos(pos.x(),pos.y());<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(item_below); //item_below is allowed to be nullptr<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr); //item_below is allowed to be nullptr<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//Move the item under the arrow<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QtNode* const item_below = GetItemBelowCursor(mapToScene(event-&gt;pos()));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(item_below); //item_below is allowed to be nullptr<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr); //item_below is allowed to be nullptr<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;QtConceptMap::mouseMoveEvent(event);<br/>
 }<br/>
 <br/>
 void ribi::cmap::QtEditConceptMap::mousePressEvent(QMouseEvent *event)<br/>
 {<br/>
-&nbsp;&nbsp;assert(m_highlighter);<br/>
-&nbsp;&nbsp;if (m_arrow) //&amp;&amp; m_highlighter-&gt;GetItem())<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (m_highlighter-&gt;GetItem() &amp;&amp; m_arrow-&gt;GetFrom() != m_highlighter-&gt;GetItem())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_highlighter);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (m_arrow) //&amp;&amp; m_highlighter-&gt;GetItem())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!dynamic_cast&lt;QtTool*&gt;(m_highlighter-&gt;GetItem()) &amp;&amp; "Cannot select a ToolsItem");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddEdge( m_arrow-&gt;GetFrom(),m_highlighter-&gt;GetItem());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (m_highlighter-&gt;GetItem() &amp;&amp; m_arrow-&gt;GetFrom() != m_highlighter-&gt;GetItem())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(!dynamic_cast&lt;QtTool*&gt;(m_highlighter-&gt;GetItem()) &amp;&amp; "Cannot select a ToolsItem");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AddEdge( m_arrow-&gt;GetFrom(),m_highlighter-&gt;GetItem());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;removeItem(m_arrow);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_arrow = nullptr;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(m_highlighter);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;removeItem(m_arrow);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_arrow = nullptr;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_highlighter-&gt;SetItem(nullptr);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;QtConceptMap::mousePressEvent(event);<br/>
@@ -9702,22 +9882,28 @@ void ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit(QtConceptMapElem
 <br/>
 void ribi::cmap::QtEditConceptMap::OnItemRequestUpdateImpl(const QGraphicsItem* const item)<br/>
 {<br/>
-&nbsp;&nbsp;m_tools-&gt;SetBuddyItem(dynamic_cast&lt;const QtNode*&gt;(item));<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;SetBuddyItem(dynamic_cast&lt;const QtNode*&gt;(item));<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;GetExamplesItem()-&gt;SetBuddyItem(dynamic_cast&lt;const QtConceptMapElement*&gt;(item));<br/>
 &nbsp;&nbsp;scene()-&gt;update();<br/>
 }<br/>
 <br/>
 void ribi::cmap::QtEditConceptMap::OnToolsClicked()<br/>
 {<br/>
-&nbsp;&nbsp;const QPointF cursor_pos_approx(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;GetBuddyItem()-&gt;pos().x(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;GetBuddyItem()-&gt;pos().y() - 32.0);<br/>
-&nbsp;&nbsp;m_arrow = new QtNewArrow(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;GetBuddyItem(),cursor_pos_approx);<br/>
-&nbsp;&nbsp;assert(!m_arrow-&gt;scene());<br/>
-&nbsp;&nbsp;this-&gt;scene()-&gt;addItem(m_arrow);<br/>
-&nbsp;&nbsp;m_arrow-&gt;update();<br/>
-&nbsp;&nbsp;this-&gt;scene()-&gt;update();<br/>
+&nbsp;&nbsp;if (m_mode == Mode::classic)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QPointF cursor_pos_approx(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;GetBuddyItem()-&gt;pos().x(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;GetBuddyItem()-&gt;pos().y() - 32.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_arrow = new QtNewArrow(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_tools-&gt;GetBuddyItem(),cursor_pos_approx);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(!m_arrow-&gt;scene());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;addItem(m_arrow);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_arrow-&gt;update();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;scene()-&gt;update();<br/>
+&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -9747,8 +9933,16 @@ namespace cmap {<br/>
 struct QtEditConceptMap : public QtConceptMap<br/>
 {<br/>
 &nbsp;&nbsp;typedef QtEditConceptMap This_t;<br/>
+<br/>
+&nbsp;&nbsp;///Mode is temporary: I want to seperate QtEditConceptMap<br/>
+&nbsp;&nbsp;///into a class that only does the display (this class)<br/>
+&nbsp;&nbsp;///and a class that handles the user interaction (QtConceptMapWidget).<br/>
+&nbsp;&nbsp;///To not break the current build, I switch on Mode<br/>
+&nbsp;&nbsp;enum class Mode { classic, simple };<br/>
+<br/>
 &nbsp;&nbsp;QtEditConceptMap(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; concept_map = boost::shared_ptr&lt;ConceptMap&gt;(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const Mode mode = Mode::classic,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;~QtEditConceptMap() noexcept;<br/>
 &nbsp;&nbsp;QtEditConceptMap(const QtEditConceptMap&amp; other) = delete;<br/>
@@ -9790,17 +9984,20 @@ private:<br/>
 &nbsp;&nbsp;///The item highlighter, used when creating a new relation<br/>
 &nbsp;&nbsp;QtItemHighlighter * const m_highlighter;<br/>
 <br/>
+&nbsp;&nbsp;///The current mode, to be removed later (see definition of Mode)<br/>
+&nbsp;&nbsp;const Mode m_mode;<br/>
+<br/>
 &nbsp;&nbsp;///The item showing the tools<br/>
 &nbsp;&nbsp;QtTool * m_tools;<br/>
 <br/>
 &nbsp;&nbsp;///Adds an Edge and connects (some of) its signals to slots present in the derived classes<br/>
-&nbsp;&nbsp;void AddEdge(const boost::shared_ptr&lt;ribi::cmap::Edge&gt; edge);<br/>
+&nbsp;&nbsp;void AddEdge(const boost::shared_ptr&lt;Edge&gt; edge);<br/>
 <br/>
 &nbsp;&nbsp;///Add a new edge<br/>
 &nbsp;&nbsp;void AddEdge(QtNode * const from, QtNode* const to);<br/>
 <br/>
 &nbsp;&nbsp;///Adds a node and connects (some of) its signals to slots present in the derived classes<br/>
-&nbsp;&nbsp;QtNode * AddNode(const boost::shared_ptr&lt;ribi::cmap::Node&gt; node);<br/>
+&nbsp;&nbsp;QtNode * AddNode(const boost::shared_ptr&lt;Node&gt; node);<br/>
 <br/>
 &nbsp;&nbsp;///Remove all Qt and non-Qt items<br/>
 &nbsp;&nbsp;void CleanMe();<br/>
@@ -9933,21 +10130,20 @@ void ribi::cmap::QtItemDisplayStrategy::hoverStartEvent(QGraphicsSceneHoverEvent
 <br/>
 void ribi::cmap::QtItemDisplayStrategy::hoverMoveEvent(QGraphicsSceneHoverEvent *)<br/>
 {<br/>
-&nbsp;&nbsp;//std::exit(2);<br/>
 &nbsp;&nbsp;this-&gt;setCursor(QCursor(Qt::PointingHandCursor));<br/>
 }<br/>
 <br/>
 void ribi::cmap::QtItemDisplayStrategy::mouseMoveEvent(QGraphicsSceneMouseEvent *event)<br/>
 {<br/>
 &nbsp;&nbsp;Base::mouseMoveEvent(event);<br/>
-&nbsp;&nbsp;//this-&gt;m_signal_item_has_updated(); //2013-06-25<br/>
+&nbsp;&nbsp;//this-&gt;m_signal_item_has_updated();<br/>
 &nbsp;&nbsp;m_signal_request_scene_update();<br/>
 }<br/>
 <br/>
 void ribi::cmap::QtItemDisplayStrategy::mousePressEvent(QGraphicsSceneMouseEvent * event)<br/>
 {<br/>
 &nbsp;&nbsp;Base::mousePressEvent(event);<br/>
-&nbsp;&nbsp;//this-&gt;m_signal_item_has_updated(); //2013-06-25<br/>
+&nbsp;&nbsp;//this-&gt;m_signal_item_has_updated();<br/>
 &nbsp;&nbsp;m_signal_request_scene_update();<br/>
 }<br/>
 <br/>
@@ -10106,14 +10302,14 @@ struct QtItemDisplayStrategy : public QtRoundedEditRectItem<br/>
 &nbsp;&nbsp;typedef QtRoundedEditRectItem Base;<br/>
 <br/>
 &nbsp;&nbsp;///concept cannot be const, the user might edit it (in derived classes for example)<br/>
-&nbsp;&nbsp;explicit QtItemDisplayStrategy(const boost::shared_ptr&lt;ribi::cmap::Concept&gt;&amp; concept);<br/>
+&nbsp;&nbsp;explicit QtItemDisplayStrategy(const boost::shared_ptr&lt;Concept&gt;&amp; concept);<br/>
 &nbsp;&nbsp;QtItemDisplayStrategy(const QtItemDisplayStrategy&amp; other) = delete;<br/>
 &nbsp;&nbsp;QtItemDisplayStrategy&amp; operator=(const QtItemDisplayStrategy&amp; other) = delete;<br/>
 &nbsp;&nbsp;virtual ~QtItemDisplayStrategy() noexcept {}<br/>
 <br/>
 &nbsp;&nbsp;///Read the Concept<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;const ribi::cmap::Concept&gt;&nbsp;&nbsp;GetConcept() const noexcept;<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ribi::cmap::Concept&gt;&amp; GetConcept() noexcept { return m_concept; }<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;const Concept&gt;&nbsp;&nbsp;GetConcept() const noexcept;<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concept&gt;&amp; GetConcept() noexcept { return m_concept; }<br/>
 <br/>
 &nbsp;&nbsp;///Get he brush by which the indicator is filled<br/>
 &nbsp;&nbsp;const QBrush&amp; GetIndicatorBrush() const noexcept { return m_indicator_brush; }<br/>
@@ -10296,7 +10492,7 @@ void ribi::cmap::QtRateConceptMap::AddEdge(<br/>
 &nbsp;&nbsp;assert(qtedge);<br/>
 <br/>
 &nbsp;&nbsp;//Edges connected to the center node do not show their concepts<br/>
-&nbsp;&nbsp;if (IsCenterNode(from) || IsCenterNode(to))<br/>
+&nbsp;&nbsp;if (IsQtCenterNode(from) || IsQtCenterNode(to))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;assert(qtconcept == qtedge-&gt;GetDisplayStrategy());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;qtconcept-&gt;setVisible(false);<br/>
@@ -10593,7 +10789,7 @@ struct QtRateConceptMap : public QtConceptMap<br/>
 &nbsp;&nbsp;typedef QtRateConceptMap This_t;<br/>
 <br/>
 &nbsp;&nbsp;QtRateConceptMap(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; concept_map = boost::shared_ptr&lt;ConceptMap&gt;(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;QWidget* parent = 0);<br/>
 &nbsp;&nbsp;~QtRateConceptMap() noexcept {}<br/>
 &nbsp;&nbsp;QtRateConceptMap(const QtRateConceptMap&amp; other) = delete;<br/>
@@ -10613,25 +10809,25 @@ struct QtRateConceptMap : public QtConceptMap<br/>
 <br/>
 &nbsp;&nbsp;///If the user wants to rate the focal concept of the already generated sub concept map<br/>
 &nbsp;&nbsp;///the dialog using this widget must display the tally dialog<br/>
-&nbsp;&nbsp;boost::signals2::signal&lt;void (boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt;)&gt; m_signal_request_rate_concept_dialog;<br/>
+&nbsp;&nbsp;boost::signals2::signal&lt;void (boost::shared_ptr&lt;ConceptMap&gt;)&gt; m_signal_request_rate_concept_dialog;<br/>
 <br/>
 private:<br/>
 <br/>
 &nbsp;&nbsp;///Adds an Edge and connects (some of) its signals to slots present in the derived classes<br/>
 &nbsp;&nbsp;void AddEdge(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::Edge&gt; edge);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const boost::shared_ptr&lt;Edge&gt; edge);<br/>
 <br/>
 &nbsp;&nbsp;///Adds a node and connects (some of) its signals to slots present in the derived classes<br/>
 &nbsp;&nbsp;///For rating and editing, the node must be non-cost<br/>
 &nbsp;&nbsp;///For display, the node should best be const<br/>
-&nbsp;&nbsp;QtNode * AddNode(const boost::shared_ptr&lt;ribi::cmap::Node&gt; node);<br/>
+&nbsp;&nbsp;QtNode * AddNode(const boost::shared_ptr&lt;Node&gt; node);<br/>
 <br/>
 &nbsp;&nbsp;///Remove all Qt and non-Qt items and add new ones<br/>
 &nbsp;&nbsp;void CleanMe();<br/>
 <br/>
 &nbsp;&nbsp;///Create a subsection of the concept map, with item at the center<br/>
 &nbsp;&nbsp;///Item is non-const, as all items can be edited in other contexts<br/>
-&nbsp;&nbsp;const boost::shared_ptr&lt;ribi::cmap::ConceptMap&gt; CreateSubConceptMap(QtNode * const item);<br/>
+&nbsp;&nbsp;const boost::shared_ptr&lt;ConceptMap&gt; CreateSubConceptMap(QtNode * const item);<br/>
 <br/>
 &nbsp;&nbsp;///The way a QtConceptMap displays its Nodes (both as nodes and on edges)<br/>
 &nbsp;&nbsp;const boost::shared_ptr&lt;QtItemDisplayStrategy&gt; GetDisplayStrategy(<br/>

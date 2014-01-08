@@ -846,303 +846,303 @@ struct ModelFunctionParser<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtstdvectorfunctionmodel.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include "qtstdvectorfunctionmodel.h"<br/>
-<br/>
-#include &lt;cassert&gt;<br/>
-#include &lt;boost/lexical_cast.hpp&gt;<br/>
-<br/>
-#include "modelfunctionparser.h"<br/>
-<br/>
-#include "trace.h"<br/>
-<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(<br/>
-&nbsp;&nbsp;const std::string&amp; variable,<br/>
-&nbsp;&nbsp;QObject *parent) noexcept<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_variable{variable}<br/>
-{<br/>
-&nbsp;&nbsp;assert(!variable.empty());<br/>
-}<br/>
-<br/>
-int ribi::QtStdVectorFunctionModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return rowCount() &gt; 0 ? 1 : 0;<br/>
-}<br/>
-<br/>
-QVariant ribi::QtStdVectorFunctionModel::data(const QModelIndex &amp;index, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp;&nbsp;&nbsp;role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;assert(index.isValid());<br/>
-<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &gt;= 0);<br/>
-&nbsp;&nbsp;assert(row &lt; this-&gt;rowCount());<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
-&nbsp;&nbsp;assert(col == 0);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;return QString(m_data[row].c_str());<br/>
-}<br/>
-<br/>
-Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
-&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
-&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
-}<br/>
-<br/>
-const std::string ribi::QtStdVectorFunctionModel::GetVersion() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return "1.2";<br/>
-}<br/>
-<br/>
-const std::vector&lt;std::string&gt; ribi::QtStdVectorFunctionModel::GetVersionHistory() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.2: signal layoutChanged emitted correctly"<br/>
-&nbsp;&nbsp;};<br/>
-}<br/>
-<br/>
-QVariant ribi::QtStdVectorFunctionModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text.c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorFunctionModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size() + count;<br/>
-&nbsp;&nbsp;m_data.resize(new_size);<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorFunctionModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size() - count;<br/>
-&nbsp;&nbsp;m_data.resize(new_size);<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-int ribi::QtStdVectorFunctionModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return boost::numeric_cast&lt;int&gt;(m_data.size());<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorFunctionModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
-{<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(col == 0);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
-<br/>
-&nbsp;&nbsp;//Check if it is a valid function<br/>
-&nbsp;&nbsp;const std::string my_function = value.toString().toStdString();<br/>
-&nbsp;&nbsp;try<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;ModelFunctionParser f(my_function,m_variable);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;catch (std::runtime_error&amp;)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;//Store the correctly formed function<br/>
-&nbsp;&nbsp;m_data[row] = my_function;<br/>
-<br/>
-&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;emit dataChanged(index,index);<br/>
-<br/>
-&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-void ribi::QtStdVectorFunctionModel::SetHeaderData(<br/>
-&nbsp;&nbsp;const std::string&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
-{<br/>
-&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,1);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorFunctionModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
-{<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-void ribi::QtStdVectorFunctionModel::SetRawData(const std::vector&lt;std::string&gt;&amp; data)<br/>
-{<br/>
-&nbsp;&nbsp;if (m_data != data)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(data.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size() - 1, 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-}<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include "qtstdvectorfunctionmodel.h"<br/>
+<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+#include "modelfunctionparser.h"<br/>
+<br/>
+#include "trace.h"<br/>
+<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+ribi::QtStdVectorFunctionModel::QtStdVectorFunctionModel(<br/>
+&nbsp;&nbsp;const std::string&amp; variable,<br/>
+&nbsp;&nbsp;QObject *parent) noexcept<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_variable{variable}<br/>
+{<br/>
+&nbsp;&nbsp;assert(!variable.empty());<br/>
+}<br/>
+<br/>
+int ribi::QtStdVectorFunctionModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return rowCount() &gt; 0 ? 1 : 0;<br/>
+}<br/>
+<br/>
+QVariant ribi::QtStdVectorFunctionModel::data(const QModelIndex &amp;index, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp;&nbsp;&nbsp;role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;assert(index.isValid());<br/>
+<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &gt;= 0);<br/>
+&nbsp;&nbsp;assert(row &lt; this-&gt;rowCount());<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
+&nbsp;&nbsp;assert(col == 0);<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;return QString(m_data[row].c_str());<br/>
+}<br/>
+<br/>
+Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
+&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
+&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
+}<br/>
+<br/>
+const std::string ribi::QtStdVectorFunctionModel::GetVersion() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return "1.2";<br/>
+}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::QtStdVectorFunctionModel::GetVersionHistory() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.2: signal layoutChanged emitted correctly"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+QVariant ribi::QtStdVectorFunctionModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text.c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorFunctionModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size() + count;<br/>
+&nbsp;&nbsp;m_data.resize(new_size);<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorFunctionModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size() - count;<br/>
+&nbsp;&nbsp;m_data.resize(new_size);<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+int ribi::QtStdVectorFunctionModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return boost::numeric_cast&lt;int&gt;(m_data.size());<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorFunctionModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
+{<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(col == 0);<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
+<br/>
+&nbsp;&nbsp;//Check if it is a valid function<br/>
+&nbsp;&nbsp;const std::string my_function = value.toString().toStdString();<br/>
+&nbsp;&nbsp;try<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;ModelFunctionParser f(my_function,m_variable);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;catch (std::runtime_error&amp;)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return false;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;//Store the correctly formed function<br/>
+&nbsp;&nbsp;m_data[row] = my_function;<br/>
+<br/>
+&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;emit dataChanged(index,index);<br/>
+<br/>
+&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+void ribi::QtStdVectorFunctionModel::SetHeaderData(<br/>
+&nbsp;&nbsp;const std::string&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
+{<br/>
+&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,1);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorFunctionModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
+{<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+void ribi::QtStdVectorFunctionModel::SetRawData(const std::vector&lt;std::string&gt;&amp; data)<br/>
+{<br/>
+&nbsp;&nbsp;if (m_data != data)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(data.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size() - 1, 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1154,110 +1154,110 @@ void ribi::QtStdVectorFunctionModel::SetRawData(const std::vector&lt;std::string
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtstdvectorfunctionmodel.h" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#ifndef QTSTDVECTORFUNCTIONMODEL_H<br/>
-#define QTSTDVECTORFUNCTIONMODEL_H<br/>
-<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include &lt;boost/numeric/ublas/vector.hpp&gt;<br/>
-#include &lt;QAbstractTableModel&gt;<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-namespace ribi {<br/>
-<br/>
-struct QtStdVectorFunctionModel: public QAbstractTableModel<br/>
-{<br/>
-&nbsp;&nbsp;///The variable is the variable used in a function<br/>
-&nbsp;&nbsp;///Examples:<br/>
-&nbsp;&nbsp;/// - in the equation 'y = 3 * x', the variable used is 'x'<br/>
-&nbsp;&nbsp;/// - in the equation 'u = cos(t)', the variable used is 't'<br/>
-&nbsp;&nbsp;explicit QtStdVectorFunctionModel(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; variable,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QObject *parent = 0) noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Working with the raw data<br/>
-&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; GetRawData() const noexcept { return m_data; }<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version of this class<br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version history of this class<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Working with the raw data<br/>
-&nbsp;&nbsp;void SetRawData(const std::vector&lt;std::string&gt;&amp; data);<br/>
-<br/>
-&nbsp;&nbsp;///Set the header text<br/>
-&nbsp;&nbsp;void SetHeaderData(const std::string&amp; title, const std::vector&lt;std::string&gt;&amp; header_text);<br/>
-<br/>
-&nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;///The raw data<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_data;<br/>
-<br/>
-&nbsp;&nbsp;///The horizontal header text (for the only one column)<br/>
-&nbsp;&nbsp;std::string m_header_horizontal_text;<br/>
-<br/>
-&nbsp;&nbsp;///The vertical header text<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
-<br/>
-&nbsp;&nbsp;///The variable is the variable used in a function<br/>
-&nbsp;&nbsp;///Examples:<br/>
-&nbsp;&nbsp;/// - in the equation 'y = 3 * x', the variable used is 'x'<br/>
-&nbsp;&nbsp;/// - in the equation 'u = cos(t)', the variable used is 't'<br/>
-&nbsp;&nbsp;const std::string m_variable;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
-<br/>
-&nbsp;&nbsp;///These flags are needed to allow editing<br/>
-&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Needed for editable data<br/>
-&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
-};<br/>
-<br/>
-} //~namespace ribi<br/>
-<br/>
-#endif // QTSTDVECTORFUNCTIONMODEL_H<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef QTSTDVECTORFUNCTIONMODEL_H<br/>
+#define QTSTDVECTORFUNCTIONMODEL_H<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include &lt;boost/numeric/ublas/vector.hpp&gt;<br/>
+#include &lt;QAbstractTableModel&gt;<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+<br/>
+struct QtStdVectorFunctionModel: public QAbstractTableModel<br/>
+{<br/>
+&nbsp;&nbsp;///The variable is the variable used in a function<br/>
+&nbsp;&nbsp;///Examples:<br/>
+&nbsp;&nbsp;/// - in the equation 'y = 3 * x', the variable used is 'x'<br/>
+&nbsp;&nbsp;/// - in the equation 'u = cos(t)', the variable used is 't'<br/>
+&nbsp;&nbsp;explicit QtStdVectorFunctionModel(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; variable,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QObject *parent = 0) noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Working with the raw data<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; GetRawData() const noexcept { return m_data; }<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version of this class<br/>
+&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version history of this class<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Working with the raw data<br/>
+&nbsp;&nbsp;void SetRawData(const std::vector&lt;std::string&gt;&amp; data);<br/>
+<br/>
+&nbsp;&nbsp;///Set the header text<br/>
+&nbsp;&nbsp;void SetHeaderData(const std::string&amp; title, const std::vector&lt;std::string&gt;&amp; header_text);<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;///The raw data<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_data;<br/>
+<br/>
+&nbsp;&nbsp;///The horizontal header text (for the only one column)<br/>
+&nbsp;&nbsp;std::string m_header_horizontal_text;<br/>
+<br/>
+&nbsp;&nbsp;///The vertical header text<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
+<br/>
+&nbsp;&nbsp;///The variable is the variable used in a function<br/>
+&nbsp;&nbsp;///Examples:<br/>
+&nbsp;&nbsp;/// - in the equation 'y = 3 * x', the variable used is 'x'<br/>
+&nbsp;&nbsp;/// - in the equation 'u = cos(t)', the variable used is 't'<br/>
+&nbsp;&nbsp;const std::string m_variable;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
+<br/>
+&nbsp;&nbsp;///These flags are needed to allow editing<br/>
+&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Needed for editable data<br/>
+&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
+};<br/>
+<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // QTSTDVECTORFUNCTIONMODEL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1269,289 +1269,289 @@ struct QtStdVectorFunctionModel: public QAbstractTableModel<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtstdvectorstringmodel.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include "qtstdvectorstringmodel.h"<br/>
-<br/>
-#include &lt;cassert&gt;<br/>
-#include &lt;boost/lexical_cast.hpp&gt;<br/>
-<br/>
-#include "trace.h"<br/>
-<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-ribi::QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent) noexcept<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
-{<br/>
-<br/>
-}<br/>
-<br/>
-int ribi::QtStdVectorStringModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return rowCount() &gt; 0 ? 1 : 0;<br/>
-}<br/>
-<br/>
-QVariant ribi::QtStdVectorStringModel::data(const QModelIndex &amp;index, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp;&nbsp;&nbsp;role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;assert(index.isValid());<br/>
-<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &gt;= 0);<br/>
-&nbsp;&nbsp;assert(row &lt; this-&gt;rowCount());<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
-&nbsp;&nbsp;assert(col == 0);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;return QString(m_data[row].c_str());<br/>
-}<br/>
-<br/>
-Qt::ItemFlags ribi::QtStdVectorStringModel::flags(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
-&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
-&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
-}<br/>
-<br/>
-const std::string ribi::QtStdVectorStringModel::GetVersion() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return "1.2";<br/>
-}<br/>
-<br/>
-const std::vector&lt;std::string&gt; ribi::QtStdVectorStringModel::GetVersionHistory() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.2: signal layoutChanged emitted correctly"<br/>
-&nbsp;&nbsp;};<br/>
-}<br/>
-<br/>
-QVariant ribi::QtStdVectorStringModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text.c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorStringModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size() + count;<br/>
-&nbsp;&nbsp;m_data.resize(new_size);<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorStringModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size() - count;<br/>
-&nbsp;&nbsp;m_data.resize(new_size);<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-int ribi::QtStdVectorStringModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return boost::numeric_cast&lt;int&gt;(m_data.size());<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorStringModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
-{<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
-&nbsp;&nbsp;assert(col == 0);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;m_data[row] = value.toString().toStdString();<br/>
-<br/>
-&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;emit dataChanged(index,index);<br/>
-<br/>
-&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-void ribi::QtStdVectorStringModel::SetHeaderData(<br/>
-&nbsp;&nbsp;const std::string&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
-{<br/>
-&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,1);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-}<br/>
-<br/>
-bool ribi::QtStdVectorStringModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
-{<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-<br/>
-void ribi::QtStdVectorStringModel::SetRawData(const std::vector&lt;std::string&gt;&amp; data)<br/>
-{<br/>
-&nbsp;&nbsp;if (m_data != data)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(data.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size() - 1, 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-}<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include "qtstdvectorstringmodel.h"<br/>
+<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+#include "trace.h"<br/>
+<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+ribi::QtStdVectorStringModel::QtStdVectorStringModel(QObject *parent) noexcept<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+int ribi::QtStdVectorStringModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return rowCount() &gt; 0 ? 1 : 0;<br/>
+}<br/>
+<br/>
+QVariant ribi::QtStdVectorStringModel::data(const QModelIndex &amp;index, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp;&nbsp;&nbsp;role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;assert(index.isValid());<br/>
+<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &gt;= 0);<br/>
+&nbsp;&nbsp;assert(row &lt; this-&gt;rowCount());<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
+&nbsp;&nbsp;assert(col == 0);<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;return QString(m_data[row].c_str());<br/>
+}<br/>
+<br/>
+Qt::ItemFlags ribi::QtStdVectorStringModel::flags(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
+&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
+&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
+}<br/>
+<br/>
+const std::string ribi::QtStdVectorStringModel::GetVersion() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return "1.2";<br/>
+}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::QtStdVectorStringModel::GetVersionHistory() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: version 1.1: allow columnCount to be zero, if rowCount is zero",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.2: signal layoutChanged emitted correctly"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+QVariant ribi::QtStdVectorStringModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text.c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorStringModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size() + count;<br/>
+&nbsp;&nbsp;m_data.resize(new_size);<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorStringModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size() - count;<br/>
+&nbsp;&nbsp;m_data.resize(new_size);<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+int ribi::QtStdVectorStringModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return boost::numeric_cast&lt;int&gt;(m_data.size());<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorStringModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
+{<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
+&nbsp;&nbsp;assert(col == 0);<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;m_data[row] = value.toString().toStdString();<br/>
+<br/>
+&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;emit dataChanged(index,index);<br/>
+<br/>
+&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+void ribi::QtStdVectorStringModel::SetHeaderData(<br/>
+&nbsp;&nbsp;const std::string&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
+{<br/>
+&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,1);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+}<br/>
+<br/>
+bool ribi::QtStdVectorStringModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
+{<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<br/>
+void ribi::QtStdVectorStringModel::SetRawData(const std::vector&lt;std::string&gt;&amp; data)<br/>
+{<br/>
+&nbsp;&nbsp;if (m_data != data)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(data.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size() - 1, 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1563,98 +1563,98 @@ void ribi::QtStdVectorStringModel::SetRawData(const std::vector&lt;std::string&g
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtstdvectorstringmodel.h" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#ifndef QTSTDVECTORSTRINGMODEL_H<br/>
-#define QTSTDVECTORSTRINGMODEL_H<br/>
-<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include &lt;boost/numeric/ublas/vector.hpp&gt;<br/>
-#include &lt;QAbstractTableModel&gt;<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-namespace ribi {<br/>
-<br/>
-struct QtStdVectorStringModel: public QAbstractTableModel<br/>
-{<br/>
-&nbsp;&nbsp;explicit QtStdVectorStringModel(QObject *parent = 0) noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Reading the raw data<br/>
-&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; GetRawData() const noexcept { return m_data; }<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version of this class<br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version history of this class<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Writing the raw data<br/>
-&nbsp;&nbsp;void SetRawData(const std::vector&lt;std::string&gt;&amp; data);<br/>
-<br/>
-&nbsp;&nbsp;///Set the header text<br/>
-&nbsp;&nbsp;void SetHeaderData(const std::string&amp; title, const std::vector&lt;std::string&gt;&amp; header_text);<br/>
-<br/>
-&nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;///The raw data<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_data;<br/>
-<br/>
-&nbsp;&nbsp;///The horizontal header text (for the only one column)<br/>
-&nbsp;&nbsp;std::string m_header_horizontal_text;<br/>
-<br/>
-&nbsp;&nbsp;///The vertical header text<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
-<br/>
-&nbsp;&nbsp;///These flags are needed to allow editing<br/>
-&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Needed for editable data<br/>
-&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
-};<br/>
-<br/>
-} //~namespace ribi<br/>
-<br/>
-#endif // QTSTDVECTORSTRINGMODEL_H<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef QTSTDVECTORSTRINGMODEL_H<br/>
+#define QTSTDVECTORSTRINGMODEL_H<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include &lt;boost/numeric/ublas/vector.hpp&gt;<br/>
+#include &lt;QAbstractTableModel&gt;<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+<br/>
+struct QtStdVectorStringModel: public QAbstractTableModel<br/>
+{<br/>
+&nbsp;&nbsp;explicit QtStdVectorStringModel(QObject *parent = 0) noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Reading the raw data<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; GetRawData() const noexcept { return m_data; }<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version of this class<br/>
+&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version history of this class<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Writing the raw data<br/>
+&nbsp;&nbsp;void SetRawData(const std::vector&lt;std::string&gt;&amp; data);<br/>
+<br/>
+&nbsp;&nbsp;///Set the header text<br/>
+&nbsp;&nbsp;void SetHeaderData(const std::string&amp; title, const std::vector&lt;std::string&gt;&amp; header_text);<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;///The raw data<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_data;<br/>
+<br/>
+&nbsp;&nbsp;///The horizontal header text (for the only one column)<br/>
+&nbsp;&nbsp;std::string m_header_horizontal_text;<br/>
+<br/>
+&nbsp;&nbsp;///The vertical header text<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
+<br/>
+&nbsp;&nbsp;///These flags are needed to allow editing<br/>
+&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Needed for editable data<br/>
+&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
+};<br/>
+<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // QTSTDVECTORSTRINGMODEL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1666,430 +1666,430 @@ struct QtStdVectorStringModel: public QAbstractTableModel<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtublasmatrixdoublemodel.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include "qtublasmatrixdoublemodel.h"<br/>
-<br/>
-#include &lt;numeric&gt;<br/>
-#include &lt;cassert&gt;<br/>
-#include &lt;boost/lexical_cast.hpp&gt;<br/>
-<br/>
-#include "matrix.h"<br/>
-#include "trace.h"<br/>
-<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent) noexcept<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
-{<br/>
-<br/>
-}<br/>
-<br/>
-int ribi::QtUblasMatrixDoubleModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return m_data.size2();<br/>
-}<br/>
-<br/>
-QVariant ribi::QtUblasMatrixDoubleModel::data(const QModelIndex &amp;index, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;assert(index.isValid());<br/>
-<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
-&nbsp;&nbsp;assert(col &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
-<br/>
-&nbsp;&nbsp;#ifdef RETURN_DOUBLE_723465978463059835<br/>
-&nbsp;&nbsp;return m_data(row,col);<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;//Convert to string, otherwise the number digits behind the comma<br/>
-&nbsp;&nbsp;//will be set to 2, e.g. 0.01<br/>
-&nbsp;&nbsp;const std::string s = boost::lexical_cast&lt;std::string&gt;(m_data(row,col));<br/>
-&nbsp;&nbsp;return QString(s.c_str());<br/>
-&nbsp;&nbsp;#endif<br/>
-}<br/>
-<br/>
-Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
-&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
-&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
-}<br/>
-<br/>
-const std::string ribi::QtUblasMatrixDoubleModel::GetVersion() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return "1.3";<br/>
-}<br/>
-<br/>
-const std::vector&lt;std::string&gt; ribi::QtUblasMatrixDoubleModel::GetVersionHistory() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-21: version 1.1: added columns and rows are initialized with zeroes",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-23: version 1.2: allow an infine amount of digits behind the comma",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.3: signal layoutChanged emitted correctly"<br/>
-&nbsp;&nbsp;};<br/>
-}<br/>
-<br/>
-QVariant ribi::QtUblasMatrixDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size())))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text[section].c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginInsertColumns(parent,col,col+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size2() + count;<br/>
-<br/>
-&nbsp;&nbsp;boost::numeric::ublas::matrix&lt;double&gt; new_data = boost::numeric::ublas::zero_matrix&lt;double&gt;(m_data.size1(),new_size);<br/>
-&nbsp;&nbsp;const int n_rows = boost::numeric_cast&lt;int&gt;(m_data.size1());<br/>
-&nbsp;&nbsp;const int n_cols = boost::numeric_cast&lt;int&gt;(m_data.size2());<br/>
-&nbsp;&nbsp;for (int y = 0; y != n_rows; ++y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (int x = 0; x != n_cols; ++x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(new_data.size1()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(new_data.size2()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_data(y,x) = m_data(y,x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;m_data = new_data;<br/>
-<br/>
-&nbsp;&nbsp;m_header_horizontal_text.resize(new_size,"");<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endInsertColumns();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size1() + count;<br/>
-<br/>
-&nbsp;&nbsp;boost::numeric::ublas::matrix&lt;double&gt; new_data = boost::numeric::ublas::zero_matrix&lt;double&gt;(new_size,m_data.size2());<br/>
-&nbsp;&nbsp;const int n_rows = boost::numeric_cast&lt;int&gt;(m_data.size1());<br/>
-&nbsp;&nbsp;const int n_cols = boost::numeric_cast&lt;int&gt;(m_data.size2());<br/>
-&nbsp;&nbsp;for (int y = 0; y != n_rows; ++y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (int x = 0; x != n_cols; ++x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(new_data.size1()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(new_data.size2()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_data(y,x) = m_data(y,x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;m_data = new_data;<br/>
-<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasMatrixDoubleModel::removeColumns(int col, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginRemoveColumns(parent,col,col+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size2() - count;<br/>
-&nbsp;&nbsp;m_data.resize(m_data.size1(),new_size);<br/>
-&nbsp;&nbsp;m_header_horizontal_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endRemoveColumns();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasMatrixDoubleModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size1() - count;<br/>
-&nbsp;&nbsp;m_data.resize(new_size,m_data.size2());<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-int ribi::QtUblasMatrixDoubleModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return m_data.size1();<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasMatrixDoubleModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
-{<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
-&nbsp;&nbsp;assert(col &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
-&nbsp;&nbsp;const QString s = value.toString();<br/>
-&nbsp;&nbsp;m_data(row,col) = s.toDouble();<br/>
-&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;emit dataChanged(index,index);<br/>
-<br/>
-&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-void ribi::QtUblasMatrixDoubleModel::SetHeaderData(<br/>
-&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; horizontal_header_text,<br/>
-&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
-{<br/>
-<br/>
-&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(horizontal_header_text.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;columnCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertColumns(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeColumns(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(horizontal_header_text.size()));<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,new_size);<br/>
-<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size()));<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size2()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size1()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasMatrixDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
-{<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text[section] != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text[section] = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-void ribi::QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix&lt;double&gt;&amp; data)<br/>
-{<br/>
-&nbsp;&nbsp;if (!Matrix::MatricesAreEqual(m_data,data))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Check for row count<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_row_count = boost::numeric_cast&lt;int&gt;(data.size1());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_row_count = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cur_row_count &lt; new_row_count)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_row_count,new_row_count - cur_row_count,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_row_count &gt; new_row_count)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_row_count,cur_row_count - new_row_count,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Check for column count<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_col_count = boost::numeric_cast&lt;int&gt;(data.size2());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_col_count = this-&gt;columnCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cur_col_count &lt; new_col_count)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertColumns(cur_col_count,new_col_count - cur_col_count,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_col_count &gt; new_col_count)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeColumns(cur_col_count,cur_col_count - new_col_count,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_data.size1() == data.size1());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_data.size2() == data.size2());<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(Matrix::MatricesAreEqual(m_data,data));<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size1())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(data.size2())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size1() - 1, m_data.size2() - 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;//Check MatricesAreEqual<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;assert(m_data.size1() == data.size1());<br/>
-&nbsp;&nbsp;assert(m_data.size2() == data.size2());<br/>
-&nbsp;&nbsp;const std::size_t n_rows = m_data.size1();<br/>
-&nbsp;&nbsp;const std::size_t n_cols = m_data.size2();<br/>
-&nbsp;&nbsp;for (std::size_t row = 0; row != n_rows; ++row)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;for (std::size_t col = 0; col != n_cols; ++col)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(m_data(row,col) == data(row,col));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size2()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size1()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(Matrix::MatricesAreEqual(m_data,data));<br/>
-&nbsp;&nbsp;#endif<br/>
-}<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include "qtublasmatrixdoublemodel.h"<br/>
+<br/>
+#include &lt;numeric&gt;<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+<br/>
+#include "matrix.h"<br/>
+#include "trace.h"<br/>
+<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+ribi::QtUblasMatrixDoubleModel::QtUblasMatrixDoubleModel(QObject *parent) noexcept<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
+{<br/>
+<br/>
+}<br/>
+<br/>
+int ribi::QtUblasMatrixDoubleModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return m_data.size2();<br/>
+}<br/>
+<br/>
+QVariant ribi::QtUblasMatrixDoubleModel::data(const QModelIndex &amp;index, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;assert(index.isValid());<br/>
+<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
+&nbsp;&nbsp;assert(col &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
+<br/>
+&nbsp;&nbsp;#ifdef RETURN_DOUBLE_723465978463059835<br/>
+&nbsp;&nbsp;return m_data(row,col);<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;//Convert to string, otherwise the number digits behind the comma<br/>
+&nbsp;&nbsp;//will be set to 2, e.g. 0.01<br/>
+&nbsp;&nbsp;const std::string s = boost::lexical_cast&lt;std::string&gt;(m_data(row,col));<br/>
+&nbsp;&nbsp;return QString(s.c_str());<br/>
+&nbsp;&nbsp;#endif<br/>
+}<br/>
+<br/>
+Qt::ItemFlags ribi::QtUblasMatrixDoubleModel::flags(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
+&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
+&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
+}<br/>
+<br/>
+const std::string ribi::QtUblasMatrixDoubleModel::GetVersion() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return "1.3";<br/>
+}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::QtUblasMatrixDoubleModel::GetVersionHistory() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-21: version 1.1: added columns and rows are initialized with zeroes",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-23: version 1.2: allow an infine amount of digits behind the comma",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.3: signal layoutChanged emitted correctly"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+QVariant ribi::QtUblasMatrixDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text[section].c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasMatrixDoubleModel::insertColumns(int col, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginInsertColumns(parent,col,col+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size2() + count;<br/>
+<br/>
+&nbsp;&nbsp;boost::numeric::ublas::matrix&lt;double&gt; new_data = boost::numeric::ublas::zero_matrix&lt;double&gt;(m_data.size1(),new_size);<br/>
+&nbsp;&nbsp;const int n_rows = boost::numeric_cast&lt;int&gt;(m_data.size1());<br/>
+&nbsp;&nbsp;const int n_cols = boost::numeric_cast&lt;int&gt;(m_data.size2());<br/>
+&nbsp;&nbsp;for (int y = 0; y != n_rows; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x = 0; x != n_cols; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(new_data.size1()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(new_data.size2()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_data(y,x) = m_data(y,x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;m_data = new_data;<br/>
+<br/>
+&nbsp;&nbsp;m_header_horizontal_text.resize(new_size,"");<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endInsertColumns();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasMatrixDoubleModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size1() + count;<br/>
+<br/>
+&nbsp;&nbsp;boost::numeric::ublas::matrix&lt;double&gt; new_data = boost::numeric::ublas::zero_matrix&lt;double&gt;(new_size,m_data.size2());<br/>
+&nbsp;&nbsp;const int n_rows = boost::numeric_cast&lt;int&gt;(m_data.size1());<br/>
+&nbsp;&nbsp;const int n_cols = boost::numeric_cast&lt;int&gt;(m_data.size2());<br/>
+&nbsp;&nbsp;for (int y = 0; y != n_rows; ++y)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (int x = 0; x != n_cols; ++x)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(new_data.size1()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(new_data.size2()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(y &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(x &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new_data(y,x) = m_data(y,x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;m_data = new_data;<br/>
+<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasMatrixDoubleModel::removeColumns(int col, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginRemoveColumns(parent,col,col+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size2() - count;<br/>
+&nbsp;&nbsp;m_data.resize(m_data.size1(),new_size);<br/>
+&nbsp;&nbsp;m_header_horizontal_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size2() == m_header_horizontal_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endRemoveColumns();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasMatrixDoubleModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size1() - count;<br/>
+&nbsp;&nbsp;m_data.resize(new_size,m_data.size2());<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size1() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+int ribi::QtUblasMatrixDoubleModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return m_data.size1();<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasMatrixDoubleModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
+{<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size1()));<br/>
+&nbsp;&nbsp;assert(col &lt; boost::numeric_cast&lt;int&gt;(m_data.size2()));<br/>
+&nbsp;&nbsp;const QString s = value.toString();<br/>
+&nbsp;&nbsp;m_data(row,col) = s.toDouble();<br/>
+&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;emit dataChanged(index,index);<br/>
+<br/>
+&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+void ribi::QtUblasMatrixDoubleModel::SetHeaderData(<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; horizontal_header_text,<br/>
+&nbsp;&nbsp;const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(horizontal_header_text.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;columnCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertColumns(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeColumns(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(horizontal_header_text.size()));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,new_size);<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size()));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size2()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size1()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasMatrixDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
+{<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text[section] != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text[section] = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+void ribi::QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::matrix&lt;double&gt;&amp; data)<br/>
+{<br/>
+&nbsp;&nbsp;if (!Matrix::MatricesAreEqual(m_data,data))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Check for row count<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_row_count = boost::numeric_cast&lt;int&gt;(data.size1());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_row_count = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cur_row_count &lt; new_row_count)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_row_count,new_row_count - cur_row_count,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_row_count &gt; new_row_count)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_row_count,cur_row_count - new_row_count,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Check for column count<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_col_count = boost::numeric_cast&lt;int&gt;(data.size2());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_col_count = this-&gt;columnCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (cur_col_count &lt; new_col_count)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertColumns(cur_col_count,new_col_count - cur_col_count,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_col_count &gt; new_col_count)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeColumns(cur_col_count,cur_col_count - new_col_count,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_data.size1() == data.size1());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_data.size2() == data.size2());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(Matrix::MatricesAreEqual(m_data,data));<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size1())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(data.size2())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size1() - 1, m_data.size2() - 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;//Check MatricesAreEqual<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;assert(m_data.size1() == data.size1());<br/>
+&nbsp;&nbsp;assert(m_data.size2() == data.size2());<br/>
+&nbsp;&nbsp;const std::size_t n_rows = m_data.size1();<br/>
+&nbsp;&nbsp;const std::size_t n_cols = m_data.size2();<br/>
+&nbsp;&nbsp;for (std::size_t row = 0; row != n_rows; ++row)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for (std::size_t col = 0; col != n_cols; ++col)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assert(m_data(row,col) == data(row,col));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size2()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == boost::numeric_cast&lt;int&gt;(m_header_horizontal_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size1()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(Matrix::MatricesAreEqual(m_data,data));<br/>
+&nbsp;&nbsp;#endif<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2101,106 +2101,106 @@ void ribi::QtUblasMatrixDoubleModel::SetRawData(const boost::numeric::ublas::mat
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtublasmatrixdoublemodel.h" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#ifndef QTMATRIXDOUBLEMODEL_H<br/>
-#define QTMATRIXDOUBLEMODEL_H<br/>
-<br/>
-<br/>
-<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include &lt;boost/numeric/ublas/matrix.hpp&gt;<br/>
-#include &lt;QAbstractTableModel&gt;<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-namespace ribi {<br/>
-<br/>
-struct QtUblasMatrixDoubleModel : public QAbstractTableModel<br/>
-{<br/>
-&nbsp;&nbsp;explicit QtUblasMatrixDoubleModel(QObject *parent = 0) noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the raw data<br/>
-&nbsp;&nbsp;const boost::numeric::ublas::matrix&lt;double&gt;&amp; GetRawData() const&nbsp;&nbsp;noexcept{ return m_data; }<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version of this class<br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version history of this class<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Write the raw data<br/>
-&nbsp;&nbsp;void SetRawData(const boost::numeric::ublas::matrix&lt;double&gt;&amp; data);<br/>
-<br/>
-&nbsp;&nbsp;///Set the header text<br/>
-&nbsp;&nbsp;void SetHeaderData(const std::vector&lt;std::string&gt;&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text);<br/>
-<br/>
-&nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;///The raw data<br/>
-&nbsp;&nbsp;boost::numeric::ublas::matrix&lt;double&gt; m_data;<br/>
-<br/>
-&nbsp;&nbsp;///The horizontal header text<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_horizontal_text;<br/>
-<br/>
-&nbsp;&nbsp;///The vertical header text<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;//Must be defined from ABC<br/>
-&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
-<br/>
-&nbsp;&nbsp;///These flags are needed to allow editing<br/>
-&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool insertColumns(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool removeColumns(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Needed for editable data<br/>
-&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
-};<br/>
-<br/>
-} //~namespace ribi<br/>
-<br/>
-#endif // QTMATRIXDOUBLEMODEL_H<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef QTMATRIXDOUBLEMODEL_H<br/>
+#define QTMATRIXDOUBLEMODEL_H<br/>
+<br/>
+<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include &lt;boost/numeric/ublas/matrix.hpp&gt;<br/>
+#include &lt;QAbstractTableModel&gt;<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+<br/>
+struct QtUblasMatrixDoubleModel : public QAbstractTableModel<br/>
+{<br/>
+&nbsp;&nbsp;explicit QtUblasMatrixDoubleModel(QObject *parent = 0) noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the raw data<br/>
+&nbsp;&nbsp;const boost::numeric::ublas::matrix&lt;double&gt;&amp; GetRawData() const&nbsp;&nbsp;noexcept{ return m_data; }<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version of this class<br/>
+&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version history of this class<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Write the raw data<br/>
+&nbsp;&nbsp;void SetRawData(const boost::numeric::ublas::matrix&lt;double&gt;&amp; data);<br/>
+<br/>
+&nbsp;&nbsp;///Set the header text<br/>
+&nbsp;&nbsp;void SetHeaderData(const std::vector&lt;std::string&gt;&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text);<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;///The raw data<br/>
+&nbsp;&nbsp;boost::numeric::ublas::matrix&lt;double&gt; m_data;<br/>
+<br/>
+&nbsp;&nbsp;///The horizontal header text<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_horizontal_text;<br/>
+<br/>
+&nbsp;&nbsp;///The vertical header text<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;//Must be defined from ABC<br/>
+&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
+<br/>
+&nbsp;&nbsp;///These flags are needed to allow editing<br/>
+&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool insertColumns(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool removeColumns(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Needed for editable data<br/>
+&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
+};<br/>
+<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // QTMATRIXDOUBLEMODEL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2212,331 +2212,331 @@ struct QtUblasMatrixDoubleModel : public QAbstractTableModel<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtublasvectordoublemodel.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include "qtublasvectordoublemodel.h"<br/>
-<br/>
-#include &lt;cassert&gt;<br/>
-#include &lt;boost/lexical_cast.hpp&gt;<br/>
-#include "matrix.h"<br/>
-#include "trace.h"<br/>
-<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-ribi::QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent) noexcept<br/>
-&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
-{<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;Test();<br/>
-&nbsp;&nbsp;#endif<br/>
-}<br/>
-<br/>
-int ribi::QtUblasVectorDoubleModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return rowCount() &gt; 0 ? 1 : 0;<br/>
-}<br/>
-<br/>
-QVariant ribi::QtUblasVectorDoubleModel::data(const QModelIndex &amp;index, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;assert(index.isValid());<br/>
-<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &gt;= 0);<br/>
-&nbsp;&nbsp;assert(row &lt; this-&gt;rowCount());<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
-&nbsp;&nbsp;assert(col == 0);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;#ifdef RETURN_DOUBLE_723465978463059835<br/>
-&nbsp;&nbsp;return m_data(row);<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;//Convert to string, otherwise the number digits behind the comma<br/>
-&nbsp;&nbsp;//will be set to 2, e.g. 0.01<br/>
-&nbsp;&nbsp;const std::string s = boost::lexical_cast&lt;std::string&gt;(m_data(row));<br/>
-&nbsp;&nbsp;return QString(s.c_str());<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-}<br/>
-<br/>
-Qt::ItemFlags ribi::QtUblasVectorDoubleModel::flags(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
-&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
-&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
-&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
-}<br/>
-<br/>
-const std::string ribi::QtUblasVectorDoubleModel::GetVersion() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return "1.5";<br/>
-}<br/>
-<br/>
-const std::vector&lt;std::string&gt; ribi::QtUblasVectorDoubleModel::GetVersionHistory() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-21: version 1.1: added rows are initialized with zeroes",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-23: version 1.2: allow an infine amount of digits behind the comma",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: version 1.3: allow columnCount to be zero, if rowCount is zero",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-27: version 1.4: added self-test",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.5: signal layoutChanged emitted correctly"<br/>
-&nbsp;&nbsp;};<br/>
-}<br/>
-<br/>
-QVariant ribi::QtUblasVectorDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
-{<br/>
-&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
-&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
-<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text.c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasVectorDoubleModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size() + count;<br/>
-<br/>
-&nbsp;&nbsp;boost::numeric::ublas::vector&lt;double&gt; new_data = boost::numeric::ublas::zero_vector&lt;double&gt;(new_size);<br/>
-&nbsp;&nbsp;std::copy(m_data.begin(),m_data.end(),new_data.begin());<br/>
-&nbsp;&nbsp;m_data = new_data;<br/>
-<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasVectorDoubleModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
-{<br/>
-&nbsp;&nbsp;//Must be called before the real operation<br/>
-&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
-<br/>
-&nbsp;&nbsp;//The real operation: resize the m_data<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;const int new_size = m_data.size() - count;<br/>
-&nbsp;&nbsp;m_data.resize(new_size);<br/>
-&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
-<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-<br/>
-&nbsp;&nbsp;//Must be called in the end<br/>
-&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
-<br/>
-&nbsp;&nbsp;//It worked!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-int ribi::QtUblasVectorDoubleModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
-{<br/>
-&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
-&nbsp;&nbsp;return boost::numeric_cast&lt;int&gt;(m_data.size());<br/>
-}<br/>
-<br/>
-<br/>
-bool ribi::QtUblasVectorDoubleModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
-{<br/>
-&nbsp;&nbsp;const int row = index.row();<br/>
-<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;const int col = index.column();<br/>
-&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
-&nbsp;&nbsp;assert(col == 0);<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-&nbsp;&nbsp;m_data(row) = value.toDouble();<br/>
-<br/>
-&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;emit dataChanged(index,index);<br/>
-<br/>
-&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-bool ribi::QtUblasVectorDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
-{<br/>
-&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;else<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-<br/>
-void ribi::QtUblasVectorDoubleModel::SetHeaderData(<br/>
-&nbsp;&nbsp;const std::string&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
-{<br/>
-&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,1);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-}<br/>
-<br/>
-void ribi::QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector&lt;double&gt;&amp; data)<br/>
-{<br/>
-&nbsp;&nbsp;if (!Matrix::VectorsDoubleAreEqual(m_data,data))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(data.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//emit dataChanged(QModelIndex(),QModelIndex());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size() - 1, 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
-&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
-}<br/>
-<br/>
-#ifndef NDEBUG<br/>
-void ribi::QtUblasVectorDoubleModel::Test() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;TRACE("Started ribi::QtUblasVectorDoubleModel::Test");<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;QtUblasVectorDoubleModel model;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;== 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(model.columnCount() == 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model.insertRow(1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;== 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(model.columnCount() == 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;model.removeRow(1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;== 0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(model.columnCount() == 0);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;TRACE("Finished ribi::QtUblasVectorDoubleModel::Test successfully");<br/>
-}<br/>
-#endif<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include "qtublasvectordoublemodel.h"<br/>
+<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;boost/lexical_cast.hpp&gt;<br/>
+#include "matrix.h"<br/>
+#include "trace.h"<br/>
+<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+ribi::QtUblasVectorDoubleModel::QtUblasVectorDoubleModel(QObject *parent) noexcept<br/>
+&nbsp;&nbsp;: QAbstractTableModel(parent),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text{},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text{}<br/>
+{<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;#endif<br/>
+}<br/>
+<br/>
+int ribi::QtUblasVectorDoubleModel::columnCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return rowCount() &gt; 0 ? 1 : 0;<br/>
+}<br/>
+<br/>
+QVariant ribi::QtUblasVectorDoubleModel::data(const QModelIndex &amp;index, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;assert(index.isValid());<br/>
+<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &gt;= 0);<br/>
+&nbsp;&nbsp;assert(row &lt; this-&gt;rowCount());<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
+&nbsp;&nbsp;assert(col == 0);<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;#ifdef RETURN_DOUBLE_723465978463059835<br/>
+&nbsp;&nbsp;return m_data(row);<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;//Convert to string, otherwise the number digits behind the comma<br/>
+&nbsp;&nbsp;//will be set to 2, e.g. 0.01<br/>
+&nbsp;&nbsp;const std::string s = boost::lexical_cast&lt;std::string&gt;(m_data(row));<br/>
+&nbsp;&nbsp;return QString(s.c_str());<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+}<br/>
+<br/>
+Qt::ItemFlags ribi::QtUblasVectorDoubleModel::flags(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Qt::ItemIsSelectable<br/>
+&nbsp;&nbsp;| Qt::ItemIsEditable<br/>
+&nbsp;&nbsp;| Qt::ItemIsDragEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsDropEnabled<br/>
+&nbsp;&nbsp;| Qt::ItemIsEnabled;<br/>
+}<br/>
+<br/>
+const std::string ribi::QtUblasVectorDoubleModel::GetVersion() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return "1.5";<br/>
+}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::QtUblasVectorDoubleModel::GetVersionHistory() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-15: version 1.0: initial version",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-21: version 1.1: added rows are initialized with zeroes",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-23: version 1.2: allow an infine amount of digits behind the comma",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-05-28: version 1.3: allow columnCount to be zero, if rowCount is zero",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-06-27: version 1.4: added self-test",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2013-07-05: version 1.5: signal layoutChanged emitted correctly"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+QVariant ribi::QtUblasVectorDoubleModel::headerData(int section, Qt::Orientation orientation, int role) const<br/>
+{<br/>
+&nbsp;&nbsp;//Removing this line will cause checkboxes to appear<br/>
+&nbsp;&nbsp;if (role != Qt::EditRole &amp;&amp; role != Qt::DisplayRole) return QVariant();<br/>
+<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_horizontal_text.c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//No idea why this happens<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (!(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size())))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return QVariant();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return QString( m_header_vertical_text[section].c_str() );<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasVectorDoubleModel::insertRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginInsertRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size() + count;<br/>
+<br/>
+&nbsp;&nbsp;boost::numeric::ublas::vector&lt;double&gt; new_data = boost::numeric::ublas::zero_vector&lt;double&gt;(new_size);<br/>
+&nbsp;&nbsp;std::copy(m_data.begin(),m_data.end(),new_data.begin());<br/>
+&nbsp;&nbsp;m_data = new_data;<br/>
+<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endInsertRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasVectorDoubleModel::removeRows(int row, int count, const QModelIndex &amp;parent)<br/>
+{<br/>
+&nbsp;&nbsp;//Must be called before the real operation<br/>
+&nbsp;&nbsp;this-&gt;beginRemoveRows(parent,row,row+count-1);<br/>
+<br/>
+&nbsp;&nbsp;//The real operation: resize the m_data<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;const int new_size = m_data.size() - count;<br/>
+&nbsp;&nbsp;m_data.resize(new_size);<br/>
+&nbsp;&nbsp;m_header_vertical_text.resize(new_size);<br/>
+<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+<br/>
+&nbsp;&nbsp;//Must be called in the end<br/>
+&nbsp;&nbsp;this-&gt;endRemoveRows();<br/>
+<br/>
+&nbsp;&nbsp;//It worked!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+int ribi::QtUblasVectorDoubleModel::rowCount(const QModelIndex &amp;) const noexcept<br/>
+{<br/>
+&nbsp;&nbsp;assert(m_data.size() == m_header_vertical_text.size());<br/>
+&nbsp;&nbsp;return boost::numeric_cast&lt;int&gt;(m_data.size());<br/>
+}<br/>
+<br/>
+<br/>
+bool ribi::QtUblasVectorDoubleModel::setData(const QModelIndex &amp;index, const QVariant &amp;value, int /* role */)<br/>
+{<br/>
+&nbsp;&nbsp;const int row = index.row();<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;const int col = index.column();<br/>
+&nbsp;&nbsp;assert(row &lt; boost::numeric_cast&lt;int&gt;(m_data.size()));<br/>
+&nbsp;&nbsp;assert(col == 0);<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+&nbsp;&nbsp;m_data(row) = value.toDouble();<br/>
+<br/>
+&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;emit dataChanged(index,index);<br/>
+<br/>
+&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+bool ribi::QtUblasVectorDoubleModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int /*role*/)<br/>
+{<br/>
+&nbsp;&nbsp;if (orientation == Qt::Horizontal)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_horizontal_text != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;else<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(orientation == Qt::Vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(section &lt; boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(m_header_vertical_text[section] != value.toString().toStdString());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text[section] = value.toString().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;///This line below is needed to let multiple views synchronize<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(orientation,section,section);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Editing succeeded!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return true;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+void ribi::QtUblasVectorDoubleModel::SetHeaderData(<br/>
+&nbsp;&nbsp;const std::string&amp; horizontal_header_text, const std::vector&lt;std::string&gt;&amp; vertical_header_text)<br/>
+{<br/>
+&nbsp;&nbsp;if (m_header_horizontal_text != horizontal_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_horizontal_text = horizontal_header_text;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Horizontal,0,1);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;if (m_header_vertical_text != vertical_header_text)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutAboutToBeChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(vertical_header_text.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_header_vertical_text = vertical_header_text;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(vertical_header_text.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit headerDataChanged(Qt::Vertical,0,new_size);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+}<br/>
+<br/>
+void ribi::QtUblasVectorDoubleModel::SetRawData(const boost::numeric::ublas::vector&lt;double&gt;&amp; data)<br/>
+{<br/>
+&nbsp;&nbsp;if (!Matrix::VectorsDoubleAreEqual(m_data,data))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int new_size = boost::numeric_cast&lt;int&gt;(data.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int cur_size = this-&gt;rowCount();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (cur_size &lt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;insertRows(cur_size,new_size - cur_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (cur_size &gt; new_size)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this-&gt;removeRows(cur_size,cur_size - new_size,QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Set the data before emitting signals, as the response to that signal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//will be dependent on that data<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_data = data;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(data.size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; "So emit layoutChange can work on the newest layout");<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//If you forget this line, the view displays a different number of rows than m_data has<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit layoutChanged();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//emit dataChanged(QModelIndex(),QModelIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex top_left = this-&gt;index(0,0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const QModelIndex bottom_right = this-&gt;index(m_data.size() - 1, 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;emit dataChanged(top_left,bottom_right);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(this-&gt;m_data.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;rowCount() == boost::numeric_cast&lt;int&gt;(m_header_vertical_text.size()));<br/>
+&nbsp;&nbsp;assert(this-&gt;columnCount() == (this-&gt;rowCount() == 0 ? 0 : 1));<br/>
+}<br/>
+<br/>
+#ifndef NDEBUG<br/>
+void ribi::QtUblasVectorDoubleModel::Test() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;static bool is_tested = false;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (is_tested) return;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested = true;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;TRACE("Started ribi::QtUblasVectorDoubleModel::Test");<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;QtUblasVectorDoubleModel model;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;== 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(model.columnCount() == 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model.insertRow(1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;== 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(model.columnCount() == 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;model.removeRow(1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(model.rowCount()&nbsp;&nbsp;&nbsp;&nbsp;== 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(model.columnCount() == 0);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;TRACE("Finished ribi::QtUblasVectorDoubleModel::Test successfully");<br/>
+}<br/>
+#endif<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2548,110 +2548,110 @@ void ribi::QtUblasVectorDoubleModel::Test() noexcept<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtModel/qtublasvectordoublemodel.h" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
-<br/>
-This program is free software: you can redistribute it and/or modify<br/>
-it under the terms of the GNU General Public License as published by<br/>
-the Free Software Foundation, either version 3 of the License, or<br/>
-(at your option) any later version.<br/>
-<br/>
-This program is distributed in the hope that it will be useful,<br/>
-but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
-GNU General Public License for more details.<br/>
-You should have received a copy of the GNU General Public License<br/>
-along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
-//---------------------------------------------------------------------------<br/>
-#ifndef QTUBLASVECTORDOUBLEMODEL_H<br/>
-#define QTUBLASVECTORDOUBLEMODEL_H<br/>
-<br/>
-#include &lt;string&gt;<br/>
-#include &lt;vector&gt;<br/>
-<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
-#include &lt;boost/numeric/ublas/vector.hpp&gt;<br/>
-#include &lt;QAbstractTableModel&gt;<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-namespace ribi {<br/>
-<br/>
-struct QtUblasVectorDoubleModel: public QAbstractTableModel<br/>
-{<br/>
-&nbsp;&nbsp;explicit QtUblasVectorDoubleModel(QObject *parent = 0) noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Working with the raw data<br/>
-&nbsp;&nbsp;const boost::numeric::ublas::vector&lt;double&gt;&amp; GetRawData() const noexcept{ return m_data; }<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version of this class<br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Obtain the version history of this class<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Set the header text<br/>
-&nbsp;&nbsp;void SetHeaderData(const std::string&amp; title, const std::vector&lt;std::string&gt;&amp; header_text);<br/>
-<br/>
-&nbsp;&nbsp;///Working with the raw data<br/>
-&nbsp;&nbsp;void SetRawData(const boost::numeric::ublas::vector&lt;double&gt;&amp; data);<br/>
-<br/>
-&nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;///The raw data<br/>
-&nbsp;&nbsp;boost::numeric::ublas::vector&lt;double&gt; m_data;<br/>
-<br/>
-&nbsp;&nbsp;///The horizontal header text (for the only one column)<br/>
-&nbsp;&nbsp;std::string m_header_horizontal_text;<br/>
-<br/>
-&nbsp;&nbsp;///The vertical header text<br/>
-&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
-<br/>
-&nbsp;&nbsp;///These flags are needed to allow editing<br/>
-&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;//bool insertColumns(int column, int count, const QModelIndex &amp;parent) = delete;<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
-<br/>
-&nbsp;&nbsp;///Must be defined from ABC<br/>
-&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
-<br/>
-&nbsp;&nbsp;///Needed for editable data<br/>
-&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
-<br/>
-&nbsp;&nbsp;///Redefined from ABC<br/>
-&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
-<br/>
-&nbsp;&nbsp;#ifndef NDEBUG<br/>
-&nbsp;&nbsp;///Test this class<br/>
-&nbsp;&nbsp;static void Test() noexcept;<br/>
-&nbsp;&nbsp;#endif<br/>
-<br/>
-};<br/>
-<br/>
-} //~namespace ribi<br/>
-<br/>
-#endif // QTUBLASVECTORDOUBLEMODEL_H<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+QtModel, my classes derived from QAbstractTableModel<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
+<br/>
+This program is free software: you can redistribute it and/or modify<br/>
+it under the terms of the GNU General Public License as published by<br/>
+the Free Software Foundation, either version 3 of the License, or<br/>
+(at your option) any later version.<br/>
+<br/>
+This program is distributed in the hope that it will be useful,<br/>
+but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the<br/>
+GNU General Public License for more details.<br/>
+You should have received a copy of the GNU General Public License<br/>
+along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+//From http://www.richelbilderbeek.nl/CppQtModel.htm<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef QTUBLASVECTORDOUBLEMODEL_H<br/>
+#define QTUBLASVECTORDOUBLEMODEL_H<br/>
+<br/>
+#include &lt;string&gt;<br/>
+#include &lt;vector&gt;<br/>
+<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+#include &lt;boost/numeric/ublas/vector.hpp&gt;<br/>
+#include &lt;QAbstractTableModel&gt;<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+<br/>
+struct QtUblasVectorDoubleModel: public QAbstractTableModel<br/>
+{<br/>
+&nbsp;&nbsp;explicit QtUblasVectorDoubleModel(QObject *parent = 0) noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Working with the raw data<br/>
+&nbsp;&nbsp;const boost::numeric::ublas::vector&lt;double&gt;&amp; GetRawData() const noexcept{ return m_data; }<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version of this class<br/>
+&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Obtain the version history of this class<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Set the header text<br/>
+&nbsp;&nbsp;void SetHeaderData(const std::string&amp; title, const std::vector&lt;std::string&gt;&amp; header_text);<br/>
+<br/>
+&nbsp;&nbsp;///Working with the raw data<br/>
+&nbsp;&nbsp;void SetRawData(const boost::numeric::ublas::vector&lt;double&gt;&amp; data);<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;///The raw data<br/>
+&nbsp;&nbsp;boost::numeric::ublas::vector&lt;double&gt; m_data;<br/>
+<br/>
+&nbsp;&nbsp;///The horizontal header text (for the only one column)<br/>
+&nbsp;&nbsp;std::string m_header_horizontal_text;<br/>
+<br/>
+&nbsp;&nbsp;///The vertical header text<br/>
+&nbsp;&nbsp;std::vector&lt;std::string&gt; m_header_vertical_text;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int columnCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;QVariant data(const QModelIndex &amp;index, int role = Qt::DisplayRole) const;<br/>
+<br/>
+&nbsp;&nbsp;///These flags are needed to allow editing<br/>
+&nbsp;&nbsp;Qt::ItemFlags flags(const QModelIndex &amp;index) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;QVariant headerData(int section, Qt::Orientation orientation, int role) const;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;//bool insertColumns(int column, int count, const QModelIndex &amp;parent) = delete;<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool insertRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool removeRows(int row, int count, const QModelIndex &amp;parent);<br/>
+<br/>
+&nbsp;&nbsp;///Must be defined from ABC<br/>
+&nbsp;&nbsp;int rowCount(const QModelIndex &amp;parent = QModelIndex()) const noexcept;<br/>
+<br/>
+&nbsp;&nbsp;///Needed for editable data<br/>
+&nbsp;&nbsp;bool setData(const QModelIndex &amp;index, const QVariant &amp;value, int role = Qt::EditRole);<br/>
+<br/>
+&nbsp;&nbsp;///Redefined from ABC<br/>
+&nbsp;&nbsp;bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &amp;value, int role);<br/>
+<br/>
+&nbsp;&nbsp;#ifndef NDEBUG<br/>
+&nbsp;&nbsp;///Test this class<br/>
+&nbsp;&nbsp;static void Test() noexcept;<br/>
+&nbsp;&nbsp;#endif<br/>
+<br/>
+};<br/>
+<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif // QTUBLASVECTORDOUBLEMODEL_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -2666,7 +2666,7 @@ struct QtUblasVectorDoubleModel: public QAbstractTableModel<br/>
 //---------------------------------------------------------------------------<br/>
 /*<br/>
 QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
 it under the terms of the GNU General Public License as published by<br/>
@@ -3118,7 +3118,7 @@ void ribi::QtUblasVectorIntModel::Test() noexcept<br/>
 //---------------------------------------------------------------------------<br/>
 /*<br/>
 QtModel, my classes derived from QAbstractTableModel<br/>
-Copyright (C) 2013 Richel Bilderbeek<br/>
+Copyright (C) 2013-2014 Richel Bilderbeek<br/>
 <br/>
 This program is free software: you can redistribute it and/or modify<br/>
 it under the terms of the GNU General Public License as published by<br/>

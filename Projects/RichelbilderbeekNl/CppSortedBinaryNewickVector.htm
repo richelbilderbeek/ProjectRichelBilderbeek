@@ -731,423 +731,423 @@ Public License instead of this License.&nbsp;&nbsp;But first, please read<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppSortedBinaryNewickVector/sortedbinarynewickvector.cpp" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-// From http://www.richelbilderbeek.nl<br/>
-//---------------------------------------------------------------------------<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#include "sortedbinarynewickvector.h"<br/>
-<br/>
-#include &lt;algorithm&gt;<br/>
-#include &lt;cassert&gt;<br/>
-#include &lt;cmath&gt;<br/>
-#include &lt;numeric&gt;<br/>
-<br/>
-#include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
-<br/>
-#include "binarynewickvector.h"<br/>
-#include "newick.h"<br/>
-<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const SortedBinaryNewickVector&amp; rhs)<br/>
-&nbsp;&nbsp;: m_v(rhs.Peek())<br/>
-{<br/>
-&nbsp;&nbsp;assert(Newick::IsNewick(m_v));<br/>
-&nbsp;&nbsp;assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));<br/>
-&nbsp;&nbsp;//Assume rhs is sorted<br/>
-}<br/>
-<br/>
-ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const std::vector&lt;int&gt;&amp; any_v)<br/>
-&nbsp;&nbsp;: m_v(any_v)<br/>
-{<br/>
-&nbsp;&nbsp;assert(Empty()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|| ( Newick::IsNewick(m_v)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; (Newick::IsUnaryNewick(m_v)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| Newick::IsBinaryNewick(m_v))));<br/>
-&nbsp;&nbsp;Sort();<br/>
-}<br/>
-<br/>
-ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const BinaryNewickVector&amp; rhs)<br/>
-&nbsp;&nbsp;: m_v(rhs.Peek())<br/>
-{<br/>
-&nbsp;&nbsp;assert(Newick::IsNewick(m_v));<br/>
-&nbsp;&nbsp;assert(Newick::IsUnaryNewick(m_v)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| Newick::IsBinaryNewick(m_v));<br/>
-&nbsp;&nbsp;Sort();<br/>
-}<br/>
-<br/>
-bool ribi::operator&lt;(const SortedBinaryNewickVector&amp; lhs, const SortedBinaryNewickVector&amp; rhs)<br/>
-{<br/>
-&nbsp;&nbsp;//return lhs.v &lt; rhs.v;<br/>
-&nbsp;&nbsp;return ribi::SortedBinaryNewickVector::NewickCompare(lhs.Peek(),rhs.Peek());<br/>
-}<br/>
-<br/>
-double ribi::SortedBinaryNewickVector::CalculateProbability(<br/>
-&nbsp;&nbsp;const std::string&amp; newick_str,<br/>
-&nbsp;&nbsp;const double theta)<br/>
-{<br/>
-&nbsp;&nbsp;assert(Newick::IsNewick(newick_str));<br/>
-&nbsp;&nbsp;assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)));<br/>
-&nbsp;&nbsp;assert(theta &gt; 0.0);<br/>
-&nbsp;&nbsp;SortedBinaryNewickVector newick(newick_str);<br/>
-&nbsp;&nbsp;NewickStorage&lt;SortedBinaryNewickVector&gt; storage(newick);<br/>
-&nbsp;&nbsp;return Newick::CalculateProbability(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;newick,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;theta,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;storage);<br/>
-<br/>
-}<br/>
-<br/>
-const std::string ribi::SortedBinaryNewickVector::ToStr() const<br/>
-{<br/>
-&nbsp;&nbsp;return Newick::NewickToString(Peek());<br/>
-}<br/>
-<br/>
- double ribi::SortedBinaryNewickVector::CalcDenominator(<br/>
-&nbsp;&nbsp; const double theta) const<br/>
-{<br/>
-&nbsp;&nbsp;return Newick::CalcDenominator(Peek(),theta);<br/>
-}<br/>
-<br/>
-//From a certain SortedBinaryNewickVector,<br/>
-//returns the probability<br/>
- double ribi::SortedBinaryNewickVector::CalcProbabilitySimpleNewick(const double theta) const<br/>
-{<br/>
-&nbsp;&nbsp;assert(IsSimple());<br/>
-<br/>
-&nbsp;&nbsp;const int sz = m_v.size();<br/>
-<br/>
-&nbsp;&nbsp;int n=0;<br/>
-&nbsp;&nbsp;int k=0;<br/>
-&nbsp;&nbsp;double probability = 1.0;<br/>
-<br/>
-&nbsp;&nbsp;for (int i=0; i!=sz; ++i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (m_v[i]&gt;0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int ni = m_v[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++k;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++n;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int p=1; p!=ni; ++p, ++n)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;probability *= (static_cast&lt;double&gt;(p) / ( static_cast&lt;double&gt;(n) + theta));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;probability /= ( static_cast&lt;double&gt;(n) + theta);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;probability *= (static_cast&lt;double&gt;(n)+theta)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* std::pow(theta,static_cast&lt;double&gt;(k-1));<br/>
-&nbsp;&nbsp;return probability;<br/>
-}<br/>
-<br/>
-int ribi::SortedBinaryNewickVector::FindPosAfter(const std::vector&lt;int&gt;&amp; v,const int x, const int index)<br/>
-{<br/>
-&nbsp;&nbsp;const int sz = v.size();<br/>
-&nbsp;&nbsp;for (int i=index; i!=sz; ++i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (v[i]==x) return i;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;return sz;<br/>
-}<br/>
-<br/>
-int ribi::SortedBinaryNewickVector::FindPosBefore(const std::vector&lt;int&gt;&amp; v,const int x, const int index)<br/>
-{<br/>
-<br/>
-&nbsp;&nbsp;for (int i=index; i!=-1; --i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (v[i]==x) return i;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;return -1;<br/>
-}<br/>
-<br/>
-const std::string ribi::SortedBinaryNewickVector::GetVersion() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return "3.0";<br/>
-}<br/>
-<br/>
-const std::vector&lt;std::string&gt; ribi::SortedBinaryNewickVector::GetVersionHistory() noexcept<br/>
-{<br/>
-&nbsp;&nbsp;return {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"2011-03-11: Version 3.0: initial versioning, following BinaryNewickVector"<br/>
-&nbsp;&nbsp;};<br/>
-}<br/>
-<br/>
-bool ribi::SortedBinaryNewickVector::IsCloseBracketRight(const int pos) const<br/>
-{<br/>
-&nbsp;&nbsp;const int sz = m_v.size();<br/>
-<br/>
-&nbsp;&nbsp;assert(pos &gt;= 0);<br/>
-&nbsp;&nbsp;assert(pos &lt; sz);<br/>
-&nbsp;&nbsp;assert(m_v[pos]==1);<br/>
-<br/>
-&nbsp;&nbsp;for (int i=pos+1; i!=sz; ++i) //+1 because v[pos]==1<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int x = m_v[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_close) return true;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_open) return false;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//There will always be a final closing bracket at the right<br/>
-&nbsp;&nbsp;// that is not stored in a SortedBinaryNewickVector's std::vector<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
- bool ribi::SortedBinaryNewickVector::IsOpenBracketLeft(const int pos) const<br/>
-{<br/>
-&nbsp;&nbsp;assert(pos &gt;= 0);<br/>
-&nbsp;&nbsp;assert(pos &lt; static_cast&lt;int&gt;(m_v.size()));<br/>
-&nbsp;&nbsp;assert(m_v[pos]==1);<br/>
-<br/>
-&nbsp;&nbsp;for (int i=pos-1; i!=-1; --i) //-1, because v[pos]==1<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int x = m_v[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_open) return true;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_close) return false;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;//There will always be a trailing opening bracket at the left<br/>
-&nbsp;&nbsp;// that is not stored in a SortedBinaryNewickVector's std::vector<br/>
-&nbsp;&nbsp;return true;<br/>
-}<br/>
-<br/>
-//If there is at least one bracket open<br/>
- bool ribi::SortedBinaryNewickVector::IsSimple() const<br/>
-{<br/>
-&nbsp;&nbsp;return Newick::IsSimple(Peek());<br/>
-}<br/>
-<br/>
-//Does the following conversions:<br/>
-// (5,(5,1)) -&gt; (5,6)<br/>
-// (4,(5,1)) -&gt; (4,6)<br/>
-// (4,(3,1)) -&gt; (4,4)<br/>
-// (4,(1,1)) -&gt; (4,2)<br/>
-// string_pos points at an index in the string current.newick after the '1'<br/>
-// For example, for (4,(3,1)) the string_pos equals 7<br/>
-// num is the other value between brackets<br/>
-// For example, for (4,(3,1)) num will equal 3<br/>
-// (5,(5,1)) -&gt; (5,6)<br/>
-// -&gt; sz = 9<br/>
-// -&gt; bracket_open_pos&nbsp;&nbsp;= 3<br/>
-// -&gt; bracket_close_pos = 7<br/>
-// -&gt; sz_loss = 4 = 7 - 3 = bracket_close_pos - bracket_open_pos<br/>
-// -&gt; new_sz = 5<br/>
-const ribi::SortedBinaryNewickVector ribi::SortedBinaryNewickVector::LoseBrackets(const int x, const int i) const<br/>
-{<br/>
-&nbsp;&nbsp;assert(i &gt;= 0);<br/>
-&nbsp;&nbsp;assert(i &lt; Size());<br/>
-&nbsp;&nbsp;assert(m_v[i] == 1);<br/>
-&nbsp;&nbsp;assert(x&gt;0);<br/>
-&nbsp;&nbsp;std::vector&lt;int&gt; v_copy = m_v;<br/>
-<br/>
-&nbsp;&nbsp;const int bracket_open_pos<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= FindPosBefore(m_v,Newick::bracket_open,i);<br/>
-&nbsp;&nbsp;assert(bracket_open_pos &gt; -1);<br/>
-&nbsp;&nbsp;const int bracket_close_pos<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= FindPosAfter(m_v,Newick::bracket_close,i);<br/>
-&nbsp;&nbsp;assert(bracket_close_pos &lt; Size());<br/>
-&nbsp;&nbsp;const int sz = Size();<br/>
-&nbsp;&nbsp;const int sz_lose = bracket_close_pos - bracket_open_pos;<br/>
-&nbsp;&nbsp;const int sz_new = sz - sz_lose;<br/>
-&nbsp;&nbsp;v_copy[bracket_open_pos] = x+1;<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;::iterator begin_iter(&amp;v_copy[bracket_close_pos+1]);<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;::iterator output_iter(&amp;v_copy[bracket_open_pos+1]);<br/>
-&nbsp;&nbsp;std::copy(begin_iter,v_copy.end(),output_iter);<br/>
-&nbsp;&nbsp;v_copy.resize(sz_new);<br/>
-<br/>
-&nbsp;&nbsp;return SortedBinaryNewickVector(v_copy);<br/>
-}<br/>
-<br/>
-const ribi::SortedBinaryNewickVector ribi::SortedBinaryNewickVector::TermIsNotOne(const int i) const<br/>
-{<br/>
-&nbsp;&nbsp;assert(m_v[i]&gt;1);<br/>
-&nbsp;&nbsp;std::vector&lt;int&gt; v(m_v);<br/>
-&nbsp;&nbsp;--v[i];<br/>
-&nbsp;&nbsp;return SortedBinaryNewickVector(v);<br/>
-}<br/>
-<br/>
-//TermIsOne is called whenever a '1' is found in a newick structure<br/>
-//string_pos has the index of the character after this '1'<br/>
-// (when a string has multiple 1's, TermIsOne is called for each '1',<br/>
-//&nbsp;&nbsp;with each time a different string_pos)<br/>
-//If this '1' is between two brackets, with one other number,<br/>
-//&nbsp;&nbsp;these two numbers are added and the brackets are removed<br/>
-//If this '1' is not between two brackets,<br/>
-//&nbsp;&nbsp;the newick string returned is empty<br/>
-//Conversion examples<br/>
-// (3,(15,1)), string_pos 8 -&gt; (3,16)<br/>
-//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^&nbsp;&nbsp; EXIT1<br/>
-// (2,(23,1)), string_pos 8 -&gt; (2,24)<br/>
-//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^&nbsp;&nbsp; EXIT1<br/>
-// (1,(20,5)), string_pos 2 -&gt; [empty]<br/>
-//&nbsp;&nbsp; ^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXIT-2<br/>
-// (1,(1,1)), string_pos 2 -&gt; [empty]<br/>
-//&nbsp;&nbsp; ^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXIT-2<br/>
-// (1,(1,1)), string_pos 5 -&gt; (1,2)<br/>
-//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT-2<br/>
-// (1,(1,1)), string_pos 7 -&gt; (1,2)<br/>
-//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;EXIT-1<br/>
-// ((1,2,3),3), string_pos 3 -&gt; (3,3) //Might be incorrect: algorithm holds for two numbers between brackets<br/>
-//&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
-const ribi::SortedBinaryNewickVector ribi::SortedBinaryNewickVector::TermIsOne(const int i) const<br/>
-{<br/>
-&nbsp;&nbsp;const int sz = m_v.size();<br/>
-<br/>
-&nbsp;&nbsp;//assert(new_newick.empty());<br/>
-&nbsp;&nbsp;assert(i &lt; sz);<br/>
-&nbsp;&nbsp;assert(m_v[i] == 1); //Must be a 1<br/>
-<br/>
-&nbsp;&nbsp;const bool open_bracket_left<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= IsOpenBracketLeft(i);<br/>
-&nbsp;&nbsp;const bool close_bracket_right<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;= IsCloseBracketRight(i);<br/>
-<br/>
-&nbsp;&nbsp;if (open_bracket_left == true<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; close_bracket_right == true)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//Find other_value<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;int other_value = 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//If adjecent to the left is a comma<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;// and subsequently a value,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (i &gt; 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; m_v[i-1]&nbsp;&nbsp;&gt; 0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other_value = m_v[i-1];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (i + 1 &lt; sz<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; m_v[i+1]&nbsp;&nbsp;&gt; 0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other_value = m_v[i+1];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;assert(other_value &gt;= 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;return LoseBrackets(other_value,i);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;//Return an empty SortedBinaryNewickVector<br/>
-&nbsp;&nbsp;return SortedBinaryNewickVector(std::vector&lt;int&gt;());<br/>
-}<br/>
-<br/>
-void ribi::SortedBinaryNewickVector::Sort()<br/>
-{<br/>
-&nbsp;&nbsp;//return;<br/>
-&nbsp;&nbsp;#ifndef _WIN32<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//g++ has some trouble with type conversions<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;typedef std::vector&lt;int&gt;::const_iterator Iter;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const Iter b = m_v.begin();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const Iter e = m_v.end();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_v = Sort(b,e);<br/>
-&nbsp;&nbsp;#else<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_v = Sort(m_v.begin(),m_v.end());<br/>
-&nbsp;&nbsp;#endif<br/>
-}<br/>
-<br/>
-const std::vector&lt;int&gt; ribi::SortedBinaryNewickVector::Sort(<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator b,<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator e) const<br/>
-{<br/>
-&nbsp;&nbsp;int level = 0;<br/>
-&nbsp;&nbsp;std::vector&lt;int&gt; v;<br/>
-&nbsp;&nbsp;std::vector&lt;std::vector&lt;int&gt; &gt; v_sub;<br/>
-&nbsp;&nbsp;std::vector&lt;int&gt;::const_iterator b_sub(e); //e, because g++ does not allow a null<br/>
-&nbsp;&nbsp;for (std::vector&lt;int&gt;::const_iterator i = b; i!=e; ++i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int x = *i;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_open)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++level;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (level == 1)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//i+1, because the branch starts directly after the bracket open<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b_sub = i + 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (x == Newick::bracket_close)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (level == 1)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//i, because the branch ends directly before the bracket open<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//TRACE(ToString(std::vector&lt;int&gt;(b_sub,i),false));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v_sub.push_back(Sort(b_sub,i));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b_sub = e; //e, because g++ does not allow a null<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--level;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;else if (level==0)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//x is a value<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;//assert(std::find(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;//&nbsp;&nbsp;std::bind1st(std::equal_to&lt;int&gt;(),<br/>
-&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;static_cast&lt;int&gt;(Newick::bracket_open)))<br/>
-&nbsp;&nbsp;//&nbsp;&nbsp;== v.end()); //v must not contain brackets open<br/>
-&nbsp;&nbsp;//assert(std::find(v.begin(),v.end(),<br/>
-&nbsp;&nbsp;//&nbsp;&nbsp;std::bind1st(std::equal_to&lt;int&gt;(),<br/>
-&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;static_cast&lt;int&gt;(Newick::bracket_close)))<br/>
-&nbsp;&nbsp;//&nbsp;&nbsp;== v.end()); //v must not contain brackets close<br/>
-<br/>
-&nbsp;&nbsp;std::sort(v.begin(),v.end()); //v only contains values<br/>
-&nbsp;&nbsp;std::sort(v_sub.begin(),v_sub.end(),NewickCompare);<br/>
-<br/>
-&nbsp;&nbsp;//TRACE("Level 0 entries: " + ToString(v,false));<br/>
-<br/>
-&nbsp;&nbsp;//Concatenate the values in v with the sorted branches in v_sub<br/>
-&nbsp;&nbsp;const int n_subs = v_sub.size();<br/>
-&nbsp;&nbsp;for (int i=0; i!=n_subs; ++i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;//TRACE("Level 1 entries: " + ToString(std::vector&lt;int&gt;(v_sub[i].begin(),v_sub[i].end()),false));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(Newick::bracket_open);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;std::copy(v_sub[i].begin(),v_sub[i].end(),std::back_inserter(v));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(Newick::bracket_close);<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;//TRACE("Sort to std::vector: " + ToString(v,false));<br/>
-&nbsp;&nbsp;assert(e - b == static_cast&lt;int&gt;(v.size()));<br/>
-&nbsp;&nbsp;return v;<br/>
-}<br/>
-<br/>
-bool ribi::SortedBinaryNewickVector::NewickCompare(<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; lhs,<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; rhs)<br/>
-{<br/>
-&nbsp;&nbsp;const int l_sz = lhs.size();<br/>
-&nbsp;&nbsp;const int r_sz = rhs.size();<br/>
-&nbsp;&nbsp;if (l_sz &lt; r_sz) return true;<br/>
-&nbsp;&nbsp;if (l_sz &gt; r_sz) return false;<br/>
-<br/>
-&nbsp;&nbsp;typedef std::vector&lt;int&gt;::const_iterator Iter;<br/>
-&nbsp;&nbsp;Iter lhs_iter = lhs.begin();<br/>
-&nbsp;&nbsp;const Iter lhs_end = lhs.end();<br/>
-&nbsp;&nbsp;Iter rhs_iter = rhs.begin();<br/>
-<br/>
-&nbsp;&nbsp;for ( ; lhs_iter != lhs_end; ++lhs_iter, ++rhs_iter)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int x_l = *lhs_iter;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const int x_r = *rhs_iter;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x_l &lt; x_r) return true;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;if (x_l &gt; x_r) return false;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;return false;<br/>
-}<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
+&nbsp;&nbsp;(C) 2009-2014 Richel Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#include "sortedbinarynewickvector.h"<br/>
+<br/>
+#include &lt;algorithm&gt;<br/>
+#include &lt;cassert&gt;<br/>
+#include &lt;cmath&gt;<br/>
+#include &lt;numeric&gt;<br/>
+<br/>
+#include &lt;boost/numeric/conversion/cast.hpp&gt;<br/>
+<br/>
+#include "binarynewickvector.h"<br/>
+#include "newick.h"<br/>
+<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const SortedBinaryNewickVector&amp; rhs)<br/>
+&nbsp;&nbsp;: m_v(rhs.Peek())<br/>
+{<br/>
+&nbsp;&nbsp;assert(Newick::IsNewick(m_v));<br/>
+&nbsp;&nbsp;assert(Newick::IsUnaryNewick(m_v) || Newick::IsBinaryNewick(m_v));<br/>
+&nbsp;&nbsp;//Assume rhs is sorted<br/>
+}<br/>
+<br/>
+ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const std::vector&lt;int&gt;&amp; any_v)<br/>
+&nbsp;&nbsp;: m_v(any_v)<br/>
+{<br/>
+&nbsp;&nbsp;assert(Empty()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;|| ( Newick::IsNewick(m_v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; (Newick::IsUnaryNewick(m_v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| Newick::IsBinaryNewick(m_v))));<br/>
+&nbsp;&nbsp;Sort();<br/>
+}<br/>
+<br/>
+ribi::SortedBinaryNewickVector::SortedBinaryNewickVector(const BinaryNewickVector&amp; rhs)<br/>
+&nbsp;&nbsp;: m_v(rhs.Peek())<br/>
+{<br/>
+&nbsp;&nbsp;assert(Newick::IsNewick(m_v));<br/>
+&nbsp;&nbsp;assert(Newick::IsUnaryNewick(m_v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| Newick::IsBinaryNewick(m_v));<br/>
+&nbsp;&nbsp;Sort();<br/>
+}<br/>
+<br/>
+bool ribi::operator&lt;(const SortedBinaryNewickVector&amp; lhs, const SortedBinaryNewickVector&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;//return lhs.v &lt; rhs.v;<br/>
+&nbsp;&nbsp;return ribi::SortedBinaryNewickVector::NewickCompare(lhs.Peek(),rhs.Peek());<br/>
+}<br/>
+<br/>
+double ribi::SortedBinaryNewickVector::CalculateProbability(<br/>
+&nbsp;&nbsp;const std::string&amp; newick_str,<br/>
+&nbsp;&nbsp;const double theta)<br/>
+{<br/>
+&nbsp;&nbsp;assert(Newick::IsNewick(newick_str));<br/>
+&nbsp;&nbsp;assert(Newick::IsUnaryNewick(Newick::StringToNewick(newick_str))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|| Newick::IsBinaryNewick(Newick::StringToNewick(newick_str)));<br/>
+&nbsp;&nbsp;assert(theta &gt; 0.0);<br/>
+&nbsp;&nbsp;SortedBinaryNewickVector newick(newick_str);<br/>
+&nbsp;&nbsp;NewickStorage&lt;SortedBinaryNewickVector&gt; storage(newick);<br/>
+&nbsp;&nbsp;return Newick::CalculateProbability(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;newick,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;theta,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;storage);<br/>
+<br/>
+}<br/>
+<br/>
+const std::string ribi::SortedBinaryNewickVector::ToStr() const<br/>
+{<br/>
+&nbsp;&nbsp;return Newick::NewickToString(Peek());<br/>
+}<br/>
+<br/>
+ double ribi::SortedBinaryNewickVector::CalcDenominator(<br/>
+&nbsp;&nbsp; const double theta) const<br/>
+{<br/>
+&nbsp;&nbsp;return Newick::CalcDenominator(Peek(),theta);<br/>
+}<br/>
+<br/>
+//From a certain SortedBinaryNewickVector,<br/>
+//returns the probability<br/>
+ double ribi::SortedBinaryNewickVector::CalcProbabilitySimpleNewick(const double theta) const<br/>
+{<br/>
+&nbsp;&nbsp;assert(IsSimple());<br/>
+<br/>
+&nbsp;&nbsp;const int sz = m_v.size();<br/>
+<br/>
+&nbsp;&nbsp;int n=0;<br/>
+&nbsp;&nbsp;int k=0;<br/>
+&nbsp;&nbsp;double probability = 1.0;<br/>
+<br/>
+&nbsp;&nbsp;for (int i=0; i!=sz; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (m_v[i]&gt;0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const int ni = m_v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++k;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++n;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for (int p=1; p!=ni; ++p, ++n)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;probability *= (static_cast&lt;double&gt;(p) / ( static_cast&lt;double&gt;(n) + theta));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;probability /= ( static_cast&lt;double&gt;(n) + theta);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;probability *= (static_cast&lt;double&gt;(n)+theta)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* std::pow(theta,static_cast&lt;double&gt;(k-1));<br/>
+&nbsp;&nbsp;return probability;<br/>
+}<br/>
+<br/>
+int ribi::SortedBinaryNewickVector::FindPosAfter(const std::vector&lt;int&gt;&amp; v,const int x, const int index)<br/>
+{<br/>
+&nbsp;&nbsp;const int sz = v.size();<br/>
+&nbsp;&nbsp;for (int i=index; i!=sz; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (v[i]==x) return i;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return sz;<br/>
+}<br/>
+<br/>
+int ribi::SortedBinaryNewickVector::FindPosBefore(const std::vector&lt;int&gt;&amp; v,const int x, const int index)<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;for (int i=index; i!=-1; --i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (v[i]==x) return i;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return -1;<br/>
+}<br/>
+<br/>
+const std::string ribi::SortedBinaryNewickVector::GetVersion() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return "3.0";<br/>
+}<br/>
+<br/>
+const std::vector&lt;std::string&gt; ribi::SortedBinaryNewickVector::GetVersionHistory() noexcept<br/>
+{<br/>
+&nbsp;&nbsp;return {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"2011-03-11: Version 3.0: initial versioning, following BinaryNewickVector"<br/>
+&nbsp;&nbsp;};<br/>
+}<br/>
+<br/>
+bool ribi::SortedBinaryNewickVector::IsCloseBracketRight(const int pos) const<br/>
+{<br/>
+&nbsp;&nbsp;const int sz = m_v.size();<br/>
+<br/>
+&nbsp;&nbsp;assert(pos &gt;= 0);<br/>
+&nbsp;&nbsp;assert(pos &lt; sz);<br/>
+&nbsp;&nbsp;assert(m_v[pos]==1);<br/>
+<br/>
+&nbsp;&nbsp;for (int i=pos+1; i!=sz; ++i) //+1 because v[pos]==1<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int x = m_v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_close) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_open) return false;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//There will always be a final closing bracket at the right<br/>
+&nbsp;&nbsp;// that is not stored in a SortedBinaryNewickVector's std::vector<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+ bool ribi::SortedBinaryNewickVector::IsOpenBracketLeft(const int pos) const<br/>
+{<br/>
+&nbsp;&nbsp;assert(pos &gt;= 0);<br/>
+&nbsp;&nbsp;assert(pos &lt; static_cast&lt;int&gt;(m_v.size()));<br/>
+&nbsp;&nbsp;assert(m_v[pos]==1);<br/>
+<br/>
+&nbsp;&nbsp;for (int i=pos-1; i!=-1; --i) //-1, because v[pos]==1<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int x = m_v[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_open) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_close) return false;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;//There will always be a trailing opening bracket at the left<br/>
+&nbsp;&nbsp;// that is not stored in a SortedBinaryNewickVector's std::vector<br/>
+&nbsp;&nbsp;return true;<br/>
+}<br/>
+<br/>
+//If there is at least one bracket open<br/>
+ bool ribi::SortedBinaryNewickVector::IsSimple() const<br/>
+{<br/>
+&nbsp;&nbsp;return Newick::IsSimple(Peek());<br/>
+}<br/>
+<br/>
+//Does the following conversions:<br/>
+// (5,(5,1)) -&gt; (5,6)<br/>
+// (4,(5,1)) -&gt; (4,6)<br/>
+// (4,(3,1)) -&gt; (4,4)<br/>
+// (4,(1,1)) -&gt; (4,2)<br/>
+// string_pos points at an index in the string current.newick after the '1'<br/>
+// For example, for (4,(3,1)) the string_pos equals 7<br/>
+// num is the other value between brackets<br/>
+// For example, for (4,(3,1)) num will equal 3<br/>
+// (5,(5,1)) -&gt; (5,6)<br/>
+// -&gt; sz = 9<br/>
+// -&gt; bracket_open_pos&nbsp;&nbsp;= 3<br/>
+// -&gt; bracket_close_pos = 7<br/>
+// -&gt; sz_loss = 4 = 7 - 3 = bracket_close_pos - bracket_open_pos<br/>
+// -&gt; new_sz = 5<br/>
+const ribi::SortedBinaryNewickVector ribi::SortedBinaryNewickVector::LoseBrackets(const int x, const int i) const<br/>
+{<br/>
+&nbsp;&nbsp;assert(i &gt;= 0);<br/>
+&nbsp;&nbsp;assert(i &lt; Size());<br/>
+&nbsp;&nbsp;assert(m_v[i] == 1);<br/>
+&nbsp;&nbsp;assert(x&gt;0);<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt; v_copy = m_v;<br/>
+<br/>
+&nbsp;&nbsp;const int bracket_open_pos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= FindPosBefore(m_v,Newick::bracket_open,i);<br/>
+&nbsp;&nbsp;assert(bracket_open_pos &gt; -1);<br/>
+&nbsp;&nbsp;const int bracket_close_pos<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= FindPosAfter(m_v,Newick::bracket_close,i);<br/>
+&nbsp;&nbsp;assert(bracket_close_pos &lt; Size());<br/>
+&nbsp;&nbsp;const int sz = Size();<br/>
+&nbsp;&nbsp;const int sz_lose = bracket_close_pos - bracket_open_pos;<br/>
+&nbsp;&nbsp;const int sz_new = sz - sz_lose;<br/>
+&nbsp;&nbsp;v_copy[bracket_open_pos] = x+1;<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;::iterator begin_iter(&amp;v_copy[bracket_close_pos+1]);<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;::iterator output_iter(&amp;v_copy[bracket_open_pos+1]);<br/>
+&nbsp;&nbsp;std::copy(begin_iter,v_copy.end(),output_iter);<br/>
+&nbsp;&nbsp;v_copy.resize(sz_new);<br/>
+<br/>
+&nbsp;&nbsp;return SortedBinaryNewickVector(v_copy);<br/>
+}<br/>
+<br/>
+const ribi::SortedBinaryNewickVector ribi::SortedBinaryNewickVector::TermIsNotOne(const int i) const<br/>
+{<br/>
+&nbsp;&nbsp;assert(m_v[i]&gt;1);<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt; v(m_v);<br/>
+&nbsp;&nbsp;--v[i];<br/>
+&nbsp;&nbsp;return SortedBinaryNewickVector(v);<br/>
+}<br/>
+<br/>
+//TermIsOne is called whenever a '1' is found in a newick structure<br/>
+//string_pos has the index of the character after this '1'<br/>
+// (when a string has multiple 1's, TermIsOne is called for each '1',<br/>
+//&nbsp;&nbsp;with each time a different string_pos)<br/>
+//If this '1' is between two brackets, with one other number,<br/>
+//&nbsp;&nbsp;these two numbers are added and the brackets are removed<br/>
+//If this '1' is not between two brackets,<br/>
+//&nbsp;&nbsp;the newick string returned is empty<br/>
+//Conversion examples<br/>
+// (3,(15,1)), string_pos 8 -&gt; (3,16)<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^&nbsp;&nbsp; EXIT1<br/>
+// (2,(23,1)), string_pos 8 -&gt; (2,24)<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ^&nbsp;&nbsp; EXIT1<br/>
+// (1,(20,5)), string_pos 2 -&gt; [empty]<br/>
+//&nbsp;&nbsp; ^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXIT-2<br/>
+// (1,(1,1)), string_pos 2 -&gt; [empty]<br/>
+//&nbsp;&nbsp; ^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EXIT-2<br/>
+// (1,(1,1)), string_pos 5 -&gt; (1,2)<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXIT-2<br/>
+// (1,(1,1)), string_pos 7 -&gt; (1,2)<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;&nbsp;&nbsp;EXIT-1<br/>
+// ((1,2,3),3), string_pos 3 -&gt; (3,3) //Might be incorrect: algorithm holds for two numbers between brackets<br/>
+//&nbsp;&nbsp;&nbsp;&nbsp;^<br/>
+const ribi::SortedBinaryNewickVector ribi::SortedBinaryNewickVector::TermIsOne(const int i) const<br/>
+{<br/>
+&nbsp;&nbsp;const int sz = m_v.size();<br/>
+<br/>
+&nbsp;&nbsp;//assert(new_newick.empty());<br/>
+&nbsp;&nbsp;assert(i &lt; sz);<br/>
+&nbsp;&nbsp;assert(m_v[i] == 1); //Must be a 1<br/>
+<br/>
+&nbsp;&nbsp;const bool open_bracket_left<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= IsOpenBracketLeft(i);<br/>
+&nbsp;&nbsp;const bool close_bracket_right<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;= IsCloseBracketRight(i);<br/>
+<br/>
+&nbsp;&nbsp;if (open_bracket_left == true<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; close_bracket_right == true)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//Find other_value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;int other_value = 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//If adjecent to the left is a comma<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;// and subsequently a value,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (i &gt; 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; m_v[i-1]&nbsp;&nbsp;&gt; 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other_value = m_v[i-1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (i + 1 &lt; sz<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&amp; m_v[i+1]&nbsp;&nbsp;&gt; 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;other_value = m_v[i+1];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;assert(other_value &gt;= 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return LoseBrackets(other_value,i);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;//Return an empty SortedBinaryNewickVector<br/>
+&nbsp;&nbsp;return SortedBinaryNewickVector(std::vector&lt;int&gt;());<br/>
+}<br/>
+<br/>
+void ribi::SortedBinaryNewickVector::Sort()<br/>
+{<br/>
+&nbsp;&nbsp;//return;<br/>
+&nbsp;&nbsp;#ifndef _WIN32<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//g++ has some trouble with type conversions<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;typedef std::vector&lt;int&gt;::const_iterator Iter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const Iter b = m_v.begin();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const Iter e = m_v.end();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v = Sort(b,e);<br/>
+&nbsp;&nbsp;#else<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_v = Sort(m_v.begin(),m_v.end());<br/>
+&nbsp;&nbsp;#endif<br/>
+}<br/>
+<br/>
+const std::vector&lt;int&gt; ribi::SortedBinaryNewickVector::Sort(<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator b,<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator e) const<br/>
+{<br/>
+&nbsp;&nbsp;int level = 0;<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt; v;<br/>
+&nbsp;&nbsp;std::vector&lt;std::vector&lt;int&gt; &gt; v_sub;<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt;::const_iterator b_sub(e); //e, because g++ does not allow a null<br/>
+&nbsp;&nbsp;for (std::vector&lt;int&gt;::const_iterator i = b; i!=e; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int x = *i;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x == Newick::bracket_open)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;++level;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (level == 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//i+1, because the branch starts directly after the bracket open<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b_sub = i + 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (x == Newick::bracket_close)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (level == 1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//i, because the branch ends directly before the bracket open<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//TRACE(ToString(std::vector&lt;int&gt;(b_sub,i),false));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v_sub.push_back(Sort(b_sub,i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b_sub = e; //e, because g++ does not allow a null<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--level;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;else if (level==0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//x is a value<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;//assert(std::find(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;//&nbsp;&nbsp;std::bind1st(std::equal_to&lt;int&gt;(),<br/>
+&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;static_cast&lt;int&gt;(Newick::bracket_open)))<br/>
+&nbsp;&nbsp;//&nbsp;&nbsp;== v.end()); //v must not contain brackets open<br/>
+&nbsp;&nbsp;//assert(std::find(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;//&nbsp;&nbsp;std::bind1st(std::equal_to&lt;int&gt;(),<br/>
+&nbsp;&nbsp;//&nbsp;&nbsp;&nbsp;&nbsp;static_cast&lt;int&gt;(Newick::bracket_close)))<br/>
+&nbsp;&nbsp;//&nbsp;&nbsp;== v.end()); //v must not contain brackets close<br/>
+<br/>
+&nbsp;&nbsp;std::sort(v.begin(),v.end()); //v only contains values<br/>
+&nbsp;&nbsp;std::sort(v_sub.begin(),v_sub.end(),NewickCompare);<br/>
+<br/>
+&nbsp;&nbsp;//TRACE("Level 0 entries: " + ToString(v,false));<br/>
+<br/>
+&nbsp;&nbsp;//Concatenate the values in v with the sorted branches in v_sub<br/>
+&nbsp;&nbsp;const int n_subs = v_sub.size();<br/>
+&nbsp;&nbsp;for (int i=0; i!=n_subs; ++i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;//TRACE("Level 1 entries: " + ToString(std::vector&lt;int&gt;(v_sub[i].begin(),v_sub[i].end()),false));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(Newick::bracket_open);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;std::copy(v_sub[i].begin(),v_sub[i].end(),std::back_inserter(v));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(Newick::bracket_close);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;//TRACE("Sort to std::vector: " + ToString(v,false));<br/>
+&nbsp;&nbsp;assert(e - b == static_cast&lt;int&gt;(v.size()));<br/>
+&nbsp;&nbsp;return v;<br/>
+}<br/>
+<br/>
+bool ribi::SortedBinaryNewickVector::NewickCompare(<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; lhs,<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;const int l_sz = lhs.size();<br/>
+&nbsp;&nbsp;const int r_sz = rhs.size();<br/>
+&nbsp;&nbsp;if (l_sz &lt; r_sz) return true;<br/>
+&nbsp;&nbsp;if (l_sz &gt; r_sz) return false;<br/>
+<br/>
+&nbsp;&nbsp;typedef std::vector&lt;int&gt;::const_iterator Iter;<br/>
+&nbsp;&nbsp;Iter lhs_iter = lhs.begin();<br/>
+&nbsp;&nbsp;const Iter lhs_end = lhs.end();<br/>
+&nbsp;&nbsp;Iter rhs_iter = rhs.begin();<br/>
+<br/>
+&nbsp;&nbsp;for ( ; lhs_iter != lhs_end; ++lhs_iter, ++rhs_iter)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int x_l = *lhs_iter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const int x_r = *rhs_iter;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x_l &lt; x_r) return true;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;if (x_l &gt; x_r) return false;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;return false;<br/>
+}<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -1159,97 +1159,97 @@ bool ribi::SortedBinaryNewickVector::NewickCompare(<br/>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppSortedBinaryNewickVector/sortedbinarynewickvector.h" border = "1"><tr><td><code>
-//---------------------------------------------------------------------------<br/>
-/*<br/>
-&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
-&nbsp;&nbsp;(C) 2009 Richel Bilderbeek<br/>
-<br/>
-&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
-&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
-&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
-&nbsp;&nbsp;(at your option) any later version.<br/>
-<br/>
-&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
-&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
-&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
-&nbsp;&nbsp;GNU General Public License for more details.<br/>
-&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
-&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
-*/<br/>
-//---------------------------------------------------------------------------<br/>
-// From http://www.richelbilderbeek.nl<br/>
-//---------------------------------------------------------------------------<br/>
-#ifndef SORTEDBINARYNEWICKVECTOR_H<br/>
-#define SORTEDBINARYNEWICKVECTOR_H<br/>
-<br/>
-#include &lt;vector&gt;<br/>
-#pragma GCC diagnostic push<br/>
-#pragma GCC diagnostic ignored "-Weffc++"<br/>
-#include "binarynewickvector.h"<br/>
-#include "newick.h"<br/>
-#pragma GCC diagnostic pop<br/>
-<br/>
-namespace ribi {<br/>
-<br/>
-//A SortedBinaryNewickVector is a ShortNewick with its internal storage hided<br/>
-//All functions that needed a ShortNewick's internals<br/>
-//&nbsp;&nbsp;are members of SortedBinaryNewickVector<br/>
-struct SortedBinaryNewickVector<br/>
-{<br/>
-&nbsp;&nbsp;SortedBinaryNewickVector(const SortedBinaryNewickVector&amp; rhs);<br/>
-&nbsp;&nbsp;SortedBinaryNewickVector(const BinaryNewickVector&amp; rhs);<br/>
-&nbsp;&nbsp;SortedBinaryNewickVector(const std::vector&lt;int&gt;&amp; any_v);<br/>
-<br/>
-&nbsp;&nbsp;bool Empty() const { return m_v.empty(); }<br/>
-&nbsp;&nbsp;double CalcDenominator(const double theta) const;<br/>
-&nbsp;&nbsp;double CalcProbabilitySimpleNewick(const double theta) const;<br/>
-&nbsp;&nbsp;bool IsSimple() const;<br/>
-&nbsp;&nbsp;int Size() const { return m_v.size(); }<br/>
-<br/>
-&nbsp;&nbsp;const SortedBinaryNewickVector TermIsNotOne(const int i) const;<br/>
-&nbsp;&nbsp;const SortedBinaryNewickVector TermIsOne(const int i) const;<br/>
-&nbsp;&nbsp;const SortedBinaryNewickVector LoseBrackets(const int x,const int i) const;<br/>
-<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; Peek() const { return m_v;}<br/>
-&nbsp;&nbsp;const std::string ToStr() const;<br/>
-<br/>
-&nbsp;&nbsp;private:<br/>
-&nbsp;&nbsp;std::vector&lt;int&gt; m_v;<br/>
-&nbsp;&nbsp; bool IsCloseBracketRight(const int pos) const;<br/>
-&nbsp;&nbsp; bool IsOpenBracketLeft(const int pos) const;<br/>
-<br/>
-&nbsp;&nbsp;friend&nbsp;&nbsp;bool operator&lt;(const SortedBinaryNewickVector&amp; lhs, const SortedBinaryNewickVector&amp; rhs);<br/>
-&nbsp;&nbsp;void Sort();<br/>
-&nbsp;&nbsp;const std::vector&lt;int&gt; Sort(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator b,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator e) const;<br/>
-<br/>
-&nbsp;&nbsp;static int FindPosBefore(const std::vector&lt;int&gt;&amp; v,const int x, const int index);<br/>
-&nbsp;&nbsp;static int FindPosAfter(const std::vector&lt;int&gt;&amp; v,const int x, const int index);<br/>
-<br/>
-&nbsp;&nbsp;public:<br/>
-<br/>
-&nbsp;&nbsp;static double CalculateProbability(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; newick_str,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const double theta);<br/>
-<br/>
-&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
-&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
-<br/>
-&nbsp;&nbsp;static bool NewickCompare(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; lhs,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; rhs);<br/>
-<br/>
-};<br/>
-<br/>
-bool operator&lt;(const SortedBinaryNewickVector&amp; lhs, const SortedBinaryNewickVector&amp; rhs);<br/>
-<br/>
-//const std::string ToString(const SortedBinaryNewickVector&amp; n,<br/>
-//&nbsp;&nbsp;const bool add_brackets = true);<br/>
-<br/>
-} //~namespace ribi<br/>
-<br/>
-#endif //SORTEDBINARYNEWICKVECTOR_H<br/>
+//---------------------------------------------------------------------------<br/>
+/*<br/>
+&nbsp;&nbsp;The Rampal Etienne Project, calculates the probability of a phylogeny<br/>
+&nbsp;&nbsp;(C) 2009-2014 Richel Bilderbeek<br/>
+<br/>
+&nbsp;&nbsp;This program is free software: you can redistribute it and/or modify<br/>
+&nbsp;&nbsp;it under the terms of the GNU General Public License as published by<br/>
+&nbsp;&nbsp;the Free Software Foundation, either version 3 of the License, or<br/>
+&nbsp;&nbsp;(at your option) any later version.<br/>
+<br/>
+&nbsp;&nbsp;This program is distributed in the hope that it will be useful,<br/>
+&nbsp;&nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of<br/>
+&nbsp;&nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.&nbsp;&nbsp;See the<br/>
+&nbsp;&nbsp;GNU General Public License for more details.<br/>
+&nbsp;&nbsp;You should have received a copy of the GNU General Public License<br/>
+&nbsp;&nbsp;along with this program.&nbsp;&nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
+*/<br/>
+//---------------------------------------------------------------------------<br/>
+// From http://www.richelbilderbeek.nl<br/>
+//---------------------------------------------------------------------------<br/>
+#ifndef SORTEDBINARYNEWICKVECTOR_H<br/>
+#define SORTEDBINARYNEWICKVECTOR_H<br/>
+<br/>
+#include &lt;vector&gt;<br/>
+#pragma GCC diagnostic push<br/>
+#pragma GCC diagnostic ignored "-Weffc++"<br/>
+#include "binarynewickvector.h"<br/>
+#include "newick.h"<br/>
+#pragma GCC diagnostic pop<br/>
+<br/>
+namespace ribi {<br/>
+<br/>
+//A SortedBinaryNewickVector is a ShortNewick with its internal storage hided<br/>
+//All functions that needed a ShortNewick's internals<br/>
+//&nbsp;&nbsp;are members of SortedBinaryNewickVector<br/>
+struct SortedBinaryNewickVector<br/>
+{<br/>
+&nbsp;&nbsp;SortedBinaryNewickVector(const SortedBinaryNewickVector&amp; rhs);<br/>
+&nbsp;&nbsp;SortedBinaryNewickVector(const BinaryNewickVector&amp; rhs);<br/>
+&nbsp;&nbsp;SortedBinaryNewickVector(const std::vector&lt;int&gt;&amp; any_v);<br/>
+<br/>
+&nbsp;&nbsp;bool Empty() const { return m_v.empty(); }<br/>
+&nbsp;&nbsp;double CalcDenominator(const double theta) const;<br/>
+&nbsp;&nbsp;double CalcProbabilitySimpleNewick(const double theta) const;<br/>
+&nbsp;&nbsp;bool IsSimple() const;<br/>
+&nbsp;&nbsp;int Size() const { return m_v.size(); }<br/>
+<br/>
+&nbsp;&nbsp;const SortedBinaryNewickVector TermIsNotOne(const int i) const;<br/>
+&nbsp;&nbsp;const SortedBinaryNewickVector TermIsOne(const int i) const;<br/>
+&nbsp;&nbsp;const SortedBinaryNewickVector LoseBrackets(const int x,const int i) const;<br/>
+<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; Peek() const { return m_v;}<br/>
+&nbsp;&nbsp;const std::string ToStr() const;<br/>
+<br/>
+&nbsp;&nbsp;private:<br/>
+&nbsp;&nbsp;std::vector&lt;int&gt; m_v;<br/>
+&nbsp;&nbsp; bool IsCloseBracketRight(const int pos) const;<br/>
+&nbsp;&nbsp; bool IsOpenBracketLeft(const int pos) const;<br/>
+<br/>
+&nbsp;&nbsp;friend&nbsp;&nbsp;bool operator&lt;(const SortedBinaryNewickVector&amp; lhs, const SortedBinaryNewickVector&amp; rhs);<br/>
+&nbsp;&nbsp;void Sort();<br/>
+&nbsp;&nbsp;const std::vector&lt;int&gt; Sort(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator b,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;::const_iterator e) const;<br/>
+<br/>
+&nbsp;&nbsp;static int FindPosBefore(const std::vector&lt;int&gt;&amp; v,const int x, const int index);<br/>
+&nbsp;&nbsp;static int FindPosAfter(const std::vector&lt;int&gt;&amp; v,const int x, const int index);<br/>
+<br/>
+&nbsp;&nbsp;public:<br/>
+<br/>
+&nbsp;&nbsp;static double CalculateProbability(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::string&amp; newick_str,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const double theta);<br/>
+<br/>
+&nbsp;&nbsp;static const std::string GetVersion() noexcept;<br/>
+&nbsp;&nbsp;static const std::vector&lt;std::string&gt; GetVersionHistory() noexcept;<br/>
+<br/>
+&nbsp;&nbsp;static bool NewickCompare(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; lhs,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;const std::vector&lt;int&gt;&amp; rhs);<br/>
+<br/>
+};<br/>
+<br/>
+bool operator&lt;(const SortedBinaryNewickVector&amp; lhs, const SortedBinaryNewickVector&amp; rhs);<br/>
+<br/>
+//const std::string ToString(const SortedBinaryNewickVector&amp; n,<br/>
+//&nbsp;&nbsp;const bool add_brackets = true);<br/>
+<br/>
+} //~namespace ribi<br/>
+<br/>
+#endif //SORTEDBINARYNEWICKVECTOR_H<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
