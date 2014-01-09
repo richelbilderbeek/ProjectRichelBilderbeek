@@ -154,6 +154,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testpylosmenudialog.h"
+#include "testimagemenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtcreatorprofilemenudialog.h"
@@ -2170,6 +2171,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
+      case ProgramType::testImageCanvas: p.reset(new TestImageMenuDialog); break;
       case ProgramType::testLazy_init:
       {
         const std::string version = "x.x";
@@ -2526,6 +2528,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
+      case ProgramType::testCanvas: p.reset(new ToolTestTextCanvasMenuDialog); break;
       case ProgramType::testTextPositionWidget:
       {
         const std::string version = "x.x";

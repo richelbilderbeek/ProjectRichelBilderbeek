@@ -27,7 +27,12 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmapcommand.h \
     ../../Classes/CppConceptMap/conceptmapelement.h \
     ../../Classes/CppConceptMap/conceptmapcommandfactory.h \
-    ../../Classes/CppConceptMap/conceptmapwidgetfactory.h
+    ../../Classes/CppConceptMap/conceptmapwidgetfactory.h \
+    ../../Classes/CppConceptMap/conceptmapcommandcreatenewconceptmap.h \
+    ../../Classes/CppConceptMap/conceptmapcommandcreatenewnode.h \
+    ../../Classes/CppConceptMap/conceptmapcommanddeleteconceptmap.h \
+    ../../Classes/CppConceptMap/conceptmapcommandlosefocus.h \
+    ../../Classes/CppConceptMap/conceptmapcommandsetfocus.h
 
 SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcenternode.cpp \
@@ -52,4 +57,9 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcommand.cpp \
     ../../Classes/CppConceptMap/conceptmapelement.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandfactory.cpp \
-    ../../Classes/CppConceptMap/conceptmapwidgetfactory.cpp
+    ../../Classes/CppConceptMap/conceptmapwidgetfactory.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandcreatenewconceptmap.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandcreatenewnode.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommanddeleteconceptmap.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandlosefocus.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandsetfocus.cpp

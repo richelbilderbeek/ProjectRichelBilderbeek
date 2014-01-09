@@ -170,6 +170,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testGravityWidget: p.reset(new ProgramTestGravityWidget); break;
     case ProgramType::testGroupWidget: p.reset(new ProgramTestGroupWidget); break;
     case ProgramType::testHugeVector: p.reset(new ProgramTestHugeVector); break;
+    case ProgramType::testImageCanvas: p.reset(new ProgramTestImageCanvas); break;
     case ProgramType::testLazy_init: p.reset(new ProgramTestLazy_init); break;
     case ProgramType::testLed: p.reset(new ProgramTestLed); break;
     case ProgramType::testManyDigitNewick: p.reset(new ProgramTestManyDigitNewick); break;
@@ -200,6 +201,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testShinyButton: p.reset(new ProgramTestShinyButton); break;
     case ProgramType::testSimpleLinearRegression: p.reset(new ProgramTestSimpleLinearRegression); break;
     case ProgramType::testStopwatch: p.reset(new ProgramTestStopwatch); break;
+    case ProgramType::testTextCanvas: p.reset(new ProgramTestTextCanvas); break;
     case ProgramType::testTextPositionWidget: p.reset(new ProgramTestTextPositionWidget); break;
     case ProgramType::testTicTacToe: p.reset(new ProgramTestTicTacToe); break;
     case ProgramType::testTimedServerPusher: p.reset(new ProgramTestTimedServerPusher); break;

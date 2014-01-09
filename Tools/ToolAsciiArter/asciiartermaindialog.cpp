@@ -31,7 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QImage>
 #include <QFile>
 
-#include "asciiarter.h"
+//#include "asciiarter.h"
 #include "canvas.h"
 #include "imagecanvas.h"
 #include "fileio.h"
@@ -41,7 +41,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 ribi::AsciiArterMainDialog::AsciiArterMainDialog(
   const std::string& filename,
   const int n_cols)
-  //: m_asciiart{ CreateAsciiArt(filename,n_cols) }
   : m_filename(filename),
     m_n_cols(n_cols)
 {
@@ -54,24 +53,6 @@ ribi::AsciiArterMainDialog::AsciiArterMainDialog(
 
 const std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcept
 {
-  /*
-  if (!fileio::IsRegularFile(filename))
-  {
-    const std::string s = "AsciiArterMainDialog: file '"+ filename + "' not found";
-    throw std::logic_error(s.c_str());
-  }
-  if (n_cols < 5)
-  {
-    throw std::logic_error("AsciiArterMainDialog: n_cols < 5");
-  }
-
-  const boost::scoped_ptr<QImage> qimage{
-    new QImage(filename.c_str())
-  };
-  const std::vector<std::vector<double> > image { ConvertToGreyYx(qimage.get()) };
-
-  return AsciiArter::ImageToAscii(image,n_cols);
-  */
   const boost::shared_ptr<ribi::ImageCanvas> canvas { GetImageCanvas() };
   std::stringstream s;
   s << (*canvas);

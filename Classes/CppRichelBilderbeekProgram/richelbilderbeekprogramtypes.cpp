@@ -155,6 +155,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::testGravityWidget,std::string("testGravityWidget")));
   m.insert(Pair(ProgramType::testGroupWidget,std::string("testGroupWidget")));
   m.insert(Pair(ProgramType::testHugeVector,std::string("testHugeVector")));
+  m.insert(Pair(ProgramType::testImageCanvas,std::string("testImageCanvas")));
   m.insert(Pair(ProgramType::testLazy_init,std::string("testLazy_init")));
   m.insert(Pair(ProgramType::testLed,std::string("testLed")));
   m.insert(Pair(ProgramType::testManyDigitNewick,std::string("testManyDigitNewick")));
@@ -185,6 +186,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::testShinyButton,std::string("testShinyButton")));
   m.insert(Pair(ProgramType::testSimpleLinearRegression,std::string("testSimpleLinearRegression")));
   m.insert(Pair(ProgramType::testStopwatch,std::string("testStopwatch")));
+  m.insert(Pair(ProgramType::testTextCanvas,std::string("testTextCanvas")));
   m.insert(Pair(ProgramType::testTextPositionWidget,std::string("testTextPositionWidget")));
   m.insert(Pair(ProgramType::testTicTacToe,std::string("testTicTacToe")));
   m.insert(Pair(ProgramType::testTimedServerPusher,std::string("testTimedServerPusher")));
@@ -363,6 +365,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::testGravityWidget,std::string("Test GravityWidget")));
   m.insert(Pair(ProgramType::testGroupWidget,std::string("Test GroupWidget")));
   m.insert(Pair(ProgramType::testHugeVector,std::string("Test HugeVector")));
+  m.insert(Pair(ProgramType::testImageCanvas,std::string("Test ImageCanvas")));
   m.insert(Pair(ProgramType::testLazy_init,std::string("Test Lazy_init")));
   m.insert(Pair(ProgramType::testLed,std::string("Test Led")));
   m.insert(Pair(ProgramType::testManyDigitNewick,std::string("Test ManyDigitNewick")));
@@ -393,6 +396,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::testShinyButton,std::string("Test ShinyButton")));
   m.insert(Pair(ProgramType::testSimpleLinearRegression,std::string("Test SimpleLinearRegression")));
   m.insert(Pair(ProgramType::testStopwatch,std::string("Test Stopwatch")));
+  m.insert(Pair(ProgramType::testTextCanvas,std::string("Test TextCanvas")));
   m.insert(Pair(ProgramType::testTextPositionWidget,std::string("Test TextPositionWidget")));
   m.insert(Pair(ProgramType::testTicTacToe,std::string("Test TicTacToe")));
   m.insert(Pair(ProgramType::testTimedServerPusher,std::string("Test TimedServerPusher")));

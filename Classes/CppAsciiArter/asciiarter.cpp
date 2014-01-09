@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppAsciiArter.htm
 //---------------------------------------------------------------------------
+/*
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -34,28 +36,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-/*
-const std::vector<char> ribi::AsciiArter::m_gradient
-  = ribi::AsciiArter::GetAsciiArtGradient();
-
-//From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-const std::vector<char> ribi::AsciiArter::GetAsciiArtGradient()
-{
-  return ;
-}
-*/
-
 double ribi::AsciiArter::GetGreyness(
   const std::vector<std::vector<double> >& image,
   const int x,
   const int y)
 {
-  assert(!image.empty()
-    && "Image is NULL");
-  assert(x >= 0
-    && "x coordinat is below zero");
-  assert(y >= 0
-    && "y coordinat is below zero");
+  assert(!image.empty() && "Image must not be empty");
+  assert(x >= 0 && "x coordinat is below zero");
+  assert(y >= 0 && "y coordinat is below zero");
   assert(y < boost::numeric_cast<int>(image.size())
     && "y coordinat is beyond image height");
   assert(x < boost::numeric_cast<int>(image[y].size())
@@ -72,14 +60,10 @@ double ribi::AsciiArter::GetGreyness(
   const int x2,
   const int y)
 {
-  assert(!image.empty()
-    && "Image is NULL");
-  assert(x1 >= 0
-    && "x1 coordinat is below zero");
-  assert(x2 >= 0
-    && "x2 coordinat is below zero");
-  assert(y >= 0
-    && "y coordinat is below zero");
+  assert(!image.empty() && "Image is NULL");
+  assert(x1 >= 0 && "x1 coordinat is below zero");
+  assert(x2 >= 0 && "x2 coordinat is below zero");
+  assert(y >= 0 && "y coordinat is below zero");
   assert(y < boost::numeric_cast<int>(image.size())
     && "y coordinat is beyond image height");
   assert(x1 < x2
@@ -246,3 +230,4 @@ const std::vector<std::string> ribi::AsciiArter::ImageToAscii(
   return v;
 }
 
+*/

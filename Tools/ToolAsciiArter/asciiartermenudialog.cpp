@@ -32,9 +32,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-#include "asciiarter.h"
+//#include "asciiarter.h"
 #include "asciiartermaindialog.h"
 #include "fileio.h"
+#include "imagecanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -105,12 +106,13 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "AsciiArter",
     "tool to create ASCII art",
-    "the 12th of July 2013",
+    "the 9th of January 2014",
     "2006-2014",
     "http://www.richelbilderbeek.nl/ToolAsciiArter.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("AsciiArter version: " + AsciiArter::GetVersion());
+  //a.AddLibrary("AsciiArter version: " + AsciiArter::GetVersion());
+  a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
   return a;
 }
 
@@ -123,7 +125,7 @@ const boost::shared_ptr<const ribi::Program> ribi::AsciiArterMenuDialog::GetProg
 
 const std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
 {
-  return "5.2";
+  return "6.0";
 }
 
 const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() const noexcept
@@ -139,7 +141,8 @@ const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() c
     "2011-08-31: Version 4.4: added Welcome picture to website version",
     "2012-07-30: Version 5.0: renamed 'TestAsciiArter' to 'AsciiArter', added menu to desktop version",
     "2012-12-24: Version 5.1: slickened desktop application looks",
-    "2013-07-12: Version 5.2: transitioned to Qt5 and Boost 1.54.0"
+    "2013-07-12: Version 5.2: transitioned to Qt5 and Boost 1.54.0",
+    "2013-07-12: Version 6.0: replaced use of AsciiArter class by ImageCanvas"
   };
 }
 

@@ -3,10 +3,21 @@
 #include <cassert>
 
 #include "conceptmapcommand.h"
+#include "conceptmapcommandcreatenewnode.h"
+#include "conceptmapcommanddeleteconceptmap.h"
+#include "conceptmapcommandcreatenewconceptmap.h"
+
 
 const std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFactory::CreateTestCommands() noexcept
 {
   std::vector<boost::shared_ptr<ribi::cmap::Command> > v;
+  {
+    const boost::shared_ptr<ribi::cmap::Command> p {
+      new CommandCreateNewConceptMap
+    };
+    assert(p);
+    v.push_back(p);
+  }
   {
     const boost::shared_ptr<ribi::cmap::Command> p {
       new CommandCreateNewNode
@@ -14,7 +25,6 @@ const std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFa
     assert(p);
     v.push_back(p);
   }
-
   {
     const boost::shared_ptr<ribi::cmap::Command> p {
       new CommandDeleteConceptMap
@@ -31,12 +41,5 @@ const std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFa
     v.push_back(p);
   }
   */
-  {
-    const boost::shared_ptr<ribi::cmap::Command> p {
-      new CommandCreateNewConceptMap
-    };
-    assert(p);
-    v.push_back(p);
-  }
   return v;
 }

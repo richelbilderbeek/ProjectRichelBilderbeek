@@ -615,6 +615,7 @@ const std::vector<boost::shared_ptr<ribi::Coordinat3D> >
   ribi::foam::Mesh::CreatePoints(const Files& files)
 {
   std::vector<boost::shared_ptr<ribi::Coordinat3D> > v;
+  assert(files.GetPoints());
   for (const PointsFileItem& item: files.GetPoints()->GetItems())
   {
     static_assert(std::is_same<PointsFileItem,Point>(),
