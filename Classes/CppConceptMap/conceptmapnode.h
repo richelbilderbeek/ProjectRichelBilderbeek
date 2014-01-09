@@ -75,7 +75,7 @@ struct Node : public Element
     const double y = 0.0);
 
   ///Block destructor, except for the friend boost::checked_delete
-  virtual ~Node() {}
+  virtual ~Node() noexcept {}
   friend void boost::checked_delete<>(Node* x);
 
   private:

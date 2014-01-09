@@ -20,7 +20,7 @@ struct CenterNodeFactory;
 struct CenterNode : public cmap::Node
 {
   ///Block destructor, except for the friend boost::checked_delete
-  ~CenterNode() {}
+  ~CenterNode() noexcept {}
   friend void boost::checked_delete<>(CenterNode* x);
 
   ///Block construction, except for NodeFactory

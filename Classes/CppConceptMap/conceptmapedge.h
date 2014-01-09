@@ -119,7 +119,7 @@ struct Edge : public Element
   Edge() = delete;
 
   ///Block destructor, except for the friend boost::checked_delete
-  ~Edge() {}
+  ~Edge() noexcept {}
   friend void boost::checked_delete<>(Edge* x);
 
   ///Block constructor, except for EdgeFactory
