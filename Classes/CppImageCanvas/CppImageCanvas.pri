@@ -10,3 +10,6 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Classes/CppImageCanvas/Licence.txt
 
+RESOURCES += \
+    ../../Classes/CppImageCanvas/CppImageCanvas.qrc
+

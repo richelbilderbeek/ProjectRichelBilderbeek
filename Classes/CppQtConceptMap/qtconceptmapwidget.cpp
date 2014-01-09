@@ -13,6 +13,8 @@
 #include "qtdisplayconceptmap.h"
 #include "qtrateconceptmap.h"
 #include "conceptmapcommand.h"
+#include "conceptmapcommandlosefocus.h"
+#include "conceptmapcommandsetfocus.h"
 #include "conceptmapwidget.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"

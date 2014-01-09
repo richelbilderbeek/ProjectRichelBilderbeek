@@ -25,10 +25,10 @@ int ribi::ToolTestCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
 
   for (int i=0; i!=4; ++i)
   {
-    const ribi::Canvas::ColorSystem color_system
-      = i % 2 ? ribi::Canvas::ColorSystem::normal : ribi::Canvas::ColorSystem::invert;
-    const ribi::Canvas::CoordinatSystem coordinat_system
-      = i / 2 ? ribi::Canvas::CoordinatSystem::graph : ribi::Canvas::CoordinatSystem::screen;
+    const ribi::CanvasColorSystem color_system
+      = i % 2 ? ribi::CanvasColorSystem::normal : ribi::CanvasColorSystem::invert;
+    const ribi::CanvasCoordinatSystem coordinat_system
+      = i / 2 ? ribi::CanvasCoordinatSystem::graph : ribi::CanvasCoordinatSystem::screen;
     ribi::Canvas c( maxx, maxy, color_system, coordinat_system);
 
     //Draw smiley to Canvas

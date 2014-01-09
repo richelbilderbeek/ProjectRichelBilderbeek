@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ImageCanvas, class to convert an image to ASCII art
+Copyright (C) 2011-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppImageCanvas.htm
+//---------------------------------------------------------------------------
 #ifndef IMAGECANVAS_H
 #define IMAGECANVAS_H
 
@@ -25,8 +45,8 @@ struct ImageCanvas
   ImageCanvas(
     const std::string& filename,
     const int n_cols,
-    const Canvas::ColorSystem colorSystem         = Canvas::ColorSystem::normal,
-    const Canvas::CoordinatSystem coordinatSystem = Canvas::CoordinatSystem::screen);
+    const CanvasColorSystem colorSystem         = CanvasColorSystem::normal,
+    const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen);
 
   ///Obtain the version of this class
   static const std::string GetVersion() noexcept;
@@ -37,8 +57,8 @@ struct ImageCanvas
   const boost::shared_ptr<Canvas> ToCanvas() const noexcept;
 
   private:
-  const Canvas::ColorSystem mColorSystem;
-  const Canvas::CoordinatSystem mCoordinatSystem;
+  const CanvasColorSystem mColorSystem;
+  const CanvasCoordinatSystem mCoordinatSystem;
   const std::string m_filename;
   const int m_n_cols;
 
@@ -51,7 +71,6 @@ struct ImageCanvas
   #endif
 
   friend std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas);
-
 };
 
 std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas);

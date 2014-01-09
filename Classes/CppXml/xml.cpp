@@ -607,6 +607,7 @@ const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
   //<tag_name>...</tag_name>
   const std::pair<std::string,std::string> p = FromXml(s);
   const std::string tag_name = p.first;
+  TRACE(tag_name);
 
   std::vector<std::string> content;
 

@@ -29,7 +29,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#include "canvascolorsystem.h"
+#include "canvascoordinatsystem.h"
 #pragma GCC diagnostic pop
+
+struct QRegExp;
 
 namespace ribi {
 
@@ -41,30 +45,23 @@ namespace ribi {
 ///the part that goes through the Canvas is drawn and stored
 struct Canvas
 {
-  ///The color system used:
-  ///- normal: full/drawn is displayed by M
-  ///- invert: empty/non-drawn is displayed by M
-  enum class ColorSystem { normal, invert };
-
-  ///The coordinat system used in displayal:
-  ///- screen: origin is at top-left of the screen
-  ///- graph: origin is at bottom-left of the screen
-  enum class CoordinatSystem { screen, graph };
-
   ///The number of characters the Canvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
   ///x and y coordinats are 0.0 and 0.0
   Canvas(
     const int width  = 1,
     const int height = 1,
-    const ColorSystem colorSystem = ColorSystem::normal,
-    const CoordinatSystem coordinatSystem = CoordinatSystem::screen);
+    const CanvasColorSystem color_system = CanvasColorSystem::normal,
+    const CanvasCoordinatSystem coordinat_system = CanvasCoordinatSystem::screen);
 
   ///Create a Canvas from its raw internals
   Canvas(
     const std::vector<std::vector<double>>& canvas,
-    const ColorSystem colorSystem = ColorSystem::normal,
-    const CoordinatSystem coordinatSystem = CoordinatSystem::screen);
+    const CanvasColorSystem color_system = CanvasColorSystem::normal,
+    const CanvasCoordinatSystem coordinat_system = CanvasCoordinatSystem::screen);
+
+  ///Load a Canvas from file
+  Canvas(const std::string& filename);
 
   ///Clears the canvas
   void Clear() noexcept;
@@ -103,8 +100,24 @@ struct Canvas
   //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
   static const std::vector<char> GetAsciiArtGradient() noexcept;
 
+
+  ///The color system used:
+  ///- normal: full/drawn is displayed by M
+  ///- invert: empty/non-drawn is displayed by M
+  CanvasColorSystem GetColorSystem() const noexcept { return m_color_system; }
+
+  ///The coordinat system used in displayal:
+  ///- screen: origin is at top-left of the screen
+  ///- graph: origin is at bottom-left of the screen
+  CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
+
+  ///The Canvas its internal data: a 2D y-x-ordered std::vector
+  ///of doubles, where 0.0 denotes empty/non-drawn
+  ///and 1.0 denotes full/drawn.
+  const std::vector<std::vector<double> >& GetGreynesses() const noexcept { return m_canvas; }
+
   ///Obtain the height of the canvas is characters
-  int GetHeight() const noexcept { return mCanvas.size(); }
+  int GetHeight() const noexcept { return m_canvas.size(); }
 
   ///Obtain the version of this class
   static const std::string GetVersion() noexcept;
@@ -113,13 +126,16 @@ struct Canvas
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
-  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
+  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
+
+  ///Save to file
+  void Save(const std::string& filename) const noexcept;
 
   ///Set the color system used
-  void SetColorSystem(const ColorSystem colorSystem) noexcept;
+  void SetColorSystem(const CanvasColorSystem color_system) noexcept;
 
   ///Set the coordinat system used
-  void SetCoordinatSystem(const CoordinatSystem coordinatSystem) noexcept;
+  void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
   ///This signal is emitted when any member variable changes
   boost::signals2::signal<void(Canvas*)> m_signal_changed;
@@ -128,25 +144,32 @@ struct Canvas
   ///The Canvas its internal data: a 2D y-x-ordered std::vector
   ///of doubles, where 0.0 denotes empty/non-drawn
   ///and 1.0 denotes full/drawn.
-  std::vector<std::vector<double> > mCanvas;
+  std::vector<std::vector<double> > m_canvas;
 
   ///The color system used:
   ///- normal: full/drawn is displayed by M
   ///- invert: empty/non-drawn is displayed by M
-  ColorSystem mColorSystem;
+  CanvasColorSystem m_color_system;
 
   ///The coordinat system used in displayal:
   ///- screen: origin is at top-left of the screen
   ///- graph: origin is at bottom-left of the screen
-  CoordinatSystem mCoordinatSystem;
+  CanvasCoordinatSystem m_coordinat_system;
+
+  ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
+  static const std::vector<std::string> GetRegexMatches(
+    const std::string& s,
+    const QRegExp& r);
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;
 
+  //Obtains the minimum element of a 2D container
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
   template <class Container>
   static const typename Container::value_type::value_type MinElement(const Container& v);
 
+  //Obtains the maximal element of a 2D container
   //From http://www.richelbilderbeek.nl/CppMaxElement.htm
   template <class Container>
   static const typename Container::value_type::value_type MaxElement(const Container& v);
@@ -162,15 +185,24 @@ struct Canvas
     const bool use_normal_color_system,
     const bool as_screen_coordinat_system);
 
+  static const std::vector<std::string> SeperateString(
+    const std::string& input,
+    const char seperator) noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
   friend std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
+  friend bool operator==(const Canvas& lhs, const Canvas& rhs) noexcept;
 
 };
 
 std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
+
+bool operator==(const Canvas& lhs, const Canvas& rhs) noexcept;
+bool operator!=(const Canvas& lhs, const Canvas& rhs) noexcept;
+
 
 } //~namespace ribi
 

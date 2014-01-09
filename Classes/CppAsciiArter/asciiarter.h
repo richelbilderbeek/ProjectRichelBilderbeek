@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef ASCIIARTER_H
 #define ASCIIARTER_H
 
+/*
 #include <string>
 #include <vector>
 
@@ -36,7 +37,6 @@ namespace ribi {
 ///to ASCII art
 struct AsciiArter
 {
-  typedef std::vector<int> Pixel;
   static const std::vector<std::string> ImageToAscii(
     const std::vector<std::vector<double> >& image,
     const int width);
@@ -45,8 +45,6 @@ struct AsciiArter
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
-  //static const std::vector<char> m_gradient;
-  //static const std::vector<char> GetAsciiArtGradient();
 
   //Get a pixel's greyness
   static double GetGreyness(
@@ -78,5 +76,6 @@ struct AsciiArter
 };
 
 } //~namespace ribi
+*/
 
 #endif // ASCIIARTER_H

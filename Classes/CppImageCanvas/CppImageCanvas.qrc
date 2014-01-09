@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/CppImageCanvas/images">
+        <file>R.png</file>
+    </qresource>
+</RCC>
