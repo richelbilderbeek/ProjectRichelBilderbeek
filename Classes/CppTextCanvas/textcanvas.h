@@ -20,7 +20,7 @@ namespace ribi {
 ///All texts written beyond the range of Canvas is not stored.
 ///Yet, if for example a text is written at an off-screen coordinat,
 ///the part that makes it to the Canvas is stored
-struct TextCanvas
+struct TextCanvas : public Canvas
 {
   ///The number of characters the Canvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
@@ -28,13 +28,13 @@ struct TextCanvas
   TextCanvas(
     const int width  = 1,
     const int height = 1,
-    const Canvas::CoordinatSystem coordinatSystem = Canvas::CoordinatSystem::screen);
+    const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen);
 
   ///Clears the canvas
   void Clear() noexcept;
 
   ///Obtain the height of the canvas is characters
-  int GetHeight() const noexcept { return mCanvas.size(); }
+  int GetHeight() const noexcept { return m_canvas.size(); }
 
   ///Obtain the version of this class
   static const std::string GetVersion() noexcept;
@@ -43,7 +43,9 @@ struct TextCanvas
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
-  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : mCanvas[0].size() ); }
+  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
+
+  void Load(const std::vector<std::string>& v) { m_canvas = v; }
 
   ///Put a character on the Canvas
   void PutChar(const int x, const int y, const char c) noexcept;
@@ -59,19 +61,21 @@ struct TextCanvas
   void PutText(const int x, const int y, const std::string& text) noexcept;
 
   ///Set the coordinat system used
-  void SetCoordinatSystem(const Canvas::CoordinatSystem coordinatSystem) noexcept;
+  void SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept;
+
+  const std::vector<std::string> ToStrings() const noexcept { return m_canvas; }
 
   ///This signal is emitted when any member variable changes
   boost::signals2::signal<void(TextCanvas*)> m_signal_changed;
 
   private:
   ///The Canvas its internal data
-  std::vector<std::string> mCanvas;
+  std::vector<std::string> m_canvas;
 
   ///The coordinat system used in displayal:
   ///- screen: origin is at top-left of the screen
   ///- graph: origin is at bottom-left of the screen
-  Canvas::CoordinatSystem mCoordinatSystem;
+  CanvasCoordinatSystem m_coordinatSystem;
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;

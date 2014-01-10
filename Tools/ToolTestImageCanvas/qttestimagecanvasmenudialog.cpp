@@ -1,23 +1,23 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttooltestcanvasmenudialog.h"
+#include "qttestimagecanvasmenudialog.h"
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
-#include "tooltestcanvasmenudialog.h"
+#include "testimagecanvasmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttooltestcanvasmaindialog.h"
+#include "qttestimagecanvasmaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
-#include "ui_qttooltestcanvasmenudialog.h"
+#include "ui_qttestimagecanvasmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestCanvasMenuDialog::QtToolTestCanvasMenuDialog(
+ribi::QtTestImageCanvasMenuDialog::QtTestImageCanvasMenuDialog(
   QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtToolTestCanvasMenuDialog)
+    ui(new Ui::QtTestImageCanvasMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -25,19 +25,19 @@ ribi::QtToolTestCanvasMenuDialog::QtToolTestCanvasMenuDialog(
   ui->setupUi(this);
 }
 
-ribi::QtToolTestCanvasMenuDialog::~QtToolTestCanvasMenuDialog() noexcept
+ribi::QtTestImageCanvasMenuDialog::~QtTestImageCanvasMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolTestCanvasMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::QtTestImageCanvasMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) { close(); return; }
 }
 
-void ribi::QtToolTestCanvasMenuDialog::on_button_about_clicked()
+void ribi::QtTestImageCanvasMenuDialog::on_button_about_clicked()
 {
-  About a = ToolTestCanvasMenuDialog().GetAbout();
+  About a = TestImageCanvasMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
@@ -45,29 +45,29 @@ void ribi::QtToolTestCanvasMenuDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtToolTestCanvasMenuDialog::on_button_quit_clicked()
+void ribi::QtTestImageCanvasMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void ribi::QtToolTestCanvasMenuDialog::on_button_start_canvas_clicked()
+void ribi::QtTestImageCanvasMenuDialog::on_button_start_canvas_clicked()
 {
-  QtToolTestCanvasMainDialog d;
+  QtTestImageCanvasMainDialog d;
   d.setWindowIcon(this->windowIcon());
   //d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestCanvasMenuDialog::Test() noexcept
+void ribi::QtTestImageCanvasMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolTestCanvasMenuDialog::Test");
-  QtToolTestCanvasMainDialog();
-  TRACE("Finished ribi::QtToolTestCanvasMenuDialog::Test successfully");
+  TRACE("Starting ribi::QtTestImageCanvasMenuDialog::Test");
+  QtTestImageCanvasMainDialog();
+  TRACE("Finished ribi::QtTestImageCanvasMenuDialog::Test successfully");
 }
 #endif

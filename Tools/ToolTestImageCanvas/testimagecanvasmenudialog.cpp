@@ -53,7 +53,7 @@ const ribi::About ribi::TestImageCanvasMenuDialog::GetAbout() const noexcept
     "tests the ImageCanvas class",
     "the 9th of January 2014",
     "2014-2014",
-    "http://www.richelbilderbeek.nl/ToolTestImageCanvas.htm",
+    "http://www.richelbilderbeek.nl/TooTestImageCanvas.htm",
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
@@ -104,7 +104,7 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolTestImageCanvasMenuDialog::Test");
+  TRACE("Starting ribi::TooTestImageCanvasMenuDialog::Test");
   {
     const std::string temp_filename { fileio::GetTempFileName() };
     {
@@ -121,10 +121,10 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
     assert(fileio::IsRegularFile(temp_filename));
     for (int i=0; i!=4; ++i)
     {
-      const Canvas::ColorSystem color_system
-        = i / 2 ? Canvas::ColorSystem::invert : Canvas::ColorSystem::normal;
-      const Canvas::CoordinatSystem coordinat_system
-        = i % 2 ? Canvas::CoordinatSystem::graph : Canvas::CoordinatSystem::screen;
+      const CanvasColorSystem color_system
+        = i / 2 ? CanvasColorSystem::invert : CanvasColorSystem::normal;
+      const CanvasCoordinatSystem coordinat_system
+        = i % 2 ? CanvasCoordinatSystem::graph : CanvasCoordinatSystem::screen;
       ImageCanvas c(temp_filename,20,color_system,coordinat_system);
       std::stringstream s;
       s << c;
@@ -132,6 +132,6 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
     }
     fileio::DeleteFile(temp_filename);
   }
-  TRACE("Finished ribi::ToolTestImageCanvasMenuDialog::Test successfully");
+  TRACE("Finished ribi::TooTestImageCanvasMenuDialog::Test successfully");
 }
 #endif

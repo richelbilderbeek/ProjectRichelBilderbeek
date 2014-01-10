@@ -28,6 +28,19 @@ ribi::foam::PointIndex ribi::foam::PointIndex::operator++(int) noexcept
   return old;
 }
 
+ribi::foam::PointIndex& ribi::foam::PointIndex::operator--() noexcept
+{
+  --m_index;
+  return *this;
+}
+
+ribi::foam::PointIndex ribi::foam::PointIndex::operator--(int) noexcept
+{
+  PointIndex old(*this);
+  --(*this);
+  return old;
+}
+
 ribi::foam::PointIndex& ribi::foam::PointIndex::operator+=(const PointIndex& rhs) noexcept
 {
   m_index += rhs.Get();

@@ -154,7 +154,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testpylosmenudialog.h"
-#include "testimagemenudialog.h"
+#include "testimagecanvasmenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtcreatorprofilemenudialog.h"
@@ -165,6 +165,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testquestionmenudialog.h"
 #include "testshapemenudialog.h"
 #include "testshinybuttonmenudialog.h"
+#include "testtextcanvasmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "thresholdfilterermenudialog.h"
 #include "tictactoe.h"
@@ -181,7 +182,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolsurfaceplottermenudialog.h"
 #include "tooltestapproximatormenudialog.h"
 #include "tooltestapproximatormenudialog.h"
-#include "tooltestcanvasmenudialog.h"
+#include "testdrawcanvasmenudialog.h"
 #include "tooltestledmenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
@@ -2059,10 +2060,10 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::testCanvas: p.reset(new ToolTestCanvasMenuDialog); break;
       case ProgramType::testChess: p.reset(new TestChessMenuDialog); break;
       case ProgramType::testConceptMap: p.reset(new TestConceptMapMenuDialog); break;
       case ProgramType::testDial: p.reset(new TestDialMenuDialog); break;
+      case ProgramType::testDrawCanvas: p.reset(new TestDrawCanvasMenuDialog); break;
       case ProgramType::testEntrance: p.reset(new ToolTestEntrance::MenuDialog); break;
       case ProgramType::testExercise: p.reset(new TestExerciseMenuDialog); break;
       case ProgramType::testFunctionParser: p.reset(new TestFunctionParserMenuDialog); break;
@@ -2171,7 +2172,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::testImageCanvas: p.reset(new TestImageMenuDialog); break;
+      case ProgramType::testImageCanvas: p.reset(new TestImageCanvasMenuDialog); break;
       case ProgramType::testLazy_init:
       {
         const std::string version = "x.x";
@@ -2528,7 +2529,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::testCanvas: p.reset(new ToolTestTextCanvasMenuDialog); break;
+      case ProgramType::testTextCanvas: p.reset(new TestTextCanvasMenuDialog); break;
       case ProgramType::testTextPositionWidget:
       {
         const std::string version = "x.x";

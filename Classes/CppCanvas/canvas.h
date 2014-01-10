@@ -37,87 +37,14 @@ struct QRegExp;
 
 namespace ribi {
 
-///The Canvas is an ASCII art tool to draw on
-///The Canvas has a coordinat system of (0,0)-(width,height)
-///similar to the possible character position on a screen.
-///Everything drawn beyond the range of Canvas is not stored.
-///Yet, if for example a line is drawn between two off-screen coordinats,
-///the part that goes through the Canvas is drawn and stored
+///A Canvas is an ASCII art class for drawing (DrawCanvas),
+///displaying images (ImageCanvas) and displaying text (TextCanvas)
 struct Canvas
 {
-  ///The number of characters the Canvas is heigh and wide
-  ///but also the maximum x and y coordinat. The minimum
-  ///x and y coordinats are 0.0 and 0.0
-  Canvas(
-    const int width  = 1,
-    const int height = 1,
-    const CanvasColorSystem color_system = CanvasColorSystem::normal,
-    const CanvasCoordinatSystem coordinat_system = CanvasCoordinatSystem::screen);
-
-  ///Create a Canvas from its raw internals
-  Canvas(
-    const std::vector<std::vector<double>>& canvas,
-    const CanvasColorSystem color_system = CanvasColorSystem::normal,
-    const CanvasCoordinatSystem coordinat_system = CanvasCoordinatSystem::screen);
-
-  ///Load a Canvas from file
-  Canvas(const std::string& filename);
-
-  ///Clears the canvas
-  void Clear() noexcept;
-
-  ///Draw (or actually: add) a circle on the canvas at (xMid,yMid),
-  ///with radius ray
-  void DrawCircle(const double xMid, const double yMid, const double ray) noexcept;
-
-  ///Draw (or actually: add) a dot on the canvas at (x,y), where
-  ///(x,y) is the center of a dot with radius 1.0. It is not checked that
-  ///(x,y) is in ( [0.0,GetWidth()>, [0.0,GetHeight()> )
-  void DrawDot(const double x, const double y) noexcept;
-
-  ///Draw (or actually: add) a line on the canvas from (x1,y1) to (x2,y2),
-  ///where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at
-  ///the edges of the line
-  void DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept;
-
-  ///Draw (or actually: add) text to the Canvas, where (top,left) is the topleft coordinat
-  ///of the text. The text will end up as dots drawn for each character its pixel.
-  ///The DotMatrix font is used, with a spacing of two pixel, as the letters tend to
-  ///overlap otherwise.
-  //
-  //  Canvas::DrawText(1,1,"Hello world") results in:
-  //
-  //  M   M          MM     MM                                        MM        M
-  //  M   M           M      M                                         M        M
-  //  M   M   MMM     M      M     MMM          M   M   MMM   M MM     M     MM M
-  //  MMMMM  M   M    M      M    M   M         M   M  M   M  MM  M    M    M  MM
-  //  M   M  MMMMM    M      M    M   M         M M M  M   M  M        M    M   M
-  //  M   M  M        M      M    M   M         M M M  M   M  M        M    M   M
-  //  M   M   MMM    MMM    MMM    MMM           M M    MMM   M       MMM    MMMM
-  //
-  void DrawText(const double top, const double left, const std::string& text) noexcept;
-
-  //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-  static const std::vector<char> GetAsciiArtGradient() noexcept;
-
-
-  ///The color system used:
-  ///- normal: full/drawn is displayed by M
-  ///- invert: empty/non-drawn is displayed by M
-  CanvasColorSystem GetColorSystem() const noexcept { return m_color_system; }
-
-  ///The coordinat system used in displayal:
-  ///- screen: origin is at top-left of the screen
-  ///- graph: origin is at bottom-left of the screen
-  CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
-
-  ///The Canvas its internal data: a 2D y-x-ordered std::vector
-  ///of doubles, where 0.0 denotes empty/non-drawn
-  ///and 1.0 denotes full/drawn.
-  const std::vector<std::vector<double> >& GetGreynesses() const noexcept { return m_canvas; }
+  virtual ~Canvas() noexcept {}
 
   ///Obtain the height of the canvas is characters
-  int GetHeight() const noexcept { return m_canvas.size(); }
+  virtual int GetHeight() const noexcept = 0;
 
   ///Obtain the version of this class
   static const std::string GetVersion() noexcept;
@@ -126,36 +53,15 @@ struct Canvas
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
-  int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
+  virtual int GetWidth() const noexcept = 0;
 
-  ///Save to file
-  void Save(const std::string& filename) const noexcept;
+  ///Load a Canvas from std::strings
+  virtual void Load(const std::vector<std::string>& v) = 0;
 
-  ///Set the color system used
-  void SetColorSystem(const CanvasColorSystem color_system) noexcept;
-
-  ///Set the coordinat system used
-  void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
-
-  ///This signal is emitted when any member variable changes
-  boost::signals2::signal<void(Canvas*)> m_signal_changed;
+  ///Convert the Canvas to std::strings
+  virtual const std::vector<std::string> ToStrings() const noexcept = 0;
 
   private:
-  ///The Canvas its internal data: a 2D y-x-ordered std::vector
-  ///of doubles, where 0.0 denotes empty/non-drawn
-  ///and 1.0 denotes full/drawn.
-  std::vector<std::vector<double> > m_canvas;
-
-  ///The color system used:
-  ///- normal: full/drawn is displayed by M
-  ///- invert: empty/non-drawn is displayed by M
-  CanvasColorSystem m_color_system;
-
-  ///The coordinat system used in displayal:
-  ///- screen: origin is at top-left of the screen
-  ///- graph: origin is at bottom-left of the screen
-  CanvasCoordinatSystem m_coordinat_system;
-
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
   static const std::vector<std::string> GetRegexMatches(
     const std::string& s,
@@ -174,17 +80,6 @@ struct Canvas
   template <class Container>
   static const typename Container::value_type::value_type MaxElement(const Container& v);
 
-  ///Plot a surface on screen
-  ///if as_screen_coordinat_system is true, the origin is in the top left
-  ///corner of the screen, else it is in the bottom left of the screen,
-  ///as is usual in graphs
-  //From http://www.richelbilderbeek.nl/CppPlotSurface.htm
-  static void PlotSurface(
-    std::ostream& os,
-    const std::vector<std::vector<double> >& v,
-    const bool use_normal_color_system,
-    const bool as_screen_coordinat_system);
-
   static const std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator) noexcept;
@@ -192,17 +87,7 @@ struct Canvas
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
-  friend std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
-  friend bool operator==(const Canvas& lhs, const Canvas& rhs) noexcept;
-
 };
-
-std::ostream& operator<<(std::ostream& os, const Canvas& canvas);
-
-bool operator==(const Canvas& lhs, const Canvas& rhs) noexcept;
-bool operator!=(const Canvas& lhs, const Canvas& rhs) noexcept;
-
 
 } //~namespace ribi
 

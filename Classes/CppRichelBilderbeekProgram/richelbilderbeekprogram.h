@@ -1946,20 +1946,6 @@ struct ProgramTestBroadcastServer : public ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestBroadcastServer.htm"; }
 };
 
-struct ProgramTestCanvas : public ProgramClass
-{
-  const std::string GetFilenameConsole() const noexcept { return ""; }
-  const std::string GetFilenameDesktop() const noexcept { return ""; }
-  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
-  const std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetScreenName() const noexcept { return "TestCanvas"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
-  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
-  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
-  ProgramType GetType() const noexcept { return ProgramType::testCanvas; }
-  const std::string GetUrl() const noexcept { return "ToolTestCanvas.htm"; }
-};
 
 struct ProgramTestChess : public ProgramClass
 {
@@ -2004,6 +1990,21 @@ struct ProgramTestDial : public ProgramClass
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
   ProgramType GetType() const noexcept { return ProgramType::testDial; }
   const std::string GetUrl() const noexcept { return "ToolTestDial.htm"; }
+};
+
+struct ProgramTestDrawCanvas : public ProgramClass
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "TestDrawCanvas"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::testDrawCanvas; }
+  const std::string GetUrl() const noexcept { return "TestDrawCanvas.htm"; }
 };
 
 struct ProgramEncranger : public ProgramClass
@@ -2153,7 +2154,7 @@ struct ProgramTestImageCanvas : public ProgramClass
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testImageCanvas; }
-  const std::string GetUrl() const noexcept { return "ToolTestImageCanvas.htm"; }
+  const std::string GetUrl() const noexcept { return "TooTestImageCanvas.htm"; }
 };
 
 struct ProgramTestLazy_init : public ProgramClass

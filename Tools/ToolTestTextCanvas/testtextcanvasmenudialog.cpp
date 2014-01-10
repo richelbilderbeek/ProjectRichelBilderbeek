@@ -26,9 +26,9 @@ int ribi::TestTextCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
 
   for (int i=0; i!=2; ++i)
   {
-    const ribi::Canvas::CoordinatSystem coordinat_system
-      = i % 2 ? ribi::Canvas::CoordinatSystem::graph : ribi::Canvas::CoordinatSystem::screen;
-    TextCanvas c( maxx, maxy, coordinat_system);
+    const CanvasCoordinatSystem coordinat_system
+      = i % 2 ? CanvasCoordinatSystem::graph : CanvasCoordinatSystem::screen;
+    TextCanvas c(maxx, maxy, coordinat_system);
     for (int j=0; j!=400; ++j)
     {
       const int x = -maxx + (std::rand() % (2 * maxx));
@@ -102,8 +102,8 @@ void ribi::TestTextCanvasMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolTestCanvasMenuDialog::Test");
+  TRACE("Starting ribi::TestTextCanvasMenuDialog::Test");
   ribi::TextCanvas();
-  TRACE("Finished ribi::ToolTestCanvasMenuDialog::Test successfully");
+  TRACE("Finished ribi::TestTextCanvasMenuDialog::Test successfully");
 }
 #endif

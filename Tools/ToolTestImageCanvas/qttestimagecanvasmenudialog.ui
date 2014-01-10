@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtToolTestCanvasMenuDialog</class>
- <widget class="QDialog" name="QtToolTestCanvasMenuDialog">
+ <class>QtTestImageCanvasMenuDialog</class>
+ <widget class="QDialog" name="QtTestImageCanvasMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -36,7 +36,7 @@ QPushButton { font: 48px  }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestCanvas.qrc">:/images/ToolTestCanvasWelcome.png</pixmap>
+      <pixmap>:/images/TestImageCanvasWelcome.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -85,8 +85,6 @@ QPushButton { font: 48px  }</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="ToolTestCanvas.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

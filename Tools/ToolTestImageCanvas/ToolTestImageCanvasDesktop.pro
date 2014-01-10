@@ -18,8 +18,10 @@ include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 #Specific for this application
 #Console
 include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 #Desktop
-include(../../Tools/ToolTestCanvas/ToolTestCanvasDesktop.pri)
+include(../../Tools/ToolTestImageCanvas/ToolTestImageCanvasDesktop.pri)
 
 SOURCES += qtmain.cpp
 

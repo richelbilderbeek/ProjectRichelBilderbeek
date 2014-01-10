@@ -37,7 +37,7 @@ struct QImage;
 namespace ribi {
 
 ///ImageCanvas converts an image to a Canvas
-struct ImageCanvas
+struct ImageCanvas : public Canvas
 {
   ///The number of characters the Canvas is heigh and wide
   ///but also the maximum x and y coordinat. The minimum
@@ -48,17 +48,52 @@ struct ImageCanvas
     const CanvasColorSystem colorSystem         = CanvasColorSystem::normal,
     const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen);
 
-  ///Obtain the version of this class
+  ///Clears the canvas
+  void Clear() noexcept;
+
+  ///The color system used:
+  ///- normal: full/drawn is displayed by M
+  ///- invert: empty/non-drawn is displayed by M
+  CanvasColorSystem GetColorSystem() const noexcept { return m_color_system; }
+
+  ///The coordinat system used in displayal:
+  ///- screen: origin is at top-left of the screen
+  ///- graph: origin is at bottom-left of the screen
+  CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
+
+  int GetHeight() const noexcept;
+
   static const std::string GetVersion() noexcept;
 
-  ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  const boost::shared_ptr<Canvas> ToCanvas() const noexcept;
+  int GetWidth() const noexcept { return m_n_cols; }
+
+  void Load(const std::vector<std::string>& v);
+  void Load(const std::string& filename);
+
+  ///Set the color system used
+  void SetColorSystem(const CanvasColorSystem color_system) noexcept;
+
+  ///Set the coordinat system used
+  void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
+
+  const std::vector<std::string> ToStrings() const noexcept;
+
+  ///This signal is emitted when any member variable changes
+  boost::signals2::signal<void(ImageCanvas*)> m_signal_changed;
 
   private:
-  const CanvasColorSystem mColorSystem;
-  const CanvasCoordinatSystem mCoordinatSystem;
+  ///The color system used:
+  ///- normal: full/drawn is displayed by M
+  ///- invert: empty/non-drawn is displayed by M
+  CanvasColorSystem m_color_system;
+
+  ///The coordinat system used in displayal:
+  ///- screen: origin is at top-left of the screen
+  ///- graph: origin is at bottom-left of the screen
+  CanvasCoordinatSystem m_coordinat_system;
+
   const std::string m_filename;
   const int m_n_cols;
 

@@ -13,6 +13,8 @@ struct PointIndex
   int Get() const noexcept { return m_index; }
   PointIndex& operator++() noexcept;   //Prefix
   PointIndex operator++(int) noexcept; //Postfix
+  PointIndex& operator--() noexcept;   //Prefix
+  PointIndex operator--(int) noexcept; //Postfix
 
   PointIndex& operator+=(const PointIndex& rhs) noexcept;
   PointIndex& operator-=(const PointIndex& rhs) noexcept;

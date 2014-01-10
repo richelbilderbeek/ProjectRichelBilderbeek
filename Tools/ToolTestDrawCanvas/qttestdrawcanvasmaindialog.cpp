@@ -1,7 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttooltestcanvasmaindialog.h"
+#include "qttestdrawcanvasmaindialog.h"
 
 #include <cassert>
 #include <sstream>
@@ -9,14 +9,15 @@
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 
-#include "canvas.h"
+
+#include "drawcanvas.h"
 #include "trace.h"
-#include "ui_qttooltestcanvasmaindialog.h"
+#include "ui_qttestdrawcanvasmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
+ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtToolTestCanvasMainDialog),
+  ui(new Ui::QtTestDrawCanvasMainDialog),
   m_canvas(CreateCanvas())
 {
   #ifndef NDEBUG
@@ -26,7 +27,7 @@ ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
 
   m_canvas->m_signal_changed.connect(
     boost::bind(
-      &ribi::QtToolTestCanvasMainDialog::ShowCanvas,this,
+      &ribi::QtTestDrawCanvasMainDialog::ShowCanvas,this,
       boost::lambda::_1)
     );
 
@@ -47,16 +48,16 @@ ribi::QtToolTestCanvasMainDialog::QtToolTestCanvasMainDialog(QWidget *parent) :
   ShowCanvas(0);
 }
 
-ribi::QtToolTestCanvasMainDialog::~QtToolTestCanvasMainDialog() noexcept
+ribi::QtTestDrawCanvasMainDialog::~QtTestDrawCanvasMainDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::Canvas> ribi::QtToolTestCanvasMainDialog::CreateCanvas()
+const boost::shared_ptr<ribi::DrawCanvas> ribi::QtTestDrawCanvasMainDialog::CreateCanvas()
 {
   const int maxx = 79;
   const int maxy = 23;
-  boost::shared_ptr<ribi::Canvas> canvas(new Canvas(maxx,maxy));
+  boost::shared_ptr<ribi::DrawCanvas> canvas(new DrawCanvas(maxx,maxy));
   //Determine and calculate dimensions and coordinats of smiley
   const double maxxD = static_cast<double>(maxx);
   const double maxyD = static_cast<double>(maxy);
@@ -87,26 +88,26 @@ const boost::shared_ptr<ribi::Canvas> ribi::QtToolTestCanvasMainDialog::CreateCa
 }
 
 
-void ribi::QtToolTestCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+void ribi::QtTestDrawCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
 {
-  const Canvas::ColorSystem color_system
+  const CanvasColorSystem color_system
     = ui->box_color_system->currentIndex() == 0
-    ? Canvas::ColorSystem::normal
-    : Canvas::ColorSystem::invert;
+    ? CanvasColorSystem::normal
+    : CanvasColorSystem::invert;
   this->m_canvas->SetColorSystem(color_system);
   //Should redraw automatically
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
+void ribi::QtTestDrawCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
 {
-  const Canvas::CoordinatSystem coordinat_system
+  const CanvasCoordinatSystem coordinat_system
     = ui->box_coordinat_system->currentIndex() == 0
-    ? Canvas::CoordinatSystem::screen : Canvas::CoordinatSystem::graph;
+    ? CanvasCoordinatSystem::screen : CanvasCoordinatSystem::graph;
   this->m_canvas->SetCoordinatSystem(coordinat_system);
   //Should redraw automatically
 }
 
-void ribi::QtToolTestCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
+void ribi::QtTestDrawCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const)
 {
   //Display the image
   std::stringstream s;
@@ -115,13 +116,13 @@ void ribi::QtToolTestCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_button_clear_clicked()
+void ribi::QtTestDrawCanvasMainDialog::on_button_clear_clicked()
 {
   m_canvas->Clear();
   //Should redraw automatically
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_button_circle_clicked()
+void ribi::QtTestDrawCanvasMainDialog::on_button_circle_clicked()
 {
   m_canvas->DrawCircle(
     ui->box_circle_x->value(),
@@ -130,7 +131,7 @@ void ribi::QtToolTestCanvasMainDialog::on_button_circle_clicked()
   );
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_button_dot_clicked()
+void ribi::QtTestDrawCanvasMainDialog::on_button_dot_clicked()
 {
    m_canvas->DrawDot(
      ui->box_dot_x->value(),
@@ -138,7 +139,7 @@ void ribi::QtToolTestCanvasMainDialog::on_button_dot_clicked()
    );
 }
 
-void ribi::QtToolTestCanvasMainDialog::on_button_line_clicked()
+void ribi::QtTestDrawCanvasMainDialog::on_button_line_clicked()
 {
   m_canvas->DrawLine(
     ui->box_line_x1->value(),
@@ -149,14 +150,16 @@ void ribi::QtToolTestCanvasMainDialog::on_button_line_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtToolTestCanvasMainDialog::Test() noexcept
+void ribi::QtTestDrawCanvasMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolTestCanvasMainDialog::Test");
-  TRACE("Finished ribi::QtToolTestCanvasMainDialog::Test successfully");
+  TRACE("Starting ribi::QtTestDrawCanvasMainDialog::Test");
+  const boost::shared_ptr<const DrawCanvas> canvas(new DrawCanvas(78,23));
+  assert(canvas);
+  TRACE("Finished ribi::QtTestDrawCanvasMainDialog::Test successfully");
 }
 #endif

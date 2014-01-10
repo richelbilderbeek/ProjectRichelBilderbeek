@@ -19,10 +19,10 @@
 ribi::TextCanvas::TextCanvas(
   const int width,
   const int height,
-  const Canvas::CoordinatSystem coordinatSystem)
+  const CanvasCoordinatSystem coordinatSystem)
   : m_signal_changed{},
-    mCanvas(std::vector<std::string>(height,std::string(width,' '))),
-    mCoordinatSystem(coordinatSystem)
+    m_canvas(std::vector<std::string>(height,std::string(width,' '))),
+    m_coordinatSystem(coordinatSystem)
 {
   #ifndef NDEBUG
   Test();
@@ -33,7 +33,7 @@ ribi::TextCanvas::TextCanvas(
 
 void ribi::TextCanvas::Clear() noexcept
 {
-  for (auto& row: mCanvas)
+  for (auto& row: m_canvas)
   {
     for (auto& cell:row)
     {
@@ -42,7 +42,7 @@ void ribi::TextCanvas::Clear() noexcept
   }
 
   #ifndef NDEBUG
-  for (auto row: mCanvas)
+  for (auto row: m_canvas)
   {
     assert(std::count(row.begin(),row.end(),' ') == static_cast<int>(row.size()));
   }
@@ -54,8 +54,8 @@ bool ribi::TextCanvas::IsInRange(const int x, const int y) const
 {
   if (   x < 0
       || y < 0
-      || y >= static_cast<int>(mCanvas.size())
-      || x >= static_cast<int>(mCanvas[y].size())
+      || y >= static_cast<int>(m_canvas.size())
+      || x >= static_cast<int>(m_canvas[y].size())
      )
     return false;
   return true;
@@ -76,7 +76,11 @@ const std::vector<std::string> ribi::TextCanvas::GetVersionHistory() noexcept
 void ribi::TextCanvas::PutChar(const int x, const int y, const char c) noexcept
 {
   assert(IsInRange(x,y));
-  mCanvas[y][x] = c;
+  if (m_canvas[y][x] != c)
+  {
+    m_canvas[y][x] = c;
+    m_signal_changed(this);
+  }
 }
 
 void ribi::TextCanvas::PutText(const int x, const int y, const std::string& text) noexcept
@@ -89,17 +93,16 @@ void ribi::TextCanvas::PutText(const int x, const int y, const std::string& text
     if (IsInRange(x_here,y_here))
     {
       PutChar(x_here,y_here,c);
-      m_signal_changed(this);
     }
     ++i;
   }
 }
 
-void ribi::TextCanvas::SetCoordinatSystem(const Canvas::CoordinatSystem coordinatSystem) noexcept
+void ribi::TextCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept
 {
-  if (this->mCoordinatSystem != coordinatSystem)
+  if (this->m_coordinatSystem != coordinatSystem)
   {
-    this->mCoordinatSystem = coordinatSystem;
+    this->m_coordinatSystem = coordinatSystem;
     this->m_signal_changed(this);
   }
 }
@@ -155,7 +158,7 @@ void ribi::TextCanvas::Test() noexcept
 
 std::ostream& ribi::operator<<(std::ostream& os, const TextCanvas& canvas)
 {
-  std::copy(canvas.mCanvas.begin(),canvas.mCanvas.end(),
+  std::copy(canvas.m_canvas.begin(),canvas.m_canvas.end(),
     std::ostream_iterator<std::string>(os,"\n")
   );
   return os;

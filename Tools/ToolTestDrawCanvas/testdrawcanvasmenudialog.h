@@ -1,12 +1,12 @@
-#ifndef TOOLTESTCANVASMENUDIALOG_H
-#define TOOLTESTCANVASMENUDIALOG_H
+#ifndef TESTDRAWCANVASMENUDIALOG_H
+#define TESTDRAWCANVASMENUDIALOG_H
 
 #include "menudialog.h"
 
 namespace ribi {
 
-///GUI independent ToolTestCanvas menu dialog
-struct ToolTestCanvasMenuDialog : public MenuDialog
+///GUI independent TestDrawCanvas menu dialog
+struct TestDrawCanvasMenuDialog : public MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -24,4 +24,4 @@ struct ToolTestCanvasMenuDialog : public MenuDialog
 
 } //~namespace ribi
 
-#endif // TOOLTESTCANVASMENUDIALOG_H
+#endif // TESTDRAWCANVASMENUDIALOG_H

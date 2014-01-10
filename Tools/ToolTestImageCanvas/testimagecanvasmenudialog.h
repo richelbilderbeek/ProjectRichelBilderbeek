@@ -5,7 +5,7 @@
 
 namespace ribi {
 
-///GUI independent ToolTestCanvas menu dialog
+///GUI independent TestImageCanvas menu dialog
 struct TestImageCanvasMenuDialog : public MenuDialog
 {
   const About GetAbout() const noexcept;

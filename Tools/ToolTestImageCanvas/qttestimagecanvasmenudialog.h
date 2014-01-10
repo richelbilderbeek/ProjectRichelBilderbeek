@@ -1,29 +1,29 @@
-#ifndef QTTOOLTESTCANVASMENUDIALOG_H
-#define QTTOOLTESTCANVASMENUDIALOG_H
+#ifndef QTTESTIMAGECANVASMENUDIALOG_H
+#define QTTESTIMAGECANVASMENUDIALOG_H
 
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtToolTestCanvasMenuDialog;
+  class QtTestImageCanvasMenuDialog;
 }
 
 namespace ribi {
 
-class QtToolTestCanvasMenuDialog : public QtHideAndShowDialog
+class QtTestImageCanvasMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtToolTestCanvasMenuDialog(QWidget *parent = 0);
-  QtToolTestCanvasMenuDialog(const QtToolTestCanvasMenuDialog&) = delete;
-  QtToolTestCanvasMenuDialog& operator=(const QtToolTestCanvasMenuDialog&) = delete;
-  ~QtToolTestCanvasMenuDialog() noexcept;
+  explicit QtTestImageCanvasMenuDialog(QWidget *parent = 0);
+  QtTestImageCanvasMenuDialog(const QtTestImageCanvasMenuDialog&) = delete;
+  QtTestImageCanvasMenuDialog& operator=(const QtTestImageCanvasMenuDialog&) = delete;
+  ~QtTestImageCanvasMenuDialog() noexcept;
 
 protected:
   void keyPressEvent(QKeyEvent * event);
 
 private:
-  Ui::QtToolTestCanvasMenuDialog *ui;
+  Ui::QtTestImageCanvasMenuDialog *ui;
 
 private slots:
   void on_button_about_clicked();
@@ -37,4 +37,4 @@ private slots:
 
 } //~namespace ribi
 
-#endif // QTTOOLTESTCANVASMENUDIALOG_H
+#endif // QTTESTIMAGECANVASMENUDIALOG_H

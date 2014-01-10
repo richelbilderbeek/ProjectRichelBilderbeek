@@ -158,10 +158,10 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testBouncingBallsWidget: p.reset(new ProgramTestBouncingBallsWidget); break;
     case ProgramType::testBouncingRectsWidget: p.reset(new ProgramTestBouncingRectsWidget); break;
     case ProgramType::testBroadcastServer: p.reset(new ProgramTestBroadcastServer); break;
-    case ProgramType::testCanvas: p.reset(new ProgramTestCanvas); break;
     case ProgramType::testChess: p.reset(new ProgramTestChess); break;
     case ProgramType::testConceptMap: p.reset(new ProgramTestConceptMap); break;
     case ProgramType::testDial: p.reset(new ProgramTestDial); break;
+    case ProgramType::testDrawCanvas: p.reset(new ProgramTestDrawCanvas); break;
     case ProgramType::testEntrance: p.reset(new ProgramTestEntrance); break;
     case ProgramType::testExercise: p.reset(new ProgramTestExercise); break;
     case ProgramType::testFunctionParser: p.reset(new ProgramTestFunctionParser); break;

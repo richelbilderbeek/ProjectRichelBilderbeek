@@ -12,6 +12,26 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+//From http://www.richelbilderbeek.nl/CppCanLexicalCast.htm
+template <class TargetType, class SourceType>
+bool CanLexicalCast(const SourceType& from)
+{
+  try
+  {
+    boost::lexical_cast<TargetType>(from);
+  }
+  catch (boost::bad_lexical_cast)
+  {
+    return false;
+  }
+  catch (...)
+  {
+    assert(!"Something unexpected happened");
+    throw;
+  }
+  return true;
+}
+
 const std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
 {
   std::vector<std::string> v;
@@ -128,12 +148,14 @@ void ribi::xml::Test() noexcept
       const std::function<KeyType(const std::string&)>& str_to_key_function {
         [](const std::string& s)
         {
+          assert(CanLexicalCast<KeyType>(s));
           return boost::lexical_cast<KeyType>(s);
         }
       };
       const std::function<ValueType(const std::string&)>& str_to_value_function {
         [](const std::string& s)
         {
+          assert(CanLexicalCast<ValueType>(s));
           return boost::lexical_cast<ValueType>(s);
         }
       };
@@ -166,12 +188,14 @@ void ribi::xml::Test() noexcept
       const std::function<KeyType(const std::string&)>& str_to_key_function {
         [](const std::string& s)
         {
+          assert(CanLexicalCast<KeyType>(s));
           return boost::lexical_cast<KeyType>(s);
         }
       };
       const std::function<ValueType(const std::string&)>& str_to_value_function {
         [](const std::string& s)
         {
+          assert(CanLexicalCast<ValueType>(s));
           return boost::lexical_cast<ValueType>(s);
         }
       };
@@ -208,6 +232,7 @@ void ribi::xml::Test() noexcept
       const std::function<std::string(const KeyType&  )> key_to_str_function {
         [](const KeyType& key)
         {
+          assert(CanLexicalCast<std::string>(key));
           return boost::lexical_cast<std::string>(key);
         }
       };
@@ -232,6 +257,7 @@ void ribi::xml::Test() noexcept
       const std::function<KeyType(const std::string&)>& str_to_key_function {
         [](const std::string& s)
         {
+          assert(CanLexicalCast<KeyType>(s));
           return boost::lexical_cast<KeyType>(s);
         }
       };
@@ -375,7 +401,11 @@ void ribi::xml::Test() noexcept
 
       //Convert tag and content to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
-        [](const TagType& t) { return boost::lexical_cast<std::string>(t); }
+        [](const TagType& t)
+        {
+          assert(CanLexicalCast<std::string>(t));
+          return boost::lexical_cast<std::string>(t);
+        }
       };
       const std::function<std::string(const ContentType&)> content_to_str_function {
         [](const ContentType& c) { return *c; }
@@ -388,7 +418,11 @@ void ribi::xml::Test() noexcept
       //Convert XML back to its tag and content
       //with custom functions
       const std::function<TagType(const std::string&)> str_to_tag_function {
-        [](const std::string& s) { return boost::lexical_cast<TagType>(s); }
+        [](const std::string& s)
+        {
+          assert(CanLexicalCast<TagType>(s));
+          return boost::lexical_cast<TagType>(s);
+        }
       };
       const std::function<ContentType(const std::string&)> str_to_content_function {
         [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
@@ -419,6 +453,7 @@ void ribi::xml::Test() noexcept
     const std::vector<std::string> content { "cats", "dog", "zebrafinch" };
     const std::string tag_name = "animals";
     const std::string xml = VectorToXml(tag_name,content);
+    assert(xml == "<animals><0>cats</0><1>dog</1><2>zebrafinch</2></animals>");
     assert(xml == ToXml(tag_name,content.begin(),content.end()));
     const std::pair<std::string,std::vector<std::string>> p { XmlToVector(xml) };
     assert(p.first == tag_name);
@@ -607,8 +642,6 @@ const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
   //<tag_name>...</tag_name>
   const std::pair<std::string,std::string> p = FromXml(s);
   const std::string tag_name = p.first;
-  TRACE(tag_name);
-
   std::vector<std::string> content;
 
   //Remove the name tags
@@ -624,6 +657,15 @@ const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
     assert(t.find('>') != std::string::npos);
     const int index_tag_sz = static_cast<int>(t.find('>')) - 1;
     const std::string index_tag = t.substr(1,index_tag_sz);
+    #ifndef NDEBUG
+    if (!CanLexicalCast<int>(index_tag))
+    {
+      TRACE("ERROR");
+      TRACE(t);
+      TRACE(index_tag);
+    }
+    #endif
+    assert(CanLexicalCast<int>(index_tag));
     assert(i == boost::lexical_cast<int>(index_tag));
     assert(t.find('/') != std::string::npos);
     const int item_sz = static_cast<int>(t.find('/')) - index_tag_sz - 3;

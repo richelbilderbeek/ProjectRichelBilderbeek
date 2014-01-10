@@ -33,7 +33,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtaminoacidfightermenudialog.h"
 #include "qtasciiartermenudialog.h"
 #include "qtathleticlandmenudialog.h"
-#include "qtfunctionplottermenudialog.h"
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
@@ -42,9 +41,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcreateqtprojectzipfilemenudialog.h"
 #include "qtdaswahreschlagerfestmenudialog.h"
 #include "qtfilteroperationermenudialog.h"
+#include "qtfunctionplottermenudialog.h"
 #include "qthistogramequalizationermenudialog.h"
-#include "qttestconceptmapmenudialog.h"
-#include "qtpredickadvocatormenudialog.h"
+#include "qthometrainermenudialog.h"
+#include "qtimagerotatermenudialog.h"
 #include "qtk3opeenrijmenudialog.h"
 #include "qtk3opeenrijresources.h"
 #include "qtkalmanfilterermenudialog.h"
@@ -54,6 +54,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtperfectelasticcollisionmenudialog.h"
 #include "qtpictocodemenudialog.h"
 #include "qtpixelatormenudialog.h"
+#include "qtpredickadvocatormenudialog.h"
 #include "qtpvdbmenudialog.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
@@ -61,19 +62,21 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
 #include "qtrichelbilderbeekgallerymenudialog.h"
-#include "qttestbinarynewickvectormenudialog.h"
 #include "qtrichelbilderbeekmenudialog.h"
-#include "qttesttwodigitnewickmenudialog.h"
 #include "qtrubiksclockmenudialog.h"
 #include "qtsecretmessagemenudialog.h"
 #include "qtsimmysterymachinemenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtsitemapgeneratormenudialog.h"
 #include "qtstateobservermenudialog.h"
-#include "qtimagerotatermenudialog.h"
+#include "qtstylesheetsettermenudialog.h"
 #include "qttestaboutmenudialog.h"
+#include "qttestbinarynewickvectormenudialog.h"
+#include "qttestconceptmapmenudialog.h"
 #include "qttestdialmenudialog.h"
+#include "qttestdrawcanvasmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
+#include "qttestimagecanvasmenudialog.h"
 #include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestopenquestionmenudialog.h"
 #include "qttestpylosmenudialog.h"
@@ -86,12 +89,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtroundedrectitemmenudialog.h"
 #include "qttestqtroundedtextrectitemmenudialog.h"
 #include "qttestquestionmenudialog.h"
-#include "qttronmenudialog.h"
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
+#include "qttesttextcanvasmenudialog.h"
 #include "qttesttogglebuttonmaindialog.h"
-#include "qthometrainermenudialog.h"
 #include "qttesttogglebuttonmenudialog.h"
+#include "qttesttwodigitnewickmenudialog.h"
 #include "qtthresholdfilterermenudialog.h"
 #include "qttictactoemenudialog.h"
 #include "qttooldotmatrixmenudialog.h"
@@ -99,17 +102,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolencrangermenudialog.h"
 #include "qttoolgaborfiltermenudialog.h"
 #include "qttoolgraycodermenudialog.h"
-#include "qtstylesheetsettermenudialog.h"
 #include "qttoolmultiencrangermaindialog.h"
 #include "qttoolmultiencrangermenudialog.h"
 #include "qttoolprimeexpertmenudialog.h"
 #include "qttoolsimplifynewickmenudialog.h"
 #include "qttooltestapproximatormenudialog.h"
-#include "qttooltestcanvasmenudialog.h"
 #include "qttooltestledmaindialog.h"
 #include "qttooltestmultiapproximatormenudialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
 #include "qttooltestsimplelinearregressionmenudialog.h"
+#include "qttronmenudialog.h"
 #include "richelbilderbeekprogram.h"
 
 #pragma GCC diagnostic pop
@@ -246,10 +248,10 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testBouncingRectsWidget: break;
     case ProgramType::testBroadcastServer: break;
     case ProgramType::testBinaryNewickVector: p = new QtTestBinaryNewickVectorMenuDialog; break;
-    case ProgramType::testCanvas: p = new QtToolTestCanvasMenuDialog; break;
     case ProgramType::testChess: break;
     case ProgramType::testConceptMap: p = new cmap::QtTestConceptMapMenuDialog; break;
     case ProgramType::testDial: p = new QtTestDialMenuDialog; break;
+    case ProgramType::testDrawCanvas: p = new QtTestDrawCanvasMenuDialog; break;
     case ProgramType::testEntrance: break;
     case ProgramType::testExercise: break;
     case ProgramType::testFunctionParser: p = new QtTestFunctionParserMenuDialog; break;
@@ -258,6 +260,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testGravityWidget: break;
     case ProgramType::testGroupWidget: break;
     case ProgramType::testHugeVector: break;
+    case ProgramType::testImageCanvas: p = new QtTestImageCanvasMenuDialog; break;
     case ProgramType::testLazy_init: break;
     case ProgramType::testLed: p = new QtTestLedMainDialog; break;
     case ProgramType::testManyDigitNewick: break;
@@ -288,6 +291,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testQtArrowItems: p = new QtTestQtArrowItemsMenuDialog; break;
     case ProgramType::testQtKeyboardFriendlyGraphicsView: p = new QtTestKeyboardFriendlyGraphicsViewMenuDialog; break;
     case ProgramType::testQtModels: p = new QtToolTestQtModelsMenuDialog; break;
+    case ProgramType::testTextCanvas: p = new QtTestTextCanvasMenuDialog; break;
     case ProgramType::testTextPositionWidget: break;
     case ProgramType::testTicTacToe: break;
     case ProgramType::testTimedServerPusher: break;

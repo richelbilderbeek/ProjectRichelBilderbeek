@@ -47,14 +47,20 @@ ribi::ImageCanvas::ImageCanvas(
   const int n_cols,
   const ribi::CanvasColorSystem colorSystem,
   const ribi::CanvasCoordinatSystem coordinatSystem)
-  : mColorSystem(colorSystem),
-    mCoordinatSystem(coordinatSystem),
+  : m_signal_changed{},
+    m_color_system(colorSystem),
+    m_coordinat_system(coordinatSystem),
     m_filename(filename),
     m_n_cols(n_cols)
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+void ribi::ImageCanvas::Clear() noexcept
+{
+  assert(!"TODO");
 }
 
 const std::vector<std::vector<double> >
@@ -88,6 +94,12 @@ const std::vector<std::vector<double> >
   return v;
 }
 
+int ribi::ImageCanvas::GetHeight() const noexcept
+{
+  assert(!"TODO");
+  return -1;
+}
+
 const std::string ribi::ImageCanvas::GetVersion() noexcept
 {
   return "3.0";
@@ -100,6 +112,46 @@ const std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
     "2014-01-07: Version 2.0: add conversion to Canvas"
     "2014-01-07: version 3.0: reworked interface, renamed to ImageCanvas"
   };
+}
+
+void ribi::ImageCanvas::Load(const std::vector<std::string>& v)
+{
+  assert(!v.empty());
+  assert(!"TODO");
+}
+
+void ribi::ImageCanvas::Load(const std::string& filename)
+{
+  /*
+  const boost::scoped_ptr<QImage> qimage{
+    new QImage(m_filename.c_str())
+  };
+  const std::vector<std::vector<double> > image { ConvertToGreyYx(qimage.get()) };
+
+  const boost::shared_ptr<ImageCanvas> canvas {
+    new ImageCanvas(image,mColorSystem,mCoordinatSystem)
+  };
+  assert(canvas);
+  return canvas;
+  */
+}
+
+void ribi::ImageCanvas::SetColorSystem(const CanvasColorSystem colorSystem) noexcept
+{
+  if (this->m_color_system != colorSystem)
+  {
+    this->m_color_system = colorSystem;
+    this->m_signal_changed(this);
+  }
+}
+
+void ribi::ImageCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept
+{
+  if (this->m_coordinat_system != coordinatSystem)
+  {
+    this->m_coordinat_system = coordinatSystem;
+    this->m_signal_changed(this);
+  }
 }
 
 #ifndef NDEBUG
@@ -146,22 +198,18 @@ void ribi::ImageCanvas::Test() noexcept
 }
 #endif
 
-const boost::shared_ptr<ribi::Canvas> ribi::ImageCanvas::ToCanvas() const noexcept
-{
-  const boost::scoped_ptr<QImage> qimage{
-    new QImage(m_filename.c_str())
-  };
-  const std::vector<std::vector<double> > image { ConvertToGreyYx(qimage.get()) };
 
-  const boost::shared_ptr<ribi::Canvas> canvas {
-    new Canvas(image,mColorSystem,mCoordinatSystem)
-  };
-  assert(canvas);
-  return canvas;
+const std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
+{
+  assert(!"TODO");
+  /*
+  */
+  return std::vector<std::string>();
 }
 
 std::ostream& ribi::operator<<(std::ostream& os, const ImageCanvas& canvas)
 {
-  os << (*canvas.ToCanvas());
+  const auto v = canvas.ToStrings();
+  std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"));
   return os;
 }

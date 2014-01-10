@@ -1,12 +1,12 @@
-#include "tooltestcanvasmenudialog.h"
+#include "testdrawcanvasmenudialog.h"
 
 #include <cassert>
 #include <iostream>
 
-#include "canvas.h"
+#include "drawcanvas.h"
 #include "trace.h"
 
-int ribi::ToolTestCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::TestDrawCanvasMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -29,7 +29,7 @@ int ribi::ToolTestCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
       = i % 2 ? ribi::CanvasColorSystem::normal : ribi::CanvasColorSystem::invert;
     const ribi::CanvasCoordinatSystem coordinat_system
       = i / 2 ? ribi::CanvasCoordinatSystem::graph : ribi::CanvasCoordinatSystem::screen;
-    ribi::Canvas c( maxx, maxy, color_system, coordinat_system);
+    ribi::DrawCanvas c( maxx, maxy, color_system, coordinat_system);
 
     //Draw smiley to Canvas
 
@@ -66,23 +66,24 @@ int ribi::ToolTestCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
   return 0;
 }
 
-const ribi::About ribi::ToolTestCanvasMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::TestDrawCanvasMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
-    "ToolTestCanvas",
-    "tests the Canvas class",
-    "the 28th of August 2013",
+    "TestDrawCanvas",
+    "tests the DrawCanvas class",
+    "the 10th of January 2014",
     "2013-2014",
-    "http://www.richelbilderbeek.nl/ToolTestCanvas.htm",
+    "http://www.richelbilderbeek.nl/ToolTestDrawCanvas.htm",
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }
 
-const ribi::Help ribi::ToolTestCanvasMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::TestDrawCanvasMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -96,38 +97,39 @@ const ribi::Help ribi::ToolTestCanvasMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolTestCanvasMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::TestDrawCanvasMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
-    new ProgramTestCanvas
+    new ProgramTestDrawCanvas
   };
   assert(p);
   return p;
 }
 
-const std::string ribi::ToolTestCanvasMenuDialog::GetVersion() const noexcept
+const std::string ribi::TestDrawCanvasMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
-const std::vector<std::string> ribi::ToolTestCanvasMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::TestDrawCanvasMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2013-08-28: version 1.0: initial desktop version",
-    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole"
+    "2013-08-28: version 1.0: initial desktop version, originally called TestCanvas",
+    "2013-11-05: version 1.1: conformized for ProjectRichelBilderbeekConsole",
+    "2014-01-10: version 1.2: renamed TestCanvas to TestDrawCanvas"
   };
 }
 
 #ifndef NDEBUG
-void ribi::ToolTestCanvasMenuDialog::Test() noexcept
+void ribi::TestDrawCanvasMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolTestCanvasMenuDialog::Test");
-  ribi::Canvas();
-  TRACE("Finished ribi::ToolTestCanvasMenuDialog::Test successfully");
+  TRACE("Starting ribi::TestDrawCanvasMenuDialog::Test");
+  ribi::DrawCanvas();
+  TRACE("Finished ribi::TestDrawCanvasMenuDialog::Test successfully");
 }
 #endif
