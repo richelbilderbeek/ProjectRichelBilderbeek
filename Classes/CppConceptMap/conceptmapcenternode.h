@@ -17,7 +17,7 @@ struct CenterNodeFactory;
 ///The focal question of a ConceptMap
 ///In a full ConceptMap, GetNodes()[0] results in finding a CenterNode
 ///In a sub-ConceptMap, GetNodes()[0] will be a regular Node
-struct CenterNode : public cmap::Node
+struct CenterNode : public Node
 {
   ///Block destructor, except for the friend boost::checked_delete
   ~CenterNode() noexcept {}

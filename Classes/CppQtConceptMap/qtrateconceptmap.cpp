@@ -261,6 +261,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     assert(edge);
     edges.push_back(edge);
   }
+  nodes = ConceptMap::Sort(nodes);
+  assert(ConceptMap::CanConstruct(nodes,edges));
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(cmap::ConceptMapFactory::Create(nodes,edges));
   assert(concept_map);
   assert(focal_node == concept_map->GetNodes().at(0));

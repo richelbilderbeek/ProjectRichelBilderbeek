@@ -202,6 +202,7 @@ void ribi::cmap::Node::Test() noexcept
     const int sz = static_cast<int>(ConceptFactory::GetTests().size());
     for (int i=0; i!=sz; ++i)
     {
+      assert(i < static_cast<int>(ConceptFactory::GetTests().size()));
       const boost::shared_ptr<Concept> c = ConceptFactory::GetTests()[i];
       const boost::shared_ptr<Concept> d = ConceptFactory::GetTests()[i];
       assert(c != d);
@@ -220,6 +221,7 @@ void ribi::cmap::Node::Test() noexcept
     {
       for (int j=0; j!=sz; ++j)
       {
+        assert(i < static_cast<int>(ConceptFactory::GetTests().size()));
         const boost::shared_ptr<Concept> c = ConceptFactory::GetTests()[i];
         assert(c);
         const boost::shared_ptr<Concept> d = ConceptFactory::GetTests()[j];

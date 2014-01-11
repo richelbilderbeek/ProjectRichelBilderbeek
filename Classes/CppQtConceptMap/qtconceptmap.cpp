@@ -89,8 +89,6 @@ const std::vector<ribi::cmap::QtNode*>
   return w;
 }
 
-
-
 ribi::cmap::QtConceptMap::QtConceptMap(
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
   QWidget* parent)

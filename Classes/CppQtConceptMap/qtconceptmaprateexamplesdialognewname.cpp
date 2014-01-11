@@ -163,10 +163,12 @@ void ribi::cmap::QtRateExamplesDialogNewName::Test() noexcept
     const int sz = ribi::cmap::ConceptFactory::GetTests().size();
     for (int i=0; i!=sz; ++i)
     {
+      assert(i < static_cast<int>(ConceptFactory::GetTests().size()));
       const auto a = QtRateExamplesDialogNewName(cmap::ConceptFactory::GetTests()[i]).GetRatedExamples();
       assert(a);
       for (int j=0; j!=sz; ++j)
       {
+        assert(j < static_cast<int>(ConceptFactory::GetTests().size()));
         const auto b = QtRateExamplesDialogNewName(cmap::ConceptFactory::GetTests()[j]).GetRatedExamples();
         assert(b);
         assert(a != b);

@@ -126,7 +126,9 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_examples_clicked() noexcept
 {
-  const boost::shared_ptr<ribi::cmap::Concept> concept = ribi::cmap::ConceptFactory::GetTests().at(5);
+  const int index = 2;
+  assert(index < cmap::ConceptFactory::GetTests().size());
+  const boost::shared_ptr<ribi::cmap::Concept> concept = ribi::cmap::ConceptFactory::GetTests().at(index);
   boost::shared_ptr<cmap::QtRateExamplesDialogNewName> d(new cmap::QtRateExamplesDialogNewName(concept));
   if (m_show_child_dialogs_modal) { this->ShowChild(d.get()); } else { d->close(); } //For testing
 }

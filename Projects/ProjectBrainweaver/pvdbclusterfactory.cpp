@@ -54,6 +54,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::GetTest
     [](const int index)
     {
       const std::vector<boost::shared_ptr<ribi::cmap::Concept> > tmp = cmap::ConceptFactory::GetTests();
+      assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
       const boost::shared_ptr<ribi::cmap::Concept> concept = tmp.at(index);
       assert(concept);
       return concept;

@@ -533,7 +533,9 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const int n_edges_before = concept_map->GetEdges().size();
       const auto node_a = NodeFactory::GetTests().at(0);
       const auto node_b = NodeFactory::GetTests().at(1);
-      const auto concept = ConceptFactory::GetTests().at(0);
+      const int index = 0;
+      assert(index < static_cast<int>(ConceptFactory::GetTests().size()));
+      const auto concept = ConceptFactory::GetTests().at(index);
       const auto edge = EdgeFactory::Create(
         concept,123.456,456.789,node_a,true,node_b,true);
       concept_map->AddNode(node_a);

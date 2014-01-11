@@ -50,6 +50,7 @@ void ribi::cmap::Concept::Test() noexcept
       assert(*b == *b);
       for (int j=0; j!=sz; ++j)
       {
+        assert(j < static_cast<int>(ConceptFactory::GetTests().size()));
         const boost::shared_ptr<const ribi::cmap::Concept> c = ConceptFactory::GetTests().at(j);
         const boost::shared_ptr<      ribi::cmap::Concept> d = ConceptFactory::GetTests().at(j);
         assert(c); assert(d);

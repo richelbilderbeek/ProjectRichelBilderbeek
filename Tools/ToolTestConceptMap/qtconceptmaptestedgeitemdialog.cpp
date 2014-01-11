@@ -47,7 +47,7 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::QtConceptMapTestEdgeItemDialog(QWidg
   assert(m_from);
   assert(m_to);
   {
-    const std::size_t index = 4; //Must have examples
+    const std::size_t index = 2; //Must have examples
     assert(index < cmap::EdgeFactory::GetTests(m_from,m_to).size());
     m_edge = cmap::EdgeFactory::GetTests(m_from,m_to)[index];
     assert(m_edge->GetConcept());
@@ -181,16 +181,16 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDi
 {
   const std::size_t index = 2;
   assert(index < cmap::NodeFactory::GetTests().size());
-  const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::GetTests()[index];
+  const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::GetTests().at(index);
   assert(node);
   return node;
 }
 
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDialog::CreateTo()
 {
-  const std::size_t index = 3;
+  const std::size_t index = 2;
   assert(index < cmap::NodeFactory::GetTests().size());
-  const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::GetTests()[index];
+  const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::GetTests().at(index);
   assert(node);
   return node;
 }

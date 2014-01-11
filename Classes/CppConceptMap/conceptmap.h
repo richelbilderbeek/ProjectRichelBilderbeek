@@ -79,6 +79,14 @@ struct ConceptMap
   bool IsValid() const;
   #endif
 
+  ///Put the CenterNode (if present) first
+  /*
+  static const std::vector<boost::shared_ptr<const Node>> Sort(
+     const std::vector<boost::shared_ptr<const Node>>& v) noexcept;
+  static const std::vector<boost::shared_ptr<Node>> Sort(
+     const std::vector<boost::shared_ptr<Node>>& v) noexcept;
+  */
+
   ///Convert a ConceptMap from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const ConceptMap> c);
 

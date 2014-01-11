@@ -202,7 +202,9 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   assert(node_from != node_to);
   this->AddNode(node_from);
   this->AddNode(node_to  );
-  const auto edge_concept = ribi::cmap::ConceptFactory::GetTests().at(0);
+  const int index = 0;
+  assert(index < static_cast<int>(ConceptFactory::GetTests().size()));
+  const auto edge_concept = ribi::cmap::ConceptFactory::GetTests().at(index);
   const double node_x = 12.34; //Just some coordinat
   const double node_y = 45.67; //Just some coordinat
   const boost::shared_ptr<ribi::cmap::Edge> edge = cmap::EdgeFactory::Create(

@@ -6,17 +6,17 @@
 #include <set>
 #include <sstream>
 #include <functional>
-#include "conceptmapcenternode.h"
 #include "conceptmapcenternodefactory.h"
-#include "conceptmapconcept.h"
+#include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
-#include "conceptmaphelper.h"
-#include "trace.h"
-#include "conceptmapexamplesfactory.h"
+#include "conceptmapconcept.h"
 #include "conceptmapedgefactory.h"
-#include "conceptmapnode.h"
-#include "conceptmapnodefactory.h"
 #include "conceptmapedge.h"
+#include "conceptmapexamplesfactory.h"
+#include "conceptmaphelper.h"
+#include "conceptmapnodefactory.h"
+#include "conceptmapnode.h"
+#include "trace.h"
 //#include "conceptmapcluster.h"
 #pragma GCC diagnostic pop
 
@@ -46,10 +46,11 @@ ribi::cmap::ConceptMap::ConceptMap(
   Test();
   if (!ConceptMap::CanConstruct(nodes,edges))
   {
+    TRACE("ERROR");
     const std::size_t n_nodes = nodes.size();
     for (std::size_t i=0; i!=n_nodes; ++i)
     {
-      std::cout << i << ": " << cmap::Node::ToXml(nodes[i]) << '\n';
+      std::cout << i << ": " << Node::ToXml(nodes[i]) << '\n';
     }
 
     const std::size_t n_edges = edges.size();
@@ -63,7 +64,7 @@ ribi::cmap::ConceptMap::ConceptMap(
       assert(from_iter != nodes.end());
       assert(to_iter != nodes.end());
       #endif
-      std::cout << i << ": " << cmap::Edge::ToXml(edge,const_nodes) << '\n';
+      std::cout << i << ": " << Edge::ToXml(edge,const_nodes) << '\n';
     }
   }
   assert(ConceptMap::CanConstruct(nodes,edges));
@@ -612,6 +613,46 @@ bool ribi::cmap::ConceptMap::IsValid() const
   return true;
 }
 #endif
+
+/*
+const std::vector<boost::shared_ptr<const ribi::cmap::Node>> ribi::cmap::ConceptMap::Sort(
+   const std::vector<boost::shared_ptr<const ribi::cmap::Node>>& v) noexcept
+{
+  std::vector<boost::shared_ptr<const Node>> w(v);
+  assert(v.size() == w.size());
+  const auto i = std::find_if(w.begin(),w.end(),
+    [](const boost::shared_ptr<const Node> node)
+    {
+      return boost::dynamic_pointer_cast<const CenterNode>(node);
+    }
+  );
+  if (i != w.end())
+  {
+    std::swap(*i,*w.begin());
+    assert(boost::dynamic_pointer_cast<const CenterNode>(*w.begin()));
+  }
+  return w;
+}
+
+const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::ConceptMap::Sort(
+   const std::vector<boost::shared_ptr<ribi::cmap::Node>>& v) noexcept
+{
+  std::vector<boost::shared_ptr<Node>> w(v);
+  assert(v.size() == w.size());
+  const auto i = std::find_if(w.begin(),w.end(),
+    [](const boost::shared_ptr<const Node> node)
+    {
+      return boost::dynamic_pointer_cast<const CenterNode>(node);
+    }
+  );
+  if (i != w.end())
+  {
+    std::swap(*i,*w.begin());
+    assert(boost::dynamic_pointer_cast<CenterNode>(*w.begin()));
+  }
+  return w;
+}
+*/
 
 const std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map)
 {

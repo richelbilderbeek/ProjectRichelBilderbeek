@@ -86,7 +86,9 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::GetTests().at(3));
+    const int index = 3;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::GetTests().at(index));
     assert(file);
     assert(file->GetCluster());
     QtHideAndShowDialog* p(new QtPvdbClusterDialog(file));
@@ -94,12 +96,16 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new cmap::QtConceptMapConceptEditDialog(cmap::ConceptFactory::GetTests().at(4)));
+    const int index = 2;
+    assert(index < cmap::ConceptFactory::GetTests().size());
+    QtHideAndShowDialog* p(new cmap::QtConceptMapConceptEditDialog(cmap::ConceptFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < cmap::ConceptFactory::GetTests().size());
+    QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
@@ -119,47 +125,61 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+    const int index = 4;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(index);
     assert(file);
     QtHideAndShowDialog* p(new QtPvdbPrintConceptMapDialog(file));
     assert(p);
     v.push_back(p);
   }
   {
-    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(4);
+    const int index = 4;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::GetTests().at(index);
     assert(file);
     QtHideAndShowDialog* p(new QtPvdbPrintConceptMapDialog(file));
     assert(p);
     v.push_back(p);
   }
   {
+    const int index = 18;
+    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(index);
     assert(concept_map);
     QtHideAndShowDialog* p(new cmap::QtRateConceptDialogNewName(concept_map));
     assert(p);
     v.push_back(p);
   }
   {
+    const int index = 18;
+    assert(index < static_cast<int>(ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
+      = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(index);
     assert(concept_map);
     QtHideAndShowDialog* p(new cmap::QtRateConceptTallyDialogNewName(concept_map));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbRateConceptMapDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbRateConceptMapDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new cmap::QtRateExamplesDialogNewName(cmap::ConceptFactory::GetTests().at(4)));
+    const int index = 2;
+    assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new cmap::QtRateExamplesDialogNewName(cmap::ConceptFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbRatingDialog(pvdb::FileFactory::GetTests().at(4)));
+    const int index = 4;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbRatingDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
@@ -171,12 +191,16 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
     #endif
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbStudentMenuDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbStudentMenuDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
-    QtHideAndShowDialog* p(new QtPvdbStudentStartCompleteDialog(pvdb::FileFactory::GetTests().at(2)));
+    const int index = 2;
+    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbStudentStartCompleteDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }

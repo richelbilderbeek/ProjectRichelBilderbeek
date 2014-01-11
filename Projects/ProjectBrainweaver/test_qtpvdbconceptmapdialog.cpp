@@ -139,12 +139,17 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert( file->GetCluster());
     assert(!file->GetConceptMap());
 
+    const int index_1 = 1;
+    assert(index_1 < cmap::ConceptFactory::GetTests().size());
+    const int index_2 = 2;
+    assert(index_2 < cmap::ConceptFactory::GetTests().size());
+
     const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::Create("Concept F"));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(3));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(4));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(index_1));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(index_2));
     const boost::shared_ptr<ribi::cmap::Node> node_a(cmap::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<ribi::cmap::Node> node_b(cmap::NodeFactory::GetTests().at(3));
-    const boost::shared_ptr<ribi::cmap::Node> node_c(cmap::NodeFactory::GetTests().at(4));
+    const boost::shared_ptr<ribi::cmap::Node> node_b(cmap::NodeFactory::GetTests().at(index_1));
+    const boost::shared_ptr<ribi::cmap::Node> node_c(cmap::NodeFactory::GetTests().at(index_2));
 
     const Nodes nodes = { node_a, node_b, node_c };
 
@@ -188,9 +193,16 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
 
-    const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::GetTests().at(0));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(1));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(2));
+    const int index_1 = 0;
+    assert(index_1 < cmap::ConceptFactory::GetTests().size());
+    const int index_2 = 1;
+    assert(index_2 < cmap::ConceptFactory::GetTests().size());
+    const int index_3 = 2;
+    assert(index_3 < cmap::ConceptFactory::GetTests().size());
+
+    const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::GetTests().at(index_1));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(index_2));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(index_3));
     const boost::shared_ptr<ribi::cmap::Node> node_a(cmap::CenterNodeFactory::Create(question));
     const boost::shared_ptr<ribi::cmap::Node> node_b(cmap::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<ribi::cmap::Node> node_c(cmap::NodeFactory::GetTests().at(1));
@@ -240,9 +252,16 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
 
-    const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::GetTests().at(0));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(1));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(2));
+    const int index_1 = 0;
+    assert(index_1 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
+    const int index_2 = 1;
+    assert(index_2 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
+    const int index_3 = 2;
+    assert(index_3 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
+
+    const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::GetTests().at(index_1));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(index_2));
+    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(index_3));
     const boost::shared_ptr<ribi::cmap::Node> node_a(cmap::CenterNodeFactory::Create(question));
     const boost::shared_ptr<ribi::cmap::Node> node_b(cmap::NodeFactory::GetTests().at(1));
     const boost::shared_ptr<ribi::cmap::Node> node_c(cmap::NodeFactory::GetTests().at(1));
