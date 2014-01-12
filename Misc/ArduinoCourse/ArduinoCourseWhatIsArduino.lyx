@@ -68,7 +68,7 @@ figs-within-sections
 \begin_body
 
 \begin_layout Title
-Arduino & thema's
+Wat is Arduino?
 \end_layout
 
 \begin_layout Author
@@ -88,12 +88,24 @@ Arduino & thema's
 
 \end_layout
 
-\begin_layout Chapter
-Overzicht
+\begin_layout Enumerate
+Wat weten jullie al?
 \end_layout
 
 \begin_layout Enumerate
-Welke thema's?
+Wat is een mindmap?
+\end_layout
+
+\begin_layout Enumerate
+Maken mindmap
+\end_layout
+
+\begin_layout Enumerate
+Wat is Arduino volgens Richèl
+\end_layout
+
+\begin_layout Enumerate
+Conclusie
 \end_layout
 
 \begin_layout Standard
@@ -104,15 +116,15 @@ Welke thema's?
 \end_layout
 
 \begin_layout Section
-Welke thema's?
+Wat weten jullie?
 \end_layout
 
 \begin_layout Itemize
-Basis
+Wij willen weten wat jullie al weten!
 \end_layout
 
 \begin_layout Itemize
-Verder
+Hiervoor hebben we een mindmap van jullie nodig
 \end_layout
 
 \begin_layout Standard
@@ -123,81 +135,14 @@ Verder
 \end_layout
 
 \begin_layout Section
-Basis
+Wat is een mindmap?
 \end_layout
 
-\begin_layout Itemize
-Werkwijze/denkwijze
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Leerdoelen: goede vragen, werkbare leerroute
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Lampje branden op batterij op breadboard
-\end_layout
-
-\begin_layout Itemize
-Het selecteren van een weerstandje
-\end_layout
-
-\begin_layout Itemize
-Programmeren #1: Hello World
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Leerdoel: writeSerial
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Output #1: LEDje 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Leerdoelen: setPinMode, writeDigital, nut weerstand, richting LED, broodbord
-\end_layout
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Itemize
-Input #1: Drukknop
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Leerdoelen: readDigital, loshangende input, pull-down resistor 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Project #1: LEDje en drukknop
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Leerdoelen: leerlingen zelfstandig de twee thema's verbinden
-\end_layout
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseExampleConceptMap.jpg
+	lyxscale 50
+	scale 50
 
 \end_inset
 
@@ -212,11 +157,25 @@ Leerdoelen: leerlingen zelfstandig de twee thema's verbinden
 \end_layout
 
 \begin_layout Section
-Verder
+Maken mindmap
 \end_layout
 
 \begin_layout Itemize
-Afhankelijk van leerlingen
+Opdracht: maak een mindmap met de tekst 'Arduino' in het midden 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Hierdoor kunnen wij zien wat de leerlingen al weten
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Mijn voorbeeld is maar een voorbeeld: alles mag!
 \end_layout
 
 \begin_layout Standard
@@ -224,6 +183,140 @@ Afhankelijk van leerlingen
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+Wat is Arduino volgens Richèl?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseRichelConceptMap.jpg
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Wat is Arduino volgens Richèl?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseRichelConceptMapWithFocus.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Elektronica
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseExampleElectronics.png
+	lyxscale 80
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Software
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseExampleCode.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Ontwerpen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseExampleSchematic.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusie
+\end_layout
+
+\begin_layout Standard
+Wat we doen is divers:
+\end_layout
+
+\begin_layout Itemize
+Elektronica
+\end_layout
+
+\begin_layout Itemize
+Programmeren: Arduino IDE
+\end_layout
+
+\begin_layout Itemize
+Ontwerpen: Fritzing
+\end_layout
+
+\begin_layout Standard
+Wij bouwen dit stap voor stap op
 \end_layout
 
 \end_body

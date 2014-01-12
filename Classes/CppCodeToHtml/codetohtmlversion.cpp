@@ -92,7 +92,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersion()
       && s.substr(0,15)=="DISTRIB_RELEASE")
     {
       const int i = s.find_last_of("=");
-      std::remove(filename.c_str());
+      fileio::DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -130,7 +130,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
       && s.substr(0,16)=="DISTRIB_CODENAME")
     {
       const int i = s.find_last_of("=");
-      std::remove(filename.c_str());
+      fileio::DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -146,17 +146,18 @@ const std::string ribi::c2h::Version::GetQtVersion()
 #ifndef _WIN32
 const std::string ribi::c2h::Version::GetQtCreatorVersion()
 {
+  const std::string filename { fileio::GetTempFileName() };
+  const std::string cmd { "qtcreator -version 2> " + filename };
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
-  const int error = std::system("qtcreator -version 2> tmp.txt");
+  const int error = std::system(cmd.c_str());
   if (error)
   {
     return "unknown";
   }
   assert(error == 0);
-  const std::vector<std::string> v { ribi::fileio::FileToVector("tmp.txt") };
+  const std::vector<std::string> v { ribi::fileio::FileToVector(filename) };
 
-  //Delete file
-  std::remove("tmp.txt");
+  fileio::DeleteFile(filename);
 
   const std::size_t sz = v.size();
   assert(sz > 1);
@@ -207,7 +208,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersion()
       && s.substr(0,15)=="DISTRIB_RELEASE")
     {
       const int i = s.find_last_of("=");
-      std::remove(filename.c_str());
+      fileio::DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -243,7 +244,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersionCodename()
       && s.substr(0,16)=="DISTRIB_CODENAME")
     {
       const int i = s.find_last_of("=");
-      std::remove(filename.c_str());
+      fileio::DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -267,7 +268,7 @@ const std::string ribi::c2h::Version::GetVirtualBoxVersion()
     std::string version;
     f >> version;
     //Delete temporary file
-    std::remove(filename.c_str());
+    fileio::DeleteFile(filename);
     return version;
   }
   return "unknown";
@@ -292,7 +293,7 @@ const std::string ribi::c2h::Version::GetWineVersion()
     //Remove 'wine-' prefix
     version = version.substr(5,version.size() - 5);
     //Delete temporary file
-    std::remove(filename.c_str());
+    fileio::DeleteFile(filename);
     return version;
   }
   return "unknown";

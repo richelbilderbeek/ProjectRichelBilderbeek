@@ -94,6 +94,29 @@ const std::vector<std::vector<double> >
   return v;
 }
 
+const std::vector<std::vector<double> >
+  ribi::ImageCanvas::ConvertToGreyYx(const std::string& filename)
+{
+  const boost::scoped_ptr<QImage> qimage{
+    new QImage(filename.c_str())
+  };
+  assert(qimage);
+  return ConvertToGreyYx(qimage.get());
+}
+
+const std::vector<std::vector<double> >
+  ribi::ImageCanvas::ConvertToGreyYx(const std::string& filename,
+  const int n_cols)
+{
+
+  const boost::shared_ptr<ImageCanvas> canvas {
+    new DrawCanvas(image,mColorSystem,mCoordinatSystem)
+  };
+  assert(canvas);
+  return canvas;
+
+}
+
 int ribi::ImageCanvas::GetHeight() const noexcept
 {
   assert(!"TODO");
@@ -123,18 +146,7 @@ void ribi::ImageCanvas::Load(const std::vector<std::string>& v)
 void ribi::ImageCanvas::Load(const std::string& filename)
 {
   assert(!filename.empty());
-  /*
-  const boost::scoped_ptr<QImage> qimage{
-    new QImage(m_filename.c_str())
-  };
-  const std::vector<std::vector<double> > image { ConvertToGreyYx(qimage.get()) };
 
-  const boost::shared_ptr<ImageCanvas> canvas {
-    new ImageCanvas(image,mColorSystem,mCoordinatSystem)
-  };
-  assert(canvas);
-  return canvas;
-  */
   assert(!"TODO");
 }
 

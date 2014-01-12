@@ -43,7 +43,7 @@ const boost::shared_ptr<ribi::ImageCanvas> ribi::QtTestImageCanvasMainDialog::Cr
 {
   const int n_cols = 40;
   const std::string filename { fileio::GetTempFileName() };
-  const QFile file(":/ToolTestImageCanvas/images/R.png");
+  QFile file(":/ToolTestImageCanvas/images/R.png");
   file.copy(filename.c_str());
   assert(fileio::IsRegularFile(filename));
   boost::shared_ptr<ImageCanvas> canvas(new ImageCanvas(filename,n_cols));

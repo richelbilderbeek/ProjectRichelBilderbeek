@@ -84,6 +84,9 @@ struct ImageCanvas : public Canvas
   boost::signals2::signal<void(ImageCanvas*)> m_signal_changed;
 
   private:
+  ///Canvas is greynesses
+  const std::vector<double> m_canvas;
+
   ///The color system used:
   ///- normal: full/drawn is displayed by M
   ///- invert: empty/non-drawn is displayed by M
@@ -94,12 +97,18 @@ struct ImageCanvas : public Canvas
   ///- graph: origin is at bottom-left of the screen
   CanvasCoordinatSystem m_coordinat_system;
 
-  const std::string m_filename;
-  const int m_n_cols;
+  ///Returns a Y-X-ordered std::vector of greynesses, with the same size as the original image
+  static const std::vector<std::vector<double> >
+    ConvertToGreyYx(const QImage * const i);
+
+  ///Returns a Y-X-ordered std::vector of greynesses, with the same size as the original image
+  static const std::vector<std::vector<double> >
+    ConvertToGreyYx(const std::string& filename);
 
   ///Returns a Y-X-ordered std::vector of greynesses.
   static const std::vector<std::vector<double> >
-    ConvertToGreyYx(const QImage * const i);
+    ConvertToGreyYx(const std::string& filename,
+    const int n_cols);
 
   #ifndef NDEBUG
   static void Test() noexcept;

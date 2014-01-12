@@ -317,10 +317,10 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
   //Test that GetProFilesInFolder detects an additional .pro file
   //being added to a folder
   {
-    const std::string tmp_pro_filename { "tmp23465278.pro" };
+    const std::string tmp_pro_filename { fileio::GetTempFileName() + ".pro" };
 
     //If the temp file already exists, delete it
-    std::remove(tmp_pro_filename.c_str());
+    fileio::DeleteFile(tmp_pro_filename);
 
     //Count the current number of .pro files
     const std::size_t n = GetProAndPriFilesInFolder("").size();
@@ -341,7 +341,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
     }
     #endif
     assert(n == p - 1);
-    std::remove("tmp23465278.pro");
+    fileio::DeleteFile(tmp_pro_filename);
     const std::size_t q = GetProAndPriFilesInFolder("").size();
     assert(n == q);
   }

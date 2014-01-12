@@ -18,6 +18,7 @@ include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 #Specific for this application
 #Console
 include(../../Classes/CppCanvas/CppCanvas.pri)
+#include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 #Desktop

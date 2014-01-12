@@ -245,7 +245,7 @@ void ribi::QtCreatorProFile::Test() noexcept
   TRACE("Starting QtCreatorProFile::Test");
  // TRACE("Test QtCreatorProFile::QtCreatorProFile");
   {
-    const std::string mypath = "tmp.txt";
+    const std::string mypath { fileio::GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "#-------------------------------------------------\n"
@@ -295,12 +295,12 @@ void ribi::QtCreatorProFile::Test() noexcept
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
-    std::remove(mypath.c_str());
+    fileio::DeleteFile(mypath.c_str());
   }
   //TRACE("Test QtCreatorProFile::Merge");
   {
-    const std::string mypath1 = "tmp1.txt";
-    const std::string mypath2 = "tmp2.txt";
+    const std::string mypath1 { fileio::GetTempFileName() };
+    const std::string mypath2 { fileio::GetTempFileName() };
     {
       std::ofstream f(mypath1);
       f << "#-------------------------------------------------\n"
@@ -342,13 +342,13 @@ void ribi::QtCreatorProFile::Test() noexcept
     //Check the project file
     const boost::shared_ptr<const QtCreatorProFile> p1(new QtCreatorProFile(mypath1));
     const boost::shared_ptr<const QtCreatorProFile> p2(new QtCreatorProFile(mypath2));
-    std::remove(mypath1.c_str());
-    std::remove(mypath2.c_str());
+    fileio::DeleteFile(mypath1.c_str());
+    fileio::DeleteFile(mypath2.c_str());
   }
   //Test conditionals
   {
     //Create a project file
-    const std::string mypath = "tmp.txt";
+    const std::string mypath { fileio::GetTempFileName() };
     {
       std::ofstream f(mypath);
       f
@@ -386,7 +386,7 @@ void ribi::QtCreatorProFile::Test() noexcept
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
-    std::remove(mypath.c_str());
+    fileio::DeleteFile(mypath.c_str());
   }
   TRACE("Finished QtCreatorProFile::Test successfully");
 }

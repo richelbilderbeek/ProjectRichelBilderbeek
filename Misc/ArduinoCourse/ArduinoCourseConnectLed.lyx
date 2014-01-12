@@ -68,7 +68,7 @@ figs-within-sections
 \begin_body
 
 \begin_layout Title
-Arduino cursus introductie
+Hoe sluit ik een LED aan op een Arduino?
 \end_layout
 
 \begin_layout Author
@@ -88,24 +88,24 @@ Arduino cursus introductie
 
 \end_layout
 
-\begin_layout Section
-Overzicht
+\begin_layout Enumerate
+Er is een probleem?
 \end_layout
 
 \begin_layout Enumerate
-Wie zijn wij?
+Wat weten we?
 \end_layout
 
 \begin_layout Enumerate
-Wie zijn jullie? Wat willen julie?
+Er is een probleem?
 \end_layout
 
 \begin_layout Enumerate
-Wat willen we?
+Hoe gaan we daar mee om?
 \end_layout
 
 \begin_layout Enumerate
-Hoe doen we dat?
+Opdracht: vind dit uit! Noteer in je logboek
 \end_layout
 
 \begin_layout Standard
@@ -116,17 +116,24 @@ Hoe doen we dat?
 \end_layout
 
 \begin_layout Section
-Wie zijn wij?
+Er is een probleem?
+\end_layout
+
+\begin_layout Standard
+Ja: je kunt een LED niet direct op een Arduino aansluiten
 \end_layout
 
 \begin_layout Itemize
-Peter 
+Hoe kun je dat merken?
+\end_layout
+
+\begin_layout Itemize
+Dat gaan we doen! 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Voorstellen: Waarvoor kun je mij het best aanspreken? Elektronica, voorbeelden
- van andere projecten
+Experiment
 \end_layout
 
 \end_inset
@@ -134,40 +141,10 @@ Voorstellen: Waarvoor kun je mij het best aanspreken? Elektronica, voorbeelden
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-Weet veel van elektronica
+Waarom is dat zo?
 \end_layout
 
-\begin_layout Itemize
-Werkt veel met Arduino, kent veel Arduino projecten
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Richèl
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Voorstellen: Waarvoor kun je mij het best aanspreken? Software
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Weet veel van programmeren
-\end_layout
-
-\begin_layout Itemize
-Weet veel van les geven
-\end_layout
-
-\end_deeper
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -176,30 +153,24 @@ Weet veel van les geven
 \end_layout
 
 \begin_layout Section
-Wie zijn jullie?
+Wat weten we?
 \end_layout
 
-\begin_layout Itemize
-Wie ben jij?
+\begin_layout Enumerate
+Wat is volt?
+\end_layout
+
+\begin_layout Enumerate
+Wie weet hoeveel volt een LED gebruikt?
+\end_layout
+
+\begin_layout Enumerate
+Wie weet hoeveel volt een Arduino levert? 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Rondje voorstellen: naam
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Wat wil je?
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Rondje ideeen voor (korte) einddoelen
+Dit staat op een Arduino te lezen!
 \end_layout
 
 \end_inset
@@ -215,15 +186,33 @@ Rondje ideeen voor (korte) einddoelen
 \end_layout
 
 \begin_layout Section
-Wat willen we?
+Antwoorden
 \end_layout
 
-\begin_layout Itemize
-Jullie: gave projecten kunnen maken
+\begin_layout Enumerate
+Volt = de hoeveelheid energie die stroom levert 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Bewust zo vaag geformuleerd
 \end_layout
 
-\begin_layout Itemize
-Richèl en Peter: dat jullie gave projecten kunnen maken 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Een LED gebruikt 1,5 Volt
+\end_layout
+
+\begin_layout Enumerate
+Een Arduino levert 3,3 of 5,0 Volt
+\end_layout
+
+\begin_layout Standard
+Wat kun hieraan doen?
 \end_layout
 
 \begin_layout Standard
@@ -234,92 +223,33 @@ Richèl en Peter: dat jullie gave projecten kunnen maken
 \end_layout
 
 \begin_layout Section
-Wat gaan we doen?
+Antwoorden
 \end_layout
 
-\begin_layout Itemize
-Vandaag
+\begin_layout Enumerate
+Volt = de hoeveelheid energie die stroom levert 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Bewust zo vaag geformuleerd
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-Wat is Arduino? Wat weten jullie al?
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-Wat is je droomproject?
+\begin_layout Enumerate
+Een LED gebruikt 1,5 Volt
 \end_layout
 
-\begin_layout Itemize
-Lampje aansluiten op Arduino (met weerstand)
+\begin_layout Enumerate
+Een Arduino levert 3,3 of 5,0 Volt
 \end_layout
 
-\end_deeper
 \begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Hoe doen we dat?
-\end_layout
-
-\begin_layout Itemize
-Concentreren: we zijn alleen bezig met Arduino
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Geen mobiel, geen Facebook, geen onzin
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Uittesten: fouten maken is goed
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Geen angst voor schade, geen opzettelijk stuk maken
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Slim: we gedragen ons als Einsteins
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Geen fysiek spelen op de afdeling
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Samen: we proberen het goede voorbeeld te geven en ons best te doen 
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Geen anderen tot last zijn
-\end_layout
-
-\end_inset
-
-
+Wat kun hieraan doen?
 \end_layout
 
 \begin_layout Standard
@@ -330,27 +260,33 @@ Geen anderen tot last zijn
 \end_layout
 
 \begin_layout Section
-Tijdsindeling avond
+Hoe hoge spanningen tegen te gaan?
 \end_layout
 
-\begin_layout Itemize
-19:00-19:45 1e onderwerp, vandaag: introductie
+\begin_layout Standard
+Met een weerstand!
 \end_layout
 
-\begin_layout Itemize
-19:45-20:30 2e onderwerp, vandaag: wat is Arduino? Wat weten we al?
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-20:30-21:00 pauze
+\begin_layout Section
+Aansluiten
 \end_layout
 
-\begin_layout Itemize
-21:00-22:00 3e onderwerp: hoe sluiten we een lampje aan op een Arduino?
-\end_layout
+\begin_layout Standard
+\begin_inset Graphics
+	filename ArduinoCourseConnectLed.png
+	lyxscale 25
+	scale 25
 
-\begin_layout Itemize
-Tijd over: stroomschema tekenen
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

@@ -12,7 +12,11 @@ include(../../Classes/CppTrace/CppTrace.pri)
 
 include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
-
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+#
 include(ToolAsciiArterDesktop.pri)
 
 SOURCES += qtmain.cpp
