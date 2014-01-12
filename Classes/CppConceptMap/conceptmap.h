@@ -54,9 +54,17 @@ struct ConceptMap
   ///Check if the ConceptMap is empty
   bool Empty() const;
 
+  ///Find the CenterNode, if any
+  const boost::shared_ptr<const CenterNode> FindCenterNode() const noexcept;
+  const boost::shared_ptr<      CenterNode> FindCenterNode()       noexcept;
+
   ///Get the edges
   const std::vector<boost::shared_ptr<const Edge> >  GetEdges() const;
   const std::vector<boost::shared_ptr<      Edge> >& GetEdges() { return m_edges; }
+
+  ///Get the focal node (always at index zero)
+  const boost::shared_ptr<const Node> GetFocalNode() const noexcept;
+  const boost::shared_ptr<      Node> GetFocalNode()       noexcept;
 
   ///Get the nodes
   const std::vector<boost::shared_ptr<const Node> >  GetNodes() const;
@@ -114,6 +122,12 @@ private:
     const std::string& question,
     const boost::shared_ptr<cmap::Cluster>& cluster);
   #endif
+
+  ///To make the compiler use the const version
+  const boost::shared_ptr<const CenterNode> FindCenterNodeConst() const noexcept { return FindCenterNode(); }
+  ///To make the compiler use the const version
+  const boost::shared_ptr<const Node> GetFocalNodeConst() const noexcept { return GetFocalNode(); }
+
   friend ConceptMapFactory;
   ///Block destructor, except for the friend boost::checked_delete
   ~ConceptMap() {}

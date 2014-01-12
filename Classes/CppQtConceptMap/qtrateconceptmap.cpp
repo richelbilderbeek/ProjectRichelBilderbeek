@@ -261,15 +261,14 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     assert(edge);
     edges.push_back(edge);
   }
-  nodes = ConceptMap::Sort(nodes);
   assert(ConceptMap::CanConstruct(nodes,edges));
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(cmap::ConceptMapFactory::Create(nodes,edges));
   assert(concept_map);
-  assert(focal_node == concept_map->GetNodes().at(0));
+  assert(focal_node == concept_map->GetFocalNode());
 
-  assert(concept_map->GetNodes().at(0));
-  assert(concept_map->GetNodes().at(0)->GetConcept());
-  assert(concept_map->GetNodes().at(0)->GetConcept().get() == item->GetNode()->GetConcept().get()
+  assert(concept_map->GetFocalNode());
+  assert(concept_map->GetFocalNode()->GetConcept());
+  assert(concept_map->GetFocalNode()->GetConcept().get() == item->GetNode()->GetConcept().get()
     && "Should not be a deep copy, otherwise item will not be changed");
 
   return concept_map;
@@ -306,9 +305,9 @@ void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateConcept(QtNode * const item
   //Concept map must be edited, so item changes with it
   const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map = CreateSubConceptMap(item);
   assert(sub_concept_map);
-  assert(sub_concept_map->GetNodes().at(0));
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept().get() == item->GetNode()->GetConcept().get()
+  assert(sub_concept_map->GetFocalNode());
+  assert(sub_concept_map->GetFocalNode()->GetConcept());
+  assert(sub_concept_map->GetFocalNode()->GetConcept().get() == item->GetNode()->GetConcept().get()
     && "Should not be a deep copy, otherwise item will not be changed");
 
   m_signal_request_rate_concept_dialog(sub_concept_map);

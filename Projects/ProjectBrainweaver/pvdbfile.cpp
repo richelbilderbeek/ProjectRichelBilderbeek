@@ -213,7 +213,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
 
   assert( (!f->GetConceptMap() || !f->GetConceptMap()->GetNodes().empty() )
     && "Either a file has no concept map or it has at least one node");
-  assert( (!f->GetConceptMap() || boost::dynamic_pointer_cast<cmap::CenterNode>(f->GetConceptMap()->GetNodes()[0]) )
+  assert( (!f->GetConceptMap() || f->GetConceptMap()->FindCenterNode() )
     && "Either a file has no concept map or the first node in a file's ConceptMap is be a CenterNode");
 
   return f;
@@ -253,7 +253,9 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTes
       if (concept_map)
       {
         assert(!concept_map->GetNodes().empty());
-        question = concept_map->GetNodes()[0]->GetConcept()->GetName();
+        assert(concept_map->FindCenterNode());
+        assert(concept_map->FindCenterNode()->GetConcept());
+        question = concept_map->FindCenterNode()->GetConcept()->GetName();
       }
       //assert(!concept_map || question == concept_map->GetQuestion()); //BUG20131129
       boost::shared_ptr<pvdb::File> file(new File(
@@ -317,8 +319,8 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
 
   assert( (!file->GetConceptMap() || !file->GetConceptMap()->GetNodes().empty() )
     && "Either a file has no concept map or it has at least one node");
-  assert( (!file->GetConceptMap() || boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0]) )
-    && "Either a file has no concept map or the first node in a file's ConceptMap is be a CenterNode");
+  assert( (!file->GetConceptMap() || file->GetConceptMap()->FindCenterNode())
+    && "Either a file has no concept map or the file's ConceptMap has a CenterNode");
 
   return file;
 }
@@ -361,8 +363,8 @@ void ribi::pvdb::File::SetConceptMap(const boost::shared_ptr<ribi::cmap::Concept
   assert(!m_concept_map && "Can only set when there is no concept map present yet");
   m_concept_map = concept_map;
   assert(!m_concept_map->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(m_concept_map->GetNodes()[0])
-    && "The first node in a file's ConceptMap must be a CenterNode");
+  assert(m_concept_map->FindCenterNode()
+    && "The file's ConceptMap must have a CenterNode");
   this->AutoSave();
 }
 
@@ -441,7 +443,7 @@ void ribi::pvdb::File::Test() noexcept
       const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
         = ribi::cmap::ConceptMapFactory::Create(question);
       assert(!concept_map->GetNodes().empty());
-      assert(boost::dynamic_pointer_cast<cmap::CenterNode>(concept_map->GetNodes()[0])
+      assert(concept_map->FindCenterNode()
         && "The first node in a file's ConceptMap must be a CenterNode");
 
       firstfile->SetConceptMap(concept_map);

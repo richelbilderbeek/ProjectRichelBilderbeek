@@ -51,8 +51,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::C
   assert(p);
   assert(p->IsValid());
   assert(!p->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<CenterNode>(p->GetNodes()[0])
-    && "The first node in a ConceptMap created from a question must be a CenterNode");
+  assert(p->FindCenterNode() && "A ConceptMap must have a CenterNode");
 
   return p;
 }
@@ -196,8 +195,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
 
   assert( !concept_map->GetNodes().empty()
     && "A file's ConceptMap has at least one node");
-  assert( boost::dynamic_pointer_cast<cmap::CenterNode>(concept_map->GetNodes()[0])
-    && "A file's ConceptMap is be a CenterNode");
+  assert(concept_map->FindCenterNode() && "A file's ConceptMap must have a CenterNode");
 
   return concept_map;
 }

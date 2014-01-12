@@ -66,8 +66,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(file->GetQuestion() == question);
     assert(file->GetConceptMap());
     assert(!file->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file->GetConceptMap()->FindCenterNode()
+      && "A file's ConceptMap must have a CenterNode");
 
     QtPvdbConceptMapDialog d(file);
     assert(d.GetWidget()->GetConceptMap()->GetNodes().size() == 1);
@@ -91,8 +91,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     //file->CreateConceptMapFromCluster();
     assert(file->GetConceptMap());
     assert(!file->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file->GetConceptMap()->FindCenterNode()
+      && "A file's ConceptMap must have a CenterNode");
 
     const QtPvdbConceptMapDialog d(file);
     assert(file->GetConceptMap());
@@ -116,8 +116,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     file->SetConceptMap(concept_map);
     assert(file->GetConceptMap());
     assert(!file->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file->GetConceptMap()->FindCenterNode()
+      && "A file's ConceptMap must have a CenterNode");
 
     const QtPvdbConceptMapDialog d(file);
     assert(file->GetConceptMap());
@@ -171,8 +171,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 
     assert(file->GetConceptMap() == concept_map);
     assert(!file->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file->GetConceptMap()->FindCenterNode()
+      && "A file's ConceptMap must have a CenterNode");
 
     assert(file->GetQuestion() == question);
 
@@ -225,8 +225,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(!file->GetCluster());
     assert( file->GetConceptMap());
     assert(!file->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file->GetConceptMap()->FindCenterNode()
+      && "A file's ConceptMap must have a CenterNode");
 
     assert(file->GetQuestion() == question);
     const QtPvdbConceptMapDialog d(file);
@@ -283,8 +283,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(!file->GetCluster());
     assert( file->GetConceptMap());
     assert(!file->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file->GetConceptMap()->FindCenterNode()
+      && "A file its ConceptMap must have a CenterNode");
 
     //Let the dialog position the nodes
     const QtPvdbConceptMapDialog d(file);
@@ -312,8 +312,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
 
     assert(file_again->GetConceptMap());
     assert(!file_again->GetConceptMap()->GetNodes().empty());
-    assert(boost::dynamic_pointer_cast<cmap::CenterNode>(file_again->GetConceptMap()->GetNodes()[0])
-      && "The first node in a file's ConceptMap must be a CenterNode");
+    assert(file_again->GetConceptMap()->FindCenterNode()
+      && "A file's ConceptMap must have a CenterNode");
 
     //Let another dialog keep the node positions in the same place
     const QtPvdbConceptMapDialog d_again(file_again);

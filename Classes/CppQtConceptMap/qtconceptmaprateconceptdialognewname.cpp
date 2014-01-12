@@ -37,16 +37,16 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
     ui(new Ui::QtRateConceptDialogNewName),
     m_button_ok_clicked(false),
     m_concept(sub_concept_map
-      ? sub_concept_map->GetNodes().at(0)->GetConcept()
-      : boost::shared_ptr<ribi::cmap::Concept>() ),
+      ? sub_concept_map->GetFocalNode()->GetConcept()
+      : boost::shared_ptr<Concept>() ),
     m_initial_complexity(sub_concept_map
-      ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingComplexity()
+      ? sub_concept_map->GetFocalNode()->GetConcept()->GetRatingComplexity()
       : -1 ),
     m_initial_concreteness(sub_concept_map
-      ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingConcreteness()
+      ? sub_concept_map->GetFocalNode()->GetConcept()->GetRatingConcreteness()
       : -1),
     m_initial_specificity(sub_concept_map
-      ? sub_concept_map->GetNodes().at(0)->GetConcept()->GetRatingSpecificity()
+      ? sub_concept_map->GetFocalNode()->GetConcept()->GetRatingSpecificity()
       : -1),
 
     m_sub_concept_map(sub_concept_map),
@@ -59,7 +59,6 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
   if (!m_sub_concept_map) return;
   assert(m_sub_concept_map);
   assert(!m_sub_concept_map->GetNodes().empty());
-  assert(m_sub_concept_map->GetNodes()[0]);
 
   assert(m_widget);
   assert(ui->concept_map_layout);
@@ -100,11 +99,11 @@ ribi::cmap::QtRateConceptDialogNewName::QtRateConceptDialogNewName(
   //so let this dialog follow the ratings done by the tally dialog
   //DOES NOT WORK
   //m_concept->m_signal_rating_complexity_changed.connect(
-  //  boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //  boost::bind(&QtRateStrategyDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
   //m_concept->m_signal_rating_concreteness_changed.connect(
-  //  boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //  boost::bind(&QtRateStrategyDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
   //m_concept->m_signal_rating_specificity_changed.connect(
-  //  boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //  boost::bind(&QtRateStrategyDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
 }
 
 
@@ -123,11 +122,11 @@ ribi::cmap::QtRateConceptDialogNewName::~QtRateConceptDialogNewName() noexcept
   //{
   //  //Just to be sure
   //  m_concept->m_signal_rating_complexity_changed.disconnect(
-  //    boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
+  //    boost::bind(&QtRateStrategyDialog::OnRatingComplexityChanged,this,boost::lambda::_1));
   //  m_concept->m_signal_rating_concreteness_changed.disconnect(
-  //    boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
+  //    boost::bind(&QtRateStrategyDialog::OnRatingConcretenessChanged,this,boost::lambda::_1));
   //  m_concept->m_signal_rating_specificity_changed.disconnect(
-  //    boost::bind(&ribi::cmap::QtRateStrategyDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
+  //    boost::bind(&QtRateStrategyDialog::OnRatingSpecificityChanged,this,boost::lambda::_1));
   //}
   delete ui;
 }
@@ -203,21 +202,21 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
   TRACE("Started ribi::cmap::QtRateStrategyDialog::Test");
 
   {
-    const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > concept_maps
-      = ribi::cmap::ConceptMapFactory::GetAllTests();
+    const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
+      = ConceptMapFactory::GetAllTests();
     const std::size_t n_concept_maps = concept_maps.size();
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
-      const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[i];
+      const boost::shared_ptr<ConceptMap> concept_map = concept_maps[i];
       if (!concept_map)
       {
         QtRateConceptDialogNewName d(concept_map);
         continue;
       }
       assert(concept_map);
-      const boost::shared_ptr<ribi::cmap::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
+      const boost::shared_ptr<Concept> concept = concept_map->GetFocalNode()->GetConcept();
       assert(concept);
-      const boost::shared_ptr<ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
+      const boost::shared_ptr<Concept> old_concept = ConceptFactory::DeepCopy(concept);
       assert(old_concept);
       assert(concept != old_concept);
       assert(*concept == *old_concept);
@@ -238,21 +237,21 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
     }
   }
   {
-    const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > concept_maps
-      = ribi::cmap::ConceptMapFactory::GetAllTests();
+    const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
+      = ConceptMapFactory::GetAllTests();
     const std::size_t n_concept_maps = concept_maps.size();
     for (std::size_t i=0; i!=n_concept_maps; ++i)
     {
-      const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = concept_maps[i];
+      const boost::shared_ptr<ConceptMap> concept_map = concept_maps[i];
       if (!concept_map)
       {
         QtRateConceptDialogNewName d(concept_map);
         continue;
       }
       assert(concept_map);
-      const boost::shared_ptr<ribi::cmap::Concept> concept = concept_map->GetNodes().at(0)->GetConcept();
+      const boost::shared_ptr<Concept> concept = concept_map->GetFocalNode()->GetConcept();
       assert(concept);
-      const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
+      const boost::shared_ptr<const Concept> old_concept = ConceptFactory::DeepCopy(concept);
 
       assert(old_concept);
       assert(concept != old_concept);

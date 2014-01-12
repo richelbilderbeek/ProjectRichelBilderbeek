@@ -15,8 +15,9 @@ namespace cmap {
 struct CenterNodeFactory;
 
 ///The focal question of a ConceptMap
-///In a full ConceptMap, GetNodes()[0] results in finding a CenterNode
-///In a sub-ConceptMap, GetNodes()[0] will be a regular Node
+///- Every ConceptMap usually has one CenterNode
+///- Every sub concept-map has none or one CenterNode
+///  (a sub concet-map has a focal node instead)
 struct CenterNode : public Node
 {
   ///Block destructor, except for the friend boost::checked_delete
@@ -24,7 +25,7 @@ struct CenterNode : public Node
   friend void boost::checked_delete<>(CenterNode* x);
 
   ///Block construction, except for NodeFactory
-  friend CenterNodeFactory;
+  friend struct CenterNodeFactory;
   CenterNode() = delete;
   explicit CenterNode(
     const boost::shared_ptr<Concept>& concept,

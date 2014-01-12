@@ -129,7 +129,6 @@ protected:
 private:
 
   ///The concept map to work on, the Model
-  ///m_concept_map->GetNodes()[0] contains the focal node
   const boost::shared_ptr<ConceptMap> m_concept_map;
 
   ///The item showing the examples

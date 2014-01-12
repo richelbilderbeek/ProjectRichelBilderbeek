@@ -122,6 +122,7 @@ void ribi::ImageCanvas::Load(const std::vector<std::string>& v)
 
 void ribi::ImageCanvas::Load(const std::string& filename)
 {
+  assert(!filename.empty());
   /*
   const boost::scoped_ptr<QImage> qimage{
     new QImage(m_filename.c_str())
@@ -134,6 +135,7 @@ void ribi::ImageCanvas::Load(const std::string& filename)
   assert(canvas);
   return canvas;
   */
+  assert(!"TODO");
 }
 
 void ribi::ImageCanvas::SetColorSystem(const CanvasColorSystem colorSystem) noexcept

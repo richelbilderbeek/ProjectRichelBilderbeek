@@ -49,7 +49,7 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
   for (int row_index=0; row_index!=n_rows; ++row_index)
   {
     const Row& row = m_data[row_index];
-    const boost::shared_ptr<ribi::cmap::Concept> concept = std::get<1>(row);
+    const boost::shared_ptr<Concept> concept = std::get<1>(row);
     const int example_index = std::get<2>(row);
 
     assert(concept);
@@ -89,7 +89,7 @@ ribi::cmap::QtRateConceptTallyDialogNewName::QtRateConceptTallyDialogNewName(
         const boost::shared_ptr<const Edge> edge { std::get<0>(row) };
         assert(edge);
         const bool center_is_from {
-          edge->GetFrom()->GetConcept() == sub_concept_map->GetNodes().at(0)->GetConcept()
+          edge->GetFrom()->GetConcept() == sub_concept_map->GetFocalNode()->GetConcept()
         };
         const boost::shared_ptr<const Node> other {
           center_is_from ? edge->GetTo() : edge->GetFrom()
@@ -175,12 +175,11 @@ const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
   if (!map) return data;
 
   assert(map);
-  assert(!map->GetNodes().empty());
-
+  assert(map->GetFocalNode());
 
   //Add the focal concept its examples (not its name: this cannot be judged)
   {
-    const boost::shared_ptr<ribi::cmap::Concept> focal_concept = map->GetNodes().at(0)->GetConcept();
+    const boost::shared_ptr<Concept> focal_concept = map->GetFocalNode()->GetConcept();
     assert(focal_concept);
     const int n_examples = boost::numeric_cast<int>(focal_concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
@@ -191,7 +190,7 @@ const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
   }
 
   //Collect all relations of the focal node of this sub concept map
-  for(const boost::shared_ptr<ribi::cmap::Edge> edge: map->GetEdges())
+  for(const boost::shared_ptr<Edge> edge: map->GetEdges())
   {
     //But skip the connections to the focal question
     if (boost::dynamic_pointer_cast<cmap::CenterNode>(edge->GetTo())
@@ -201,7 +200,7 @@ const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
     }
 
 
-    const boost::shared_ptr<ribi::cmap::Concept> concept = edge->GetConcept();
+    const boost::shared_ptr<Concept> concept = edge->GetConcept();
     data.push_back(std::make_tuple(edge,concept,-1));
     const int n_examples = boost::numeric_cast<int>(concept->GetExamples()->Get().size());
     for (int i=0; i!=n_examples; ++i)
@@ -220,39 +219,37 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
   // - node with a concept with (1) text 'TextDontCare'
 
-  const boost::shared_ptr<ribi::cmap::Concept> concept_node_focal(cmap::ConceptFactory::Create("TextNode",
+  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory::Create("TextNode",
     {
-      {"TextExampleNode",cmap::Competency::misc}
+      {"TextExampleNode",Competency::misc}
     },
     0,1,2));
-  const boost::shared_ptr<ribi::cmap::Concept> concept_node_other(cmap::ConceptFactory::Create("TextDontCare",
+  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory::Create("TextDontCare",
     {
       { }
     },
     0,1,2));
 
-  const boost::shared_ptr<ribi::cmap::Concept> concept_edge(cmap::ConceptFactory::Create("TextEdge",
+  const boost::shared_ptr<Concept> concept_edge(ConceptFactory::Create("TextEdge",
     {
-      {"TextExampleEdge",cmap::Competency::misc}
+      {"TextExampleEdge",Competency::misc}
     },
     2,1,0));
-  const boost::shared_ptr<ribi::cmap::Node> node_focal(cmap::NodeFactory::Create(concept_node_focal));
-  const boost::shared_ptr<ribi::cmap::Node> node_other(cmap::NodeFactory::Create(concept_node_other));
+  const boost::shared_ptr<Node> node_focal(NodeFactory::Create(concept_node_focal));
+  const boost::shared_ptr<Node> node_other(NodeFactory::Create(concept_node_other));
 
-  const boost::shared_ptr<ribi::cmap::ConceptMap> sub_concept_map(
-    ribi::cmap::ConceptMapFactory::Create(
+  const boost::shared_ptr<ConceptMap> sub_concept_map(
+    ConceptMapFactory::Create(
       {
         node_focal,
         node_other
       } ,
       {
-        cmap::EdgeFactory::Create(concept_edge,1.2,3.4,node_focal,true,node_other,true)
+        EdgeFactory::Create(concept_edge,1.2,3.4,node_focal,true,node_other,true)
       }
     )
   );
   assert(sub_concept_map);
-  assert(!boost::dynamic_pointer_cast<CenterNode>(sub_concept_map->GetNodes()[0]));
-  assert(!boost::dynamic_pointer_cast<CenterNode>(sub_concept_map->GetNodes()[1]));
   return sub_concept_map;
 }
 
@@ -261,8 +258,10 @@ const std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
 {
   if (sub_concept_map)
   {
-    assert(!sub_concept_map->GetNodes().empty());
-    const boost::shared_ptr<const ribi::cmap::Concept> focal_concept = sub_concept_map->GetNodes().at(0)->GetConcept();
+    assert(sub_concept_map->GetFocalNode());
+    const boost::shared_ptr<const Concept> focal_concept {
+      sub_concept_map->GetFocalNode()->GetConcept()
+    };
     assert(focal_concept);
     return focal_concept->GetName();
   }
@@ -380,7 +379,7 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::OnCellChanged(int row_index, i
   const QTableWidgetItem * const item = ui->table->item(row_index,col);
   assert(item);
   const Row& row = m_data[row_index];
-  boost::shared_ptr<ribi::cmap::Concept> concept = std::get<1>(row);
+  boost::shared_ptr<Concept> concept = std::get<1>(row);
   const int index = std::get<2>(row);
 
   if (index == -1)
@@ -444,12 +443,12 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   TRACE("Started ribi::cmap::QtRateConceptTallyDialog::Test");
   //Empty table
   {
-    const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map;
+    const boost::shared_ptr<ConceptMap> concept_map;
     assert(!concept_map);
     QtRateConceptTallyDialogNewName d(concept_map);
   }
 
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map = CreateTestConceptMap();
+  const boost::shared_ptr<ConceptMap> concept_map = CreateTestConceptMap();
   assert(concept_map);
 
 
@@ -465,9 +464,9 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
   assert(d.ui->table->rowCount() == 3);
   assert(concept_map->GetNodes().size() == 2);
   assert(concept_map->GetEdges().size() == 1);
-  const boost::shared_ptr<ribi::cmap::Node> focal_node = concept_map->GetNodes()[0];
-  //const boost::shared_ptr<ribi::cmap::Node> other_node = concept_map->GetNodes()[1]; //Don't care
-  const boost::shared_ptr<ribi::cmap::Edge> edge = concept_map->GetEdges()[0];
+  const boost::shared_ptr<Node> focal_node = concept_map->GetFocalNode();
+  //const boost::shared_ptr<Node> other_node = concept_map->GetNodes()[1]; //Don't care
+  const boost::shared_ptr<Edge> edge = concept_map->GetEdges()[0];
 
   assert(d.ui->table->item(0,0)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));
   assert(d.ui->table->item(0,1)->flags() == (Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsSelectable));

@@ -31,20 +31,6 @@ ribi::QtTestImageCanvasMainDialog::QtTestImageCanvasMainDialog(QWidget *parent) 
       boost::lambda::_1)
     );
 
-  {
-    const double w = m_canvas->GetWidth();
-    const double h = m_canvas->GetHeight();
-    ui->box_circle_x->setValue(0.5 * w);
-    ui->box_circle_y->setValue(0.5 * h);
-    ui->box_circle_r->setValue(0.4 * h);
-    ui->box_dot_x->setValue(0.5 * w);
-    ui->box_dot_y->setValue(0.5 * h);
-    ui->box_line_x1->setValue(0.25 * w);
-    ui->box_line_y1->setValue(0.25 * h);
-    ui->box_line_x2->setValue(0.75 * w);
-    ui->box_line_y2->setValue(0.75 * h);
-  }
-
   ShowCanvas(0);
 }
 

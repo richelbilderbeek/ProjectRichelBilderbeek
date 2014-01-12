@@ -29,11 +29,11 @@ int ribi::cmap::Rating::SuggestComplexity(const boost::shared_ptr<const ribi::cm
   assert(sub_concept_map);
   const int n_edges = boost::numeric_cast<int>(sub_concept_map->GetEdges().size());
   assert(!sub_concept_map->GetNodes().empty());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept()->GetExamples());
+  assert(sub_concept_map->GetFocalNode()->GetConcept());
+  assert(sub_concept_map->GetFocalNode()->GetConcept()->GetExamples());
   const int n_examples
     = boost::numeric_cast<int>(
-      sub_concept_map->GetNodes().at(0)->GetConcept()->GetExamples()->Get().size()
+      sub_concept_map->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
     );
   return SuggestComplexity(n_edges,n_examples);
 }
@@ -53,11 +53,11 @@ int ribi::cmap::Rating::SuggestConcreteness(const boost::shared_ptr<const ribi::
 {
   assert(sub_concept_map);
   assert(!sub_concept_map->GetNodes().empty());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept()->GetExamples());
+  assert(sub_concept_map->GetFocalNode()->GetConcept());
+  assert(sub_concept_map->GetFocalNode()->GetConcept()->GetExamples());
   const int n_examples
     = boost::numeric_cast<int>(
-      sub_concept_map->GetNodes().at(0)->GetConcept()->GetExamples()->Get().size()
+      sub_concept_map->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
     );
   return SuggestConcreteness(n_examples);
 }
@@ -72,11 +72,11 @@ int ribi::cmap::Rating::SuggestSpecificity(const boost::shared_ptr<const ribi::c
 {
   assert(sub_concept_map);
   assert(!sub_concept_map->GetNodes().empty());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept());
-  assert(sub_concept_map->GetNodes().at(0)->GetConcept()->GetExamples());
+  assert(sub_concept_map->GetFocalNode()->GetConcept());
+  assert(sub_concept_map->GetFocalNode()->GetConcept()->GetExamples());
   const int n_examples
     = boost::numeric_cast<int>(
-      sub_concept_map->GetNodes().at(0)->GetConcept()->GetExamples()->Get().size()
+      sub_concept_map->GetFocalNode()->GetConcept()->GetExamples()->Get().size()
     );
   return SuggestSpecificity(n_examples);
 }

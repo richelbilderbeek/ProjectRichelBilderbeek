@@ -71,8 +71,8 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   assert(m_file);
   assert(m_file->GetConceptMap());
   assert(!m_file->GetConceptMap()->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
-    && "The first node in a file's ConceptMap must be a CenterNode");
+  assert(m_file->GetConceptMap()->FindCenterNode()
+    && "A file's ConceptMap must have a CenterNode");
 
   assert(file == m_file);
   assert(m_widget);
@@ -200,8 +200,8 @@ void ribi::pvdb::QtPvdbConceptMapDialog::DoRandomStuff()
   assert(m_file);
   assert(m_file->GetConceptMap());
   assert(!m_file->GetConceptMap()->GetNodes().empty());
-  assert(boost::dynamic_pointer_cast<cmap::CenterNode>(m_file->GetConceptMap()->GetNodes()[0])
-    && "The first node in a file's ConceptMap must be a CenterNode");
+  assert(m_file->GetConceptMap()->FindCenterNode()
+    && "A file's ConceptMap must have a CenterNode");
 
   const int n_edges_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetEdges().size());
   const int n_nodes_before = boost::numeric_cast<int>(m_file->GetConceptMap()->GetNodes().size());

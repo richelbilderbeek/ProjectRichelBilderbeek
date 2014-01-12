@@ -29,9 +29,9 @@ ribi::cmap::ConceptMap::ConceptMap(const std::string& question)
   assert(ConceptMap::CanConstruct(m_nodes,m_edges));
   assert(this->GetQuestion() == question);
 
-  assert(boost::dynamic_pointer_cast<CenterNode>(this->GetNodes()[0])
+  assert(FindCenterNode()
     && "Assume a CenterNode at the center of ConceptMap");
-  assert(IsCenterNode(this->GetNodes()[0])
+  assert(IsCenterNode(FindCenterNode())
     && "Assume a CenterNode at the center of ConceptMap");
   #endif
 }
@@ -186,6 +186,7 @@ bool ribi::cmap::ConceptMap::CanConstruct(
     }
   }
   //If there is a CenterNode, it must be at index 0
+  /*
   {
     const std::size_t n_nodes = nodes.size();
     for (std::size_t i=0; i!=n_nodes; ++i)
@@ -203,6 +204,7 @@ bool ribi::cmap::ConceptMap::CanConstruct(
       }
     }
   }
+  */
   return true;
 }
 
@@ -330,11 +332,67 @@ bool ribi::cmap::ConceptMap::Empty() const
   return m_nodes.empty() && m_edges.empty();
 }
 
+const boost::shared_ptr<const ribi::cmap::CenterNode> ribi::cmap::ConceptMap::FindCenterNode() const noexcept
+{
+  const auto iter = std::find_if(m_nodes.begin(),m_nodes.end(),
+    [](const boost::shared_ptr<const Node> node)
+    {
+      return IsCenterNode(node);
+    }
+  );
+  boost::shared_ptr<const CenterNode> center_node;
+  if (iter == m_nodes.end())
+  {
+    assert(!center_node);
+  }
+  else
+  {
+    center_node = boost::dynamic_pointer_cast<const CenterNode>(*iter);
+    assert(center_node);
+  }
+  return center_node;
+}
+
+const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::ConceptMap::FindCenterNode() noexcept
+{
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  const boost::shared_ptr<const ribi::cmap::CenterNode> center_node {
+    dynamic_cast<const ConceptMap*>(this)->FindCenterNodeConst() //Add const because compiler cannt find the right version
+  };
+  return boost::const_pointer_cast<CenterNode>(
+    center_node
+  );
+}
+
 
 const std::vector<boost::shared_ptr<const ribi::cmap::Edge> > ribi::cmap::ConceptMap::GetEdges() const
 {
   return AddConst(m_edges);
 }
+
+const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocalNode() const noexcept
+{
+  assert(!m_nodes.empty());
+  return m_nodes[0];
+}
+
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocalNode() noexcept
+{
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  boost::shared_ptr<const Node> focal_node {
+    dynamic_cast<const ConceptMap*>(this)->GetFocalNodeConst() //Compiler cannot distinguish member functions by type
+  };
+  return boost::const_pointer_cast<Node>(
+    focal_node
+  );
+}
+
 
 const std::vector<boost::shared_ptr<const ribi::cmap::Node> > ribi::cmap::ConceptMap::GetNodes() const
 {

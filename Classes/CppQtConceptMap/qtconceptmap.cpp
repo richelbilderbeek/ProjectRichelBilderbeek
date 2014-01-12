@@ -148,7 +148,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
   //Add the nodes to the scene
   {
     //Add the main question as the first node
-    const boost::shared_ptr<Node> node = m_concept_map->GetNodes()[0];
+    const boost::shared_ptr<Node> node = m_concept_map->GetFocalNode();
 
     QtNode * qtnode = nullptr;
     if (IsCenterNode(node))
@@ -177,18 +177,20 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
     const std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes = m_concept_map->GetNodes();
     const std::size_t n_nodes = nodes.size();
     assert(n_nodes >= 1);
-    for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip center node
+    for (std::size_t i=1; i!=n_nodes; ++i) //+1 to skip focal node
     {
       assert(Collect<QtNode>(scene()).size() == i && "Node not yet added to scene");
       assert(i < nodes.size());
-      boost::shared_ptr<ribi::cmap::Node> node = nodes[i];
+      boost::shared_ptr<Node> node = nodes[i];
       assert(node);
-      assert(!IsCenterNode(node));
+      assert( (IsCenterNode(node) || !IsCenterNode(node))
+        && "focal node != center node");
       QtNode * const qtnode = AddNode(node);
       qtnodes.push_back(qtnode);
       assert(Collect<QtNode>(scene()).size() == i + 1 && "Node is added to scene");
     }
   }
+
   #ifndef NDEBUG
   {
     //Check the number of

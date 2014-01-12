@@ -117,8 +117,11 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_clicked() noexcept
 void ribi::pvdb::QtPvdbMenuDialog::on_button_rate_concept_map_clicked() noexcept
 {
   const boost::shared_ptr<pvdb::File> file = pvdb::FileFactory::Create();
+  //Use HeteromorphousTestConceptMap[17] to check for subconcept maps with many examples
+  //Use HeteromorphousTestConceptMap[18] to check for subconcept maps with large texts
+  //Use HeteromorphousTestConceptMap[19] to check for connection to focus with ...
   const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-    = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(18);
+    = ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(19);
   file->SetConceptMap(concept_map);
   QtPvdbRateConceptMapDialog d(file);
   if (m_show_child_dialogs_modal) { this->ShowChild(&d); } else { d.close(); }

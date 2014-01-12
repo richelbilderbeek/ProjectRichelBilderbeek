@@ -88,7 +88,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     if (trace_verbose) { TRACE("HasSameContent 1"); }
     {
       assert(NodeFactory::GetTests().size() >= 3);
-      const boost::shared_ptr<Node> node_a(NodeFactory::Create("FOCAL QUESTION"));
+      const boost::shared_ptr<CenterNode> node_a(CenterNodeFactory::Create("FOCAL QUESTION"));
       assert(node_a);
       const boost::shared_ptr<Node> node_b(NodeFactory::GetTests().at(1));
       assert(node_b);
@@ -105,9 +105,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
       );
       assert(map_a);
       assert(map_a->GetNodes().size() == 3);
-      assert(map_a->GetNodes().at(0)->GetConcept());
-      assert(map_a->GetNodes().at(0)->GetConcept()->GetExamples());
-      assert(map_a->GetNodes().at(0)->GetConcept()->GetExamples()->Get().size() == 0);
       const boost::shared_ptr<ConceptMap> map_b(
         ConceptMapFactory::Create(
           {
@@ -119,9 +116,6 @@ void ribi::cmap::ConceptMap::Test() noexcept
       );
       assert(map_b);
       assert(map_b->GetNodes().size() == 3);
-      assert(map_b->GetNodes().at(0)->GetConcept());
-      assert(map_b->GetNodes().at(0)->GetConcept()->GetExamples());
-      assert(map_b->GetNodes().at(0)->GetConcept()->GetExamples()->Get().size() == 0);
       assert(HasSameContent(*map_a,*map_b));
       assert(map_a != map_b);
 
@@ -598,8 +592,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i];
       assert(concept_map);
       assert(!concept_map->GetNodes().empty());
-      assert(boost::dynamic_pointer_cast<CenterNode>(concept_map->GetNodes()[0])
-        && "Assume a CenterNode at the center of ConceptMap");
+      assert(concept_map->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
     }
   }
   TRACE("ConceptMap::Test finished successfully");
