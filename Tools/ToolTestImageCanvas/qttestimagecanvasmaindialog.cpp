@@ -42,9 +42,13 @@ ribi::QtTestImageCanvasMainDialog::~QtTestImageCanvasMainDialog() noexcept
 const boost::shared_ptr<ribi::ImageCanvas> ribi::QtTestImageCanvasMainDialog::CreateCanvas()
 {
   const int n_cols = 40;
-  const std::string filename = "";
-  assert(!"TODO");
+  const std::string filename { fileio::GetTempFileName() };
+  const QFile file(":/ToolTestImageCanvas/images/R.png");
+  file.copy(filename.c_str());
+  assert(fileio::IsRegularFile(filename));
   boost::shared_ptr<ImageCanvas> canvas(new ImageCanvas(filename,n_cols));
+  fileio::DeleteFile(filename);
+  assert(!fileio::IsRegularFile(filename));
   return canvas;
 }
 

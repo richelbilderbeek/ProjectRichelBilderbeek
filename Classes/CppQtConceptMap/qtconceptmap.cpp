@@ -395,11 +395,12 @@ const std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noe
   };
 }
 
+
 bool ribi::cmap::QtConceptMap::IsQtCenterNode(const QGraphicsItem* const item)
 {
-
   const QtCenterNode * const qtnode = dynamic_cast<const QtCenterNode*>(item);
-  return qtnode && !(item->flags() & QGraphicsItem::ItemIsMovable);
+  assert(!qtnode || IsCenterNode(qtnode->GetNode()));
+  return qtnode;
 }
 
 void ribi::cmap::QtConceptMap::keyPressEvent(QKeyEvent *event) noexcept

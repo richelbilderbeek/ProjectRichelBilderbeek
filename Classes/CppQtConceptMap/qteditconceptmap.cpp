@@ -9,6 +9,7 @@
 #include <QGraphicsItem>
 #include <QKeyEvent>
 
+#include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
 #include "conceptmapconcept.h"
 #include "conceptmapfactory.h"
@@ -257,10 +258,16 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
   //const boost::shared_ptr<QtEditStrategy> display_strategy(new QtEditStrategy(node->GetConcept()));
   //assert(node);
   //QtNode * const qtnode = new QtNode(node,display_strategy);
-  QtNode * const qtnode = new QtNode(node,GetDisplayStrategy(node->GetConcept()));
+  QtNode * const qtnode {
+    IsCenterNode(node)
+    ? new QtCenterNode(boost::dynamic_pointer_cast<CenterNode>(node))
+    : new QtNode(node,GetDisplayStrategy(node->GetConcept()))
+  };
 
   assert(qtnode->pos().x() == node->GetX());
   assert(qtnode->pos().y() == node->GetY());
+  assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
+    && "Should be equivalent");
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(

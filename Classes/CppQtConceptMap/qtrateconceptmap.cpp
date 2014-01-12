@@ -6,26 +6,27 @@
 
 #include <boost/lambda/lambda.hpp>
 
+#include "conceptmapcenternode.h"
 #include "conceptmapconceptfactory.h"
-#include "conceptmap.h"
-#include "conceptmapedge.h"
-#include "conceptmaphelper.h"
 #include "conceptmapconcept.h"
-#include "conceptmapexamples.h"
-#include "qtconceptmapdisplaystrategy.h"
-#include "qtconceptmapnode.h"
 #include "conceptmapedgefactory.h"
+#include "conceptmapedge.h"
+#include "conceptmapexamples.h"
 #include "conceptmapfactory.h"
-#include "conceptmapnode.h"
+#include "conceptmap.h"
+#include "conceptmaphelper.h"
 #include "conceptmapnodefactory.h"
+#include "conceptmapnode.h"
 #include "qtconceptmapcenternode.h"
+#include "qtconceptmapdisplaystrategy.h"
 #include "qtconceptmapedge.h"
-#include "qtquadbezierarrowitem.h"
-#include "qtconceptmaprateexamplesdialognewname.h"
 #include "qtconceptmapexamplesitem.h"
-#include "qtconceptmapratestrategy.h"
-#include "qtscopeddisable.h"
+#include "qtconceptmapnode.h"
 #include "qtconceptmaprateconceptdialognewname.h"
+#include "qtconceptmaprateexamplesdialognewname.h"
+#include "qtconceptmapratestrategy.h"
+#include "qtquadbezierarrowitem.h"
+#include "qtscopeddisable.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -84,6 +85,24 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
   assert(qtedge);
 
   //Edges connected to the center node do not show their concepts
+
+  //Approaches should be equivalent
+  #ifndef NDEBUG
+  if(IsCenterNode(from->GetNode()) != IsQtCenterNode(from))
+  {
+    TRACE("ERROR");
+    TRACE(IsCenterNode(from->GetNode()));
+    TRACE(IsQtCenterNode(from));
+  }
+  if(IsCenterNode(to->GetNode()) != IsQtCenterNode(to))
+  {
+    TRACE("ERROR");
+    TRACE(IsCenterNode(to->GetNode()));
+    TRACE(IsQtCenterNode(to));
+  }
+  assert(IsCenterNode(from->GetNode()) == IsQtCenterNode(from));
+  assert(IsCenterNode(to->GetNode()) == IsQtCenterNode(to));
+  #endif
   if (IsQtCenterNode(from) || IsQtCenterNode(to))
   {
     assert(qtconcept == qtedge->GetDisplayStrategy());
@@ -130,8 +149,14 @@ ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_p
   //const boost::shared_ptr<QtRateStrategy> display_strategy(new QtRateStrategy(node->GetConcept()));
   //assert(display_strategy);
   //QtNode * const qtnode = new QtNode(node,display_strategy);
-  QtNode * const qtnode = new QtNode(node,GetDisplayStrategy(node->GetConcept()));
+  QtNode * const qtnode {
+    IsCenterNode(node)
+    ? new QtCenterNode(boost::dynamic_pointer_cast<CenterNode>(node))
+    : new QtNode(node,GetDisplayStrategy(node->GetConcept()))
+  };
   assert(qtnode);
+  assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
+    && "Should be equivalent");
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(

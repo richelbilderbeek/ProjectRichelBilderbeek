@@ -12,8 +12,6 @@
 namespace ribi {
 namespace cmap {
 
-struct CenterNodeFactory;
-
 ///The focal question of a ConceptMap
 ///- Every ConceptMap usually has one CenterNode
 ///- Every sub concept-map has none or one CenterNode

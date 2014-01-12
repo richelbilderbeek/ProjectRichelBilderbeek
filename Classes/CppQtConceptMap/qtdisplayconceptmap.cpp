@@ -6,6 +6,7 @@
 
 #include <boost/lambda/lambda.hpp>
 
+#include "conceptmapcenternode.h"
 #include "conceptmapedge.h"
 #include "qtconceptmapedge.h"
 #include "qtconceptmapexamplesitem.h"
@@ -124,8 +125,14 @@ ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::share
   //const boost::shared_ptr<QtDisplayStrategy> display_strategy(new QtDisplayStrategy(node->GetConcept()));
   //assert(display_strategy);
   //QtNode * const qtnode = new QtNode(node,display_strategy);
-  QtNode * const qtnode = new QtNode(node,GetDisplayStrategy(node->GetConcept()));
+  QtNode * const qtnode {
+    IsCenterNode(node)
+    ? new QtCenterNode(boost::dynamic_pointer_cast<CenterNode>(node))
+    : new QtNode(node,GetDisplayStrategy(node->GetConcept()))
+  };
   assert(qtnode);
+  assert(IsCenterNode(qtnode->GetNode()) == IsQtCenterNode(qtnode)
+    && "Should be equivalent");
 
   //General: inform an Observer that this item has changed
   qtnode->m_signal_item_has_updated.connect(
