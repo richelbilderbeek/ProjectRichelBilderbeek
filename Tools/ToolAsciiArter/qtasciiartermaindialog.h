@@ -61,10 +61,9 @@ private:
   std::string m_filename;
   void OnAnyChange();
 
-
 private slots:
-  void on_edit_width_textChanged(QString );
   void on_button_load_clicked();
+  void on_box_width_valueChanged(int);
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -55,6 +55,7 @@ ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator-=(const FaceIndex& rhs)
 ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator++() noexcept
 {
   ++m_index;
+  assert(m_index >= 0);
   return *this;
 }
 
@@ -62,6 +63,22 @@ ribi::foam::FaceIndex ribi::foam::FaceIndex::operator++(int) noexcept
 {
   FaceIndex old(*this);
   ++(*this);
+  assert(m_index >= 0);
+  return old;
+}
+
+ribi::foam::FaceIndex& ribi::foam::FaceIndex::operator--() noexcept
+{
+  --m_index;
+  assert(m_index >= 0);
+  return *this;
+}
+
+ribi::foam::FaceIndex ribi::foam::FaceIndex::operator--(int) noexcept
+{
+  FaceIndex old(*this);
+  --(*this);
+  assert(m_index >= 0);
   return old;
 }
 

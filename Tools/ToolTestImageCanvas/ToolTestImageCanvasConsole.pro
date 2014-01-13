@@ -11,7 +11,7 @@ include(../../Classes/CppTrace/CppTrace.pri)
 
 #Specific
 include(../../Classes/CppCanvas/CppCanvas.pri)
-include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+#include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Tools/ToolTestImageCanvas/ToolTestImageCanvasConsole.pri)
 include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 

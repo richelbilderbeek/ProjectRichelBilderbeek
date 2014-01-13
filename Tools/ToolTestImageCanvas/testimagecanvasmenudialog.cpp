@@ -6,6 +6,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/scoped_ptr.hpp>
 #include <QFile>
 
 #include "fileio.h"
@@ -19,29 +20,63 @@ int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc != 1)
+  if (argc != 3 || argc != 4)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  /*
-  //Specify the dimensions of the canvas equal to the screen
-  //Coordinat (0,0) is the top-left coordinat
-  //Coordinat (79,23) is the bottom-right coordinat
-  const int maxx = 79;
-  const int maxy = 23;
-
-  for (int i=0; i!=4; ++i)
   {
-    const ribi::Canvas::ColorSystem color_system
-      = i % 2 ? ribi::Canvas::ColorSystem::normal : ribi::Canvas::ColorSystem::invert;
-    const ribi::Canvas::CoordinatSystem coordinat_system
-      = i / 2 ? ribi::Canvas::CoordinatSystem::graph : ribi::Canvas::CoordinatSystem::screen;
-    ImageCanvas c( maxx, maxy, coordinat_system);
-    std::cout << c;
-    std::cout << std::endl;
+    const std::string s { argv[1] };
+    if (!fileio::IsRegularFile(s))
+    {
+      std::cout
+        << "Error: '" << s << "' is not found.\n"
+        << "Please supply an existing file as "
+        << GetAbout().GetFileTitle()
+        << " its first argument\n";
+      return 1;
+    }
   }
-  */
+  if (argc == 4)
+  {
+    const std::string s { argv[3] };
+    try
+    {
+      const int n_cols = boost::lexical_cast<int>(s);
+      if (n_cols < 5)
+      {
+        std::cout
+          << "Error: the number of columns must be at least 5.\n"
+          << "Please supply a number above 5 as "
+          << GetAbout().GetFileTitle()
+          << " its third argument\n";
+        return 1;
+      }
+    }
+    catch (boost::bad_lexical_cast&)
+    {
+      std::cout
+        << "Error: '" << s << "' is not an integer number.\n"
+        << "Please supply a number as"
+        << GetAbout().GetFileTitle()
+        << " AsciiArter its third argument\n";
+      return 1;
+
+    }
+  }
+
+  assert(argc >= 3);
+  const std::string from_name { argv[1] };
+  const std::string to_name { argv[2] };
+  const int n_cols = (argc == 4 ? boost::lexical_cast<int>(argv[3]) : 78);
+
+  const boost::shared_ptr<const ImageCanvas> d {
+    new ImageCanvas(from_name,n_cols)
+  };
+  //const std::vector<std::string> v { d.GetAsciiArt() };
+  std::ofstream f(to_name.c_str());
+  f << (*d);
+  //std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
   return 0;
 }
 
@@ -56,6 +91,7 @@ const ribi::About ribi::TestImageCanvasMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/TooTestImageCanvas.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
@@ -125,9 +161,12 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
         = i / 2 ? CanvasColorSystem::invert : CanvasColorSystem::normal;
       const CanvasCoordinatSystem coordinat_system
         = i % 2 ? CanvasCoordinatSystem::graph : CanvasCoordinatSystem::screen;
-      ImageCanvas c(temp_filename,20,color_system,coordinat_system);
+      const boost::shared_ptr<const ImageCanvas> c {
+        new ImageCanvas(temp_filename,20,color_system,coordinat_system)
+      };
       std::stringstream s;
-      s << c;
+      s << (*c);
+      TRACE(s.str());
       assert(!s.str().empty());
     }
     fileio::DeleteFile(temp_filename);

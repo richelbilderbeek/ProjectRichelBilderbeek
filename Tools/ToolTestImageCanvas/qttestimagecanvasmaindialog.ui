@@ -49,6 +49,12 @@ QPushButton { color: rgb(0,0,0); }</string>
      </item>
      <item>
       <widget class="QSpinBox" name="box_n_cols">
+       <property name="minimum">
+        <number>5</number>
+       </property>
+       <property name="maximum">
+        <number>999999999</number>
+       </property>
        <property name="value">
         <number>40</number>
        </property>
@@ -145,13 +151,6 @@ QPushButton { color: rgb(0,0,0); }</string>
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_clear">
-     <property name="text">
-      <string>Clear</string>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

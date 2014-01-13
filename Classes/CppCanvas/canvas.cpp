@@ -38,12 +38,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
-#include "dotmatrixstring.h"
+//#include "dotmatrixstring.h"
 #include "fileio.h"
 #include "trace.h"
 //#include "xml.h"
 
 #pragma GCC diagnostic pop
+
+const std::vector<char> ribi::Canvas::GetAsciiArtGradient() noexcept
+{
+  return { 'M','N','m','d','h','y','s','o','+','/',':','-','.','`',' ' };
+}
 
 const std::vector<std::string> ribi::Canvas::GetRegexMatches(
   const std::string& s,

@@ -17,6 +17,8 @@ struct FaceIndex
   FaceIndex& operator-=(const FaceIndex& rhs);
   FaceIndex& operator++() noexcept;   //Prefix
   FaceIndex operator++(int) noexcept; //Postfix
+  FaceIndex& operator--() noexcept;   //Prefix
+  FaceIndex operator--(int) noexcept; //Postfix
   private:
   int m_index;
   friend std::istream& operator>>(std::istream& is, FaceIndex& face_index) noexcept;

@@ -43,6 +43,9 @@ struct Canvas
 {
   virtual ~Canvas() noexcept {}
 
+  //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
+  static const std::vector<char> GetAsciiArtGradient() noexcept;
+
   ///Obtain the height of the canvas is characters
   virtual int GetHeight() const noexcept = 0;
 
@@ -56,7 +59,8 @@ struct Canvas
   virtual int GetWidth() const noexcept = 0;
 
   ///Load a Canvas from std::strings
-  virtual void Load(const std::vector<std::string>& v) = 0;
+  ///DON'T: make it a constructor instead
+  ///virtual void Load(const std::vector<std::string>& v) = 0;
 
   ///Convert the Canvas to std::strings
   virtual const std::vector<std::string> ToStrings() const noexcept = 0;

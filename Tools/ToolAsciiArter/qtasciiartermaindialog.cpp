@@ -100,11 +100,6 @@ void ribi::QtAsciiArterMainDialog::keyPressEvent(QKeyEvent * event)
   if (event->key() == Qt::Key_Escape) close();
 }
 
-void ribi::QtAsciiArterMainDialog::on_edit_width_textChanged(QString)
-{
-  OnAnyChange();
-}
-
 #ifndef NDEBUG
 void ribi::QtAsciiArterMainDialog::Test() noexcept
 {
@@ -137,3 +132,8 @@ void ribi::QtAsciiArterMainDialog::Test() noexcept
   TRACE("Finished ribi::QtAsciiArterMainDialog::Test successfully");
 }
 #endif
+
+void ribi::QtAsciiArterMainDialog::on_box_width_valueChanged(int)
+{
+  OnAnyChange();
+}

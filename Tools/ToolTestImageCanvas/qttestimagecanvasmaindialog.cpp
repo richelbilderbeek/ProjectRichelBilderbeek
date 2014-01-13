@@ -52,23 +52,38 @@ const boost::shared_ptr<ribi::ImageCanvas> ribi::QtTestImageCanvasMainDialog::Cr
   return canvas;
 }
 
-
-void ribi::QtTestImageCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+ribi::CanvasColorSystem ribi::QtTestImageCanvasMainDialog::GetColorSystem() const noexcept
 {
   const CanvasColorSystem color_system
     = ui->box_color_system->currentIndex() == 0
     ? CanvasColorSystem::normal
     : CanvasColorSystem::invert;
-  this->m_canvas->SetColorSystem(color_system);
+  return color_system;
+}
+
+ribi::CanvasCoordinatSystem ribi::QtTestImageCanvasMainDialog::GetCoordinatSystem() const noexcept
+{
+  const CanvasCoordinatSystem coordinat_system
+    = ui->box_coordinat_system->currentIndex() == 0
+    ? CanvasCoordinatSystem::screen
+    : CanvasCoordinatSystem::graph;
+  return coordinat_system;
+}
+
+int ribi::QtTestImageCanvasMainDialog::GetNcols() const noexcept
+{
+  return ui->box_n_cols->value();
+}
+
+void ribi::QtTestImageCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+{
+  this->m_canvas->SetColorSystem(GetColorSystem());
   //Should redraw automatically
 }
 
 void ribi::QtTestImageCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
 {
-  const CanvasCoordinatSystem coordinat_system
-    = ui->box_coordinat_system->currentIndex() == 0
-    ? CanvasCoordinatSystem::screen : CanvasCoordinatSystem::graph;
-  this->m_canvas->SetCoordinatSystem(coordinat_system);
+  this->m_canvas->SetCoordinatSystem(GetCoordinatSystem());
   //Should redraw automatically
 }
 
@@ -80,13 +95,6 @@ void ribi::QtTestImageCanvasMainDialog::ShowCanvas(const ribi::ImageCanvas * con
   ui->text->setPlainText(s.str().c_str());
 
 }
-
-void ribi::QtTestImageCanvasMainDialog::on_button_clear_clicked()
-{
-  m_canvas->Clear();
-  //Should redraw automatically
-}
-
 
 #ifndef NDEBUG
 void ribi::QtTestImageCanvasMainDialog::Test() noexcept
@@ -109,7 +117,20 @@ void ribi::QtTestImageCanvasMainDialog::on_button_image_clicked()
   const std::string filename { fileio::GetTempFileName() };
   qfile.copy(filename.c_str());
   assert(fileio::IsRegularFile(filename));
-  m_canvas->Load(filename);
+  m_canvas.reset(
+    new ImageCanvas(
+      filename,
+      GetNcols(),
+      GetColorSystem(),
+      GetCoordinatSystem()
+    )
+  );
   fileio::DeleteFile(filename);
   assert(!fileio::IsRegularFile(filename));
+  this->ShowCanvas(m_canvas.get());
+}
+
+void ribi::QtTestImageCanvasMainDialog::on_box_n_cols_valueChanged(int )
+{
+  on_button_image_clicked();
 }

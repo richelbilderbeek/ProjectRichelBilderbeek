@@ -237,11 +237,6 @@ void ribi::DrawCanvas::DrawText(const double top, const double left, const std::
   }
 }
 
-const std::vector<char> ribi::DrawCanvas::GetAsciiArtGradient() noexcept
-{
-  return { 'M','N','m','d','h','y','s','o','+','/',':','-','.','`',' ' };
-}
-
 const std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)

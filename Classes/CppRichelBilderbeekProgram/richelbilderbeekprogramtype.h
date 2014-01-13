@@ -167,6 +167,7 @@ enum class ProgramType
   testLed,
   testManyDigitNewick,
   testMultiApproximator,
+  testMultiCanvas,
   testMultipleChoiceQuestion,
   testMultiVector,
   testNdsmake,

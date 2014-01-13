@@ -2217,6 +2217,21 @@ struct ProgramTestMultiApproximator : public ProgramClass
   const std::string GetUrl() const noexcept { return "ToolTestMultiApproximator.htm"; }
 };
 
+struct ProgramTestMultiCanvas : public ProgramClass
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "TestMultiCanvas"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::testMultiCanvas; }
+  const std::string GetUrl() const noexcept { return "TestMultiCanvas.htm"; }
+};
+
 struct ProgramTestMultipleChoiceQuestion : public ProgramClass
 {
   const std::string GetFilenameConsole() const noexcept { return ""; }

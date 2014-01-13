@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>295</width>
-    <height>300</height>
+    <width>273</width>
+    <height>228</height>
    </rect>
   </property>
   <property name="font">
@@ -24,6 +24,9 @@ QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 48px  }</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
+   <property name="fieldGrowthPolicy">
+    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+   </property>
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="maximumSize">
@@ -36,7 +39,7 @@ QPushButton { font: 48px  }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="TestTextCanvas.qrc">:/images/TestTextCanvasWelcome.png</pixmap>
+      <pixmap>:/images/TestTextCanvasWelcome.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -46,7 +49,7 @@ QPushButton { font: 48px  }</string>
    <item row="0" column="1">
     <widget class="QPushButton" name="button_start_canvas">
      <property name="text">
-      <string>Canvas</string>
+      <string>TextCanvas</string>
      </property>
      <property name="flat">
       <bool>true</bool>
@@ -54,16 +57,6 @@ QPushButton { font: 48px  }</string>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QPushButton" name="button_start_qtcanvas">
-     <property name="text">
-      <string>QtCanvas</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
@@ -73,7 +66,7 @@ QPushButton { font: 48px  }</string>
      </property>
     </widget>
    </item>
-   <item row="3" column="1">
+   <item row="2" column="1">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
@@ -85,8 +78,6 @@ QPushButton { font: 48px  }</string>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="TestTextCanvas.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -54,17 +54,7 @@ ribi::AsciiArterMainDialog::AsciiArterMainDialog(
 const std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcept
 {
   const boost::shared_ptr<ribi::ImageCanvas> canvas { GetImageCanvas() };
-  std::stringstream s;
-  s << (*canvas);
-  std::string t = s.str();
-  std::vector<std::string> v;
-  while (!t.empty())
-  {
-    //TRACE(t);
-    v.push_back(t.substr(0,m_n_cols));
-    t = t.substr(m_n_cols + 1,t.size() - (m_n_cols + 2)); //+1 because of newline
-  }
-  return v;
+  return canvas->ToStrings();
 }
 
 const boost::shared_ptr<ribi::ImageCanvas> ribi::AsciiArterMainDialog::GetImageCanvas() const noexcept

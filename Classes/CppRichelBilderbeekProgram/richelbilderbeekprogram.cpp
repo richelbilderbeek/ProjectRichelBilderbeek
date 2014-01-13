@@ -175,6 +175,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::testLed: p.reset(new ProgramTestLed); break;
     case ProgramType::testManyDigitNewick: p.reset(new ProgramTestManyDigitNewick); break;
     case ProgramType::testMultiApproximator: p.reset(new ProgramTestMultiApproximator); break;
+    case ProgramType::testMultiCanvas: p.reset(new ProgramTestMultiCanvas); break;
     case ProgramType::testMultipleChoiceQuestion: p.reset(new ProgramTestMultipleChoiceQuestion); break;
     case ProgramType::testMultiVector: p.reset(new ProgramTestMultiVector); break;
     case ProgramType::testNdsmake: p.reset(new ProgramTestNdsmake); break;

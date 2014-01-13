@@ -700,11 +700,13 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "CppCanvas",
       {
-        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
         "<p>&nbsp;</p>",
         "<p>",
-        "  <a href=\"CppCanvas.htm\">Canvas</a> is a <a href=\"CppClass.htm\">class</a>",
-        "  of an ASCII art painting canvas.",
+        "  <a href=\"CppCanvas.htm\">Canvas</a> is the <a href=\"CppAbstractBaseClass.htm\">(abstract) base class</a>",
+        "  of an ASCII art canvas. <a href=\"CppDerivedClass.htm\">derived classes</a> are, among others,",
+        "  <a href=\"CppDrawCanvas.htm\">DrawCanvas</a>, <a href=\"CppImageCanvas.htm\">ImageCanvas</a>",
+        "  and <a href=\"CppTextCanvas.htm\">TextCanvas</a>.",
         "</p>"
       }
     }
@@ -992,6 +994,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>",
         "  <a href=\"CppDotMatrix.htm\">DotMatrix</a> is a <a href=\"CppClass.htm\">class</a>",
         "  for creating dot matrix texts.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppDrawCanvas",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppDrawCanvas.htm\">DrawCanvas</a> is a <a href=\"CppCanvas.htm\">Canvas</a>",
+        "  to draw on.",
         "</p>"
       }
     }
@@ -2842,6 +2857,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li><a href=\"CppIfExample1.zip\">Download the Qt Creator project 'CppIfExample1' (zip)</a></li>",
         "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppImageCanvas",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppImageCanvas.htm\">ImageCanvas</a> is a <a href=\"CppCanvas.htm\">Canvas</a>",
+        "  to load images.",
+        "</p>"
       }
     }
   );
@@ -6068,6 +6096,20 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppTextCanvas",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppTextCanvas.htm\">TextCanvas</a> is a <a href=\"CppCanvas.htm\">Canvas</a>",
+        "  to put text on.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppTicTacToe",
       {
@@ -13050,17 +13092,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
-    { "ToolTestCanvas",
-      {
-        "<p>",
-        "  <a href=\"ToolTestCanvas.htm\">TestCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to test the <a href=\"CppCanvas.htm\">Canvas</a> <a href=\"CppClass.htm\">class</a>.",
-        "</p>"
-      }
-    }
-  );
-
-  m.push_back(
     { "ToolTestChess",
       {
         "<p>",
@@ -13121,6 +13152,18 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "ToolTestDrawCanvas",
+      {
+        "<p>",
+        "  <a href=\"ToolTestDrawCanvas.htm\">TestDrawCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppDrawCanvas.htm\">DrawCanvas</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolEncranger",
       {
@@ -13329,6 +13372,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>",
         "  <a href=\"ToolTestHugeVector.htm\">ToolTestHugeVector</a> is a <a href=\"Tools.htm\">tool</a>",
         "  to test the <a href=\"CppHugeVector.htm\">HugeVector</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestImageCanvas",
+      {
+        "<p>",
+        "  <a href=\"ToolTestImageCanvas.htm\">TestImageCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppImageCanvas.htm\">ImageCanvas</a> <a href=\"CppClass.htm\">class</a>.",
         "</p>"
       }
     }
@@ -13935,6 +13989,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<ul>",
         "  <li>...</li>",
         "</ul>",
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolTestTextCanvas",
+      {
+        "<p>",
+        "  <a href=\"ToolTestTextCanvas.htm\">TestTextCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppTextCanvas.htm\">TextCanvas</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
       }
     }
   );

@@ -98,9 +98,6 @@ struct DrawCanvas : public Canvas
   //
   void DrawText(const double top, const double left, const std::string& text) noexcept;
 
-  //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-  static const std::vector<char> GetAsciiArtGradient() noexcept;
-
   ///The color system used:
   ///- normal: full/drawn is displayed by M
   ///- invert: empty/non-drawn is displayed by M

@@ -160,6 +160,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::testLed,std::string("testLed")));
   m.insert(Pair(ProgramType::testManyDigitNewick,std::string("testManyDigitNewick")));
   m.insert(Pair(ProgramType::testMultiApproximator,std::string("testMultiApproximator")));
+  m.insert(Pair(ProgramType::testMultiCanvas,std::string("testMultiCanvas")));
   m.insert(Pair(ProgramType::testMultipleChoiceQuestion,std::string("testMultipleChoiceQuestion")));
   m.insert(Pair(ProgramType::testMultiVector,std::string("testMultiVector")));
   m.insert(Pair(ProgramType::testNdsmake,std::string("testNdsmake")));
@@ -370,6 +371,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::testLed,std::string("Test Led")));
   m.insert(Pair(ProgramType::testManyDigitNewick,std::string("Test ManyDigitNewick")));
   m.insert(Pair(ProgramType::testMultiApproximator,std::string("Test MultiApproximator")));
+  m.insert(Pair(ProgramType::testMultiCanvas,std::string("Test MultiCanvas")));
   m.insert(Pair(ProgramType::testMultipleChoiceQuestion,std::string("Test MultipleChoiceQuestion")));
   m.insert(Pair(ProgramType::testMultiVector,std::string("Test MultiVector")));
   m.insert(Pair(ProgramType::testNdsmake,std::string("Test ndsmake")));
