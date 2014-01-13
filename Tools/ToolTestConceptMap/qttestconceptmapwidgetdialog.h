@@ -29,6 +29,10 @@ public:
   QtTestConceptMapWidgetDialog& operator=(const QtTestConceptMapWidgetDialog&) = delete;
   ~QtTestConceptMapWidgetDialog() noexcept;
 
+protected:
+  void mouseMoveEvent(QMouseEvent *);
+  void keyPressEvent(QKeyEvent *);
+
 private slots:
   ///Called when user clicks a button
   ///OnClick determines the clicked button its index

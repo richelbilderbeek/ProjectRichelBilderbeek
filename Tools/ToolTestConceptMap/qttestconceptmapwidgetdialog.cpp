@@ -7,7 +7,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QPushButton>
-
+#include <QMouseEvent>
 #include "conceptmapfactory.h"
 
 #include "conceptmapcommand.h"
@@ -152,6 +152,17 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
   }
 }
 
+void ribi::cmap::QtTestConceptMapWidgetDialog::keyPressEvent(QKeyEvent * e)
+{
+  if (e->key() == Qt::Key_Escape) { close(); return; }
+  for (auto widget: m_qtwidgets) { widget->keyPressEvent(e); }
+}
+
+void ribi::cmap::QtTestConceptMapWidgetDialog::mouseMoveEvent(QMouseEvent * e)
+{
+  for (auto widget: m_qtwidgets) { widget->mouseMoveEvent(e); }
+}
+
 void ribi::cmap::QtTestConceptMapWidgetDialog::OnClick()
 {
   TRACE_FUNC();
@@ -214,7 +225,6 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   TRACE("Random clicking");
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
     assert(d.m_buttons.size() >= 2);
     const int n_buttons = static_cast<int>(d.m_buttons.size());
     for (int i=0; i!=100; ++i)

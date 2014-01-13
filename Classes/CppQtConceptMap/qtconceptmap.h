@@ -92,7 +92,8 @@ protected:
     const QtNode* const to) const;
 
   ///Find the QtNode containing the Node
-  QtNode * FindQtNode(const boost::shared_ptr<Node> node) const;
+  QtNode * FindQtNode(const boost::shared_ptr<Node> node) const { return FindQtNode(node.get()); }
+  QtNode * FindQtNode(Node * const node) const;
 
   ///Obtain the center node
   const QtNode * GetCenterNode() const;
@@ -154,6 +155,8 @@ public slots:
 
   ///Called when an item requests a scene update
   void OnRequestSceneUpdate();
+
+  friend class QtConceptMapWidget;
 };
 
 } //~namespace cmap

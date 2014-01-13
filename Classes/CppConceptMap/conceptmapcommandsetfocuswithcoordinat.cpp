@@ -1,19 +1,19 @@
-#include "conceptmapcommandsetfocus.h"
+#include "conceptmapcommandsetfocuswithcoordinat.h"
 
 #include <cassert>
 
 #include "conceptmapwidget.h"
 
-bool ribi::cmap::CommandSetFocus::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandSetFocusWithCoordinat::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
   return widget->FindNodeAt(m_x,m_y).get();
 }
 
-void ribi::cmap::CommandSetFocus::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const widget) noexcept
 {
   assert(widget);
-  assert(!widget->m_focus);
+  assert(!widget->m_focus || widget->m_focus);
 
   //Transfer focus to this Node
   m_widget = widget;
@@ -26,7 +26,7 @@ void ribi::cmap::CommandSetFocus::DoCommandSpecific(Widget * const widget) noexc
   assert(widget->m_focus);
 }
 
-void ribi::cmap::CommandSetFocus::Undo() noexcept
+void ribi::cmap::CommandSetFocusWithCoordinat::Undo() noexcept
 {
   assert(m_widget);
   assert(m_widget->m_focus);
@@ -36,6 +36,5 @@ void ribi::cmap::CommandSetFocus::Undo() noexcept
   m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);
-  assert(!m_widget->m_focus);
-
+  assert(!m_widget->m_focus || m_widget->m_focus); //Widget might have had focus
 }

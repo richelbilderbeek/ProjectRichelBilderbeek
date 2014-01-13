@@ -20,6 +20,7 @@
 
 ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
   : m_signal_concept_map_changed{}, //Signals first, as these are public
+    m_signal_set_focus_node{},
     m_conceptmap(conceptmap),
     m_focus{nullptr},
     m_font_height(12),
@@ -38,6 +39,7 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
 #ifndef NDEBUG
 ribi::cmap::Widget::Widget(const Widget& other)
   : m_signal_concept_map_changed{}, //Signals first, as these are public
+    m_signal_set_focus_node{},
     m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
     m_focus{nullptr},
     m_font_height(other.m_font_height),
@@ -88,7 +90,7 @@ void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noe
 
 const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const double x, const double y) const noexcept
 {
-  assert(this->GetConceptMap());
+  if (!this->GetConceptMap()) { return boost::shared_ptr<const Node>(); }
   for (const boost::shared_ptr<const Node> node: this->GetConceptMap()->GetNodes())
   {
     const double left = node->GetX();
@@ -109,6 +111,16 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const d
   return boost::const_pointer_cast<Node>(node);
 }
 
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode() noexcept
+{
+  assert(!GetConceptMap()->GetNodes().empty());
+  const std::vector<boost::shared_ptr<Node>> nodes = GetConceptMap()->GetNodes();
+  const int i = (std::rand() >> 4) % nodes.size();
+  assert(i < static_cast<int>(nodes.size()));
+  assert(nodes[i]);
+  return nodes[i];
+}
+
 const std::string ribi::cmap::Widget::GetVersion() noexcept
 {
   return "1.1";
@@ -126,6 +138,12 @@ void ribi::cmap::Widget::SetConceptMap(const boost::shared_ptr<ConceptMap> conce
 {
   m_conceptmap = conceptmap;
   m_signal_concept_map_changed();
+}
+
+void ribi::cmap::Widget::SetFocus(Node * const node) noexcept
+{
+  m_focus = node;
+  m_signal_set_focus_node(node);
 }
 
 #ifndef NDEBUG

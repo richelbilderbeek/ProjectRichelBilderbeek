@@ -25,6 +25,14 @@
 
 #pragma GCC diagnostic pop
 
+ribi::MultiCanvas::MultiCanvas(
+  const std::vector<boost::shared_ptr<Canvas>>& canvases,
+  const int maxx,
+  const int maxy,
+  const CanvasColorSystem color_system = CanvasColorSystem::normal,
+  const CanvasCoordinatSystem coordinat_system = CanvasCoordinatSystem::screen
+);
+
 const std::string ribi::MultiCanvas::GetVersion() noexcept
 {
   return "1.0";
@@ -35,4 +43,13 @@ const std::vector<std::string> ribi::MultiCanvas::GetVersionHistory() noexcept
   return {
     "2014-01-13: version 1.0: initial version"
   };
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const MultiCanvas& c)
+{
+  const auto text = c.ToStrings();
+  std::copy(text.begin(),text.end(),
+    std::ostream_iterator<std::string>(os,"\n")
+  );
+  return os;
 }

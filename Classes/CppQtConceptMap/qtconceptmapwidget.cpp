@@ -6,15 +6,17 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/lambda/lambda.hpp>
 #include <QMouseEvent>
 
 #include "qtconceptmap.h"
+#include "qtconceptmapnode.h"
 #include "qteditconceptmap.h"
 #include "qtdisplayconceptmap.h"
 #include "qtrateconceptmap.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommandlosefocus.h"
-#include "conceptmapcommandsetfocus.h"
+#include "conceptmapcommandsetfocuswithcoordinat.h"
 #include "conceptmapwidget.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"
@@ -31,6 +33,9 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   this->setScene(m_qtconceptmap->GetScene());
   m_widget->m_signal_concept_map_changed.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnConceptMapChanged,this)
+  );
+  m_widget->m_signal_set_focus_node.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNode,this,boost::lambda::_1)
   );
 }
 
@@ -51,20 +56,41 @@ void ribi::cmap::QtConceptMapWidget::DoCommand(
 
 void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
-  TRACE(e);
+  if (e->key()  == Qt::Key_Z && e->modifiers() & Qt::ControlModifier)
+  {
+    TRACE("UNDO");
+    this->m_widget->Undo();
+  }
 }
 
-void ribi::cmap::QtConceptMapWidget::mouseDoubleClickEvent(QMouseEvent * e)
+void ribi::cmap::QtConceptMapWidget::mouseDoubleClickEvent(QMouseEvent * e) noexcept
 {
   TRACE(e);
 }
 
-void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e)
+void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e) noexcept
 {
-  TRACE(e);
+  this->setCursor(QCursor(Qt::ArrowCursor));
+  //Can focus be set here?
+  {
+    const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
+    const boost::shared_ptr<const CommandSetFocusWithCoordinat> cmd {
+      new CommandSetFocusWithCoordinat(pos.x(),pos.y())
+    };
+    if (cmd->CanDoCommand(m_widget))
+    {
+      TRACE("YES");
+      this->setCursor(QCursor(Qt::PointingHandCursor));
+    }
+    else
+    {
+      TRACE("NO");
+    }
+  }
 }
 
-void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e)
+
+void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 {
   //Try to unselect a potentially focused node or edge
   const boost::shared_ptr<CommandLoseFocus> lose_focus {
@@ -75,8 +101,8 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e)
 
   const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
 
-  const boost::shared_ptr<CommandSetFocus> set_focus {
-    new CommandSetFocus(pos.x(),pos.y())
+  const boost::shared_ptr<CommandSetFocusWithCoordinat> set_focus {
+    new CommandSetFocusWithCoordinat(pos.x(),pos.y())
   };
   const bool can_set_focus = m_widget->CanDoCommand(set_focus);
   TRACE(can_set_focus);
@@ -114,6 +140,9 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e)
 
 void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
 {
+  m_qtconceptmap->scene()->update();
+  m_qtconceptmap->update();
+  /*
   if (boost::dynamic_pointer_cast<QtDisplayConceptMap>(m_qtconceptmap))
   {
     m_qtconceptmap.reset(new QtDisplayConceptMap(this->m_widget->GetConceptMap()));
@@ -130,6 +159,12 @@ void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
   {
     assert(!"Should not get here: unknown QtConceptMap derived class");
   }
+  */
+}
+
+void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(Node * const node) noexcept
+{
+  m_qtconceptmap->FindQtNode(node)->setFocus();
 }
 
 #ifndef NDEBUG

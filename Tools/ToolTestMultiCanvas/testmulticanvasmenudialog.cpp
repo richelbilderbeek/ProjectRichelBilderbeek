@@ -140,6 +140,7 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::TestMultiCanvasMenuDialog::Test");
   boost::shared_ptr<Canvas> draw_canvas;
+  const int n_cols = 78;
   {
     draw_canvas.reset(new DrawCanvas);
   }
@@ -163,7 +164,7 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
   }
   const std::vector<boost::shared_ptr<Canvas>> canvases { text_canvas, draw_canvas, image_canvas };
   const boost::shared_ptr<ribi::MultiCanvas> multi_canvas {
-    new MultiCanvas(canvases,70,20)
+    new MultiCanvas(canvases,n_cols,n_rows)
   };
   std::stringstream s;
   s << (*multi_canvas);

@@ -287,12 +287,14 @@ const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
   return * iter;
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(const boost::shared_ptr<ribi::cmap::Node> node) const
+
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * const node) const
 {
+  assert(node);
   const std::vector<QtNode *> qtnodes = Collect<QtNode>(scene());
   for (QtNode * qtnode: qtnodes)
   {
-    if (qtnode->GetNode() == node) return qtnode;
+    if (qtnode->GetNode().get() == node) return qtnode;
   }
   assert(!"Should always find QtNode");
   throw std::logic_error("ribi::cmap::QtConceptMap::FindQtNode");

@@ -46,13 +46,14 @@ struct MultiCanvas : public Canvas
   const std::vector<std::string> ToStrings() const noexcept;
 
   private:
-
   const std::vector<boost::shared_ptr<Canvas>> m_canvases;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
+
+std::ostream& operator<<(std::ostream& os, const MultiCanvas& c);
 
 } //~namespace ribi
 

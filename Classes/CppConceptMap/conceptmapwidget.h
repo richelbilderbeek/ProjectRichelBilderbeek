@@ -54,6 +54,10 @@ struct Widget
   ///Emitted when the ConceptMap is modified as a whole: deleted, created or overwritten
   boost::signals2::signal<void()> m_signal_concept_map_changed;
 
+  ///Emitted when a Node receives focus
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(Node*)> m_signal_set_focus_node;
+
   private:
 
   boost::shared_ptr<ConceptMap> m_conceptmap;
@@ -86,10 +90,13 @@ struct Widget
 
   const Node * GetFocus() const noexcept { return m_focus; }
 
+  ///Used by CommandSetFocusRandom
+  const boost::shared_ptr<Node> GetRandomNode() noexcept;
+
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
-  void SetFocus(Node * const node) noexcept { m_focus = node; }
+  void SetFocus(Node * const node) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -101,7 +108,8 @@ struct Widget
   friend class CommandDeleteConceptMap;
   friend class CommandDeleteNode;
   friend class CommandLoseFocus;
-  friend class CommandSetFocus;
+  friend class CommandSetFocusRandom;
+  friend class CommandSetFocusWithCoordinat;
   friend bool operator==(const Widget& lhs, const Widget& rhs);
 
 };

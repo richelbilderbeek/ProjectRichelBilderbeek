@@ -28,13 +28,12 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
-  protected:
   ///QtConceptMapWidget intercepts all user interactions and converts these
-  ///to commands
+  ///to commands for Widget
   void keyPressEvent(QKeyEvent *) noexcept;
-  void mouseDoubleClickEvent(QMouseEvent *);
-  void mouseMoveEvent(QMouseEvent *);
-  void mousePressEvent(QMouseEvent *);
+  void mouseDoubleClickEvent(QMouseEvent *) noexcept;
+  void mouseMoveEvent(QMouseEvent *) noexcept;
+  void mousePressEvent(QMouseEvent *) noexcept;
 
   private:
   ///Displaying the concept map, the View
@@ -53,6 +52,11 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///Called when Widget emits m_signal_concept_map_changed
   ///Which is emitted when the ConceptMap changes as a whole
   void OnConceptMapChanged() noexcept;
+
+  ///Called when Widget emits m_signal_set_focus_node
+  ///Which is emitted when a Node is given focus
+  ///A Node has no idea of having focus
+  void OnSetFocusNode(Node * const node) noexcept;
 };
 
 } //~namespace cmap
