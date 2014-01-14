@@ -40,7 +40,7 @@ ribi::c2h::FolderType ribi::c2h::FolderTypes::DeduceFolderType(const std::string
     fileio::GetFilesInFolder(folder_name)
   };
 
-  //Search for pro files
+  //Search for pro or cppfiles
   {
     //Copy all filenames matching the regex in the resulting std::vector
     const int n_pro_files {
@@ -55,7 +55,19 @@ ribi::c2h::FolderType ribi::c2h::FolderTypes::DeduceFolderType(const std::string
         }
       )
     };
-    if (n_pro_files > 0) return FolderType::pro;
+    const int n_cpp_files {
+      std::count_if(files.begin(),files.end(),
+        [](const std::string& s)
+        {
+          static const boost::xpressive::sregex cpp_file_regex {
+            boost::xpressive::sregex::compile(".*\\.(cpp)\\>")
+          };
+          boost::xpressive::smatch what;
+          return boost::xpressive::regex_match(s, what, cpp_file_regex);
+        }
+      )
+    };
+    if (n_pro_files + n_cpp_files > 0) return FolderType::pro;
   }
 
   //Search for foam files

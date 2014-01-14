@@ -13450,6 +13450,17 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "ToolTestMultiCanvas",
+      {
+        "<p>",
+        "  <a href=\"ToolTestMultiCanvas.htm\">TestMultiCanvas</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppMultiCanvas.htm\">MultiCanvas</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolTestMultipleChoiceQuestion",
       {
         "<p>",

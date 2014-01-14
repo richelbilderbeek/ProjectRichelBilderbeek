@@ -11,4 +11,4 @@ OTHER_FILES += \
     ../../Tools/ToolTestMultiCanvas/Licence.txt
 
 RESOURCES += \
-    ToolTestMultiCanvas.qrc
+    ../../Tools/ToolTestMultiCanvas/ToolTestMultiCanvas.qrc

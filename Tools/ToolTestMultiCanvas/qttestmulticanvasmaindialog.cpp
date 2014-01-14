@@ -1,7 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttestdrawcanvasmaindialog.h"
+#include "qttestmulticanvasmaindialog.h"
 
 #include <cassert>
 #include <sstream>
@@ -12,12 +12,12 @@
 
 #include "drawcanvas.h"
 #include "trace.h"
-#include "ui_qttestdrawcanvasmaindialog.h"
+#include "ui_qttestmulticanvasmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
+ribi::QtTestMultiCanvasMainDialog::QtTestMultiCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestDrawCanvasMainDialog),
+  ui(new Ui::QtTestMultiCanvasMainDialog),
   m_canvas(CreateCanvas())
 {
   #ifndef NDEBUG
@@ -27,7 +27,7 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
 
   m_canvas->m_signal_changed.connect(
     boost::bind(
-      &ribi::QtTestDrawCanvasMainDialog::ShowCanvas,this,
+      &ribi::QtTestMultiCanvasMainDialog::ShowCanvas,this,
       boost::lambda::_1)
     );
 
@@ -48,12 +48,12 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
   ShowCanvas(0);
 }
 
-ribi::QtTestDrawCanvasMainDialog::~QtTestDrawCanvasMainDialog() noexcept
+ribi::QtTestMultiCanvasMainDialog::~QtTestMultiCanvasMainDialog() noexcept
 {
   delete ui;
 }
 
-const boost::shared_ptr<ribi::DrawCanvas> ribi::QtTestDrawCanvasMainDialog::CreateCanvas()
+const boost::shared_ptr<ribi::DrawCanvas> ribi::QtTestMultiCanvasMainDialog::CreateCanvas()
 {
   const int maxx = 79;
   const int maxy = 23;
@@ -88,7 +88,7 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::QtTestDrawCanvasMainDialog::Crea
 }
 
 
-void ribi::QtTestDrawCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
+void ribi::QtTestMultiCanvasMainDialog::on_box_color_system_currentIndexChanged(int )
 {
   const CanvasColorSystem color_system
     = ui->box_color_system->currentIndex() == 0
@@ -98,7 +98,7 @@ void ribi::QtTestDrawCanvasMainDialog::on_box_color_system_currentIndexChanged(i
   //Should redraw automatically
 }
 
-void ribi::QtTestDrawCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
+void ribi::QtTestMultiCanvasMainDialog::on_box_coordinat_system_currentIndexChanged(int )
 {
   const CanvasCoordinatSystem coordinat_system
     = ui->box_coordinat_system->currentIndex() == 0
@@ -107,7 +107,7 @@ void ribi::QtTestDrawCanvasMainDialog::on_box_coordinat_system_currentIndexChang
   //Should redraw automatically
 }
 
-void ribi::QtTestDrawCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const)
+void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const)
 {
   //Display the image
   std::stringstream s;
@@ -116,13 +116,13 @@ void ribi::QtTestDrawCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const
 
 }
 
-void ribi::QtTestDrawCanvasMainDialog::on_button_clear_clicked()
+void ribi::QtTestMultiCanvasMainDialog::on_button_clear_clicked()
 {
   m_canvas->Clear();
   //Should redraw automatically
 }
 
-void ribi::QtTestDrawCanvasMainDialog::on_button_circle_clicked()
+void ribi::QtTestMultiCanvasMainDialog::on_button_circle_clicked()
 {
   m_canvas->DrawCircle(
     ui->box_circle_x->value(),
@@ -131,7 +131,7 @@ void ribi::QtTestDrawCanvasMainDialog::on_button_circle_clicked()
   );
 }
 
-void ribi::QtTestDrawCanvasMainDialog::on_button_dot_clicked()
+void ribi::QtTestMultiCanvasMainDialog::on_button_dot_clicked()
 {
    m_canvas->DrawDot(
      ui->box_dot_x->value(),
@@ -139,7 +139,7 @@ void ribi::QtTestDrawCanvasMainDialog::on_button_dot_clicked()
    );
 }
 
-void ribi::QtTestDrawCanvasMainDialog::on_button_line_clicked()
+void ribi::QtTestMultiCanvasMainDialog::on_button_line_clicked()
 {
   m_canvas->DrawLine(
     ui->box_line_x1->value(),
@@ -150,16 +150,16 @@ void ribi::QtTestDrawCanvasMainDialog::on_button_line_clicked()
 }
 
 #ifndef NDEBUG
-void ribi::QtTestDrawCanvasMainDialog::Test() noexcept
+void ribi::QtTestMultiCanvasMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestDrawCanvasMainDialog::Test");
+  TRACE("Starting ribi::QtTestMultiCanvasMainDialog::Test");
   const boost::shared_ptr<const DrawCanvas> canvas(new DrawCanvas(78,23));
   assert(canvas);
-  TRACE("Finished ribi::QtTestDrawCanvasMainDialog::Test successfully");
+  TRACE("Finished ribi::QtTestMultiCanvasMainDialog::Test successfully");
 }
 #endif

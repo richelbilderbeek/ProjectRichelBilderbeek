@@ -62,7 +62,7 @@ struct Dialog
 
   private:
   Dialog() = delete;
-  ~Dialog() noexcept;
+  ~Dialog() noexcept {}
   friend void boost::checked_delete<>(Dialog*);
   friend void boost::checked_delete<>(const Dialog*);
 

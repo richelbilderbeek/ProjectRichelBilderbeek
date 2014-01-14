@@ -1,16 +1,17 @@
-include(../../Tools/ToolTestDrawCanvas/ToolTestDrawCanvasConsole.pri)
+include(../../Tools/ToolTestMultiCanvas/ToolTestMultiCanvasConsole.pri)
 
-RESOURCES += \
-    ../../Tools/ToolTestDrawCanvas/ToolTestDrawCanvas.qrc
+#Added in ToolTestMultiCanvasConsole.pri
+#RESOURCES += \
+#    ../../Tools/ToolTestMultiCanvas/ToolTestMultiCanvas.qrc
 
 FORMS += \
-    ../../Tools/ToolTestDrawCanvas/qttestdrawcanvasmenudialog.ui \
-    ../../Tools/ToolTestDrawCanvas/qttestdrawcanvasmaindialog.ui
+    ../../Tools/ToolTestMultiCanvas/qttestmulticanvasmenudialog.ui \
+    ../../Tools/ToolTestMultiCanvas/qttestmulticanvasmaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestDrawCanvas/qttestdrawcanvasmenudialog.cpp \
-    ../../Tools/ToolTestDrawCanvas/qttestdrawcanvasmaindialog.cpp
+    ../../Tools/ToolTestMultiCanvas/qttestmulticanvasmenudialog.cpp \
+    ../../Tools/ToolTestMultiCanvas/qttestmulticanvasmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestDrawCanvas/qttestdrawcanvasmenudialog.h \
-    ../../Tools/ToolTestDrawCanvas/qttestdrawcanvasmaindialog.h
+    ../../Tools/ToolTestMultiCanvas/qttestmulticanvasmenudialog.h \
+    ../../Tools/ToolTestMultiCanvas/qttestmulticanvasmaindialog.h

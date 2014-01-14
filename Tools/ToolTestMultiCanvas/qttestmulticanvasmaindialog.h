@@ -1,5 +1,5 @@
-#ifndef QTTESTDRAWCANVASMAINDIALOG_H
-#define QTTESTDRAWCANVASMAINDIALOG_H
+#ifndef QTTESTMULTICANVASMAINDIALOG_H
+#define QTTESTMULTICANVASMAINDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -9,22 +9,22 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtTestDrawCanvasMainDialog;
+  class QtTestMultiCanvasMainDialog;
 }
 
 namespace ribi {
 
 struct DrawCanvas;
 
-class QtTestDrawCanvasMainDialog : public QtHideAndShowDialog
+class QtTestMultiCanvasMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
-  explicit QtTestDrawCanvasMainDialog(QWidget *parent = 0);
-  QtTestDrawCanvasMainDialog(const QtTestDrawCanvasMainDialog&) = delete;
-  QtTestDrawCanvasMainDialog& operator=(const QtTestDrawCanvasMainDialog&) = delete;
-  ~QtTestDrawCanvasMainDialog() noexcept;
+  explicit QtTestMultiCanvasMainDialog(QWidget *parent = 0);
+  QtTestMultiCanvasMainDialog(const QtTestMultiCanvasMainDialog&) = delete;
+  QtTestMultiCanvasMainDialog& operator=(const QtTestMultiCanvasMainDialog&) = delete;
+  ~QtTestMultiCanvasMainDialog() noexcept;
   
 private slots:
 
@@ -41,7 +41,7 @@ private slots:
   void on_button_line_clicked();
 
 private:
-  Ui::QtTestDrawCanvasMainDialog *ui;
+  Ui::QtTestMultiCanvasMainDialog *ui;
   boost::shared_ptr<DrawCanvas> m_canvas;
 
   static const boost::shared_ptr<DrawCanvas> CreateCanvas();
@@ -54,4 +54,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTTESTDRAWCANVASMAINDIALOG_H
+#endif // QTTESTMULTICANVASMAINDIALOG_H

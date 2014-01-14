@@ -51,11 +51,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::c2h::Dialog::~Dialog() noexcept
-{
-
-}
-
 const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   const std::vector<std::string>& code,
   const SnippetType snippet_type) noexcept

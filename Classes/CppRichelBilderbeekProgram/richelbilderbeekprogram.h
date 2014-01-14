@@ -2004,7 +2004,7 @@ struct ProgramTestDrawCanvas : public ProgramClass
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testDrawCanvas; }
-  const std::string GetUrl() const noexcept { return "TestDrawCanvas.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolTestDrawCanvas.htm"; }
 };
 
 struct ProgramEncranger : public ProgramClass
@@ -2154,7 +2154,7 @@ struct ProgramTestImageCanvas : public ProgramClass
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testImageCanvas; }
-  const std::string GetUrl() const noexcept { return "TooTestImageCanvas.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolTestImageCanvas.htm"; }
 };
 
 struct ProgramTestLazy_init : public ProgramClass
@@ -2229,7 +2229,7 @@ struct ProgramTestMultiCanvas : public ProgramClass
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::testMultiCanvas; }
-  const std::string GetUrl() const noexcept { return "TestMultiCanvas.htm"; }
+  const std::string GetUrl() const noexcept { return "ToolTestMultiCanvas.htm"; }
 };
 
 struct ProgramTestMultipleChoiceQuestion : public ProgramClass

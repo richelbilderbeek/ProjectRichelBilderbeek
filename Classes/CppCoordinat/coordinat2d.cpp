@@ -67,6 +67,12 @@ const ribi::Coordinat2D ribi::operator*(
   );
 }
 
+bool ribi::operator==(const Coordinat2D& lhs, const Coordinat2D& rhs)
+{
+  return lhs.GetX() == rhs.GetX()
+    && lhs.GetY() == rhs.GetY();
+}
+
 
 std::ostream& ribi::operator<<(std::ostream& os, const Coordinat2D& n)
 {

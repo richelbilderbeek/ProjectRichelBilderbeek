@@ -20,9 +20,12 @@ include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppMultiCanvas/CppMultiCanvas.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppXml/CppXml.pri)
 #Desktop
-include(../../Tools/ToolTestDrawCanvas/ToolTestDrawCanvasDesktop.pri)
+include(../../Tools/ToolTestMultiCanvas/ToolTestMultiCanvasDesktop.pri)
 
 SOURCES += qtmain.cpp
 
