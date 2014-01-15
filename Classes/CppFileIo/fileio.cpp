@@ -433,7 +433,7 @@ const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
     : folder.substr(0,i);
 }
 
-const std::string ribi::fileio::GetTempFileName()
+const std::string ribi::fileio::GetTempFileName(const std::string& post)
 {
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
@@ -445,7 +445,8 @@ const std::string ribi::fileio::GetTempFileName()
       << std::rand()
       << std::rand()
       << std::rand()
-      << std::rand();
+      << std::rand()
+      << post;
     if (!IsRegularFile(s.str())) return s.str();
   }
   throw std::runtime_error("Could not find a temporary file name");

@@ -7623,7 +7623,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"ToolPreDickAdvocaTor.htm\">PreDickAdvocaTor</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to predict soccer world championship scores</a>",
+        "  to predict soccer world championship scores",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -7645,7 +7645,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"ToolPrimeExpert.htm\">PrimeExpert</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to determine if a number is prime.</a>",
+        "  to determine if a number is prime.",
         "</p>"
       }
     }
@@ -10758,12 +10758,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  to demonstrate <a href=\"http://warp.povusers.org/FunctionParser\">Warp's FunctionParser class</a>:",
         "</p>",
         "<p>",
-
-        "<p>",
         "  <a href=\"ToolFunctionPlotterVcl.htm\">FunctionPlotter (VCL)</a> is the predecessor of",
         "  <a href=\"ToolFunctionPlotter.htm\">FunctionPlotter</a>.",
-        "</p>",
-
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
@@ -11615,8 +11611,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<ul>",
         "  <li><a href=\"ToolImageRotater.htm\">ImageRotater</a></li>",
-        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a><li>",
-        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a><li>",
+        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a></li>",
+        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -11640,8 +11636,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<ul>",
         "  <li><a href=\"ToolImageRotater.htm\">ImageRotater</a></li>",
-        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a><li>",
-        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a><li>",
+        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a></li>",
+        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<ul>",
@@ -11649,7 +11645,9 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <li><a href=\"ToolImageRotaterClxExe.zip\">Download the 'Image Rotater (CLX edition)' Windows executable (zip)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
-        "<p>And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.</p>",
+        "<p>",
+        "  And, yes, the spelling error is intended: I wanted to Dutchify the name of the program.",
+        "</p>",
       }
     }
   );
@@ -11666,8 +11664,8 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<ul>",
         "  <li><a href=\"ToolImageRotater.htm\">ImageRotater</a></li>",
-        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a><li>",
-        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a><li>",
+        "  <li><a href=\"ToolImageRotaterClx.htm\">ImageRotater (CLX)</a></li>",
+        "  <li><a href=\"ToolImageRotaterVcl.htm\">ImageRotater (VCL)</a></li>",
         "</ul>",
         "<p>&nbsp;</p>",
         "<ul>",

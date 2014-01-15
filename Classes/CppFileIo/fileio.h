@@ -104,7 +104,12 @@ const std::string GetSuperFolder(const std::string& folder);
 ///Obtain the name of a file that does not exist
 ///Will throw a std::runtime_error in the unlikely
 ///case it fails after one thousand times
-const std::string GetTempFileName();
+///The 'post' is a string to be at the filename's end
+///For example:
+/// - GetTempFileName("") -> tmp01234567
+/// - GetTempFileName(".txt") -> tmp01234567.txt
+const std::string GetTempFileName(
+  const std::string& post = "");
 
 ///Obtain the name of a folder that does not exist
 ///Will throw a std::runtime_error in the unlikely

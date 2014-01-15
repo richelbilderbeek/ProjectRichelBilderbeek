@@ -53,14 +53,9 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
 {
   assert(IsTidyInstalled());
 
-  const std::string temp_filename { fileio::GetTempFileName() };
-  const std::string temp_filename_tidy { fileio::GetTempFileName() };
-
-  //Remove previous HTML file
-  {
-    fileio::DeleteFile(temp_filename);
-    assert(!ribi::fileio::IsRegularFile(temp_filename));
-  }
+  const std::string temp_filename { fileio::GetTempFileName(".htm") };
+  const std::string temp_filename_tidy { fileio::GetTempFileName("_tidy.txt") };
+  assert(!ribi::fileio::IsRegularFile(temp_filename));
   //Write HTML to file
   {
     std::ofstream f(temp_filename.c_str());
@@ -93,20 +88,16 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
   }
   const auto v = ribi::fileio::FileToVector(temp_filename_tidy);
 
-  fileio::DeleteFile(temp_filename.c_str());
-  fileio::DeleteFile(temp_filename_tidy.c_str());
 
-  assert(!v.empty());
-  if (v.size() > 1 || !v[0].empty())
+  if (v.size() > 1)
   {
-    TRACE("Errors found by Tidy:");
-    const int sz = v.size();
-    for (int i=0; i!=sz; ++i)
-    {
-      TRACE(v[i]);
-    }
+    TRACE("Errors found by Tidy, check the following files:");
+    TRACE(temp_filename);
+    TRACE(temp_filename_tidy);
     return false;
   }
+  fileio::DeleteFile(temp_filename.c_str());
+  fileio::DeleteFile(temp_filename_tidy.c_str());
   return true;
 }
 #endif
@@ -116,7 +107,6 @@ bool ribi::c2h::IsTidyInstalled()
 {
   const std::string temp_filename_tidy { fileio::GetTempFileName() };
 
-  fileio::DeleteFile(temp_filename_tidy.c_str());
   assert(!ribi::fileio::IsRegularFile(temp_filename_tidy));
 
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
