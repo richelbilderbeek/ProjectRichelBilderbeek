@@ -201,7 +201,7 @@ struct PieceKnight : public Piece
   ///Clone this Piece
   const boost::shared_ptr<Piece> Clone() const;
 
-  ~PieceKnight() {}
+  ~PieceKnight() noexcept {}
   friend void boost::checked_delete<>(PieceKnight *);
   friend struct PieceFactory;
 };

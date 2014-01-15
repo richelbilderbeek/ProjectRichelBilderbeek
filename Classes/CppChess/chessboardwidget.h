@@ -47,7 +47,7 @@ struct BoardWidget : public Chess::ChessWidget
 
   private:
 
-  ~BoardWidget() {}
+  ~BoardWidget() noexcept {}
 
   ///The chessboard
   boost::shared_ptr<Chess::Board> m_board;

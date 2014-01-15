@@ -87,10 +87,11 @@ ribi::QtMultipleChoiceQuestionDialog::QtMultipleChoiceQuestionDialog(
   ui->label_answer->setText(question->GetAnswer().c_str());
 
   const int sz = 7;
-  const std::array<QRadioButton*,sz> buttons
-    = { ui->radio_1, ui->radio_2, ui->radio_3, ui->radio_4, ui->radio_5, ui->radio_6, ui->radio_7 };
+  const std::array<QRadioButton*,sz> buttons {
+    { ui->radio_1, ui->radio_2, ui->radio_3, ui->radio_4, ui->radio_5, ui->radio_6, ui->radio_7 }
+  };
   const std::vector<std::string> options = question->GetOptions();
-  static_assert(sz == buttons.size(),"std::array<T,sz> will have size sz");
+  static_assert(sz == static_cast<int>(buttons.size()),"std::array<T,sz> will have size sz");
   assert(sz >= boost::numeric_cast<int>(options.size()));
   for (int i = 0; i!=sz; ++i)
   {

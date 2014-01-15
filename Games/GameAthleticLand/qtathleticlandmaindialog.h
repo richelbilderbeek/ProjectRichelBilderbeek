@@ -27,7 +27,7 @@ public:
   explicit QtAthleticLandMainDialog(QWidget *parent = 0);
   QtAthleticLandMainDialog(const QtAthleticLandMainDialog&) = delete;
   QtAthleticLandMainDialog& operator=(const QtAthleticLandMainDialog&) = delete;
-  ~QtAthleticLandMainDialog();
+  ~QtAthleticLandMainDialog() noexcept;
 
 private:
   Ui::QtAthleticLandMainDialog *ui;

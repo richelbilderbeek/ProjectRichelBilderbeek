@@ -5,6 +5,7 @@
 
 #include <fstream>
 #include <iostream>
+#include <iterator>
 
 #include <boost/lexical_cast.hpp>
 #include "loopreader.h"

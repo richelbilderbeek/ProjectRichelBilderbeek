@@ -24,6 +24,7 @@ namespace cmap {
 struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
   QtConceptMapWidget(const boost::shared_ptr<QtConceptMap> qtconceptmap);
+  ~QtConceptMapWidget() noexcept {}
 
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;

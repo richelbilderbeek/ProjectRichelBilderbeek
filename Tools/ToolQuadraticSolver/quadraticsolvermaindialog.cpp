@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <iostream>
+#include <iterator>
 #include <sstream>
 
 #include <boost/lexical_cast.hpp>

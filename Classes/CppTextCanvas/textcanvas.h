@@ -30,6 +30,8 @@ struct TextCanvas : public Canvas
     const int height = 1,
     const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen);
 
+  ~TextCanvas() noexcept {}
+
   ///Clears the canvas
   void Clear() noexcept;
 

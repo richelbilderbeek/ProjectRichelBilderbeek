@@ -43,7 +43,7 @@ struct GameWidget : public Chess::ChessWidget
   static void Test() noexcept;
 
   private:
-  ~GameWidget() {}
+  ~GameWidget() noexcept {}
 
   ///The chessboard
   boost::shared_ptr<Chess::Game> m_game;

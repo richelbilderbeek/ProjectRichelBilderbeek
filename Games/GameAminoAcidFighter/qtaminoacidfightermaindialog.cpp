@@ -60,7 +60,7 @@ ribi::aaf::QtAafMainDialog::QtAafMainDialog(QWidget *parent)
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::aaf::QtAafMainDialog::~QtAafMainDialog()
+ribi::aaf::QtAafMainDialog::~QtAafMainDialog() noexcept
 {
   delete ui;
   delete m_sprite;

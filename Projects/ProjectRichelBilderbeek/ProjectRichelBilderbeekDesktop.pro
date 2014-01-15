@@ -196,7 +196,7 @@ include(../../Tools/ToolTestGroupWidget/ToolTestGroupWidgetDesktop.pri)
 include(../../Tools/ToolTestImageCanvas/ToolTestImageCanvasDesktop.pri)
 include(../../Tools/ToolTestLed/ToolTestLedDesktop.pri)
 include(../../Tools/ToolTestMultiApproximator/ToolTestMultiApproximatorDesktop.pri)
-include(../../Tools/ToolTestMultiCanvas/ToolTestDrawCanvasDesktop.pri)
+include(../../Tools/ToolTestMultiCanvas/ToolTestMultiCanvasDesktop.pri)
 include(../../Tools/ToolTestMultipleChoiceQuestion/ToolTestMultipleChoiceQuestionDesktop.pri)
 include(../../Tools/ToolTestNewickVector/ToolTestNewickVectorDesktop.pri)
 include(../../Tools/ToolTestOpenQuestion/ToolTestOpenQuestionDesktop.pri)
@@ -220,7 +220,7 @@ include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcDesktop.pri)
 
-QT += core gui svg
+QT += core gui #svg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 SOURCES += qtmain.cpp

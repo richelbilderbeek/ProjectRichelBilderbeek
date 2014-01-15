@@ -34,6 +34,8 @@ namespace ribi {
 struct SitemapGeneratorMenuDialog : public MenuDialog
 {
   SitemapGeneratorMenuDialog();
+  ~SitemapGeneratorMenuDialog() noexcept {}
+
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;

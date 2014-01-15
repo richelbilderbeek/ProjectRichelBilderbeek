@@ -2,6 +2,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "chesspiecefactory.h"
 
+#include <stdexcept>
+
 #include "chessmove.h"
 #include "chessmovefactory.h"
 #include "chesspiece.h"

@@ -7656,7 +7656,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"ToolQmakeWatcher.htm\">QmakeWatcher</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to show which qmake does with with the makefile it creates.</a>",
+        "  to show which qmake does with with the makefile it creates.",
         "</p>"
       }
     }
@@ -12828,7 +12828,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"ToolSolvePuzzleX.htm\">SolvePuzzleX</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  solve a puzzle given to me by a girl I initially named 'X'.</a>",
+        "  solve a puzzle given to me by a girl I initially named 'X'.",
         "</p>"
       }
     }
@@ -12839,7 +12839,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"ToolStaircaseCardCreator.htm\">StaircaseCardCreator</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to create staircase cards.</a>",
+        "  to create staircase cards.",
         "</p>"
       }
     }
@@ -12850,7 +12850,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       {
         "<p>",
         "  <a href=\"ToolStyleSheetSetter.htm\">StyleSheetSetter</a> is a <a href=\"Tools.htm\">tool</a>",
-        "  to experiment with a Qt application its style sheet.</a>",
+        "  to experiment with a Qt application its style sheet.",
         "</p>"
       }
     }
@@ -12860,7 +12860,9 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolStateObserver",
       {
-        "<p><a href=\"ToolStateObserver.htm\">StateObserver</a> is a <a href=\"Tools.htm\">tool</a> to examine different state observers.</p>",
+        "<p>",
+        "  <a href=\"ToolStateObserver.htm\">StateObserver</a> is a <a href=\"Tools.htm\">tool</a> to examine different state observers.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><a href=\"ToolStateObserver_1_0.png\">View a screenshot of 'StateObserver' (version 1.0)(png)</a></li>",
@@ -12998,8 +13000,10 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   m.push_back(
     { "ToolTestBinaryNewickVector",
       {
-        "<p><a href=\"ToolTestBinaryNewickVector.htm\">TestBinaryNewickVector</a> is a <a href=\"Tools.htm\">tool</a> to test ",
-        "the <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> <a href=\"CppClass.htm\">class</a>.</p>",
+        "<p>",
+        "  <a href=\"ToolTestBinaryNewickVector.htm\">TestBinaryNewickVector</a> is a <a href=\"Tools.htm\">tool</a> to test",
+        "  the <a href=\"CppBinaryNewickVector.htm\">BinaryNewickVector</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
         "<p>&nbsp;</p>",
@@ -13023,7 +13027,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <li><a href=\"ToolTestBinaryNewickVector_1_2.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.2)(png)</a></li>",
         "  <li><a href=\"ToolTestBinaryNewickVector_1_1.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.1)(png)</a></li>",
         "  <li><a href=\"ToolTestBinaryNewickVector_1_0.png\">View a screenshot of 'TestBinaryNewickVector' (version 1.0)(png)</a></li>",
-        "</ul>",
+        "</ul>"
       }
     }
   );

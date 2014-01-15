@@ -1,10 +1,11 @@
 #include "coordinat3d.h"
 
+#include <array>
 #include <cmath>
 #include "xml.h"
 
 ribi::Coordinat3D::Coordinat3D(const double x, const double y, const double z)
-  : m_co( { x,y,z } )
+  : m_co{ { x,y,z } }
 {
 
 }

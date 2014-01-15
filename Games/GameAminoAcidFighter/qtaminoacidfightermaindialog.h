@@ -25,7 +25,7 @@ public:
   explicit QtAafMainDialog(QWidget *parent = 0);
   QtAafMainDialog(const QtAafMainDialog&) = delete;
   QtAafMainDialog& operator=(const QtAafMainDialog&) = delete;
-  ~QtAafMainDialog();
+  ~QtAafMainDialog() noexcept;
 
 private:
   Ui::QtAafMainDialog *ui;

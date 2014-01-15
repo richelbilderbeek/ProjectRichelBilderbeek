@@ -32,7 +32,7 @@ ribi::athl::QtAthleticLandMainDialog::QtAthleticLandMainDialog(QWidget *parent)
 
 }
 
-ribi::athl::QtAthleticLandMainDialog::~QtAthleticLandMainDialog()
+ribi::athl::QtAthleticLandMainDialog::~QtAthleticLandMainDialog() noexcept
 {
   delete ui;
 }

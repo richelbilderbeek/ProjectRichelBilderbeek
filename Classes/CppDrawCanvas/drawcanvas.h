@@ -64,6 +64,8 @@ struct DrawCanvas : public Canvas
   ///Load a DrawCanvas from file
   DrawCanvas(const std::string& filename);
 
+  ~DrawCanvas() noexcept {}
+
   ///Clears the canvas
   void Clear() noexcept;
 

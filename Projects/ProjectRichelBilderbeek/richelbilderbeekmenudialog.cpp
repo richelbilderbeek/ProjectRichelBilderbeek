@@ -146,10 +146,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testchessmenudialog.h"
 #include "testconceptmapmenudialog.h"
 #include "testdialmenudialog.h"
-#include "testdialmenudialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
 #include "testgroupwidgetmenudialog.h"
+#include "testmulticanvasmenudialog.h"
 #include "testmultiplechoicequestionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
@@ -2227,6 +2227,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       }
       break;
       case ProgramType::testMultiApproximator: p.reset(new ToolTestMultiApproximatorMenuDialog); break;
+      case ProgramType::testMultiCanvas: p.reset(new TestMultiCanvasMenuDialog); break;
       case ProgramType::testMultipleChoiceQuestion: p.reset(new TestMultipleChoiceQuestionMenuDialog); break;
       case ProgramType::testMultiVector:
       {

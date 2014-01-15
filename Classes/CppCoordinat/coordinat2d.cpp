@@ -1,11 +1,12 @@
 #include "coordinat2d.h"
 
+#include <array>
 #include <iostream>
 
 #include "xml.h"
 
 ribi::Coordinat2D::Coordinat2D(const double x, const double y)
-  : m_co( { x,y } )
+  : m_co{ { x,y } }
 {
 }
 

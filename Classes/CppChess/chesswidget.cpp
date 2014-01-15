@@ -32,7 +32,7 @@ ribi::Chess::ChessWidget::ChessWidget(const Rect& geometry)
   this->SetGeometry(geometry);
 }
 
-ribi::Chess::ChessWidget::~ChessWidget()
+ribi::Chess::ChessWidget::~ChessWidget() noexcept
 {
   //All done automatically
 }
