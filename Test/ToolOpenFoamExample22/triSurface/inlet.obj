@@ -1,8 +1,0 @@
-# Blender v2.66 (sub 0) OBJ File: 'ToolOpenFoamExample22.blend'
-# www.blender.org
-o shmCopyWriteOut.002_Circle.004
-v 0.416722 0.709331 0.217527
-v 0.376685 0.687931 0.217527
-v 0.505343 0.495381 0.269107
-s off
-f 1 2 3
