@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>BoostUnitsExample13</title>
+  <meta name="description" content="C++ BoostUnitsExample13"/>
+  <meta name="keywords" content="C++ BoostUnitsExample13 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBoostUnitsExample13.htm">BoostUnitsExample13</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppBoostUnitsExample13-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppBoostUnitsExample13/CppBoostUnitsExample13.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppBoostUnitsExample13/CppBoostUnitsExample13.pro" border = "1"><tr><td><code>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
+<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+# }<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppBoostUnitsExample13/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppBoostUnitsExample13/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-variable"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/quantity.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si/length.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si/prefixes.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> OtherApproach();<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::con<a href="CppVersion.htm">version</a>_factor;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::quantity;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::length;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::milli;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> quantity&lt;length&gt; Length;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>This value is read from file<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_in_mm <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> units<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Length x(x_in_mm * milli * meter);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_again_in_m&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorDivide.htm">/</a> meter; <a href="CppComment.htm">//</a>Works<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_again_in_mm {<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;x <a href="CppOperatorDivide.htm">/</a> (milli * meter)<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>}; <a href="CppComment.htm">//</a>Why doesn't <b><a href="CppThis.htm">this</a></b>?<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to Gavin Lambert <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> solution<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_again_in_mm {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x <a href="CppOperatorDivide.htm">/</a> (meter * con<a href="CppVersion.htm">version</a>_factor(milli * meter, meter))<br/>
+&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x_in_mm <a href="CppOperatorEqual.htm">==</a> x_again_in_mm);<br/>
+<br/>
+&nbsp;&nbsp;OtherApproach();<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> millimeter_system<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::scaled_base_unit&lt;<a href="CppUnits.htm">boost::units</a>::si::meter_base_unit, <a href="CppUnits.htm">boost::units</a>::scale&lt;10, <a href="CppUnits.htm">boost::units</a>::<b><a href="CppStatic.htm">static</a></b>_rational&lt;-3<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; millimeter_base_unit;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::<a href="CppMake.htm">make</a>_system&lt;millimeter_base_unit&gt;::type system;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::unit&lt;<a href="CppUnits.htm">boost::units</a>::length_dimension, system&gt; length;<br/>
+<br/>
+&nbsp;&nbsp;BOOST_UNITS_STATIC_CONSTANT(millimeter, length);<br/>
+&nbsp;&nbsp;BOOST_UNITS_STATIC_CONSTANT(millimeters, length);<br/>
+}<br/>
+<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;millimeter_system::length&gt; quantity_millimeter;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::<a href="CppMake.htm">make</a>_system&lt;millimeter_system::millimeter_base_unit&gt;::type mm_system;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppUnits.htm">boost::units</a>::unit&lt;<a href="CppUnits.htm">boost::units</a>::length_dimension,mm_system&gt; millimeter_unit;<br/>
+<br/>
+BOOST_UNITS_STATIC_CONSTANT(millimeters, millimeter_unit);<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> OtherApproach()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::quantity;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::length;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::milli;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> quantity&lt;length&gt; Length;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>This value is read from file<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_in_mm <a href="CppOperatorAssign.htm">=</a> 1.0;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> units<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Length x(x_in_mm * milli * meter);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> quantity&lt;millimeter_unit&gt; LengthInMm;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> millimeter_system::millimeter;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> millimeter_system::millimeters;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Thanks to Gavin Lambert <b><a href="CppFor.htm">for</a></b> <b><a href="CppThis.htm">this</a></b> solution<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x_again_in_mm <a href="CppOperatorAssign.htm">=</a> LengthInMm(x) <a href="CppOperatorDivide.htm">/</a> millimeters;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x_in_mm <a href="CppOperatorEqual.htm">==</a> x_again_in_mm);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
