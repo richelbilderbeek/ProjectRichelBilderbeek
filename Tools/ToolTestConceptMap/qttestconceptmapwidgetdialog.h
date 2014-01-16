@@ -29,9 +29,13 @@ public:
   QtTestConceptMapWidgetDialog& operator=(const QtTestConceptMapWidgetDialog&) = delete;
   ~QtTestConceptMapWidgetDialog() noexcept;
 
+  int GetNumberOfButtons() const noexcept { return static_cast<int>(m_buttons.size()); }
+
 protected:
-  void mouseMoveEvent(QMouseEvent *);
   void keyPressEvent(QKeyEvent *);
+  void mouseDoubleClickEvent(QMouseEvent *);
+  void mouseMoveEvent(QMouseEvent *);
+  void mousePressEvent(QMouseEvent *);
 
 private slots:
   ///Called when user clicks a button
@@ -44,9 +48,9 @@ private:
   Ui::QtTestConceptMapWidgetDialog *ui;
 
   std::vector<QPushButton *> m_buttons;
-  const std::vector<boost::shared_ptr<QtConceptMapWidget>> m_qtwidgets;
+  const boost::shared_ptr<QtConceptMapWidget> m_qtwidget;
 
-  static const std::vector<boost::shared_ptr<QtConceptMapWidget>> CreateWidgets() noexcept;
+  static const boost::shared_ptr<QtConceptMapWidget> CreateWidget() noexcept;
 
   ///Click the ith button
   void DoClick(const int i);

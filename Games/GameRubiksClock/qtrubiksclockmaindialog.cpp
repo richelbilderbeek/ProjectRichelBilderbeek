@@ -44,14 +44,14 @@ ribi::QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
     const int x = (std::rand() >> 4);
     switch (x % 8)
     {
-      case 0: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::topLeft); break;
-      case 1: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::topRight); break;
-      case 2: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::bottomLeft); break;
-      case 3: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::bottomRight); break;
-      case 4: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::topLeft,(x >> 4) % 11); break;
-      case 5: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::topRight,(x >> 4) % 11); break;
-      case 6: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::bottomLeft,(x >> 4) % 11); break;
-      case 7: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::bottomRight,(x >> 4) % 11); break;
+      case 0: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::topLeft); break;
+      case 1: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::topRight); break;
+      case 2: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::bottomLeft); break;
+      case 3: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::bottomRight); break;
+      case 4: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::topLeft,(x >> 4) % 11); break;
+      case 5: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::topRight,(x >> 4) % 11); break;
+      case 6: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::bottomLeft,(x >> 4) % 11); break;
+      case 7: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::bottomRight,(x >> 4) % 11); break;
     }
   }
 }

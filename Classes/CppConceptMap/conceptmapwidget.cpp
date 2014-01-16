@@ -23,8 +23,8 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     m_signal_set_focus_node{},
     m_conceptmap(conceptmap),
     m_focus{nullptr},
-    m_font_height(12),
-    m_font_width(6),
+    m_font_height(18),
+    m_font_width(12),
     m_undo{}
 {
   #ifndef NDEBUG
@@ -93,10 +93,13 @@ const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(c
   if (!this->GetConceptMap()) { return boost::shared_ptr<const Node>(); }
   for (const boost::shared_ptr<const Node> node: this->GetConceptMap()->GetNodes())
   {
-    const double left = node->GetX();
-    const double top  = node->GetY();
-    const double right = left + (m_font_width * node->GetConcept()->GetName().size());
-    const double bottom  = node->GetY() + m_font_height;
+    const double width  = (m_font_width * node->GetConcept()->GetName().size());
+    const double height = m_font_height;
+
+    const double left   = node->GetX() - (0.5 * width);
+    const double top    = node->GetY() - (0.5 * height);
+    const double right  = node->GetX() + (0.5 * width);
+    const double bottom = node->GetY() + (0.5 * height);
     if (x >= left && x <= right && y >= top && y <= bottom) return node;
   }
   return boost::shared_ptr<const Node>();

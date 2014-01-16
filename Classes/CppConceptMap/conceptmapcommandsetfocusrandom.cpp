@@ -24,8 +24,10 @@ void ribi::cmap::CommandSetFocusRandom::DoCommandSpecific(Widget * const widget)
   //Transfer focus to this Node
   m_widget = widget;
   m_widget->m_focus = widget->GetRandomNode().get();
+  assert(m_widget->m_focus);
 
-  m_widget->m_signal_concept_map_changed();
+  m_widget->m_signal_set_focus_node(m_widget->m_focus);
+  //m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);
   assert(widget);
@@ -39,7 +41,9 @@ void ribi::cmap::CommandSetFocusRandom::Undo() noexcept
 
   //Lose focus to this Node
   m_widget->m_focus = nullptr;
-  m_widget->m_signal_concept_map_changed();
+
+  m_widget->m_signal_set_focus_node(m_widget->m_focus);
+  //m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);
   assert(!m_widget->m_focus || m_widget->m_focus); //Might have restored previous focus

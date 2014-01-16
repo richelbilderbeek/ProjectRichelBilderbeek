@@ -20,7 +20,9 @@ namespace cmap {
 ///QtConceptMapWidget implements a higher-level interface of
 ///QtConceptMap, driven by Commands
 ///
-///
+///Sure, you can click it and interact with it by mouse and keyboard:
+///these interactions will be converted to commands, so behind the scenes
+///the concept map is not interacted with directly
 struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
 {
   QtConceptMapWidget(const boost::shared_ptr<QtConceptMap> qtconceptmap);

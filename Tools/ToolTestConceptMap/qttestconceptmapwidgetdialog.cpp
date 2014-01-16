@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <QPushButton>
 #include <QMouseEvent>
+
 #include "conceptmapfactory.h"
 
 #include "conceptmapcommand.h"
@@ -24,7 +25,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestConceptMapWidgetDialog),
     m_buttons{},
-    m_qtwidgets(CreateWidgets())
+    m_qtwidget(CreateWidget())
 {
   #ifndef NDEBUG
   Test();
@@ -32,20 +33,14 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
   ui->setupUi(this);
   //Add the three conceptmap widgets
 
-  const std::vector<QFrame *> frames {
-    ui->frame_display, ui->frame_edit, ui->frame_rate
-  };
-  assert(m_qtwidgets.size() == frames.size());
-  assert(m_qtwidgets.size() == 3);
-  for (int i=0; i!=3; ++i)
   {
-    QFrame * const frame = frames[i];
+    QFrame * const frame = ui->frame_edit;
     assert(frame);
     assert(!frame->layout());
     QLayout * const layout = new QGridLayout;
     frame->setLayout(layout);
 
-    const boost::shared_ptr<QtConceptMapWidget> widget = m_qtwidgets[i];
+    const boost::shared_ptr<QtConceptMapWidget> widget = m_qtwidget;
     assert(widget);
     layout->addWidget(widget.get());
 
@@ -80,10 +75,11 @@ ribi::cmap::QtTestConceptMapWidgetDialog::~QtTestConceptMapWidgetDialog()
   delete ui;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
-  ribi::cmap::QtTestConceptMapWidgetDialog::CreateWidgets() noexcept
+const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
+  ribi::cmap::QtTestConceptMapWidgetDialog::CreateWidget() noexcept
 {
   //Each Widget must have its own ConceptMap
+  /*
   std::vector<boost::shared_ptr<QtConceptMapWidget>> v;
   //Display
   {
@@ -95,6 +91,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
       new QtConceptMapWidget(c));
     v.push_back(w);
   }
+  */
   //Edit
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
@@ -103,8 +100,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
     assert(c);
     const boost::shared_ptr<QtConceptMapWidget> w(
       new QtConceptMapWidget(c));
-    v.push_back(w);
+    return w;
+    //v.push_back(w);
   }
+  /*
   //Rate
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
@@ -117,16 +116,19 @@ const std::vector<boost::shared_ptr<ribi::cmap::QtConceptMapWidget>>
   }
   assert(v.size() == 3 && "There are three display strategies of QtConceptMap");
   return v;
+  */
 }
 
 
 void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
 {
+  assert(button_index >= 0);
+  assert(button_index < GetNumberOfButtons());
+  assert(button_index < static_cast<int>(m_buttons.size()));
   const QPushButton * const button =  m_buttons[button_index];
   const std::string text = button->text().toStdString();
-  for (boost::shared_ptr<QtConceptMapWidget> qtwidget: m_qtwidgets)
+
   {
-    //For each widget, create a fresh command
     const std::vector<boost::shared_ptr<Command>> commands(CommandFactory::CreateTestCommands());
     const auto command_iter = std::find_if(commands.begin(),commands.end(),
       [text](boost::shared_ptr<Command> command)
@@ -139,15 +141,14 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
     assert(*command_iter);
     TRACE((*command_iter)->ToStr());
 
-    assert(qtwidget);
-    if (qtwidget->CanDoCommand(*command_iter))
+    assert(m_qtwidget);
+    if (m_qtwidget->CanDoCommand(*command_iter))
     {
-      TRACE("Can do command");
-      qtwidget->DoCommand(*command_iter);
+      m_qtwidget->DoCommand(*command_iter);
     }
     else
     {
-      TRACE("Cannot do command");
+      //Nothing
     }
   }
 }
@@ -155,12 +156,22 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
 void ribi::cmap::QtTestConceptMapWidgetDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
-  for (auto widget: m_qtwidgets) { widget->keyPressEvent(e); }
+  m_qtwidget->keyPressEvent(e);
+}
+
+void ribi::cmap::QtTestConceptMapWidgetDialog::mouseDoubleClickEvent(QMouseEvent * e)
+{
+  m_qtwidget->mouseDoubleClickEvent(e);
 }
 
 void ribi::cmap::QtTestConceptMapWidgetDialog::mouseMoveEvent(QMouseEvent * e)
 {
-  for (auto widget: m_qtwidgets) { widget->mouseMoveEvent(e); }
+  m_qtwidget->mouseMoveEvent(e);
+}
+
+void ribi::cmap::QtTestConceptMapWidgetDialog::mousePressEvent(QMouseEvent * e)
+{
+  m_qtwidget->mousePressEvent(e);
 }
 
 void ribi::cmap::QtTestConceptMapWidgetDialog::OnClick()
@@ -192,46 +203,39 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   TRACE("Starting ribi::cmap::QtTestConceptMapWidgetDialog::Test");
   TRACE("Clicking once");
   {
-    QtTestConceptMapWidgetDialog d;
-    TRACE("Clicking button 0");
-    d.DoClick(0);
-  }
-  {
-    QtTestConceptMapWidgetDialog d;
-    TRACE("Clicking button 1");
-    d.DoClick(1);
+    const QtTestConceptMapWidgetDialog tmp;
+    const int j = tmp.GetNumberOfButtons();
+    for (int i=0; i!=j; ++i)
+    {
+      QtTestConceptMapWidgetDialog d;
+      d.DoClick(i);
+    }
   }
   TRACE("Clicking twice");
   {
-    QtTestConceptMapWidgetDialog d;
-    d.DoClick(0);
-    d.DoClick(0);
-  }
-  {
-    QtTestConceptMapWidgetDialog d;
-    d.DoClick(0);
-    d.DoClick(1);
-  }
-  {
-    QtTestConceptMapWidgetDialog d;
-    d.DoClick(1);
-    d.DoClick(0);
-  }
-  {
-    QtTestConceptMapWidgetDialog d;
-    d.DoClick(1);
-    d.DoClick(1);
+    const QtTestConceptMapWidgetDialog tmp;
+    const int sz = tmp.GetNumberOfButtons();
+    for (int i=0; i!=sz; ++i)
+    {
+      for (int j=0; j!=sz; ++j)
+      {
+        QtTestConceptMapWidgetDialog d;
+        d.DoClick(i);
+        d.DoClick(j);
+      }
+    }
   }
   TRACE("Random clicking");
+  /*
   {
     QtTestConceptMapWidgetDialog d;
-    assert(d.m_buttons.size() >= 2);
-    const int n_buttons = static_cast<int>(d.m_buttons.size());
+    const int n_buttons = d.GetNumberOfButtons();
     for (int i=0; i!=100; ++i)
     {
       d.DoClick(std::rand() % n_buttons);
     }
   }
+  */
   TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
 }
 #endif
