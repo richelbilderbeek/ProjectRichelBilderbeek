@@ -1,6 +1,7 @@
 #include "qtconceptmapwidget.h"
 
 #include <cassert>
+#include <stdexcept>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -66,6 +67,7 @@ void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept
 void ribi::cmap::QtConceptMapWidget::mouseDoubleClickEvent(QMouseEvent * e) noexcept
 {
   TRACE(e);
+  if (!e) throw std::exception(); //To satisfy the compiler
 }
 
 void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e) noexcept

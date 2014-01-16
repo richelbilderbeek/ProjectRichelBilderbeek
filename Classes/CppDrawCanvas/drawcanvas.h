@@ -127,8 +127,6 @@ struct DrawCanvas : public Canvas
   ///Obtain the width of the canvas is characters
   int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
 
-  void Load(const std::vector<std::string>& v);
-
   ///Save to file
   void Save(const std::string& filename) const noexcept;
 

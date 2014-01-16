@@ -77,6 +77,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestdrawcanvasmenudialog.h"
 #include "qttestfunctionparsermenudialog.h"
 #include "qttestimagecanvasmenudialog.h"
+#include "qttestmulticanvasmenudialog.h"
 #include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestopenquestionmenudialog.h"
 #include "qttestpylosmenudialog.h"
@@ -265,6 +266,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testLed: p = new QtTestLedMainDialog; break;
     case ProgramType::testManyDigitNewick: break;
     case ProgramType::testMultiApproximator: p = new QtToolTestMultiApproximatorMenuDialog; break;
+    case ProgramType::testMultiCanvas: p = new QtTestMultiCanvasMenuDialog; break;
     case ProgramType::testMultipleChoiceQuestion: p = new QtTestMultipleChoiceQuestionMenuDialog; break;
     case ProgramType::testMultiVector: break;
     case ProgramType::testNdsmake: break;

@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/">
+    <qresource prefix="/GameBeerWanter/images">
         <file>PicR.png</file>
         <file>PicBeer.png</file>
         <file>PicStart.png</file>

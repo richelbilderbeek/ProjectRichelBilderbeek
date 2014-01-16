@@ -50,10 +50,6 @@ struct RubiksClockDial : public Widget
     const unsigned char green,
     const unsigned char blue);
 
-  ///Obtain a read-and-write pointert to the Dial
-  //Dial * GetDial() { return m_dial.get(); }
-
-  ///Obtain a read-only pointert to the Dial
   const Dial * GetDial() const noexcept { return m_dial.get(); }
 
   int GetTime() const noexcept { return m_time % 12; }

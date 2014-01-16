@@ -27,8 +27,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#include <QFile>
+
 #include "beerwantermaindialog.h"
+#include "fileio.h"
+#include "imagecanvas.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -39,11 +46,36 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   if (argc == 1)
   {
     std::cout << GetHelp() << '\n';
-    return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+
+  //Display a beer
+  {
+    const std::string filename { fileio::GetTempFileName(".png") };
+    QFile qfile(BeerWanterMainDialog::GetResourceFilename().c_str());
+    qfile.copy(filename.c_str());
+    assert(fileio::IsRegularFile(filename)
+      && "BeerWanter resource must exist");
+
+    const int n_cols = 78;
+    const boost::shared_ptr<ImageCanvas> canvas {
+      new ImageCanvas(
+        filename,
+        n_cols
+      )
+    };
+
+    fileio::DeleteFile(filename);
+    std::cout << (*canvas) << std::endl;
+  }
+
+  if (argc == 1)
+  {
+    std::cout
+      << std::endl
+      << GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+      << std::endl;
+  }
+
   return 0;
 }
 
@@ -53,12 +85,13 @@ const ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "BeerWanter",
     "a simple game",
-    "the 13th of July 2013",
+    "the 16th of January 2014",
     "2005-2014",
     "http://www.richelbilderbeek.nl/GameBeerWanter.htm",
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+  a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
   return a;
 }
 
@@ -68,10 +101,10 @@ const ribi::Help ribi::BeerWanterMenuDialog::GetHelp() const noexcept
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('s',"--show","show a beer")
     },
     {
-
+      this->GetAbout().GetFileTitle() + " --show"
     }
   );
 }
@@ -87,7 +120,7 @@ const boost::shared_ptr<const ribi::Program> ribi::BeerWanterMenuDialog::GetProg
 
 const std::string ribi::BeerWanterMenuDialog::GetVersion() const noexcept
 {
-  return "7.1";
+  return "7.2";
 }
 
 const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() const noexcept
@@ -103,7 +136,8 @@ const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() c
     "2010-12-19: version 6.0: seperated project files for NDS, Ubuntu and Windows development. Preparation for seperating game logic from GUI",
     "2010-12-23: version 6.1: added ClickWilBeSuccess method, fixed bug in BeerWanterMainDialog::ShakeWindow",
     "2012-03-06: version 7.0: added menu, conformized project architecture for ProjectRichelBilderbeek",
-    "2013-07-13: version 7.1: added libcvautomation script to beat the game, improved desktop menu and about screen"
+    "2013-07-13: version 7.1: added libcvautomation script to beat the game, improved desktop menu and about screen",
+    "2014-01-16: version 7.2: added command line command"
   };
 }
 
@@ -116,21 +150,33 @@ void ribi::BeerWanterMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::BeerWanterMenuDialog::Test");
-  const int screen_width = 640;
-  const int screen_height = 400;
-  const int sprite_width = 32;
-  const int sprite_height = 48;
-  const int window_width = 320;
-  const int window_height = 200;
+  //Main dialog
+  {
+    const int screen_width = 640;
+    const int screen_height = 400;
+    const int sprite_width = 32;
+    const int sprite_height = 48;
+    const int window_width = 320;
+    const int window_height = 200;
 
-  BeerWanterMainDialog(
-    screen_width,
-    screen_height,
-    sprite_width,
-    sprite_height,
-    window_width,
-    window_height
-  );
+    BeerWanterMainDialog(
+      screen_width,
+      screen_height,
+      sprite_width,
+      sprite_height,
+      window_width,
+      window_height
+    );
+  }
+  //Resources
+  {
+    const std::string filename { fileio::GetTempFileName(".png") };
+    QFile qfile(BeerWanterMainDialog::GetResourceFilename().c_str());
+    qfile.copy(filename.c_str());
+    assert(fileio::IsRegularFile(filename)
+      && "BeerWanter resource must exist");
+    fileio::DeleteFile(filename);
+  }
   TRACE("Finished ribi::BeerWanterMenuDialog::Test successfully");
 }
 #endif

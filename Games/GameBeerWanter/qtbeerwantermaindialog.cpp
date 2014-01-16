@@ -31,8 +31,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent),
+ribi::QtBeerWanterMainDialog::QtBeerWanterMainDialog(QWidget *parent)
+  : QtHideAndShowDialog(parent),
     ui(new Ui::QtBeerWanterMainDialog),
     m_widget(new QtBeerWanterWidget)
 {

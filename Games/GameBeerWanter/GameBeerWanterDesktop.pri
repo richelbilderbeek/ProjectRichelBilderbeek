@@ -14,6 +14,7 @@ FORMS += \
     ../../Games/GameBeerWanter/qtbeerwantermenudialog.ui \
     ../../Games/GameBeerWanter/qtbeerwantermaindialog.ui
 
-RESOURCES += \
-    ../../Games/GameBeerWanter/beerwanter.qrc
+# Moved to GameBeerWanterConsole
+#RESOURCES += \
+#    ../../Games/GameBeerWanter/GameBeerWanter.qrc
 

@@ -64,9 +64,9 @@ void ribi::cmap::QtDisplayConceptMap::AddEdge(
   assert(edge);
   const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(edge->GetConcept()));
   assert(qtconcept);
-  QtNode * const from = FindQtNode(edge->GetFrom());
+  QtNode * const from = FindQtNode(edge->GetFrom().get());
   assert(from);
-  QtNode * const to   = FindQtNode(edge->GetTo());
+  QtNode * const to   = FindQtNode(edge->GetTo().get());
   assert(to);
   assert(from != to);
   QtEdge * const qtedge = new QtEdge(

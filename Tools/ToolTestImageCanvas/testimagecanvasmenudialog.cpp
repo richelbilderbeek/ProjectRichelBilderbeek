@@ -1,11 +1,13 @@
 #include "testimagecanvasmenudialog.h"
 
 #include <cassert>
+#include <fstream>
 #include <iostream>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lexical_cast.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <QFile>
 

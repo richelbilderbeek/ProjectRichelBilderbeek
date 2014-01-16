@@ -30,6 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/split.hpp>
 #include <boost/scoped_ptr.hpp>
 
+#include "imagecanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -310,9 +311,9 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
 
 const std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
 {
-  std::vector<std::string> v;
-  v.push_back(this->GetQuestion());
-  v.push_back("");
+  std::vector<std::string> question_lines;
+  question_lines.push_back(this->GetQuestion());
+  question_lines.push_back("");
   const std::vector<std::string> w { this->GetOptions() };
 
   int i=0;
@@ -320,10 +321,39 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
   {
     std::stringstream t;
     t << '[' << i << "] " << s;
-    v.push_back(t.str());
+    question_lines.push_back(t.str());
     ++i;
   }
-  return v;
+
+  const int screen_rows { 23 };
+  const int question_rows { static_cast<int>(question_lines.size()) };
+  const int n_rows { screen_rows - question_rows };
+
+  std::vector<std::string> lines;
+
+  if (!GetFilename().empty())
+  {
+    int n_cols = 78;
+
+    while (1)
+    {
+      const boost::shared_ptr<ImageCanvas> canvas {
+        new ImageCanvas(GetFilename(),n_cols)
+      };
+      if (canvas->GetHeight() > n_rows)
+      {
+        --n_cols;
+      }
+      else
+      {
+        lines = canvas->ToStrings();
+        break;
+      }
+      if (n_cols == 5) break;
+    }
+  }
+  std::copy(question_lines.begin(),question_lines.end(),std::back_inserter(lines));
+  return lines;
 }
 
 const std::string ribi::MultipleChoiceQuestion::ToStr() const noexcept

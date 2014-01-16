@@ -66,6 +66,10 @@ const std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
   //the calculation would be more complicated due to a too trivial value of charWidth
   assert(width >= 5);
 
+  std::vector<std::string> v;
+  if (image.empty()) return v;
+
+  assert(!image.empty());
 
   //Maxy is in proportion with the bitmap
   const int image_width  = image[0].size();
@@ -82,8 +86,6 @@ const std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
     / static_cast<double>(maxy);
   assert(dX > 0.0);
   assert(dY > 0.0);
-
-  std::vector<std::string> v;
 
   for (int y=0; y!=maxy; ++y)
   {
@@ -135,9 +137,13 @@ const std::vector<std::vector<double> >
 {
   const int maxy = i->height();
   const int maxx = i->width();
-  const int n_bytes = i->bytesPerLine() / maxx;
 
   std::vector<std::vector<double> > v;
+
+  if (maxx == 0) return v;
+  assert(maxx > 0);
+  const int n_bytes = i->bytesPerLine() / maxx;
+
   for (int y=0; y!=maxy; ++y)
   {
     v.push_back(std::vector<double>());

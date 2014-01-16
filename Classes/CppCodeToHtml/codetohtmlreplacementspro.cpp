@@ -116,6 +116,8 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "ToolFilterOperationerVcl","<a href=\"T$oolF$ilterO$perationerVcl.htm\">T$oolF$ilterO$perationerV$cl</a>" },
     //23
     { "-lboost_program_options","<a href=\"C$ppP$rogram_o$ptions.htm\">-l$b$oost_p$rogram_o$ptions</a>" },
+    { "-Wunused-local-typedefs","$-$W$u$nu$sed-l$ocal-t$yped$efs" },
+
     { "CppQtConnectThreeWidget","<a href=\"C$ppQ$tC$onnectT$hreeW$idget.htm\">C$ppQ$tC$onnectT$hreeW$idget</a>" },
     { "CppMysteryMachineWidget","<a href=\"C$ppM$ysteryM$achin$eW$idget.htm\">C$ppM$ysteryM$achin$eW$idget</a>" },
     { "CppQtOpenQuestionDialog","<a href=\"C$ppQ$tO$penQ$uestionD$ialog.htm\">C$ppQ$tO$penQ$uestionD$ialog</a>" },
@@ -262,6 +264,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "wtshapegroupwidget","<a href=\"C$ppW$tS$hapeG$roupW$idget.htm\">w$ts$hapeg$roupw$idget</a>" },
   //17
     { "-lboost_date_time","<a href=\"C$ppD$ate_T$ime.htm\">-l$b$oost_d$ate_t$ime</a>" },
+    { "-Wunused-variable","$-$W$u$nu$s$ed-v$ari$ab$le" },
     { "CppChessResources","<a href=\"C$ppC$hessR$esources.htm\">C$ppC$hessR$esources</a>" },
     { "CppFuzzy_equal_to","<a href=\"C$ppF$uzzy_e$qual_t$o.htm\">C$ppF$uzzy_e$qual_t$o</a>" },
     { "CppQuestionDialog","<a href=\"C$ppQ$tQ$uestionD$ialog.htm\">C$ppQ$tQ$uestionD$ialog</a>" },

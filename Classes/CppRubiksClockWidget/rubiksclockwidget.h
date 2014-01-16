@@ -45,10 +45,10 @@ struct RubiksClockWidget : public Widget
     const int x = 0,
     const int y = 0,
     const int width = 192,
-    const int height = 192);
+    const int height = 192) noexcept;
 
   ///Click on the RubiksClock by the left mouse button or another
-  void Click(const int x, const int y,const bool button_left);
+  void Click(const int x, const int y,const bool button_left) noexcept;
 
   ///Flip the Rubik's Clock and display the other side
   void Flip() noexcept;
@@ -83,7 +83,7 @@ struct RubiksClockWidget : public Widget
   bool m_display_front;
 
   ///Respond to a change in geometry
-  void OnResize();
+  void OnResize() noexcept;
 
   friend std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept;
 };

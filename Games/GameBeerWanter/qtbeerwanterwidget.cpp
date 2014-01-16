@@ -52,7 +52,7 @@ ribi::QtBeerWanterWidget::QtBeerWanterWidget(QWidget *parent)
     ),
     m_debug_text{},
     m_dialog{},
-    m_sprite(new QPixmap(":/PicBeer.png")),
+    m_sprite(new QPixmap(BeerWanterMainDialog::GetResourceFilename().c_str())),
     m_timer(new QTimer)
 {
   assert(!m_sprite.get()->isNull());

@@ -46,7 +46,7 @@ ribi::RubiksClockWidget::RubiksClockWidget(
   const int x,
   const int y,
   const int width,
-  const int height)
+  const int height) noexcept
   : m_signal_widget_flipped{},
     m_clock{new RubiksClock},
     m_display_front{true}
@@ -59,7 +59,7 @@ ribi::RubiksClockWidget::RubiksClockWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_left)
+void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_left) noexcept
 {
   RubiksClock::Times& times = (m_display_front ? m_clock->GetFrontTimes() : m_clock->GetBackTimes());
   RubiksClock::Pegs& pegs = m_clock->GetFrontPegs();
@@ -74,16 +74,16 @@ void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_le
         {
           this->m_clock->TurnWheel(
             i
-            ? (j ? RubiksClock::bottomRight : RubiksClock::topRight)
-            : (j ? RubiksClock::bottomLeft : RubiksClock::topLeft),
+            ? (j ? RubiksClock::Side::bottomRight : RubiksClock::Side::topRight)
+            : (j ? RubiksClock::Side::bottomLeft : RubiksClock::Side::topLeft),
             button_left ? 1 : -1);
         }
         else
         {
           this->m_clock->TurnWheel(
             i
-            ? (j ? RubiksClock::bottomLeft : RubiksClock::topLeft)
-            : (j ? RubiksClock::bottomRight : RubiksClock::topRight),
+            ? (j ? RubiksClock::Side::bottomLeft : RubiksClock::Side::topLeft)
+            : (j ? RubiksClock::Side::bottomRight : RubiksClock::Side::topRight),
             button_left ? 1 : -1);
         }
       }
@@ -91,8 +91,8 @@ void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_le
       {
         m_clock->TogglePeg(
           i
-          ? (j ? RubiksClock::bottomRight : RubiksClock::topRight)
-          : (j ? RubiksClock::bottomLeft : RubiksClock::topLeft));
+          ? (j ? RubiksClock::Side::bottomRight : RubiksClock::Side::topRight)
+          : (j ? RubiksClock::Side::bottomLeft : RubiksClock::Side::topLeft));
       }
     }
   }
@@ -106,7 +106,7 @@ void ribi::RubiksClockWidget::Flip() noexcept
 
 const std::string ribi::RubiksClockWidget::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory() noexcept
@@ -114,11 +114,12 @@ const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory() noex
   return {
     "2011-09-01: Version 1.0: initial version",
     "2011-09-09: Version 1.1: use of geometries",
-    "2011-09-15: Version 1.2: allow flipping the clock"
+    "2011-09-15: Version 1.2: allow flipping the clock",
+    "2014-01-16: Version 1.3: added noexcept and enum class"
   };
 }
 
-void ribi::RubiksClockWidget::OnResize()
+void ribi::RubiksClockWidget::OnResize() noexcept
 {
   m_clock->SetGeometry(this->GetGeometry());
 }

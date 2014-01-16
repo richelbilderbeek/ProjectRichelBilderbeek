@@ -46,6 +46,7 @@ struct BeerWanterMainDialog
   int GetCursorX() const { return m_cursor_x; }
   int GetCursorY() const { return m_cursor_y; }
   int GetLevel() const { return m_level; }
+  static const std::string GetResourceFilename() noexcept { return ":/GameBeerWanter/images/PicBeer.png"; }
   int GetSpriteX() const { return m_sprite_x; }
   int GetSpriteY() const { return m_sprite_y; }
   int GetSpriteHeight() const { return m_sprite_height; }

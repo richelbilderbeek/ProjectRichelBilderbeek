@@ -92,7 +92,7 @@ protected:
     const QtNode* const to) const;
 
   ///Find the QtNode containing the Node
-  QtNode * FindQtNode(const boost::shared_ptr<Node> node) const { return FindQtNode(node.get()); }
+  //QtNode * FindQtNode(boost::shared_ptr<Node> node) const { return FindQtNode(node.get()); }
   QtNode * FindQtNode(Node * const node) const;
 
   ///Obtain the center node

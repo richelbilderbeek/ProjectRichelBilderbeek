@@ -32,6 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/algorithm/string/split.hpp>
 #include <boost/scoped_ptr.hpp>
 
+#include "imagecanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -290,7 +291,32 @@ void ribi::OpenQuestion::Test() noexcept
 const std::vector<std::string> ribi::OpenQuestion::ToLines() const
 {
   std::vector<std::string> v;
-  v.push_back(this->GetQuestion());
+
+  const int screen_rows { 23 };
+  const int question_rows { 1 };
+  const int n_rows { screen_rows - question_rows };
+  if (!GetFilename().empty())
+  {
+    int n_cols = 78;
+
+    while (1)
+    {
+      const boost::shared_ptr<ImageCanvas> canvas {
+        new ImageCanvas(GetFilename(),n_cols)
+      };
+      if (canvas->GetHeight() > n_rows)
+      {
+        --n_cols;
+      }
+      else
+      {
+        v = canvas->ToStrings();
+        break;
+      }
+      if (n_cols == 5) break;
+    }
+  }
+  v.push_back(this->GetQuestion()); //The one question_row
   return v;
 }
 

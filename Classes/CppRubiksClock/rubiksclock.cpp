@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RubiksClock::Times::Times(const bool is_front)
+ribi::RubiksClock::Times::Times(const bool is_front) noexcept
 {
   for (int y=0; y!=3; ++y)
   {
@@ -53,7 +53,7 @@ ribi::RubiksClock::Times::Times(const bool is_front)
   }
 }
 
-bool ribi::operator==(const ribi::RubiksClock::Times& lhs, const ribi::RubiksClock::Times& rhs)
+bool ribi::operator==(const ribi::RubiksClock::Times& lhs, const ribi::RubiksClock::Times& rhs) noexcept
 {
   for (int y=0; y!=3; ++y)
   {
@@ -66,7 +66,7 @@ bool ribi::operator==(const ribi::RubiksClock::Times& lhs, const ribi::RubiksClo
   return true;
 }
 
-ribi::RubiksClock::Pegs::Pegs()
+ribi::RubiksClock::Pegs::Pegs() noexcept
 {
   for (int y=0; y!=2; ++y)
   {
@@ -77,7 +77,7 @@ ribi::RubiksClock::Pegs::Pegs()
   }
 }
 
-bool operator==(const ribi::RubiksClock::Pegs& lhs, const ribi::RubiksClock::Pegs& rhs)
+bool operator==(const ribi::RubiksClock::Pegs& lhs, const ribi::RubiksClock::Pegs& rhs) noexcept
 {
   for (int y=0; y!=2; ++y)
   {
@@ -89,7 +89,7 @@ bool operator==(const ribi::RubiksClock::Pegs& lhs, const ribi::RubiksClock::Peg
   return true;
 }
 
-ribi::RubiksClock::Pegs ribi::CreatePegsFromIndex(const int index)
+ribi::RubiksClock::Pegs ribi::CreatePegsFromIndex(const int index) noexcept
 {
   //Index 0: (p = pressed, u = unpressed)
   // u u
@@ -150,7 +150,7 @@ ribi::RubiksClock::Pegs ribi::CreatePegsFromIndex(const int index)
 
 }
 
-ribi::RubiksClock::RubiksClock()
+ribi::RubiksClock::RubiksClock() noexcept
   : m_signal_clock_changed{},
     mFront{Times{true}},
     mBack{Times{false}},
@@ -159,7 +159,7 @@ ribi::RubiksClock::RubiksClock()
   Check();
 }
 
-void ribi::RubiksClock::SetGeometry(const Rect& r)
+void ribi::RubiksClock::SetGeometry(const Rect& r) noexcept
 {
   const int left = r.GetX();
   const int top = r.GetY();
@@ -205,22 +205,22 @@ void ribi::RubiksClock::SetGeometry(const Rect& r)
 
 }
 
-void ribi::RubiksClock::TogglePeg(const Side side)
+void ribi::RubiksClock::TogglePeg(const Side side) noexcept
 {
-  const int x = (side == topLeft || side == bottomLeft ? 0 : 1);
-  const int y = (side == topLeft || side == topRight ? 0 : 1);
+  const int x = (side == Side::topLeft || side == Side::bottomLeft ? 0 : 1);
+  const int y = (side == Side::topLeft || side == Side::topRight ? 0 : 1);
   mPegs.pegs[x][y]->GetToggleButton()->Toggle();
   m_signal_clock_changed();
 }
 
-void ribi::RubiksClock::TurnWheel(const Side side, const int nSteps)
+void ribi::RubiksClock::TurnWheel(const Side side, const int nSteps) noexcept
 {
   switch (side)
   {
-    case topLeft: TurnWheelTopLeft(nSteps); break;
-    case topRight: TurnWheelTopRight(nSteps); break;
-    case bottomLeft: TurnWheelBottomLeft(nSteps); break;
-    case bottomRight: TurnWheelBottomRight(nSteps); break;
+    case Side::topLeft: TurnWheelTopLeft(nSteps); break;
+    case Side::topRight: TurnWheelTopRight(nSteps); break;
+    case Side::bottomLeft: TurnWheelBottomLeft(nSteps); break;
+    case Side::bottomRight: TurnWheelBottomRight(nSteps); break;
   }
   if (nSteps % 12 != 0)
   {
@@ -228,7 +228,7 @@ void ribi::RubiksClock::TurnWheel(const Side side, const int nSteps)
   }
 }
 
-void ribi::RubiksClock::TurnWheelTopLeft(const int nSteps)
+void ribi::RubiksClock::TurnWheelTopLeft(const int nSteps) noexcept
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -278,7 +278,7 @@ void ribi::RubiksClock::TurnWheelTopLeft(const int nSteps)
 
 }
 
-void ribi::RubiksClock::TurnWheelTopRight(const int nSteps)
+void ribi::RubiksClock::TurnWheelTopRight(const int nSteps) noexcept
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -327,7 +327,7 @@ void ribi::RubiksClock::TurnWheelTopRight(const int nSteps)
   }
 }
 
-void ribi::RubiksClock::TurnWheelBottomLeft(const int nSteps)
+void ribi::RubiksClock::TurnWheelBottomLeft(const int nSteps) noexcept
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -376,7 +376,7 @@ void ribi::RubiksClock::TurnWheelBottomLeft(const int nSteps)
   }
 }
 
-void ribi::RubiksClock::TurnWheelBottomRight(const int nSteps)
+void ribi::RubiksClock::TurnWheelBottomRight(const int nSteps) noexcept
 {
   bool turnFront[3][3];
   bool turnBack[3][3];
@@ -425,37 +425,37 @@ void ribi::RubiksClock::TurnWheelBottomRight(const int nSteps)
   }
 }
 
-const ribi::RubiksClock::Times& ribi::RubiksClock::GetFrontTimes() const
+const ribi::RubiksClock::Times& ribi::RubiksClock::GetFrontTimes() const noexcept
 {
   return mFront;
 }
 
-ribi::RubiksClock::Times& ribi::RubiksClock::GetFrontTimes()
+ribi::RubiksClock::Times& ribi::RubiksClock::GetFrontTimes() noexcept
 {
   return mFront;
 }
 
-const ribi::RubiksClock::Times& ribi::RubiksClock::GetBackTimes() const
+const ribi::RubiksClock::Times& ribi::RubiksClock::GetBackTimes() const noexcept
 {
   return mBack;
 }
 
-ribi::RubiksClock::Times& ribi::RubiksClock::GetBackTimes()
+ribi::RubiksClock::Times& ribi::RubiksClock::GetBackTimes() noexcept
 {
   return mBack;
 }
 
-const ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs() const
+const ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs() const noexcept
 {
   return mPegs;
 }
 
-ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs()
+ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs() noexcept
 {
   return mPegs;
 }
 
-const ribi::RubiksClock::Pegs ribi::RubiksClock::GetBackPegs() const
+const ribi::RubiksClock::Pegs ribi::RubiksClock::GetBackPegs() const noexcept
 {
   Pegs back;
   back.pegs[0][0].reset(new ToggleButtonWidget(!mPegs.pegs[1][0]->GetToggleButton()->IsPressed(),255,255,0));
@@ -474,7 +474,7 @@ const ribi::RubiksClock::Pegs ribi::RubiksClock::GetBackPegs() const
   return back;
 }
 
-void ribi::RubiksClock::Check()
+void ribi::RubiksClock::Check() noexcept
 {
   #ifndef NDEBUG
   const Times originalFront = mFront;
@@ -527,7 +527,7 @@ const std::vector<std::string> ribi::RubiksClock::GetVersionHistory() noexcept
   return v;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClock& r)
+std::ostream& ribi::operator<<(std::ostream& os, const RubiksClock& r) noexcept
 {
   os
     << "<rubiks_clock>"
@@ -544,7 +544,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const RubiksClock& r)
   return os;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Times& t)
+std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Times& t) noexcept
 {
   os
     << "<rubiks_clock_times>";
@@ -569,7 +569,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Times&
   return os;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Pegs& p)
+std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Pegs& p) noexcept
 {
   os
     << "<rubiks_clock_pegs>";

@@ -23,11 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "drawcanvas.h"
 
-#include <iostream>
+#include <algorithm>
 #include <cassert>
 #include <cmath>
-#include <algorithm>
+#include <fstream>
 #include <functional>
+#include <iostream>
 #include <iterator>
 
 #include <boost/math/constants/constants.hpp>
@@ -357,12 +358,6 @@ void ribi::DrawCanvas::PlotSurface(
       row_function(*row,os,minVal,maxVal,use_normal_color_system);
     }
   }
-}
-
-void ribi::DrawCanvas::Load(const std::vector<std::string>& v)
-{
-  assert(!v.empty());
-  assert(!"TODO");
 }
 
 template <class Container>

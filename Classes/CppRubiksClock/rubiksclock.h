@@ -40,57 +40,57 @@ struct ToggleButtonWidget;
 ///RubiksClock is a Rubik's Clock
 struct RubiksClock
 {
-  RubiksClock();
+  RubiksClock() noexcept;
 
   struct Pegs
   {
-    Pegs();
+    Pegs() noexcept;
     boost::shared_ptr<ToggleButtonWidget> pegs[2][2]; //Is peg pressed?
-    static Pegs CreatePegsFromIndex(const int index);
+    static Pegs CreatePegsFromIndex(const int index) noexcept;
   };
 
-  enum Side
+  enum class Side
   {
     topLeft, topRight, bottomLeft, bottomRight
   };
 
   struct Times
   {
-    Times(const bool is_front);
+    Times(const bool is_front) noexcept;
     boost::shared_ptr<RubiksClockDialWidget> times[3][3];
   };
 
   ///Set the geometry of all Widgets
-  void SetGeometry(const Rect& r);
+  void SetGeometry(const Rect& r) noexcept;
 
   ///Change a peg, as seen from the front
-  void TogglePeg(const Side side);
+  void TogglePeg(const Side side) noexcept;
 
   ///Change a wheel, as seen from the front
-  void TurnWheel(const Side side, const int nSteps);
+  void TurnWheel(const Side side, const int nSteps) noexcept;
 
-  void Check();
-
-  ///Get the time dials of the back side
-  const Times& GetBackTimes() const;
+  void Check() noexcept;
 
   ///Get the time dials of the back side
-  Times& GetBackTimes();
+  const Times& GetBackTimes() const noexcept;
+
+  ///Get the time dials of the back side
+  Times& GetBackTimes() noexcept;
 
   ///Get the pegs of the back side
-  const Pegs GetBackPegs() const;
+  const Pegs GetBackPegs() const noexcept;
 
   ///Get the time dials of the front side
-  const Times& GetFrontTimes() const;
+  const Times& GetFrontTimes() const noexcept;
 
   ///Get the time dials of the front side
-  Times& GetFrontTimes();
+  Times& GetFrontTimes() noexcept;
 
   ///Get the pegs of the front side
-  const Pegs& GetFrontPegs() const;
+  const Pegs& GetFrontPegs() const noexcept;
 
   ///Get the pegs of the front side
-  Pegs& GetFrontPegs();
+  Pegs& GetFrontPegs() noexcept;
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -107,29 +107,29 @@ struct RubiksClock
   Pegs mPegs;
 
   ///Change the top-left wheel, as seen from the front
-  void TurnWheelTopLeft(const int nSteps);
+  void TurnWheelTopLeft(const int nSteps) noexcept;
 
   ///Change the top-right wheel, as seen from the front
-  void TurnWheelTopRight(const int nSteps);
+  void TurnWheelTopRight(const int nSteps) noexcept;
 
   ///Change the bottom-left wheel, as seen from the front
-  void TurnWheelBottomLeft(const int nSteps);
+  void TurnWheelBottomLeft(const int nSteps) noexcept;
 
   ///Change the bottom-right wheel, as seen from the front
-  void TurnWheelBottomRight(const int nSteps);
+  void TurnWheelBottomRight(const int nSteps) noexcept;
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClock& r);
+  friend std::ostream& operator<<(std::ostream& os, const RubiksClock& r) noexcept;
 
 };
 
-RubiksClock::Pegs CreatePegsFromIndex(const int index);
+RubiksClock::Pegs CreatePegsFromIndex(const int index) noexcept;
 
-std::ostream& operator<<(std::ostream& os, const RubiksClock& r);
-std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t);
-std::ostream& operator<<(std::ostream& os, const RubiksClock::Pegs& p);
+std::ostream& operator<<(std::ostream& os, const RubiksClock& r) noexcept;
+std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t) noexcept;
+std::ostream& operator<<(std::ostream& os, const RubiksClock::Pegs& p) noexcept;
 
-bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs);
-bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs);
+bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs) noexcept;
+bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs) noexcept;
 
 } //~namespace ribi
 
