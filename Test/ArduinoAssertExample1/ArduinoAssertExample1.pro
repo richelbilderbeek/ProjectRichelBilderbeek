@@ -3,11 +3,8 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp
+HEADERS += arduinoassert.h
 
 OTHER_FILES += \
-    arduinoassertexample1.ino
-
-HEADERS += \
-    main.h
+    ArduinoAssertExample1.ino
 
