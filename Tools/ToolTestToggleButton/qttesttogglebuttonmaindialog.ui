@@ -14,8 +14,8 @@
    <string>TestToggleButton</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Games/GameBoenken/GameBoenken.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+   <iconset resource="ToolTestToggleButton.qrc">
+    <normaloff>:/ToolTestToggleButton/images/R.png</normaloff>:/ToolTestToggleButton/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -82,7 +82,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../Games/GameBoenken/GameBoenken.qrc"/>
+  <include location="ToolTestToggleButton.qrc"/>
  </resources>
  <connections/>
 </ui>

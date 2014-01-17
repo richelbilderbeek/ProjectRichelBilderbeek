@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "rectangle.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -34,13 +35,19 @@ int ribi::TestToggleButtonMenuDialog::ExecuteSpecific(const std::vector<std::str
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+
+  const boost::shared_ptr<ToggleButtonWidget> widget(
+    new ToggleButtonWidget
+  );
+  std::cout << (*widget->ToCanvas(10)) << std::endl;
+  widget->GetToggleButton()->Toggle();
+  std::cout << (*widget->ToCanvas(10)) << std::endl;
+  return 0;
 }
 
 
