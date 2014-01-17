@@ -46,11 +46,13 @@ protected:
   
 
 private slots:
+  void on_box_radius_valueChanged(int arg1);
   void on_dial_color_valueChanged(int value) noexcept;
 
 private:
   Ui::QtTestDialMainDialog *ui;
 
+  void DisplayDialAsText() noexcept;
   void DisplayDialColor() noexcept;
   void DisplayDialValue() noexcept;
 

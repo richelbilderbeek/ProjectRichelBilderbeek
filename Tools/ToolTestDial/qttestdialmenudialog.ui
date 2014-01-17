@@ -20,7 +20,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="ToolTestDial.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+    <normaloff>:/ToolTestDial/images/R.png</normaloff>:/ToolTestDial/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -61,7 +61,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestDial.qrc">:/images/ToolTestDialWelcome_2_1.png</pixmap>
+      <pixmap resource="ToolTestDial.qrc">:/ToolTestDial/images/ToolTestDialWelcome_2_1.png</pixmap>
      </property>
     </widget>
    </item>

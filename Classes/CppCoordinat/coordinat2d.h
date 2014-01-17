@@ -13,7 +13,7 @@ struct Coordinat2D
 {
   Coordinat2D(
     const double x = 0.0,
-    const double y = 0.0);
+    const double y = 0.0) noexcept;
   void ChangeX(const double dx) noexcept { m_co[0] += dx; }
   void ChangeY(const double dy) noexcept { m_co[1] += dy; }
 
@@ -31,26 +31,30 @@ struct Coordinat2D
   std::array<double,dimensionality> m_co;
 };
 
-bool operator==(const Coordinat2D& lhs, const Coordinat2D& rhs);
-std::ostream& operator<<(std::ostream& os, const Coordinat2D& n);
+bool operator==(const Coordinat2D& lhs, const Coordinat2D& rhs) noexcept;
+bool operator<(const Coordinat2D& lhs, const Coordinat2D& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Coordinat2D& n) noexcept;
 
 ///The dot product
-double operator*(const Coordinat2D& v1,const Coordinat2D& v2);
+double operator*(const Coordinat2D& v1,const Coordinat2D& v2) noexcept;
+
+
+double Distance(const Coordinat2D& lhs,const Coordinat2D& rhs) noexcept;
 
 ///Distance to origin
-double Length(const Coordinat2D& v);
+double Length(const Coordinat2D& v) noexcept;
 
 const Coordinat2D operator+(
   const Coordinat2D& v1,
-  const Coordinat2D& v2);
+  const Coordinat2D& v2) noexcept;
 
 const Coordinat2D operator*(
   const double scalar,
-  const Coordinat2D& v);
+  const Coordinat2D& v) noexcept;
 
 const Coordinat2D operator-(
   const Coordinat2D& v1,
-  const Coordinat2D& v2);
+  const Coordinat2D& v2) noexcept;
 
 } //~namespace ribi
 

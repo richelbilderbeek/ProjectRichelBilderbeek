@@ -1428,6 +1428,28 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppGetTime",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetTime.htm\">GetTime</a> is a <a href=\"CppTime.htm\">time</a>",
+        "  <a href=\"CppCodeSnippets.htm\">code snippet</a> to obtain now's time.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGetTime.htm\">GetTime</a> can depend on two different <a href=\"CppLibrary.htm\">libraries</a>:",
+        "</p>",
+        "<ul>",
+        "  <li><img src=\"PicBoost.png\" alt=\"Boost\"> <a href=\"CppBoost.htm\">Boost</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "  <li><img src=\"PicStl.png\" alt=\"STL\"> <a href=\"CppStl.htm\">STL</a> version of <a href=\"CppGetTime.htm\">GetTime</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppGetTxtFilesInFolder",
       {

@@ -1,73 +1,29 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-TEMPLATE = app
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppLed \
-  ../../Classes/CppLedWidget \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppQtHideAndShowDialog \
-  ../../Classes/CppQtLedWidget \
-  ../../Classes/CppRectangle \
-  ../../Classes/CppTrace \
-  ../../Classes/CppWidget
+#General, desktop
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-SOURCES += qtmain.cpp \
-    ../../Classes/CppLed/led.cpp \
-    ../../Classes/CppQtLedWidget/qtledwidget.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppLedWidget/ledwidget.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    qttooltestledmaindialog.cpp \
-    tooltestledmenudialog.cpp
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppLed/CppLed.pri)
+include(../../Classes/CppLedWidget/CppLedWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
 
-HEADERS  += \
-  ../../Classes/CppLed/led.h \
-  ../../Classes/CppQtLedWidget/qtledwidget.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppLedWidget/ledwidget.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    qttooltestledmaindialog.h \
-    tooltestledmenudialog.h
+#Specific, desktop
+include(../../Classes/CppQtLedWidget/CppQtLedWidget.pri)
+include(../../Tools/ToolTestLed/ToolTestLedDesktop.pri)
 
-FORMS    += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttooltestledmaindialog.ui
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
+SOURCES += qtmain.cpp

@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "qtdialwidget.h"
 #include "rainbow.h"
+#include "textcanvas.h"
 #include "trace.h"
 #include "ui_qttestdialmaindialog.h"
 #pragma GCC diagnostic pop
@@ -63,6 +64,17 @@ ribi::QtTestDialMainDialog::~QtTestDialMainDialog() noexcept
   delete ui;
 }
 
+void ribi::QtTestDialMainDialog::DisplayDialAsText() noexcept
+{
+  const int radius { ui->box_radius->value() };
+  const boost::shared_ptr<TextCanvas> canvas {
+    ui->dial->GetWidget()->ToCanvas(radius)
+  };
+  std::string s;
+  for (const std::string t: canvas->ToStrings()) { s += (t + '\n'); }
+  ui->text->setPlainText(s.c_str());
+}
+
 void ribi::QtTestDialMainDialog::DisplayDialColor() noexcept
 {
   //Check
@@ -87,6 +99,7 @@ void ribi::QtTestDialMainDialog::DisplayDialValue() noexcept
     = std::string("Dial angle: ")
     + boost::lexical_cast<std::string>(ui->dial->GetWidget()->GetDial()->GetPosition());
   ui->label_angle->setText(s.c_str());
+  DisplayDialAsText();
 }
 
 void ribi::QtTestDialMainDialog::on_dial_color_valueChanged(int /* value */) noexcept
@@ -121,3 +134,8 @@ void ribi::QtTestDialMainDialog::Test() noexcept
   TRACE("Finished ribi::QtTestDialMainDialog::Test successfully");
 }
 #endif
+
+void ribi::QtTestDialMainDialog::on_box_radius_valueChanged(int)
+{
+  DisplayDialAsText();
+}
