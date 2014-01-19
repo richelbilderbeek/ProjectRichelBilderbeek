@@ -22,9 +22,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
+#include <sstream>
+#include <string>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 #include "dial.h"
+#include "dialwidget.h"
+#include "textcanvas.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
@@ -32,13 +41,43 @@ int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+
+  //Get the local time
+  boost::posix_time::ptime now
+    = boost::posix_time::second_clock::local_time();
+  //Convert the time to std::stringstream
+  std::stringstream s;
+  s << now.time_of_day();
+  const std::string t { s.str() };
+
+  //Read the number of hours
+  int hour = 0;
+  try
+  {
+    const int first_digit { boost::lexical_cast<unsigned char,int>(t[0]) };
+    hour = first_digit;
+    const int second_digit { boost::lexical_cast<unsigned char,int>(t[1]) };
+    hour = (10*first_digit) + second_digit;
+  }
+  catch (boost::bad_lexical_cast&)
+  {
+  }
+
+  //Set the position like a clock would
+  const double position = static_cast<double>(hour % 12) / 12.0;
+
+  const boost::shared_ptr<DialWidget> widget(
+    new DialWidget(position)
+  );
+
+  std::cout << (*widget->ToCanvas(10)) << '\n'
+    << "Current time: " << t << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
@@ -47,12 +86,15 @@ const ribi::About ribi::TestDialMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestDial",
     "tool to test the Dial and DialWidget classes",
-    "the 31st of August 2011",
+    "the 17th of January 2014",
     "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestDial.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("Dial version: " + Dial::GetVersion());
+  a.AddLibrary("DialWidget version: " + DialWidget::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;
 }
 
@@ -81,7 +123,7 @@ const boost::shared_ptr<const ribi::Program> ribi::TestDialMenuDialog::GetProgra
 
 const std::string ribi::TestDialMenuDialog::GetVersion() const noexcept
 {
-  return "2.2";
+  return "2.3";
 }
 
 const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() const noexcept
@@ -93,7 +135,8 @@ const std::vector<std::string> ribi::TestDialMenuDialog::GetVersionHistory() con
     "2011-07-16: Version 1.3: updated to new Dial version",
     "2011-08-07: Version 2.0: conformized architure for MysteryMachine",
     "2011-08-31: Version 2.1: added more testing option, added image to Welcome page of website version",
-    "2013-11-05: version 2.2: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 2.2: conformized for ProjectRichelBilderbeekConsole",
+    "2014-01-17: version 2.3: added displayal as text in desktop application"
   };
 }
 
@@ -106,6 +149,12 @@ void ribi::TestDialMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TestDialMenuDialog::Test");
+  {
+    const boost::shared_ptr<DialWidget> dial(
+      new DialWidget
+    );
+    assert(dial->GetDial());
+  }
   TRACE("Finished ribi::TestDialMenuDialog::Test successfully");
 }
 #endif

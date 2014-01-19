@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+struct TextCanvas;
 struct ToggleButton;
 
 struct ToggleButtonWidget : public Widget
@@ -59,6 +60,8 @@ struct ToggleButtonWidget : public Widget
 
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  const boost::shared_ptr<TextCanvas> ToCanvas(const int size) const noexcept;
 
   private:
   boost::scoped_ptr<ToggleButton> m_button;

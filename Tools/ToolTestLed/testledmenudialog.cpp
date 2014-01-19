@@ -18,13 +18,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestLed.htm
 //---------------------------------------------------------------------------
-#include "tooltestledmenudialog.h"
+#include "testledmenudialog.h"
 
 #include <cassert>
 #include <iostream>
 
 #include "led.h"
 #include "ledwidget.h"
+#include "textcanvas.h"
 #include "trace.h"
 
 int ribi::TestLedMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
@@ -33,13 +34,24 @@ int ribi::TestLedMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+
+  const int x = 0;
+  const int y = 0;
+  const int w = 20;
+  const int h = 20;
+  const double intensity = 0.5;
+  const boost::shared_ptr<LedWidget> widget(
+    new LedWidget(x,y,w,h,intensity)
+  );
+
+  std::cout << (*widget->ToCanvas(10))
+    << std::endl;
+  return 0;
 }
 
 const ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
@@ -53,8 +65,10 @@ const ribi::About ribi::TestLedMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestLed.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("Led version: " + Led::GetVersion());
   a.AddLibrary("LedWidget version: " + LedWidget::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;
 }
 

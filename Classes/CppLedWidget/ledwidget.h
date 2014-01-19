@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct Led;
+struct TextCanvas;
 
 ///Widget for displaying a Led
 struct LedWidget : public Widget
@@ -61,6 +62,8 @@ struct LedWidget : public Widget
 
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
   private:
   ///The LED

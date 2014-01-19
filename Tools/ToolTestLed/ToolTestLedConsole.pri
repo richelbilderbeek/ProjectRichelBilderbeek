@@ -2,10 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolTestLed
 
 SOURCES += \
-    ../../Tools/ToolTestLed/tooltestledmenudialog.cpp
+    ../../Tools/ToolTestLed/testledmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestLed/tooltestledmenudialog.h
+    ../../Tools/ToolTestLed/testledmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolTestLed/Licence.txt

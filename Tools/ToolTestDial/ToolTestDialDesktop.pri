@@ -1,7 +1,7 @@
 include(../../Tools/ToolTestDial/ToolTestDialConsole.pri)
 
 RESOURCES += \
-    ../../Tools/ToolTestDial/ToolTestDial.qrc \
+    ../../Tools/ToolTestDial/ToolTestDial.qrc
 
 FORMS += \
     ../../Tools/ToolTestDial/qttestdialmenudialog.ui \

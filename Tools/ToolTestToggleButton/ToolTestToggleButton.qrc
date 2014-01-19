@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/images">
+    <qresource prefix="/ToolTestToggleButton/images">
         <file>ToolTestToggleButtonWelcome.png</file>
         <file>R.png</file>
     </qresource>

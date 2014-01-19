@@ -1,61 +1,30 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-TEMPLATE = app
+#General, desktop
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-INCLUDEPATH += \
-  ../../Classes/CppAbout \
-  ../../Classes/CppQtAboutDialog \
-  ../../Classes/CppQtToggleButtonWidget \
-  ../../Classes/CppRainbow \
-  ../../Classes/CppRectangle \
-  ../../Classes/CppTrace \
-  ../../Classes/CppToggleButton \
-  ../../Classes/CppToggleButtonWidget \
-  ../../Classes/CppWidget
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppToggleButton/CppToggleButton.pri)
+include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
 
-SOURCES += qtmain.cpp\
-  ../../Classes/CppAbout/about.cpp \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    testtogglebuttonmenudialog.cpp \
-    qttesttogglebuttonmaindialog.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppToggleButton/togglebutton.cpp \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppQtToggleButtonWidget/qttogglebuttonwidget.cpp \
-    qttesttogglebuttonmenudialog.cpp \
-    ../../Classes/CppRainbow/rainbow.cpp
+#Specific, desktop
+include(../../Classes/CppRainbow/CppRainbow.pri)
+include(../../Classes/CppQtToggleButtonWidget/CppQtToggleButtonWidget.pri)
+include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonDesktop.pri)
 
-HEADERS  += \
-  ../../Classes/CppAbout/about.h \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    testtogglebuttonmenudialog.h \
-    qttesttogglebuttonmaindialog.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppToggleButton/togglebutton.h \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppQtToggleButtonWidget/qttogglebuttonwidget.h \
-    ../../Classes/CppTrace/trace.h \
-    qttesttogglebuttonmenudialog.h \
-    ../../Classes/CppRainbow/rainbow.h
-
-FORMS += \
-  ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttesttogglebuttonmaindialog.ui \
-    qttesttogglebuttonmenudialog.ui
-
-OTHER_FILES += \
-    ../../Classes/CppRectangle/Licence.txt \
-    ../../Classes/CppToggleButton/Licence.txt \
-    ../../Classes/CppToggleButtonWidget/Licence.txt \
-    ../../Classes/CppWidget/Licence.txt \
-    ../../Classes/CppQtToggleButtonWidget/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    ../../Classes/CppRainbow/Licence.txt
-
-RESOURCES += \
-    ToolTestToggleButton.qrc
+SOURCES += qtmain.cpp

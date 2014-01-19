@@ -21,15 +21,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttooltestledmaindialog.h"
+#include "qttestledmaindialog.h"
 
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "qtaboutdialog.h"
 #include "qtledwidget.h"
-#include "tooltestledmenudialog.h"
+#include "testledmenudialog.h"
+#include "textcanvas.h"
 #include "trace.h"
-#include "ui_qttooltestledmaindialog.h"
+#include "ui_qttestledmaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtTestLedMainDialog::QtTestLedMainDialog(QWidget *parent) noexcept
@@ -40,17 +41,9 @@ ribi::QtTestLedMainDialog::QtTestLedMainDialog(QWidget *parent) noexcept
   Test();
   #endif
   ui->setupUi(this);
-  ui->led_red->GetWidget()->GetLed()->SetColor(  255,  0,  0);
-  ui->led_green->GetWidget()->GetLed()->SetColor(  0,255,  0);
-  ui->led_blue->GetWidget()->GetLed()->SetColor(   0,  0,255);
-
-  ui->led_cyan->GetWidget()->GetLed()->SetColor(     0,255,255);
-  ui->led_magenta->GetWidget()->GetLed()->SetColor(255,  0,255);
-  ui->led_yellow->GetWidget()->GetLed()->SetColor( 255,255,  0);
-
-  ui->led_black->GetWidget()->GetLed()->SetColor(  0,  0,  0);
-  ui->led_gray->GetWidget()->GetLed()->SetColor( 127,127,127);
-  ui->led_white->GetWidget()->GetLed()->SetColor(255,255,255);
+  ui->led_left->GetWidget()->GetLed()->SetColor(  0,  64,128);
+  ui->led_mid->GetWidget()->GetLed()->SetColor(  64, 128,196);
+  ui->led_right->GetWidget()->GetLed()->SetColor(128,196,255);
 }
 
 ribi::QtTestLedMainDialog::~QtTestLedMainDialog() noexcept
@@ -63,17 +56,18 @@ void ribi::QtTestLedMainDialog::on_slider_valueChanged(int value) noexcept
 {
   const double intensity = boost::numeric_cast<double>(value)
     / boost::numeric_cast<double>(ui->slider->maximum());
-  ui->led_red->GetWidget()->GetLed()->SetIntensity(intensity);
-  ui->led_green->GetWidget()->GetLed()->SetIntensity(intensity);
-  ui->led_blue->GetWidget()->GetLed()->SetIntensity(intensity);
 
-  ui->led_cyan->GetWidget()->GetLed()->SetIntensity(intensity);
-  ui->led_magenta->GetWidget()->GetLed()->SetIntensity(intensity);
-  ui->led_yellow->GetWidget()->GetLed()->SetIntensity(intensity);
-
-  ui->led_black->GetWidget()->GetLed()->SetIntensity(intensity);
-  ui->led_gray->GetWidget()->GetLed()->SetIntensity(intensity);
-  ui->led_white->GetWidget()->GetLed()->SetIntensity(intensity);
+  const std::vector<QtLedWidget*   > leds  { ui->led_left , ui->led_mid , ui->led_right  };
+  const std::vector<QPlainTextEdit*> texts { ui->text_left, ui->text_mid, ui->text_right };
+  assert(leds.size() == texts.size());
+  const int n = leds.size();
+  for (int i=0; i!=n; ++i)
+  {
+    leds[i]->GetWidget()->GetLed()->SetIntensity(intensity);
+    std::string s;
+    for (const std::string& t: leds[i]->GetWidget()->ToCanvas(5)->ToStrings()) { s += (t + '\n'); }
+    texts[i]->setPlainText(s.c_str());
+  }
 }
 
 #ifndef NDEBUG
@@ -85,6 +79,7 @@ void ribi::QtTestLedMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestLedMainDialog::Test");
+  QtTestLedMainDialog();
   TRACE("Finished ribi::QtTestLedMainDialog::Test successfully");
 }
 #endif

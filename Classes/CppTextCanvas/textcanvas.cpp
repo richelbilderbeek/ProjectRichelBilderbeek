@@ -75,8 +75,8 @@ const std::vector<std::string> ribi::TextCanvas::GetVersionHistory() noexcept
 
 void ribi::TextCanvas::PutChar(const int x, const int y, const char c) noexcept
 {
-  assert(IsInRange(x,y));
-  if (m_canvas[y][x] != c)
+  if(!IsInRange(x,y)) return;
+  if(m_canvas[y][x] != c)
   {
     m_canvas[y][x] = c;
     m_signal_changed(this);

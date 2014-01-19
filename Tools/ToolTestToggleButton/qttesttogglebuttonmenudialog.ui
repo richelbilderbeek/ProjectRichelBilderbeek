@@ -20,7 +20,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="ToolTestToggleButton.qrc">
-    <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+    <normaloff>:/ToolTestToggleButton/images/R.png</normaloff>:/ToolTestToggleButton/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -61,7 +61,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolTestToggleButton.qrc">:/images/ToolTestToggleButtonWelcome.png</pixmap>
+      <pixmap resource="ToolTestToggleButton.qrc">:/ToolTestToggleButton/images/ToolTestToggleButtonWelcome.png</pixmap>
      </property>
     </widget>
    </item>
