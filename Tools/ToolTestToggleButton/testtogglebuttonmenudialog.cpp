@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "drawcanvas.h"
 #include "rectangle.h"
 #include "textcanvas.h"
 #include "togglebutton.h"
@@ -44,9 +45,10 @@ int ribi::TestToggleButtonMenuDialog::ExecuteSpecific(const std::vector<std::str
   const boost::shared_ptr<ToggleButtonWidget> widget(
     new ToggleButtonWidget
   );
-  std::cout << (*widget->ToCanvas(10)) << std::endl;
+  widget->GetToggleButton()->Press();
+  std::cout << (*widget->ToDrawCanvas(20,20)) << std::endl;
   widget->GetToggleButton()->Toggle();
-  std::cout << (*widget->ToCanvas(10)) << std::endl;
+  std::cout << (*widget->ToDrawCanvas(20,20)) << std::endl;
   return 0;
 }
 
@@ -62,7 +64,10 @@ const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestToggleButton.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
   a.AddLibrary("Rectangle version: " + Rect::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());

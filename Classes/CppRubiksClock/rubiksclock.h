@@ -35,6 +35,7 @@ namespace ribi {
 
 struct Rect;
 struct RubiksClockDialWidget;
+struct TextCanvas;
 struct ToggleButtonWidget;
 
 ///RubiksClock is a Rubik's Clock
@@ -97,6 +98,9 @@ struct RubiksClock
 
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  ///Convert to a Canvas
+  const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_clock_changed;

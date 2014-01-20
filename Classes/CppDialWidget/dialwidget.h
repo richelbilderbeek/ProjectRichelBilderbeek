@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct Dial;
+struct DrawCanvas;
 struct TextCanvas;
 
 ///DialWidget is a class to display a Dial
@@ -69,8 +70,11 @@ struct DialWidget : public Widget
   ///Is the dial clicked?
   bool IsClicked(const int x, const int y) const noexcept;
 
-  ///Convert to a Canvas
-  const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
+  ///Convert to a DrawCanvas
+  const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int radius) const noexcept;
+
+  ///Convert to a TextCanvas
+  const boost::shared_ptr<TextCanvas> ToTextCanvas(const int radius) const noexcept;
 
   private:
 

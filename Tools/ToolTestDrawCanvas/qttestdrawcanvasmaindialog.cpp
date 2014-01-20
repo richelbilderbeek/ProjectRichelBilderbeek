@@ -116,6 +116,21 @@ void ribi::QtTestDrawCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const
 
 }
 
+void ribi::QtTestDrawCanvasMainDialog::on_button_arc_clicked()
+{
+  const double left  = std::min(ui->box_arc_x1->value(),ui->box_arc_x2->value());
+  const double right = std::max(ui->box_arc_x1->value(),ui->box_arc_x2->value());
+  const double top    = std::min(ui->box_arc_y1->value(),ui->box_arc_y2->value());
+  const double bottom = std::max(ui->box_arc_y1->value(),ui->box_arc_y2->value());
+  const boost::units::quantity<boost::units::si::plane_angle> start_arc {
+    ui->box_arc_start_arc->value() * boost::units::si::radian
+  };
+  const boost::units::quantity<boost::units::si::plane_angle> arc_length {
+    ui->box_arc_arc_length->value() * boost::units::si::radian
+  };
+  m_canvas->DrawArc(left,top,right,bottom,start_arc,arc_length);
+}
+
 void ribi::QtTestDrawCanvasMainDialog::on_button_clear_clicked()
 {
   m_canvas->Clear();
@@ -137,6 +152,15 @@ void ribi::QtTestDrawCanvasMainDialog::on_button_dot_clicked()
      ui->box_dot_x->value(),
      ui->box_dot_y->value()
    );
+}
+
+void ribi::QtTestDrawCanvasMainDialog::on_button_ellipse_clicked()
+{
+  const double left  = std::min(ui->box_ellipse_x1->value(),ui->box_ellipse_x2->value());
+  const double right = std::max(ui->box_ellipse_x1->value(),ui->box_ellipse_x2->value());
+  const double top    = std::min(ui->box_ellipse_y1->value(),ui->box_ellipse_y2->value());
+  const double bottom = std::max(ui->box_ellipse_y1->value(),ui->box_ellipse_y2->value());
+  m_canvas->DrawEllipse(left,top,right,bottom);
 }
 
 void ribi::QtTestDrawCanvasMainDialog::on_button_line_clicked()

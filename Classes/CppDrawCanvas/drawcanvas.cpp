@@ -157,11 +157,40 @@ void ribi::DrawCanvas::Clear() noexcept
   m_signal_changed(this);
 }
 
+void ribi::DrawCanvas::DrawArc(
+  const double left, const double top, const double right, const double bottom,
+    const boost::units::quantity<boost::units::si::plane_angle> startAngle,
+    const boost::units::quantity<boost::units::si::plane_angle> spanAngle) noexcept
+{
+  assert(left < right);
+  assert(top < bottom);
+  const double midx = (left + right) / 2.0;
+  const double midy = (top + bottom) / 2.0;
+  const double pi = boost::math::constants::pi<double>();
+  const double ray_horizontal = right  - left;
+  const double ray_vertical   = bottom - top;
+  const double average_ray    = (ray_horizontal + ray_vertical) / 2.0;
+  const double arclength = average_ray * pi * 2.0 * (spanAngle.value() / (2.0 * pi));
+  const int nSteps = std::abs(static_cast<int>(arclength + 0.5));
+  assert(nSteps > 0);
+  double angle { startAngle.value() };
+  const double dAngle = spanAngle.value() / static_cast<double>(nSteps);
+  for (int i=0; i!=nSteps; ++i)
+  {
+    double x = midx + (std::sin(angle) * ray_horizontal);
+    double y = midy - (std::cos(angle) * ray_vertical);
+    DrawDot(x,y);
+    angle += dAngle;
+  }
+  m_signal_changed(this);
+}
+
 void ribi::DrawCanvas::DrawCircle(const double xMid, const double yMid, const double ray) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   const double circumference = ray * pi * 2.0;
   const int nSteps = static_cast<int>(circumference + 0.5);
+  assert(nSteps > 0);
   const double dAngle = 2.0 * pi / static_cast<double>(nSteps);
   double angle = 0.0;
   for (int i=0; i!=nSteps; ++i)
@@ -194,6 +223,31 @@ void ribi::DrawCanvas::DrawDot(const double x, const double y) noexcept
     m_canvas[indexTop+1][indexLeft+1] += ((1.0-fracLeft) * (1.0-fracTop));
   m_signal_changed(this);
 }
+
+void ribi::DrawCanvas::DrawEllipse(const double left, const double top, const double right, const double bottom) noexcept
+{
+  assert(left < right);
+  assert(top < bottom);
+  const double midx = (left + right) / 2.0;
+  const double midy = (top + bottom) / 2.0;
+  const double pi = boost::math::constants::pi<double>();
+  const double ray_horizontal = right  - left;
+  const double ray_vertical   = bottom - top;
+  const double average_ray    = (ray_horizontal + ray_vertical) / 2.0;
+  const double circumference = average_ray * pi * 2.0;
+  const int nSteps = static_cast<int>(circumference + 0.5);
+  const double dAngle = 2.0 * pi / static_cast<double>(nSteps);
+  double angle = 0.0;
+  for (int i=0; i!=nSteps; ++i)
+  {
+    double x = midx + (std::sin(angle) * ray_horizontal);
+    double y = midy - (std::cos(angle) * ray_vertical);
+    DrawDot(x,y);
+    angle += dAngle;
+  }
+  m_signal_changed(this);
+}
+
 
 void ribi::DrawCanvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
 {

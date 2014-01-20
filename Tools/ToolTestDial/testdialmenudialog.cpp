@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 #include "dialwidget.h"
+#include "drawcanvas.h"
 #include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -75,8 +76,16 @@ int ribi::TestDialMenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
     new DialWidget(position)
   );
 
-  std::cout << (*widget->ToCanvas(10)) << '\n'
-    << "Current time: " << t << std::endl;
+
+  std::cout << (*widget->ToTextCanvas(10)) << '\n';
+  {
+    const boost::shared_ptr<ribi::DrawCanvas> canvas {
+      widget->ToDrawCanvas(10)
+    };
+    canvas->SetColorSystem(CanvasColorSystem::invert);
+    std::cout << (*canvas) << '\n';
+  }
+  std::cout << "Current time: " << t << std::endl;
   return 0;
 }
 

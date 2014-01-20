@@ -243,6 +243,198 @@ QPushButton { color: rgb(0,0,0); }</string>
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="layout_ellipse">
+     <item>
+      <widget class="QPushButton" name="button_ellipse">
+       <property name="text">
+        <string>Draw ellipse</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ellipse_x1">
+       <property name="text">
+        <string>(x1 =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_ellipse_x1"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ellipse_y1">
+       <property name="text">
+        <string>, y1=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_ellipse_y1"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ellipse_x2">
+       <property name="text">
+        <string>)-(x2 =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_ellipse_x2">
+       <property name="value">
+        <number>70</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ellipse_y2">
+       <property name="text">
+        <string>, y2=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_ellipse_y2">
+       <property name="value">
+        <number>20</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_ellipse_close">
+       <property name="text">
+        <string>)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacer_ellipse">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="layout_arc">
+     <item>
+      <widget class="QPushButton" name="button_arc">
+       <property name="text">
+        <string>Draw arc</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_x1">
+       <property name="text">
+        <string>(x1 =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_arc_x1"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_y1">
+       <property name="text">
+        <string>, y1=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_arc_y1"/>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_x2">
+       <property name="text">
+        <string>)-(x2 =</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_arc_x2">
+       <property name="value">
+        <number>70</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_y2">
+       <property name="text">
+        <string>, y2=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="box_arc_y2">
+       <property name="value">
+        <number>20</number>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_start_arc">
+       <property name="text">
+        <string>, start_arc=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="box_arc_start_arc">
+       <property name="minimum">
+        <double>-6.280000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>6.280000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_arc_length">
+       <property name="text">
+        <string>, arc_length=</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="box_arc_arc_length">
+       <property name="minimum">
+        <double>-6.280000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>6.280000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_arc_close">
+       <property name="text">
+        <string>)</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="spacer_arc">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label_color_system">

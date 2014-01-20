@@ -27,11 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "dial.h"
 #include "dialwidget.h"
+#include "drawcanvas.h"
 #include "rectangle.h"
 #include "rubiksclock.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
 #include "rubiksclockwidget.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -42,14 +44,17 @@ int ribi::RubiksClockMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+
+  const boost::shared_ptr<RubiksClockWidget> widget(
+    new RubiksClockWidget
+  );
+  std::cout << (*widget->ToDrawCanvas(20)) << std::endl;
+  std::cout << (*widget->ToTextCanvas(20)) << std::endl;
   return 0;
 }
 

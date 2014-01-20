@@ -14,9 +14,11 @@ include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDial/CppDial.pri)
 include(../../Classes/CppDialWidget/CppDialWidget.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
 include(../../Classes/CppRectangle/CppRectangle.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
 include(../../Tools/ToolTestDial/ToolTestDialConsole.pri)
 

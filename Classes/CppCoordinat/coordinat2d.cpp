@@ -8,7 +8,21 @@
 ribi::Coordinat2D::Coordinat2D(const double x, const double y) noexcept
   : m_co{ { x,y } }
 {
+
 }
+
+//ribi::Coordinat2D::Coordinat2D(const Coordinat2D& rhs)
+//  : m_co{ { rhs.GetX(), rhs.GetY() } }
+//{
+//  assert(*this == rhs);
+//}
+
+//ribi::Coordinat2D& ribi::Coordinat2D::operator=(const Coordinat2D& rhs)
+//{
+//  m_co = { rhs.GetX(), rhs.GetY() };
+//  assert(*this == rhs);
+//  return *this;
+//}
 
 ribi::Coordinat2D& ribi::Coordinat2D::operator+=(const Coordinat2D& rhs) noexcept
 {

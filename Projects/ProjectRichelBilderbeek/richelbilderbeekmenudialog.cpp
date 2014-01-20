@@ -183,7 +183,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tooltestapproximatormenudialog.h"
 #include "tooltestapproximatormenudialog.h"
 #include "testdrawcanvasmenudialog.h"
-#include "tooltestledmenudialog.h"
+#include "testledmenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"

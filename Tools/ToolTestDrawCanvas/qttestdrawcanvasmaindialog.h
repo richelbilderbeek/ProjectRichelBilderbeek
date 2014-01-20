@@ -40,6 +40,10 @@ private slots:
 
   void on_button_line_clicked();
 
+  void on_button_ellipse_clicked();
+
+  void on_button_arc_clicked();
+
 private:
   Ui::QtTestDrawCanvasMainDialog *ui;
   boost::shared_ptr<DrawCanvas> m_canvas;

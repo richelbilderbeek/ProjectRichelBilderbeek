@@ -1458,7 +1458,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "std::ctime","<a href=\"CppC$t$ime.htm\">s$td::ct$ime</a>" },
     { "std::deque","<a href=\"CppD$eque.htm\">s$td::de$que</a>" },
     { "std::div_t","<a href=\"CppDi$v_t.htm\">s$td::d$iv_t</a>" },
-    { "std::equal","<a href=\"CppE$qual.htm\">s$td::eq$ual</a>" },
+    { "std::equal","<a href=\"CppStdE$qual.htm\">s$td::eq$ual</a>" },
     { "std::fgetc","<a href=\"CppF$g$etc.htm\">s$td::fge$tc</a>" },
     { "std::fgets","<a href=\"CppF$g$ets.htm\">s$td::fge$ts</a>" },
     { "std::fixed","<a href=\"CppF$ixed.htm\">s$td::fi$xed</a>" },

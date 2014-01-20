@@ -68,7 +68,7 @@ void ribi::QtTestDialMainDialog::DisplayDialAsText() noexcept
 {
   const int radius { ui->box_radius->value() };
   const boost::shared_ptr<TextCanvas> canvas {
-    ui->dial->GetWidget()->ToCanvas(radius)
+    ui->dial->GetWidget()->ToTextCanvas(radius)
   };
   std::string s;
   for (const std::string t: canvas->ToStrings()) { s += (t + '\n'); }

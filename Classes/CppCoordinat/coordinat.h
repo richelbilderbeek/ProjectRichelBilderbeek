@@ -1,6 +1,8 @@
 #ifndef COORDINAT_H
 #define COORDINAT_H
 
+#include <cassert>
+
 ///A normal (x,y) coordinat
 template <class Length>
 struct Coordinat
@@ -34,16 +36,6 @@ Coordinat<Length>::Coordinat(const Length& x, const Length& y) noexcept
 }
 
 template <class Length>
-void Coordinat<Length>::Test() noexcept
-{
-  {
-    static bool is_tested { false };
-    if (is_tested) return;
-    is_tested = true;
-  }
-}
-
-template <class Length>
 void Coordinat<Length>::Translate(const Coordinat& delta) noexcept
 {
   Translate(delta.GetX(),delta.GetY());
@@ -54,6 +46,29 @@ void Coordinat<Length>::Translate(const Length& dx, const Length& dy) noexcept
 {
   m_x += dx;
   m_y += dy;
+}
+
+template <class Length>
+bool operator==(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noexcept
+{
+  return lhs.GetX() == rhs.GetX()
+      && lhs.GetY() == rhs.GetY();
+}
+
+template <class Length>
+void Coordinat<Length>::Test() noexcept
+{
+  {
+    static bool is_tested { false };
+    if (is_tested) return;
+    is_tested = true;
+  }
+  {
+    const Coordinat<double> a(0.0,0.0);
+    const Coordinat<double> b(0.0,0.0);
+    assert(a == b);
+    const Coordinat<double> c(a);
+  }
 }
 
 #endif // COORDINAT_H

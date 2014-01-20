@@ -29,6 +29,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals2.hpp>
+#include <boost/units/base_units/angle/radian.hpp>
+#include <boost/units/systems/si/io.hpp>
 #include "canvas.h"
 #include "canvascolorsystem.h"
 #include "canvascoordinatsystem.h"
@@ -69,6 +71,15 @@ struct DrawCanvas : public Canvas
   ///Clears the canvas
   void Clear() noexcept;
 
+  //Draws the arc defined by the given rectangle, startAngle and spanAngle.
+  //Positive values for the angles mean clockwise,
+  //while negative values mean the clockwise direction.
+  //Zero degrees is at the 12 o'clock position.
+  void DrawArc(const double left, const double top, const double right, const double bottom,
+    const boost::units::quantity<boost::units::si::plane_angle> startAngle,
+    const boost::units::quantity<boost::units::si::plane_angle> spanAngle
+  ) noexcept;
+
   ///Draw (or actually: add) a circle on the canvas at (xMid,yMid),
   ///with radius ray
   void DrawCircle(const double xMid, const double yMid, const double ray) noexcept;
@@ -77,6 +88,9 @@ struct DrawCanvas : public Canvas
   ///(x,y) is the center of a dot with radius 1.0. It is not checked that
   ///(x,y) is in ( [0.0,GetWidth()>, [0.0,GetHeight()> )
   void DrawDot(const double x, const double y) noexcept;
+
+  ///Draw (or actually: add) an ellipse on the canvas
+  void DrawEllipse(const double left, const double top, const double right, const double bottom) noexcept;
 
   ///Draw (or actually: add) a line on the canvas from (x1,y1) to (x2,y2),
   ///where (x1,y1) and (x2,y2) are the centers of a dot with radius 1.0 at

@@ -36,7 +36,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+struct DrawCanvas;
 struct RubiksClock;
+struct TextCanvas;
 
 ///RubiksClockWidget is a class to display a RubiksClock
 struct RubiksClockWidget : public Widget
@@ -67,6 +69,9 @@ struct RubiksClockWidget : public Widget
 
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int size) const noexcept;
+  const boost::shared_ptr<TextCanvas> ToTextCanvas(const int size) const noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_widget_flipped;

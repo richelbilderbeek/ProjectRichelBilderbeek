@@ -32,10 +32,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/numeric/conversion/cast.hpp>
 
 #include "dial.h"
+#include "drawcanvas.h"
 #include "rubiksclock.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
 #include "rectangle.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 //#include "trace.h"
@@ -122,6 +124,24 @@ const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory() noex
 void ribi::RubiksClockWidget::OnResize() noexcept
 {
   m_clock->SetGeometry(this->GetGeometry());
+}
+
+const boost::shared_ptr<ribi::DrawCanvas> ribi::RubiksClockWidget::ToDrawCanvas(const int size) const noexcept
+{
+  const boost::shared_ptr<ribi::DrawCanvas> c(
+    new DrawCanvas(size,size)
+  );
+  assert(!"TODO");
+  return c;
+}
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::RubiksClockWidget::ToTextCanvas(const int size) const noexcept
+{
+  const boost::shared_ptr<ribi::TextCanvas> c(
+    new TextCanvas(size,size)
+  );
+  assert(!"TODO");
+  return c;
 }
 
 std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept

@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "dial.h"
+#include "drawcanvas.h"
 #include "rectangle.h"
 #include "trace.h"
 #include "textcanvas.h"
@@ -125,7 +126,10 @@ void ribi::DialWidget::Test() noexcept
     {
       w->GetDial()->SetPosition(position);
       std::stringstream s;
-      s << '\n' << *w->ToCanvas(4);
+      s << '\n' << (*w->ToTextCanvas(4));
+      assert(!s.str().empty());
+
+      s << '\n' << (*w->ToDrawCanvas(4));
       assert(!s.str().empty());
       //TRACE(s.str());
     }
@@ -133,7 +137,35 @@ void ribi::DialWidget::Test() noexcept
   TRACE("Finished ribi::DialWidget::Test successfully");
 }
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::DialWidget::ToCanvas(const int radius) const noexcept
+const boost::shared_ptr<ribi::DrawCanvas> ribi::DialWidget::ToDrawCanvas(const int radius) const noexcept
+{
+  assert(radius > 1);
+  boost::shared_ptr<ribi::DrawCanvas> canvas(
+    new DrawCanvas(1+(radius*2),1+(radius*2))
+  );
+  const double pi = boost::math::constants::pi<double>();
+
+  //Circle
+  {
+    const double midx = static_cast<double>(radius);
+    const double midy = static_cast<double>(radius);
+    const double ray = static_cast<double>(radius);
+    canvas->DrawCircle(midx,midy,ray);
+  }
+  //Pointer
+  {
+    const double midx = static_cast<double>(radius);
+    const double midy = static_cast<double>(radius);
+    const double angle = GetDial()->GetPosition() * 2.0 * pi;
+    const double ray = static_cast<double>(radius);
+    const double x = midx + (std::sin(angle) * ray);
+    const double y = midy - (std::cos(angle) * ray);
+    canvas->DrawLine(midx,midy,x,y);
+  }
+  return canvas;
+}
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::DialWidget::ToTextCanvas(const int radius) const noexcept
 {
   assert(radius > 1);
   boost::shared_ptr<ribi::TextCanvas> canvas(
