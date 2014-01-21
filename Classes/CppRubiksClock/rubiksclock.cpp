@@ -72,9 +72,22 @@ ribi::RubiksClock::Pegs::Pegs() noexcept
   {
     for (int x=0; x!=2; ++x)
     {
-      pegs[x][y].reset(new ToggleButtonWidget(false,255,255,0));
+      m_pegs[x][y].reset(new ToggleButtonWidget(false,255,255,0));
     }
   }
+}
+
+const boost::shared_ptr<const ribi::ToggleButtonWidget> ribi::RubiksClock::Pegs::GetPeg(const Side side) const noexcept
+{
+  switch (side)
+  {
+    case Side::topLeft    : return m_pegs[0][0];
+    case Side::bottomLeft : return m_pegs[1][0];
+    case Side::topRight   : return m_pegs[0][1];
+    case Side::bottomRight: return m_pegs[1][1];
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("ribi::RubiksClock::Pegs::GetPeg");
 }
 
 bool operator==(const ribi::RubiksClock::Pegs& lhs, const ribi::RubiksClock::Pegs& rhs) noexcept
@@ -83,7 +96,7 @@ bool operator==(const ribi::RubiksClock::Pegs& lhs, const ribi::RubiksClock::Peg
   {
     for (int x=0; x!=2; ++x)
     {
-      if (lhs.pegs[x][y] != rhs.pegs[x][y]) return false;
+      if (lhs.m_pegs[x][y] != rhs.m_pegs[x][y]) return false;
     }
   }
   return true;
@@ -141,10 +154,10 @@ ribi::RubiksClock::Pegs ribi::CreatePegsFromIndex(const int index) noexcept
   // p p
 
   ribi::RubiksClock::Pegs pegs;
-  pegs.pegs[0][0].reset(new ToggleButtonWidget(((index & 1) == 1),255,255,0));
-  pegs.pegs[1][0].reset(new ToggleButtonWidget(((index & 2) == 2),255,255,0));
-  pegs.pegs[0][1].reset(new ToggleButtonWidget(((index & 4) == 4),255,255,0));
-  pegs.pegs[1][1].reset(new ToggleButtonWidget(((index & 8) == 8),255,255,0));
+  pegs.m_pegs[0][0].reset(new ToggleButtonWidget(((index & 1) == 1),255,255,0));
+  pegs.m_pegs[1][0].reset(new ToggleButtonWidget(((index & 2) == 2),255,255,0));
+  pegs.m_pegs[0][1].reset(new ToggleButtonWidget(((index & 4) == 4),255,255,0));
+  pegs.m_pegs[1][1].reset(new ToggleButtonWidget(((index & 8) == 8),255,255,0));
   return pegs;
 
 
@@ -194,7 +207,7 @@ void ribi::RubiksClock::SetGeometry(const Rect& r) noexcept
     for (int y=0; y!=2; ++y)
     {
       const double y_d = boost::numeric_cast<double>(y);
-      mPegs.pegs[x][y]->SetGeometry(
+      mPegs.m_pegs[x][y]->SetGeometry(
         Rect(
           left + ((0.9+x_d)*w3),
           top + ((0.9+y_d)*h3),
@@ -209,7 +222,7 @@ void ribi::RubiksClock::TogglePeg(const Side side) noexcept
 {
   const int x = (side == Side::topLeft || side == Side::bottomLeft ? 0 : 1);
   const int y = (side == Side::topLeft || side == Side::topRight ? 0 : 1);
-  mPegs.pegs[x][y]->GetToggleButton()->Toggle();
+  mPegs.m_pegs[x][y]->GetToggleButton()->Toggle();
   m_signal_clock_changed();
 }
 
@@ -234,38 +247,38 @@ void ribi::RubiksClock::TurnWheelTopLeft(const int nSteps) noexcept
   bool turnBack[3][3];
 
   turnFront[0][0] = true;
-  turnFront[1][0] = !mPegs.pegs[0][0]->GetToggleButton()->IsPressed();
-  turnFront[2][0] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
-  turnFront[0][1] = !mPegs.pegs[0][0]->GetToggleButton()->IsPressed();
-  turnFront[1][1] = !mPegs.pegs[0][0]->GetToggleButton()->IsPressed();
+  turnFront[1][0] = !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed();
+  turnFront[2][0] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
+  turnFront[0][1] = !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed();
+  turnFront[1][1] = !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed();
   turnFront[2][1] = (
-    !mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[1][1]->GetToggleButton()->IsPressed() ) );
-  turnFront[0][2] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[0][1]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() ) );
+  turnFront[0][2] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed());
   turnFront[1][2] = (
-    !mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[1][1]->GetToggleButton()->IsPressed() ) );
-  turnFront[2][2] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() ) );
+  turnFront[2][2] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
 
-  turnBack[0][0] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
-  turnBack[1][0] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
+  turnBack[0][0] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
+  turnBack[1][0] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
   turnBack[2][0] = true;
 
   turnBack[0][1] = (
-    mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-    && (    mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-       ||   mPegs.pegs[1][1]->GetToggleButton()->IsPressed() ) );
-  turnBack[1][1] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
-  turnBack[2][1] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
+    mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+    && (    mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+       ||   mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() ) );
+  turnBack[1][1] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
+  turnBack[2][1] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
 
-  turnBack[0][2] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
+  turnBack[0][2] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
   turnBack[1][2] = (
-    mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-    && (  mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-       || mPegs.pegs[1][1]->GetToggleButton()->IsPressed() ) );
-  turnBack[2][2] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[0][1]->GetToggleButton()->IsPressed());
+    mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+    && (  mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+       || mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() ) );
+  turnBack[2][2] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed());
 
   for (int y=0; y!=3; ++y)
   {
@@ -284,38 +297,38 @@ void ribi::RubiksClock::TurnWheelTopRight(const int nSteps) noexcept
   bool turnBack[3][3];
 
   turnFront[2][0] = true;
-  turnFront[1][0] = !mPegs.pegs[1][0]->GetToggleButton()->IsPressed();
-  turnFront[0][0] = (mPegs.pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
-  turnFront[2][1] = !mPegs.pegs[1][0]->GetToggleButton()->IsPressed();
-  turnFront[1][1] = !mPegs.pegs[1][0]->GetToggleButton()->IsPressed();
+  turnFront[1][0] = !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed();
+  turnFront[0][0] = (mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
+  turnFront[2][1] = !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed();
+  turnFront[1][1] = !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed();
   turnFront[0][1] = (
-    !mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[0][1]->GetToggleButton()->IsPressed() ) );
-  turnFront[2][2] = (mPegs.pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() ) );
+  turnFront[2][2] = (mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
   turnFront[1][2] = (
-    !mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[0][1]->GetToggleButton()->IsPressed() ) );
-  turnFront[0][2] = (mPegs.pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.pegs[0][1]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() ) );
+  turnFront[0][2] = (mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed());
 
-  turnBack[2][0] = (mPegs.pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
-  turnBack[1][0] = mPegs.pegs[1][0]->GetToggleButton()->IsPressed();
+  turnBack[2][0] = (mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
+  turnBack[1][0] = mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed();
   turnBack[0][0] = true;
 
   turnBack[2][1] = (
-    mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-    && (    mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-       ||   mPegs.pegs[0][1]->GetToggleButton()->IsPressed() ) );
-  turnBack[1][1] = mPegs.pegs[1][0]->GetToggleButton()->IsPressed();
-  turnBack[0][1] = mPegs.pegs[1][0]->GetToggleButton()->IsPressed();
+    mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+    && (    mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+       ||   mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() ) );
+  turnBack[1][1] = mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed();
+  turnBack[0][1] = mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed();
 
-  turnBack[2][2] = (mPegs.pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.pegs[0][1]->GetToggleButton()->IsPressed());
+  turnBack[2][2] = (mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed());
   turnBack[1][2] = (
-    mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-    && (  mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-       || mPegs.pegs[0][1]->GetToggleButton()->IsPressed() ) );
-  turnBack[0][2] = (mPegs.pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
+    mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+    && (  mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+       || mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() ) );
+  turnBack[0][2] = (mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
 
   for (int y=0; y!=3; ++y)
   {
@@ -333,38 +346,38 @@ void ribi::RubiksClock::TurnWheelBottomLeft(const int nSteps) noexcept
   bool turnBack[3][3];
 
   turnFront[0][2] = true;
-  turnFront[1][2] = !mPegs.pegs[0][1]->GetToggleButton()->IsPressed();
-  turnFront[2][2] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
-  turnFront[0][1] = !mPegs.pegs[0][1]->GetToggleButton()->IsPressed();
-  turnFront[1][1] = !mPegs.pegs[0][1]->GetToggleButton()->IsPressed();
+  turnFront[1][2] = !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed();
+  turnFront[2][2] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
+  turnFront[0][1] = !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed();
+  turnFront[1][1] = !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed();
   turnFront[2][1] = (
-    !mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[1][0]->GetToggleButton()->IsPressed() ) );
-  turnFront[0][0] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() ) );
+  turnFront[0][0] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
   turnFront[1][0] = (
-    !mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[1][0]->GetToggleButton()->IsPressed() ) );
-  turnFront[2][0] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() ) );
+  turnFront[2][0] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
 
-  turnBack[0][2] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
-  turnBack[1][2] = mPegs.pegs[0][1]->GetToggleButton()->IsPressed();
+  turnBack[0][2] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
+  turnBack[1][2] = mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed();
   turnBack[2][2] = true;
 
   turnBack[0][1] = (
-    mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-    && (    mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-       ||   mPegs.pegs[1][0]->GetToggleButton()->IsPressed() ) );
-  turnBack[1][1] = mPegs.pegs[0][1]->GetToggleButton()->IsPressed();
-  turnBack[2][1] = mPegs.pegs[0][1]->GetToggleButton()->IsPressed();
+    mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+    && (    mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+       ||   mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() ) );
+  turnBack[1][1] = mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed();
+  turnBack[2][1] = mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed();
 
-  turnBack[0][0] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
+  turnBack[0][0] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
   turnBack[1][0] = (
-    mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-    && (  mPegs.pegs[0][0]->GetToggleButton()->IsPressed()
-       || mPegs.pegs[1][0]->GetToggleButton()->IsPressed() ) );
-  turnBack[2][0] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
+    mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+    && (  mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()
+       || mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed() ) );
+  turnBack[2][0] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
 
   for (int y=0; y!=3; ++y)
   {
@@ -382,38 +395,38 @@ void ribi::RubiksClock::TurnWheelBottomRight(const int nSteps) noexcept
   bool turnBack[3][3];
 
   turnFront[2][2] = true;
-  turnFront[1][2] = !mPegs.pegs[1][1]->GetToggleButton()->IsPressed();
-  turnFront[0][2] = (mPegs.pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][1]->GetToggleButton()->IsPressed());
-  turnFront[2][1] = !mPegs.pegs[1][1]->GetToggleButton()->IsPressed();
-  turnFront[1][1] = !mPegs.pegs[1][1]->GetToggleButton()->IsPressed();
+  turnFront[1][2] = !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed();
+  turnFront[0][2] = (mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed());
+  turnFront[2][1] = !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed();
+  turnFront[1][1] = !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed();
   turnFront[0][1] = (
-    !mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[0][0]->GetToggleButton()->IsPressed() ) );
-  turnFront[2][0] = (mPegs.pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() ) );
+  turnFront[2][0] = (mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
   turnFront[1][0] = (
-    !mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-    && (  !mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-       || !mPegs.pegs[0][0]->GetToggleButton()->IsPressed()  ) );
-  turnFront[0][0] = (mPegs.pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
+    !mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+    && (  !mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+       || !mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed()  ) );
+  turnFront[0][0] = (mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
 
-  turnBack[2][2] = (mPegs.pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.pegs[0][1]->GetToggleButton()->IsPressed());
-  turnBack[1][2] = mPegs.pegs[1][1]->GetToggleButton()->IsPressed();
+  turnBack[2][2] = (mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed());
+  turnBack[1][2] = mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed();
   turnBack[0][2] = true;
 
   turnBack[2][1] = (
-    mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-    && (    mPegs.pegs[0][1]->GetToggleButton()->IsPressed()
-       ||   mPegs.pegs[0][0]->GetToggleButton()->IsPressed() ) );
-  turnBack[1][1] = mPegs.pegs[1][1]->GetToggleButton()->IsPressed();
-  turnBack[0][1] = mPegs.pegs[1][1]->GetToggleButton()->IsPressed();
+    mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+    && (    mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed()
+       ||   mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() ) );
+  turnBack[1][1] = mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed();
+  turnBack[0][1] = mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed();
 
-  turnBack[2][0] = (mPegs.pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.pegs[0][0]->GetToggleButton()->IsPressed());
+  turnBack[2][0] = (mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed());
   turnBack[1][0] = (
-    mPegs.pegs[1][1]->GetToggleButton()->IsPressed()
-    && (  mPegs.pegs[1][0]->GetToggleButton()->IsPressed()
-       || mPegs.pegs[0][0]->GetToggleButton()->IsPressed() ) );
-  turnBack[0][0] = (mPegs.pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.pegs[1][0]->GetToggleButton()->IsPressed());
+    mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed()
+    && (  mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed()
+       || mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed() ) );
+  turnBack[0][0] = (mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed() == mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed());
 
   for (int y=0; y!=3; ++y)
   {
@@ -458,16 +471,16 @@ ribi::RubiksClock::Pegs& ribi::RubiksClock::GetFrontPegs() noexcept
 const ribi::RubiksClock::Pegs ribi::RubiksClock::GetBackPegs() const noexcept
 {
   Pegs back;
-  back.pegs[0][0].reset(new ToggleButtonWidget(!mPegs.pegs[1][0]->GetToggleButton()->IsPressed(),255,255,0));
-  back.pegs[1][0].reset(new ToggleButtonWidget(!mPegs.pegs[0][0]->GetToggleButton()->IsPressed(),255,255,0));
-  back.pegs[0][1].reset(new ToggleButtonWidget(!mPegs.pegs[1][1]->GetToggleButton()->IsPressed(),255,255,0));
-  back.pegs[1][1].reset(new ToggleButtonWidget(!mPegs.pegs[0][1]->GetToggleButton()->IsPressed(),255,255,0));
+  back.m_pegs[0][0].reset(new ToggleButtonWidget(!mPegs.m_pegs[1][0]->GetToggleButton()->IsPressed(),255,255,0));
+  back.m_pegs[1][0].reset(new ToggleButtonWidget(!mPegs.m_pegs[0][0]->GetToggleButton()->IsPressed(),255,255,0));
+  back.m_pegs[0][1].reset(new ToggleButtonWidget(!mPegs.m_pegs[1][1]->GetToggleButton()->IsPressed(),255,255,0));
+  back.m_pegs[1][1].reset(new ToggleButtonWidget(!mPegs.m_pegs[0][1]->GetToggleButton()->IsPressed(),255,255,0));
 
   for (int x=0; x!=2; ++x)
   {
     for (int y=0; y!=2; ++y)
     {
-      back.pegs[x][y]->SetGeometry(mPegs.pegs[1-x][y]->GetGeometry());
+      back.m_pegs[x][y]->SetGeometry(mPegs.m_pegs[1-x][y]->GetGeometry());
     }
   }
 
@@ -585,7 +598,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const ribi::RubiksClock::Pegs& 
         << "<y>"
         << y
         << "</y>"
-        << p.pegs[x][y].get()
+        << p.m_pegs[x][y].get()
         << "</rubiks_clock_dial>";
     }
   }

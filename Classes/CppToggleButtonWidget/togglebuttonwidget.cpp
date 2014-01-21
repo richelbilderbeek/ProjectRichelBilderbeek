@@ -51,7 +51,7 @@ void ribi::ToggleButtonWidget::Click(const int, const int)
 
 const std::string ribi::ToggleButtonWidget::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 const std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
@@ -59,48 +59,90 @@ const std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noe
   return {
     "2011-07-03: version 1.0: initial version",
     "2011-08-20: Version 1.1: added operator<<",
-    "2011-08-31: Version 1.2: added setting the color of a ToggleButton"
+    "2011-08-31: Version 1.2: added setting the color of a ToggleButton",
+    "2014-01-21: Version 1.3: added ToDrawCanvas"
   };
 }
 
 const boost::shared_ptr<ribi::DrawCanvas> ribi::ToggleButtonWidget::ToDrawCanvas(
-  const int width, const int height) const noexcept
+  const int width_in, const int height_in) const noexcept
 {
   boost::shared_ptr<DrawCanvas> canvas {
-    new DrawCanvas(width,height,CanvasColorSystem::invert)
+    new DrawCanvas(width_in,height_in,CanvasColorSystem::invert)
   };
-  const int maxx = width  - 2;
-  const int maxy = height - 2;
-  const int left = 1;
-  const int top  = 1;
+  //Pressed
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //         ```.  -.```
+  // `.-:-:.`-``.  -.``-`.:-:-.`
+  ///M:.                     .:M/
+  //oM:.                     .:Mo <- y1 = y2 - 2.0
+  //`---::---`.``. .``.`---::--:-
+  //`h:.    ` ```. .``` `    .:d- <- y2 = 5/6
+  //  .-:-:-`-``. . .``-`-:-:-.
+  //       ` ```. . .``` `
+
+
+
+  //Toggled:
+
+  //         ```.  -.```
+  // `.-:-:.`-``.  -.``-`.:-:-.`
+  ///M:.                     .:M/  <- y1 = 1/6
+  //oM:.                     .:Mo
+  //.---::---`.``. .``.`---::---.
+  //..      ` ```. .``` `      ..
+  //..                         ..
+  //..                         ..
+  //..                         ..
+  //..                         ..
+  //`.                         --
+  //`h:.                     .:d- <- y2 = 5/6
+  //  .-:-:-`-``. . .``-`-:-:-.
+  //       ` ```. . .``` `
+
+  const double left = 1.0;
+  const double top  = 1.0;
+  const double right  = static_cast<double>(width_in ) - 2.0;
+  const double bottom = static_cast<double>(height_in) - 2.0;
+  const double height = bottom - top;
+  const double height_1_6 = height / 6.0;
+  const double y2 = top + (height * 5.0 / 6.0);
+  const double y1 = GetToggleButton()->IsPressed() ? y2 - 2.0 : top + (height * 1.0 / 6.0);
+
   const double pi = boost::math::constants::pi<double>();
   //Below
   canvas->DrawArc(
-    left + 0,
-    top + (maxy * 1 / 3),
-    maxx,
-    maxy * 2 / 3,
-     0.5 * pi * boost::units::si::radian,
-    -1.0 * pi * boost::units::si::radian
+    left,
+    y2 - height_1_6,
+    right,
+    y2 + height_1_6,
+    0.5 * pi * boost::units::si::radian,
+    1.0 * pi * boost::units::si::radian
   );
   //Draw top
   canvas->DrawEllipse(
-    left + 0,
-    top + (GetToggleButton()->IsPressed() ? (maxy * 1 / 3) - 2 : 0.0),
-    maxx,
-    maxy * 2 / 3
+    left,
+    y1 - height_1_6,
+    right,
+    y1 + height_1_6
   );
   canvas->DrawLine(
     left,
-    top + (GetToggleButton()->IsPressed() ? (maxy * 2 / 3) - 2 : (maxy * 1 / 3)),
+    y1,
     left,
-    top + (maxy * 2 / 3)
+    y2
   );
   canvas->DrawLine(
-    left + maxx,
-    top + (GetToggleButton()->IsPressed() ? (maxy * 2 / 3) - 2 : (maxy * 1 / 3)),
-    left + maxx,
-    top + (maxy * 2 / 3)
+    right,
+    y1,
+    right,
+    y2
   );
   return canvas;
 }

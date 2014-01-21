@@ -10,6 +10,9 @@
     <height>746</height>
    </rect>
   </property>
+  <property name="windowTitle">
+   <string>TestDrawCanvas</string>
+  </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
 background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
@@ -409,6 +412,9 @@ QPushButton { color: rgb(0,0,0); }</string>
        </property>
        <property name="maximum">
         <double>6.280000000000000</double>
+       </property>
+       <property name="value">
+        <double>3.140000000000000</double>
        </property>
       </widget>
      </item>

@@ -32,17 +32,12 @@ private slots:
 
   void on_box_coordinat_system_currentIndexChanged(int index);
 
-  void on_button_dot_clicked();
-
-  void on_button_clear_clicked();
-
-  void on_button_circle_clicked();
-
-  void on_button_line_clicked();
-
-  void on_button_ellipse_clicked();
-
   void on_button_arc_clicked();
+  void on_button_circle_clicked();
+  void on_button_clear_clicked();
+  void on_button_dot_clicked();
+  void on_button_ellipse_clicked();
+  void on_button_line_clicked();
 
 private:
   Ui::QtTestDrawCanvasMainDialog *ui;

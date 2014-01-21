@@ -637,7 +637,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "boost::hash_set","<a href=\"CppH$ash_set.htm\">b$oost::h$ash_set</a>" },
     { "boost::ptr_list","<a href=\"C$ppP$tr_l$ist.htm\">bo$ost::p$tr_l$ist</a>" },
     { "boost::signals2","<a href=\"C$ppB$oostS$ignals2.htm\">b$oost::s$ignals2</a>" },
-    { "boost::weak_ptr","<a href=\"CppW$eak_p$tr.htm\">b$oost::w$eak_ptr</a>" },
+    { "boost::weak_ptr","<a href=\"CppB$oostW$eak_p$tr.htm\">b$oost::w$eak_ptr</a>" },
     { "BroadcastServer","<a href=\"C$ppB$roadc$astS$erver.htm\">B$roadc$astS$erver</a>" },
     { "circular_buffer","<a href=\"C$ppC$ircular_b$uffer.htm\">c$ircular_b$uffer</a>" },
     { "compressed_pair","<a href=\"C$ppC$ompressed_p$air.htm\">c$ompressed_p$air</a>" },

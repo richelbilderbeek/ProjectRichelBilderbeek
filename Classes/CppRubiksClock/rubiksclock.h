@@ -43,16 +43,18 @@ struct RubiksClock
 {
   RubiksClock() noexcept;
 
-  struct Pegs
-  {
-    Pegs() noexcept;
-    boost::shared_ptr<ToggleButtonWidget> pegs[2][2]; //Is peg pressed?
-    static Pegs CreatePegsFromIndex(const int index) noexcept;
-  };
-
   enum class Side
   {
     topLeft, topRight, bottomLeft, bottomRight
+  };
+
+
+  struct Pegs
+  {
+    Pegs() noexcept;
+    boost::shared_ptr<ToggleButtonWidget> m_pegs[2][2]; //Is peg pressed?
+    static Pegs CreatePegsFromIndex(const int index) noexcept;
+    const boost::shared_ptr<const ToggleButtonWidget> GetPeg(const Side side) const noexcept;
   };
 
   struct Times

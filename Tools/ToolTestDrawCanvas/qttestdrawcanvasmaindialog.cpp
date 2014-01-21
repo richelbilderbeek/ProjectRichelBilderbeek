@@ -182,8 +182,38 @@ void ribi::QtTestDrawCanvasMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestDrawCanvasMainDialog::Test");
-  const boost::shared_ptr<const DrawCanvas> canvas(new DrawCanvas(78,23));
-  assert(canvas);
+  QtTestDrawCanvasMainDialog d;
+  d.on_button_clear_clicked();
+  {
+    for (const auto r: d.m_canvas->GetGreynesses())
+    {
+      assert(std::find_if(std::begin(r),std::end(r),[](const double x) { return x > 0.01; } ) == std::end(r)
+        && "on_button_clear_clicked must clear the canvas");
+    }
+  }
+
+  for (int i=0; i!=6; ++i)
+  {
+    switch (i)
+    {
+      case 0: d.on_button_arc_clicked(); break;
+      case 1: d.on_button_circle_clicked(); break;
+      case 2: d.on_button_clear_clicked(); break;
+      case 3: d.on_button_dot_clicked(); break;
+      case 4: d.on_button_ellipse_clicked(); break;
+      case 5: d.on_button_line_clicked(); break;
+    }
+    const auto v = d.m_canvas->GetGreynesses();
+    assert(
+      std::count_if(std::begin(v),std::end(v),
+        [](const std::vector<double>& r)
+        {
+          return std::find_if(std::begin(r),std::end(r),[](const double x) { return x > 0.01; } ) == std::end(r);
+        }
+      ) > 0
+      && "At least one row must have some greynesses"
+    );
+  }
   TRACE("Finished ribi::QtTestDrawCanvasMainDialog::Test successfully");
 }
 #endif

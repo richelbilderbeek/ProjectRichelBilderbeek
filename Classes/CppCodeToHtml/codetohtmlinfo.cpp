@@ -353,6 +353,21 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppBoostFunctionExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostFunctionExample3.htm\">Boost.Function example 3: calling a member function with an argument and reading its result</a>",
+        "  is a <a href=\"CppBoostFunction.htm\">Boost.Function</a> example that shows how",
+        "  to call a member function with an argument and how to read its result.",
+        "</p>
+      }
+    }
+  );
+
   m.push_back(
     { "CppBoostRegexExample1",
       {
@@ -414,6 +429,43 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppBoostSignals2Example1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostSignals2Example1.htm\">Boost.Signals2 example 1: comparing Boost and Qt</a>",
+        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example that shows",
+        "  both the use of <a href=\"CppBoostSignals2.htm\">Boost.Signals2 signals</a> and",
+        "  <a href=\"CppQtSignal.htm\">Qt signals</a>.</p>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The <a href=\"CppArticle.htm\">article</a> <a href=\"CppFromQtSignalToBoostSignal.htm\">From Qt signal to Boost signal</a>",
+        "  describes why and how to move from using <a href=\"CppQtSignal.htm\">Qt signals</a> to using",
+        "  <a href=\"CppBoostSignals2.htm\">Boost.Signal2 signals</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppBoostSignals2Example2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostSignals2Example2.htm\">Boost.Signals2 example 2: emitting this</a>",
+        "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example that shows how",
+        "  to emit <a href=\"CppThis.htm\">this</a>.",
+        "</p>
+      }
+    }
+  );
+
 
   m.push_back(
     { "CppBoostTestExample1",
@@ -678,6 +730,16 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
+  m.push_back(
+    { "CppBoostWeak_ptrExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBoostWeak_ptrExample1.htm\">boost::weak_ptr example 1</a> is a",
+        "  <a href=\"CppBoostWeak_ptr.htm\">boost::weak_ptr example</a>",
+        "</p>"
+      }
+    }
+  );
 
   m.push_back(
     { "CppCallStackCounter",

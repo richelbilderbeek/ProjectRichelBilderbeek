@@ -45,10 +45,21 @@ int ribi::TestToggleButtonMenuDialog::ExecuteSpecific(const std::vector<std::str
   const boost::shared_ptr<ToggleButtonWidget> widget(
     new ToggleButtonWidget
   );
+
   widget->GetToggleButton()->Press();
-  std::cout << (*widget->ToDrawCanvas(20,20)) << std::endl;
+
+  std::cout
+    << "Pressed\n"
+    << '\n'
+    << (*widget->ToDrawCanvas(30,15)) << std::endl;
+
   widget->GetToggleButton()->Toggle();
-  std::cout << (*widget->ToDrawCanvas(20,20)) << std::endl;
+
+  std::cout
+    << '\n'
+    << "Toggled:\n"
+    << '\n'
+    << (*widget->ToDrawCanvas(30,15)) << std::endl;
   return 0;
 }
 
@@ -59,7 +70,7 @@ const ribi::About ribi::TestToggleButtonMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TestToggleButton",
     "tool to test the ToggleButton class",
-    "the 11st of June 2012",
+    "the 21st of January 2014",
     "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestToggleButton.htm",
     GetVersion(),
@@ -100,7 +111,7 @@ const boost::shared_ptr<const ribi::Program> ribi::TestToggleButtonMenuDialog::G
 
 const std::string ribi::TestToggleButtonMenuDialog::GetVersion() const noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 const std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHistory() const noexcept
@@ -109,7 +120,8 @@ const std::vector<std::string> ribi::TestToggleButtonMenuDialog::GetVersionHisto
     "2011-06-16: Version 1.0: initial version, desktop version not yet working",
     "2011-06-31: Version 1.1: added more tests and an image to the Welcome screen in website version",
     "2012-06-21: Version 1.2: added desktop version",
-    "2013-11-05: version 1.3: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.3: conformized for ProjectRichelBilderbeekConsole",
+    "2014-01-21: version 1.4: added displaying a toggle button as text"
   };
 }
 

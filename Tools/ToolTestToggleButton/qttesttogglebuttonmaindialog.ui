@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>345</width>
-    <height>456</height>
+    <width>352</width>
+    <height>572</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,6 +16,17 @@
   <property name="windowIcon">
    <iconset resource="ToolTestToggleButton.qrc">
     <normaloff>:/ToolTestToggleButton/images/R.png</normaloff>:/ToolTestToggleButton/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 32px monospace;  }
+QPlainTextEdit { font: 12px courier new, courier, monospace;  }
+QLabel { font: 12px courier new, courier, monospace;  }
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -67,6 +78,27 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="text">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="lineWrapMode">
+      <enum>QPlainTextEdit::NoWrap</enum>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="plainText">
+      <string>A B
+B C
+C D</string>
      </property>
     </widget>
    </item>

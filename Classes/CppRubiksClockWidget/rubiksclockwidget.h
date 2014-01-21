@@ -71,7 +71,7 @@ struct RubiksClockWidget : public Widget
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int size) const noexcept;
-  const boost::shared_ptr<TextCanvas> ToTextCanvas(const int size) const noexcept;
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_widget_flipped;

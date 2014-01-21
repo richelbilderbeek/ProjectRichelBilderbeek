@@ -25,6 +25,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <boost/lexical_cast.hpp>
 
+
+#include "drawcanvas.h"
 #include "qtaboutdialog.h"
 #include "rainbow.h"
 #include "testtogglebuttonmenudialog.h"
@@ -71,6 +73,12 @@ void ribi::QtTestToggleButtonMainDialog::DisplayToggleButtonValue()
     + boost::lexical_cast<std::string>(static_cast<int>(ui->toggle_button->GetWidget()->GetToggleButton()->GetBlue()))
     + std::string(") (RGB)")).c_str());
 
+  std::string text;
+  for (const std::string& s: ui->toggle_button->GetWidget()->ToDrawCanvas(30,10)->ToStrings())
+  {
+    text += s + '\n';
+  }
+  ui->text->setPlainText(text.c_str());
 }
 
 void ribi::QtTestToggleButtonMainDialog::on_dial_dialMoved(int)

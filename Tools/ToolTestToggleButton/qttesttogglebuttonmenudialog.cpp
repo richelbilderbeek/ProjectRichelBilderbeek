@@ -50,6 +50,7 @@ ribi::QtTestToggleButtonMenuDialog::~QtTestToggleButtonMenuDialog() noexcept
 void ribi::QtTestToggleButtonMenuDialog::on_button_start_clicked()
 {
   QtTestToggleButtonMainDialog d;
+  //d.setStyleSheet(this->styleSheet());
   this->ShowChild(&d);
 }
 

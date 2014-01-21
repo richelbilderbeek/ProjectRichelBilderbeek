@@ -89,7 +89,7 @@ void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_le
             button_left ? 1 : -1);
         }
       }
-      else if (pegs.pegs[i][j]->GetGeometry().IsIn(x,y))
+      else if (pegs.m_pegs[i][j]->GetGeometry().IsIn(x,y))
       {
         m_clock->TogglePeg(
           i
@@ -131,15 +131,55 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::RubiksClockWidget::ToDrawCanvas(
   const boost::shared_ptr<ribi::DrawCanvas> c(
     new DrawCanvas(size,size)
   );
+
   assert(!"TODO");
   return c;
 }
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::RubiksClockWidget::ToTextCanvas(const int size) const noexcept
+const boost::shared_ptr<ribi::TextCanvas> ribi::RubiksClockWidget::ToTextCanvas() const noexcept
 {
+  const int size = 22;
   const boost::shared_ptr<ribi::TextCanvas> c(
     new TextCanvas(size,size)
   );
+  //  01234567890123456789012
+  //
+  //0 /-\    ---------    /-\
+  //1 | |----         ----| |
+  //2 \-/                 \-/
+  //3  | /-\    /-\    /-\ |
+  //4  | |4|    |5|    |9| |
+  //5  | \-/    \-/    \-/ |
+  //6  |     /\            |
+  //7 |      ||     /\      |
+  //8 |      \/     \/      |
+  //9 |  /-\    /-\    /-\  |
+  //0 |  |1|    |1|    |3|  |
+  //1 |  \-/    \-/    \-/  |
+  //2 |      /\             |
+  //3 |      ||     /\      |
+  //4  |     \/     \/     |
+  //5  | /-\    /-\    /-\ |
+  //6  | |3|    |3|    |B| |
+  //7  | \-/    \-/    \-/ |
+  //8 /-\                 /-\
+  //9 | |----         ----| |
+  //0 \-/    ---------    \-/
+  //
+  const RubiksClock::Pegs pegs {
+    GetDisplayFront()
+    ? GetRubiksClock()->GetFrontPegs()
+    : GetRubiksClock()->GetBackPegs()
+  };
+
+  for (int peg_row = 0; peg_row!=2; ++peg_row)
+  {
+    for (int peg_col = 0; peg_col!=2; ++peg_col)
+    {
+      pegs.m_pegs[peg_row][peg_col]->GetToggleButton()->IsPressed();
+    }
+  }
+
   assert(!"TODO");
   return c;
 }
