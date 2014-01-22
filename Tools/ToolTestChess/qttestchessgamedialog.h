@@ -39,7 +39,7 @@ public:
   explicit QtTestChessGameDialog(QWidget *parent = 0);
   QtTestChessGameDialog(const QtTestChessGameDialog&) = delete;
   QtTestChessGameDialog& operator=(const QtTestChessGameDialog&) = delete;
-  ~QtTestChessGameDialog();
+  ~QtTestChessGameDialog() noexcept;
 
 private slots:
   void on_list_moves_doubleClicked(const QModelIndex &index);

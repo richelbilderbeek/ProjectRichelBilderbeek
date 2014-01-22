@@ -51,7 +51,7 @@ ribi::QtTestChessGameDialog::QtTestChessGameDialog(QWidget *parent) :
   OnChessboardChanged();
 }
 
-ribi::QtTestChessGameDialog::~QtTestChessGameDialog()
+ribi::QtTestChessGameDialog::~QtTestChessGameDialog() noexcept
 {
   delete ui;
 }

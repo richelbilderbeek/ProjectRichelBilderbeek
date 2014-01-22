@@ -70,7 +70,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
   }
 }
 
-ribi::cmap::QtTestConceptMapWidgetDialog::~QtTestConceptMapWidgetDialog()
+ribi::cmap::QtTestConceptMapWidgetDialog::~QtTestConceptMapWidgetDialog() noexcept
 {
   delete ui;
 }
