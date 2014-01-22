@@ -46,7 +46,7 @@ ribi::QtFilterOperationerMainDialog::QtFilterOperationerMainDialog(QWidget *pare
   ShowLoadedPixmap(p);
 }
 
-ribi::QtFilterOperationerMainDialog::~QtFilterOperationerMainDialog()
+ribi::QtFilterOperationerMainDialog::~QtFilterOperationerMainDialog() noexcept
 {
   delete ui;
 }

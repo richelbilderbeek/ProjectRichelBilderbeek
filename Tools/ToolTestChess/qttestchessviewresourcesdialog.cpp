@@ -49,7 +49,7 @@ ribi::QtTestChessViewResourcesDialog::QtTestChessViewResourcesDialog(QWidget *pa
   }
 }
 
-ribi::QtTestChessViewResourcesDialog::~QtTestChessViewResourcesDialog()
+ribi::QtTestChessViewResourcesDialog::~QtTestChessViewResourcesDialog() noexcept
 {
   delete ui;
 }

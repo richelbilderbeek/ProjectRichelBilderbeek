@@ -220,7 +220,7 @@ include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcDesktop.pri)
 
-QT += core gui svg
+QT += core gui #svg
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 SOURCES += qtmain.cpp

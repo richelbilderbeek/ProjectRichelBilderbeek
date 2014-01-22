@@ -97,14 +97,14 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 2;
-    assert(index < cmap::ConceptFactory::GetTests().size());
+    assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
     QtHideAndShowDialog* p(new cmap::QtConceptMapConceptEditDialog(cmap::ConceptFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
     const int index = 2;
-    assert(index < cmap::ConceptFactory::GetTests().size());
+    assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
     QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(pvdb::FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);

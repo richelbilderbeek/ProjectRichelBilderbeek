@@ -37,7 +37,7 @@ public:
   explicit QtTestChessMenuDialog(QWidget *parent = 0);
   QtTestChessMenuDialog(const QtTestChessMenuDialog&) = delete;
   QtTestChessMenuDialog& operator=(const QtTestChessMenuDialog&) = delete;
-  ~QtTestChessMenuDialog();
+  ~QtTestChessMenuDialog() noexcept;
 
 private slots:
   void on_button_about_clicked();

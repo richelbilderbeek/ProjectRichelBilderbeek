@@ -37,7 +37,7 @@ public:
   explicit QtTestChessViewResourcesDialog(QWidget *parent = 0);
   QtTestChessViewResourcesDialog(const QtTestChessViewResourcesDialog&) = delete;
   QtTestChessViewResourcesDialog& operator=(const QtTestChessViewResourcesDialog&) = delete;
-  ~QtTestChessViewResourcesDialog();
+  ~QtTestChessViewResourcesDialog() noexcept;
 
 private:
   Ui::QtTestChessViewResourcesDialog *ui;

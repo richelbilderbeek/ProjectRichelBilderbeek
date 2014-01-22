@@ -20,7 +20,7 @@ ribi::QtSearchAndDestroyChessGameDialog::QtSearchAndDestroyChessGameDialog(QWidg
   #endif
 }
 
-ribi::QtSearchAndDestroyChessGameDialog::~QtSearchAndDestroyChessGameDialog()
+ribi::QtSearchAndDestroyChessGameDialog::~QtSearchAndDestroyChessGameDialog() noexcept
 {
   delete ui;
 }

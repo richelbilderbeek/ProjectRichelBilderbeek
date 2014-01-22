@@ -18,7 +18,7 @@ public:
   explicit QtSearchAndDestroyChessMenuDialog(QWidget *parent = 0);
   QtSearchAndDestroyChessMenuDialog(const QtSearchAndDestroyChessMenuDialog&) = delete;
   QtSearchAndDestroyChessMenuDialog& operator=(const QtSearchAndDestroyChessMenuDialog&) = delete;
-  ~QtSearchAndDestroyChessMenuDialog();
+  ~QtSearchAndDestroyChessMenuDialog() noexcept;
 
 private:
   Ui::QtSearchAndDestroyChessMenuDialog *ui;

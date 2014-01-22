@@ -140,9 +140,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(!file->GetConceptMap());
 
     const int index_1 = 1;
-    assert(index_1 < cmap::ConceptFactory::GetTests().size());
+    assert(index_1 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
     const int index_2 = 2;
-    assert(index_2 < cmap::ConceptFactory::GetTests().size());
+    assert(index_2 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
 
     const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::Create("Concept F"));
     const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(index_1));
@@ -194,11 +194,11 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     assert(!file->GetConceptMap());
 
     const int index_1 = 0;
-    assert(index_1 < cmap::ConceptFactory::GetTests().size());
+    assert(index_1 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
     const int index_2 = 1;
-    assert(index_2 < cmap::ConceptFactory::GetTests().size());
+    assert(index_2 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
     const int index_3 = 2;
-    assert(index_3 < cmap::ConceptFactory::GetTests().size());
+    assert(index_3 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
 
     const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::GetTests().at(index_1));
     const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(index_2));

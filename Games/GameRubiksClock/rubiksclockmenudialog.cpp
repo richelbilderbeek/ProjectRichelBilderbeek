@@ -54,7 +54,7 @@ int ribi::RubiksClockMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     new RubiksClockWidget
   );
   std::cout << (*widget->ToDrawCanvas(20)) << std::endl;
-  std::cout << (*widget->ToTextCanvas(20)) << std::endl;
+  //std::cout << (*widget->ToTextCanvas(20)) << std::endl;
   return 0;
 }
 

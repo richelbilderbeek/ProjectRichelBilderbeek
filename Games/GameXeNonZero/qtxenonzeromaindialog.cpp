@@ -22,7 +22,7 @@ ribi::QtXeNonZeroMainDialog::QtXeNonZeroMainDialog(QWidget *parent)
   on_button_space_clicked();
 }
 
-ribi::QtXeNonZeroMainDialog::~QtXeNonZeroMainDialog()
+ribi::QtXeNonZeroMainDialog::~QtXeNonZeroMainDialog() noexcept
 {
   delete ui;
 }

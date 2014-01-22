@@ -35,7 +35,7 @@ public:
     const std::vector<boost::shared_ptr<Player> > players = CreatePlayers());
   QtTronGameDialog(const QtTronGameDialog&) = delete;
   QtTronGameDialog& operator=(const QtTronGameDialog&) = delete;
-  ~QtTronGameDialog();
+  ~QtTronGameDialog() noexcept;
 
 private:
   Ui::QtTronGameDialog *ui;

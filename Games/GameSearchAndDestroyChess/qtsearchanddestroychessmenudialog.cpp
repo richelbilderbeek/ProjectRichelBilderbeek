@@ -24,7 +24,7 @@ ribi::sadc::QtSearchAndDestroyChessMenuDialog::QtSearchAndDestroyChessMenuDialog
   //TODO: Add transparency to the resources
 }
 
-ribi::sadc::QtSearchAndDestroyChessMenuDialog::~QtSearchAndDestroyChessMenuDialog()
+ribi::sadc::QtSearchAndDestroyChessMenuDialog::~QtSearchAndDestroyChessMenuDialog() noexcept
 {
   delete ui;
 }

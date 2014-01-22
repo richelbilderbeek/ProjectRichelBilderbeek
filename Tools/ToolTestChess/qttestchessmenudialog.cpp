@@ -49,7 +49,7 @@ ribi::QtTestChessMenuDialog::QtTestChessMenuDialog(QWidget *parent)
   ui->setupUi(this);
 }
 
-ribi::QtTestChessMenuDialog::~QtTestChessMenuDialog()
+ribi::QtTestChessMenuDialog::~QtTestChessMenuDialog() noexcept
 {
   delete ui;
 }

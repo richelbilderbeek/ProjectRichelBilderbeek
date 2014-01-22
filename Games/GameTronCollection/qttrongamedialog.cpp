@@ -36,7 +36,7 @@ ribi::tron::QtTronGameDialog::QtTronGameDialog(
   m_timer->start(20);
 }
 
-ribi::tron::QtTronGameDialog::~QtTronGameDialog()
+ribi::tron::QtTronGameDialog::~QtTronGameDialog() noexcept
 {
   delete ui;
 }

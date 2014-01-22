@@ -26,7 +26,7 @@ public:
   explicit QtFilterOperationerMainDialog(QWidget *parent = 0);
   QtFilterOperationerMainDialog(const QtFilterOperationerMainDialog&) = delete;
   QtFilterOperationerMainDialog& operator=(const QtFilterOperationerMainDialog&) = delete;
-  ~QtFilterOperationerMainDialog();
+  ~QtFilterOperationerMainDialog() noexcept;
 
 private slots:
   void on_button_do_clicked();

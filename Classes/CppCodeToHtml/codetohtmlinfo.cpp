@@ -363,7 +363,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <a href=\"CppBoostFunctionExample3.htm\">Boost.Function example 3: calling a member function with an argument and reading its result</a>",
         "  is a <a href=\"CppBoostFunction.htm\">Boost.Function</a> example that shows how",
         "  to call a member function with an argument and how to read its result.",
-        "</p>
+        "</p>"
       }
     }
   );
@@ -461,7 +461,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <a href=\"CppBoostSignals2Example2.htm\">Boost.Signals2 example 2: emitting this</a>",
         "  is a <a href=\"CppBoostSignals2.htm\">Boost.Signals2</a> example that shows how",
         "  to emit <a href=\"CppThis.htm\">this</a>.",
-        "</p>
+        "</p>"
       }
     }
   );

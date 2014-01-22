@@ -26,7 +26,7 @@ public:
   explicit QtReversiMainDialog(QWidget *parent = 0);
   QtReversiMainDialog(const QtReversiMainDialog&) = delete;
   QtReversiMainDialog& operator=(const QtReversiMainDialog&) = delete;
-  ~QtReversiMainDialog();
+  ~QtReversiMainDialog() noexcept;
 
 
 private:

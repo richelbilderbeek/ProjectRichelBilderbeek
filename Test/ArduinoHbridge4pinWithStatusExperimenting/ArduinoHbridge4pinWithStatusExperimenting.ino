@@ -2,7 +2,6 @@ const int pin_1 = 2;
 const int pin_2 = 3;
 const int pin_3 = 4;
 const int pin_4 = 5;
-const int pin_status = 8;
 
 void setup()
 {

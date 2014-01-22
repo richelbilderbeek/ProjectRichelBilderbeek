@@ -108,7 +108,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttoolprimeexpertmenudialog.h"
 #include "qttoolsimplifynewickmenudialog.h"
 #include "qttooltestapproximatormenudialog.h"
-#include "qttooltestledmaindialog.h"
+#include "qttestledmaindialog.h"
 #include "qttooltestmultiapproximatormenudialog.h"
 #include "qttooltestqtmodelsmenudialog.h"
 #include "qttooltestsimplelinearregressionmenudialog.h"

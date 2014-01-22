@@ -16,7 +16,7 @@ ribi::reversi::QtReversiMainDialog::QtReversiMainDialog(QWidget *parent) :
   ui->layout->addWidget(m_reversi.get());
 }
 
-ribi::reversi::QtReversiMainDialog::~QtReversiMainDialog()
+ribi::reversi::QtReversiMainDialog::~QtReversiMainDialog() noexcept
 {
   delete ui;
 }
