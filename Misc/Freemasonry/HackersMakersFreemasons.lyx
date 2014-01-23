@@ -107,6 +107,14 @@ Doel
 Het naast elkaar leggen van de hacker/makerscene en de Vrijmetselarij
 \end_layout
 
+\begin_layout Itemize
+Wat is uniek aan de groepen?
+\end_layout
+
+\begin_layout Itemize
+Wat kunnen de groepen elkaar brengen?
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -239,6 +247,16 @@ Hungarian Autonomous Center for Knowledge
 
 \begin_layout Section
 GNU/Linux distributie
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Kali Linux
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -409,7 +427,7 @@ Hackers: The Hacker Manifesto
 \end_layout
 
 \begin_layout Itemize
-Makers: -
+Makers: ?
 \end_layout
 
 \begin_layout Standard
@@ -513,6 +531,10 @@ Zoektocht naar kennis
 Iedereen gelijk
 \end_layout
 
+\begin_layout Itemize
+De wereld te verbeteren
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -556,7 +578,7 @@ Makers: geen
 \end_layout
 
 \begin_layout Itemize
-Vrijmetselarij: The Grand Lode/Order
+Vrijmetselarij: The Grand Lodge
 \end_layout
 
 \begin_layout Standard
@@ -590,6 +612,29 @@ Vrijmetselarij: ritualen
 \end_layout
 
 \begin_layout Section
+Verschillen: openheid
+\end_layout
+
+\begin_layout Itemize
+Hackers: open IRC kanalen, alleen leesbaar voor aanwezigen
+\end_layout
+
+\begin_layout Itemize
+Makers: -
+\end_layout
+
+\begin_layout Itemize
+Vrijmetselarij: alleen toegankelijk voor leden
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Verschillen: vorm
 \end_layout
 
@@ -603,6 +648,335 @@ Makers: vorm naar functie: enkel mooi als dit geen kosten mee brengt
 
 \begin_layout Itemize
 Vrijmetselarij: vorm is belangrijk, ondanks kosten
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vorm
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Grand Lodge Pennsylvia & Le Loop, Paris
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Lodge_Keys_No_297_Logo.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename 120px-Emblem-hacker.svg.png
+	lyxscale 150
+	scale 150
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vorm
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Grand Lodge Pennsylvia & Le Loop, Paris
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Grand_Lodge_of_Pennsylvania.jpg
+	lyxscale 50
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Le_Loop_hackerspace_at_La_Gare_XP_Paris_01,_July_2013.jpg
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vorm
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+A._F._A._Woodford & an anonymous hacker
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename 427px-A._F._A._Woodford.jpg
+	lyxscale 40
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Hackers_legendarios_01.jpg
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vorm
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Freemasonry certificate & Manifesto
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename FreemasonryCertificate.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename TheHackerManifesto.png
+	lyxscale 40
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vorm
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Closed door & IRC flame war
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename 15_rue_Saint-Pierre_à_Dourdan_en_2013_3.jpg
+	lyxscale 40
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Flamewar.png
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -651,18 +1025,64 @@ Verschillen: autoriteit, traditie, vorm
 \end_layout
 
 \begin_layout Section
+Mijn vragen
+\end_layout
+
+\begin_layout Itemize
+Wat is het voordeel van de beslotenheid van de Vrijmetselarij?
+\end_layout
+
+\begin_layout Itemize
+Wat is het voordeel van de centrale authoriteit van de Vrijmetselarij?
+\end_layout
+
+\begin_layout Itemize
+Handelt de Vrijmetselarij naar haar idealen?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Conclusie
 \end_layout
 
 \begin_layout Itemize
-Een hacker/maker kan iets leren van het sociale van de Vrijmetselarij 
+De Vrijmetselaarscultuur brengt een hacker/maker:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+een omgeving waar je op je menselijkheid wordt beoordeelt
 \end_layout
 
 \begin_layout Itemize
-Een Vrijmetselaar kan iets leren van het vernieuwende en prestatiegerichte
- van de hacker/maker
+een cultuur die stabiel(er) is, 'late adopters'
 \end_layout
 
+\end_deeper
+\begin_layout Itemize
+Een hacker/makercultuur brengt de Vrijmetselaar:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+een gemeenschap die open is
+\end_layout
+
+\begin_layout Itemize
+een gemeenschap die snel verandert, 'early adopters'
+\end_layout
+
+\begin_layout Itemize
+een mogelijkheid de wereld met daden te verbeteren
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
