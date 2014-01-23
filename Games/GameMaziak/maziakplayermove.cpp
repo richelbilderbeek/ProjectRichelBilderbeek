@@ -1,0 +1,2 @@
+#include "maziakplayermove.h"
+

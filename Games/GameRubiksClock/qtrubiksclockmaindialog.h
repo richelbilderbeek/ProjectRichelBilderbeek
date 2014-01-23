@@ -11,6 +11,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace ruco {
 
 class QtRubiksClockMainDialog : public QtHideAndShowDialog
 {
@@ -35,6 +36,7 @@ private:
   #endif
 };
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // QTRUBIKSCLOCKMAINDIALOG_H

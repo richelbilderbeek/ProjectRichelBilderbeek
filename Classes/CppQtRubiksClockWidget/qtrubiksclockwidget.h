@@ -31,7 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QWidget>
 
-#include "rubiksclock.h" //Required by MOC
+#include "rubiksclock.h"       //Required by MOC
+#include "rubiksclockfwd.h"
 #include "rubiksclockwidget.h" //Required by MOC
 #pragma GCC diagnostic pop
 
@@ -39,8 +40,7 @@ namespace Wt { struct WMouseEventEvent; }
 struct QPainter;
 
 namespace ribi {
-
-struct RubiksClock;
+namespace ruco {
 
 ///QtRubiksClockWidget displays a RubiksClock
 class QtRubiksClockWidget : public QWidget
@@ -56,10 +56,10 @@ public:
     const unsigned char blue = 255);
 
   ///Obtain a read-only pointer to the RubiksClockWidget
-  const RubiksClockWidget * GetWidget() const { return m_widget.get(); }
+  const ClockWidget * GetWidget() const { return m_widget.get(); }
 
   ///Obtain a read-and-write pointer to the RubiksClockWidget
-  RubiksClockWidget * GetWidget() { return m_widget.get(); }
+  ClockWidget * GetWidget() { return m_widget.get(); }
 
   ///Obtain the QtRubiksClockWidget its version
   static const std::string GetVersion() noexcept;
@@ -76,13 +76,13 @@ public:
     QPainter& painter,
     const int x, const int y,
     const int width, const int height,
-    const RubiksClock * const clock,
+    const Clock * const clock,
     const bool front_size);
 
   ///Draw the RubiksClock
   static void DrawRubiksClock(
     QPainter& painter,
-    const RubiksClockWidget * const widget);
+    const ClockWidget * const widget);
 
   protected:
   ///Paint the QtRubiksClockWidget
@@ -92,7 +92,7 @@ public:
 
   private:
   ///The RubiksClockWidget
-  boost::scoped_ptr<RubiksClockWidget> m_widget;
+  boost::scoped_ptr<ClockWidget> m_widget;
 
   ///Do not let this be called by the client
   void resize(const int width, const int height);
@@ -104,6 +104,7 @@ public:
   void OnResize();
 };
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // QTRUBIKSCLOCKWIDGET_H

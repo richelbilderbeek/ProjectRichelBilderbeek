@@ -160,8 +160,6 @@ bool ribi::ConnectThree::IsInvalidMove(const Move& p) noexcept
     && p.get<2>() == q.get<2>();
 }
 
-///SuggestMove suggests a good move. If the game is a draw,
-///it returns an invalid move.
 const ribi::ConnectThree::Move ribi::ConnectThree::SuggestMove(
   const std::bitset<3>& is_player_human) const noexcept
 {
@@ -703,3 +701,27 @@ void ribi::ConnectThree::Test() noexcept
   assert(c.GetWinner() == ConnectThree::draw);
 }
 #endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const ConnectThree& c)
+{
+  const int n_cols = c.GetCols();
+  const int n_rows = c.GetRows();
+  for (int y=0; y!=n_rows; ++y)
+  {
+    for (int x=0; x!=n_cols; ++x)
+    {
+      char d = ' ';
+      switch (c.GetSquare(x,y))
+      {
+        case ConnectThree::no_player: d = '.'; break;
+        case ConnectThree::player1  : d = '1'; break;
+        case ConnectThree::player2  : d = '2'; break;
+        case ConnectThree::player3  : d = '3'; break;
+        default: assert(!"Should not get here");
+      }
+      os << d;
+    }
+    os << '\n';
+  }
+  return os;
+}

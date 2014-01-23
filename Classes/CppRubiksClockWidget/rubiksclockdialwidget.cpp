@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RubiksClockDialWidget::RubiksClockDialWidget(
+ribi::ruco::ClockDialWidget::ClockDialWidget(
   const double position,
   const int x,
   const int y,
@@ -46,29 +46,30 @@ ribi::RubiksClockDialWidget::RubiksClockDialWidget(
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_dial(new RubiksClockDial(position,x,y,width,height,red,green,blue))
+  : m_dial(new ClockDial(position,x,y,width,height,red,green,blue))
 {
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-double ribi::RubiksClockDialWidget::GetDistance(const double dX, const double dY)
+double ribi::ruco::ClockDialWidget::GetDistance(const double dX, const double dY)
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }
 
-const std::string ribi::RubiksClockDialWidget::GetVersion() noexcept
+const std::string ribi::ruco::ClockDialWidget::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::RubiksClockDialWidget::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ruco::ClockDialWidget::GetVersionHistory() noexcept
 {
   return {
-    "2011-09-08: Version 1.0: initial version"
+    "2011-09-08: Version 1.0: initial version, called 'RubiksClockDialWidget'",
+    "2014-01-23: Version 1.1: renamed to 'ClockDialWidget'"
   };
 }
 
-bool ribi::RubiksClockDialWidget::IsClicked(const int x, const int y) const
+bool ribi::ruco::ClockDialWidget::IsClicked(const int x, const int y) const
 {
   const double widget_midx
     = boost::numeric_cast<double>(GetGeometry().GetX())
@@ -82,7 +83,7 @@ bool ribi::RubiksClockDialWidget::IsClicked(const int x, const int y) const
     < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDialWidget& widget)
+std::ostream& ribi::ruco::operator<<(std::ostream& os, const ribi::ruco::ClockDialWidget& widget)
 {
   os
     << "<RubiksClockDialWidget>"
@@ -91,5 +92,3 @@ std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDialWidget& wi
     << "</RubiksClockDialWidget>";
   return os;
 }
-
-

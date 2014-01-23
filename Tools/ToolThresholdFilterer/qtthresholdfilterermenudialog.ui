@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>184</width>
-    <height>413</height>
+    <width>511</width>
+    <height>522</height>
    </rect>
   </property>
   <property name="font">
@@ -18,14 +18,25 @@
   <property name="windowTitle">
    <string>ThresholdFilterer</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QLabel { font: 48px &quot;Courier New&quot;, courier, monospace }
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label_title">
      <property name="font">
       <font>
-       <pointsize>28</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
+       <family>Courier New,courier,monospace</family>
+       <pointsize>-1</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -42,7 +53,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="ToolThresholdFilterer.qrc">:/thresholdfilterer/images/ToolThresholdFiltererResult.png</pixmap>
+      <pixmap resource="ToolThresholdFilterer.qrc">:/thresholdfilterer/images/ToolThresholdFiltererTest.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -54,6 +65,9 @@
      <property name="text">
       <string>Start</string>
      </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -61,12 +75,18 @@
      <property name="text">
       <string>About</string>
      </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

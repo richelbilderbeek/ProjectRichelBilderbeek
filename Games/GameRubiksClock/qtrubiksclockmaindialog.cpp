@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtrubiksclockmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
+ribi::ruco::QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtRubiksClockMainDialog)
 {
@@ -44,34 +44,34 @@ ribi::QtRubiksClockMainDialog::QtRubiksClockMainDialog(QWidget *parent) :
     const int x = (std::rand() >> 4);
     switch (x % 8)
     {
-      case 0: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::topLeft); break;
-      case 1: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::topRight); break;
-      case 2: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::bottomLeft); break;
-      case 3: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(RubiksClock::Side::bottomRight); break;
-      case 4: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::topLeft,(x >> 4) % 11); break;
-      case 5: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::topRight,(x >> 4) % 11); break;
-      case 6: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::bottomLeft,(x >> 4) % 11); break;
-      case 7: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(RubiksClock::Side::bottomRight,(x >> 4) % 11); break;
+      case 0: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(Side::topLeft); break;
+      case 1: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(Side::topRight); break;
+      case 2: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(Side::bottomLeft); break;
+      case 3: ui->clock->GetWidget()->GetRubiksClock()->TogglePeg(Side::bottomRight); break;
+      case 4: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(Side::topLeft,(x >> 4) % 11); break;
+      case 5: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(Side::topRight,(x >> 4) % 11); break;
+      case 6: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(Side::bottomLeft,(x >> 4) % 11); break;
+      case 7: ui->clock->GetWidget()->GetRubiksClock()->TurnWheel(Side::bottomRight,(x >> 4) % 11); break;
     }
   }
 }
 
-ribi::QtRubiksClockMainDialog::~QtRubiksClockMainDialog() noexcept
+ribi::ruco::QtRubiksClockMainDialog::~QtRubiksClockMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtRubiksClockMainDialog::keyPressEvent(QKeyEvent * e)
+void ribi::ruco::QtRubiksClockMainDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void ribi::QtRubiksClockMainDialog::on_button_flip_clicked()
+void ribi::ruco::QtRubiksClockMainDialog::on_button_flip_clicked()
 {
   ui->clock->GetWidget()->Flip();
 }
 
-void ribi::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
+void ribi::ruco::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
 {
   //const QRectF r(ui->widget_hold_clock->geometry().adjusted(0.0,0.0,-16.0,-16.0));
   const QRectF r(ui->clock->geometry());
@@ -79,14 +79,14 @@ void ribi::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
 }
 
 #ifndef NDEBUG
-void ribi::QtRubiksClockMainDialog::Test() noexcept
+void ribi::ruco::QtRubiksClockMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRubiksClockMainDialog::Test");
-  TRACE("Finished ribi::QtRubiksClockMainDialog::Test successfully");
+  TRACE("Starting ribi::ruco::QtRubiksClockMainDialog::Test");
+  TRACE("Finished ribi::ruco::QtRubiksClockMainDialog::Test successfully");
 }
 #endif

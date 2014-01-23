@@ -32,6 +32,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace ruco {
 
 class QtRubiksClockMenuDialog : public QtHideAndShowDialog
 {
@@ -59,6 +60,7 @@ private slots:
   void on_button_start_clicked();
 };
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // QTRUBIKSCLOCKMENUDIALOG_H

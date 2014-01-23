@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
   assert(1==2 && "Assume debugging is really disabled");
   #endif
 
-  ribi::QtRubiksClockMenuDialog d;
+  ribi::ruco::QtRubiksClockMenuDialog d;
   d.show();
   return a.exec();
 }

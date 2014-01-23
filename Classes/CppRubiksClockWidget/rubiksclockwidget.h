@@ -31,19 +31,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
+#include "rubiksclockfwd.h"
 #include "widget.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-struct DrawCanvas;
-struct RubiksClock;
-struct TextCanvas;
+namespace ruco {
 
 ///RubiksClockWidget is a class to display a RubiksClock
-struct RubiksClockWidget : public Widget
+struct ClockWidget : public Widget
 {
-  explicit RubiksClockWidget(
+  explicit ClockWidget(
     const int x = 0,
     const int y = 0,
     const int width = 192,
@@ -59,10 +57,10 @@ struct RubiksClockWidget : public Widget
   bool GetDisplayFront() const noexcept { return m_display_front; }
 
   ///Obtain a read-and-write pointert to the RubiksClock
-  RubiksClock * GetRubiksClock() noexcept { return m_clock.get(); }
+  Clock * GetRubiksClock() noexcept { return m_clock.get(); }
 
   ///Obtain a read-only pointert to the RubiksClock
-  const RubiksClock * GetRubiksClock() const noexcept { return m_clock.get(); }
+  const Clock * GetRubiksClock() const noexcept { return m_clock.get(); }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -70,7 +68,7 @@ struct RubiksClockWidget : public Widget
   ///Obtain this class its version history
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int size) const noexcept;
+  //const boost::shared_ptr<DrawCanvas> ToDrawCanvas(const int size) const noexcept;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   ///Respond to a change in the clock
@@ -78,11 +76,11 @@ struct RubiksClockWidget : public Widget
 
   private:
   //RubiksClockWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockWidget() noexcept {}
-  friend void boost::checked_delete<>(RubiksClockWidget*);
+  virtual ~ClockWidget() noexcept {}
+  friend void boost::checked_delete<>(ClockWidget*);
 
   ///The RubiksClock
-  boost::scoped_ptr<RubiksClock> m_clock;
+  boost::scoped_ptr<Clock> m_clock;
 
   ///Does this widget display the front or the back side?
   bool m_display_front;
@@ -90,11 +88,12 @@ struct RubiksClockWidget : public Widget
   ///Respond to a change in geometry
   void OnResize() noexcept;
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept;
+  friend std::ostream& operator<<(std::ostream& os, const ClockWidget& widget) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept;
+std::ostream& operator<<(std::ostream& os, const ClockWidget& widget) noexcept;
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // RUBIKSCLOCKWIDGET_H

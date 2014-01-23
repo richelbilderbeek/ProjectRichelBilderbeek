@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
+#include "maziakdifficulty.h"
 #pragma GCC diagnostic pop
 
 struct QKeyPressEvent;
@@ -35,6 +36,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace maziak {
 
 class QtMaziakMenuDialog : public QtHideAndShowDialog
 {
@@ -48,9 +50,8 @@ public:
 
 private:
   Ui::QtMaziakMenuDialog *ui;
-  enum Difficulty { easy, medium, hard } m_difficulty;
   int getMazeSize() const;
-
+  Difficulty m_difficulty;
   void keyPressEvent(QKeyEvent * event);
   void mousePressEvent(QMouseEvent * event);
   void paintEvent(QPaintEvent*);
@@ -63,6 +64,7 @@ private:
   #endif
 };
 
+} //~namespace maziak
 } //~namespace ribi
 
 #endif // QTMAZIAKMENUDIALOG_H

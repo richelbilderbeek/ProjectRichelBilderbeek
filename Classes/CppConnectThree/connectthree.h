@@ -64,8 +64,14 @@ struct ConnectThree
   ///Returns no_player if there are still free squares
   int GetWinner() const noexcept;
   static bool IsInvalidMove(const Move& p) noexcept;
-  const Move SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
+
   void Restart() noexcept;
+
+  ///SuggestMove suggests a good move. If the game is a draw,
+  ///it returns an invalid move.
+  const Move SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
+
+
 
 private:
   ~ConnectThree() noexcept {}
@@ -94,8 +100,10 @@ private:
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
 };
+
+std::ostream& operator<<(std::ostream& os, const ConnectThree& c);
+
 
 } //~namespace ribi
 

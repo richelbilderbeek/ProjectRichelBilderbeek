@@ -72,6 +72,8 @@ struct DasWahreSchlagerfestWidget
   #endif
 };
 
+std::ostream& operator<<(std::ostream& os,const DasWahreSchlagerfestWidget& w);
+
 } //~namespace ribi
 
 #endif // DASWAHRESCHLAGERFESTWIDGET_H

@@ -13,14 +13,41 @@ int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+
+  //Play a ConnectThreeGame, but change the graphics
+  boost::shared_ptr<ConnectThree> c {
+    new ConnectThree(15,5)
+  };
+  const std::bitset<3> is_player_human(0);
+  while (c->GetWinner() == ConnectThree::no_player)
+  {
+    c->DoMove(c->SuggestMove(is_player_human));
+    std::stringstream s;
+    s << (*c);
+    std::string t { s.str() };
+    //Replace
+    std::replace(t.begin(),t.end(),'1','K'); //Karen
+    std::replace(t.begin(),t.end(),'2','R'); //kRistel
+    std::replace(t.begin(),t.end(),'3','J'); //Josje
+    std::cout << t << std::endl
+      << std::endl;
+  }
+
+  switch (c->GetWinner())
+  {
+    case ConnectThree::player1: std::cout << "Karen won the game"; break;
+    case ConnectThree::player2: std::cout << "Kristel won the game"; break;
+    case ConnectThree::player3: std::cout << "Josje won the game"; break;
+    case ConnectThree::draw   : std::cout << "The game ended in a draw"; break;
+  }
+
+  std::cout << std::endl;
+
   return 0;
 }
 
@@ -76,7 +103,8 @@ const std::vector<std::string> ribi::K3OpEenRijMenuDialog::GetVersionHistory() c
     "2009-12-31: version 4.0: replaced Kathleen by Josje, game arena always visible, made screens smaller, removed useless JPEGs",
     "2013-08-06: version 5.0: port to Qt Creator",
     "2013-08-06: version 5.1: allow selection of both Kathleen and Josje",
-    "2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report"
+    "2013-08-09: version 6.0: implemented suggestions and bugfixes from Mark Wiering's report",
+    "2014-01-23: version 6.1: added command line demo"
   };
 }
 

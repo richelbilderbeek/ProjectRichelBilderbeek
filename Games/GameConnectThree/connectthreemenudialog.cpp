@@ -38,14 +38,34 @@ int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+
+  boost::shared_ptr<ConnectThree> c {
+    new ConnectThree(15,5)
+  };
+  const std::bitset<3> is_player_human(0);
+  while (c->GetWinner() == ConnectThree::no_player)
+  {
+    c->DoMove(c->SuggestMove(is_player_human));
+    std::cout << (*c)
+      << std::endl
+      << std::endl;
+  }
+
+  switch (c->GetWinner())
+  {
+    case ConnectThree::player1: std::cout << "Player 1 won the game"; break;
+    case ConnectThree::player2: std::cout << "Player 2 won the game"; break;
+    case ConnectThree::player3: std::cout << "Player 3 won the game"; break;
+    case ConnectThree::draw   : std::cout << "The game ended in a draw"; break;
+  }
+
+  std::cout << std::endl;
+
   return 0;
 }
 
@@ -55,7 +75,7 @@ const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "ConnectThree",
     "connect-three game",
-    "the 1st of August 2013",
+    "the 23rd of January 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/GameConnectThree.htm",
     GetVersion(),
@@ -91,7 +111,7 @@ const boost::shared_ptr<const ribi::Program> ribi::ConnectThreeMenuDialog::GetPr
 
 const std::string ribi::ConnectThreeMenuDialog::GetVersion() const noexcept
 {
-  return "6.5";
+  return "6.6";
 }
 
 const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory() const noexcept
@@ -105,7 +125,8 @@ const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory()
     "2011-04-25: version 6.2: hopefully fixed the bug as in 6.1, fixed desktop version",
     "2013-07-11: version 6.3: transitioned to Qt5 and Boost 1.54.0",
     "2013-07-21: version 6.4: improved looks",
-    "2013-08-06: version 6.5: facilitate K3OpEenRij using ConnectThree classes"
+    "2013-08-06: version 6.5: facilitate K3OpEenRij using ConnectThree classes",
+    "2014-01-23: version 6.6: command-line version displays a game"
   };
 }
 
@@ -118,7 +139,8 @@ void ribi::ConnectThreeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ConnectThreeMenuDialog::Test");
-
+  ConnectThreeMenuDialog d;
+  d.Execute(std::vector<std::string>(1,"connectthree"));
   TRACE("Finished ribi::ConnectThreeMenuDialog::Test successfully");
 }
 #endif

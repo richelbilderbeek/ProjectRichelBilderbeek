@@ -268,7 +268,7 @@ struct ProgramBoenken : public ProgramGame
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "Boenken"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
@@ -300,7 +300,7 @@ struct ProgramBrainweaver : public ProgramProject
   const std::string GetScreenName() const noexcept { return "Brainweaver"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
-  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
   ProgramType GetType() const noexcept { return ProgramType::brainweaver; }
   const std::string GetUrl() const noexcept { return "ProjectBrainweaver.htm"; }
@@ -358,7 +358,7 @@ struct ProgramConnectThree : public ProgramGame
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return "GameConnectThree_6_0.png"; }
   const std::string GetScreenName() const noexcept { return "ConnectThree"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
@@ -433,7 +433,7 @@ struct ProgramDasWahreSchlagerfest : public ProgramGame
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "Das Wahre Schlagerfest"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
@@ -779,7 +779,7 @@ struct ProgramK3OpEenRij : public ProgramGame
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return "GameK3OpEenRij_5_0.png"; }
   const std::string GetScreenName() const noexcept { return "K3 Op Een Rij"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::yes; }
@@ -960,7 +960,7 @@ struct ProgramMazeCreator : public ProgramTool
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "MazeCreator"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }

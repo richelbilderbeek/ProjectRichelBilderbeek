@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-RubiksClockDial, class for displaying a Rubik's Clock Dial
+ClockDial, class for displaying a Rubik's Clock Dial
 Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RubiksClockDial::RubiksClockDial(
+ribi::ruco::ClockDial::ClockDial(
   const int time,
   const int x,
   const int y,
@@ -52,19 +52,20 @@ ribi::RubiksClockDial::RubiksClockDial(
   this->Turn(-1);
 }
 
-const std::string ribi::RubiksClockDial::GetVersion() noexcept
+const std::string ribi::ruco::ClockDial::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::RubiksClockDial::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ruco::ClockDial::GetVersionHistory() noexcept
 {
   return {
-    "2011-09-08: Version 1.0: initial version"
+    "2011-09-08: Version 1.0: initial version, called RubiksClockDial",
+    "2014-01-23: Version 1.1: renamed to ClockDial"
   };
 }
 
-void ribi::RubiksClockDial::Turn(const int n_positions_clockwise) noexcept
+void ribi::ruco::ClockDial::Turn(const int n_positions_clockwise) noexcept
 {
   if (n_positions_clockwise % 12 != 0)
   {
@@ -78,13 +79,13 @@ void ribi::RubiksClockDial::Turn(const int n_positions_clockwise) noexcept
   }
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockDial& widget) noexcept
+std::ostream& ribi::ruco::operator<<(std::ostream& os, const ClockDial& widget) noexcept
 {
   os
-    << "<RubiksClockDial>"
+    << "<ClockDial>"
     << *widget.m_dial
     << widget.GetGeometry()
-    << "</RubiksClockDial>";
+    << "</ClockDial>";
   return os;
 }
 

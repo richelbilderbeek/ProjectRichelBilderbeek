@@ -34,8 +34,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dial.h"
 #include "drawcanvas.h"
 #include "rubiksclock.h"
+#include "rubiksclocktimes.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
+#include "rubiksclockpegs.h"
 #include "rectangle.h"
 #include "textcanvas.h"
 #include "togglebutton.h"
@@ -44,74 +46,74 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::RubiksClockWidget::RubiksClockWidget(
+ribi::ruco::ClockWidget::ClockWidget(
   const int x,
   const int y,
   const int width,
   const int height) noexcept
   : m_signal_widget_flipped{},
-    m_clock{new RubiksClock},
+    m_clock{new Clock},
     m_display_front{true}
 {
   m_signal_geometry_changed.connect(
     boost::bind(
-      &ribi::RubiksClockWidget::OnResize,
+      &ribi::ruco::ClockWidget::OnResize,
       this));
 
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-void ribi::RubiksClockWidget::Click(const int x,const int y,const bool button_left) noexcept
+void ribi::ruco::ClockWidget::Click(const int x,const int y,const bool button_left) noexcept
 {
-  RubiksClock::Times& times = (m_display_front ? m_clock->GetFrontTimes() : m_clock->GetBackTimes());
-  RubiksClock::Pegs& pegs = m_clock->GetFrontPegs();
+  const boost::shared_ptr<const Times> times = (m_display_front ? m_clock->GetFrontTimes() : m_clock->GetBackTimes());
+  const boost::shared_ptr<const Pegs> pegs = m_clock->GetFrontPegs();
 
   for (int i=0; i!=2; ++i)
   {
     for (int j=0; j!=2; ++j)
     {
-      if (times.times[i*2][j*2]->IsClicked(x,y))
+      if (times->times[i*2][j*2]->IsClicked(x,y))
       {
         if(m_display_front)
         {
           this->m_clock->TurnWheel(
             i
-            ? (j ? RubiksClock::Side::bottomRight : RubiksClock::Side::topRight)
-            : (j ? RubiksClock::Side::bottomLeft : RubiksClock::Side::topLeft),
+            ? (j ? Side::bottomRight : Side::topRight)
+            : (j ? Side::bottomLeft : Side::topLeft),
             button_left ? 1 : -1);
         }
         else
         {
           this->m_clock->TurnWheel(
             i
-            ? (j ? RubiksClock::Side::bottomLeft : RubiksClock::Side::topLeft)
-            : (j ? RubiksClock::Side::bottomRight : RubiksClock::Side::topRight),
+            ? (j ? Side::bottomLeft : Side::topLeft)
+            : (j ? Side::bottomRight : Side::topRight),
             button_left ? 1 : -1);
         }
       }
-      else if (pegs.m_pegs[i][j]->GetGeometry().IsIn(x,y))
+      else if (pegs->m_pegs[i][j]->GetGeometry().IsIn(x,y))
       {
         m_clock->TogglePeg(
           i
-          ? (j ? RubiksClock::Side::bottomRight : RubiksClock::Side::topRight)
-          : (j ? RubiksClock::Side::bottomLeft : RubiksClock::Side::topLeft));
+          ? (j ? Side::bottomRight : Side::topRight)
+          : (j ? Side::bottomLeft : Side::topLeft));
       }
     }
   }
 }
 
-void ribi::RubiksClockWidget::Flip() noexcept
+void ribi::ruco::ClockWidget::Flip() noexcept
 {
   m_display_front = !m_display_front;
   m_signal_widget_flipped();
 }
 
-const std::string ribi::RubiksClockWidget::GetVersion() noexcept
+const std::string ribi::ruco::ClockWidget::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::ruco::ClockWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-01: Version 1.0: initial version",
@@ -121,12 +123,13 @@ const std::vector<std::string> ribi::RubiksClockWidget::GetVersionHistory() noex
   };
 }
 
-void ribi::RubiksClockWidget::OnResize() noexcept
+void ribi::ruco::ClockWidget::OnResize() noexcept
 {
   m_clock->SetGeometry(this->GetGeometry());
 }
 
-const boost::shared_ptr<ribi::DrawCanvas> ribi::RubiksClockWidget::ToDrawCanvas(const int size) const noexcept
+/*
+const boost::shared_ptr<ribi::DrawCanvas> ribi::ruco::RubiksClockWidget::ToDrawCanvas(const int size) const noexcept
 {
   const boost::shared_ptr<ribi::DrawCanvas> c(
     new DrawCanvas(size,size)
@@ -135,10 +138,11 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::RubiksClockWidget::ToDrawCanvas(
   assert(!"TODO");
   return c;
 }
+*/
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::RubiksClockWidget::ToTextCanvas() const noexcept
+const boost::shared_ptr<ribi::TextCanvas> ribi::ruco::ClockWidget::ToTextCanvas() const noexcept
 {
-  const int size = 22;
+  const int size = 5;
   const boost::shared_ptr<ribi::TextCanvas> c(
     new TextCanvas(size,size)
   );
@@ -169,8 +173,17 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::RubiksClockWidget::ToTextCanvas(
 9 | |----         ----| |
 0 \-/    ---------    \-/
 
+Simpler version:
+
+1 2 3
+ . |
+2 A 4
+ | .
+4 5 6
+
 */
-  const RubiksClock::Pegs pegs {
+
+  const boost::shared_ptr<const Pegs> pegs {
     GetDisplayFront()
     ? GetRubiksClock()->GetFrontPegs()
     : GetRubiksClock()->GetBackPegs()
@@ -180,15 +193,37 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::RubiksClockWidget::ToTextCanvas(
   {
     for (int peg_col = 0; peg_col!=2; ++peg_col)
     {
-      pegs.m_pegs[peg_row][peg_col]->GetToggleButton()->IsPressed();
+      const char p {pegs->m_pegs[peg_row][peg_col]->GetToggleButton()->IsPressed()
+        ? '.' : '|'
+      };
+      const int x = 1 + (peg_col * 2);
+      const int y = 1 + (peg_row * 2);
+      c->PutChar(x,y,p);
+    }
+  }
+  const boost::shared_ptr<const Times> times {
+    GetDisplayFront()
+    ? GetRubiksClock()->GetFrontTimes()
+    : GetRubiksClock()->GetBackTimes()
+  };
+
+  for (int time_row = 0; time_row!=3; ++time_row)
+  {
+    for (int time_col = 0; time_col!=3; ++time_col)
+    {
+
+      const int time { times->times[time_row][time_col]->GetRubiksClockDial()->GetTime() };
+      const char p = time < 10 ? '0' + time : 'A' + (time - 10);
+      const int x = time_col * 2;
+      const int y = time_row * 2;
+      c->PutChar(x,y,p);
     }
   }
 
-  assert(!"TODO");
   return c;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const RubiksClockWidget& widget) noexcept
+std::ostream& ribi::ruco::operator<<(std::ostream& os, const ribi::ruco::ClockWidget& widget) noexcept
 {
   os
     << "<RubiksClockWidget>"

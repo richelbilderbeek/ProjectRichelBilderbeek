@@ -30,6 +30,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
+#include "maziakplayerdirection.h"
+#include "maziakplayermove.h"
+#include "maziakmazesquare.h"
+#include "maziakfwd.h"
 #pragma GCC diagnostic pop
 
 struct QPixmap;
@@ -40,16 +44,13 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace maziak {
 
 class QtMaziakMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
-
 public:
-  enum PlayerDirection { pdLeft, pdRight, pdUp, pdDown };
-  enum PlayerMove { none, left1, left2, right1, right2, up1, up2, down1, down2 };
-  enum MazeSquare { msEmpty, msWall, msEnemy1, msEnemy2, msPrisoner1, msPrisoner2, msSword, msExit };
 
   explicit QtMaziakMainDialog(QWidget *parent = 0, const int maze_size = 0);
   QtMaziakMainDialog(const QtMaziakMainDialog&) = delete;
@@ -125,11 +126,11 @@ private:
   typedef unsigned int WORD;
   std::set<WORD> mKeys;
   std::vector<std::vector<int> > mSolution;
-  std::vector<std::vector<int> > mIntMaze;
+  boost::shared_ptr<IntMaze> mIntMaze;
   std::vector<std::vector<MazeSquare> > mMaze;
   std::vector<std::vector<int> > mDistances;
 
-  void createMaze(const int sz);
+  void CreateMaze(const int sz);
   void gameOver();
   void gameWon();
   const QPixmap& GetPixmapFloor(const int x, const int) const;
@@ -152,68 +153,9 @@ private slots:
   void onTimerPressKey();
   void onTimerEnemy();
   void onTimerShowSolution();
-
 };
 
-template <class Source, class Target>
-    const std::vector<std::vector<Target> > ConvertMatrix(
-        const std::vector<std::vector<Source> >& v)
-{
-  const int maxy = static_cast<int>(v.size());
-  assert(maxy>0);
-  const int maxx = static_cast<int>(v[0].size());
-  std::vector<std::vector<Target> > t(maxy,std::vector<Target>(maxx));
-  for (int y=0; y!=maxy; ++y)
-  {
-    for (int x=0; x!=maxx; ++x)
-    {
-      t[y][x] = static_cast<Target>(v[y][x]);
-    }
-  }
-  return t;
-}
-
-const std::vector<std::pair<int,int> > GetShuffledDeadEnds(
-    const std::vector<std::vector<int> >& intMaze);
-
-const std::vector<std::pair<int,int> > GetShuffledNonDeadEnds(
-    const std::vector<std::vector<int> >& intMaze);
-
-bool CanMoveTo(
-    const std::vector<std::vector<QtMaziakMainDialog::MazeSquare> >& maze,
-    const int x, const int y,
-    const bool hasSword,
-    const bool showSolution);
-
-
-//Creates a maze
-// 0 : path
-// 1 : wall
-//From http://www.richelbilderbeek.nl/CppCreateMaze.htm
-std::vector<std::vector<int> > CreateMaze(const int sz);
-
-//From http://www.richelbilderbeek.nl/CppGetDeadEnds.htm
-std::vector<std::pair<int,int> > GetDeadEnds(const std::vector<std::vector<int> >& maze);
-
-//From http://www.richelbilderbeek.nl/GetDistancesPath.htm
-std::vector<std::vector<int> > GetDistancesPath(
-  const std::vector<std::vector<int> >& distances,
-  const int playerX,
-  const int playerY);
-
-//From http://www.richelbilderbeek.nl/CppGetMazeDistances.htm
-std::vector<std::vector<int> > GetMazeDistances(
-    const std::vector<std::vector<int> >& maze,
-    const int x,
-    const int y);
-
-const std::vector<std::pair<int,int> > GetShuffledDeadEnds(
-    const std::vector<std::vector<int> >& intMaze);
-
-
-bool IsSquare(const std::vector<std::vector<QtMaziakMainDialog::MazeSquare> >& v);
-bool IsSquare(const std::vector<std::vector<int> >& v);
-
+} //~namespace maziak
 } //~namespace ribi
 
 #endif // QTMAZIAKMAINDIALOG_H

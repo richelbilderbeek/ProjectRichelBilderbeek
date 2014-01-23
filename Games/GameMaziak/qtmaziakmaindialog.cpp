@@ -36,6 +36,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 #include <QTimer>
+#include "maziakhelper.h"
+#include "maziakintmaze.h"
 #include "qtmaziakgameoverdialog.h"
 #include "qtmaziakgamewondialog.h"
 #include "ui_qtmaziakmaindialog.h"
@@ -43,7 +45,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size)
+ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_size)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtMaziakMainDialog),
     //Floor
@@ -106,11 +108,11 @@ ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_siz
     mFighting(0),
     mCheat(false),
     mShowSolution(false),
-    mDirection(pdDown),
-    mMoveNow(none),
+    mDirection(PlayerDirection::pdDown),
+    mMoveNow(PlayerMove::none),
     mKeys{},
     mSolution{},
-    mIntMaze{},
+    mIntMaze{new IntMaze(maze_size)},
     mMaze{},
     mDistances{}
 {
@@ -164,7 +166,7 @@ ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_siz
   QObject::connect(m_timer_show_solution.get(),SIGNAL(timeout()),
     this,SLOT(onTimerShowSolution()));
 
-  createMaze(maze_size);
+  CreateMaze(maze_size);
   assert(IsSquare(mMaze));
   assert(IsSquare(mIntMaze));
   assert(mSolution.empty() || IsSquare(mSolution));
@@ -179,17 +181,17 @@ ribi::QtMaziakMainDialog::QtMaziakMainDialog(QWidget *parent, const int maze_siz
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtMaziakMainDialog::~QtMaziakMainDialog() noexcept
+ribi::maziak::QtMaziakMainDialog::~QtMaziakMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
+void ribi::maziak::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
 {
   this->repaint();
 }
 
-void ribi::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
+void ribi::maziak::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
 {
   if (mFighting > 0) repaint();
 
@@ -207,15 +209,15 @@ void ribi::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
   }
 }
 
-void ribi::QtMaziakMainDialog::keyReleaseEvent(QKeyEvent * e)
+void ribi::maziak::QtMaziakMainDialog::keyReleaseEvent(QKeyEvent * e)
 {
   mKeys.erase(e->key());
 }
 
-void ribi::QtMaziakMainDialog::onTimerPressKey()
+void ribi::maziak::QtMaziakMainDialog::onTimerPressKey()
 {
   if (mFighting > 0) return;
-  if (mKeys.empty()) { mMoveNow = none; }
+  if (mKeys.empty()) { mMoveNow = PlayerMove::none; }
 
   for(WORD key: mKeys)
   {
@@ -223,47 +225,47 @@ void ribi::QtMaziakMainDialog::onTimerPressKey()
     switch (key)
     {
       case Qt::Key_Left:
-        mDirection = pdLeft;
+        mDirection = PlayerDirection::pdLeft;
         if (!CanMoveTo(mMaze,mX-1,mY,mHasSword,mShowSolution))
         {
-          mMoveNow = none;
+          mMoveNow = PlayerMove::none;
           continue;
         }
-        mMoveNow = (mMoveNow == left1 ? left2 : left1);
+        mMoveNow = (mMoveNow == PlayerMove::left1 ? PlayerMove::left2 : PlayerMove::left1);
         --mX;
         break;
       case Qt::Key_Right:
-        mDirection = pdRight;
+        mDirection = PlayerDirection::pdRight;
         if (!CanMoveTo(mMaze,mX+1,mY,mHasSword,mShowSolution))
         {
-          mMoveNow = none;
+          mMoveNow = PlayerMove::none;
           continue;
         }
-        mMoveNow = (mMoveNow == right1 ? right2 : right1);
+        mMoveNow = (mMoveNow == PlayerMove::right1 ? PlayerMove::right2 : PlayerMove::right1);
         ++mX;
         break;
       case Qt::Key_Up:
-        mDirection = pdUp;
+        mDirection = PlayerDirection::pdUp;
         if (!CanMoveTo(mMaze,mX,mY-1,mHasSword,mShowSolution))
         {
-          mMoveNow = none;
+          mMoveNow = PlayerMove::none;
           continue;
         }
-        mMoveNow = (mMoveNow == up1 ? up2 : up1);
+        mMoveNow = (mMoveNow == PlayerMove::up1 ? PlayerMove::up2 : PlayerMove::up1);
         --mY;
         break;
       case Qt::Key_Down:
-        mDirection = pdDown;
+        mDirection = PlayerDirection::pdDown;
         if (!CanMoveTo(mMaze,mX,mY+1,mHasSword,mShowSolution))
         {
-          mMoveNow = none;
+          mMoveNow = PlayerMove::none;
           continue;
         }
-        mMoveNow = (mMoveNow == down1 ? down2 : down1);
+        mMoveNow = (mMoveNow == PlayerMove::down1 ? PlayerMove::down2 : PlayerMove::down1);
         ++mY;
         break;
       default:
-        mMoveNow = none;
+        mMoveNow = PlayerMove::none;
         continue;
     }
     //Draw the screen
@@ -271,7 +273,7 @@ void ribi::QtMaziakMainDialog::onTimerPressKey()
   }
 }
 
-void ribi::QtMaziakMainDialog::onTimerEnemy()
+void ribi::maziak::QtMaziakMainDialog::onTimerEnemy()
 {
   //Move them
   const int minx = std::max(0,mX - mViewWidth );
@@ -300,56 +302,56 @@ void ribi::QtMaziakMainDialog::onTimerEnemy()
       assert( x < static_cast<int>(mMaze[y].size()));
       const MazeSquare s = mMaze[y][x];
 
-      if (s == msEnemy1)
+      if (s == MazeSquare::msEnemy1)
       {
         //msEnemy1 changes to msEnemy2
-        mMaze[y][x] = msEnemy2;
+        mMaze[y][x] = MazeSquare::msEnemy2;
         continue;
       }
-      else if (s == msEnemy2)
+      else if (s == MazeSquare::msEnemy2)
       {
         //msEnemy 2 tries to walk
         std::vector<std::pair<int,int> > moves;
-        if (y > mY && y >        1 && mMaze[y-1][x  ] == msEmpty) moves.push_back(std::make_pair(x,y-1));
-        if (x < mX && x < maxx - 1 && mMaze[y  ][x+1] == msEmpty) moves.push_back(std::make_pair(x+1,y));
-        if (y < mY && y < maxy - 1 && mMaze[y+1][x  ] == msEmpty) moves.push_back(std::make_pair(x,y+1));
-        if (x > mX && x >        1 && mMaze[y  ][x-1] == msEmpty) moves.push_back(std::make_pair(x-1,y));
+        if (y > mY && y >        1 && mMaze[y-1][x  ] == MazeSquare::msEmpty) moves.push_back(std::make_pair(x,y-1));
+        if (x < mX && x < maxx - 1 && mMaze[y  ][x+1] == MazeSquare::msEmpty) moves.push_back(std::make_pair(x+1,y));
+        if (y < mY && y < maxy - 1 && mMaze[y+1][x  ] == MazeSquare::msEmpty) moves.push_back(std::make_pair(x,y+1));
+        if (x > mX && x >        1 && mMaze[y  ][x-1] == MazeSquare::msEmpty) moves.push_back(std::make_pair(x-1,y));
         const int nMoves = static_cast<int>(moves.size());
         if (nMoves == 1)
         {
-          mMaze[y][x] = msEnemy1;
+          mMaze[y][x] = MazeSquare::msEnemy1;
           std::swap(mMaze[y][x],mMaze[moves[0].second][moves[0].first]);
         }
         else if (nMoves > 1)
         {
           assert(nMoves == 2);
-          mMaze[y][x] = msEnemy1;
+          mMaze[y][x] = MazeSquare::msEnemy1;
           const int moveIndex = (std::rand() >> 4) % nMoves;
           std::swap(mMaze[y][x],mMaze[moves[moveIndex].second][moves[moveIndex].first]);
         }
       }
-      else if (s==msPrisoner1)
+      else if (s==MazeSquare::msPrisoner1)
       {
         //Animate prisoners
-        mMaze[y][x] = msPrisoner2;
+        mMaze[y][x] = MazeSquare::msPrisoner2;
       }
-      else if (s==msPrisoner2)
+      else if (s==MazeSquare::msPrisoner2)
       {
         //Animate prisoners
-        mMaze[y][x] = msPrisoner1;
+        mMaze[y][x] = MazeSquare::msPrisoner1;
       }
     }
   }
   repaint();
 }
 
-void ribi::QtMaziakMainDialog::onTimerShowSolution()
+void ribi::maziak::QtMaziakMainDialog::onTimerShowSolution()
 {
   mShowSolution = false;
   m_timer_show_solution->stop();
 }
 
-void ribi::QtMaziakMainDialog::paintEvent(QPaintEvent *)
+void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
 {
   const int block_width  = 1 + ((ui->widget->width()  - 4) / mViewWidth);
   const int block_height = 1 + ((ui->widget->height() - 4) / mViewHeight);
@@ -388,27 +390,27 @@ void ribi::QtMaziakMainDialog::paintEvent(QPaintEvent *)
   switch (mMaze[mY][mX])
   {
 
-    case msEmpty:
+    case MazeSquare::msEmpty:
       break;
-    case msWall:
+    case MazeSquare::msWall:
       assert(!"Should not get here");
       throw std::logic_error("Player cannot be in wall");
-    case msEnemy1: case msEnemy2:
+    case MazeSquare::msEnemy1: case MazeSquare::msEnemy2:
       mFighting = 1;
-      mMaze[mY][mX] = msEmpty;
+      mMaze[mY][mX] = MazeSquare::msEmpty;
       break;
-    case msPrisoner1: case msPrisoner2:
-      mMaze[mY][mX] = msEmpty;
+    case MazeSquare::msPrisoner1: case MazeSquare::msPrisoner2:
+      mMaze[mY][mX] = MazeSquare::msEmpty;
       mSolution = GetDistancesPath(mDistances,mX,mY);
       assert(IsSquare(mSolution));
       mShowSolution = true;
       m_timer_show_solution->start();
       break;
-    case msSword:
-      mMaze[mY][mX] = msEmpty;
+    case MazeSquare::msSword:
+      mMaze[mY][mX] = MazeSquare::msEmpty;
       mHasSword = true;
       break;
-    case msExit:
+    case MazeSquare::msExit:
     {
       gameWon();
       this->close();
@@ -463,7 +465,7 @@ void ribi::QtMaziakMainDialog::paintEvent(QPaintEvent *)
   }
 }
 
-void ribi::QtMaziakMainDialog::gameOver()
+void ribi::maziak::QtMaziakMainDialog::gameOver()
 {
   m_timer_press_key->stop();
   m_timer_enemy->stop();
@@ -473,7 +475,7 @@ void ribi::QtMaziakMainDialog::gameOver()
   f->exec();
 }
 
-void ribi::QtMaziakMainDialog::gameWon()
+void ribi::maziak::QtMaziakMainDialog::gameWon()
 {
   m_timer_press_key->stop();
   m_timer_enemy->stop();
@@ -485,7 +487,7 @@ void ribi::QtMaziakMainDialog::gameWon()
 }
 
 
-const QPixmap& ribi::QtMaziakMainDialog::GetPixmapFloor(const int x, const int y) const
+const QPixmap& ribi::maziak::QtMaziakMainDialog::GetPixmapFloor(const int x, const int y) const
 {
   const int sz = static_cast<int>(mMaze.size());
   assert(sz > 0);
@@ -502,9 +504,9 @@ const QPixmap& ribi::QtMaziakMainDialog::GetPixmapFloor(const int x, const int y
   }
   else if (mShowSolution
     && mSolution[y][x] == 1
-    && ( mMaze[y][x] == msEmpty
-      || mMaze[y][x] == msEnemy1
-      || mMaze[y][x] == msEnemy2)
+    && ( mMaze[y][x] == MazeSquare::msEmpty
+      || mMaze[y][x] == MazeSquare::msEnemy1
+      || mMaze[y][x] == MazeSquare::msEnemy2)
     )
   {
     return *(m_pixmap_path.get());
@@ -512,7 +514,7 @@ const QPixmap& ribi::QtMaziakMainDialog::GetPixmapFloor(const int x, const int y
   return *(m_pixmap_empty.get());
 }
 
-const QPixmap& ribi::QtMaziakMainDialog::GetPixmapAboveFloor(const int x, const int y) const
+const QPixmap& ribi::maziak::QtMaziakMainDialog::GetPixmapAboveFloor(const int x, const int y) const
 {
   const int sz = static_cast<int>(mMaze.size());
   if ( x < 0
@@ -525,21 +527,21 @@ const QPixmap& ribi::QtMaziakMainDialog::GetPixmapAboveFloor(const int x, const 
   //What else here?
   switch(mMaze[y][x])
   {
-    case msEmpty     : return *m_pixmap_transparent.get();
-    case msWall      : return *m_pixmap_wall.get();
-    case msEnemy1    : return *m_pixmap_enemy1.get();
-    case msEnemy2    : return *m_pixmap_enemy2.get();
-    case msPrisoner1 : return *m_pixmap_prisoner1.get();
-    case msPrisoner2 : return *m_pixmap_prisoner2.get();
-    case msSword     : return *m_pixmap_sword.get();
-    case msExit      : return *m_pixmap_exit.get();
+    case MazeSquare::msEmpty     : return *m_pixmap_transparent.get();
+    case MazeSquare::msWall      : return *m_pixmap_wall.get();
+    case MazeSquare::msEnemy1    : return *m_pixmap_enemy1.get();
+    case MazeSquare::msEnemy2    : return *m_pixmap_enemy2.get();
+    case MazeSquare::msPrisoner1 : return *m_pixmap_prisoner1.get();
+    case MazeSquare::msPrisoner2 : return *m_pixmap_prisoner2.get();
+    case MazeSquare::msSword     : return *m_pixmap_sword.get();
+    case MazeSquare::msExit      : return *m_pixmap_exit.get();
     default:
       assert(!"Should not get here");
       throw std::logic_error("Unexpected MazeSquare at mMaze");
   }
 }
 
-const QPixmap& ribi::QtMaziakMainDialog::GetPixmapPlayer(
+const QPixmap& ribi::maziak::QtMaziakMainDialog::GetPixmapPlayer(
   const PlayerDirection direction,
   const PlayerMove moveNow) const
 {
@@ -562,52 +564,52 @@ const QPixmap& ribi::QtMaziakMainDialog::GetPixmapPlayer(
 
   switch (direction)
   {
-  case pdUp:
+  case PlayerDirection::pdUp:
     {
       switch (moveNow)
       {
-      case none: return (mHasSword ? *m_pixmap_player_look_up_sword.get() : *m_pixmap_player_look_up.get());
-      case up1:  return (mHasSword ? *m_pixmap_player_walk_up_sword1.get() : *m_pixmap_player_walk_up1.get());
-      case up2:  return (mHasSword ? *m_pixmap_player_walk_up_sword2.get() : *m_pixmap_player_walk_up2.get());
+      case PlayerMove::none: return (mHasSword ? *m_pixmap_player_look_up_sword.get() : *m_pixmap_player_look_up.get());
+      case PlayerMove::up1:  return (mHasSword ? *m_pixmap_player_walk_up_sword1.get() : *m_pixmap_player_walk_up1.get());
+      case PlayerMove::up2:  return (mHasSword ? *m_pixmap_player_walk_up_sword2.get() : *m_pixmap_player_walk_up2.get());
       default:
         assert("!Should not get here");
         throw std::logic_error("Unsupported PlayerMove mMoveNow for mDirection == up");
       }
     }
     //break; Unreachable
-  case pdRight:
+  case PlayerDirection::pdRight:
     {
       switch (moveNow)
       {
-      case none:   return (mHasSword ? *m_pixmap_player_look_right_sword.get() : *m_pixmap_player_look_right.get());
-      case right1: return (mHasSword ? *m_pixmap_player_walk_right_sword1.get() : *m_pixmap_player_walk_right1.get());
-      case right2: return (mHasSword ? *m_pixmap_player_walk_right_sword2.get() : *m_pixmap_player_walk_right2.get());
+      case PlayerMove::none:   return (mHasSword ? *m_pixmap_player_look_right_sword.get() : *m_pixmap_player_look_right.get());
+      case PlayerMove::right1: return (mHasSword ? *m_pixmap_player_walk_right_sword1.get() : *m_pixmap_player_walk_right1.get());
+      case PlayerMove::right2: return (mHasSword ? *m_pixmap_player_walk_right_sword2.get() : *m_pixmap_player_walk_right2.get());
       default:
         assert("!Should not get here");
         throw std::logic_error("Unsupported PlayerMove mMoveNow for mDirection == right");
       }
     }
     //break; Unreachable
-  case pdDown:
+  case PlayerDirection::pdDown:
     {
       switch (moveNow)
       {
-      case none:  return (mHasSword ? *m_pixmap_player_look_down_sword.get() : *m_pixmap_player_look_down.get());
-      case down1: return (mHasSword ? *m_pixmap_player_walk_down_sword1.get() : *m_pixmap_player_walk_down1.get());
-      case down2: return (mHasSword ? *m_pixmap_player_walk_down_sword2.get() : *m_pixmap_player_walk_down2.get());
+      case PlayerMove::none:  return (mHasSword ? *m_pixmap_player_look_down_sword.get() : *m_pixmap_player_look_down.get());
+      case PlayerMove::down1: return (mHasSword ? *m_pixmap_player_walk_down_sword1.get() : *m_pixmap_player_walk_down1.get());
+      case PlayerMove::down2: return (mHasSword ? *m_pixmap_player_walk_down_sword2.get() : *m_pixmap_player_walk_down2.get());
       default:
         assert("!Should not get here");
         throw std::logic_error("Unsupported PlayerMove mMoveNow for mDirection == down");
       }
     }
     //break; Unreachable
-  case pdLeft:
+  case PlayerDirection::pdLeft:
     {
       switch (moveNow)
       {
-      case none:  return (mHasSword ? *m_pixmap_player_look_left_sword.get() : *m_pixmap_player_look_left.get());
-      case left1: return (mHasSword ? *m_pixmap_player_walk_left_sword1.get() : *m_pixmap_player_walk_left1.get());
-      case left2: return (mHasSword ? *m_pixmap_player_walk_left_sword2.get() : *m_pixmap_player_walk_left2.get());
+      case PlayerMove::none:  return (mHasSword ? *m_pixmap_player_look_left_sword.get() : *m_pixmap_player_look_left.get());
+      case PlayerMove::left1: return (mHasSword ? *m_pixmap_player_walk_left_sword1.get() : *m_pixmap_player_walk_left1.get());
+      case PlayerMove::left2: return (mHasSword ? *m_pixmap_player_walk_left_sword2.get() : *m_pixmap_player_walk_left2.get());
       default:
         assert("!Should not get here");
         throw std::logic_error("Unsupported PlayerMove mMoveNow for mDirection == left");
@@ -621,10 +623,10 @@ const QPixmap& ribi::QtMaziakMainDialog::GetPixmapPlayer(
   //Unreachable
 }
 
-void ribi::QtMaziakMainDialog::createMaze(const int sz)
+void ribi::maziak::QtMaziakMainDialog::CreateMaze(const int sz)
 {
-  mIntMaze = ribi::CreateMaze(sz);
-  mMaze = ConvertMatrix<int,MazeSquare>(mIntMaze);
+  //mIntMaze = ribi::maziak::CreatIntMaze(sz);
+  mMaze = ConvertMatrix<int,MazeSquare>(mIntMaze->Get());
 
   {
     std::vector<std::pair<int,int> > deadEnds = GetShuffledDeadEnds(mIntMaze);
@@ -662,7 +664,7 @@ void ribi::QtMaziakMainDialog::createMaze(const int sz)
     const int exitY = deadEnds[1].second;
     assert(mMaze[exitY][exitX] == msEmpty);
     mDistances = GetMazeDistances(mIntMaze,exitX,exitY);
-    mMaze[deadEnds[1].second][deadEnds[1].first] = msExit;
+    mMaze[deadEnds[1].second][deadEnds[1].first] = MazeSquare::msExit;
 
     std::vector<std::pair<int,int> >::const_iterator deadEndIterator = deadEnds.begin() + 2;
 
@@ -675,7 +677,7 @@ void ribi::QtMaziakMainDialog::createMaze(const int sz)
         const int y = (*deadEndIterator).second;
         assert(x!=mX || y!=mY);
         assert(mMaze[y][x] == msEmpty);
-        mMaze[y][x] = msSword;
+        mMaze[y][x] = MazeSquare::msSword;
         ++deadEndIterator;
       }
       //Place prisoners in maze, only in dead ends
@@ -686,7 +688,7 @@ void ribi::QtMaziakMainDialog::createMaze(const int sz)
         const int y = (*deadEndIterator).second;
         assert(x!=mX || y!=mY);
         assert(mMaze[y][x] == msEmpty);
-        mMaze[y][x] = msPrisoner1;
+        mMaze[y][x] = MazeSquare::msPrisoner1;
         ++deadEndIterator;
       }
 
@@ -696,260 +698,25 @@ void ribi::QtMaziakMainDialog::createMaze(const int sz)
         const int x = (*deadEndIterator).first;
         const int y = (*deadEndIterator).second;
         assert(mMaze[y][x] == msEmpty);
-        mMaze[y][x] = msEnemy1;
+        mMaze[y][x] = MazeSquare::msEnemy1;
         ++deadEndIterator;
       }
     }
   }
 }
 
-//Adapted from http://www.richelbilderbeek.nl/CppIsSquare.htm
-bool ribi::IsSquare(const std::vector<std::vector<ribi::QtMaziakMainDialog::MazeSquare> >& v)
-{
-  assert(!v.empty());
-  for(std::vector<ribi::QtMaziakMainDialog::MazeSquare> row: v)
-  {
-    if (row.size()!=v.size()) return false;
-  }
-  return true;
-}
 
-//Adapted from http://www.richelbilderbeek.nl/CppIsSquare.htm
-bool ribi::IsSquare(const std::vector<std::vector<int> >& v)
-{
-  assert(!v.empty());
-  for(std::vector<int> row: v)
-  {
-    if (row.size()!=v.size()) return false;
-  }
-  return true;
-}
-
-std::vector<std::vector<int> > ribi::CreateMaze(const int sz)
-{
-  //Assume correct size dimensions
-  assert( sz > 4 && sz % 4 == 3
-    && "Size must be 3 + (n * 4) for n > 0");
-
-  //Start with a wall-only maze
-  std::vector<std::vector<int> > maze(sz, std::vector<int>(sz,1));
-
-  //Prepare maze, remove paths
-  // XXXXXXX 1111111
-  // X X X X 1212121
-  // XXXXXXX 1111111
-  // X XOX X -> 1210121
-  // XXXXXXX 1111111
-  // X X X X 1212121
-  // XXXXXXX 1111111
-
-  //Draw open spaces
-  for (int y=1; y<sz; y+=2)
-  {
-    for (int x=1; x<sz; x+=2)
-    {
-      maze[y][x] = 2; //2: unexplored
-    }
-  }
-
-  const int mid = sz/2;
-
-  maze[mid][mid] = 0;
-
-  std::vector<std::pair<int,int> > v;
-  v.push_back(std::make_pair(mid,mid));
-  while (!v.empty())
-  {
-    //Set a random explorer square at the back
-    std::swap(v.back(),v[ std::rand() % static_cast<int>(v.size())]);
-    //Check possible adjacent squares
-    const int x = v.back().first;
-    const int y = v.back().second;
-    std::vector<std::pair<int,int> > next;
-    if (x > 0 + 2 && maze[y][x-2] == 2) next.push_back(std::make_pair(x-2,y));
-    if (y > 0 + 2 && maze[y-2][x] == 2) next.push_back(std::make_pair(x,y-2));
-    if (x < sz - 2 && maze[y][x+2] == 2) next.push_back(std::make_pair(x+2,y));
-    if (y < sz - 2 && maze[y+2][x] == 2) next.push_back(std::make_pair(x,y+2));
-    //Dead end?
-    if (next.empty())
-    {
-      v.pop_back();
-      continue;
-    }
-    //Select a random next adjacent square
-    const int nextIndex = (std::rand() >> 4) % static_cast<int>(next.size());
-    const int nextX = next[nextIndex].first;
-    const int nextY = next[nextIndex].second;
-    //Clear next square
-    maze[nextY][nextX] = 0;
-    //Clear path towards next square
-    maze[(y + nextY)/2][(x + nextX)/2] = 0;
-    //Add next square to stack
-    v.push_back(std::make_pair(nextX,nextY));
-  }
-  return maze;
-}
-
-std::vector<std::vector<int> > ribi::GetMazeDistances(
-  const std::vector<std::vector<int> >& maze,
-  const int x,
-  const int y)
-{
-  //Assume maze is square
-  assert(maze[0].size() == maze.size());
-  assert(maze[y][x] == 0); //Assume starting point is no wall
-
-  const int size = maze.size();
-  const int area = size * size;
-  const int maxDistance = area;
-  std::vector<std::vector<int> > distances(size, std::vector<int>(size,maxDistance));
-  {
-    //Calculate the distances
-    int distance = 0;
-    distances[y][x] = 0; //Set final point
-    std::vector< std::pair<int,int> > found;
-    found.push_back(std::make_pair(x,y));
-
-    while(found.empty() == false)
-    {
-      ++distance;
-      std::vector< std::pair<int,int> > newFound;
-
-      const std::vector< std::pair<int,int> >::iterator j = found.end();
-      for (std::vector< std::pair<int,int> >::iterator i = found.begin(); i!=j; ++i)
-      {
-        const int x = (*i).first;
-        const int y = (*i).second;
-
-        if ( maze[y-1][x] == 0                 //No wall
-          && distances[y-1][x] == maxDistance) //Not already in solution
-        {
-          distances[y-1][x] = distance;
-          newFound.push_back(std::make_pair(x,y-1));
-        }
-        if ( maze[y+1][x] == 0                 //No wall
-          && distances[y+1][x] == maxDistance) //Not already in solution
-        {
-          distances[y+1][x] = distance;
-          newFound.push_back(std::make_pair(x,y+1));
-        }
-
-        if ( maze[y][x+1] == 0                 //No wall
-          && distances[y][x+1] == maxDistance) //Not already in solution
-        {
-          distances[y][x+1] = distance;
-          newFound.push_back(std::make_pair(x+1,y));
-        }
-
-        if ( maze[y][x-1] == 0                 //No wall
-          && distances[y][x-1] == maxDistance) //Not already in solution
-        {
-          distances[y][x-1] = distance;
-          newFound.push_back(std::make_pair(x-1,y));
-        }
-
-      }
-      found = newFound;
-    }
-  }
-  return distances;
-}
-
-const std::vector<std::pair<int,int> > ribi::GetShuffledDeadEnds(
-    const std::vector<std::vector<int> >& intMaze)
-{
-  std::vector<std::pair<int,int> > deadEnds = GetDeadEnds(intMaze);
-  std::random_shuffle(deadEnds.begin(), deadEnds.end());
-  return deadEnds;
-}
-
-#include <vector>
-
-//From http://www.richelbilderbeek.nl/CppGetDeadEnds.htm
-std::vector<std::pair<int,int> > ribi::GetDeadEnds(const std::vector<std::vector<int> >& maze)
-{
-  const int size = maze.size();
-
-  std::vector<std::pair<int,int> > deadEnds;
-
-  for (int y=1; y!=size-1; ++y)
-  {
-    for (int x=1; x!=size-1; ++x)
-    {
-      if (maze[y][x] != 0) continue; //Continue if here is a wall
-      const int nWalls
-        = (maze[y+1][x  ] == 1 ? 1 : 0)
-        + (maze[y-1][x  ] == 1 ? 1 : 0)
-        + (maze[y  ][x+1] == 1 ? 1 : 0)
-        + (maze[y  ][x-1] == 1 ? 1 : 0);
-      if (nWalls == 3) deadEnds.push_back(std::make_pair(x,y));
-
-    }
-  }
-  return deadEnds;
-}
-
-//From http://www.richelbilderbeek.nl/GetDistancesPath.htm
-std::vector<std::vector<int> > ribi::GetDistancesPath(
-  const std::vector<std::vector<int> >& distances,
-  const int playerX,
-  const int playerY)
-{
-  const int size = distances.size();
-
-  std::vector<std::vector<int> > solution(size, std::vector<int>(size,0));
-  {
-    int x = playerX;
-    int y = playerY;
-    int distance = distances[y][x] - 1;
-    while (distance >= 0)
-    {
-      //We must be where we are now
-      solution[y][x] = 1;
-      if ( x!=0      && distances[y][x-1] == distance ) { --x; --distance; continue; }
-      if ( x!=size-1 && distances[y][x+1] == distance ) { ++x; --distance; continue; }
-      if ( y!=0      && distances[y-1][x] == distance ) { --y; --distance; continue; }
-      if ( y!=size-1 && distances[y+1][x] == distance ) { ++y; --distance; continue; }
-    }
-  }
-  return solution;
-}
-
-bool ribi::CanMoveTo(
-  const std::vector<std::vector<ribi::QtMaziakMainDialog::MazeSquare> >& maze,
-  const int x, const int y,
-  const bool hasSword,
-  const bool showSolution)
-{
-  //Bump into edge
-  if (x < 0) return false;
-  if (y < 0) return false;
-  const int maxy = static_cast<int>(maze.size());
-  if (y >= maxy) return false;
-  if (x >= static_cast<int>(maze[y].size())) return false;
-  const ribi::QtMaziakMainDialog::MazeSquare s = maze[y][x];
-  //Bump into wall
-  if (s == ribi::QtMaziakMainDialog::msWall) return false;
-  //Bump into sword
-  if (s == ribi::QtMaziakMainDialog::msSword && hasSword) return false;
-  //Bump into prisoner
-  if (showSolution
-    && (s == ribi::QtMaziakMainDialog::msPrisoner1
-     || s == ribi::QtMaziakMainDialog::msPrisoner2) ) return false;
-  //Bump into empty/enemy/exit, so player can move there
-  return true;
-}
 
 #ifndef NDEBUG
-void ribi::QtMaziakMainDialog::Test() noexcept
+void ribi::maziak::QtMaziakMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtMaziakMainDialog::Test");
+  TRACE("Starting ribi::maziak::QtMaziakMainDialog::Test");
   QtMaziakMainDialog(0,99);
-  TRACE("Finished ribi::QtMaziakMainDialog::Test successfully");
+  TRACE("Finished ribi::maziak::QtMaziakMainDialog::Test successfully");
 }
 #endif

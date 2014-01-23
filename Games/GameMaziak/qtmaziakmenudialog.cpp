@@ -43,10 +43,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
+ribi::maziak::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtMaziakMenuDialog),
-    m_difficulty(easy)
+    m_difficulty(Difficulty::easy)
 {
   #ifndef NDEBUG
   Test();
@@ -58,31 +58,31 @@ ribi::QtMaziakMenuDialog::QtMaziakMenuDialog(QWidget *parent) :
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtMaziakMenuDialog::~QtMaziakMenuDialog() noexcept
+ribi::maziak::QtMaziakMenuDialog::~QtMaziakMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
+void ribi::maziak::QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
 {
   if (ui->widget_easy->geometry().contains(
     event->x(), event->y()))
   {
-    m_difficulty = easy;
+    m_difficulty = Difficulty::easy;
     repaint();
     return;
   }
   if (ui->widget_medium->geometry().contains(
     event->x(), event->y()))
   {
-    m_difficulty = medium;
+    m_difficulty = Difficulty::medium;
     repaint();
     return;
   }
   if (ui->widget_hard->geometry().contains(
     event->x(), event->y()))
   {
-    m_difficulty = hard;
+    m_difficulty = Difficulty::hard;
     repaint();
     return;
   }
@@ -110,7 +110,7 @@ void ribi::QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
   }
 }
 
-void ribi::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::maziak::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   switch (event->key())
   {
@@ -118,9 +118,9 @@ void ribi::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
     {
       switch (m_difficulty)
       {
-        case easy: return;
-        case medium: m_difficulty = easy; repaint(); return;
-        case hard: m_difficulty = medium; repaint(); return;
+        case Difficulty::easy: return;
+        case Difficulty::medium: m_difficulty = Difficulty::easy; repaint(); return;
+        case Difficulty::hard: m_difficulty = Difficulty::medium; repaint(); return;
         default: assert(!"Should not get here");
       }
     }
@@ -128,9 +128,9 @@ void ribi::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
     {
       switch (m_difficulty)
       {
-        case easy: m_difficulty = medium; repaint(); return;
-        case medium: m_difficulty = hard; repaint(); return;
-        case hard: return;
+        case Difficulty::easy: m_difficulty = Difficulty::medium; repaint(); return;
+        case Difficulty::medium: m_difficulty = Difficulty::hard; repaint(); return;
+        case Difficulty::hard: return;
         default: assert(!"Should not get here");
       }
     }
@@ -145,7 +145,7 @@ void ribi::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
   }
 }
 
-void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
+void ribi::maziak::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 {
   QPainter painter(this);
   {
@@ -153,13 +153,13 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
     QPixmap pixmap;
     switch (m_difficulty)
     {
-      case easy:
+      case Difficulty::easy:
         pixmap = QPixmap(":/images/PlayerWon1.png");
         break;
-      case medium:
+      case Difficulty::medium:
         pixmap = QPixmap(":/images/PlayerLookDown.png");
         break;
-      case hard:
+      case Difficulty::hard:
         pixmap = QPixmap(":/images/PlayerScared.png");
         break;
       default:
@@ -173,13 +173,13 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
     QPixmap pixmap;
     switch (m_difficulty)
     {
-      case easy:
+      case Difficulty::easy:
         pixmap = QPixmap(":/images/Fight2.png");
         break;
-      case medium:
+      case Difficulty::medium:
         pixmap = QPixmap(":/images/Fight3.png");
         break;
-      case hard:
+      case Difficulty::hard:
         pixmap = QPixmap(":/images/Fight4.png");
         break;
       default:
@@ -190,7 +190,7 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
   }
   {
     //Easy
-    QPixmap pixmap(m_difficulty == easy
+    QPixmap pixmap(m_difficulty == Difficulty::easy
       ? ":/images/Easy_selected.png"
       : ":/images/Easy_not_selected.png");
     assert(!pixmap.isNull());
@@ -198,7 +198,7 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
   }
   {
     //Medium
-    QPixmap pixmap(m_difficulty == medium
+    QPixmap pixmap(m_difficulty == Difficulty::medium
       ? ":/images/Medium_selected.png"
       : ":/images/Medium_not_selected.png");
     assert(!pixmap.isNull());
@@ -207,7 +207,7 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
   }
   {
     //Hard
-    QPixmap pixmap(m_difficulty == hard
+    QPixmap pixmap(m_difficulty == Difficulty::hard
       ? ":/images/Hard_selected.png"
       : ":/images/Hard_not_selected.png");
     assert(!pixmap.isNull());
@@ -241,46 +241,46 @@ void ribi::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 
 }
 
-void ribi::QtMaziakMenuDialog::onStart()
+void ribi::maziak::QtMaziakMenuDialog::onStart()
 {
   boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,getMazeSize()));
   this->ShowChild(d.get());
 }
 
-void ribi::QtMaziakMenuDialog::onInstructions()
+void ribi::maziak::QtMaziakMenuDialog::onInstructions()
 {
   boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
   this->ShowChild(d.get());
 }
 
-void ribi::QtMaziakMenuDialog::onAbout()
+void ribi::maziak::QtMaziakMenuDialog::onAbout()
 {
   About a = MaziakMenuDialog().GetAbout();
   boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
   this->ShowChild(d.get());
 }
 
-int ribi::QtMaziakMenuDialog::getMazeSize() const
+int ribi::maziak::QtMaziakMenuDialog::getMazeSize() const
 {
   switch (m_difficulty)
   {
-    case easy  : return  99;
-    case medium: return 499;
-    case hard  : return 999;
+    case Difficulty::easy  : return  99;
+    case Difficulty::medium: return 499;
+    case Difficulty::hard  : return 999;
   }
   assert(!"Should not get here");
   throw std::logic_error("Unsupported value of mDifficulty");
 }
 
 #ifndef NDEBUG
-void ribi::QtMaziakMenuDialog::Test() noexcept
+void ribi::maziak::QtMaziakMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtMaziakMenuDialog::Test");
+  TRACE("Starting ribi::maziak::QtMaziakMenuDialog::Test");
   {
     const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,99));
     assert(d);
@@ -294,6 +294,6 @@ void ribi::QtMaziakMenuDialog::Test() noexcept
     boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
     assert(d);
   }
-  TRACE("Finished ribi::QtMaziakMenuDialog::Test successfully");
+  TRACE("Finished ribi::maziak::QtMaziakMenuDialog::Test successfully");
 }
 #endif

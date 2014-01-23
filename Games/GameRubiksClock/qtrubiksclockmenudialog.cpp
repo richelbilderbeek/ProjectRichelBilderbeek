@@ -36,7 +36,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtrubiksclockmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
+ribi::ruco::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtRubiksClockMenuDialog)
 {
@@ -46,19 +46,19 @@ ribi::QtRubiksClockMenuDialog::QtRubiksClockMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog() noexcept
+ribi::ruco::QtRubiksClockMenuDialog::~QtRubiksClockMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
+void ribi::ruco::QtRubiksClockMenuDialog::keyPressEvent(QKeyEvent * e)
 {
   if (e->key()  == Qt::Key_Escape) close();
 }
 
-void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
+void ribi::ruco::QtRubiksClockMenuDialog::on_button_about_clicked()
 {
-  About a = RubiksClockMenuDialog().GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   a.AddLibrary("QtRubiksClockWidget version: " + QtRubiksClockWidget::GetVersion());
@@ -69,26 +69,26 @@ void ribi::QtRubiksClockMenuDialog::on_button_about_clicked()
   this->ShowChild(&d);
 }
 
-void ribi::QtRubiksClockMenuDialog::on_button_quit_clicked()
+void ribi::ruco::QtRubiksClockMenuDialog::on_button_quit_clicked()
 {
   close();
 }
 
-void ribi::QtRubiksClockMenuDialog::on_button_start_clicked()
+void ribi::ruco::QtRubiksClockMenuDialog::on_button_start_clicked()
 {
   QtRubiksClockMainDialog d;
   ShowChild(&d);
 }
 
 #ifndef NDEBUG
-void ribi::QtRubiksClockMenuDialog::Test() noexcept
+void ribi::ruco::QtRubiksClockMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtRubiksClockMenuDialog::Test");
-  TRACE("Finished ribi::QtRubiksClockMenuDialog::Test successfully");
+  TRACE("Starting ribi::ruco::QtRubiksClockMenuDialog::Test");
+  TRACE("Finished ribi::ruco::QtRubiksClockMenuDialog::Test successfully");
 }
 #endif

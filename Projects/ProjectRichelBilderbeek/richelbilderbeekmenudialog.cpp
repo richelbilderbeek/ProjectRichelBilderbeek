@@ -323,11 +323,11 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noex
   a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("RegexTester version: " + RegexTesterMenuDialog().GetVersion());
   a.AddLibrary("RichelBilderbeekProgram version: " + Program::GetVersion());
-  a.AddLibrary("RubiksClock (class) version: " + RubiksClock::GetVersion());
-  a.AddLibrary("RubiksClock (game) version: " + RubiksClockMenuDialog().GetVersion());
-  a.AddLibrary("RubiksClockDialversion: " + RubiksClockDial::GetVersion());
-  a.AddLibrary("RubiksClockDialWidget version: " + RubiksClockDialWidget::GetVersion());
-  a.AddLibrary("RubiksClockWidget version: " + RubiksClockWidget::GetVersion());
+  a.AddLibrary("RubiksClock (class) version: " + ruco::Clock::GetVersion());
+  a.AddLibrary("RubiksClock (game) version: " + ruco::MenuDialog().GetVersion());
+  a.AddLibrary("RubiksClockDialversion: " + ruco::ClockDial::GetVersion());
+  a.AddLibrary("RubiksClockDialWidget version: " + ruco::ClockDialWidget::GetVersion());
+  a.AddLibrary("RubiksClockWidget version: " + ruco::ClockWidget::GetVersion());
   a.AddLibrary("Shape version: " + Shape::GetVersion());
   a.AddLibrary("ShapeWidget version: " + ShapeWidget::GetVersion());
   a.AddLibrary("ShinyButton version: " + ShinyButton::GetVersion());
@@ -1681,7 +1681,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::reversi: p.reset(new reversi::MenuDialog); break;
       case ProgramType::richelBilderbeekGallery: p.reset(new GalleryMenuDialog); break;
       case ProgramType::richelbilderbeekNlSitemapGenerator: p.reset(new SitemapGeneratorMenuDialog); break;
-      case ProgramType::rubiksClock: p.reset(new RubiksClockMenuDialog); break;
+      case ProgramType::rubiksClock: p.reset(new ruco::MenuDialog); break;
       case ProgramType::rubiksClockVcl:
       {
         const std::string version = "x.x";

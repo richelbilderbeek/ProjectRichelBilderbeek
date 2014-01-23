@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 ConnectThree. A connect-three game.
-Copyright (C) 2011 Richel Bilderbeek
+Copyright (C) 2011-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,28 +21,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <iostream>
 
-#include "connectthree.h"
+#include "connectthreemenudialog.h"
 
-void PlayRandomMatch()
+int main(int argc, char * argv[])
 {
-  ConnectThree c(std::bitset<3>(),15,5);
-  while (c.GetWinner() == ConnectThree::no_player)
-  {
-    c.DoMove(c.SuggestMove());
-  }
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::ConnectThreeMenuDialog().Execute(args);
 }
-
-void TestConnectThree()
-{
-  for (int i=0; i!=1000; ++i)
-  {
-    PlayRandomMatch();
-  }
-}
-
-///main only tests the ConnectThree class.
-int main()
-{
-  ribi::TestConnectThree();
-}
-

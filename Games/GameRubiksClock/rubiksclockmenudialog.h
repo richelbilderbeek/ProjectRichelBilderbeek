@@ -25,8 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace ruco {
 
-struct RubiksClockMenuDialog : public MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -42,6 +43,7 @@ struct RubiksClockMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // RUBIKSCLOCKMENUDIALOG_H

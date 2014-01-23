@@ -30,17 +30,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/signals2.hpp>
+#include "rubiksclockfwd.h"
 #include "widget.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-struct RubiksClockDial;
+namespace ruco {
 
 ///RubiksClockDialWidget is a class to display a RubiksClockDial
-struct RubiksClockDialWidget : public Widget
+struct ClockDialWidget : public ::ribi::Widget
 {
-  explicit RubiksClockDialWidget(
+  explicit ClockDialWidget(
     const double position,
     const int x,
     const int y,
@@ -51,10 +51,10 @@ struct RubiksClockDialWidget : public Widget
     const unsigned char blue);
 
   ///Obtain a read-and-write pointert to the RubiksClockDial
-  RubiksClockDial * GetRubiksClockDial() { return m_dial.get(); }
+  ClockDial * GetRubiksClockDial() { return m_dial.get(); }
 
   ///Obtain a read-only pointert to the RubiksClockDial
-  const RubiksClockDial * GetRubiksClockDial() const { return m_dial.get(); }
+  const ClockDial * GetRubiksClockDial() const { return m_dial.get(); }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -67,19 +67,20 @@ struct RubiksClockDialWidget : public Widget
 
   private:
   //RubiksClockDialWidget can only be deleted by Boost smart pointers
-  virtual ~RubiksClockDialWidget() noexcept {}
-  friend void boost::checked_delete<>(RubiksClockDialWidget*);
+  virtual ~ClockDialWidget() noexcept {}
+  friend void boost::checked_delete<>(ClockDialWidget*);
 
-  boost::scoped_ptr<RubiksClockDial> m_dial;
+  boost::scoped_ptr<ClockDial> m_dial;
 
   static double GetDistance(const double dX, const double dY);
 
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget);
+  friend std::ostream& operator<<(std::ostream& os, const ClockDialWidget& widget);
 };
 
-std::ostream& operator<<(std::ostream& os, const RubiksClockDialWidget& widget);
+std::ostream& operator<<(std::ostream& os, const ClockDialWidget& widget);
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // RUBIKSCLOCKDIALWIDGET_H

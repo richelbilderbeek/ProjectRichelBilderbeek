@@ -32,14 +32,27 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+
+  DasWahreSchlagerfestWidget w;
+  std::cout << w << std::endl;
+
+  for (int i=0; i!=100; ++i)
+  {
+    switch((std::rand() >> 4) % 4)
+    {
+      case 0: //Prefer downwards
+      case 1: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::down); break;
+      case 2: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
+      case 3: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
+    }
+    std::cout << w << std::endl;
+  }
+
   return 0;
 }
 

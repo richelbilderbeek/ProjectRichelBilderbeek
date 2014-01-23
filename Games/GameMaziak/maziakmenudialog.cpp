@@ -33,15 +33,14 @@ int ribi::MaziakMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
-    << std::endl;
+  assert(!"TODO");
   return 0;
+
 }
 
 const ribi::About ribi::MaziakMenuDialog::GetAbout() const noexcept
@@ -90,13 +89,13 @@ const std::string ribi::MaziakMenuDialog::GetVersion() const noexcept
 const std::vector<std::string> ribi::MaziakMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2012-03-06: version 2.1: Conformized architecture and naming for ProjectRichelBilderbeek.",
-    "2010-07-31: version 2.0: Reprogrammed in Qt Creator, so Maziak is now cross-platform!",
-    "2010-02-25: version 1.4: Improved 'Game Over' screen. Added animation in 'Congratulations' screen. Improved enemies' intelligence. Improved maze creation algorithm. Ensured the player is not placed too close to the exit.",
-    "2010-02-18: version 1.3: Animated fights. Prevent overlapping sprites. Add 'Instructions' screen in menu. Improved 'Menu' screen",
-    "2010-02-17: version 1.2: Animated prisoners. Animated enemies. Animated player. Improved 'Menu' screen. Improved 'About' screen. Added 'What's New?' screen",
+    "2007-10-22: version 1.0: Initial version",
     "2010-02-16: version 1.1: Changed graphics to resemble the original Maziacs more. Changed manu screen. Changed 'Game Over' screen. Changed 'Congratulations' screen.",
-    "2007-10-22: version 1.0: Initial version"
+    "2010-02-17: version 1.2: Animated prisoners. Animated enemies. Animated player. Improved 'Menu' screen. Improved 'About' screen. Added 'What's New?' screen",
+    "2010-02-18: version 1.3: Animated fights. Prevent overlapping sprites. Add 'Instructions' screen in menu. Improved 'Menu' screen",
+    "2010-02-25: version 1.4: Improved 'Game Over' screen. Added animation in 'Congratulations' screen. Improved enemies' intelligence. Improved maze creation algorithm. Ensured the player is not placed too close to the exit.",
+    "2010-07-31: version 2.0: Reprogrammed in Qt Creator, so Maziak is now cross-platform!",
+    "2012-03-06: version 2.1: Conformized architecture and naming for ProjectRichelBilderbeek."
   };
 }
 

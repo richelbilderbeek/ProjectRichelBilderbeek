@@ -27,41 +27,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
+#include "rubiksclockfwd.h"
+#include "rubiksclockside.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace ruco {
 
-struct Rect;
-struct RubiksClockDialWidget;
-struct TextCanvas;
-struct ToggleButtonWidget;
-
-///RubiksClock is a Rubik's Clock
-struct RubiksClock
+///Clock is a Rubik's Clock
+struct Clock
 {
-  RubiksClock() noexcept;
-
-  enum class Side
-  {
-    topLeft, topRight, bottomLeft, bottomRight
-  };
-
-
-  struct Pegs
-  {
-    Pegs() noexcept;
-    boost::shared_ptr<ToggleButtonWidget> m_pegs[2][2]; //Is peg pressed?
-    static Pegs CreatePegsFromIndex(const int index) noexcept;
-    const boost::shared_ptr<const ToggleButtonWidget> GetPeg(const Side side) const noexcept;
-  };
-
-  struct Times
-  {
-    Times(const bool is_front) noexcept;
-    boost::shared_ptr<RubiksClockDialWidget> times[3][3];
-  };
+  Clock() noexcept;
 
   ///Set the geometry of all Widgets
   void SetGeometry(const Rect& r) noexcept;
@@ -75,25 +54,28 @@ struct RubiksClock
   void Check() noexcept;
 
   ///Get the time dials of the back side
-  const Times& GetBackTimes() const noexcept;
+  const boost::shared_ptr<const Times> GetBackTimes() const noexcept { return m_back; }
+  //const boost::shared_ptr<      Times> GetBackTimes()       noexcept { return m_back; }
 
   ///Get the time dials of the back side
-  Times& GetBackTimes() noexcept;
+  //Times& GetBackTimes() noexcept;
 
   ///Get the pegs of the back side
-  const Pegs GetBackPegs() const noexcept;
+  const boost::shared_ptr<const Pegs> GetBackPegs() const noexcept;
+  //const boost::shared_ptr<      Pegs> GetBackPegs()       noexcept;
 
   ///Get the time dials of the front side
-  const Times& GetFrontTimes() const noexcept;
+  const boost::shared_ptr<const Times> GetFrontTimes() const noexcept { return m_front; }
+  //const boost::shared_ptr<      Times> GetFrontTimes()       noexcept { return m_front; }
 
   ///Get the time dials of the front side
-  Times& GetFrontTimes() noexcept;
+  //Times& GetFrontTimes() noexcept;
 
   ///Get the pegs of the front side
-  const Pegs& GetFrontPegs() const noexcept;
+  const boost::shared_ptr<const Pegs> GetFrontPegs() const noexcept { return m_pegs; }
 
   ///Get the pegs of the front side
-  Pegs& GetFrontPegs() noexcept;
+  //Pegs& GetFrontPegs() noexcept;
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -104,13 +86,22 @@ struct RubiksClock
   ///Convert to a Canvas
   const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
+  ///Convert to XML
+  const std::string ToXml() const noexcept;
+
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_clock_changed;
 
   private:
-  Times mFront;
-  Times mBack;
-  Pegs mPegs;
+  ~Clock() noexcept {}
+  friend void boost::checked_delete<>(Clock*);
+  friend void boost::checked_delete<>(const Clock*);
+
+  boost::shared_ptr<Times> m_back;
+  boost::shared_ptr<Times> m_front;
+  boost::shared_ptr<Pegs > m_pegs;
+
+  static const boost::shared_ptr<Pegs> CreatePegsFromIndex(const int index) noexcept;
 
   ///Change the top-left wheel, as seen from the front
   void TurnWheelTopLeft(const int nSteps) noexcept;
@@ -124,19 +115,13 @@ struct RubiksClock
   ///Change the bottom-right wheel, as seen from the front
   void TurnWheelBottomRight(const int nSteps) noexcept;
 
-  friend std::ostream& operator<<(std::ostream& os, const RubiksClock& r) noexcept;
+  friend std::ostream& operator<<(std::ostream& os, const Clock& r) noexcept;
 
 };
 
-RubiksClock::Pegs CreatePegsFromIndex(const int index) noexcept;
+std::ostream& operator<<(std::ostream& os, const Clock& r) noexcept;
 
-std::ostream& operator<<(std::ostream& os, const RubiksClock& r) noexcept;
-std::ostream& operator<<(std::ostream& os, const RubiksClock::Times& t) noexcept;
-std::ostream& operator<<(std::ostream& os, const RubiksClock::Pegs& p) noexcept;
-
-bool operator==(const RubiksClock::Times& lhs, const RubiksClock::Times& rhs) noexcept;
-bool operator==(const RubiksClock::Pegs& lhs, const RubiksClock::Pegs& rhs) noexcept;
-
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // RUBIKSCLOCK_H
