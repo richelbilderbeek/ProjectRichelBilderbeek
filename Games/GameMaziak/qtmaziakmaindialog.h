@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "maziakplayerdirection.h"
 #include "maziakplayermove.h"
 #include "maziakmazesquare.h"
+#include "maziaksprite.h"
 #include "maziakfwd.h"
 #pragma GCC diagnostic pop
 
@@ -59,85 +60,48 @@ public:
 
 private:
   Ui::QtMaziakMainDialog *ui;
-  //Floor sprites
-  const boost::shared_ptr<const QPixmap> m_pixmap_empty;
-  const boost::shared_ptr<const QPixmap> m_pixmap_wall;
-  const boost::shared_ptr<const QPixmap> m_pixmap_path;
-  const boost::shared_ptr<const QPixmap> m_pixmap_transparent;
-  //Player sprites
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_down;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_down_sword;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_left;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_left_sword;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_right;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_right_sword;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_up;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_look_up_sword;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_left1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_left2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_left_sword1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_left_sword2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_right1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_right2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_right_sword1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_right_sword2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_down1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_down2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_down_sword1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_down_sword2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_up1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_up2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_up_sword1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_walk_up_sword2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_won1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_player_won2;
-  //Fighting sprites
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight_sword1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight_no_sword1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight3;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight4;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight_won1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight_won2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight_lost1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_fight_lost2;
-  //Non-player sprites
-  const boost::shared_ptr<const QPixmap> m_pixmap_enemy1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_enemy2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_prisoner1;
-  const boost::shared_ptr<const QPixmap> m_pixmap_prisoner2;
-  const boost::shared_ptr<const QPixmap> m_pixmap_sword;
-  const boost::shared_ptr<const QPixmap> m_pixmap_exit;
-  //Timers
-  const boost::shared_ptr<QTimer> m_timer_press_key;
-  const boost::shared_ptr<QTimer> m_timer_enemy;
-  const boost::shared_ptr<QTimer> m_timer_show_solution;
 
-  int mX;
-  int mY;
-  const int mViewWidth;
-  const int mViewHeight;
-  bool mHasSword;
-  int mFighting;
-  bool mCheat;
-  bool mShowSolution;
-  PlayerDirection mDirection;
-  PlayerMove mMoveNow;
   typedef unsigned int WORD;
-  std::set<WORD> mKeys;
-  std::vector<std::vector<int> > mSolution;
-  boost::shared_ptr<IntMaze> mIntMaze;
-  std::vector<std::vector<MazeSquare> > mMaze;
-  std::vector<std::vector<int> > mDistances;
 
-  void CreateMaze(const int sz);
-  void gameOver();
-  void gameWon();
-  const QPixmap& GetPixmapFloor(const int x, const int) const;
-  const QPixmap& GetPixmapAboveFloor(const int x, const int) const;
-  const QPixmap& GetPixmapPlayer(
-      const PlayerDirection direction,
-      const PlayerMove moveNow) const;
+  PlayerDirection m_direction;
+  boost::shared_ptr<const DistancesMaze> m_distances;
+  bool m_do_show_solution;
+  int m_fighting_frame;
+  bool m_has_sword;
+  std::set<WORD> m_keys;
+  const boost::shared_ptr<Maze> m_maze;
+  PlayerMove m_move_now;
+  boost::shared_ptr<const SolutionMaze> m_solution;
+  const boost::shared_ptr<const Sprites> m_sprites;
+  const boost::shared_ptr<QTimer> m_timer_enemy;
+  const boost::shared_ptr<QTimer> m_timer_press_key;
+  const boost::shared_ptr<QTimer> m_timer_show_solution;
+  const int m_view_height;
+  const int m_view_width;
+  int m_x;
+  int m_y;
+
+  const boost::shared_ptr<const SolutionMaze> CreateNewSolution() noexcept;
+  void GameOver();
+  void GameWon();
+  static Sprite GetSpriteFloor(
+    const boost::shared_ptr<const Maze> maze,
+    const int x,
+    const int y,
+    const bool show_solution,
+    const boost::shared_ptr<const SolutionMaze> solution
+  ) noexcept;
+  static Sprite GetSpriteAboveFloor(
+    const int x,
+    const int y,
+    const boost::shared_ptr<const Maze> m_maze
+  ) noexcept;
+  static Sprite GetSpritePlayer(
+    const PlayerDirection direction,
+    const PlayerMove moveNow,
+    const bool m_has_sword,
+    const int m_fighting_frame
+  ) noexcept;
 
   //Events
   void resizeEvent(QResizeEvent*);

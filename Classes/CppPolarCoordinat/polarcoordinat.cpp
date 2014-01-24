@@ -3,6 +3,7 @@
 #include "polarcoordinat.h"
 #pragma GCC diagnostic pop
 
+/*
 template<>
 double CalculateSqrt<double,double>(const double& x)
 {
@@ -23,3 +24,4 @@ boost::units::quantity<boost::units::si::length>
 {
   return std::sqrt(x.value()) * boost::units::si::meter;
 }
+*/

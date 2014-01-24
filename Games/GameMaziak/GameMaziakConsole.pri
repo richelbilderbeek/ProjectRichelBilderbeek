@@ -8,7 +8,12 @@ SOURCES += \
     maziakmazesquare.cpp \
     maziakdifficulty.cpp \
     maziakhelper.cpp \
-    maziakintmaze.cpp
+    maziakintmaze.cpp \
+    maziaksprites.cpp \
+    maziaksprite.cpp \
+    maziakmaze.cpp \
+    maziakdistancesmaze.cpp \
+    maziaksolutionmaze.cpp
 
 HEADERS  += \
     ../../Games/GameMaziak/maziakmenudialog.h \
@@ -18,7 +23,12 @@ HEADERS  += \
     maziakdifficulty.h \
     maziakhelper.h \
     maziakintmaze.h \
-    maziakfwd.h
+    maziakfwd.h \
+    maziaksprites.h \
+    maziaksprite.h \
+    maziakmaze.h \
+    maziakdistancesmaze.h \
+    maziaksolutionmaze.h
 
 OTHER_FILES += \
     ../../Games/GameMaziak/Licence.txt
