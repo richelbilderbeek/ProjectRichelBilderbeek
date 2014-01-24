@@ -4,7 +4,11 @@
 namespace ribi {
 namespace maziak {
 
+struct DistancesMaze;
 struct IntMaze;
+struct Maze;
+struct Sprites;
+struct SolutionMaze;
 
 } //~namespace maziak
 } //~namespace ribi

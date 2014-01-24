@@ -4,6 +4,7 @@
 #include <cassert>
 #include <cstdlib>
 
+#include "maziakdistancesmaze.h"
 #include "maziakhelper.h"
 
 ribi::maziak::IntMaze::IntMaze(const std::vector<std::vector<int>>& maze)
@@ -13,12 +14,18 @@ ribi::maziak::IntMaze::IntMaze(const std::vector<std::vector<int>>& maze)
 
 }
 
-//From http://www.richelbilderbeek.nl/CppGetDeadEnds.htm
-std::vector<std::pair<int,int> > ribi::maziak::CreateDeadEnds(const std::vector<std::vector<int> >& maze)
+bool ribi::maziak::IntMaze::CanGet(const int x, const int y) const noexcept
+{
+  return x >= 0 && x < GetSize()
+      && y >= 0 && y < GetSize();
+}
+
+const std::vector<std::pair<int,int> > ribi::maziak::IntMaze::CreateDeadEnds(
+  const std::vector<std::vector<int> >& maze) noexcept
 {
   const int size = maze.size();
 
-  std::vector<std::pair<int,int> > deadEnds;
+  std::vector<std::pair<int,int> > dead_ends;
 
   for (int y=1; y!=size-1; ++y)
   {
@@ -30,11 +37,14 @@ std::vector<std::pair<int,int> > ribi::maziak::CreateDeadEnds(const std::vector<
         + (maze[y-1][x  ] == 1 ? 1 : 0)
         + (maze[y  ][x+1] == 1 ? 1 : 0)
         + (maze[y  ][x-1] == 1 ? 1 : 0);
-      if (nWalls == 3) deadEnds.push_back(std::make_pair(x,y));
+      if (nWalls == 3) dead_ends.push_back(std::make_pair(x,y));
 
     }
   }
-  return deadEnds;
+
+  //Shuffle them
+  std::random_shuffle(dead_ends.begin(), dead_ends.end());
+  return dead_ends;
 }
 
 const std::vector<std::vector<int> > ribi::maziak::IntMaze::CreateMaze(const int sz) noexcept
@@ -47,13 +57,13 @@ const std::vector<std::vector<int> > ribi::maziak::IntMaze::CreateMaze(const int
   std::vector<std::vector<int> > maze(sz, std::vector<int>(sz,1));
 
   //Prepare maze, remove paths
-  // XXXXXXX 1111111
-  // X X X X 1212121
-  // XXXXXXX 1111111
+  // XXXXXXX    1111111
+  // X X X X    1212121
+  // XXXXXXX    1111111
   // X XOX X -> 1210121
-  // XXXXXXX 1111111
-  // X X X X 1212121
-  // XXXXXXX 1111111
+  // XXXXXXX    1111111
+  // X X X X    1212121
+  // XXXXXXX    1111111
 
   //Draw open spaces
   for (int y=1; y<sz; y+=2)
@@ -102,12 +112,39 @@ const std::vector<std::vector<int> > ribi::maziak::IntMaze::CreateMaze(const int
   return maze;
 }
 
-
-const std::vector<std::pair<int,int> > ribi::maziak::GetShuffledDeadEnds(
-    const std::vector<std::vector<int> >& intMaze)
+int ribi::maziak::IntMaze::Get(const int x, const int y) const noexcept
 {
-  std::vector<std::pair<int,int> > deadEnds = GetDeadEnds();
-  std::random_shuffle(deadEnds.begin(), deadEnds.end());
-  return deadEnds;
+  assert(CanGet(x,y));
+  return m_maze[y][x];
+}
+
+const boost::shared_ptr<ribi::maziak::DistancesMaze> ribi::maziak::IntMaze::GetDistancesMaze(
+  const int x,
+  const int y
+  ) const noexcept
+{
+  const boost::shared_ptr<const IntMaze> int_maze {
+    new IntMaze(m_maze)
+  };
+  assert(int_maze);
+
+  const boost::shared_ptr<DistancesMaze> maze {
+    new DistancesMaze(int_maze,x,y)
+  };
+
+  assert(maze);
+  return maze;
+}
+
+
+
+bool ribi::maziak::IntMaze::IsSquare() const noexcept
+{
+  assert(!m_maze.empty());
+  for(std::vector<int> row: m_maze)
+  {
+    if (row.size()!=m_maze.size()) return false;
+  }
+  return true;
 }
 
