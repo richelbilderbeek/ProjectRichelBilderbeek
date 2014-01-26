@@ -62,7 +62,6 @@ ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog() 
 
 void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder) noexcept
 {
-  /*
   std::stringstream s;
 
   const std::vector<std::string> pro_filenames = GetProFilesInFolder(source_folder);
@@ -83,7 +82,8 @@ void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string so
   }
 
 
-  const boost::shared_ptr<QtCreatorProFileZipScript> merged_script
+  //const boost::shared_ptr<QtCreatorProFileZipScript> merged_script
+  m_script
     = QtCreatorProFileZipScript::Merge(scripts);
   if (!merged_script)
   {
@@ -91,12 +91,14 @@ void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string so
   }
   else
   {
-    s << *merged_script << '\n';
+    s << *m_merged_script << '\n';
     ui->text->setPlainText( s.str().c_str() );
   }
-  */
+
+  /*
   CreateQtProjectZipFileMainDialog d(source_folder);
-  ui->text->setPlainText(d.GetScript().c_str());
+  */
+  //ui->text->setPlainText(d.GetScript().c_str());
 }
 
 void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event) noexcept

@@ -39,7 +39,7 @@ do
       #For every .pro file, 
       # 0: compile
       # 1: crosscompile using Qt5
-      for type in 0 2
+      for type in {0,1,2}
       do
         myqmake=""
         mytypestr=""
@@ -57,17 +57,16 @@ do
         rm *_plugin_import.cpp
 
         case $type in
-        0) myqmake="../../../Qt/5.1.1/gcc/bin/qmake" mytypestr="Lubuntu" ;;
-
-        1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;; 
-        2) myqmake="qmake" mytypestr="LubuntuLaptop" ;;
+        0) ;; # myqmake="../../../Qt/5.1.1/gcc/bin/qmake" mytypestr="Lubuntu" ;;
+        1) myqmake="../../Libraries/mxe/usr/i686-pc-mingw32/qt5/bin/qmake" mytypestr="Qt5LubuntuToWindows" ;;
+        2) ;; #myqmake="qmake" mytypestr="LubuntuLaptop" ;;
         esac
 
         $myqmake $myprofile
 
         if [ ! -e Makefile ]
         then
-          echo $myprofile", "$mytypestr": FAIL (Makefile not found)"
+          echo "FAIL:"$myqmake", "$myprofile", "$mytypestr": FAIL (Makefile not found)"
           continue
         fi
 

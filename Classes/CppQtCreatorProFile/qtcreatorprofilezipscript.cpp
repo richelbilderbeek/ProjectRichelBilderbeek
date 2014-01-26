@@ -319,9 +319,6 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
   {
     const std::string tmp_pro_filename { fileio::GetTempFileName() + ".pro" };
 
-    //If the temp file already exists, delete it
-    fileio::DeleteFile(tmp_pro_filename);
-
     //Count the current number of .pro files
     const std::size_t n = GetProAndPriFilesInFolder("").size();
 
