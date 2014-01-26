@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <ctime>
-
+#include <iostream>
 
 #include <boost/scoped_ptr.hpp>
 #pragma GCC diagnostic pop

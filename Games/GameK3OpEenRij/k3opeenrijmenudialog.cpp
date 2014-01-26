@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <sstream>
 
 #include "connectthree.h"
 #include "connectthreewidget.h"

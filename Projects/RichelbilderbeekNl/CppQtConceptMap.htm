@@ -119,12 +119,12 @@
 <table summary="./CppQtConceptMap/conceptmapbrating.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmaprating.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "conceptmap.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapnode.h"<br/>
@@ -215,7 +215,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
@@ -356,7 +356,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node* <b><a href="CppConst.htm">const</a></b> to) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Find the <a href="CppQt.htm">Qt</a>Node containing the Node<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * Find<a href="CppQt.htm">Qt</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> Find<a href="CppQt.htm">Qt</a>Node(node.get()); }<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQt.htm">Qt</a>Node * Find<a href="CppQt.htm">Qt</a>Node(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> Find<a href="CppQt.htm">Qt</a>Node(node.get()); }<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * Find<a href="CppQt.htm">Qt</a>Node(Node * <b><a href="CppConst.htm">const</a></b> node) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the center node<br/>
@@ -441,7 +441,7 @@
 <table summary="./CppQtConceptMap/qtconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmap.h"<br/>
 <br/>
@@ -450,7 +450,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <br/>
@@ -1128,12 +1128,12 @@
 <table summary="./CppQtConceptMap/qtconceptmap_test_qtconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmap.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "conceptmap.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapfactory.h"<br/>
@@ -1152,7 +1152,7 @@
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppDefine.htm">#define</a> I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a>&nbsp;&nbsp;I_REALLY_WANT_TO_TEST_THIS_82374983758937459347623958634948603<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> simple homomorphous concept maps<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test conversion between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> simple homomorphous concept maps<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetSimpleHomomorphous<a href="ToolTestConceptMap.htm">TestConceptMap</a>s();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
@@ -1170,7 +1170,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> complex homomorphous concept maps<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test conversion between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> complex homomorphous concept maps<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetComplexHomomorphous<a href="ToolTestConceptMap.htm">TestConceptMap</a>s();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
@@ -1188,7 +1188,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> heteromorphous concept maps<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test conversion between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> heteromorphous concept maps<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetHeteromorphous<a href="ToolTestConceptMap.htm">TestConceptMap</a>s();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
@@ -1205,7 +1205,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cmap::ConceptMap::HasSameContent(*v[i],*n));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test con<a href="CppVersion.htm">version</a> between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> brute-force concept map<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test conversion between <a href="CppWidget.htm">widget</a> and concept map <b><a href="CppFor.htm">for</a></b> brute-force concept map<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; &gt; maps <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(maps.begin(),maps.end(),<br/>
@@ -1235,7 +1235,7 @@
 <table summary="./CppQtConceptMap/qtconceptmap_test_qteditconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qteditconceptmap.h"<br/>
 <br/>
@@ -1346,7 +1346,7 @@
 <table summary="./CppQtConceptMap/qtconceptmap_test_qtrateconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtrateconceptmap.h"<br/>
 <br/>
@@ -1422,7 +1422,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQBrush.htm">QBrush</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -1489,7 +1489,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapbrushfactory.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapbrushfactory.h"<br/>
 <br/>
@@ -1588,7 +1588,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapnode.h"<br/>
@@ -1629,7 +1629,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapcenternode.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapcenternode.h"<br/>
 <br/>
@@ -1676,7 +1676,7 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQColor.htm">QColor</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQIcon.htm">QIcon</a>&gt;<br/>
@@ -1739,7 +1739,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapcompetency.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapcompetency.h"<br/>
 <br/>
@@ -1908,7 +1908,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
@@ -1982,7 +1982,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapconcepteditdialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapconcepteditdialog.h"<br/>
 <br/>
@@ -2309,7 +2309,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qtitemdisplaystrategy.h"<br/>
@@ -2355,7 +2355,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapdisplaystrategy.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapdisplaystrategy.h"<br/>
 <br/>
@@ -2700,7 +2700,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapedge.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapedge.h"<br/>
 <br/>
@@ -3508,7 +3508,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qtitemdisplaystrategy.h"<br/>
@@ -3557,7 +3557,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapeditstrategy.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapeditstrategy.h"<br/>
 <br/>
@@ -3660,7 +3660,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapfwd.h"<br/>
@@ -3738,7 +3738,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapelement.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapelement.h"<br/>
 <br/>
@@ -3779,7 +3779,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppSignals2.htm">signals2</a>.hpp&gt;<br/>
@@ -3839,7 +3839,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapexamplesitem.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapexamplesitem.h"<br/>
 <br/>
@@ -4055,7 +4055,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapitemhighlighter.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapitemhighlighter.h"<br/>
 <br/>
@@ -4146,7 +4146,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQBrush.htm">QBrush</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtArrowItem.htm">qtarrowitem</a>.h"<br/>
@@ -4194,7 +4194,7 @@
 <table summary="./CppQtConceptMap/qtconceptmapnewarrow.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapnewarrow.h"<br/>
 <br/>
@@ -4374,7 +4374,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtRoundedTextRectItem.htm">qtroundedtextrectitem</a>.h"<br/>
@@ -4487,7 +4487,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 <table summary="./CppQtConceptMap/qtconceptmapnode.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapnode.h"<br/>
 <br/>
@@ -4941,7 +4941,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
@@ -5031,14 +5031,14 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 <table summary="./CppQtConceptMap/qtconceptmaprateconceptdialognewname.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmaprateconceptdialognewname.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDesktopWidget.htm">QDesktopWidget</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>Dialog&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
@@ -5358,7 +5358,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
@@ -5455,7 +5455,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/con<a href="CppVersion.htm">version</a>/cast.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQKeyEvent.htm">QKeyEvent</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "conceptmapconceptfactory.h"<br/>
@@ -5632,7 +5632,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_examples; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; empty_edge;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(empty_edge,focal_concept,i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(<a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(empty_edge,focal_concept,i));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
@@ -5648,12 +5648,12 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> edge-&gt;GetConcept();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(edge,concept,-1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(<a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(edge,concept,-1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_examples <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(concept-&gt;GetExamples()-&gt;Get().size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_examples; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; empty_edge;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(empty_edge,concept,i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.push_back(<a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(empty_edge,concept,i));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> data;<br/>
@@ -6012,7 +6012,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQDialog.htm">QDialog</a>&gt;<br/>
@@ -6069,7 +6069,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qtconceptmapratedconceptdialog.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapratedconceptdialog.h"<br/>
 <br/>
@@ -6247,7 +6247,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppQtHideAndShowDialog.htm">qthideandshowdialog</a>.h"<br/>
@@ -6476,7 +6476,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateExamplesDialog::Test started");<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test con<a href="CppVersion.htm">version</a> between reading and writing a concept<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test conversion between reading and writing a concept<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests().size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
@@ -6591,7 +6591,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> "qtitemdisplaystrategy.h"<br/>
@@ -6647,7 +6647,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qtconceptmapratestrategy.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapratestrategy.h"<br/>
 <br/>
@@ -6901,7 +6901,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQBrush.htm">QBrush</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsPixmapItem.htm">QGraphicsPixmapItem</a>&gt;<br/>
@@ -6975,7 +6975,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qtconceptmaptoolsitem.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmap<a href="Tools.htm">tools</a>item.h"<br/>
 <br/>
@@ -7088,7 +7088,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -7103,7 +7103,9 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a> implements a higher-level <a href="CppInterface.htm">interface</a> of<br/>
 <a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>ConceptMap, driven by Commands<br/>
 <a href="CppComment.htm">///</a><br/>
-<a href="CppComment.htm">///</a><br/>
+<a href="CppComment.htm">///</a>Sure, you can click it and interact with it by mouse and keyboard:<br/>
+<a href="CppComment.htm">///</a>these interactions will be <a href="CppConvert.htm">convert</a>ed to commands, so behind the scenes<br/>
+<a href="CppComment.htm">///</a>the concept map is not interacted with directly<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; qtconceptmap);<br/>
@@ -7161,10 +7163,11 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppInclude.htm">#include</a> "qtconceptmap<a href="CppWidget.htm">widget</a>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStdexceptH.htm">stdexcept</a>&gt;<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQMouseEvent.htm">QMouseEvent</a>&gt;<br/>
@@ -7177,6 +7180,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppInclude.htm">#include</a> "conceptmapcommand.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapcommandlosefocus.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapcommandsetfocuswithcoordinat.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmapcommandsetfocusrandom.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmap<a href="CppWidget.htm">widget</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtconceptmapdisplaystrategy.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
@@ -7226,6 +7230,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::mouse<a href="CppDouble.htm">Double</a>ClickEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(e);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!e) <b><a href="CppThrow.htm">throw</a></b> <a href="CppStdException.htm">std::exception</a>(); <a href="CppComment.htm">//</a>To satisfy the <a href="CppCompiler.htm">compiler</a><br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::mouseMoveEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
@@ -7239,12 +7244,11 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (cmd-&gt;CanDoCommand(m_<a href="CppWidget.htm">widget</a>))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("YES");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setCursor(<a href="CppQCursor.htm">QCursor</a>(<a href="CppQt.htm">Qt</a>::<a href="CppPoint.htm">Point</a>ingHandCursor));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("NO");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Nothing<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
@@ -7252,49 +7256,14 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Try to unselect a potentially focused node or edge<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandLoseFocus&gt; lose_focus {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandLoseFocus<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> has_focus <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.htm">widget</a>-&gt;CanDoCommand(lose_focus);<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(has_focus);<br/>
-<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> pos <a href="CppOperatorAssign.htm">=</a> <a href="CppQGraphicsView.htm">QGraphicsView</a>::mapToScene(e-&gt;x(),e-&gt;y());<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandSetFocusWithCoordinat&gt; set_focus {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandSetFocusWithCoordinat(pos.x(),pos.y())<br/>
 &nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> can_set_focus <a href="CppOperatorAssign.htm">=</a> m_<a href="CppWidget.htm">widget</a>-&gt;CanDoCommand(set_focus);<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(can_set_focus);<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (has_focus)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_<a href="CppWidget.htm">widget</a>-&gt;CanDoCommand(set_focus))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (can_set_focus)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Focus transferred<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(lose_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>-&gt;CanDoCommand(set_focus));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(set_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Lose focus<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!can_set_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(lose_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!has_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (can_set_focus)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No focus yet, next will be<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(set_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!can_set_focus);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Done: currently no focus, next<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(set_focus);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -7302,29 +7271,19 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 {<br/>
 &nbsp;&nbsp;m_qtconceptmap-&gt;scene()-&gt;update();<br/>
 &nbsp;&nbsp;m_qtconceptmap-&gt;update();<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;<a href="CppQt.htm">Qt</a>DisplayConceptMap&gt;(m_qtconceptmap))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>DisplayConceptMap(<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;<a href="CppQt.htm">Qt</a>EditConceptMap&gt;(m_qtconceptmap))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditConceptMap(<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap(),<a href="CppQt.htm">Qt</a>EditConceptMap::Mode::simple));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b> <b><a href="CppIf.htm">if</a></b> (<a href="CppDynamic_pointer_cast.htm">boost::dynamic_pointer_cast</a>&lt;<a href="CppQt.htm">Qt</a>RateConceptMap&gt;(m_qtconceptmap))<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap.reset(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>RateConceptMap(<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()));<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here: unknown <a href="CppQt.htm">Qt</a>ConceptMap derived <b><a href="CppClass.htm">class</a></b>");<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnSetFocusNode(Node * <b><a href="CppConst.htm">const</a></b> node) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node)-&gt;setFocus();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!node)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;clearFocus();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node)-&gt;setFocus();<br/>
+&nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -7336,7 +7295,25 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::Test()");<br/>
-<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test that a 'set random focus' results in something getting a focus<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> concept_map_index <a href="CppOperatorAssign.htm">=</a> 17;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map_index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptMapFactory::GetHeteromorphous<a href="ToolTestConceptMap.htm">TestConceptMap</a>s().size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; m { ConceptMapFactory::GetHeteromorphous<a href="ToolTestConceptMap.htm">TestConceptMap</a>s()[concept_map_index] };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; c(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditConceptMap(m,<a href="CppQt.htm">Qt</a>EditConceptMap::Mode::simple));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>&gt; w(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>(c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!w-&gt;focus<a href="CppWidget.htm">Widget</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandSetFocusRandom&gt; cmd(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandSetFocusRandom<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;w-&gt;DoCommand(cmd);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(w-&gt;focus<a href="CppWidget.htm">Widget</a>());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::Test()");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -7356,7 +7333,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <br/>
@@ -7436,7 +7413,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qtdisplayconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtdisplayconceptmap.h"<br/>
 <br/>
@@ -7500,9 +7477,9 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>DisplayStrategy&gt; qtconcept(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>DisplayStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtconcept);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetFrom());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetFrom().get());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetTo());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetTo().get());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(to);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from <a href="CppOperatorNotEqual.htm">!=</a> to);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Edge(<br/>
@@ -7826,7 +7803,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qteditconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qteditconceptmap.h"<br/>
 <br/>
@@ -7934,9 +7911,9 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtconcept);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetFrom());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetFrom().get());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetTo());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetTo().get());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(to);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from <a href="CppOperatorNotEqual.htm">!=</a> to);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Edge(<br/>
@@ -8551,7 +8528,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQBrush.htm">QBrush</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppQGraphicsItem.htm">QGraphicsItem</a>&gt;<br/>
@@ -8681,7 +8658,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qtitemdisplaystrategy.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtitemdisplaystrategy.h"<br/>
 <br/>
@@ -9011,7 +8988,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <table summary="./CppQtConceptMap/qtrateconceptmap.cpp" border = "1"><tr><td><code>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-but-set-parameter"<br/>
 <a href="CppInclude.htm">#include</a> "qtrateconceptmap.h"<br/>
 <br/>
@@ -9082,9 +9059,9 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtconcept);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetFrom());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetFrom().get());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from);<br/>
-&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetTo());<br/>
+&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> Find<a href="CppQt.htm">Qt</a>Node(edge-&gt;GetTo().get());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(to);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from <a href="CppOperatorNotEqual.htm">!=</a> to);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Edge(<br/>

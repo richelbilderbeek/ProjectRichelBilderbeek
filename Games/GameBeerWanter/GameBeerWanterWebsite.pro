@@ -16,6 +16,9 @@ include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
 include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
 #Specific
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+
 include(../../Games/GameBeerWanter/GameBeerWanterWebsite.pri)
 
 SOURCES += wtmain.cpp

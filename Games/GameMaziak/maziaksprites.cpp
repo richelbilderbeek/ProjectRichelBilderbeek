@@ -12,7 +12,7 @@
 ribi::maziak::Sprites::Sprites()
   : m_sprites(CreateSprites())
 {
-  #ifndef TEST
+  #ifndef NDEBUG
   Test();
   #endif
 }

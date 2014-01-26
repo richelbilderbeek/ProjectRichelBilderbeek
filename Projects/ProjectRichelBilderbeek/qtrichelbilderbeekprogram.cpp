@@ -185,7 +185,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::martianCafeTuinemaTycoon: break;
     case ProgramType::mazeCreator: p = new QtMazeCreatorMenuDialog; break;
     case ProgramType::mazeCreatorVcl: break;
-    case ProgramType::maziak: p = new QtMaziakMenuDialog; break;
+    case ProgramType::maziak: p = new maziak::QtMaziakMenuDialog; break;
     case ProgramType::maziakVcl: break;
     case ProgramType::metZnDrieen: break;
     case ProgramType::metZnDrieenVcl: break;

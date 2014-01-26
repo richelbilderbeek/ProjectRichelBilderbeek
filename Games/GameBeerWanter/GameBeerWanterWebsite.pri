@@ -5,7 +5,3 @@ SOURCES += \
 
 HEADERS  += \
     ../../Games/GameBeerWanter/wtbeerwanterwidget.h
-
-RESOURCES += \
-    ../../Games/GameBeerWanter/beerwanter.qrc
-

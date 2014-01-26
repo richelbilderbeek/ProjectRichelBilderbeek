@@ -9,6 +9,7 @@ ui_*
 moc_*
 qrc_*
 tmp*.txt
+tmp*
 \#*
 *.bak
 *.pro.user

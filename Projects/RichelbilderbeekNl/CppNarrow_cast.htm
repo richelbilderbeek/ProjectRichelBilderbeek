@@ -78,7 +78,7 @@
 <br/>
 <a href="CppComment.htm">//</a>Copied from<br/>
 <a href="CppComment.htm">//</a> * <a href="CppBjarneStroustrup.htm">Bjarne Stroustrup</a>. The C<a href="CppOperatorIncrement.htm">++</a> Programming Language (4th edition). 2013.<br/>
-<a href="CppComment.htm">//</a>&nbsp;&nbsp; ISBN: 978-0-321-56384-2. Chapter 11.5: Explicit type con<a href="CppVersion.htm">version</a>. page 299.<br/>
+<a href="CppComment.htm">//</a>&nbsp;&nbsp; ISBN: 978-0-321-56384-2. Chapter 11.5: Explicit type conversion. page 299.<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Target, <b><a href="CppClass.htm">class</a></b> Source&gt;<br/>
 Target narrow_cast(Source v)<br/>
 {<br/>
@@ -93,7 +93,7 @@ Target narrow_cast(Source v)<br/>
 &nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;narrow_cast&lt;<b><a href="CppInt.htm">int</a></b>&gt;(12.34);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Incorrect con<a href="CppVersion.htm">version</a> from <b><a href="CppDouble.htm">double</a></b> to <b><a href="CppInt.htm">int</a></b> should be detected by narrow_cast");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Incorrect conversion from <b><a href="CppDouble.htm">double</a></b> to <b><a href="CppInt.htm">int</a></b> should be detected by narrow_cast");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppRuntime_error.htm">std::runtime_error</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>

@@ -200,14 +200,14 @@ const std::vector<std::vector<ribi::maziak::MazeSquare> > ribi::maziak::Maze::Cr
     const int x = dead_ends[0].first;
     const int y = dead_ends[0].second;
     assert(maze[y][x] == MazeSquare::msEmpty);
-    maze[dead_ends[0].second][dead_ends[0].first] = MazeSquare::msStart;
+    maze[y][x] = MazeSquare::msStart;
   }
   //Set exit
   {
     const int x = dead_ends[1].first;
     const int y = dead_ends[1].second;
     assert(maze[y][x] == MazeSquare::msEmpty);
-    maze[dead_ends[1].second][dead_ends[1].first] = MazeSquare::msExit;
+    maze[y][x] = MazeSquare::msExit;
   }
 
 

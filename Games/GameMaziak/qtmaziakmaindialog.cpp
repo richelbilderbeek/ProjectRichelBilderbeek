@@ -331,7 +331,7 @@ void ribi::maziak::QtMaziakMainDialog::paintEvent(QPaintEvent *)
 
   //Draw player
   {
-    const auto player {
+    const boost::shared_ptr<const QPixmap> player {
       m_sprites->Get(GetSpritePlayer(m_direction,m_move_now,m_has_sword,m_fighting_frame))
     };
     assert(player);

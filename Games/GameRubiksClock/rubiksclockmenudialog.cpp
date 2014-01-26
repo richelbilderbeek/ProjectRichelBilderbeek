@@ -59,13 +59,14 @@ int ribi::ruco::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
   for (int i=0; i!=100; ++i)
   {
     std::cout << (*widget->ToTextCanvas()) << std::endl;
-    Side side;
+    Side side = Side::bottomLeft;
     switch ((std::rand() >> 4) % 4)
     {
       case 0: side = Side::bottomLeft; break;
       case 1: side = Side::bottomRight; break;
       case 2: side = Side::topLeft; break;
       case 3: side = Side::topRight; break;
+      default: assert(!"Should not get here");
     }
     widget->GetRubiksClock()->TurnWheel(side,std::rand() % 12);
 
@@ -75,6 +76,7 @@ int ribi::ruco::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
       case 1: side = Side::bottomRight; break;
       case 2: side = Side::topLeft; break;
       case 3: side = Side::topRight; break;
+      default: assert(!"Should not get here");
     }
 
     widget->GetRubiksClock()->TogglePeg(side);

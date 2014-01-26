@@ -3,32 +3,32 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Games/GameMaziak/maziakmenudialog.cpp \
-    maziakplayerdirection.cpp \
-    maziakplayermove.cpp \
-    maziakmazesquare.cpp \
-    maziakdifficulty.cpp \
-    maziakhelper.cpp \
-    maziakintmaze.cpp \
-    maziaksprites.cpp \
-    maziaksprite.cpp \
-    maziakmaze.cpp \
-    maziakdistancesmaze.cpp \
-    maziaksolutionmaze.cpp
+    ../../Games/GameMaziak/maziakplayerdirection.cpp \
+    ../../Games/GameMaziak/maziakplayermove.cpp \
+    ../../Games/GameMaziak/maziakmazesquare.cpp \
+    ../../Games/GameMaziak/maziakdifficulty.cpp \
+    ../../Games/GameMaziak/maziakhelper.cpp \
+    ../../Games/GameMaziak/maziakintmaze.cpp \
+    ../../Games/GameMaziak/maziaksprites.cpp \
+    ../../Games/GameMaziak/maziaksprite.cpp \
+    ../../Games/GameMaziak/maziakmaze.cpp \
+    ../../Games/GameMaziak/maziakdistancesmaze.cpp \
+    ../../Games/GameMaziak/maziaksolutionmaze.cpp
 
 HEADERS  += \
     ../../Games/GameMaziak/maziakmenudialog.h \
-    maziakplayerdirection.h \
-    maziakplayermove.h \
-    maziakmazesquare.h \
-    maziakdifficulty.h \
-    maziakhelper.h \
-    maziakintmaze.h \
-    maziakfwd.h \
-    maziaksprites.h \
-    maziaksprite.h \
-    maziakmaze.h \
-    maziakdistancesmaze.h \
-    maziaksolutionmaze.h
+    ../../Games/GameMaziak/maziakplayerdirection.h \
+    ../../Games/GameMaziak/maziakplayermove.h \
+    ../../Games/GameMaziak/maziakmazesquare.h \
+    ../../Games/GameMaziak/maziakdifficulty.h \
+    ../../Games/GameMaziak/maziakhelper.h \
+    ../../Games/GameMaziak/maziakintmaze.h \
+    ../../Games/GameMaziak/maziakfwd.h \
+    ../../Games/GameMaziak/maziaksprites.h \
+    ../../Games/GameMaziak/maziaksprite.h \
+    ../../Games/GameMaziak/maziakmaze.h \
+    ../../Games/GameMaziak/maziakdistancesmaze.h \
+    ../../Games/GameMaziak/maziaksolutionmaze.h
 
 OTHER_FILES += \
     ../../Games/GameMaziak/Licence.txt

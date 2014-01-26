@@ -107,7 +107,7 @@ win32 {<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTuple.htm">tuple</a>/<a href="CppTuple.htm">tuple</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTuple.htm">tuple</a>/<a href="CppTuple.htm">tuple</a>_io.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -115,10 +115,10 @@ win32 {<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> <a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> <a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; t {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(1,1.1,"x")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(1,1.1,"x")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdGet.htm">std::get</a>&lt;0&gt;(t) <a href="CppOperatorEqual.htm">==</a> 1);<br/>

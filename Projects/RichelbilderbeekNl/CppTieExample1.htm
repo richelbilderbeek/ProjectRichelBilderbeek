@@ -106,7 +106,7 @@ win32 {<br/>
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTuple.htm">tuple</a>/<a href="CppTuple.htm">tuple</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -118,7 +118,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> d <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::tie(i,d,s) <a href="CppOperatorAssign.htm">=</a> <a href="CppStd.htm">std</a>::<a href="CppMake.htm">make</a>_<a href="CppTuple.htm">tuple</a>(1,1.1,"x");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::tie(i,d,s) <a href="CppOperatorAssign.htm">=</a> <a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(1,1.1,"x");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d <a href="CppOperatorEqual.htm">==</a> 1.1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorEqual.htm">==</a> "x");<br/>

@@ -6,7 +6,7 @@ SOURCES += \
 
 HEADERS  += \
     ../../Classes/CppAsciiArter/asciiarter.h
-r
+
 OTHER_FILES += \
     ../../Classes/CppAsciiArter/Licence.txt
 

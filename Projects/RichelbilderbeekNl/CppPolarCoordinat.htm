@@ -63,7 +63,7 @@
 <br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
-<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-<b><a href="CppTypedef.htm">typedef</a></b>s"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/base_units/angle/radian.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/quantity.hpp&gt;<br/>
@@ -157,7 +157,7 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> half_pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::half_pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Angle(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(half_pi <a href="CppOperatorPlus.htm">+</a> <a href="CppAtan.htm">std::atan</a>2(dy.value(),dx.value()))<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppUnits.htm">boost::units</a>::si::radians);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppBoostUnits.htm">boost::units</a>::si::radians);<br/>
 }<br/>
 <br/>
 <br/>
@@ -166,7 +166,7 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> Length(<a href="CppSqrt.htm">std::sqrt</a>(((dx*dx)+(dy*dy)).value()) * meter);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Length(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CalculateSqrt&lt;<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; &gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CalculateSqrt&lt;<a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; &gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(dx*dx)+(dy*dy)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;);<br/>
@@ -190,10 +190,10 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(CalcAngle(Length(-1.0 * meter),Length(-1.0 * meter)) <a href="CppOperatorDivide.htm">/</a> Angle(<a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() * radian));<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(CalcAngle(Length( 0.0 * meter),Length(-1.0 * meter)) <a href="CppOperatorDivide.htm">/</a> Angle(<a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() * radian));<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
-&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::micro;<br/>
-&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::nano;<br/>
-&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppUnits.htm">boost::units</a>::si::radian;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoostUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoostUnits.htm">boost::units</a>::si::micro;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoostUnits.htm">boost::units</a>::si::nano;<br/>
+&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <a href="CppBoostUnits.htm">boost::units</a>::si::radian;<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(CalcAngle(Length( 1.0 * meter),Length(-1.0 * meter)),Angle( 0.25 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() * radian),Angle(1.0 * nano * radian)));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(CalcAngle(Length( 1.0 * meter),Length( 0.0 * meter)),Angle( 0.50 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() * radian),Angle(1.0 * nano * radian)));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(CalcAngle(Length( 1.0 * meter),Length( 1.0 * meter)),Angle( 0.75 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() * radian),Angle(1.0 * nano * radian)));<br/>
@@ -307,26 +307,28 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 <a href="CppInclude.htm">#include</a> "polarcoordinat.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<a href="CppComment.htm">/*</a><br/>
 <b><a href="CppTemplate.htm">template</a></b>&lt;&gt;<br/>
 <b><a href="CppDouble.htm">double</a></b> CalculateSqrt&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; x)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;!<a href="CppIs_same.htm">std::is_same</a>&lt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>,<a href="CppBoost.htm">boost</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::units::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(),"");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::units::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(),"");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(x);<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b>&lt;&gt;<br/>
-<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt;<br/>
+<a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt;<br/>
 &nbsp;&nbsp;CalculateSqrt&lt;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt;,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::area&gt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt;,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::area&gt;<br/>
 &nbsp;&nbsp;&gt;(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::area&gt;&amp; x)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::area&gt;&amp; x)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(x.value()) * <a href="CppUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(x.value()) * <a href="CppBoostUnits.htm">boost::units</a>::si::meter;<br/>
 }<br/>
+<a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
