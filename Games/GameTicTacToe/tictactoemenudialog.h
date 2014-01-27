@@ -27,6 +27,7 @@ namespace ribi {
 
 struct TicTacToeMenuDialog : public MenuDialog
 {
+  TicTacToeMenuDialog();
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;

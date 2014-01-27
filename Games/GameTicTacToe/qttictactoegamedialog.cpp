@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoe.h"
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
+#include "trace.h"
 #include "ui_qttictactoegamedialog.h"
 
 #pragma GCC diagnostic pop
@@ -38,6 +39,10 @@ ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent)
     ui(new Ui::QtTicTacToeGameDialog),
     m_tictactoe(new QtTicTacToeWidget)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
   ui->layout->addWidget(m_tictactoe.get());
   QObject::connect(m_tictactoe.get(),SIGNAL(hasWinner()),
@@ -69,3 +74,15 @@ void ribi::QtTicTacToeGameDialog::HasWinner()
   m_tictactoe->Restart();
 }
 
+#ifndef NDEBUG
+void ribi::QtTicTacToeGameDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTicTacToeGameDialog::Test");
+  TRACE("Finished ribi::QtTicTacToeGameDialog::Test successfully");
+}
+#endif

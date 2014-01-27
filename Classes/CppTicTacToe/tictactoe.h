@@ -26,10 +26,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
 #include <boost/multi_array.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct TextCanvas;
 
 ///TicTacToe is a tic-tac-toe game class.
 struct TicTacToe
@@ -116,6 +119,8 @@ struct TicTacToe
   ///which is both tic-tac-toe board and whose turn it is.
   void SetSummarizedState(int state);
 
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+
   private:
 
   ///m_board stores the board in an x-y-order.\n
@@ -127,6 +132,10 @@ struct TicTacToe
 
   ///NoEmptySquares determines whether there are no empty squares left.
   bool NoEmptySquares() const;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 
   friend std::ostream& operator<<(std::ostream& os,const TicTacToe& t);
 };

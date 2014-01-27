@@ -27,23 +27,50 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
+#include "fileio.h"
 #include "trace.h"
 #include "qrcfile.h"
 
 #pragma GCC diagnostic pop
 
-int ribi::TestQrcFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::TestQrcFileMenuDialog::TestQrcFileMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::TestQrcFileMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc == 3 && (argv[1] == "-f" || argv[1] == "--filename"))
   {
-    std::cout << GetHelp() << '\n';
+    const std::string filename = argv[2];
+    if (filename.empty())
+    {
+      std::cout << "Please specify a filename.\n";
+    }
+    else if (filename.size() < 5)
+    {
+      std::cout << "Please specify a full Qt Creator (.qrc) project filename.\n";
+    }
+    else if (filename.substr(filename.size() - 4,4) != ".qrc")
+    {
+      std::cout << "Please specify a filename ending on .qrc.\n";
+    }
+    else if (!fileio::IsRegularFile(filename))
+    {
+      std::cout << "Please specify a Qt Creator Resource (.qrc) filename that exists.\n";
+    }
+    else
+    {
+      QrcFile p(filename);
+      std::cout << p << '\n';
+      return 0;
+    }
     return 1;
   }
-  assert(!"TODO");
+  std::cout << GetHelp() << '\n';
   return 1;
 }
 
@@ -67,13 +94,14 @@ const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() const noexcept
 const ribi::Help ribi::TestQrcFileMenuDialog::GetHelp() const noexcept
 {
   return Help(
-    this->GetAbout().GetFileTitle(),
+    GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {
-
+      Help::Option('f',"filename","filename of the Qt Resource file (.qrc) file")
     },
     {
-
+      GetAbout().GetFileTitle() + " -f somefile.qrc",
+      GetAbout().GetFileTitle() + " --filename somefile.qrc"
     }
   );
 }
@@ -89,7 +117,7 @@ const boost::shared_ptr<const ribi::Program> ribi::TestQrcFileMenuDialog::GetPro
 
 const std::string ribi::TestQrcFileMenuDialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() const noexcept
@@ -97,7 +125,8 @@ const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() 
   return {
     "2012-06-13: version 1.0: initial version",
     "2013-05-20: version 1.1: some GUI modifications",
-    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole"
+    "2013-11-05: version 1.2: conformized for ProjectRichelBilderbeekConsole",
+    "2014-01-27: version 1.3: removed use of Boost.Filesystem and Boost.Program_Options",
   };
 }
 
@@ -110,7 +139,7 @@ void ribi::TestQrcFileMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(QFile::exists("../ToolTestQrcFile/ToolTestQrcFile.qrc"));
+  assert(fileio::IsRegularFile("../ToolTestQrcFile/ToolTestQrcFile.qrc"));
   {
     QrcFile f("../ToolTestQrcFile/ToolTestQrcFile.qrc");
     assert(f.GetFiles().count("R.png"));

@@ -22,10 +22,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qttictactoemenudialog.h"
 
+#include <cassert>
+
 #include "qtaboutdialog.h"
 #include "qttictactoegamedialog.h"
 #include "qttictactoewidget.h"
 #include "tictactoemenudialog.h"
+#include "trace.h"
 #include "ui_qttictactoemenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -33,6 +36,10 @@ ribi::QtTicTacToeMenuDialog::QtTicTacToeMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeMenuDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 }
 
@@ -60,3 +67,15 @@ void ribi::QtTicTacToeMenuDialog::on_button_quit_clicked()
   close();
 }
 
+#ifndef NDEBUG
+void ribi::QtTicTacToeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTicTacToeMenuDialog::Test");
+  TRACE("Finished ribi::QtTicTacToeMenuDialog::Test successfully");
+}
+#endif

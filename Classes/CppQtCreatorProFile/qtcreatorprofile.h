@@ -67,6 +67,9 @@ struct QtCreatorProFile
   ///Obtain the OTHER_FILES
   const std::set<std::string>& GetOtherFiles() const noexcept { return m_other_files; }
 
+  ///Obtain the include(something.pri)
+  const std::set<std::string>& GetPriFiles() const noexcept { return m_pri_files; }
+
   ///Get the project file its file name
   const std::string& GetQtCreatorProFilename() const noexcept { return m_pro_filename; }
 
@@ -115,6 +118,9 @@ struct QtCreatorProFile
   ///Set the OTHER_FILES
   void SetOtherFiles(const std::set<std::string>& s) { m_other_files = s; }
 
+  ///Set the include(something.pri) files
+  void SetPriFiles(const std::set<std::string>& s) { m_pri_files = s; }
+
   ///Set the project file its file name
   void SetQtCreatorProFilename(const std::string& s) { m_pro_filename = s; }
 
@@ -162,6 +168,9 @@ struct QtCreatorProFile
   ///The items at OTHER_FILES
   std::set<std::string> m_other_files;
 
+  ///The include(something.pri) files
+  std::set<std::string> m_pri_files;
+
   ///The .pro file to parse
   std::string m_pro_filename;
 
@@ -184,7 +193,9 @@ struct QtCreatorProFile
   std::set<std::string> m_sources;
 
   ///Parse the .pro file its content, split into lines
-  void Parse(const std::vector<std::string>& v);
+  void Parse(std::stringstream& data);
+
+  void RemoveComments(std::vector<std::string>& v);
 
   ///From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(
@@ -201,8 +212,6 @@ struct QtCreatorProFile
 };
 
 std::ostream& operator<<(std::ostream& os, const QtCreatorProFile& p);
-std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p);
-std::ostream& operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p);
 bool operator==(const QtCreatorProFile& lhs, const QtCreatorProFile& rhs);
 
 } //~namespace ribi

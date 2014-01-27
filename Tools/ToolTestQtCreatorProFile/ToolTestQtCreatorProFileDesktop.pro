@@ -1,51 +1,23 @@
-QT       += core gui
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
+include(../../DesktopApplication.pri)
 
-LIBS += \
-    -lboost_filesystem \
-    -lboost_program_options \
-    -lboost_regex \
-    -lboost_system
+#Libs
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtCreatorProFile \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppTrace
+#Console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.cpp \
-    qtmain.cpp \
-    qttestqtcreatorprofilemaindialog.cpp \
-    qttestqtcreatorprofilemenudialog.cpp \
-    testqtcreatorprofilemenudialog.cpp
+#Desktop
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtCreatorProFile/qtcreatorprofile.h \
-    ../../Classes/CppTrace/trace.h \
-    qttestqtcreatorprofilemaindialog.h \
-    qttestqtcreatorprofilemenudialog.h \
-    testqtcreatorprofilemenudialog.h
+#Specific for this application
+include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
+include(../../Classes/CppQrcFile/CppQrcFile.pri)
+include(../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFileDesktop.pri)
 
-FORMS += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui \
-    qttestqtcreatorprofilemaindialog.ui \
-    qttestqtcreatorprofilemenudialog.ui
-
-RESOURCES += \
-    ToolTestQtCreatorProFile.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppQtCreatorProFile/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    Licence.txt \
-    zip.sh
+SOURCES += qtmain.cpp

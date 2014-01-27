@@ -14,6 +14,7 @@ namespace Ui {
 
 namespace ribi {
 
+struct QtCanvas;
 struct TextCanvas;
 
 class QtTestTextCanvasMainDialog : public QtHideAndShowDialog
@@ -36,9 +37,9 @@ private slots:
 private:
   Ui::QtTestTextCanvasMainDialog *ui;
   boost::shared_ptr<TextCanvas> m_canvas;
+  QtCanvas * m_qtcanvas;
 
   static const boost::shared_ptr<TextCanvas> CreateCanvas();
-  void ShowCanvas(const TextCanvas * const canvas = nullptr);
 
   #ifndef NDEBUG
   static void Test() noexcept;

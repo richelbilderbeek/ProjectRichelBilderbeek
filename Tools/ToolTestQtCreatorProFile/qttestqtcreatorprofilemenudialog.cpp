@@ -22,6 +22,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qttestqtcreatorprofilemenudialog.h"
 
+#include <cassert>
+
 #include "qtaboutdialog.h"
 #include "qttestqtcreatorprofilemaindialog.h"
 #include "testqtcreatorprofilemenudialog.h"
@@ -74,6 +76,14 @@ void ribi::QtTestQtCreatorProFileMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtCreatorProFileMenuDialog::Test");
+  {
+    const TestQtCreatorProFileMenuDialog d;
+    assert(!d.GetVersion().empty());
+  }
+  {
+    const QtTestQtCreatorProFileMainDialog d;
+    assert(!d.GetVersion().empty());
+  }
   TRACE("Finished ribi::QtTestQtCreatorProFileMenuDialog::Test successfully");
 }
 #endif

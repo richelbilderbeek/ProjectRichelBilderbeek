@@ -41,6 +41,7 @@ namespace ribi {
 ///displaying images (ImageCanvas) and displaying text (TextCanvas)
 struct Canvas
 {
+  Canvas();
   virtual ~Canvas() noexcept {}
 
   //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
@@ -64,6 +65,9 @@ struct Canvas
 
   ///Convert the Canvas to std::strings
   virtual const std::vector<std::string> ToStrings() const noexcept = 0;
+
+  ///This signal is emitted when any member variable changes
+  boost::signals2::signal<void(Canvas*)> m_signal_changed;
 
   private:
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm

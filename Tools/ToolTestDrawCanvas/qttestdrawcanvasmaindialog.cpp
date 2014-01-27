@@ -9,8 +9,8 @@
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 
-
 #include "drawcanvas.h"
+#include "qtcanvas.h"
 #include "trace.h"
 #include "ui_qttestdrawcanvasmaindialog.h"
 #pragma GCC diagnostic pop
@@ -25,11 +25,13 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
   #endif
   ui->setupUi(this);
 
-  m_canvas->m_signal_changed.connect(
-    boost::bind(
-      &ribi::QtTestDrawCanvasMainDialog::ShowCanvas,this,
-      boost::lambda::_1)
-    );
+  {
+    assert(ui->verticalLayout);
+    QtCanvas * const qtcanvas {
+      new QtCanvas(m_canvas)
+    };
+    ui->verticalLayout->addWidget(qtcanvas);
+  }
 
   {
     const double w = m_canvas->GetWidth();
@@ -44,8 +46,6 @@ ribi::QtTestDrawCanvasMainDialog::QtTestDrawCanvasMainDialog(QWidget *parent) :
     ui->box_line_x2->setValue(0.75 * w);
     ui->box_line_y2->setValue(0.75 * h);
   }
-
-  ShowCanvas(0);
 }
 
 ribi::QtTestDrawCanvasMainDialog::~QtTestDrawCanvasMainDialog() noexcept
@@ -107,14 +107,6 @@ void ribi::QtTestDrawCanvasMainDialog::on_box_coordinat_system_currentIndexChang
   //Should redraw automatically
 }
 
-void ribi::QtTestDrawCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const)
-{
-  //Display the image
-  std::stringstream s;
-  s << (*m_canvas);
-  ui->text->setPlainText(s.str().c_str());
-
-}
 
 void ribi::QtTestDrawCanvasMainDialog::on_button_arc_clicked()
 {

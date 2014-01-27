@@ -35,6 +35,8 @@ struct TextCanvas : public Canvas
   ///Clears the canvas
   void Clear() noexcept;
 
+  CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
+
   ///Obtain the height of the canvas is characters
   int GetHeight() const noexcept { return m_canvas.size(); }
 
@@ -66,10 +68,7 @@ struct TextCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept;
 
-  const std::vector<std::string> ToStrings() const noexcept { return m_canvas; }
-
-  ///This signal is emitted when any member variable changes
-  boost::signals2::signal<void(TextCanvas*)> m_signal_changed;
+  const std::vector<std::string> ToStrings() const noexcept;
 
   private:
   ///The Canvas its internal data
@@ -78,7 +77,7 @@ struct TextCanvas : public Canvas
   ///The coordinat system used in displayal:
   ///- screen: origin is at top-left of the screen
   ///- graph: origin is at bottom-left of the screen
-  CanvasCoordinatSystem m_coordinatSystem;
+  CanvasCoordinatSystem m_coordinat_system;
 
   ///Check if a coordinat is in the range of the Canvas
   bool IsInRange(const int x, const int y) const;

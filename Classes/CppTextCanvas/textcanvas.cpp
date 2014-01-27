@@ -20,9 +20,8 @@ ribi::TextCanvas::TextCanvas(
   const int width,
   const int height,
   const CanvasCoordinatSystem coordinatSystem)
-  : m_signal_changed{},
-    m_canvas(std::vector<std::string>(height,std::string(width,' '))),
-    m_coordinatSystem(coordinatSystem)
+  : m_canvas(std::vector<std::string>(height,std::string(width,' '))),
+    m_coordinat_system(coordinatSystem)
 {
   #ifndef NDEBUG
   Test();
@@ -100,9 +99,9 @@ void ribi::TextCanvas::PutText(const int x, const int y, const std::string& text
 
 void ribi::TextCanvas::SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept
 {
-  if (this->m_coordinatSystem != coordinatSystem)
+  if (this->m_coordinat_system != coordinatSystem)
   {
-    this->m_coordinatSystem = coordinatSystem;
+    this->m_coordinat_system = coordinatSystem;
     this->m_signal_changed(this);
   }
 }
@@ -150,15 +149,30 @@ void ribi::TextCanvas::Test() noexcept
     std::stringstream s_after;
     s_after << (*canvas);
     const std::string str_after {s_after.str() };
-    assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line trly drawn
+    assert(std::count(str_after.begin(),str_after.end(),' ') != maxx * maxy); //Line truely drawn
   }
   TRACE("Finished ribi::TextCanvas::Test successfully");
 }
 #endif
 
+const std::vector<std::string> ribi::TextCanvas::ToStrings() const noexcept
+{
+  if (m_coordinat_system == CanvasCoordinatSystem::screen)
+  {
+    return m_canvas;
+  }
+  else
+  {
+    std::vector<std::string> v(m_canvas);
+    std::reverse(std::begin(v),std::end(v));
+    return v;
+  }
+}
+
 std::ostream& ribi::operator<<(std::ostream& os, const TextCanvas& canvas)
 {
-  std::copy(canvas.m_canvas.begin(),canvas.m_canvas.end(),
+  const auto v = canvas.ToStrings();
+  std::copy(v.begin(),v.end(),
     std::ostream_iterator<std::string>(os,"\n")
   );
   return os;

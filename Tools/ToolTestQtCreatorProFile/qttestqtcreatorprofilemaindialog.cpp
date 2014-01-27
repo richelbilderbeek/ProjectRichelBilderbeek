@@ -33,9 +33,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestqtcreatorprofilemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
-  ui(new Ui::QtTestQtCreatorProFileMainDialog)
+ribi::QtTestQtCreatorProFileMainDialog::QtTestQtCreatorProFileMainDialog(QWidget *parent)
+ : QtHideAndShowDialog(parent),
+   ui(new Ui::QtTestQtCreatorProFileMainDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -83,6 +83,7 @@ void ribi::QtTestQtCreatorProFileMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestQtCreatorProFileMainDialog::Test");
+
   TRACE("Finished ribi::QtTestQtCreatorProFileMainDialog::Test successfully");
 }
 #endif

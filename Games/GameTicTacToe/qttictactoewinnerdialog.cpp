@@ -21,6 +21,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qttictactoewinnerdialog.h"
+
+#include <cassert>
+
+#include "trace.h"
 #include "ui_qttictactoewinnerdialog.h"
 #pragma GCC diagnostic pop
 
@@ -28,6 +32,10 @@ ribi::QtTicTacToeWinnerDialog::QtTicTacToeWinnerDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeWinnerDialog)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   ui->setupUi(this);
 }
 
@@ -53,3 +61,15 @@ void ribi::QtTicTacToeWinnerDialog::SetWinnerCircle()
   ui->label_winner->setPixmap(QPixmap(":/images/O.png"));
 }
 
+#ifndef NDEBUG
+void ribi::QtTicTacToeWinnerDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTicTacToeWinnerDialog::Test");
+  TRACE("Finished ribi::QtTicTacToeWinnerDialog::Test successfully");
+}
+#endif

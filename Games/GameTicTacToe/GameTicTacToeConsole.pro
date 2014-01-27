@@ -1,4 +1,4 @@
-include(../../ConsoleApplication.pri)
+include(../../DesktopApplication.pri)
 
 include(../../Libraries/Boost.pri)
 
@@ -9,9 +9,11 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
-#Specific
-include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
-include(../../Classes/CppQrcFile/CppQrcFile.pri)
-include(../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFileConsole.pri)
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppTicTacToe/CppTicTacToe.pri)
+
+include(GameTicTacToeConsole.pri)
 
 SOURCES += main.cpp

@@ -44,7 +44,6 @@ private:
   boost::shared_ptr<DrawCanvas> m_canvas;
 
   static const boost::shared_ptr<DrawCanvas> CreateCanvas();
-  void ShowCanvas(const DrawCanvas * const canvas = nullptr);
 
   #ifndef NDEBUG
   static void Test() noexcept;

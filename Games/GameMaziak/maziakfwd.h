@@ -6,6 +6,7 @@ namespace maziak {
 
 struct DistancesMaze;
 struct IntMaze;
+struct MainDialog;
 struct Maze;
 struct Sprites;
 struct SolutionMaze;

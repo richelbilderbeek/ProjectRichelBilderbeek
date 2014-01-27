@@ -19,19 +19,6 @@ QPushButton { color: rgb(0,0,0); }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QPlainTextEdit" name="text">
-     <property name="font">
-      <font>
-       <family>Courier</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="layout_image">
      <item>
       <widget class="QPushButton" name="button_image">

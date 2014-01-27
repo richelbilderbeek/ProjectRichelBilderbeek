@@ -17,6 +17,7 @@ namespace Ui {
 namespace ribi {
 
 struct ImageCanvas;
+struct QtCanvas;
 
 class QtTestImageCanvasMainDialog : public QtHideAndShowDialog
 {
@@ -39,14 +40,13 @@ private slots:
 private:
   Ui::QtTestImageCanvasMainDialog *ui;
   boost::shared_ptr<ImageCanvas> m_canvas;
+  QtCanvas * m_qtcanvas;
 
   static const boost::shared_ptr<ImageCanvas> CreateCanvas();
 
   CanvasColorSystem GetColorSystem() const noexcept;
   CanvasCoordinatSystem GetCoordinatSystem() const noexcept;
   int GetNcols() const noexcept;
-
-  void ShowCanvas(const ImageCanvas * const canvas = nullptr);
 
   #ifndef NDEBUG
   static void Test() noexcept;

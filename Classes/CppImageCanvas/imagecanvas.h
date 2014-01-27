@@ -75,9 +75,6 @@ struct ImageCanvas : public Canvas
 
   const std::vector<std::string> ToStrings() const noexcept;
 
-  ///This signal is emitted when any member variable changes
-  boost::signals2::signal<void(ImageCanvas*)> m_signal_changed;
-
   private:
   ~ImageCanvas() noexcept {}
   friend void boost::checked_delete<>(ImageCanvas* x);

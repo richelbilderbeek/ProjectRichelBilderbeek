@@ -43,6 +43,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtmaziakgameoverdialog.h"
 #include "qtmaziakgamewondialog.h"
 #include "maziaksolutionmaze.h"
+#include "maziakmaindialog.h"
 #include "ui_qtmaziakmaindialog.h"
 #include "trace.h"
 
@@ -131,16 +132,12 @@ void ribi::maziak::QtMaziakMainDialog::resizeEvent(QResizeEvent*)
 
 void ribi::maziak::QtMaziakMainDialog::keyPressEvent(QKeyEvent* e)
 {
-  if (m_fighting_frame > 0) repaint();
-
-  m_keys.insert(e->key());
-
   switch (e->key())
   {
-    case Qt::Key_Left : m_keys.erase(Qt::Key_Right); break;
-    case Qt::Key_Right: m_keys.erase(Qt::Key_Left); break;
-    case Qt::Key_Up   : m_keys.erase(Qt::Key_Down); break;
-    case Qt::Key_Down : m_keys.erase(Qt::Key_Up); break;
+    case Qt::Key_Left : m_dialog->OnKeyPress(Key::left); break;
+    case Qt::Key_Right: m_dialog->OnKeyPress(Key::right); break;
+    case Qt::Key_Up   : m_dialog->OnKeyPress(Key::up); break;
+    case Qt::Key_Down : m_dialog->OnKeyPress(Key::down); break;
     case Qt::Key_F1   : GameOver(); close(); break;
     case Qt::Key_F2   : GameWon(); close(); break;
     case Qt::Key_Escape: close(); break;

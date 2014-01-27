@@ -11,6 +11,7 @@
 
 #include "fileio.h"
 #include "imagecanvas.h"
+#include "qtcanvas.h"
 #include "trace.h"
 #include "ui_qttestimagecanvasmaindialog.h"
 #pragma GCC diagnostic pop
@@ -18,20 +19,19 @@
 ribi::QtTestImageCanvasMainDialog::QtTestImageCanvasMainDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestImageCanvasMainDialog),
-  m_canvas(CreateCanvas())
+  m_canvas(CreateCanvas()),
+  m_qtcanvas{}
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
 
-  m_canvas->m_signal_changed.connect(
-    boost::bind(
-      &ribi::QtTestImageCanvasMainDialog::ShowCanvas,this,
-      boost::lambda::_1)
-    );
-
-  ShowCanvas(0);
+  {
+    assert(ui->verticalLayout);
+    m_qtcanvas = new QtCanvas(m_canvas);
+    ui->verticalLayout->addWidget(m_qtcanvas);
+  }
 }
 
 ribi::QtTestImageCanvasMainDialog::~QtTestImageCanvasMainDialog() noexcept
@@ -87,15 +87,6 @@ void ribi::QtTestImageCanvasMainDialog::on_box_coordinat_system_currentIndexChan
   //Should redraw automatically
 }
 
-void ribi::QtTestImageCanvasMainDialog::ShowCanvas(const ribi::ImageCanvas * const)
-{
-  //Display the image
-  std::stringstream s;
-  s << (*m_canvas);
-  ui->text->setPlainText(s.str().c_str());
-
-}
-
 #ifndef NDEBUG
 void ribi::QtTestImageCanvasMainDialog::Test() noexcept
 {
@@ -125,12 +116,15 @@ void ribi::QtTestImageCanvasMainDialog::on_button_image_clicked()
       GetCoordinatSystem()
     )
   );
+  delete m_qtcanvas;
+  m_qtcanvas = new QtCanvas(m_canvas);
+  ui->verticalLayout->addWidget(m_qtcanvas);
+
   fileio::DeleteFile(filename);
   assert(!fileio::IsRegularFile(filename));
-  this->ShowCanvas(m_canvas.get());
 }
 
-void ribi::QtTestImageCanvasMainDialog::on_box_n_cols_valueChanged(int )
+void ribi::QtTestImageCanvasMainDialog::on_box_n_cols_valueChanged(int)
 {
   on_button_image_clicked();
 }

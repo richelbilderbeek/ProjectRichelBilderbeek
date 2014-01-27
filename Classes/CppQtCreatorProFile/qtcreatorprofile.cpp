@@ -54,6 +54,7 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
     m_includepath{},
     m_libs{},
     m_other_files{},
+    m_pri_files{},
     m_pro_filename{filename},
     m_qmake_cxxflags{},
     m_qt{},
@@ -75,8 +76,12 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #endif
   assert(ribi::fileio::IsRegularFile(filename));
 
-  const std::vector<std::string> v = ribi::fileio::FileToVector(filename);
-  Parse(v);
+  std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  RemoveComments(v);
+  std::stringstream data;
+  std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(data," "));
+  TRACE(data.str());
+  Parse(data);
 }
 
 const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
@@ -112,109 +117,143 @@ const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexc
     "2012-12-23: version 1.8: renamed to QtCreatorProFile due to naming conflicts when cross-compiling",
     "2013-05-18: version 2.0: simplified architecture by removing file I/O",
     "2013-08-19: version 2.1: replaced Boost.Regex by Boost.Xpressive, removed Boost.Filesystem",
+    "2014-01-27: version 2.2: removes all comments, can detect includes of .pri files"
   };
 }
 
-void ribi::QtCreatorProFile::Parse(const std::vector<std::string> &v)
+void ribi::QtCreatorProFile::Parse(std::stringstream& data)
 {
+  const bool verbose = true;
   std::set<std::string> * p = nullptr; //A set to write to
   enum class Prefix { none, plus, minus };
   Prefix prefix = Prefix::none;
-  for (const std::string& dirty_line: v)
+  while (data)
   {
-    const std::string line = boost::algorithm::trim_copy(dirty_line);
-    if (line.empty()) continue;
-    if (line[0] == '#') continue;
-    if (line[0] == '{') continue;
-    if (line[0] == '}') continue;
-    if (line.size() >= 7 && line.substr(0,7) == std::string("message")) continue;
-    const std::vector<std::string> words = SeperateString(line,' ');
-    for (const std::string& dirty_word: words)
+    std::string s;
+    data >> s;
+    if (verbose) { TRACE(s); }
+    assert(s[0] != '#' && "Comments are already removed");
+    if (s[0] == '{') continue;
+    if (s[0] == '}') continue;
+    if (s[0] == '\\') continue;
+    if (s.substr(0,7) == "include")
     {
-      const std::string word = boost::algorithm::trim_copy(dirty_word);
-      if (word.empty()) continue;
-      if (word[0] == '#') break; //Skip the rest of the line
-      assert(!word.empty());
-      std::string s = word; //s gets cut into bits
-      const std::vector<std::string> conditional_sections
-        =
+      std::string t = s.substr(8,s.size() - 8 - 1);
+      while (t[0] == ' ' || t[0] == '(') t = t.substr(1,t.size()-1);
+      while (t.back() == ' ' || t.back() == ')') t.pop_back();
+      if (verbose) { TRACE(t); }
+      assert(t.find('(') == std::string::npos);
+      assert(t.find(')') == std::string::npos);
+      m_pri_files.insert(t);
+      continue;
+    }
+    const std::vector<std::string> conditional_sections {
+      "unix", "win32", "static", "debug", "release"
+    };
+    if (std::count(conditional_sections.begin(),conditional_sections.end(),s))
+    {
+      p = nullptr;
+      continue;
+    }
+    const std::map<std::string,std::set<std::string>* > m {
+      { "CONFIG"        ,&m_config },
+      { "DEFINES"       ,&m_defines },
+      { "FORMS"         ,&m_forms },
+      { "HEADERS"       ,&m_headers },
+      { "INCLUDEPATH"   ,&m_includepath },
+      { "LIBS"          ,&m_libs },
+      { "OTHER_FILES"   ,&m_other_files },
+      { "QMAKE_CXXFLAGS",&m_qmake_cxxflags },
+      { "QT"            ,&m_qt },
+      { "RESOURCES"     ,&m_resources },
+      { "SOURCES"       ,&m_sources },
+      { "TARGET"        ,&m_target },
+      { "TEMPLATE"      ,&m_template }
+    };
+    const std::map<std::string,std::set<std::string>* >::const_iterator iter {
+      std::find_if(std::begin(m),std::end(m),
+        [s](const std::pair<std::string,std::set<std::string>* > sub_pair)
         {
-          "unix", "win32", "static", "debug", "release"
-        };
-      if (std::count(conditional_sections.begin(),conditional_sections.end(),s))
+          return sub_pair.first == s;
+        }
+      )
+    };
+    if (iter != std::end(m))
+    {
+      if (verbose) { const std::string msg = "Set pointer to " + iter->first; TRACE(msg); }
+      p = iter->second;
+      prefix = Prefix::none;
+      continue;
+    }
+    //Determine prefixes
+    bool has_prefixes = true;
+    while (has_prefixes)
+    {
+      has_prefixes = false;
+      if (!s.empty() && s[0] == '+')
       {
-        p = nullptr;
-        continue;
+        prefix = Prefix::plus;
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
-      const std::map<std::string,std::set<std::string>* > m
-        =
-        {
-          { "CONFIG"        ,&m_config },
-          { "DEFINES"       ,&m_defines },
-          { "FORMS"         ,&m_forms },
-          { "HEADERS"       ,&m_headers },
-          { "INCLUDEPATH"   ,&m_includepath },
-          { "LIBS"          ,&m_libs },
-          { "OTHER_FILES"   ,&m_other_files },
-          { "QMAKE_CXXFLAGS",&m_qmake_cxxflags },
-          { "QT"            ,&m_qt },
-          { "RESOURCES"     ,&m_resources },
-          { "SOURCES"       ,&m_sources },
-          { "TARGET"        ,&m_target },
-          { "TEMPLATE"      ,&m_template }
-        };
-      for (const std::pair<std::string,std::set<std::string>* > sub_pair: m)
+      else if (!s.empty() && s[0] == '-')
       {
-        const std::string& sub = sub_pair.first;
-        if (s.size() >= sub.size() && s.substr(0,sub.size()) == sub)
-        {
-          p = sub_pair.second;
-          assert(p);
-          s = s.substr(sub.size(),s.size() - sub.size());
-          prefix = Prefix::none;
-        }
+        prefix = Prefix::minus;
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
-      //Determine prefixes
-      bool has_prefixes = true;
-      while (has_prefixes)
+      else if (!s.empty() && s[0] == '\\')
       {
-        has_prefixes = false;
-        if (!s.empty() && s[0] == '+')
-        {
-          prefix = Prefix::plus;
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
-        else if (!s.empty() && s[0] == '-')
-        {
-          prefix = Prefix::minus;
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
-        else if (!s.empty() && s[0] == '\\')
-        {
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
-        else if (!s.empty() && s[0] == '=')
-        {
-          s = s.substr(1,s.size() - 1);
-          has_prefixes = true;
-        }
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
-      //Remove possible postfix
-      if (!s.empty())
+      else if (!s.empty() && s[0] == '=')
       {
-        if (s[ s.size() - 1] == '\\') s.resize(s.size() - 1);
-
-      }
-      if (p && !s.empty())
-      {
-        p->insert(
-          (prefix == Prefix::minus ? std::string("-") : std::string()) + s);
+        s = s.substr(1,s.size() - 1);
+        has_prefixes = true;
       }
     }
+    //Remove possible postfix
+    if (!s.empty())
+    {
+      if (s[ s.size() - 1] == '\\') s.resize(s.size() - 1);
+
+    }
+    if (p && !s.empty())
+    {
+      if (verbose) { const std::string msg = "Added " + s; TRACE(msg); }
+      p->insert(
+        (prefix == Prefix::minus ? std::string("-") : std::string()) + s);
+    }
   }
+}
+
+void ribi::QtCreatorProFile::RemoveComments(std::vector<std::string>& v)
+{
+  for (std::string& s: v)
+  {
+    const std::string t = boost::algorithm::trim_copy(s);
+    if (t[0] == '#')
+    {
+      s = "";
+      continue;
+    }
+    if (t.size() >= 7 && t.substr(0,7) == std::string("message"))
+    {
+      s = "";
+      continue;
+    }
+
+    const auto iter = std::find(std::begin(t),std::end(t),'#');
+    if (iter != std::end(t))
+    {
+      s.assign(std::begin(t),iter);
+    }
+
+    assert(std::find(std::begin(s),std::end(s),'#') == std::end(s)
+      && "Every comment is removed");
+  }
+
 }
 
 const std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
@@ -243,7 +282,43 @@ void ribi::QtCreatorProFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting QtCreatorProFile::Test");
- // TRACE("Test QtCreatorProFile::QtCreatorProFile");
+  {
+    const std::string mypath { fileio::GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "SOURCES += qtmain.cpp";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetSources().size() == 1);
+    assert(p.GetSources().count("qtmain.cpp"));
+    fileio::DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "includes(something.pri)";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetPriFiles().size() == 1);
+    TRACE(*p.GetPriFiles().begin());
+    assert(p.GetPriFiles().count("something.pri"));
+    fileio::DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "HEADERS += header.h #Must remove this comment";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetHeaders().size() == 1);
+    assert(p.GetHeaders().count("header.h"));
+    fileio::DeleteFile(mypath.c_str());
+  }
   {
     const std::string mypath { fileio::GetTempFileName() };
     {
@@ -267,6 +342,7 @@ void ribi::QtCreatorProFile::Test() noexcept
     }
     //Check the project file
     const QtCreatorProFile p(mypath);
+    TRACE(p.GetConfig().size());
     assert(p.GetConfig().size() == 2);
     assert(p.GetConfig().count("console"));
     assert(p.GetConfig().count("-app_bundle"));
@@ -285,7 +361,6 @@ void ribi::QtCreatorProFile::Test() noexcept
     assert(p.GetTarget().count("ToolTestQtCreatorProFile") == 1);
     assert(p.GetTemplate().size() == 1);
     assert(p.GetTemplate().count("app"));
-    //TRACE("Test QtCreatorProFile::operator<<");
     {
       std::stringstream ss;
       ss << p << '\n';
@@ -391,24 +466,14 @@ void ribi::QtCreatorProFile::Test() noexcept
   TRACE("Finished QtCreatorProFile::Test successfully");
 }
 #endif
-std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<QtCreatorProFile>& p)
-{
-  assert(p);
-  os << (*p);
-  return os;
-}
-
-std::ostream& ribi::operator<<(std::ostream& os, const boost::shared_ptr<const QtCreatorProFile>& p)
-{
-  assert(p);
-  os << (*p);
-  return os;
-}
 
 std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
 {
   os << "\n";
-
+  for (const std::string pri: p.GetPriFiles())
+  {
+    os << "include(" << pri << ")" << '\n';
+  }
   {
     const std::vector<
       std::pair<

@@ -11,6 +11,3 @@ SOURCES += \
 FORMS += \
     ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemenudialog.ui \
     ../../Tools/ToolTestQtCreatorProFile/qttestqtcreatorprofilemaindialog.ui
-
-RESOURCES += \
-    ../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFile.qrc

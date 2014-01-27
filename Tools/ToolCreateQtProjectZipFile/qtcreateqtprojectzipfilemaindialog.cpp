@@ -62,43 +62,8 @@ ribi::QtCreateQtProjectZipFileMainDialog::~QtCreateQtProjectZipFileMainDialog() 
 
 void ribi::QtCreateQtProjectZipFileMainDialog::CreateScript(const std::string source_folder) noexcept
 {
-  std::stringstream s;
-
-  const std::vector<std::string> pro_filenames = GetProFilesInFolder(source_folder);
-
-  std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> > scripts;
-
-  for (const std::string& pro_filename: pro_filenames)
-  {
-    const boost::shared_ptr<QtCreatorProFile> pro_file(
-      new QtCreatorProFile(pro_filename));
-    assert(pro_file);
-
-    const boost::shared_ptr<QtCreatorProFileZipScript> script(
-      new QtCreatorProFileZipScript(pro_file));
-    assert(script);
-
-    scripts.push_back(script);
-  }
-
-
-  //const boost::shared_ptr<QtCreatorProFileZipScript> merged_script
-  m_script
-    = QtCreatorProFileZipScript::Merge(scripts);
-  if (!merged_script)
-  {
-    ui->text->setPlainText("Folder does not contain any .pro files");
-  }
-  else
-  {
-    s << *m_merged_script << '\n';
-    ui->text->setPlainText( s.str().c_str() );
-  }
-
-  /*
-  CreateQtProjectZipFileMainDialog d(source_folder);
-  */
-  //ui->text->setPlainText(d.GetScript().c_str());
+  const std::string text = QtCreatorProFileZipScript::CreateScript(source_folder);
+  ui->text->setPlainText(text.c_str());
 }
 
 void ribi::QtCreateQtProjectZipFileMainDialog::keyPressEvent(QKeyEvent * event) noexcept

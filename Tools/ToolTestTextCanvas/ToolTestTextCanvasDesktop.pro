@@ -21,6 +21,7 @@ include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 #Desktop
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 include(../../Tools/ToolTestTextCanvas/ToolTestTextCanvasDesktop.pri)
 
 SOURCES += qtmain.cpp

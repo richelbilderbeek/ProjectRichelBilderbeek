@@ -80,6 +80,7 @@ private:
   const int m_view_width;
   int m_x;
   int m_y;
+  boost::shared_ptr<MainDialog> m_dialog;
 
   const boost::shared_ptr<const SolutionMaze> CreateNewSolution() noexcept;
   void GameOver();

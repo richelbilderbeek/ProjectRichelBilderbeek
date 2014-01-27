@@ -27,6 +27,7 @@ namespace ribi {
 
 struct TestQrcFileMenuDialog : public MenuDialog
 {
+  TestQrcFileMenuDialog();
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;

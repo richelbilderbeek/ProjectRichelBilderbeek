@@ -30,6 +30,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
+#include "textcanvas.h"
+#include "trace.h"
+
 #pragma GCC diagnostic pop
 
 ///TicTacToe default contructor creates an empty board,
@@ -38,6 +41,10 @@ ribi::TicTacToe::TicTacToe()
   : m_board(boost::extents[3][3]),
     m_current_player(ribi::TicTacToe::player1)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   for (int i=0; i!=9; ++i)
   {
     m_board[i/3][i%3] = ribi::TicTacToe::empty;
@@ -101,13 +108,14 @@ int ribi::TicTacToe::GetSummarizedState() const
 
 const std::string ribi::TicTacToe::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 const std::vector<std::string> ribi::TicTacToe::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
-    "2010-09-19: version 1.3: made CanDoMove method a const method"
+    "2010-09-19: version 1.3: made CanDoMove method a const member function",
+    "2014-01-27: version 1.4: added ToTextCanvas",
   };
   return v;
 }
@@ -204,6 +212,42 @@ void ribi::TicTacToe::SetSummarizedState(const int original_state)
   //Internal check
   assert(GetSummarizedState()==original_state);
 }
+
+#ifndef NDEBUG
+void ribi::TicTacToe::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TicTacToe::Test");
+  TRACE("Finished ribi::TicTacToe::Test successfully");
+}
+#endif
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::TicTacToe::ToTextCanvas() const noexcept
+{
+  boost::shared_ptr<TextCanvas> c {
+    new TextCanvas(3,3)
+  };
+  for (int y=0; y!=3; ++y)
+  {
+    for (int x=0; x!=3; ++x)
+    {
+      switch (GetSquare(x,y))
+      {
+        case 0: c->PutChar(x,y,'.'); break;
+        case 1: c->PutChar(x,y,'X'); break;
+        case 2: c->PutChar(x,y,'O'); break;
+        default: //OK
+          break;
+      }
+    }
+  }
+  return c;
+}
+
 
 std::ostream& ribi::operator<<(std::ostream& os,const TicTacToe& t)
 {

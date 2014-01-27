@@ -54,6 +54,10 @@ protected:
 private:
   boost::shared_ptr<TicTacToe> m_tictactoe;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 signals:
   void hasWinner();
   void stateChanged();

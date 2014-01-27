@@ -152,9 +152,6 @@ struct DrawCanvas : public Canvas
 
   const std::vector<std::string> ToStrings() const noexcept;
 
-  ///This signal is emitted when any member variable changes
-  boost::signals2::signal<void(DrawCanvas*)> m_signal_changed;
-
   private:
   ///The DrawCanvas its internal data: a 2D y-x-ordered std::vector
   ///of doubles, where 0.0 denotes empty/non-drawn

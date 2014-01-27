@@ -18,9 +18,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolTestProFile.htm
 //---------------------------------------------------------------------------
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <QApplication>
 #include "qttestqtcreatorprofilemenudialog.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::string CreateStyleSheet()
 {
@@ -40,7 +43,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   a.setStyleSheet(CreateStyleSheet().c_str());
   START_TRACE();
-  QtTestQtCreatorProFileMenuDialog w;
+  ribi::QtTestQtCreatorProFileMenuDialog w;
   w.show();
   return a.exec();
 }

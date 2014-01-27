@@ -9,26 +9,28 @@
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 
+#include "qtcanvas.h"
 #include "textcanvas.h"
 #include "trace.h"
 #include "ui_qttesttextcanvasmaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestTextCanvasMainDialog::QtTestTextCanvasMainDialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
+ribi::QtTestTextCanvasMainDialog::QtTestTextCanvasMainDialog(QWidget *parent)
+ :  QtHideAndShowDialog(parent),
   ui(new Ui::QtTestTextCanvasMainDialog),
-  m_canvas(CreateCanvas())
+  m_canvas(CreateCanvas()),
+  m_qtcanvas{}
 {
   #ifndef NDEBUG
   Test();
   #endif
   ui->setupUi(this);
 
-  m_canvas->m_signal_changed.connect(
-    boost::bind(
-      &ribi::QtTestTextCanvasMainDialog::ShowCanvas,this,
-      boost::lambda::_1)
-    );
+  {
+    assert(ui->verticalLayout);
+    m_qtcanvas = new QtCanvas(m_canvas);
+    ui->verticalLayout->addWidget(m_qtcanvas);
+  }
 
   {
     const double w = m_canvas->GetWidth();
@@ -38,8 +40,6 @@ ribi::QtTestTextCanvasMainDialog::QtTestTextCanvasMainDialog(QWidget *parent) :
     ui->box_text_x->setValue(0.5 * w);
     ui->box_text_y->setValue(0.5 * h);
   }
-
-  ShowCanvas(0);
 }
 
 ribi::QtTestTextCanvasMainDialog::~QtTestTextCanvasMainDialog() noexcept
@@ -64,15 +64,6 @@ void ribi::QtTestTextCanvasMainDialog::on_box_coordinat_system_currentIndexChang
     ? CanvasCoordinatSystem::screen : CanvasCoordinatSystem::graph;
   this->m_canvas->SetCoordinatSystem(coordinat_system);
   //Should redraw automatically
-}
-
-void ribi::QtTestTextCanvasMainDialog::ShowCanvas(const ribi::TextCanvas * const)
-{
-  //Display the image
-  std::stringstream s;
-  s << (*m_canvas);
-  ui->text->setPlainText(s.str().c_str());
-
 }
 
 void ribi::QtTestTextCanvasMainDialog::on_button_clear_clicked()

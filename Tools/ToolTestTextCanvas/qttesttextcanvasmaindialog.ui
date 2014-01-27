@@ -19,19 +19,6 @@ QPushButton { color: rgb(0,0,0); }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QPlainTextEdit" name="text">
-     <property name="font">
-      <font>
-       <family>Courier</family>
-       <pointsize>8</pointsize>
-      </font>
-     </property>
-     <property name="readOnly">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QHBoxLayout" name="layout_dot">
      <item>
       <widget class="QPushButton" name="button_char">
@@ -76,7 +63,11 @@ QPushButton { color: rgb(0,0,0); }</string>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="edit_char"/>
+      <widget class="QLineEdit" name="edit_char">
+       <property name="text">
+        <string>*</string>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="char_spacer">
@@ -138,7 +129,11 @@ QPushButton { color: rgb(0,0,0); }</string>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="edit_text"/>
+      <widget class="QLineEdit" name="edit_text">
+       <property name="text">
+        <string>Hello world</string>
+       </property>
+      </widget>
      </item>
      <item>
       <spacer name="text_spacer">

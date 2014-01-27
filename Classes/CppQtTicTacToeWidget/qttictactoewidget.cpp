@@ -29,6 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 
 #include "tictactoe.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -36,6 +37,10 @@ ribi::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   QWidget(parent),
   m_tictactoe(new TicTacToe)
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
+
   assert(m_tictactoe);
   this->setMinimumHeight(64);
   this->setMinimumWidth(64);
@@ -128,3 +133,15 @@ void ribi::QtTicTacToeWidget::Restart()
   repaint();
 }
 
+#ifndef NDEBUG
+void ribi::QtTicTacToeWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::QtTicTacToeWidget::Test");
+  TRACE("Finished ribi::QtTicTacToeWidget::Test successfully");
+}
+#endif

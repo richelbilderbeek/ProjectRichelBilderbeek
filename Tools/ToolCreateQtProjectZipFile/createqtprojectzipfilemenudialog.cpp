@@ -66,7 +66,7 @@ const ribi::About ribi::CreateQtProjectZipFile::MenuDialog::GetAbout() const noe
     "Richel Bilderbeek",
     "CreateQtProjectZipFile",
     "tool to create a zip file from a Qt project",
-    "the 18th of May 2013",
+    "the 27th of January 2014",
     "2012-2014",
     "http://www.richelbilderbeek.nl/ToolCreateQtProjectZipFile.htm",
     GetVersion(),
@@ -106,7 +106,7 @@ const boost::shared_ptr<const ribi::Program> ribi::CreateQtProjectZipFile::MenuD
 
 const std::string ribi::CreateQtProjectZipFile::MenuDialog::GetVersion() const noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVersionHistory() const noexcept
@@ -116,7 +116,8 @@ const std::vector<std::string> ribi::CreateQtProjectZipFile::MenuDialog::GetVers
     "2012-05-29: version 1.1: small fix due to new boost::filesystem",
     "2012-05-30: version 1.2: added Test method",
     "2012-06-10: version 1.3: added Path class for cleaner code",
-    "2013-05-19: version 2.0: support for any depth of folder tree"
+    "2013-05-19: version 2.0: support for any depth of folder tree",
+    "2014-01-27: version 2.1: also copies the included .pri files' content",
   };
 }
 

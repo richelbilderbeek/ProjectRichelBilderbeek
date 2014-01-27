@@ -37,7 +37,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
-//#include "dotmatrixstring.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -47,8 +46,7 @@ ribi::ImageCanvas::ImageCanvas(
   const int n_cols,
   const ribi::CanvasColorSystem colorSystem,
   const ribi::CanvasCoordinatSystem coordinatSystem)
-  : m_signal_changed{},
-    m_canvas{ConvertToGreyYx(filename)},
+  : m_canvas{ConvertToGreyYx(filename)},
     m_color_system(colorSystem),
     m_coordinat_system(coordinatSystem),
     m_n_cols(n_cols)

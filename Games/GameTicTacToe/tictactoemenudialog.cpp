@@ -25,19 +25,40 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iostream>
 
+#include "textcanvas.h"
 #include "tictactoe.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
+
+ribi::TicTacToeMenuDialog::TicTacToeMenuDialog()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 int ribi::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+
+  TicTacToe t;
+  std::cout << (*t.ToTextCanvas()) << std::endl;
+  while (t.GetWinner() == TicTacToe::no_winner)
+  {
+    const int x = (std::rand() >> 4) % 3;
+    const int y = (std::rand() >> 4) % 3;
+    if (t.CanDoMove(x,y))
+    {
+      t.DoMove(x,y);
+      std::cout << (*t.ToTextCanvas()) << std::endl;
+    }
+  }
+  return 0;
 }
 
 const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
@@ -95,3 +116,16 @@ const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() co
   };
 }
 
+
+#ifndef NDEBUG
+void ribi::TicTacToeMenuDialog::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::TicTacToeMenuDialog::Test");
+  TRACE("Finished ribi::TicTacToeMenuDialog::Test successfully");
+}
+#endif

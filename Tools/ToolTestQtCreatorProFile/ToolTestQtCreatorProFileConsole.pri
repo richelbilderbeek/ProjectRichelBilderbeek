@@ -9,3 +9,6 @@ HEADERS += \
 
 OTHER_FILES += \
     ../../Tools/ToolTestQtCreatorProFile/Licence.txt
+
+RESOURCES += \
+    ../../Tools/ToolTestQtCreatorProFile/ToolTestQtCreatorProFile.qrc

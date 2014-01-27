@@ -51,7 +51,7 @@ ribi::DrawCanvas::DrawCanvas(
   const int height,
   const CanvasColorSystem color_system,
   const CanvasCoordinatSystem coordinat_system)
-  : m_signal_changed{},
+  :
     m_canvas(std::vector<std::vector<double> >(height,std::vector<double>(width,0.0))),
     m_color_system(color_system),
     m_coordinat_system(coordinat_system)
@@ -67,8 +67,7 @@ ribi::DrawCanvas::DrawCanvas(
   const std::vector<std::vector<double>>& canvas,
   const CanvasColorSystem color_system,
   const CanvasCoordinatSystem coordinat_system)
-  : m_signal_changed{},
-    m_canvas(canvas),
+  : m_canvas(canvas),
     m_color_system(color_system),
     m_coordinat_system(coordinat_system)
 {
@@ -80,8 +79,7 @@ ribi::DrawCanvas::DrawCanvas(
 }
 
 ribi::DrawCanvas::DrawCanvas(const std::string& filename)
-  : m_signal_changed{},
-    m_canvas{},
+  : m_canvas{},
     m_color_system{},
     m_coordinat_system{}
 {

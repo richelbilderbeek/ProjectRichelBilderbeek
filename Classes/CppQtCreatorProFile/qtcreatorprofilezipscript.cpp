@@ -92,9 +92,37 @@ const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::strin
 {
   assert(fileio::IsFolder(source_folder));
 
-  //Also include .pri files
-  const std::vector<std::string> pro_filenames = GetProAndPriFilesInFolder(source_folder);
+  //Also include .pri files in that folder
+  std::vector<std::string> pro_filenames = GetProAndPriFilesInFolder(source_folder);
 
+  //Add the .pri files in the .pro files
+  {
+    std::vector<std::string> w(pro_filenames);
+    for (const std::string pro_filename: pro_filenames)
+    {
+
+      const std::string full_pro_filename = (source_folder.empty() ? std::string() : source_folder + "/") + pro_filename;
+      #ifndef NDEBUG
+      if (!ribi::fileio::IsRegularFile(full_pro_filename))
+      {
+        TRACE("ERROR");
+        TRACE(full_pro_filename);
+      }
+      #endif
+      assert(ribi::fileio::IsRegularFile(full_pro_filename));
+      const boost::shared_ptr<QtCreatorProFile> pro_file(
+      new QtCreatorProFile(full_pro_filename));
+      assert(pro_file);
+      //Copy its .pri files to be scanned
+      for (const std::string pri_file: pro_file->GetPriFiles())
+      {
+        w.push_back(pri_file);
+      }
+    }
+    std::swap(w,pro_filenames);
+  }
+
+  //Create the scripts by merging QtCreatorProFiles
   std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> > scripts;
 
   for (const std::string& pro_filename: pro_filenames)
@@ -233,7 +261,8 @@ const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
 const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProAndPriFilesInFolder(const std::string& folder)
 {
   assert(fileio::IsFolder(folder));
-  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro|pri)\\>");
+  const std::vector<std::string> v = ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro|pri)\\>");
+  return v;
 }
 
 const std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept
@@ -317,7 +346,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
   //Test that GetProFilesInFolder detects an additional .pro file
   //being added to a folder
   {
-    const std::string tmp_pro_filename { fileio::GetTempFileName() + ".pro" };
+    const std::string tmp_pro_filename { fileio::GetTempFileName(".pro") };
 
     //Count the current number of .pro files
     const std::size_t n = GetProAndPriFilesInFolder("").size();
