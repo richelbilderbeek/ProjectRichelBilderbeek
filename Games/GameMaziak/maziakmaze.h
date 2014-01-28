@@ -60,6 +60,10 @@ struct Maze
   static const std::vector<std::vector<MazeSquare> > CreateMaze(
     const boost::shared_ptr<const IntMaze> int_maze) noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
 };
 
 } //~namespace maziak

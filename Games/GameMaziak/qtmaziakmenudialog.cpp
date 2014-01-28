@@ -243,7 +243,7 @@ void ribi::maziak::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 
 void ribi::maziak::QtMaziakMenuDialog::onStart()
 {
-  boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,getMazeSize()));
+  boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(getMazeSize()));
   this->ShowChild(d.get());
 }
 
@@ -255,7 +255,7 @@ void ribi::maziak::QtMaziakMenuDialog::onInstructions()
 
 void ribi::maziak::QtMaziakMenuDialog::onAbout()
 {
-  About a = MaziakMenuDialog().GetAbout();
+  About a = MenuDialog().GetAbout();
   boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
   this->ShowChild(d.get());
 }
@@ -282,7 +282,7 @@ void ribi::maziak::QtMaziakMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::maziak::QtMaziakMenuDialog::Test");
   {
-    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(0,99));
+    const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(99));
     assert(d);
   }
   {
@@ -290,7 +290,7 @@ void ribi::maziak::QtMaziakMenuDialog::Test() noexcept
     assert(d);
   }
   {
-    const About a = MaziakMenuDialog().GetAbout();
+    const About a = MenuDialog().GetAbout();
     boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
     assert(d);
   }

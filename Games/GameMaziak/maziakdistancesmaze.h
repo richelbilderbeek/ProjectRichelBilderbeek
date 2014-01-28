@@ -41,6 +41,9 @@ struct DistancesMaze
     const boost::shared_ptr<const IntMaze> maze,
     const int x, const int y) noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace maziak

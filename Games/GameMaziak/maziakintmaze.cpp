@@ -6,12 +6,15 @@
 
 #include "maziakdistancesmaze.h"
 #include "maziakhelper.h"
+#include "trace.h"
 
 ribi::maziak::IntMaze::IntMaze(const std::vector<std::vector<int>>& maze)
   : m_dead_ends{CreateDeadEnds(maze)},
     m_maze{maze}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 bool ribi::maziak::IntMaze::CanGet(const int x, const int y) const noexcept
@@ -148,3 +151,15 @@ bool ribi::maziak::IntMaze::IsSquare() const noexcept
   return true;
 }
 
+#ifndef NDEBUG
+void ribi::maziak::IntMaze::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::maziak::IntMaze::Test");
+  TRACE("Finished ribi::maziak::IntMaze::Test successfully");
+}
+#endif

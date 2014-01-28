@@ -20,6 +20,9 @@ struct Sprites
   Sprites();
   const boost::shared_ptr<const QPixmap> Get(const Sprite sprite) const noexcept;
 
+  ///ASCII art
+  static char ToChar(const Sprite) noexcept;
+
   private:
   const std::map<Sprite,boost::shared_ptr<const QPixmap>> m_sprites;
 

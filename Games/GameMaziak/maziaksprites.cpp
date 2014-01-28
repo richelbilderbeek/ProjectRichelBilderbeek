@@ -148,6 +148,63 @@ void ribi::maziak::Sprites::Test() noexcept
 }
 #endif
 
+char ribi::maziak::Sprites::ToChar(const ribi::maziak::Sprite sprite) noexcept
+{
+  switch (sprite)
+  {
+    case Sprite::empty: return ' ';
+    case Sprite::wall: return 'X';
+    case Sprite::path: return '.';
+    case Sprite::transparent: return ' ';
+    case Sprite::player_look_down: return 'v';
+    case Sprite::player_look_down_sword: return 'w';
+    case Sprite::player_look_left: return '<';
+    case Sprite::player_look_left_sword: return 'E';
+    case Sprite::player_look_right: return '>';
+    case Sprite::player_look_right_sword: return '3';
+    case Sprite::player_look_up: return 'A';
+    case Sprite::player_look_up_sword: return 'M';
+    case Sprite::player_walk_left1: return '\\';
+    case Sprite::player_walk_left2: return '/';
+    case Sprite::player_walk_left_sword1: return '=';
+    case Sprite::player_walk_left_sword2: return 'E';
+    case Sprite::player_walk_right1: return '\\';
+    case Sprite::player_walk_right2: return '/';
+    case Sprite::player_walk_right_sword1: return '=';
+    case Sprite::player_walk_right_sword2: return '3';
+    case Sprite::player_walk_down1: return '\\';
+    case Sprite::player_walk_down2: return '/';
+    case Sprite::player_walk_down_sword1: return 'W';
+    case Sprite::player_walk_down_sword2: return 'w';
+    case Sprite::player_walk_up1: return '/';
+    case Sprite::player_walk_up2: return '\\';
+    case Sprite::player_walk_up_sword1: return 'm';
+    case Sprite::player_walk_up_sword2: return 'M';
+    case Sprite::player_won1: return '!';
+    case Sprite::player_won2: return '!';
+    case Sprite::fight_sword1: return '#';
+    case Sprite::fight_no_sword1: return '+';
+    case Sprite::fight2: return '*';
+    case Sprite::fight3: return '%';
+    case Sprite::fight4: return '@';
+    case Sprite::fight_won1: return 'W';
+    case Sprite::fight_won2: return 'w';
+    case Sprite::fight_lost1: return 'Z';
+    case Sprite::fight_lost2: return 'z';
+    case Sprite::enemy1: return 'Z';
+    case Sprite::enemy2: return 'z';
+    case Sprite::prisoner1: return ':';
+    case Sprite::prisoner2: return ';';
+    case Sprite::sword: return '+';
+    case Sprite::exit: return '!';
+    case Sprite::n_sprites:
+      assert(!"Should never use Sprite::n_sprites");
+      throw std::logic_error("Never use Sprite::n_sprites");
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("Unknown Sprite");
+}
+
 const std::string ribi::maziak::Sprites::ToStr(const ribi::maziak::Sprite sprite) noexcept
 {
   switch (sprite)

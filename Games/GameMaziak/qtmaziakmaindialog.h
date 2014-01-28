@@ -22,19 +22,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #define QTMAZIAKMAINDIALOG_H
 
 #include <cassert>
-#include <set>
-#include <list>
+#include <map>
 #include <vector>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
-#include "maziakplayerdirection.h"
-#include "maziakplayermove.h"
 #include "maziakmazesquare.h"
 #include "maziaksprite.h"
 #include "maziakfwd.h"
+#include "maziakkey.h"
+#include "maziakplayerdirection.h"
+#include "maziakplayermove.h"
 #pragma GCC diagnostic pop
 
 struct QPixmap;
@@ -53,7 +53,7 @@ class QtMaziakMainDialog : public QtHideAndShowDialog
 
 public:
 
-  explicit QtMaziakMainDialog(QWidget *parent = 0, const int maze_size = 0);
+  explicit QtMaziakMainDialog(const int maze_size, QWidget *parent = 0);
   QtMaziakMainDialog(const QtMaziakMainDialog&) = delete;
   QtMaziakMainDialog& operator=(const QtMaziakMainDialog&) = delete;
   ~QtMaziakMainDialog() noexcept;
@@ -63,48 +63,21 @@ private:
 
   typedef unsigned int WORD;
 
-  PlayerDirection m_direction;
-  boost::shared_ptr<const DistancesMaze> m_distances;
-  bool m_do_show_solution;
-  int m_fighting_frame;
-  bool m_has_sword;
-  std::set<WORD> m_keys;
-  const boost::shared_ptr<Maze> m_maze;
-  PlayerMove m_move_now;
-  boost::shared_ptr<const SolutionMaze> m_solution;
+  boost::shared_ptr<MainDialog> m_dialog;
+  std::map<WORD,Key> m_keys;
+
   const boost::shared_ptr<const Sprites> m_sprites;
   const boost::shared_ptr<QTimer> m_timer_enemy;
   const boost::shared_ptr<QTimer> m_timer_press_key;
   const boost::shared_ptr<QTimer> m_timer_show_solution;
   const int m_view_height;
   const int m_view_width;
-  int m_x;
-  int m_y;
-  boost::shared_ptr<MainDialog> m_dialog;
 
-  const boost::shared_ptr<const SolutionMaze> CreateNewSolution() noexcept;
-  void GameOver();
-  void GameWon();
-  static Sprite GetSpriteFloor(
-    const boost::shared_ptr<const Maze> maze,
-    const int x,
-    const int y,
-    const bool show_solution,
-    const boost::shared_ptr<const SolutionMaze> solution
-  ) noexcept;
-  static Sprite GetSpriteAboveFloor(
-    const int x,
-    const int y,
-    const boost::shared_ptr<const Maze> m_maze
-  ) noexcept;
-  static Sprite GetSpritePlayer(
-    const PlayerDirection direction,
-    const PlayerMove moveNow,
-    const bool m_has_sword,
-    const int m_fighting_frame
-  ) noexcept;
+  static const std::map<WORD,Key> CreateDefaultKeys() noexcept;
+  void OnGameOver();
+  void OnGameWon();
+  void OnTimerStartShowingSolution();
 
-  //Events
   void resizeEvent(QResizeEvent*);
   void keyPressEvent(QKeyEvent * e);
   void keyReleaseEvent(QKeyEvent * e);
@@ -115,9 +88,9 @@ private:
   #endif
 
 private slots:
-  void onTimerPressKey();
-  void onTimerEnemy();
-  void onTimerShowSolution();
+  void OnTimerPressKey();
+  void OnTimerEnemy();
+  void OnTimerStopShowingSolution();
 };
 
 } //~namespace maziak

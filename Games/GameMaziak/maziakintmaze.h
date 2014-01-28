@@ -55,6 +55,10 @@ struct IntMaze
   // 1 : wall
   ///From http://www.richelbilderbeek.nl/CppCreateMaze.htm
   static const std::vector<std::vector<int> > CreateMaze(const int sz) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace maziak

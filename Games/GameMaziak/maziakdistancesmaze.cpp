@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "maziakintmaze.h"
+#include "trace.h"
 
 ribi::maziak::DistancesMaze::DistancesMaze(
   const boost::shared_ptr<const IntMaze> maze,
@@ -11,7 +12,9 @@ ribi::maziak::DistancesMaze::DistancesMaze(
   )
   : m_distances(CalculateDistances(maze,x,y))
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 const std::vector<std::vector<int>> ribi::maziak::DistancesMaze::CalculateDistances(
@@ -89,3 +92,16 @@ int ribi::maziak::DistancesMaze::Get(const int x, const int y) const noexcept
   assert(CanGet(x,y));
   return m_distances[y][x];
 }
+
+#ifndef NDEBUG
+void ribi::maziak::DistancesMaze::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::maziak::DistancesMaze::Test");
+  TRACE("Finished ribi::maziak::DistancesMaze::Test successfully");
+}
+#endif

@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "maziakintmaze.h"
+#include "trace.h"
 
 template <class Source, class Target>
     const std::vector<std::vector<Target> > ConvertMatrix(
@@ -26,6 +27,9 @@ ribi::maziak::Maze::Maze(const boost::shared_ptr<const IntMaze> int_maze)
   : m_int_maze(int_maze),
     m_maze(CreateMaze(int_maze))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(int_maze->IsSquare());
   assert(IsSquare());
   assert(FindExit().first  >= 0);
@@ -290,3 +294,16 @@ void ribi::maziak::Maze::Set(const int x, const int y, const MazeSquare s) noexc
   m_maze[y][x] = s;
   assert(Get(x,y) == s);
 }
+
+#ifndef NDEBUG
+void ribi::maziak::Maze::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::maziak::Maze::Test");
+  TRACE("Finished ribi::maziak::Maze::Test successfully");
+}
+#endif

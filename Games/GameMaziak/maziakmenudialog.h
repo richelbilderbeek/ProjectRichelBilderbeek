@@ -24,9 +24,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace maziak {
 
-struct MaziakMenuDialog : public MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
+  MenuDialog();
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
   const boost::shared_ptr<const Program> GetProgram() const noexcept;
@@ -41,6 +43,7 @@ struct MaziakMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace maziak
 } //~namespace ribi
 
 #endif // MAZIAKMENUDIALOG_H
