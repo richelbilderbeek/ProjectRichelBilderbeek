@@ -90,6 +90,16 @@ Legal notice: all pictures are from Wikimedia
 \end_inset
 
 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+This presentation was made using free software only: LyX, KolourPaint, Lubuntu
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -113,6 +123,52 @@ Wat is uniek aan de groepen?
 
 \begin_layout Itemize
 Wat kunnen de groepen elkaar brengen?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Lodge_Keys_No_297_Logo_detail.png
+	scale 200
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename 120px-Emblem-hacker.svg.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -175,51 +231,12 @@ Maker: '[...] people who hack hardware, business-models, and living arrangements
 \end_layout
 
 \begin_layout Section
-Waarmee werkt een hacker/makerscene?
-\end_layout
-
-\begin_layout Itemize
-Hacker: computers, GNU/Linux, IRC, Tor, Raspberry Pi
-\end_layout
-
-\begin_layout Itemize
-Maker: electronica, 3D printers, Arduino
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Welke onderwerpen?
-\end_layout
-
-\begin_layout Itemize
-Hacker: GNU/Linux distributies, encryptie, anonimiteit, privacy, authenticatie,
- beveiligingslekken, vrije software
-\end_layout
-
-\begin_layout Itemize
-Maker: vrije software, vrije hardware, nieuwe technieken
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Hackerspace 
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Hungarian Autonomous Center for Knowledge
+Hungarian Autonomous Center for Knowledge, free-as-in-speech software
 \end_layout
 
 \end_inset
@@ -251,7 +268,7 @@ GNU/Linux distributie
 status open
 
 \begin_layout Plain Layout
-Kali Linux
+Kali Linux, free-as-in-speech software, privacy, security
 \end_layout
 
 \end_inset
@@ -279,6 +296,16 @@ Kali Linux
 
 \begin_layout Section
 Tor
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Privacy, free-as-in-speech software
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -301,6 +328,17 @@ Tor
 
 \begin_layout Section
 IRC
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+When in some public channels, the conversations there are private, free-as-in-sp
+eech software, collaboration, open communication
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -322,7 +360,50 @@ IRC
 \end_layout
 
 \begin_layout Section
+GitHub
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Doing, free-as-in-speech software, collaboration, open communication, no
+ authority
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename GitHub.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Raspberry Pi
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Freedom: free-as-in-speech hardware, privacy
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -349,7 +430,7 @@ Makerspace
 status open
 
 \begin_layout Plain Layout
-De Waag Society Amsterdam
+De Waag Society Amsterdam, doing, collaboration
 \end_layout
 
 \end_inset
@@ -376,6 +457,16 @@ De Waag Society Amsterdam
 
 \begin_layout Section
 3D Printer
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Makerbot, freedom: free-as-in-speech hardware, doing
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -398,6 +489,16 @@ De Waag Society Amsterdam
 
 \begin_layout Section
 Arduino
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Freedom: free-as-in-speech hardware, doing
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -438,88 +539,6 @@ Makers: ?
 \end_layout
 
 \begin_layout Section
-The Hacker Manifesto 1/4
-\end_layout
-
-\begin_layout Standard
-I made a discovery today.
- I found a computer.
- [...] It does what I want it to.
- If it makes a mistake, it's because I screwed it up.
- Not because it doesn't like me...
- [...]
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-The Hacker Manifesto 2/4
-\end_layout
-
-\begin_layout Standard
-[...] a refuge from the day-to-day incompetencies is sought...
- a board is found.
- "This is it...
- this is where I belong..." I know everyone here...
- even if I've never met them [...] I know you all...
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-The Hacker Manifesto 3/4
-\end_layout
-
-\begin_layout Standard
-We explore [...].
- We seek after knowledge [...].
- We exist without skin color, without nationality, without religious bias
- [...].
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-The Hacker Manifesto 4/4
-\end_layout
-
-\begin_layout Standard
-[...] My crime is that of curiosity.
- My crime is that of judging people by what they say and think, not what
- they look like [...].
-\end_layout
-
-\begin_layout Standard
-I am a hacker, and this is my manifesto.
- You may stop this individual, but you can't stop us all...
- after all, we're all alike.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Overeenkomsten
 \end_layout
 
@@ -544,126 +563,12 @@ De wereld te verbeteren
 
 \begin_layout Section
 Verschillen: focus
-\end_layout
-
-\begin_layout Itemize
-Hackers: prestatie
-\end_layout
-
-\begin_layout Itemize
-Makers: prestatie
-\end_layout
-
-\begin_layout Itemize
-Vrijmetselarij: menselijkheid
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Verschillen: autoriteit
-\end_layout
-
-\begin_layout Itemize
-Hackers: geen
-\end_layout
-
-\begin_layout Itemize
-Makers: geen
-\end_layout
-
-\begin_layout Itemize
-Vrijmetselarij: The Grand Lodge
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Verschillen: tradities
-\end_layout
-
-\begin_layout Itemize
-Hackers: geen
-\end_layout
-
-\begin_layout Itemize
-Makers: geen
-\end_layout
-
-\begin_layout Itemize
-Vrijmetselarij: ritualen
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Verschillen: openheid
-\end_layout
-
-\begin_layout Itemize
-Hackers: open IRC kanalen, alleen leesbaar voor aanwezigen
-\end_layout
-
-\begin_layout Itemize
-Makers: -
-\end_layout
-
-\begin_layout Itemize
-Vrijmetselarij: alleen toegankelijk voor leden
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Verschillen: vorm
-\end_layout
-
-\begin_layout Itemize
-Hackers: vorm is onbelangrijk: terminal
-\end_layout
-
-\begin_layout Itemize
-Makers: vorm naar functie: enkel mooi als dit geen kosten mee brengt
-\end_layout
-
-\begin_layout Itemize
-Vrijmetselarij: vorm is belangrijk, ondanks kosten
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Verschillen: vorm
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Grand Lodge Pennsylvia & Le Loop, Paris
+Henry Price, Provincial Grand Master of North America 1734.
+ Freemasonry: be, hacker: do
 \end_layout
 
 \end_inset
@@ -683,9 +588,9 @@ Grand Lodge Pennsylvia & Le Loop, Paris
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename Lodge_Keys_No_297_Logo.png
-	lyxscale 20
-	scale 20
+	filename Henry_Price.jpg
+	lyxscale 40
+	scale 40
 
 \end_inset
 
@@ -699,9 +604,9 @@ Grand Lodge Pennsylvia & Le Loop, Paris
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename 120px-Emblem-hacker.svg.png
-	lyxscale 150
-	scale 150
+	filename RichardStallman.jpg
+	lyxscale 40
+	scale 30
 
 \end_inset
 
@@ -713,6 +618,51 @@ Grand Lodge Pennsylvia & Le Loop, Paris
 </row>
 </lyxtabular>
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vrijheid
+\end_layout
+
+\begin_layout Itemize
+Hackers en makers: geen authoriteit
+\end_layout
+
+\begin_layout Itemize
+Vrijmetselarij: The Grand Lodge
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Verschillen: vrijheid
+\end_layout
+
+\begin_layout Itemize
+Hackers en makers: geen tradities
+\end_layout
+
+\begin_layout Itemize
+Vrijmetselarij: verandering gebonden aan tradities
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -919,12 +869,13 @@ Freemasonry certificate & Manifesto
 \end_layout
 
 \begin_layout Section
-Verschillen: vorm
+Verschillen: toegankelijkheid
 \begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-Closed door & IRC flame war
+Privacy behind closed door (only members are allowed) & privacy in open
+ IRC channel
 \end_layout
 
 \end_inset
@@ -960,9 +911,9 @@ Closed door & IRC flame war
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename Flamewar.png
-	lyxscale 50
-	scale 45
+	filename 799px-Isrc_narrow.png
+	lyxscale 80
+	scale 50
 
 \end_inset
 
@@ -1014,7 +965,7 @@ Overeenkomsten: iedereen vrij zijn/haar eigen waarheid te zoeken
 \end_layout
 
 \begin_layout Itemize
-Verschillen: autoriteit, traditie, vorm
+Verschillen: vrijheid, autoriteit, traditie, vorm
 \end_layout
 
 \begin_layout Standard
@@ -1053,6 +1004,16 @@ Conclusie
 
 \begin_layout Itemize
 De Vrijmetselaarscultuur brengt een hacker/maker:
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Many hackers are interested in the Freemasonry culture
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1066,7 +1027,7 @@ een cultuur die stabiel(er) is, 'late adopters'
 
 \end_deeper
 \begin_layout Itemize
-Een hacker/makercultuur brengt de Vrijmetselaar:
+Een hacker/makercultuur brengt de Vrijmetselaar: 
 \end_layout
 
 \begin_deeper
