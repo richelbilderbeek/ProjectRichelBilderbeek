@@ -191,10 +191,6 @@ Hoe ziet de hacker/makerscene eruit?
 \end_layout
 
 \begin_layout Itemize
-Cultuur
-\end_layout
-
-\begin_layout Itemize
 Waar zitten de overeenkomsten?
 \end_layout
 
@@ -211,6 +207,16 @@ Waar zitten de verschillen?
 
 \begin_layout Section
 Definitie hacker/maker
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+From Wikipedia
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -398,7 +404,7 @@ Raspberry Pi
 status open
 
 \begin_layout Plain Layout
-Freedom: free-as-in-speech hardware, privacy
+Freedom: cheap hardware (non-free), privacy
 \end_layout
 
 \end_inset
@@ -510,25 +516,6 @@ Freedom: free-as-in-speech hardware, doing
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Cultuur
-\end_layout
-
-\begin_layout Itemize
-Hackers: The Hacker Manifesto
-\end_layout
-
-\begin_layout Itemize
-Makers: ?
 \end_layout
 
 \begin_layout Standard
@@ -674,7 +661,7 @@ Verschillen: vorm
 status open
 
 \begin_layout Plain Layout
-Grand Lodge Pennsylvia & Le Loop, Paris
+Grand Lodge Pennsylvania & Le Loop, Paris
 \end_layout
 
 \end_inset
@@ -991,6 +978,10 @@ Wat is het voordeel van de centrale authoriteit van de Vrijmetselarij?
 Handelt de Vrijmetselarij naar haar idealen?
 \end_layout
 
+\begin_layout Itemize
+?zijn de gebouwen dan Bouwwerken; een uiting van onze herkomst?
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -1008,7 +999,8 @@ De Vrijmetselaarscultuur brengt een hacker/maker:
 status open
 
 \begin_layout Plain Layout
-Many hackers are interested in the Freemasonry culture
+Many hackers are interested in the Freemasonry culture: what do closed comunitie
+s do?
 \end_layout
 
 \end_inset
@@ -1018,7 +1010,7 @@ Many hackers are interested in the Freemasonry culture
 
 \begin_deeper
 \begin_layout Itemize
-een omgeving waar je op je menselijkheid wordt beoordeelt
+een omgeving waar je op je zijn/menselijkheid wordt beoordeelt
 \end_layout
 
 \begin_layout Itemize
@@ -1033,6 +1025,10 @@ Een hacker/makercultuur brengt de Vrijmetselaar:
 \begin_deeper
 \begin_layout Itemize
 een gemeenschap die open is
+\end_layout
+
+\begin_layout Itemize
+een gemeenschap die vrij is
 \end_layout
 
 \begin_layout Itemize

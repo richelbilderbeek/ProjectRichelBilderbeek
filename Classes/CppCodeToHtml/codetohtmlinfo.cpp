@@ -12949,6 +12949,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
+        "  <li><a href=\"ToolStateObserver_1_1.png\">View a screenshot of 'StateObserver' (version 1.1)(png)</a></li>",
         "  <li><a href=\"ToolStateObserver_1_0.png\">View a screenshot of 'StateObserver' (version 1.0)(png)</a></li>",
         "  <li><a href=\"ToolStateObserverExe_1_0.zip\">Download the 'StateObserver' Windows executable (version 1.0)(zip)</a></li>",
         "  <li><a href=\"ToolStateObserverSource_1_0.zip\">Download the 'StateObserver' source code (version 1.0)(zip)</a></li>",
