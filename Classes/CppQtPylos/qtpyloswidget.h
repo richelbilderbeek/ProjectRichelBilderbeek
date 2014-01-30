@@ -35,13 +35,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosfwd.h"
 #include "pylosmove.h"
 #include "pyloswinner.h"
-#include "qtpylossprites.h"
+//#include "qtpylossprites.h"
 #pragma GCC diagnostic pop
 
 struct QPaintEvent;
 //namespace Pylos { struct Game; }
 
 namespace ribi {
+namespace pylos {
 
 ///PylosWidget is the base class of QtPylosBoardWidget and QtPylosWidget
 class QtPylosWidget : public QWidget
@@ -59,23 +60,23 @@ public:
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
-  virtual bool CanRemove(const std::vector<Pylos::Coordinat>& v) const = 0;
+  virtual bool CanRemove(const std::vector<pylos::Coordinat>& v) const = 0;
 
   ///CanSet tests if the current player can be set at the Coordinat
-  virtual bool CanSet(const Pylos::Coordinat& c) const = 0;
+  virtual bool CanSet(const pylos::Coordinat& c) const = 0;
 
   ///CanTransfer specifies if current player can transfer
   ///the marble at the specified coordinat for movement
-  virtual bool CanTransfer(const Pylos::Coordinat& c) const = 0;
+  virtual bool CanTransfer(const pylos::Coordinat& c) const = 0;
 
   ///CanTransfer specifies if current player can transfer his marble
   ///to a new, higher position
   virtual bool CanTransfer(
-    const Pylos::Coordinat& from,
-    const Pylos::Coordinat& to) const = 0;
+    const pylos::Coordinat& from,
+    const pylos::Coordinat& to) const = 0;
 
   ///GetCurrentTurn returns whose turn it is now
-  virtual Pylos::Player GetCurrentTurn() const = 0;
+  virtual pylos::Player GetCurrentTurn() const = 0;
 
   ///GetLayerSize returns how many marbles this is wide/height.
   ///For exaple; layer 0 has 4x4 marbles, so GetLayerSize
@@ -84,13 +85,13 @@ public:
 
   ///MustRemove returns whether the current player
   ///must remove one or two marbles
-  virtual Pylos::MustRemoveState GetMustRemove() const = 0;
+  virtual pylos::MustRemoveState GetMustRemove() const = 0;
 
   ///GetOtherSelectors returns the other selectors' current coodinats
-  const std::vector<Pylos::Coordinat>& GetOtherSelectors() const;
+  const std::vector<pylos::Coordinat>& GetOtherSelectors() const;
 
   ///GetSelector returns the selector's current coodinat
-  const Pylos::Coordinat& GetSelector() const { return m_select; }
+  const pylos::Coordinat& GetSelector() const { return m_select; }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -99,16 +100,16 @@ public:
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Return the possible winner
-  virtual Pylos::Winner GetWinner() const = 0;
+  virtual pylos::Winner GetWinner() const = 0;
 
   ///Remove lets the current player remove one or two marbles
-  virtual void Remove(const std::vector<Pylos::Coordinat>& v) = 0;
+  virtual void Remove(const std::vector<pylos::Coordinat>& v) = 0;
 
   ///Set makes current player place his marble
   ///at the specified position. After Set,
   ///GetMustRemove must be called to determine if
   ///the current player must remove some marbles
-  virtual void Set(const Pylos::Coordinat& c) = 0;
+  virtual void Set(const pylos::Coordinat& c) = 0;
 
   ///SetColorSchemeBlackWhite sets the color scheme to black and white.
   void SetColorSchemeBlackWhite();
@@ -129,8 +130,8 @@ public:
 
   ///Transfer lets current player tranfer his marble to a new, higher position
   virtual void Transfer(
-    const Pylos::Coordinat& from,
-    const Pylos::Coordinat& to) = 0;
+    const pylos::Coordinat& from,
+    const pylos::Coordinat& to) = 0;
 
 
 signals:
@@ -153,13 +154,13 @@ protected:
   ///m_other_selectors embodies the coordinats for
   ///- selecting a marble to move to a higher layer
   ///- select one or two marbles for removal
-  std::vector<Pylos::Coordinat> m_other_selectors;
+  std::vector<pylos::Coordinat> m_other_selectors;
 
   ///The current coordinat of the selector
-  Pylos::Coordinat m_select;
+  pylos::Coordinat m_select;
 
   ///All Pylos sprites
-  boost::shared_ptr<const Pylos::QtSprites> m_sprites;
+  boost::shared_ptr<const QtSprites> m_sprites;
 
   ///The angle which the board is tilted in radians.
   ///0.0*M_PI denotes looking at the board from the top
@@ -170,26 +171,26 @@ private:
   ///DeselectRemove remove coordinat c from m_other_selectors,
   ///because the player deselected the marble at
   ///that coordinat
-  void DeselectRemove(const Pylos::Coordinat& c);
+  void DeselectRemove(const pylos::Coordinat& c);
 
   ///DrawRemove draws a marble toggled for removal
-  void DrawRemove(QPainter& painter, const Pylos::Coordinat& c);
+  void DrawRemove(QPainter& painter, const pylos::Coordinat& c);
 
   ///DrawSelect draws the selector
   void DrawSelect(QPainter& painter);
 
   ///Obtain the PositionState at a certain coordinat
-  virtual Pylos::PositionState Get(const Pylos::Coordinat& c) const = 0;
+  virtual pylos::PositionState Get(const pylos::Coordinat& c) const = 0;
 
-  ///Obtain all Pylos::Coordinat instances at a certain mouse position
-  const std::vector<Pylos::Coordinat> GetCoordinats(const int mouse_x, const int mouse_y);
+  ///Obtain all pylos::Coordinat instances at a certain mouse position
+  const std::vector<pylos::Coordinat> GetCoordinats(const int mouse_x, const int mouse_y);
 
   ///From www.richelbilderbeek.nl/CppGetDistance.htm
   static double GetDistance(const double dx, const double dy);
 
   ///IsOtherSelector returns if the specified coordinat
   ///is selected for removal
-  bool IsOtherSelector(const Pylos::Coordinat& c) const;
+  bool IsOtherSelector(const pylos::Coordinat& c) const;
 
   ///MouseLeftClick handles mouse left-clicking.
   void MouseLeftClick();
@@ -222,13 +223,14 @@ private:
   void SaveAllSprites() const;
 
   ///SetSelector sets the selector coordinat to c
-  void SetSelector(const Pylos::Coordinat& c);
+  void SetSelector(const pylos::Coordinat& c);
 
-  ///Transform a Pylos::Coordinat to a (x,y) position on the widget's canvas
+  ///Transform a pylos::Coordinat to a (x,y) position on the widget's canvas
   ///Note: the (x,y) position denotes the center of the marble
-  const std::pair<int,int> Transform(const Pylos::Coordinat& c) const;
+  const std::pair<int,int> Transform(const pylos::Coordinat& c) const;
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSWIDGET_H

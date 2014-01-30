@@ -47,6 +47,9 @@ private slots:
   void on_button_about_clicked() noexcept;
   void on_button_quit_clicked() noexcept;
 
+protected:
+  void keyPressEvent(QKeyEvent *);
+
 private:
   Ui::QtDasWahreSchlagerfestMenuDialog *ui;
 

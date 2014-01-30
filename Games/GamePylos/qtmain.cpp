@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   START_TRACE();
 
-  ribi::QtPylosMenuDialog w;
+  ribi::pylos::QtPylosMenuDialog w;
   w.show();
   return a.exec();
 }

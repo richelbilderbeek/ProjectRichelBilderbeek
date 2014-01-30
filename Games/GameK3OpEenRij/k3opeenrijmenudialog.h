@@ -16,6 +16,8 @@ struct K3OpEenRijMenuDialog : public MenuDialog
   private:
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
+  void Show(const int girl_index) const noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

@@ -49,6 +49,7 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   }
 
   //Display a beer
+  if (argc == 2 && (argv[1] == "-s" || argv[1] == "--show"))
   {
     const std::string filename { fileio::GetTempFileName(".png") };
     QFile qfile(BeerWanterMainDialog::GetResourceFilename().c_str());
@@ -66,6 +67,7 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
 
     fileio::DeleteFile(filename);
     std::cout << (*canvas) << std::endl;
+    return 0;
   }
 
   if (argc == 1)
@@ -75,7 +77,6 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
       << GetAbout().GetFileTitle() << " cannot be run in console mode\n"
       << std::endl;
   }
-
   return 0;
 }
 
@@ -90,7 +91,7 @@ const ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/GameBeerWanter.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
   return a;
 }
@@ -98,13 +99,13 @@ const ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
 const ribi::Help ribi::BeerWanterMenuDialog::GetHelp() const noexcept
 {
   return Help(
-    this->GetAbout().GetFileTitle(),
-    this->GetAbout().GetFileDescription(),
+    GetAbout().GetFileTitle(),
+    GetAbout().GetFileDescription(),
     {
-      Help::Option('s',"--show","show a beer")
+      Help::Option('s',"show","show a beer")
     },
     {
-      this->GetAbout().GetFileTitle() + " --show"
+      GetAbout().GetFileTitle() + " --show"
     }
   );
 }
@@ -137,7 +138,7 @@ const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() c
     "2010-12-23: version 6.1: added ClickWilBeSuccess method, fixed bug in BeerWanterMainDialog::ShakeWindow",
     "2012-03-06: version 7.0: added menu, conformized project architecture for ProjectRichelBilderbeek",
     "2013-07-13: version 7.1: added libcvautomation script to beat the game, improved desktop menu and about screen",
-    "2014-01-16: version 7.2: added command line command"
+    "2014-01-16: version 7.2: added command line command 'show'"
   };
 }
 

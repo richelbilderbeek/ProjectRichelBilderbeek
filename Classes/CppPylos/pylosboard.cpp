@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Board, class for a Pylos/Phyraos board
+pylos::Board, class for a Pylos/Phyraos board
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -28,17 +28,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosplayer.h"
 #include "pylospositionstate.h"
 #include "pyloswinner.h"
+#include "textcanvas.h"
 #include "trace.h"
 
 #include <boost/numeric/conversion/cast.hpp>
 
 #ifdef PYLOSGAME_H
-#error Pylos::Game must not be defined for a Pylos::Board
+#error pylos::Game must not be defined for a pylos::Board
 #endif
 
 #pragma GCC diagnostic pop
 
-ribi::Pylos::Board::Board() noexcept
+ribi::pylos::Board::Board() noexcept
   : m_board(CreateEmptyBoard())
 {
   #ifndef NDEBUG
@@ -63,7 +64,7 @@ ribi::Pylos::Board::Board() noexcept
   assert(m_board[3][0].size() == 1);
 }
 
-bool ribi::Pylos::Board::CanDo(const Pylos::Move& m, const Player player) const
+bool ribi::pylos::Board::CanDo(const pylos::Move& m, const Player player) const
 {
   assert(m.IsValid());
   if (m.m_move.size()==1)
@@ -115,11 +116,11 @@ bool ribi::Pylos::Board::CanDo(const Pylos::Move& m, const Player player) const
   }
 }
 
-bool ribi::Pylos::Board::CanDo(const std::string& s, const Player player) const
+bool ribi::pylos::Board::CanDo(const std::string& s, const Player player) const
 {
   try
   {
-    return CanDo(Pylos::Move(s),player);
+    return CanDo(pylos::Move(s),player);
   }
   catch (std::exception& e)
   {
@@ -127,12 +128,12 @@ bool ribi::Pylos::Board::CanDo(const std::string& s, const Player player) const
   }
 }
 
-bool ribi::Pylos::Board::CanDoSomething(const Player& player) const
+bool ribi::pylos::Board::CanDoSomething(const Player& player) const
 {
   return !GetAllPossibleMoves(player).empty();
 }
 
-bool ribi::Pylos::Board::CanRemove(const std::vector<Coordinat>& v, const Player player) const
+bool ribi::pylos::Board::CanRemove(const std::vector<Coordinat>& v, const Player player) const
 {
   assert(v.size() == 1 || v.size() == 2);
   if (v.size() == 1) return CanRemove(v[0],player);
@@ -168,7 +169,7 @@ bool ribi::Pylos::Board::CanRemove(const std::vector<Coordinat>& v, const Player
   return b->CanRemove(v[0],player);
 }
 
-bool ribi::Pylos::Board::CanRemove(const Coordinat& c, const Player player) const
+bool ribi::pylos::Board::CanRemove(const Coordinat& c, const Player player) const
 {
   //Cannot remove an empty spot
   if (Get(c)==PositionState::empty) return false;
@@ -184,7 +185,7 @@ bool ribi::Pylos::Board::CanRemove(const Coordinat& c, const Player player) cons
   return Count(v,PositionState::empty) == static_cast<int>(v.size());
 }
 
-bool ribi::Pylos::Board::CanTransfer(const Coordinat& c, const Player player) const
+bool ribi::pylos::Board::CanTransfer(const Coordinat& c, const Player player) const
 {
   //Cannot transfer an empty spot
   if (Get(c)==PositionState::empty) return false;
@@ -200,7 +201,7 @@ bool ribi::Pylos::Board::CanTransfer(const Coordinat& c, const Player player) co
   return Count(v,PositionState::empty) == static_cast<int>(v.size());
 }
 
-bool ribi::Pylos::Board::CanTransfer(const Coordinat& from,
+bool ribi::pylos::Board::CanTransfer(const Coordinat& from,
   const Coordinat& to,
   const Player player) const
 {
@@ -228,9 +229,9 @@ bool ribi::Pylos::Board::CanTransfer(const Coordinat& from,
 }
 
 #ifdef NDEBUG
-bool ribi::Pylos::Board::CanSet(const Coordinat& c, const Player) const
+bool ribi::pylos::Board::CanSet(const Coordinat& c, const Player) const
 #else
-bool ribi::Pylos::Board::CanSet(const Coordinat& c, const Player player) const
+bool ribi::pylos::Board::CanSet(const Coordinat& c, const Player player) const
 #endif
 {
   assert(player == Player::player1 || player == Player::player2); //Prevent compiler from complaining
@@ -244,7 +245,7 @@ bool ribi::Pylos::Board::CanSet(const Coordinat& c, const Player player) const
   return Count(v,PositionState::empty) == 0;
 }
 
-int ribi::Pylos::Board::Count(const std::vector<Coordinat>& coordinats, const PositionState state) const
+int ribi::pylos::Board::Count(const std::vector<Coordinat>& coordinats, const PositionState state) const
 {
   return std::count_if(coordinats.begin(),coordinats.end(),
     [this,state](const Coordinat& c)
@@ -254,23 +255,23 @@ int ribi::Pylos::Board::Count(const std::vector<Coordinat>& coordinats, const Po
   );
 }
 
-int ribi::Pylos::Board::Count(const PositionState state) const
+int ribi::pylos::Board::Count(const PositionState state) const
 {
-  const std::vector<Coordinat> v = Pylos::GetAllCoordinats();
+  const std::vector<Coordinat> v = pylos::GetAllCoordinats();
   return Count(v,state);
 }
 
-const boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::Board::CreateAdvancedBoard() noexcept
+const boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateAdvancedBoard() noexcept
 {
   return boost::shared_ptr<Board>(new BoardAdvanced);
 }
 
-const boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::Board::CreateBasicBoard() noexcept
+const boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateBasicBoard() noexcept
 {
   return boost::shared_ptr<Board>(new BoardBasic);
 }
 
-const std::vector<ribi::Pylos::Board::Layer> ribi::Pylos::Board::CreateEmptyBoard() const noexcept
+const std::vector<ribi::pylos::Board::Layer> ribi::pylos::Board::CreateEmptyBoard() const noexcept
 {
   std::vector<Layer> v;
   v.push_back(CreateLayer(4));
@@ -280,19 +281,26 @@ const std::vector<ribi::Pylos::Board::Layer> ribi::Pylos::Board::CreateEmptyBoar
   return v;
 }
 
-const ribi::Pylos::Board::Layer ribi::Pylos::Board::CreateLayer(const int sz) const
+const ribi::pylos::Board::Layer ribi::pylos::Board::CreateLayer(const int sz) const
 {
-  assert(sz > 1);
+  #ifndef NDEBUG
+  if(sz <= 0)
+  {
+    TRACE("ERROR");
+    TRACE(sz);
+  }
+  #endif
+  assert(sz > 0);
   return std::vector<std::vector<PositionState> > (
     sz,std::vector<PositionState>(sz,PositionState::empty));
 }
 
-void ribi::Pylos::Board::Do(const std::string& s, const Player player)
+void ribi::pylos::Board::Do(const std::string& s, const Player player)
 {
-  Do(Pylos::Move(s),player);
+  Do(pylos::Move(s),player);
 }
 
-void ribi::Pylos::Board::Do(const Pylos::Move& m, const Player player)
+void ribi::pylos::Board::Do(const pylos::Move& m, const Player player)
 {
   assert(CanDo(m,player));
   MustRemoveState must_remove = MustRemoveState::no;
@@ -320,22 +328,22 @@ void ribi::Pylos::Board::Do(const Pylos::Move& m, const Player player)
   }
 }
 
-ribi::Pylos::PositionState ribi::Pylos::Board::Get(const Coordinat& c) const noexcept
+ribi::pylos::PositionState ribi::pylos::Board::Get(const Coordinat& c) const noexcept
 {
   //Just checking, a constructed Coordinat should pass all asserts
   assert(c.IsValid());
   assert(c.IsValid());
   assert(c.GetLayer() < static_cast<int>(m_board.size()));
-  assert(m_board.empty());
+  assert(!m_board.empty());
   assert(c.GetX() < static_cast<int>(m_board[c.GetLayer()].size()));
-  assert(m_board[c.GetLayer()].empty());
+  assert(!m_board[c.GetLayer()].empty());
   assert(c.GetY() < static_cast<int>(m_board[c.GetLayer()][c.GetX()].size()));
   return m_board[c.GetLayer()][c.GetX()][c.GetY()];
 }
 
-const std::vector<ribi::Pylos::Move> ribi::Pylos::Board::GetAllPossibleMoves(const Player& player) const noexcept
+const std::vector<ribi::pylos::Move> ribi::pylos::Board::GetAllPossibleMoves(const Player& player) const noexcept
 {
-  const std::vector<Coordinat> v = Pylos::GetAllCoordinats();
+  const std::vector<Coordinat> v = pylos::GetAllCoordinats();
   std::vector<Move> w;
   const auto j = v.end();
   for (auto i = v.begin(); i!=j; ++i)
@@ -403,26 +411,26 @@ const std::vector<ribi::Pylos::Move> ribi::Pylos::Board::GetAllPossibleMoves(con
   return w;
 }
 
-int ribi::Pylos::Board::GetLayerSize(const int layer) const
+int ribi::pylos::Board::GetLayerSize(const int layer) const
 {
   assert(layer >= 0);
   assert(layer < boost::numeric_cast<int>(m_board.size()));
   return boost::numeric_cast<int>(m_board[layer].size());
 }
 
-const std::string ribi::Pylos::Board::GetVersion() noexcept
+const std::string ribi::pylos::Board::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Board::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::pylos::Board::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
   return v;
 }
 
-ribi::Pylos::Winner ribi::Pylos::Board::GetWinner() const noexcept
+ribi::pylos::Winner ribi::pylos::Board::GetWinner() const noexcept
 {
   if (Get(Coordinat(3,0,0)) != PositionState::empty)
   {
@@ -438,7 +446,7 @@ ribi::Pylos::Winner ribi::Pylos::Board::GetWinner() const noexcept
   return Winner::none;
 }
 
-ribi::Pylos::Winner ribi::Pylos::Board::PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original)
+ribi::pylos::Winner ribi::pylos::Board::PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original)
 {
   boost::shared_ptr<Board> board;
   if (board_original)
@@ -448,9 +456,9 @@ ribi::Pylos::Winner ribi::Pylos::Board::PlayRandomPylosGame(const boost::shared_
   else
   {
     if ((std::rand() >> 4) % 2)
-      board = ribi::Pylos::Board::CreateAdvancedBoard();
+      board = ribi::pylos::Board::CreateAdvancedBoard();
     else
-      board = ribi::Pylos::Board::CreateBasicBoard();
+      board = ribi::pylos::Board::CreateBasicBoard();
   }
   Player player = Player::player1;
 
@@ -470,16 +478,16 @@ ribi::Pylos::Winner ribi::Pylos::Board::PlayRandomPylosGame(const boost::shared_
 }
 
 #ifdef NDEBUG
-void ribi::Pylos::Board::Remove(const Coordinat& c, const Player)
+void ribi::pylos::Board::Remove(const Coordinat& c, const Player)
 #else
-void ribi::Pylos::Board::Remove(const Coordinat& c, const Player player)
+void ribi::pylos::Board::Remove(const Coordinat& c, const Player player)
 #endif
 {
   assert(CanRemove(c,player));
   m_board[c.GetLayer()][c.GetX()][c.GetY()] = PositionState::empty;
 }
 
-void ribi::Pylos::Board::Remove(const std::vector<Coordinat>& v, const Player player)
+void ribi::pylos::Board::Remove(const std::vector<Coordinat>& v, const Player player)
 {
   assert(CanRemove(v,player));
   //Proper ordering: v[0] must be marble above
@@ -501,7 +509,7 @@ void ribi::Pylos::Board::Remove(const std::vector<Coordinat>& v, const Player pl
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Board::Test() noexcept
+void ribi::pylos::Board::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;
@@ -866,7 +874,7 @@ void ribi::Pylos::Board::Test() noexcept
   }
 
 
-  TRACE("Test ribi::Pylos::Board::GetAllPossibleMoves simple transfer");
+  TRACE("Test ribi::pylos::Board::GetAllPossibleMoves simple transfer");
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -905,7 +913,7 @@ void ribi::Pylos::Board::Test() noexcept
     assert(a->GetAllPossibleMoves(Player::player2).size() == 14); //2 on one-but-buttom layer
     assert(b->GetAllPossibleMoves(Player::player2).size() == 14); //2 transfers
   }
-  TRACE("Test ribi::Pylos::Board::GetAllPossibleMoves simple remove");
+  TRACE("Test ribi::pylos::Board::GetAllPossibleMoves simple remove");
   {
     boost::shared_ptr<Board> a = CreateAdvancedBoard();
     boost::shared_ptr<Board> b = CreateBasicBoard();
@@ -925,22 +933,22 @@ void ribi::Pylos::Board::Test() noexcept
   TRACE("Filling up 5 basic Pylos boards randomly");
   for (int i=0; i!=5; ++i)
   {
-    ribi::Pylos::Board::PlayRandomPylosGame(Pylos::Board::CreateBasicBoard());
+    ribi::pylos::Board::PlayRandomPylosGame(pylos::Board::CreateBasicBoard());
   }
   TRACE("Filling up 5 advanced Pylos boards randomly");
   for (int i=0; i!=5; ++i)
   {
-    ribi::Pylos::Board::PlayRandomPylosGame(ribi::Pylos::Board::CreateAdvancedBoard());
+    ribi::pylos::Board::PlayRandomPylosGame(ribi::pylos::Board::CreateAdvancedBoard());
   }
   TRACE("Filling up 5 Pylos boards randomly");
   for (int i=0; i!=5; ++i)
   {
-    ribi::Pylos::Board::PlayRandomPylosGame();
+    ribi::pylos::Board::PlayRandomPylosGame();
   }
 }
 #endif
 
-const std::string ribi::Pylos::Board::ToStr() const
+const std::string ribi::pylos::Board::ToStr() const
 {
   const std::vector<std::string> v = this->ToText();
   std::string s;
@@ -949,7 +957,7 @@ const std::string ribi::Pylos::Board::ToStr() const
   return s;
 }
 
-const std::vector<std::string> ribi::Pylos::Board::ToText() const
+const std::vector<std::string> ribi::pylos::Board::ToText() const
 {
   std::vector<std::string> v(7,std::string(7,' '));
   for (int layer = 0; layer!=4; ++layer)
@@ -980,7 +988,42 @@ const std::vector<std::string> ribi::Pylos::Board::ToText() const
   return v;
 }
 
-void ribi::Pylos::Board::Transfer(
+const boost::shared_ptr<ribi::TextCanvas> ribi::pylos::Board::ToTextCanvas() const
+{
+  boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(7,7)
+  };
+  for (int layer = 0; layer!=4; ++layer)
+  {
+    for (int y=0; y!=4-layer; ++y)
+    {
+      for (int x=0; x!=4-layer; ++x)
+      {
+        const int x_co = layer + (x * 2);
+        const int y_co = layer + (y * 2);
+        const Coordinat c(layer,x,y);
+        assert(c.GetX() == x);
+        assert(c.GetY() == y);
+        assert(c.GetLayer() == layer);
+        const char c_old = canvas->GetChar(x_co,y_co);
+        const char c_new = ToChar(Get(c));
+        //Higher empty positions must not overwrite occupied lower ones
+        if (c_new == ToChar(PositionState::empty)
+          && ( c_old == ToChar(PositionState::player1)
+            || c_old == ToChar(PositionState::player2) ) )
+        {
+          continue;
+        }
+        canvas->PutChar(x_co,y_co,c_new);
+      }
+    }
+  }
+
+  return canvas;
+}
+
+
+void ribi::pylos::Board::Transfer(
     const Coordinat& from,
     const Coordinat& to,
     MustRemoveState& must_remove)
@@ -995,7 +1038,7 @@ void ribi::Pylos::Board::Transfer(
   Set(to,player,must_remove);
 }
 
-bool ribi::Pylos::operator==(const Board& lhs, const Board& rhs) noexcept
+bool ribi::pylos::operator==(const Board& lhs, const Board& rhs) noexcept
 {
   //Determine if types are equal
   if (typeid(lhs)!=typeid(rhs)) return false;
@@ -1003,24 +1046,24 @@ bool ribi::Pylos::operator==(const Board& lhs, const Board& rhs) noexcept
   return lhs.m_board == rhs.m_board;
 }
 
-bool ribi::Pylos::operator!=(const Board& lhs, const Board& rhs) noexcept
+bool ribi::pylos::operator!=(const Board& lhs, const Board& rhs) noexcept
 {
   return !(lhs==rhs);
 }
 
-std::ostream& ribi::Pylos::operator<<(std::ostream& os,const Board& p) noexcept
+std::ostream& ribi::pylos::operator<<(std::ostream& os,const Board& p) noexcept
 {
   os << p.ToStr();
   return os;
 }
 
-ribi::Pylos::BoardAdvanced::BoardAdvanced() noexcept
+ribi::pylos::BoardAdvanced::BoardAdvanced() noexcept
   : Board()
 {
 
 }
 
-boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardAdvanced::Clone() const noexcept
+boost::shared_ptr<ribi::pylos::Board> ribi::pylos::BoardAdvanced::Clone() const noexcept
 {
   BoardAdvanced * const p = new BoardAdvanced;
   p->m_board = m_board;
@@ -1029,7 +1072,7 @@ boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardAdvanced::Clone() const 
   return sp;
 }
 
-void ribi::Pylos::BoardAdvanced::Set(
+void ribi::pylos::BoardAdvanced::Set(
   const Coordinat& c,
   const Player player,
   MustRemoveState& must_remove)
@@ -1089,13 +1132,13 @@ void ribi::Pylos::BoardAdvanced::Set(
 
 }
 
-ribi::Pylos::BoardBasic::BoardBasic() noexcept
+ribi::pylos::BoardBasic::BoardBasic() noexcept
   : Board()
 {
 
 }
 
-boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardBasic::Clone() const noexcept
+boost::shared_ptr<ribi::pylos::Board> ribi::pylos::BoardBasic::Clone() const noexcept
 {
   BoardBasic * const p = new BoardBasic;
   p->m_board = m_board;
@@ -1104,7 +1147,7 @@ boost::shared_ptr<ribi::Pylos::Board> ribi::Pylos::BoardBasic::Clone() const noe
   return sp;
 }
 
-void ribi::Pylos::BoardBasic::Set(
+void ribi::pylos::BoardBasic::Set(
   const Coordinat& c,
   const Player player,
   MustRemoveState& must_remove)

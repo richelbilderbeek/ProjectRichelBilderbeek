@@ -10,6 +10,7 @@
 #include "maziakkey.h"
 #include "maziakmaze.h"
 #include "maziakintmaze.h"
+#include "maziakreceiver.h"
 #include "maziaksolutionmaze.h"
 #include "maziaksprites.h"
 #include "textcanvas.h"
@@ -92,9 +93,18 @@ const boost::shared_ptr<const ribi::maziak::SolutionMaze> ribi::maziak::MainDial
 
 void ribi::maziak::MainDialog::Execute() noexcept
 {
+  Receiver r;
+  m_signal_game_over.connect(boost::bind(&Receiver::OnGameOver,r));
+  m_signal_game_won.connect(boost::bind(&Receiver::OnGameWon,r));
+  m_signal_start_showing_solution.connect(boost::bind(&Receiver::StartShowingSolution,r));
+  m_signal_stop_showing_solution.connect(boost::bind(&Receiver::StopShowingSolution,r));
+
+
   while (1)
   {
-    std::cout << (*ToTextCanvas(20,20)) << std::endl;
+    const int width  = 20;
+    const int height = 20;
+    std::cout << (*ToTextCanvas(width,height)) << std::endl;
 
     char c;
     std::cin >> c;
@@ -133,8 +143,8 @@ void ribi::maziak::MainDialog::Execute() noexcept
     }
 
     RespondToCurrentSquare();
-    AnimateEnemiesAndPrisoners(20,20);
-    while (m_fighting_frame > 0)
+    AnimateEnemiesAndPrisoners(width,height);
+    if(m_fighting_frame > 0)
     {
       AnimateFighting();
     }

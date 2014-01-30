@@ -32,27 +32,58 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc != 1)
+  if (argc == 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
 
-  DasWahreSchlagerfestWidget w;
-  std::cout << w << std::endl;
-
-  for (int i=0; i!=100; ++i)
+  if (argc == 2 && (argv[1] == "-d" || argv[1] == "--demo"))
   {
-    switch((std::rand() >> 4) % 4)
-    {
-      case 0: //Prefer downwards
-      case 1: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::down); break;
-      case 2: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
-      case 3: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
-    }
+    DasWahreSchlagerfestWidget w;
     std::cout << w << std::endl;
-  }
 
+    for (int i=0; i!=100; ++i)
+    {
+      switch((std::rand() >> 4) % 4)
+      {
+        case 0: //Prefer downwards
+        case 1: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::down); break;
+        case 2: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
+        case 3: w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
+      }
+      std::cout << w << std::endl;
+    }
+  }
+  if (argc == 2 && (argv[1] == "-p" || argv[1] == "--play"))
+  {
+    DasWahreSchlagerfestWidget w;
+
+    while (1)
+    {
+      std::cout
+        << std::endl
+        << w << std::endl
+        << std::endl;
+
+      char c;
+      std::cin >> c;
+
+      if (!std::cin)
+      {
+        std::cout << "Please type 'a', 's', 'd' or 'q'" << std::endl;
+        continue;
+      }
+
+      switch(c)
+      {
+        case 's': w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::down); break;
+        case 'a': w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::left); break;
+        case 'd': w.PressKey(ribi::DasWahreSchlagerfestWidget::Key::right); break;
+        case 'q': return 0;
+      }
+    }
+  }
   return 0;
 }
 
@@ -72,13 +103,17 @@ const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcep
 const ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
 {
   return Help(
-    this->GetAbout().GetFileTitle(),
-    this->GetAbout().GetFileDescription(),
+    GetAbout().GetFileTitle(),
+    GetAbout().GetFileDescription(),
     {
-
+      Help::Option('d',"demo","See a demo"),
+      Help::Option('p',"play","Play the game"),
     },
     {
-
+      GetAbout().GetFileTitle() + " -d",
+      GetAbout().GetFileTitle() + " --demo",
+      GetAbout().GetFileTitle() + " -p",
+      GetAbout().GetFileTitle() + " --play"
     }
   );
 }
@@ -94,7 +129,7 @@ const boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialo
 
 const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
 {
-  return "2.2";
+  return "2.3";
 }
 
 const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
@@ -104,6 +139,7 @@ const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionH
     "2012-07-21: version 2.0: ported to cross-platform",
     "2012-07-29: version 2.1: changed graphics to old-school",
     "2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete"
+    "2014-01-30: version 2.3: added command-line demo and play mode"
   };
 }
 

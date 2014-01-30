@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Move, class for a Pylos/Phyraos move
+pylos::Move, class for a Pylos/Phyraos move
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 
 
-ribi::Pylos::Move::Move()
+ribi::pylos::Move::Move()
   : m_move{},
     m_remove{}
 {
@@ -38,7 +38,7 @@ ribi::Pylos::Move::Move()
   #endif
 }
 
-ribi::Pylos::Move::Move(
+ribi::pylos::Move::Move(
   const std::vector<Coordinat>& moving,
   const std::vector<Coordinat>& removing)
   : m_move{moving},
@@ -55,7 +55,7 @@ ribi::Pylos::Move::Move(
     && "At most two marbles are removed in a move");
 }
 
-ribi::Pylos::Move::Move(const std::string& s)
+ribi::pylos::Move::Move(const std::string& s)
   : m_move{},
     m_remove{}
 {
@@ -112,19 +112,19 @@ ribi::Pylos::Move::Move(const std::string& s)
   assert(s.size() == 34);
 }
 
-const std::string ribi::Pylos::Move::GetVersion() noexcept
+const std::string ribi::pylos::Move::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Move::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::pylos::Move::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"
   };
 }
 
-bool ribi::Pylos::Move::IsValid() const noexcept
+bool ribi::pylos::Move::IsValid() const noexcept
 {
   return
        m_move.size() >= 1
@@ -133,7 +133,7 @@ bool ribi::Pylos::Move::IsValid() const noexcept
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Move::Test() noexcept
+void ribi::pylos::Move::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;
@@ -141,9 +141,9 @@ void ribi::Pylos::Move::Test() noexcept
 
   TRACE("Test Moves");
   {
-    Pylos::Move m;
+    pylos::Move m;
     assert(!m.IsValid() && "An empty move is invalid");
-    Pylos::Move n;
+    pylos::Move n;
     assert(m == n);
     m.m_move.push_back(Coordinat(0,0,0));
     n.m_move.push_back(Coordinat(0,0,0));
@@ -180,7 +180,7 @@ void ribi::Pylos::Move::Test() noexcept
 }
 #endif
 
-const std::string ribi::Pylos::Move::ToStr() const noexcept
+const std::string ribi::pylos::Move::ToStr() const noexcept
 {
   #ifndef NDEBUG
   if (!(m_move.size() == 1 || m_move.size() == 2)) TRACE(m_move.size());
@@ -206,13 +206,13 @@ const std::string ribi::Pylos::Move::ToStr() const noexcept
   return s;
 }
 
-bool ribi::Pylos::operator==(const Move& lhs, const Move& rhs) noexcept
+bool ribi::pylos::operator==(const Move& lhs, const Move& rhs) noexcept
 {
   return lhs.m_move == rhs.m_move
     && lhs.m_remove == rhs.m_remove;
 }
 
-std::ostream& ribi::Pylos::operator<<(std::ostream& os, const Move& m) noexcept
+std::ostream& ribi::pylos::operator<<(std::ostream& os, const Move& m) noexcept
 {
   os << m.ToStr();
   return os;

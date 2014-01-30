@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Move, class for a Pylos/Phyraos move
+pylos::Move, class for a Pylos/Phyraos move
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace Pylos {
+namespace pylos {
 
 ///PylosMove encapsulates a Pylos move.
 ///A Pylos move starts with either

@@ -25,55 +25,60 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <sstream>
 #include <stdexcept>
 
+#include "canvas.h"
 #include "pylosboard.h"
 #include "pyloscoordinat.h"
 #include "pyloscurrentmovestate.h"
 #include "pylosgame.h"
 #include "pylosmove.h"
 #include "pylosplayer.h"
+#include "textcanvas.h"
 #include "trace.h"
 
-int ribi::PylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::pylos::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
+
+  const boost::shared_ptr<Game> game {
+    Game::CreateBasicGame()
+  };
+
   std::cout
-    << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
+    << (*game->GetBoard()->ToTextCanvas()) << std::endl
     << std::endl;
   return 0;
 }
 
-const ribi::About ribi::PylosMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::pylos::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
     "Pylos",
     "Pylos/Pyraos game",
-    "the 28th of May 2012",
+    "the 30th of January 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/GamePylos.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Pylos::Board version: " + Pylos::Board::GetVersion());
-  a.AddLibrary("Pylos::Coordinat version: " + Pylos::Coordinat::GetVersion());
-  a.AddLibrary("Pylos::CurrentMoveState version: " + Pylos::CurrentMoveState::GetVersion());
-  a.AddLibrary("Pylos::Game version: " + Pylos::Game::GetVersion());
-  a.AddLibrary("Pylos::Move version: " + Pylos::Move::GetVersion());
-  //a.AddLibrary("Pylos::MustRemoveState version: " + Pylos::MustRemoveState:: enum
-  //a.AddLibrary("Pylos::Player version: " + Pylos::Player:: enum
-  //a.AddLibrary("Pylos::PositionState version: " + Pylos::PositionState:: enum
-  //a.AddLibrary("Pylos::Winner version: " + Pylos::Winner:: enum
+  a.AddLibrary("pylos::Board version: " + pylos::Board::GetVersion());
+  a.AddLibrary("pylos::Coordinat version: " + pylos::Coordinat::GetVersion());
+  a.AddLibrary("pylos::CurrentMoveState version: " + pylos::CurrentMoveState::GetVersion());
+  a.AddLibrary("pylos::Game version: " + pylos::Game::GetVersion());
+  a.AddLibrary("pylos::Move version: " + pylos::Move::GetVersion());
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;
 }
 
-const ribi::Help ribi::PylosMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::pylos::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -87,7 +92,7 @@ const ribi::Help ribi::PylosMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::PylosMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::pylos::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPylos
@@ -96,47 +101,48 @@ const boost::shared_ptr<const ribi::Program> ribi::PylosMenuDialog::GetProgram()
   return p;
 }
 
-const std::string ribi::PylosMenuDialog::GetVersion() const noexcept
+const std::string ribi::pylos::MenuDialog::GetVersion() const noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
-const std::vector<std::string> ribi::PylosMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::pylos::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-22: version 1.0: initial release version",
-    "2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek"
+    "2012-05-28: version 2.0: improved version to work with ProjectRichelBilderbeek",
+    "2014-01-30: version 2.1: improved self-tests"
   };
 }
 
 #ifndef NDEBUG
-void ribi::PylosMenuDialog::Test() noexcept
+void ribi::pylos::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::PylosMenuDialog::Test");
-  const boost::shared_ptr<ribi::Pylos::Board> a(
-    new ribi::Pylos::BoardAdvanced
+  TRACE("Starting ribi::pylos::MenuDialog::Test");
+  const boost::shared_ptr<Board> a(
+    new BoardAdvanced
   );
   assert(a);
-  const boost::shared_ptr<ribi::Pylos::Board> b(
-    new ribi::Pylos::BoardBasic
+  const boost::shared_ptr<Board> b(
+    new BoardBasic
   );
   assert(b);
-  Pylos::Coordinat(0,0,0);
-  Pylos::CurrentMoveState();
-  const boost::shared_ptr<Pylos::Game> g_a(
-    new Pylos::Game(a)
+  Coordinat(0,0,0);
+  CurrentMoveState();
+  const boost::shared_ptr<Game> g_a(
+    new Game(a)
   );
   assert(g_a);
-  const boost::shared_ptr<Pylos::Game> g_b(
-    new Pylos::Game(b)
+  const boost::shared_ptr<Game> g_b(
+    new Game(b)
   );
   assert(g_b);
-  Pylos::Move();
-  TRACE("Finished ribi::PylosMenuDialog::Test successfully");
+  Move();
+  TRACE("Finished ribi::pylos::MenuDialog::Test successfully");
 }
 #endif

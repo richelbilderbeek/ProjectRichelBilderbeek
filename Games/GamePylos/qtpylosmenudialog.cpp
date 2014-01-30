@@ -38,7 +38,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
+ribi::pylos::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtPylosMenuDialog),
   m_selected(-1),
@@ -52,17 +52,17 @@ ribi::QtPylosMenuDialog::QtPylosMenuDialog(QWidget *parent) :
 
   //Generate sprites when needed
   {
-    Pylos::QtSprites s(256,256);
+    pylos::QtSprites s(256,256);
   }
 
 }
 
-ribi::QtPylosMenuDialog::~QtPylosMenuDialog() noexcept
+ribi::pylos::QtPylosMenuDialog::~QtPylosMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
+void ribi::pylos::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
 {
   if (ui->label_theme->underMouse())
   {
@@ -93,7 +93,7 @@ void ribi::QtPylosMenuDialog::mousePressEvent(QMouseEvent *)
   }
 }
 
-void ribi::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
+void ribi::pylos::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
 {
   if (
        ui->label_start->underMouse()
@@ -147,24 +147,24 @@ void ribi::QtPylosMenuDialog::mouseMoveEvent(QMouseEvent *)
   repaint();
 }
 
-void ribi::QtPylosMenuDialog::OnAbout()
+void ribi::pylos::QtPylosMenuDialog::OnAbout()
 {
-  About a = PylosMenuDialog().GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("QtPylosBoardWidget version: " + QtPylosBoardWidget::GetVersion());
   a.AddLibrary("QtPylosGameWidget version: " + QtPylosGameWidget::GetVersion());
-  a.AddLibrary("Pylos::QtSprites version: " + Pylos::QtSprites::GetVersion());
+  a.AddLibrary("pylos::QtSprites version: " + QtSprites::GetVersion());
   a.AddLibrary("QtPylosWidget version: " + QtPylosWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);
 }
 
-void ribi::QtPylosMenuDialog::OnInstructions()
+void ribi::pylos::QtPylosMenuDialog::OnInstructions()
 {
   QtPylosInstructionsDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtPylosMenuDialog::OnStart()
+void ribi::pylos::QtPylosMenuDialog::OnStart()
 {
   QtPylosGameWidget * const p = new QtPylosGameWidget();
   assert(p);
@@ -181,14 +181,22 @@ void ribi::QtPylosMenuDialog::OnStart()
 }
 
 #ifndef NDEBUG
-void ribi::QtPylosMenuDialog::Test() noexcept
+void ribi::pylos::QtPylosMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtPylosMenuDialog::Test");
-  TRACE("Finished ribi::QtPylosMenuDialog::Test successfully");
+  TRACE("Starting ribi::pylos::QtPylosMenuDialog::Test");
+  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  assert(p);
+  //Set the game type
+  p->StartBasic();
+  p->SetColorSchemeBlackWhite();
+  const QtPylosMainDialog d(p);
+  assert(!d.GetVersion().empty());
+  delete p;
+  TRACE("Finished ribi::pylos::QtPylosMenuDialog::Test successfully");
 }
 #endif

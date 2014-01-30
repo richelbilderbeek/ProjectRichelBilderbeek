@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Game, class for a game of Pylos/Phyraos
+pylos::Game, class for a game of Pylos/Phyraos
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::Pylos::Game::Game(const Game& rhs)
+ribi::pylos::Game::Game(const Game& rhs)
   : m_board(rhs.m_board->Clone()),
     m_current_move(new CurrentMoveState(*rhs.m_current_move)),
     m_current_player(rhs.m_current_player),
@@ -50,7 +50,7 @@ ribi::Pylos::Game::Game(const Game& rhs)
   assert(m_current_move != rhs.m_current_move);
 }
 
-ribi::Pylos::Game::Game(const boost::shared_ptr<Board> &board)
+ribi::pylos::Game::Game(const boost::shared_ptr<Board> &board)
   : m_board(board),
     m_current_move(new CurrentMoveState),
     m_current_player(Player::player1),
@@ -62,24 +62,24 @@ ribi::Pylos::Game::Game(const boost::shared_ptr<Board> &board)
   assert(m_board);
 }
 
-bool ribi::Pylos::Game::CanDo(const Pylos::Move& m) const
+bool ribi::pylos::Game::CanDo(const pylos::Move& m) const
 {
   return m_board->CanDo(m,m_current_player);
 }
 
-bool ribi::Pylos::Game::CanDo(const std::string& s) const
+bool ribi::pylos::Game::CanDo(const std::string& s) const
 {
   return m_board->CanDo(s,m_current_player);
 }
 
-bool ribi::Pylos::Game::CanRemove(const Coordinat& c) const
+bool ribi::pylos::Game::CanRemove(const Coordinat& c) const
 {
   if (m_board->Get(c) != m_current_player) return false;
 
   return m_board->CanRemove( std::vector<Coordinat>(1,c), m_current_player);
 }
 
-bool ribi::Pylos::Game::CanRemove(const std::vector<Coordinat>& v) const
+bool ribi::pylos::Game::CanRemove(const std::vector<Coordinat>& v) const
 {
   assert(!v.empty());
   if (std::count_if(v.begin(),v.end(),
@@ -92,19 +92,19 @@ bool ribi::Pylos::Game::CanRemove(const std::vector<Coordinat>& v) const
   return m_board->CanRemove(v, m_current_player);
 }
 
-bool ribi::Pylos::Game::CanSet(const Coordinat& c) const
+bool ribi::pylos::Game::CanSet(const Coordinat& c) const
 {
   return m_board->CanSet(c,m_current_player);
 }
 
-bool ribi::Pylos::Game::CanTransfer(const Coordinat& c) const
+bool ribi::pylos::Game::CanTransfer(const Coordinat& c) const
 {
   if (m_board->Get(c) != GetCurrentTurn()) return false;
 
   return m_board->CanTransfer(c,m_current_player);
 }
 
-bool ribi::Pylos::Game::CanTransfer(const Coordinat& from,
+bool ribi::pylos::Game::CanTransfer(const Coordinat& from,
   const Coordinat& to) const
 {
   if (m_board->Get(from) != GetCurrentTurn()) return false;
@@ -112,16 +112,16 @@ bool ribi::Pylos::Game::CanTransfer(const Coordinat& from,
   return m_board->CanTransfer(from,to,m_current_player);
 }
 
-void ribi::Pylos::Game::Do(const std::string& s)
+void ribi::pylos::Game::Do(const std::string& s)
 {
   #ifndef NDEBUG
   if (!CanDo(s)) TRACE(s);
   #endif
   assert(CanDo(s));
-  Do(Pylos::Move(s));
+  Do(pylos::Move(s));
 }
 
-void ribi::Pylos::Game::Do(const Pylos::Move& m)
+void ribi::pylos::Game::Do(const pylos::Move& m)
 {
   assert(CanDo(m));
   m_board->Do(m,m_current_player);
@@ -129,34 +129,34 @@ void ribi::Pylos::Game::Do(const Pylos::Move& m)
   TogglePlayer();
 }
 
-boost::shared_ptr<ribi::Pylos::Game> ribi::Pylos::Game::CreateAdvancedGame()
+boost::shared_ptr<ribi::pylos::Game> ribi::pylos::Game::CreateAdvancedGame()
 {
   boost::shared_ptr<Board> board(Board::CreateAdvancedBoard());
   return boost::shared_ptr<Game>(new Game(board));
 }
 
-boost::shared_ptr<ribi::Pylos::Game> ribi::Pylos::Game::CreateBasicGame()
+boost::shared_ptr<ribi::pylos::Game> ribi::pylos::Game::CreateBasicGame()
 {
   boost::shared_ptr<Board> board(Board::CreateBasicBoard());
   return boost::shared_ptr<Game>(new Game(board));
 }
 
-const std::vector<ribi::Pylos::Move> ribi::Pylos::Game::GetAllPossibleMoves() const noexcept
+const std::vector<ribi::pylos::Move> ribi::pylos::Game::GetAllPossibleMoves() const noexcept
 {
   return m_board->GetAllPossibleMoves(m_current_player);
 }
 
-ribi::Pylos::Player ribi::Pylos::Game::GetCurrentTurn() const noexcept
+ribi::pylos::Player ribi::pylos::Game::GetCurrentTurn() const noexcept
 {
   return m_current_player;
 }
 
-const std::string ribi::Pylos::Game::GetVersion() noexcept
+const std::string ribi::pylos::Game::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::Game::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::pylos::Game::GetVersionHistory() noexcept
 {
   return {
     "2010-09-19: version 0.1: initial version",
@@ -167,17 +167,17 @@ const std::vector<std::string> ribi::Pylos::Game::GetVersionHistory() noexcept
   };
 }
 
-ribi::Pylos::Winner ribi::Pylos::Game::GetWinner() const noexcept
+ribi::pylos::Winner ribi::pylos::Game::GetWinner() const noexcept
 {
   return m_board->GetWinner();
 }
 
-ribi::Pylos::MustRemoveState ribi::Pylos::Game::GetMustRemove() const noexcept
+ribi::pylos::MustRemoveState ribi::pylos::Game::GetMustRemove() const noexcept
 {
   return m_current_move->GetMustRemove();
 }
 
-ribi::Pylos::Winner ribi::Pylos::Game::PlayRandomGame(const boost::shared_ptr<Board>& board)
+ribi::pylos::Winner ribi::pylos::Game::PlayRandomGame(const boost::shared_ptr<Board>& board)
 {
   boost::shared_ptr<Game> p;
   if (board)
@@ -212,7 +212,7 @@ ribi::Pylos::Winner ribi::Pylos::Game::PlayRandomGame(const boost::shared_ptr<Bo
       const Coordinat c = GetRandomCoordinat();
       if (p->CanTransfer(c))
       {
-        std::vector<Pylos::Coordinat> v = Pylos::GetAllCoordinats();
+        std::vector<pylos::Coordinat> v = pylos::GetAllCoordinats();
         std::random_shuffle(v.begin(),v.end());
         const std::size_t sz = v.size();
         for (std::size_t i = 0; i!=sz; ++i)
@@ -239,7 +239,7 @@ ribi::Pylos::Winner ribi::Pylos::Game::PlayRandomGame(const boost::shared_ptr<Bo
   }
 }
 
-void ribi::Pylos::Game::Remove(const Coordinat& c)
+void ribi::pylos::Game::Remove(const Coordinat& c)
 {
   assert(GetMustRemove() != MustRemoveState::no);
   assert(m_board->Get(c)==m_current_player);
@@ -247,13 +247,13 @@ void ribi::Pylos::Game::Remove(const Coordinat& c)
   m_board->Remove(std::vector<Coordinat>(1,c),m_current_player);
   ///\warning: do not allow these lines: this method
   ///is an internal function used by
-  ///void ribi::Pylos::Game::Remove(const std::vector<Coordinat>& v).
+  ///void ribi::pylos::Game::Remove(const std::vector<Coordinat>& v).
   //m_must_remove = false;
   //TogglePlayer();
 
 }
 
-void ribi::Pylos::Game::Remove(const std::vector<Coordinat>& v)
+void ribi::pylos::Game::Remove(const std::vector<Coordinat>& v)
 {
   //Cannot call RemoveMarbles(c), because this
   //also toggles the player
@@ -287,7 +287,7 @@ void ribi::Pylos::Game::Remove(const std::vector<Coordinat>& v)
   TogglePlayer();
 }
 
-void ribi::Pylos::Game::Set(const Coordinat& c)
+void ribi::pylos::Game::Set(const Coordinat& c)
 {
   #ifndef NDEBUG
   if (!CanSet(c)) TRACE(c);
@@ -317,13 +317,13 @@ void ribi::Pylos::Game::Set(const Coordinat& c)
 }
 
 #ifndef NDEBUG
-void ribi::Pylos::Game::Test() noexcept
+void ribi::pylos::Game::Test() noexcept
 {
   static bool tested = false;
   if (tested) return;
   tested = true;
 
-  TRACE("Test ribi::Pylos::Game::operator== for different game types");
+  TRACE("Test ribi::pylos::Game::operator== for different game types");
   {
     boost::shared_ptr<Game> a = CreateAdvancedGame();
     boost::shared_ptr<Game> b = CreateBasicGame();
@@ -333,7 +333,7 @@ void ribi::Pylos::Game::Test() noexcept
     b->Do("(0,0,0)");
     assert(*a != *b);
   }
-  TRACE("Test ribi::Pylos::Game::operator== for same game types");
+  TRACE("Test ribi::pylos::Game::operator== for same game types");
   {
     boost::shared_ptr<Game> a = CreateAdvancedGame();
     boost::shared_ptr<Game> b = CreateAdvancedGame();
@@ -429,7 +429,7 @@ void ribi::Pylos::Game::Test() noexcept
     assert(a->GetCurrentTurn() == Player::player1);
     assert(b->GetCurrentTurn() == Player::player1);
   }
-  TRACE("Test ribi::Pylos::Game::Clone of GameBasic");
+  TRACE("Test ribi::pylos::Game::Clone of GameBasic");
   {
     boost::shared_ptr<Game> a = CreateBasicGame();
     boost::shared_ptr<Game> b(new Game(*a));
@@ -446,7 +446,7 @@ void ribi::Pylos::Game::Test() noexcept
     assert(*a != *c);
     assert(*b != *c);
   }
-  TRACE("Test ribi::Pylos::Game::Clone of GameAdvanced");
+  TRACE("Test ribi::pylos::Game::Clone of GameAdvanced");
   {
     boost::shared_ptr<Game> a = CreateAdvancedGame();
     boost::shared_ptr<Game> b(new Game(*a));
@@ -706,22 +706,22 @@ void ribi::Pylos::Game::Test() noexcept
   TRACE("Playing 5 random basic Pylos games");
   for (int i=0; i!=5; ++i)
   {
-    ribi::Pylos::Game::PlayRandomGame(Pylos::Board::CreateBasicBoard());
+    ribi::pylos::Game::PlayRandomGame(pylos::Board::CreateBasicBoard());
   }
   TRACE("Playing 5 random advanced Pylos games");
   for (int i=0; i!=5; ++i)
   {
-    ribi::Pylos::Game::PlayRandomGame(Pylos::Board::CreateAdvancedBoard());
+    ribi::pylos::Game::PlayRandomGame(pylos::Board::CreateAdvancedBoard());
   }
   TRACE("Playing 5 random Pylos games");
   for (int i=0; i!=5; ++i)
   {
-    ribi::Pylos::Game::PlayRandomGame();
+    ribi::pylos::Game::PlayRandomGame();
   }
 }
 #endif
 
-void ribi::Pylos::Game::TogglePlayer()
+void ribi::pylos::Game::TogglePlayer()
 {
   assert(!m_current_move->GetMustRemove()
     && "First the current player must remove one or two marbles");
@@ -730,7 +730,7 @@ void ribi::Pylos::Game::TogglePlayer()
   m_current_player = (m_current_player == Player::player1 ? Player::player2 : Player::player1);
 }
 
-void ribi::Pylos::Game::Transfer(
+void ribi::pylos::Game::Transfer(
     const Coordinat& from,
     const Coordinat& to)
 {
@@ -755,7 +755,7 @@ void ribi::Pylos::Game::Transfer(
   }
 }
 
-bool ribi::Pylos::operator==(const Game& lhs, const Game& rhs)
+bool ribi::pylos::operator==(const Game& lhs, const Game& rhs)
 {
   return *lhs.m_board          == *rhs.m_board
     &&   *lhs.m_current_move   == *rhs.m_current_move
@@ -763,7 +763,7 @@ bool ribi::Pylos::operator==(const Game& lhs, const Game& rhs)
     &&    lhs.m_move_history   ==  rhs.m_move_history;
 }
 
-bool ribi::Pylos::operator!=(const Game& lhs, const Game& rhs)
+bool ribi::pylos::operator!=(const Game& lhs, const Game& rhs)
 {
   return !(lhs == rhs);
 }

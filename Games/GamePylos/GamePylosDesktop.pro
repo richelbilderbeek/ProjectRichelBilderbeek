@@ -13,8 +13,13 @@ include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppPylos/CppPylos.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
+#Specific, desktop
 include(../../Classes/CppQtPylos/CppQtPylos.pri)
 
 include(GamePylosDesktop.pri)

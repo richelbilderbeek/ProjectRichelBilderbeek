@@ -22,8 +22,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtdaswahreschlagerfestmenudialog.h"
 
+#include <QKeyEvent>
+
 #include "daswahreschlagerfestmenudialog.h"
 #include "qtaboutdialog.h"
+#include "qtdaswahreschlagerfestcanvas.h"
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
 #include "trace.h"
@@ -42,6 +45,16 @@ ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget
 ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
 {
   delete ui;
+}
+
+void ribi::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
+{
+  if (e->Key() == Qt::Key_At || e->Key() == Qt::Key_Dollar)
+  {
+    QtDasWahreSchlagerfestCanvas c;
+    c.show();
+    c.showNormal();
+  }
 }
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept

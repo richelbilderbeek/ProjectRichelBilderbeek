@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <cstdio>
 #include <stdexcept>
 
+#include "fileio.h"
 #include "trace.h"
 
 #include <QFile>
@@ -73,7 +74,7 @@ ribi::ConnectThreeResources::~ConnectThreeResources() noexcept
   std::remove(m_instructions_wrong_filename.c_str());
 }
 
-void ribi::ConnectThreeResources::Create()
+void ribi::ConnectThreeResources::Create() const
 {
   //CheckFile(m_background_filename);
   for (const std::string filename: m_computers_filenames) { CreateFile(filename); }
@@ -90,12 +91,12 @@ void ribi::ConnectThreeResources::Create()
 
 void ribi::ConnectThreeResources::CreateFile(const std::string& s)
 {
-  if (!QFile::exists(s.c_str()))
+  if (!fileio::IsRegularFile(s))
   {
     const std::string filename = ":/images/" + s;
     QFile f(filename.c_str());
     f.copy(s.c_str());
-    if (!QFile::exists(s.c_str()))
+    if (!fileio::IsRegularFile(s))
     {
       const std::string error = "ConnectThreeResources::CreateFile: file not found: '" + s
         + "\', please add the file to a resource file, or correct the filename";
@@ -103,6 +104,6 @@ void ribi::ConnectThreeResources::CreateFile(const std::string& s)
       throw std::runtime_error(error);
     }
   }
-  if (!QFile::exists(s.c_str())) { TRACE(s); }
-  assert(QFile::exists(s.c_str()));
+  if (!fileio::IsRegularFile(s)) { TRACE(s); }
+  assert(fileio::IsRegularFile(s));
 }

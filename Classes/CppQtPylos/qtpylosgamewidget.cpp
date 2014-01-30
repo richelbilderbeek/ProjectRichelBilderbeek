@@ -40,60 +40,60 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtPylosGameWidget::QtPylosGameWidget() :
-    m_pylos(Pylos::Game::CreateBasicGame())
+ribi::pylos::QtPylosGameWidget::QtPylosGameWidget() :
+    m_pylos(pylos::Game::CreateBasicGame())
 {
 
 }
 
-bool ribi::QtPylosGameWidget::CanRemove(const std::vector<Pylos::Coordinat>& v) const
+bool ribi::pylos::QtPylosGameWidget::CanRemove(const std::vector<pylos::Coordinat>& v) const
 {
   return m_pylos->CanRemove(v);
 }
 
-bool ribi::QtPylosGameWidget::CanSet(const Pylos::Coordinat& c) const
+bool ribi::pylos::QtPylosGameWidget::CanSet(const pylos::Coordinat& c) const
 {
   return m_pylos->CanSet(c);
 }
 
-bool ribi::QtPylosGameWidget::CanTransfer(const Pylos::Coordinat& c) const
+bool ribi::pylos::QtPylosGameWidget::CanTransfer(const pylos::Coordinat& c) const
 {
   return m_pylos->CanTransfer(c);
 }
 
-bool ribi::QtPylosGameWidget::CanTransfer(
-  const Pylos::Coordinat& from,
-  const Pylos::Coordinat& to) const
+bool ribi::pylos::QtPylosGameWidget::CanTransfer(
+  const pylos::Coordinat& from,
+  const pylos::Coordinat& to) const
 {
   return m_pylos->CanTransfer(from,to);
 }
 
-ribi::Pylos::PositionState ribi::QtPylosGameWidget::Get(const Pylos::Coordinat& c) const
+ribi::pylos::PositionState ribi::pylos::QtPylosGameWidget::Get(const pylos::Coordinat& c) const
 {
   return m_pylos->GetBoard()->Get(c);
 }
 
-ribi::Pylos::Player ribi::QtPylosGameWidget::GetCurrentTurn() const
+ribi::pylos::Player ribi::pylos::QtPylosGameWidget::GetCurrentTurn() const
 {
   return m_pylos->GetCurrentTurn();
 }
 
-int ribi::QtPylosGameWidget::GetLayerSize(const int layer) const
+int ribi::pylos::QtPylosGameWidget::GetLayerSize(const int layer) const
 {
   return m_pylos->GetBoard()->GetLayerSize(layer);
 }
 
-ribi::Pylos::MustRemoveState ribi::QtPylosGameWidget::GetMustRemove() const
+ribi::pylos::MustRemoveState ribi::pylos::QtPylosGameWidget::GetMustRemove() const
 {
   return m_pylos->GetMustRemove();
 }
 
-const std::string ribi::QtPylosGameWidget::GetVersion() noexcept
+const std::string ribi::pylos::QtPylosGameWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtPylosGameWidget::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::pylos::QtPylosGameWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-09-22: version 1.2: initial release version");
@@ -102,40 +102,40 @@ const std::vector<std::string> ribi::QtPylosGameWidget::GetVersionHistory() noex
   return v;
 }
 
-ribi::Pylos::Winner ribi::QtPylosGameWidget::GetWinner() const
+ribi::pylos::Winner ribi::pylos::QtPylosGameWidget::GetWinner() const
 {
   return m_pylos->GetWinner();
 }
 
-void ribi::QtPylosGameWidget::Remove(const std::vector<Pylos::Coordinat>& v)
+void ribi::pylos::QtPylosGameWidget::Remove(const std::vector<pylos::Coordinat>& v)
 {
   m_pylos->Remove(v);
 }
 
-void ribi::QtPylosGameWidget::Set(const Pylos::Coordinat& c)
+void ribi::pylos::QtPylosGameWidget::Set(const pylos::Coordinat& c)
 {
   m_pylos->Set(c);
 }
 
-void ribi::QtPylosGameWidget::StartAdvanced()
+void ribi::pylos::QtPylosGameWidget::StartAdvanced()
 {
-  m_pylos = Pylos::Game::CreateAdvancedGame();
-  m_select = Pylos::Coordinat(0,0,0);
-  m_other_selectors = std::vector<Pylos::Coordinat>();
+  m_pylos = pylos::Game::CreateAdvancedGame();
+  m_select = pylos::Coordinat(0,0,0);
+  m_other_selectors = std::vector<pylos::Coordinat>();
   repaint();
 }
 
-void ribi::QtPylosGameWidget::StartBasic()
+void ribi::pylos::QtPylosGameWidget::StartBasic()
 {
-  m_pylos = Pylos::Game::CreateBasicGame();
-  m_select = Pylos::Coordinat(0,0,0);
-  m_other_selectors = std::vector<Pylos::Coordinat>();
+  m_pylos = pylos::Game::CreateBasicGame();
+  m_select = pylos::Coordinat(0,0,0);
+  m_other_selectors = std::vector<pylos::Coordinat>();
   repaint();
 }
 
-void ribi::QtPylosGameWidget::Transfer(
-  const Pylos::Coordinat& from,
-  const Pylos::Coordinat& to)
+void ribi::pylos::QtPylosGameWidget::Transfer(
+  const pylos::Coordinat& from,
+  const pylos::Coordinat& to)
 {
   m_pylos->Transfer(from,to);
 }

@@ -35,6 +35,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace pylos {
 
 class QtPylosMainDialog : public QtHideAndShowDialog
 {
@@ -66,6 +67,7 @@ private slots:
   void OnWinner();
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSMAINDIALOG

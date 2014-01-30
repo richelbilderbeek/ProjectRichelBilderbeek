@@ -24,9 +24,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace pylos {
 
 ///PylosMenuDialog contains the Pylos menu dialog
-struct PylosMenuDialog : public MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -42,6 +43,7 @@ struct PylosMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // PYLOSMENUDIALOG_H

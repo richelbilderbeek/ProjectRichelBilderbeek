@@ -15,7 +15,8 @@ SOURCES += \
     ../../Games/GameMaziak/maziakdistancesmaze.cpp \
     ../../Games/GameMaziak/maziaksolutionmaze.cpp \
     maziakmaindialog.cpp \
-    maziakkey.cpp
+    maziakkey.cpp \
+    maziakreceiver.cpp
 
 HEADERS  += \
     ../../Games/GameMaziak/maziakmenudialog.h \
@@ -32,7 +33,8 @@ HEADERS  += \
     ../../Games/GameMaziak/maziakdistancesmaze.h \
     ../../Games/GameMaziak/maziaksolutionmaze.h \
     maziakmaindialog.h \
-    maziakkey.h
+    maziakkey.h \
+    maziakreceiver.h
 
 OTHER_FILES += \
     ../../Games/GameMaziak/Licence.txt

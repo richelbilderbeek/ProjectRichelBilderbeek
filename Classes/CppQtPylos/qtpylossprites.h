@@ -28,8 +28,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-namespace Pylos {
+namespace pylos {
 
 const boost::array<int,6> GetBlackWhiteColors();
 const boost::array<int,6> GetDefaultColors();
@@ -140,8 +139,7 @@ void Paint(
   const unsigned char b,
   const unsigned char a = 255); //Opaque
 
-} //~namespace Pylos
-
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSSPRITES_H

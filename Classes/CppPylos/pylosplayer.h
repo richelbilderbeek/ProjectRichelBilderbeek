@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Player, Pylos enum class for the players
+pylos::Player, Pylos enum class for the players
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace Pylos {
+namespace pylos {
 
 enum class Player { player1, player2 };
 ///Toggles between the two players

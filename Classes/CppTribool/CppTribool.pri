@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppTicTacToe
+    ../../Classes/CppTribool
 
 SOURCES += \
-    ../../Classes/CppTicTacToe/tictactoe.cpp
+    ../../Classes/CppTribool/tribool.cpp
 
 HEADERS  += \
-    ../../Classes/CppTicTacToe/tictactoe.h
+    ../../Classes/CppTribool/tribool.h
 
 OTHER_FILES += \
-    ../../Classes/CppTicTacToe/Licence.txt
+    ../../Classes/CppTribool/Licence.txt
 

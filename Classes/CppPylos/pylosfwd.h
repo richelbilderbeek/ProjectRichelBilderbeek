@@ -22,15 +22,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #define PYLOSFWD_H
 
 namespace ribi {
-
-namespace Pylos {
+namespace pylos {
 
 enum class Player;
 enum class PositionState;
 enum class MustRemoveState;
 
-} //~namespace Pylos
+struct QtSprites;
 
+} //~namespace Pylos
 } //~namespace ribi
 
 #endif // PYLOSFWD_H

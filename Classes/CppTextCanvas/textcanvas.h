@@ -32,10 +32,15 @@ struct TextCanvas : public Canvas
 
   ~TextCanvas() noexcept {}
 
+  ///Does the (x,y) coordinat exist?
+  bool CanGetChar(const int x, const int y) const noexcept { return IsInRange(x,y); }
+
   ///Clears the canvas
   void Clear() noexcept;
 
   CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
+
+  char GetChar(const int x, const int y) const noexcept;
 
   ///Obtain the height of the canvas is characters
   int GetHeight() const noexcept { return m_canvas.size(); }
@@ -48,6 +53,9 @@ struct TextCanvas : public Canvas
 
   ///Obtain the width of the canvas is characters
   int GetWidth() const noexcept { return (GetHeight()==0 ? 0 : m_canvas[0].size() ); }
+
+  ///Check if a coordinat is in the range of the Canvas
+  bool IsInRange(const int x, const int y) const;
 
   void Load(const std::vector<std::string>& v) { m_canvas = v; }
 
@@ -78,9 +86,6 @@ struct TextCanvas : public Canvas
   ///- screen: origin is at top-left of the screen
   ///- graph: origin is at bottom-left of the screen
   CanvasCoordinatSystem m_coordinat_system;
-
-  ///Check if a coordinat is in the range of the Canvas
-  bool IsInRange(const int x, const int y) const;
 
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
   template <class Container>

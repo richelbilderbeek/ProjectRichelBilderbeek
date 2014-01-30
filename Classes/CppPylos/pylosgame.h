@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Game, class for a game of Pylos/Phyraos
+pylos::Game, class for a game of Pylos/Phyraos
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -34,8 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pyloswinner.h"
 
 namespace ribi {
-
-namespace Pylos {
+namespace pylos {
 
 ///Pylos is a class for storing a Pylos game.
 ///Games can be player in:\n
@@ -54,14 +53,14 @@ struct Game
   Game(
     const boost::shared_ptr<Board>& board,
     const Player current_player,
-    const std::vector<Pylos::Move>& move_history,
+    const std::vector<pylos::Move>& move_history,
     const boost::shared_ptr<CurrentMoveState>& current_move);
 
   ///CanDo determines if a Pylos notation move is valid
   bool CanDo(const std::string& s) const;
 
   ///CanDo determines if a Pylos move is valid
-  bool CanDo(const Pylos::Move& m) const;
+  bool CanDo(const pylos::Move& m) const;
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
@@ -104,7 +103,7 @@ struct Game
   ///GetCurrentTurn returns whose turn it is now
   Player GetCurrentTurn() const noexcept;
 
-  const std::vector<Pylos::Move>& GetMoveHistory() const noexcept
+  const std::vector<pylos::Move>& GetMoveHistory() const noexcept
   {
     return m_move_history;
   }
@@ -159,7 +158,7 @@ struct Game
   boost::shared_ptr<Board> m_board;
   boost::shared_ptr<CurrentMoveState> m_current_move;
   Player m_current_player;
-  std::vector<Pylos::Move> m_move_history;
+  std::vector<pylos::Move> m_move_history;
 
   ///CanRemove specifies if current player can remove
   ///the marble at the requested position.

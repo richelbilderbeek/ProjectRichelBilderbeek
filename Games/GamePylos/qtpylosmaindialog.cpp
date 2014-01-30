@@ -30,7 +30,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtPylosMainDialog::QtPylosMainDialog(
+ribi::pylos::QtPylosMainDialog::QtPylosMainDialog(
   QtPylosGameWidget * const pylos_widget,
   QWidget *parent)
   : QtHideAndShowDialog(parent),
@@ -56,18 +56,18 @@ ribi::QtPylosMainDialog::QtPylosMainDialog(
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtPylosMainDialog::~QtPylosMainDialog() noexcept
+ribi::pylos::QtPylosMainDialog::~QtPylosMainDialog() noexcept
 {
   delete ui;
   delete m_pylos_widget;
 }
 
-const std::string ribi::QtPylosMainDialog::GetVersion() noexcept
+const std::string ribi::pylos::QtPylosMainDialog::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtPylosMainDialog::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::pylos::QtPylosMainDialog::GetVersionHistory() noexcept
 {
   return {
     "2010-09-22: version 1.0: initial release version",
@@ -75,7 +75,7 @@ const std::vector<std::string> ribi::QtPylosMainDialog::GetVersionHistory() noex
   };
 }
 
-void ribi::QtPylosMainDialog::OnWinner()
+void ribi::pylos::QtPylosMainDialog::OnWinner()
 {
   QtPylosWonDialog d;
   d.SetWinner(m_pylos_widget->GetPylos()->GetWinner());
@@ -84,14 +84,22 @@ void ribi::QtPylosMainDialog::OnWinner()
 }
 
 #ifndef NDEBUG
-void ribi::QtPylosMainDialog::Test() noexcept
+void ribi::pylos::QtPylosMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtPylosMainDialog::Test");
-  TRACE("Finished ribi::QtPylosMainDialog::Test successfully");
+  TRACE("Starting ribi::pylos::QtPylosMainDialog::Test");
+  QtPylosGameWidget * const p = new QtPylosGameWidget();
+  assert(p);
+  //Set the game type
+  p->StartBasic();
+  p->SetColorSchemeBlackWhite();
+  const QtPylosMainDialog d(p);
+  assert(!d.GetVersion().empty());
+  delete p;
+  TRACE("Finished ribi::pylos::QtPylosMainDialog::Test successfully");
 }
 #endif

@@ -49,6 +49,12 @@ void ribi::TextCanvas::Clear() noexcept
   m_signal_changed(this);
 }
 
+char ribi::TextCanvas::GetChar(const int x, const int y) const noexcept
+{
+  assert(IsInRange(x,y));
+  return m_canvas[y][x];
+}
+
 bool ribi::TextCanvas::IsInRange(const int x, const int y) const
 {
   if (   x < 0

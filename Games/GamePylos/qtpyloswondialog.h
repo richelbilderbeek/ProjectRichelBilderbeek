@@ -43,7 +43,7 @@ public:
   QtPylosWonDialog(const QtPylosWonDialog&) = delete;
   QtPylosWonDialog& operator=(const QtPylosWonDialog&) = delete;
   ~QtPylosWonDialog() noexcept;
-  void SetWinner(const Pylos::Winner winner);
+  void SetWinner(const pylos::Winner winner);
 
 private:
   Ui::QtPylosWonDialog *ui;

@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::PositionState, Pylos enum class for the state of a position
+pylos::PositionState, Pylos enum class for the state of a position
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-namespace Pylos {
+namespace pylos {
 
 enum class PositionState { player1, player2, empty };
 PositionState ToPositionState(const Player& player);

@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "pylosmove.h"
 #pragma GCC diagnostic pop
 
-ribi::Pylos::QtSprites::QtSprites(
+ribi::pylos::QtSprites::QtSprites(
   const int board_width,
   const int board_height,
   const boost::array<int,6> &colors,
@@ -50,7 +50,7 @@ ribi::Pylos::QtSprites::QtSprites(
 
 }
 
-const QPixmap& ribi::Pylos::QtSprites::Get(
+const QPixmap& ribi::pylos::QtSprites::Get(
   const Type sprite) const
 {
   switch (sprite)
@@ -65,15 +65,15 @@ const QPixmap& ribi::Pylos::QtSprites::Get(
     case Type::board_hole     : return m_sprite_board_hole;
   }
   assert(!"Should not get here");
-  throw std::logic_error("ribi::Pylos::QtSprites::Get");
+  throw std::logic_error("ribi::pylos::QtSprites::Get");
 }
 
-const std::string ribi::Pylos::QtSprites::GetVersion() noexcept
+const std::string ribi::pylos::QtSprites::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::Pylos::QtSprites::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::pylos::QtSprites::GetVersionHistory() noexcept
 {
   return {
     "2012-05-28: version 2.0: initial release version",
@@ -81,7 +81,7 @@ const std::vector<std::string> ribi::Pylos::QtSprites::GetVersionHistory() noexc
   };
 }
 
-QPixmap ribi::Pylos::DrawBoardBottom(
+QPixmap ribi::pylos::DrawBoardBottom(
   const int width,
   const int height,
   const unsigned char r,
@@ -94,7 +94,7 @@ QPixmap ribi::Pylos::DrawBoardBottom(
 }
 
 ///From http://www.richelbilderbeek.nl/CppDrawGlobe.htm
-QPixmap ribi::Pylos::DrawGlobe(
+QPixmap ribi::pylos::DrawGlobe(
   const int width,
   const int height,
   const unsigned char r,
@@ -162,7 +162,7 @@ QPixmap ribi::Pylos::DrawGlobe(
 }
 
 ///From http://www.richelbilderbeek.nl/CppDrawInvertedGlobe.htm
-QPixmap ribi::Pylos::DrawInvertedGlobe(
+QPixmap ribi::pylos::DrawInvertedGlobe(
   const int width,
   const int height,
   const unsigned char r,
@@ -229,7 +229,7 @@ QPixmap ribi::Pylos::DrawInvertedGlobe(
   return pixmap;
 }
 
-QPixmap ribi::Pylos::DrawRemover(
+QPixmap ribi::pylos::DrawRemover(
   const int width,
   const int height,
   const unsigned char r,
@@ -297,7 +297,7 @@ QPixmap ribi::Pylos::DrawRemover(
   return pixmap;
 }
 
-QPixmap ribi::Pylos::DrawSelector(
+QPixmap ribi::pylos::DrawSelector(
   const int width,
   const int height,
   const unsigned char r,
@@ -365,7 +365,7 @@ QPixmap ribi::Pylos::DrawSelector(
   return pixmap;
 }
 
-const boost::array<int,6> ribi::Pylos::GetBlackWhiteColors()
+const boost::array<int,6> ribi::pylos::GetBlackWhiteColors()
 {
   boost::array<int,6> v;
   v[0] = 255; v[1] = 255; v[2] = 255;
@@ -373,12 +373,12 @@ const boost::array<int,6> ribi::Pylos::GetBlackWhiteColors()
   return v;
 }
 
-const boost::array<int,6> ribi::Pylos::GetDefaultColors()
+const boost::array<int,6> ribi::pylos::GetDefaultColors()
 {
   return GetRedBlueColors();
 }
 
-const boost::array<int,6> ribi::Pylos::GetRedBlueColors()
+const boost::array<int,6> ribi::pylos::GetRedBlueColors()
 {
   boost::array<int,6> v;
   v[0] = 255; v[1] =   0; v[2] =   0;
@@ -387,7 +387,7 @@ const boost::array<int,6> ribi::Pylos::GetRedBlueColors()
 }
 
 //From http://www.richelbilderbeek.nl/CppPaint.htm
-void ribi::Pylos::Paint(
+void ribi::pylos::Paint(
   QPixmap& pixmap,
   const unsigned char r,
   const unsigned char g,

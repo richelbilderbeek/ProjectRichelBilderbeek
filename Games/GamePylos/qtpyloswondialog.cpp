@@ -40,9 +40,9 @@ ribi::QtPylosWonDialog::~QtPylosWonDialog() noexcept
   delete ui;
 }
 
-void ribi::QtPylosWonDialog::SetWinner(const Pylos::Winner winner)
+void ribi::QtPylosWonDialog::SetWinner(const pylos::Winner winner)
 {
-  if (winner == Pylos::Winner::player1)
+  if (winner == pylos::Winner::player1)
     ui->label_sprite->setPixmap(QPixmap(":/images/sprite_player1.png"));
   else
     ui->label_sprite->setPixmap(QPixmap(":/images/sprite_player2.png"));

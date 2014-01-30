@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::Board, class for a Pylos/Phyraos board
+pylos::Board, class for a Pylos/Phyraos board
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace Pylos {
+
+struct TextCanvas;
+
+namespace pylos {
 
 struct Board
 {
@@ -134,6 +137,9 @@ struct Board
 
   ///Display the board as a 2D std::string
   const std::vector<std::string> ToText() const;
+
+  ///Display the board as a 2D std::string
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const;
 
   ///Transfer lets current player transfer his marble to a new, higher position
   void Transfer(

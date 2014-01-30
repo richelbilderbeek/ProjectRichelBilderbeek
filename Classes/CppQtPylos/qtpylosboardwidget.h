@@ -38,8 +38,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 struct QPaintEvent;
 
 namespace ribi {
+namespace pylos {
 
-///PylosWidget manages a Pylos::Board and facilitates its user interface
+///PylosWidget manages a pylos::Board and facilitates its user interface
 class QtPylosBoardWidget : public QtPylosWidget
 {
   Q_OBJECT
@@ -51,30 +52,30 @@ public:
 
   ///CanRemove specifies if current player can remove one or
   ///two marble(s) at the requested position(s).
-  bool CanRemove(const std::vector<Pylos::Coordinat>& v) const;
+  bool CanRemove(const std::vector<pylos::Coordinat>& v) const;
 
   ///CanSet tests if the current player can be set at the Coordinat
-  bool CanSet(const Pylos::Coordinat& c) const;
+  bool CanSet(const pylos::Coordinat& c) const;
 
   ///CanSetPlayer determines is the active Player can be changed.
   ///CanSetPlayer returns false if there are marbles to be removed
-  bool CanSetPlayer(const Pylos::Player player) const;
+  bool CanSetPlayer(const pylos::Player player) const;
 
   ///CanTransfer specifies if current player can transfer
   ///the marble at the specified coordinat for movement
-  bool CanTransfer(const Pylos::Coordinat& c) const;
+  bool CanTransfer(const pylos::Coordinat& c) const;
 
   ///CanTransfer specifies if current player can transfer his marble
   ///to a new, higher position
   bool CanTransfer(
-    const Pylos::Coordinat& from,
-    const Pylos::Coordinat& to) const;
+    const pylos::Coordinat& from,
+    const pylos::Coordinat& to) const;
 
   ///GetPylos returns a read-only pylos
-  const Pylos::Board * GetBoard() { return m_board.get(); }
+  const pylos::Board * GetBoard() { return m_board.get(); }
 
   ///GetCurrentTurn returns whose turn it is now
-  Pylos::Player GetCurrentTurn() const;
+  pylos::Player GetCurrentTurn() const;
 
   ///GetLayerSize returns how many marbles this is wide/height.
   ///For exaple; layer 0 has 4x4 marbles, so GetLayerSize
@@ -82,13 +83,13 @@ public:
   int GetLayerSize(const int layer) const;
 
   ///Obtain the MustRemoveState of the widget
-  Pylos::MustRemoveState GetMustRemove() const { return m_must_remove; }
+  pylos::MustRemoveState GetMustRemove() const { return m_must_remove; }
 
   ///Obtain the PositionState at a certain coordinat
-  Pylos::PositionState Get(const Pylos::Coordinat& c) const;
+  pylos::PositionState Get(const pylos::Coordinat& c) const;
 
   ///GetSelector returns the selector's current coodinat
-  //const Pylos::Coordinat& GetSelector() const { return m_select; }
+  //const pylos::Coordinat& GetSelector() const { return m_select; }
 
   ///Obtain this class its version
   static const std::string GetVersion() noexcept;
@@ -97,19 +98,19 @@ public:
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Return the possible winner
-  Pylos::Winner GetWinner() const;
+  pylos::Winner GetWinner() const;
 
   ///Remove lets the current player remove one or two marbles
-  void Remove(const std::vector<Pylos::Coordinat>& v);
+  void Remove(const std::vector<pylos::Coordinat>& v);
 
   ///Set makes current player place his marble
   ///at the specified position. After Set,
   ///GetMustRemove must be called to determine if
   ///the current player must remove some marbles
-  void Set(const Pylos::Coordinat& c);
+  void Set(const pylos::Coordinat& c);
 
   ///SetPlayer determines which player is allowed to make a move
-  void SetPlayer(const Pylos::Player player);
+  void SetPlayer(const pylos::Player player);
 
   ///StartAdvanced cleans the board to start a game
   ///with advanced rules
@@ -121,8 +122,8 @@ public:
 
   ///Transfer lets current player tranfer his marble to a new, higher position
   void Transfer(
-    const Pylos::Coordinat& from,
-    const Pylos::Coordinat& to);
+    const pylos::Coordinat& from,
+    const pylos::Coordinat& to);
 
 
 signals:
@@ -132,17 +133,18 @@ signals:
 
 private:
 
-  //Pylos::QtSprites m_sprites;
-  boost::shared_ptr<Pylos::Board> m_board;
+  //pylos::QtSprites m_sprites;
+  boost::shared_ptr<pylos::Board> m_board;
 
   ///m_must_remove tracks if the user must remove one/two marbles
-  Pylos::MustRemoveState m_must_remove;
+  pylos::MustRemoveState m_must_remove;
 
   ///m_player is the player that is allowed to do a move
-  Pylos::Player m_player;
+  pylos::Player m_player;
 
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTPYLOSBOARDWIDGET_H

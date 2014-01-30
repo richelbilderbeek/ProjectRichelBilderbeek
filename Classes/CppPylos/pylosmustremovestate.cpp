@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-Pylos::MustRemoveState, Pylos enum class for the state of a removal
+pylos::MustRemoveState, Pylos enum class for the state of a removal
 Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 
 
-ribi::Pylos::MustRemoveState ribi::Pylos::ToMustRemoveState(const Player& player)
+ribi::pylos::MustRemoveState ribi::pylos::ToMustRemoveState(const Player& player)
 {
   switch (player)
   {
@@ -40,7 +40,7 @@ ribi::Pylos::MustRemoveState ribi::Pylos::ToMustRemoveState(const Player& player
   throw std::logic_error("Unknown value for Player");
 }
 
-std::string ribi::Pylos::ToStr(const MustRemoveState state)
+std::string ribi::pylos::ToStr(const MustRemoveState state)
 {
   switch (state)
   {
@@ -52,7 +52,7 @@ std::string ribi::Pylos::ToStr(const MustRemoveState state)
   throw std::logic_error("Unknown value for MustRemoveState");
 }
 
-bool ribi::Pylos::operator!(const MustRemoveState& state)
+bool ribi::pylos::operator!(const MustRemoveState& state)
 {
   return state == MustRemoveState::no;
 }

@@ -47,6 +47,11 @@ struct ConnectThreeResources
     );
 
   virtual ~ConnectThreeResources() noexcept;
+
+  ///Creates a file
+  ///Throws std::runtime_error if it cannot be created from resources
+  static void CreateFile(const std::string& s);
+
   //const std::string& GetBackgroundFilename() const { return m_background_filename; }
   const std::string& GetCss() const noexcept { return m_css; }
   const std::vector<std::string>& GetComputersFilenames() const noexcept { return  m_computers_filenames; }
@@ -81,11 +86,7 @@ struct ConnectThreeResources
 
   ///Creates all files
   ///Throws std::runtime_error if one of these cannot be created from resources
-  void Create();
-
-  ///Creates a file
-  ///Throws std::runtime_error if it cannot be created from resources
-  void CreateFile(const std::string& s);
+  void Create() const;
 };
 
 } //~namespace ribi
