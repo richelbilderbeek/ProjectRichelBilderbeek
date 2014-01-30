@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+struct TextCanvas;
+
 ///DasWahreSchlagerfestWidget contains the game logic of Das Wahre Schlagerfest
 struct DasWahreSchlagerfestWidget
 {
@@ -53,6 +55,8 @@ struct DasWahreSchlagerfestWidget
 
   ///Respond to the user pressing a key
   void PressKey(const Key key);
+
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   ///Signal emitted when the widget is changed
   boost::signals2::signal<void ()> m_signal_changed;

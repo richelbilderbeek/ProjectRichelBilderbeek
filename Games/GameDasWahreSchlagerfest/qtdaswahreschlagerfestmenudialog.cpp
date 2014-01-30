@@ -49,9 +49,9 @@ ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noex
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
 {
-  if (e->Key() == Qt::Key_At || e->Key() == Qt::Key_Dollar)
+  if (e->key() == Qt::Key_At || e->key() == Qt::Key_Dollar)
   {
-    QtDasWahreSchlagerfestCanvas c;
+    QtDasWahreSchlagerfestCanvas c(9,5);
     c.show();
     c.showNormal();
   }
