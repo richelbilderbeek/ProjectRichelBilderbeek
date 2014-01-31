@@ -109,7 +109,7 @@ void ribi::QtTestMultiCanvasMainDialog::on_box_coordinat_system_currentIndexChan
   //Should redraw automatically
 }
 
-void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::DrawCanvas * const)
+void ribi::QtTestMultiCanvasMainDialog::ShowCanvas(const ribi::Canvas * const)
 {
   //Display the image
   std::stringstream s;

@@ -26,6 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "daswahreschlagerfestmenudialog.h"
 #include "qtaboutdialog.h"
+#include "qtcanvasdialog.h"
 #include "qtdaswahreschlagerfestcanvas.h"
 #include "qtdaswahreschlagerfestmaindialog.h"
 #include "ui_qtdaswahreschlagerfestmenudialog.h"
@@ -40,6 +41,8 @@ ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget
   Test();
   #endif
   ui->setupUi(this);
+
+  on_button_start_oldschool_clicked(); //TEMP
 }
 
 ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
@@ -49,11 +52,10 @@ ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noex
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::keyPressEvent(QKeyEvent * e)
 {
-  if (e->key() == Qt::Key_At || e->key() == Qt::Key_Dollar)
+  if (e->key() == Qt::Key_Escape) { close(); }
+  if (e->key() == Qt::Key_At || e->key() == Qt::Key_Dollar || e->key() == Qt::Key_0)
   {
-    QtDasWahreSchlagerfestCanvas c(9,5);
-    c.show();
-    c.showNormal();
+    on_button_start_oldschool_clicked();
   }
 }
 
@@ -66,9 +68,9 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_clicked() noexcept
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_about_clicked() noexcept
 {
   QtAboutDialog d(DasWahreSchlagerfestMenuDialog().GetAbout());
-  d.setWindowIcon(this->windowIcon());
-  d.setStyleSheet(this->styleSheet());
-  this->ShowChild(&d);
+  d.setWindowIcon(windowIcon());
+  d.setStyleSheet(styleSheet());
+  ShowChild(&d);
 }
 
 void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_quit_clicked() noexcept
@@ -86,6 +88,24 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::QtDasWahreSchlagerfestMenuDialog::Test");
   QtDasWahreSchlagerfestMainDialog();
+  {
+    const boost::shared_ptr<QtDasWahreSchlagerfestCanvas> c {
+      new QtDasWahreSchlagerfestCanvas(9,5)
+    };
+    assert(c);
+  }
   TRACE("Finished ribi::QtDasWahreSchlagerfestMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
+{
+  QtCanvas * const qtcanvas {
+    new QtDasWahreSchlagerfestCanvas(9,5)
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  ShowChild(d.get());
+  //canvas will be deleted by QtCanvasDialog
+}

@@ -208,7 +208,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::pong: break;
     case ProgramType::primeExpert: p = new QtToolPrimeExpertMenuDialog;  break;
     case ProgramType::projectRichelBilderbeek: p = new QtRichelBilderbeekMenuDialog; break;
-    case ProgramType::pylos: p = new QtPylosMenuDialog; break;
+    case ProgramType::pylos: p = new pylos::QtPylosMenuDialog; break;
     case ProgramType::qmakeWatcher: p = new QtQmakeWatcherMenuDialog; break;
     case ProgramType::quadraticSolver: p = new QtQuadraticSolverMenuDialog; break;
     case ProgramType::rampalEtienne: break;
@@ -274,7 +274,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testNewick: break;
     case ProgramType::testNewickVector: break;
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
-    case ProgramType::testPylos: p = new QtTestPylosMenuDialog; break;
+    case ProgramType::testPylos: p = new pylos::QtTestPylosMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;
     case ProgramType::testQtCreatorProFile: p = new QtTestQtCreatorProFileMenuDialog; break;
     case ProgramType::testQtHideAndShowDialog: break;

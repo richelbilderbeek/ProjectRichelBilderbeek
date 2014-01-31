@@ -33,6 +33,7 @@ namespace Ui {
 
 
 namespace ribi {
+namespace pylos {
 
 class QtTestPylosRandomPlayDialog : public QtHideAndShowDialog
 {
@@ -52,6 +53,7 @@ private:
   Ui::QtTestPylosRandomPlayDialog *ui;
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSRANDOMPLAYDIALOG_H

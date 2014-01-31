@@ -74,6 +74,7 @@ struct MainDialog
   boost::signals2::signal<void()> m_signal_game_over;
   boost::signals2::signal<void()> m_signal_game_won;
   boost::signals2::signal<void()> m_signal_start_showing_solution;
+  boost::signals2::signal<void()> m_signal_stop_showing_solution;
   private:
 
 

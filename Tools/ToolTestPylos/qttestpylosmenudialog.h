@@ -31,6 +31,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace pylos {
 
 class QtTestPylosMenuDialog : public QtHideAndShowDialog
 {
@@ -58,6 +59,7 @@ private:
   #endif
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSMENUDIALOG_H

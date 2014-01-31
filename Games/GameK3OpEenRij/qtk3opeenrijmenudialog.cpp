@@ -58,19 +58,22 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
 {
   //Supply the correct resources, depending on if player 3 chose Kathleen or Josje
   const boost::shared_ptr<QtK3OpEenRijResources> resources(
-    new QtK3OpEenRijResources(m_select->GetIsPlayer3Kathleen()));
+    new QtK3OpEenRijResources(
+      m_select->GetIsPlayer3Kathleen()
+      ? Tribool::True
+      : Tribool::False
+    )
+  );
 
   QtConnectThreeGameDialog d(
     resources,
     nullptr,
     m_select->GetIsPlayerHuman()
   );
-  d.setWindowTitle("K3OpEenRij (C) 2007-2014");
+  d.setWindowTitle("K3OpEenRij");
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
-  this->hide();
-  d.exec();
-  this->show();
+  ShowChild(&d);
 }
 
 #ifndef NDEBUG

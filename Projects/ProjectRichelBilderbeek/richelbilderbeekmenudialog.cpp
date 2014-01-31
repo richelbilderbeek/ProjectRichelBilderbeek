@@ -312,7 +312,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noex
   a.AddLibrary("NewickVector version: " + NewickVector::GetVersion());
   a.AddLibrary("OpenQuestion version: " + OpenQuestion::GetVersion());
   a.AddLibrary("OpenQuestionDialog version: " + OpenQuestionDialog::GetVersion());
-  a.AddLibrary("Pylos version: " + PylosMenuDialog().GetVersion());
+  a.AddLibrary("Pylos version: " + pylos::MenuDialog().GetVersion());
   a.AddLibrary("QmakeWatcher version: " + QmakeWatcherMenuDialog().GetVersion());
   a.AddLibrary("QrcFile version: " + QrcFile::GetVersion());
   a.AddLibrary("QtCreatorProFile version: " + QtCreatorProFile::GetVersion());
@@ -1283,7 +1283,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::maziak: p.reset(new MaziakMenuDialog); break;
+      case ProgramType::maziak: p.reset(new maziak::MenuDialog); break;
       case ProgramType::maziakVcl:
       {
         const std::string version = "x.x";
@@ -1569,7 +1569,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::pylos: p.reset(new PylosMenuDialog); break;
+      case ProgramType::pylos: p.reset(new pylos::MenuDialog); break;
       case ProgramType::qmakeWatcher: p.reset(new QmakeWatcherMenuDialog); break;
       case ProgramType::quadraticSolver: p.reset(new QuadraticSolverMenuDialog); break;
       case ProgramType::rampalEtienne:

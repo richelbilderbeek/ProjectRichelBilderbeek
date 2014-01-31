@@ -48,7 +48,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #error Pylos::Game must not be used by a QtPylosTestBoard
 #endif
 
-ribi::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
+ribi::pylos::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestPylosTestBoardDialog),
   m_widget(new QtPylosBoardWidget),
@@ -79,13 +79,13 @@ ribi::QtTestPylosTestBoardDialog::QtTestPylosTestBoardDialog(QWidget *parent) :
   UpdateLog();
 }
 
-ribi::QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog() noexcept
+ribi::pylos::QtTestPylosTestBoardDialog::~QtTestPylosTestBoardDialog() noexcept
 {
   m_timer->stop();
   delete ui;
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
 {
   if (m_timer->isActive())
   {
@@ -95,7 +95,7 @@ void ribi::QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
   else
   {
     //Start timer
-    if (m_widget->GetWinner() != Pylos::Winner::none)
+    if (m_widget->GetWinner() != Winner::none)
     {
       if ( (std::rand() >> 4) % 2)
       {
@@ -111,7 +111,7 @@ void ribi::QtTestPylosTestBoardDialog::on_button_play_visual_clicked()
   }
 }
 
-void ribi::QtTestPylosTestBoardDialog::OnTimer()
+void ribi::pylos::QtTestPylosTestBoardDialog::OnTimer()
 {
   //Click player
   if ((rand() >> 4) % 2) { ui->radio_set_player1->click(); } else { ui->radio_set_player2->click(); }
@@ -148,17 +148,17 @@ void ribi::QtTestPylosTestBoardDialog::OnTimer()
   }
   this->m_widget->mousePressEvent(e.get());
 
-  if (m_widget->GetWinner() != Pylos::Winner::none)
+  if (m_widget->GetWinner() != Winner::none)
   {
     m_timer->stop();
   }
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
 {
-  if (m_widget->CanSetPlayer(Pylos::Player::player1))
+  if (m_widget->CanSetPlayer(Player::player1))
   {
-    m_widget->SetPlayer(Pylos::Player::player1);
+    m_widget->SetPlayer(Player::player1);
   }
   else
   {
@@ -166,11 +166,11 @@ void ribi::QtTestPylosTestBoardDialog::on_radio_set_player1_clicked()
   }
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
 {
-  if (m_widget->CanSetPlayer(Pylos::Player::player2))
+  if (m_widget->CanSetPlayer(Player::player2))
   {
-    m_widget->SetPlayer(Pylos::Player::player2);
+    m_widget->SetPlayer(Player::player2);
   }
   else
   {
@@ -178,27 +178,27 @@ void ribi::QtTestPylosTestBoardDialog::on_radio_set_player2_clicked()
   }
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_radio_advanced_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_radio_advanced_clicked()
 {
   m_widget->StartAdvanced();
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_radio_basic_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_radio_basic_clicked()
 {
   m_widget->StartBasic();
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_radio_bw_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_radio_bw_clicked()
 {
   m_widget->SetColorSchemeBlackWhite();
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_radio_rb_clicked()
+void ribi::pylos::QtTestPylosTestBoardDialog::on_radio_rb_clicked()
 {
   m_widget->SetColorSchemeRedBlue();
 }
 
-void ribi::QtTestPylosTestBoardDialog::UpdateLog()
+void ribi::pylos::QtTestPylosTestBoardDialog::UpdateLog()
 {
   ui->text_log->clear();
 
@@ -206,12 +206,12 @@ void ribi::QtTestPylosTestBoardDialog::UpdateLog()
     QString("Selector coordinat: ")
     + QString(m_widget->GetSelector().ToStr().c_str()));
 
-  ui->bar1->setValue(m_widget->GetBoard()->Count(Pylos::PositionState::player1));
-  ui->bar2->setValue(m_widget->GetBoard()->Count(Pylos::PositionState::player2));
+  ui->bar1->setValue(m_widget->GetBoard()->Count(PositionState::player1));
+  ui->bar2->setValue(m_widget->GetBoard()->Count(PositionState::player2));
 
   {
     std::string s = "Other selectors' coordinats: ";
-    const std::vector<Pylos::Coordinat>& v
+    const std::vector<Coordinat>& v
       = m_widget->GetOtherSelectors();
     if (v.empty()) { s+="none"; }
     if (v.size() > 0) { s+= v[0].ToStr(); }
@@ -219,17 +219,17 @@ void ribi::QtTestPylosTestBoardDialog::UpdateLog()
     ui->text_log->appendPlainText(s.c_str());
   }
   {
-    const std::string s = "Must remove: " + Pylos::ToStr(m_widget->GetMustRemove());
+    const std::string s = "Must remove: " + ToStr(m_widget->GetMustRemove());
     ui->text_log->appendPlainText(s.c_str());
   }
   {
-    const std::string s = "Winner: " + Pylos::ToStr(m_widget->GetWinner());
+    const std::string s = "Winner: " + ToStr(m_widget->GetWinner());
     ui->text_log->appendPlainText(s.c_str());
   }
   {
-    const std::vector<Pylos::Move> v = m_widget->GetBoard()->GetAllPossibleMoves(
+    const std::vector<Move> v = m_widget->GetBoard()->GetAllPossibleMoves(
       ui->radio_set_player1->isChecked()
-      ? Pylos::Player::player1 : Pylos::Player::player2);
+      ? Player::player1 : Player::player2);
     const std::size_t sz = v.size();
     {
       const std::string s = "#moves: " + boost::lexical_cast<std::string>(sz) ;
@@ -245,7 +245,7 @@ void ribi::QtTestPylosTestBoardDialog::UpdateLog()
   }
 }
 
-void ribi::QtTestPylosTestBoardDialog::on_slider_tilt_sliderMoved(int position)
+void ribi::pylos::QtTestPylosTestBoardDialog::on_slider_tilt_sliderMoved(int position)
 {
   const double pi = boost::math::constants::pi<double>();
   const double radians = (static_cast<double>(position) * 2.0 * pi) / 360.0;

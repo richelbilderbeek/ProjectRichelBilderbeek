@@ -34,10 +34,12 @@ private slots:
   void on_button_clear_clicked();
   void on_button_text_clicked();
 
+  void on_button_as_dialog_clicked();
+
 private:
   Ui::QtTestTextCanvasMainDialog *ui;
   boost::shared_ptr<TextCanvas> m_canvas;
-  QtCanvas * m_qtcanvas;
+  boost::shared_ptr<QtCanvas> m_qtcanvas;
 
   static const boost::shared_ptr<TextCanvas> CreateCanvas();
 

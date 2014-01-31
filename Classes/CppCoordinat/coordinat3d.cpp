@@ -118,6 +118,17 @@ bool ribi::operator==(const Coordinat3D& lhs, const Coordinat3D& rhs)
     && lhs.GetZ() == rhs.GetZ();
 }
 
+bool ribi::operator<(const Coordinat3D& lhs, const Coordinat3D& rhs)
+{
+  if (lhs.GetX() < rhs.GetX()) return true;
+  if (lhs.GetX() > rhs.GetX()) return false;
+
+  if (lhs.GetY() < rhs.GetY()) return true;
+  if (lhs.GetY() > rhs.GetY()) return false;
+
+  return lhs.GetZ() < rhs.GetZ();
+}
+
 
 std::ostream& ribi::operator<<(std::ostream& os, const Coordinat3D& n)
 {

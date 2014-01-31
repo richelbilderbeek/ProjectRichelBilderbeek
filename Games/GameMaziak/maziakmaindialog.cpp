@@ -21,6 +21,7 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
   : m_signal_game_over{},
     m_signal_game_won{},
     m_signal_start_showing_solution{},
+    m_signal_stop_showing_solution{},
     m_direction(PlayerDirection::pdDown),
     m_distances{},
     m_do_show_solution(false),
@@ -96,8 +97,8 @@ void ribi::maziak::MainDialog::Execute() noexcept
   Receiver r;
   m_signal_game_over.connect(boost::bind(&Receiver::OnGameOver,r));
   m_signal_game_won.connect(boost::bind(&Receiver::OnGameWon,r));
-  m_signal_start_showing_solution.connect(boost::bind(&Receiver::StartShowingSolution,r));
-  m_signal_stop_showing_solution.connect(boost::bind(&Receiver::StopShowingSolution,r));
+  m_signal_start_showing_solution.connect(boost::bind(&Receiver::OnStartShowingSolution,r));
+  m_signal_stop_showing_solution.connect(boost::bind(&Receiver::OnStopShowingSolution,r));
 
 
   while (1)

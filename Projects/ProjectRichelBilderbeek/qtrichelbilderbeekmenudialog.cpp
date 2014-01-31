@@ -154,7 +154,7 @@ const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   a.AddLibrary("QtMysteryMachineWidget version: " + QtMysteryMachineWidget::GetVersion());
   a.AddLibrary("QtOpenQuestionDialog version: " + QtOpenQuestionDialog::GetVersion());
   a.AddLibrary("QtPathArrowItem version: " + QtPathArrowItem::GetVersion());
-  a.AddLibrary("QtPylosWidget version: " + QtPylosWidget::GetVersion());
+  a.AddLibrary("QtPylosWidget version: " + pylos::QtPylosWidget::GetVersion());
   a.AddLibrary("QtQuadBezierArrowItem version: " + QtQuadBezierArrowItem::GetVersion());
   a.AddLibrary("QtQuestionDialog version: " + QtQuestionDialog::GetVersion());
   a.AddLibrary("QtRichelBilderbeekGalleryDialog version: " + QtRichelBilderbeekGalleryDialog::GetVersion());

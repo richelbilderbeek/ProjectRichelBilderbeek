@@ -5,14 +5,16 @@ SOURCES += \
     ../../Games/GameMaziak/qtmaziakmaindialog.cpp \
     ../../Games/GameMaziak/qtmaziakinstructionsdialog.cpp \
     ../../Games/GameMaziak/qtmaziakgamewondialog.cpp \
-    ../../Games/GameMaziak/qtmaziakgameoverdialog.cpp
+    ../../Games/GameMaziak/qtmaziakgameoverdialog.cpp \
+    qtmaziakcanvas.cpp
 
 HEADERS  += \
     ../../Games/GameMaziak/qtmaziakmenudialog.h \
     ../../Games/GameMaziak/qtmaziakmaindialog.h \
     ../../Games/GameMaziak/qtmaziakinstructionsdialog.h \
     ../../Games/GameMaziak/qtmaziakgamewondialog.h \
-    ../../Games/GameMaziak/qtmaziakgameoverdialog.h
+    ../../Games/GameMaziak/qtmaziakgameoverdialog.h \
+    qtmaziakcanvas.h
 
 
 FORMS += \

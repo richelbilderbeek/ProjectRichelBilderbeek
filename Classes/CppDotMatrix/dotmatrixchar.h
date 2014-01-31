@@ -34,6 +34,7 @@ struct DotMatrixChar
   private:
   ~DotMatrixChar() noexcept {}
   friend void boost::checked_delete<>(DotMatrixChar* x);
+  friend void boost::checked_delete<>(const DotMatrixChar* x);
   ///The character
   const char m_c;
 

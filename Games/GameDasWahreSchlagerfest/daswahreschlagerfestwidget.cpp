@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <numeric>
 
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -242,18 +243,23 @@ void ribi::DasWahreSchlagerfestWidget::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::operator<<(std::ostream& os, const ribi::DasWahreSchlagerfestWidget& w)
+const boost::shared_ptr<ribi::TextCanvas> ribi::DasWahreSchlagerfestWidget::ToTextCanvas() const noexcept
 {
-  const int n_rows = static_cast<int>(w.GetTiles().size());
+  const int n_rows = static_cast<int>(GetTiles().size());
   assert(n_rows > 0);
-  const int n_cols = static_cast<int>(w.GetTiles()[0].size());
+  const int n_cols = static_cast<int>(GetTiles()[0].size());
   assert(n_cols > 0);
+
+  boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(n_cols,n_rows)
+  };
+
   for (int row=0; row!=n_rows; ++row)
   {
     for (int col=0; col!=n_cols; ++col)
     {
-      DasWahreSchlagerfestWidget::Tile tile = w.GetTiles()[row][col];
-      const auto cursor = w.GetCursor();
+      DasWahreSchlagerfestWidget::Tile tile = GetTiles()[row][col];
+      const auto cursor = GetCursor();
       if (col == cursor.x && row == cursor.y) { tile = cursor.tile; }
       char c = ' ';
       switch (tile)
@@ -263,9 +269,14 @@ std::ostream& ribi::operator<<(std::ostream& os, const ribi::DasWahreSchlagerfes
         case DasWahreSchlagerfestWidget::Tile::empty    : c = '.'; break;
         case DasWahreSchlagerfestWidget::Tile::richel   : c = 'R'; break;
       }
-      os << c;
+      canvas->PutChar(col,row,c);
     }
-    os << '\n';
   }
+  return canvas;
+}
+
+std::ostream& ribi::operator<<(std::ostream& os, const ribi::DasWahreSchlagerfestWidget& w)
+{
+  os << (*w.ToTextCanvas());
   return os;
 }

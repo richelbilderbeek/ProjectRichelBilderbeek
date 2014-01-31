@@ -40,6 +40,7 @@ struct Coordinat3D
 };
 
 bool operator==(const Coordinat3D& lhs, const Coordinat3D& rhs);
+bool operator<(const Coordinat3D& lhs, const Coordinat3D& rhs);
 std::ostream& operator<<(std::ostream& os, const Coordinat3D& n);
 
 const Coordinat3D operator-(
@@ -55,7 +56,7 @@ const Coordinat3D operator/(
   const Coordinat3D& c,
   const double f);
 
-///Multipl all components of the coordinat by f
+///Multiply all components of the coordinat by f
 const Coordinat3D operator*(
   const Coordinat3D& c,
   const double f) noexcept;

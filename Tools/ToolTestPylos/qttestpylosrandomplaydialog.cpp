@@ -30,23 +30,23 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qttestpylosrandomplaydialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
+ribi::pylos::QtTestPylosRandomPlayDialog::QtTestPylosRandomPlayDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtTestPylosRandomPlayDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog() noexcept
+ribi::pylos::QtTestPylosRandomPlayDialog::~QtTestPylosRandomPlayDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
+void ribi::pylos::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 {
-  const boost::shared_ptr<Pylos::Board> board =  (ui->radio_advanced->isChecked()
-    ? Pylos::Board::CreateAdvancedBoard()
-    : Pylos::Board::CreateBasicBoard() );
+  const boost::shared_ptr<Board> board = (ui->radio_advanced->isChecked()
+    ? Board::CreateAdvancedBoard()
+    : Board::CreateBasicBoard() );
 
   int won1 = 0;
   int won2 = 0;
@@ -58,8 +58,8 @@ void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
 
   for (int i=0; i!=max; ++i)
   {
-    const Pylos::Winner winner = Pylos::Game::PlayRandomGame(board);
-    if (winner == Pylos::Winner::player1) ++won1; else ++won2;
+    const Winner winner = Game::PlayRandomGame(board);
+    if (winner == Winner::player1) ++won1; else ++won2;
     ui->bar_progress->setValue(i);
     ui->bar_won_player1->setValue(
       static_cast<int>(
@@ -69,7 +69,7 @@ void ribi::QtTestPylosRandomPlayDialog::on_button_start_clicked()
   ui->bar_progress->setValue(max);
 }
 
-void ribi::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
+void ribi::pylos::QtTestPylosRandomPlayDialog::on_edit_n_games_textChanged(const QString &arg1)
 {
   try
   {

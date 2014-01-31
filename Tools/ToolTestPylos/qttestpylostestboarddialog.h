@@ -39,6 +39,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace pylos {
 
 class QtTestPylosTestBoardDialog : public QtHideAndShowDialog
 {
@@ -76,6 +77,7 @@ private slots:
   void on_slider_tilt_sliderMoved(int position);
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSTESTBOARDDIALOG_H

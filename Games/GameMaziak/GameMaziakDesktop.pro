@@ -16,6 +16,8 @@ include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 include(GameMaziakDesktop.pri)
 
 SOURCES += qtmain.cpp

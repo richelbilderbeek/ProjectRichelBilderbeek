@@ -14,6 +14,7 @@ namespace Ui {
 
 namespace ribi {
 
+struct Canvas;
 struct DrawCanvas;
 
 class QtTestMultiCanvasMainDialog : public QtHideAndShowDialog
@@ -45,7 +46,7 @@ private:
   boost::shared_ptr<DrawCanvas> m_canvas;
 
   static const boost::shared_ptr<DrawCanvas> CreateCanvas();
-  void ShowCanvas(const DrawCanvas * const canvas = nullptr);
+  void ShowCanvas(const Canvas * const canvas = nullptr);
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -57,6 +57,7 @@ struct Widget
   protected:
   virtual ~Widget() noexcept {}
   friend void boost::checked_delete<>(Widget*);
+  friend void boost::checked_delete<>(const Widget*);
 
   private:
   Rect m_geometry;

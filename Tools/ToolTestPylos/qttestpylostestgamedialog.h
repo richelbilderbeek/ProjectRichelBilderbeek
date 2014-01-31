@@ -36,6 +36,7 @@ namespace Ui {
 
 
 namespace ribi {
+namespace pylos {
 
 struct QtPylosGameWidget;
 
@@ -72,6 +73,7 @@ private slots:
 
 };
 
+} //~namespace pylos
 } //~namespace ribi
 
 #endif // QTTESTPYLOSTESTGAMEDIALOG_H

@@ -7,6 +7,8 @@ namespace maziak {
 ///Class used by MainDialog to receive its own signals
 struct Receiver
 {
+  Receiver();
+
   ///Has the game been lost?
   bool IsGameOver() const noexcept { return m_is_game_over; }
 
@@ -29,6 +31,7 @@ struct Receiver
   bool m_is_game_over;
   bool m_is_game_won;
   bool m_show_solution;
+  bool m_stop_showing_solution;
 
 };
 

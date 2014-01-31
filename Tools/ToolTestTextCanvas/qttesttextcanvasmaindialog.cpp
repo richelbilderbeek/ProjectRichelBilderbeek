@@ -10,6 +10,7 @@
 #include <boost/lambda/lambda.hpp>
 
 #include "qtcanvas.h"
+#include "qtcanvasdialog.h"
 #include "textcanvas.h"
 #include "trace.h"
 #include "ui_qttesttextcanvasmaindialog.h"
@@ -28,8 +29,8 @@ ribi::QtTestTextCanvasMainDialog::QtTestTextCanvasMainDialog(QWidget *parent)
 
   {
     assert(ui->verticalLayout);
-    m_qtcanvas = new QtCanvas(m_canvas);
-    ui->verticalLayout->addWidget(m_qtcanvas);
+    m_qtcanvas.reset(new QtCanvas(m_canvas));
+    ui->verticalLayout->addWidget(m_qtcanvas.get());
   }
 
   {
@@ -100,4 +101,18 @@ void ribi::QtTestTextCanvasMainDialog::on_button_text_clicked()
   const int y = ui->box_text_y->value();
   const std::string s = ui->edit_text->text().toStdString();
   m_canvas->PutText(x,y,s);
+}
+
+void ribi::QtTestTextCanvasMainDialog::on_button_as_dialog_clicked()
+{
+  QtCanvas * const qtcanvas {
+    new QtCanvas(m_canvas)
+  };
+
+  const boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  this->ShowChild(d.get());
+  //qtcanvas will be deleted by QtCanvasDialog
+
 }

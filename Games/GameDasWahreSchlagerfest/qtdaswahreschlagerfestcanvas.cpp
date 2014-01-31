@@ -4,7 +4,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <QKeyEvent>
 
+#include "qtcanvas.h"
 #include "textcanvas.h"
+#include "daswahreschlagerfestwidget.h"
 #include "qtdaswahreschlagerfestwidget.h"
 #pragma GCC diagnostic pop
 
@@ -15,6 +17,8 @@ ribi::QtDasWahreSchlagerfestCanvas::QtDasWahreSchlagerfestCanvas(
 {
   m_widget->m_signal_changed.connect(
     boost::bind(&ribi::QtDasWahreSchlagerfestCanvas::OnChanged,this));
+
+  OnChanged();
 }
 
 const boost::shared_ptr<ribi::Canvas> ribi::QtDasWahreSchlagerfestCanvas::CreateCanvas(
@@ -55,5 +59,5 @@ void ribi::QtDasWahreSchlagerfestCanvas::keyPressEvent(QKeyEvent *e)
 
 void ribi::QtDasWahreSchlagerfestCanvas::OnChanged()
 {
-  this->m_widget->ToTextCanvas();
+  SetCanvas(m_widget->ToTextCanvas());
 }

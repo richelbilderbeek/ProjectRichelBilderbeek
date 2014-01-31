@@ -192,6 +192,13 @@ QPushButton { color: rgb(0,0,0); }</string>
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="QPushButton" name="button_as_dialog">
+     <property name="text">
+      <string>Show as dialog</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>
