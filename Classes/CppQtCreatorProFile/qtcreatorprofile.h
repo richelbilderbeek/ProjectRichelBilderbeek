@@ -192,6 +192,8 @@ struct QtCreatorProFile
   ///The items at SOURCES
   std::set<std::string> m_sources;
 
+  void DoReplacements(std::vector<std::string>& v);
+
   ///Parse the .pro file its content, split into lines
   void Parse(std::stringstream& data);
 

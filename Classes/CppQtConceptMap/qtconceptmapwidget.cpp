@@ -45,20 +45,21 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
 bool ribi::cmap::QtConceptMapWidget::CanDoCommand(
   const boost::shared_ptr<const Command> command) const noexcept
 {
+  assert(command);
+  assert(m_widget.get());
   return command->CanDoCommand(m_widget.get());
 }
 
 void ribi::cmap::QtConceptMapWidget::DoCommand(
   const boost::shared_ptr<Command> command) noexcept
 {
-  assert(command);
-  assert(m_widget.get());
+  assert(CanDoCommand(command));
   command->DoCommand(m_widget.get());
 }
 
 void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
-  if (e->key()  == Qt::Key_Z && e->modifiers() & Qt::ControlModifier)
+  if (e->key() == Qt::Key_Z && e->modifiers() & Qt::ControlModifier)
   {
     TRACE("UNDO");
     this->m_widget->Undo();
@@ -95,7 +96,6 @@ void ribi::cmap::QtConceptMapWidget::mouseMoveEvent(QMouseEvent * e) noexcept
 void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 {
   const QPointF pos = QGraphicsView::mapToScene(e->x(),e->y());
-
   const boost::shared_ptr<CommandSetFocusWithCoordinat> set_focus {
     new CommandSetFocusWithCoordinat(pos.x(),pos.y())
   };

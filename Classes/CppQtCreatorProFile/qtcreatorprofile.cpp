@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/function.hpp>
@@ -78,10 +79,19 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
 
   std::vector<std::string> v = ribi::fileio::FileToVector(filename);
   RemoveComments(v);
+  DoReplacements(v);
   std::stringstream data;
   std::copy(std::begin(v),std::end(v),std::ostream_iterator<std::string>(data," "));
   TRACE(data.str());
   Parse(data);
+}
+
+void ribi::QtCreatorProFile::DoReplacements(std::vector<std::string>& v)
+{
+  for (std::string& s: v)
+  {
+    boost::algorithm::replace_all(s,"include (","include(");
+  }
 }
 
 const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
@@ -136,10 +146,12 @@ void ribi::QtCreatorProFile::Parse(std::stringstream& data)
     if (s[0] == '{') continue;
     if (s[0] == '}') continue;
     if (s[0] == '\\') continue;
-    if (s.substr(0,7) == "include")
+    if (s.size() > 7 && s.substr(0,7) == "include")
     {
       std::string t = s.substr(8,s.size() - 8 - 1);
+      if (verbose) { TRACE(t); }
       while (t[0] == ' ' || t[0] == '(') t = t.substr(1,t.size()-1);
+      if (verbose) { TRACE(t); }
       while (t.back() == ' ' || t.back() == ')') t.pop_back();
       if (verbose) { TRACE(t); }
       assert(t.find('(') == std::string::npos);
@@ -298,7 +310,20 @@ void ribi::QtCreatorProFile::Test() noexcept
     const std::string mypath { fileio::GetTempFileName() };
     {
       std::ofstream f(mypath);
-      f << "includes(something.pri)";
+      f << "include(something.pri)";
+    }
+    //Check the project file
+    const QtCreatorProFile p(mypath);
+    assert(p.GetPriFiles().size() == 1);
+    TRACE(*p.GetPriFiles().begin());
+    assert(p.GetPriFiles().count("something.pri"));
+    fileio::DeleteFile(mypath.c_str());
+  }
+  {
+    const std::string mypath { fileio::GetTempFileName() };
+    {
+      std::ofstream f(mypath);
+      f << "include (something.pri)";
     }
     //Check the project file
     const QtCreatorProFile p(mypath);
