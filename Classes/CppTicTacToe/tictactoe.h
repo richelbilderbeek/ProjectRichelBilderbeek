@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 #include <boost/multi_array.hpp>
 #pragma GCC diagnostic pop
 
@@ -109,6 +110,8 @@ struct TicTacToe
   ///The constant TicTacToe::empty should _not_ be returned.
   int GetWinner() const;
 
+  void Restart() noexcept;
+
   ///SetBoard sets a tic-tac-toe board.
   void SetBoard(const boost::multi_array<int,2>& board);
 
@@ -121,6 +124,8 @@ struct TicTacToe
 
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
+  boost::signals2::signal<void(TicTacToe*)> m_signal_changed;
+
   private:
 
   ///m_board stores the board in an x-y-order.\n
@@ -129,6 +134,9 @@ struct TicTacToe
   ///TicTacToe::player2 : occupied by player 2\n
   boost::multi_array<int,2> m_board;
   int m_current_player;
+
+  ///From http://www.richelbilderbeek.nl/CppIntPower.htm
+  static int IntPower(const int base, const int exponent);
 
   ///NoEmptySquares determines whether there are no empty squares left.
   bool NoEmptySquares() const;
@@ -144,8 +152,6 @@ std::ostream& operator<<(std::ostream& os,const TicTacToe& t);
 
 bool operator==(const TicTacToe& lhs, const TicTacToe& rhs);
 
-///From http://www.richelbilderbeek.nl/CppIntPower.htm
-int IntPower(const int base, const int exponent);
 
 } //~namespace ribi
 

@@ -7,16 +7,15 @@
 #include "qtcanvas.h"
 #include "textcanvas.h"
 #include "maziakmaindialog.h"
-//#include "qtmaziakwidget.h"
 #pragma GCC diagnostic pop
 
 ribi::maziak::QtMaziakCanvas::QtMaziakCanvas(
-  const int width, const int height)
-  : QtCanvas(CreateCanvas(width,height)),
-    m_widget(CreateWidget(width,height))
+  const int size)
+  : QtCanvas(CreateCanvas(size,size)),
+    m_widget(CreateWidget(size))
 {
-  m_widget->m_signal_changed.connect(
-    boost::bind(&ribi::maziak::QtMaziakCanvas::OnChanged,this));
+  //m_widget->m_signal_changed.connect(
+  //  boost::bind(&ribi::maziak::QtMaziakCanvas::OnChanged,this));
 
   OnChanged();
 }
@@ -27,14 +26,15 @@ const boost::shared_ptr<ribi::Canvas> ribi::maziak::QtMaziakCanvas::CreateCanvas
   const boost::shared_ptr<Canvas> canvas {
     new TextCanvas(width,height)
   };
+  assert(canvas);
   return canvas;
 }
 
-const boost::shared_ptr<ribi::MaziakMainDialog> ribi::maziak::QtMaziakCanvas::CreateWidget(
-  const int width, const int height) noexcept
+const boost::shared_ptr<ribi::maziak::MainDialog> ribi::maziak::QtMaziakCanvas::CreateWidget(
+  const int size) noexcept
 {
-  const boost::shared_ptr<MaziakWidget> w {
-    new MaziakWidget(width,height)
+  const boost::shared_ptr<MainDialog> w {
+    new MainDialog(size)
   };
   return w;
 }
@@ -44,13 +44,13 @@ void ribi::maziak::QtMaziakCanvas::keyPressEvent(QKeyEvent *e)
   switch(e->key())
   {
     case Qt::Key_Down: case Qt::Key_S:
-      m_widget->PressKey(ribi::MaziakWidget::Key::down);
+      m_widget->OnKeyPress(ribi::maziak::Key::down);
       break;
     case Qt::Key_Left: case Qt::Key_A:
-      m_widget->PressKey(ribi::MaziakWidget::Key::left);
+      m_widget->OnKeyPress(ribi::maziak::Key::left);
       break;
     case Qt::Key_Right: case Qt::Key_D:
-      m_widget->PressKey(ribi::MaziakWidget::Key::right);
+      m_widget->OnKeyPress(ribi::maziak::Key::right);
       break;
     case Qt::Key_Escape: case Qt::Key_Q:
       close();
@@ -59,5 +59,7 @@ void ribi::maziak::QtMaziakCanvas::keyPressEvent(QKeyEvent *e)
 
 void ribi::maziak::QtMaziakCanvas::OnChanged()
 {
-  SetCanvas(m_widget->ToTextCanvas());
+  const int view_width  = 9;
+  const int view_height = 9;
+  SetCanvas(m_widget->ToTextCanvas(view_width,view_height));
 }

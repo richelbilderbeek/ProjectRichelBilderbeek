@@ -16,6 +16,7 @@
 #include "maziakplayerdirection.h"
 #include "maziakplayermove.h"
 #include "maziaksprite.h"
+//#include "widget.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -66,7 +67,7 @@ struct MainDialog
 
   void SetShowSolution(const bool do_show_solution) noexcept { m_do_show_solution = do_show_solution; }
 
-  const boost::shared_ptr<const TextCanvas> ToTextCanvas(
+  const boost::shared_ptr<TextCanvas> ToTextCanvas(
     const int view_height,
     const int view_width
   ) const noexcept;

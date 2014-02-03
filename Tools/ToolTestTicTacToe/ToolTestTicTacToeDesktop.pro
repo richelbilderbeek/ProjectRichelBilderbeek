@@ -1,76 +1,29 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-TEMPLATE = app
+include(../../DesktopApplication.pri)
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppQtAboutDialog \
-    ../../Classes/CppQtHideAndShowDialog \
-    ../../Classes/CppQtTicTacToeWidget \
-    ../../Classes/CppTicTacToe \
-    ../../Classes/CppTrace
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.cpp \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
-    ../../Classes/CppQtTicTacToeWidget/qttictactoewidget.cpp \
-    ../../Classes/CppTicTacToe/tictactoe.cpp \
-    qtmain.cpp \
-    qttooltesttictactoemaindialog.cpp \
-    qttooltesttictactoemenudialog.cpp \
-    tooltesttictactoemenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp
+#General, desktop
+include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
+include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-HEADERS  += \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.h \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
-    ../../Classes/CppQtTicTacToeWidget/qttictactoewidget.h \
-    ../../Classes/CppTicTacToe/tictactoe.h \
-    qttooltesttictactoemaindialog.h \
-    qttooltesttictactoemenudialog.h \
-    tooltesttictactoemenudialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppTrace/trace.h
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppTicTacToe/CppTicTacToe.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
 
-FORMS += \
-    qttooltesttictactoemaindialog.ui \
-    qttooltesttictactoemenudialog.ui \
-    ../../Classes/CppQtAboutDialog/qtaboutdialog.ui
+#Specific, desktop
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
+include(../../Classes/CppQtTicTacToeWidget/CppQtTicTacToeWidget.pri)
+include(../../Tools/ToolTestTicTacToe/ToolTestTicTacToeDesktop.pri)
 
-RESOURCES += \
-    ToolTestTicTacToe.qrc
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt \
-    ../../Classes/CppTicTacToe/Licence.txt \
-    ../../Classes/CppQtAboutDialog/Licence.txt \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppQtTicTacToeWidget/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+SOURCES += qtmain.cpp

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>276</width>
-    <height>219</height>
+    <width>171</width>
+    <height>190</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -92,110 +92,43 @@
    <string>TicTacToe</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
+   <iconset resource="GameTicTacToe.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0" colspan="4">
-    <widget class="QLabel" name="label_title">
-     <property name="font">
-      <font>
-       <pointsize>36</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>TicTacToe</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/O.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/O.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" colspan="2">
+   <item row="1" column="0" colspan="2">
     <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string>About</string>
+      <string>&amp;About</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="2" column="3">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/X.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/X.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" colspan="2">
+   <item row="2" column="0" colspan="2">
     <widget class="QPushButton" name="button_quit">
      <property name="text">
-      <string>Quit</string>
+      <string>&amp;Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="3" column="3">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/O.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="GameTicTacToe.qrc">:/images/X.png</pixmap>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1" colspan="2">
+   <item row="0" column="0" colspan="2">
     <widget class="QPushButton" name="button_start">
      <property name="text">
-      <string>Start</string>
+      <string>&amp;Start</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
   <include location="GameTicTacToe.qrc"/>
  </resources>
  <connections/>

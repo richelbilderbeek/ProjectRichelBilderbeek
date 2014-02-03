@@ -26,4 +26,3 @@ include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 include(../../Tools/ToolTestTextCanvas/ToolTestTextCanvasDesktop.pri)
 
 SOURCES += qtmain.cpp
-

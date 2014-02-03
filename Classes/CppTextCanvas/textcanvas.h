@@ -45,10 +45,7 @@ struct TextCanvas : public Canvas
   ///Obtain the height of the canvas is characters
   int GetHeight() const noexcept { return m_canvas.size(); }
 
-  ///Obtain the version of this class
   static const std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters

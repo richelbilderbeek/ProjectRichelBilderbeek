@@ -412,7 +412,7 @@ void ribi::maziak::MainDialog::Test() noexcept
 }
 #endif
 
-const boost::shared_ptr<const ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas(
+const boost::shared_ptr<ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas(
   const int view_height,
   const int view_width
 ) const noexcept

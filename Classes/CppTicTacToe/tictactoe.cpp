@@ -38,7 +38,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 ///TicTacToe default contructor creates an empty board,
 ///where the current turn is to player1.
 ribi::TicTacToe::TicTacToe()
-  : m_board(boost::extents[3][3]),
+  : m_signal_changed{},
+    m_board(boost::extents[3][3]),
     m_current_player(ribi::TicTacToe::player1)
 {
   #ifndef NDEBUG
@@ -56,7 +57,8 @@ ribi::TicTacToe::TicTacToe()
 
 ///TicTacToe contructor from summized state integer.
 ribi::TicTacToe::TicTacToe(const int state)
-  : m_board(boost::extents[3][3]),
+  : m_signal_changed{},
+    m_board(boost::extents[3][3]),
     m_current_player(-1)
 {
   SetSummarizedState(state);
@@ -78,6 +80,7 @@ void ribi::TicTacToe::DoMove(const int x, const int y)
   //  << ": (" << x << "," << y << ")\n";
   m_board[x][y] = m_current_player;
   m_current_player = (m_current_player == 1 ? 2 : 1);
+  m_signal_changed(this);
 }
 
 int ribi::TicTacToe::GetCurrentTurn() const
@@ -108,7 +111,7 @@ int ribi::TicTacToe::GetSummarizedState() const
 
 const std::string ribi::TicTacToe::GetVersion() noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 const std::vector<std::string> ribi::TicTacToe::GetVersionHistory() noexcept
@@ -116,6 +119,7 @@ const std::vector<std::string> ribi::TicTacToe::GetVersionHistory() noexcept
   std::vector<std::string> v {
     "2010-09-19: version 1.3: made CanDoMove method a const member function",
     "2014-01-27: version 1.4: added ToTextCanvas",
+    "2014-02-03: version 1.5: added m_signal_changed"
   };
   return v;
 }
@@ -154,6 +158,21 @@ int ribi::TicTacToe::GetWinner() const
   return ribi::TicTacToe::no_winner;
 }
 
+int ribi::TicTacToe::IntPower(const int base, const int exponent)
+{
+  assert(exponent != 0
+    && "When calculating IntPower(x,0) the result "
+       "might be zero or one, depending on the context");
+  assert(exponent > 0);
+
+  int result = base;
+  for (int i=1; i!=exponent; ++i)
+  {
+    result*=base;
+  }
+  return result;
+}
+
 bool ribi::TicTacToe::NoEmptySquares() const
 {
   for (int i=0; i!=9; ++i)
@@ -163,8 +182,21 @@ bool ribi::TicTacToe::NoEmptySquares() const
   return true;
 }
 
+void ribi::TicTacToe::Restart() noexcept
+{
+  for (int i=0; i!=9; ++i)
+  {
+    m_board[i/3][i%3] = ribi::TicTacToe::empty;
+  }
+  m_current_player = ribi::TicTacToe::player1;
+
+  m_signal_changed(this);
+}
+
 void ribi::TicTacToe::SetBoard(const boost::multi_array<int,2>& board)
 {
+  if (m_board == board) return;
+
   m_board = board;
 
   #ifndef NDEBUG
@@ -178,6 +210,8 @@ void ribi::TicTacToe::SetBoard(const boost::multi_array<int,2>& board)
     }
   }
   #endif
+
+  m_signal_changed(this);
 }
 
 ///SetSquare sets the value of square (x,y).
@@ -188,14 +222,20 @@ void ribi::TicTacToe::SetSquare(
     || square_state == ribi::TicTacToe::player1
     || square_state == ribi::TicTacToe::player2);
 
+  if (m_board[x][y] == square_state) return;
+
   m_board[x][y] = square_state;
 
   //Internal test
   assert(GetSquare(x,y)==square_state);
+
+  m_signal_changed(this);
 }
 
 void ribi::TicTacToe::SetSummarizedState(const int original_state)
 {
+  if (GetSummarizedState() == original_state) return;
+
   int s = original_state;
   for (int i=0; i!=9; ++i)
   {
@@ -211,6 +251,8 @@ void ribi::TicTacToe::SetSummarizedState(const int original_state)
 
   //Internal check
   assert(GetSummarizedState()==original_state);
+
+  m_signal_changed(this);
 }
 
 #ifndef NDEBUG
@@ -222,6 +264,150 @@ void ribi::TicTacToe::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TicTacToe::Test");
+  {
+    //Check empty board state
+    {
+      TicTacToe t;
+      const int s = t.GetSummarizedState();
+      TicTacToe u(s);
+      assert(u == t);
+    }
+    //Check one-move states
+    for (int i=0; i!=9; ++i)
+    {
+      TicTacToe t;
+      t.DoMove(i/3,i%3);
+      const int s = t.GetSummarizedState();
+      TicTacToe u(s);
+      assert(u == t);
+    }
+    //Check two-move states
+    for (int i=0; i!=8; ++i)
+    {
+      TicTacToe t;
+      t.DoMove(i/3,i%3);
+      t.DoMove(i/3,(i+1)%3);
+      const int s = t.GetSummarizedState();
+      TicTacToe u(s);
+      assert(u == t);
+    }
+    //Check draw detection
+    {
+      TicTacToe t;
+      assert(t.GetCurrentPlayer() == TicTacToe::player1);
+      assert(t.GetCurrentTurn()   == 0);
+      t.DoMove(1,1);
+      assert(t.GetCurrentPlayer() == TicTacToe::player2);
+      assert(t.GetCurrentTurn()   == 1);
+      t.DoMove(0,0);
+      assert(t.GetCurrentPlayer() == TicTacToe::player1);
+      assert(t.GetCurrentTurn()   == 2);
+      t.DoMove(1,2);
+      assert(t.GetCurrentPlayer() == TicTacToe::player2);
+      assert(t.GetCurrentTurn()   == 3);
+      t.DoMove(1,0);
+      assert(t.GetCurrentPlayer() == TicTacToe::player1);
+      assert(t.GetCurrentTurn()   == 4);
+      t.DoMove(2,0);
+      assert(t.GetCurrentPlayer() == TicTacToe::player2);
+      assert(t.GetCurrentTurn()   == 5);
+      t.DoMove(0,2);
+      assert(t.GetCurrentPlayer() == TicTacToe::player1);
+      assert(t.GetCurrentTurn()   == 6);
+      t.DoMove(0,1);
+      assert(t.GetCurrentPlayer() == TicTacToe::player2);
+      assert(t.GetCurrentTurn()   == 7);
+      t.DoMove(2,1);
+      assert(t.GetCurrentPlayer() == TicTacToe::player1);
+      assert(t.GetCurrentTurn()   == 8);
+      t.DoMove(2,2);
+      assert(t.GetCurrentPlayer() == TicTacToe::player2);
+      assert(t.GetCurrentTurn()   == 9);
+      assert(t.GetWinner() == TicTacToe::draw);
+    }
+    //Check player1 wins horizontally detection
+    {
+      TicTacToe t;
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(0,0);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,0);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(0,1);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,1);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(0,2);
+      assert(t.GetWinner() == TicTacToe::player1);
+    }
+    //Check player2 wins vertically detection
+    {
+      TicTacToe t;
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(0,0);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,0);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(0,1);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,1);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(2,2);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,2);
+      assert(t.GetWinner() == TicTacToe::player2);
+    }
+    //Check player1 wins diagonally detection
+    {
+      TicTacToe t;
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(0,0);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,0);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,1);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(1,2);
+      assert(t.GetWinner() == TicTacToe::no_winner);
+      t.DoMove(2,2);
+      assert(t.GetWinner() == TicTacToe::player1);
+    }
+    //Check no-winner detection
+    {
+      TicTacToe t;
+      t.DoMove(1,1);
+      t.DoMove(0,0);
+      t.DoMove(1,2);
+      t.DoMove(1,0);
+      t.DoMove(2,0);
+      t.DoMove(0,2);
+      t.DoMove(0,1);
+      t.DoMove(2,1);
+      //t.DoMove(2,2); //Final move to make a draw
+      assert(t.GetWinner() == TicTacToe::no_winner);
+    }
+    //Check CanDoMove
+    for (int i=0; i!=9; ++i)
+    {
+      TicTacToe t;
+      t.DoMove(i/3,i%3);
+      assert(t.CanDoMove(i/3,i%3)==false);
+    }
+    //Check all states
+    //59049 = 3^10
+    for (int i=0; i!=59049; ++i)
+    {
+      try
+      {
+        TicTacToe t(i);
+        assert(t.GetSummarizedState() == i);
+      }
+      catch (std::exception&)
+      {
+        //No problem
+      }
+    }
+  }
   TRACE("Finished ribi::TicTacToe::Test successfully");
 }
 #endif
@@ -271,19 +457,4 @@ bool ribi::operator==(const TicTacToe& lhs, const TicTacToe& rhs)
   return lhs.GetBoard() == rhs.GetBoard()
       && lhs.GetCurrentPlayer() == rhs.GetCurrentPlayer()
       && lhs.GetCurrentTurn() == rhs.GetCurrentTurn();
-}
-
-int ribi::IntPower(const int base, const int exponent)
-{
-  assert(exponent != 0
-    && "When calculating IntPower(x,0) the result "
-       "might be zero or one, depending on the context");
-  assert(exponent > 0);
-
-  int result = base;
-  for (int i=1; i!=exponent; ++i)
-  {
-    result*=base;
-  }
-  return result;
 }

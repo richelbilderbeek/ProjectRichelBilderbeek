@@ -25,7 +25,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+#include <boost/signals2.hpp>
 #include <QWidget>
 #pragma GCC diagnostic pop
 
@@ -38,14 +40,21 @@ class QtTicTacToeWidget : public QWidget
   Q_OBJECT
 public:
   explicit QtTicTacToeWidget(QWidget *parent = 0);
-  const TicTacToe * GetTicTacToe() const { return m_tictactoe.get(); }
+  const boost::shared_ptr<const TicTacToe> GetTicTacToe() const { return m_tictactoe; }
+
+  //const TicTacToe * GetTicTacToe() const { return m_tictactoe.get(); } //Why did I once use this form?
+
   void Restart();
 
   ///mousePressEvent must be public for TicTacToeTest's
   ///virtual mouse clicks
   void mousePressEvent(QMouseEvent *);
 
-  static const std::string GetVersion() { return "1.0"; }
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_changed;
+  boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_has_winner;
 
 protected:
   void paintEvent(QPaintEvent *);
@@ -54,14 +63,16 @@ protected:
 private:
   boost::shared_ptr<TicTacToe> m_tictactoe;
 
+  void OnChanged(const TicTacToe * const);
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
-signals:
-  void hasWinner();
-  void stateChanged();
-public slots:
+//signals:
+//  void hasWinner();
+//  void stateChanged();
+//public slots:
 
 };
 

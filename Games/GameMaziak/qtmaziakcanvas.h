@@ -11,19 +11,19 @@
 namespace ribi {
 namespace maziak {
 
-struct MaziakMainDialog;
+struct MainDialog;
 
 struct QtMaziakCanvas : public QtCanvas
 {
-  QtMaziakCanvas(const int width = 9, const int height = 5);
+  QtMaziakCanvas(const int size);
 
   void keyPressEvent(QKeyEvent *e);
 
   private:
-  const boost::shared_ptr<MaziakMainDialog> m_widget;
+  const boost::shared_ptr<MainDialog> m_widget;
 
   static const boost::shared_ptr<Canvas> CreateCanvas(const int width, const int height) noexcept;
-  static const boost::shared_ptr<MaziakMainDialog> CreateWidget(const int width, const int height) noexcept;
+  static const boost::shared_ptr<MainDialog> CreateWidget(const int size) noexcept;
 
   void OnChanged();
 };

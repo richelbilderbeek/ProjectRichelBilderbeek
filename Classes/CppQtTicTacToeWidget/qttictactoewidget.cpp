@@ -20,10 +20,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qttictactoewidget.h"
 
 #include <cassert>
 #include <iostream>
+
+#include <boost/lambda/lambda.hpp>
 
 #include <QMouseEvent>
 #include <QPainter>
@@ -35,6 +38,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   QWidget(parent),
+  m_signal_changed{},
+  m_signal_has_winner{},
   m_tictactoe(new TicTacToe)
 {
   #ifndef NDEBUG
@@ -44,6 +49,26 @@ ribi::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   assert(m_tictactoe);
   this->setMinimumHeight(64);
   this->setMinimumWidth(64);
+
+  m_tictactoe->m_signal_changed.connect(
+    boost::bind(&QtTicTacToeWidget::OnChanged,this,boost::lambda::_1)
+  );
+
+
+}
+
+const std::string ribi::QtTicTacToeWidget::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::QtTicTacToeWidget::GetVersionHistory() noexcept
+{
+  return {
+    "20xx-xx-xx: version 1.0: initial version",
+    "2014-02-03: version 1.1: improved interface"
+  };
+
 }
 
 void ribi::QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
@@ -56,11 +81,10 @@ void ribi::QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
   if (m_tictactoe->CanDoMove(x,y))
   {
     m_tictactoe->DoMove(x,y);
-    emit stateChanged();
   }
   if (m_tictactoe->GetWinner() != TicTacToe::no_winner)
   {
-    emit hasWinner();
+    m_signal_has_winner(this);
   }
   repaint();
 }
@@ -122,6 +146,12 @@ void ribi::QtTicTacToeWidget::paintEvent(QPaintEvent *)
   }
 }
 
+void ribi::QtTicTacToeWidget::OnChanged(const TicTacToe * const)
+{
+  repaint();
+  m_signal_changed(this);
+}
+
 void ribi::QtTicTacToeWidget::resizeEvent(QResizeEvent *)
 {
   repaint();
@@ -129,8 +159,7 @@ void ribi::QtTicTacToeWidget::resizeEvent(QResizeEvent *)
 
 void ribi::QtTicTacToeWidget::Restart()
 {
-  m_tictactoe.reset(new TicTacToe);
-  repaint();
+  m_tictactoe->Restart();
 }
 
 #ifndef NDEBUG
@@ -142,6 +171,8 @@ void ribi::QtTicTacToeWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTicTacToeWidget::Test");
+  QtTicTacToeWidget w;
+  assert(w.GetTicTacToe());
   TRACE("Finished ribi::QtTicTacToeWidget::Test successfully");
 }
 #endif

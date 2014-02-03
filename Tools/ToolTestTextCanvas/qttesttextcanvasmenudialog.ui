@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>273</width>
+    <width>262</width>
     <height>228</height>
    </rect>
   </property>
@@ -23,30 +23,8 @@ QPushButton { background-color: rgb(255, 255, 255);  }
 QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 48px  }</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <property name="fieldGrowthPolicy">
-    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
-   </property>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
-     <property name="maximumSize">
-      <size>
-       <width>64</width>
-       <height>64</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap>:/images/TestTextCanvasWelcome.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <widget class="QPushButton" name="button_start_canvas">
      <property name="text">
       <string>TextCanvas</string>
@@ -56,7 +34,7 @@ QPushButton { font: 48px  }</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
+   <item>
     <widget class="QPushButton" name="button_about">
      <property name="text">
       <string>About</string>
@@ -66,7 +44,7 @@ QPushButton { font: 48px  }</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item>
     <widget class="QPushButton" name="button_quit">
      <property name="text">
       <string>Quit</string>
