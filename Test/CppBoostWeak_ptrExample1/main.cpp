@@ -1,14 +1,18 @@
 #include <iostream>
 #include <vector>
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/checked_delete.hpp>
 #include <boost/weak_ptr.hpp>
+#pragma GCC diagnostic pop
 
 ///A person with an ID
 struct Person
 {
   ///Create a Person with an ID
-  Person(const int id) { SetId(id); }
+  Person(const int id) : m_id{id} {}
 
   ///Get the Person his/her ID
   int GetId() const { return m_id; }
@@ -30,7 +34,7 @@ struct Person
 struct Database
 {
   ///Create a single Person (but more is possible as well)
-  Database()
+  Database() : m_persons{}
   {
     //Create a single person
     m_persons.push_back(boost::shared_ptr<Person>(new Person(1)));

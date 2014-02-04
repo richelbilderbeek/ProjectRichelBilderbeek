@@ -1,14 +1,28 @@
-QT       -= core
-QT       -= gui
-TARGET = CppAddOne
+include(../../ConsoleApplication.pri) #Or use the code below
+# QT += core
+# QT += gui
+# greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+# CONFIG   += console
+# CONFIG   -= app_bundle
+# TEMPLATE = app
+# CONFIG(release, debug|release) {
+#   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+# }
+# QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
+# unix {
+#   QMAKE_CXXFLAGS += -Werror
+# }
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -effc++
+include(../../Libraries/Boost.pri) #Or use the code below
+# win32 {
+#   INCLUDEPATH += \
+#     ../../Libraries/boost_1_54_0
+# }
 
-#Needed for gprog
-QMAKE_CXXFLAGS_DEBUG += -pg
-QMAKE_LFLAGS_DEBUG += -pg
+include(../../Libraries/Gprof.pri) #Or use the code below
+# QMAKE_CXXFLAGS_DEBUG += -pg
+# QMAKE_LFLAGS_DEBUG += -pg
 
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
 SOURCES += main.cpp
+
+

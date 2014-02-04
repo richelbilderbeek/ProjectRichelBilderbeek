@@ -4,7 +4,11 @@
 #include <vector>
 #include <string>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QDir>
+#pragma GCC diagnostic pop
 
 ///Obtain all files in a folder including thos in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm

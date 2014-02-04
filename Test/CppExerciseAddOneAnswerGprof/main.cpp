@@ -8,10 +8,14 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 #include <boost/timer.hpp>
 #include <boost/lambda/lambda.hpp>
-//#include <QObject>
+#pragma GCC diagnostic pop
 
 void AddForAssignment1stConstSize(std::vector<int>& v)
 {
@@ -188,16 +192,11 @@ void AddAlgorithmInlineFunctionPreIncrement(std::vector<int>& v)
 }
 
 //Non-inline-operator() structs
-struct AddOnerNonInlineAssignment1st : public std::unary_function<int,void>
-  { void operator()(int& x) { x=1+x; } };
-struct AddOnerNonInlineAssignment2nd : public std::unary_function<int,void>
-  { void operator()(int& x) { x=x+1; } };
-struct AddOnerNonInlineIncrease : public std::unary_function<int,void>
-  { void operator()(int& x) { x+=1; } };
-struct AddOnerNonInlinePostIncrement : public std::unary_function<int,void>
-  { void operator()(int& x) { x++; } };
-struct AddOnerNonInlinePreIncrement : public std::unary_function<int,void>
-  { void operator()(int& x) { ++x; } };
+struct AddOnerNonInlineAssignment1st { void operator()(int& x) { x=1+x; } };
+struct AddOnerNonInlineAssignment2nd { void operator()(int& x) { x=x+1; } };
+struct AddOnerNonInlineIncrease      { void operator()(int& x) { x+=1;  } };
+struct AddOnerNonInlinePostIncrement { void operator()(int& x) { x++;   } };
+struct AddOnerNonInlinePreIncrement  { void operator()(int& x) { ++x;   } };
 
 void AddAlgorithmFunctorNonInlineAssignment1st(std::vector<int>& v)
 {
@@ -225,16 +224,11 @@ void AddAlgorithmFunctorNonInlinePreIncrement(std::vector<int>& v)
 }
 
 //Inline-operator() structs
-struct AddOnerInlineAssignment1st : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x=1+x; } };
-struct AddOnerInlineAssignment2nd : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x=x+1; } };
-struct AddOnerInlineIncrease : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x+=1; } };
-struct AddOnerInlinePostIncrement : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x++; } };
-struct AddOnerInlinePreIncrement : public std::unary_function<int,void>
-  { inline void operator()(int& x) { ++x; } };
+struct AddOnerInlineAssignment1st { inline void operator()(int& x) { x=1+x; } };
+struct AddOnerInlineAssignment2nd { inline void operator()(int& x) { x=x+1; } };
+struct AddOnerInlineIncrease      { inline void operator()(int& x) { x+=1;  } };
+struct AddOnerInlinePostIncrement { inline void operator()(int& x) { x++;   } };
+struct AddOnerInlinePreIncrement  { inline void operator()(int& x) { ++x;   } };
 
 void AddAlgorithmFunctorInlineAssignment1st(std::vector<int>& v)
 {
@@ -323,52 +317,52 @@ void AddBoostLambdaAssignment2nd(std::vector<int>& v)
   std::for_each(v.begin(),v.end(), boost::lambda::_1 = 1 + boost::lambda::_1);
 }
 
-void AddCpp0xForPreIncrement(std::vector<int>& v)
+void AddCpp11ForPreIncrement(std::vector<int>& v)
 {
   for(int &i: v) { ++i; }
 }
 
-void AddCpp0xForPostIncrement(std::vector<int>& v)
+void AddCpp11ForPostIncrement(std::vector<int>& v)
 {
   for(int &i: v) { i++; }
 }
 
-void AddCpp0xForIncrease(std::vector<int>& v)
+void AddCpp11ForIncrease(std::vector<int>& v)
 {
   for(int &i: v) { i+=1; }
 }
 
-void AddCpp0xForAssignment1st(std::vector<int>& v)
+void AddCpp11ForAssignment1st(std::vector<int>& v)
 {
   for(int &i: v) { i=1+i; }
 }
 
-void AddCpp0xForAssignment2nd(std::vector<int>& v)
+void AddCpp11ForAssignment2nd(std::vector<int>& v)
 {
   for(int &i: v) { i=i+1; }
 }
 
-void AddCpp0xLambdaPreIncrement(std::vector<int>& v)
+void AddCpp11LambdaPreIncrement(std::vector<int>& v)
 {
   std::for_each(v.begin(),v.end(), [](int&i) { ++i; } );
 }
 
-void AddCpp0xLambdaPostIncrement(std::vector<int>& v)
+void AddCpp11LambdaPostIncrement(std::vector<int>& v)
 {
   std::for_each(v.begin(),v.end(), [](int&i) { i++; } );
 }
 
-void AddCpp0xLambdaIncrease(std::vector<int>& v)
+void AddCpp11LambdaIncrease(std::vector<int>& v)
 {
   std::for_each(v.begin(),v.end(), [](int&i) { i+=1; } );
 }
 
-void AddCpp0xLambdaAssignment1st(std::vector<int>& v)
+void AddCpp11LambdaAssignment1st(std::vector<int>& v)
 {
   std::for_each(v.begin(),v.end(), [](int&i) { i = i + 1; } );
 }
 
-void AddCpp0xLambdaAssignment2nd(std::vector<int>& v)
+void AddCpp11LambdaAssignment2nd(std::vector<int>& v)
 {
   std::for_each(v.begin(),v.end(), [](int&i) { i = 1 + i; } );
 }
@@ -498,28 +492,28 @@ std::vector<Function> GetFunctions()
     "Boost.Lambda, assignment 1st"));
   v.push_back(Function(AddBoostLambdaAssignment2nd,
     "Boost.Lambda, assignment 2nd"));
-  //C++0x ranged for loop
-  v.push_back(Function(AddCpp0xForPreIncrement,
-    "C++0x ranged for loop, pre-increment"));
-  v.push_back(Function(AddCpp0xForPostIncrement,
-    "C++0x ranged for loop, post-increment"));
-  v.push_back(Function(AddCpp0xForIncrease,
-    "C++0x ranged for loop, increase"));
-  v.push_back(Function(AddCpp0xForAssignment1st,
-    "C++0x ranged for loop, assignment 1st"));
-  v.push_back(Function(AddCpp0xForAssignment2nd,
-    "C++0x ranged for loop, assignment 2nd"));
-  //C++0x Lambda
-  v.push_back(Function(AddCpp0xLambdaPreIncrement,
-    "C++0x lambda expression, pre-increment"));
-  v.push_back(Function(AddCpp0xLambdaPostIncrement,
-    "C++0x lambda expression, post-increment"));
-  v.push_back(Function(AddCpp0xLambdaIncrease,
-    "C++0x lambda expression, increase"));
-  v.push_back(Function(AddCpp0xLambdaAssignment1st,
-    "C++0x lambda expression, assignment 1st"));
-  v.push_back(Function(AddCpp0xLambdaAssignment2nd,
-    "C++0x lambda expression, assignment 2nd"));
+  //C++11 ranged for loop
+  v.push_back(Function(AddCpp11ForPreIncrement,
+    "C++11 ranged for loop, pre-increment"));
+  v.push_back(Function(AddCpp11ForPostIncrement,
+    "C++11 ranged for loop, post-increment"));
+  v.push_back(Function(AddCpp11ForIncrease,
+    "C++11 ranged for loop, increase"));
+  v.push_back(Function(AddCpp11ForAssignment1st,
+    "C++11 ranged for loop, assignment 1st"));
+  v.push_back(Function(AddCpp11ForAssignment2nd,
+    "C++11 ranged for loop, assignment 2nd"));
+  //C++11 Lambda
+  v.push_back(Function(AddCpp11LambdaPreIncrement,
+    "C++11 lambda expression, pre-increment"));
+  v.push_back(Function(AddCpp11LambdaPostIncrement,
+    "C++11 lambda expression, post-increment"));
+  v.push_back(Function(AddCpp11LambdaIncrease,
+    "C++11 lambda expression, increase"));
+  v.push_back(Function(AddCpp11LambdaAssignment1st,
+    "C++11 lambda expression, assignment 1st"));
+  v.push_back(Function(AddCpp11LambdaAssignment2nd,
+    "C++11 lambda expression, assignment 2nd"));
   return v;
 }
 
@@ -598,7 +592,7 @@ Size std::vector: 40000000
 Repeats: 10
 Timer minimal interval: 1e-06
 Results (best result first):
-C++0x lambda expression, pre-increment: 0.37
+C++11 lambda expression, pre-increment: 0.37
 Iterator, increase, non-const end: 0.38
 Algorithm, functor, inline, assignment 1st: 0.38
 Algorithm, functor, non-inline, increase: 0.38
@@ -614,9 +608,9 @@ Algorithm, inline function, assignment 2nd: 0.39
 BOOST_FOREACH, pre-increment: 0.39
 Algorithm, functor, non-inline, assignment 2nd: 0.39
 Algorithm, inline function, post-increment: 0.39
-C++0x ranged for loop, pre-increment: 0.39
+C++11 ranged for loop, pre-increment: 0.39
 Algorithm, functor, non-inline, assignment 1st: 0.39
-C++0x ranged for loop, assignment 2nd: 0.39
+C++11 ranged for loop, assignment 2nd: 0.39
 Boost.Lambda, assignment 2nd: 0.39
 Algorithm, functor, non-inline, post-increment: 0.39
 Iterator, post-increment, non-const end: 0.39
@@ -630,24 +624,24 @@ Iterator, pre-increment, const end: 0.39
 Iterator, assignment 2nd, non-const end: 0.39
 Algorithm, inline function, assignment 1st: 0.39
 Algorithm, functor, inline, post-increment: 0.4
-C++0x lambda expression, increase: 0.4
+C++11 lambda expression, increase: 0.4
 Boost.Lambda, post-increment: 0.4
 Boost.Lambda, increase: 0.4
 Iterator, increase, const end: 0.4
 Algorithm, std::plus, std::bind1st: 0.4
 Iterator, assignment 1st, non-const end: 0.4
-C++0x ranged for loop, increase: 0.4
+C++11 ranged for loop, increase: 0.4
 Algorithm, functor, inline, increase: 0.4
-C++0x lambda expression, post-increment: 0.4
+C++11 lambda expression, post-increment: 0.4
 Algorithm, functor, inline, assignment 2nd: 0.4
-C++0x ranged for loop, post-increment: 0.4
+C++11 ranged for loop, post-increment: 0.4
 Algorithm, inline function, increase: 0.4
 Algorithm, non-inline function, increase: 0.4
 Algorithm, non-inline function, pre-increment: 0.4
-C++0x ranged for loop, assignment 1st: 0.4
+C++11 ranged for loop, assignment 1st: 0.4
 BOOST_FOREACH, post-increment: 0.4
 Iterator, assignment 1st, const end: 0.4
-C++0x lambda expression, assignment 1st: 0.41
+C++11 lambda expression, assignment 1st: 0.41
 Algorithm, functor, inline, pre-increment: 0.41
 For-loop, increase, const size: 0.44
 For-loop, increase, non-const size: 0.44
@@ -655,7 +649,7 @@ For-loop, assignment 1st, const size: 0.44
 For-loop, assignment 2nd, non-const size: 0.45
 For-loop, assignment 1st, non-const size: 0.46
 For-loop, assignment 2nd, const size: 0.46
-C++0x lambda expression, assignment 2nd: 0.46
+C++11 lambda expression, assignment 2nd: 0.46
 For-loop, post-increment, const size: 0.47
 For-loop, post-increment, non-const size: 0.47
 For-loop, pre-increment, non-const size: 0.48

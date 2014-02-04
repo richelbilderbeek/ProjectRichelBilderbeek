@@ -2,7 +2,12 @@
 #include <cassert>
 #include <set>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/circular_buffer.hpp>
+#pragma GCC diagnostic pop
 
 ///Copies
 template<class T>

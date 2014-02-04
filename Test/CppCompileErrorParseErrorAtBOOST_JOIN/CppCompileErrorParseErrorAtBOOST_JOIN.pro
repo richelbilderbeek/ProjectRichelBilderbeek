@@ -1,3 +1,5 @@
+include(../../Libraries/Boost.pri) #Or use the code below
+
 QT += core gui
 QT += webkit
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -19,10 +21,10 @@ CONFIG(release, debug|release) {
 TEMPLATE = app
 
 
-
 SOURCES += \
     main.cpp \
     qtdialog.cpp
+
 QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
 
 HEADERS += \

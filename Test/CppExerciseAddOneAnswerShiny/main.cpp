@@ -220,16 +220,11 @@ void AddAlgorithmInlineFunctionPreIncrement(std::vector<int>& v)
 }
 
 //Non-inline-operator() structs
-struct AddOnerNonInlineAssignment1st : public std::unary_function<int,void>
-  { void operator()(int& x) { x=1+x; } };
-struct AddOnerNonInlineAssignment2nd : public std::unary_function<int,void>
-  { void operator()(int& x) { x=x+1; } };
-struct AddOnerNonInlineIncrease : public std::unary_function<int,void>
-  { void operator()(int& x) { x+=1; } };
-struct AddOnerNonInlinePostIncrement : public std::unary_function<int,void>
-  { void operator()(int& x) { x++; } };
-struct AddOnerNonInlinePreIncrement : public std::unary_function<int,void>
-  { void operator()(int& x) { ++x; } };
+struct AddOnerNonInlineAssignment1st { void operator()(int& x) { x=1+x; } };
+struct AddOnerNonInlineAssignment2nd { void operator()(int& x) { x=x+1; } };
+struct AddOnerNonInlineIncrease      { void operator()(int& x) { x+=1;  } };
+struct AddOnerNonInlinePostIncrement { void operator()(int& x) { x++;   } };
+struct AddOnerNonInlinePreIncrement  { void operator()(int& x) { ++x;   } };
 
 void AddAlgorithmFunctorNonInlineAssignment1st(std::vector<int>& v)
 {
@@ -262,16 +257,11 @@ void AddAlgorithmFunctorNonInlinePreIncrement(std::vector<int>& v)
 }
 
 //Inline-operator() structs
-struct AddOnerInlineAssignment1st : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x=1+x; } };
-struct AddOnerInlineAssignment2nd : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x=x+1; } };
-struct AddOnerInlineIncrease : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x+=1; } };
-struct AddOnerInlinePostIncrement : public std::unary_function<int,void>
-  { inline void operator()(int& x) { x++; } };
-struct AddOnerInlinePreIncrement : public std::unary_function<int,void>
-  { inline void operator()(int& x) { ++x; } };
+struct AddOnerInlineAssignment1st { inline void operator()(int& x) { x=1+x; } };
+struct AddOnerInlineAssignment2nd { inline void operator()(int& x) { x=x+1; } };
+struct AddOnerInlineIncrease      { inline void operator()(int& x) { x+=1; } };
+struct AddOnerInlinePostIncrement { inline void operator()(int& x) { x++; } };
+struct AddOnerInlinePreIncrement  { inline void operator()(int& x) { ++x; } };
 
 void AddAlgorithmFunctorInlineAssignment1st(std::vector<int>& v)
 {

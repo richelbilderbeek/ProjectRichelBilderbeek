@@ -29,6 +29,18 @@ struct Container
     return str;
   }
 
+  template <class T>
+  static std::string ToStr(const std::vector<T>& v) noexcept
+  {
+    std::string str;
+    std::stringstream s;
+    for (const auto t: v) { s << t << ","; }
+    str = s.str();
+    str.pop_back();
+    str = "{" + str + "}";
+    return str;
+  }
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

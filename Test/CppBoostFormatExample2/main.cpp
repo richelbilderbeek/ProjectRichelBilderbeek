@@ -5,6 +5,7 @@
 #include <iomanip>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>

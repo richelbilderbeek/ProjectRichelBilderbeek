@@ -1,21 +1,22 @@
-#-------------------------------------------------
+include(../../ConsoleApplication.pri) #Or use the commented code below
+# QT += core
+# QT += gui
+# CONFIG   += console
+# CONFIG   -= app_bundle
+# TEMPLATE = app
+# CONFIG(release, debug|release) {
+#   DEFINES += NDEBUG NTRACE_BILDERBIKKEL
+# }
+# QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
 #
-# Project created by QtCreator 2012-01-20T19:28:47
-#
-#-------------------------------------------------
+# unix {
+#   QMAKE_CXXFLAGS += -Werror
+# }
 
-QT       += core
-
-QT       -= gui
-
-#LIBS += -lboost_test_unit_test
-#LIBS += -lboost_unit_test
-LIBS += -lboost_unit_test_framework
-TARGET = CppTestExample1
-CONFIG   += console
-CONFIG   -= app_bundle
-
-TEMPLATE = app
-
+include(../../Libraries/BoostAll.pri) #Or use the commented code below
+# win32 {
+#   INCLUDEPATH += \
+#     ../../Libraries/boost_1_54_0
+# }
 
 SOURCES += main.cpp

@@ -53,7 +53,7 @@ void CopyFileVcl(const std::string& from, const std::string& to, const bool fail
 }
 #endif
 
-int main(int argc, char* argv[])
+int main(int, char* argv[])
 {
   const std::string tmp_filename = "temp.txt";
 

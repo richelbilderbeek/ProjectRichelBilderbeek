@@ -1,9 +1,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/filesystem.hpp>
 
 #include <QDir>
+#pragma GCC diagnostic pop
 
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
 const std::vector<std::string> GetFilesInFolderBoost(const std::string& folder)

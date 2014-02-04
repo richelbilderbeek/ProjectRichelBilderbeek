@@ -4,6 +4,10 @@
 #include <complex>
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/typeof/std/complex.hpp>
 
 #include <boost/units/systems/si/current.hpp>
@@ -13,6 +17,7 @@
 #include <boost/units/systems/si/io.hpp>
 #include <boost/units/systems/si/length.hpp>
 #include <boost/units/systems/si/resistance.hpp>
+#pragma GCC diagnostic pop
 
 using namespace boost::units;
 using namespace boost::units::si;

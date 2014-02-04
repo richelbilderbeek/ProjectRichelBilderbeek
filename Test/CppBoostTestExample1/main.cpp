@@ -1,8 +1,12 @@
 #include <cstdlib>
 
 #define BOOST_TEST_DYN_LINK
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/test/included/unit_test.hpp>
 #include <boost/bind.hpp>
+#pragma GCC diagnostic pop
 
 void must_be_equal(int i, int j)
 {
