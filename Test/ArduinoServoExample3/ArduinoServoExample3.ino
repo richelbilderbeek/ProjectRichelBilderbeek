@@ -21,7 +21,7 @@ void setup()
 void loop()
 {
   const int input = analogRead(pin_input);
-  //Serial.println(input);
+  Serial.println(input);
   if (input < 100)
   {  
     servo.write(n-5);

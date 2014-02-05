@@ -1,5 +1,10 @@
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+win32 {
+  greaterThan(QT_MAJOR_VERSION, 4): QT += svg
+}
+
 TEMPLATE = app
 
 CONFIG(debug, debug|release) {
