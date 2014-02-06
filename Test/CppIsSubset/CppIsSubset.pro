@@ -13,6 +13,10 @@ include(../../ConsoleApplication.pri) #Or use the code below
 #   QMAKE_CXXFLAGS += -Werror
 # }
 
-SOURCES += main.cpp
+include(../../Libraries/Boost.pri) #Or use the code below
+# win32 {
+#   INCLUDEPATH += \
+#     ../../Libraries/boost_1_54_0
+# }
 
-HEADERS += radio.h
+SOURCES += main.cpp

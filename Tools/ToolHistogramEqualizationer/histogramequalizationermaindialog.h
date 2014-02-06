@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <vector>
-#include <QPixmap>
+#include <QImage>
 #pragma GCC diagnostic pop
 
 struct QImage;
@@ -34,7 +34,7 @@ namespace ribi {
 
 struct HistogramEqualizationerMainDialog
 {
-  static QPixmap DoHistogramEqualization(const QPixmap& source) noexcept;
+  static QImage DoHistogramEqualization(const QImage& source) noexcept;
 
   private:
   //void ConvertToGrey(const TImage * const source, TImage * const target);

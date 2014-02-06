@@ -1,6 +1,10 @@
 #include <iostream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/signals.hpp>
+#pragma GCC diagnostic pop
 
 struct HelloWorld
 {

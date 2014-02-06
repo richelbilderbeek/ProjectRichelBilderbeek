@@ -2,11 +2,13 @@
 #include <string>
 
 #pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <QDir>
+
 #include <boost/filesystem.hpp>
 #pragma GCC diagnostic pop
 
-#include <QDir>
 
 ///Returns if the name is a folder name
 //From http://www.richelbilderbeek.nl/CppIsFolder.htm

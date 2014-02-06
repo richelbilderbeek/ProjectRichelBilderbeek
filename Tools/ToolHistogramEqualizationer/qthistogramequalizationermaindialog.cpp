@@ -57,13 +57,13 @@ void ribi::QtHistogramEqualizationerMainDialog::on_button_load_clicked()
     m_target = new QLabel;
     layout->addWidget(m_target);
 
-    const QPixmap source(filename.c_str());
+    const QImage source(filename.c_str());
     assert(!source.isNull());
-    const QPixmap target {
+    const QImage target {
       HistogramEqualizationerMainDialog::DoHistogramEqualization(source)
     };
     assert(!target.isNull());
-    m_target->setPixmap(target);
+    m_target->setPixmap( QPixmap::fromImage(target) );
     m_target->setAlignment(Qt::AlignCenter);
   }
 }
@@ -87,18 +87,19 @@ void ribi::QtHistogramEqualizationerMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtHistogramEqualizationerMainDialog::Test");
-  const QPixmap source(":/histogramequalizationer/images/ToolHistogramEqualizationerTest.png");
+  const QImage source(":/histogramequalizationer/images/ToolHistogramEqualizationerTest.png");
   assert(!source.isNull());
-  const QPixmap target {
+  const QImage target {
+
     HistogramEqualizationerMainDialog::DoHistogramEqualization(source)
   };
   assert(!target.isNull());
-  assert(target.toImage() != source.toImage());
-  const QPixmap target_again {
+  assert(target != source);
+  const QImage target_again {
     HistogramEqualizationerMainDialog::DoHistogramEqualization(source)
   };
   assert(!target_again.isNull());
-  assert(target.toImage() == target_again.toImage()
+  assert(target == target_again
     && "A second histogram equalization will result in the original");
   TRACE("Finished ribi::QtHistogramEqualizationerMainDialog::Test successfully");
 }

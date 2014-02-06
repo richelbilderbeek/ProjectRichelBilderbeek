@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <vector>
-#include <QPixmap>
+#include <QImage>
 #pragma GCC diagnostic pop
 
 struct QImage;
@@ -34,12 +34,12 @@ namespace ribi {
 
 struct ImageRotaterMainDialog
 {
-  ///Draw an image to another image under a certain angle
+  ///Draw an image to another image under a certain angle (in radians)
   ///adding black where there is nothing to draw
   //From http://www.richelbilderbeek.nl/CppRotate.htm
   static void Rotate(
-    const QPixmap& imageOriginal,
-    QPixmap& imageResult,
+    const QImage& imageOriginal,
+    QImage& imageResult,
     const double angle);
 
   private:

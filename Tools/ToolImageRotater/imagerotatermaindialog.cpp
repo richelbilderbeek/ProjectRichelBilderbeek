@@ -98,12 +98,12 @@ QRgb ribi::ImageRotaterMainDialog::GetPixel(
 }
 
 void ribi::ImageRotaterMainDialog::Rotate(
-  const QPixmap& pixmapOriginal,
-  QPixmap& pixmapResult,
+  const QImage& pixmapOriginal,
+  QImage& pixmapResult,
   const double angle)
 {
-  QImage imageOriginal = pixmapOriginal.toImage();
-  QImage imageResult = pixmapResult.toImage();
+  QImage imageOriginal = pixmapOriginal; //pixmapOriginal.toImage();
+  QImage imageResult = pixmapResult;     //pixmapResult.toImage();
   const int maxx = imageResult.width();
   const int maxy = imageResult.height();
   const double midx = static_cast<double>(maxx) / 2.0;
@@ -138,7 +138,8 @@ void ribi::ImageRotaterMainDialog::Rotate(
       //SetPixel(imageResult,x,y,rgb);
     }
   }
-  pixmapResult = QPixmap::fromImage(imageResult);
+  pixmapResult = imageResult;
+  //pixmapResult = QPixmap::fromImage(imageResult);
 }
 
 

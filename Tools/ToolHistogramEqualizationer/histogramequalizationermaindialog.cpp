@@ -30,16 +30,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-QPixmap ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const QPixmap& source) noexcept
+QImage ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const QImage& source) noexcept
 {
+  QImage image(source);
+  const int width  = image.width();
+  const int height = image.height();
 
-  assert(!source.isNull() && "Source image must not be empty");
-  QImage image { source.toImage() };
-  //Get the width and height
-  assert(image.width() == source.width());
-  assert(image.height() == source.height());
-  const int width  = source.width();
-  const int height = source.height();
 
   const int surface = width * height;
   const int nGreyValues = 256; //There are 256 different pixel intensities
@@ -80,8 +76,8 @@ QPixmap ribi::HistogramEqualizationerMainDialog::DoHistogramEqualization(const Q
     }
   }
 
-  QPixmap target { QPixmap::fromImage(image) };
-  return target;
+
+  return image;
 }
 
 //From http://www.richelbilderbeek.nl/CppConvertToGrey.htm

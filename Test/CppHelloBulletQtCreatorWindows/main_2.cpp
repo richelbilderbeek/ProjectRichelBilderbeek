@@ -13,14 +13,16 @@ subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "BasicDemo.h"
 //#include "GlutStuff.h"
 #include "Bullet3Dynamics/b3CpuRigidBodyPipeline.h"
 //#include "btBulletDynamicsCommon.h"
 #include "Bullet3Common/b3HashMap.h"
+#pragma GCC diagnostic pop
 
-
-	
 int main(int argc,char** argv)
 {
 
