@@ -33,6 +33,10 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   Test();
   #endif
   this->setScene(m_qtconceptmap->GetScene());
+
+  //Without this line, mouseMoveEvent won't be called
+  this->setMouseTracking(true);
+
   m_widget->m_signal_concept_map_changed.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnConceptMapChanged,this)
   );
@@ -107,8 +111,19 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 
 void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
 {
+  BREAKPOINT HIERO: waarom geen update als je de concept map delete?
+  TRACE(m_qtconceptmap->scene()->items().count());
   m_qtconceptmap->scene()->update();
+  TRACE(m_qtconceptmap->scene()->items().count());
+
+  TRACE(m_qtconceptmap->items().count());
   m_qtconceptmap->update();
+  TRACE(m_qtconceptmap->items().count());
+
+  TRACE(scene()->items().count());
+  scene()->update();
+  TRACE(scene()->items().count());
+
 }
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(Node * const node) noexcept

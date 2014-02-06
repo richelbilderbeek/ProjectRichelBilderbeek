@@ -296,7 +296,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * con
   {
     if (qtnode->GetNode().get() == node) return qtnode;
   }
-  assert(!"Should always find QtNode");
+  assert(!"Should always find QtNode"); BREAKPOINT HIERO: Ondersteun lege concept maps
   throw std::logic_error("ribi::cmap::QtConceptMap::FindQtNode");
 }
 
