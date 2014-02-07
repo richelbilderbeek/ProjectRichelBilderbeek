@@ -1,11 +1,5 @@
-include(../../Tools/ToolAsciiArter/ToolAsciiArterConsole.pri)
+include(../../Tools/ToolEncranger/ToolEncrangerConsole.pri)
 
-SOURCES += \
-    ../../Tools/ToolAsciiArter/wtasciiartermaindialog.cpp
+SOURCES +=
+HEADERS +=
 
-HEADERS += \
-    ../../Tools/ToolAsciiArter/wtasciiartermaindialog.h
-
-#Resource added in ToolAsciiArterConsole
-#RESOURCES += \
-#    ../../Tools/ToolAsciiArter/ToolAsciiArter.qrc

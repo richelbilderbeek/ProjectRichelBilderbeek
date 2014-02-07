@@ -369,6 +369,33 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppBoostGeometryExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample1.htm\">Boost.Geometry example 1: determine if a point is within a polygon</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample2.htm\">Boost.Geometry example 2: points to polygon and back, determine the area of a polygon</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppBoostRegexExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -4548,6 +4575,49 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppPdcursesExample1",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppPdcursesExample1.htm\">PDCurses example 1: tutorial</a> is a",
+        "  <a href=\"CppPdcurses.htm\">PDCurses</a> example that is a slight modification",
+        "  of a tutorial its code.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppPdcursesExample2",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppPdcursesExample2.htm\">PDCurses example 2: first modification</a> is a",
+        "  <a href=\"CppPdcurses.htm\">PDCurses</a> example that is a modification",
+        "  of a tutorial its code.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppPdcursesExample3",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppPdcursesExample3.htm\">PDCurses example 3: text editor</a> is a",
+        "  <a href=\"CppPdcurses.htm\">PDCurses</a> example that tries to behave a bit like",
+        "  a text editor.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppPredicateExample1",
       {

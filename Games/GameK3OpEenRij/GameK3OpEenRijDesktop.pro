@@ -14,10 +14,11 @@ include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
 #Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
 include(../../Classes/CppConnectThree/CppConnectThree.pri)
 include(../../Classes/CppConnectThreeWidget/CppConnectThreeWidget.pri)
 include(../../Classes/CppTribool/CppTribool.pri)
-include(../../Games/GameConnectThree/GameConnectThreeConsole.pri)
 
 #Specific, desktop
 include(../../Classes/CppQtConnectThreeWidget/CppQtConnectThreeWidget.pri)

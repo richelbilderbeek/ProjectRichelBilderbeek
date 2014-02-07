@@ -12,3 +12,5 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameConnectThree/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameConnectThree/GameConnectThree.qrc

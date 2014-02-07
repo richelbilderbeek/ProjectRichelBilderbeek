@@ -19,6 +19,7 @@ FORMS += \
     ../../Games/GameConnectThree/qtconnectthreemenudialog.ui \
     ../../Games/GameConnectThree/qtconnectthreegamedialog.ui
 
-RESOURCES += \
-    ../../Games/GameConnectThree/GameConnectThree.qrc
+# Moved to GameConnectThreeConsole.pri
+# RESOURCES += \
+#     ../../Games/GameConnectThree/GameConnectThree.qrc
 

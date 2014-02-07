@@ -14,6 +14,7 @@ HEADERS  += \
     ../../Games/GameConnectThree/wtconnectthreemenudialog.h \
     ../../Games/GameConnectThree/wtconnectthreegamedialog.h
 
-RESOURCES += \
-    ../../Games/GameConnectThree/GameConnectThree.qrc
+# Moved to GameConnectThreeConsole.pri
+# RESOURCES += \
+#     ../../Games/GameConnectThree/GameConnectThree.qrc
 

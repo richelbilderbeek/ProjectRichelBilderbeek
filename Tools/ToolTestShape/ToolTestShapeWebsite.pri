@@ -1,11 +1,4 @@
-include(../../Tools/ToolAsciiArter/ToolAsciiArterConsole.pri)
+include(../../Tools/ToolTestShape/ToolTestShapeConsole.pri)
+SOURCES +=
+HEADERS +=
 
-SOURCES += \
-    ../../Tools/ToolAsciiArter/wtasciiartermaindialog.cpp
-
-HEADERS += \
-    ../../Tools/ToolAsciiArter/wtasciiartermaindialog.h
-
-#Resource added in ToolAsciiArterConsole
-#RESOURCES += \
-#    ../../Tools/ToolAsciiArter/ToolAsciiArter.qrc
