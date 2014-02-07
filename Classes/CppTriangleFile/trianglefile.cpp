@@ -70,7 +70,6 @@ void ribi::TriangleFile::ExecuteTriangle(
   assert(fileio::IsRegularFile(node_filename));
   assert(fileio::IsRegularFile(ele_filename));
   assert(fileio::IsRegularFile(poly_filename));
-
   fileio::DeleteFile(filename);
 }
 
@@ -106,7 +105,7 @@ void ribi::TriangleFile::Test() noexcept
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
   boost::geometry::append(v, points);
   TriangleFile f( {v} );
-  TRACE(f.ToStr());
+  //TRACE(f.ToStr());
   std::string filename_node;
   std::string filename_ele;
   std::string filename_poly;
@@ -169,7 +168,7 @@ const std::string ribi::TriangleFile::ToStr() const noexcept
         ++cnt;
       }
       //...or from the last to the first
-      segments.push_back(std::make_pair(cnt,cnt-n_vertices));
+      segments.push_back(std::make_pair(cnt,cnt-n_vertices+1));
       ++cnt;
     }
 
