@@ -219,18 +219,18 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   // - edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'
   // - node with a concept with (1) text 'TextDontCare'
 
-  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory::Create("TextNode",
+  const boost::shared_ptr<Concept> concept_node_focal(ConceptFactory().Create("TextNode",
     {
       {"TextExampleNode",Competency::misc}
     },
     0,1,2));
-  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory::Create("TextDontCare",
+  const boost::shared_ptr<Concept> concept_node_other(ConceptFactory().Create("TextDontCare",
     {
       { }
     },
     0,1,2));
 
-  const boost::shared_ptr<Concept> concept_edge(ConceptFactory::Create("TextEdge",
+  const boost::shared_ptr<Concept> concept_edge(ConceptFactory().Create("TextEdge",
     {
       {"TextExampleEdge",Competency::misc}
     },

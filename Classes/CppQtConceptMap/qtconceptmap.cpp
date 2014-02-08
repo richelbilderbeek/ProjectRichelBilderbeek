@@ -90,7 +90,7 @@ const std::vector<ribi::cmap::QtNode*>
 }
 
 ribi::cmap::QtConceptMap::QtConceptMap(
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+  const boost::shared_ptr<ConceptMap> concept_map,
   QWidget* parent)
   : QtKeyboardFriendlyGraphicsView(parent),
     m_concept_map(concept_map),
@@ -206,7 +206,7 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
   {
     const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = m_concept_map->GetEdges();
     std::for_each(edges.begin(),edges.end(),
-      [this,qtnodes](const boost::shared_ptr<ribi::cmap::Edge> edge)
+      [this,qtnodes](const boost::shared_ptr<Edge> edge)
       {
         assert(edge->GetFrom());
         assert(edge->GetTo());
@@ -296,8 +296,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * con
   {
     if (qtnode->GetNode().get() == node) return qtnode;
   }
-  assert(!"Should always find QtNode"); BREAKPOINT HIERO: Ondersteun lege concept maps
-  throw std::logic_error("ribi::cmap::QtConceptMap::FindQtNode");
+  return nullptr;
 }
 
 const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const

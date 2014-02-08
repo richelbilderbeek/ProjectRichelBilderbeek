@@ -169,7 +169,7 @@ const std::string ribi::cmap::Edge::ToXml(
 {
   std::stringstream s;
   s << "<edge>";
-  s << Concept::ToXml(edge->GetConcept());
+  s << edge->GetConcept()->ToXml();
 
   const auto from_iter = std::find(nodes.begin(),nodes.end(),edge->GetFrom());
   const auto to_iter = std::find(nodes.begin(),nodes.end(),edge->GetTo());

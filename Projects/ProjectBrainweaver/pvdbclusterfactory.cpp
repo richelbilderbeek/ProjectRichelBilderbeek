@@ -31,7 +31,7 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::DeepCop
     [](const boost::shared_ptr<const ribi::cmap::Concept>& c)
     {
       assert(c);
-      const boost::shared_ptr<ribi::cmap::Concept> d = ribi::cmap::ConceptFactory::DeepCopy(c);
+      const boost::shared_ptr<ribi::cmap::Concept> d = ribi::cmap::ConceptFactory().DeepCopy(c);
       assert(d);
       assert(c != d);
       assert(*c == *d);
@@ -53,9 +53,9 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::ClusterFactory::GetTest
   std::transform(test_node_indices.begin(),test_node_indices.end(),std::back_inserter(concepts),
     [](const int index)
     {
-      const std::vector<boost::shared_ptr<ribi::cmap::Concept> > tmp = cmap::ConceptFactory::GetTests();
-      assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
-      const boost::shared_ptr<ribi::cmap::Concept> concept = tmp.at(index);
+      const std::vector<boost::shared_ptr<ribi::cmap::Concept> > tmp = cmap::ConceptFactory().GetTests();
+      assert(index < static_cast<int>(cmap::ConceptFactory().GetTests().size()));
+      const boost::shared_ptr<cmap::Concept> concept = tmp.at(index);
       assert(concept);
       return concept;
     }

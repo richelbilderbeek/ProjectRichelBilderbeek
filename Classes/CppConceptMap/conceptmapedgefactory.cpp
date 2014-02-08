@@ -29,7 +29,7 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::Create(
   assert(from);
   assert(to);
   assert(from != to);
-  boost::shared_ptr<ribi::cmap::Edge> p(new Edge(concept,concept_x,concept_y,from,tail_arrow,to,head_arrow));
+  boost::shared_ptr<Edge> p(new Edge(concept,concept_x,concept_y,from,tail_arrow,to,head_arrow));
   assert(p);
   return p;
 }
@@ -46,17 +46,19 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::DeepCopy(
   assert(from);
   assert(to);
   assert(from != to);
-  const boost::shared_ptr<ribi::cmap::Concept> concept = ribi::cmap::ConceptFactory::DeepCopy(edge->GetConcept());
+  const boost::shared_ptr<Concept> concept = ConceptFactory().DeepCopy(edge->GetConcept());
   assert(concept);
-  const boost::shared_ptr<ribi::cmap::Edge> p = ribi::cmap::EdgeFactory::Create(
-    concept,
-    edge->GetX(),
-    edge->GetY(),
-    from,
-    edge->HasTailArrow(),
-    to,
-    edge->HasHeadArrow()
-  );
+  const boost::shared_ptr<Edge> p {
+    EdgeFactory::Create(
+      concept,
+      edge->GetX(),
+      edge->GetY(),
+      from,
+      edge->HasTailArrow(),
+      to,
+      edge->HasHeadArrow()
+    )
+  };
   assert(p);
   assert(*edge == *p);
   return p;
@@ -71,51 +73,51 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   assert(s.substr(0,6) == std::string("<edge>"));
   assert(s.substr(s.size() - 7,7) == std::string("</edge>"));
   //m_concept
-  boost::shared_ptr<ribi::cmap::Concept> concept;
+  boost::shared_ptr<Concept> concept;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
     assert(v.size() == 1);
-    concept = Concept::FromXml(v[0]);
+    concept = ConceptFactory().FromXml(v[0]);
   }
   //m_from
   int from = -1;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<from>.*</from>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<from>.*</from>)"));
     assert(v.size() == 1);
     from = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_head_arrow
   bool head_arrow = false;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<head_arrow>.*</head_arrow>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<head_arrow>.*</head_arrow>)"));
     assert(v.size() == 1);
     head_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_tail_arrow
   bool tail_arrow = false;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<tail_arrow>.*</tail_arrow>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<tail_arrow>.*</tail_arrow>)"));
     assert(v.size() == 1);
     tail_arrow = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_to
   int to = -1;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<to>.*</to>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<to>.*</to>)"));
     assert(v.size() == 1);
     to = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_x
   double x = 0.0;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
     assert(v.size() == 1);
     x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   //m_y
   double y = 0.0;
   {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
     assert(v.size() == 1);
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
@@ -123,7 +125,7 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
   assert(from < boost::numeric_cast<int>(nodes.size()));
   assert(to   < boost::numeric_cast<int>(nodes.size()));
 
-  const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,x,y,nodes[from],tail_arrow,nodes[to],head_arrow));
+  const boost::shared_ptr<Edge> edge(new Edge(concept,x,y,nodes[from],tail_arrow,nodes[to],head_arrow));
   assert(edge);
   return edge;
 }
@@ -134,35 +136,35 @@ const std::vector<boost::shared_ptr<ribi::cmap::Edge> > ribi::cmap::EdgeFactory:
 {
   assert(from);
   assert(to);
-  const auto test_concepts = ConceptFactory::GetTests();
+  const auto test_concepts = ConceptFactory().GetTests();
 
   std::vector<boost::shared_ptr<ribi::cmap::Edge> > result;
 
-  for(const boost::shared_ptr<ribi::cmap::Concept> concept: test_concepts)
+  for(const boost::shared_ptr<Concept> concept: test_concepts)
   {
     {
-      const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,1.2,3.4,from,false,to,true));
+      const boost::shared_ptr<Edge> edge(new Edge(concept,1.2,3.4,from,false,to,true));
       result.push_back(edge);
     }
     /*
     {
-      const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,0,2,true));
+      const boost::shared_ptr<Edge> edge(new Edge(concept,0,2,true));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,0,3,true));
+      const boost::shared_ptr<Edge> edge(new Edge(concept,0,3,true));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,1,2,false));
+      const boost::shared_ptr<Edge> edge(new Edge(concept,1,2,false));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,1,3,false));
+      const boost::shared_ptr<Edge> edge(new Edge(concept,1,3,false));
       result.push_back(edge);
     }
     {
-      const boost::shared_ptr<ribi::cmap::Edge> edge(new Edge(concept,2,3,false));
+      const boost::shared_ptr<Edge> edge(new Edge(concept,2,3,false));
       result.push_back(edge);
     }
     */

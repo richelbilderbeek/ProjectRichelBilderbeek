@@ -48,7 +48,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 }
 
 ribi::cmap::QtRateConceptMap::QtRateConceptMap(
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+  const boost::shared_ptr<ConceptMap> concept_map,
   QWidget* parent)
   : QtConceptMap(concept_map,parent),
     m_signal_request_rate_concept_dialog{}
@@ -67,7 +67,7 @@ ribi::cmap::QtRateConceptMap::QtRateConceptMap(
 }
 
 void ribi::cmap::QtRateConceptMap::AddEdge(
-  const boost::shared_ptr<ribi::cmap::Edge> edge)
+  const boost::shared_ptr<Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
   assert(qtconcept);
@@ -144,7 +144,7 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   //const boost::shared_ptr<QtRateStrategy> display_strategy(new QtRateStrategy(node->GetConcept()));
   //assert(display_strategy);
@@ -226,7 +226,7 @@ void ribi::cmap::QtRateConceptMap::CleanMe()
 #ifndef NDEBUG
 std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtRateConceptMap::CreateNewDerived() const
 {
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtConceptMap> p(new This_t(concept_map));
@@ -273,7 +273,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     nodes.push_back(other_node);
     assert(qtedge);
     assert(qtedge->GetEdge());
-    const boost::shared_ptr<ribi::cmap::Edge> edge(cmap::EdgeFactory::Create(
+    const boost::shared_ptr<Edge> edge(cmap::EdgeFactory::Create(
       qtedge->GetEdge()->GetConcept(),
       qtedge->GetEdge()->GetX(),
       qtedge->GetEdge()->GetY(),
@@ -287,7 +287,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     edges.push_back(edge);
   }
   assert(ConceptMap::CanConstruct(nodes,edges));
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(cmap::ConceptMapFactory::Create(nodes,edges));
+  const boost::shared_ptr<ConceptMap> concept_map(cmap::ConceptMapFactory::Create(nodes,edges));
   assert(concept_map);
   assert(focal_node == concept_map->GetFocalNode());
 
@@ -307,7 +307,7 @@ void ribi::cmap::QtRateConceptMap::DoRandomStuff()
 #endif
 
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtRateConceptMap::GetDisplayStrategy(
-  const boost::shared_ptr<ribi::cmap::Concept> concept) const noexcept
+  const boost::shared_ptr<Concept> concept) const noexcept
 {
   assert(concept);
   const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {
@@ -361,7 +361,7 @@ void ribi::cmap::QtRateConceptMap::OnNodeRequestsRateExamples(QtNode * const ite
   //Start edit
   {
     QtScopedDisable<QtRateConceptMap> disable(this);
-    const boost::shared_ptr<ribi::cmap::Concept> concept = item->GetConcept();
+    const boost::shared_ptr<Concept> concept = item->GetConcept();
     assert(concept);
     assert(item->GetConcept().get() == concept.get());
     assert(item->GetConcept() == concept);

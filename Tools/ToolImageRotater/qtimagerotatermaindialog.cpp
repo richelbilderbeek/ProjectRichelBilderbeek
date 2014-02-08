@@ -51,9 +51,9 @@ void ribi::QtImageRotaterMainDialog::on_button_load_clicked()
   if (filename.empty()) return;
 
   //Check if the pixmap is valid
-  const QPixmap pixmap(filename.c_str());
-  if (pixmap.isNull()) return;
-  m_source = pixmap;
+  const QImage image(filename.c_str());
+  if (image.isNull()) return;
+  m_source = image;
   OnAnyChange();
 }
 
@@ -76,14 +76,14 @@ void ribi::QtImageRotaterMainDialog::OnAnyChange()
     layout->addWidget(m_target);
 
     assert(!m_source.isNull());
-    QPixmap target(m_source.width(),m_source.height());
+    QImage target(m_source);
     ImageRotaterMainDialog::Rotate(
       m_source,
       target,
       GetAngle()
     );
     assert(!target.isNull());
-    m_target->setPixmap(target);
+    m_target ->setPixmap(QPixmap::fromImage(target));
   }
 }
 
@@ -106,16 +106,16 @@ void ribi::QtImageRotaterMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtImageRotaterMainDialog::Test");
-  const QPixmap source(":/imagerotater/images/ToolImageRotaterTest.png");
+  const QImage source(":/imagerotater/images/ToolImageRotaterTest.png");
   assert(!source.isNull());
-  QPixmap target(source.width(), source.height());
+  QImage target(source);
   ImageRotaterMainDialog::Rotate(
     source,
     target,
     0.235
   );
   assert(!target.isNull());
-  assert(target.toImage() != source.toImage()
+  assert(target != source
     && "Images do not look identical after rotation");
   TRACE("Finished ribi::QtImageRotaterMainDialog::Test successfully");
 }

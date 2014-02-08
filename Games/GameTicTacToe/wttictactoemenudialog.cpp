@@ -22,17 +22,17 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WLabel>
 #include <Wt/WMenu>
 #include <Wt/WStackedWidget>
-//---------------------------------------------------------------------------
+
 #include "about.h"
 #include "tictactoemenudialog.h"
 #include "wtaboutdialog.h"
 #include "wtautoconfig.h"
 #include "wttictactoegamedialog.h"
 #include "wttictactoemenudialog.h"
-#include "wttictactoewidget.h"
-//---------------------------------------------------------------------------
+//#include "wttictactoewidget.h"
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 ribi::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
@@ -66,14 +66,14 @@ ribi::WtTicTacToeMenuDialog::WtTicTacToeMenuDialog()
     this->addWidget(contents);
   }
 }
-//---------------------------------------------------------------------------
+
 ribi::WtAboutDialog * ribi::WtTicTacToeMenuDialog::CreateNewAboutDialog() const
 {
-  About a = TicTacToeMenuDialog::GetAbout();
+  About a = TicTacToeMenuDialog().GetAbout();
   a.AddLibrary("WtTicTacToeWidget version: " + WtTicTacToeWidget::GetVersion());
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   return d;
 }
-//---------------------------------------------------------------------------
+
 

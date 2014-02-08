@@ -26,9 +26,6 @@ struct Concept
   Concept(const Concept& other) = delete;
   Concept& operator=(const Concept& other) = delete;
 
-  ///Read concept from a std::string read from file
-  static const boost::shared_ptr<Concept> FromXml(const std::string& s);
-
   ///Get the examples of the concept, e.g. 'Plato', 'Aristotle'
   const boost::shared_ptr<const Examples> GetExamples() const;
   const boost::shared_ptr<Examples>& GetExamples() { return m_examples; }
@@ -76,7 +73,7 @@ struct Concept
   mutable boost::signals2::signal<void(const Concept*)> m_signal_rating_specificity_changed;
 
   ///Convert Concept to a std::string to write to file
-  static const std::string ToXml(const boost::shared_ptr<const Concept>& t);
+  const std::string ToXml() const noexcept;
 
   private:
 

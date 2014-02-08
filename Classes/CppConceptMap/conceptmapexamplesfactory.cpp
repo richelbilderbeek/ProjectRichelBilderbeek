@@ -2,9 +2,14 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "conceptmapexamplesfactory.h"
 
+#include <cassert>
+
+#include <QRegExp>
+
 #include "conceptmapexample.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamples.h"
+#include "conceptmaphelper.h"
 #pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create()
@@ -68,8 +73,48 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Creat
   return q;
 }
 
+const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromXml(const std::string& s) const
+{
+  if (s.size() < 20)
+  {
+    return nullptr;
+  }
+  if (s.substr(0,10) != std::string("<examples>"))
+  {
+    return nullptr;
+  }
+  if (s.substr(s.size() - 11,11) != std::string("</examples>"))
+  {
+    return nullptr;
+  }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::ExamplesFactory::GetTests()
+  std::vector<boost::shared_ptr<Example> > examples;
+  //m_questions
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<example>.*</example>)"));
+    std::transform(v.begin(),v.end(),std::back_inserter(examples),
+      [](const std::string& s)
+      {
+        return ExampleFactory().FromXml(s);
+      }
+    );
+  }
+  const boost::shared_ptr<Examples> result {
+    Create(examples)
+  };
+  assert(result);
+  assert(result->ToXml() == s);
+  return result;
+}
+
+const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::GetTest(const int i) const noexcept
+{
+  assert(i >= 0);
+  assert(i < GetNumberOfTests());
+  return GetTests()[i];
+}
+
+const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::ExamplesFactory::GetTests() const noexcept
 {
   const std::vector<std::vector<int> > is = { {0}, {1}, {0,1,2,3}, {} };
   std::vector<boost::shared_ptr<ribi::cmap::Examples> > v;
@@ -81,7 +126,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::Examples
         [](const int& j)
         {
           const boost::shared_ptr<cmap::Example> p
-            = ExampleFactory::GetTests().at(j);
+            = ExampleFactory().GetTest(j);
           assert(p);
           return p;
         }

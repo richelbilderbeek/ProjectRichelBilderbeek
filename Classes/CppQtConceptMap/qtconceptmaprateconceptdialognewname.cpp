@@ -216,7 +216,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
       assert(concept_map);
       const boost::shared_ptr<Concept> concept = concept_map->GetFocalNode()->GetConcept();
       assert(concept);
-      const boost::shared_ptr<Concept> old_concept = ConceptFactory::DeepCopy(concept);
+      const boost::shared_ptr<Concept> old_concept = ConceptFactory().DeepCopy(concept);
       assert(old_concept);
       assert(concept != old_concept);
       assert(*concept == *old_concept);
@@ -251,7 +251,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
       assert(concept_map);
       const boost::shared_ptr<Concept> concept = concept_map->GetFocalNode()->GetConcept();
       assert(concept);
-      const boost::shared_ptr<const Concept> old_concept = ConceptFactory::DeepCopy(concept);
+      const boost::shared_ptr<const Concept> old_concept = ConceptFactory().DeepCopy(concept);
 
       assert(old_concept);
       assert(concept != old_concept);

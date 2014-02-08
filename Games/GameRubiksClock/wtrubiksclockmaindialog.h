@@ -27,7 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct WtDialWidget;
-struct WtRubiksClockWidget;
+
+namespace ruco {
+
+struct WtClockWidget;
 
 struct WtRubiksClockMainDialog : public Wt::WContainerWidget
 {
@@ -40,7 +43,7 @@ struct WtRubiksClockMainDialog : public Wt::WContainerWidget
     Wt::WPushButton * const m_button_flip;
     WtDialWidget * const m_dial_size;
     Wt::WLabel * const m_label_size;
-    WtRubiksClockWidget * const m_widget;
+    WtClockWidget * const m_widget;
   } m_ui;
 
   ///Respond to a click on m_button_flip
@@ -50,6 +53,7 @@ struct WtRubiksClockMainDialog : public Wt::WContainerWidget
   void OnSizeChanged();
 };
 
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // WTRUBIKSCLOCKDIALOG_H

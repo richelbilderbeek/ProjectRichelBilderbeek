@@ -71,6 +71,7 @@ struct ConceptMap
   const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
 
   ///Get the focus question
+  ///TODO: remove this member function, use GetCenterNode instead
   const std::string GetQuestion() const noexcept;
 
   ///Obtain the version
@@ -86,14 +87,6 @@ struct ConceptMap
   ///Check if there are no nulls in the edges and nodes
   bool IsValid() const;
   #endif
-
-  ///Put the CenterNode (if present) first
-  /*
-  static const std::vector<boost::shared_ptr<const Node>> Sort(
-     const std::vector<boost::shared_ptr<const Node>>& v) noexcept;
-  static const std::vector<boost::shared_ptr<Node>> Sort(
-     const std::vector<boost::shared_ptr<Node>>& v) noexcept;
-  */
 
   ///Convert a ConceptMap from an XML std::string
   static const std::string ToXml(const boost::shared_ptr<const ConceptMap> c);
@@ -114,7 +107,7 @@ private:
   ConceptMap(const std::string& question);
   //Nodes[0] must be the focal question
   ConceptMap(
-    const std::vector<boost::shared_ptr<Node> >& nodes,
+    const std::vector<boost::shared_ptr<Node> >& nodes = {},
     const std::vector<boost::shared_ptr<Edge> >& edges = {});
   ///Create a concept map from a cluster
   #ifdef TO_ADD_TO_PROJECTBRAINWEAVER

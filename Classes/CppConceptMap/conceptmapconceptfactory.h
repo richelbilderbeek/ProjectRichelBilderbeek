@@ -22,33 +22,46 @@ namespace cmap {
 ///Creates Concepts
 struct ConceptFactory
 {
+  ConceptFactory();
+
   //Default and complete Create method
-  static const boost::shared_ptr<Concept> Create(
+  const boost::shared_ptr<Concept> Create(
     const std::string& name,
     const boost::shared_ptr<Examples>& examples,
     const bool is_complex,
     const int rating_complexity,
     const int rating_concreteness,
-    const int rating_specificity);
+    const int rating_specificity
+  ) const noexcept;
 
-  static const boost::shared_ptr<Concept> Create(
+  const boost::shared_ptr<Concept> Create(
     const std::string& name = "...",
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const bool is_complex = true,
     const int rating_complexity = -1,
     const int rating_concreteness = -1,
     const int rating_specificity = -1
-    );
+  ) const noexcept;
 
   #ifndef NDEBUG
   ///Like a Concept deep-copy constructor
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<Concept> DeepCopy(
-    const boost::shared_ptr<const Concept>& concept);
+  const boost::shared_ptr<Concept> DeepCopy(
+    const boost::shared_ptr<const Concept>& concept
+  ) const noexcept;
   #endif
 
+  ///Read concept from a std::string read from file
+  const boost::shared_ptr<Concept> FromXml(const std::string& s) const noexcept;
+
   ///Obtain some testing concepts
-  static const std::vector<boost::shared_ptr<Concept> > GetTests();
+  const boost::shared_ptr<Concept> GetTest(const int i) const noexcept;
+  const std::vector<boost::shared_ptr<Concept> > GetTests() const noexcept;
+  int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

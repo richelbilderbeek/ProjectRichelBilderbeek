@@ -107,25 +107,27 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::QtPvdbConceptMapDial
   const std::string& question,
   const boost::shared_ptr<pvdb::Cluster>& cluster)
 {
-  std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes {
+  using namespace cmap;
+
+  std::vector<boost::shared_ptr<Node> > nodes {
     cmap::ConceptMap::CreateNodes(question, {} )
   };
-  std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges;
+  std::vector<boost::shared_ptr<Edge> > edges;
 
-  const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& v = cluster->Get();
+  const std::vector<boost::shared_ptr<Concept> >& v = cluster->Get();
   const int n = boost::numeric_cast<int>(v.size());
   for (int i=0; i!=n; ++i)
   {
     const int x = 0;
     const int y = 0;
-    const boost::shared_ptr<ribi::cmap::Node> node = cmap::NodeFactory::Create(v[i],x,y);
+    const boost::shared_ptr<Node> node = NodeFactory::Create(v[i],x,y);
     assert(node);
     nodes.push_back(node);
   }
   assert(v.size() + 1 == nodes.size()
     && "Assume the ConceptMap has as much nodes as the cluster has concepts + one focal question");
-  const boost::shared_ptr<ribi::cmap::ConceptMap> p {
-    cmap::ConceptMapFactory::Create(nodes,edges)
+  const boost::shared_ptr<ConceptMap> p {
+    ConceptMapFactory::Create(nodes,edges)
   };
   assert(p);
   assert(p->IsValid());

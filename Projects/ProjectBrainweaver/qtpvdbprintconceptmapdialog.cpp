@@ -177,10 +177,11 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
     const int n_nodes = static_cast<int>(m_file->GetConceptMap()->GetNodes().size());
     for (int node_index = 1; node_index != n_nodes; ++node_index) //1: skip center node
     {
-      const boost::shared_ptr<ribi::cmap::Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
+      using namespace cmap;
+      const boost::shared_ptr<Node> node = m_file->GetConceptMap()->GetNodes().at(node_index);
       assert(node);
-      cmap::QtConceptMapRatedConceptDialog * const widget
-        = new cmap::QtConceptMapRatedConceptDialog(m_file->GetConceptMap(),node);
+      QtConceptMapRatedConceptDialog * const widget
+        = new QtConceptMapRatedConceptDialog(m_file->GetConceptMap(),node);
       assert(widget);
       widget->HideRating();
       ui->frame_concept_map_as_text->layout()->addWidget(widget);

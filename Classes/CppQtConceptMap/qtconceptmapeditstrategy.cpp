@@ -12,7 +12,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::cmap::QtEditStrategy::QtEditStrategy(const boost::shared_ptr<ribi::cmap::Concept> concept)
+ribi::cmap::QtEditStrategy::QtEditStrategy(const boost::shared_ptr<Concept> concept)
   : QtItemDisplayStrategy(concept),
     m_signal_request_edit{}
 {
@@ -64,7 +64,7 @@ void ribi::cmap::QtEditStrategy::Test() noexcept
   TRACE("Starting ribi::cmap::QtEditStrategy::Test()");
   ///Test SetText
   {
-    const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
+    const boost::shared_ptr<Concept> concept = ConceptFactory().Create();
     QtEditStrategy a(concept);
     const auto v {
       "1234567890",

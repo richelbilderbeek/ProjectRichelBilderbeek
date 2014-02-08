@@ -288,7 +288,7 @@ void ribi::cmap::QtConceptMapTestNodeItemDialog::Test() noexcept
   {
     TRACE("TODO?");
     /*
-    const boost::shared_ptr<ribi::cmap::Concept> concept = d.m_node->GetConcept();
+    const boost::shared_ptr<Concept> concept = d.m_node->GetConcept();
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);

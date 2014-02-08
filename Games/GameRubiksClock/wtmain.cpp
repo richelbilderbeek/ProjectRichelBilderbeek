@@ -38,7 +38,7 @@ struct WtApplication : public Wt::WApplication
   {
     this->setTitle("RubiksClock");
     this->useStyleSheet("wt.css");
-    root()->addWidget(new ribi::WtRubiksClockMenuDialog);
+    root()->addWidget(new ribi::ruco::WtRubiksClockMenuDialog);
   }
 };
 

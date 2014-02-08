@@ -43,13 +43,13 @@ struct WtConnectThreeGameDialog;
 struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
 {
   WtConnectThreeMenuDialog();
+  WtConnectThreeMenuDialog(
+    const boost::shared_ptr<const ConnectThreeResources> resources
+  );
   WtConnectThreeMenuDialog(const WtConnectThreeMenuDialog&) = delete;
   WtConnectThreeMenuDialog& operator=(const WtConnectThreeMenuDialog&) = delete;
 
   private:
-  WtConnectThreeMenuDialog(
-    const boost::shared_ptr<const ConnectThreeResources> resources
-  );
   WtConnectThreeGameDialog * m_game;
   Wt::WMenu * m_menu;
   WtSelectPlayerWidget * m_select;

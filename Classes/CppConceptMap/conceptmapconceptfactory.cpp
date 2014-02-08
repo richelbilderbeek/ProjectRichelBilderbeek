@@ -9,7 +9,17 @@
 #include "conceptmapexamples.h"
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamplesfactory.h"
+#include "conceptmaphelper.h"
+#include "trace.h"
+#include "xml.h"
 #pragma GCC diagnostic push
+
+ribi::cmap::ConceptFactory::ConceptFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   const std::string& name,
@@ -17,7 +27,8 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   const bool is_complex,
   const int rating_complexity,
   const int rating_concreteness,
-  const int rating_specificity)
+  const int rating_specificity
+) const noexcept
 {
   assert(examples);
   assert(rating_complexity >= -1);
@@ -39,7 +50,8 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
 
 #ifndef NDEBUG
 const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::DeepCopy(
-  const boost::shared_ptr<const ribi::cmap::Concept>& concept)
+  const boost::shared_ptr<const ribi::cmap::Concept>& concept
+) const noexcept
 {
   const boost::shared_ptr<Examples> examples
     = ExamplesFactory::Create(concept->GetExamples());
@@ -78,7 +90,8 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   const bool is_complex,
   const int rating_complexity,
   const int rating_concreteness,
-  const int rating_specificity)
+  const int rating_specificity
+) const noexcept
 {
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
@@ -112,7 +125,79 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::Create(
   return concept;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFactory::GetTests()
+const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml(const std::string& s) const noexcept
+{
+  assert(s.size() >= 19);
+  assert(s.substr(0,9) == std::string("<concept>"));
+  assert(s.substr(s.size() - 10,10) == std::string("</concept>"));
+
+  std::string name;
+  boost::shared_ptr<ribi::cmap::Examples> examples;
+  bool is_complex = false;
+  int rating_complexity    = -2; //Not even unrated (which has -1 as its value)
+  int rating_concreteness  = -2; //Not even unrated (which has -1 as its value)
+  int rating_specificity   = -2; //Not even unrated (which has -1 as its value)
+  //m_name
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<name>.*</name>)"));
+    assert(v.size() == 1);
+    name = ribi::xml::StripXmlTag(v[0]);
+  }
+  //m_examples
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<examples>.*</examples>)"));
+    assert(v.size() == 1 && "<examples>*.</examples> must be present once in a Concept");
+    examples = ExamplesFactory().FromXml(v[0]);
+  }
+
+  //m_is_complex
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concept_is_complex>.*</concept_is_complex>)"));
+    assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
+    is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
+  }
+
+  //m_rating_complexity
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<complexity>.*</complexity>)"));
+    assert(v.size() == 1 && "(<complexity>.*</complexity>) must be present once per Concept");
+    rating_complexity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
+    assert(rating_complexity >= -1);
+    assert(rating_complexity <=  2);
+  }
+  //m_rating_concreteness
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<concreteness>.*</concreteness>)"));
+    assert(v.size() == 1);
+    rating_concreteness = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
+  }
+  //m_rating_specificity
+  {
+    const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<specificity>.*</specificity>)"));
+    assert(v.size() == 1);
+    rating_specificity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
+  }
+
+  const boost::shared_ptr<Concept> concept {
+    ConceptFactory().Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity)
+  };
+  assert(concept);
+  assert(concept->ToXml() == s);
+  return concept;
+}
+
+const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::GetTest(
+  const int i) const noexcept
+{
+  assert(i < GetNumberOfTests());
+  const boost::shared_ptr<Concept> concept {
+    GetTests()[i]
+  };
+  assert(concept);
+  return concept;
+}
+
+const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<Concept> > v;
   {
@@ -175,3 +260,16 @@ const std::vector<boost::shared_ptr<ribi::cmap::Concept> > ribi::cmap::ConceptFa
 
   return v;
 }
+
+#ifndef NDEBUG
+void ribi::cmap::ConceptFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started ribi::cmap::ConceptFactory::Test");
+  TRACE("ConceptFactory::Test finished successfully");
+}
+#endif

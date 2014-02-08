@@ -24,9 +24,7 @@ struct Examples
   const std::vector<boost::shared_ptr<Example> >& Get() { return m_v; }
   const std::vector<boost::shared_ptr<const Example> > Get() const;
 
-  static const boost::shared_ptr<Examples> FromXml(const std::string& s);
-
-  static const std::string ToXml(const boost::shared_ptr<const Examples> &c);
+  const std::string ToXml() const noexcept;
 
   ///Something of one of the examples was changed
   mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;

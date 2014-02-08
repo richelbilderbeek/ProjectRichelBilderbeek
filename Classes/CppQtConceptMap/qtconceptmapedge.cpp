@@ -27,7 +27,7 @@
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtEdge::QtEdge(
-    const boost::shared_ptr<ribi::cmap::Edge> edge,
+    const boost::shared_ptr<Edge> edge,
     const boost::shared_ptr<QtItemDisplayStrategy> concept_item,
     QtNode* const from,
     QtNode* const to)
@@ -363,7 +363,7 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
   }
 }
 
-void ribi::cmap::QtEdge::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept) //NEW 2013-01-07
+void ribi::cmap::QtEdge::SetConcept(const boost::shared_ptr<Concept> concept) //NEW 2013-01-07
 {
   this->m_edge->SetConcept(concept);
 }
@@ -458,8 +458,8 @@ void ribi::cmap::QtEdge::Test() noexcept
   }
   //Test SetX and SetY being in sync
   {
-    const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_from = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_to = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_from(new QtEditStrategy(node_from->GetConcept()));
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
@@ -468,7 +468,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
-      boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
+      boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
       boost::shared_ptr<QtEdge> qtedge(
@@ -581,8 +581,8 @@ void ribi::cmap::QtEdge::Test() noexcept
   }
   //Test text on edge being in sync
   {
-    const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_from = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_to = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_from(new QtEditStrategy(node_from->GetConcept()));
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
@@ -591,7 +591,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
-      boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
+      boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
       boost::shared_ptr<QtEdge> qtedge(
@@ -675,8 +675,8 @@ void ribi::cmap::QtEdge::Test() noexcept
 
   //Test boundingRects being in sync
   {
-    const boost::shared_ptr<ribi::cmap::Node> node_from = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<ribi::cmap::Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_from = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_to = cmap::NodeFactory::GetTests()[0];
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_from(new QtEditStrategy(node_from->GetConcept()));
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
@@ -685,7 +685,7 @@ void ribi::cmap::QtEdge::Test() noexcept
     for (std::size_t edge_index=0; edge_index!=n_edges; ++edge_index)
     {
       const std::vector<boost::shared_ptr<ribi::cmap::Edge> > edges = cmap::EdgeFactory::GetTests(node_from,node_to);
-      boost::shared_ptr<ribi::cmap::Edge> edge = edges[edge_index];
+      boost::shared_ptr<Edge> edge = edges[edge_index];
       assert(edge);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(edge->GetConcept()));
       boost::shared_ptr<QtEdge> qtedge(

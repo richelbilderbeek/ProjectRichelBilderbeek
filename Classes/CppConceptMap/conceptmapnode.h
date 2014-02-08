@@ -23,9 +23,6 @@ struct Node : public Element
   Node(const Node&) = delete;
   Node& operator=(const Node&) = delete;
 
-  ///Obtain a Node from an XML std::string
-  static const boost::shared_ptr<Node> FromXml(const std::string& s);
-
   ///Get the Concept
   const boost::shared_ptr<const Concept>  GetConcept() const noexcept { return m_concept; }
   const boost::shared_ptr<      Concept>& GetConcept()       noexcept { return m_concept; }
@@ -59,8 +56,7 @@ struct Node : public Element
   ///Set the y coordinat
   void SetY(const double y);
 
-  ///Convert a Node from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const Node>& c);
+  virtual const std::string ToXml() const noexcept;
 
   boost::signals2::signal<void(const Node *)> m_signal_node_changed;
 

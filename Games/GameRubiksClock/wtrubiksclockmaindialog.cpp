@@ -43,15 +43,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wtdialwidget.h"
 #include "wtrubiksclockwidget.h"
 
-ribi::WtRubiksClockMainDialog::Ui::Ui()
+ribi::ruco::WtRubiksClockMainDialog::Ui::Ui()
   : m_button_flip(new Wt::WPushButton("Flip clock")),
     m_dial_size(new WtDialWidget),
     m_label_size(new Wt::WLabel),
-    m_widget(new WtRubiksClockWidget)
+    m_widget(new WtClockWidget)
 {
 }
 
-ribi::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
+ribi::ruco::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
   : m_ui{}
 {
   this->clear();
@@ -69,11 +69,11 @@ ribi::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
 
   m_ui.m_button_flip->clicked().connect(
     this,
-    &ribi::WtRubiksClockMainDialog::OnFlip);
+    &ribi::ruco::WtRubiksClockMainDialog::OnFlip);
 
   m_ui.m_dial_size->GetWidget()->GetDial()->m_signal_position_changed.connect(
     boost::bind(
-      &ribi::WtRubiksClockMainDialog::OnSizeChanged,
+      &ribi::ruco::WtRubiksClockMainDialog::OnSizeChanged,
       this));
 
   m_ui.m_dial_size->GetWidget()->SetGeometry(Rect(0,0,32,32));
@@ -83,12 +83,12 @@ ribi::WtRubiksClockMainDialog::WtRubiksClockMainDialog()
   m_ui.m_dial_size->GetWidget()->GetDial()->SetPosition(0.5);
 }
 
-void ribi::WtRubiksClockMainDialog::OnFlip()
+void ribi::ruco::WtRubiksClockMainDialog::OnFlip()
 {
   m_ui.m_widget->GetWidget()->Flip();
 }
 
-void ribi::WtRubiksClockMainDialog::OnSizeChanged()
+void ribi::ruco::WtRubiksClockMainDialog::OnSizeChanged()
 {
   const int size = boost::numeric_cast<int>(
     500.0 * m_ui.m_dial_size->GetWidget()->GetDial()->GetPosition());

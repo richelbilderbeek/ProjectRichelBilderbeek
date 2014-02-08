@@ -422,6 +422,7 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
 
   //QtPvdbClusterDialog must be disabled if there are more nodes in the concept map
   {
+    using namespace cmap;
     const std::string question = "TESTQUESTION";
     const boost::shared_ptr<pvdb::File> file(new pvdb::File);
     file->SetQuestion(question);
@@ -431,20 +432,20 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     file->SetCluster(cluster);
 
     const int index_1 = 1;
-    assert(index_1 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
+    assert(index_1 < static_cast<int>(ConceptFactory().GetTests().size()));
     const int index_2 = 2;
-    assert(index_2 < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
+    assert(index_2 < static_cast<int>(ConceptFactory().GetTests().size()));
 
-    const boost::shared_ptr<ribi::cmap::Concept> concept_d(cmap::ConceptFactory::Create("Concept F"));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_e(cmap::ConceptFactory::GetTests().at(index_1));
-    const boost::shared_ptr<ribi::cmap::Concept> concept_f(cmap::ConceptFactory::GetTests().at(index_2));
-    const boost::shared_ptr<ribi::cmap::Node> node_a(cmap::CenterNodeFactory::Create(question));
-    const boost::shared_ptr<ribi::cmap::Node> node_b(cmap::NodeFactory::GetTests().at(index_1));
-    const boost::shared_ptr<ribi::cmap::Node> node_c(cmap::NodeFactory::GetTests().at(index_2));
+    const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("Concept F"));
+    const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTests().at(index_1));
+    const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTests().at(index_2));
+    const boost::shared_ptr<Node> node_a(CenterNodeFactory().Create(question));
+    const boost::shared_ptr<Node> node_b(cmap::NodeFactory::GetTests().at(index_1));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::GetTests().at(index_2));
     const Nodes nodes = { node_a, node_b, node_c };
-    const boost::shared_ptr<ribi::cmap::Edge> edge_a(cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
-    const boost::shared_ptr<ribi::cmap::Edge> edge_b(cmap::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
-    const boost::shared_ptr<ribi::cmap::Edge> edge_c(cmap::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
+    const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
+    const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));
+    const boost::shared_ptr<Edge> edge_c(cmap::EdgeFactory::Create(concept_f,3.4,5.6,nodes.at(2),false,nodes.at(0),true));
     const Edges edges = { edge_a, edge_b, edge_c };
 
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(

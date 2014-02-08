@@ -1,71 +1,26 @@
+include(../../WebApplication.pri)
 
-QT       += core
-QT       -= gui
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppTicTacToe \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig \
-    ../../Classes/CppWtTicTacToeWidget
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    tictactoemenudialog.cpp \
-    wtmain.cpp \
-    wttictactoegamedialog.cpp \
-    wttictactoemenudialog.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppTicTacToe/tictactoe.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    ../../Classes/CppWtTicTacToeWidget/wttictactoewidget.cpp
+#General, web
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
-HEADERS += \
-    tictactoemenudialog.h \
-    wttictactoegamedialog.h \
-    wttictactoemenudialog.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppTicTacToe/tictactoe.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    ../../Classes/CppWtTicTacToeWidget/wttictactoewidget.h
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppTicTacToe/CppTicTacToe.pri)
 
-#
-#
-# Type of compile
-#
-#
+#Specific, web
+#include(../../Classes/CppWtTicTacToeWidget/CppWtTicTacToeWidget.pri)
 
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-#
-#
-# Wt
-#
-#
-
-unix {
-  LIBS += -lwt -lwthttp
-}
+SOURCES += wtmain.cpp

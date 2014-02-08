@@ -16,20 +16,32 @@ namespace cmap {
 
 struct CenterNodeFactory
 {
-  static const boost::shared_ptr<CenterNode> Create(
+  CenterNodeFactory();
+
+  const boost::shared_ptr<CenterNode> Create(
     const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
-    const double y = 0.0);
+    const double y = 0.0
+  ) const noexcept;
 
-  static const boost::shared_ptr<CenterNode> Create(
+  const boost::shared_ptr<CenterNode> Create(
     const std::string& name,
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const double x = 0.0,
-    const double y = 0.0);
+    const double y = 0.0
+  ) const noexcept;
 
   #ifndef NDEBUG
-  static const boost::shared_ptr<CenterNode> DeepCopy(
-    const boost::shared_ptr<const CenterNode>& node);
+  const boost::shared_ptr<CenterNode> DeepCopy(
+    const boost::shared_ptr<const CenterNode>& node
+  ) const noexcept;
+  #endif
+
+  ///Obtain a CenterNode from an XML std::string
+  const boost::shared_ptr<CenterNode> FromXml(const std::string& s) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
   #endif
 };
 

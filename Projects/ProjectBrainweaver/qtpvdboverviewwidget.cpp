@@ -79,6 +79,7 @@ ribi::pvdb::QtPvdbOverviewWidget::QtPvdbOverviewWidget(QWidget* parent)
 
 const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget::GetAllDialogs()
 {
+  using namespace cmap;
   std::vector<QtHideAndShowDialog* > v;
   {
     QtHideAndShowDialog* p(new QtPvdbAssessorMenuDialog);
@@ -87,8 +88,8 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 3;
-    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
-    const boost::shared_ptr<pvdb::File> file(pvdb::FileFactory::GetTests().at(index));
+    assert(index < static_cast<int>(FileFactory::GetTests().size()));
+    const boost::shared_ptr<pvdb::File> file(FileFactory::GetTests().at(index));
     assert(file);
     assert(file->GetCluster());
     QtHideAndShowDialog* p(new QtPvdbClusterDialog(file));
@@ -97,15 +98,15 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 2;
-    assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
-    QtHideAndShowDialog* p(new cmap::QtConceptMapConceptEditDialog(cmap::ConceptFactory::GetTests().at(index)));
+    assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
+    QtHideAndShowDialog* p(new QtConceptMapConceptEditDialog(ConceptFactory().GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
     const int index = 2;
-    assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
-    QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(pvdb::FileFactory::GetTests().at(index)));
+    assert(index < static_cast<int>(cmap::ConceptFactory().GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbConceptMapDialog(FileFactory().GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
@@ -171,15 +172,15 @@ const std::vector<ribi::QtHideAndShowDialog* > ribi::pvdb::QtPvdbOverviewWidget:
   }
   {
     const int index = 2;
-    assert(index < static_cast<int>(cmap::ConceptFactory::GetTests().size()));
-    QtHideAndShowDialog* p(new cmap::QtRateExamplesDialogNewName(cmap::ConceptFactory::GetTests().at(index)));
+    assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
+    QtHideAndShowDialog* p(new QtRateExamplesDialogNewName(ConceptFactory().GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }
   {
     const int index = 4;
-    assert(index < static_cast<int>(pvdb::FileFactory::GetTests().size()));
-    QtHideAndShowDialog* p(new QtPvdbRatingDialog(pvdb::FileFactory::GetTests().at(index)));
+    assert(index < static_cast<int>(FileFactory::GetTests().size()));
+    QtHideAndShowDialog* p(new QtPvdbRatingDialog(FileFactory::GetTests().at(index)));
     assert(p);
     v.push_back(p);
   }

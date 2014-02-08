@@ -111,7 +111,7 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 
 void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
 {
-  BREAKPOINT HIERO: waarom geen update als je de concept map delete?
+  //BREAKPOINT
   TRACE(m_qtconceptmap->scene()->items().count());
   m_qtconceptmap->scene()->update();
   TRACE(m_qtconceptmap->scene()->items().count());
@@ -135,7 +135,10 @@ void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(Node * const node) noexcept
   }
   else
   {
-    m_qtconceptmap->FindQtNode(node)->setFocus();
+    if (m_qtconceptmap->FindQtNode(node))
+    {
+      m_qtconceptmap->FindQtNode(node)->setFocus();
+    }
   }
 }
 

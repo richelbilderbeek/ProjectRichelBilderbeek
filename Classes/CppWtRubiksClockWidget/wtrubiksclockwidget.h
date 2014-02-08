@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-WtRubiksClockWidget, Wt widget for displaying the RubiksClock class
+WtClockWidget, Wt widget for displaying the Clock class
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,77 +16,79 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/CppWtRubiksClockWidget.htm
+//From http://www.richelbilderbeek.nl/CppWtClockWidget.htm
 //---------------------------------------------------------------------------
 #ifndef WTRUBIKSCLOCKWIDGET_H
 #define WTRUBIKSCLOCKWIDGET_H
-//---------------------------------------------------------------------------
+
 #include <string>
 #include <vector>
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WPaintDevice>
 #include <Wt/WPaintedWidget>
-//---------------------------------------------------------------------------
+
+#include "rubiksclockfwd.h"
+
 namespace Wt { struct WMouseEventEvent; }
 
 namespace ribi {
+namespace ruco {
+//struct Clock;
+//struct ClockWidget;
 
-struct RubiksClock;
-struct RubiksClockWidget;
-//---------------------------------------------------------------------------
-///WtRubiksClockWidget displays a RubiksClock
-struct WtRubiksClockWidget : public Wt::WPaintedWidget
+///WtClockWidget displays a Clock
+struct WtClockWidget : public Wt::WPaintedWidget
 {
-  ///A WtRubiksClockWidget is created by its toggle state and its color
-  explicit WtRubiksClockWidget(
+  ///A WtClockWidget is created by its toggle state and its color
+  explicit WtClockWidget(
     const bool toggled = false,
     const unsigned char red = 255,
     const unsigned char green = 255,
     const unsigned char blue = 255);
 
-  ///Obtain a read-only pointer to the RubiksClockWidget
-  const RubiksClockWidget * GetWidget() const { return m_widget.get(); }
+  ///Obtain a read-only pointer to the ClockWidget
+  const ClockWidget * GetWidget() const { return m_widget.get(); }
 
-  ///Obtain a read-and-write pointer to the RubiksClockWidget
-  RubiksClockWidget * GetWidget() { return m_widget.get(); }
+  ///Obtain a read-and-write pointer to the ClockWidget
+  ClockWidget * GetWidget() { return m_widget.get(); }
 
-  ///Obtain the WtRubiksClockWidget its version
+  ///Obtain the WtClockWidget its version
   static const std::string GetVersion();
 
-  ///Obtain the WtRubiksClockWidget its version history
+  ///Obtain the WtClockWidget its version history
   static const std::vector<std::string> GetVersionHistory();
 
   ///\brief
-  ///Draw the RubiksClock
+  ///Draw the Clock
   ///
   ///Because a Rubik's Clock has two sides, the parameter
   ///front_size determines whether to draw the front side or the back side
-  static void DrawRubiksClock(
+  static void DrawClock(
     Wt::WPainter& painter,
     const int x, const int y,
     const int width, const int height,
-    const RubiksClock * const clock,
+    const Clock * const clock,
     const bool front_size);
 
-  ///Draw the RubiksClock
-  static void DrawRubiksClock(
+  ///Draw the Clock
+  static void DrawClock(
     Wt::WPainter& painter,
-    const RubiksClockWidget * const widget);
+    const ClockWidget * const widget);
 
   protected:
-  ///Paint the WtRubiksClockWidget
+  ///Paint the WtClockWidget
   void paintEvent(Wt::WPaintDevice *paintDevice);
 
   private:
-  ///The RubiksClockWidget
-  boost::scoped_ptr<RubiksClockWidget> m_widget;
+  ///The ClockWidget
+  boost::scoped_ptr<ClockWidget> m_widget;
 
   ///Do not let this be called by the client
   void resize(const Wt::WLength& width, const Wt::WLength& height);
 
-  ///Repaint the WtRubiksClockWidget
+  ///Repaint the WtClockWidget
   void DoRepaint();
 
   ///Respond to mouse click
@@ -95,57 +97,8 @@ struct WtRubiksClockWidget : public Wt::WPaintedWidget
   ///Respond to the widget resizing
   void OnResize();
 };
-//---------------------------------------------------------------------------
 
-/*
-//---------------------------------------------------------------------------
-#include <Classes.hpp>
-#include <Controls.hpp>
-#include <StdCtrls.hpp>
-#include <Forms.hpp>
-#include <ExtCtrls.hpp>
-#include <Graphics.hpp>
-//---------------------------------------------------------------------------
-#include "UnitRubiksClock.h"
-//---------------------------------------------------------------------------
-class TFormRubiksClockMain : public TForm
-{
-__published:	// IDE-managed Components
-        TImage *ImageClockFront;
-        TImage *ImageClockBack;
-        TPanel *Panel1;
-        TButton *ButtonAbout;
-        TButton *ButtonShuffle;
-        void __fastcall FormResize(TObject *Sender);
-        void __fastcall ImageClockFrontMouseDown(TObject *Sender,
-          TMouseButton Button, TShiftState Shift, int X, int Y);
-        void __fastcall ImageClockBackMouseDown(TObject *Sender,
-          TMouseButton Button, TShiftState Shift, int X, int Y);
-        void __fastcall ButtonAboutClick(TObject *Sender);
-        void __fastcall ButtonShuffleClick(TObject *Sender);
-private:	// User declarations
-  RubiksClock mClock;
-  void DrawScreen();
-public:		// User declarations
-        __fastcall TFormRubiksClockMain(TComponent* Owner);
-};
-//---------------------------------------------------------------------------
-extern PACKAGE TFormRubiksClockMain *FormRubiksClockMain;
-//---------------------------------------------------------------------------
-void DrawRubiksClock(
-  const RubiksClockTimes& times,
-  const RubiksClockPegs& pegs,
-  const TColor colorCasing,
-  const TColor colorClock,
-  TImage * const image);
-
-void PaintVcl(TImage * const image,
-  const unsigned char red,
-  const unsigned char green,
-  const unsigned char blue  );
-
-*/
-
+} //~namespace ruco
 } //~namespace ribi
 
 #endif // WTRUBIKSCLOCKWIDGET_H

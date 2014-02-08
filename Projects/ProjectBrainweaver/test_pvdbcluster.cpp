@@ -92,7 +92,7 @@ void ribi::pvdb::Cluster::Test() noexcept
   //Test all Clusters with each combination of Concepts
   {
     const std::vector<std::vector<boost::shared_ptr<ribi::cmap::Concept> > > v
-      = GetCombinations(cmap::ConceptFactory::GetTests());
+      = GetCombinations(cmap::ConceptFactory().GetTests());
     std::for_each(v.begin(),v.end(),
       [](const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& concepts)
       {

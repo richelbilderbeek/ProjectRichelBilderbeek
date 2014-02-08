@@ -30,7 +30,7 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
   //Test base class
   {
     const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
+    for (const boost::shared_ptr<ConceptMap> concept_map: v)
     {
       boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
       assert(widget);
@@ -40,7 +40,7 @@ void ribi::cmap::QtRateConceptMap::Test() noexcept
   /*
   {
     const auto v = ribi::cmap::ConceptMapFactory::GetAllTests();
-    for (const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map: v)
+    for (const boost::shared_ptr<ConceptMap> concept_map: v)
     {
       boost::shared_ptr<QtConceptMap> widget(new This_t(concept_map));
       assert(widget);

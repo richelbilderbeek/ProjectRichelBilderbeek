@@ -1,128 +1,43 @@
-QT       += core
-QT       -= gui
-TEMPLATE = app
+include(../../WebApplication.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppDial \
-    ../../Classes/CppDialWidget \
-    ../../Classes/CppRectangle \
-    ../../Classes/CppRubiksClock \
-    ../../Classes/CppRubiksClockWidget \
-    ../../Classes/CppToggleButton \
-    ../../Classes/CppToggleButtonWidget \
-    ../../Classes/CppTrace \
-    ../../Classes/CppWidget \
-    ../../Classes/CppWtAboutDialog \
-    ../../Classes/CppWtAutoConfig \
-    ../../Classes/CppWtDialWidget \
-    ../../Classes/CppWtRubiksClockWidget \
-    ../../Classes/CppWtToggleButtonWidget
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
 
-SOURCES += \
-    wtmain.cpp \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.cpp \
-    ../../Classes/CppAbout/about.cpp \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.cpp \
-    ../../Classes/CppRubiksClock/rubiksclock.cpp \
-    ../../Classes/CppRubiksClockWidget/rubiksclockwidget.cpp \
-    ../../Classes/CppRectangle/rectangle.cpp \
-    ../../Classes/CppWidget/widget.cpp \
-    ../../Classes/CppWtRubiksClockWidget/wtrubiksclockwidget.cpp \
-    ../../Classes/CppDial/dial.cpp \
-    ../../Classes/CppDialWidget/dialwidget.cpp \
-    ../../Classes/CppToggleButton/togglebutton.cpp \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.cpp \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdial.cpp \
-    ../../Classes/CppWtToggleButtonWidget/wttogglebuttonwidget.cpp \
-    ../../Classes/CppWtDialWidget/wtdialwidget.cpp \
-    wtrubiksclockmenudialog.cpp \
-    wtrubiksclockmaindialog.cpp \
-    rubiksclockmenudialog.cpp \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.cpp
+#General, console
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-HEADERS += \
-    ../../Classes/CppWtAutoConfig/wtautoconfig.h \
-    ../../Classes/CppAbout/about.h \
-    ../../Classes/CppWtAboutDialog/wtaboutdialog.h \
-    ../../Classes/CppRubiksClock/rubiksclock.h \
-    ../../Classes/CppRubiksClockWidget/rubiksclockwidget.h \
-    ../../Classes/CppRectangle/rectangle.h \
-    ../../Classes/CppWidget/widget.h \
-    ../../Classes/CppWtRubiksClockWidget/wtrubiksclockwidget.h \
-    ../../Classes/CppDial/dial.h \
-    ../../Classes/CppDialWidget/dialwidget.h \
-    ../../Classes/CppToggleButton/togglebutton.h \
-    ../../Classes/CppToggleButtonWidget/togglebuttonwidget.h \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdial.h \
-    ../../Classes/CppWtToggleButtonWidget/wttogglebuttonwidget.h \
-    ../../Classes/CppWtDialWidget/wtdialwidget.h \
-    ../../Classes/CppTrace/trace.h \
-    wtrubiksclockmenudialog.h \
-    wtrubiksclockmaindialog.h \
-    rubiksclockmenudialog.h \
-    ../../Classes/CppRubiksClockWidget/rubiksclockdialwidget.h
+#General, web
+include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
+include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
-RESOURCES += \
-    GameRubiksClock.qrc
+#Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDial/CppDial.pri)
+include(../../Classes/CppDialWidget/CppDialWidget.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
+include(../../Classes/CppDrawCanvas/CppDrawCanvas.pri)
+include(../../Classes/CppImageCanvas/CppImageCanvas.pri)
+include(../../Classes/CppRectangle/CppRectangle.pri)
+include(../../Classes/CppRubiksClock/CppRubiksClock.pri)
+include(../../Classes/CppRubiksClockWidget/CppRubiksClockWidget.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
+include(../../Classes/CppToggleButton/CppToggleButton.pri)
+include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
+include(../../Classes/CppTribool/CppTribool.pri)
+include(../../Classes/CppWidget/CppWidget.pri)
+include(../../Classes/CppXml/CppXml.pri)
 
-OTHER_FILES += \
-    GameRubiksClockWelcome.png
+#Specific, web
+include(../../Classes/CppWtDialWidget/CppWtDialWidget.pri)
+include(../../Classes/CppWtRubiksClockWidget/CppWtRubiksClockWidget.pri)
+include(../../Classes/CppWtToggleButtonWidget/CppWtToggleButtonWidget.pri)
 
-#
-#
-# Type of compile
-#
-#
+include(../../Games/GameRubiksClock/GameRubiksClockWebsite.pri)
 
-CONFIG(debug, debug|release) {
-  message(Debug mode)
-}
-
-CONFIG(release, debug|release) {
-  message(Release mode)
-
-  #Remove all asserts and TRACE
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-unix {
-  LIBS += -lboost_filesystem -lboost_signals -lboost_system -lboost_program_options
-}
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-#
-#
-# Wt
-#
-#
-
-unix {
-  LIBS += -lwt -lwthttp
-}
+SOURCES += wtmain.cpp

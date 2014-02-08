@@ -54,51 +54,6 @@ const std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency co
   throw std::logic_error("ribi::cmap::Example::CompetencyToStr: unknown Competency");
 }
 
-const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::Example::FromXml(const std::string& s)
-{
-  assert(s.size() >= 17);
-  assert(s.substr(0,9) == std::string("<example>"));
-  assert(s.substr(s.size() - 10,10) == std::string("</example>"));
-
-  std::string text;
-  cmap::Competency competency = cmap::Competency::uninitialized;
-  bool is_complex = false;
-  bool is_concrete = false;
-  bool is_specific = false;
-
-  //competency
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<competency>.*</competency>)"));
-    assert(v.size() == 1);
-    competency = StrToCompetency(ribi::xml::StripXmlTag(v[0]));
-  }
-  //is_complex
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<is_complex>.*</is_complex>)"));
-    assert(v.size() == 1);
-    is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
-  }
-  //is_concrete
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<is_concrete>.*</is_concrete>)"));
-    assert(v.size() == 1);
-    is_concrete = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
-  }
-  //is_specific
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<is_specific>.*</is_specific>)"));
-    assert(v.size() == 1);
-    is_specific = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
-  }
-  //text
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<text>.*</text>)"));
-    assert(v.size() == 1 && "<text>.*</text> must be present once in an Example");
-    text = ribi::xml::StripXmlTag(v[0]);
-  }
-
-  return cmap::ExampleFactory::Create(text,competency,is_complex,is_concrete,is_specific);
-}
 
 void ribi::cmap::Example::SetCompetency(const cmap::Competency competency)
 {
@@ -142,19 +97,19 @@ void ribi::cmap::Example::Test() noexcept
   TRACE("Starting ribi::cmap::Example::Test");
   //Test of operator== and operator!=
   {
-    const int sz = static_cast<int>(cmap::ExampleFactory::GetTests().size());
+    const int sz = ExampleFactory().GetNumberOfTests();
     for (int i=0; i!=sz; ++i)
     {
-      boost::shared_ptr<const cmap::Example> a = cmap::ExampleFactory::GetTests().at(i);
-      boost::shared_ptr<      Example> b = cmap::ExampleFactory::GetTests().at(i);
+      boost::shared_ptr<const cmap::Example> a = ExampleFactory().GetTest(i);
+      boost::shared_ptr<      Example> b = ExampleFactory().GetTest(i);
       assert(operator==(*a,*a));
       assert(operator==(*a,*b));
       assert(operator==(*b,*a));
       assert(operator==(*b,*b));
       for (int j=0; j!=sz; ++j)
       {
-        boost::shared_ptr<const cmap::Example> c = cmap::ExampleFactory::GetTests().at(j);
-        boost::shared_ptr<      Example> d = cmap::ExampleFactory::GetTests().at(j);
+        boost::shared_ptr<const cmap::Example> c = cmap::ExampleFactory().GetTest(j);
+        boost::shared_ptr<      Example> d = cmap::ExampleFactory().GetTest(j);
         assert(operator==(*c,*c));
         assert(operator==(*c,*d));
         assert(operator==(*d,*c));
@@ -210,44 +165,44 @@ void ribi::cmap::Example::Test() noexcept
     std::transform(w.begin(),w.end(),std::back_inserter(x),
       [](const std::string& s)
       {
-        return ribi::cmap::Example::StrToCompetency(s);
+        return Example::StrToCompetency(s);
       }
     );
     assert(v == x);
   }
   //Conversion between class and XML, test for equality
   {
-    const std::vector<boost::shared_ptr<const cmap::Example> > v = AddConst(ribi::cmap::ExampleFactory::GetTests());
+    const std::vector<boost::shared_ptr<const Example> > v = AddConst(ExampleFactory().GetTests());
     std::for_each(v.begin(),v.end(),
-      [](const boost::shared_ptr<const cmap::Example>& e)
+      [](const boost::shared_ptr<const Example>& e)
       {
         assert(e);
-        const std::string s = ribi::cmap::Example::ToXml(e);
-        const boost::shared_ptr<const cmap::Example> f(Example::FromXml(s));
+        const std::string s { e->ToXml() };
+        const boost::shared_ptr<const Example> f(ExampleFactory().FromXml(s));
         assert(operator==(*e,*f));
       }
     );
   }
   {
-    const std::vector<boost::shared_ptr<const cmap::Example> > v = AddConst(ribi::cmap::ExampleFactory::GetTests());
+    const std::vector<boost::shared_ptr<const Example> > v = AddConst(ExampleFactory().GetTests());
     const int sz = boost::numeric_cast<int>(v.size());
     for (int i=0; i!=sz; ++i)
     {
-      const boost::shared_ptr<const cmap::Example>& e = v[i];
-      const std::string s = ribi::cmap::Example::ToXml(e);
+      const boost::shared_ptr<const Example>& e = v[i];
+      const std::string s { e->ToXml() };
       for (int j=0; j!=sz; ++j)
       {
-        const boost::shared_ptr<const cmap::Example>& f = v[j];
-        const std::string t = ribi::cmap::Example::ToXml(f);
+        const boost::shared_ptr<const Example>& f = v[j];
+        const std::string t = f->ToXml();
         if (i == j)
         {
-          assert(operator==(*e,*f));
+          assert(*e == *f);
           assert(s == t);
         }
         else
         {
-          assert(!operator==(*e,*f));
-          assert(s != t);
+          assert(*e != *f);
+          assert( s !=  t);
         }
       }
     }
@@ -255,25 +210,24 @@ void ribi::cmap::Example::Test() noexcept
   TRACE("Example::Test finished successfully");
 }
 
-const std::string ribi::cmap::Example::ToXml(const boost::shared_ptr<const cmap::Example>& c)
+const std::string ribi::cmap::Example::ToXml() const noexcept
 {
-  assert(c);
   std::stringstream s;
   s << "<example>";
   s <<   "<text>";
-  s <<     c->GetText();
+  s <<     GetText();
   s <<   "</text>";
   s <<   "<competency>";
-  s <<     CompetencyToStr(c->GetCompetency());
+  s <<     CompetencyToStr(GetCompetency());
   s <<   "</competency>";
   s <<   "<is_complex>";
-  s <<     c->GetIsComplex();
+  s <<     GetIsComplex();
   s <<   "</is_complex>";
   s <<   "<is_concrete>";
-  s <<     c->GetIsConcrete();
+  s <<     GetIsConcrete();
   s <<   "</is_concrete>";
   s <<   "<is_specific>";
-  s <<     c->GetIsSpecific();
+  s <<     GetIsSpecific();
   s <<   "</is_specific>";
   s << "</example>";
 

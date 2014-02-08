@@ -114,7 +114,7 @@ void ribi::cmap::QtRateStrategy::Test() noexcept
     assert(QtBrushFactory::CreateRedGradientBrush() != QtBrushFactory::CreateGreenGradientBrush());
   }
   {
-    const boost::shared_ptr<Concept> concept = ConceptFactory::Create();
+    const boost::shared_ptr<Concept> concept = ConceptFactory().Create();
     QtRateStrategy a(concept);
     const auto v {
       "1234567890",

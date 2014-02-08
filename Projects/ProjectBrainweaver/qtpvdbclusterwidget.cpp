@@ -364,9 +364,10 @@ void ribi::pvdb::QtPvdbClusterWidget::WriteToCluster()
     }
 
     QtPvdbTreeWidgetItem * const pvdb_top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //FIX 2012-12-30
+    using namespace cmap;
 
     concepts.push_back(
-      ribi::cmap::ConceptFactory::Create(
+      ConceptFactory().Create(
         name,
         cmap::ExamplesFactory::Create(examples),
         pvdb_top ? pvdb_top->m_is_complex : true,

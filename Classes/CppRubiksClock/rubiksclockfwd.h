@@ -14,8 +14,11 @@ namespace ruco {
 
 struct Clock;
 struct ClockDial;
+struct ClockWidget;
 struct DialWidget;
 struct Pegs;
+//struct RubiksClock; //Renamed to Clock
+//struct RubiksClockWidget; //Renamed to ClockWidget
 struct Times;
 
 } //~namespace ribi

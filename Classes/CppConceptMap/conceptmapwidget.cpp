@@ -71,7 +71,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
   return node;
 }
 
-void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<ribi::cmap::Node> node) noexcept
+void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<Node> node) noexcept
 {
   m_conceptmap->DeleteNode(node);
 }

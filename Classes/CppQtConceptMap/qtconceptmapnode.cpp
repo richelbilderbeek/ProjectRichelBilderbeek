@@ -23,7 +23,7 @@
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtNode::QtNode(
-  const boost::shared_ptr<ribi::cmap::Node> node,
+  const boost::shared_ptr<Node> node,
   const boost::shared_ptr<QtItemDisplayStrategy> concept_item)
   : m_signal_node_requests_rate_concept{},
     m_signal_node_requests_rate_examples{},
@@ -269,7 +269,7 @@ void ribi::cmap::QtNode::paint(QPainter* painter, const QStyleOptionGraphicsItem
   }
 }
 
-void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept)
+void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<Concept> concept)
 {
   this->m_node->SetConcept(concept);
 }
@@ -339,7 +339,7 @@ void ribi::cmap::QtNode::Test() noexcept
     for (std::size_t node_index=0; node_index!=n_nodes; ++node_index)
     {
       const auto nodes = cmap::NodeFactory::GetTests();
-      boost::shared_ptr<ribi::cmap::Node> node = nodes[node_index];
+      boost::shared_ptr<Node> node = nodes[node_index];
       assert(node);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));
       boost::shared_ptr<QtNode> qtnode(new QtNode(node,qtconcept_item));

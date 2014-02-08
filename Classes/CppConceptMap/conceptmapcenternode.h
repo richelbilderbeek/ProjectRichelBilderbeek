@@ -29,6 +29,8 @@ struct CenterNode : public Node
     const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
     const double y = 0.0);
+
+  const std::string ToXml() const noexcept;
 };
 
 ///Returns true if Node is of derived class type CenterNode

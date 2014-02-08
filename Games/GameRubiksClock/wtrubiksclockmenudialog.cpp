@@ -48,7 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QFile>
 #pragma GCC diagnostic pop
 
-ribi::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
+ribi::ruco::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
 {
   {
     std::vector<std::string> image_names;
@@ -107,26 +107,26 @@ ribi::WtRubiksClockMenuDialog::WtRubiksClockMenuDialog()
   }
 }
 
-Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewAboutDialog() const
+Wt::WWidget * ribi::ruco::WtRubiksClockMenuDialog::CreateNewAboutDialog() const
 {
-  About a = RubiksClockMenuDialog().GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   a.AddLibrary("WtDialWidget version: " + WtDialWidget::GetVersion());
-  a.AddLibrary("WtRubiksClockWidget version: " + WtRubiksClockWidget::GetVersion());
+  a.AddLibrary("WtRubiksClockWidget version: " + WtClockWidget::GetVersion());
   a.AddLibrary("WtToggleButtonWidget version: " + WtToggleButtonWidget::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::ruco::WtRubiksClockMenuDialog::CreateNewMainDialog() const
 {
   WtRubiksClockMainDialog * const d = new WtRubiksClockMainDialog;
   assert(d);
   return d;
 }
 
-Wt::WWidget * ribi::WtRubiksClockMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::ruco::WtRubiksClockMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);

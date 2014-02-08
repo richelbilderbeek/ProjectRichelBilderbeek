@@ -60,7 +60,8 @@ const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::Cluster::FromXml(const 
   std::for_each(w.begin(),w.end(),
     [&concepts](const std::string& s)
     {
-      const boost::shared_ptr<ribi::cmap::Concept> concept = cmap::Concept::FromXml(s);
+      using namespace cmap;
+      const boost::shared_ptr<Concept> concept = ConceptFactory().FromXml(s);
       concepts.push_back(concept);
     }
   );
@@ -84,7 +85,7 @@ const std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb:
     std::for_each(v.begin(), v.end(),
       [&s](const boost::shared_ptr<const ribi::cmap::Concept>& concept)
       {
-        s << cmap::Concept::ToXml(concept);
+        s << concept->ToXml();
       }
     );
   }
@@ -117,6 +118,6 @@ void ribi::pvdb::Cluster::SetConcepts(const std::vector<boost::shared_ptr<ribi::
 {
   m_v = concepts;
   assert(std::count_if(m_v.begin(),m_v.end(),
-    [](boost::shared_ptr<ribi::cmap::Concept> concept) { return !concept; } )
+    [](boost::shared_ptr<cmap::Concept> concept) { return !concept; } )
     == 0);
 }

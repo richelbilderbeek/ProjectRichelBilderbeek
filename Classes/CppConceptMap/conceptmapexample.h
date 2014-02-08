@@ -24,10 +24,7 @@ struct Example
   Example& operator=(const Example&) = delete;
 
   ///Convert a cmap::Competency to a std::string
-  static const std::string CompetencyToStr(const cmap::Competency competency);
-
-  ///Create an example from XML
-  static const boost::shared_ptr<cmap::Example> FromXml(const std::string& s);
+  static const std::string CompetencyToStr(const Competency competency);
 
   ///Get the competency, as might be judged by an assessor
   cmap::Competency GetCompetency() const { return m_competency; }
@@ -60,13 +57,13 @@ struct Example
   void SetText(const std::string& text);
 
   ///Convert a std::string to a cmap::Competency
-  static cmap::Competency StrToCompetency(const std::string& s);
+  static Competency StrToCompetency(const std::string& s);
 
   ///Test this class
   static void Test() noexcept;
 
   ///Convert Example to a std::string
-  static const std::string ToXml(const boost::shared_ptr<const cmap::Example>& t);
+  const std::string ToXml() const noexcept;
 
   ///Emitted when SetCompetency changes the competency
   boost::signals2::signal<void(Example*)> m_signal_competency_changed;

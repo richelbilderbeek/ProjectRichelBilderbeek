@@ -37,7 +37,7 @@ struct QtConceptMapListWidgetItem : public QListWidgetItem
 };
 
 ribi::cmap::QtConceptMapConceptEditDialog::QtConceptMapConceptEditDialog(
-  const boost::shared_ptr<ribi::cmap::Concept> concept,
+  const boost::shared_ptr<Concept> concept,
   QWidget* parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConceptMapConceptEditDialog),
@@ -147,11 +147,11 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
   }
   {
     //Assume reading in a concept and clicking OK without modification does not modify anything
-    const auto v = ribi::cmap::ConceptFactory::GetTests();
+    const auto v = ribi::cmap::ConceptFactory().GetTests();
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
-        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ConceptFactory().DeepCopy(concept);
         assert(concept != old_concept);
         assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
@@ -167,11 +167,11 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
   }
   {
     //Assume reading in a concept and clicking OK after modification of the name does modify concept
-    const auto v = ribi::cmap::ConceptFactory::GetTests();
+    const auto v = ribi::cmap::ConceptFactory().GetTests();
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
-        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ConceptFactory().DeepCopy(concept);
         assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         d.ui->edit_concept->setText(d.ui->edit_concept->text() + "MODIFICATION");
@@ -187,11 +187,11 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
   }
   {
     //Assume reading in a concept and clicking OK after adding an example
-    const auto v = ribi::cmap::ConceptFactory::GetTests();
+    const auto v = ribi::cmap::ConceptFactory().GetTests();
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
-        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ConceptFactory().DeepCopy(concept);
         assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         assert(d.ui->edit_text->text().isEmpty());
@@ -210,11 +210,11 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
   {
     //Assume reading in a concept and NOT clicking OK does not change the concept,
     //even when having changed the name and examples in the GUI
-    const auto v = ribi::cmap::ConceptFactory::GetTests();
+    const auto v = ribi::cmap::ConceptFactory().GetTests();
     std::for_each(v.begin(),v.end(),
       [](const boost::shared_ptr<ribi::cmap::Concept>& concept)
       {
-        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ribi::cmap::ConceptFactory::DeepCopy(concept);
+        const boost::shared_ptr<const ribi::cmap::Concept> old_concept = ConceptFactory().DeepCopy(concept);
         assert(*concept == *old_concept);
         QtConceptMapConceptEditDialog d(concept);
         //Change name
@@ -299,8 +299,8 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtConceptMapConceptEdit
   //Set to concept
   const boost::shared_ptr<ribi::cmap::Examples> examples(new cmap::Examples(v));
   assert(examples);
-  const boost::shared_ptr<ribi::cmap::Concept> concept
-    = ribi::cmap::ConceptFactory::Create(
+  const boost::shared_ptr<Concept> concept
+    = ribi::cmap::ConceptFactory().Create(
       name,
       examples,
       m_rating_complexity,

@@ -47,65 +47,11 @@ ribi::cmap::Concept::Concept(
   #endif
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::Concept::FromXml(const std::string& s)
-{
-  assert(s.size() >= 19);
-  assert(s.substr(0,9) == std::string("<concept>"));
-  assert(s.substr(s.size() - 10,10) == std::string("</concept>"));
-
-  std::string name;
-  boost::shared_ptr<ribi::cmap::Examples> examples;
-  bool is_complex = false;
-  int rating_complexity    = -2; //Not even unrated (which has -1 as its value)
-  int rating_concreteness  = -2; //Not even unrated (which has -1 as its value)
-  int rating_specificity   = -2; //Not even unrated (which has -1 as its value)
-  //m_name
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<name>.*</name>)"));
-    assert(v.size() == 1);
-    name = ribi::xml::StripXmlTag(v[0]);
-  }
-  //m_examples
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<examples>.*</examples>)"));
-    assert(v.size() == 1 && "<examples>*.</examples> must be present once in a Concept");
-    examples = Examples::FromXml(v[0]);
-  }
-
-  //m_is_complex
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<concept_is_complex>.*</concept_is_complex>)"));
-    assert(v.size() == 1 && "(<is_complex>.*</is_complex>) must be present once per Concept");
-    is_complex = boost::lexical_cast<bool>(ribi::xml::StripXmlTag(v[0]));
-  }
-
-  //m_rating_complexity
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<complexity>.*</complexity>)"));
-    assert(v.size() == 1 && "(<complexity>.*</complexity>) must be present once per Concept");
-    rating_complexity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
-    assert(rating_complexity >= -1);
-    assert(rating_complexity <=  2);
-  }
-  //m_rating_concreteness
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<concreteness>.*</concreteness>)"));
-    assert(v.size() == 1);
-    rating_concreteness = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
-  }
-  //m_rating_specificity
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<specificity>.*</specificity>)"));
-    assert(v.size() == 1);
-    rating_specificity = boost::lexical_cast<int>(ribi::xml::StripXmlTag(v[0]));
-  }
-  return ConceptFactory::Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity);
-}
 
 const boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExamples() const
 {
   assert(m_examples);
-  const boost::shared_ptr<const cmap::Examples> p(m_examples);
+  const boost::shared_ptr<const Examples> p(m_examples);
   assert(p);
   return p;
 }
@@ -166,27 +112,29 @@ void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity)
   }
 }
 
-const std::string ribi::cmap::Concept::ToXml(const boost::shared_ptr<const ribi::cmap::Concept> &c)
+const std::string ribi::cmap::Concept::ToXml() const noexcept
 {
   std::stringstream s;
-  s << "<concept>";
-  s <<   "<name>";
-  s <<     c->GetName();
-  s <<   "</name>";
-  s <<   Examples::ToXml(c->GetExamples());
-  s <<   "<concept_is_complex>";
-  s <<     c->GetIsComplex();
-  s <<   "</concept_is_complex>";
-  s <<   "<complexity>";
-  s <<     c->GetRatingComplexity();
-  s <<   "</complexity>";
-  s <<   "<concreteness>";
-  s <<     c->GetRatingConcreteness();
-  s <<   "</concreteness>";
-  s <<   "<specificity>";
-  s <<     c->GetRatingSpecificity();
-  s <<   "</specificity>";
-  s << "</concept>";
+  s
+    << "<concept>"
+    <<   "<name>"
+    <<     GetName()
+    <<   "</name>"
+    <<   GetExamples()->ToXml()
+    <<   "<concept_is_complex>"
+    <<     GetIsComplex()
+    <<   "</concept_is_complex>"
+    <<   "<complexity>"
+    <<     GetRatingComplexity()
+    <<   "</complexity>"
+    <<   "<concreteness>"
+    <<     GetRatingConcreteness()
+    <<   "</concreteness>"
+    <<   "<specificity>"
+    <<     GetRatingSpecificity()
+    <<   "</specificity>"
+    << "</concept>"
+  ;
   const std::string r = s.str();
 
   assert(r.size() >= 19);

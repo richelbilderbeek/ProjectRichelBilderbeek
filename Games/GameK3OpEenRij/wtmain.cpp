@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "connectthreeresources.h"
 #include "wtconnectthreemenudialog.h"
+#include "qtk3opeenrijresources.h"
 #include "about.h"
 #include "connectthree.h"
 #include "wtaboutdialog.h"
@@ -38,18 +39,18 @@ struct K3OpEenRijApplication : public Wt::WApplication
 {
   K3OpEenRijApplication(
     const Wt::WEnvironment& env,
-    const ribi::About& about,
-    const ribi::ConnectThreeResources& resources)
+    const boost::shared_ptr<const ConnectThreeResources> resources)
     : Wt::WApplication(env)
   {
-    this->setTitle("K3OpEenRij (C) 2007-2013 Richel Bilderbeek");
-    this->useStyleSheet(resources.GetCss());
-    root()->addWidget(new ribi::WtConnectThreeMenuDialog(resources,"K3OpEenRij"));
+    this->setTitle("K3OpEenRij");
+    this->useStyleSheet(resources->GetCss());
+    root()->addWidget(new ribi::WtConnectThreeMenuDialog(resources));
   }
 };
 
 } //namespace ribi
 
+/*
 ribi::About CreateAbout()
 {
   ribi::About about(
@@ -57,7 +58,7 @@ ribi::About CreateAbout()
     "K3-Op-Een-Rij",
     "Connect-three game with a K3 theme",
     "the 10th of January 2011",
-    "2007-2013",
+    "2007-2014",
     "http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",
     ribi::WtConnectThreeMenuDialog::GetVersion(),
     ribi::WtConnectThreeMenuDialog::GetVersionHistory());
@@ -67,25 +68,14 @@ ribi::About CreateAbout()
   about.AddLibrary("WtAboutDialog version: " + ribi::WtAboutDialog::GetVersion());
   return about;
 }
+*/
 
 Wt::WApplication * createApplication(const Wt::WEnvironment& env)
 {
-  ribi::ConnectThreeResources();
-  const ribi::ConnectThreeFilenames filenames(
-    "K3OpEenRijBackground.png",
-    "K3OpEenRijComputer1.png",
-    "K3OpEenRijComputer2.png",
-    "K3OpEenRijComputer3.png",
-    "K3OpEenRijComputerGrey.png",
-    "K3OpEenRij.css",
-    "K3OpEenRijEmpty.png",
-    "K3OpEenRijPlayer1.png",
-    "K3OpEenRijPlayer1Grey.png",
-    "K3OpEenRijPlayer2.png",
-    "K3OpEenRijPlayer2Grey.png",
-    "K3OpEenRijPlayer3.png",
-    "K3OpEenRijPlayer3Grey.png");
-  return new ribi::K3OpEenRijApplication(env,CreateAbout(),filenames);
+  const boost::shared_ptr<ribi::QtK3OpEenRijResources> resources {
+    new ribi::QtK3OpEenRijResources
+  };
+  return new ribi::K3OpEenRijApplication(env,resources);
 }
 
 int main(int argc, char **argv)

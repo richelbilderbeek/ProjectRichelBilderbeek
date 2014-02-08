@@ -53,7 +53,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 }
 
 ribi::cmap::QtEditConceptMap::QtEditConceptMap(
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+  const boost::shared_ptr<ConceptMap> concept_map,
   const Mode mode,
   QWidget* parent)
   : QtConceptMap(concept_map,parent),
@@ -104,7 +104,7 @@ ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
 }
 
 void ribi::cmap::QtEditConceptMap::AddEdge(
-  const boost::shared_ptr<ribi::cmap::Edge> edge)
+  const boost::shared_ptr<Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
   assert(qtconcept);
@@ -193,7 +193,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
 
   //Edge does not exist yet, create a new one
   const std::vector<QtNode*> qtnodes = Collect<QtNode>(scene());
-  const boost::shared_ptr<ribi::cmap::Concept> concept(cmap::ConceptFactory::Create());
+  const boost::shared_ptr<Concept> concept(ConceptFactory().Create());
   assert(concept);
   const bool head_arrow = true;
   const bool tail_arrow = false;
@@ -202,7 +202,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
   const boost::shared_ptr<ribi::cmap::Node> to = qt_to->GetNode();
   assert(to);
   assert(from != to);
-  const boost::shared_ptr<ribi::cmap::Edge> edge(
+  const boost::shared_ptr<Edge> edge(
     cmap::EdgeFactory::Create(
       concept,
       (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
@@ -251,7 +251,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
   this->scene()->update();
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   assert(node);
   assert(node->GetConcept());
@@ -353,7 +353,7 @@ void ribi::cmap::QtEditConceptMap::CleanMe()
 #ifndef NDEBUG
 std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtEditConceptMap::CreateNewDerived() const
 {
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtConceptMap> p(new This_t(concept_map,this->m_mode));
@@ -465,13 +465,13 @@ void ribi::cmap::QtEditConceptMap::DoRandomStuff()
 {
   //this->mouseDoubleClickEvent(0); //CAUSES ACCESS VIOLATION
 
-  const boost::shared_ptr<ribi::cmap::Concept> concept1(cmap::ConceptFactory::Create("...", { {} } ) );
-  const boost::shared_ptr<ribi::cmap::Node> node1(cmap::NodeFactory::Create(concept1));
+  const boost::shared_ptr<Concept> concept1(ConceptFactory().Create("...", { {} } ) );
+  const boost::shared_ptr<Node> node1(cmap::NodeFactory::Create(concept1));
   this->GetConceptMap()->AddNode(node1);
   QtNode * const qtnode1 = AddNode(node1);
 
-  const boost::shared_ptr<ribi::cmap::Concept> concept2(cmap::ConceptFactory::Create("...", { {} } ) );
-  const boost::shared_ptr<ribi::cmap::Node> node2(cmap::NodeFactory::Create(concept2));
+  const boost::shared_ptr<Concept> concept2(ConceptFactory().Create("...", { {} } ) );
+  const boost::shared_ptr<Node> node2(cmap::NodeFactory::Create(concept2));
   this->GetConceptMap()->AddNode(node2);
   QtNode * const qtnode2 = AddNode(node2);
 
@@ -484,7 +484,7 @@ void ribi::cmap::QtEditConceptMap::DoRandomStuff()
 #endif
 
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtEditConceptMap::GetDisplayStrategy(
-  const boost::shared_ptr<ribi::cmap::Concept> concept) const noexcept
+  const boost::shared_ptr<Concept> concept) const noexcept
 {
   assert(concept);
   const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {
@@ -584,9 +584,9 @@ void ribi::cmap::QtEditConceptMap::keyPressEvent(QKeyEvent* event) noexcept
 
 void ribi::cmap::QtEditConceptMap::mouseDoubleClickEvent(QMouseEvent *event)
 {
-  const boost::shared_ptr<ribi::cmap::Concept> concept(
-    ribi::cmap::ConceptFactory::Create("..."));
-  const boost::shared_ptr<ribi::cmap::Node> node(cmap::NodeFactory::Create(concept));
+  const boost::shared_ptr<Concept> concept(
+    ribi::cmap::ConceptFactory().Create("..."));
+  const boost::shared_ptr<Node> node(cmap::NodeFactory::Create(concept));
   assert(node);
   assert(GetConceptMap());
   GetConceptMap()->AddNode(node);
@@ -658,7 +658,7 @@ void ribi::cmap::QtEditConceptMap::OnConceptMapItemRequestsEdit(QtConceptMapElem
 {
 
   //assert(item->GetConcept());
-  //const boost::shared_ptr<ribi::cmap::Concept> new_concept = ribi::cmap::ConceptFactory::DeepCopy(item->GetConcept());
+  //const boost::shared_ptr<Concept> new_concept = ConceptFactory().DeepCopy(item->GetConcept());
   //assert(new_concept);
 
   assert(this);

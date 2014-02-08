@@ -3,11 +3,11 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Tools/ToolFunctionPlotter/functionplottermenudialog.cpp \
-    functionplottermaindialog.cpp
+    ../../Tools/ToolFunctionPlotter/functionplottermaindialog.cpp
 
 HEADERS += \
     ../../Tools/ToolFunctionPlotter/functionplottermenudialog.h \
-    functionplottermaindialog.h
+    ../../Tools/ToolFunctionPlotter/functionplottermaindialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolFunctionPlotter/Licence.txt

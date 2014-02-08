@@ -18,6 +18,8 @@ namespace cmap {
 
 struct ExamplesFactory
 {
+  ExamplesFactory() {}
+
   ///Constructor like
   static const boost::shared_ptr<Examples> Create();
 
@@ -34,7 +36,12 @@ struct ExamplesFactory
   static const boost::shared_ptr<Examples> Create(
     const std::vector<std::pair<std::string,Competency> >& v);
 
-  static const std::vector<boost::shared_ptr<Examples> > GetTests();
+  ///Create an Examples from XML
+  const boost::shared_ptr<Examples> FromXml(const std::string& s) const;
+
+  int GetNumberOfTests() const noexcept { return static_cast<int>(GetTests().size()); }
+  const boost::shared_ptr<Examples> GetTest(const int i) const noexcept;
+  const std::vector<boost::shared_ptr<Examples>> GetTests() const noexcept;
 };
 
 } //~namespace cmap

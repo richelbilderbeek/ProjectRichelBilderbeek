@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-WtRubiksClockWidget, Wt widget for displaying the RubiksClock class
+WtClockWidget, Wt widget for displaying the Clock class
 Copyright (C) 2011 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,76 +16,71 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/CppWtRubiksClockWidget.htm
+//From http://www.richelbilderbeek.nl/CppWtClockWidget.htm
 //---------------------------------------------------------------------------
-#ifdef _WIN32
-//See http://www.richelbilderbeek.nl/CppCompileErrorSwprintfHasNotBeenDeclared.htm
-#undef __STRICT_ANSI__
-#endif
-
-
-
 #include "wtrubiksclockwidget.h"
 
 #include <iostream>
 #include <boost/bind.hpp>
 #include <boost/numeric/conversion/cast.hpp>
-//---------------------------------------------------------------------------
+
 #include <Wt/WBrush>
 #include <Wt/WEvent>
 #include <Wt/WPainter>
 #include <Wt/WPen>
-//---------------------------------------------------------------------------
+
 #include "dial.h"
 #include "rubiksclock.h"
 #include "rubiksclockdial.h"
 #include "rubiksclockdialwidget.h"
+#include "rubiksclocktimes.h"
 #include "rubiksclockwidget.h"
+#include "rubiksclockpegs.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 //#include "trace.h"
 #include "wtdialwidget.h"
 #include "wttogglebuttonwidget.h"
-//---------------------------------------------------------------------------
-ribi::WtRubiksClockWidget::WtRubiksClockWidget(
+
+ribi::ruco::WtClockWidget::WtClockWidget(
   const bool toggled,
   const unsigned char red,
   const unsigned char green,
   const unsigned char blue)
-  : m_widget(new RubiksClockWidget(toggled,red,green,blue))
+  : m_widget(new ClockWidget(toggled,red,green,blue))
 {
   assert(m_widget);
 
   m_widget->m_signal_widget_flipped.connect(
     boost::bind(
-      &ribi::WtRubiksClockWidget::DoRepaint,
+      &ribi::ruco::WtClockWidget::DoRepaint,
       this));
 
   m_widget->GetRubiksClock()->m_signal_clock_changed.connect(
     boost::bind(
-      &ribi::WtRubiksClockWidget::DoRepaint,
+      &ribi::ruco::WtClockWidget::DoRepaint,
       this));
 
   m_widget->m_signal_geometry_changed.connect(
     boost::bind(
-      &ribi::WtRubiksClockWidget::OnResize,
+      &ribi::ruco::WtClockWidget::OnResize,
       this));
 
-  this->clicked().connect(this,&ribi::WtRubiksClockWidget::OnClicked);
+  this->clicked().connect(this,&ribi::ruco::WtClockWidget::OnClicked);
 
   m_widget->SetGeometry(Rect(0,0,200,200));
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::DoRepaint()
+
+void ribi::ruco::WtClockWidget::DoRepaint()
 {
   this->update();
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::DrawRubiksClock(
+
+void ribi::ruco::WtClockWidget::DrawClock(
   Wt::WPainter& painter,
   const int left, const int top,
   const int width, const int height,
-  const RubiksClock * const clock,
+  const Clock * const clock,
   const bool front_side)
 {
   //Draw main clock ring
@@ -116,8 +111,8 @@ void ribi::WtRubiksClockWidget::DrawRubiksClock(
     {
       for (int x=0; x!=3; ++x)
       {
-        const boost::shared_ptr<RubiksClockDialWidget> w
-          = (front_side ? clock->GetFrontTimes() : clock->GetBackTimes()).times[x][y];
+        const boost::shared_ptr<ClockDialWidget> w
+          = (front_side ? clock->GetFrontTimes() : clock->GetBackTimes())->times[x][y];
         WtDialWidget::DrawDial(
           painter,
           w->GetGeometry().GetX(),
@@ -136,17 +131,17 @@ void ribi::WtRubiksClockWidget::DrawRubiksClock(
           painter,
           (front_side
             ? clock->GetFrontPegs()
-            : clock->GetBackPegs()).pegs[x][y].get());
+            : clock->GetBackPegs())->m_pegs[x][y].get());
       }
     }
   }
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::DrawRubiksClock(
+
+void ribi::ruco::WtClockWidget::DrawClock(
   Wt::WPainter& painter,
-  const RubiksClockWidget * const widget)
+  const ClockWidget * const widget)
 {
-  DrawRubiksClock(
+  DrawClock(
     painter,
     widget->GetGeometry().GetX(),
     widget->GetGeometry().GetY(),
@@ -155,22 +150,22 @@ void ribi::WtRubiksClockWidget::DrawRubiksClock(
     widget->GetRubiksClock(),
     widget->GetDisplayFront());
 }
-//---------------------------------------------------------------------------
-const std::string ribi::WtRubiksClockWidget::GetVersion()
+
+const std::string ribi::ruco::WtClockWidget::GetVersion()
 {
-  return "1.1";
+  return "1.2";
 }
-//---------------------------------------------------------------------------
-const std::vector<std::string> ribi::WtRubiksClockWidget::GetVersionHistory()
+
+const std::vector<std::string> ribi::ruco::WtClockWidget::GetVersionHistory()
 {
-  std::vector<std::string> v;
-  v.push_back("YYYY-MM-DD: version X.Y: [description]");
-  v.push_back("2011-09-01: version 1.0: initial version");
-  v.push_back("2011-09-15: version 1.1: allow displaying both sides");
-  return v;
+  return {
+    "2011-09-01: version 1.0: initial version",
+    "2011-09-15: version 1.1: allow displaying both sides",
+    "2014-02-08: version 1.2: put in namespace ruco"
+  };
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::OnClicked(const Wt::WMouseEvent& e)
+
+void ribi::ruco::WtClockWidget::OnClicked(const Wt::WMouseEvent& e)
 {
   const int x = e.widget().x;
   const int y = e.widget().y;
@@ -179,20 +174,20 @@ void ribi::WtRubiksClockWidget::OnClicked(const Wt::WMouseEvent& e)
     || e.wheelDelta() > 0;
   m_widget->Click(x,y,is_left_button);
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::OnResize()
+
+void ribi::ruco::WtClockWidget::OnResize()
 {
   resize(m_widget->GetGeometry().GetWidth(),m_widget->GetGeometry().GetHeight());
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+
+void ribi::ruco::WtClockWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
-  DrawRubiksClock(painter,m_widget.get());
+  DrawClock(painter,m_widget.get());
 }
-//---------------------------------------------------------------------------
-void ribi::WtRubiksClockWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
+
+void ribi::ruco::WtClockWidget::resize(const Wt::WLength& width, const Wt::WLength& height)
 {
   Wt::WPaintedWidget::resize(width,height);
 }
-//---------------------------------------------------------------------------
+

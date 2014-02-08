@@ -110,7 +110,7 @@ void ribi::cmap::QtTestEditConceptMapDialog::Test() noexcept
   {
     TRACE("TODO");
     /*
-    const boost::shared_ptr<ribi::cmap::Concept> concept = d.m_concept_map->GetConcept();
+    const boost::shared_ptr<Concept> concept = d.m_concept_map->GetConcept();
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);
@@ -150,7 +150,7 @@ void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
         assert(!qtitem->GetConcept()->GetName().empty());
         assert(qtitem->GetConcept()->GetExamples());
         qtitem->SetName(qtitem->GetConcept()->GetName() + "N");
-        const std::vector<boost::shared_ptr<ribi::cmap::Examples> > v = cmap::ExamplesFactory::GetTests();
+        const std::vector<boost::shared_ptr<Examples> > v = ExamplesFactory().GetTests();
         qtitem->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
         qtitem->update();
       }
@@ -160,7 +160,7 @@ void ribi::cmap::QtTestEditConceptMapDialog::DoSomethingRandom()
         assert(!qtitem->GetConcept()->GetName().empty());
         assert(qtitem->GetConcept()->GetExamples());
         qtitem->SetName(qtitem->GetConcept()->GetName() + "E");
-        const std::vector<boost::shared_ptr<ribi::cmap::Examples> > v = cmap::ExamplesFactory::GetTests();
+        const std::vector<boost::shared_ptr<Examples> > v = ExamplesFactory().GetTests();
         qtitem->GetConcept()->SetExamples(v [ std::rand() % v.size() ] );
         qtitem->update();
       }

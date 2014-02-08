@@ -26,7 +26,7 @@
 ribi::cmap::QtConceptMapTestConceptItemDialog::QtConceptMapTestConceptItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtConceptMapTestConceptItemDialog),
-  m_concept(cmap::ConceptFactory::GetTests().at(1)),
+  m_concept(cmap::ConceptFactory().GetTests().at(1)),
   m_display_concept(nullptr),
   m_edit_concept(nullptr),
   m_rate_concept(nullptr)
@@ -244,7 +244,7 @@ void ribi::cmap::QtConceptMapTestConceptItemDialog::Test() noexcept
   }
   //Test brushes being changed when ratings are given
   {
-    const boost::shared_ptr<ribi::cmap::Concept> concept = d.m_concept;
+    const boost::shared_ptr<Concept> concept = d.m_concept;
     concept->SetRatingComplexity(-1);
     concept->SetRatingConcreteness(-1);
     concept->SetRatingSpecificity(-1);

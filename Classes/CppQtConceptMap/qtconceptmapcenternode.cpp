@@ -23,7 +23,7 @@ ribi::cmap::QtCenterNode::QtCenterNode(
 }
 
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtCenterNode::CreateConceptItem(
-  const boost::shared_ptr<ribi::cmap::Node> node)
+  const boost::shared_ptr<Node> node)
 {
   assert(node);
   const boost::shared_ptr<QtDisplayStrategy> item(new QtDisplayStrategy(node->GetConcept()));

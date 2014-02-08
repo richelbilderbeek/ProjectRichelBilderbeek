@@ -20,6 +20,8 @@ struct Node;
 ///Factory for creating Node instances
 struct NodeFactory
 {
+  NodeFactory();
+
   static const boost::shared_ptr<Node> Create(
     const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
@@ -37,8 +39,15 @@ struct NodeFactory
     const boost::shared_ptr<const cmap::Node>& node);
   #endif
 
+  ///Obtain a Node or CenterNode from an XML std::string
+  static const boost::shared_ptr<Node> FromXml(const std::string& s);
+
   ///Obtain testing nodes
   static const std::vector<boost::shared_ptr<Node> > GetTests();
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace cmap

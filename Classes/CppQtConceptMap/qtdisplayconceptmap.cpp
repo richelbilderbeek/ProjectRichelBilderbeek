@@ -42,7 +42,7 @@ std::vector<T*> Collect(const QGraphicsScene* const scene)
 }
 
 ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map,
+  const boost::shared_ptr<ConceptMap> concept_map,
   QWidget* parent)
   : QtConceptMap(concept_map,parent)
 {
@@ -59,7 +59,7 @@ ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
 
 
 void ribi::cmap::QtDisplayConceptMap::AddEdge(
-  const boost::shared_ptr<ribi::cmap::Edge> edge)
+  const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
   const boost::shared_ptr<QtDisplayStrategy> qtconcept(new QtDisplayStrategy(edge->GetConcept()));
@@ -118,7 +118,7 @@ void ribi::cmap::QtDisplayConceptMap::AddEdge(
   #endif
 }
 
-ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::shared_ptr<ribi::cmap::Node> node)
+ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   assert(node);
   assert(node->GetConcept());
@@ -188,7 +188,7 @@ void ribi::cmap::QtDisplayConceptMap::CleanMe()
 #ifndef NDEBUG
 std::unique_ptr<ribi::cmap::QtConceptMap> ribi::cmap::QtDisplayConceptMap::CreateNewDerived() const
 {
-  const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
+  const boost::shared_ptr<ConceptMap> concept_map
     = ribi::cmap::ConceptMapFactory::DeepCopy(this->GetConceptMap());
   assert(concept_map);
   std::unique_ptr<QtConceptMap> p(new QtDisplayConceptMap(concept_map));
@@ -210,11 +210,11 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   this->AddNode(node_from);
   this->AddNode(node_to  );
   const int index = 0;
-  assert(index < static_cast<int>(ConceptFactory::GetTests().size()));
-  const auto edge_concept = ribi::cmap::ConceptFactory::GetTests().at(index);
+  assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
+  const auto edge_concept = ribi::cmap::ConceptFactory().GetTests().at(index);
   const double node_x = 12.34; //Just some coordinat
   const double node_y = 45.67; //Just some coordinat
-  const boost::shared_ptr<ribi::cmap::Edge> edge = cmap::EdgeFactory::Create(
+  const boost::shared_ptr<Edge> edge = cmap::EdgeFactory::Create(
     edge_concept,node_x,node_y,node_from,true,node_to,true);
   this->AddEdge(edge);
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
@@ -225,7 +225,7 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
 #endif
 
 const boost::shared_ptr<ribi::cmap::QtItemDisplayStrategy> ribi::cmap::QtDisplayConceptMap::GetDisplayStrategy(
-  const boost::shared_ptr<ribi::cmap::Concept> concept) const noexcept
+  const boost::shared_ptr<Concept> concept) const noexcept
 {
   assert(concept);
   const boost::shared_ptr<QtItemDisplayStrategy> display_strategy {

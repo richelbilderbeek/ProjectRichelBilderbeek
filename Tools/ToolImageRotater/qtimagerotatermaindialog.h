@@ -4,7 +4,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qthideandshowdialog.h"
-#include <QPixmap>
+#include <QImage>
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -33,7 +33,7 @@ private slots:
 
 private:
   Ui::QtImageRotaterMainDialog *ui;
-  QPixmap m_source;
+  QImage m_source;
   QLabel * m_target;
 
   #ifndef NDEBUG

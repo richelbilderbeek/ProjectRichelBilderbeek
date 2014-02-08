@@ -29,41 +29,10 @@ ribi::cmap::Node::Node(
   #endif
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Node::FromXml(const std::string& s)
-{
-  assert(s.size() >= 13);
-  assert(s.substr(0,6) == std::string("<node>"));
-  assert(s.substr(s.size() - 7,7) == std::string("</node>"));
-
-  //m_concept
-  boost::shared_ptr<Concept> concept;
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<concept>.*</concept>)"));
-    assert(v.size() == 1);
-    concept = Concept::FromXml(v[0]);
-  }
-  //m_x
-  double x = 0.0;
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<x>.*</x>)"));
-    assert(v.size() == 1);
-    x = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
-  }
-  //m_x
-  double y = 0.0;
-  {
-    const std::vector<std::string> v = cmap::GetRegexMatches(s,QRegExp("(<y>.*</y>)"));
-    assert(v.size() == 1);
-    y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
-  }
-  assert(concept);
-  const boost::shared_ptr<Node> node(new Node(concept,x,y));
-  return node;
-}
 
 const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests()
 {
-  const auto test_concepts = ConceptFactory::GetTests();
+  const auto test_concepts = ConceptFactory().GetTests();
   std::vector<boost::shared_ptr<Node> > result;
   std::for_each(test_concepts.begin(),test_concepts.end(),
     [&result](const boost::shared_ptr<Concept>& concept)
@@ -84,7 +53,7 @@ bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>&
   return *lhs->GetConcept() == *rhs->GetConcept();
 }
 
-void ribi::cmap::Node::SetConcept(const boost::shared_ptr<ribi::cmap::Concept> concept)
+void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept)
 {
   if (m_concept != concept)
   {
@@ -127,11 +96,12 @@ void ribi::cmap::Node::Test() noexcept
       {
         //Test copy constructor
         assert(node);
-        const boost::shared_ptr<const cmap::Node> c = NodeFactory::DeepCopy(node);
+        const boost::shared_ptr<const Node> c = NodeFactory::DeepCopy(node);
         assert(c);
         assert(*node == *c);
-        const std::string s = ToXml(c);
-        const boost::shared_ptr<Node> d = FromXml(s);
+        const std::string s = c->ToXml();
+        const boost::shared_ptr<Node> d = NodeFactory::FromXml(s);
+        TRACE(s); //TEMP
         assert(d);
         assert(*c == *d);
       }
@@ -140,8 +110,8 @@ void ribi::cmap::Node::Test() noexcept
   //Test HasSameContent
   {
     {
-      const boost::shared_ptr<Concept> c(cmap::ConceptFactory::Create("1"));
-      const boost::shared_ptr<Concept> d(cmap::ConceptFactory::Create("1"));
+      const boost::shared_ptr<Concept> c(ConceptFactory().Create("1"));
+      const boost::shared_ptr<Concept> d(ConceptFactory().Create("1"));
       assert(*c == *d);
       const boost::shared_ptr<Node> a(new Node(c));
       const boost::shared_ptr<Node> b(new Node(d));
@@ -150,11 +120,11 @@ void ribi::cmap::Node::Test() noexcept
       assert(HasSameContent(a,b));
       assert(*a == *b);
     }
-    const int sz = static_cast<int>(ConceptFactory::GetTests().size());
+    const int sz = static_cast<int>(ConceptFactory().GetTests().size());
     for (int i=0; i!=sz; ++i)
     {
-      const boost::shared_ptr<Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized} } );
-      const boost::shared_ptr<Concept> d = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> c = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized} } );
       assert( c !=  d);
       assert(*c == *d);
       const boost::shared_ptr<Node> a(new Node(c));
@@ -164,8 +134,8 @@ void ribi::cmap::Node::Test() noexcept
 
     {
       //Cannot shuffle Concept its examples. No need to as well: the order is important
-      const boost::shared_ptr<Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
-      const boost::shared_ptr<Concept> d = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> c = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
       assert( c !=  d);
       assert(*c == *d);
       const boost::shared_ptr<Node> a(new Node(c));
@@ -175,8 +145,8 @@ void ribi::cmap::Node::Test() noexcept
     }
     {
       //Cannot shuffle Concept its examples. No need to as well: the order is important
-      const boost::shared_ptr<Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
-      const boost::shared_ptr<Concept> d = ConceptFactory::Create("1", { {"3", cmap::Competency::uninitialized},{"2", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> c = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"3", cmap::Competency::uninitialized},{"2", cmap::Competency::uninitialized} } );
       assert(c != d);
       assert(*c != *d);
       const boost::shared_ptr<Node> a(new Node(c));
@@ -186,8 +156,8 @@ void ribi::cmap::Node::Test() noexcept
     }
     {
       //Cannot shuffle Concept its examples. No need to as well: the order is important
-      const boost::shared_ptr<Concept> c = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
-      const boost::shared_ptr<Concept> d = ConceptFactory::Create("1", { {"2", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> c = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
+      const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized} } );
       assert(c != d);
       assert(*c != *d);
       const boost::shared_ptr<Node> a(new Node(c));
@@ -199,12 +169,12 @@ void ribi::cmap::Node::Test() noexcept
   }
   //Test ConceptFactory reproductions
   {
-    const int sz = static_cast<int>(ConceptFactory::GetTests().size());
+    const int sz = static_cast<int>(ConceptFactory().GetTests().size());
     for (int i=0; i!=sz; ++i)
     {
-      assert(i < static_cast<int>(ConceptFactory::GetTests().size()));
-      const boost::shared_ptr<Concept> c = ConceptFactory::GetTests()[i];
-      const boost::shared_ptr<Concept> d = ConceptFactory::GetTests()[i];
+      assert(i < static_cast<int>(ConceptFactory().GetTests().size()));
+      const boost::shared_ptr<Concept> c = ConceptFactory().GetTests()[i];
+      const boost::shared_ptr<Concept> d = ConceptFactory().GetTests()[i];
       assert(c != d);
       assert(*c == *d);
       const boost::shared_ptr<Node> a(new Node(c));
@@ -216,15 +186,15 @@ void ribi::cmap::Node::Test() noexcept
   }
   //Test ConceptFactory reproductions
   {
-    const int sz = static_cast<int>(ConceptFactory::GetTests().size());
+    const int sz = static_cast<int>(ConceptFactory().GetTests().size());
     for (int i=0; i!=sz; ++i)
     {
       for (int j=0; j!=sz; ++j)
       {
-        assert(i < static_cast<int>(ConceptFactory::GetTests().size()));
-        const boost::shared_ptr<Concept> c = ConceptFactory::GetTests()[i];
+        assert(i < static_cast<int>(ConceptFactory().GetTests().size()));
+        const boost::shared_ptr<Concept> c = ConceptFactory().GetTests()[i];
         assert(c);
-        const boost::shared_ptr<Concept> d = ConceptFactory::GetTests()[j];
+        const boost::shared_ptr<Concept> d = ConceptFactory().GetTests()[j];
         assert(d);
         assert(c != d);
         if (i!=j)
@@ -253,13 +223,13 @@ void ribi::cmap::Node::Test() noexcept
 }
 #endif
 
-const std::string ribi::cmap::Node::ToXml(const boost::shared_ptr<const cmap::Node>& node)
+const std::string ribi::cmap::Node::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<node>";
-  s << Concept::ToXml(node->GetConcept());
-  s << "<x>" << node->GetX() << "</x>";
-  s << "<y>" << node->GetY() << "</y>";
+  s << GetConcept()->ToXml();
+  s << "<x>" << GetX() << "</x>";
+  s << "<y>" << GetY() << "</y>";
   s << "</node>";
 
   const std::string r = s.str();
