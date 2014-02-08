@@ -28,6 +28,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsScene>
 #include <QKeyEvent>
 #include <QGraphicsSimpleTextItem>
+
+#include "conceptmaphelper.h"
 #pragma GCC diagnostic pop
 
 ribi::QtKeyboardFriendlyGraphicsView::QtKeyboardFriendlyGraphicsView(QWidget* parent)

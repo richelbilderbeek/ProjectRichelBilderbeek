@@ -145,7 +145,8 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
 
   assert(Collect<QtNode>(scene()).empty());
 
-  //Add the nodes to the scene
+  //Add the nodes to the scene, if there are any
+  if (!m_concept_map->GetNodes().empty())
   {
     //Add the main question as the first node
     const boost::shared_ptr<Node> node = m_concept_map->GetFocalNode();
@@ -445,12 +446,17 @@ void ribi::cmap::QtConceptMap::OnRequestSceneUpdate()
 
 void ribi::cmap::QtConceptMap::RepositionItems()
 {
+
   {
     //The ray of the upcoming circle of nodes, is the larger of
     //(1) half of the diagonal of the focal question (e.g. for short concepts)
     //(2) calculated from the circumference by adding the nodes' length
     const std::vector<QtNode *> qtnode_concepts_unsorted = Collect<QtNode>(scene());
+
+    if (qtnode_concepts_unsorted.empty()) return;
+
     const std::vector<QtNode *> qtnode_concepts = Sort(qtnode_concepts_unsorted);
+    assert(!qtnode_concepts.empty());
     assert(!qtnode_concepts.empty());
     assert(qtnode_concepts[0]);
     const QtNode * const qtcenter_node
@@ -462,7 +468,7 @@ void ribi::cmap::QtConceptMap::RepositionItems()
     assert(qtcenter_node->pos().y() <  0.5);
 
     const double r1
-      = 0.5 * cmap::GetDistance(
+      = 0.5 * ribi::cmap::GetDistance(
         qtcenter_node->boundingRect().width(),
         qtcenter_node->boundingRect().height());
     const double r3 = 50.0;

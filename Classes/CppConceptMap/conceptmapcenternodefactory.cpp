@@ -90,10 +90,15 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
   const std::string& s
 ) const noexcept
 {
-  if ( s.size() < 27
-    || s.substr(0,13) != std::string("<center_node>")
-    || s.substr(s.size() - 14,14) == std::string("</center_node>")
-  )
+  if (s.size() < 27)
+  {
+    return nullptr;
+  }
+  if (s.substr(0,13) != std::string("<center_node>"))
+  {
+    return nullptr;
+  }
+  if (s.substr(s.size() - 14,14) != std::string("</center_node>"))
   {
     return nullptr;
   }

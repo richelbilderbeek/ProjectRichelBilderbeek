@@ -441,9 +441,9 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const int n_heteromorphous_concept_maps = 20;
       assert(n_heteromorphous_concept_maps == static_cast<int>(maps.size())
         && "To warn you if you change the number of testing concept maps");
-      const std::vector<int> n_subs_expected = { 1,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5 } ;
+      const std::vector<int> n_subs_expected = { 0,2,3,3,3,3,3,4,4,4,4,4,4,4,4,5,5,5,5,5 } ;
       assert(n_heteromorphous_concept_maps == static_cast<int>(n_subs_expected.size()));
-      assert(n_subs_expected[ 0] == 1);
+      assert(n_subs_expected[ 0] == 0);
       assert(n_subs_expected[ 1] == 2);
       assert(n_subs_expected[ 2] == 3);
       assert(n_subs_expected[ 6] == 3);
@@ -476,7 +476,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     {
       for (const boost::shared_ptr<const ConceptMap> map: ConceptMapFactory::GetHeteromorphousTestConceptMaps())
       {
-        assert(CountCenterNodes(map) == 1 && "Every test concept map must have one CenterNode");
+        if (CountCenterNodes(map) == 0) continue;
 
         //Count the edges connected to CenterNode
         const int n_edges_connected_to_center { CountCenterNodeEdges(map) };
@@ -591,10 +591,11 @@ void ribi::cmap::ConceptMap::Test() noexcept
     const std::size_t n_concept_maps = ConceptMapFactory::GetHeteromorphousTestConceptMaps().size();
     for (std::size_t i = 0; i!=n_concept_maps; ++i)
     {
+
       assert(ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i]);
       const boost::shared_ptr<ConceptMap> concept_map = ConceptMapFactory::GetHeteromorphousTestConceptMaps()[i];
       assert(concept_map);
-      assert(!concept_map->GetNodes().empty());
+      if (concept_map->GetNodes().empty()) continue;
       assert(concept_map->FindCenterNode() && "Assume a CenterNode at the center of ConceptMap");
     }
   }

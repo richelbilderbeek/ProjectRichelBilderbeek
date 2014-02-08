@@ -186,8 +186,6 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::ConceptMap::
 
 const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMap::CreateSubs() const
 {
-  assert(m_nodes.size() >= 1 && "Concept map must have a at least one node");
-
   std::vector<boost::shared_ptr<ConceptMap> > v;
   for (const boost::shared_ptr<Node> focal_node: m_nodes)
   {
@@ -218,9 +216,8 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     //Put CenterNode in front
     const auto iter = std::find_if(nodes.begin(),nodes.end(),[](const boost::shared_ptr<Node> node) { return IsCenterNode(node); } );
     if (iter != nodes.end()) { std::swap(*nodes.begin(),*iter); }
-    assert(ribi::cmap::ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
+    assert(ConceptMap::CanConstruct(nodes,edges) && "Only construct valid concept maps");
     const boost::shared_ptr<ConceptMap> concept_map(new ConceptMap(nodes,edges));
-    //assert(CountCenterNodes(concept_map) == 0 || concep_map->
     assert(concept_map->IsValid());
     v.push_back(concept_map);
   }
@@ -328,7 +325,7 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Edge> > ribi::cmap::Concep
 
 const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocalNode() const noexcept
 {
-  assert(!m_nodes.empty());
+  if (m_nodes.empty()) return nullptr;
   return m_nodes[0];
 }
 

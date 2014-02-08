@@ -153,7 +153,11 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
       std::for_each(x.begin(),x.end(),
         [&nodes](const std::string& s)
         {
-          nodes.push_back(CenterNodeFactory().FromXml(s) );
+          const boost::shared_ptr<CenterNode> node {
+            CenterNodeFactory().FromXml(s)
+          };
+          assert(node);
+          nodes.push_back(node);
         }
       );
     }
