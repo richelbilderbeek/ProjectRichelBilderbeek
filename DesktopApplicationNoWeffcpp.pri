@@ -5,6 +5,10 @@ win32 {
   greaterThan(QT_MAJOR_VERSION, 4): QT += svg
 }
 
+cross_compile {
+  greaterThan(QT_MAJOR_VERSION, 4): QT += svg
+}
+
 TEMPLATE = app
 
 CONFIG(debug, debug|release) {

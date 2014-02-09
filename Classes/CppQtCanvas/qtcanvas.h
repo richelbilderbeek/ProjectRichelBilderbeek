@@ -17,7 +17,7 @@ struct Canvas;
 
 ///A Canvas class that can be used on a QDialog
 ///If the Canvas is modified, this is displayed in the QtCanvas
-class QtCanvas : public QPlainTextEdit
+class QtCanvas : public QWidget
 {
   Q_OBJECT
 
@@ -34,9 +34,10 @@ public:
   void SetCanvas(const boost::shared_ptr<Canvas> canvas);
 
   ///Emitted when the QtCanvas is destroyed
-  //boost::signals2::signal<void()> m_signal_on_destroy;
+  boost::signals2::signal<void()> m_signal_on_destroy;
 
-  virtual void keyPressEvent(QKeyEvent * /*e*/) {}
+  virtual void keyPressEvent(QKeyEvent * e);
+  virtual void paintEvent(QPaintEvent *);
 
 private:
   friend void boost::checked_delete<>(QtCanvas* x);

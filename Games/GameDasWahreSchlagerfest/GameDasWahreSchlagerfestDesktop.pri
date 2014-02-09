@@ -18,4 +18,3 @@ FORMS += \
 
 RESOURCES += \
     ../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc
-

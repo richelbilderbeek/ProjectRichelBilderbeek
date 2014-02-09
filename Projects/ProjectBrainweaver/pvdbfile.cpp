@@ -16,6 +16,7 @@
 #include <QRegExp>
 
 #include "conceptmapcenternode.h"
+#include "conceptmapcenternodefactory.h"
 #include "pvdbclusterfactory.h"
 #include "pvdbcluster.h"
 #include "conceptmapconcept.h"
@@ -441,7 +442,7 @@ void ribi::pvdb::File::Test() noexcept
     const std::string question = "Focal question?";
     {
       const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-        = ribi::cmap::ConceptMapFactory::Create(question);
+        = File::CreateConceptMap(question);
       assert(!concept_map->GetNodes().empty());
       assert(concept_map->FindCenterNode()
         && "The first node in a file's ConceptMap must be a CenterNode");
@@ -540,6 +541,26 @@ const std::string ribi::pvdb::File::ToXml(const File& file)
   assert(r.substr(r.size() - 7,7) == std::string("</file>"));
 
   return r;
+}
+
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::File::CreateConceptMap(
+  const std::string& text) noexcept
+{
+  using namespace cmap;
+
+  //A single-node ConceptMap contains only the focal question
+  const boost::shared_ptr<CenterNode> focal_node {
+    CenterNodeFactory().Create(text)
+  };
+  assert(focal_node);
+  const std::vector<boost::shared_ptr<Node> > nodes = { focal_node };
+  assert(nodes.at(0));
+  const boost::shared_ptr<ConceptMap> p = ConceptMapFactory::Create(nodes);
+  assert(p);
+  assert(p->IsValid());
+  assert(!p->GetNodes().empty());
+  assert(p->FindCenterNode() && "A Brainweaver ConceptMap must have a CenterNode");
+  return p;
 }
 
 const std::string ribi::pvdb::File::DoXpressiveRegexReplace(

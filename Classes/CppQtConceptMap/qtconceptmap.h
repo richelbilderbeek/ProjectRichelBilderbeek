@@ -83,6 +83,12 @@ protected:
   ///Remove all Qt and non-Qt items and add new ones
   virtual void CleanMe() = 0;
 
+  ///Delete a QtEdge
+  void DeleteEdge(QtEdge * const edge);
+
+  ///Delete a Node
+  void DeleteNode(QtNode * const node);
+
   ///Get all the edges connected to the concept
   const std::vector<QtEdge*> FindEdges(const QtNode * const from) const;
 
@@ -97,6 +103,10 @@ protected:
 
   ///Obtain the center node
   const QtNode * GetCenterNode() const;
+
+  ///Obtain the read-and-write Qt edge items
+  ///The read-only Qt edge items is already supplied by QtConceptMap
+  const std::vector<QtEdge *> GetQtEdges();
 
   ///Obtain the rectangle with text showing the examples
   const QtExamplesItem * GetExamplesItem() const;

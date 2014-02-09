@@ -23,7 +23,7 @@ namespace cmap {
 ///Note that a Widget does not know the type of ConceptMap (Display/Edit/Rate)
 struct Widget
 {
-  Widget(const boost::shared_ptr<ConceptMap> conceptmap = boost::shared_ptr<ConceptMap>());
+  Widget(const boost::shared_ptr<ConceptMap> conceptmap = CreateEmptyConceptMap());
 
   #ifndef NDEBUG
   Widget(const Widget& other); //Only to be used in debugging
@@ -34,7 +34,6 @@ struct Widget
   Widget& operator=(const Widget& rhs) = delete;
 
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
-
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
   const boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
@@ -51,8 +50,20 @@ struct Widget
 
   void Undo();
 
+  ///Emitted when a Node is added
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_add_node;
+
   ///Emitted when the ConceptMap is modified as a whole: deleted, created or overwritten
   boost::signals2::signal<void()> m_signal_concept_map_changed;
+
+  ///Emitted when a Node is deleted
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_delete_node;
+
+  ///Emitted when a Node loses focus
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(Node*)> m_signal_lose_focus_node;
 
   ///Emitted when a Node receives focus
   ///This has to be handled by QtConceptMapWidget
@@ -75,6 +86,8 @@ struct Widget
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
+
+  static const boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
 
   ///Creates a new Node in the concept map. The return value is
   ///that node. This is used by CommandCreateNode::Undo

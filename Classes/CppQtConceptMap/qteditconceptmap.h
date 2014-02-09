@@ -36,12 +36,6 @@ struct QtEditConceptMap : public QtConceptMap
   std::unique_ptr<QtConceptMap> CreateNewDerived() const;
   #endif
 
-  ///Delete an EdgeConcept
-  void DeleteEdge(QtEdge * const edge);
-
-  ///Delete a Node
-  void DeleteNode(QtNode * const node);
-
   #ifndef NDEBUG
   ///Do something random
   void DoRandomStuff();
@@ -87,10 +81,6 @@ private:
   ///The way a QtConceptMap displays its Nodes (both as nodes and on edges)
   const boost::shared_ptr<QtItemDisplayStrategy> GetDisplayStrategy(
     const boost::shared_ptr<Concept> concept) const noexcept;
-
-  ///Obtain the read-and-write Qt edge items
-  ///The read-only Qt edge items is already supplied by QtConceptMap
-  const std::vector<QtEdge *> GetQtEdges();
 
   ///Obtain the read-and-write Qt node items
   ///The read-only Qt node items is already supplied by QtConceptMap

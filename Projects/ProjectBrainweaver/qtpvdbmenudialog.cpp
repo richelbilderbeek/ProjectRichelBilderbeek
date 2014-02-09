@@ -180,7 +180,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_test_cluster_clicked() noexcept
   assert(!file->GetConceptMap());
   {
     const std::string question = "qtvdbmenudialog.cpp 79?";
-    boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(cmap::ConceptMapFactory::Create(question));
+    boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(File::CreateConceptMap(question));
     assert(concept_map);
     assert(!file->GetConceptMap() && "Can only set concept map once");
     file->SetQuestion(question);

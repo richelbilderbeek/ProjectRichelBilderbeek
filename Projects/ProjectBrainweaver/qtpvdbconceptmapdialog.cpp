@@ -146,7 +146,7 @@ ribi::cmap::QtEditConceptMap * ribi::pvdb::QtPvdbConceptMapDialog::CreateWidget(
   {
     if (trace_verbose) { TRACE("User starts building a concept map from scratch"); }
     boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
-      = ribi::cmap::ConceptMapFactory::Create(file->GetQuestion());
+      = File::CreateConceptMap(file->GetQuestion());
     file->SetConceptMap(concept_map);
   }
   else if ( had_cluster && !had_concept_map)

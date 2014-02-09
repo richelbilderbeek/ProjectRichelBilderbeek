@@ -1,6 +1,8 @@
 #ifndef CONCEPTMAPCOMMANDDELETECONCEPTMAP_H
 #define CONCEPTMAPCOMMANDDELETECONCEPTMAP_H
 
+/*
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -31,5 +33,7 @@ struct CommandDeleteConceptMap : public Command
 
 } //~namespace cmap
 } //~namespace ribi
+
+*/
 
 #endif // CONCEPTMAPCOMMANDDELETECONCEPTMAP_H

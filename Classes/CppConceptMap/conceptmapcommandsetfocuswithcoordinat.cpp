@@ -12,14 +12,19 @@ bool ribi::cmap::CommandSetFocusWithCoordinat::CanDoCommandSpecific(const Widget
 
 void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const widget) noexcept
 {
+  assert(CanDoCommandSpecific(widget));
   assert(widget);
   assert(!widget->m_focus || widget->m_focus);
 
   //Transfer focus to this Node
   m_widget = widget;
-  m_widget->m_focus = widget->FindNodeAt(m_x,m_y).get();
+  Node * const node {
+    widget->FindNodeAt(m_x,m_y).get()
+  };
 
-  m_widget->m_signal_concept_map_changed();
+  m_widget->m_focus = node;
+
+  m_widget->m_signal_set_focus_node(node);
 
   assert(m_widget);
   assert(widget);

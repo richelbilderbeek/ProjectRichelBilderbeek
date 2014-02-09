@@ -111,6 +111,8 @@ void ribi::cmap::ConceptMap::AddNode(const boost::shared_ptr<Node> node)
 {
   assert(node);
   m_nodes.push_back(node);
+  assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1
+    && "Every node must be unique");
 }
 
 
@@ -248,6 +250,8 @@ void ribi::cmap::ConceptMap::DeleteNode(const boost::shared_ptr<Node> node)
 {
   #ifndef NDEBUG
   assert(node);
+  assert(std::count(m_nodes.begin(),m_nodes.end(),node) > 0
+    && "Can only delete an existing node");
   assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1
     && "Every node is unique");
   const std::size_t n_nodes_before = m_nodes.size();

@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <QKeyEvent>
 
-//#include "trace.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtHideAndShowDialog::QtHideAndShowDialog(QWidget* parent) noexcept
@@ -66,7 +66,12 @@ const std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory() no
 
 void ribi::QtHideAndShowDialog::keyPressEvent(QKeyEvent* event)
 {
-  if (event->key() == Qt::Key_Escape) { close(); return; }
+  if (event->key() == Qt::Key_Escape)
+  {
+    TRACE_FUNC();
+    close();
+    return;
+  }
   QDialog::keyPressEvent(event);
 }
 

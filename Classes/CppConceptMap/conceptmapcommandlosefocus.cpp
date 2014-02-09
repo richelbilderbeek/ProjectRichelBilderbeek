@@ -20,7 +20,8 @@ void ribi::cmap::CommandLoseFocus::DoCommandSpecific(Widget * const widget) noex
   //Transfer focus to this command
   m_widget = widget;
   m_old_focus = widget->m_focus;
-  m_widget->m_signal_concept_map_changed();
+
+  m_widget->m_signal_lose_focus_node(m_widget->m_focus);
   m_widget->m_focus = nullptr;
 
 

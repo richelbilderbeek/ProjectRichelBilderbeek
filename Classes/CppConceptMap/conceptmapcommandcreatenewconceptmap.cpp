@@ -1,5 +1,7 @@
 #include "conceptmapcommandcreatenewconceptmap.h"
 
+/*
+
 #include <cassert>
 
 #include "conceptmapwidget.h"
@@ -44,3 +46,5 @@ void ribi::cmap::CommandCreateNewConceptMap::Undo() noexcept
   m_widget = nullptr;
 
 }
+
+*/

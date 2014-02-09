@@ -9,6 +9,7 @@
 #include <QVBoxLayout>
 
 #include "qtcanvas.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCanvasDialog::QtCanvasDialog(QtCanvas * const qtcanvas)
@@ -32,9 +33,9 @@ ribi::QtCanvasDialog::QtCanvasDialog(QtCanvas * const qtcanvas)
   //p.setColor(QPalette::Text, Qt::white);
   //setPalette(p);
 
-  //m_qtcanvas->m_signal_on_destroy.connect(boost::bind(
-  //  &ribi::QtCanvasDialog::OnQtCanvasDestroy,this)
-  //);
+  m_qtcanvas->m_signal_on_destroy.connect(boost::bind(
+    &ribi::QtCanvasDialog::OnQtCanvasDestroy,this)
+  );
 
   QObject::connect(m_resize_timer,SIGNAL(timeout()),this,SLOT(OnResizeTimer()));
   m_resize_timer->setInterval(10);
@@ -43,18 +44,28 @@ ribi::QtCanvasDialog::QtCanvasDialog(QtCanvas * const qtcanvas)
 
 ribi::QtCanvasDialog::~QtCanvasDialog() noexcept
 {
+  TRACE_FUNC();
   m_resize_timer->stop();
   delete m_resize_timer;
 }
 
 void ribi::QtCanvasDialog::keyPressEvent(QKeyEvent* event)
 {
-  if (event->key() == Qt::Key_Escape) { close(); return; }
+  if (event->key() == Qt::Key_Escape)
+  {
+    TRACE_FUNC();
+    close();
+    close_me();
+    return;
+  }
   m_qtcanvas->keyPressEvent(event);
 }
 
 void ribi::QtCanvasDialog::OnQtCanvasDestroy()
 {
+  TRACE_FUNC();
+  close_me();
+  m_show_child = false;
   close();
 }
 

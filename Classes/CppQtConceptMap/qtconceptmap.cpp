@@ -252,6 +252,63 @@ void ribi::cmap::QtConceptMap::BuildQtConceptMap()
   #endif
 }
 
+void ribi::cmap::QtConceptMap::DeleteEdge(QtEdge * const qtedge)
+{
+  #ifndef NDEBUG
+  const int n_items_before = this->scene()->items().count();
+  #endif
+
+  assert(scene()->items().contains(qtedge));
+  //Remove non-GUI edges
+  GetConceptMap()->DeleteEdge(qtedge->GetEdge());
+  //Remove GUI edge
+  this->scene()->removeItem(qtedge);
+  //No left-overs when deleting an edge
+  //DeleteLeftovers();
+
+  #ifndef NDEBUG
+  const int n_items_after = this->scene()->items().count();
+  assert(n_items_after + 1 == n_items_before);
+  //Cannot do the check below: in DeleteNode multiple edges are deleted
+  //assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+  //  && "GUI and non-GUI concept map must match");
+  #endif
+}
+
+void ribi::cmap::QtConceptMap::DeleteNode(QtNode * const qtnode)
+{
+  #ifndef NDEBUG
+  const int n_items_before = this->scene()->items().count();
+  #endif
+
+  //Delete the edges connected to this node
+  {
+    const std::vector<QtEdge *> qtedges = GetQtEdges();
+    const std::size_t sz = qtedges.size();
+    for (std::size_t i=0; i!=sz; ++i)
+    {
+      QtEdge * const qtedge = qtedges[i];
+      assert(qtedge);
+      if (qtedge->GetFrom() == qtnode || qtedge->GetTo() == qtnode)
+      {
+        DeleteEdge(qtedge);
+      }
+    }
+  }
+
+  //Remove node from GUI
+  this->scene()->removeItem(qtnode);
+  //Remove from non-GUI, which removes the left-overs
+  GetConceptMap()->DeleteNode(qtnode->GetNode());
+
+  #ifndef NDEBUG
+  const int n_items_after = this->scene()->items().count();
+  assert(n_items_before - n_items_after >= 1 && "At least one item is deleted: one node and x edges");
+  assert(Collect<QtNode>(this->scene()).size() == this->GetConceptMap()->GetNodes().size()
+    && "GUI and non-GUI concept map must match");
+  #endif
+}
+
 const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
   const QtNode* const from) const
 {
@@ -369,12 +426,27 @@ const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdg
   return qtedges;
 }
 
+const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
+{
+  const std::vector<QtEdge *> qtedges
+    = Collect<QtEdge>(this->scene());
+  //Cannot do the check below: in DeleteNode multiple edges are deleted
+  //assert(qtedges.size() == GetConceptMap()->GetNodes().size()
+  //    && "GUI and non-GUI must contain an equal amount of edges");
+  return qtedges;
+}
+
 const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
 {
   const std::vector<const QtNode *> qtnodes
     = Collect<const QtNode>(this->scene());
-  assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
-      && "GUI and non-GUI must contain an equal amount of nodes");
+  if (qtnodes.size() != GetConceptMap()->GetNodes().size())
+  {
+    TRACE("GUI and non-GUI must contain an unequal amount of nodes");
+  }
+
+  //assert(qtnodes.size() == GetConceptMap()->GetNodes().size()
+  //    && "GUI and non-GUI must contain an equal amount of nodes");
   return qtnodes;
 }
 

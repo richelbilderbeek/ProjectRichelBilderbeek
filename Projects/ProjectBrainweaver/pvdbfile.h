@@ -35,6 +35,9 @@ struct File
   File(const File& other) = delete;
   File& operator=(const File& other) = delete;
 
+  ///Create a concept map with a center node with text
+  static const boost::shared_ptr<ribi::cmap::ConceptMap> CreateConceptMap(const std::string& text) noexcept;
+
   ///Convert the Cluster to a ConceptMap
   //void CreateConceptMapFromCluster();
 

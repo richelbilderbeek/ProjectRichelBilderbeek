@@ -61,7 +61,7 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     file->SetQuestion(question);
     assert(!file->GetCluster());
     assert(!file->GetConceptMap());
-    const boost::shared_ptr<ConceptMap> concept_map(ConceptMapFactory().Create(question));
+    const boost::shared_ptr<ConceptMap> concept_map(File::CreateConceptMap(question));
     assert(concept_map);
     file->SetConceptMap(concept_map);
     assert(file->GetQuestion() == question);

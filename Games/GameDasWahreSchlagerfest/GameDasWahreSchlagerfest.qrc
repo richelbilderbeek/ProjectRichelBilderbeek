@@ -6,5 +6,6 @@
         <file>R.png</file>
         <file>GameDasWahreSchlagerfestBeer.png</file>
         <file>GameDasWahreSchlagerfestBratwurst.png</file>
+        <file>GameDasWahreSchlagerfestCanvas.png</file>
     </qresource>
 </RCC>

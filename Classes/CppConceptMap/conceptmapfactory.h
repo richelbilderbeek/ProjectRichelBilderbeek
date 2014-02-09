@@ -21,11 +21,13 @@ namespace cmap {
 struct ConceptMapFactory
 {
   //Create an empty-as-can-get ConceptMap
+  /*
   static const boost::shared_ptr<ConceptMap> Create(
     const std::string& focal_question);
+  */
 
   static const boost::shared_ptr<ConceptMap> Create(
-    const std::vector<boost::shared_ptr<Node> >& nodes,
+    const std::vector<boost::shared_ptr<Node> >& nodes = {},
     const std::vector<boost::shared_ptr<Edge> >& edges = {});
 
   #ifndef NDEBUG

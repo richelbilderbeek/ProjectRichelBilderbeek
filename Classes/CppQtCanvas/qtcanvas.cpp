@@ -14,10 +14,12 @@
 #include <QTimer>
 
 #include "canvas.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
-  : m_canvas{},
+  : m_signal_on_destroy{},
+    m_canvas{},
     m_resize_timer(new QTimer)
 {
   assert(canvas);
@@ -42,6 +44,7 @@ ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
 
 ribi::QtCanvas::~QtCanvas() noexcept
 {
+  TRACE_FUNC();
   m_resize_timer->stop();
   delete m_resize_timer;
 
@@ -51,7 +54,24 @@ ribi::QtCanvas::~QtCanvas() noexcept
       boost::lambda::_1
     )
   );
-  //m_signal_on_destroy();
+  m_signal_on_destroy();
+}
+
+void ribi::QtCanvas::keyPressEvent(QKeyEvent* event)
+{
+  if (event->key() == Qt::Key_Escape)
+  {
+    TRACE("m_signal_on_destroy()");
+    m_signal_on_destroy();
+    close();
+    return;
+  }
+  QPlainTextEdit::keyPressEvent(event);
+}
+
+void ribi::QtCanvas::paintEvent(QPaintEvent *)
+{
+
 }
 
 void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)

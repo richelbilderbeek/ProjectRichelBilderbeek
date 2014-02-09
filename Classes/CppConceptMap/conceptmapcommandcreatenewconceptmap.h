@@ -1,6 +1,8 @@
 #ifndef CONCEPTMAPCOMMANDCREATENEWCONCEPTMAP_H
 #define CONCEPTMAPCOMMANDCREATENEWCONCEPTMAP_H
 
+/*
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -32,4 +34,5 @@ struct CommandCreateNewConceptMap : public Command
 } //~namespace cmap
 } //~namespace ribi
 
+*/
 #endif // CONCEPTMAPCOMMANDCREATENEWCONCEPTMAP_H

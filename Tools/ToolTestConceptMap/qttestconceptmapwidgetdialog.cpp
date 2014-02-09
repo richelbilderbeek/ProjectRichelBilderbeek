@@ -94,7 +94,7 @@ const boost::shared_ptr<ribi::cmap::QtConceptMapWidget>
   */
   //Edit
   {
-    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[17] };
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMaps()[0] };
     assert(m);
     const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
     assert(c);

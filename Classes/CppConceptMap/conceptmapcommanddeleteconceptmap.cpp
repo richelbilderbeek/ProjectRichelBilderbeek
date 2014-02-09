@@ -1,4 +1,5 @@
 #include "conceptmapcommanddeleteconceptmap.h"
+/*
 
 #include <cassert>
 
@@ -58,3 +59,5 @@ void ribi::cmap::CommandDeleteConceptMap::Undo() noexcept
   assert(!m_widget);
   assert(!m_deleted_concept_map);
 }
+
+*/

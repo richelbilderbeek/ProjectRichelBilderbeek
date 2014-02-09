@@ -32,7 +32,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::C
   return p;
 }
 
-
+/*
 const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::Create(
   const std::string& focal_question)
 {
@@ -51,6 +51,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::C
 
   return p;
 }
+*/
 
 #ifndef NDEBUG
 const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::DeepCopy(
