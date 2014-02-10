@@ -1,6 +1,7 @@
 #include "trianglefile.h"
 
 #include <cassert>
+#include <fstream>
 
 #include "fileio.h"
 #include "trace.h"

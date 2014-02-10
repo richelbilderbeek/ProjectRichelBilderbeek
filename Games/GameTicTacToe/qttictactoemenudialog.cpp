@@ -24,7 +24,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include <QApplication>
+#include <QDesktopWidget>
+
 #include "qtaboutdialog.h"
+#include "qtcanvas.h"
+#include "qtcanvasdialog.h"
+#include "qttictactoecanvas.h"
 #include "qttictactoegamedialog.h"
 #include "qttictactoewidget.h"
 #include "tictactoemenudialog.h"
@@ -79,3 +85,22 @@ void ribi::QtTicTacToeMenuDialog::Test() noexcept
   TRACE("Finished ribi::QtTicTacToeMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtTicTacToeMenuDialog::on_button_start_old_school_clicked()
+{
+  QtCanvas * const qtcanvas {
+    new QtTicTacToeCanvas
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,102,102);
+    d->move( screen.center() - this->rect().center() );
+  }
+  ShowChild(d.get());
+  //canvas will be deleted by QtCanvasDialog
+}

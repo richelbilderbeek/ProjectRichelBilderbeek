@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtdaswahreschlagerfestmenudialog.h"
 
 #include <QKeyEvent>
+#include <QApplication>
+#include <QDesktopWidget>
 
 #include "daswahreschlagerfestmenudialog.h"
 #include "qtaboutdialog.h"
@@ -106,6 +108,13 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
   boost::scoped_ptr<QtCanvasDialog> d {
     new QtCanvasDialog(qtcanvas)
   };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,102,102);
+    d->move( screen.center() - this->rect().center() );
+  }
   ShowChild(d.get());
   //canvas will be deleted by QtCanvasDialog
 }

@@ -5,10 +5,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <QApplication>
-#include <QTimer>
 #include <QVBoxLayout>
-#include <QDesktopWidget>
 
 #include "qtcanvas.h"
 #include "trace.h"
@@ -34,13 +31,6 @@ ribi::QtCanvasDialog::QtCanvasDialog(QtCanvas * const qtcanvas)
     &ribi::QtCanvasDialog::OnQtCanvasDestroy,this)
   );
 
-  {
-    //Put the dialog in the screen center
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    this->setGeometry(
-      0,0,256,256);
-    this->move( screen.center() - this->rect().center() );
-  }
 }
 
 ribi::QtCanvasDialog::~QtCanvasDialog() noexcept
