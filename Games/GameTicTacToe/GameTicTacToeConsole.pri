@@ -3,11 +3,11 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Games/GameTicTacToe/tictactoemenudialog.cpp \
-    tictactoewidget.cpp
+    ../../Games/GameTicTacToe/tictactoewidget.cpp
 
 HEADERS  += \
     ../../Games/GameTicTacToe/tictactoemenudialog.h \
-    tictactoewidget.h
+    ../../Games/GameTicTacToe/tictactoewidget.h
 
 OTHER_FILES += \
     ../../Games/GameTicTacToe/Licence.txt

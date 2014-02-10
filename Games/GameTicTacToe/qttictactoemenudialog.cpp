@@ -101,6 +101,7 @@ void ribi::QtTicTacToeMenuDialog::on_button_start_old_school_clicked()
       0,0,102,102);
     d->move( screen.center() - this->rect().center() );
   }
+  d->setWindowTitle("TicTacToe");
   ShowChild(d.get());
   //canvas will be deleted by QtCanvasDialog
 }

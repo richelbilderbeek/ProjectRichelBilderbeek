@@ -59,6 +59,8 @@
 <a href="CppIfndef.htm">#ifndef</a> QTDOTMATRIX_H<br/>
 <a href="CppDefine.htm">#define</a> QTDOTMATRIX_H<br/>
 <br/>
+<a href="CppComment.htm">/*</a><br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
@@ -66,15 +68,15 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQImage.htm">QImage</a>;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char;<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a> creates a dot <a href="CppMatrix.htm">matrix</a> <a href="CppQPixmap.htm">QPixmap</a> of a <a href="CppChar.htm">character</a><br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a> creates a dot <a href="CppMatrix.htm">matrix</a> <a href="CppQImage.htm">QImage</a> of a <a href="CppChar.htm">character</a>s<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>Char<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>Char(<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> c);<br/>
@@ -83,13 +85,15 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; Get<a href="CppMatrix.htm">Matrix</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppMatrix.htm">matrix</a>; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a <a href="CppQPixmap.htm">QPixmap</a> from the <a href="CppChar.htm">character</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> CreatePixmap() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; CreateImage() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Dot<a href="CppMatrix.htm">Matrix</a>Char&gt; m_<a href="CppMatrix.htm">matrix</a>;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDOTMATRIX_H<br/>
 </code></td></tr></table>
@@ -103,15 +107,14 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtDotMatrix/qtdotmatrixchar.cpp" border = "1"><tr><td><code>
+<a href="CppComment.htm">/*</a><br/>
+<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> "qt<a href="ToolDotMatrix.htm">dotmatrix</a><b><a href="CppChar.htm">char</a></b>.h"<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
-<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolDotMatrix.htm">dotmatrix</a><b><a href="CppChar.htm">char</a></b>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -122,26 +125,12 @@
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppMatrix.htm">matrix</a>);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>Char::CreatePixmap() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>Char::CreateImage() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppMatrix.htm">matrix</a>-&gt;Get<a href="CppMatrix.htm">Matrix</a>Height();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppMatrix.htm">matrix</a>-&gt;Get<a href="CppMatrix.htm">Matrix</a>Width();<br/>
-&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> pixmap(width,height);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(&amp;pixmap);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b <a href="CppOperatorAssign.htm">=</a> m_<a href="CppMatrix.htm">matrix</a>-&gt;Get<a href="CppMatrix.htm">Matrix</a>(x,y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> color <a href="CppOperatorAssign.htm">=</a> b ? <a href="CppQt.htm">Qt</a>::black : <a href="CppQt.htm">Qt</a>::white;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(color);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.draw<a href="CppPoint.htm">Point</a>(x,y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppMatrix.htm">matrix</a>-&gt;CreateImage();<br/>
 }<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -156,6 +145,8 @@
 <a href="CppIfndef.htm">#ifndef</a> QTDOTMATRIXSTRING_H<br/>
 <a href="CppDefine.htm">#define</a> QTDOTMATRIXSTRING_H<br/>
 <br/>
+<a href="CppComment.htm">/*</a><br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
@@ -163,15 +154,16 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppQImage.htm">QImage</a>;<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Dot<a href="CppMatrix.htm">Matrix</a>String;<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a> creates a dot <a href="CppMatrix.htm">matrix</a> <a href="CppQPixmap.htm">QPixmap</a> of a <a href="CppChar.htm">character</a><br/>
+<a href="CppComment.htm">///</a><a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a> creates a dot <a href="CppMatrix.htm">matrix</a> <a href="CppQImage.htm">QImage</a> of a <a href="CppChar.htm">character</a><br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>String<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>String(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> spacing);<br/>
@@ -179,14 +171,15 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Read back the dot <a href="CppMatrix.htm">matrix</a> info<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Dot<a href="CppMatrix.htm">Matrix</a>String&gt; Get<a href="CppMatrix.htm">Matrix</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_<a href="CppMatrix.htm">matrix</a>; }<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a <a href="CppQPixmap.htm">QPixmap</a> from the <a href="CppChar.htm">character</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> CreatePixmap() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a <a href="CppQImage.htm">QImage</a> from the <a href="CppChar.htm">character</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; CreateImage() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Dot<a href="CppMatrix.htm">Matrix</a>String&gt; m_<a href="CppMatrix.htm">matrix</a>;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<a href="CppComment.htm">*/</a><br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> QTDOTMATRIXSTRING_H<br/>
 </code></td></tr></table>
@@ -200,7 +193,7 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppQtDotMatrix/qtdotmatrixstring.cpp" border = "1"><tr><td><code>
-<br/>
+<a href="CppComment.htm">/*</a><br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
@@ -208,8 +201,9 @@
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPainter.htm">QPainter</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppQPixmap.htm">QPixmap</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQImage.htm">QImage</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QRgb&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="ToolDotMatrix.htm">dotmatrix</a>string.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -221,26 +215,12 @@
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppMatrix.htm">matrix</a>);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppQPixmap.htm">QPixmap</a> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>String::CreatePixmap() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a>Dot<a href="CppMatrix.htm">Matrix</a>String::CreateImage() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppMatrix.htm">matrix</a>-&gt;Get<a href="CppMatrix.htm">Matrix</a>Height();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppMatrix.htm">matrix</a>-&gt;Get<a href="CppMatrix.htm">Matrix</a>Width();<br/>
-&nbsp;&nbsp;<a href="CppQPixmap.htm">QPixmap</a> pixmap(width,height);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppQPainter.htm">QPainter</a> painter(&amp;pixmap);<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>height; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>width; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> b <a href="CppOperatorAssign.htm">=</a> m_<a href="CppMatrix.htm">matrix</a>-&gt;Get<a href="CppMatrix.htm">Matrix</a>(x,y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQColor.htm">QColor</a> color <a href="CppOperatorAssign.htm">=</a> b ? <a href="CppQt.htm">Qt</a>::black : <a href="CppQt.htm">Qt</a>::white;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.setPen(color);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;painter.draw<a href="CppPoint.htm">Point</a>(x,y);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> pixmap;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_<a href="CppMatrix.htm">matrix</a>-&gt;CreateImage();<br/>
 }<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>

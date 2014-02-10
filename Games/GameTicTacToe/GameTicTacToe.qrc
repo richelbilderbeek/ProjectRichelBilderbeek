@@ -3,5 +3,7 @@
         <file>R.png</file>
         <file>O.png</file>
         <file>X.png</file>
+        <file>GameTicTacToeModern.png</file>
+        <file>GameTicTacToeRetro.png</file>
     </qresource>
 </RCC>

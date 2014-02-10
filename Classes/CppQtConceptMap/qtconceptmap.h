@@ -87,7 +87,7 @@ protected:
   void DeleteEdge(QtEdge * const edge);
 
   ///Delete a Node
-  void DeleteNode(QtNode * const node);
+  void bDeleteNode(QtNode * const node);
 
   ///Get all the edges connected to the concept
   const std::vector<QtEdge*> FindEdges(const QtNode * const from) const;

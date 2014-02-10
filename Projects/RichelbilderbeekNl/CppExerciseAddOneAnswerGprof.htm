@@ -37,7 +37,7 @@
 </ul>
 <p><a href="CppStandard.htm">C++ standard</a>:</p>
 <ul>
-  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+  <li><img src="PicCpp98.png" alt="C++98"/> <a href="Cpp98.htm">C++98</a></li>
 </ul>
 <p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
 <ul>
@@ -56,19 +56,31 @@
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppExerciseAddOneAnswerGprof/CppExerciseAddOneAnswerGprof.pro" border = "1"><tr><td><code>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= core<br/>
-QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
-TARGET = CppAddOne<br/>
+include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #Or use the code below<br/>
+# QT += core<br/>
+# QT += gui<br/>
+# greaterThan(QT_MAJOR_VERSION, 4): QT += <a href="CppWidget.htm">widget</a>s<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
+# <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+# <a href="CppQmakeConfig.htm">CONFIG</a>(release, debug|release) {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeDefines.htm">DEFINES</a> += NDEBUG N<a href="CppTRACE.htm">TRACE</a>_BILDERBIKKEL<br/>
+# }<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a><br/>
+# unix {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += <a href="CppWerror.htm">-Werror</a><br/>
+# }<br/>
 <br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> -<a href="CppWeffcpp.htm">effc++</a><br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code below<br/>
+# win32 {<br/>
+#&nbsp;&nbsp; <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/boost_1_54_0<br/>
+# }<br/>
 <br/>
-#Needed for gprog<br/>
-<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a>_DEBUG += -pg<br/>
-QMAKE_LFLAGS_DEBUG += -pg<br/>
+include(../../<a href="CppLibrary.htm">Libraries</a>/<a href="CppGprof.htm">Gprof</a>.pri) #Or use the code below<br/>
+# <a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a>_DEBUG += -pg<br/>
+# QMAKE_LFLAGS_DEBUG += -pg<br/>
 <br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; += console<br/>
-<a href="CppQmakeConfig.htm">CONFIG</a>&nbsp;&nbsp; -= app_bundle<br/>
-<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
@@ -91,10 +103,14 @@ QMAKE_LFLAGS_DEBUG += -pg<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFunctionalH.htm">functional</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppBOOST_FOREACH.htm">foreach</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppTime.htm">time</a>r.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lambda/lambda.hpp&gt;<br/>
-<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppQObject.htm">QObject</a>&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>ForAssignment1stConstSize(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
@@ -271,16 +287,11 @@ QMAKE_LFLAGS_DEBUG += -pg<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Non-<b><a href="CppInline.htm">inline</a></b>-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> structs<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment1st : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment2nd : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInline<a href="CppIncrease.htm">Increase</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePostIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePreIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment1st { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment2nd { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1;&nbsp;&nbsp;} };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePostIncrement { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>;&nbsp;&nbsp; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePreIncrement&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x;&nbsp;&nbsp; } };<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
@@ -308,16 +319,11 @@ QMAKE_LFLAGS_DEBUG += -pg<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Inline-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> structs<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment1st : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment2nd : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInline<a href="CppIncrease.htm">Increase</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePostIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePreIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment1st { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment2nd { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1;&nbsp;&nbsp;} };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePostIncrement { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>;&nbsp;&nbsp; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePreIncrement&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x;&nbsp;&nbsp; } };<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
@@ -406,52 +412,52 @@ QMAKE_LFLAGS_DEBUG += -pg<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(), <a href="CppBoostLambda.htm">boost::lambda</a>::_1 <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> <a href="CppBoostLambda.htm">boost::lambda</a>::_1);<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForPreIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11ForPreIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { <a href="CppOperatorIncrement.htm">++</a>i; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForPostIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11ForPostIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i<a href="CppOperatorIncrement.htm">++</a>; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xFor<a href="CppIncrease.htm">Increase</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11For<a href="CppIncrease.htm">Increase</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i<a href="CppOperatorPlusAssign.htm">+=</a>1; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11ForAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i=1+i; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xForAssignment2nd(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11ForAssignment2nd(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> &amp;i: v) { i=i+1; }<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaPreIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11LambdaPreIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { <a href="CppOperatorIncrement.htm">++</a>i; } );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaPostIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11LambdaPostIncrement(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i<a href="CppOperatorIncrement.htm">++</a>; } );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambda<a href="CppIncrease.htm">Increase</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11Lambda<a href="CppIncrease.htm">Increase</a>(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i<a href="CppOperatorPlusAssign.htm">+=</a>1; } );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11LambdaAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i <a href="CppOperatorAssign.htm">=</a> i <a href="CppOperatorPlus.htm">+</a> 1; } );<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment2nd(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Cpp11LambdaAssignment2nd(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(), [](<b><a href="CppInt.htm">int</a></b>&amp;i) { i <a href="CppOperatorAssign.htm">=</a> 1 <a href="CppOperatorPlus.htm">+</a> i; } );<br/>
 }<br/>
@@ -581,28 +587,28 @@ QMAKE_LFLAGS_DEBUG += -pg<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, assignment 1st"));<br/>
 &nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a><a href="CppBoost.htm">Boost</a>LambdaAssignment2nd,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"<a href="CppBoost.htm">Boost</a>.Lambda, assignment 2nd"));<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForPreIncrement,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, pre-increment"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForPostIncrement,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, post-increment"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xFor<a href="CppIncrease.htm">Increase</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, increase"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForAssignment1st,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 1st"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xForAssignment2nd,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 2nd"));<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp0x.htm">C++0x</a> Lambda<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaPreIncrement,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, pre-increment"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaPostIncrement,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, post-increment"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambda<a href="CppIncrease.htm">Increase</a>,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, increase"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment1st,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 1st"));<br/>
-&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp0xLambdaAssignment2nd,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 2nd"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11ForPreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, pre-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11ForPostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11For<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11ForAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11ForAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 2nd"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> Lambda<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11LambdaPreIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, pre-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11LambdaPostIncrement,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, post-increment"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11Lambda<a href="CppIncrease.htm">Increase</a>,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, increase"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11LambdaAssignment1st,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 1st"));<br/>
+&nbsp;&nbsp;v.push_back(<a href="CppFunction.htm">Function</a>(<a href="CppAdd.htm">Add</a>Cpp11LambdaAssignment2nd,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 2nd"));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
@@ -681,7 +687,7 @@ Size <a href="CppVector.htm">std::vector</a>: 40000000<br/>
 Repeats: 10<br/>
 <a href="CppTime.htm">Time</a>r minimal interval: 1e-06<br/>
 Results (best result first):<br/>
-<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, pre-increment: 0.37<br/>
+<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, pre-increment: 0.37<br/>
 <a href="CppIterator.htm">Iterator</a>, increase, non-<b><a href="CppConst.htm">const</a></b> end: 0.38<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, assignment 1st: 0.38<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, increase: 0.38<br/>
@@ -697,9 +703,9 @@ Results (best result first):<br/>
 <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, pre-increment: 0.39<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, assignment 2nd: 0.39<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, post-increment: 0.39<br/>
-<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, pre-increment: 0.39<br/>
+<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, pre-increment: 0.39<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, assignment 1st: 0.39<br/>
-<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 2nd: 0.39<br/>
+<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 2nd: 0.39<br/>
 <a href="CppBoost.htm">Boost</a>.Lambda, assignment 2nd: 0.39<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, non-<b><a href="CppInline.htm">inline</a></b>, post-increment: 0.39<br/>
 <a href="CppIterator.htm">Iterator</a>, post-increment, non-<b><a href="CppConst.htm">const</a></b> end: 0.39<br/>
@@ -713,24 +719,24 @@ Results (best result first):<br/>
 <a href="CppIterator.htm">Iterator</a>, assignment 2nd, non-<b><a href="CppConst.htm">const</a></b> end: 0.39<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, assignment 1st: 0.39<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, post-increment: 0.4<br/>
-<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, increase: 0.4<br/>
+<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, increase: 0.4<br/>
 <a href="CppBoost.htm">Boost</a>.Lambda, post-increment: 0.4<br/>
 <a href="CppBoost.htm">Boost</a>.Lambda, increase: 0.4<br/>
 <a href="CppIterator.htm">Iterator</a>, increase, <b><a href="CppConst.htm">const</a></b> end: 0.4<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, <a href="CppPlus.htm">std::plus</a>, <a href="CppBind1st.htm">std::bind1st</a>: 0.4<br/>
 <a href="CppIterator.htm">Iterator</a>, assignment 1st, non-<b><a href="CppConst.htm">const</a></b> end: 0.4<br/>
-<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, increase: 0.4<br/>
+<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, increase: 0.4<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, increase: 0.4<br/>
-<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, post-increment: 0.4<br/>
+<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, post-increment: 0.4<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, assignment 2nd: 0.4<br/>
-<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, post-increment: 0.4<br/>
+<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, post-increment: 0.4<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, <b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, increase: 0.4<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, increase: 0.4<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, non-<b><a href="CppInline.htm">inline</a></b> <a href="CppFunction.htm">function</a>, pre-increment: 0.4<br/>
-<a href="Cpp0x.htm">C++0x</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 1st: 0.4<br/>
+<a href="Cpp11.htm">C++11</a> ranged <b><a href="CppFor.htm">for</a></b> loop, assignment 1st: 0.4<br/>
 <a href="CppBOOST_FOREACH.htm">BOOST_FOREACH</a>, post-increment: 0.4<br/>
 <a href="CppIterator.htm">Iterator</a>, assignment 1st, <b><a href="CppConst.htm">const</a></b> end: 0.4<br/>
-<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 1st: 0.41<br/>
+<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 1st: 0.41<br/>
 <a href="CppAlgorithm.htm">Algorithm</a>, functor, <b><a href="CppInline.htm">inline</a></b>, pre-increment: 0.41<br/>
 For-loop, increase, <b><a href="CppConst.htm">const</a></b> size: 0.44<br/>
 For-loop, increase, non-<b><a href="CppConst.htm">const</a></b> size: 0.44<br/>
@@ -738,7 +744,7 @@ For-loop, assignment 1st, <b><a href="CppConst.htm">const</a></b> size: 0.44<br/
 For-loop, assignment 2nd, non-<b><a href="CppConst.htm">const</a></b> size: 0.45<br/>
 For-loop, assignment 1st, non-<b><a href="CppConst.htm">const</a></b> size: 0.46<br/>
 For-loop, assignment 2nd, <b><a href="CppConst.htm">const</a></b> size: 0.46<br/>
-<a href="Cpp0x.htm">C++0x</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 2nd: 0.46<br/>
+<a href="Cpp11.htm">C++11</a> <a href="CppLambdaExpression.htm">lambda expression</a>, assignment 2nd: 0.46<br/>
 For-loop, post-increment, <b><a href="CppConst.htm">const</a></b> size: 0.47<br/>
 For-loop, post-increment, non-<b><a href="CppConst.htm">const</a></b> size: 0.47<br/>
 For-loop, pre-increment, non-<b><a href="CppConst.htm">const</a></b> size: 0.48<br/>

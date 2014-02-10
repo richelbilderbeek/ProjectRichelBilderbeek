@@ -43,8 +43,6 @@ ribi::QtDasWahreSchlagerfestMenuDialog::QtDasWahreSchlagerfestMenuDialog(QWidget
   Test();
   #endif
   ui->setupUi(this);
-
-  on_button_start_oldschool_clicked(); //TEMP
 }
 
 ribi::QtDasWahreSchlagerfestMenuDialog::~QtDasWahreSchlagerfestMenuDialog() noexcept
@@ -115,6 +113,7 @@ void ribi::QtDasWahreSchlagerfestMenuDialog::on_button_start_oldschool_clicked()
       0,0,102,102);
     d->move( screen.center() - this->rect().center() );
   }
+  d->setWindowTitle("Das Wahre Schlagerfest");
   ShowChild(d.get());
   //canvas will be deleted by QtCanvasDialog
 }

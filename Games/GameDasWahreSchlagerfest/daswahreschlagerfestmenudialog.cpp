@@ -93,7 +93,7 @@ const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcep
     "Richel Bilderbeek",
     "Das Wahre Schlagerfest",
     "a truely fun game",
-    "the 9th of February 2014",
+    "the 10th of February 2014",
     "2003-2014",
     "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfest.htm",
     GetVersion(),
@@ -142,7 +142,7 @@ const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionH
     "2012-08-09: version 2.2: changed graphics, changed new tile selection (rendering the eat-it all tile) obsolete"
     "2014-01-30: version 2.3: added command-line demo and play mode",
     "2014-01-31: version 2.4: added terminal-like mode from command-line",
-    "2014-02-09: version 2.5: added terminal-like mode in desktop version"
+    "2014-02-10: version 2.5: added terminal-like mode in desktop version"
   };
 }
 

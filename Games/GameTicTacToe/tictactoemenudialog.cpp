@@ -67,7 +67,7 @@ const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "TicTacToe",
     "tic-tac-toe game",
-    "the 16th of April 2011",
+    "the 10th of February 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
@@ -101,7 +101,7 @@ const boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgr
 
 const std::string ribi::TicTacToeMenuDialog::GetVersion() const noexcept
 {
-  return "1.5";
+  return "1.6";
 }
 
 const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() const noexcept
@@ -113,6 +113,7 @@ const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() co
     "2011-01-07: version 1.3: seperated wtmain.cpp in multiple units",
     "2011-04-15: version 1.4: major architectural changes",
     "2011-04-16: version 1.5: added use of WtAutoConfig (for web application)"
+    "2014-02-10: version 1.6: added retro version"
   };
 }
 

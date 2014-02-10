@@ -347,6 +347,12 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Remove all <a href="CppQt.htm">Qt</a> and non-<a href="CppQt.htm">Qt</a> items and add <b><a href="CppNew.htm">new</a></b> ones<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> CleanMe() <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Delete a <a href="CppQt.htm">Qt</a>Edge<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DeleteEdge(<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> edge);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Delete a Node<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> bDeleteNode(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> node);<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Get all the edges connected to the concept<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge*&gt; FindEdges(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> from) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
@@ -361,6 +367,10 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the center node<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node * GetCenterNode() <b><a href="CppConst.htm">const</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the read-and-write <a href="CppQt.htm">Qt</a> edge items<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The read-only <a href="CppQt.htm">Qt</a> edge items is already supplied by <a href="CppQt.htm">Qt</a>ConceptMap<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge *&gt; Get<a href="CppQt.htm">Qt</a>Edges();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppRectangle.htm">rectangle</a> with text showing the examples<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>ExamplesItem * GetExamplesItem() <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -531,7 +541,7 @@
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::<a href="CppQt.htm">Qt</a>ConceptMap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQtKeyboardFriendlyGraphicsView.htm">QtKeyboardFriendlyGraphicsView</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_concept_map(concept_map),<br/>
@@ -586,7 +596,8 @@
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(scene()).empty());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the nodes to the scene<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the nodes to the scene, <b><a href="CppIf.htm">if</a></b> there are <a href="CppAny.htm">any</a><br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!m_concept_map-&gt;GetNodes().empty())<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the <a href="CppMain.htm">main</a> <a href="CppQuestion.htm">question</a> as the first node<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node <a href="CppOperatorAssign.htm">=</a> m_concept_map-&gt;GetFocalNode();<br/>
@@ -647,7 +658,7 @@
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; &gt; edges <a href="CppOperatorAssign.htm">=</a> m_concept_map-&gt;GetEdges();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(edges.begin(),edges.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>,qtnodes](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<b><a href="CppThis.htm">this</a></b>,qtnodes](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge-&gt;GetFrom());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge-&gt;GetTo());<br/>
@@ -689,6 +700,63 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_items <a href="CppOperatorEqual.htm">==</a> n_nodes <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI concept map must match");<br/>
 &nbsp;&nbsp;TestMe(m_concept_map);<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::DeleteEdge(<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_before <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(scene()-&gt;items().contains(qtedge));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove non-GUI edges<br/>
+&nbsp;&nbsp;GetConceptMap()-&gt;DeleteEdge(qtedge-&gt;GetEdge());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove GUI edge<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;removeItem(qtedge);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>No left-overs when deleting an edge<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>DeleteLeftovers();<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_after <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_items_after <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorEqual.htm">==</a> n_items_before);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> the check below: in DeleteNode multiple edges are deleted<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene()).size() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI concept map must match");<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::DeleteNode(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_before <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete the edges connected to <b><a href="CppThis.htm">this</a></b> node<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge *&gt; qtedges <a href="CppOperatorAssign.htm">=</a> Get<a href="CppQt.htm">Qt</a>Edges();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> qtedges.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge <a href="CppOperatorAssign.htm">=</a> qtedges[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtedge);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (qtedge-&gt;GetFrom() <a href="CppOperatorEqual.htm">==</a> qtnode <a href="CppOperatorLogicalOr.htm">||</a> qtedge-&gt;GetTo() <a href="CppOperatorEqual.htm">==</a> qtnode)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteEdge(qtedge);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove node from GUI<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;removeItem(qtnode);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove from non-GUI, which removes the left-overs<br/>
+&nbsp;&nbsp;GetConceptMap()-&gt;DeleteNode(qtnode-&gt;GetNode());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_after <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_items_before <a href="CppOperatorMinus.htm">-</a> n_items_after <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "At least one item is deleted: one node and x edges");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene()).size() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI concept map must match");<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
@@ -737,8 +805,7 @@
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (qtnode-&gt;GetNode().get() <a href="CppOperatorEqual.htm">==</a> node) <b><a href="CppReturn.htm">return</a></b> qtnode;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should always find <a href="CppQt.htm">Qt</a>Node");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::Find<a href="CppQt.htm">Qt</a>Node");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::GetCenterNode() <b><a href="CppConst.htm">const</a></b><br/>
@@ -810,12 +877,27 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> qtedges;<br/>
 }<br/>
 <br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Edge *&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::Get<a href="CppQt.htm">Qt</a>Edges()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge *&gt; qtedges<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Collect&lt;<a href="CppQt.htm">Qt</a>Edge&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> the check below: in DeleteNode multiple edges are deleted<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(qtedges.size() <a href="CppOperatorEqual.htm">==</a> GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI must contain an equal amount of edges");<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> qtedges;<br/>
+}<br/>
+<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node *&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::Get<a href="CppQt.htm">Qt</a>Nodes() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node *&gt; qtnodes<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Collect&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene());<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtnodes.size() <a href="CppOperatorEqual.htm">==</a> GetConceptMap()-&gt;GetNodes().size()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI must contain an equal amount of nodes");<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (qtnodes.size() <a href="CppOperatorNotEqual.htm">!=</a> GetConceptMap()-&gt;GetNodes().size())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("GUI and non-GUI must contain an unequal amount of nodes");<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(qtnodes.size() <a href="CppOperatorEqual.htm">==</a> GetConceptMap()-&gt;GetNodes().size()<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI must contain an equal amount of nodes");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> qtnodes;<br/>
 }<br/>
 <br/>
@@ -887,12 +969,17 @@
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap::RepositionItems()<br/>
 {<br/>
+<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The ray of the upcoming circle of nodes, is the larger of<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>(1) half of the diagonal of the focal <a href="CppQuestion.htm">question</a> (e.g. <b><a href="CppFor.htm">for</a></b> <b><a href="CppShort.htm">short</a></b> concepts)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>(2) calculated from the circumference by adding the nodes' length<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Node *&gt; qtnode_concepts_unsorted <a href="CppOperatorAssign.htm">=</a> Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(scene());<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (qtnode_concepts_unsorted.empty()) <b><a href="CppReturn.htm">return</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Node *&gt; qtnode_concepts <a href="CppOperatorAssign.htm">=</a> Sort(qtnode_concepts_unsorted);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!qtnode_concepts.empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!qtnode_concepts.empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtnode_concepts[0]);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtcenter_node<br/>
@@ -904,7 +991,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtcenter_node-&gt;pos().y() &lt;&nbsp;&nbsp;0.5);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> r1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.5 * cmap::<a href="CppGetDistance.htm">GetDistance</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> 0.5 * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppGetDistance.htm">GetDistance</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtcenter_node-&gt;boundingRect().width(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtcenter_node-&gt;boundingRect().height());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> r3 <a href="CppOperatorAssign.htm">=</a> 50.0;<br/>
@@ -1267,7 +1354,7 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppBaseClass.htm">base class</a> (after having tested cloning of derived <b><a href="CppClass.htm">class</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map: v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!concept_map) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
@@ -1287,7 +1374,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_nodes <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests()[i]-&gt;GetNodes().size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_nodes; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests()[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests()[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!concept_map) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map-&gt;GetNodes().size() <a href="CppOperatorEqual.htm">==</a> n_nodes);<br/>
@@ -1311,7 +1398,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n_edges <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests()[i]-&gt;GetEdges().size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_edges; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests()[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests()[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!concept_map) <b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map-&gt;GetEdges().size() <a href="CppOperatorEqual.htm">==</a> n_edges);<br/>
@@ -1376,7 +1463,7 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <a href="CppBaseClass.htm">base class</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map: v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
@@ -1386,7 +1473,7 @@
 &nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::GetAllTests();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map: v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; <a href="CppWidget.htm">widget</a>(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppWidget.htm">widget</a>);<br/>
@@ -1652,7 +1739,7 @@
 }<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>CenterNode::CreateConceptItem(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>DisplayStrategy&gt; item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>DisplayStrategy(node-&gt;GetConcept()));<br/>
@@ -2019,7 +2106,7 @@
 };<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog::<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog),<br/>
@@ -2129,11 +2216,11 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume reading in a concept and clicking OK without modification does not modify <a href="CppAny.htm">any</a>thing<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().GetTests();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt;&amp; concept)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::DeepCopy(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept <a href="CppOperatorNotEqual.htm">!=</a> old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*concept <a href="CppOperatorEqual.htm">==</a> *old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog d(concept);<br/>
@@ -2149,11 +2236,11 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume reading in a concept and clicking OK after modification of the name does modify concept<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().GetTests();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt;&amp; concept)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::DeepCopy(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*concept <a href="CppOperatorEqual.htm">==</a> *old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog d(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d.ui-&gt;edit_concept-&gt;setText(d.ui-&gt;edit_concept-&gt;text() <a href="CppOperatorPlus.htm">+</a> "MODIFICATION");<br/>
@@ -2169,11 +2256,11 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume reading in a concept and clicking OK after adding an example<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().GetTests();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt;&amp; concept)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::DeepCopy(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*concept <a href="CppOperatorEqual.htm">==</a> *old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog d(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d.ui-&gt;edit_text-&gt;text().isEmpty());<br/>
@@ -2192,11 +2279,11 @@
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume reading in a concept and NOT clicking OK does not change the concept,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>even when having changed the name and examples in the GUI<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().GetTests();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt;&amp; concept)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::DeepCopy(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*concept <a href="CppOperatorEqual.htm">==</a> *old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>ConceptMapConceptEditDialog d(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Change name<br/>
@@ -2281,8 +2368,8 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set to concept<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Examples&gt; examples(<b><a href="CppNew.htm">new</a></b> cmap::Examples(v));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(examples);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::Create(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;examples,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_rating_complexity,<br/>
@@ -2727,7 +2814,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Edge::<a href="CppQt.htm">Qt</a>Edge(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; concept_item,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node* <b><a href="CppConst.htm">const</a></b> from,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node* <b><a href="CppConst.htm">const</a></b> to)<br/>
@@ -3063,7 +3150,7 @@
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Edge::SetConcept(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept) <a href="CppComment.htm">//</a>NEW 2013-01-07<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Edge::SetConcept(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept) <a href="CppComment.htm">//</a>NEW 2013-01-07<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_edge-&gt;SetConcept(concept);<br/>
 }<br/>
@@ -3158,8 +3245,8 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test SetX and SetY being in sync<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node_from <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node_to <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node_from <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node_to <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item_from(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node_from-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item_to(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node_to-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode_from(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node_from,qtconcept_item_from));<br/>
@@ -3168,7 +3255,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> edge_index=0; edge_index<a href="CppOperatorNotEqual.htm">!=</a>n_edges; <a href="CppOperatorIncrement.htm">++</a>edge_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; &gt; edges <a href="CppOperatorAssign.htm">=</a> cmap::EdgeFactory::GetTests(node_from,node_to);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> edges[edge_index];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> edges[edge_index];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Edge&gt; qtedge(<br/>
@@ -3281,8 +3368,8 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test text on edge being in sync<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node_from <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node_to <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node_from <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node_to <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item_from(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node_from-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item_to(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node_to-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode_from(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node_from,qtconcept_item_from));<br/>
@@ -3291,7 +3378,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> edge_index=0; edge_index<a href="CppOperatorNotEqual.htm">!=</a>n_edges; <a href="CppOperatorIncrement.htm">++</a>edge_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; &gt; edges <a href="CppOperatorAssign.htm">=</a> cmap::EdgeFactory::GetTests(node_from,node_to);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> edges[edge_index];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> edges[edge_index];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Edge&gt; qtedge(<br/>
@@ -3375,8 +3462,8 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test boundingRects being in sync<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node_from <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node_to <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node_from <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node_to <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests()[0];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item_from(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node_from-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item_to(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node_to-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode_from(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node_from,qtconcept_item_from));<br/>
@@ -3385,7 +3472,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> edge_index=0; edge_index<a href="CppOperatorNotEqual.htm">!=</a>n_edges; <a href="CppOperatorIncrement.htm">++</a>edge_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; &gt; edges <a href="CppOperatorAssign.htm">=</a> cmap::EdgeFactory::GetTests(node_from,node_to);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> edges[edge_index];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> edges[edge_index];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Edge&gt; qtedge(<br/>
@@ -3569,7 +3656,7 @@
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditStrategy::<a href="CppQt.htm">Qt</a>EditStrategy(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept)<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditStrategy::<a href="CppQt.htm">Qt</a>EditStrategy(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept)<br/>
 &nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>ItemDisplayStrategy(concept),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_request_edit{}<br/>
 {<br/>
@@ -3621,7 +3708,7 @@
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditStrategy::Test()");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test SetText<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().Create();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>EditStrategy a(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"1234567890",<br/>
@@ -4510,7 +4597,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::<a href="CppQt.htm">Qt</a>Node(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; concept_item)<br/>
 &nbsp;&nbsp;: m_signal_node_requests_rate_concept{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_node_requests_rate_examples{},<br/>
@@ -4756,7 +4843,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::SetConcept(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node::SetConcept(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_node-&gt;SetConcept(concept);<br/>
 }<br/>
@@ -4826,7 +4913,7 @@ CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> node_index=0; node_index<a href="CppOperatorNotEqual.htm">!=</a>n_nodes; <a href="CppOperatorIncrement.htm">++</a>node_index)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> nodes <a href="CppOperatorAssign.htm">=</a> cmap::NodeFactory::GetTests();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node <a href="CppOperatorAssign.htm">=</a> nodes[node_index];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node <a href="CppOperatorAssign.htm">=</a> nodes[node_index];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept_item(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(node-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>Node&gt; qtnode(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>Node(node,qtconcept_item));<br/>
@@ -5247,7 +5334,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> concept_map-&gt;GetFocalNode()-&gt;GetConcept();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory::DeepCopy(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept <a href="CppOperatorNotEqual.htm">!=</a> old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*concept <a href="CppOperatorEqual.htm">==</a> *old_concept);<br/>
@@ -5282,7 +5369,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> concept_map-&gt;GetFocalNode()-&gt;GetConcept();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory::DeepCopy(concept);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Concept&gt; old_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(concept);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(old_concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept <a href="CppOperatorNotEqual.htm">!=</a> old_concept);<br/>
@@ -5666,18 +5753,18 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> edge with a concept with (1) text 'TextEdge' (2) one example with text 'TextExampleEdge'<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> node with a concept with (1) text 'TextDontCare'<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept_node_focal(ConceptFactory::Create("TextNode",<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept_node_focal(ConceptFactory().Create("TextNode",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"TextExampleNode",Competency::misc}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;0,1,2));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept_node_other(ConceptFactory::Create("TextDontCare",<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept_node_other(ConceptFactory().Create("TextDontCare",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;0,1,2));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept_edge(ConceptFactory::Create("TextEdge",<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept_edge(ConceptFactory().Create("TextEdge",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"TextExampleEdge",Competency::misc}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;},<br/>
@@ -6353,7 +6440,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateExamplesDialogNewName::<a href="CppQt.htm">Qt</a>RateExamplesDialogNewName(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQtHideAndShowDialog.htm">QtHideAndShowDialog</a>(parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;ui(<b><a href="CppNew.htm">new</a></b> <a href="CppUi.htm">Ui</a>::<a href="CppQt.htm">Qt</a>RateExamplesDialogNewName),<br/>
@@ -6478,16 +6565,16 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateExamplesDialog::Test started");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Test conversion between reading and writing a concept<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests().size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().GetTests().size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory::GetTests().size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> a <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>RateExamplesDialogNewName(cmap::ConceptFactory::GetTests()[i]).GetRatedExamples();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory().GetTests().size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> a <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>RateExamplesDialogNewName(cmap::ConceptFactory().GetTests()[i]).GetRatedExamples();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory::GetTests().size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> b <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>RateExamplesDialogNewName(cmap::ConceptFactory::GetTests()[j]).GetRatedExamples();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(j &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory().GetTests().size()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> b <a href="CppOperatorAssign.htm">=</a> <a href="CppQt.htm">Qt</a>RateExamplesDialogNewName(cmap::ConceptFactory().GetTests()[j]).GetRatedExamples();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a <a href="CppOperatorNotEqual.htm">!=</a> b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (i <a href="CppOperatorEqual.htm">==</a> j)<br/>
@@ -6761,7 +6848,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppQt.htm">Qt</a>BrushFactory::CreateRedGradientBrush() <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppQt.htm">Qt</a>BrushFactory::CreateGreenGradientBrush());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory::Create();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().Create();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>RateStrategy a(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"1234567890",<br/>
@@ -7135,9 +7222,22 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Called when <a href="CppWidget.htm">Widget</a> emits m_signal_add_node<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Which is <a href="CppEmit.htm">emitted</a> when the ConceptMap has a node added<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> On<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Called when <a href="CppWidget.htm">Widget</a> emits m_signal_concept_map_changed<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Which is <a href="CppEmit.htm">emitted</a> when the ConceptMap changes as a whole<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnConceptMapChanged() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Called when <a href="CppWidget.htm">Widget</a> emits m_signal_add_node<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Which is <a href="CppEmit.htm">emitted</a> when the ConceptMap has a node added<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnDeleteNode(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Called when <a href="CppWidget.htm">Widget</a> emits m_signal_lose_focus_node<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Which is <a href="CppEmit.htm">emitted</a> when a Node loses focus<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/A Node has no idea of losing focus<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnLoseFocusNode(Node * <b><a href="CppConst.htm">const</a></b> node) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Called when <a href="CppWidget.htm">Widget</a> emits m_signal_set_focus_node<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Which is <a href="CppEmit.htm">emitted</a> when a Node is given focus<br/>
@@ -7177,6 +7277,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppInclude.htm">#include</a> "qteditconceptmap.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtdisplayconceptmap.h"<br/>
 <a href="CppInclude.htm">#include</a> "qtrateconceptmap.h"<br/>
+<a href="CppInclude.htm">#include</a> "conceptmap.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapcommand.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapcommandlosefocus.h"<br/>
 <a href="CppInclude.htm">#include</a> "conceptmapcommandsetfocuswithcoordinat.h"<br/>
@@ -7195,8 +7296,22 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;Test();<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setScene(m_qtconceptmap-&gt;GetScene());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Without <b><a href="CppThis.htm">this</a></b> line, mouseMoveEvent won't be called<br/>
+&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;setMouseTracking(<b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_concept_map_changed.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnConceptMapChanged,<b><a href="CppThis.htm">this</a></b>)<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_add_node.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::On<a href="CppAdd.htm">Add</a>Node,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_delete_node.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnDeleteNode,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;);<br/>
+<br/>
+&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_lose_focus_node.connect(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnLoseFocusNode,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;m_signal_set_focus_node.connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&amp;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnSetFocusNode,<b><a href="CppThis.htm">this</a></b>,<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
@@ -7207,20 +7322,21 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <b><a href="CppBool.htm">bool</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::CanDoCommand(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Command&gt; command) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(command);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>.get());<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> command-&gt;CanDoCommand(m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::DoCommand(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Command&gt; command) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(command);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_<a href="CppWidget.htm">widget</a>.get());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(CanDoCommand(command));<br/>
 &nbsp;&nbsp;command-&gt;DoCommand(m_<a href="CppWidget.htm">widget</a>.get());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Z <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier)<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (e-&gt;key() <a href="CppOperatorEqual.htm">==</a> <a href="CppQt.htm">Qt</a>::Key_Z <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> e-&gt;modifiers() &amp; <a href="CppQt.htm">Qt</a>::ControlModifier)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("UNDO");<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;m_<a href="CppWidget.htm">widget</a>-&gt;Undo();<br/>
@@ -7256,22 +7372,126 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::mousePressEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> * e) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> pos <a href="CppOperatorAssign.htm">=</a> <a href="CppQGraphicsView.htm">QGraphicsView</a>::mapToScene(e-&gt;x(),e-&gt;y());<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandSetFocusWithCoordinat&gt; set_focus {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandSetFocusWithCoordinat(pos.x(),pos.y())<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_<a href="CppWidget.htm">widget</a>-&gt;CanDoCommand(set_focus))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppWidget.htm">widget</a>-&gt;DoCommand(set_focus);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQPointF.htm">QPointF</a> pos <a href="CppOperatorAssign.htm">=</a> <a href="CppQGraphicsView.htm">QGraphicsView</a>::mapToScene(e-&gt;x(),e-&gt;y());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CommandSetFocusWithCoordinat&gt; cmd {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CommandSetFocusWithCoordinat(pos.x(),pos.y())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (cmd-&gt;CanDoCommand(m_<a href="CppWidget.htm">widget</a>))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cmd-&gt;DoCommand(m_<a href="CppWidget.htm">widget</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::On<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!node)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_qtconceptmap-&gt;clearFocus();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> qtnodes_before { m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> nodes_before { m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(qtnodes_before)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;<a href="CppAdd.htm">Add</a>Node(node);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get())-&gt;setFocus();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> qtnodes_after { m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> nodes_after { m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtnodes_after &gt; qtnodes_before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nodes_after <a href="CppOperatorEqual.htm">==</a> nodes_before <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "These nodes are already added to the <a href="CppWidget.htm">Widget</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() <a href="CppOperatorNotEqual.htm">!=</a> m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(qtnodes_before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(nodes_before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(qtnodes_after);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(nodes_after);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() <a href="CppOperatorEqual.htm">==</a> m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnConceptMapChanged() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(m_qtconceptmap-&gt;scene()-&gt;items().count());<br/>
 &nbsp;&nbsp;m_qtconceptmap-&gt;scene()-&gt;update();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(m_qtconceptmap-&gt;scene()-&gt;items().count());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(m_qtconceptmap-&gt;items().count());<br/>
 &nbsp;&nbsp;m_qtconceptmap-&gt;update();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(m_qtconceptmap-&gt;items().count());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(scene()-&gt;items().count());<br/>
+&nbsp;&nbsp;scene()-&gt;update();<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(scene()-&gt;items().count());<br/>
+<br/>
 }<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnDeleteNode(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!node)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_qtconceptmap-&gt;clearFocus();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> qtnodes_before { m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> nodes_before { m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(qtnodes_before)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;DeleteNode(m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node.get())-&gt;setFocus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;clearFocus();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> qtnodes_after { m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> nodes_after { m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtnodes_after &lt; qtnodes_before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(nodes_after <a href="CppOperatorEqual.htm">==</a> nodes_before <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "These nodes are already added to the <a href="CppWidget.htm">Widget</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() <a href="CppOperatorNotEqual.htm">!=</a> m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(qtnodes_before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(nodes_before);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(qtnodes_after);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(nodes_after);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("BREAK");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_qtconceptmap-&gt;Get<a href="CppQt.htm">Qt</a>Nodes().size() <a href="CppOperatorEqual.htm">==</a> m_<a href="CppWidget.htm">widget</a>-&gt;GetConceptMap()-&gt;GetNodes().size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnLoseFocusNode(Node * <b><a href="CppConst.htm">const</a></b> node) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!node)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Nothing<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node)-&gt;clearFocus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap<a href="CppWidget.htm">Widget</a>::OnSetFocusNode(Node * <b><a href="CppConst.htm">const</a></b> node) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
@@ -7282,7 +7502,10 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node)-&gt;setFocus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_qtconceptmap-&gt;Find<a href="CppQt.htm">Qt</a>Node(node)-&gt;setFocus();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>
@@ -7455,7 +7678,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayConceptMap::<a href="CppQt.htm">Qt</a>DisplayConceptMap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>ConceptMap(concept_map,parent)<br/>
 {<br/>
@@ -7472,7 +7695,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayConceptMap::<a href="CppAdd.htm">Add</a>Edge(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edge);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>DisplayStrategy&gt; qtconcept(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>DisplayStrategy(edge-&gt;GetConcept()));<br/>
@@ -7531,7 +7754,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayConceptMap::<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node)<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayConceptMap::<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node-&gt;GetConcept());<br/>
@@ -7601,7 +7824,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 <a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayConceptMap::CreateNewDerived() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::DeepCopy(<b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; p(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>DisplayConceptMap(concept_map));<br/>
@@ -7623,11 +7846,11 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppAdd.htm">Add</a>Node(node_from);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppAdd.htm">Add</a>Node(node_to&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory::GetTests().size()));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> edge_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::GetTests().at(index);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(index &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(ConceptFactory().GetTests().size()));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> edge_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().GetTests().at(index);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> node_x <a href="CppOperatorAssign.htm">=</a> 12.34; <a href="CppComment.htm">//</a>Just some coordinat<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> node_y <a href="CppOperatorAssign.htm">=</a> 45.67; <a href="CppComment.htm">//</a>Just some coordinat<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> cmap::EdgeFactory::Create(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge <a href="CppOperatorAssign.htm">=</a> cmap::EdgeFactory::Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;edge_concept,node_x,node_y,node_from,<b><a href="CppTrue.htm">true</a></b>,node_to,<b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;<a href="CppAdd.htm">Add</a>Edge(edge);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_edges_after <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_cast.htm">boost::numeric_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(GetConceptMap()-&gt;GetEdges().size());<br/>
@@ -7638,7 +7861,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>DisplayConceptMap::GetDisplayStrategy(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; display_strategy {<br/>
@@ -7709,12 +7932,6 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; CreateNewDerived() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Delete an EdgeConcept<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DeleteEdge(<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> edge);<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Delete a Node<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DeleteNode(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> node);<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Do something random<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoRandomStuff();<br/>
@@ -7760,10 +7977,6 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The way a <a href="CppQt.htm">Qt</a>ConceptMap displays its Nodes (both as nodes and on edges)<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; GetDisplayStrategy(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the read-and-write <a href="CppQt.htm">Qt</a> edge items<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The read-only <a href="CppQt.htm">Qt</a> edge items is already supplied by <a href="CppQt.htm">Qt</a>ConceptMap<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge *&gt; Get<a href="CppQt.htm">Qt</a>Edges();<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the read-and-write <a href="CppQt.htm">Qt</a> node items<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The read-only <a href="CppQt.htm">Qt</a> node items is already supplied by <a href="CppQt.htm">Qt</a>ConceptMap<br/>
@@ -7856,7 +8069,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::<a href="CppQt.htm">Qt</a>EditConceptMap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Mode mode,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>ConceptMap(concept_map,parent),<br/>
@@ -7907,7 +8120,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::<a href="CppAdd.htm">Add</a>Edge(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtconcept);<br/>
@@ -7996,7 +8209,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Edge does not exist yet, create a <b><a href="CppNew.htm">new</a></b> one<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Node*&gt; qtnodes <a href="CppOperatorAssign.htm">=</a> Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(scene());<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept(cmap::ConceptFactory::Create());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept(ConceptFactory().Create());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> head_arrow <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> tail_arrow <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
@@ -8005,7 +8218,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; to <a href="CppOperatorAssign.htm">=</a> qt_to-&gt;GetNode();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(to);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(from <a href="CppOperatorNotEqual.htm">!=</a> to);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;cmap::EdgeFactory::Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;concept,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(qt_from-&gt;pos().x() <a href="CppOperatorPlus.htm">+</a> qt_to-&gt;pos().x()) <a href="CppOperatorDivide.htm">/</a> 2.0,<br/>
@@ -8054,7 +8267,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;update();<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node)<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node-&gt;GetConcept());<br/>
@@ -8156,7 +8369,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 <a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::CreateNewDerived() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::DeepCopy(<b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; p(<b><a href="CppNew.htm">new</a></b> This_t(concept_map,<b><a href="CppThis.htm">this</a></b>-&gt;m_mode));<br/>
@@ -8164,28 +8377,6 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::DeleteEdge(<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_before <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(scene()-&gt;items().contains(qtedge));<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove non-GUI edges<br/>
-&nbsp;&nbsp;GetConceptMap()-&gt;DeleteEdge(qtedge-&gt;GetEdge());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove GUI edge<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;removeItem(qtedge);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>No left-overs when deleting an edge<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>DeleteLeftovers();<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_after <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_items_after <a href="CppOperatorPlus.htm">+</a> 1 <a href="CppOperatorEqual.htm">==</a> n_items_before);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> the check below: in DeleteNode multiple edges are deleted<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene()).size() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI concept map must match");<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-}<br/>
 <br/>
 <a href="CppIfdef.htm">#ifdef</a> BELIEF_THIS_IS_A_GOOD_MEMBER_FUNCTION_20130629_723648723687<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::DeleteLeftovers()<br/>
@@ -8229,52 +8420,18 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::DeleteNode(<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode)<br/>
-{<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_before <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete the edges connected to <b><a href="CppThis.htm">this</a></b> node<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge *&gt; qtedges <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;Get<a href="CppQt.htm">Qt</a>Edges();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> qtedges.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Edge * <b><a href="CppConst.htm">const</a></b> qtedge <a href="CppOperatorAssign.htm">=</a> qtedges[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtedge);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (qtedge-&gt;GetFrom() <a href="CppOperatorEqual.htm">==</a> qtnode <a href="CppOperatorLogicalOr.htm">||</a> qtedge-&gt;GetTo() <a href="CppOperatorEqual.htm">==</a> qtnode)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DeleteEdge(qtedge);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;}<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove node from GUI<br/>
-&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;removeItem(qtnode);<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove from non-GUI, which removes the left-overs<br/>
-&nbsp;&nbsp;GetConceptMap()-&gt;DeleteNode(qtnode-&gt;GetNode());<br/>
-<br/>
-&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_items_after <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;scene()-&gt;items().count();<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n_items_before <a href="CppOperatorMinus.htm">-</a> n_items_after <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "At least one item is deleted: one node and x edges");<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Collect&lt;<a href="CppQt.htm">Qt</a>Node&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene()).size() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap()-&gt;GetNodes().size()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI concept map must match");<br/>
-&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-}<br/>
-<br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::DoRandomStuff()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b>-&gt;mouse<a href="CppDouble.htm">Double</a>ClickEvent(0); <a href="CppComment.htm">//</a>CAUSES ACCESS VIOLATION<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept1(cmap::ConceptFactory::Create("...", { {} } ) );<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node1(cmap::NodeFactory::Create(concept1));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept1(ConceptFactory().Create("...", { {} } ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node1(cmap::NodeFactory::Create(concept1));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap()-&gt;<a href="CppAdd.htm">Add</a>Node(node1);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode1 <a href="CppOperatorAssign.htm">=</a> <a href="CppAdd.htm">Add</a>Node(node1);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept2(cmap::ConceptFactory::Create("...", { {} } ) );<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node2(cmap::NodeFactory::Create(concept2));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept2(ConceptFactory().Create("...", { {} } ) );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node2(cmap::NodeFactory::Create(concept2));<br/>
 &nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap()-&gt;<a href="CppAdd.htm">Add</a>Node(node2);<br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a>Node * <b><a href="CppConst.htm">const</a></b> qtnode2 <a href="CppOperatorAssign.htm">=</a> <a href="CppAdd.htm">Add</a>Node(node2);<br/>
 <br/>
@@ -8287,7 +8444,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::GetDisplayStrategy(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; display_strategy {<br/>
@@ -8299,15 +8456,6 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Edge *&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::Get<a href="CppQt.htm">Qt</a>Edges()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppQt.htm">Qt</a>Edge *&gt; qtedges<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> Collect&lt;<a href="CppQt.htm">Qt</a>Edge&gt;(<b><a href="CppThis.htm">this</a></b>-&gt;scene());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Cannot <b><a href="CppDo.htm">do</a></b> the check below: in DeleteNode multiple edges are deleted<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(qtedges.size() <a href="CppOperatorEqual.htm">==</a> GetConceptMap()-&gt;GetNodes().size()<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "GUI and non-GUI must contain an equal amount of edges");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> qtedges;<br/>
-}<br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node *&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::Get<a href="CppQt.htm">Qt</a>Nodes()<br/>
 {<br/>
@@ -8387,9 +8535,9 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>EditConceptMap::mouse<a href="CppDouble.htm">Double</a>ClickEvent(<a href="CppQMouseEvent.htm">QMouseEvent</a> *event)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::Create("..."));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node(cmap::NodeFactory::Create(concept));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory().Create("..."));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node(cmap::NodeFactory::Create(concept));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(node);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetConceptMap());<br/>
 &nbsp;&nbsp;GetConceptMap()-&gt;<a href="CppAdd.htm">Add</a>Node(node);<br/>
@@ -8461,7 +8609,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(item-&gt;GetConcept());<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; new_concept <a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptFactory::DeepCopy(item-&gt;GetConcept());<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; new_concept <a href="CppOperatorAssign.htm">=</a> ConceptFactory().DeepCopy(item-&gt;GetConcept());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(new_concept);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<b><a href="CppThis.htm">this</a></b>);<br/>
@@ -9036,7 +9184,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateConceptMap::<a href="CppQt.htm">Qt</a>RateConceptMap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map,<br/>
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>* parent)<br/>
 &nbsp;&nbsp;: <a href="CppQt.htm">Qt</a>ConceptMap(concept_map,parent),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_signal_request_rate_concept_dialog{}<br/>
@@ -9055,7 +9203,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateConceptMap::<a href="CppAdd.htm">Add</a>Edge(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>EditStrategy&gt; qtconcept(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>EditStrategy(edge-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtconcept);<br/>
@@ -9132,7 +9280,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppAbs.htm">std::abs</a>(qtedge-&gt;pos().y() <a href="CppOperatorMinus.htm">-</a> edge-&gt;GetY()) &lt; epsilon);<br/>
 }<br/>
 <br/>
-<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateConceptMap::<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Node&gt; node)<br/>
+<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>Node * <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateConceptMap::<a href="CppAdd.htm">Add</a>Node(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Node&gt; node)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>RateStrategy&gt; display_strategy(<b><a href="CppNew.htm">new</a></b> <a href="CppQt.htm">Qt</a>RateStrategy(node-&gt;GetConcept()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(display_strategy);<br/>
@@ -9214,7 +9362,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 <a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ConceptMap&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateConceptMap::CreateNewDerived() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppRibi.htm">ribi</a>::cmap::ConceptMapFactory::DeepCopy(<b><a href="CppThis.htm">this</a></b>-&gt;GetConceptMap());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ConceptMap&gt; p(<b><a href="CppNew.htm">new</a></b> This_t(concept_map));<br/>
@@ -9261,7 +9409,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;nodes.push_back(other_node);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtedge);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(qtedge-&gt;GetEdge());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Edge&gt; edge(cmap::EdgeFactory::Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Edge&gt; edge(cmap::EdgeFactory::Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtedge-&gt;GetEdge()-&gt;GetConcept(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtedge-&gt;GetEdge()-&gt;GetX(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qtedge-&gt;GetEdge()-&gt;GetY(),<br/>
@@ -9275,7 +9423,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;&nbsp;&nbsp;edges.push_back(edge);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ConceptMap::Can<a href="CppConstructor.htm">Construct</a>(nodes,edges));<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::ConceptMap&gt; concept_map(cmap::ConceptMapFactory::Create(nodes,edges));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;ConceptMap&gt; concept_map(cmap::ConceptMapFactory::Create(nodes,edges));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept_map);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(focal_node <a href="CppOperatorEqual.htm">==</a> concept_map-&gt;GetFocalNode());<br/>
 <br/>
@@ -9295,7 +9443,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; <a href="CppRibi.htm">ribi</a>::cmap::<a href="CppQt.htm">Qt</a>RateConceptMap::GetDisplayStrategy(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQt.htm">Qt</a>ItemDisplayStrategy&gt; display_strategy {<br/>
@@ -9349,7 +9497,7 @@ Voorbeelden/toelichting bij concept: Illustrations and relations of the cluster:
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start edit<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQtScopedDisable.htm">QtScopedDisable</a>&lt;<a href="CppQt.htm">Qt</a>RateConceptMap&gt; disable(<b><a href="CppThis.htm">this</a></b>);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::cmap::Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> item-&gt;GetConcept();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Concept&gt; concept <a href="CppOperatorAssign.htm">=</a> item-&gt;GetConcept();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(concept);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item-&gt;GetConcept().get() <a href="CppOperatorEqual.htm">==</a> concept.get());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(item-&gt;GetConcept() <a href="CppOperatorEqual.htm">==</a> concept);<br/>

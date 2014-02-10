@@ -78,6 +78,29 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 # }<br/>
 <br/>
 include(../../<a href="CppLibrary.htm">Libraries</a>/Shiny.pri) #Or use the code below<br/>
+# <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include<br/>
+#<br/>
+# <a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/Shiny<a href="Tools.htm">Tools</a>.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyOutput.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyNodePool.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyNode.cpp \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/src/ShinyManager.cpp<br/>
+#<br/>
+#<br/>
+# <a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyZone.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/Shiny<a href="Tools.htm">Tools</a>.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyPrereqs.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyOutput.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyNodePool.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyNode.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyManager.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyMacros.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyData.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/ShinyConfig.h \<br/>
+#&nbsp;&nbsp;&nbsp;&nbsp; ../../<a href="CppLibrary.htm">Libraries</a>/Shiny/include/Shiny.h<br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
 </code></td></tr></table>
@@ -313,16 +336,11 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Shiny.pri) #Or use the code
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Non-<b><a href="CppInline.htm">inline</a></b>-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> structs<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment1st : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment2nd : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInline<a href="CppIncrease.htm">Increase</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePostIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePreIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment1st { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlineAssignment2nd { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1;&nbsp;&nbsp;} };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePostIncrement { <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>;&nbsp;&nbsp; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rNonInlinePreIncrement&nbsp;&nbsp;{ <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x;&nbsp;&nbsp; } };<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorNonInlineAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
@@ -355,16 +373,11 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Shiny.pri) #Or use the code
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Inline-<b><a href="CppOperatorFunctionCall.htm">operator()</a></b> structs<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment1st : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment2nd : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInline<a href="CppIncrease.htm">Increase</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePostIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; } };<br/>
-<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePreIncrement : <b><a href="CppPublic.htm">public</a></b> <a href="CppUnary_function.htm">std::unary_function</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppVoid.htm">void</a></b>&gt;<br/>
-&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment1st { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=1+x; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlineAssignment2nd { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x=x+1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInline<a href="CppIncrease.htm">Increase</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorPlusAssign.htm">+=</a>1; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePostIncrement { <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { x<a href="CppOperatorIncrement.htm">++</a>; } };<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppAddOne.htm">AddOne</a>rInlinePreIncrement&nbsp;&nbsp;{ <b><a href="CppInline.htm">inline</a></b> <b><a href="CppVoid.htm">void</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppInt.htm">int</a></b>&amp; x) { <a href="CppOperatorIncrement.htm">++</a>x; } };<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a><a href="CppAlgorithm.htm">Algorithm</a>FunctorInlineAssignment1st(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;&amp; v)<br/>
 {<br/>
