@@ -98,7 +98,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttesttwodigitnewickmenudialog.h"
 #include "qtthresholdfilterermenudialog.h"
 #include "qttictactoemenudialog.h"
-#include "qttooldotmatrixmenudialog.h"
+#include "qtdotmatrixmenudialog.h"
 #include "qttoolencrangermaindialog.h"
 #include "qttoolencrangermenudialog.h"
 #include "qttoolgaborfiltermenudialog.h"

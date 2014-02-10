@@ -1,17 +1,18 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttooldotmatrixmenudialog.h"
+#include "qtdotmatrixmenudialog.h"
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
-#include "tooldotmatrixmenudialog.h"
+#include "dotmatrixmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttooldotmatrixmaindialog.h"
+#include "qtdotmatrixsinglelinemaindialog.h"
+#include "qtdotmatrixmultilinemaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
-#include "ui_qttooldotmatrixmenudialog.h"
+#include "ui_qtdotmatrixmenudialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtDotMatrixMenuDialog::QtDotMatrixMenuDialog(
@@ -37,7 +38,7 @@ void ribi::QtDotMatrixMenuDialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::QtDotMatrixMenuDialog::on_button_about_clicked()
 {
-  About a = ToolDotMatrixMenuDialog().GetAbout();
+  About a = DotMatrixMenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setWindowIcon(this->windowIcon());
@@ -50,14 +51,6 @@ void ribi::QtDotMatrixMenuDialog::on_button_quit_clicked()
   close();
 }
 
-void ribi::QtDotMatrixMenuDialog::on_button_start_clicked()
-{
-  QtToolDotMatrixMainDialog d;
-  d.setWindowIcon(this->windowIcon());
-  d.setStyleSheet(this->styleSheet());
-  ShowChild(&d);
-}
-
 #ifndef NDEBUG
 void ribi::QtDotMatrixMenuDialog::Test() noexcept
 {
@@ -67,7 +60,24 @@ void ribi::QtDotMatrixMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtDotMatrixMenuDialog::Test");
-  QtToolDotMatrixMainDialog();
+  QtDotMatrixSingleLineMainDialog();
+  QtDotMatrixMultiLineMainDialog();
   TRACE("Finished ribi::QtDotMatrixMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtDotMatrixMenuDialog::on_button_start_single_line_clicked()
+{
+  QtDotMatrixSingleLineMainDialog d;
+  d.setWindowIcon(this->windowIcon());
+  d.setStyleSheet(this->styleSheet());
+  ShowChild(&d);
+}
+
+void ribi::QtDotMatrixMenuDialog::on_button_start_multi_line_clicked()
+{
+  QtDotMatrixMultiLineMainDialog d;
+  d.setWindowIcon(this->windowIcon());
+  d.setStyleSheet(this->styleSheet());
+  ShowChild(&d);
+}

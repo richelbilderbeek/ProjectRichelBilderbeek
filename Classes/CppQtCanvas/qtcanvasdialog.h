@@ -28,6 +28,7 @@ public:
 
   protected:
   void keyPressEvent(QKeyEvent *event);
+  void resizeEvent(QResizeEvent *);
 
   private:
   ~QtCanvasDialog() noexcept;
@@ -36,12 +37,7 @@ public:
 
   QtCanvas * const m_qtcanvas;
 
-  QTimer * const m_resize_timer;
-
   void OnQtCanvasDestroy();
-
-  private slots:
-  void OnResizeTimer();
 };
 
 } //~namespace ribi

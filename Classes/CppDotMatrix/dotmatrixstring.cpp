@@ -1,9 +1,13 @@
+#include "dotmatrixstring.h"
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "dotmatrixstring.h"
+
+#include <QImage>
 
 #include "dotmatrixchar.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::DotMatrixString::DotMatrixString(const std::string& s,
@@ -11,6 +15,9 @@ ribi::DotMatrixString::DotMatrixString(const std::string& s,
   : m_spacing(spacing),
     m_v{CreateDotMatrixChars(s)}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(m_spacing >= 0);
   assert(GetString() == s);
 }
@@ -30,6 +37,27 @@ const std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
   return v;
 }
 
+const boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
+{
+  const int height = GetMatrixHeight();
+  const int width  = GetMatrixWidth();
+  const boost::shared_ptr<QImage> image {
+    new QImage(width,height,QImage::Format_RGB32)
+  };
+
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      const bool b = GetMatrix(x,y);
+      const QRgb color( b ? qRgb(0,0,0) : qRgb(255,255,255) );
+      image->setPixel(x,y,color);
+    }
+  }
+  return image;
+}
+
+
 const std::string ribi::DotMatrixString::GetString() const noexcept
 {
   std::string s;
@@ -42,6 +70,10 @@ bool ribi::DotMatrixString::GetMatrix(const int x, const int y) const
   assert(x >= 0);
   assert(x < GetMatrixWidth());
   assert(y >= 0);
+  if (!(y < GetMatrixHeight()))
+  {
+    TRACE("BREAK");
+  }
   assert(y < GetMatrixHeight());
   assert(!m_v.empty());
   assert(m_v[0]);
@@ -75,6 +107,28 @@ int ribi::DotMatrixString::GetMatrixWidth() const noexcept
   const int char_width = m_v[0]->GetMatrixWidth() + m_spacing;
   return n_chars * char_width;
 }
+
+
+#ifndef NDEBUG
+void ribi::DotMatrixString::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::DotMatrixString::Test");
+  const std::string text = "Hello world";
+  const int spacing = 1;
+  const boost::shared_ptr<const ribi::DotMatrixString> m {
+    new ribi::DotMatrixString(text,spacing)
+  };
+  std::stringstream s;
+  s << *m;
+  assert(!s.str().empty());
+  TRACE("Finished ribi::DotMatrixString::Test successfully");
+}
+#endif
 
 std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixString& m)
 {

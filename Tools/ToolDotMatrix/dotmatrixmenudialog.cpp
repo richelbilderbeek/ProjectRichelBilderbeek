@@ -1,4 +1,4 @@
-#include "tooldotmatrixmenudialog.h"
+#include "dotmatrixmenudialog.h"
 
 #include <cassert>
 #include <iostream>
@@ -10,12 +10,16 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include <boost/lexical_cast.hpp>
+
+#include <QImage>
+
 #include "dotmatrixstring.h"
+#include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 
-int ribi::ToolDotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -66,15 +70,31 @@ int ribi::ToolDotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string
       break;
     }
   }
+  std::string filename = "";
+  for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
+  {
+    if (argv[i] == std::string("-f") || argv[i] == std::string("--filename"))
+    {
+      filename = argv[i + 1];
+      break;
+    }
+  }
 
   const boost::shared_ptr<const ribi::DotMatrixString> m {
     new ribi::DotMatrixString(text,spacing)
   };
+
+  if (!filename.empty())
+  {
+    m->CreateImage()->save(filename.c_str());
+  }
+
   std::cout << *m << '\n';
+
   return 0;
 }
 
-const ribi::About ribi::ToolDotMatrixMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -90,47 +110,49 @@ const ribi::About ribi::ToolDotMatrixMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolDotMatrixMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
-    this->GetAbout().GetFileTitle(),
-    this->GetAbout().GetFileDescription(),
+    GetAbout().GetFileTitle(),
+    GetAbout().GetFileDescription(),
     {
-      //Options
-      Help::Option('t',"text","Convert a text to dot matrix ASCII art"),
-      Help::Option('s',"spacing","Set the spacing in pixels, default: 1")
+      Help::Option('f',"filename","Save the text to an image file"),
+      Help::Option('t',"text","The text to convert to file or ASCII art"),
+      Help::Option('s',"spacing","Set the spacing in pixels, default: 1"),
     },
     {
-      //Example uses
-      "DotMatrix -t \"Hello world\""
-      "DotMatrix --text \"Hello world\" -s 0"
+      "DotMatrix -t \"Hello world\"",
+      "DotMatrix --text \"Hello world\" -s 0",
+      "DotMatrix -t \"Hello world\" -f myfile.png",
+      "DotMatrix -t \"Hello world\" --filename myfile.png --spacing 0",
     }
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolDotMatrixMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::DotMatrixMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramDotMatrix);
   assert(p);
   return p;
 }
 
-const std::string ribi::ToolDotMatrixMenuDialog::GetVersion() const noexcept
+const std::string ribi::DotMatrixMenuDialog::GetVersion() const noexcept
 {
-  return "2.1";
+  return "2.2";
 }
 
-const std::vector<std::string> ribi::ToolDotMatrixMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::DotMatrixMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-xx-xx: version 1.0: initial VCL desktop version",
     "2013-10-11: version 2.0: port to Qt",
     "2013-11-01: version 2.1: improved console version"
+    "2014-02-10: version 2.2: added multi-line version"
   };
 }
 
 #ifndef NDEBUG
-void ribi::ToolDotMatrixMenuDialog::Test() noexcept
+void ribi::DotMatrixMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
@@ -138,14 +160,26 @@ void ribi::ToolDotMatrixMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolDotMatrixMenuDialog::Test");
-  const std::string text = "Hello world";
-  const int spacing = 1;
-  const boost::shared_ptr<const ribi::DotMatrixString> m {
-    new ribi::DotMatrixString(text,spacing)
-  };
-  std::stringstream s;
-  s << *m;
-  assert(!s.str().empty());
+
+  //Command line tests
+  {
+    DotMatrixMenuDialog d;
+    const std::string filename { fileio::GetTempFileName(".png") };
+    d.Execute( { "DotMatrix", "-t", "\"Hello world\"" } );
+    d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-s", "0" } );
+
+    assert(!fileio::IsRegularFile(filename));
+    d.Execute( { "DotMatrix", "-t", "\"Hello world\"", "-f", filename } );
+    assert(fileio::IsRegularFile(filename));
+
+    fileio::DeleteFile(filename);
+
+    assert(!fileio::IsRegularFile(filename));
+    d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-f", filename, "--spacing", "1" } );
+    assert(fileio::IsRegularFile(filename));
+
+    fileio::DeleteFile(filename);
+  }
   TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
 }
 #endif

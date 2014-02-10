@@ -2,10 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolDotMatrix
 
 SOURCES += \
-    ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.cpp
+    ../../Tools/ToolDotMatrix/dotmatrixmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolDotMatrix/tooldotmatrixmenudialog.h
+    ../../Tools/ToolDotMatrix/dotmatrixmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolDotMatrix/Licence.txt

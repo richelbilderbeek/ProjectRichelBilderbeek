@@ -10,7 +10,10 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/array.hpp>
 #include <boost/checked_delete.hpp>
+#include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
+
+struct QImage;
 
 namespace ribi {
 
@@ -18,6 +21,8 @@ namespace ribi {
 struct DotMatrixChar
 {
   DotMatrixChar(const char c);
+
+  const boost::shared_ptr<QImage> CreateImage() const noexcept;
 
   ///Read back the character
   char GetChar() const noexcept { return m_c; }
@@ -47,6 +52,10 @@ struct DotMatrixChar
   ///size 5 (width) x 7 (height) pixels, excluding empty spacer pixels
   ///size 6 (width) x 8 (height) pixels, including empty spacer pixels
   static const boost::array<boost::array<int,5> ,7> GetChar(const char c) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 std::ostream& operator<<(std::ostream& os, const DotMatrixChar& m);

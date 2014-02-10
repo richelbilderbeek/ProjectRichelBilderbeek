@@ -9,7 +9,7 @@
 namespace ribi {
 
 ///GUI independent ToolDotMatrix menu dialog
-struct ToolDotMatrixMenuDialog : public MenuDialog
+struct DotMatrixMenuDialog : public MenuDialog
 {
 
   const About GetAbout() const noexcept;

@@ -4,13 +4,16 @@ INCLUDEPATH += \
     ../../Tools/ToolDotMatrix
 
 SOURCES += \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.cpp \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.cpp
+    ../../Tools/ToolDotMatrix/qtdotmatrixsinglelinemaindialog.cpp \
+    ../../Tools/ToolDotMatrix/qtdotmatrixmenudialog.cpp \
+    ../../Tools/ToolDotMatrix/qtdotmatrixmultilinemaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.h \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.h
+    ../../Tools/ToolDotMatrix/qtdotmatrixsinglelinemaindialog.h \
+    ../../Tools/ToolDotMatrix/qtdotmatrixmenudialog.h \
+    ../../Tools/ToolDotMatrix/qtdotmatrixmultilinemaindialog.h
 
 FORMS    += \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmaindialog.ui \
-    ../../Tools/ToolDotMatrix/qttooldotmatrixmenudialog.ui
+    ../../Tools/ToolDotMatrix/qtdotmatrixsinglelinemaindialog.ui \
+    ../../Tools/ToolDotMatrix/qtdotmatrixmenudialog.ui \
+    ../../Tools/ToolDotMatrix/qtdotmatrixmultilinemaindialog.ui

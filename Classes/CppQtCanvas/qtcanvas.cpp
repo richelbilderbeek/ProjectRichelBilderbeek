@@ -10,43 +10,28 @@
 #include <boost/bind.hpp>
 #include <boost/lambda/lambda.hpp>
 
-#include <QScrollBar>
-#include <QTimer>
+#include <QPainter>
+//#include <QScrollBar>
+//#include <QTimer>
 
 #include "canvas.h"
+#include "dotmatrixtext.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::QtCanvas::QtCanvas(const boost::shared_ptr<ribi::Canvas> canvas)
   : m_signal_on_destroy{},
     m_canvas{},
-    m_resize_timer(new QTimer)
+    m_image{}
 {
   assert(canvas);
-
   SetCanvas(canvas);
   assert(m_canvas);
-
-  setStyleSheet("QPlainTextEdit { font: 14px \"Courier New\"/Courier/monospace; }");
-
-  QPalette p = palette();
-  p.setColor(QPalette::Base, Qt::black);
-  p.setColor(QPalette::Text, Qt::white);
-  setPalette(p);
-
-  setReadOnly(true);
-  ShowCanvas(m_canvas.get());
-
-  QObject::connect(m_resize_timer,SIGNAL(timeout()),this,SLOT(OnResizeTimer()));
-  m_resize_timer->setInterval(10);
-  m_resize_timer->start();
 }
 
 ribi::QtCanvas::~QtCanvas() noexcept
 {
   TRACE_FUNC();
-  m_resize_timer->stop();
-  delete m_resize_timer;
 
   m_canvas->m_signal_changed.disconnect(
     boost::bind(
@@ -66,11 +51,20 @@ void ribi::QtCanvas::keyPressEvent(QKeyEvent* event)
     close();
     return;
   }
-  QPlainTextEdit::keyPressEvent(event);
+  QWidget::keyPressEvent(event);
 }
 
 void ribi::QtCanvas::paintEvent(QPaintEvent *)
 {
+  std::vector<std::string> text;
+  for (std::string line: m_canvas->ToStrings()) { text.push_back(line); }
+
+  DotMatrixText t(text,1,DotMatrixText::ColorSystem::inverted);
+  m_image = t.CreateImage();
+
+  QPainter painter(this);
+  painter.drawPixmap(rect(),QPixmap::fromImage(*m_image.get()));
+  //painter.drawImage(rect(),*m_image.get());
 
 }
 
@@ -101,47 +95,21 @@ void ribi::QtCanvas::SetCanvas(const boost::shared_ptr<Canvas> canvas)
       boost::lambda::_1)
     );
 
-  QFontMetrics m(font());
-
-  setMinimumSize(
-    m_canvas->GetWidth()  * m.averageCharWidth(),
-    m_canvas->GetHeight() * m.height()
-  );
+  //Set minimum size
+  {
+    std::vector<std::string> text;
+    for (std::string line: m_canvas->ToStrings()) { text.push_back(line); }
+    DotMatrixText t(text,1);
+    setMinimumSize(
+      t.GetMatrixHeight(),
+      t.GetMatrixWidth()
+    );
+  }
 
   ShowCanvas(m_canvas.get());
 }
 
-void ribi::QtCanvas::OnResizeTimer()
-{
-  assert(horizontalScrollBar());
-  if(horizontalScrollBar()->isVisible())
-  {
-    //this->setMinimumWidth(width() + 2);
-    this->setGeometry(
-      geometry().x() - 16,
-      geometry().y(),
-      geometry().width() + 32,
-      geometry().height()
-    );
-  }
-
-  assert(verticalScrollBar());
-  if(verticalScrollBar()->isVisible())
-  {
-    //this->setMinimumHeight(height() + 2);
-    this->setGeometry(
-      geometry().x(),
-      geometry().y() - 16,
-      geometry().width(),
-      geometry().height() + 32
-    );
-  }
-}
-
 void ribi::QtCanvas::ShowCanvas(const Canvas * const)
 {
-  std::string text;
-  for (std::string line: m_canvas->ToStrings()) { text += (line + '\n'); }
-  if (!text.empty()) text.pop_back();
-  setPlainText(text.c_str());
+  repaint();
 }

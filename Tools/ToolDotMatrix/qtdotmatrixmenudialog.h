@@ -27,8 +27,9 @@ private:
 
 private slots:
   void on_button_about_clicked();
+  void on_button_start_multi_line_clicked();
+  void on_button_start_single_line_clicked();
   void on_button_quit_clicked();
-  void on_button_start_clicked();
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -1,6 +1,14 @@
 #include "dotmatrixchar.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
+
+#include <QImage>
+
+#include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::DotMatrixChar::DotMatrixChar(const char c)
   : m_c(c),
@@ -9,6 +17,26 @@ ribi::DotMatrixChar::DotMatrixChar(const char c)
   assert(!m_matrix.empty());
   assert(GetMatrixHeight() == static_cast<int>(m_matrix.size()));
   assert(GetMatrixWidth()  == static_cast<int>(m_matrix[0].size()));
+}
+
+const boost::shared_ptr<QImage> ribi::DotMatrixChar::CreateImage() const noexcept
+{
+  const int height = GetMatrixHeight();
+  const int width  = GetMatrixWidth();
+  const boost::shared_ptr<QImage> image {
+    new QImage(width,height,QImage::Format_RGB32)
+  };
+
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      const bool b = GetMatrix(x,y);
+      const QRgb color( b ? qRgb(0,0,0) : qRgb(255,255,255) );
+      image->setPixel(x,y,color);
+    }
+  }
+  return image;
 }
 
 const boost::array<boost::array<int,5> ,7> ribi::DotMatrixChar::GetChar(const char c) noexcept
@@ -900,6 +928,19 @@ bool ribi::DotMatrixChar::GetMatrix(const int x, const int y) const
   assert(y < GetMatrixHeight());
   return m_matrix[y][x];
 }
+
+#ifndef NDEBUG
+void ribi::DotMatrixChar::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::DotMatrixChar::Test");
+  TRACE("Finished ribi::DotMatrixChar::Test successfully");
+}
+#endif
 
 std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixChar& m)
 {

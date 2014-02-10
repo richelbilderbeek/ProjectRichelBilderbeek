@@ -44,12 +44,14 @@ private:
   friend void boost::checked_delete<>(const QtCanvas* x);
 
   boost::shared_ptr<Canvas> m_canvas;
-  QTimer * const m_resize_timer;
+
+  boost::shared_ptr<QImage> m_image; //Used as buffer
+  //QTimer * const m_resize_timer;
 
   void ShowCanvas(const Canvas * const);
 
-  private slots:
-  void OnResizeTimer();
+  //private slots:
+  //void OnResizeTimer();
 
 };
 

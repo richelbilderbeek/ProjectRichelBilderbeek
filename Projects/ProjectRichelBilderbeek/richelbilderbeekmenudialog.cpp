@@ -172,7 +172,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-#include "tooldotmatrixmenudialog.h"
+#include "dotmatrixmenudialog.h"
 #include "toolencrangermenudialog.h"
 #include "toolgaborfiltermenudialog.h"
 #include "toolgraycodermenudialog.h"
@@ -672,7 +672,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::dotMatrix: p.reset(new ToolDotMatrixMenuDialog); break;
+      case ProgramType::dotMatrix: p.reset(new DotMatrixMenuDialog); break;
       case ProgramType::dotMatrixVcl:
       {
         const std::string version = "x.x";
