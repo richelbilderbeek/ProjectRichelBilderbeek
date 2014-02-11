@@ -37,6 +37,7 @@ public:
   boost::signals2::signal<void()> m_signal_on_destroy;
 
   virtual void keyPressEvent(QKeyEvent * e);
+  virtual void keyReleaseEvent(QKeyEvent * e);
   virtual void paintEvent(QPaintEvent *);
 
 private:
@@ -44,6 +45,7 @@ private:
   friend void boost::checked_delete<>(const QtCanvas* x);
 
   boost::shared_ptr<Canvas> m_canvas;
+
 
   boost::shared_ptr<QImage> m_image; //Used as buffer
   //QTimer * const m_resize_timer;

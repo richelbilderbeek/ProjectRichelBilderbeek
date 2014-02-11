@@ -54,6 +54,11 @@ void ribi::QtCanvas::keyPressEvent(QKeyEvent* event)
   QWidget::keyPressEvent(event);
 }
 
+void ribi::QtCanvas::keyReleaseEvent(QKeyEvent* event)
+{
+  QWidget::keyReleaseEvent(event);
+}
+
 void ribi::QtCanvas::paintEvent(QPaintEvent *)
 {
   std::vector<std::string> text;

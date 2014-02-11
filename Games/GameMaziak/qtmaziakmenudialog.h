@@ -50,14 +50,15 @@ public:
 
 private:
   Ui::QtMaziakMenuDialog *ui;
-  int getMazeSize() const;
+  int GetMazeSize() const;
   Difficulty m_difficulty;
   void keyPressEvent(QKeyEvent * event);
   void mousePressEvent(QMouseEvent * event);
   void paintEvent(QPaintEvent*);
-  void onStart();
-  void onInstructions();
-  void onAbout();
+  void OnStart();
+  void OnStartRetro();
+  void OnInstructions();
+  void OnAbout();
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -32,6 +32,7 @@ void ribi::TicTacToeWidget::PressKey(const TicTacToeWidget::Key key)
       if (m_tictactoe->CanDoMove(m_x,m_y))
       {
         m_tictactoe->DoMove(m_x,m_y);
+        m_signal_changed();
       }
     }
     break;
@@ -44,6 +45,17 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::TicTacToeWidget::ToTextCanvas() 
     m_tictactoe->ToTextCanvas()
   };
   assert(canvas);
+
+  if (m_tictactoe->GetWinner() == TicTacToe::player1 || m_tictactoe->GetWinner() == TicTacToe::player2)
+  {
+    for (int i=0; i!=3; ++i)
+    {
+      for (int j=0; j!=3; ++j)
+      {
+        canvas->PutChar(i,j, m_tictactoe->GetWinner() == TicTacToe::player1 ? 'X': 'O');
+      }
+    }
+  }
   const char c = canvas->GetChar(m_x,m_y);
   char d = ' ';
   switch (c)

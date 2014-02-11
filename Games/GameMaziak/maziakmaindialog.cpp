@@ -31,6 +31,7 @@ ribi::maziak::MainDialog::MainDialog(const int maze_size)
     m_maze{new Maze(maze_size)},
     m_move_now(PlayerMove::none),
     m_solution{},
+    m_state{State::playing},
     m_x(-1),
     m_y(-1)
 {
@@ -73,6 +74,7 @@ void ribi::maziak::MainDialog::AnimateFighting() noexcept
     {
       if (!m_has_sword)
       {
+        m_state = State::game_over;
         m_signal_game_over();
         return;
       }
@@ -390,6 +392,7 @@ void ribi::maziak::MainDialog::RespondToCurrentSquare() noexcept
       break;
     case MazeSquare::msExit:
     {
+      m_state = State::has_won;
       m_signal_game_won();
       break;
     }
@@ -420,6 +423,21 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::maziak::MainDialog::ToTextCanvas
   const boost::shared_ptr<TextCanvas> canvas {
     new TextCanvas(view_height,view_width)
   };
+  if (GetState() == State::has_won)
+  {
+    canvas->PutText(1,1,"You");
+    canvas->PutText(1,2,"won");
+    canvas->PutText(1,3,"the");
+    canvas->PutText(1,4,"game");
+    return canvas;
+  }
+  else if (GetState() == State::game_over)
+  {
+    canvas->PutText(1,1,"GAME");
+    canvas->PutText(1,2,"OVER");
+    return canvas;
+  }
+
   //Draw maze
   {
     for (int y=0; y!=view_height; ++y)

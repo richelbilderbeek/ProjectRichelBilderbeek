@@ -36,10 +36,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "maziakmenudialog.h"
 #include "qtaboutdialog.h"
+#include "qtcanvas.h"
+#include "qtcanvasdialog.h"
+#include "qtmaziakcanvas.h"
 #include "qtmaziakinstructionsdialog.h"
 #include "qtmaziakmaindialog.h"
-#include "ui_qtmaziakmenudialog.h"
 #include "trace.h"
+#include "ui_qtmaziakmenudialog.h"
 
 #pragma GCC diagnostic pop
 
@@ -89,18 +92,23 @@ void ribi::maziak::QtMaziakMenuDialog::mousePressEvent(QMouseEvent * event)
   if (ui->widget_start->geometry().contains(
     event->x(), event->y()))
   {
-    onStart(); return;
+    OnStart(); return;
+  }
+  if (ui->widget_start_retro->geometry().contains(
+    event->x(), event->y()))
+  {
+    OnStartRetro(); return;
   }
   if (ui->widget_instructions->geometry().contains(
     event->x(), event->y()))
   {
-    onInstructions();
+    OnInstructions();
     return;
   }
   if (ui->widget_about->geometry().contains(
     event->x(), event->y()))
   {
-    onAbout();
+    OnAbout();
     return;
   }
   if (ui->widget_quit->geometry().contains(
@@ -134,9 +142,9 @@ void ribi::maziak::QtMaziakMenuDialog::keyPressEvent(QKeyEvent * event)
         default: assert(!"Should not get here");
       }
     }
-    case Qt::Key_S: onStart(); break;
-    case Qt::Key_I: onInstructions(); break;
-    case Qt::Key_A: onAbout(); break;
+    case Qt::Key_S: OnStart(); break;
+    case Qt::Key_I: OnInstructions(); break;
+    case Qt::Key_A: OnAbout(); break;
     case Qt::Key_Q:
     case Qt::Key_Escape:
       close(); return;
@@ -241,26 +249,7 @@ void ribi::maziak::QtMaziakMenuDialog::paintEvent(QPaintEvent*)
 
 }
 
-void ribi::maziak::QtMaziakMenuDialog::onStart()
-{
-  boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(getMazeSize()));
-  this->ShowChild(d.get());
-}
-
-void ribi::maziak::QtMaziakMenuDialog::onInstructions()
-{
-  boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
-  this->ShowChild(d.get());
-}
-
-void ribi::maziak::QtMaziakMenuDialog::onAbout()
-{
-  About a = MenuDialog().GetAbout();
-  boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
-  this->ShowChild(d.get());
-}
-
-int ribi::maziak::QtMaziakMenuDialog::getMazeSize() const
+int ribi::maziak::QtMaziakMenuDialog::GetMazeSize() const
 {
   switch (m_difficulty)
   {
@@ -270,6 +259,44 @@ int ribi::maziak::QtMaziakMenuDialog::getMazeSize() const
   }
   assert(!"Should not get here");
   throw std::logic_error("Unsupported value of mDifficulty");
+}
+
+void ribi::maziak::QtMaziakMenuDialog::OnAbout()
+{
+  About a = MenuDialog().GetAbout();
+  boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
+  this->ShowChild(d.get());
+}
+
+void ribi::maziak::QtMaziakMenuDialog::OnInstructions()
+{
+  boost::scoped_ptr<QtMaziakInstructionsDialog> d(new QtMaziakInstructionsDialog);
+  this->ShowChild(d.get());
+}
+
+void ribi::maziak::QtMaziakMenuDialog::OnStart()
+{
+  boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(GetMazeSize()));
+  this->ShowChild(d.get());
+}
+
+void ribi::maziak::QtMaziakMenuDialog::OnStartRetro()
+{
+  QtCanvas * const qtcanvas {
+    new QtMaziakCanvas(19)
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,256,256);
+    d->move( screen.center() - this->rect().center() );
+  }
+  d->setWindowTitle("Maziak");
+  ShowChild(d.get());
 }
 
 #ifndef NDEBUG

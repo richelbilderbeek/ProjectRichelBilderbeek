@@ -27,6 +27,8 @@ namespace maziak {
 
 struct MainDialog
 {
+  enum class State { playing, has_won, game_over };
+
   MainDialog(const int maze_size);
 
   void AnimateEnemiesAndPrisoners(const int view_width, const int view_height) noexcept;
@@ -50,6 +52,8 @@ struct MainDialog
   Sprite GetSpriteFloor(const int x,const int y) const noexcept { return GetSpriteFloor(m_maze,x,y,m_do_show_solution,m_solution); }
   Sprite GetSpriteAboveFloor(const int x,const int y) const noexcept { return GetSpriteAboveFloor(x,y,m_maze); }
   Sprite GetSpritePlayer() const noexcept { return GetSpritePlayer(m_direction,m_move_now,m_has_sword,m_fighting_frame); }
+
+  State GetState() const noexcept { return m_state; }
 
   int GetX() const noexcept { return m_x; }
   int GetY() const noexcept { return m_y; }
@@ -88,6 +92,7 @@ struct MainDialog
   const boost::shared_ptr<Maze> m_maze;
   PlayerMove m_move_now;
   boost::shared_ptr<const SolutionMaze> m_solution;
+  State m_state;
   int m_x;
   int m_y;
 

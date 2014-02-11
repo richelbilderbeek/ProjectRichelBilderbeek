@@ -88,12 +88,12 @@ ribi::maziak::QtMaziakMainDialog::QtMaziakMainDialog(
   m_timer_enemy->setInterval(1000);
   m_timer_show_solution->setInterval(5000);
 
-  QObject::connect(m_timer_press_key.get(),SIGNAL(timeout()),
-    this,SLOT(OnTimerPressKey()));
-  QObject::connect(m_timer_enemy.get(),SIGNAL(timeout()),
-    this,SLOT(OnTimerEnemy()));
-  QObject::connect(m_timer_show_solution.get(),SIGNAL(timeout()),
-    this,SLOT(OnTimerStopShowingSolution()));
+  QObject::connect(m_timer_press_key.get(),&QTimer::timeout,
+    this,&ribi::maziak::QtMaziakMainDialog::OnTimerPressKey);
+  QObject::connect(m_timer_enemy.get(),&QTimer::timeout,
+    this,&ribi::maziak::QtMaziakMainDialog::OnTimerEnemy);
+  QObject::connect(m_timer_show_solution.get(),&QTimer::timeout,
+    this,&ribi::maziak::QtMaziakMainDialog::OnTimerStopShowingSolution);
 
   m_timer_press_key->start();
   m_timer_enemy->start();

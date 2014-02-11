@@ -48,6 +48,11 @@ void ribi::QtCanvasDialog::keyPressEvent(QKeyEvent* event)
   m_qtcanvas->keyPressEvent(event);
 }
 
+void ribi::QtCanvasDialog::keyReleaseEvent(QKeyEvent* event)
+{
+  m_qtcanvas->keyReleaseEvent(event);
+}
+
 void ribi::QtCanvasDialog::OnQtCanvasDestroy()
 {
   close_me();

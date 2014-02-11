@@ -27,13 +27,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include "connectthree.h"
+#include "textcanvas.h"
 
 ribi::ConnectThreeWidget::ConnectThreeWidget(
   const std::bitset<3>& is_player_human,
   const int n_cols,
   const int n_rows)
   : m_game(new ConnectThree(n_cols,n_rows)),
-    m_is_player_human(is_player_human)
+    m_is_player_human(is_player_human),
+    m_x{n_cols / 2},
+    m_y{n_rows / 2}
 {
   assert(m_game);
 }
@@ -41,11 +44,6 @@ ribi::ConnectThreeWidget::ConnectThreeWidget(
 void ribi::ConnectThreeWidget::DoMove(const int x,const int y)
 {
   m_game->DoMove(x,y);
-}
-
-const ribi::ConnectThree * ribi::ConnectThreeWidget::GetGame() const noexcept
-{
-  return m_game.get();
 }
 
 //ConnectThree * ribi::ConnectThreeWidget::GetGame()
@@ -81,6 +79,20 @@ bool ribi::ConnectThreeWidget::IsHuman(const int player_index) const
   return m_is_player_human[player_index];
 }
 
+void ribi::ConnectThreeWidget::OnKeyPress(const Key key)
+{
+  switch (key)
+  {
+    case Key::up   : if (m_y > 0) --m_y; break;
+    case Key::right: if (m_x + 1 < m_game->GetCols()) ++m_x; break;
+    case Key::down : if (m_y + 1 < m_game->GetRows()) ++m_y; break;
+    case Key::left : if (m_x > 0) --m_x; break;
+    case Key::select:
+      if (m_game->CanDoMove(m_x,m_y)) { m_game->DoMove(m_x,m_y); }
+      break;
+  }
+}
+
 void ribi::ConnectThreeWidget::Restart()
 {
   assert(m_game);
@@ -112,4 +124,51 @@ void ribi::ConnectThreeWidget::Tick()
     const boost::tuple<int,int,int> m = m_game->SuggestMove(this->GetIsPlayerHuman());
     m_game->DoMove(m.get<0>(),m.get<1>());
   }
+}
+
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::ConnectThreeWidget::ToTextCanvas() const noexcept
+{
+  const int n_cols { m_game->GetCols() };
+  const int n_rows { m_game->GetCols() };
+
+  const boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(n_cols,n_rows)
+  };
+  for (int y=0; y!=n_rows; ++y)
+  {
+    for (int x=0; x!=n_cols; ++x)
+    {
+      char c = ' ';
+      switch (m_game->GetSquare(x,y))
+      {
+        case ConnectThree::no_player: break;
+        case ConnectThree::player1: c = 'O'; break;
+        case ConnectThree::player2: c = 'X'; break;
+        case ConnectThree::player3: c = 'A'; break;
+        case ConnectThree::draw:
+        default:
+          assert(!"Should not get here");
+      }
+      canvas->PutChar(x,y,c);
+    }
+  }
+
+  const char c = canvas->GetChar(m_x,m_y);
+  char d = ' ';
+  switch (c)
+  {
+    case ' ': d = '.'; break;
+    case '.': d = ' '; break;
+    case 'O': d = 'o'; break;
+    case 'X': d = 'x'; break;
+    case 'A': d = 'a'; break;
+    case 'o': d = 'O'; break;
+    case 'x': d = 'X'; break;
+    case 'a': d = 'A'; break;
+  }
+  canvas->PutChar(m_x,m_y,d);
+  return canvas;
+
+  return canvas;
 }

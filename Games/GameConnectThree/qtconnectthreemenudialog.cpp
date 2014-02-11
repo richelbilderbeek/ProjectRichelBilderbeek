@@ -21,12 +21,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtconnectthreemenudialog.h"
+
+#include <cassert>
+
+#include <QApplication>
+#include <QDesktopWidget>
+
 #include "connectthreemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qtconnectthreegamedialog.h"
 #include "qtconnectthreeresources.h"
 #include "qtconnectthreewidget.h"
 #include "qtselectplayerwidget.h"
+#include "qtconnectthreecanvas.h"
+#include "qtcanvasdialog.h"
+#include "qtcanvas.h"
 #include "ui_qtconnectthreemenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -43,6 +52,9 @@ ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
 
   ui->setupUi(this);
   ui->layout_horizontal->addWidget(m_select.get());
+
+  OnStartRetro(); //TEMP
+  close(); //TEMP
 }
 
 ribi::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog() noexcept
@@ -72,6 +84,25 @@ void ribi::QtConnectThreeMenuDialog::on_button_about_clicked() noexcept
 void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
+}
+
+void ribi::QtConnectThreeMenuDialog::OnStartRetro()
+{
+  QtCanvas * const qtcanvas {
+    new QtConnectThreeCanvas(19)
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,256,256);
+    d->move( screen.center() - this->rect().center() );
+  }
+  d->setWindowTitle("ConnectThree");
+  ShowChild(d.get());
 }
 
 #ifndef NDEBUG

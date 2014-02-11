@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>358</width>
-    <height>538</height>
+    <width>594</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Maziak</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="gamemaziak.qrc">
+   <iconset resource="GameMaziak.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -67,6 +67,9 @@
     <widget class="QWidget" name="widget_start" native="true"/>
    </item>
    <item>
+    <widget class="QWidget" name="widget_start_retro" native="true"/>
+   </item>
+   <item>
     <widget class="QWidget" name="widget_instructions" native="true"/>
    </item>
    <item>
@@ -78,7 +81,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="gamemaziak.qrc"/>
+  <include location="GameMaziak.qrc"/>
  </resources>
  <connections/>
 </ui>

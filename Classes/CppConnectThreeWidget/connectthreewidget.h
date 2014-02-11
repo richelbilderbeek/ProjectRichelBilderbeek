@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <boost/scoped_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/tuple/tuple.hpp>
 
 #include "connectthree.h"
@@ -38,23 +38,28 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 struct ConnectThree;
+struct TextCanvas;
 
 ///ConnectThreeWidget embodies the interaction with a user
 struct ConnectThreeWidget
 {
+  enum class Key { up, right, down, left, select };
+
   explicit ConnectThreeWidget(
     const std::bitset<3>& is_player_human = std::bitset<3>(true),
     const int n_cols = 16,
     const int n_rows = 12);
 
-  const ConnectThree * GetGame() const noexcept;
+  const boost::shared_ptr<const ConnectThree> GetGame() const noexcept { return m_game; }
   void DoMove(const int x,const int y);
   const std::bitset<3>& GetIsPlayerHuman() const { return m_is_player_human; }
   bool IsComputerTurn() const noexcept;
   bool IsHuman(const int player_index) const;
+  void OnKeyPress(const Key key);
   void Restart();
   void SetIsPlayerHuman(const std::bitset<3>& is_player_human);
   const boost::tuple<int,int,int> SuggestMove() const;
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
   void Tick();
 
   private:
@@ -62,8 +67,14 @@ struct ConnectThreeWidget
   friend void boost::checked_delete<>(ConnectThreeWidget*);
   friend void boost::checked_delete<>(const ConnectThreeWidget*);
 
-  boost::scoped_ptr<ConnectThree> m_game;
+  boost::shared_ptr<ConnectThree> m_game;
   std::bitset<3> m_is_player_human;
+
+  //X coordinat of cursor
+  int m_x;
+
+  //Y coordinat of cursor
+  int m_y;
 
   public:
   static const std::string GetVersion() noexcept;

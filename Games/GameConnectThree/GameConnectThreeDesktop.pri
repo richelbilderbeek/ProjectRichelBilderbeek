@@ -5,14 +5,16 @@ SOURCES += \
     ../../Games/GameConnectThree/qtselectplayerwidget.cpp \
     ../../Games/GameConnectThree/qtconnectthreeresources.cpp \
     ../../Games/GameConnectThree/qtconnectthreemenudialog.cpp \
-    ../../Games/GameConnectThree/qtconnectthreegamedialog.cpp
+    ../../Games/GameConnectThree/qtconnectthreegamedialog.cpp \
+    qtconnectthreecanvas.cpp
 
 HEADERS  += \
     ../../Games/GameConnectThree/qtshowwinnerdialog.h \
     ../../Games/GameConnectThree/qtselectplayerwidget.h \
     ../../Games/GameConnectThree/qtconnectthreeresources.h \
     ../../Games/GameConnectThree/qtconnectthreemenudialog.h \
-    ../../Games/GameConnectThree/qtconnectthreegamedialog.h
+    ../../Games/GameConnectThree/qtconnectthreegamedialog.h \
+    qtconnectthreecanvas.h
 
 FORMS += \
     ../../Games/GameConnectThree/qtshowwinnerdialog.ui \
