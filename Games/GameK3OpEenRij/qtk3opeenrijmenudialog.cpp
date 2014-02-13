@@ -36,7 +36,7 @@ ribi::QtK3OpEenRijMenuDialog::~QtK3OpEenRijMenuDialog() noexcept
 void ribi::QtK3OpEenRijMenuDialog::on_button_about_clicked() noexcept
 {
   About about = K3OpEenRijMenuDialog().GetAbout();
-  about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
+  about.AddLibrary("QtConnectThreeWidget version: " + con3::QtConnectThreeWidget::GetVersion());
   QtAboutDialog d(about);
   d.setStyleSheet(this->styleSheet());
   d.setWindowIcon(this->windowIcon());
@@ -65,7 +65,7 @@ void ribi::QtK3OpEenRijMenuDialog::on_button_start_clicked() noexcept
     )
   );
 
-  QtConnectThreeGameDialog d(
+  con3::QtConnectThreeGameDialog d(
     resources,
     nullptr,
     m_select->GetIsPlayerHuman()
@@ -87,7 +87,7 @@ void ribi::QtK3OpEenRijMenuDialog::Test() noexcept
   TRACE("Starting ribi::QtK3OpEenRijMenuDialog::Test");
   {
     const boost::shared_ptr<const QtK3OpEenRijResources> resources(new QtK3OpEenRijResources);
-    QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
+    con3::QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
   }
   {
     QtK3OpEenRijInstructionsDialog d;

@@ -155,7 +155,7 @@ bool ribi::con3::ConnectThree::IsInvalidMove(const Move& p) noexcept
 }
 */
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const noexcept
+const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& /* is_player_human */) const noexcept
 {
   if (CanDoMove(CheckTwoHorizontalOwn())) return CheckTwoHorizontalOwn();
   if (CanDoMove(CheckTwoVerticalOwn()  )) return CheckTwoVerticalOwn();
@@ -637,9 +637,9 @@ ribi::con3::Player ribi::con3::ConnectThree::SquareToPlayer(const Square square)
 {
   switch (square)
   {
-    case Square::player1: return Winner::player1;
-    case Square::player2: return Winner::player2;
-    case Square::player3: return Winner::player3;
+    case Square::player1: return Player::player1;
+    case Square::player2: return Player::player2;
+    case Square::player3: return Player::player3;
     default:
       assert(!"Should not get here");
       throw std::logic_error("Unknown Square");

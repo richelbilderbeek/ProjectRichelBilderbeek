@@ -58,10 +58,13 @@ int ribi::con3::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::s
 
   switch (c->GetWinner())
   {
-    case Winner::player1: std::cout << "Player 1 won the game"; break;
-    case Winner::player2: std::cout << "Player 2 won the game"; break;
-    case Winner::player3: std::cout << "Player 3 won the game"; break;
-    case Winner::draw   : std::cout << "The game ended in a draw"; break;
+    case Winner::player1  : std::cout << "Player 1 won the game"; break;
+    case Winner::player2  : std::cout << "Player 2 won the game"; break;
+    case Winner::player3  : std::cout << "Player 3 won the game"; break;
+    case Winner::draw     : std::cout << "The game ended in a draw"; break;
+    case Winner::no_winner:
+      assert(!"Should not get here");
+      throw std::logic_error("Should not get here");
   }
 
   std::cout << std::endl;

@@ -283,7 +283,7 @@ void ribi::maziak::QtMaziakMenuDialog::OnStart()
 void ribi::maziak::QtMaziakMenuDialog::OnStartRetro()
 {
   QtCanvas * const qtcanvas {
-    new QtMaziakCanvas(19)
+    new QtMaziakCanvas(GetMazeSize())
   };
   boost::scoped_ptr<QtCanvasDialog> d {
     new QtCanvasDialog(qtcanvas)

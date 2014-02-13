@@ -99,8 +99,8 @@ const ribi::About ribi::K3OpEenRijMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/GameK3OpEenRij.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
-  a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
+  a.AddLibrary("ConnectThree version: " + con3::ConnectThree::GetVersion());
+  a.AddLibrary("ConnectThreeWidget version: " + con3::ConnectThreeWidget::GetVersion());
   a.AddLibrary("Special thanks to Mark Wiering for his excellent bug reports");
   return a;
 }
@@ -176,11 +176,11 @@ void ribi::K3OpEenRijMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::K3OpEenRijMenuDialog::Test");
-  boost::shared_ptr<ConnectThree> c {
-    new ConnectThree(15,5)
+  boost::shared_ptr<con3::ConnectThree> c {
+    new con3::ConnectThree(15,5)
   };
   const std::bitset<3> is_player_human(0);
-  while (c->GetWinner() == ConnectThree::no_player)
+  while (c->GetWinner() == con3::Winner::no_winner)
   {
     c->DoMove(c->SuggestMove(is_player_human));
   }

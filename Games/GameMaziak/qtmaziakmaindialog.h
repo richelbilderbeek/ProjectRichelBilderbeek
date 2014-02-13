@@ -44,8 +44,10 @@ namespace Ui {
   class QtMaziakMainDialog;
 }
 
+
 namespace ribi {
 namespace maziak {
+
 
 class QtMaziakMainDialog : public QtHideAndShowDialog
 {
