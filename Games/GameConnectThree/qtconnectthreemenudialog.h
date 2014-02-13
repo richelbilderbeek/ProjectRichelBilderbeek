@@ -35,6 +35,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace con3 {
 
 struct ConnectThreeResources;
 struct QtSelectPlayerWidget;
@@ -69,6 +70,7 @@ private slots:
   #endif
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTCONNECTTHREEMENUDIALOG_H

@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 #include <cassert>
+#include <stdexcept>
+
 #include "connectthree.h"
 #include "textcanvas.h"
 
@@ -41,7 +43,7 @@ ribi::con3::ConnectThreeWidget::ConnectThreeWidget(
   assert(m_game);
 }
 
-void ribi::con3::ConnectThreeWidget::DoMove(const int x,const int y)
+void ribi::con3::ConnectThreeWidget::DoMove(const int x,const int y) noexcept
 {
   m_game->DoMove(x,y);
 }
@@ -69,17 +71,15 @@ bool ribi::con3::ConnectThreeWidget::IsComputerTurn() const noexcept
   return !IsHuman(m_game->GetActivePlayer());
 }
 
-bool ribi::con3::ConnectThreeWidget::IsHuman(const int player_index) const
+bool ribi::con3::ConnectThreeWidget::IsHuman(const Player player) const noexcept
 {
-  assert(ConnectThree::player1 == 0);
-  assert(ConnectThree::player2 == 1);
-  assert(ConnectThree::player3 == 2);
+  const int player_index = PlayerToIndex(player);
   assert(player_index >= 0);
   assert(player_index < static_cast<int>(m_is_player_human.size()));
   return m_is_player_human[player_index];
 }
 
-void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key)
+void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key) noexcept
 {
   switch (key)
   {
@@ -93,13 +93,26 @@ void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key)
   }
 }
 
-void ribi::con3::ConnectThreeWidget::Restart()
+int ribi::con3::ConnectThreeWidget::PlayerToIndex(const Player player) const noexcept
+{
+  switch(player)
+  {
+    case Player::player1: return 0;
+    case Player::player2: return 1;
+    case Player::player3: return 2;
+    default:
+      assert(!"Should not get here");
+      throw std::logic_error("Unknown player");
+  }
+}
+
+void ribi::con3::ConnectThreeWidget::Restart() noexcept
 {
   assert(m_game);
   m_game->Restart();
 }
 
-void ribi::con3::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
+void ribi::con3::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human) noexcept
 {
   if (m_is_player_human != is_player_human)
   {
@@ -109,20 +122,20 @@ void ribi::con3::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_p
   }
 }
 
-const boost::tuple<int,int,Player> ribi::con3::ConnectThreeWidget::SuggestMove() const
+const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThreeWidget::SuggestMove() const noexcept
 {
-  return m_game->SuggestMove();
+  return m_game->SuggestMove(m_is_player_human);
 }
 
 ///Tick does either wait for a human to make his/her move
 ///or lets a computer do its move. Tick must be called by
 ///external timers like Wt::WTimer or QTimer.
-void ribi::con3::ConnectThreeWidget::Tick()
+void ribi::con3::ConnectThreeWidget::Tick() noexcept
 {
   if (IsComputerTurn())
   {
-    const boost::tuple<int,int,int> m = m_game->SuggestMove();
-    m_game->DoMove(m.get<0>(),m.get<1>());
+    const auto m = m_game->SuggestMove(m_is_player_human);
+    m_game->DoMove(m);
   }
 }
 
@@ -143,11 +156,10 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToText
       char c = ' ';
       switch (m_game->GetSquare(x,y))
       {
-        case ConnectThree::no_player: c = (x + y % 2 ? '.' : ' '); break;
-        case ConnectThree::player1: c = 'O'; break;
-        case ConnectThree::player2: c = 'X'; break;
-        case ConnectThree::player3: c = 'A'; break;
-        case ConnectThree::draw:
+        case Square::empty  : c = (x + y % 2 ? '.' : ' '); break;
+        case Square::player1: c = 'O'; break;
+        case Square::player2: c = 'X'; break;
+        case Square::player3: c = 'A'; break;
         default:
           assert(!"Should not get here");
       }

@@ -435,7 +435,6 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshB
     const std::vector<boost::shared_ptr<Face>> w { cell->GetFaces() };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
-  assert(std::unique(v.begin(),v.end()) == v.end());
   TRACE("n_face, non-unique:");
   TRACE(v.size());
   std::sort(v.begin(),v.end());

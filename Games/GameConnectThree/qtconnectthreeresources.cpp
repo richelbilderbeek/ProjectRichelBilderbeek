@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-ribi::QtConnectThreeResources::QtConnectThreeResources()
+ribi::con3::QtConnectThreeResources::QtConnectThreeResources()
   : ConnectThreeResources(
     {
       "ConnectThreeComputer1.png",

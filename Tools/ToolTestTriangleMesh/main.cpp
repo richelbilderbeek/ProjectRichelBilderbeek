@@ -1,36 +1,23 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <iostream>
+#include <string>
 
-#include <boost/math/constants/constants.hpp>
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
-#include <boost/units/systems/si/length.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/units/systems/si.hpp>
 
 #include "Shiny.h"
 
-#include "fileio.h"
-#include "filename.h"
-#include "openfoamfilenames.h"
-#include "openfoamfiles.h"
-#include "openfoammesh.h"
 #include "trace.h"
 #include "trianglefile.h"
+#include "trianglemeshcell.h"
+#include "trianglemeshface.h"
 #include "trianglemeshbuilder.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshtemplate.h"
-#include "xml.h"
 #pragma GCC diagnostic pop
-
-///Help adding constness a bit
-template <class T>
-const std::vector<boost::shared_ptr<const T> > AddConst(
-  const std::vector<boost::shared_ptr<T> > v)
-{
-  return std::vector<boost::shared_ptr<const T> >(v.begin(),v.end());
-}
-
 
 void DoMain()
 {
@@ -60,44 +47,102 @@ void DoMain()
       filename_node,
       filename_ele,
       filename_poly,
-      quality,area);
+      quality,
+      area
+    );
   }
 
   //Read data from Triangle.exe output
+  std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
-    const int n_layers = 10;
+    const int n_layers = 3;
+    /*
     const boost::shared_ptr<const ribi::trim::Template> t {
       new ribi::trim::Template(
         filename_node,
         filename_ele
       )
     };
-
-    TRACE_FUNC();
-    //Create cells from this template
-    const boost::units::quantity<boost::units::si::length> layer_height(
-      1.0 * boost::units::si::meter
-    );
-
-    const boost::shared_ptr<const ribi::trim::CellsCreator> c {
-      new ribi::trim::CellsCreator(t,n_layers,layer_height)
+    */
+    const boost::shared_ptr<const ribi::trim::Template> t {
+      ribi::trim::Template::CreateTest(1)
     };
 
+    //Create cells from this template
+    {
+      const boost::units::quantity<boost::units::si::length> layer_height(
+        1.0 * boost::units::si::meter
+      );
+
+      const boost::shared_ptr<const ribi::trim::CellsCreator> c {
+        new ribi::trim::CellsCreator(t,n_layers,layer_height)
+      };
+
+      cells = c->GetCells();
+    }
     //Remove some random cells
-    std::vector<boost::shared_ptr<ribi::trim::Cell>> cells { c->GetCells() };
+    std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
     std::random_shuffle(cells.begin(),cells.end());
     std::reverse(cells.begin(),cells.end());
     std::random_shuffle(cells.begin(),cells.end());
     cells.resize(cells.size() * 3 / 4);
 
+    std::clog << "Number of cells after sculpting: " << cells.size() << std::endl;
+
     //Assign boundaries to the faces
-    //AssignBoundaries(cells);
+    {
+      std::vector<boost::shared_ptr<ribi::trim::Face>> faces;
+      for (const boost::shared_ptr<ribi::trim::Cell>& cell: cells)
+      {
+        const std::vector<boost::shared_ptr<ribi::trim::Face>> w { cell->GetFaces() };
+        std::copy(w.begin(),w.end(),std::back_inserter(faces));
+      }
+      std::clog << "Number of weak faces: " << faces.size() << std::endl;
+      assert(std::unique(faces.begin(),faces.end()) == faces.end());
+      //Clean all weakened faces
+      faces.erase(
+        std::remove_if(faces.begin(),faces.end(),
+          [](const boost::shared_ptr<const ribi::trim::Face> face)
+          {
+            return !face->GetOwner();
+          }
+        ),
+        faces.end()
+      );
+      std::clog << "Number of strong faces: " << faces.size() << std::endl;
+      std::sort(faces.begin(),faces.end());
+      const auto new_end = std::unique(faces.begin(),faces.end());
+      faces.erase(new_end,faces.end());
+
+      int n_internal = 0;
+      int n_default = 0;
+      for (boost::shared_ptr<ribi::trim::Face> face: faces)
+      {
+        if (face->GetNeighbour())
+        {
+          assert(face->GetOwner());
+          face->SetBoundaryType("internalMesh");
+          ++n_internal;
+          continue;
+        }
+        else
+        {
+          assert(face->GetOwner());
+          assert(!face->GetNeighbour());
+          face->SetBoundaryType("defaultFaces");
+          ++n_default;
+          continue;
+        }
+      }
+      std::clog << "internal faces: " << n_internal << std::endl;
+      std::clog << "external faces: " << n_default << std::endl;
+    }
 
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
+  }
 
-    TRACE_FUNC();
-
+  {
     //Build the OpenFOAM files
     const ribi::trim::TriangleMeshBuilder builder(
       cells,
@@ -117,9 +162,6 @@ void DoMain()
   }
 }
 
-//SchmeshCreator is a program that generates
-//- a mesh directly, in .ply format: this is just for a quick check
-//- files to be read by paraFOAM
 int main()
 {
   PROFILE_FUNC();
@@ -145,9 +187,3 @@ int main()
     return 1;
   }
 }
-/*
-
-  const double pi = boost::math::constants::pi<double>();
-  using boost::units::si::radian;
-
-*/

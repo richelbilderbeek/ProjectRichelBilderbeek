@@ -40,7 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
+ribi::con3::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtConnectThreeMenuDialog),
     m_resources(new QtConnectThreeResources),
@@ -59,13 +59,13 @@ ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
   close(); //TEMP
 }
 
-ribi::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog() noexcept
+ribi::con3::QtConnectThreeMenuDialog::~QtConnectThreeMenuDialog() noexcept
 {
   delete ui;
 }
 
 
-void ribi::QtConnectThreeMenuDialog::on_button_start_clicked() noexcept
+void ribi::con3::QtConnectThreeMenuDialog::on_button_start_clicked() noexcept
 {
   QtConnectThreeGameDialog d(m_resources, nullptr,this->m_select->GetIsPlayerHuman());
   d.setStyleSheet(this->styleSheet());
@@ -73,7 +73,7 @@ void ribi::QtConnectThreeMenuDialog::on_button_start_clicked() noexcept
   this->ShowChild(&d);
 }
 
-void ribi::QtConnectThreeMenuDialog::on_button_about_clicked() noexcept
+void ribi::con3::QtConnectThreeMenuDialog::on_button_about_clicked() noexcept
 {
   About about = ConnectThreeMenuDialog().GetAbout();
   about.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
@@ -83,28 +83,28 @@ void ribi::QtConnectThreeMenuDialog::on_button_about_clicked() noexcept
   this->ShowChild(&d);
 }
 
-void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept
+void ribi::con3::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept
 {
   close();
 }
 
 #ifndef NDEBUG
-void ribi::QtConnectThreeMenuDialog::Test() noexcept
+void ribi::con3::QtConnectThreeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtConnectThreeMenuDialog::Test");
+  TRACE("Starting ribi::con3::QtConnectThreeMenuDialog::Test");
   ConnectThreeMenuDialog();
   const boost::shared_ptr<const ConnectThreeResources> resources(new QtConnectThreeResources);
   QtConnectThreeGameDialog d(resources,nullptr,std::bitset<3>(false));
-  TRACE("Finished ribi::QtConnectThreeMenuDialog::Test successfully");
+  TRACE("Finished ribi::con3::QtConnectThreeMenuDialog::Test successfully");
 }
 #endif
 
-void ribi::QtConnectThreeMenuDialog::on_button_start_retro_clicked()
+void ribi::con3::QtConnectThreeMenuDialog::on_button_start_retro_clicked()
 {
   const std::bitset<3>& is_player_human = std::bitset<3>(true);
 

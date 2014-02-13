@@ -14,7 +14,7 @@ namespace ribi {
 ///Its base class, ConnectThreeResources,
 ///ensures the files needed are present upon construction.
 struct QtK3OpEenRijResources
-  : public ConnectThreeResources
+  : public ::ribi::con3::ConnectThreeResources
 {
   QtK3OpEenRijResources(const Tribool is_player3_kathleen = Tribool::Indeterminate);
 

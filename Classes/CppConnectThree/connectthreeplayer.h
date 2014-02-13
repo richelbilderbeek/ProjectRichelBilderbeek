@@ -6,6 +6,8 @@ namespace con3 {
 
 enum class Player { player1, player2, player3 };
 
+Player GetNextPlayer(const Player player) noexcept;
+
 } //~namespace con3
 } //~namespace ribi
 

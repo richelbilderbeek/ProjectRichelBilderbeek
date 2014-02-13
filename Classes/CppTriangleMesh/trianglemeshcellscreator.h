@@ -33,49 +33,37 @@ struct CellsCreator
   private:
   const std::vector<boost::shared_ptr<Cell>> m_cells;
 
-/*
-  static const std::vector<boost::shared_ptr<Point>> CollectPoints(
-    const std::vector<int>& point_indices,
-    const std::vector<boost::shared_ptr<const Point> >& all_points
-  );
-*/
-
-  static const std::vector<boost::shared_ptr<Point>> CreateAllPoints(
-    const boost::shared_ptr<const Template> t,
-    const int n_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height
-  );
-
   const std::vector<boost::shared_ptr<Cell>> CreateCells(
     const boost::shared_ptr<const Template> t,
     const int n_layers,
     const boost::units::quantity<boost::units::si::length> layer_height
   ) const noexcept;
 
-  static const std::vector<boost::shared_ptr<Face>> CreateAllHorizontalFaces(
+  static const std::vector<boost::shared_ptr<Face>> CreateHorizontalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
     const int n_layers
   );
 
-  static const std::vector<boost::shared_ptr<Face>> CreateAllVerticalFaces(
+  static const std::vector<boost::shared_ptr<Point>> CreatePoints(
+    const boost::shared_ptr<const Template> t,
+    const int n_layers,
+    const boost::units::quantity<boost::units::si::length> layer_height
+  );
+
+
+
+  static const std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
     const int n_layers
   );
 
   /*
-  static const std::vector<std::vector<boost::shared_ptr<const Point>>>
-    CreateSimilarFaces(
-      const std::vector<std::vector<int>>& face_point_indices,
-      const std::vector<boost::shared_ptr<Point>>& points
-    ) noexcept;
-  */
-
   static const boost::shared_ptr<const Face> FindKnownFace(
     const std::vector<boost::shared_ptr<const Point>>& face_points
   );
-
+  */
   static const std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(
     const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
   );

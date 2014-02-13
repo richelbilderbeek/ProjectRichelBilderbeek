@@ -41,7 +41,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 namespace con3 {
 
-///ConnectThree is dumb: it does not know whose turn it is
+///ConnectThree does not know which players are human.
+///ConnectThree can suggest a move, but for this it needs to know if the
+///others are human or computer
 struct ConnectThree
 {
   explicit ConnectThree(
@@ -69,7 +71,7 @@ struct ConnectThree
 
   ///SuggestMove suggests a good move. If the game is a draw,
   ///it returns nullptr
-  const boost::shared_ptr<Move> SuggestMove() const noexcept;
+  const boost::shared_ptr<Move> SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
 
 private:
   ~ConnectThree() noexcept {}
@@ -86,11 +88,9 @@ private:
   const boost::shared_ptr<Move> CheckTwoHorizontalOwn() const noexcept;
   const boost::shared_ptr<Move> CheckTwoOther() const noexcept;
   const boost::shared_ptr<Move> CheckTwoVerticalOwn() const noexcept;
-  //const boost::shared_ptr<Move> CreateInvalidMove() const noexcept;
   const std::vector<boost::shared_ptr<Move>> GetAllPossibleMoves() const noexcept;
   Player GetNextPlayer() const noexcept;
-  Player GetNextPlayer(const Player player) const noexcept;
-  static double GetRandomUniform() noexcept;
+  //static double GetRandomUniform() noexcept;
   const std::vector<boost::shared_ptr<Move>> GetTwoHorizontalOtherMoves() const noexcept;
   const std::vector<boost::shared_ptr<Move>> GetTwoVerticalOtherMoves() const noexcept;
   bool IsPlayerHuman(const Player player) const noexcept;

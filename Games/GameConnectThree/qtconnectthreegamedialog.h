@@ -36,6 +36,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace con3 {
 
 struct QtConnectThreeWidget;
 struct ConnectThreeResources;
@@ -76,6 +77,7 @@ private:
   #endif
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTCONNECTTHREEGAMEDIALOG_H

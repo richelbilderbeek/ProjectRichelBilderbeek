@@ -36,12 +36,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct TextCanvas;
+
 namespace con3 {
 
 struct ConnectThree;
-struct TextCanvas;
 
 ///ConnectThreeWidget embodies the interaction with a user
+///It keeps track which players are human and whose turn it is
 struct ConnectThreeWidget
 {
   enum class Key { up, right, down, left, select };
@@ -52,16 +55,18 @@ struct ConnectThreeWidget
     const int n_rows = 12);
 
   const boost::shared_ptr<const ConnectThree> GetGame() const noexcept { return m_game; }
-  void DoMove(const int x,const int y);
-  const std::bitset<3>& GetIsPlayerHuman() const { return m_is_player_human; }
+  void DoMove(const int x, const int y) noexcept;
+  const std::bitset<3>& GetIsPlayerHuman() const noexcept { return m_is_player_human; }
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
   bool IsComputerTurn() const noexcept;
-  bool IsHuman(const int player_index) const;
-  void OnKeyPress(const Key key);
-  void Restart();
-  void SetIsPlayerHuman(const std::bitset<3>& is_player_human);
-  const boost::shared_ptr<Move> SuggestMove() const;
+  bool IsHuman(const Player player) const noexcept;
+  void OnKeyPress(const Key key) noexcept;
+  void Restart() noexcept;
+  void SetIsPlayerHuman(const std::bitset<3>& is_player_human) noexcept;
+  const boost::shared_ptr<Move> SuggestMove() const noexcept;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
-  void Tick();
+  void Tick() noexcept;
 
   private:
   ~ConnectThreeWidget() noexcept {}
@@ -77,10 +82,7 @@ struct ConnectThreeWidget
   //Y coordinat of cursor
   int m_y;
 
-  public:
-  static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
-
+  int PlayerToIndex(const Player player) const noexcept;
 };
 
 } //~namespace con3

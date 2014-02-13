@@ -13,6 +13,9 @@
 namespace ribi {
 
 struct TextCanvas;
+
+namespace con3 {
+
 struct ConnectThreeWidget;
 
 struct QtConnectThreeCanvas : public QtCanvas
@@ -45,6 +48,7 @@ private:
   void OnGameWon();
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTCONNECTTHREECANVAS_H

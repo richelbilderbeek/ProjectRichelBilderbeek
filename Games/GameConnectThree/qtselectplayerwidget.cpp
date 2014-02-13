@@ -25,10 +25,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 #pragma GCC diagnostic pop
 
-const int ribi::QtSelectPlayerWidget::m_sprite_height = 50;
-const int ribi::QtSelectPlayerWidget::m_sprite_width  = 50;
+const int ribi::con3::QtSelectPlayerWidget::m_sprite_height = 50;
+const int ribi::con3::QtSelectPlayerWidget::m_sprite_width  = 50;
 
-ribi::QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
+ribi::con3::QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
   : QWidget(parent),
     m_is_player_human{},
     m_player1(":/images/ConnectThreePlayer1.png"),
@@ -51,7 +51,7 @@ ribi::QtSelectPlayerWidget::QtSelectPlayerWidget(QWidget *parent)
   this->setMaximumHeight(3 * m_sprite_height);
 }
 
-void ribi::QtSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
+void ribi::con3::QtSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
 {
   const int mouse_x = e->x();
   const int mouse_y = e->y();
@@ -61,7 +61,7 @@ void ribi::QtSelectPlayerWidget::mousePressEvent(QMouseEvent * e)
   this->repaint();
 }
 
-void ribi::QtSelectPlayerWidget::paintEvent(QPaintEvent *)
+void ribi::con3::QtSelectPlayerWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   painter.drawImage(0 * m_sprite_width,0 * m_sprite_height,m_is_player_human[0] ? m_player1 : m_player1_grey);

@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 
 namespace ribi {
+namespace con3 {
 
 ///ConnectThreeResources contains all resources' filenames
 ///and checks that these are present
@@ -89,6 +90,7 @@ struct ConnectThreeResources
   void Create() const;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // CONNECTTHREERESOURCES_H

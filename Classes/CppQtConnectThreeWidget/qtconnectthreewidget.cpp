@@ -8,15 +8,16 @@
 #include <QPainter>
 
 #include "connectthree.h"
+#include "connectthreemove.h"
 #include "connectthreeresources.h"
 #include "connectthreewidget.h"
 #include "qtconnectthreeresources.h"
 #pragma GCC diagnostic pop
 
-const int ribi::QtConnectThreeWidget::m_sprite_width  = 50;
-const int ribi::QtConnectThreeWidget::m_sprite_height = 50;
+const int ribi::con3::QtConnectThreeWidget::m_sprite_width  = 50;
+const int ribi::con3::QtConnectThreeWidget::m_sprite_height = 50;
 
-ribi::QtConnectThreeWidget::QtConnectThreeWidget(
+ribi::con3::QtConnectThreeWidget::QtConnectThreeWidget(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   QWidget *parent,
   const std::bitset<3>& is_player_human,
@@ -36,25 +37,25 @@ ribi::QtConnectThreeWidget::QtConnectThreeWidget(
   this->setMaximumHeight(n_rows * m_sprite_height);
 }
 
-void ribi::QtConnectThreeWidget::DoComputerTurn()
+void ribi::con3::QtConnectThreeWidget::DoComputerTurn()
 {
   assert(IsComputerTurn());
-  const ConnectThree::Move move = m_widget->SuggestMove();
-  m_widget->DoMove(move.get<0>(),move.get<1>());
+  const auto move = m_widget->SuggestMove();
+  m_widget->DoMove(move->GetX(),move->GetY());
   this->update();
 }
 
-int ribi::QtConnectThreeWidget::GetActivePlayer() const noexcept
+ribi::con3::Player ribi::con3::QtConnectThreeWidget::GetActivePlayer() const noexcept
 {
   return m_widget->GetGame()->GetActivePlayer();
 }
 
-const std::string ribi::QtConnectThreeWidget::GetVersion() noexcept
+const std::string ribi::con3::QtConnectThreeWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtConnectThreeWidget::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::con3::QtConnectThreeWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-01-10: version 1.0: initial version",
@@ -62,17 +63,17 @@ const std::vector<std::string> ribi::QtConnectThreeWidget::GetVersionHistory() n
   };
 }
 
-int ribi::QtConnectThreeWidget::GetWinner() const noexcept
+ribi::con3::Winner ribi::con3::QtConnectThreeWidget::GetWinner() const noexcept
 {
   return m_widget->GetGame()->GetWinner();
 }
 
-bool ribi::QtConnectThreeWidget::IsComputerTurn() const noexcept
+bool ribi::con3::QtConnectThreeWidget::IsComputerTurn() const noexcept
 {
   return m_widget->IsComputerTurn();
 }
 
-void ribi::QtConnectThreeWidget::mousePressEvent(QMouseEvent * e)
+void ribi::con3::QtConnectThreeWidget::mousePressEvent(QMouseEvent * e)
 {
   //Disable clicking if it's the AI's turn
   if (IsComputerTurn()) return;
@@ -89,7 +90,7 @@ void ribi::QtConnectThreeWidget::mousePressEvent(QMouseEvent * e)
   }
 }
 
-void ribi::QtConnectThreeWidget::paintEvent(QPaintEvent *)
+void ribi::con3::QtConnectThreeWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   const int n_rows = m_widget->GetGame()->GetRows();
@@ -101,22 +102,23 @@ void ribi::QtConnectThreeWidget::paintEvent(QPaintEvent *)
       painter.drawImage(
         x * m_sprite_width,
         y * m_sprite_height,
-        GetImage(m_widget->GetGame()->GetSquare(x,y)));
+        GetImage(m_widget->GetGame()->GetSquare(x,y))
+      );
     }
   }
 }
 
-const QImage& ribi::QtConnectThreeWidget::GetImage(const int sprite) const noexcept
+const QImage& ribi::con3::QtConnectThreeWidget::GetImage(const Square sprite) const noexcept
 {
   switch (sprite)
   {
-    case ConnectThree::no_player: return m_empty;
-    case ConnectThree::player1  : return m_player1;
-    case ConnectThree::player2  : return m_player2;
-    case ConnectThree::player3  : return m_player3;
+    case Square::empty  : return m_empty;
+    case Square::player1: return m_player1;
+    case Square::player2: return m_player2;
+    case Square::player3: return m_player3;
   }
   assert(!"Should not get here");
-  throw std::logic_error("Unknown ribi::QtConnectThreeWidget::GetImage value");
+  throw std::logic_error("Unknown ribi::con3::QtConnectThreeWidget::GetImage value");
 }
 
 

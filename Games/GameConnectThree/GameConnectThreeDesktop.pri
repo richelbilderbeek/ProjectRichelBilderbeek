@@ -6,7 +6,7 @@ SOURCES += \
     ../../Games/GameConnectThree/qtconnectthreeresources.cpp \
     ../../Games/GameConnectThree/qtconnectthreemenudialog.cpp \
     ../../Games/GameConnectThree/qtconnectthreegamedialog.cpp \
-    qtconnectthreecanvas.cpp
+    ../../Games/GameConnectThree/qtconnectthreecanvas.cpp
 
 HEADERS  += \
     ../../Games/GameConnectThree/qtshowwinnerdialog.h \
@@ -14,7 +14,7 @@ HEADERS  += \
     ../../Games/GameConnectThree/qtconnectthreeresources.h \
     ../../Games/GameConnectThree/qtconnectthreemenudialog.h \
     ../../Games/GameConnectThree/qtconnectthreegamedialog.h \
-    qtconnectthreecanvas.h
+    ../../Games/GameConnectThree/qtconnectthreecanvas.h
 
 FORMS += \
     ../../Games/GameConnectThree/qtshowwinnerdialog.ui \

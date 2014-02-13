@@ -33,7 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::ConnectThreeResources::ConnectThreeResources(
+ribi::con3::ConnectThreeResources::ConnectThreeResources(
   const std::vector<std::string>& computers_filenames,
   const std::string& computer_grey_filename,
   const std::string& css,
@@ -61,7 +61,7 @@ ribi::ConnectThreeResources::ConnectThreeResources(
   Create();
 }
 
-ribi::ConnectThreeResources::~ConnectThreeResources() noexcept
+ribi::con3::ConnectThreeResources::~ConnectThreeResources() noexcept
 {
   for (const std::string filename: m_computers_filenames) { std::remove(filename.c_str()); }
   for (const std::string filename: m_players_filenames) { std::remove(filename.c_str()); }
@@ -74,7 +74,7 @@ ribi::ConnectThreeResources::~ConnectThreeResources() noexcept
   std::remove(m_instructions_wrong_filename.c_str());
 }
 
-void ribi::ConnectThreeResources::Create() const
+void ribi::con3::ConnectThreeResources::Create() const
 {
   //CheckFile(m_background_filename);
   for (const std::string filename: m_computers_filenames) { CreateFile(filename); }
@@ -89,7 +89,7 @@ void ribi::ConnectThreeResources::Create() const
   CreateFile(m_instructions_wrong_filename);
 }
 
-void ribi::ConnectThreeResources::CreateFile(const std::string& s)
+void ribi::con3::ConnectThreeResources::CreateFile(const std::string& s)
 {
   if (!fileio::IsRegularFile(s))
   {

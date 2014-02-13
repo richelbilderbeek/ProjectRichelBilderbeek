@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ui_qtshowwinnerdialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtShowWinnerDialog::QtShowWinnerDialog(
+ribi::con3::QtShowWinnerDialog::QtShowWinnerDialog(
   const std::string& filename,
   const std::string& winner_text,
   QWidget *parent) noexcept
@@ -39,12 +39,12 @@ ribi::QtShowWinnerDialog::QtShowWinnerDialog(
   this->setWindowFlags(Qt::WindowStaysOnTopHint);
 }
 
-ribi::QtShowWinnerDialog::~QtShowWinnerDialog() noexcept
+ribi::con3::QtShowWinnerDialog::~QtShowWinnerDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e) noexcept
+void ribi::con3::QtShowWinnerDialog::keyPressEvent(QKeyEvent * e) noexcept
 {
   if (e->key() == Qt::Key_Escape) { close(); return; }
 }

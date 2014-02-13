@@ -33,6 +33,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace con3 {
 
 class QtShowWinnerDialog : public QtHideAndShowDialog
 {
@@ -54,6 +55,7 @@ private:
   Ui::QtShowWinnerDialog *ui;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTSHOWWINNERDIALOG_H

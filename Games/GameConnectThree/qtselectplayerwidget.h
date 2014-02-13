@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace con3 {
 
 class QtSelectPlayerWidget : public QWidget
 {
@@ -59,6 +60,7 @@ private:
   static const int m_sprite_width;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // QTSELECTPLAYERWIDGET_H

@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -17,9 +18,11 @@
 
 int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
+  using namespace ::ribi::con3;
   #ifndef NDEBUG
   Test();
   #endif
+
   const int argc = static_cast<int>(argv.size());
 
   if (argc == 2 && (argv[1] == "-d" || argv[1] == "--demo"))
@@ -30,7 +33,7 @@ int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
       new ConnectThree(15,5)
     };
     const std::bitset<3> is_player_human(0);
-    while (c->GetWinner() == ConnectThree::no_player)
+    while (c->GetWinner() == Winner::no_winner)
     {
       c->DoMove(c->SuggestMove(is_player_human));
       std::stringstream s;
@@ -46,10 +49,13 @@ int ribi::K3OpEenRijMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
 
     switch (c->GetWinner())
     {
-      case ConnectThree::player1: std::cout << "Karen won the game"; break;
-      case ConnectThree::player2: std::cout << "Kristel won the game"; break;
-      case ConnectThree::player3: std::cout << "Josje won the game"; break;
-      case ConnectThree::draw   : std::cout << "The game ended in a draw"; break;
+      case Winner::player1  : std::cout << "Karen won the game"; break;
+      case Winner::player2  : std::cout << "Kristel won the game"; break;
+      case Winner::player3  : std::cout << "Josje won the game"; break;
+      case Winner::draw     : std::cout << "The game ended in a draw"; break;
+      case Winner::no_winner:
+        assert(!"Should not get here");
+        throw std::logic_error("Should not respond to no winner");
     }
 
     std::cout << std::endl;

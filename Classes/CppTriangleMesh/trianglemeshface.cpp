@@ -98,24 +98,45 @@ const std::set<ribi::Coordinat3D> ribi::trim::Face::ExtractCoordinats(
 const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
 {
   PROFILE_FUNC();
+  assert(m_belongs_to.size() <= 2);
+  m_belongs_to.erase(
+    std::remove_if(
+      m_belongs_to.begin(),m_belongs_to.end(),
+      [](const boost::weak_ptr<const Cell> cell)
+      {
+        return !cell.lock();
+      }
+    ),
+    m_belongs_to.end()
+  );
   boost::shared_ptr<const Cell> p;
   if (m_belongs_to.size() < 2) return p;
+
+  assert(m_belongs_to[0].lock() != m_belongs_to[1].lock());
+
   p = m_belongs_to[1].lock();
+  assert(p);
   return p;
 }
 
 const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noexcept
 {
   PROFILE_FUNC();
-  boost::shared_ptr<const Cell> p;
-  if (m_belongs_to.empty()) return p;
-  p = m_belongs_to[0].lock();
-  if (!p && m_belongs_to.size() == 2)
-  {
-    std::swap(m_belongs_to[0],m_belongs_to[1]);
-    m_belongs_to.pop_back();
-  }
-  p = m_belongs_to[0].lock();
+  assert(m_belongs_to.size() <= 2);
+  m_belongs_to.erase(
+    std::remove_if(
+      m_belongs_to.begin(),m_belongs_to.end(),
+      [](const boost::weak_ptr<const Cell> cell)
+      {
+        return !cell.lock();
+      }
+    ),
+    m_belongs_to.end()
+  );
+  boost::shared_ptr<const Cell> p {
+    m_belongs_to[0].lock()
+  };
+  assert(p);
   return p;
 }
 
@@ -139,8 +160,6 @@ bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face&
   return
        lhs.GetPoints() == rhs.GetPoints()
     && lhs.GetOrientation() == rhs.GetOrientation()
-    //&& lhs.GetOwner() == rhs.GetOwner()
-    //&& lhs.GetNeighbour() == rhs.GetNeighbour()
   ;
 }
 

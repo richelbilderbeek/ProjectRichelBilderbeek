@@ -13,6 +13,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace con3 {
 
 struct ConnectThreeResources;
 struct ConnectThreeWidget;
@@ -29,10 +30,10 @@ public:
     const int n_rows = 12);
 
   void DoComputerTurn();
-  int GetActivePlayer() const noexcept;
+  Player GetActivePlayer() const noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
-  int GetWinner() const noexcept;
+  Winner GetWinner() const noexcept;
   bool IsComputerTurn() const noexcept;
 
   ///m_signal_valid_move is emitted on a valid move,
@@ -56,13 +57,14 @@ protected:
   const QImage m_player2;
   const QImage m_player3;
   const QImage m_empty;
-  const QImage& GetImage(const int sprite) const noexcept;
+  const QImage& GetImage(const Square sprite) const noexcept;
 
   static const int m_sprite_width;
   static const int m_sprite_height;
 
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 

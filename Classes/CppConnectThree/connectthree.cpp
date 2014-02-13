@@ -155,7 +155,7 @@ bool ribi::con3::ConnectThree::IsInvalidMove(const Move& p) noexcept
 }
 */
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove() const noexcept
+const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const noexcept
 {
   if (CanDoMove(CheckTwoHorizontalOwn())) return CheckTwoHorizontalOwn();
   if (CanDoMove(CheckTwoVerticalOwn()  )) return CheckTwoVerticalOwn();
@@ -593,28 +593,18 @@ int ribi::con3::ConnectThree::GetCols() const noexcept
   return m_area.size();
 }
 
-ribi::con3::Player ribi::con3::ConnectThree::GetNextPlayer(const Player player) const noexcept
-{
-  switch (player)
-  {
-    case Player::player1: return Player::player2;
-    case Player::player2: return Player::player3;
-    case Player::player3: return Player::player1;
-  }
-  assert(!"Should not get here");
-  throw std::logic_error("Unknown value of Player");
-}
-
 ribi::con3::Player ribi::con3::ConnectThree::GetNextPlayer() const noexcept
 {
-  return GetNextPlayer(m_player);
+  return ribi::con3::GetNextPlayer(m_player);
 }
 
+/*
 //From http://www.richelbilderbeek.nl/CppGetRandomUniform.htm
 double ribi::con3::ConnectThree::GetRandomUniform() noexcept
 {
   return static_cast<double>(std::rand())/static_cast<double>(RAND_MAX);
 }
+*/
 
 int ribi::con3::ConnectThree::GetRows() const noexcept
 {
@@ -622,11 +612,51 @@ int ribi::con3::ConnectThree::GetRows() const noexcept
   return m_area[0].size();
 }
 
+ribi::con3::Square ribi::con3::ConnectThree::PlayerToSquare(const Player player) const noexcept
+{
+  switch (player)
+  {
+    case Player::player1: return Square::player1;
+    case Player::player2: return Square::player2;
+    case Player::player3: return Square::player3;
+    default:
+      assert(!"Should not get here");
+      throw std::logic_error("Unknown player");
+  }
+}
+
+
 void ribi::con3::ConnectThree::Restart() noexcept
 {
   m_area = std::vector<std::vector<Square> >(GetCols(),
     std::vector<Square>(GetRows(),Square::empty));
   m_player = Player::player1;
+}
+
+ribi::con3::Player ribi::con3::ConnectThree::SquareToPlayer(const Square square) const noexcept
+{
+  switch (square)
+  {
+    case Square::player1: return Winner::player1;
+    case Square::player2: return Winner::player2;
+    case Square::player3: return Winner::player3;
+    default:
+      assert(!"Should not get here");
+      throw std::logic_error("Unknown Square");
+  }
+}
+
+ribi::con3::Winner ribi::con3::ConnectThree::SquareToWinner(const Square square) const noexcept
+{
+  switch (square)
+  {
+    case Square::player1: return Winner::player1;
+    case Square::player2: return Winner::player2;
+    case Square::player3: return Winner::player3;
+    default:
+      assert(!"Should not get here");
+      throw std::logic_error("Unknown Square");
+  }
 }
 
 #ifndef NDEBUG
@@ -654,7 +684,7 @@ void ribi::con3::ConnectThree::Test() noexcept
   assert( c.CanDoMove(1,1));
   assert(!c.CanDoMove(0,n_rows));
   assert(!c.CanDoMove(n_rows,0));
-  assert(c.SuggestMove());
+  assert(c.SuggestMove(is_player_human));
   assert(c.GetWinner() == Winner::no_winner); //No winner yet
   c.DoMove(0,0);
   assert(c.GetActivePlayer() == Player::player2);
@@ -662,7 +692,7 @@ void ribi::con3::ConnectThree::Test() noexcept
   assert( c.CanDoMove(0,1));
   assert( c.CanDoMove(1,0));
   assert( c.CanDoMove(1,1));
-  assert(c.SuggestMove());
+  assert(c.SuggestMove(is_player_human));
   assert(c.GetWinner() == Winner::no_winner); //No winner yet
   c.DoMove(0,1);
   assert(c.GetActivePlayer() == Player::player3);
@@ -670,7 +700,7 @@ void ribi::con3::ConnectThree::Test() noexcept
   assert(!c.CanDoMove(0,1));
   assert( c.CanDoMove(1,0));
   assert( c.CanDoMove(1,1));
-  assert(c.SuggestMove());
+  assert(c.SuggestMove(is_player_human));
   assert(c.GetWinner() == Winner::no_winner); //No winner yet
   c.DoMove(1,0);
   assert(c.GetActivePlayer() == Player::player1);
@@ -678,7 +708,7 @@ void ribi::con3::ConnectThree::Test() noexcept
   assert(!c.CanDoMove(0,1));
   assert(!c.CanDoMove(1,0));
   assert( c.CanDoMove(1,1));
-  assert(c.SuggestMove());
+  assert(c.SuggestMove(is_player_human));
   assert(c.GetWinner() == Winner::no_winner); //No winner yet
   c.DoMove(1,1);
   assert(c.GetActivePlayer() == Player::player2);
@@ -686,7 +716,7 @@ void ribi::con3::ConnectThree::Test() noexcept
   assert(!c.CanDoMove(0,1));
   assert(!c.CanDoMove(1,0));
   assert(!c.CanDoMove(1,1));
-  assert(!c.SuggestMove());
+  assert(!c.SuggestMove(is_player_human));
   assert(c.GetWinner() == Winner::draw);
 }
 #endif

@@ -24,8 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace con3 {
 
-struct ConnectThreeMenuDialog : public MenuDialog
+struct ConnectThreeMenuDialog : public ::ribi::MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -41,6 +42,7 @@ struct ConnectThreeMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // CONNECTTHREEMENUDIALOG_H

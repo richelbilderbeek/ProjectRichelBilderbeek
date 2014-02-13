@@ -36,9 +36,9 @@ int main(int argc, char *argv[])
 
   START_TRACE();
 
-  ribi::QtConnectThreeMenuDialog w;
+  ribi::con3::QtConnectThreeMenuDialog w;
   {
-    ribi::QtConnectThreeResources resources;
+    ribi::con3::QtConnectThreeResources resources;
     const std::string icon_filename = resources.GetIconFilename();
     assert(QFile::exists(icon_filename.c_str()));
     w.setWindowIcon( QIcon( QPixmap(icon_filename.c_str())));

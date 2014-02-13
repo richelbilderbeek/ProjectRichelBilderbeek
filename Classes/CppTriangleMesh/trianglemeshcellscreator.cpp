@@ -6,7 +6,6 @@
 
 #include "trianglemeshcell.h"
 #include "trianglemeshcellfactory.h"
-//#include "container.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshhelper.h"
@@ -23,24 +22,6 @@ ribi::trim::CellsCreator::CellsCreator(
 
 }
 
-/*
-const std::vector<boost::shared_ptr<const ribi::trim::Point>> ribi::trim::CellsCreator::CollectPoints(
-  const std::vector<int>& point_indices,
-  const std::vector<boost::shared_ptr<const Point> >& all_points
-)
-{
-  PROFILE_FUNC();
-  std::vector<boost::shared_ptr<const Point>> v;
-  for (const auto i: point_indices)
-  {
-    assert(i < static_cast<int>(all_points.size()));
-    assert(all_points[i]);
-    v.push_back(all_points[i]);
-  }
-  return v;
-}
-*/
-
 const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::CreateCells(
   const boost::shared_ptr<const Template> t,
   const int n_layers,
@@ -50,25 +31,24 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
   PROFILE_FUNC();
   TRACE_FUNC();
   const std::vector<boost::shared_ptr<Point> > all_points {
-    CreateAllPoints(t,n_layers,layer_height)
+    CreatePoints(t,n_layers,layer_height)
   };
 
   TRACE_FUNC();
 
   const std::vector<boost::shared_ptr<Face> > hor_faces {
-    CreateAllHorizontalFaces(t,all_points,n_layers)
+    CreateHorizontalFaces(t,all_points,n_layers)
   };
 
   TRACE_FUNC();
 
   const std::vector<boost::shared_ptr<Face> > ver_faces {
-    CreateAllVerticalFaces(t,all_points,n_layers)
+    CreateVerticalFaces(t,all_points,n_layers)
   };
 
   TRACE_FUNC();
 
   const int n_hor_faces_per_layer = static_cast<int>(t->GetFaces().size());
-  //const int n_ver_faces_per_layer = static_cast<int>(ver_faces.size()) / (n_layers - 1);
   const int n_cells_per_layer = n_hor_faces_per_layer;
 
   TRACE_FUNC();
@@ -111,38 +91,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
   return cells;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::CreateAllPoints(
-  const boost::shared_ptr<const Template> t,
-  const int n_layers,
-  const boost::units::quantity<boost::units::si::length> layer_height
-)
-{
-  PROFILE_FUNC();
-  std::vector<boost::shared_ptr<Point> > v;
-
-  TRACE(n_layers);
-
-  for (int i=0; i!=n_layers; ++i)
-  {
-    for (const boost::shared_ptr<const Point> point: t->GetPoints())
-    {
-      const boost::shared_ptr<Point> new_point {
-        new Point(
-          point->GetCoordinat(),
-          point->GetBoundaryType()
-        )
-      };
-      new_point->SetZ(static_cast<double>(i) * layer_height );
-      v.push_back(new_point);
-    }
-  }
-  assert(static_cast<int>(v.size()) == static_cast<int>(t->GetPoints().size()) * n_layers);
-
-  return v;
-}
-
-
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateAllHorizontalFaces(
+const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateHorizontalFaces(
   const boost::shared_ptr<const Template> t,
   const std::vector<boost::shared_ptr<Point>>& all_points,
   const int n_layers
@@ -198,7 +147,37 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
   return v;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateAllVerticalFaces(
+const std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::CreatePoints(
+  const boost::shared_ptr<const Template> t,
+  const int n_layers,
+  const boost::units::quantity<boost::units::si::length> layer_height
+)
+{
+  PROFILE_FUNC();
+  std::vector<boost::shared_ptr<Point> > v;
+
+  TRACE(n_layers);
+
+  for (int i=0; i!=n_layers; ++i)
+  {
+    for (const boost::shared_ptr<const Point> point: t->GetPoints())
+    {
+      const boost::shared_ptr<Point> new_point {
+        new Point(
+          point->GetCoordinat(),
+          point->GetBoundaryType()
+        )
+      };
+      new_point->SetZ(static_cast<double>(i) * layer_height );
+      v.push_back(new_point);
+    }
+  }
+  assert(static_cast<int>(v.size()) == static_cast<int>(t->GetPoints().size()) * n_layers);
+
+  return v;
+}
+
+const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateVerticalFaces(
   const boost::shared_ptr<const Template> t,
   const std::vector<boost::shared_ptr<Point>>& all_points,
   const int n_layers
@@ -271,40 +250,6 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
 }
 
 /*
-const std::vector<std::vector<boost::shared_ptr<const ribi::trim::Point>>>
-  ribi::trim::CellsCreator::CreateSimilarFaces(
-    const std::vector<std::vector<int>>& face_point_indices,
-    const std::vector<boost::shared_ptr<Point> >& points
-  ) noexcept
-{
-  PROFILE_FUNC();
-  std::vector<std::vector<boost::shared_ptr<Point>>> v;
-  const int n_faces = static_cast<int>(face_point_indices.size());
-  v.reserve(n_faces);
-
-  for (int i=0; i!=n_faces; ++i)
-  {
-    assert(i < static_cast<int>(face_point_indices.size()));
-    const std::vector<int>& indices = face_point_indices[i];
-    const int n_indices = static_cast<int>(indices.size());
-    std::vector<boost::shared_ptr<Point>> w;
-    w.reserve(n_indices);
-    for (int j=0; j!=n_indices; ++j)
-    {
-      assert(j >=0);
-      assert(j < static_cast<int>(indices.size()));
-      const int index = indices[j];
-      assert(index >= 0);
-      assert(index < static_cast<int>(points.size()));
-      assert(points[index]);
-      w.push_back(points[index]);
-    }
-    v.push_back(w);
-  }
-  return v;
-}
-*/
-
 const boost::shared_ptr<const ribi::trim::Face> ribi::trim::CellsCreator::FindKnownFace(
   const std::vector<boost::shared_ptr<const Point> >& face_points
 )
@@ -338,6 +283,7 @@ const boost::shared_ptr<const ribi::trim::Face> ribi::trim::CellsCreator::FindKn
   const boost::shared_ptr<const Face> no_known_face;
   return no_known_face;
 }
+*/
 
 const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindKnownFacesBetween(
   const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b

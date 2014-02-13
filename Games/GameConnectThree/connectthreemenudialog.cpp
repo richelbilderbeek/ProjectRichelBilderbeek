@@ -32,7 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::con3::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -48,7 +48,7 @@ int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>
     new ConnectThree(15,5)
   };
   const std::bitset<3> is_player_human(0);
-  while (c->GetWinner() == ConnectThree::no_player)
+  while (c->GetWinner() == Winner::no_winner)
   {
     c->DoMove(c->SuggestMove(is_player_human));
     std::cout << (*c)
@@ -58,10 +58,10 @@ int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>
 
   switch (c->GetWinner())
   {
-    case ConnectThree::player1: std::cout << "Player 1 won the game"; break;
-    case ConnectThree::player2: std::cout << "Player 2 won the game"; break;
-    case ConnectThree::player3: std::cout << "Player 3 won the game"; break;
-    case ConnectThree::draw   : std::cout << "The game ended in a draw"; break;
+    case Winner::player1: std::cout << "Player 1 won the game"; break;
+    case Winner::player2: std::cout << "Player 2 won the game"; break;
+    case Winner::player3: std::cout << "Player 3 won the game"; break;
+    case Winner::draw   : std::cout << "The game ended in a draw"; break;
   }
 
   std::cout << std::endl;
@@ -69,7 +69,7 @@ int ribi::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::string>
   return 0;
 }
 
-const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::con3::ConnectThreeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -86,7 +86,7 @@ const ribi::About ribi::ConnectThreeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ConnectThreeMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::con3::ConnectThreeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -100,7 +100,7 @@ const ribi::Help ribi::ConnectThreeMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ConnectThreeMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::con3::ConnectThreeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramConnectThree
@@ -109,12 +109,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ConnectThreeMenuDialog::GetPr
   return p;
 }
 
-const std::string ribi::ConnectThreeMenuDialog::GetVersion() const noexcept
+const std::string ribi::con3::ConnectThreeMenuDialog::GetVersion() const noexcept
 {
   return "6.6";
 }
 
-const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::con3::ConnectThreeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial version as part of K3OpEenRij",
@@ -131,16 +131,16 @@ const std::vector<std::string> ribi::ConnectThreeMenuDialog::GetVersionHistory()
 }
 
 #ifndef NDEBUG
-void ribi::ConnectThreeMenuDialog::Test() noexcept
+void ribi::con3::ConnectThreeMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ConnectThreeMenuDialog::Test");
+  TRACE("Starting ribi::con3::ConnectThreeMenuDialog::Test");
   ConnectThreeMenuDialog d;
   d.Execute(std::vector<std::string>(1,"connectthree"));
-  TRACE("Finished ribi::ConnectThreeMenuDialog::Test successfully");
+  TRACE("Finished ribi::con3::ConnectThreeMenuDialog::Test successfully");
 }
 #endif
