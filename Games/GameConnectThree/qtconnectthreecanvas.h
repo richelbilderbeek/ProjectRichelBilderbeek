@@ -1,6 +1,8 @@
 #ifndef QTCONNECTTHREECANVAS_H
 #define QTCONNECTTHREECANVAS_H
 
+#include <bitset>
+
 #include "qtcanvas.h"
 
 #pragma GCC diagnostic push
@@ -19,7 +21,10 @@ struct QtConnectThreeCanvas : public QtCanvas
 
 public:
 
-  QtConnectThreeCanvas(const int size);
+  QtConnectThreeCanvas(
+    const std::bitset<3>& is_player_human,
+    const int width, const int height
+  );
   QtConnectThreeCanvas(const QtConnectThreeCanvas&) = delete;
   QtConnectThreeCanvas& operator=(const QtConnectThreeCanvas&) = delete;
   ~QtConnectThreeCanvas() noexcept;
@@ -30,7 +35,11 @@ private:
   const boost::shared_ptr<ConnectThreeWidget> m_dialog;
 
   static const boost::shared_ptr<Canvas> CreateCanvas(const int width, const int height) noexcept;
-  static const boost::shared_ptr<ConnectThreeWidget> CreateWidget(const int size) noexcept;
+  static const boost::shared_ptr<ConnectThreeWidget> CreateWidget(
+    const std::bitset<3>& is_player_human,
+    const int width,
+    const int height
+  ) noexcept;
 
   void OnGameOver();
   void OnGameWon();

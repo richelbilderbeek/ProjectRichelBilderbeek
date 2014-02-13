@@ -29,49 +29,47 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
 #include <boost/checked_delete.hpp>
 #include <boost/tuple/tuple.hpp>
+#include "connectthreefwd.h"
+#include "connectthreeplayer.h"
+#include "connectthreesquare.h"
+#include "connectthreewinner.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace con3 {
 
+///ConnectThree is dumb: it does not know whose turn it is
 struct ConnectThree
 {
-  typedef boost::tuple<int,int,int> Move;
-  typedef std::vector<Move> Moves;
-  enum { no_player = -1 };
-  enum { player1   =  0 };
-  enum { player2   =  1 };
-  enum { player3   =  2 };
-  enum { draw      =  3 };
-
   explicit ConnectThree(
     const int n_cols = 16,
-    const int n_rows = 12);
+    const int n_rows = 12
+  );
 
   bool CanDoMove(const int x, const int y) const noexcept;
+  int CanGetSquare(const int x, const int y) const noexcept;
   void DoMove(const int x, const int y);
-  void DoMove(const Move& p);
-  int GetActivePlayer() const noexcept { return m_player; }
+  void DoMove(const boost::shared_ptr<Move> p) noexcept;
+  Player GetActivePlayer() const noexcept { return m_player; }
   int GetCols() const noexcept;
   int GetRows() const noexcept;
-  int GetSquare(const int x, const int y) const { return m_area[x][y]; }
+  Square GetSquare(const int x, const int y) const noexcept;
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the index of the winner.
   ///Returns draw if the board is full without a winner
   ///Returns no_player if there are still free squares
-  int GetWinner() const noexcept;
-  static bool IsInvalidMove(const Move& p) noexcept;
+  Winner GetWinner() const noexcept;
 
   void Restart() noexcept;
 
   ///SuggestMove suggests a good move. If the game is a draw,
-  ///it returns an invalid move.
-  const Move SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
-
-
+  ///it returns nullptr
+  const boost::shared_ptr<Move> SuggestMove() const noexcept;
 
 private:
   ~ConnectThree() noexcept {}
@@ -79,24 +77,27 @@ private:
   friend void boost::checked_delete<>(const ConnectThree*);
 
   //X-Y-ordered 2D std::vector
-  std::vector<std::vector<int> > m_area;
-  int m_player;
+  std::vector<std::vector<Square>> m_area;
+  Player m_player;
 
-  bool CanDoMove(const Move& p) const noexcept;
-  const Move CheckOneOther(const std::bitset<3>& is_player_human) const noexcept;
-  const Move CheckTwoDiagonally() const noexcept;
-  const Move CheckTwoHorizontalOwn() const noexcept;
-  const Move CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept;
-  const Move CheckTwoVerticalOwn() const noexcept;
-  static const Move CreateInvalidMove() noexcept;
-  const Moves GetAllPossibleMoves() const noexcept;
-  int GetNextPlayer() const noexcept;
-  int GetNextPlayer(const int player) const noexcept;
+  bool CanDoMove(const boost::shared_ptr<Move> p) const noexcept;
+  const boost::shared_ptr<Move> CheckOneOther() const noexcept;
+  const boost::shared_ptr<Move> CheckTwoDiagonally() const noexcept;
+  const boost::shared_ptr<Move> CheckTwoHorizontalOwn() const noexcept;
+  const boost::shared_ptr<Move> CheckTwoOther() const noexcept;
+  const boost::shared_ptr<Move> CheckTwoVerticalOwn() const noexcept;
+  //const boost::shared_ptr<Move> CreateInvalidMove() const noexcept;
+  const std::vector<boost::shared_ptr<Move>> GetAllPossibleMoves() const noexcept;
+  Player GetNextPlayer() const noexcept;
+  Player GetNextPlayer(const Player player) const noexcept;
   static double GetRandomUniform() noexcept;
-  const Moves GetTwoHorizontalOtherMoves() const noexcept;
-  const Moves GetTwoVerticalOtherMoves() const noexcept;
-  const Move MakeRandomMove() const noexcept;
-
+  const std::vector<boost::shared_ptr<Move>> GetTwoHorizontalOtherMoves() const noexcept;
+  const std::vector<boost::shared_ptr<Move>> GetTwoVerticalOtherMoves() const noexcept;
+  bool IsPlayerHuman(const Player player) const noexcept;
+  const boost::shared_ptr<Move> MakeRandomMove() const noexcept;
+  Square PlayerToSquare(const Player player) const noexcept;
+  Player SquareToPlayer(const Square square) const noexcept;
+  Winner SquareToWinner(const Square square) const noexcept;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
@@ -104,7 +105,7 @@ private:
 
 std::ostream& operator<<(std::ostream& os, const ConnectThree& c);
 
-
+} //~namespace con3
 } //~namespace ribi
 
 #endif // CONNECTTHREE_H

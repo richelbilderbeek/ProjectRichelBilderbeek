@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "connectthree.h"
 #include "textcanvas.h"
 
-ribi::ConnectThreeWidget::ConnectThreeWidget(
+ribi::con3::ConnectThreeWidget::ConnectThreeWidget(
   const std::bitset<3>& is_player_human,
   const int n_cols,
   const int n_rows)
@@ -41,35 +41,35 @@ ribi::ConnectThreeWidget::ConnectThreeWidget(
   assert(m_game);
 }
 
-void ribi::ConnectThreeWidget::DoMove(const int x,const int y)
+void ribi::con3::ConnectThreeWidget::DoMove(const int x,const int y)
 {
   m_game->DoMove(x,y);
 }
 
-//ConnectThree * ribi::ConnectThreeWidget::GetGame()
+//ConnectThree * ribi::con3::ConnectThreeWidget::GetGame()
 //{
 //  return m_game.get();
 //}
 
-const std::string ribi::ConnectThreeWidget::GetVersion() noexcept
+const std::string ribi::con3::ConnectThreeWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ConnectThreeWidget::GetVersionHistory() noexcept
+const std::vector<std::string> ribi::con3::ConnectThreeWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-04-20: version 1.0: initial version"
   };
 }
 
-bool ribi::ConnectThreeWidget::IsComputerTurn() const noexcept
+bool ribi::con3::ConnectThreeWidget::IsComputerTurn() const noexcept
 {
   assert(m_game);
   return !IsHuman(m_game->GetActivePlayer());
 }
 
-bool ribi::ConnectThreeWidget::IsHuman(const int player_index) const
+bool ribi::con3::ConnectThreeWidget::IsHuman(const int player_index) const
 {
   assert(ConnectThree::player1 == 0);
   assert(ConnectThree::player2 == 1);
@@ -79,7 +79,7 @@ bool ribi::ConnectThreeWidget::IsHuman(const int player_index) const
   return m_is_player_human[player_index];
 }
 
-void ribi::ConnectThreeWidget::OnKeyPress(const Key key)
+void ribi::con3::ConnectThreeWidget::OnKeyPress(const Key key)
 {
   switch (key)
   {
@@ -93,13 +93,13 @@ void ribi::ConnectThreeWidget::OnKeyPress(const Key key)
   }
 }
 
-void ribi::ConnectThreeWidget::Restart()
+void ribi::con3::ConnectThreeWidget::Restart()
 {
   assert(m_game);
   m_game->Restart();
 }
 
-void ribi::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
+void ribi::con3::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
 {
   if (m_is_player_human != is_player_human)
   {
@@ -109,26 +109,27 @@ void ribi::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_
   }
 }
 
-const boost::tuple<int,int,int> ribi::ConnectThreeWidget::SuggestMove() const
+const boost::tuple<int,int,Player> ribi::con3::ConnectThreeWidget::SuggestMove() const
 {
-  return m_game->SuggestMove(this->GetIsPlayerHuman());
+  return m_game->SuggestMove();
 }
 
 ///Tick does either wait for a human to make his/her move
 ///or lets a computer do its move. Tick must be called by
 ///external timers like Wt::WTimer or QTimer.
-void ribi::ConnectThreeWidget::Tick()
+void ribi::con3::ConnectThreeWidget::Tick()
 {
   if (IsComputerTurn())
   {
-    const boost::tuple<int,int,int> m = m_game->SuggestMove(this->GetIsPlayerHuman());
+    const boost::tuple<int,int,int> m = m_game->SuggestMove();
     m_game->DoMove(m.get<0>(),m.get<1>());
   }
 }
 
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::ConnectThreeWidget::ToTextCanvas() const noexcept
+const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToTextCanvas() const noexcept
 {
+  assert(m_game);
   const int n_cols { m_game->GetCols() };
   const int n_rows { m_game->GetCols() };
 
@@ -142,7 +143,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::ConnectThreeWidget::ToTextCanvas
       char c = ' ';
       switch (m_game->GetSquare(x,y))
       {
-        case ConnectThree::no_player: break;
+        case ConnectThree::no_player: c = (x + y % 2 ? '.' : ' '); break;
         case ConnectThree::player1: c = 'O'; break;
         case ConnectThree::player2: c = 'X'; break;
         case ConnectThree::player3: c = 'A'; break;

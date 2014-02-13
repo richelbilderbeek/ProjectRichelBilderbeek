@@ -36,6 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic pop
 
 namespace ribi {
+namespace con3 {
 
 struct ConnectThree;
 struct TextCanvas;
@@ -58,7 +59,7 @@ struct ConnectThreeWidget
   void OnKeyPress(const Key key);
   void Restart();
   void SetIsPlayerHuman(const std::bitset<3>& is_player_human);
-  const boost::tuple<int,int,int> SuggestMove() const;
+  const boost::shared_ptr<Move> SuggestMove() const;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
   void Tick();
 
@@ -82,6 +83,7 @@ struct ConnectThreeWidget
 
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // CONNECTTHREEWIDGET_H

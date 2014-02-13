@@ -13,7 +13,7 @@
 #include "openfoamface.h"
 #include "openfoamfacesfile.h"
 #include "openfoamfiles.h"
-#include "helper.h"
+#include "openfoamhelper.h"
 #include "openfoamneighbourfile.h"
 #include "openfoamownerfile.h"
 #include "openfoampoint.h"

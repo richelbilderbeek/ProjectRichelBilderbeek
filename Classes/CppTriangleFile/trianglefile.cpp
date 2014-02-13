@@ -3,8 +3,14 @@
 #include <cassert>
 #include <fstream>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <QFile>
+
 #include "fileio.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::TriangleFile::TriangleFile(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
@@ -48,9 +54,18 @@ void ribi::TriangleFile::ExecuteTriangle(
   }
   assert(fileio::IsRegularFile(filename));
 
+  const std::string exe_filename { "triangle.exe" };
+  if (!fileio::IsRegularFile(exe_filename))
+  {
+    QFile file( (std::string(":/trianglefile/files/") + exe_filename).c_str() );
+    file.copy(exe_filename.c_str());
+  }
+  assert(fileio::IsRegularFile(exe_filename));
+
   std::stringstream s;
   s
-    << "triangle.exe -j -z -q"
+    << exe_filename
+    << " -j -z -q"
     << quality
     << " -a"
     << area

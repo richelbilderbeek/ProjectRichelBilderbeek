@@ -1,7 +1,7 @@
 INCLUDEPATH += \
     ../../Classes/CppTriangleFile
 
-SOURCES +=
+SOURCES += \
     ../../Classes/CppTriangleFile/trianglefile.cpp
 
 HEADERS  += \
@@ -9,4 +9,7 @@ HEADERS  += \
 
 OTHER_FILES += \
     ../../Classes/CppTriangleFile/Licence.txt
+
+RESOURCES += \
+    ../../Classes/CppTriangleFile/CppTriangleFile.qrc
 

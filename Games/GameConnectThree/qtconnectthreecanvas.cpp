@@ -11,9 +11,11 @@
 #pragma GCC diagnostic pop
 
 ribi::QtConnectThreeCanvas::QtConnectThreeCanvas(
-  const int size)
-  : QtCanvas(CreateCanvas(size,size)),
-    m_dialog(CreateWidget(size))
+  const std::bitset<3>& is_player_human,
+  const int width, const int height
+)
+  : QtCanvas(CreateCanvas(width,height)),
+    m_dialog(CreateWidget(is_player_human,width,height))
 {
   //m_dialog->m_signal_game_over.connect(
   //  boost::bind(&ribi::QtConnectThreeCanvas::OnGameOver,this)
@@ -39,10 +41,13 @@ const boost::shared_ptr<ribi::Canvas> ribi::QtConnectThreeCanvas::CreateCanvas(
 }
 
 const boost::shared_ptr<ribi::ConnectThreeWidget> ribi::QtConnectThreeCanvas::CreateWidget(
-  const int size) noexcept
+  const std::bitset<3>& is_player_human,
+  const int width,
+  const int height
+) noexcept
 {
   const boost::shared_ptr<ConnectThreeWidget> w {
-    new ConnectThreeWidget(size)
+    new ConnectThreeWidget(is_player_human,width,height)
   };
   return w;
 }

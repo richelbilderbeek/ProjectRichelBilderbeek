@@ -1,0 +1,57 @@
+#include "trianglemeshbuilder.h"
+
+#include <sstream>
+
+const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamThermoPhysicalProperties() const noexcept
+{
+  std::stringstream s;
+  s
+    << "FoamFile\n"
+    << "{\n"
+    << "    version     2.0;\n"
+    << "    format      ascii;\n"
+    << "    class       dictionary;\n"
+    << "    location    \"constant\";\n"
+    << "    object      thermophysicalProperties;\n"
+    << "}\n"
+    << "\n"
+    << "thermoType\n"
+    << "{\n"
+    << "    type            hePsiThermo;\n"
+    << "    mixture         pureMixture;\n"
+    << "    transport       const;\n"
+    << "    thermo          eConst;\n"
+    << "    equationOfState perfectGas;\n"
+    << "    specie          specie;\n"
+    << "    energy          sensibleInternalEnergy;\n"
+    << "}\n"
+    << "\n"
+    << "// thermoType      ePsiThermo<pureMixture<sutherlandTransport<specieThermo<eConstThermo<perfectGas>>>>>; //\n"
+    << "\n"
+    << "\n"
+    << "mixture\n"
+    << "{\n"
+    << "    specie\n"
+    << "    {\n"
+    << "        nMoles          1;\n"
+    << "        molWeight       28.96;\n"
+    << "    }\n"
+    << "    thermodynamics\n"
+    << "    {\n"
+    << "        Cp              1004.5;\n"
+    << "        Hf              2.544e+06;\n"
+    << "        Cv              717;\n"
+    << "    }\n"
+    << "    transport\n"
+    << "    {\n"
+    << "        mu              1.458e-06;\n"
+    << "        Pr              0.7;\n"
+    << "    }\n"
+    << "}\n"
+    << "\n"
+    << "\n"
+    << "// mixture         air 1 28.9 717 0 1.458e-6 110.4;//\n"
+    << "/*# of moles, molar weight, specific heat Cv, heat of fusion H, kinematic viscosity mu, Sutherland's coefficient St, Sutherland temperature Tt. In constTransport case: Prandtl number instead of Ss and Ts*/\n"
+  ;
+  return s.str();
+}

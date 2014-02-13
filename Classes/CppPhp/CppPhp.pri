@@ -1,12 +1,12 @@
 INCLUDEPATH += \
-    ../../Classes/CppDial
+    ../../Classes/CppPhp
 
 SOURCES += \
-    ../../Classes/CppDial/dial.cpp
+    ../../Classes/CppPhp/php.cpp
 
 HEADERS  += \
-    ../../Classes/CppDial/dial.h
+    ../../Classes/CppPhp/php.h
 
 OTHER_FILES += \
-    ../../Classes/CppDial/Licence.txt
+    ../../Classes/CppPhp/Licence.txt
 

@@ -51,9 +51,11 @@ ribi::QtConnectThreeMenuDialog::QtConnectThreeMenuDialog(QWidget *parent)
   #endif
 
   ui->setupUi(this);
-  ui->layout_horizontal->addWidget(m_select.get());
+  assert(layout());
 
-  OnStartRetro(); //TEMP
+  layout()->addWidget(m_select.get());
+
+  on_button_start_retro_clicked(); //TEMP
   close(); //TEMP
 }
 
@@ -86,25 +88,6 @@ void ribi::QtConnectThreeMenuDialog::on_button_quit_clicked() noexcept
   close();
 }
 
-void ribi::QtConnectThreeMenuDialog::OnStartRetro()
-{
-  QtCanvas * const qtcanvas {
-    new QtConnectThreeCanvas(19)
-  };
-  boost::scoped_ptr<QtCanvasDialog> d {
-    new QtCanvasDialog(qtcanvas)
-  };
-  {
-    //Put the dialog in the screen center
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    d->setGeometry(
-      0,0,256,256);
-    d->move( screen.center() - this->rect().center() );
-  }
-  d->setWindowTitle("ConnectThree");
-  ShowChild(d.get());
-}
-
 #ifndef NDEBUG
 void ribi::QtConnectThreeMenuDialog::Test() noexcept
 {
@@ -120,3 +103,24 @@ void ribi::QtConnectThreeMenuDialog::Test() noexcept
   TRACE("Finished ribi::QtConnectThreeMenuDialog::Test successfully");
 }
 #endif
+
+void ribi::QtConnectThreeMenuDialog::on_button_start_retro_clicked()
+{
+  const std::bitset<3>& is_player_human = std::bitset<3>(true);
+
+  QtCanvas * const qtcanvas {
+    new QtConnectThreeCanvas(is_player_human,16,8)
+  };
+  boost::scoped_ptr<QtCanvasDialog> d {
+    new QtCanvasDialog(qtcanvas)
+  };
+  {
+    //Put the dialog in the screen center
+    const QRect screen = QApplication::desktop()->screenGeometry();
+    d->setGeometry(
+      0,0,256,256);
+    d->move( screen.center() - this->rect().center() );
+  }
+  d->setWindowTitle("ConnectThree");
+  ShowChild(d.get());
+}

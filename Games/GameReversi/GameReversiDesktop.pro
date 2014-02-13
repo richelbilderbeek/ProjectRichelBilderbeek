@@ -12,9 +12,12 @@ include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
-#Specific
+#Specific, console
 include(../../Classes/CppReversi/CppReversi.pri)
+
+#Specific, desktop
+include(../../Classes/CppQtReversi/CppQtReversi.pri)
+
 include(GameReversiDesktop.pri)
 
-#Won't link: no main
 SOURCES += qtmain.cpp
