@@ -25,6 +25,7 @@ struct Cell
 
   const ribi::Coordinat3D CalculateCenter() const noexcept;
 
+
   ///Can be used later
   int GetIndex() const noexcept { return m_index; }
   void SetIndex(const int index) noexcept { m_index = index; }
@@ -38,7 +39,8 @@ struct Cell
   int m_index;
 
   friend class CellFactory;
-  Cell(const std::vector<boost::shared_ptr<Face>>& faces);
+  //Enforce that only CellFactory can create a Cell
+  Cell(const std::vector<boost::shared_ptr<Face>>& faces,const CellFactory& factory);
 
   #ifndef NDEBUG
   static void Test() noexcept;

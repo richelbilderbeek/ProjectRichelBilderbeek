@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Asio example 1: a chat server</title>
+  <meta name="description" content="C++ Asio example 1: a chat server"/>
+  <meta name="keywords" content="C++ Asio example 1: a chat server"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppAsioExample1.htm">Asio example 1: a chat server</a></h1>
+<p>&nbsp;</p>
+<p>This <a href="CppAsio.htm">Asio</a> example shows how to create a chat server.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+This example has been copied literally from <br/>
+http://www.boost.org/doc/libs/1_38_0/doc/html/boost_asio/examples.html .<br/>
+The purpose of this example is to convert the source code to a compiling project.<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppAsioExample1.zip">Download the Qt Project of 'AsioExample1' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>Operating system: <a href="http://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a></p>
+<p><a href="CppIde.htm">IDE</a>: <a href="CppQt.htm">Qt Creator</a> 2.0.0</p>
+<p><a href="CppQtProjectType.htm">Project type</a>: Qt4 Console Application</p>
+<p><a href="CppCompiler.htm">Compiler</a>: <a href="CppGpp.htm">G++</a> 4.4.1</p>
+<p><a href="CppLibrary.htm">Libraries</a> used: 
+<ul>
+  <li><a href="CppBoost.htm">Boost</a>: version 1.40</li>
+  <li><a href="CppStl.htm">STL</a>: from <a href="CppGcc.htm">GCC</a>, shipped with <a href="CppQt.htm">Qt Creator</a> 2.0.0</li>
+  <li><a href="CppQt.htm">Qt</a>: version 4.7.0 (32 bit)</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+#-------------------------------------------------<br/>
+#<br/>
+# Project created by QtCreator 2010-07-21T19:37:18<br/>
+#<br/>
+#-------------------------------------------------<br/>
+QT       += core<br/>
+QT       -= gui<br/>
+TARGET = CppAsioExample1<br/>
+CONFIG   += console<br/>
+CONFIG   -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += main.cpp<br/>
+LIBS += -L/usr/local/lib -lboost_system<br/>
+HEADERS += \<br/>
+    chat_server.h \<br/>
+    chat_message.h<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Source code</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>chat_message.h</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> chat_message.hpp<br/>
+<a href="CppComment.htm">//</a> ~~~~~~~~~~~~~~~~<br/>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> Copyright (c) 2003-2010 Christopher M. Kohlhoff (chris at kohlhoff dot com)<br/>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> Distributed under the <a href="CppBoost.htm">Boost</a> Software License, Version 1.0. (See accompanying<br/>
+<a href="CppComment.htm">//</a> file LICENSE_1_0.txt or copy at http://www.<a href="CppBoost.htm">boost</a>.org/LICENSE_1_0.txt)<br/>
+<a href="CppComment.htm">//</a><br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> CHAT_MESSAGE_HPP<br/>
+<a href="CppDefine.htm">#define</a> CHAT_MESSAGE_HPP<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdioH.htm">cstdio</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">cstring</a>&gt;<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> chat_message<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { header_length <a href="CppOperatorAssign.htm">=</a> 4 };<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { max_body_length <a href="CppOperatorAssign.htm">=</a> 512 };<br/>
+<br/>
+&nbsp;&nbsp;chat_message()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: body_length_(0)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>* data() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> data_;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>* data()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> data_;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppSize_t.htm">size_t</a></b> length() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> header_length <a href="CppOperatorPlus.htm">+</a> body_length_;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b>* body() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> data_ <a href="CppOperatorPlus.htm">+</a> header_length;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b>* body()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> data_ <a href="CppOperatorPlus.htm">+</a> header_length;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppSize_t.htm">size_t</a></b> body_length() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> body_length_;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> body_length(<b><a href="CppSize_t.htm">size_t</a></b> length)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;body_length_ <a href="CppOperatorAssign.htm">=</a> length;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (body_length_ &gt; max_body_length)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body_length_ <a href="CppOperatorAssign.htm">=</a> max_body_length;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> decode_header()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a>; <a href="CppComment.htm">//</a> For <a href="CppStrncat.htm">strncat</a> and <a href="CppAtoi.htm">atoi</a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> header[header_length <a href="CppOperatorPlus.htm">+</a> 1] <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrncat.htm">strncat</a>(header, data_, header_length);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;body_length_ <a href="CppOperatorAssign.htm">=</a> <a href="CppAtoi.htm">atoi</a>(header);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (body_length_ &gt; max_body_length)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body_length_ <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> encode_header()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a>; <a href="CppComment.htm">//</a> For <a href="CppSprintf.htm">sprintf</a> and <a href="CppMemcpy.htm">memcpy</a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> header[header_length <a href="CppOperatorPlus.htm">+</a> 1] <a href="CppOperatorAssign.htm">=</a> "";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSprintf.htm">sprintf</a>(header, "%4d", body_length_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMemcpy.htm">memcpy</a>(data_, header, header_length);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> data_[header_length <a href="CppOperatorPlus.htm">+</a> max_body_length];<br/>
+&nbsp;&nbsp;<b><a href="CppSize_t.htm">size_t</a></b> body_length_;<br/>
+};<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> CHAT_MESSAGE_HPP<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>chat_server.h</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> chat_server.cpp<br/>
+<a href="CppComment.htm">//</a> ~~~~~~~~~~~~~~~<br/>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> Copyright (c) 2003-2010 Christopher M. Kohlhoff (chris at kohlhoff dot com)<br/>
+<a href="CppComment.htm">//</a><br/>
+<a href="CppComment.htm">//</a> Distributed under the <a href="CppBoost.htm">Boost</a> Software License, Version 1.0. (See accompanying<br/>
+<a href="CppComment.htm">//</a> file LICENSE_1_0.txt or copy at http://www.<a href="CppBoost.htm">boost</a>.org/LICENSE_1_0.txt)<br/>
+<a href="CppComment.htm">//</a><br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppDequeH.htm">deque</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppListH.htm">list</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/bind.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/shared_ptr.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/enable_shared_from_this.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/asio.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "chat_message.h"<br/>
+<br/>
+<b><a href="CppUsing.htm">using</a></b> <a href="CppBoost.htm">boost</a>::asio::ip::tcp;<br/>
+<br/>
+<a href="CppComment.htm">//</a>----------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppDeque.htm">std::deque</a>&lt;chat_message&gt; chat_message_queue;<br/>
+<br/>
+<a href="CppComment.htm">//</a>----------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> chat_participant<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~chat_participant() {}<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> deliver(<b><a href="CppConst.htm">const</a></b> chat_message&amp; msg) <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+};<br/>
+<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;chat_participant&gt; chat_participant_ptr;<br/>
+<br/>
+<a href="CppComment.htm">//</a>----------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> chat_room<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> join(chat_participant_ptr participant)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;participants_.insert(participant);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(recent_msgs_.begin(), recent_msgs_.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_participant::deliver, participant, _1));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> leave(chat_participant_ptr participant)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;participants_.erase(participant);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> deliver(<b><a href="CppConst.htm">const</a></b> chat_message&amp; msg)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;recent_msgs_.push_back(msg);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (recent_msgs_.size() &gt; max_recent_msgs)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;recent_msgs_.pop_front();<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(participants_.begin(), participants_.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_participant::deliver, _1, <a href="CppBoost.htm">boost</a>::ref(msg)));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;chat_participant_ptr&gt; participants_;<br/>
+&nbsp;&nbsp;<b><a href="CppEnum.htm">enum</a></b> { max_recent_msgs <a href="CppOperatorAssign.htm">=</a> 100 };<br/>
+&nbsp;&nbsp;chat_message_queue recent_msgs_;<br/>
+};<br/>
+<br/>
+<a href="CppComment.htm">//</a>----------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> chat_session<br/>
+&nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> chat_participant,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b> <a href="CppBoost.htm">boost</a>::enable_shared_from_this&lt;chat_session&gt;<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;chat_session(<a href="CppBoost.htm">boost</a>::asio::io_service&amp; io_service, chat_room&amp; room)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: socket_(io_service),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room_(room)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;tcp::socket&amp; socket()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> socket_;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> start()<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;room_.join(shared_from_this());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::async_read(socket_,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::buffer(read_msg_.data(), chat_message::header_length),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;chat_session::handle_read_header, shared_from_this(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> deliver(<b><a href="CppConst.htm">const</a></b> chat_message&amp; msg)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> write_in_progress <a href="CppOperatorAssign.htm">=</a> !write_msgs_.empty();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;write_msgs_.push_back(msg);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!write_in_progress)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::async_write(socket_,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::buffer(write_msgs_.front().data(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write_msgs_.front().length()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_session::handle_write, shared_from_this(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> handle_read_header(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::system::error_code&amp; error)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!error <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> read_msg_.decode_header())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::async_read(socket_,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::buffer(read_msg_.body(), read_msg_.body_length()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_session::handle_read_body, shared_from_this(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room_.leave(shared_from_this());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> handle_read_body(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::system::error_code&amp; error)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!error)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room_.deliver(read_msg_);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::async_read(socket_,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::buffer(read_msg_.data(), chat_message::header_length),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_session::handle_read_header, shared_from_this(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room_.leave(shared_from_this());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> handle_write(<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::system::error_code&amp; error)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!error)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write_msgs_.pop_front();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!write_msgs_.empty())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::async_write(socket_,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::buffer(write_msgs_.front().data(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;write_msgs_.front().length()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_session::handle_write, shared_from_this(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;room_.leave(shared_from_this());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;tcp::socket socket_;<br/>
+&nbsp;&nbsp;chat_room&amp; room_;<br/>
+&nbsp;&nbsp;chat_message read_msg_;<br/>
+&nbsp;&nbsp;chat_message_queue write_msgs_;<br/>
+};<br/>
+<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;chat_session&gt; chat_session_ptr;<br/>
+<br/>
+<a href="CppComment.htm">//</a>----------------------------------------------------------------------<br/>
+<br/>
+<b><a href="CppClass.htm">class</a></b> chat_server<br/>
+{<br/>
+<b><a href="CppPublic.htm">public</a></b>:<br/>
+&nbsp;&nbsp;chat_server(<a href="CppBoost.htm">boost</a>::asio::io_service&amp; io_service,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> tcp::endpoint&amp; endpoint)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: io_service_(io_service),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acceptor_(io_service, endpoint)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chat_session_ptr new_session(<b><a href="CppNew.htm">new</a></b> chat_session(io_service_, room_));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;acceptor_.async_accept(new_session-&gt;socket(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_server::handle_accept, <b><a href="CppThis.htm">this</a></b>, new_session,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> handle_accept(chat_session_ptr session,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::system::error_code&amp; error)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!error)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;session-&gt;start();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chat_session_ptr new_session(<b><a href="CppNew.htm">new</a></b> chat_session(io_service_, room_));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acceptor_.async_accept(new_session-&gt;socket(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(&chat_server::handle_accept, <b><a href="CppThis.htm">this</a></b>, new_session,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::placeholders::error));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::io_service&amp; io_service_;<br/>
+&nbsp;&nbsp;tcp::acceptor acceptor_;<br/>
+&nbsp;&nbsp;chat_room room_;<br/>
+};<br/>
+<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppShared_ptr.htm">boost::shared_ptr</a>&lt;chat_server&gt; chat_server_ptr;<br/>
+<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppList.htm">std::list</a>&lt;chat_server_ptr&gt; chat_server_list;<br/>
+<br/>
+<a href="CppComment.htm">//</a>----------------------------------------------------------------------<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3>main.cpp</h3>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/asio.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;QtCore/<a href="CppQCoreApplication.htm">QCoreApplication</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> "chat_message.h"<br/>
+<a href="CppInclude.htm">#include</a> "chat_server.h"<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>(<b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a>, <b><a href="CppChar.htm">char</a></b>* <a href="CppArgc.htm">argv</a>[])<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> &lt; 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Usage: chat_server &lt;port&gt; [&lt;port&gt; ...]\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::asio::io_service io_service;<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;chat_server_list servers;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 1; i &lt; <a href="CppArgc.htm">argc</a>; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppUsing.htm">using</a></b> <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppStd.htm">std</a>; <a href="CppComment.htm">//</a> For <a href="CppAtoi.htm">atoi</a>.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tcp::endpoint endpoint(tcp::v4(), <a href="CppAtoi.htm">atoi</a>(<a href="CppArgc.htm">argv</a>[i]));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chat_server_ptr server(<b><a href="CppNew.htm">new</a></b> chat_server(io_service, endpoint));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;servers.push_back(server);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;io_service.run();<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Exception: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Getting the chat program to work</h2>
+<p>&nbsp;</p>
+<p>For the chat program to work, you need the executables from both <a href="CppAsioExample1.htm">Asio example 1: a chat server</a> and <a href="CppAsioExample2.htm">Asio example 2: a chat client</a>.</p>
+<p>&nbsp;</p>
+<p>First start the server. For the chat program I decided to use port 6660 (due to <a href="http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">this Wikipedia page</a>). The server cannot be used to send messages.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+./CppAsioExample1 6660
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Now we need to start two clients. The clients are used to send messages. I used two computers from my router (LAN?) network. The computer I started the server on had the IP adress 192.168.23.100. Start two clients with the code below, possibly on different computers.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+./CppAsioExample2 192.168.23.100 6660
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>While chatting, the server must keep running.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -4,8 +4,14 @@
 #include <string>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/shared_ptr.hpp>
+
 #include "reversisquare.h"
 #include "reversiplayer.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -44,7 +50,7 @@ struct Board
   ///Simply sets a square, without any checking
   void Set(const int x, const int y, const Square state) noexcept;
 
-  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
   std::vector<std::vector<Square>> m_board;

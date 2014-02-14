@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::bad_lexical_cast</title>
+  <meta name="description" content="C++ boost::bad_lexical_cast"/>
+  <meta name="keywords" content="C++ boost::bad_lexical_cast boost bad_lexical_cast bad lexical cast code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a> is a <a href="CppBoost.htm">Boost</a> <a href="CppException.htm">exception</a> <a href="CppThrow.htm">thrown</a> when <a href="CppLexical_cast.htm">boost::lexical_cast</a> fails.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppCanLexicalCast.htm">CanLexicalCast</a></h2>
+<p>&nbsp;</p>
+<p><a href="CppCanLexicalCast.htm">CanLexicalCast</a> <a href="CppCheck.htm">checks</a> if a <a href="CppLexical_cast.htm">boost::lexical_cast</a> will be successful, by <a href="CppCatch.htm">catching</a> a possible <a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/lexical_cast.hpp&gt;<br/>
+&nbsp;<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppCanLexicalCast.htm">CanLexicalCast</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> TargetType&gt;<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppCanLexicalCast.htm">CanLexicalCast</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; from)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;TargetType&gt;(from);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppBad_lexical_cast.htm">boost::bad_lexical_cast</a>)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Something unexpected happened");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Comparison between <a href="CppCanCast.htm">CanCast</a> and <a href="CppCanLexicalCast.htm">CanLexicalCast</a></h2>
+<p>&nbsp;</p>
+<p>The table below shows if a std::string can be converted according to <a href="CppCanCast.htm">CanCast</a> (CC) and <a href="CppCanLexicalCast.htm">CanLexicalCast</a> (CLC). Note that the first std::string was a space (' '). Below the table I show the code I've used to generate this output. <a href="CppCanCast.htm">CanCast</a> serves the same purpose as <a href="CppCanLexicalCast.htm">CanLexicalCast</a>, but does not <a href="CppThrow.htm">throw</a> an <a href="CppException.htm">exception</a> and does not use <a href="CppBoost.htm">Boost</a>. Note that there are differences between <a href="CppCanCast.htm">CanCast</a> and <a href="CppCanLexicalCast.htm">CanLexicalCast</a>, as <a href="CppCanLexicalCast.htm">CanLexicalCast</a> is more strict.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1">
+  <tr><td><p>Type</p></td>    <td><p>int</p></td>     <td><p>int</p></td>     <td><p>double</p></td>  <td><p>double</p></td></tr>
+  <tr><td><p>string</p></td>  <td><p>CC</p></td>      <td><p>CLC</p></td>     <td><p>CC</p></td>      <td><p>CLC</p></td></tr>
+  <tr><td><p>&nbsp;</p></td>       <td><p>false</p></td>   <td><p>false</p></td>   <td><p>false</p></td>   <td><p>false</p></td></tr>
+  <tr><td><p>a</p></td>       <td><p>false</p></td>   <td><p>false</p></td>   <td><p>false</p></td>   <td><p>false</p></td></tr>
+  <tr><td><p>1</p></td>       <td><p>true</p></td>    <td><p>true</p></td>    <td><p>true</p></td>    <td><p>true</p></td></tr>
+  <tr><td><p>1,1</p></td>     <td><p>true</p></td>    <td><p>false</p></td>   <td><p>true</p></td>    <td><p>false</p></td></tr>
+  <tr><td><p>1.1</p></td>     <td><p>true</p></td>    <td><p>false</p></td>   <td><p>true</p></td>    <td><p>true</p></td></tr>
+  <tr><td><p>1.1.1</p></td>   <td><p>true</p></td>    <td><p>false</p></td>   <td><p>true</p></td>    <td><p>false</p></td></tr>
+  <tr><td><p>-1</p></td>      <td><p>true</p></td>    <td><p>true</p></td>    <td><p>true</p></td>    <td><p>true</p></td></tr>
+  <tr><td><p>-1.1</p></td>    <td><p>true</p></td>    <td><p>false</p></td>   <td><p>true</p></td>    <td><p>true</p></td></tr>
+  <tr><td><p>-1.1.1</p></td>  <td><p>true</p></td>    <td><p>false</p></td>   <td><p>true</p></td>    <td><p>false</p></td></tr>
+</table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+&nbsp;<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back("");<br/>
+&nbsp;&nbsp;v.push_back("a");<br/>
+&nbsp;&nbsp;v.push_back("1");<br/>
+&nbsp;&nbsp;v.push_back("1,1");<br/>
+&nbsp;&nbsp;v.push_back("1.1");<br/>
+&nbsp;&nbsp;v.push_back("1.1.1");<br/>
+&nbsp;&nbsp;v.push_back("-1");<br/>
+&nbsp;&nbsp;v.push_back("-1.1");<br/>
+&nbsp;&nbsp;v.push_back("-1.1.1");<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Type"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppInt.htm">int</a></b>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppInt.htm">int</a></b>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppDouble.htm">double</a></b>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppDouble.htm">double</a></b>"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "string"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CC"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CLC"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CC"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "CLC"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppBoolalpha.htm">std::boolalpha</a>;<br/>
+&nbsp;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> size <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppCanCast.htm">CanCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[i])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[i])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppCanCast.htm">CanCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(v[i])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\t' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppCanLexicalCast.htm">CanLexicalCast</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(v[i])<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -10,6 +10,7 @@
 
 #include "reversiboard.h"
 #include "reversiwidget.h"
+#include "reversimove.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -33,11 +34,13 @@ void ribi::reversi::QtWidget::mousePressEvent(QMouseEvent * e)
   const int x = (e->x() * m_reversi->GetBoard()->GetSize()) / this->width();
   const int y = (e->y() * m_reversi->GetBoard()->GetSize()) / this->height();
 
-  if ( x >=  0 && x < m_reversi->GetBoard()->GetSize()
-    && y >=  0 && y < m_reversi->GetBoard()->GetSize()
-    && m_reversi->CanDoMove(x,y))
+  const boost::shared_ptr<MovePlacePiece> move {
+    new MovePlacePiece(x,y)
+  };
+
+  if (m_reversi->CanDoMove(move))
   {
-     m_reversi->DoMove(x,y);
+     m_reversi->DoMove(move);
      repaint();
   }
 }

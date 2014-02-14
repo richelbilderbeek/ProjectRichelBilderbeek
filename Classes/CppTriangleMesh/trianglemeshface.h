@@ -31,6 +31,42 @@ struct Face
   ///When the Face its points know their Layers, call this member function
   void DoExtractCoordinats() const;
 
+  ///Create the faces of a testing prism
+  ///The indices are { top, bottom, a,b,c }
+  /*
+           top
+            v
+
+            F
+           /|\
+          D---E
+          | | |
+    c ->  | C | <- b
+          |/ \|
+          A---B
+
+            ^
+           bottom
+
+  Folder out, with the bottom (marked #) at the center
+
+          +
+         /|\
+        / | \
+       /  |  \
+  +---C c | d +
+  |f /|\  |  /
+  | / |#\ | /
+  |/ e|##\|/
+  +---A---B
+      |\ a|
+      | \ |
+      |b \|
+      +---+
+
+  The front planes are 'a' and 'b', where 'a' has two nodes at the base
+  */
+  static const std::vector<boost::shared_ptr<Face>> CreateTestPrism() noexcept;
 
   const std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
 

@@ -9,6 +9,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/foreach.hpp>
 
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -198,13 +199,6 @@ const std::vector<std::string> ribi::reversi::Board::GetVersionHistory() noexcep
   };
 }
 
-void ribi::reversi::Board::Set(const int x, const int y, const Square state) noexcept
-{
-  assert(x>=0 && x < GetSize());
-  assert(y>=0 && y < GetSize());
-  m_board[y][x] = state;
-  assert(Get(x,y)==state);
-}
 
 int ribi::reversi::Board::GetOtherPlayer(const int player) noexcept
 {
@@ -239,6 +233,14 @@ const std::vector<std::pair<int,int>> ribi::reversi::Board::GetValidMoves(const 
 int ribi::reversi::Board::GetSize() const noexcept
 {
   return m_board.size();
+}
+
+void ribi::reversi::Board::Set(const int x, const int y, const Square state) noexcept
+{
+  assert(x>=0 && x < GetSize());
+  assert(y>=0 && y < GetSize());
+  m_board[y][x] = state;
+  assert(Get(x,y)==state);
 }
 
 #ifndef NDEBUG
@@ -319,6 +321,13 @@ void ribi::reversi::Board::Test() noexcept
   TRACE("Finished ribi::reversi::Board::Test()");
 }
 #endif
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::reversi::Board::ToTextCanvas() const noexcept
+{
+  boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(width,height)
+  };
+}
 
 bool ribi::reversi::operator==(const ribi::reversi::Board& lhs, const ribi::reversi::Board& rhs)
 {

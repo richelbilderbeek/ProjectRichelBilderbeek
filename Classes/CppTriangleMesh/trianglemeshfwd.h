@@ -5,6 +5,7 @@ namespace ribi {
 namespace trim {
 
 struct Cell;
+struct CellFactory;
 struct Face;
 struct Point;
 struct Template;
