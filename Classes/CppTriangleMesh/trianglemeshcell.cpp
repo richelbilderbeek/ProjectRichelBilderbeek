@@ -12,10 +12,12 @@
 
 ribi::trim::Cell::Cell(
   const std::vector<boost::shared_ptr<Face>>& faces)
-  : //m_center(CalculateCenter(faces)),
-    m_faces(faces),
+  : m_faces(faces),
     m_index{-1}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(faces.size() == 8);
 }
 
@@ -46,6 +48,19 @@ const std::vector<boost::shared_ptr<const ribi::trim::Face>> ribi::trim::Cell::G
 {
   return AddConst(GetFaces());
 }
+
+#ifndef NDEBUG
+void ribi::trim::Cell::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::Cell::Test");
+  TRACE("Finished ribi::trim::Cell::Test successfully");
+}
+#endif
 
 bool ribi::trim::operator==(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs)
 {

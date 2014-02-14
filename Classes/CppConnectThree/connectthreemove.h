@@ -8,7 +8,8 @@ namespace con3 {
 
 struct Move
 {
-  Move(const int x, const int y, const Player player);
+  Move(const int x, const int y, const Player player)
+    : m_player{player}, m_x{x}, m_y{y} {}
 
   Player GetPlayer() const noexcept { return m_player; }
   int GetX() const noexcept { return m_x; }

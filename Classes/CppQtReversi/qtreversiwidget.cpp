@@ -8,8 +8,9 @@
 #include <QMouseEvent>
 #include <QPainter>
 
-//#include "reversi.h"
+#include "reversiboard.h"
 #include "reversiwidget.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::reversi::QtWidget::QtWidget(QWidget* parent, Qt::WindowFlags f)
@@ -20,36 +21,34 @@ ribi::reversi::QtWidget::QtWidget(QWidget* parent, Qt::WindowFlags f)
     m_color_square_even(QColor( 32, 32, 32)),
     m_color_square_odd( QColor( 64, 64, 64))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   //Allows this widget to respond to mouse moving over it
-  //this->setMouseTracking(true);
-  //Test the Reversi
-  {
-    Widget(4);
-  }
+  this->setMouseTracking(true);
 }
 
-void ribi::reversi::QtWidget::mousePressEvent(QMouseEvent * /*e*/)
+void ribi::reversi::QtWidget::mousePressEvent(QMouseEvent * e)
 {
-  /*
-  const int x = (e->x() * m_reversi->GetSize()) / this->width();
-  const int y = (e->y() * m_reversi->GetSize()) / this->height();
-  if ( x >=  0 && x < m_reversi->GetSize()
-    && y >=  0 && y < m_reversi->GetSize()
+  const int x = (e->x() * m_reversi->GetBoard()->GetSize()) / this->width();
+  const int y = (e->y() * m_reversi->GetBoard()->GetSize()) / this->height();
+
+  if ( x >=  0 && x < m_reversi->GetBoard()->GetSize()
+    && y >=  0 && y < m_reversi->GetBoard()->GetSize()
     && m_reversi->CanDoMove(x,y))
   {
      m_reversi->DoMove(x,y);
      repaint();
   }
-  */
 }
 
 void ribi::reversi::QtWidget::paintEvent(QPaintEvent *)
 {
-  /*
+
   QPainter painter(this);
   const int width  = this->width();
   const int height = this->height();
-  const int sz = m_reversi->GetSize();
+  const int sz = m_reversi->GetBoard()->GetSize();
   QBrush brush = painter.brush();
   brush.setStyle(Qt::SolidPattern);
   for (int row=0; row!=sz; ++row)
@@ -60,16 +59,29 @@ void ribi::reversi::QtWidget::paintEvent(QPaintEvent *)
     {
       const int x1 = (width * (col + 0)) / sz;
       const int x2 = (width * (col + 1)) / sz;
-      switch (m_reversi->Get(col,row))
+      switch (m_reversi->GetBoard()->Get(col,row))
       {
-        case Reversi::player1: brush.setColor(m_color_player1); break;
-        case Reversi::player2: brush.setColor(m_color_player2); break;
-        default: brush.setColor((col + row) % 2 ? m_color_square_odd : m_color_square_even); break;
+        case Square::player1: brush.setColor(m_color_player1); break;
+        case Square::player2: brush.setColor(m_color_player2); break;
+        case Square::empty  : brush.setColor((col + row) % 2 ? m_color_square_odd : m_color_square_even); break;
+
       }
       painter.setBrush(brush);
       painter.drawRect(x1,y1,x2-x1,y2-y1);
     }
   }
-  */
+
 }
 
+#ifndef NDEBUG
+void ribi::reversi::QtWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::reversi::QtWidget::Test()");
+  TRACE("Finished ribi::reversi::QtWidget::Test()");
+}
+#endif

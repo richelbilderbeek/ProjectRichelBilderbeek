@@ -26,21 +26,37 @@ void DoMain()
   const bool show_mesh = true;
   const std::string filename_result_mesh { "mesh.ply" };
 
-  //Write a house, let Triangle.exe work on it
+  //Write some geometries, let Triangle.exe work on it
   std::string filename_node; //Triangle.exe output file
   std::string filename_ele;  //Triangle.exe output file
   std::string filename_poly; //Triangle.exe output file
   {
-    const std::vector<boost::geometry::model::d2::point_xy<double>> points {
-      {0.5, 2.0}, //0
-      {1.0, 1.0}, //1
-      {1.0, 0.0}, //2
-      {0.0, 0.0}, //3
-      {0.0, 1.0}  //4
+    //A house-like shape
+    const std::vector<boost::geometry::model::d2::point_xy<double>> points_house {
+      { 0.0, 2.0}, //0
+      { 1.0, 1.0}, //1
+      { 1.0,-1.0}, //2
+      {-1.0,-1.0}, //3
+      {-1.0, 1.0}  //4
     };
     boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
-    boost::geometry::append(v, points);
-    ribi::TriangleFile f( {v} );
+    boost::geometry::append(v, points_house);
+
+    const std::vector<boost::geometry::model::d2::point_xy<double>> points_heart {
+      { 0.0, 3.0}, //0
+      { 3.0, 6.0}, //1
+      { 6.0, 3.0}, //2
+      { 6.0, 0.0}, //3
+      { 0.0,-6.0}, //4
+      {-6.0, 0.0}, //5
+      {-6.0, 3.0}, //6
+      {-3.0, 6.0}  //7
+    };
+    boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> w;
+    boost::geometry::append(w, points_heart);
+
+
+    ribi::TriangleFile f( {v,w} );
     const double quality = 5.0;
     const double area = 2.0;
     f.ExecuteTriangle(
@@ -55,17 +71,12 @@ void DoMain()
   //Read data from Triangle.exe output
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
-    const int n_layers = 3;
-    /*
+    const int n_layers = 10;
     const boost::shared_ptr<const ribi::trim::Template> t {
       new ribi::trim::Template(
         filename_node,
         filename_ele
       )
-    };
-    */
-    const boost::shared_ptr<const ribi::trim::Template> t {
-      ribi::trim::Template::CreateTest(1)
     };
 
     //Create cells from this template
@@ -113,7 +124,6 @@ void DoMain()
       std::sort(faces.begin(),faces.end());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
-
       int n_internal = 0;
       int n_default = 0;
       for (boost::shared_ptr<ribi::trim::Face> face: faces)
@@ -121,7 +131,7 @@ void DoMain()
         if (face->GetNeighbour())
         {
           assert(face->GetOwner());
-          face->SetBoundaryType("internalMesh");
+          face->SetBoundaryType("inside");
           ++n_internal;
           continue;
         }
@@ -129,7 +139,7 @@ void DoMain()
         {
           assert(face->GetOwner());
           assert(!face->GetNeighbour());
-          face->SetBoundaryType("defaultFaces");
+          face->SetBoundaryType("outside");
           ++n_default;
           continue;
         }

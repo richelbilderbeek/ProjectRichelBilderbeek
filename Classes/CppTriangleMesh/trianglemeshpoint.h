@@ -13,6 +13,7 @@
 #include <boost/units/systems/si/length.hpp>
 #include "constcoordinat2d.h"
 #include "trianglemeshfwd.h"
+#include "coordinat3d.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -69,8 +70,13 @@ struct Point
   ///Determined in the end
   int GetIndex() const noexcept { return m_index; }
   void SetIndex(const int index) const noexcept { m_index = index; }
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
+const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
 bool operator==(const Point& lhs, const Point& rhs);
 bool operator!=(const Point& lhs, const Point& rhs);
 std::ostream& operator<<(std::ostream& os, const Point& n);

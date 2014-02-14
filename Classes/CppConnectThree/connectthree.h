@@ -83,17 +83,17 @@ private:
   Player m_player;
 
   bool CanDoMove(const boost::shared_ptr<Move> p) const noexcept;
-  const boost::shared_ptr<Move> CheckOneOther() const noexcept;
+  const boost::shared_ptr<Move> CheckOneOther(const std::bitset<3>& is_player_human) const noexcept;
   const boost::shared_ptr<Move> CheckTwoDiagonally() const noexcept;
   const boost::shared_ptr<Move> CheckTwoHorizontalOwn() const noexcept;
-  const boost::shared_ptr<Move> CheckTwoOther() const noexcept;
+  const boost::shared_ptr<Move> CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept;
   const boost::shared_ptr<Move> CheckTwoVerticalOwn() const noexcept;
   const std::vector<boost::shared_ptr<Move>> GetAllPossibleMoves() const noexcept;
   Player GetNextPlayer() const noexcept;
   //static double GetRandomUniform() noexcept;
   const std::vector<boost::shared_ptr<Move>> GetTwoHorizontalOtherMoves() const noexcept;
   const std::vector<boost::shared_ptr<Move>> GetTwoVerticalOtherMoves() const noexcept;
-  bool IsPlayerHuman(const Player player) const noexcept;
+  bool IsPlayerHuman(const Player player, const std::bitset<3>& is_player_human) const noexcept;
   const boost::shared_ptr<Move> MakeRandomMove() const noexcept;
   Square PlayerToSquare(const Player player) const noexcept;
   Player SquareToPlayer(const Square square) const noexcept;

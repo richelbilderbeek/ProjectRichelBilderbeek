@@ -30,6 +30,9 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     m_faces(SortByBoundary(ExtractFaces(cells))),
     m_points(ExtractPoints(cells))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   TRACE_FUNC();
   PROFILE_FUNC();
 
@@ -533,3 +536,16 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshB
   );
   return faces;
 }
+
+#ifndef NDEBUG
+void ribi::trim::TriangleMeshBuilder::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::TriangleMeshBuilder::Test");
+  TRACE("Finished ribi::trim::TriangleMeshBuilder::Test successfully");
+}
+#endif

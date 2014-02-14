@@ -22,6 +22,10 @@ struct CellFactory
   const boost::shared_ptr<Cell> Create(
     const std::vector<boost::shared_ptr<Face>>& faces
   );
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim

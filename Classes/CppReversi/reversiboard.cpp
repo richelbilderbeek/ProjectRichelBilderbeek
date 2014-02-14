@@ -43,7 +43,7 @@ ribi::reversi::Board& ribi::reversi::Board::operator=(const Board& other)
 }
 */
 
-bool ribi::reversi::Board::CanDoMove(const int x, const int y, const int player) const noexcept
+bool ribi::reversi::Board::CanDoMove(const int x, const int y, const Player player) const noexcept
 {
   assert(x >= 0);
   assert(y >= 0);
@@ -79,7 +79,7 @@ bool ribi::reversi::Board::CanDoMove(const int x, const int y, const int player)
   return false;
 }
 
-int ribi::reversi::Board::Count(const int player) const noexcept
+int ribi::reversi::Board::Count(const Square square) const noexcept
 {
   const int size = GetSize();
 
@@ -109,7 +109,7 @@ const std::vector<std::pair<int,int>> ribi::reversi::Board::CreateDeltas() noexc
   return v;
 }
 
-void ribi::reversi::Board::DoMove(const int x, const int y, const int player) noexcept
+void ribi::reversi::Board::DoMove(const int x, const int y, const Player player) noexcept
 {
   assert(CanDoMove(x,y,player));
   #ifndef NDEBUG
@@ -170,7 +170,7 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const int player) no
   Set(x,y,player);
 }
 
-int ribi::reversi::Board::Get(const int x, const int y) const noexcept
+ribi::reversi::Square ribi::reversi::Board::Get(const int x, const int y) const noexcept
 {
   #ifndef NDEBUG
   const int sz = GetSize();
@@ -184,7 +184,7 @@ int ribi::reversi::Board::Get(const int x, const int y) const noexcept
 
 const std::string ribi::reversi::Board::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 
@@ -194,10 +194,11 @@ const std::vector<std::string> ribi::reversi::Board::GetVersionHistory() noexcep
     "2007-09-24: version 1.0: initial version developed under C++ Builder, called Reversi",
     "2010-09-24: version 1.1: initial port to Qt Creator",
     "2013-12-19: version 2.0: split interface in reversi::Board and reversi::Widget",
+    "2014-02-14: version 2.1: use of enum classes, added ToTextCanvas member function"
   };
 }
 
-void ribi::reversi::Board::Set(const int x, const int y, const int state) noexcept
+void ribi::reversi::Board::Set(const int x, const int y, const Square state) noexcept
 {
   assert(x>=0 && x < GetSize());
   assert(y>=0 && y < GetSize());

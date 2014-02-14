@@ -56,6 +56,10 @@ struct Template
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(
     const std::string& input) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim

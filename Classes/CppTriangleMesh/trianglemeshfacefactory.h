@@ -24,6 +24,10 @@ struct FaceFactory
     const FaceOrientation any_orientation,
     const boost::weak_ptr<const Face> face_below
   );
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim

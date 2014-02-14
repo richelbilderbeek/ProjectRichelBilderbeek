@@ -138,7 +138,7 @@ const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
   About a = ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());
-  a.AddLibrary("QtConnectThreeWidget version: " + QtConnectThreeWidget::GetVersion());
+  a.AddLibrary("QtConnectThreeWidget version: " + con3::QtConnectThreeWidget::GetVersion());
   a.AddLibrary("QtDialWidget version: " + QtDialWidget::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());
   a.AddLibrary("QtDisplayPosItem version: " + QtDisplayPosItem::GetVersion());

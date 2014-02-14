@@ -15,6 +15,9 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const boost::weak_ptr<const Face> face_below
 )
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   PROFILE_FUNC();
   const boost::shared_ptr<Face> face(
     new Face(
@@ -32,3 +35,16 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
 
   return face;
 }
+
+#ifndef NDEBUG
+void ribi::trim::FaceFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::FaceFactory::Test");
+  TRACE("Finished ribi::trim::FaceFactory::Test successfully");
+}
+#endif

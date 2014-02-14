@@ -4,7 +4,13 @@
 #include <string>
 #include <vector>
 
+#include "reversisquare.h"
+#include "reversiplayer.h"
+
 namespace ribi {
+
+struct TextCanvas;
+
 namespace reversi {
 
 ///Board is a reversi board with the most level interface as possible.
@@ -12,42 +18,43 @@ namespace reversi {
 ///For a higher level interface, use Widget
 struct Board
 {
-  enum { empty   = 0};
-  enum { player1 = 1};
-  enum { player2 = 2};
 
   Board(const int size = 10);
   //Board(const Board& other);
   //Board& operator=(const Board& other);
   //~Board() noexcept {}
 
-  bool CanDoMove(const int x, const int y, const int player) const noexcept;
+  bool CanDoMove(const int x, const int y, const Player player) const noexcept;
 
-  int Count(const int player) const noexcept;
+  int Count(const Square square) const noexcept;
 
-  void DoMove(const int x, const int y, const int player) noexcept;
+  void DoMove(const int x, const int y, const Player player) noexcept;
 
-  const std::vector<std::vector<int> >& GetBoard() const noexcept { return m_board; }
+  const std::vector<std::vector<Square> >& GetBoard() const noexcept { return m_board; }
 
-  int Get(const int x, const int y) const noexcept;
+  Square Get(const int x, const int y) const noexcept;
 
   int GetSize() const noexcept;
 
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
-  const std::vector< std::pair<int,int> > GetValidMoves(const int player) const noexcept;
+  const std::vector<std::pair<int,int>> GetValidMoves(const Player player) const noexcept;
 
   ///Simply sets a square, without any checking
-  void Set(const int x, const int y, const int state) noexcept;
+  void Set(const int x, const int y, const Square state) noexcept;
+
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
-  std::vector<std::vector<int> > m_board;
+  std::vector<std::vector<Square>> m_board;
 
   ///Create the delta-x and delta-y to search in the 8 directions
   static const std::vector<std::pair<int,int>> CreateDeltas() noexcept;
 
-  static int GetOtherPlayer(const int player) noexcept;
+  static Player GetOtherPlayer(const Player player) noexcept;
+
+  Square PlayerToSquare(const Player player) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -13,19 +13,9 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-static_assert(
-     static_cast<int>(ribi::reversi::Widget::empty  )
-  == static_cast<int>(ribi::reversi::Board::empty  ),"enums must have same value");
-static_assert(
-     static_cast<int>(ribi::reversi::Widget::player1)
-  == static_cast<int>(ribi::reversi::Board::player1),"enums must have same value");
-static_assert(
-     static_cast<int>(ribi::reversi::Widget::player2)
-  == static_cast<int>(ribi::reversi::Board::player2),"enums must have same value");
-
 ribi::reversi::Widget::Widget(const int size)
   : m_board(new Board(size)),
-    m_current_player(player1),
+    m_current_player(Player::player1),
     m_undo{}
 {
   #ifndef NDEBUG
@@ -37,10 +27,10 @@ ribi::reversi::Widget::Widget(const int size)
   #ifndef NDEBUG
   const int x = size / 2 - 1;
   const int y = size / 2 - 1;
-  assert(m_board->Get(x  ,y  ) == player1);
-  assert(m_board->Get(x+1,y  ) == player2);
-  assert(m_board->Get(x  ,y+1) == player2);
-  assert(m_board->Get(x+1,y+1) == player1);
+  assert(m_board->Get(x  ,y  ) == Square::player1);
+  assert(m_board->Get(x+1,y  ) == Square::player2);
+  assert(m_board->Get(x  ,y+1) == Square::player2);
+  assert(m_board->Get(x+1,y+1) == Square::player1);
   #endif
 }
 
@@ -162,7 +152,7 @@ const std::vector<boost::shared_ptr<ribi::reversi::Move>> ribi::reversi::Widget:
 
 const std::string ribi::reversi::Widget::GetVersion() noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 
@@ -170,6 +160,7 @@ const std::vector<std::string> ribi::reversi::Widget::GetVersionHistory() noexce
 {
   return {
     "2013-12-19: version 1.0: split off from Reversi",
+    "2014-02-14: version 1.1: use enum classes"
   };
 }
 
@@ -177,45 +168,43 @@ void ribi::reversi::Widget::TogglePlayer()
 {
   switch (GetCurrentPlayer())
   {
-    case player1: m_current_player = player2; return;
-    case player2: m_current_player = player1; return;
+    case Player::player1: m_current_player = Player::player2; return;
+    case Player::player2: m_current_player = Player::player1; return;
     default: assert(!"Should not get here");
   }
 }
 
-int ribi::reversi::Widget::GetOtherPlayer() const noexcept
+ribi::reversi::Player ribi::reversi::Widget::GetOtherPlayer() const noexcept
 {
   switch (GetCurrentPlayer())
   {
-    case player1: return player2;
-    case player2: return player1;
+    case Player::player1: return Player::player2;
+    case Player::player2: return Player::player1;
     default: assert(!"Should not get here");
   }
   assert(!"Should not get here");
   throw std::logic_error("ribi::reversi::Widget::GetOtherPlayer: invalid player");
 }
 
-int ribi::reversi::Widget::GetWinner() const noexcept
+ribi::reversi::Winner ribi::reversi::Widget::GetWinner() const noexcept
 {
   //static_assert(std::is_same<ribi::reversi::Widget::player1,Board::player1>(),"");
   //If both players cannot do moves, count the tiles
   if (GetBoard()->GetValidMoves(GetCurrentPlayer()).empty())
   {
     Board r(*m_board);
-    const int other_player = GetOtherPlayer();
+    const Player other_player = GetOtherPlayer();
     if (!r.GetValidMoves(other_player).empty())
     {
-      static_assert(static_cast<int>(ribi::reversi::Widget::player1) == static_cast<int>(Board::player1),"enums must have same value");
-      static_assert(static_cast<int>(ribi::reversi::Widget::player2) == static_cast<int>(Board::player2),"enums must have same value");
-      const int n_1 { r.Count(ribi::reversi::Widget::player1) };
-      const int n_2 { r.Count(ribi::reversi::Widget::player2) };
-      if (n_1 > n_2) return ribi::reversi::Widget::player1;
-      if (n_2 > n_1) return ribi::reversi::Widget::player2;
+      const int n_1 { r.Count(Square::player1) };
+      const int n_2 { r.Count(Square::player2) };
+      if (n_1 > n_2) return Winner::player1;
+      if (n_2 > n_1) return Winner::player2;
       assert(n_1 == n_2);
-      return ribi::reversi::Widget::draw;
+      return Winner::draw;
     }
   }
-  return ribi::reversi::Widget::empty;
+  return Winner::no_winner;
 }
 
 #ifndef NDEBUG
@@ -229,7 +218,7 @@ void ribi::reversi::Widget::Test() noexcept
   TRACE("Starting ribi::reversi::Widget::Test()");
   {
     ribi::reversi::Widget r(4);
-    assert(r.GetCurrentPlayer() == Board::player1);
+    assert(r.GetCurrentPlayer() == Player::player1);
     assert(r.GetValidMoves().size() == 5); //4 place moves and one pass
   }
   TRACE("Play random games")
@@ -238,10 +227,7 @@ void ribi::reversi::Widget::Test() noexcept
     ribi::reversi::Widget r(sz);
     while (r.GetValidMoves().size() > 1) //Pass is always allowed
     {
-      static_assert(static_cast<int>(ribi::reversi::Widget::empty  ) == static_cast<int>(Board::empty  ),"enums must have same value");
-      static_assert(static_cast<int>(ribi::reversi::Widget::player1) == static_cast<int>(Board::player1),"enums must have same value");
-      static_assert(static_cast<int>(ribi::reversi::Widget::player2) == static_cast<int>(Board::player2),"enums must have same value");
-      assert(r.GetWinner() == ribi::reversi::Widget::empty);
+      assert(r.GetWinner() == Winner::no_winner);
       std::vector<boost::shared_ptr<ribi::reversi::Move>> m {
         r.GetValidMoves()
       };
@@ -258,8 +244,7 @@ void ribi::reversi::Widget::Test() noexcept
     ribi::reversi::Widget r(sz);
     while (r.GetValidMoves().size() > 1) //Pass is always allowed
     {
-      static_assert(static_cast<int>(ribi::reversi::Widget::empty  ) == static_cast<int>(Board::empty  ),"enums must have same value");
-      assert(r.GetWinner() == ribi::reversi::Widget::empty);
+      assert(r.GetWinner() == Winner::no_winner);
       assert(r == r);
       std::vector<boost::shared_ptr<ribi::reversi::Move>> m {
         r.GetValidMoves()
@@ -288,10 +273,7 @@ void ribi::reversi::Widget::Test() noexcept
     ribi::reversi::Widget r(sz);
     while (r.GetValidMoves().size() > 1) //Pass is always allowed
     {
-      static_assert(static_cast<int>(ribi::reversi::Widget::empty  ) == static_cast<int>(Board::empty  ),"enums must have same value");
-      static_assert(static_cast<int>(ribi::reversi::Widget::player1) == static_cast<int>(Board::player1),"enums must have same value");
-      static_assert(static_cast<int>(ribi::reversi::Widget::player2) == static_cast<int>(Board::player2),"enums must have same value");
-      assert(r.GetWinner() == ribi::reversi::Widget::empty);
+      assert(r.GetWinner() == Winner::no_winner);
       std::vector<boost::shared_ptr<ribi::reversi::Move>> m {
         r.GetValidMoves()
       };

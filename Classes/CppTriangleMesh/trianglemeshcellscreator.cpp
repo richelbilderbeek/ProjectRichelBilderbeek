@@ -19,7 +19,9 @@ ribi::trim::CellsCreator::CellsCreator(
   const boost::units::quantity<boost::units::si::length> layer_height
 ) : m_cells(CreateCells(t,n_layers,layer_height))
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::CreateCells(
@@ -71,6 +73,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
           hor_faces[top_face_index]
         )
       };
+      assert(these_ver_faces.size() == 6);
       const boost::shared_ptr<Cell> cell {
         CellFactory().Create(
           {
@@ -85,6 +88,17 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
           }
         )
       };
+      assert(hor_faces[bottom_face_index]);
+      assert(hor_faces[top_face_index]);
+      assert(IsHorizontal(*hor_faces[bottom_face_index]));
+      assert(IsHorizontal(*hor_faces[top_face_index]));
+      assert(IsVertical(*these_ver_faces[0]));
+      assert(IsVertical(*these_ver_faces[1]));
+      assert(IsVertical(*these_ver_faces[2]));
+      assert(IsVertical(*these_ver_faces[3]));
+      assert(IsVertical(*these_ver_faces[4]));
+      assert(IsVertical(*these_ver_faces[5]));
+
       cells.push_back(cell);
     }
   }
@@ -249,42 +263,6 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
   return v;
 }
 
-/*
-const boost::shared_ptr<const ribi::trim::Face> ribi::trim::CellsCreator::FindKnownFace(
-  const std::vector<boost::shared_ptr<const Point> >& face_points
-)
-{
-  PROFILE_FUNC();
-  const int n_points = static_cast<int>(face_points.size());
-
-  //Find the Face that is present in every face_point
-  std::vector<boost::shared_ptr<const Face>> all_candidates;
-  for (auto point: face_points)
-  {
-    for(auto weak_candidate: point->GetConnected())
-    {
-      const auto candidate = weak_candidate.lock();
-      if (candidate) all_candidates.push_back(candidate);
-    }
-  }
-  std::sort(all_candidates.begin(),all_candidates.end());
-
-  const int n = static_cast<int>(all_candidates.size()) - n_points;
-  for (int i=0; i!=n; ++i)
-  {
-    const int j = i + n_points - 1;
-    assert(j < static_cast<int>(all_candidates.size()));
-    if (all_candidates[i] == all_candidates[j])
-    {
-      assert(all_candidates[i]);
-      return all_candidates[i];
-    }
-  }
-  const boost::shared_ptr<const Face> no_known_face;
-  return no_known_face;
-}
-*/
-
 const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindKnownFacesBetween(
   const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
 )
@@ -351,3 +329,16 @@ bool ribi::trim::CellsCreator::IsSubset(
     std::back_inserter(x));
   return x.size() == std::min(v.size(),w.size());
 }
+
+#ifndef NDEBUG
+void ribi::trim::CellsCreator::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::CellsCreator::Test");
+  TRACE("Finished ribi::trim::CellsCreator::Test successfully");
+}
+#endif

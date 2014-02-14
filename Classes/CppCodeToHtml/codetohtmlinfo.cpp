@@ -276,29 +276,29 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
 
 
   m.push_back(
-    { "CppBimapExample1",
+    { "CppBoostBimapExample1",
       {
         "<p>",
-        "  <a href=\"CppBimapExample1.htm\">boost::bimap example 1: find</a> is a",
-        "  <a href=\"CppBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
+        "  <a href=\"CppBoostBimapExample1.htm\">boost::bimap example 1: find</a> is a",
+        "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppBimapExample1.zip\">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>",
+        "  <li><a href=\"CppBoostBimapExample1.zip\">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>",
         "</ul>"
       }
     }
   );
   m.push_back(
-    { "CppBimapExample2",
+    { "CppBoostBimapExample2",
       {
         "<p>",
-        "  <a href=\"CppBimapExample2.htm\">boost::bimap example 2: copy</a> is a",
-        "  <a href=\"CppBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
+        "  <a href=\"CppBoostBimapExample2.htm\">boost::bimap example 2: copy</a> is a",
+        "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppBimapExample2.zip\">Download the Qt Creator project 'CppBimapExample2' (zip)</a></li>",
+        "  <li><a href=\"CppBoostBimapExample2.zip\">Download the Qt Creator project 'CppBimapExample2' (zip)</a></li>",
         "</ul>"
       }
     }
@@ -4289,6 +4289,45 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <a href=\"CppMenuDialog.htm\">MenuDialog</a> is a",
         "  <a href=\"CppClass.htm\">class</a>",
         "  for a menu dialog.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdMinmax_elementExample1",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdMinmax_elementExample1.htm\">std::minmax_element example 1</a> is an <a href=\"CppExample.htm\">example</a>",
+        "  of the <a href=\"CppStdMinmax_element.htm\">std::minmax_element</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdMinmax_elementExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdMinmax_elementExample2.htm\">std::minmax_element example 2</a> is an <a href=\"CppExample.htm\">example</a>",
+        "  of the <a href=\"CppStdMinmax_element.htm\">std::minmax_element</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdMinmax_elementExample3",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdMinmax_elementExample3.htm\">std::minmax_element example 3</a> is an <a href=\"CppExample.htm\">example</a>",
+        "  of the <a href=\"CppStdMinmax_element.htm\">std::minmax_element</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.",
         "</p>"
       }
     }

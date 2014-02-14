@@ -6,7 +6,6 @@ namespace trim {
 
 struct Cell;
 struct Face;
-//struct Parameters;
 struct Point;
 struct Template;
 
