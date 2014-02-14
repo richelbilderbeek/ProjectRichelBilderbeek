@@ -13,9 +13,10 @@
 
 ribi::trim::Cell::Cell(
   const std::vector<boost::shared_ptr<Face>>& faces,
+  const int index,
   const CellFactory&)
   : m_faces(faces),
-    m_index{-1}
+    m_index{index}
 {
   #ifndef NDEBUG
   Test();
@@ -98,6 +99,7 @@ std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Cell& c
 {
   const auto faces = cell.GetFaces();
   os
+    << ribi::xml::ToXml("index",cell.GetIndex())
     << ribi::xml::ToXml("faces",faces.begin(),faces.end())
   ;
   return os;

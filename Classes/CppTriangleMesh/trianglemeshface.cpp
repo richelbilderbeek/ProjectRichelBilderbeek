@@ -21,12 +21,14 @@
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
   const FaceOrientation any_orientation,
-  const boost::weak_ptr<const Face> face_below
+  const boost::weak_ptr<const Face> face_below,
+  const int index,
+  const FaceFactory&
   )
   : m_belongs_to{},
     m_coordinats{},
     m_face_below(face_below),
-    m_index{-1},
+    m_index{index},
     m_orientation(any_orientation),
     m_points(any_points),
     m_type{}
@@ -80,65 +82,7 @@ bool ribi::trim::Face::CanExtractCoordinats() const noexcept
 }
 
 
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::Face::CreateTestPrism() noexcept
-{
-  const std::vector<boost::shared_ptr<Point>> points {
-    Point::CreateTestPrism()
-  };
-  const std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[1], points[2] };
-  const std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
-  const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[4] };
-  const std::vector<boost::shared_ptr<Point>> points_b      { points[0], points[3], points[4] };
-  const std::vector<boost::shared_ptr<Point>> points_c      { points[1], points[2], points[5] };
-  const std::vector<boost::shared_ptr<Point>> points_d      { points[1], points[4], points[5] };
-  const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
-  const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
 
-  const boost::shared_ptr<Face> bottom {
-    new Face(points_top,FaceOrientation::horizontal, {})
-  };
-  const boost::shared_ptr<Face> top {
-    new Face(points_top,FaceOrientation::horizontal,bottom)
-  };
-  const boost::shared_ptr<Face> a {
-    new Face(points_a,FaceOrientation::vertical, {})
-  };
-  const boost::shared_ptr<Face> b {
-    new Face(points_b,FaceOrientation::vertical, {})
-  };
-  const boost::shared_ptr<Face> c {
-    new Face(points_c,FaceOrientation::vertical, {})
-  };
-  const boost::shared_ptr<Face> d {
-    new Face(points_d,FaceOrientation::vertical, {})
-  };
-  const boost::shared_ptr<Face> e {
-    new Face(points_e,FaceOrientation::vertical, {})
-  };
-  const boost::shared_ptr<Face> f {
-    new Face(points_f,FaceOrientation::vertical, {})
-  };
-  assert(bottom);
-  assert(top);
-  assert(a);
-  assert(b);
-  assert(c);
-  assert(d);
-  assert(e);
-  assert(f);
-  bottom->SetIndex(1);
-  top->SetIndex(2);
-  a->SetIndex(3);
-  b->SetIndex(4);
-  c->SetIndex(5);
-  d->SetIndex(6);
-  e->SetIndex(7);
-  f->SetIndex(8);
-  const std::vector<boost::shared_ptr<Face>> prism {
-    top,bottom,a,b,c,d,e,f
-  };
-  return prism;
-}
 
 
 void ribi::trim::Face::DoExtractCoordinats() const
@@ -307,8 +251,10 @@ bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face&
 std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f)
 {
   os
+    << ribi::xml::ToXml("index",f.GetIndex())
     << ribi::xml::ToXml("points",std::begin(f.GetPoints()),std::end(f.GetPoints()))
     << ribi::xml::ToXml("orientation",static_cast<int>(f.GetOrientation()))
+
   ;
   return os;
 }

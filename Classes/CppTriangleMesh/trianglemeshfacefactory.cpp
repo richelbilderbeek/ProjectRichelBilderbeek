@@ -7,23 +7,37 @@
 #include "coordinat3d.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshface.h"
+#include "trianglemeshfacefactory.h"
+#include "trianglemeshpointfactory.h"
 #include "trace.h"
+
+ribi::trim::FaceFactory::FaceFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
 
 const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const std::vector<boost::shared_ptr<Point>>& points,
   const FaceOrientation any_orientation,
   const boost::weak_ptr<const Face> face_below
-)
+) const noexcept
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   PROFILE_FUNC();
+  //Give every Cell some index at creation
+  static int cnt = 1;
+  const int n = cnt;
+  ++cnt;
+
+
   const boost::shared_ptr<Face> face(
     new Face(
       points,
       any_orientation,
-      face_below
+      face_below,
+      n,
+      *this
     )
   );
   assert(face);
@@ -34,6 +48,66 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   }
 
   return face;
+}
+
+const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrism() const noexcept
+{
+  const std::vector<boost::shared_ptr<Point>> points {
+    PointFactory().CreateTestPrism()
+  };
+  const std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[1], points[2] };
+  const std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
+  const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[4] };
+  const std::vector<boost::shared_ptr<Point>> points_b      { points[0], points[3], points[4] };
+  const std::vector<boost::shared_ptr<Point>> points_c      { points[1], points[2], points[5] };
+  const std::vector<boost::shared_ptr<Point>> points_d      { points[1], points[4], points[5] };
+  const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
+  const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
+
+  const boost::shared_ptr<Face> bottom {
+    FaceFactory().Create(points_top,FaceOrientation::horizontal, {})
+  };
+  const boost::shared_ptr<Face> top {
+    FaceFactory().Create(points_top,FaceOrientation::horizontal,bottom)
+  };
+  const boost::shared_ptr<Face> a {
+    FaceFactory().Create(points_a,FaceOrientation::vertical, {})
+  };
+  const boost::shared_ptr<Face> b {
+    FaceFactory().Create(points_b,FaceOrientation::vertical, {})
+  };
+  const boost::shared_ptr<Face> c {
+    FaceFactory().Create(points_c,FaceOrientation::vertical, {})
+  };
+  const boost::shared_ptr<Face> d {
+    FaceFactory().Create(points_d,FaceOrientation::vertical, {})
+  };
+  const boost::shared_ptr<Face> e {
+    FaceFactory().Create(points_e,FaceOrientation::vertical, {})
+  };
+  const boost::shared_ptr<Face> f {
+    FaceFactory().Create(points_f,FaceOrientation::vertical, {})
+  };
+  assert(bottom);
+  assert(top);
+  assert(a);
+  assert(b);
+  assert(c);
+  assert(d);
+  assert(e);
+  assert(f);
+  bottom->SetIndex(1);
+  top->SetIndex(2);
+  a->SetIndex(3);
+  b->SetIndex(4);
+  c->SetIndex(5);
+  d->SetIndex(6);
+  e->SetIndex(7);
+  f->SetIndex(8);
+  const std::vector<boost::shared_ptr<Face>> prism {
+    top,bottom,a,b,c,d,e,f
+  };
+  return prism;
 }
 
 #ifndef NDEBUG

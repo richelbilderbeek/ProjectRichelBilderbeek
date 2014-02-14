@@ -8,11 +8,13 @@
 #include "xml.h"
 
 ribi::trim::Point::Point(
-  const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat
+  const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat,
+  const int index,
+  const PointFactory&
 )
   : m_connected{},
     m_coordinat(coordinat),
-    m_index{-1},
+    m_index{index},
     m_z{}
 {
   #ifndef NDEBUG
@@ -32,57 +34,7 @@ bool ribi::trim::Point::CanGetZ() const noexcept
   return m_z.get();
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::Point::CreateTestPrism() noexcept
-{
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_a {
-    new ribi::ConstCoordinat2D(0.0,0.0)
-  };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_b {
-    new ribi::ConstCoordinat2D(1.0,0.0)
-  };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_c {
-    new ribi::ConstCoordinat2D(0.0,1.0)
-  };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_d {
-    new ribi::ConstCoordinat2D(0.0,0.0)
-  };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_e {
-    new ribi::ConstCoordinat2D(1.0,0.0)
-  };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_f {
-    new ribi::ConstCoordinat2D(0.0,1.0)
-  };
 
-  const boost::shared_ptr<Point> a {
-    new Point(co_a)
-  };
-  const boost::shared_ptr<Point> b {
-    new Point(co_b)
-  };
-  const boost::shared_ptr<Point> c {
-    new Point(co_c)
-  };
-  const boost::shared_ptr<Point> d {
-    new Point(co_d)
-  };
-  const boost::shared_ptr<Point> e {
-    new Point(co_e)
-  };
-  const boost::shared_ptr<Point> f {
-    new Point(co_f)
-  };
-  a->SetZ(0.0 * boost::units::si::meter);
-  b->SetZ(0.0 * boost::units::si::meter);
-  c->SetZ(0.0 * boost::units::si::meter);
-  d->SetZ(1.0 * boost::units::si::meter);
-  e->SetZ(1.0 * boost::units::si::meter);
-  f->SetZ(1.0 * boost::units::si::meter);
-
-  const std::vector<boost::shared_ptr<Point>> prism {
-    a,b,c,d,e,f
-  };
-  return prism;
-}
 
 const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ() const noexcept
 {
@@ -158,7 +110,8 @@ bool ribi::trim::operator!=(const ribi::trim::Point& lhs, const ribi::trim::Poin
 std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
 {
   os
-    << n.GetCoordinat()
+    << ribi::xml::ToXml("index",n.GetIndex())
+    << ribi::xml::ToXml("coordinat",n.GetCoordinat())
   ;
   return os;
 }

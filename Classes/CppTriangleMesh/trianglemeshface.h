@@ -31,43 +31,6 @@ struct Face
   ///When the Face its points know their Layers, call this member function
   void DoExtractCoordinats() const;
 
-  ///Create the faces of a testing prism
-  ///The indices are { top, bottom, a,b,c }
-  /*
-           top
-            v
-
-            F
-           /|\
-          D---E
-          | | |
-    c ->  | C | <- b
-          |/ \|
-          A---B
-
-            ^
-           bottom
-
-  Folder out, with the bottom (marked #) at the center
-
-          +
-         /|\
-        / | \
-       /  |  \
-  +---C c | d +
-  |f /|\  |  /
-  | / |#\ | /
-  |/ e|##\|/
-  +---A---B
-      |\ a|
-      | \ |
-      |b \|
-      +---+
-
-  The front planes are 'a' and 'b', where 'a' has two nodes at the base
-  */
-  static const std::vector<boost::shared_ptr<Face>> CreateTestPrism() noexcept;
-
   const std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
 
   const boost::shared_ptr<const Face> GetFaceBelow() const { return m_face_below.lock(); }
@@ -120,10 +83,13 @@ struct Face
   mutable std::string m_type;
 
   friend class FaceFactory;
+  ///Enforce a Face is only created by a FaceFactory
   Face(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation,
-    const boost::weak_ptr<const Face> face_below
+    const boost::weak_ptr<const Face> face_below,
+    const int index,
+    const FaceFactory& lock
   );
 
   friend class CellFactory;
@@ -138,6 +104,8 @@ struct Face
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const Face& f);
 };
 
 const std::set<ribi::Coordinat3D> ExtractCoordinats(const Face& face);

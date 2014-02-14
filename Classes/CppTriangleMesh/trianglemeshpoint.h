@@ -24,24 +24,7 @@ struct Point
 {
   const boost::shared_ptr<const ribi::ConstCoordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
 
-  Point(
-    const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat
-  );
-
   bool CanGetZ() const noexcept;
-
-  ///Create the poinst of a testing prism
-  /*
-      F
-     /|\
-    D---E
-    | | |
-    | C |
-    |/ \|
-    A---B
-
-  */
-  static const std::vector<boost::shared_ptr<Point>> CreateTestPrism() noexcept;
 
   const std::set<boost::weak_ptr<Face>>& GetConnected() const noexcept { return m_connected; }
 
@@ -57,6 +40,13 @@ struct Point
   Point& operator=(const Point&) = delete;
   ~Point() noexcept {}
   friend void boost::checked_delete<>(Point* x);
+
+  friend class PointFactory;
+  Point(
+    const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat,
+    const int index,
+    const PointFactory& lock
+  );
 
   /// m_connected must be mutable, because of the interdependent creation of
   /// Point and Face: a Point needs to know the Face it is connected to,
@@ -82,6 +72,8 @@ struct Point
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const Point& n);
 };
 
 const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);

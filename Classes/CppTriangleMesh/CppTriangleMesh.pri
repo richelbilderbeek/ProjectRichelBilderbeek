@@ -27,7 +27,8 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_decomposepardict.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_controldict.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_alphat.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder.cpp
+    ../../Classes/CppTriangleMesh/trianglemeshbuilder.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshpointfactory.cpp
 
 HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshtemplate.h \
@@ -40,7 +41,8 @@ HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshcellscreator.h \
     ../../Classes/CppTriangleMesh/trianglemeshcellfactory.h \
     ../../Classes/CppTriangleMesh/trianglemeshcell.h \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder.h
+    ../../Classes/CppTriangleMesh/trianglemeshbuilder.h \
+    ../../Classes/CppTriangleMesh/trianglemeshpointfactory.h
 
 OTHER_FILES += \
     ../../Classes/CppTriangleMesh/Licence.txt

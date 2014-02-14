@@ -14,6 +14,7 @@
 #include "fileio.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshpointfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -69,10 +70,7 @@ ribi::trim::Template::Template(
       };
 
       const boost::shared_ptr<Point> node {
-        new Point(
-          bottom
-          //,boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       m_points.push_back(node);
     }
@@ -218,10 +216,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         new ribi::ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
-        new Point(
-          bottom
-          //,boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       points.push_back(point);
     }
@@ -339,10 +334,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         new ribi::ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
-        new Point(
-          bottom
-          //,boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       points.push_back(point);
     }
@@ -474,9 +466,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
         new ribi::ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
-        new Point(
-          bottom
-        )
+        PointFactory().Create(bottom)
       };
       points.push_back(point);
     }

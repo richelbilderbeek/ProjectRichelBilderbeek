@@ -31,29 +31,20 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
 ) const noexcept
 {
   PROFILE_FUNC();
-  TRACE_FUNC();
-  const std::vector<boost::shared_ptr<Point> > all_points {
+  const std::vector<boost::shared_ptr<Point>> all_points {
     CreatePoints(t,n_layers,layer_height)
   };
 
-  TRACE_FUNC();
-
-  const std::vector<boost::shared_ptr<Face> > hor_faces {
+  const std::vector<boost::shared_ptr<Face>> hor_faces {
     CreateHorizontalFaces(t,all_points,n_layers)
   };
 
-  TRACE_FUNC();
-
-  const std::vector<boost::shared_ptr<Face> > ver_faces {
+  const std::vector<boost::shared_ptr<Face>> ver_faces {
     CreateVerticalFaces(t,all_points,n_layers)
   };
 
-  TRACE_FUNC();
-
   const int n_hor_faces_per_layer = static_cast<int>(t->GetFaces().size());
   const int n_cells_per_layer = n_hor_faces_per_layer;
-
-  TRACE_FUNC();
 
   std::vector<boost::shared_ptr<Cell>> cells;
   for (int layer=0; layer!=n_layers-1; ++layer) //-1 because there are no points above the top layer

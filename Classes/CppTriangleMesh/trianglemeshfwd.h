@@ -7,7 +7,9 @@ namespace trim {
 struct Cell;
 struct CellFactory;
 struct Face;
+struct FaceFactory;
 struct Point;
+struct PointFactory;
 struct Template;
 
 } //~namespace trim
