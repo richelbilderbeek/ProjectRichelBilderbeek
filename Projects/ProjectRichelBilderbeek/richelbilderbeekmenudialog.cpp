@@ -267,8 +267,8 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noex
   a.AddLibrary("BinaryNewickVector version: " + BinaryNewickVector::GetVersion());
   a.AddLibrary("Brainweaver version: " + pvdb::MenuDialog().GetVersion());
   a.AddLibrary("CodeToHtml version: " + c2h::CodeToHtmlMenuDialog().GetVersion());
-  a.AddLibrary("ConnectThree version: " + ConnectThree::GetVersion());
-  a.AddLibrary("ConnectThreeWidget version: " + ConnectThreeWidget::GetVersion());
+  a.AddLibrary("ConnectThree version: " + con3::ConnectThree::GetVersion());
+  a.AddLibrary("ConnectThreeWidget version: " + con3::ConnectThreeWidget::GetVersion());
   a.AddLibrary("Copy_if version: " + Copy_if_version::GetVersion());
   a.AddLibrary("Counter version: " + Counter::GetVersion());
   a.AddLibrary("CreateQtProjectZipFile version: " + CreateQtProjectZipFile::MenuDialog().GetVersion());
@@ -590,7 +590,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       }
       break;
       case ProgramType::codeToHtml: p.reset(new c2h::CodeToHtmlMenuDialog); break;
-      case ProgramType::connectThree: p.reset(new ConnectThreeMenuDialog); break;
+      case ProgramType::connectThree: p.reset(new con3::ConnectThreeMenuDialog); break;
       case ProgramType::corridor:
       {
         const std::string version = "x.x";

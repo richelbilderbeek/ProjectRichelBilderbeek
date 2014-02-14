@@ -49,7 +49,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtk3opeenrijresources.h"
 #include "qtkalmanfilterermenudialog.h"
 #include "qtmazecreatormenudialog.h"
-#include "qtmaziakmenudialog.h"
+#include "qtmaziakmenudialog2.h"
 #include "qtmusictheorymenudialog.h"
 #include "qtperfectelasticcollisionmenudialog.h"
 #include "qtpictocodemenudialog.h"
@@ -137,7 +137,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::bristol: break;
     case ProgramType::chrisWiley: break;
     case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
-    case ProgramType::connectThree: p = new QtConnectThreeMenuDialog; break;
+    case ProgramType::connectThree: p = new con3::QtConnectThreeMenuDialog; break;
     case ProgramType::corridor: break;
     case ProgramType::createGlossary: p = new QtCreateGlossaryMenuDialog; break;
     case ProgramType::createQtProjectZipFile: p = new QtCreateQtProjectZipFileMenuDialog; break;
@@ -185,7 +185,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::martianCafeTuinemaTycoon: break;
     case ProgramType::mazeCreator: p = new QtMazeCreatorMenuDialog; break;
     case ProgramType::mazeCreatorVcl: break;
-    case ProgramType::maziak: p = new maziak::QtMaziakMenuDialog; break;
+    case ProgramType::maziak: p = new maziak::QtMaziakMenuDialog2; break;
     case ProgramType::maziakVcl: break;
     case ProgramType::metZnDrieen: break;
     case ProgramType::metZnDrieenVcl: break;

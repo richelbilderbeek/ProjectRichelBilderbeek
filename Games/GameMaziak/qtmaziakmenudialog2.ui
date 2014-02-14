@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtMaziakMenuDialog</class>
- <widget class="QWidget" name="QtMaziakMenuDialog">
+ <class>QtMaziakMenuDialog2</class>
+ <widget class="QWidget" name="QtMaziakMenuDialog2">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>594</width>
+    <width>652</width>
     <height>667</height>
    </rect>
   </property>
@@ -38,17 +38,36 @@
        <height>0</height>
       </size>
      </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QWidget" name="widget_top_left" native="true"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QWidget" name="widget_top_middle" native="true"/>
-      </item>
-      <item row="0" column="2">
-       <widget class="QWidget" name="widget_top_right" native="true"/>
-      </item>
-     </layout>
+     <widget class="QWidget" name="widget_top_left" native="true">
+      <property name="geometry">
+       <rect>
+        <x>9</x>
+        <y>9</y>
+        <width>16</width>
+        <height>132</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget_top_middle" native="true">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>9</y>
+        <width>16</width>
+        <height>132</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget_top_right" native="true">
+      <property name="geometry">
+       <rect>
+        <x>41</x>
+        <y>9</y>
+        <width>16</width>
+        <height>132</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </item>
    <item>

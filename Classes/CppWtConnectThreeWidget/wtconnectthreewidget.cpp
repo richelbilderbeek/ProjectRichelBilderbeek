@@ -38,7 +38,7 @@ ribi::WtConnectThreeWidget::WtConnectThreeWidget(
   const int n_cols,
   const int n_rows)
   : m_signal_valid_move{},
-    m_widget(new ConnectThreeWidget(is_player_human,n_cols,n_rows)),
+    m_widget(new con3::ConnectThreeWidget(is_player_human,n_cols,n_rows)),
     m_players(
       {
         boost::shared_ptr<const Wt::WPainter::Image>(
