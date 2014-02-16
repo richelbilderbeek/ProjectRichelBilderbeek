@@ -10,6 +10,7 @@
 
 #include "reversimove.h"
 #include "reversiboard.h"
+#include "reversiplayer.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -309,7 +310,7 @@ void ribi::reversi::Widget::Undo()
   {
     TRACE("ERROR");
     std::clog << "\n" << *this << std::endl;
-    TRACE(this->m_current_player);
+    TRACE(PlayerToStr(m_current_player));
   }
   #endif
   assert(this->m_current_player != (m_undo.back().first)->GetCurrentPlayer());
@@ -346,7 +347,7 @@ std::ostream& ribi::reversi::operator<<(std::ostream& os, const ribi::reversi::W
 {
   os << *r.GetBoard()
     << '\n'
-    << r.GetCurrentPlayer();
+    << PlayerToStr(r.GetCurrentPlayer());
 
   return os;
 }

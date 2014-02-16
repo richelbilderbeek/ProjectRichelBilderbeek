@@ -14,7 +14,7 @@
 #pragma GCC diagnostic pop
 
 ribi::reversi::Board::Board(const int size)
-  : m_board(size,std::vector<int>(size,empty))
+  : m_board(size,std::vector<Square>(size,Square::empty))
 {
   #ifndef NDEBUG
   Test();
@@ -25,10 +25,10 @@ ribi::reversi::Board::Board(const int size)
 
   const int x = size / 2 - 1;
   const int y = size / 2 - 1;
-  Set(x  ,y  ,player1);
-  Set(x+1,y  ,player2);
-  Set(x  ,y+1,player2);
-  Set(x+1,y+1,player1);
+  Set(x  ,y  ,Square::player1);
+  Set(x+1,y  ,Square::player2);
+  Set(x  ,y+1,Square::player2);
+  Set(x+1,y+1,Square::player1);
 }
 
 /*
@@ -50,7 +50,7 @@ bool ribi::reversi::Board::CanDoMove(const int x, const int y, const Player play
   assert(y >= 0);
   assert(x < this->GetSize());
   assert(y < this->GetSize());
-  if (Get(x,y) != empty) return false;
+  if (Get(x,y) != Square::empty) return false;
   for (const std::pair<int,int> d: CreateDeltas())
   {
     int cur_x = x + d.first;

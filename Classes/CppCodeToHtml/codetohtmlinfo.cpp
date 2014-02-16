@@ -8869,6 +8869,16 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>&nbsp;</p>",
         "<ul>",
         "  <li><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/> <a href=\"ProjectBrainweaver_0_28.png\">View a screenshot of 'Brainweaver' (version 0.28)(png)</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2>External links</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"https://www.youtube.com/watch?v=jQWUgWDvvPY\">YouTube video about the idea behind Brainweaver (with screenshots)</a></li>",
         "</ul>"
       }
     }
