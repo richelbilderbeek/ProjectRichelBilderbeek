@@ -59,11 +59,6 @@ struct CellsCreator
     const int n_layers
   );
 
-  /*
-  static const boost::shared_ptr<const Face> FindKnownFace(
-    const std::vector<boost::shared_ptr<const Point>>& face_points
-  );
-  */
   static const std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(
     const boost::shared_ptr<const Face> a, const boost::shared_ptr<const Face> b
   );
@@ -72,6 +67,10 @@ struct CellsCreator
     std::vector<boost::shared_ptr<Point>> a,
     std::vector<boost::shared_ptr<Point>> b
   ) noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim

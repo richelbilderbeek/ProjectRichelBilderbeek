@@ -31,8 +31,6 @@ struct Face
   ///When the Face its points know their Layers, call this member function
   void DoExtractCoordinats() const;
 
-  static const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
-
   const std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
 
   const boost::shared_ptr<const Face> GetFaceBelow() const { return m_face_below.lock(); }
@@ -85,14 +83,17 @@ struct Face
   mutable std::string m_type;
 
   friend class FaceFactory;
+  ///Enforce a Face is only created by a FaceFactory
   Face(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation,
-    const boost::weak_ptr<const Face> face_below
+    const boost::weak_ptr<const Face> face_below,
+    const int index,
+    const FaceFactory& lock
   );
 
   friend class CellFactory;
-  void AddBelongsTo(boost::weak_ptr<const Cell> cell) const { m_belongs_to.push_back(cell); }
+  void AddBelongsTo(boost::weak_ptr<const Cell> cell) const;
 
   ///Determined in the end
   friend class TriangleMeshBuilder;
@@ -100,7 +101,16 @@ struct Face
   void SetIndex(const int index) const noexcept { m_index = index; }
   int GetIndex() const noexcept { return m_index; }
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const Face& f);
 };
+
+const std::set<ribi::Coordinat3D> ExtractCoordinats(const Face& face);
+bool IsHorizontal(const Face& face) noexcept;
+bool IsVertical(const Face& face) noexcept;
 
 bool operator==(const Face& lhs, const Face& rhs);
 bool operator!=(const Face& lhs, const Face& rhs);

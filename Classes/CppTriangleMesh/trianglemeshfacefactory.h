@@ -19,11 +19,55 @@ namespace trim {
 
 struct FaceFactory
 {
+  FaceFactory();
+
   const boost::shared_ptr<Face> Create(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation,
     const boost::weak_ptr<const Face> face_below
-  );
+  ) const noexcept;
+
+  ///Create the faces of a testing prism
+  ///The indices are { top, bottom, a,b,c }
+  /*
+           top
+            v
+
+            F
+           /|\
+          D---E
+          | | |
+    c ->  | C | <- b
+          |/ \|
+          A---B
+
+            ^
+           bottom
+
+  Folder out, with the bottom (marked #) at the center
+
+          +
+         /|\
+        / | \
+       /  |  \
+  +---C c | d +
+  |f /|\  |  /
+  | / |#\ | /
+  |/ e|##\|/
+  +---A---B
+      |\ a|
+      | \ |
+      |b \|
+      +---+
+
+  The front planes are 'a' and 'b', where 'a' has two nodes at the base
+  */
+  const std::vector<boost::shared_ptr<Face>> CreateTestPrism() const noexcept;
+
+  private:
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim

@@ -37,10 +37,9 @@ struct QuestionDialog;
 ///Qt dialog for QuestionDialog
 struct QtQuestionDialog : public QtHideAndShowDialog
 {
-  explicit QtQuestionDialog(
-    QWidget *parent = 0);
+  explicit QtQuestionDialog(QWidget *parent = 0);
 
-  virtual ~QtQuestionDialog() noexcept {};
+  virtual ~QtQuestionDialog() noexcept {}
 
   ///Obtain a read-only pointer to the dialog
   virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const = 0;
@@ -50,6 +49,10 @@ struct QtQuestionDialog : public QtHideAndShowDialog
 
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

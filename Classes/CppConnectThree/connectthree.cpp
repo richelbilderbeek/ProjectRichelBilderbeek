@@ -155,13 +155,14 @@ bool ribi::con3::ConnectThree::IsInvalidMove(const Move& p) noexcept
 }
 */
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& /* is_player_human */) const noexcept
+const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const noexcept
 {
+  //const std::bitset<3>& is_player_human
   if (CanDoMove(CheckTwoHorizontalOwn())) return CheckTwoHorizontalOwn();
-  if (CanDoMove(CheckTwoVerticalOwn()  )) return CheckTwoVerticalOwn();
-  if (CanDoMove(CheckTwoOther()        )) return CheckTwoOther();
-  if (CanDoMove(CheckTwoDiagonally()   )) return CheckTwoDiagonally();
-  if (CanDoMove(CheckOneOther()        )) return CheckOneOther();
+  if (CanDoMove(CheckTwoVerticalOwn())) return CheckTwoVerticalOwn();
+  if (CanDoMove(CheckTwoOther(is_player_human))) return CheckTwoOther(is_player_human);
+  if (CanDoMove(CheckTwoDiagonally())) return CheckTwoDiagonally();
+  if (CanDoMove(CheckOneOther(is_player_human))) return CheckOneOther(is_player_human);
   return MakeRandomMove();
 }
 
@@ -254,7 +255,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoVert
   return nullptr;
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoOther() const noexcept
+const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept
 {
   const auto moves(GetAllPossibleMoves());
 
@@ -268,7 +269,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoOthe
     {
       assert(CanDoMove(m));
       //Player is human
-      if (IsPlayerHuman(m->GetPlayer()))
+      if (IsPlayerHuman(m->GetPlayer(),is_player_human))
       {
         v.push_back(m);
       }
@@ -456,7 +457,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoDiag
   return m;
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckOneOther() const noexcept
+const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckOneOther(const std::bitset<3>& is_player_human) const noexcept
 {
   std::vector<boost::shared_ptr<Move>> v;
 
@@ -521,7 +522,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckOneOthe
     for(const auto m: v)
     {
       assert(CanDoMove(m));
-      if (IsPlayerHuman(m->GetPlayer()))
+      if (IsPlayerHuman(m->GetPlayer(),is_player_human))
         w.push_back(m);
     }
     //If there are anti-player moves, choose one at random
@@ -610,6 +611,19 @@ int ribi::con3::ConnectThree::GetRows() const noexcept
 {
   assert(!m_area.empty());
   return m_area[0].size();
+}
+
+bool ribi::con3::ConnectThree::IsPlayerHuman(const Player player, const std::bitset<3>& is_player_human) const noexcept
+{
+  switch (player)
+  {
+    case Player::player1: return is_player_human[0];
+    case Player::player2: return is_player_human[1];
+    case Player::player3: return is_player_human[2];
+    default:
+      assert(!"Should not get here");
+      throw std::logic_error("Unknown value of player");
+  }
 }
 
 ribi::con3::Square ribi::con3::ConnectThree::PlayerToSquare(const Player player) const noexcept

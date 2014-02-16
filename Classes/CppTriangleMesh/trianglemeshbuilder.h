@@ -85,6 +85,9 @@ struct TriangleMeshBuilder
     std::vector<boost::shared_ptr<Face>> faces
   ) noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim

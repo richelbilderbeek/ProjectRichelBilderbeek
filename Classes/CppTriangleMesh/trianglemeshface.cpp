@@ -1,6 +1,8 @@
 #include "trianglemeshface.h"
 
+#include <algorithm>
 #include <fstream>
+#include <set>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -19,16 +21,21 @@
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
   const FaceOrientation any_orientation,
-  const boost::weak_ptr<const Face> face_below
+  const boost::weak_ptr<const Face> face_below,
+  const int index,
+  const FaceFactory&
   )
   : m_belongs_to{},
     m_coordinats{},
     m_face_below(face_below),
-    m_index{-1},
+    m_index{index},
     m_orientation(any_orientation),
     m_points(any_points),
-    m_type("internalMesh")
+    m_type{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   PROFILE_FUNC();
   #ifndef NDEBUG
   if (m_orientation == FaceOrientation::vertical) { assert(m_face_below.expired()); }
@@ -54,6 +61,17 @@ ribi::trim::Face::Face(
   #endif
 }
 
+void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell) const
+{
+  assert(cell.lock());
+  m_belongs_to.push_back(cell);
+  assert(m_belongs_to.size() <= 2);
+  assert(
+       (m_belongs_to.size() == 1)
+    || (m_belongs_to.size() == 2 && m_belongs_to[0].lock() != m_belongs_to[1].lock())
+  );
+}
+
 bool ribi::trim::Face::CanExtractCoordinats() const noexcept
 {
   for (const auto point: m_points)
@@ -63,36 +81,16 @@ bool ribi::trim::Face::CanExtractCoordinats() const noexcept
   return true;
 }
 
+
+
+
+
 void ribi::trim::Face::DoExtractCoordinats() const
 {
   PROFILE_FUNC();
   assert(CanExtractCoordinats());
-  assert(m_coordinats.empty());
+  //assert(m_coordinats.empty()); //This is done multiple times in debugging
   m_coordinats = ExtractCoordinats(m_points);
-}
-
-const std::set<ribi::Coordinat3D> ribi::trim::Face::ExtractCoordinats(
-  const std::vector<boost::shared_ptr<Point>>& points
-)
-{
-  PROFILE_FUNC();
-  std::set<ribi::Coordinat3D> s;
-  for (const auto point: points)
-  {
-    if (!point->CanGetZ())
-    {
-      TRACE("Extract these coordinats later: the Face must be assigned to a Layer first");
-    }
-    assert(point->CanGetZ());
-    const ribi::Coordinat3D c(
-      point->GetCoordinat()->GetX(),
-      point->GetCoordinat()->GetY(),
-      point->GetZ().value()
-    );
-    s.insert(s.begin(),c);
-  }
-
-  return s;
 }
 
 const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
@@ -155,6 +153,88 @@ void ribi::trim::Face::ReversePoints() noexcept
   std::reverse(m_points.begin(),m_points.end());
 }
 
+#ifndef NDEBUG
+void ribi::trim::Face::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::Face::Test");
+  TRACE("Finished ribi::trim::Face::Test successfully");
+}
+#endif
+
+
+
+
+
+
+
+
+
+
+const std::set<ribi::Coordinat3D> ribi::trim::ExtractCoordinats(const ribi::trim::Face& face)
+{
+  face.DoExtractCoordinats();
+  return face.GetCoordinats();
+}
+
+bool ribi::trim::IsHorizontal(const ribi::trim::Face& face) noexcept
+{
+  const bool answer_1 = face.GetOrientation() == FaceOrientation::horizontal;
+
+  const std::set<ribi::Coordinat3D> coordinats { ExtractCoordinats(face) };
+
+  typedef std::set<ribi::Coordinat3D>::iterator Iterator;
+  typedef std::pair<Iterator,Iterator> Pair;
+  const Pair xs {
+    std::minmax_element(coordinats.begin(),coordinats.end(),
+      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
+      {
+        return lhs.GetX() < rhs.GetX();
+      }
+    )
+  };
+
+  const double dx { std::abs((*xs.first).GetX() - (*xs.second).GetX()) };
+
+  const Pair ys {
+    std::minmax_element(coordinats.begin(),coordinats.end(),
+      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
+      {
+        return lhs.GetY() < rhs.GetY();
+      }
+    )
+  };
+
+  const double dy { std::abs((*ys.first).GetY() - (*ys.second).GetY()) };
+
+  const Pair zs {
+    std::minmax_element(coordinats.begin(),coordinats.end(),
+      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
+      {
+        return lhs.GetZ() < rhs.GetZ();
+      }
+    )
+  };
+  const double dz { std::abs((*zs.first).GetZ() - (*zs.second).GetZ()) };
+
+  const bool answer_2 { dz * 1000.0 < dx && dz * 1000.0 < dy };
+
+  assert(answer_1 == answer_2);
+  return answer_1;
+}
+
+bool ribi::trim::IsVertical(const ribi::trim::Face& face) noexcept
+{
+  const bool answer_1 = face.GetOrientation() == FaceOrientation::vertical;
+  const bool answer_2 = !IsHorizontal(face);
+  assert(answer_1 == answer_2);
+  return answer_1;
+}
+
 bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs)
 {
   return
@@ -171,8 +251,10 @@ bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face&
 std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f)
 {
   os
+    << ribi::xml::ToXml("index",f.GetIndex())
     << ribi::xml::ToXml("points",std::begin(f.GetPoints()),std::end(f.GetPoints()))
     << ribi::xml::ToXml("orientation",static_cast<int>(f.GetOrientation()))
+
   ;
   return os;
 }

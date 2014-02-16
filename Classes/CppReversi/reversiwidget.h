@@ -9,6 +9,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include "reversifwd.h"
+#include "reversiplayer.h"
+#include "reversiwinner.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -18,11 +20,6 @@ namespace reversi {
 ///Widget keeps track of the current player its turn and allows undoing of moves
 struct Widget
 {
-  enum { empty   = 0};
-  enum { player1 = 1};
-  enum { player2 = 2};
-  enum { draw = 3};
-
   Widget(const int size = 10);
 
   //Need deep copies, due to m_board
@@ -38,19 +35,19 @@ struct Widget
   const boost::shared_ptr<const Board> GetBoard() const noexcept { return m_board; }
   const boost::shared_ptr<      Board> GetBoard()       noexcept { return m_board; }
 
-  int GetCurrentPlayer() const noexcept { return m_current_player; }
+  Player GetCurrentPlayer() const noexcept { return m_current_player; }
 
   const std::vector<boost::shared_ptr<Move>> GetValidMoves() const noexcept;
 
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
-  int GetWinner() const noexcept;
+  Winner GetWinner() const noexcept;
 
   void Undo();
 
   private:
   boost::shared_ptr<Board> m_board;
-  int m_current_player;
+  Player m_current_player;
 
   //The undo stack (use std::vector because it is a true STL container)
   //first: the Widget before the Move
@@ -66,7 +63,7 @@ struct Widget
   void DoMove(const int x, const int y) noexcept;
   void DoMovePass() noexcept;
 
-  int GetOtherPlayer() const noexcept;
+  Player GetOtherPlayer() const noexcept;
 
   //Simply sets a square
   //void Set(const int x, const int y, const int state) noexcept;

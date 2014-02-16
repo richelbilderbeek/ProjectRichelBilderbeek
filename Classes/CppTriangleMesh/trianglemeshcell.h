@@ -25,6 +25,7 @@ struct Cell
 
   const ribi::Coordinat3D CalculateCenter() const noexcept;
 
+
   ///Can be used later
   int GetIndex() const noexcept { return m_index; }
   void SetIndex(const int index) noexcept { m_index = index; }
@@ -34,15 +35,19 @@ struct Cell
   friend void boost::checked_delete<>(Cell* x);
   friend void boost::checked_delete<>(const Cell* x);
 
-  //const ribi::Coordinat3D m_center;
   const std::vector<boost::shared_ptr<Face>> m_faces;
   int m_index;
 
-  //static const ribi::Coordinat3D CalculateCenter(const std::vector<boost::shared_ptr<const Face>>& faces) noexcept;
-
   friend class CellFactory;
-  Cell(const std::vector<boost::shared_ptr<Face>>& faces);
+  //Enforce that only CellFactory can create a Cell
+  Cell(
+    const std::vector<boost::shared_ptr<Face>>& faces,
+    const int index,
+    const CellFactory& lock);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 bool operator==(const Cell& lhs, const Cell& rhs);

@@ -5,9 +5,11 @@ namespace ribi {
 namespace trim {
 
 struct Cell;
+struct CellFactory;
 struct Face;
-//struct Parameters;
+struct FaceFactory;
 struct Point;
+struct PointFactory;
 struct Template;
 
 } //~namespace trim

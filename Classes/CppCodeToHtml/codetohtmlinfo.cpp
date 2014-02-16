@@ -274,35 +274,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
-
-  m.push_back(
-    { "CppBimapExample1",
-      {
-        "<p>",
-        "  <a href=\"CppBimapExample1.htm\">boost::bimap example 1: find</a> is a",
-        "  <a href=\"CppBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppBimapExample1.zip\">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppBimapExample2",
-      {
-        "<p>",
-        "  <a href=\"CppBimapExample2.htm\">boost::bimap example 2: copy</a> is a",
-        "  <a href=\"CppBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppBimapExample2.zip\">Download the Qt Creator project 'CppBimapExample2' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
   m.push_back(
     { "CppBinaryNewickVector",
       {
@@ -321,6 +292,54 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppBoostBimapExample1",
+      {
+        "<p>",
+        "  <a href=\"CppBoostBimapExample1.htm\">boost::bimap example 1: find</a> is a",
+        "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostBimapExample1.zip\">Download the Qt Creator project 'CppBimapExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppBoostBimapExample2",
+      {
+        "<p>",
+        "  <a href=\"CppBoostBimapExample2.htm\">boost::bimap example 2: copy</a> is a",
+        "  <a href=\"CppBoostBimap.htm\">boost::bimap</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostBimapExample2.zip\">Download the Qt Creator project 'CppBimapExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostChecked_deleteExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
+        "  is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppChecked_deleteExample1.zip\">Download the Qt Creator project 'CppChecked_deleteExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppBoostFormatExample1",
       {
@@ -394,6 +413,21 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
+  m.push_back(
+    { "CppBoostRefExample2",
+      {
+        "<p>",
+        "  <a href=\"CppBoostRefExample2.htm\">Boost.Ref example 2: putting references in a vector</a> is"
+        "   a <a href=\"CppBoostRef.htm\">Boost.Ref</a> example showing",
+        "  how to put references in a std::vector and how the values stay in sync.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostRefExample2.zip\">Download the Qt Creator project 'CppBoostRefExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
 
   m.push_back(
     { "CppBoostRegexExample1",
@@ -797,23 +831,6 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "  <a href=\"CppDrawCanvas.htm\">DrawCanvas</a>, <a href=\"CppImageCanvas.htm\">ImageCanvas</a>",
         "  and <a href=\"CppTextCanvas.htm\">TextCanvas</a>.",
         "</p>"
-      }
-    }
-  );
-
-  m.push_back(
-    { "CppChecked_deleteExample1",
-      {
-        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
-        "  is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> <a href=\"CppExample.htm\">example</a>.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppChecked_deleteExample1.zip\">Download the Qt Creator project 'CppChecked_deleteExample1' (zip)</a></li>",
-        "</ul>"
       }
     }
   );
@@ -4295,6 +4312,45 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppStdMinmax_elementExample1",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdMinmax_elementExample1.htm\">std::minmax_element example 1</a> is an <a href=\"CppExample.htm\">example</a>",
+        "  of the <a href=\"CppStdMinmax_element.htm\">std::minmax_element</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdMinmax_elementExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdMinmax_elementExample2.htm\">std::minmax_element example 2</a> is an <a href=\"CppExample.htm\">example</a>",
+        "  of the <a href=\"CppStdMinmax_element.htm\">std::minmax_element</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdMinmax_elementExample3",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdMinmax_elementExample3.htm\">std::minmax_element example 3</a> is an <a href=\"CppExample.htm\">example</a>",
+        "  of the <a href=\"CppStdMinmax_element.htm\">std::minmax_element</a> <a href=\"CppAlgorithm.htm\">algorithm</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "CppMultiApproximator",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
@@ -6197,21 +6253,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
-  m.push_back(
-    { "CppRefExample2",
-      {
-        "<p>",
-        "  <a href=\"CppRefExample2.htm\">Boost.Ref example 2: putting references in a vector</a> is"
-        "   a <a href=\"CppRef.htm\">Boost.Ref</a> example showing",
-        "  how to put references in a std::vector and how the values stay in sync.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppRefExample2.zip\">Download the Qt Creator project 'CppRefExample2' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
+
   m.push_back(
     { "CppRichelBilderbeekProgram",
       {
@@ -6449,6 +6491,124 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppStdUnique_ptrExample1",
+      {
+        "<p>",
+        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppUnique_ptrExample1.htm\">std::unique_ptr example 1: basics</a>",
+        "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppUnique_ptrExample1.zip\">Download the Qt Creator project 'CppUnique_ptrExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppStdUnique_ptrExample2",
+      {
+        "<p>",
+        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppUnique_ptrExample2.htm\">std::unique_ptr example 2: custom deleter</a>",
+        "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> example that shows how to use a",
+        "  custom deleter (in this case <a href=\"CppChecked_delete.htm\">boost::checked_delete</a>)",
+        "  with <a href=\"CppAuto.htm\">auto</a> and <a href=\"CppStdFunction.htm\">std::function</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppUnique_ptrExample2.zip\">Download the Qt Creator project 'CppUnique_ptrExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdVectorExample1",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample1.htm\">std::vector example 1: basics</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  writing to and reading from a <a href=\"CppVector.htm\">std::vector</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample1.zip\">Download the Qt Creator project 'CppVectorExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppStdVectorExample2",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample2.htm\">std::vector example 2: erase-remove idiom</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  the erase-remove idiom.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample2.zip\">Download the Qt Creator project 'CppVectorExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppStdVectorExample3",
+      {
+        "<p>",
+        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample3.htm\">std::vector example 3: C++11 emplace member function</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  the <a href=\"Cpp11.htm\">C++11</a> emplace <a href=\"CppMemberFunction.htm\">member function</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample3.zip\">Download the Qt Creator project 'CppVectorExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+  m.push_back(
+    { "CppStdVectorExample4",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppVectorExample4.htm\">std::vector example 4: remove an element with preserving the order</a>",
+        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
+        "  how to remove an element with preserving the order.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppVectorExample4.zip\">Download the Qt Creator project 'CppVectorExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppStopwatch",
       {
@@ -6579,127 +6739,10 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
-  m.push_back(
-    { "CppUnique_ptrExample1",
-      {
-        "<p>",
-        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppUnique_ptrExample1.htm\">std::unique_ptr example 1: basics</a>",
-        "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> <a href=\"CppExample.htm\">example</a>.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppUnique_ptrExample1.zip\">Download the Qt Creator project 'CppUnique_ptrExample1' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppUnique_ptrExample2",
-      {
-        "<p>",
-        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppUnique_ptrExample2.htm\">std::unique_ptr example 2: custom deleter</a>",
-        "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> example that shows how to use a",
-        "  custom deleter (in this case <a href=\"CppChecked_delete.htm\">boost::checked_delete</a>)",
-        "  with <a href=\"CppAuto.htm\">auto</a> and <a href=\"CppStdFunction.htm\">std::function</a>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppUnique_ptrExample2.zip\">Download the Qt Creator project 'CppUnique_ptrExample2' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
 
 
 
 
-
-
-
-  m.push_back(
-    { "CppVectorExample1",
-      {
-        "<p>",
-        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppVectorExample1.htm\">std::vector example 1: basics</a>",
-        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
-        "  writing to and reading from a <a href=\"CppVector.htm\">std::vector</a>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppVectorExample1.zip\">Download the Qt Creator project 'CppVectorExample1' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppVectorExample2",
-      {
-        "<p>",
-        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppVectorExample2.htm\">std::vector example 2: erase-remove idiom</a>",
-        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
-        "  the erase-remove idiom.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppVectorExample2.zip\">Download the Qt Creator project 'CppVectorExample2' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppVectorExample3",
-      {
-        "<p>",
-        "  <img src=\"PicCpp11.png\" alt=\"Cpp11\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppVectorExample3.htm\">std::vector example 3: C++11 emplace member function</a>",
-        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
-        "  the <a href=\"Cpp11.htm\">C++11</a> emplace <a href=\"CppMemberFunction.htm\">member function</a>.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppVectorExample3.zip\">Download the Qt Creator project 'CppVectorExample3' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
-  m.push_back(
-    { "CppVectorExample4",
-      {
-        "<p>",
-        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<p>",
-        "  <a href=\"CppVectorExample4.htm\">std::vector example 4: remove an element with preserving the order</a>",
-        "  is a <a href=\"CppVector.htm\">std::vector</a> example that demonstrates",
-        "  how to remove an element with preserving the order.",
-        "</p>",
-        "<p>&nbsp;</p>",
-        "<ul>",
-        "  <li><a href=\"CppVectorExample4.zip\">Download the Qt Creator project 'CppVectorExample4' (zip)</a></li>",
-        "</ul>"
-      }
-    }
-  );
   m.push_back(
    { "CppVirtualBastard",
       {

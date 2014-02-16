@@ -14,6 +14,7 @@
 #include "fileio.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshpointfactory.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -26,6 +27,9 @@ ribi::trim::Template::Template(
     m_face_point_indices{},
     m_points{}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   PROFILE_FUNC();
 
   TRACE("Load the points and faces created by Triangle");
@@ -57,19 +61,16 @@ ribi::trim::Template::Template(
       assert(CanLexicalCast<int>(w[3]));
       const double x = boost::lexical_cast<double>(w[1]);
       const double y = boost::lexical_cast<double>(w[2]);
-      const std::string boundary_type
-        = boost::lexical_cast<int>(w[3]) == 0
-        ? "internalMesh"
-        : "defaultFaces";
+      //const std::string boundary_type
+      //  = boost::lexical_cast<int>(w[3]) == 0
+      //  ? "inside_from_template"
+      //  : "outside_from_template";
       const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
         new ribi::ConstCoordinat2D(x,y)
       };
 
       const boost::shared_ptr<Point> node {
-        new Point(
-          bottom,
-          boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       m_points.push_back(node);
     }
@@ -210,15 +211,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const std::string boundary_type = "defaultFaces";
+      const std::string boundary_type = "two_times_two";
       const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
         new ribi::ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
-        new Point(
-          bottom,
-          boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       points.push_back(point);
     }
@@ -331,15 +329,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const std::string boundary_type = "defaultFaces";
+      //const std::string boundary_type = "two_times_three";
       const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
         new ribi::ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
-        new Point(
-          bottom,
-          boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       points.push_back(point);
     }
@@ -466,15 +461,12 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const std::string boundary_type = "defaultFaces";
+      const std::string boundary_type = "three_times_three";
       const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
         new ribi::ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
-        new Point(
-          bottom,
-          boundary_type
-        )
+        PointFactory().Create(bottom)
       };
       points.push_back(point);
     }
@@ -613,3 +605,23 @@ const std::vector<std::string> ribi::trim::Template::SeperateString(
     boost::algorithm::token_compress_on);
   return v;
 }
+
+#ifndef NDEBUG
+void ribi::trim::Template::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::Template::Test");
+  for (int i=1; i!=4; ++i)
+  {
+    const boost::shared_ptr<Template> my_template {
+      CreateTest(i)
+    };
+    assert(my_template);
+  }
+  TRACE("Finished ribi::trim::Template::Test successfully");
+}
+#endif

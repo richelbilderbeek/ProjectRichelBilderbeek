@@ -307,7 +307,7 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::maziak::QtMaziakMenuDialog::Test");
+  TRACE("Starting ribi::maziak::QtMaziakMenuDialog2::Test");
   {
     const boost::scoped_ptr<QtMaziakMainDialog> d(new QtMaziakMainDialog(99));
     assert(d);
@@ -321,6 +321,6 @@ void ribi::maziak::QtMaziakMenuDialog2::Test() noexcept
     boost::scoped_ptr<QtAboutDialog> d(new QtAboutDialog(a));
     assert(d);
   }
-  TRACE("Finished ribi::maziak::QtMaziakMenuDialog::Test successfully");
+  TRACE("Finished ribi::maziak::QtMaziakMenuDialog2::Test successfully");
 }
 #endif

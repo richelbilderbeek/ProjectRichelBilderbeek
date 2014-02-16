@@ -13,6 +13,7 @@
 #include <boost/units/systems/si/length.hpp>
 #include "constcoordinat2d.h"
 #include "trianglemeshfwd.h"
+#include "coordinat3d.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -23,14 +24,7 @@ struct Point
 {
   const boost::shared_ptr<const ribi::ConstCoordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
 
-  Point(
-    const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat,
-    const std::string boundary_type
-  );
-
   bool CanGetZ() const noexcept;
-
-  std::string GetBoundaryType() const noexcept { return m_boundary_type; }
 
   const std::set<boost::weak_ptr<Face>>& GetConnected() const noexcept { return m_connected; }
 
@@ -47,7 +41,12 @@ struct Point
   ~Point() noexcept {}
   friend void boost::checked_delete<>(Point* x);
 
-  const std::string m_boundary_type;
+  friend class PointFactory;
+  Point(
+    const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat,
+    const int index,
+    const PointFactory& lock
+  );
 
   /// m_connected must be mutable, because of the interdependent creation of
   /// Point and Face: a Point needs to know the Face it is connected to,
@@ -69,8 +68,15 @@ struct Point
   ///Determined in the end
   int GetIndex() const noexcept { return m_index; }
   void SetIndex(const int index) const noexcept { m_index = index; }
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
+  friend std::ostream& operator<<(std::ostream& os, const Point& n);
 };
 
+const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
 bool operator==(const Point& lhs, const Point& rhs);
 bool operator!=(const Point& lhs, const Point& rhs);
 std::ostream& operator<<(std::ostream& os, const Point& n);

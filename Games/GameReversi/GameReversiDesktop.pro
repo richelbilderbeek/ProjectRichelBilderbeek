@@ -13,7 +13,10 @@ include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
 #Specific, console
+include(../../Classes/CppCanvas/CppCanvas.pri)
+include(../../Classes/CppDotMatrix/CppDotMatrix.pri)
 include(../../Classes/CppReversi/CppReversi.pri)
+include(../../Classes/CppTextCanvas/CppTextCanvas.pri)
 
 #Specific, desktop
 include(../../Classes/CppQtReversi/CppQtReversi.pri)

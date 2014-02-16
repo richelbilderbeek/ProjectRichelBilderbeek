@@ -30,6 +30,9 @@ private:
   void mousePressEvent(QMouseEvent * e);
   void paintEvent(QPaintEvent *);
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace reversi

@@ -19,9 +19,17 @@ namespace trim {
 ///The only class to use Cell its constructor
 struct CellFactory
 {
+  CellFactory();
+
   const boost::shared_ptr<Cell> Create(
     const std::vector<boost::shared_ptr<Face>>& faces
   );
+
+  const boost::shared_ptr<Cell> CreateTestPrism() const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace trim
