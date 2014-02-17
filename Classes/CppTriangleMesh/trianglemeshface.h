@@ -33,7 +33,7 @@ struct Face
 
   const std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
 
-  const boost::shared_ptr<const Face> GetFaceBelow() const { return m_face_below.lock(); }
+  int GetIndex() const noexcept { return m_index; }
 
   ///nullptr if no neighbour
   const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
@@ -63,12 +63,6 @@ struct Face
   ///with one already present, by comparing their sorted coordinats
   mutable std::set<ribi::Coordinat3D> m_coordinats;
 
-  ///The Face below this one:
-  /// - nullptr if this is a Face at the base
-  /// - nullptr if this is a vertical Face
-  /// - a value if this a non-base horizontal Face
-  const boost::weak_ptr<const Face> m_face_below;
-
   ///The index of this Face in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;
 
@@ -87,7 +81,6 @@ struct Face
   Face(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation,
-    const boost::weak_ptr<const Face> face_below,
     const int index,
     const FaceFactory& lock
   );
@@ -99,7 +92,6 @@ struct Face
   friend class TriangleMeshBuilder;
   std::string GetBoundaryType() const noexcept { return m_type; }
   void SetIndex(const int index) const noexcept { m_index = index; }
-  int GetIndex() const noexcept { return m_index; }
 
   #ifndef NDEBUG
   static void Test() noexcept;

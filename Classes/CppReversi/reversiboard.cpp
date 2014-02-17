@@ -58,8 +58,8 @@ bool ribi::reversi::Board::CanDoMove(const int x, const int y, const Player play
     //Must be a valid direction
     if (cur_x < 0 || cur_y < 0 || cur_x >= GetSize() || cur_y >= GetSize()) continue;
     //Adjacent square must be of opponent
-    if (Get(cur_x,cur_y) != GetOtherPlayer(player)) continue;
-    assert(Get(cur_x,cur_y) != empty);
+    if (Get(cur_x,cur_y) != PlayerToSquare(GetOtherPlayer(player))) continue;
+    assert(Get(cur_x,cur_y) != Square::empty);
     //Follow the trail until
     // - player is found -> Can do move
     // - empty is found -> Cannot do move
@@ -70,8 +70,8 @@ bool ribi::reversi::Board::CanDoMove(const int x, const int y, const Player play
       cur_y += d.second;
       //Must be a valid direction
       if (cur_x < 0 || cur_y < 0 || cur_x >= GetSize() || cur_y >= GetSize()) break;
-      if (Get(cur_x,cur_y) == empty) break;
-      if (Get(cur_x,cur_y) == player)
+      if (Get(cur_x,cur_y) == Square::empty) break;
+      if (Get(cur_x,cur_y) == PlayerToSquare(player))
       {
         return true;
       }
@@ -90,7 +90,7 @@ int ribi::reversi::Board::Count(const Square square) const noexcept
   {
     for (int x=0; x!=size; ++x)
     {
-      if (Get(x,y) == player) ++sum;
+      if (Get(x,y) == square) ++sum;
     }
   }
   return sum;
@@ -126,8 +126,8 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const Player player)
     //Must be a valid direction
     if (cur_x < 0 || cur_y < 0 || cur_x >= GetSize() || cur_y >= GetSize()) continue;
     //Adjacent square must be of opponent
-    if (Get(cur_x,cur_y) != GetOtherPlayer(player)) continue;
-    assert(Get(cur_x,cur_y) != empty);
+    if (Get(cur_x,cur_y) != PlayerToSquare(GetOtherPlayer(player))) continue;
+    assert(Get(cur_x,cur_y) != Square::empty);
     //Follow the trail until
     // - player is found -> Can do move
     // - empty is found -> Cannot do move
@@ -138,8 +138,8 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const Player player)
       cur_y += d.second;
       //Must be a valid direction
       if (cur_x < 0 || cur_y < 0 || cur_x >= GetSize() || cur_y >= GetSize()) break;
-      if (Get(cur_x,cur_y) == empty) break;
-      if (Get(cur_x,cur_y) == player)
+      if (Get(cur_x,cur_y) == Square::empty) break;
+      if (Get(cur_x,cur_y) == PlayerToSquare(player))
       {
         v.push_back(d); //Found delta
         break; //Next delta
@@ -153,8 +153,8 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const Player player)
     int cur_x = x + d.first;
     int cur_y = y + d.second;
     //Adjacent square must be of opponent
-    assert(Get(cur_x,cur_y) == GetOtherPlayer(player));
-    Set(cur_x,cur_y,player);
+    assert(Get(cur_x,cur_y) == PlayerToSquare(GetOtherPlayer(player)));
+    Set(cur_x,cur_y,PlayerToSquare(player));
     //Follow the trail until
     // - player is found -> Can do move
     while (1)
@@ -163,12 +163,12 @@ void ribi::reversi::Board::DoMove(const int x, const int y, const Player player)
       cur_y += d.second;
       //Must be a valid direction
       assert(!(cur_x < 0 || cur_y < 0 || cur_x >= GetSize() || cur_y >= GetSize()));
-      if (Get(cur_x,cur_y) == player) break;
-      assert(Get(cur_x,cur_y) == GetOtherPlayer(player));
-      Set(cur_x,cur_y,player);
+      if (Get(cur_x,cur_y) == PlayerToSquare(player)) break;
+      assert(Get(cur_x,cur_y) == PlayerToSquare(GetOtherPlayer(player)));
+      Set(cur_x,cur_y,PlayerToSquare(player));
     }
   }
-  Set(x,y,player);
+  Set(x,y,PlayerToSquare(player));
 }
 
 ribi::reversi::Square ribi::reversi::Board::Get(const int x, const int y) const noexcept
@@ -200,12 +200,12 @@ const std::vector<std::string> ribi::reversi::Board::GetVersionHistory() noexcep
 }
 
 
-int ribi::reversi::Board::GetOtherPlayer(const int player) noexcept
+ribi::reversi::Player ribi::reversi::Board::GetOtherPlayer(const Player player) noexcept
 {
   switch (player)
   {
-    case player1: return player2;
-    case player2: return player1;
+    case Player::player1: return Player::player2;
+    case Player::player2: return Player::player1;
     default: assert(!"Should not get here");
   }
   assert(!"Should not get here");
@@ -213,7 +213,7 @@ int ribi::reversi::Board::GetOtherPlayer(const int player) noexcept
 }
 
 
-const std::vector<std::pair<int,int>> ribi::reversi::Board::GetValidMoves(const int player) const noexcept
+const std::vector<std::pair<int,int>> ribi::reversi::Board::GetValidMoves(const Player player) const noexcept
 {
   const int size = GetSize();
   std::vector< std::pair<int,int> > v;
@@ -235,6 +235,18 @@ int ribi::reversi::Board::GetSize() const noexcept
   return m_board.size();
 }
 
+ribi::reversi::Square ribi::reversi::Board::PlayerToSquare(const Player player) const noexcept
+{
+  switch (player)
+  {
+    case Player::player1: return Square::player1;
+    case Player::player2: return Square::player2;
+    default:
+      assert(!"Should not get here");
+      throw std::logic_error("ribi::reversi::Board::PlayerToSquare: unknown value of player");
+  }
+}
+
 void ribi::reversi::Board::Set(const int x, const int y, const Square state) noexcept
 {
   assert(x>=0 && x < GetSize());
@@ -254,24 +266,24 @@ void ribi::reversi::Board::Test() noexcept
   TRACE("Starting ribi::reversi::Board::Test()");
   {
     Board r(4);
-    assert(r.Get(1,1) == Board::player1);
-    assert(r.Get(1,2) == Board::player2);
-    assert(r.Get(2,1) == Board::player2);
-    assert(r.Get(2,2) == Board::player1);
-    assert(r.Get(0,0) == Board::empty);
-    assert(r.Get(2,0) == Board::empty);
-    assert(r.CanDoMove(2,0,Board::player1));
-    assert(r.CanDoMove(3,1,Board::player1));
-    assert(r.CanDoMove(0,2,Board::player1));
-    assert(r.CanDoMove(1,3,Board::player1));
-    assert(r.GetValidMoves(Board::player1).size() == 4);
+    assert(r.Get(1,1) == Square::player1);
+    assert(r.Get(1,2) == Square::player2);
+    assert(r.Get(2,1) == Square::player2);
+    assert(r.Get(2,2) == Square::player1);
+    assert(r.Get(0,0) == Square::empty);
+    assert(r.Get(2,0) == Square::empty);
+    assert(r.CanDoMove(2,0,Player::player1));
+    assert(r.CanDoMove(3,1,Player::player1));
+    assert(r.CanDoMove(0,2,Player::player1));
+    assert(r.CanDoMove(1,3,Player::player1));
+    assert(r.GetValidMoves(Player::player1).size() == 4);
   }
   //operator==
   {
     const Board r(5);
     Board s(5);
     assert(r == s);
-    s.Set(0,0,player1);
+    s.Set(0,0,Square::player1);
     assert(r != s);
   }
   //operator<<
@@ -294,17 +306,17 @@ void ribi::reversi::Board::Test() noexcept
       << "1.2..";
     Board r;
     s >> r;
-    assert( r.CanDoMove(4,0,Board::player1));
-    assert( r.CanDoMove(3,2,Board::player1));
-    assert( r.CanDoMove(3,3,Board::player1));
-    assert( r.CanDoMove(3,4,Board::player1));
-    assert(!r.CanDoMove(3,1,Board::player1));
+    assert( r.CanDoMove(4,0,Player::player1));
+    assert( r.CanDoMove(3,2,Player::player1));
+    assert( r.CanDoMove(3,3,Player::player1));
+    assert( r.CanDoMove(3,4,Player::player1));
+    assert(!r.CanDoMove(3,1,Player::player1));
   }
   //Play random games
   for (int sz = 4; sz != 10; ++sz)
   {
     Board r(sz);
-    int player = Board::player1;
+    Player player = Player::player1;
     while (!r.GetValidMoves(player).empty())
     {
       std::vector<std::pair<int,int>> m {
@@ -324,9 +336,36 @@ void ribi::reversi::Board::Test() noexcept
 
 const boost::shared_ptr<ribi::TextCanvas> ribi::reversi::Board::ToTextCanvas() const noexcept
 {
+  const int n_rows = static_cast<int>(m_board.size());
+
+  if (n_rows == 0)
+  {
+    return nullptr;
+  }
+
+  const int n_cols = static_cast<int>(m_board[0].size());
   boost::shared_ptr<TextCanvas> canvas {
-    new TextCanvas(width,height)
+    new TextCanvas(n_cols,n_rows)
   };
+
+  for(int row=0; row!=n_rows; ++row)
+  {
+    assert(m_board[row].size() == m_board[0].size());
+    for (int col=0; col!=n_cols; ++col)
+    {
+      const Square square = m_board[row][col];
+      char c = ' ';
+      switch (square)
+      {
+        case Square::empty  : c = '.'; break;
+        case Square::player1: c = 'O'; break;
+        case Square::player2: c = 'X'; break;
+        default: assert(!"Should not get here");
+      }
+      canvas->PutChar(col,row,c);
+    }
+  }
+  return canvas;
 }
 
 bool ribi::reversi::operator==(const ribi::reversi::Board& lhs, const ribi::reversi::Board& rhs)
@@ -341,17 +380,17 @@ bool ribi::reversi::operator!=(const ribi::reversi::Board& lhs, const ribi::reve
 
 std::ostream& ribi::reversi::operator<<(std::ostream& os, const ribi::reversi::Board& r)
 {
-  for(const std::vector<int>& line: r.m_board)
+  for(const std::vector<Square>& line: r.m_board)
   {
     std::transform(line.begin(),line.end(),
       std::ostream_iterator<std::string>(os,""),
-      [](const int square)
+      [](const Square square)
       {
         switch (square)
         {
-          case Board::empty  : return ".";
-          case Board::player1: return "1";
-          case Board::player2: return "2";
+          case Square::empty  : return ".";
+          case Square::player1: return "1";
+          case Square::player2: return "2";
           default: assert(!"Should not get here");
         }
         assert(!"Should not get here");
@@ -398,9 +437,9 @@ std::istream& ribi::reversi::operator>>(std::istream& is, ribi::reversi::Board& 
         const char c = line[x];
         switch (c)
         {
-          case '1': r.Set(x,y,Board::player1); break;
-          case '2': r.Set(x,y,Board::player2); break;
-          case '.': r.Set(x,y,Board::empty); break;
+          case '1': r.Set(x,y,Square::player1); break;
+          case '2': r.Set(x,y,Square::player2); break;
+          case '.': r.Set(x,y,Square::empty); break;
           default: assert(!"Should not get here");
         }
       }

@@ -1,108 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-  <title>std::rand</title>
-  <meta name="description" content="C++ std::rand"/>
-  <meta name="keywords" content="C++ std::rand std rand"/>
-  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+  <title>Redirection page</title>
+  <meta http-equiv="REFRESH" content="0;url=CppStdRand.htm"/>
 </head>
-<!-- End of head, start of body -->
 <body>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<!-- Page header -->
-<h1>(<a href="Cpp.htm">C++</a>) <a href="CppRand.htm">std::rand</a></h1>
-<p>&nbsp;</p>
-<p><a href="CppRand.htm">std::rand</a> draws a random positive <a href="CppInt.htm">integer</a> from zero to <a href="CppRAND_MAX.htm">RAND_MAX</a>. <a href="CppRAND_MAX.htm">RAND_MAX</a> is a <a href="CppDefine.htm">#define</a>d in <a href="CppCstdlibH.htm">cstdlib.h</a>.</p>
-<p>&nbsp;</p>
-<p><a href="CppRand.htm">std::rand</a> is <a href="CppDefinition.htm">defined</a> in the <a href="CppHeaderFile.htm">header file</a> <a href="CppCstdlibH.htm">cstdlib.h</a>.</p>
-<p>&nbsp;</p>
-<p><a href="Cpp_lrand.htm">std::_lrand</a> is like <a href="CppRand.htm">std::rand</a>, except it <a href="CppReturn.htm">return</a>s random numbers in a larger range. Check out the <a href="CppBoost.htm">Boost C++ library</a> for other random number generators.</p>
-<p>&nbsp;</p>
-<p>The code below draws 10 different random numbers.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>As true random number generation is impossible for a device as non-random as a computer, <a href="CppRand.htm">std::rand</a> tries to mimic inpredictability as close as possible. <a href="CppRand.htm">std::rand</a> always generate the same sequence from the same seed. The seed is the starting point of the <a href="CppRand.htm">std::rand</a> sequence. <a href="CppSrand.htm">std::srand</a> sets this seed. The code below demonstrates that after the same seed (zero in this case), the first 'randomly drawn' number is always the same.</p>
-<p>&nbsp;</p>
-<!-- start of code -->
-<table border = "1"><tr><td><code>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppCstdlibH.htm">cstdlib</a>&gt;<br/>
-<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
-<br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>10; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSrand.htm">std::srand</a>(0);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;}<br/>
-}<br/>
-</code></td></tr></table>
-<!-- end of the code -->
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Note when using multithreading</h2>
-<p>&nbsp;</p>
-<p>As <a href="CppSrand.htm">std::srand</a> and <a href="CppRand.htm">std::rand</a> use a <a href="CppGlobal.htm">global</a>/<a href="CppStatic.htm">static</a> <a href="CppVariable.htm">variable</a> and therefore is not suitable for multithreading. Check out the <a href="CppBoost.htm">Boost C++ library</a> for other random number generators that do support multithreading.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Get a broken random number from zero to one</h2>
-<p>&nbsp;</p>
-<p>See <a href="CppGetRandomUniform.htm">GetRandomUniform</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>Get a random number from a normal distribution</h2>
-<p>&nbsp;</p>
-<p>See <a href="CppGetRandomNormal.htm">GetRandomNormal</a>.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<h2>External links</h2>
-<p>&nbsp;</p>
-<ul>
-  <li><a href="http://www.cplusplus.com/reference/clibrary/cstdlib/rand">Cplusplus.com page about std::rand</a></li> 
-</ul>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
-<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>Redirection...</p>
 <p>&nbsp;</p>
 <p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
 </body>
 </html>
-

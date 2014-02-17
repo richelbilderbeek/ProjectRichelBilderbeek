@@ -110,8 +110,8 @@ bool ribi::trim::operator!=(const ribi::trim::Point& lhs, const ribi::trim::Poin
 std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
 {
   os
-    << ribi::xml::ToXml("index",n.GetIndex())
-    << ribi::xml::ToXml("coordinat",n.GetCoordinat())
+    << ribi::xml::ToXml("point_index",n.GetIndex())
+    << ribi::xml::ToXml("coordinat",*n.GetCoordinat())
   ;
   return os;
 }

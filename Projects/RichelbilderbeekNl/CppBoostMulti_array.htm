@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::multi_array</title>
+  <meta name="description" content="C++ boost::multi_array"/>
+  <meta name="keywords" content="C++ boost::multi_array multi array 3D 3-d 2D 3-d three 3 2 two dimensional vector std::vector code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMulti_array.htm">boost::multi_array</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppMulti_array.htm">boost::multi_array</a> is a <a href="CppBoost.htm">Boost</a> <a href="CppContainer.htm">container</a> for storing elements similar to a multi-dimensional array.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/multi_array.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a> ()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Determine <a href="CppMulti_array.htm">boost::multi_array</a> size<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> 4;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxz <a href="CppOperatorAssign.htm">=</a> 5;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>The '3' determines v being 3-dimensional<br/>
+&nbsp;&nbsp;<a href="CppMulti_array.htm">boost::multi_array</a>&lt;<b><a href="CppDouble.htm">double</a></b>, 3&gt; v(<a href="CppBoost.htm">boost</a>::extents[maxx][maxy][maxz]);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Choose a random spot<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> maxx;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> maxy;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> z <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> maxz;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write to a random spot<br/>
+&nbsp;&nbsp;v[x][y][z] <a href="CppOperatorAssign.htm">=</a> x <a href="CppOperatorPlus.htm">+</a> y <a href="CppOperatorPlus.htm">+</a> z;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read from to a random spot<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[x][y][z]<a href="CppOperatorEqual.htm">==</a>x+y+z);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

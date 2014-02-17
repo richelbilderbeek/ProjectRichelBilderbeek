@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::iter_swap</title>
+  <meta name="description" content="C++ std::iter_swap"/>
+  <meta name="keywords" content="C++ STL std::iter_swap std iter_swap iterator swap code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIter_swap.htm">std::iter_swap</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppIter_swap.htm">std::iter_swap</a> is an <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">function</a> to <a href="CppSwap.htm">swap</a> the data two <a href="CppIterator.htm">iterators</a> <a href="CppPointer.htm">point</a> to.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>How are these ints stored?<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create two iterators<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::iterator i <a href="CppOperatorAssign.htm">=</a> v.begin();<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::iterator j <a href="CppOperatorAssign.htm">=</a> v.end() <a href="CppOperatorMinus.htm">-</a> 1;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>What are the iterators <a href="CppPointer.htm">point</a>ing to?<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*i <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*j <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Swap the data the iterators are <a href="CppPointer.htm">point</a>ing to<br/>
+&nbsp;&nbsp;<a href="CppIter_swap.htm">std::iter_swap</a>(i,j);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>What are the iterators <a href="CppPointer.htm">point</a>ing to now?<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*i <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*j <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>How are these ints stored now?<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0]<a href="CppOperatorEqual.htm">==</a>2);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1]<a href="CppOperatorEqual.htm">==</a>1);<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

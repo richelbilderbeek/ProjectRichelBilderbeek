@@ -48,9 +48,10 @@ struct Template
   std::vector<std::vector<int>> m_face_point_indices;
   std::vector<boost::shared_ptr<Point>> m_points;
 
-  static const boost::shared_ptr<Template> CreateTest2x2() noexcept;
   static const boost::shared_ptr<Template> CreateTest2x3() noexcept;
   static const boost::shared_ptr<Template> CreateTest3x3() noexcept;
+  static const boost::shared_ptr<Template> CreateTestSquare2x2() noexcept;
+  static const boost::shared_ptr<Template> CreateTestTriangle2x2() noexcept;
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm

@@ -14,6 +14,9 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct TextCanvas;
+
 namespace reversi {
 
 ///Widget is higher level interface of the Reversi Board:
@@ -43,16 +46,26 @@ struct Widget
   static const std::vector<std::string> GetVersionHistory() noexcept;
   Winner GetWinner() const noexcept;
 
+  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+
   void Undo();
 
   private:
   boost::shared_ptr<Board> m_board;
+
+  ///The player to do a move; the player to control the selector
   Player m_current_player;
 
   //The undo stack (use std::vector because it is a true STL container)
   //first: the Widget before the Move
   //second: the last Move done in the game
   std::vector<std::pair<boost::shared_ptr<Widget>,boost::shared_ptr<const Move>>> m_undo;
+
+  ///The x coordinat of the selector
+  int m_x;
+
+  ///The y coordinat of the selector
+  int m_y;
 
   bool CanDoMove(const int x, const int y) const noexcept;
   bool CanDoMovePass() const noexcept;

@@ -25,7 +25,35 @@ struct CellFactory
     const std::vector<boost::shared_ptr<Face>>& faces
   );
 
+
+  ///Create a cell in the shape of a prism
+  /*
+
+      +
+     /|\
+    +---+
+    | | |
+    | + |
+    |/ \|
+    +---+
+
+  */
   const boost::shared_ptr<Cell> CreateTestPrism() const noexcept;
+
+
+  const std::vector<boost::shared_ptr<Cell>> CreateTestCube() const noexcept;
+  ///Create two prims-shaped cell to form a cube
+  /*
+
+      +---+
+     /|\ /|
+    +---+ |
+    | | | |
+    | +-|-+
+    |/ \|/
+    +---+
+
+  */
 
   #ifndef NDEBUG
   static void Test() noexcept;

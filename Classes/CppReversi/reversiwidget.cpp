@@ -11,13 +11,16 @@
 #include "reversimove.h"
 #include "reversiboard.h"
 #include "reversiplayer.h"
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::reversi::Widget::Widget(const int size)
   : m_board(new Board(size)),
     m_current_player(Player::player1),
-    m_undo{}
+    m_undo{},
+    m_x{size/2},
+    m_y{size/2}
 {
   #ifndef NDEBUG
   Test();
@@ -133,6 +136,18 @@ void ribi::reversi::Widget::DoMovePass() noexcept
   TogglePlayer();
 }
 
+ribi::reversi::Player ribi::reversi::Widget::GetOtherPlayer() const noexcept
+{
+  switch (GetCurrentPlayer())
+  {
+    case Player::player1: return Player::player2;
+    case Player::player2: return Player::player1;
+    default: assert(!"Should not get here");
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("ribi::reversi::Widget::GetOtherPlayer: invalid player");
+}
+
 const std::vector<boost::shared_ptr<ribi::reversi::Move>> ribi::reversi::Widget::GetValidMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move>> moves;
@@ -161,30 +176,8 @@ const std::vector<std::string> ribi::reversi::Widget::GetVersionHistory() noexce
 {
   return {
     "2013-12-19: version 1.0: split off from Reversi",
-    "2014-02-14: version 1.1: use enum classes"
+    "2014-02-14: version 1.1: use enum classes, added ToTextCanvas"
   };
-}
-
-void ribi::reversi::Widget::TogglePlayer()
-{
-  switch (GetCurrentPlayer())
-  {
-    case Player::player1: m_current_player = Player::player2; return;
-    case Player::player2: m_current_player = Player::player1; return;
-    default: assert(!"Should not get here");
-  }
-}
-
-ribi::reversi::Player ribi::reversi::Widget::GetOtherPlayer() const noexcept
-{
-  switch (GetCurrentPlayer())
-  {
-    case Player::player1: return Player::player2;
-    case Player::player2: return Player::player1;
-    default: assert(!"Should not get here");
-  }
-  assert(!"Should not get here");
-  throw std::logic_error("ribi::reversi::Widget::GetOtherPlayer: invalid player");
 }
 
 ribi::reversi::Winner ribi::reversi::Widget::GetWinner() const noexcept
@@ -207,6 +200,47 @@ ribi::reversi::Winner ribi::reversi::Widget::GetWinner() const noexcept
   }
   return Winner::no_winner;
 }
+
+void ribi::reversi::Widget::TogglePlayer()
+{
+  switch (GetCurrentPlayer())
+  {
+    case Player::player1: m_current_player = Player::player2; return;
+    case Player::player2: m_current_player = Player::player1; return;
+    default: assert(!"Should not get here");
+  }
+}
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::reversi::Widget::ToTextCanvas() const noexcept
+{
+  const int n_rows = m_board->GetSize();
+
+  if (n_rows == 0)
+  {
+    return nullptr;
+  }
+
+  boost::shared_ptr<TextCanvas> canvas {
+    m_board->ToTextCanvas()
+  };
+
+  const char c = canvas->GetChar(m_x,m_y);
+  char d = ' ';
+  switch (c)
+  {
+    case ' ': d = '.'; break;
+    case '.': d = ' '; break;
+    case 'O': d = 'o'; break;
+    case 'X': d = 'x'; break;
+    case 'o': d = 'O'; break;
+    case 'x': d = 'X'; break;
+  }
+  assert(canvas->IsInRange(m_x,m_y));
+  canvas->PutChar(m_x,m_y,d);
+  return canvas;
+}
+
+
 
 #ifndef NDEBUG
 void ribi::reversi::Widget::Test() noexcept

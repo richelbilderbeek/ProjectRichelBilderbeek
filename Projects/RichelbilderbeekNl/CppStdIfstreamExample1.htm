@@ -3,9 +3,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<<<<<<< HEAD
   <title>StdIfstreamExample1</title>
   <meta name="description" content="C++ StdIfstreamExample1"/>
   <meta name="keywords" content="C++ StdIfstreamExample1 "/>
+=======
+  <title>IfstreamExample1</title>
+  <meta name="description" content="C++ IfstreamExample1"/>
+  <meta name="keywords" content="C++ IfstreamExample1 "/>
+>>>>>>> b1c7b13f1d94b500f745df0d38c617a3f35f743b
   <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
 </head>
 <!-- End of head, start of body -->
@@ -18,9 +24,15 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <!-- Page header -->
+<<<<<<< HEAD
 <h1>(<a href="Cpp.htm">C++</a>) <a href="CppStdIfstreamExample1.htm">StdIfstreamExample1</a></h1>
 <p>&nbsp;</p>
 <!-- No CodeToHtmlInfo about this class with page name CppStdIfstreamExample1-->
+=======
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppIfstreamExample1.htm">IfstreamExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppIfstreamExample1-->
+>>>>>>> b1c7b13f1d94b500f745df0d38c617a3f35f743b
 <h2>Technical facts</h2>
 <p>&nbsp;</p>
 <p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
@@ -52,10 +64,17 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<<<<<<< HEAD
 <h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppStdIfstreamExample1/CppStdIfstreamExample1.pro</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppStdIfstreamExample1/CppStdIfstreamExample1.pro" border = "1"><tr><td><code>
+=======
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppIfstreamExample1/CppIfstreamExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIfstreamExample1/CppIfstreamExample1.pro" border = "1"><tr><td><code>
+>>>>>>> b1c7b13f1d94b500f745df0d38c617a3f35f743b
 <a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
 <a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
@@ -96,10 +115,17 @@ win32 {<br/>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<<<<<<< HEAD
 <h2>./CppStdIfstreamExample1/main.cpp</h2>
 <p>&nbsp;</p>
 <!-- start of code -->
 <table summary="./CppStdIfstreamExample1/main.cpp" border = "1"><tr><td><code>
+=======
+<h2>./CppIfstreamExample1/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppIfstreamExample1/main.cpp" border = "1"><tr><td><code>
+>>>>>>> b1c7b13f1d94b500f745df0d38c617a3f35f743b
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
@@ -110,11 +136,19 @@ win32 {<br/>
 <b><a href="CppVoid.htm">void</a></b> DangerDoNotDoThis()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Assure that the file does not exist<br/>
+<<<<<<< HEAD
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename { "tmp.txt" };<br/>
 &nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>(filename.c_str());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>'Open' the nonexisting file<br/>
 &nbsp;&nbsp;<a href="CppStdIfstream.htm">std::ifstream</a> f(filename.c_str());<br/>
+=======
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename { "tmp.txt" };<br/>
+&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(filename.c_str());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>'Open' the nonexisting file<br/>
+&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename.c_str());<br/>
+>>>>>>> b1c7b13f1d94b500f745df0d38c617a3f35f743b
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>This test will prevent all nasty things from happening!<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(f.is_open());<br/>
@@ -123,11 +157,19 @@ win32 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppThis.htm">this</a></b> will read infinitely<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !f.eof(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
+<<<<<<< HEAD
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdGetline.htm">std::getline</a>(f,s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display a dot and s (which will be empty) without a newline<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>This will cause the whole screen to fill up with dots<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdFlush.htm">std::flush</a>;<br/>
+=======
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(f,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display a dot and s (which will be empty) without a newline<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>This will cause the whole screen to fill up with dots<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "." <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFlush.htm">std::flush</a>;<br/>
+>>>>>>> b1c7b13f1d94b500f745df0d38c617a3f35f743b
 &nbsp;&nbsp;}<br/>
 <br/>
 }<br/>

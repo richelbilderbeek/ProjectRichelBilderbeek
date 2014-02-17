@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>MultimapExample1</title>
+  <meta name="description" content="C++ MultimapExample1"/>
+  <meta name="keywords" content="C++ MultimapExample1 "/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppMultimapExample1.htm">MultimapExample1</a></h1>
+<p>&nbsp;</p>
+<!-- No CodeToHtmlInfo about this class with page name CppMultimapExample1-->
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 13.10 (saucy)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.8.1</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.8.1</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: ./CppMultimapExample1/CppMultimapExample1.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppMultimapExample1/CppMultimapExample1.pro" border = "1"><tr><td><code>
+<a href="CppQmakeTemplate.htm">TEMPLATE</a> = app<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> += console<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= app_bundle<br/>
+<a href="CppQmakeConfig.htm">CONFIG</a> -= qt<br/>
+<a href="CppQmakeQmake_cxxflags.htm">QMAKE_CXXFLAGS</a> += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWall.htm">-Wall</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWeffcpp.htm">-Weffc++</a> <a href="CppWextra.htm">-Wextra</a><br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppMultimapExample1/main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppMultimapExample1/main.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<a href="CppString.htm">std::string</a>,<b><a href="CppInt.htm">int</a></b>&gt; <a href="CppContainer.htm">Container</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppContainer.htm">Container</a>::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppContainer.htm">Container</a> <a href="CppQuestion.htm">question</a>s;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 5 and 10",7));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 15",11));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 15",13));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",11));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",13));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",17));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 10 and 20",19));<br/>
+&nbsp;&nbsp;<a href="CppQuestion.htm">question</a>s.insert(<a href="CppMake_pair.htm">std::make_pair</a>("A prime number between 20 and 25",23));<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppIterator.htm">Iterator</a>,<a href="CppIterator.htm">Iterator</a>&gt; answers<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppQuestion.htm">question</a>s.equal_range("A prime number between 10 and 20");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> answers.first; i<a href="CppOperatorNotEqual.htm">!=</a> answers.second; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i-&gt;second <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>

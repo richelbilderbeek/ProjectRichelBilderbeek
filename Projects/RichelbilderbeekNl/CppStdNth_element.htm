@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::nth_element</title>
+  <meta name="description" content="C++ std::nth_element"/>
+  <meta name="keywords" content="C++ std::nth_element code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppNth_element.htm">std::nth_element</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppNth_element.htm">std::nth_element</a> is an <a href="CppStl.htm">STL</a> 
+<a href="CppSort.htm">sorting</a> <a href="CppAlgorithm.htm">algorithm</a> that
+<a href="CppSort.htm">sorts</a> a <a href="CppContainer.htm">container</a> up until 
+the nth element and leaves the rest unsorted.</p>
+<p>&nbsp;</p>
+<p>The example below shows how to obtain the top-three lowest elements.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a random-shuffled <a href="CppVector.htm">std::vector</a> with the<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>elements [0,size&gt;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> 100;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i) v.push_back(i);<br/>
+&nbsp;&nbsp;<a href="CppRandom_shuffle.htm">std::random_shuffle</a>(v.begin(),v.end());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Only sort the top three<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> top_x <a href="CppOperatorAssign.htm">=</a> 3;<br/>
+&nbsp;&nbsp;<a href="CppNth_element.htm">std::nth_element</a>(v.begin(),v.begin() <a href="CppOperatorPlus.htm">+</a> top_x,v.end());<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume the top three are properly sorted<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0] <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2] <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Count non-sorted non-top-three<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_non_sorted <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=top_x; i<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v[i]<a href="CppOperatorNotEqual.htm">!=</a>i) <a href="CppOperatorIncrement.htm">++</a>n_non_sorted;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the number of non-sorted elements<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>(my screen output: 86)<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_non_sorted <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -14,6 +14,7 @@
 
 #include "coordinat3d.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshfacefactory.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -21,13 +22,11 @@
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
   const FaceOrientation any_orientation,
-  const boost::weak_ptr<const Face> face_below,
   const int index,
   const FaceFactory&
   )
   : m_belongs_to{},
     m_coordinats{},
-    m_face_below(face_below),
     m_index{index},
     m_orientation(any_orientation),
     m_points(any_points),
@@ -38,8 +37,6 @@ ribi::trim::Face::Face(
   #endif
   PROFILE_FUNC();
   #ifndef NDEBUG
-  if (m_orientation == FaceOrientation::vertical) { assert(m_face_below.expired()); }
-  //Must have a Face below if not a base Face
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -131,6 +128,11 @@ const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() con
     ),
     m_belongs_to.end()
   );
+  if (m_belongs_to.empty())
+  {
+    return nullptr;
+  }
+  assert(!m_belongs_to.empty());
   boost::shared_ptr<const Cell> p {
     m_belongs_to[0].lock()
   };
@@ -162,6 +164,14 @@ void ribi::trim::Face::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Face::Test");
+  const std::vector<boost::shared_ptr<Face>> faces {
+    FaceFactory().CreateTestPrism()
+  };
+  for (auto face: faces)
+  {
+    assert(!(face->GetOwner().get()) && "Faces obtain an owner when being added to a Cell");
+    assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");
+  }
   TRACE("Finished ribi::trim::Face::Test successfully");
 }
 #endif
@@ -251,10 +261,19 @@ bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face&
 std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Face& f)
 {
   os
-    << ribi::xml::ToXml("index",f.GetIndex())
-    << ribi::xml::ToXml("points",std::begin(f.GetPoints()),std::end(f.GetPoints()))
+    << ribi::xml::ToXml("face_index",f.GetIndex())
     << ribi::xml::ToXml("orientation",static_cast<int>(f.GetOrientation()))
-
   ;
+
+  {
+    std::stringstream s;
+    const int n_points { static_cast<int>(f.GetPoints().size()) };
+    for (int i=0; i!=n_points; ++i)
+    {
+      s << ribi::xml::ToXml("point" + boost::lexical_cast<std::string>(i),*f.GetPoint(i));
+    }
+    os << ribi::xml::ToXml("points",s.str());
+  }
+
   return os;
 }
