@@ -23,8 +23,7 @@ struct FaceFactory
 
   const boost::shared_ptr<Face> Create(
     const std::vector<boost::shared_ptr<Point>>& points,
-    const FaceOrientation any_orientation,
-    const boost::weak_ptr<const Face> face_below
+    const FaceOrientation any_orientation
   ) const noexcept;
 
   ///Create the faces of a testing prism

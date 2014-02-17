@@ -123,13 +123,11 @@ ribi::trim::Template::Template(
         m_points[point2-1],
         m_points[point3-1]
       };
-      const boost::weak_ptr<const Face> no_face_below;
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal,
-          no_face_below
+          FaceOrientation::horizontal
         )
       };
       m_faces.push_back(face);
@@ -269,12 +267,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
         points[ v[1] ],
         points[ v[2] ]
       };
-      const boost::weak_ptr<const Face> no_face_below;
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal,
-          no_face_below
+          FaceOrientation::horizontal
         )
       };
       faces.push_back(face);
@@ -386,12 +382,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
         points[ v[1] ],
         points[ v[2] ]
       };
-      const boost::weak_ptr<const Face> no_face_below;
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal,
-          no_face_below
+          FaceOrientation::horizontal
         )
       };
       faces.push_back(face);
@@ -446,7 +440,6 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      //const std::string boundary_type = "two_times_three";
       const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
         new ribi::ConstCoordinat2D(x,y)
       };
@@ -519,12 +512,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         points[point2],
         points[point3]
       };
-      const boost::weak_ptr<const Face> no_face_below;
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal,
-          no_face_below
+          FaceOrientation::horizontal
         )
       };
       faces.push_back(face);
@@ -663,12 +654,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
         points[point2],
         points[point3]
       };
-      const boost::weak_ptr<const Face> no_face_below;
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal,
-          no_face_below
+          FaceOrientation::horizontal
         )
       };
       faces.push_back(face);

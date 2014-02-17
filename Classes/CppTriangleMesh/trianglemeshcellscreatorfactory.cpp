@@ -39,7 +39,6 @@ const boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactor
   const boost::shared_ptr<CellsCreator> cells_creator {
     CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
   };
-  assert(cells_creator->GetCells().size() == 2);
   #ifndef NDEBUG
   const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
   assert(cells.size() == 2 && "A cube consists out of two prisms");
@@ -99,17 +98,20 @@ void ribi::trim::CellsCreatorFactory::Test() noexcept
     const boost::shared_ptr<CellsCreator> prism {
       CellsCreatorFactory().CreateTestPrism()
     };
-    assert(prism->GetCells().size() == 1 && "A prism consists of 1 prisms");
-    assert(prism->GetCells()[0]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+    const std::vector<boost::shared_ptr<Cell>> cells { prism->GetCells() };
+    TRACE(cells.size());
+    assert(cells.size() == 1 && "A prism consists of 1 prisms");
+    assert(cells[0]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
   }
   //Create cube
   {
     boost::shared_ptr<CellsCreator> cube {
       CellsCreatorFactory().CreateTestCube()
     };
-    assert(cube->GetCells().size() == 2 && "A cube consists of 2 prisms");
-    assert(cube->GetCells()[0]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
-    assert(cube->GetCells()[1]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+    const std::vector<boost::shared_ptr<ribi::trim::Cell>> cells { cube->GetCells() };
+    assert(cells.size() == 2 && "A cube consists of 2 prisms");
+    assert(cells[0]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+    assert(cells[1]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
 
   }
   TRACE("Finished ribi::trim::CellsCreatorFactory::Test successfully");

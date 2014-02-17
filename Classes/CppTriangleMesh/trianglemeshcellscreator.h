@@ -22,7 +22,16 @@ namespace trim {
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
 struct CellsCreator
 {
-  const std::vector<boost::shared_ptr<Cell>> GetCells() const noexcept { return m_cells; }
+  CellsCreator(const CellsCreator&) = delete;
+  CellsCreator& operator=(const CellsCreator&) = delete;
+
+  const std::vector<boost::shared_ptr<Cell>> GetCells() noexcept;
+
+  ///The Cells must be released, and this will clear CellsCreator its Cells
+  ///This is important, because one can freely delete those released Cells
+  ///and have a valid mesh. Would the Cells be copied, the mesh created would be
+  ///invalid: the deleted Cells would always have a copy inside CellsCreator
+  //const std::vector<boost::shared_ptr<Cell>> ReleaseCells() noexcept;
 
   private:
   friend class CellsCreatorFactory;
@@ -35,7 +44,7 @@ struct CellsCreator
   );
 
 
-  const std::vector<boost::shared_ptr<Cell>> m_cells;
+  std::vector<boost::shared_ptr<Cell>> m_cells;
 
   const std::vector<boost::shared_ptr<Cell>> CreateCells(
     const boost::shared_ptr<const Template> t,

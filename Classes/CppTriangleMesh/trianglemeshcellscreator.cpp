@@ -137,16 +137,10 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
       }
       assert(layer == 0 || face_index - n_faces_per_layer >= 0);
       assert(layer == 0 || face_index - n_faces_per_layer < static_cast<int>(v.size()));
-      const boost::weak_ptr<const Face> face_below(
-          layer == 0
-        ? boost::weak_ptr<const Face>()
-        : v[ face_index - n_faces_per_layer ]
-      );
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal,
-          face_below
+          FaceOrientation::horizontal
         )
       };
       v.push_back(face);
@@ -221,13 +215,10 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
         all_points[points_offset + edge.first + n_points_per_layer]
       };
 
-      const boost::weak_ptr<const Face> no_face_below;
-
       const boost::shared_ptr<Face> face_1 {
         FaceFactory().Create(
           face_points_1,
-          FaceOrientation::vertical,
-          no_face_below
+          FaceOrientation::vertical
         )
       };
       v.push_back(face_1);
@@ -244,8 +235,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
       const boost::shared_ptr<Face> face_2 {
         FaceFactory().Create(
           face_points_2,
-          FaceOrientation::vertical,
-          no_face_below
+          FaceOrientation::vertical
         )
       };
       v.push_back(face_2);
@@ -330,6 +320,11 @@ bool ribi::trim::CellsCreator::IsSubset(
   return x.size() == std::min(v.size(),w.size());
 }
 
+const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::GetCells() noexcept
+{
+  return m_cells;
+}
+
 #ifndef NDEBUG
 void ribi::trim::CellsCreator::Test() noexcept
 {
@@ -350,7 +345,8 @@ void ribi::trim::CellsCreator::Test() noexcept
     const boost::shared_ptr<CellsCreator> cells_creator {
       CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
     };
-    assert(cells_creator->GetCells().size() > 0);
+    const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
+    assert(cells.size() > 0);
   }
   TRACE("Specific: check if a Face really loses its neighbour: remove a prism from a cube");
   {
@@ -363,7 +359,6 @@ void ribi::trim::CellsCreator::Test() noexcept
     const boost::shared_ptr<CellsCreator> cells_creator {
       CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
     };
-    assert(cells_creator->GetCells().size() == 2);
     const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
     const std::vector<boost::shared_ptr<Face>> faces_1 { cells[0]->GetFaces() };
     const std::vector<boost::shared_ptr<Face>> faces_2 { cells[1]->GetFaces() };

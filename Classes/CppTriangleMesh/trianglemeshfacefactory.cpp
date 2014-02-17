@@ -20,8 +20,7 @@ ribi::trim::FaceFactory::FaceFactory()
 
 const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const std::vector<boost::shared_ptr<Point>>& points,
-  const FaceOrientation any_orientation,
-  const boost::weak_ptr<const Face> face_below
+  const FaceOrientation any_orientation
 ) const noexcept
 {
   PROFILE_FUNC();
@@ -35,7 +34,6 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
     new Face(
       points,
       any_orientation,
-      face_below,
       n,
       *this
     )
@@ -65,28 +63,28 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
 
   const boost::shared_ptr<Face> bottom {
-    FaceFactory().Create(points_top,FaceOrientation::horizontal, {})
+    FaceFactory().Create(points_top,FaceOrientation::horizontal)
   };
   const boost::shared_ptr<Face> top {
-    FaceFactory().Create(points_top,FaceOrientation::horizontal,bottom)
+    FaceFactory().Create(points_top,FaceOrientation::horizontal) //,bottom)
   };
   const boost::shared_ptr<Face> a {
-    FaceFactory().Create(points_a,FaceOrientation::vertical, {})
+    FaceFactory().Create(points_a,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> b {
-    FaceFactory().Create(points_b,FaceOrientation::vertical, {})
+    FaceFactory().Create(points_b,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> c {
-    FaceFactory().Create(points_c,FaceOrientation::vertical, {})
+    FaceFactory().Create(points_c,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> d {
-    FaceFactory().Create(points_d,FaceOrientation::vertical, {})
+    FaceFactory().Create(points_d,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> e {
-    FaceFactory().Create(points_e,FaceOrientation::vertical, {})
+    FaceFactory().Create(points_e,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> f {
-    FaceFactory().Create(points_f,FaceOrientation::vertical, {})
+    FaceFactory().Create(points_f,FaceOrientation::vertical)
   };
   assert(bottom);
   assert(top);

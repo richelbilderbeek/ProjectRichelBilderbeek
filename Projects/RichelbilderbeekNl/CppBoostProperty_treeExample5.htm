@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>boost::property_tree example 5: an even more complex data type</title>
+  <meta name="description" content="C++ boost::property_tree example 5: an even more complex data type"/>
+  <meta name="keywords" content="C++ boost::property_tree boost property_tree property tree example 5: an even more complex data type code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppProperty_treeExample5.htm">boost::property_tree example 5: an even more complex data type</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppProperty_tree.htm">boost::property_tree</a> example 5: data type with a <a href="CppVector.htm">std::vector</a>.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppProperty_treeExample5.zip">Download the Qt Creator project 'CppProperty_treeExample5' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicBoost.png" alt="Boost"/> <a href="CppBoost.htm">Boost</a>: version 1.48</li>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppProperty_treeExample5.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; += core<br/>
+QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWerror.htm">-Werror</a> #-Wextra<br/>
+TARGET = CppProperty_treeExample5<br/>
+CONFIG&nbsp;&nbsp; += console<br/>
+CONFIG&nbsp;&nbsp; -= app_bundle<br/>
+TEMPLATE = app<br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppProperty_tree.htm">boost/property_tree</a>/ptree.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppProperty_tree.htm">boost/property_tree</a>/xml_parser.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://richelbilderbeek.nl/CppVectorToStreamExample2.htm<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; w)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy the original <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> w;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Preformat data<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;os](<a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The only <a href="CppAssert.htm">assert</a>ion done on the input<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note that users nearly every use bell <a href="CppChar.htm">character</a>s in their text inputs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount.htm">std::count</a>(s.begin(),s.end(),'\b') <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Text must not contain a bell <a href="CppChar.htm">character</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),' ','\b');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "&lt;/&gt;") s <a href="CppOperatorAssign.htm">=</a> "&lt;\b/&gt;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check data<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;os](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorNotEqual.htm">!=</a> "&lt;/&gt;" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Text shoule not be '&lt;/&gt;' <a href="CppAny.htm">any</a>more");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount.htm">std::count</a>(s.begin(),s.end(),' ') <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Text should not contain spaces <a href="CppAny.htm">any</a>more");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write start tag<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;&gt;\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write data<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;os](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write end tag<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://richelbilderbeek.nl/CppVectorToStreamExample2.htm<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read start tag<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s; is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s; <a href="CppAssert.htm">assert</a>(s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("&lt;&gt;"));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read data until end tag<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("&lt;/&gt;")) <b><a href="CppReturn.htm">return</a></b> is;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "&lt;\b/&gt;") s <a href="CppOperatorAssign.htm">=</a> "&lt;/&gt;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'\b',' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a>Names is a <b><a href="CppStruct.htm">struct</a></b> to contain a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
+<a href="CppComment.htm">///</a>Without it, <a href="CppProperty_tree.htm">boost::property_tree</a> cannot parse People<br/>
+<a href="CppComment.htm">///</a>See commented code below <b><a href="CppFor.htm">for</a></b> a Names-less <a href="CppVersion.htm">version</a> that will not <a href="CppCompile.htm">compile</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> Names<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_names;<br/>
+};<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> People<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Name(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; name)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_names.m_names.push_back(name);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetNames() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_names.m_names;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetNames(<b><a href="CppConst.htm">const</a></b> Names&amp; names)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_names <a href="CppOperatorAssign.htm">=</a> names;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Load(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;filename)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::ptree t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::xml_parser::read_xml(filename,t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_names <a href="CppOperatorAssign.htm">=</a> t.get&lt;Names&gt;("People.names");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Save(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;filename) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::ptree t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;t.put("People.names", m_names);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::xml_parser::write_xml(filename,t);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;Names m_names;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> People&amp; lhs, <b><a href="CppConst.htm">const</a></b> People&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.GetNames() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetNames();<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Names&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.m_names;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, Names&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> p.m_names;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> is;<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> People&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.GetNames();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, People&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;Names names;<br/>
+&nbsp;&nbsp;is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> names; p.SetNames(names);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> is;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test reading and writing of <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://richelbilderbeek.nl/CppVectorToStreamExample2.htm<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Go ahead, create an entry that <b><a href="CppBreak.htm">break</a></b>s the code!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"aahs",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"aals",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abac",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abas",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" &lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" &lt;/&gt; ",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;_",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt; &lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;_&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abba",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abbe",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abbs",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abed",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abet",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abid"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write to file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read from file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v <a href="CppOperatorNotEqual.htm">!=</a> w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> w <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Because the <a href="CppAlgorithm.htm">algorithm</a> is excellent, <b><a href="CppThis.htm">this</a></b> will never happen B-)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check writing/reading people to/from stream in plain text<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note that <b><a href="CppThis.htm">this</a></b> also works, without <b><a href="CppUsing.htm">using</a></b> <a href="CppProperty_tree.htm">boost::property_tree</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;People p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Bilderbikkel");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Richel Bilderbeek");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> q);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check writing/reading people to/from stream <b><a href="CppUsing.htm">using</a></b> <a href="CppXml.htm">XML</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;People p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Bilderbikkel");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Richel Bilderbeek");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.Save(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q.Load(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> q);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display tmp.txt<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Displaying '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "':\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(!f.eof())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(f,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">/*</a> Screen output:<br/>
+<br/>
+Displaying 'tmp.txt':<br/>
+&lt;?xml <a href="CppVersion.htm">version</a>="1.0" encoding="utf-8"?&gt;<br/>
+&lt;People&gt;&lt;names&gt;&amp;lt;&amp;gt;<br/>
+Bilderbikkel<br/>
+RichelBilderbeek<br/>
+&amp;lt;/&amp;gt;&lt;/names&gt;&lt;/People&gt;<br/>
+<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+<a href="CppComment.htm">/*</a><br/>
+ *<br/>
+ *<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppProperty_tree.htm">boost/property_tree</a>/ptree.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppProperty_tree.htm">boost/property_tree</a>/xml_parser.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://richelbilderbeek.nl/CppVectorToStreamExample2.htm<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; w)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy the original <a href="CppVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> w;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Preformat data<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;os](<a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>The only <a href="CppAssert.htm">assert</a>ion done on the input<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note that users nearly every use bell <a href="CppChar.htm">character</a>s in their text inputs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount.htm">std::count</a>(s.begin(),s.end(),'\b') <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Text must not contain a bell <a href="CppChar.htm">character</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),' ','\b');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "&lt;/&gt;") s <a href="CppOperatorAssign.htm">=</a> "&lt;\b/&gt;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check data<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;os](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorNotEqual.htm">!=</a> "&lt;/&gt;" <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Text shoule not be '&lt;/&gt;' <a href="CppAny.htm">any</a>more");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppCount.htm">std::count</a>(s.begin(),s.end(),' ') <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Text should not contain spaces <a href="CppAny.htm">any</a>more");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write start tag<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;&gt;\n";<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write data<br/>
+&nbsp;&nbsp;<a href="CppFor_each.htm">std::for_each</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[&amp;os](<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write end tag<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/&gt;";<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>From http://richelbilderbeek.nl/CppVectorToStreamExample2.htm<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read start tag<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s; is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s; <a href="CppAssert.htm">assert</a>(s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("&lt;&gt;"));<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read data until end tag<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("&lt;/&gt;")) <b><a href="CppReturn.htm">return</a></b> is;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> "&lt;\b/&gt;") s <a href="CppOperatorAssign.htm">=</a> "&lt;/&gt;";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppReplace.htm">std::replace</a>(s.begin(),s.end(),'\b',' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> People<br/>
+{<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppAdd.htm">Add</a>Name(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; name)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_names.push_back(name);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; GetNames() <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_names;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetNames(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; names)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_names <a href="CppOperatorAssign.htm">=</a> names;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Load(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;filename)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::ptree t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::xml_parser::read_xml(filename,t);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_names <a href="CppOperatorAssign.htm">=</a> t.get&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; &gt;("People.names");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Save(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> &amp;filename) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::ptree t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;t.put("People.names", <b><a href="CppThis.htm">this</a></b>-&gt;m_names);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProperty_tree.htm">boost::property_tree</a>::xml_parser::write_xml(filename,t);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; m_names;<br/>
+};<br/>
+<br/>
+<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorEqual.htm">operator==</a></b>(<b><a href="CppConst.htm">const</a></b> People&amp; lhs, <b><a href="CppConst.htm">const</a></b> People&amp; rhs)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.GetNames() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> rhs.GetNames();<br/>
+}<br/>
+<br/>
+<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> People&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p.GetNames();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
+}<br/>
+<br/>
+<a href="CppIstream.htm">std::istream</a>&amp; <b><a href="CppOperator.htm">operator</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(<a href="CppIstream.htm">std::istream</a>&amp; is, People&amp; p)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; names;<br/>
+&nbsp;&nbsp;is <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> names; p.SetNames(names);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> is;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test reading and writing of <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://richelbilderbeek.nl/CppVectorToStreamExample2.htm<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Go ahead, create an entry that <b><a href="CppBreak.htm">break</a></b>s the code!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"aahs",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"aals",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abac",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abas",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" &lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" &lt;/&gt; ",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"_&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;_",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt; &lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&lt;/&gt;_&lt;/&gt;",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abba",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abbe",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abbs",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abed",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abet",<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"abid"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Write to file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read from file<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (v <a href="CppOperatorNotEqual.htm">!=</a> w)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> w <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Because the <a href="CppAlgorithm.htm">algorithm</a> is excellent, <b><a href="CppThis.htm">this</a></b> will never happen B-)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check writing/reading people to/from stream in plain text<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note that <b><a href="CppThis.htm">this</a></b> also works, without <b><a href="CppUsing.htm">using</a></b> <a href="CppProperty_tree.htm">boost::property_tree</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;People p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Bilderbikkel");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Richel Bilderbeek");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> q);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check writing/reading people to/from stream <b><a href="CppUsing.htm">using</a></b> <a href="CppXml.htm">XML</a><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;People p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Bilderbikkel");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.<a href="CppAdd.htm">Add</a>Name("Richel Bilderbeek");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;p.Save(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;People q;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;q.Load(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> q);<br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display tmp.txt<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Displaying '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "':\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> f(filename);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(!f.eof())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(f,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<a href="CppComment.htm">*/</a><br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

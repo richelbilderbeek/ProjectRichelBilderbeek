@@ -86,7 +86,7 @@ void DoMain()
         1.0 * boost::units::si::meter
       );
 
-      const boost::shared_ptr<const ribi::trim::CellsCreator> c {
+      const boost::shared_ptr<ribi::trim::CellsCreator> c {
         ribi::trim::CellsCreatorFactory().Create(t,n_layers,layer_height)
       };
 

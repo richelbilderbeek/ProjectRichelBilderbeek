@@ -22,13 +22,11 @@
 ribi::trim::Face::Face(
   const std::vector<boost::shared_ptr<Point>>& any_points,
   const FaceOrientation any_orientation,
-  const boost::weak_ptr<const Face> face_below,
   const int index,
   const FaceFactory&
   )
   : m_belongs_to{},
     m_coordinats{},
-    m_face_below(face_below),
     m_index{index},
     m_orientation(any_orientation),
     m_points(any_points),
@@ -39,8 +37,6 @@ ribi::trim::Face::Face(
   #endif
   PROFILE_FUNC();
   #ifndef NDEBUG
-  if (m_orientation == FaceOrientation::vertical) { assert(m_face_below.expired()); }
-  //Must have a Face below if not a base Face
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());

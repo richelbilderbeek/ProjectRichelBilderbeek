@@ -50,7 +50,6 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::
   const boost::shared_ptr<CellsCreator> cells_creator {
     CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
   };
-  assert(cells_creator->GetCells().size() == 2);
   const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
 
   assert(cells.size() == 2 && "A cube consists out of two prisms");
