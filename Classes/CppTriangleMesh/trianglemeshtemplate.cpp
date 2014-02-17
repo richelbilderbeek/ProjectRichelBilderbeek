@@ -41,7 +41,6 @@ ribi::trim::Template::Template(
     };
     const int sz = v.size();
     const int percent = sz / 100 ? sz / 100: 1;
-    TRACE(sz);
     for(int n=0; n!=sz; ++n)
     {
       PROFILE_BLOCK(Load_the_points_and_faces_created_by_Triangle);
@@ -82,7 +81,6 @@ ribi::trim::Template::Template(
       ribi::fileio::FileToVector(filename_ele)
     };
     const int sz = v.size();
-    TRACE(sz);
     const int percent = sz / 100 ? sz / 100: 1;
     for(int n=0; n!=sz; ++n)
     {
@@ -186,7 +184,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(c
 {
   switch (i)
   {
-    case 1: return CreateTest2x2();
+    case 0: return CreateTestTriangle2x2();
+    case 1: return CreateTestSquare2x2();
     case 2: return CreateTest2x3();
     case 3: return CreateTest3x3();
   }
@@ -195,7 +194,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest(c
   return boost::shared_ptr<Template>();
 }
 
-const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x2() noexcept
+const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSquare2x2() noexcept
 {
   std::vector<boost::shared_ptr<Face>> faces;
   std::vector<std::vector<int>> face_point_indices;
@@ -270,9 +269,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         points[ v[1] ],
         points[ v[2] ]
       };
-      TRACE_FUNC();
       const boost::weak_ptr<const Face> no_face_below;
-      TRACE_FUNC();
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -280,7 +277,6 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
           no_face_below
         )
       };
-      TRACE_FUNC();
       faces.push_back(face);
     }
   }
@@ -300,6 +296,127 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     }
   }
   #endif
+
+  assert(faces.size()  == 2 && "A square consists of 2 triangles");
+  assert(edges.size()  == 5 && "A square with a diagonal has 5 edges");
+  assert(points.size() == 4 && "A square has 4 nodes");
+
+  const boost::shared_ptr<Template> my_template {
+    new Template(
+      edges,
+      faces,
+      face_point_indices,
+      points
+    )
+  };
+  assert(my_template);
+  return my_template;
+}
+
+
+const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTriangle2x2() noexcept
+{
+  std::vector<boost::shared_ptr<Face>> faces;
+  std::vector<std::vector<int>> face_point_indices;
+  std::vector<boost::shared_ptr<Point>> points;
+  const int width = 2;
+  //const int height = 2;
+  const int n_points = 3; //Triangle
+  points.reserve(n_points);
+
+  //Create points
+  {
+    for(int i=0; i!=n_points; ++i)
+    {
+      const double x = static_cast<double>(i % width);
+      const double y = static_cast<double>(i / width);
+      const std::string boundary_type = "two_times_two";
+      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
+        new ribi::ConstCoordinat2D(x,y)
+      };
+      const boost::shared_ptr<Point> point {
+        PointFactory().Create(bottom)
+      };
+      points.push_back(point);
+    }
+  }
+  #ifndef NDEBUG
+  //Check that there is no coordinat present twice
+  {
+    for (int i=0; i!=n_points; ++i)
+    {
+      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      for (int j=0; j!=n_points; ++j)
+      {
+        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        if (a == b)
+        {
+          assert(ribi::Distance(*a,*b) < 0.001);
+        }
+        else
+        {
+          assert(ribi::Distance(*a,*b) > 0.001);
+        }
+      }
+    }
+  }
+  #endif
+
+  //Load and translate faces
+  face_point_indices = {
+    { 0,1,2 }
+  };
+
+  const std::vector<std::pair<int,int> > edges {
+    { 0,1 },
+    { 0,2 },
+    { 1,2 }
+  };
+
+  {
+    for(auto v: face_point_indices)
+    {
+      assert(v.size() == 3);
+      //I do not correct for one-base Triangle.exe output
+      assert(v[0] >= 0);
+      assert(v[1] >= 0);
+      assert(v[2] >= 0);
+      const std::vector<boost::shared_ptr<Point>> face_points {
+        points[ v[0] ],
+        points[ v[1] ],
+        points[ v[2] ]
+      };
+      const boost::weak_ptr<const Face> no_face_below;
+      const boost::shared_ptr<Face> face {
+        FaceFactory().Create(
+          face_points,
+          FaceOrientation::horizontal,
+          no_face_below
+        )
+      };
+      faces.push_back(face);
+    }
+  }
+
+  #ifndef NDEBUG
+  const int n_faces = static_cast<int>(faces.size());
+  assert(faces.size() == face_point_indices.size());
+  for (int i=0; i!=n_faces; ++i)
+  {
+    const auto face = faces[i];
+    const auto indices = face_point_indices[i];
+    assert(face->GetPoints().size() == indices.size());
+    const int n_points = static_cast<int>(indices.size());
+    for (int j=0; j!=n_points; ++j)
+    {
+      assert(face->GetPoints()[j] == points[ indices[j] ]);
+    }
+  }
+  #endif
+
+  assert(faces.size()  == 1 && "A triangle is only 1 triangle");
+  assert(edges.size()  == 3 && "A triangle has 3 edges");
+  assert(points.size() == 3 && "A triangle has 3 nodes");
 
   const boost::shared_ptr<Template> my_template {
     new Template(
@@ -402,9 +519,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         points[point2],
         points[point3]
       };
-      TRACE_FUNC();
       const boost::weak_ptr<const Face> no_face_below;
-      TRACE_FUNC();
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -412,7 +527,6 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
           no_face_below
         )
       };
-      TRACE_FUNC();
       faces.push_back(face);
     }
   }
@@ -432,6 +546,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     }
   }
   #endif
+
+  assert(faces.size()  == 4 && "Two adjacent squares consist of 4 triangles");
+  assert(edges.size()  == 9 && "Two adjacent squares (with diagonals) have 9 edges");
+  assert(points.size() == 6 && "Two adjacent squares have 6 nodes");
 
   const boost::shared_ptr<Template> my_template {
     new Template(
@@ -545,9 +663,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
         points[point2],
         points[point3]
       };
-      TRACE_FUNC();
       const boost::weak_ptr<const Face> no_face_below;
-      TRACE_FUNC();
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -555,7 +671,6 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
           no_face_below
         )
       };
-      TRACE_FUNC();
       faces.push_back(face);
     }
   }
@@ -575,6 +690,10 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
     }
   }
   #endif
+
+  assert(faces.size()  ==  8 && "2x2 adjacent squares consist of 8 triangles");
+  assert(edges.size()  == 16 && "2x2 adjacent squares (with diagonals) have 16 edges");
+  assert(points.size() ==  9 && "2x2 adjacent squares have 9 nodes");
 
   const boost::shared_ptr<Template> my_template {
     new Template(
@@ -615,7 +734,7 @@ void ribi::trim::Template::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Template::Test");
-  for (int i=1; i!=4; ++i)
+  for (int i=0; i!=4; ++i)
   {
     const boost::shared_ptr<Template> my_template {
       CreateTest(i)

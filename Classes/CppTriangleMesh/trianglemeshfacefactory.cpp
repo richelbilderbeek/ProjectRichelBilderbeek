@@ -119,6 +119,10 @@ void ribi::trim::FaceFactory::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::FaceFactory::Test");
+  const std::vector<boost::shared_ptr<Face>> prism {
+    FaceFactory().CreateTestPrism()
+  };
+  assert(prism.size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
   TRACE("Finished ribi::trim::FaceFactory::Test successfully");
 }
 #endif

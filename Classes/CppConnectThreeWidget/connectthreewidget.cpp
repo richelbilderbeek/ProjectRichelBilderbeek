@@ -182,6 +182,4 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::con3::ConnectThreeWidget::ToText
   }
   canvas->PutChar(m_x,m_y,d);
   return canvas;
-
-  return canvas;
 }

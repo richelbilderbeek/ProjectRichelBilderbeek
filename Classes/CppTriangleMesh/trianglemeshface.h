@@ -35,6 +35,8 @@ struct Face
 
   const boost::shared_ptr<const Face> GetFaceBelow() const { return m_face_below.lock(); }
 
+  int GetIndex() const noexcept { return m_index; }
+
   ///nullptr if no neighbour
   const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
 
@@ -99,7 +101,6 @@ struct Face
   friend class TriangleMeshBuilder;
   std::string GetBoundaryType() const noexcept { return m_type; }
   void SetIndex(const int index) const noexcept { m_index = index; }
-  int GetIndex() const noexcept { return m_index; }
 
   #ifndef NDEBUG
   static void Test() noexcept;

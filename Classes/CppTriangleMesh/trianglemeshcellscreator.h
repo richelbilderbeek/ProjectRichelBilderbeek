@@ -22,15 +22,19 @@ namespace trim {
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
 struct CellsCreator
 {
-  CellsCreator(
-    const boost::shared_ptr<const Template> t,
-    const int n_layers,
-    const boost::units::quantity<boost::units::si::length> layer_height
-  );
-
   const std::vector<boost::shared_ptr<Cell>> GetCells() const noexcept { return m_cells; }
 
   private:
+  friend class CellsCreatorFactory;
+
+  CellsCreator(
+    const boost::shared_ptr<const Template> t,
+    const int n_layers,
+    const boost::units::quantity<boost::units::si::length> layer_height,
+    const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
+  );
+
+
   const std::vector<boost::shared_ptr<Cell>> m_cells;
 
   const std::vector<boost::shared_ptr<Cell>> CreateCells(

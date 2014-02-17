@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Boost.Geometry example 2: Calculate the intersection of two lines</title>
+  <meta name="description" content="C++ Boost.Geometry example 2: Calculate the intersection of two lines"/>
+  <meta name="keywords" content="C++ Boost.Geometry example 2: Calculate the intersection of two lines Boost Geometry get line code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppGeometryExample2.htm">Boost.Geometry example 2: Calculate the intersection of two lines</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppGeometryExample2.htm">Boost.Geometry example 2: Calculate the intersection of two lines</a> is a <a href="CppGeometry.htm">Boost.Geometry</a> example.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppGeometryExample2.htm">Download the Qt Creator project 'CppGeometryExample2' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Technical facts</h2>
+<p>&nbsp;</p>
+<p><a href="CppApplication.htm">Application type(s)</a></p>
+<ul>
+  <li><img src="PicDesktop.png" alt="Desktop"/> <a href="CppDesktopApplication.htm">Desktop application</a></li>
+</ul>
+<p><a href="CppOs.htm">Operating system(s) or programming environment(s)</a></p>
+<ul>
+  <li><img src="PicLubuntu.png" alt="Lubuntu"/> <a href="CppLubuntu.htm">Lubuntu</a> 12.10 (quantal)</li>
+</ul>
+<p><a href="CppIde.htm">IDE(s)</a>:</p>
+<ul>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.5.2</li>
+</ul>
+<p><a href="CppQtProjectType.htm">Project type</a>:</p>
+<ul>
+  <li><img src="PicConsole.png" alt="console"/> <a href="CppConsoleApplication.htm">Console application</a></li>
+</ul>
+<p><a href="CppStandard.htm">C++ standard</a>:</p>
+<ul>
+  <li><img src="PicCpp11.png" alt="C++11"/> <a href="Cpp11.htm">C++11</a></li>
+</ul>
+<p><a href="CppCompiler.htm">Compiler(s)</a>:</p>
+<ul>
+  <li><a href="CppGpp.htm">G++</a> 4.7.2</li>
+</ul>
+<p><a href="CppLibrary.htm">Libraries</a> used:</p>
+<ul>
+  <li><img src="PicStl.png" alt="STL"/> <a href="CppStl.htm">STL</a>: GNU ISO C++ Library, version 4.7.2</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppQtProjectFile.htm">Qt project file</a>: CppGeometryExample2.pro</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+TEMPLATE = app<br/>
+CONFIG += console<br/>
+CONFIG -= qt<br/>
+QMAKE_CXXFLAGS += -std=<a href="Cpp11.htm">c++11</a> <a href="CppWextra.htm">-Wextra</a> <a href="CppWerror.htm">-Werror</a><br/>
+SOURCES += <a href="CppMain.htm">main</a>.cpp<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>main.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/linestring.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
+<br/>
+<a href="CppComment.htm">///</a>Obtain the zero or one intersections between two finite lines<br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>.htm<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&gt;<br/>
+<a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&nbsp;&nbsp;&gt; line1,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&nbsp;&nbsp;&gt; line2)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt; <a href="CppPointer.htm">Point</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPointer.htm">Point</a>&gt; Line;<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPointer.htm">Point</a>&gt; <a href="CppPointer.htm">point</a>s;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::intersection(line1,line2,<a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.empty() <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppPointer.htm">point</a>s;<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">//</a>Helper <a href="CppFunction.htm">function</a> to create a <b><a href="CppConst.htm">const</a></b> line without a temporary <a href="CppVector.htm">std::vector</a><br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&gt;<br/>
+CreateLine(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt; &gt;&amp; v)<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;T&gt;<br/>
+&nbsp;&nbsp;&gt;(v.begin(),v.end());<br/>
+}<br/>
+<br/>
+<a href="CppComment.htm">///</a><a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a> is a <a href="CppPredicate.htm">predicate</a> to test two <b><a href="CppDouble.htm">double</a></b>s <b><a href="CppFor.htm">for</a></b> equality<br/>
+<a href="CppComment.htm">///</a>with a certain tolerance. A tolerance of 0.0 denotes that<br/>
+<a href="CppComment.htm">///</a>an exact match is requested. Note that the value of 0.0 cannot<br/>
+<a href="CppComment.htm">///</a>be compared fuzzily.<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/<a href="CppFuzzy_equal_to.htm">CppFuzzy_equal_to</a>.htm<br/>
+<b><a href="CppStruct.htm">struct</a></b> <a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a><br/>
+&nbsp;&nbsp;: <b><a href="CppPublic.htm">public</a></b> <a href="CppBinary_function.htm">std::binary_function</a>&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppBool.htm">bool</a></b>&gt;<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> tolerance <a href="CppOperatorAssign.htm">=</a> <a href="CppNumeric_limits.htm">std::numeric_limits</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;::epsilon())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;: m_tolerance(tolerance)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(tolerance <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorFunctionCall.htm">operator()</a></b>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> lhs, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rhs) <b><a href="CppConst.htm">const</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> rhs &gt; (1.0 <a href="CppOperatorMinus.htm">-</a> m_tolerance) * lhs<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> rhs &lt; (1.0 <a href="CppOperatorPlus.htm">+</a> m_tolerance) * lhs;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> m_tolerance;<br/>
+};<br/>
+<br/>
+<br/>
+<a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/CppGeometryExample2.htm<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppPointer.htm">Point</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::linestring&lt;<a href="CppPointer.htm">Point</a>&gt; Line;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume (0,0)-(2,2) intersects (2,0)-(0,2) at <a href="CppPointer.htm">point</a> (1,1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Line line1 <a href="CppOperatorAssign.htm">=</a> CreateLine( <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPointer.htm">Point</a>&gt;( { <a href="CppPointer.htm">Point</a>(0.0,0.0), <a href="CppPointer.htm">Point</a>(2.0,2.0) } ));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Line line2 <a href="CppOperatorAssign.htm">=</a> CreateLine( <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPointer.htm">Point</a>&gt;( { <a href="CppPointer.htm">Point</a>(2.0,0.0), <a href="CppPointer.htm">Point</a>(0.0,2.0) } ));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>(line1,line2).size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(<a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>(line1,line2)[0].x(),1.0) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppFuzzy_equal_to.htm">fuzzy_equal_to</a>()(<a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>(line1,line2)[0].y(),1.0) );<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Lines are finite, however, as the line segment<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>(0,0)-(0.2,0.2) does not intersect (2,0)-(0,2) at <a href="CppPointer.htm">point</a> (1,1)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Line line1 <a href="CppOperatorAssign.htm">=</a> CreateLine( <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPointer.htm">Point</a>&gt;( { <a href="CppPointer.htm">Point</a>(0.0,0.0), <a href="CppPointer.htm">Point</a>(0.2,0.2) } ));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Line line2 <a href="CppOperatorAssign.htm">=</a> CreateLine( <a href="CppVector.htm">std::vector</a>&lt;<a href="CppPointer.htm">Point</a>&gt;( { <a href="CppPointer.htm">Point</a>(2.0,0.0), <a href="CppPointer.htm">Point</a>(0.0,2.0) } ));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppGetLineLineIntersections.htm">GetLineLineIntersections</a>(line1,line2).size() <a href="CppOperatorAssign.htm">=</a><a href="CppOperatorAssign.htm">=</a> 0);<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+<p>This page has been created by the <a href="Tools.htm">tool</a> <a href="ToolCodeToHtml.htm">CodeToHtml</a></p>
+</body>
+</html>
+

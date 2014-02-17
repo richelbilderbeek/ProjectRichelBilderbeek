@@ -6,6 +6,8 @@ namespace trim {
 
 struct Cell;
 struct CellFactory;
+struct CellsCreator;
+struct CellsCreatorFactory;
 struct Face;
 struct FaceFactory;
 struct Point;

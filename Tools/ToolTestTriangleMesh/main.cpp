@@ -16,6 +16,7 @@
 #include "trianglemeshface.h"
 #include "trianglemeshbuilder.h"
 #include "trianglemeshcellscreator.h"
+#include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshtemplate.h"
 #pragma GCC diagnostic pop
 
@@ -86,7 +87,7 @@ void DoMain()
       );
 
       const boost::shared_ptr<const ribi::trim::CellsCreator> c {
-        new ribi::trim::CellsCreator(t,n_layers,layer_height)
+        ribi::trim::CellsCreatorFactory().Create(t,n_layers,layer_height)
       };
 
       cells = c->GetCells();
@@ -110,6 +111,7 @@ void DoMain()
       }
       std::clog << "Number of weak faces: " << faces.size() << std::endl;
       assert(std::unique(faces.begin(),faces.end()) == faces.end());
+      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       //Clean all weakened faces
       faces.erase(
         std::remove_if(faces.begin(),faces.end(),
@@ -120,10 +122,12 @@ void DoMain()
         ),
         faces.end()
       );
+      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       std::clog << "Number of strong faces: " << faces.size() << std::endl;
       std::sort(faces.begin(),faces.end());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
+      assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       int n_internal = 0;
       int n_default = 0;
       for (boost::shared_ptr<ribi::trim::Face> face: faces)

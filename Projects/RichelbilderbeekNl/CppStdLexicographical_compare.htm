@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::lexicographical_compare</title>
+  <meta name="description" content="C++ std::lexicographical_compare"/>
+  <meta name="keywords" content="C++ STL algorithm std::lexicographical_compare std lexicographical_compare lexicographical compare string words strings std::string code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppLexicographical_compare.htm">std::lexicographical_compare</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppLexicographical_compare.htm">std::lexicographical_compare</a> is an <a href="CppStl.htm">STL</a> <a href="CppAlgorithm.htm">algorithm</a> to determine if two sequences of <a href="CppChar.htm">characters</a> are in an alphabetically sorted order. Note that <a href="CppString.htm">std::strings</a> are compared this way by default.</p> 
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s1 <a href="CppOperatorAssign.htm">=</a> "Bilderbikkel";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s2 <a href="CppOperatorAssign.htm">=</a> "Parachutemeisje";<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume Bilderbikkel comes before Parachutemeisje<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>with <a href="CppLexicographical_compare.htm">std::lexicographical_compare</a><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppLexicographical_compare.htm">std::lexicographical_compare</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s1.begin(),s1.end(),s2.begin(),s2.end()) <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume Bilderbikkel comes before Parachutemeisje<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>with default <a href="CppString.htm">std::string</a> behavior<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s1 &lt; s2);<br/>
+}<br/>
+<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

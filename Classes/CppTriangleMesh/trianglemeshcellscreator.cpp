@@ -6,17 +6,20 @@
 
 #include "trianglemeshcell.h"
 #include "trianglemeshcellfactory.h"
+#include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshpointfactory.h"
 #include "trianglemeshtemplate.h"
 #include "trace.h"
 
 ribi::trim::CellsCreator::CellsCreator(
   const boost::shared_ptr<const Template> t,
   const int n_layers,
-  const boost::units::quantity<boost::units::si::length> layer_height
+  const boost::units::quantity<boost::units::si::length> layer_height,
+  const CellsCreatorFactory&
 ) : m_cells(CreateCells(t,n_layers,layer_height))
 {
   #ifndef NDEBUG
@@ -168,7 +171,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreato
     for (const boost::shared_ptr<const Point> point: t->GetPoints())
     {
       const boost::shared_ptr<Point> new_point {
-        new Point(
+        PointFactory().Create(
           point->GetCoordinat()
         )
       };
@@ -271,6 +274,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
 
   std::sort(points.begin(),points.end());
   assert(std::unique(points.begin(),points.end()) == points.end());
+  assert(std::count(points.begin(),points.end(),nullptr) == 0);
 
   //Collect the candidates
   std::vector<boost::weak_ptr<Face>> weak_candidates;
@@ -281,6 +285,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
   for (auto p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
   std::sort(candidates.begin(),candidates.end());
   candidates.erase(std::unique(candidates.begin(),candidates.end()),candidates.end());
+  assert(std::count(candidates.begin(),candidates.end(),nullptr) == 0);
 
   //Collect the faces between
   std::vector<boost::shared_ptr<Face>> faces;
@@ -290,6 +295,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
   }
   assert(std::is_sorted(faces.begin(),faces.end()));
   assert(std::unique(faces.begin(),faces.end()) == faces.end());
+  assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
 
   //Remove the faces a and b
   assert(std::count(faces.begin(),faces.end(),a) == 1);
@@ -314,9 +320,13 @@ bool ribi::trim::CellsCreator::IsSubset(
   assert(std::is_sorted(w.begin(),w.end()));
   assert(std::unique(v.begin(),v.end()) == v.end());
   assert(std::unique(w.begin(),w.end()) == w.end());
+  assert(std::count(v.begin(),v.end(),nullptr) == 0);
+  assert(std::count(w.begin(),w.end(),nullptr) == 0);
   std::vector<boost::shared_ptr<Point>> x;
   std::set_intersection(v.begin(),v.end(),w.begin(),w.end(),
     std::back_inserter(x));
+  assert(std::count(x.begin(),x.end(),nullptr) == 0);
+
   return x.size() == std::min(v.size(),w.size());
 }
 
@@ -338,11 +348,11 @@ void ribi::trim::CellsCreator::Test() noexcept
 
     const int n_layers = 3;
     const boost::shared_ptr<CellsCreator> cells_creator {
-      new CellsCreator(my_template,n_layers,1.0 * boost::units::si::meter)
+      CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
     };
     assert(cells_creator->GetCells().size() > 0);
   }
-  TRACE("Specific: check if a Face really loses its neighbour");
+  TRACE("Specific: check if a Face really loses its neighbour: remove a prism from a cube");
   {
     //Create a 2x1 cell block
     const boost::shared_ptr<Template> my_template {
@@ -351,30 +361,20 @@ void ribi::trim::CellsCreator::Test() noexcept
     assert(my_template->CountFaces() == 2);
     const int n_layers = 2;
     const boost::shared_ptr<CellsCreator> cells_creator {
-      new CellsCreator(my_template,n_layers,1.0 * boost::units::si::meter)
+      CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
     };
     assert(cells_creator->GetCells().size() == 2);
     const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
     const std::vector<boost::shared_ptr<Face>> faces_1 { cells[0]->GetFaces() };
     const std::vector<boost::shared_ptr<Face>> faces_2 { cells[1]->GetFaces() };
-    TRACE(*cells[0]);
-    TRACE(*cells[1]);
-    //Find the one Face that has a neighbour
-    TRACE(
-      std::count_if(faces_1.begin(),faces_1.end(),
-        [](const boost::shared_ptr<Face> face)
-        {
-          return face->GetNeighbour().get();
-        }
-      )
-    );
+    //Find the two Faces that have a neighbour
     assert(
       std::count_if(faces_1.begin(),faces_1.end(),
         [](const boost::shared_ptr<Face> face)
         {
           return face->GetNeighbour().get();
         }
-      ) == 1
+      ) == 2
     );
     assert(
       std::count_if(faces_2.begin(),faces_2.end(),
@@ -382,27 +382,24 @@ void ribi::trim::CellsCreator::Test() noexcept
         {
           return face->GetNeighbour().get();
         }
-      ) == 1
+      ) == 2
     );
-    const boost::shared_ptr<Face> face_1 {
-      *std::find_if(faces_1.begin(),faces_1.end(),
-        [](const boost::shared_ptr<Face> face)
-        {
-          return face->GetNeighbour().get();
-        }
-      )
-    };
-    const boost::shared_ptr<Face> face_2 {
-      *std::find_if(faces_2.begin(),faces_2.end(),
-        [](const boost::shared_ptr<Face> face)
-        {
-          return face->GetNeighbour().get();
-        }
-      )
-    };
-    assert(face_1 == face_2);
+    std::set<boost::shared_ptr<Face>> internal_faces_1;
+    std::copy_if(faces_1.begin(),faces_1.end(),std::inserter(internal_faces_1,internal_faces_1.begin()),
+      [](const boost::shared_ptr<Face> face)
+      {
+        return face->GetNeighbour().get();
+      }
+    );
+    std::set<boost::shared_ptr<Face>> internal_faces_2;
+    std::copy_if(faces_2.begin(),faces_2.end(),std::inserter(internal_faces_2,internal_faces_2.begin()),
+      [](const boost::shared_ptr<Face> face)
+      {
+        return face->GetNeighbour().get();
+      }
+    );
+    assert(internal_faces_1 == internal_faces_2);
   }
-
   TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }
 #endif

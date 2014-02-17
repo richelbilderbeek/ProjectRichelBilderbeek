@@ -1314,6 +1314,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
       }
     }
   );
+
+  m.push_back(
+    { "CppEuclideanVector",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppEuclideanVector.htm\">CppEuclideanVector</a> is a <a href=\"CppClass.htm\">class</a>",
+        "for an Euclidean (X-Y) vector.</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppExercise",
       {

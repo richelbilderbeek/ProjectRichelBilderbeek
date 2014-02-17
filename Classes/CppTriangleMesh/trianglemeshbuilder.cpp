@@ -399,9 +399,6 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
   return s.str();
 }
 
-
-
-
 const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const noexcept
 {
   PROFILE_FUNC();
@@ -443,6 +440,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshB
   std::sort(v.begin(),v.end());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
+  assert(std::count(v.begin(),v.end(),nullptr) == 0);
 
   TRACE("n_face, unique:");
   TRACE(v.size());
@@ -469,6 +467,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMesh
   std::sort(v.begin(),v.end());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
+  assert(std::count(v.begin(),v.end(),nullptr) == 0);
 
   return v;
 }
