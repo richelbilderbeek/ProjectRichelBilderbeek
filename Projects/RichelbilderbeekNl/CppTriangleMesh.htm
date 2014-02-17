@@ -62,7 +62,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshbuilder_controldict.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshbuilder_alphat.cpp \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshbuilder.cpp \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshpointfactory.cpp<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshpointfactory.cpp \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshcellscreatorfactory.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshtemplate.h \<br/>
@@ -76,7 +77,8 @@
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshcellfactory.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshcell.h \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshbuilder.h \<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshpointfactory.h<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshpointfactory.h \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/trianglemeshcellscreatorfactory.h<br/>
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/Licence.txt<br/>
@@ -599,9 +601,6 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
 }<br/>
 <br/>
-<br/>
-<br/>
-<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::trim::TriangleMeshBuilder::CreateOpenFoamNodes() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
@@ -643,6 +642,7 @@
 &nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(v.begin(),v.end());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> new_end <a href="CppOperatorAssign.htm">=</a> <a href="CppStdUnique.htm">std::unique</a>(v.begin(),v.end());<br/>
 &nbsp;&nbsp;v.erase(new_end,v.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(v.begin(),v.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("n_face, unique:");<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(v.size());<br/>
@@ -669,6 +669,7 @@
 &nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(v.begin(),v.end());<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> new_end <a href="CppOperatorAssign.htm">=</a> <a href="CppStdUnique.htm">std::unique</a>(v.begin(),v.end());<br/>
 &nbsp;&nbsp;v.erase(new_end,v.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(v.begin(),v.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
@@ -1973,24 +1974,94 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::Cell::Test");<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not use the Cell its contructor! Use CellFactory::Create instead!<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; prism {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;CellFactory().CreateTestPrism()<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;prism-&gt;GetFaces()<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount_if.htm">std::count_if</a>(faces.begin(),faces.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test that in a prism-<a href="CppShape.htm">shape</a>d Cell, all Faces are owned, and no faces have a neighbour<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; prism {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellFactory().CreateTestPrism()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prism-&gt;GetFaces()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount_if.htm">std::count_if</a>(faces.begin(),faces.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;GetOwner());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Test that in a prism-<a href="CppShape.htm">shape</a>d Cell, all Faces are owned, and no faces have a neighbour<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cube {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellFactory().CreateTestCube()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cube.size() <a href="CppOperatorEqual.htm">==</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A cube consists out of two prisms");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cube[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cube[1]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Concatenate the faces<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cube[0]-&gt;GetFaces()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> other_faces { cube[1]-&gt;GetFaces() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(<a href="CppStdBegin.htm">std::begin</a>(other_faces),<a href="CppStdEnd.htm">std::end</a>(other_faces),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdBack_inserter.htm">std::back_inserter</a>(faces)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(faces.begin(),faces.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size() <a href="CppOperatorEqual.htm">==</a> 16);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> face: faces)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> all_face_str;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (face)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;GetOwner());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all_face_str <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> face-&gt;GetIndex() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a>&gt; " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (face-&gt;GetNeighbour() ? face-&gt;GetNeighbour()-&gt;GetIndex() : <a href="CppOperatorMinus.htm">-</a>1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 0<br/>
-&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all_face_str <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "No face";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(all_face_str.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(<a href="CppStdBegin.htm">std::begin</a>(faces),<a href="CppStdEnd.htm">std::end</a>(faces),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdUnique.htm">std::unique</a>(faces.begin(),faces.end()) <a href="CppOperatorNotEqual.htm">!=</a> faces.end() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Two faces must be present twice");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;faces.erase(<a href="CppStdUnique.htm">std::unique</a>(<a href="CppStdBegin.htm">std::begin</a>(faces),<a href="CppStdEnd.htm">std::end</a>(faces)),faces.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;faces.erase(<a href="CppStdRemove.htm">std::remove</a>(<a href="CppStdBegin.htm">std::begin</a>(faces),<a href="CppStdEnd.htm">std::end</a>(faces),<b><a href="CppNullptr.htm">nullptr</a></b>),faces.end()); <a href="CppComment.htm">//</a>OBLIGATORY! <a href="CppStdUnique.htm">std::unique</a> creates <b><a href="CppNullptr.htm">nullptr</a></b>s!<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(faces.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(<a href="CppStdCount.htm">std::count</a>(<a href="CppStdBegin.htm">std::begin</a>(faces),<a href="CppStdEnd.htm">std::end</a>(faces),<b><a href="CppNullptr.htm">nullptr</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> face: faces)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> face_str;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (face)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_str <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> face-&gt;GetIndex() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a>&gt; " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (face-&gt;GetNeighbour() ? face-&gt;GetNeighbour()-&gt;GetIndex() : <a href="CppOperatorMinus.htm">-</a>1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_str <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "No face";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(face_str.str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size() <a href="CppOperatorEqual.htm">==</a> 14 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Two faces were in both Cells, and are now present only once");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount_if.htm">std::count_if</a>(faces.begin(),faces.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;GetOwner());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::Cell::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -2008,10 +2079,22 @@
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::trim::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Cell&amp; cell)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> faces <a href="CppOperatorAssign.htm">=</a> cell.GetFaces();<br/>
-&nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("index",cell.GetIndex())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("faces",faces.begin(),faces.end())<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("cell_index",cell.GetIndex())<br/>
 &nbsp;&nbsp;;<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_faces { <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(faces.size()) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_faces; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("face" <a href="CppOperatorPlus.htm">+</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(i),faces[i]-&gt;GetIndex());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("faces",t.str());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v { <a href="CppRibi.htm">ribi</a>::xml::<a href="CppXmlToPretty.htm">XmlToPretty</a>(s.str()) };<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(os,"\n"));<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
@@ -2052,7 +2135,35 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; faces<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a cell in the <a href="CppShape.htm">shape</a> of a prism<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>|\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| | |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppOperatorPlus.htm">+</a> |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;|<a href="CppOperatorDivide.htm">/</a> \|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; CreateTestPrism() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> CreateTestCube() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create two prims-<a href="CppShape.htm">shape</a>d cell to form a cube<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>|\ <a href="CppOperatorDivide.htm">/</a>|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---<a href="CppOperatorPlus.htm">+</a> |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| | | |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppOperatorPlus.htm">+</a>-|-+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;|<a href="CppOperatorDivide.htm">/</a> \|/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -2079,8 +2190,11 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcell.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellscreator.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellscreatorfactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshfacefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemesh<b><a href="CppTemplate.htm">template</a></b>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::trim::CellFactory::CellFactory()<br/>
@@ -2113,6 +2227,36 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cell;<br/>
 }<br/>
 <br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::CellFactory::CreateTestCube() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(1)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() <a href="CppOperatorEqual.htm">==</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A cube consists out of two prisms");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[1]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces { cells[i]-&gt;GetFaces() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> face: faces)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;Get<a href="CppPoint.htm">Point</a>s().size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cells;<br/>
+}<br/>
+<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell&gt; <a href="CppRibi.htm">ribi</a>::trim::CellFactory::CreateTestPrism() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; &gt; faces {<br/>
@@ -2134,6 +2278,23 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::CellFactory::Test");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create prism<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell&gt; prism {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellFactory().CreateTestPrism()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create cube<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cube {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellFactory().CreateTestCube()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cube.size() <a href="CppOperatorEqual.htm">==</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A cube consists of two prisms");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cube[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cube[1]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::CellFactory::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -2172,16 +2333,29 @@
 /<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files<br/>
 <b><a href="CppStruct.htm">struct</a></b> CellsCreator<br/>
 {<br/>
+&nbsp;&nbsp;CellsCreator(<b><a href="CppConst.htm">const</a></b> CellsCreator&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+&nbsp;&nbsp;CellsCreator&amp; <b><a href="CppOperator.htm">operator</a></b>=(<b><a href="CppConst.htm">const</a></b> CellsCreator&amp;) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> GetCells() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The Cells must be released, and <b><a href="CppThis.htm">this</a></b> will clear CellsCreator its Cells<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/This is important, because one can freely <b><a href="CppDelete.htm">delete</a></b> those released Cells<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/and have a valid mesh. Would the Cells be copied, the mesh created would be<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/invalid: the deleted Cells would always have a copy inside CellsCreator<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> ReleaseCells() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> CellsCreatorFactory;<br/>
+<br/>
 &nbsp;&nbsp;CellsCreator(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellsCreatorFactory&amp; lock <a href="CppComment.htm">//</a>to force creation by CellsCreatorFactory<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> GetCells() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_cells; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_cells;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_cells;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> CreateCells(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
@@ -2246,17 +2420,20 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcell.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcellfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellscreatorfactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshfacefactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshhelper.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemesh<a href="CppPointer.htm">point</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemesh<a href="CppPointer.htm">point</a>factory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemesh<b><a href="CppTemplate.htm">template</a></b>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::CellsCreator(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> CellsCreatorFactory&amp;<br/>
 ) : m_cells(CreateCells(t,n_layers,layer_height))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -2374,16 +2551,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(layer <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> face_index <a href="CppOperatorMinus.htm">-</a> n_faces_per_layer <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(layer <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> face_index <a href="CppOperatorMinus.htm">-</a> n_faces_per_layer &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face_below(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;layer <a href="CppOperatorEqual.htm">==</a> 0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;? <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt;()<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: v[ face_index <a href="CppOperatorMinus.htm">-</a> n_faces_per_layer ]<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(face);<br/>
@@ -2408,7 +2579,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppPoint.htm">Point</a>&gt; <a href="CppPointer.htm">point</a>: t-&gt;Get<a href="CppPoint.htm">Point</a>s())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; new_<a href="CppPointer.htm">point</a> {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>-&gt;GetCoordinat()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
@@ -2458,13 +2629,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;all_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>s_offset <a href="CppOperatorPlus.htm">+</a> edge.first <a href="CppOperatorPlus.htm">+</a> n_<a href="CppPointer.htm">point</a>s_per_layer]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; no_face_below;<br/>
-<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face_1 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s_1,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::vertical,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::vertical<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(face_1);<br/>
@@ -2481,8 +2649,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face_2 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s_2,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::vertical,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::vertical<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(face_2);<br/>
@@ -2511,6 +2678,7 @@
 <br/>
 &nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(<a href="CppPointer.htm">point</a>s.begin(),<a href="CppPointer.htm">point</a>s.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdUnique.htm">std::unique</a>(<a href="CppPointer.htm">point</a>s.begin(),<a href="CppPointer.htm">point</a>s.end()) <a href="CppOperatorEqual.htm">==</a> <a href="CppPointer.htm">point</a>s.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(<a href="CppPointer.htm">point</a>s.begin(),<a href="CppPointer.htm">point</a>s.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Collect the candidates<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> weak_candidates;<br/>
@@ -2521,6 +2689,7 @@
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> p: weak_candidates) { <b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> q <a href="CppOperatorAssign.htm">=</a> p.lock(); <b><a href="CppIf.htm">if</a></b> (q) candidates.push_back(q); }<br/>
 &nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(candidates.begin(),candidates.end());<br/>
 &nbsp;&nbsp;candidates.erase(<a href="CppStdUnique.htm">std::unique</a>(candidates.begin(),candidates.end()),candidates.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(candidates.begin(),candidates.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Collect the faces between<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces;<br/>
@@ -2530,6 +2699,7 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdIs_sorted.htm">std::is_sorted</a>(faces.begin(),faces.end()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdUnique.htm">std::unique</a>(faces.begin(),faces.end()) <a href="CppOperatorEqual.htm">==</a> faces.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(faces.begin(),faces.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove the faces a and b<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(faces.begin(),faces.end(),a) <a href="CppOperatorEqual.htm">==</a> 1);<br/>
@@ -2554,10 +2724,19 @@
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdIs_sorted.htm">std::is_sorted</a>(w.begin(),w.end()));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdUnique.htm">std::unique</a>(v.begin(),v.end()) <a href="CppOperatorEqual.htm">==</a> v.end());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdUnique.htm">std::unique</a>(w.begin(),w.end()) <a href="CppOperatorEqual.htm">==</a> w.end());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(v.begin(),v.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(w.begin(),w.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> x;<br/>
 &nbsp;&nbsp;<a href="CppStdSet_intersection.htm">std::set_intersection</a>(v.begin(),v.end(),w.begin(),w.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdBack_inserter.htm">std::back_inserter</a>(x));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(x.begin(),x.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x.size() <a href="CppOperatorEqual.htm">==</a> <a href="CppStdMin.htm">std::min</a>(v.size(),w.size());<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::GetCells() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> m_cells;<br/>
 }<br/>
 <br/>
 <a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
@@ -2578,11 +2757,12 @@
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CellsCreator(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells_creator-&gt;GetCells().size() &gt; 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() &gt; 0);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Specific: check <b><a href="CppIf.htm">if</a></b> a Face really loses its neighbour");<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Specific: check <b><a href="CppIf.htm">if</a></b> a Face really loses its neighbour: remove a prism from a cube");<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a 2x1 cell block<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
@@ -2591,30 +2771,19 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CellsCreator(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells_creator-&gt;GetCells().size() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces_1 { cells[0]-&gt;GetFaces() };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces_2 { cells[1]-&gt;GetFaces() };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(*cells[0]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(*cells[1]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the one Face that has a neighbour<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount_if.htm">std::count_if</a>(faces_1.begin(),faces_1.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the two Faces that have a neighbour<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount_if.htm">std::count_if</a>(faces_1.begin(),faces_1.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount_if.htm">std::count_if</a>(faces_2.begin(),faces_2.end(),<br/>
@@ -2622,28 +2791,237 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;) <a href="CppOperatorEqual.htm">==</a> 2<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face_1 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<a href="CppStdFind_if.htm">std::find_if</a>(faces_1.begin(),faces_1.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face_2 {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<a href="CppStdFind_if.htm">std::find_if</a>(faces_2.begin(),faces_2.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face_1 <a href="CppOperatorEqual.htm">==</a> face_2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> internal_faces_1;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy_if.htm">std::copy_if</a>(faces_1.begin(),faces_1.end(),<a href="CppStd.htm">std</a>::inserter(internal_faces_1,internal_faces_1.begin()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> internal_faces_2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy_if.htm">std::copy_if</a>(faces_2.begin(),faces_2.end(),<a href="CppStd.htm">std</a>::inserter(internal_faces_2,internal_faces_2.begin()),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> face-&gt;GetNeighbour().get();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(internal_faces_1 <a href="CppOperatorEqual.htm">==</a> internal_faces_2);<br/>
 &nbsp;&nbsp;}<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::CellsCreator::Test successfully");<br/>
+}<br/>
+<a href="CppEndif.htm">#endif</a><br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppTriangleMesh/trianglemeshcellscreatorfactory.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppTriangleMesh/trianglemeshcellscreatorfactory.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
+<a href="CppDefine.htm">#define</a> TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIosfwdH.htm">iosfwd</a>&gt;<br/>
+<a href="CppComment.htm">//</a><a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/checked_delete.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si/length.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/quantity.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshfwd.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> trim {<br/>
+<br/>
+<a href="CppComment.htm">///</a>The only <b><a href="CppClass.htm">class</a></b> to use Cell its <a href="CppConstructor.htm">constructor</a><br/>
+<b><a href="CppStruct.htm">struct</a></b> CellsCreatorFactory<br/>
+{<br/>
+&nbsp;&nbsp;CellsCreatorFactory();<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height<br/>
+&nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create a cell in the <a href="CppShape.htm">shape</a> of a prism<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>|\<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| | |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppOperatorPlus.htm">+</a> |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;|<a href="CppOperatorDivide.htm">/</a> \|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; CreateTestPrism() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; CreateTestCube() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create two prisms-<a href="CppShape.htm">shape</a>d cell to form a cube<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorDivide.htm">/</a>|\ <a href="CppOperatorDivide.htm">/</a>|<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---<a href="CppOperatorPlus.htm">+</a> |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| | | |<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;| <a href="CppOperatorPlus.htm">+</a>-|-+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;|<a href="CppOperatorDivide.htm">/</a> \|/<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a>---+<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> trim<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TRIANGLEMESHCELLSCREATORFACTORY_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./CppTriangleMesh/trianglemeshcellscreatorfactory.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./CppTriangleMesh/trianglemeshcellscreatorfactory.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellscreatorfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcell.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellscreator.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshfacefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemesh<b><a href="CppTemplate.htm">template</a></b>.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<br/>
+<a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::CellsCreatorFactory()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;Test();<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::CellsCreator&gt; <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::Create(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Template&gt; t,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; layer_height<br/>
+) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; creator {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> CellsCreator(t,n_layers,layer_height,*<b><a href="CppThis.htm">this</a></b>)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(creator);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> creator;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::CellsCreator&gt; <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::CreateTestCube() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(1)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() <a href="CppOperatorEqual.htm">==</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A cube consists out of two prisms");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[1]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>2; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces { cells[i]-&gt;GetFaces() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> face: faces)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;Get<a href="CppPoint.htm">Point</a>s().size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cells_creator;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::CellsCreator&gt; <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::CreateTestPrism() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Template::CreateTest(0)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>-&gt;CountFaces() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cells_creator {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().Create(my_<b><a href="CppTemplate.htm">template</a></b>,n_layers,1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cells_creator-&gt;GetCells() };<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() <a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 1 prisms");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists out of 8 faces");<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>1; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces { cells[i]-&gt;GetFaces() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> face: faces)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;Get<a href="CppPoint.htm">Point</a>s().size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> cells_creator;<br/>
+}<br/>
+<br/>
+<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::Test() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppBool.htm">bool</a></b> is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (is_tested) <b><a href="CppReturn.htm">return</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::Test");<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create prism<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; prism {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().CreateTestPrism()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { prism-&gt;GetCells() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(cells.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() <a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism consists of 1 prisms");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create cube<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;CellsCreator&gt; cube {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CellsCreatorFactory().CreateTestCube()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells { cube-&gt;GetCells() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells.size() <a href="CppOperatorEqual.htm">==</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A cube consists of 2 prisms");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[0]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(cells[1]-&gt;GetFaces().size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -2692,7 +3070,7 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSet.htm">std::set</a>&lt;<a href="CppRibi.htm">ribi</a>::Coordinat3D&gt; GetCoordinats() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_coordinats; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; GetFaceBelow() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_face_below.lock(); }<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetIndex() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_index; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<b><a href="CppNullptr.htm">nullptr</a></b> <b><a href="CppIf.htm">if</a></b> no neighbour<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt; GetNeighbour() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -2722,12 +3100,6 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/with one already present, by comparing their sorted coordinats<br/>
 &nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <a href="CppStdSet.htm">std::set</a>&lt;<a href="CppRibi.htm">ribi</a>::Coordinat3D&gt; m_coordinats;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/The Face below <b><a href="CppThis.htm">this</a></b> one:<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> <a href="CppOperatorMinus.htm">-</a> <b><a href="CppNullptr.htm">nullptr</a></b> <b><a href="CppIf.htm">if</a></b> <b><a href="CppThis.htm">this</a></b> is a Face at the base<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> <a href="CppOperatorMinus.htm">-</a> <b><a href="CppNullptr.htm">nullptr</a></b> <b><a href="CppIf.htm">if</a></b> <b><a href="CppThis.htm">this</a></b> is a vertical Face<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppOperatorDivide.htm">/</a> <a href="CppOperatorMinus.htm">-</a> a value <b><a href="CppIf.htm">if</a></b> <b><a href="CppThis.htm">this</a></b> a non-base horizontal Face<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; m_face_below;<br/>
-<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/The index of <b><a href="CppThis.htm">this</a></b> Face in an TriangleMeshBuilder vector. It is determined at the end<br/>
 &nbsp;&nbsp;<b><a href="CppMutable.htm">mutable</a></b> <b><a href="CppInt.htm">int</a></b> m_index;<br/>
 <br/>
@@ -2746,7 +3118,6 @@
 &nbsp;&nbsp;Face(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceOrientation <a href="CppAny.htm">any</a>_orientation,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face_below,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceFactory&amp; lock<br/>
 &nbsp;&nbsp;);<br/>
@@ -2758,7 +3129,6 @@
 &nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppClass.htm">class</a></b> TriangleMeshBuilder;<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> GetBoundaryType() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_type; }<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetIndex(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { m_index <a href="CppOperatorAssign.htm">=</a> index; }<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetIndex() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_index; }<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -2806,6 +3176,7 @@
 <br/>
 <a href="CppInclude.htm">#include</a> "coordinat3d.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemesh<a href="CppPointer.htm">point</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshfacefactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "xml.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
@@ -2813,13 +3184,11 @@
 <a href="CppRibi.htm">ribi</a>::trim::Face::Face(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppAny.htm">any</a>_<a href="CppPointer.htm">point</a>s,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceOrientation <a href="CppAny.htm">any</a>_orientation,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face_below,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceFactory&amp;<br/>
 &nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;: m_belongs_to{},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_coordinats{},<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_face_below(face_below),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_index{index},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_orientation(<a href="CppAny.htm">any</a>_orientation),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s(<a href="CppAny.htm">any</a>_<a href="CppPointer.htm">point</a>s),<br/>
@@ -2830,8 +3199,6 @@
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 &nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_orientation <a href="CppOperatorEqual.htm">==</a> FaceOrientation::vertical) { <a href="CppAssert.htm">assert</a>(m_face_below.expired()); }<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Must have a Face below <b><a href="CppIf.htm">if</a></b> not a base Face<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_orientation <a href="CppOperatorEqual.htm">==</a> FaceOrientation::horizontal)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppPointer.htm">point</a>s.size());<br/>
@@ -2923,6 +3290,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_belongs_to.end()<br/>
 &nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_belongs_to.empty())<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!m_belongs_to.empty());<br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Cell&gt; p {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_belongs_to[0].lock()<br/>
 &nbsp;&nbsp;};<br/>
@@ -2954,6 +3326,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::Face::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().CreateTestPrism()<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> face: faces)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!(face-&gt;GetOwner().get()) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Faces obtain an owner when being added to a Cell");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!(face-&gt;GetNeighbour().get()) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Faces obtain a neighbour when beging added to a Cell twice");<br/>
+&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::Face::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -3043,11 +3423,20 @@
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::trim::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Face&amp; f)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("index",f.GetIndex())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("<a href="CppPointer.htm">point</a>s",<a href="CppStdBegin.htm">std::begin</a>(f.Get<a href="CppPoint.htm">Point</a>s()),<a href="CppStdEnd.htm">std::end</a>(f.Get<a href="CppPoint.htm">Point</a>s()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("face_index",f.GetIndex())<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("orientation",<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(f.GetOrientation()))<br/>
-<br/>
 &nbsp;&nbsp;;<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s { <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(f.Get<a href="CppPoint.htm">Point</a>s().size()) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppPointer.htm">point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("<a href="CppPointer.htm">point</a>" <a href="CppOperatorPlus.htm">+</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(i),*f.Get<a href="CppPoint.htm">Point</a>(i));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("<a href="CppPointer.htm">point</a>s",s.str());<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 </code></td></tr></table>
@@ -3086,8 +3475,7 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceOrientation <a href="CppAny.htm">any</a>_orientation,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceOrientation <a href="CppAny.htm">any</a>_orientation<br/>
 &nbsp;&nbsp;) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Create the faces of a testing prism<br/>
@@ -3170,8 +3558,7 @@
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face&gt; <a href="CppRibi.htm">ribi</a>::trim::FaceFactory::Create(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceOrientation <a href="CppAny.htm">any</a>_orientation,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; face_below<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> FaceOrientation <a href="CppAny.htm">any</a>_orientation<br/>
 ) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
@@ -3185,7 +3572,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Face(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAny.htm">any</a>_orientation,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_below,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<b><a href="CppThis.htm">this</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -3215,28 +3601,28 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[2], <a href="CppPointer.htm">point</a>s[3], <a href="CppPointer.htm">point</a>s[5] };<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; bottom {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_top,FaceOrientation::horizontal, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_top,FaceOrientation::horizontal)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; top {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_top,FaceOrientation::horizontal,bottom)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_top,FaceOrientation::horizontal) <a href="CppComment.htm">//</a>,bottom)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; a {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_a,FaceOrientation::vertical, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_a,FaceOrientation::vertical)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; b {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_b,FaceOrientation::vertical, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_b,FaceOrientation::vertical)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; c {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_c,FaceOrientation::vertical, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_c,FaceOrientation::vertical)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; d {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_d,FaceOrientation::vertical, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_d,FaceOrientation::vertical)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; e {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_e,FaceOrientation::vertical, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_e,FaceOrientation::vertical)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_f,FaceOrientation::vertical, {})<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<a href="CppPointer.htm">point</a>s_f,FaceOrientation::vertical)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(bottom);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(top);<br/>
@@ -3269,6 +3655,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::FaceFactory::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> prism {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().CreateTestPrism()<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism.size() <a href="CppOperatorEqual.htm">==</a> 8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 8 faces (as the vertical faces are split into 2 triangle)");<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::FaceFactory::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -3326,6 +3716,8 @@
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Cell;<br/>
 <b><a href="CppStruct.htm">struct</a></b> CellFactory;<br/>
+<b><a href="CppStruct.htm">struct</a></b> CellsCreator;<br/>
+<b><a href="CppStruct.htm">struct</a></b> CellsCreatorFactory;<br/>
 <b><a href="CppStruct.htm">struct</a></b> Face;<br/>
 <b><a href="CppStruct.htm">struct</a></b> FaceFactory;<br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppPoint.htm">Point</a>;<br/>
@@ -3686,8 +4078,8 @@
 <a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::trim::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPoint.htm">Point</a>&amp; n)<br/>
 {<br/>
 &nbsp;&nbsp;os<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("index",n.GetIndex())<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("coordinat",n.GetCoordinat())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("<a href="CppPointer.htm">point</a>_index",n.GetIndex())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRibi.htm">ribi</a>::xml::To<a href="CppXml.htm">Xml</a>("coordinat",*n.GetCoordinat())<br/>
 &nbsp;&nbsp;;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
@@ -3806,66 +4198,6 @@
 <br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a>Factory::CreateTestPrism() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>::CreateTestPrism()<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_bottom { <a href="CppPointer.htm">point</a>s[0], <a href="CppPointer.htm">point</a>s[1], <a href="CppPointer.htm">point</a>s[2] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_top&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[3], <a href="CppPointer.htm">point</a>s[4], <a href="CppPointer.htm">point</a>s[5] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[0], <a href="CppPointer.htm">point</a>s[1], <a href="CppPointer.htm">point</a>s[4] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_b&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[0], <a href="CppPointer.htm">point</a>s[3], <a href="CppPointer.htm">point</a>s[4] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[1], <a href="CppPointer.htm">point</a>s[2], <a href="CppPointer.htm">point</a>s[5] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[1], <a href="CppPointer.htm">point</a>s[4], <a href="CppPointer.htm">point</a>s[5] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_e&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[0], <a href="CppPointer.htm">point</a>s[2], <a href="CppPointer.htm">point</a>s[3] };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_f&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ <a href="CppPointer.htm">point</a>s[2], <a href="CppPointer.htm">point</a>s[3], <a href="CppPointer.htm">point</a>s[5] };<br/>
-<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; bottom {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_top,<a href="CppPoint.htm">Point</a>Orientation::horizontal, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; top {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_top,<a href="CppPoint.htm">Point</a>Orientation::horizontal,bottom)<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; a {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_a,<a href="CppPoint.htm">Point</a>Orientation::vertical, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; b {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_b,<a href="CppPoint.htm">Point</a>Orientation::vertical, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; c {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_c,<a href="CppPoint.htm">Point</a>Orientation::vertical, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; d {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_d,<a href="CppPoint.htm">Point</a>Orientation::vertical, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; e {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_e,<a href="CppPoint.htm">Point</a>Orientation::vertical, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(<a href="CppPointer.htm">point</a>s_f,<a href="CppPoint.htm">Point</a>Orientation::vertical, {})<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(bottom);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(top);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(a);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(b);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(c);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(d);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(e);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f);<br/>
-&nbsp;&nbsp;bottom-&gt;SetIndex(1);<br/>
-&nbsp;&nbsp;top-&gt;SetIndex(2);<br/>
-&nbsp;&nbsp;a-&gt;SetIndex(3);<br/>
-&nbsp;&nbsp;b-&gt;SetIndex(4);<br/>
-&nbsp;&nbsp;c-&gt;SetIndex(5);<br/>
-&nbsp;&nbsp;d-&gt;SetIndex(6);<br/>
-&nbsp;&nbsp;e-&gt;SetIndex(7);<br/>
-&nbsp;&nbsp;f-&gt;SetIndex(8);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> prism {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;top,bottom,a,b,c,d,e,f<br/>
-&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> prism;<br/>
-}<br/>
-<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a>Factory::CreateTestPrism() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
-{<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::ConstCoordinat2D&gt; co_a {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D(0.0,0.0)<br/>
 &nbsp;&nbsp;};<br/>
@@ -3886,22 +4218,22 @@
 &nbsp;&nbsp;};<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; a {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(co_a)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(co_a)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; b {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(co_b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(co_b)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; c {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(co_c)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(co_c)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; d {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(co_d)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(co_d)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; e {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(co_e)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(co_e)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; f {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppPoint.htm">Point</a>(co_f)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(co_f)<br/>
 &nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;a-&gt;SetZ(0.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter);<br/>
 &nbsp;&nbsp;b-&gt;SetZ(0.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter);<br/>
@@ -3930,6 +4262,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a>Factory::Test");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> prism {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().CreateTestPrism()<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(prism.size() <a href="CppOperatorEqual.htm">==</a> 6 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A prism has 6 <a href="CppPointer.htm">point</a>s");<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Finished <a href="CppRibi.htm">ribi</a>::trim::<a href="CppPoint.htm">Point</a>Factory::Test successfully");<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -3994,9 +4330,10 @@
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_face_<a href="CppPointer.htm">point</a>_indices;<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_<a href="CppPointer.htm">point</a>s;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTest2x2() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTest2x3() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTest3x3() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTestSquare2x2() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; CreateTestTriangle2x2() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Split a string<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
@@ -4066,7 +4403,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> percent <a href="CppOperatorAssign.htm">=</a> sz <a href="CppOperatorDivide.htm">/</a> 100 ? sz <a href="CppOperatorDivide.htm">/</a> 100: 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> n=0; n<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>n)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_BLOCK(Load_the_<a href="CppPointer.htm">point</a>s_and_faces_created_by_Triangle);<br/>
@@ -4107,7 +4443,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::<a href="CppFileToVector.htm">FileToVector</a>(filename_ele)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(sz);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> percent <a href="CppOperatorAssign.htm">=</a> sz <a href="CppOperatorDivide.htm">/</a> 100 ? sz <a href="CppOperatorDivide.htm">/</a> 100: 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> n=0; n<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>n)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -4150,13 +4485,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>2-1],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>3-1]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; no_face_below;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_faces.push_back(face);<br/>
@@ -4211,7 +4544,8 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <b><a href="CppReturn.htm">return</a></b> CreateTest2x2();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 0: <b><a href="CppReturn.htm">return</a></b> CreateTestTriangle2x2();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 1: <b><a href="CppReturn.htm">return</a></b> CreateTestSquare2x2();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: <b><a href="CppReturn.htm">return</a></b> CreateTest2x3();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: <b><a href="CppReturn.htm">return</a></b> CreateTest3x3();<br/>
 &nbsp;&nbsp;}<br/>
@@ -4220,7 +4554,7 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt;();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Template&gt; <a href="CppRibi.htm">ribi</a>::trim::Template::CreateTest2x2() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Template&gt; <a href="CppRibi.htm">ribi</a>::trim::Template::CreateTestSquare2x2() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces;<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> face_<a href="CppPointer.htm">point</a>_indices;<br/>
@@ -4295,17 +4629,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[ v[1] ],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[ v[2] ]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; no_face_below;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.push_back(face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -4325,6 +4654,125 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 2 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A square consists of 2 triangles");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edges.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 5 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A square with a diagonal has 5 edges");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorEqual.htm">==</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A square has 4 nodes");<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Template(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;edges,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>_indices,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_<b><a href="CppTemplate.htm">template</a></b>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> my_<b><a href="CppTemplate.htm">template</a></b>;<br/>
+}<br/>
+<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Template&gt; <a href="CppRibi.htm">ribi</a>::trim::Template::CreateTestTriangle2x2() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> faces;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> face_<a href="CppPointer.htm">point</a>_indices;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> 2;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s <a href="CppOperatorAssign.htm">=</a> 3; <a href="CppComment.htm">//</a>Triangle<br/>
+&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s.reserve(n_<a href="CppPointer.htm">point</a>s);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create <a href="CppPointer.htm">point</a>s<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppPointer.htm">point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i <a href="CppOperatorModulus.htm">%</a> width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i <a href="CppOperatorDivide.htm">/</a> width);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> boundary_type <a href="CppOperatorAssign.htm">=</a> "two_<a href="CppTime.htm">time</a>s_two";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D&gt; bottom {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D(x,y)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a>&gt; <a href="CppPointer.htm">point</a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPoint.htm">Point</a>Factory().Create(bottom)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s.push_back(<a href="CppPointer.htm">point</a>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Check that there is no coordinat present twice<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppPointer.htm">point</a>s; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D&gt; a { <a href="CppPointer.htm">point</a>s[i]-&gt;GetCoordinat() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppPointer.htm">point</a>s; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D&gt; b { <a href="CppPointer.htm">point</a>s[j]-&gt;GetCoordinat() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (a <a href="CppOperatorEqual.htm">==</a> b)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::Distance(*a,*b) &lt; 0.001);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppRibi.htm">ribi</a>::Distance(*a,*b) &gt; 0.001);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Load and translate faces<br/>
+&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>_indices <a href="CppOperatorAssign.htm">=</a> {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0,1,2 }<br/>
+&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; edges {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0,1 },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0,2 },<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 1,2 }<br/>
+&nbsp;&nbsp;};<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppAuto.htm">auto</a></b> v: face_<a href="CppPointer.htm">point</a>_indices)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>I <b><a href="CppDo.htm">do</a></b> not correct <b><a href="CppFor.htm">for</a></b> one-base Triangle.exe output<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0] <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[1] <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[2] <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppPoint.htm">Point</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> face_<a href="CppPointer.htm">point</a>s {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[ v[0] ],<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[ v[1] ],<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[ v[2] ]<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.push_back(face);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_faces <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(faces.size());<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size() <a href="CppOperatorEqual.htm">==</a> face_<a href="CppPointer.htm">point</a>_indices.size());<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_faces; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> face <a href="CppOperatorAssign.htm">=</a> faces[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> indices <a href="CppOperatorAssign.htm">=</a> face_<a href="CppPointer.htm">point</a>_indices[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;Get<a href="CppPoint.htm">Point</a>s().size() <a href="CppOperatorEqual.htm">==</a> indices.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_<a href="CppPointer.htm">point</a>s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(indices.size());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_<a href="CppPointer.htm">point</a>s; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;Get<a href="CppPoint.htm">Point</a>s()[j] <a href="CppOperatorEqual.htm">==</a> <a href="CppPointer.htm">point</a>s[ indices[j] ]);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 1 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A triangle is only 1 triangle");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edges.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 3 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A triangle has 3 edges");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorEqual.htm">==</a> 3 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A triangle has 3 nodes");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Template(<br/>
@@ -4354,7 +4802,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i <a href="CppOperatorModulus.htm">%</a> width);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i <a href="CppOperatorDivide.htm">/</a> width);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> boundary_type <a href="CppOperatorAssign.htm">=</a> "two_<a href="CppTime.htm">time</a>s_three";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D&gt; bottom {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::ConstCoordinat2D(x,y)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
@@ -4427,17 +4874,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>2],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>3]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; no_face_below;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.push_back(face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -4457,6 +4899,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 4 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Two adjacent squares consist of 4 triangles");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edges.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 9 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Two adjacent squares (with diagonals) have 9 edges");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorEqual.htm">==</a> 6 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Two adjacent squares have 6 nodes");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Template(<br/>
@@ -4570,17 +5016,12 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>2],<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s[<a href="CppPointer.htm">point</a>3]<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostWeak_ptr.htm">boost::weak_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Face&gt; no_face_below;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Face&gt; face {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceFactory().Create(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face_<a href="CppPointer.htm">point</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;no_face_below<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FaceOrientation::horizontal<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.push_back(face);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -4600,6 +5041,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(faces.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp;8 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "2x2 adjacent squares consist of 8 triangles");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(edges.size()&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> 16 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "2x2 adjacent squares (with diagonals) have 16 edges");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppPointer.htm">point</a>s.size() <a href="CppOperatorEqual.htm">==</a>&nbsp;&nbsp;9 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "2x2 adjacent squares have 9 nodes");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> Template(<br/>
@@ -4640,7 +5085,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::trim::Template::Test");<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=1; i<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>4; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Template&gt; my_<b><a href="CppTemplate.htm">template</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CreateTest(i)<br/>

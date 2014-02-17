@@ -143,6 +143,7 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 <a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshbuilder.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcellscreator.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcellscreatorfactory.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemesh<b><a href="CppTemplate.htm">template</a></b>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
@@ -212,8 +213,8 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.0 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator&gt; c {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::trim::CellsCreator(t,n_layers,layer_height)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::CellsCreator&gt; c {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::trim::CellsCreatorFactory().Create(t,n_layers,layer_height)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cells <a href="CppOperatorAssign.htm">=</a> c-&gt;GetCells();<br/>
@@ -237,6 +238,7 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of weak faces: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> faces.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdUnique.htm">std::unique</a>(faces.begin(),faces.end()) <a href="CppOperatorEqual.htm">==</a> faces.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(faces.begin(),faces.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Clean all weakened faces<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.erase(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRemove_if.htm">std::remove_if</a>(faces.begin(),faces.end(),<br/>
@@ -247,10 +249,12 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.end()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(faces.begin(),faces.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of s<a href="GameTronCollection.htm">tron</a>g faces: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> faces.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(faces.begin(),faces.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> new_end <a href="CppOperatorAssign.htm">=</a> <a href="CppStdUnique.htm">std::unique</a>(faces.begin(),faces.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.erase(new_end,faces.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(faces.begin(),faces.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_internal <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_default <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face&gt; face: faces)<br/>
