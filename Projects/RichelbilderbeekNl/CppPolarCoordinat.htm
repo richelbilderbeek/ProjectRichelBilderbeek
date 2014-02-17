@@ -128,8 +128,8 @@ T CalculateSqrt(<b><a href="CppConst.htm">const</a></b> U&amp; x);<br/>
 Coordinat&lt;Length&gt; ToCoordinat(<b><a href="CppConst.htm">const</a></b> PolarCoordinat&lt;Angle,Length&gt;&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Coordinat&lt;Length&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppSin.htm">std::sin</a>(c.<a href="CppGetAngle.htm">GetAngle</a>().value()) * c.GetLength(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppCos.htm">std::cos</a>(c.<a href="CppGetAngle.htm">GetAngle</a>().value()) * c.GetLength()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppStdSin.htm">std::sin</a>(c.<a href="CppGetAngle.htm">GetAngle</a>().value()) * c.GetLength(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a><a href="CppStdCos.htm">std::cos</a>(c.<a href="CppGetAngle.htm">GetAngle</a>().value()) * c.GetLength()<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
@@ -156,7 +156,7 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> half_pi <a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::math::constants::half_pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Angle(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(half_pi <a href="CppOperatorPlus.htm">+</a> <a href="CppAtan.htm">std::atan</a>2(dy.value(),dx.value()))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(half_pi <a href="CppOperatorPlus.htm">+</a> <a href="CppStdAtan.htm">std::atan</a>2(dy.value(),dx.value()))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;* <a href="CppBoostUnits.htm">boost::units</a>::si::radians);<br/>
 }<br/>
 <br/>
@@ -164,7 +164,7 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Angle, <b><a href="CppClass.htm">class</a></b> Length&gt;<br/>
 <b><a href="CppConst.htm">const</a></b> Length PolarCoordinat&lt;Angle,Length&gt;::CalcLength(<b><a href="CppConst.htm">const</a></b> Length&amp; dx, <b><a href="CppConst.htm">const</a></b> Length&amp; dy)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> Length(<a href="CppSqrt.htm">std::sqrt</a>(((dx*dx)+(dy*dy)).value()) * meter);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppReturn.htm">return</a></b> Length(<a href="CppStdSqrt.htm">std::sqrt</a>(((dx*dx)+(dy*dy)).value()) * meter);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> Length(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;CalculateSqrt&lt;<a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length&gt; &gt;(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(dx*dx)+(dy*dy)<br/>
@@ -209,7 +209,7 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PolarCoordinat c(Length(1.0 * meter),Length(1.0 * meter));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(c.<a href="CppGetAngle.htm">GetAngle</a>(),Angle(0.75 * <a href="CppBoost.htm">boost</a>::math::constants::pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() * radian),Angle(1.0 * nano * radian)));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(c.GetLength(),Length(<a href="CppSqrt.htm">std::sqrt</a>(2.0) * meter),Length(1.0 * nano * meter)));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Is<a href="CppAbout.htm">About</a>Equal(c.GetLength(),Length(<a href="CppStdSqrt.htm">std::sqrt</a>(2.0) * meter),Length(1.0 * nano * meter)));<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Con<a href="CppVersion.htm">version</a> to Coordinat<br/>
 &nbsp;&nbsp;{<br/>
@@ -312,10 +312,10 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 <b><a href="CppDouble.htm">double</a></b> CalculateSqrt&lt;<b><a href="CppDouble.htm">double</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; x)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;!<a href="CppIs_same.htm">std::is_same</a>&lt;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;!<a href="CppStdIs_same.htm">std::is_same</a>&lt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b>,<a href="CppBoost.htm">boost</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;::units::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::length<a href="CppOperatorStreamIn.htm">&gt;&gt;</a>(),"");<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(x);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdSqrt.htm">std::sqrt</a>(x);<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b>&lt;&gt;<br/>
@@ -326,7 +326,7 @@ PolarCoordinat&lt;Angle,Length&gt;::PolarCoordinat(<b><a href="CppConst.htm">con
 &nbsp;&nbsp;&gt;(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostUnits.htm">boost::units</a>::quantity&lt;<a href="CppBoostUnits.htm">boost::units</a>::si::area&gt;&amp; x)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppSqrt.htm">std::sqrt</a>(x.value()) * <a href="CppBoostUnits.htm">boost::units</a>::si::meter;<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdSqrt.htm">std::sqrt</a>(x.value()) * <a href="CppBoostUnits.htm">boost::units</a>::si::meter;<br/>
 }<br/>
 <a href="CppComment.htm">*/</a><br/>
 </code></td></tr></table>

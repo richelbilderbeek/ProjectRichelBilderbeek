@@ -81,13 +81,13 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> a[] <a href="CppOperatorAssign.htm">=</a> "X";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> b[] <a href="CppOperatorAssign.htm">=</a> "0123456789";<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppStrlen.htm">std::strlen</a>(b) <a href="CppOperatorPlus.htm">+</a> 1; <a href="CppComment.htm">//</a>Show both empty and complete string<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <a href="CppStdStrlen.htm">std::strlen</a>(b) <a href="CppOperatorPlus.htm">+</a> 1; <a href="CppComment.htm">//</a>Show both empty and complete string<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * c <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ <a href="CppStrlen.htm">std::strlen</a>(a) <a href="CppOperatorPlus.htm">+</a> i <a href="CppOperatorPlus.htm">+</a> 1 ]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> null terminator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(c,a);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrncat.htm">std::strncat</a>(c,b,i);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * c <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ <a href="CppStdStrlen.htm">std::strlen</a>(a) <a href="CppOperatorPlus.htm">+</a> i <a href="CppOperatorPlus.htm">+</a> 1 ]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> null terminator<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStrcpy.htm">std::strcpy</a>(c,a);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStrncat.htm">std::strncat</a>(c,b,i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> c <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>

@@ -81,14 +81,14 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>String of one <a href="CppChar.htm">character</a><br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> s[] <a href="CppOperatorAssign.htm">=</a> "X";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[0] <a href="CppOperatorEqual.htm">==</a> 'X');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[1] <a href="CppOperatorEqual.htm">==</a> '\0');<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>String of ten <a href="CppChar.htm">character</a>s<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> s[] <a href="CppOperatorAssign.htm">=</a> "0123456789";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 10);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[ 0] <a href="CppOperatorEqual.htm">==</a> '0');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[ 1] <a href="CppOperatorEqual.htm">==</a> '1');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Etcetera<br/>
@@ -99,7 +99,7 @@
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Empty string<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> s[] <a href="CppOperatorAssign.htm">=</a> "";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[0] <a href="CppOperatorEqual.htm">==</a> '\0');<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Dynamically allocated string of one <a href="CppChar.htm">character</a><br/>
@@ -107,14 +107,14 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[1 <a href="CppOperatorPlus.htm">+</a> 1]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> the null terminator<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s[0] <a href="CppOperatorAssign.htm">=</a> 'X';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s[1] <a href="CppOperatorAssign.htm">=</a> '\0'; <a href="CppComment.htm">//</a>Must add the null terminator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] s;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Dynamically allocated string of ten <a href="CppChar.htm">character</a>s<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> s <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[10 <a href="CppOperatorPlus.htm">+</a> 1]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> the null terminator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(s,"0123456789"); <a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>s the null terminator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 10);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStrcpy.htm">std::strcpy</a>(s,"0123456789"); <a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a>s the null terminator<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrlen.htm">std::strlen</a>(s) <a href="CppOperatorEqual.htm">==</a> 10);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[0] <a href="CppOperatorEqual.htm">==</a> '0');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[1] <a href="CppOperatorEqual.htm">==</a> '1');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Etcetera<br/>

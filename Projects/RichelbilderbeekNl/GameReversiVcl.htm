@@ -427,7 +427,7 @@ __fastcall TFormReversi::TFormReversi(T<a href="CppComponent.htm">Component</a>*
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormReversi::FormResize(TObject *Sender)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mReversi.GetSize();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board <a href="CppOperatorAssign.htm">=</a> mReversi.GetBoard();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board <a href="CppOperatorAssign.htm">=</a> mReversi.GetBoard();<br/>
 &nbsp;&nbsp;ImageBoard-&gt;Picture-&gt;Bitmap-&gt;Width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> size;<br/>
 &nbsp;&nbsp;ImageBoard-&gt;Picture-&gt;Bitmap-&gt;Height <a href="CppOperatorAssign.htm">=</a> size;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
@@ -515,7 +515,7 @@ __fastcall TFormReversi::TFormReversi(T<a href="CppComponent.htm">Component</a>*
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormReversi::LabelRestartClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormRestart&gt; f(<b><a href="CppNew.htm">new</a></b> TFormRestart(0));<br/>
+&nbsp;&nbsp;<a href="CppStdAuto_ptr.htm">std::auto_ptr</a>&lt;TFormRestart&gt; f(<b><a href="CppNew.htm">new</a></b> TFormRestart(0));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> result <a href="CppOperatorAssign.htm">=</a> f-&gt;ModalResult;<br/>
@@ -533,7 +533,7 @@ __fastcall TFormReversi::TFormReversi(T<a href="CppComponent.htm">Component</a>*
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormReversi::Label<a href="CppAbout.htm">About</a>Click(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TForm<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.htm">About</a>(0));<br/>
+&nbsp;&nbsp;<a href="CppStdAuto_ptr.htm">std::auto_ptr</a>&lt;TForm<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.htm">About</a>(0));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -578,17 +578,17 @@ __fastcall TFormReversi::TFormReversi(T<a href="CppComponent.htm">Component</a>*
 <b><a href="CppStruct.htm">struct</a></b> Reversi<br/>
 {<br/>
 &nbsp;&nbsp;Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; GetBoard() <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; GetBoard() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Square GetSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y) <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> DoMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SetSquare(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player);<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMove(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt; <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; GetValidMoves(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt; <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; GetValidMoves(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> GetSize() <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> Count(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt; mBoard;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt; &gt; mBoard;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveUp(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> IsValidMoveUpLeft(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y, <b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b>;<br/>
@@ -610,7 +610,7 @@ __fastcall TFormReversi::TFormReversi(T<a href="CppComponent.htm">Component</a>*
 <br/>
 };<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> Square GetSquareXy(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
+<b><a href="CppConst.htm">const</a></b> Square GetSquareXy(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y);<br/>
 <b><a href="CppConst.htm">const</a></b> Square GetOtherPlayer(<b><a href="CppConst.htm">const</a></b> Square player);<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a><br/>
@@ -653,7 +653,7 @@ __fastcall TFormReversi::TFormReversi(T<a href="CppComponent.htm">Component</a>*
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size)<br/>
-&nbsp;&nbsp;: mBoard(size,<a href="CppVector.htm">std::vector</a>&lt;Square&gt;(size,empty))<br/>
+&nbsp;&nbsp;: mBoard(size,<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt;(size,empty))<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( size &gt; 0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( mBoard.size() <a href="CppOperatorEqual.htm">==</a> mBoard[0].size() );<br/>
@@ -666,7 +666,7 @@ Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm"
 &nbsp;&nbsp;SetSquare(x+1,y+1,player1);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; Reversi::GetBoard() <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; Reversi::GetBoard() <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> mBoard;<br/>
 }<br/>
@@ -846,17 +846,17 @@ Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm"
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppFalse.htm">false</a></b>;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt; <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; Reversi::GetValidMoves(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt; <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; Reversi::GetValidMoves(<b><a href="CppConst.htm">const</a></b> Square player) <b><a href="CppConst.htm">const</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> mBoard.size();<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt; <a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt; <a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b>&gt; &gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>size; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (IsValidMove(x,y,player)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back( <a href="CppMake_pair.htm">std::make_pair</a>(x,y) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back( <a href="CppStdMake_pair.htm">std::make_pair</a>(x,y) );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
@@ -973,7 +973,7 @@ Reversi::Reversi(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm"
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> Square GetSquareXy(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;Square&gt; &gt;&amp; board,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> y)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> board.size();<br/>

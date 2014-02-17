@@ -79,41 +79,41 @@
 <br/>
 <a href="CppComment.htm">///</a>Determines <b><a href="CppIf.htm">if</a></b> a filename is a regular file<br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsRegularFile.htm">IsRegularFile</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+&nbsp;&nbsp;<a href="CppStdFstream.htm">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> before <a href="CppOperatorAssign.htm">=</a> "a.tmp";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> after&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "b.tmp";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> before <a href="CppOperatorAssign.htm">=</a> "a.tmp";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> after&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> "b.tmp";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete possible previous files<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(before.c_str());<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(after.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>(before.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>(after.c_str());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(before));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(after));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create before<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(before.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(before.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppIsRegularFile.htm">IsRegularFile</a>(before));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(after));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Rename before to after<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRename.htm">std::rename</a>(before.c_str(),after.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRename.htm">std::rename</a>(before.c_str(),after.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(before));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppIsRegularFile.htm">IsRegularFile</a>(after));<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete files<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(before.c_str());<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(after.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>(before.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>(after.c_str());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(before));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(after));<br/>
 }<br/>

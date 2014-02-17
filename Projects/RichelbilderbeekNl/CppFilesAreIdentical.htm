@@ -90,54 +90,54 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 <a href="CppComment.htm">///</a>Determines <b><a href="CppIf.htm">if</a></b> a filename is a regular file<br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsRegularFile.htm">IsRegularFile</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+&nbsp;&nbsp;<a href="CppStdFstream.htm">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppFileToVector.htm">FileToVector</a> reads a file and <a href="CppConvert.htm">converts</a> it to a <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;<br/>
+<a href="CppComment.htm">///</a><a href="CppFileToVector.htm">FileToVector</a> reads a file and <a href="CppConvert.htm">converts</a> it to a <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;<br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppFileToVector.htm">FileToVector</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppFileToVector.htm">FileToVector</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
-&nbsp;&nbsp;<a href="CppIfstream.htm">std::ifstream</a> in(filename.c_str());<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdIfstream.htm">std::ifstream</a> in(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !in.eof(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(in,s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdGetline.htm">std::getline</a>(in,s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
 <b><a href="CppBool.htm">bool</a></b> <a href="CppFilesAreIdentical.htm">FilesAreIdentical</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename_a,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename_b)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename_a,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename_b)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v { <a href="CppFileToVector.htm">FileToVector</a>(filename_a) };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w { <a href="CppFileToVector.htm">FileToVector</a>(filename_b) };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v { <a href="CppFileToVector.htm">FileToVector</a>(filename_a) };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; w { <a href="CppFileToVector.htm">FileToVector</a>(filename_b) };<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v <a href="CppOperatorEqual.htm">==</a> w;<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; filenames { "tmp_a.txt", "tmp_b.txt", "tmp_c.txt" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; filenames { "tmp_a.txt", "tmp_b.txt", "tmp_c.txt" };<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_filenames <a href="CppOperatorAssign.htm">=</a> filenames.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename: filenames)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename: filenames)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n_filenames; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> filenames[i];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> filenames[i];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_filenames; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> filenames[j];<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> filenames[j];<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFilesAreIdentical.htm">FilesAreIdentical</a>(s,t) <a href="CppOperatorEqual.htm">==</a> (i <a href="CppOperatorEqual.htm">==</a> j));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>

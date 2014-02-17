@@ -99,16 +99,16 @@ win32 {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Data<br/>
 {<br/>
-&nbsp;&nbsp;Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s);<br/>
+&nbsp;&nbsp;Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s);<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> m_int;<br/>
 &nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> m_<b><a href="CppDouble.htm">double</a></b>;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_string;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_string;<br/>
 };<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt; <b><a href="CppConst.htm">const</a></b> T&amp; Get(<b><a href="CppConst.htm">const</a></b> Data&amp;);<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d);<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> DATA_H<br/>
 </code></td></tr></table>
@@ -126,17 +126,17 @@ win32 {<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <br/>
-Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> d, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;: m_int(i), m_<b><a href="CppDouble.htm">double</a></b>(d), m_string(s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_int);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_<b><a href="CppDouble.htm">double</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppString.htm">std::string</a>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_string);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(*<b><a href="CppThis.htm">this</a></b>) <a href="CppOperatorEqual.htm">==</a> m_string);<br/>
 }<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_int; }<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_<b><a href="CppDouble.htm">double</a></b>; }<br/>
-<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get&lt;<a href="CppString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_string; }<br/>
+<b><a href="CppTemplate.htm">template</a></b> &lt;&gt; <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(<b><a href="CppConst.htm">const</a></b> Data&amp; d) { <b><a href="CppReturn.htm">return</a></b> d.m_string; }<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -160,7 +160,7 @@ Data::Data(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Data d(42,x,"<a href="CppHelloWorld.htm">Hello world</a>");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppInt.htm">int</a></b>&gt;(d) <a href="CppOperatorEqual.htm">==</a> 42);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(d) <a href="CppOperatorEqual.htm">==</a> x);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppString.htm">std::string</a>&gt;(d) <a href="CppOperatorEqual.htm">==</a> "<a href="CppHelloWorld.htm">Hello world</a>");<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Get&lt;<a href="CppStdString.htm">std::string</a>&gt;(d) <a href="CppOperatorEqual.htm">==</a> "<a href="CppHelloWorld.htm">Hello world</a>");<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

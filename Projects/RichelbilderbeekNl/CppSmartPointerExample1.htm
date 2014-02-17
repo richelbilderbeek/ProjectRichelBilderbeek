@@ -87,14 +87,14 @@ win32 {<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Danger: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> not detected by <a href="CppUnique_ptr.htm">std::unique_ptr</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Danger: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> not detected by <a href="CppStdUnique_ptr.htm">std::unique_ptr</a><br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; p;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Danger: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> not detected by <a href="CppShared_ptr.htm">std::shared_ptr</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Danger: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> not detected by <a href="CppStdShared_ptr.htm">std::shared_ptr</a><br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Test&gt; p;<br/>
@@ -102,9 +102,9 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Good: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> detected by <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a><br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Danger: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> not detected by <a href="CppScoped_ptr.htm">boost::scoped_ptr</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p-&gt;m_x <a href="CppOperatorAssign.htm">=</a> 42; <a href="CppComment.htm">//</a>Danger: un<a href="CppInitialize.htm">initialize</a>d <a href="CppPointer.htm">pointer</a> not detected by <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a><br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

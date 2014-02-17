@@ -95,17 +95,17 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a file to write to<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppCfile.htm">FILE</a>&gt; my_file(<a href="CppFopen.htm">std::fopen</a>("my_file.txt","w"));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdUnique_ptr.htm">std::unique_ptr</a>&lt;<a href="CppCfile.htm">FILE</a>&gt; my_file(<a href="CppStdFopen.htm">std::fopen</a>("my_file.txt","w"));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Assume the file is created successfully<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(my_file);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put text at the start of the file<br/>
-&nbsp;&nbsp;<a href="CppFputs.htm">std::fputs</a>("Bilderbickel",my_file.get());<br/>
+&nbsp;&nbsp;<a href="CppStdFputs.htm">std::fputs</a>("Bilderbickel",my_file.get());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Go to the 9th position<br/>
-&nbsp;&nbsp;<a href="CppFseek.htm">std::fseek</a>(my_file.get(),9,SEEK_SET );<br/>
+&nbsp;&nbsp;<a href="CppStdFseek.htm">std::fseek</a>(my_file.get(),9,SEEK_SET );<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Put text at the 9th position<br/>
-&nbsp;&nbsp;<a href="CppFputs.htm">std::fputs</a> ("k",my_file.get());<br/>
+&nbsp;&nbsp;<a href="CppStdFputs.htm">std::fputs</a> ("k",my_file.get());<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Close the file<br/>
-&nbsp;&nbsp;<a href="CppFclose.htm">std::fclose</a> (my_file.get());<br/>
+&nbsp;&nbsp;<a href="CppStdFclose.htm">std::fclose</a> (my_file.get());<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

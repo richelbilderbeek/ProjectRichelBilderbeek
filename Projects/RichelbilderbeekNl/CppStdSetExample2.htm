@@ -123,8 +123,8 @@ win32 {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
 {<br/>
-&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_s(s), m_x(x) {}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_s;<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_s(s), m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_s;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
 };<br/>
 <br/>
@@ -135,7 +135,7 @@ win32 {<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Display x first<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; m)<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.m_x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ' ' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.m_s;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
@@ -143,7 +143,7 @@ win32 {<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;MyClass&gt; s;<br/>
+&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;MyClass&gt; s;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Insert ordered by s<br/>
 &nbsp;&nbsp;s.insert(MyClass("five",5));<br/>
 &nbsp;&nbsp;s.insert(MyClass("four",4));<br/>
@@ -152,7 +152,7 @@ win32 {<br/>
 &nbsp;&nbsp;s.insert(MyClass("three",3));<br/>
 &nbsp;&nbsp;s.insert(MyClass("two",2));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Show that the set orders by MyClass their x<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(s.begin(),s.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;MyClass&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(s.begin(),s.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;MyClass&gt;(<a href="CppStdCout.htm">std::cout</a>,"\n"));<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Screen output:<br/>

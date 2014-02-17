@@ -89,15 +89,15 @@ win32 {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
 {<br/>
-&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s) : m_s{s} {}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; Get() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_s; }<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s) : m_s{s} {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; Get() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> m_s; }<br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> m_s;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> m_s;<br/>
 };<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;MyClass&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;MyClass&gt; v;<br/>
 &nbsp;&nbsp;v.push_back(MyClass("one"));<br/>
 &nbsp;&nbsp;v.push_back(MyClass("two"));<br/>
 &nbsp;&nbsp;v.push_back(MyClass("three"));<br/>
@@ -107,7 +107,7 @@ win32 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the shortest word and, <b><a href="CppIf.htm">if</a></b> there multiple of the same length, the lexicographically first<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMin_element.htm">std::min_element</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMin_element.htm">std::min_element</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> MyClass&amp; lhs, <b><a href="CppConst.htm">const</a></b> MyClass&amp; rhs)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lhs.Get().size() &lt; rhs.Get().size()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -119,7 +119,7 @@ win32 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the longest word and, <b><a href="CppIf.htm">if</a></b> there multiple of the same length, the lexicographically last<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMax_element.htm">std::max_element</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMax_element.htm">std::max_element</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> MyClass&amp; lhs, <b><a href="CppConst.htm">const</a></b> MyClass&amp; rhs)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (lhs.Get().size() &lt; rhs.Get().size()) <b><a href="CppReturn.htm">return</a></b> <b><a href="CppTrue.htm">true</a></b>;<br/>
@@ -131,7 +131,7 @@ win32 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the lexicographically first word<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMin_element.htm">std::min_element</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMin_element.htm">std::min_element</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> MyClass&amp; lhs, <b><a href="CppConst.htm">const</a></b> MyClass&amp; rhs)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.Get() &lt; rhs.Get();<br/>
@@ -141,7 +141,7 @@ win32 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the lexicographically last word<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMax_element.htm">std::max_element</a>(v.begin(),v.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdMax_element.htm">std::max_element</a>(v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> MyClass&amp; lhs, <b><a href="CppConst.htm">const</a></b> MyClass&amp; rhs)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs.Get() &lt; rhs.Get();<br/>

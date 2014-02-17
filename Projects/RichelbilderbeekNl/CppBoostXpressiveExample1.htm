@@ -105,22 +105,22 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 &nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>("\\d{4}\\s[A-Z]{2}");<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Check <b><a href="CppIf.htm">if</a></b> the <a href="CppRegex.htm">regex</a> works properly<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppString.htm">std::string</a>("1234 AB"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppString.htm">std::string</a>("1234 ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppString.htm">std::string</a>("1234ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppStdString.htm">std::string</a>("1234 AB"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppStdString.htm">std::string</a>("1234 ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(<a href="CppStdString.htm">std::string</a>("1234ab"),dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b>);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Define a sentence with a Dutch zip code in it<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "My Dutch zip code is 1234 AB.";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "My Dutch zip code is 1234 AB.";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match and <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_search work<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_match(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppFalse.htm">false</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "the <a href="CppString.htm">std::string</a> does not match a dutch zip code");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "the <a href="CppStdString.htm">std::string</a> does not match a dutch zip code");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_search(s,dutch_zip_code)<a href="CppOperatorEqual.htm">==</a><b><a href="CppTrue.htm">true</a></b><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "but the <a href="CppString.htm">std::string</a> does contain a dutch zip code");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "but the <a href="CppStdString.htm">std::string</a> does contain a dutch zip code");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how to obtain a Dutch zip code from a <a href="CppString.htm">std::string</a><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show how to obtain a Dutch zip code from a <a href="CppStdString.htm">std::string</a><br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>_<a href="CppIterator.htm">iterator</a> i(s.begin(),s.end(),dutch_zip_code);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> i-&gt;str();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> i-&gt;str();<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t<a href="CppOperatorEqual.htm">==</a>"1234 AB");<br/>
 }<br/>
 </code></td></tr></table>

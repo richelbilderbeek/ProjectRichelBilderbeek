@@ -130,7 +130,7 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppExtern.htm">extern</a></b> PACKAGE TForm<a href="CppPrimeExpert.htm">PrimeExpert</a> *Form<a href="CppPrimeExpert.htm">PrimeExpert</a>;<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsInt.htm">IsInt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppInt.htm">int</a></b>&amp; rInt);<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsInt.htm">IsInt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s, <b><a href="CppInt.htm">int</a></b>&amp; rInt);<br/>
 <br/>
 <a href="CppEndif.htm">#endif</a><br/>
 </code></td></tr></table>
@@ -193,7 +193,7 @@ __fastcall TForm<a href="CppPrimeExpert.htm">PrimeExpert</a>::TForm<a href="CppP
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value <a href="CppOperatorAssign.htm">=</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;( EditValue-&gt;Text.c_str() );<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> value <a href="CppOperatorAssign.htm">=</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;( EditValue-&gt;Text.c_str() );<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (value &lt; 2)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;RichEdit1-&gt;Lines-&gt;Insert(0,"Not prime");<br/>
@@ -216,9 +216,9 @@ __fastcall TForm<a href="CppPrimeExpert.htm">PrimeExpert</a>::TForm<a href="CppP
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppStr<a href="CppIsInt.htm">IsInt</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsInt.htm">IsInt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppInt.htm">int</a></b>&amp; rInt)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsInt.htm">IsInt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s, <b><a href="CppInt.htm">int</a></b>&amp; rInt)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppIstringstream.htm">std::istringstream</a> i(s);<br/>
+&nbsp;&nbsp;<a href="CppStdIstringstream.htm">std::istringstream</a> i(s);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!(i <a href="CppOperatorStreamIn.htm">&gt;&gt;</a> rInt))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;rInt <a href="CppOperatorAssign.htm">=</a> 0;<br/>
@@ -385,14 +385,14 @@ __fastcall TForm<a href="CppPrimeExpert.htm">PrimeExpert</a><a href="CppAbout.ht
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> <a href="CppIsPrime.htm">IsPrime</a>(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; mPrimes;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; mPrimes;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CalculateNextPrime();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> CalculateMax(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x);<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp;, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp;);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp;, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp;);<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp; <a href="ToolPrimeExpert.htm">primeExpert</a>);<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp; <a href="ToolPrimeExpert.htm">primeExpert</a>);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
 <br/>
@@ -481,7 +481,7 @@ __fastcall TForm<a href="CppPrimeExpert.htm">PrimeExpert</a><a href="CppAbout.ht
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>::CalculateMax(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1 <a href="CppOperatorPlus.htm">+</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSqrt.htm">std::sqrt</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x) ) );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSqrt.htm">std::sqrt</a>(<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(x) ) );<br/>
 <br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -495,12 +495,12 @@ __fastcall TForm<a href="CppPrimeExpert.htm">PrimeExpert</a><a href="CppAbout.ht
 &nbsp;&nbsp;}<br/>
 }<br/>
 <a href="CppComment.htm">//</a>------------------------------------------------------------<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp; <a href="ToolPrimeExpert.htm">primeExpert</a>)<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> <a href="CppPrimeExpert.htm">PrimeExpert</a>&amp; <a href="ToolPrimeExpert.htm">primeExpert</a>)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolPrimeExpert.htm">primeExpert</a>.mPrimes.begin(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="ToolPrimeExpert.htm">primeExpert</a>.mPrimes.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(os," ") );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(os," ") );<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>
 <a href="CppComment.htm">//</a>------------------------------------------------------------<br/>

@@ -88,10 +88,10 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppAskUserForString.htm">AskUserForString</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppAskUserForString.htm">AskUserForString</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppAskUserForString.htm">AskUserForString</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
-&nbsp;&nbsp;<a href="CppGetline.htm">std::getline</a>(<a href="CppCin.htm">std::cin</a>,s);<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;<a href="CppStdGetline.htm">std::getline</a>(<a href="CppStdCin.htm">std::cin</a>,s);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s;<br/>
 }<br/>
 <br/>
@@ -99,7 +99,7 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 {<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b>(1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppAskUserForString.htm">AskUserForString</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> <a href="CppAskUserForString.htm">AskUserForString</a>();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s <a href="CppOperatorEqual.htm">==</a> "quit") <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

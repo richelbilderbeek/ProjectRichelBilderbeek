@@ -121,23 +121,23 @@ win32 {<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Basic <a href="CppSet.htm">std::set</a> operations<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Basic <a href="CppStdSet.htm">std::set</a> operations<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>An empty set<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; s;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A <a href="CppSet.htm">std::set</a> is empty when created");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.empty() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A <a href="CppStdSet.htm">std::set</a> is empty when created");<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>x is a random value<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>();<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>x cannot be in the <a href="CppSet.htm">std::set</a> yet<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>x cannot be in the <a href="CppStdSet.htm">std::set</a> yet<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.count(x)<a href="CppOperatorEqual.htm">==</a>0);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> x to the <a href="CppSet.htm">std::set</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> x to the <a href="CppStdSet.htm">std::set</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.insert(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.count(x)<a href="CppOperatorEqual.htm">==</a>1);<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppSet.htm">std::set</a> does not allow duplicates,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>A <a href="CppStdSet.htm">std::set</a> does not allow duplicates,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>so again adding x has no effect<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.insert(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.count(x)<a href="CppOperatorEqual.htm">==</a>1);<br/>
@@ -146,21 +146,21 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.erase(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.count(x)<a href="CppOperatorEqual.htm">==</a>0);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Creating a <a href="CppSet.htm">std::set</a> that orders its elements the other way around<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Creating a <a href="CppStdSet.htm">std::set</a> that orders its elements the other way around<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; s; <a href="CppComment.htm">//</a>Default-ordered <a href="CppSet.htm">std::set</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>,<a href="CppGreater.htm">std::greater</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; t; <a href="CppComment.htm">//</a>Other way around<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; s; <a href="CppComment.htm">//</a>Default-ordered <a href="CppStdSet.htm">std::set</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>,<a href="CppStdGreater.htm">std::greater</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; &gt; t; <a href="CppComment.htm">//</a>Other way around<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> a <a href="CppOperatorAssign.htm">=</a> 3;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> b <a href="CppOperatorAssign.htm">=</a> 1;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> c <a href="CppOperatorAssign.htm">=</a> 2;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.insert(a); t.insert(a);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.insert(b); t.insert(b);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s.insert(c); t.insert(c);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v; <a href="CppComment.htm">//</a>For <b><a href="CppDefault.htm">default</a></b>-ordered <a href="CppSet.htm">std::set</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w; <a href="CppComment.htm">//</a>For other <a href="CppSet.htm">std::set</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v; <a href="CppComment.htm">//</a>For <b><a href="CppDefault.htm">default</a></b>-ordered <a href="CppStdSet.htm">std::set</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w; <a href="CppComment.htm">//</a>For other <a href="CppStdSet.htm">std::set</a><br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(s.begin(),s.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(v));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(t.begin(),t.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(w));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(s.begin(),s.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(v));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(t.begin(),t.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(w));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(w.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>

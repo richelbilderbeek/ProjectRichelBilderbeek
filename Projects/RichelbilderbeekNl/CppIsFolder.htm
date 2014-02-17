@@ -102,14 +102,14 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/BoostAll.pri)<br/>
 <br/>
 <a href="CppComment.htm">///</a>Returns <b><a href="CppIf.htm">if</a></b> the name is a folder name<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsFolder.htm">IsFolder</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsFolder.htm">IsFolder</a><a href="CppBoost.htm">Boost</a>Filesystem(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsFolder.htm">IsFolder</a><a href="CppBoost.htm">Boost</a>Filesystem(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppFilesystem.htm">boost::filesystem</a>::is_directory(filename);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppBoostFilesystem.htm">boost::filesystem</a>::is_directory(filename);<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Returns <b><a href="CppIf.htm">if</a></b> the name is a folder name<br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsFolder.htm">IsFolder</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsFolder.htm">IsFolder</a><a href="CppQt.htm">Qt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsFolder.htm">IsFolder</a><a href="CppQt.htm">Qt</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQDir.htm">QDir</a>(filename.c_str()).exists();<br/>
 }<br/>

@@ -95,9 +95,9 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> OutputPolicyCout<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
@@ -120,12 +120,12 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> <a href="CppTrace.htm">Trace</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_file <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> m_file;<br/>
+&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> m_file;<br/>
 <br/>
 <b><a href="CppProtected.htm">protected</a></b>:<br/>
 <br/>

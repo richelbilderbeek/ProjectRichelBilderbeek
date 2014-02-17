@@ -95,13 +95,15 @@
 &nbsp;&nbsp;<a href="CppBoostSignal.htm">boost::signals2::signal</a>&lt;<b><a href="CppVoid.htm">void</a></b>()&gt; m_signal_on_destroy;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e);<br/>
+&nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> * e);<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> <b><a href="CppVoid.htm">void</a></b> paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *);<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>* x);<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a>&gt; m_canvas;<br/>
+<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppQImage.htm">QImage</a>&gt; m_image; <a href="CppComment.htm">//</a>Used as buffer<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppQTimer.htm">QTimer</a> * <b><a href="CppConst.htm">const</a></b> m_re<b><a href="CppSize_t.htm">size_t</a></b>imer;<br/>
@@ -163,7 +165,7 @@
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
 <br/>
 &nbsp;&nbsp;m_canvas-&gt;m_signal_changed.disconnect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>::Show<a href="CppCanvas.htm">Canvas</a>,<b><a href="CppThis.htm">this</a></b>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLambda.htm">boost::lambda</a>::_1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -183,10 +185,15 @@
 &nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::keyPressEvent(event);<br/>
 }<br/>
 <br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>::keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppQWidget.htm">QWidget</a>::keyReleaseEvent(event);<br/>
+}<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>::paintEvent(<a href="CppQPaintEvent.htm">QPaintEvent</a> *)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; text;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppString.htm">std::string</a> line: m_canvas-&gt;ToStrings()) { text.push_back(line); }<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; text;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdString.htm">std::string</a> line: m_canvas-&gt;ToStrings()) { text.push_back(line); }<br/>
 <br/>
 &nbsp;&nbsp;Dot<a href="CppMatrix.htm">Matrix</a>Text t(text,1,Dot<a href="CppMatrix.htm">Matrix</a>Text::ColorSystem::inverted);<br/>
 &nbsp;&nbsp;m_image <a href="CppOperatorAssign.htm">=</a> t.CreateImage();<br/>
@@ -207,7 +214,7 @@
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_canvas)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_canvas-&gt;m_signal_changed.disconnect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>::Show<a href="CppCanvas.htm">Canvas</a>,<b><a href="CppThis.htm">this</a></b>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLambda.htm">boost::lambda</a>::_1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -219,15 +226,15 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Connect <b><a href="CppNew.htm">new</a></b> <a href="CppCanvas.htm">Canvas</a><br/>
 &nbsp;&nbsp;m_canvas-&gt;m_signal_changed.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>::Show<a href="CppCanvas.htm">Canvas</a>,<b><a href="CppThis.htm">this</a></b>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Set minimum size<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; text;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppString.htm">std::string</a> line: m_canvas-&gt;ToStrings()) { text.push_back(line); }<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; text;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdString.htm">std::string</a> line: m_canvas-&gt;ToStrings()) { text.push_back(line); }<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Dot<a href="CppMatrix.htm">Matrix</a>Text t(text,1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;setMinimumSize(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t.Get<a href="CppMatrix.htm">Matrix</a>Height(),<br/>
@@ -283,12 +290,13 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyPressEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a> *event);<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> resizeEvent(<a href="CppQResizeEvent.htm">QResizeEvent</a> *);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;~<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog* x);<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(<b><a href="CppConst.htm">const</a></b> <a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a> * <b><a href="CppConst.htm">const</a></b> m_qtcanvas;<br/>
 <br/>
@@ -338,7 +346,7 @@
 <br/>
 &nbsp;&nbsp;setStyleSheet("<a href="CppQDialog.htm">QDialog</a> { background-color: rgb(0, 0, 0); }");<br/>
 <br/>
-&nbsp;&nbsp;m_qtcanvas-&gt;m_signal_on_destroy.connect(<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;m_qtcanvas-&gt;m_signal_on_destroy.connect(<a href="CppBoostBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog::On<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Destroy,<b><a href="CppThis.htm">this</a></b>)<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
@@ -357,6 +365,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;m_qtcanvas-&gt;keyPressEvent(event);<br/>
+}<br/>
+<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog::keyReleaseEvent(<a href="CppQKeyEvent.htm">QKeyEvent</a>* event)<br/>
+{<br/>
+&nbsp;&nbsp;m_qtcanvas-&gt;keyReleaseEvent(event);<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Dialog::On<a href="CppQt.htm">Qt</a><a href="CppCanvas.htm">Canvas</a>Destroy()<br/>

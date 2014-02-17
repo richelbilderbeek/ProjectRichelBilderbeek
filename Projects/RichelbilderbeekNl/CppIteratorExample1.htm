@@ -78,7 +78,7 @@
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; my_list;<br/>
+&nbsp;&nbsp;<a href="CppStdList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; my_list;<br/>
 &nbsp;&nbsp;my_list.push_back( 1);<br/>
 &nbsp;&nbsp;my_list.push_back( 4);<br/>
 &nbsp;&nbsp;my_list.push_back( 9);<br/>
@@ -88,11 +88,11 @@
 &nbsp;&nbsp;my_list.push_back(49);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the list (not preferred)<br/>
-&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppStdList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::const_iterator <a href="CppIterator.htm">Iterator</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppIterator.htm">Iterator</a> j <a href="CppOperatorAssign.htm">=</a> my_list.end();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppIterator.htm">Iterator</a> i <a href="CppOperatorAssign.htm">=</a> my_list.begin(); i<a href="CppOperatorNotEqual.htm">!=</a>j; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> *i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>

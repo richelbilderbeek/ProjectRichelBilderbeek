@@ -161,9 +161,9 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;m_ui.m_table-&gt;elementAt(0,4)-&gt;addWidget(<b><a href="CppNew.htm">new</a></b> <a href="CppWImage.htm">Wt::WImage</a>(r.GetWeb()));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>ui.m_table-&gt;setPositionScheme(<a href="CppWt.htm">Wt</a>::PositionScheme(<a href="CppWt.htm">Wt</a>::CenterX | <a href="CppWt.htm">Wt</a>::CenterY));<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> RichelBilderbeek::Program::GetAllPrograms();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Program&gt; &gt; v <a href="CppOperatorAssign.htm">=</a> RichelBilderbeek::Program::GetAllPrograms();<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> n <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> a label<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -183,7 +183,7 @@ along with this program.If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 2: p <a href="CppOperatorAssign.htm">=</a> v[i]-&gt;GetStatusDesktop(); <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> 3: p <a href="CppOperatorAssign.htm">=</a> v[i]-&gt;GetStatusWeb<a href="CppApplication.htm">Application</a>(); <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (p)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> ProgramStatus::yes: s <a href="CppOperatorAssign.htm">=</a> r.GetGreen(); <b><a href="CppBreak.htm">break</a></b>;<br/>

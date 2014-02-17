@@ -112,18 +112,18 @@ win32 {<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppLexical_cast.htm">lexical_cast</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a <a href="CppVector.htm">std::vector</a> to single-line <a href="CppXml.htm">XML</a><br/>
-<a href="CppComment.htm">///</a>For example, a <a href="CppVector.htm">std::vector</a> with elements {"cat","dog"} and name "animals" becomes<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a <a href="CppStdVector.htm">std::vector</a> to single-line <a href="CppXml.htm">XML</a><br/>
+<a href="CppComment.htm">///</a>For example, a <a href="CppStdVector.htm">std::vector</a> with elements {"cat","dog"} and name "animals" becomes<br/>
 /<a href="CppComment.htm">//</a> &lt;animals&gt;&lt;0&gt;cat&lt;/0&gt;&lt;1&gt;dog&lt;/1&gt;&lt;/animals&gt;<br/>
 <a href="CppComment.htm">///</a>The data can be <a href="CppConvert.htm">convert</a>ed back with <a href="CppXml.htm">Xml</a>ToVector<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> VectorTo<a href="CppXml.htm">Xml</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; name)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> VectorTo<a href="CppXml.htm">Xml</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; name)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> name <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;"&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&lt;/" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "&gt;";<br/>
 <br/>
@@ -132,27 +132,27 @@ win32 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> s.str();<br/>
 }<br/>
 <br/>
-<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a single-line <a href="CppXml.htm">XML</a> to a <a href="CppVector.htm">std::vector</a> and its name<br/>
+<a href="CppComment.htm">///</a><a href="CppConvert.htm">Convert</a> a single-line <a href="CppXml.htm">XML</a> to a <a href="CppStdVector.htm">std::vector</a> and its name<br/>
 <a href="CppComment.htm">///</a>For example, the <a href="CppXml.htm">XML</a> line "&lt;animals&gt;&lt;0&gt;cat&lt;/0&gt;&lt;1&gt;dog&lt;/1&gt;&lt;/animals&gt;"<br/>
-<a href="CppComment.htm">///</a>becomes a <a href="CppVector.htm">std::vector</a> with elements {"cat","dog"} and the name "animals"<br/>
+<a href="CppComment.htm">///</a>becomes a <a href="CppStdVector.htm">std::vector</a> with elements {"cat","dog"} and the name "animals"<br/>
 <a href="CppComment.htm">///</a>The data can be <a href="CppConvert.htm">convert</a>ed back with VectorTo<a href="CppXml.htm">Xml</a><br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;,<a href="CppString.htm">std::string</a>&gt; <a href="CppXml.htm">Xml</a>ToVector(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;,<a href="CppStdString.htm">std::string</a>&gt; <a href="CppXml.htm">Xml</a>ToVector(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!s.empty());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0] <a href="CppOperatorEqual.htm">==</a> '&lt;');<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[s.size() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorEqual.htm">==</a> '&gt;');<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.find('&gt;') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.find('&gt;') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Read the name tag<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>&lt;name&gt;...&lt;/name&gt;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> name_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(s.find('&gt;')) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> s.substr(1,name_sz);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> s.substr(1,name_sz);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove the name tags<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s.substr(name_sz <a href="CppOperatorPlus.htm">+</a> 2,s.size() <a href="CppOperatorMinus.htm">-</a> (2 * name_sz) <a href="CppOperatorMinus.htm">-</a> 5);<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s.substr(name_sz <a href="CppOperatorPlus.htm">+</a> 2,s.size() <a href="CppOperatorMinus.htm">-</a> (2 * name_sz) <a href="CppOperatorMinus.htm">-</a> 5);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; !t.empty(); <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Read the index tags and item<br/>
@@ -160,28 +160,28 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!t.empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t[0] <a href="CppOperatorEqual.htm">==</a> '&lt;');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t[t.size() <a href="CppOperatorMinus.htm">-</a> 1] <a href="CppOperatorEqual.htm">==</a> '&gt;');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.find('&gt;') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.find('&gt;') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t.find('&gt;')) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> index <a href="CppOperatorAssign.htm">=</a> t.substr(1,index_sz);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> <a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(index));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.find('/') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> index <a href="CppOperatorAssign.htm">=</a> t.substr(1,index_sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> <a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(index));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.find('/') <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> item_sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(t.find('/')) <a href="CppOperatorMinus.htm">-</a> index_sz <a href="CppOperatorMinus.htm">-</a> 3;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> item <a href="CppOperatorAssign.htm">=</a> t.substr(index.size() <a href="CppOperatorPlus.htm">+</a> 2,item_sz);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> item <a href="CppOperatorAssign.htm">=</a> t.substr(index.size() <a href="CppOperatorPlus.htm">+</a> 2,item_sz);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> total_sz <a href="CppOperatorAssign.htm">=</a> (2 * index_sz) <a href="CppOperatorPlus.htm">+</a> item_sz <a href="CppOperatorPlus.htm">+</a> 5;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;t <a href="CppOperatorAssign.htm">=</a> t.substr(total_sz,t.size() <a href="CppOperatorMinus.htm">-</a> total_sz);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(item);<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMake_pair.htm">std::make_pair</a>(v,name);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdMake_pair.htm">std::make_pair</a>(v,name);<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v { "cats", "dog", "zebrafinch" };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> "animals";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> VectorTo<a href="CppXml.htm">Xml</a>(v,name);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;,<a href="CppString.htm">std::string</a>&gt; p { <a href="CppXml.htm">Xml</a>ToVector(s) };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v { "cats", "dog", "zebrafinch" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> name <a href="CppOperatorAssign.htm">=</a> "animals";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> VectorTo<a href="CppXml.htm">Xml</a>(v,name);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;,<a href="CppStdString.htm">std::string</a>&gt; p { <a href="CppXml.htm">Xml</a>ToVector(s) };<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.first <a href="CppOperatorEqual.htm">==</a> v);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p.second <a href="CppOperatorEqual.htm">==</a> name);<br/>
 }<br/>

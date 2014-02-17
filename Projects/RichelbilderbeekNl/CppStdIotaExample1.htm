@@ -82,15 +82,15 @@ QT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -= gui<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppVector.htm">std::vector</a> consisting of ten zeroes<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(10,0);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a <a href="CppStdVector.htm">std::vector</a> consisting of ten zeroes<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v(10,0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let iota assign incrementing values to the <a href="CppVector.htm">std::vector</a>,<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Let iota assign incrementing values to the <a href="CppStdVector.htm">std::vector</a>,<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>starting from zero<br/>
-&nbsp;&nbsp;<a href="CppIota.htm">std::iota</a>(v.begin(),v.end(),0);<br/>
+&nbsp;&nbsp;<a href="CppStdIota.htm">std::iota</a>(v.begin(),v.end(),0);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show the <a href="CppVector.htm">std::vector</a><br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>," "));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Show the <a href="CppStdVector.htm">std::vector</a><br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppStdCout.htm">std::cout</a>," "));<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a><br/>

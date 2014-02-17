@@ -84,7 +84,7 @@ Target narrow_cast(Source v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppAuto.htm">auto</a></b> r <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;Target&gt;(v);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;Source&gt;(r)<a href="CppOperatorNotEqual.htm">!=</a>v)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>("narrow_cast&lt;&gt;() failed");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>("narrow_cast&lt;&gt;() failed");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> r;<br/>
 }<br/>
 <br/>
@@ -95,7 +95,7 @@ Target narrow_cast(Source v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;narrow_cast&lt;<b><a href="CppInt.htm">int</a></b>&gt;(12.34);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Incorrect conversion from <b><a href="CppDouble.htm">double</a></b> to <b><a href="CppInt.htm">int</a></b> should be detected by narrow_cast");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppRuntime_error.htm">std::runtime_error</a>&amp; e)<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdRuntime_error.htm">std::runtime_error</a>&amp; e)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>OK<br/>
 &nbsp;&nbsp;}<br/>

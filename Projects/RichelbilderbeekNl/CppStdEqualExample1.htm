@@ -96,20 +96,20 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSetH.htm">set</a>&gt;<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two identical <a href="CppVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorEqual.htm">operator==</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two identical <a href="CppStdVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorEqual.htm">operator==</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 0,1,2 };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w { 0,1,2 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 0,1,2 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w { 0,1,2 };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Preferred syntax<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> w);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Less preferred, no unexpected behaviour<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdEqual.htm">std::equal</a>(v.begin(),v.end(),w.begin()));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two different <a href="CppVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorEqual.htm">operator==</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two different <a href="CppStdVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorEqual.htm">operator==</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 0,1,2&nbsp;&nbsp; };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w { 0,1,2,3 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 0,1,2&nbsp;&nbsp; };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w { 0,1,2,3 };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Preferred syntax<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorNotEqual.htm">!=</a> w);<br/>
@@ -122,9 +122,9 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two <a href="CppContainer.htm">container</a> types: use <a href="CppStdEqual.htm">std::equal</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 0,1,2 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v { 0,1,2 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Sorted <a href="CppContainer.htm">container</a>, will result in {0,1,2}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w { 2,1,0 };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSet.htm">std::set</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; w { 2,1,0 };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>This syntax does not work here <a href="CppAny.htm">any</a>more<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> w);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Preferred syntax in <b><a href="CppThis.htm">this</a></b> situation<br/>

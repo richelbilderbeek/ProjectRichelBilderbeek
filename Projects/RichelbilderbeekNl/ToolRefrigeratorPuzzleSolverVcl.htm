@@ -236,10 +236,10 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall Button<a href="CppAbout.htm">About</a>Click(TObject *Sender);<br/>
 <b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppBool.htm">bool</a></b> mQuit;<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowSolution(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; SolvePuzzle(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesUsed,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesLeft);<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ShowSolution(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; SolvePuzzle(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesUsed,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesLeft);<br/>
 <b><a href="CppPublic.htm">public</a></b>:		<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
 &nbsp;&nbsp;__fastcall TFormSolvePuzzle(T<a href="CppComponent.htm">Component</a>* Owner);<br/>
 };<br/>
@@ -362,7 +362,7 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 &nbsp;&nbsp;Close();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppVoid.htm">void</a></b> TFormSolvePuzzle::ShowSolution(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> TFormSolvePuzzle::ShowSolution(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size());<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
@@ -387,9 +387,9 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSolvePuzzle::ButtonSolveClick(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; piecesOriginal <a href="CppOperatorAssign.htm">=</a> GetPieces();<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; pieces1d <a href="CppOperatorAssign.htm">=</a> piecesOriginal;<br/>
-&nbsp;&nbsp;<a href="CppSort.htm">std::sort</a>(pieces1d.begin(),pieces1d.end());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; piecesOriginal <a href="CppOperatorAssign.htm">=</a> GetPieces();<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; pieces1d <a href="CppOperatorAssign.htm">=</a> piecesOriginal;<br/>
+&nbsp;&nbsp;<a href="CppStdSort.htm">std::sort</a>(pieces1d.begin(),pieces1d.end());<br/>
 <br/>
 &nbsp;&nbsp;ProgressBar-&gt;Max <a href="CppOperatorAssign.htm">=</a> <a href="CppIntPower.htm">IntPower</a>(4,9);<br/>
 &nbsp;&nbsp;ProgressBar-&gt;H<b><a href="CppInt.htm">int</a></b> <a href="CppOperatorAssign.htm">=</a> ProgressBar-&gt;Max;<br/>
@@ -397,7 +397,7 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxI <a href="CppOperatorAssign.htm">=</a> <a href="CppIntPower.htm">IntPower</a>(4,9);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 1; i<a href="CppOperatorNotEqual.htm">!=</a>maxI; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; solution <a href="CppOperatorAssign.htm">=</a> SolvePuzzle(<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;(),pieces1d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; solution <a href="CppOperatorAssign.htm">=</a> SolvePuzzle(<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;(),pieces1d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (solution.empty() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ShowSolution(solution);<br/>
@@ -420,9 +420,9 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 &nbsp;&nbsp;ShowMessage("Not solved...");<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; TFormSolvePuzzle::SolvePuzzle(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesUsed,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesLeft)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; TFormSolvePuzzle::SolvePuzzle(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesUsed,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; piecesLeft)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (CheckBoxDisplay-&gt;Checked <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>)<br/>
 &nbsp;&nbsp;{<br/>
@@ -450,20 +450,20 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Newcomer fits!<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; <b><a href="CppNew.htm">new</a></b>PiecesUsed <a href="CppOperatorAssign.htm">=</a> piecesUsed;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; <b><a href="CppNew.htm">new</a></b>PiecesLeft <a href="CppOperatorAssign.htm">=</a> piecesLeft;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; <b><a href="CppNew.htm">new</a></b>PiecesUsed <a href="CppOperatorAssign.htm">=</a> piecesUsed;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; <b><a href="CppNew.htm">new</a></b>PiecesLeft <a href="CppOperatorAssign.htm">=</a> piecesLeft;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>PiecesUsed.push_back(<b><a href="CppNew.htm">new</a></b>PiecesLeft[i]);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(<b><a href="CppNew.htm">new</a></b>PiecesLeft[i],<b><a href="CppNew.htm">new</a></b>PiecesLeft.back());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSwap.htm">std::swap</a>(<b><a href="CppNew.htm">new</a></b>PiecesLeft[i],<b><a href="CppNew.htm">new</a></b>PiecesLeft.back());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b>PiecesLeft.pop_back();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; solution <a href="CppOperatorAssign.htm">=</a> SolvePuzzle(<b><a href="CppNew.htm">new</a></b>PiecesUsed,<b><a href="CppNew.htm">new</a></b>PiecesLeft);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; solution <a href="CppOperatorAssign.htm">=</a> SolvePuzzle(<b><a href="CppNew.htm">new</a></b>PiecesUsed,<b><a href="CppNew.htm">new</a></b>PiecesLeft);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (solution.empty() <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppReturn.htm">return</a></b> solution;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;();<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppVoid.htm">void</a></b> __fastcall TFormSolvePuzzle::Button<a href="CppAbout.htm">About</a>Click(TObject *Sender)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;TForm<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.htm">About</a>(0));<br/>
+&nbsp;&nbsp;<a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;TForm<a href="CppAbout.htm">About</a>&gt; f(<b><a href="CppNew.htm">new</a></b> TForm<a href="CppAbout.htm">About</a>(0));<br/>
 &nbsp;&nbsp;f-&gt;ShowModal();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -515,7 +515,7 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 &nbsp;&nbsp;hairyWormTail<br/>
 };<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> EnumPicture p);<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> EnumPicture p);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppStruct.htm">struct</a></b> PuzzlePiece<br/>
 {<br/>
@@ -545,10 +545,10 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> EnumPicture a, <b><a href="CppConst.htm">const</a></b> EnumPicture b);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> Y-X ordered vector<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; &gt;&amp; v);<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v);<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; &gt;&amp; v);<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; GetPieces();<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; GetPieces();<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppConvert.htm">Convert</a><a href="CppToInt.htm">ToInt</a>(<b><a href="CppConst.htm">const</a></b> PuzzlePiece&amp; p);<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
@@ -593,7 +593,7 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 <a href="CppInclude.htm">#include</a> "UnitPuzzlePiece.h"<br/>
 <br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> EnumPicture p)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ToStr(<b><a href="CppConst.htm">const</a></b> EnumPicture p)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppSwitch.htm">switch</a></b> (p)<br/>
 &nbsp;&nbsp;{<br/>
@@ -607,7 +607,7 @@ __fastcall TFormSolvePuzzle::TFormSolvePuzzle(T<a href="CppComponent.htm">Compon
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> hairyWormTail:&nbsp;&nbsp; <b><a href="CppReturn.htm">return</a></b> "HT";<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unkown picture in <a href="CppFunction.htm">function</a> ToStr");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>("Unkown picture in <a href="CppFunction.htm">function</a> ToStr");<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 PuzzlePiece::PuzzlePiece(<br/>
@@ -651,11 +651,11 @@ PuzzlePiece::PuzzlePiece(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppCase.htm">case</a></b> hairyWormTail: <b><a href="CppReturn.htm">return</a></b> (b <a href="CppOperatorEqual.htm">==</a> hairyWormHead);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
-&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Unkown picture in <a href="CppFunction.htm">function</a> DoesFit");<br/>
+&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>("Unkown picture in <a href="CppFunction.htm">function</a> DoesFit");<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <a href="CppComment.htm">//</a> Y-X ordered vector<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; &gt;&amp; v)<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; &gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v[0].size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
@@ -675,7 +675,7 @@ PuzzlePiece::PuzzlePiece(<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v)<br/>
+<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> DoesFit(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 9);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> (<br/>
@@ -694,9 +694,9 @@ PuzzlePiece::PuzzlePiece(<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; GetPieces()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; GetPieces()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;PuzzlePiece&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;PuzzlePiece&gt; v;<br/>
 &nbsp;&nbsp;v.push_back(PuzzlePiece(hairyWormTail,wormLong,greenBeetleTail,hairyWormTail));<br/>
 &nbsp;&nbsp;v.push_back(PuzzlePiece(hairyWormHead,greenBeetleTail,wormLong,wormLong));<br/>
 &nbsp;&nbsp;v.push_back(PuzzlePiece(greenBeetleTail,wormLong,hairyWormHead,greenBeetleHead));<br/>

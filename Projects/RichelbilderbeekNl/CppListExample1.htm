@@ -79,19 +79,19 @@
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; my_list;<br/>
+&nbsp;&nbsp;<a href="CppStdList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; my_list;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> a two at the end<br/>
 &nbsp;&nbsp;my_list.push_back(2);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> a zero at the beginning<br/>
 &nbsp;&nbsp;my_list.push_front(0);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Obtain an <a href="CppIterator.htm">iterator</a> to a position in between<br/>
-&nbsp;&nbsp;<a href="CppList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> my_<a href="CppIterator.htm">iterator</a> <a href="CppOperatorAssign.htm">=</a> my_list.begin();<br/>
+&nbsp;&nbsp;<a href="CppStdList.htm">std::list</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::<a href="CppIterator.htm">iterator</a> my_<a href="CppIterator.htm">iterator</a> <a href="CppOperatorAssign.htm">=</a> my_list.begin();<br/>
 &nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>my_<a href="CppIterator.htm">iterator</a>;<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Insert a one in between<br/>
 &nbsp;&nbsp;my_list.insert(my_<a href="CppIterator.htm">iterator</a>,1);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the list<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(my_list.begin(),my_list.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(my_list.begin(),my_list.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppStdCout.htm">std::cout</a>,"\n"));<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">/*</a> Screen output:<br/>

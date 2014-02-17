@@ -99,7 +99,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> <a href="CppGossip.htm">Gossip</a><br/>
 {<br/>
-&nbsp;&nbsp;~<a href="CppGossip.htm">Gossip</a>() { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a>\n"; }<br/>
+&nbsp;&nbsp;~<a href="CppGossip.htm">Gossip</a>() { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppGossip.htm">Gossip</a> <a href="CppDestructor.htm">destructor</a>\n"; }<br/>
 };<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
@@ -114,7 +114,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt; Type;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Type p { <b><a href="CppNew.htm">new</a></b> <a href="CppGossip.htm">Gossip</a> };<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppIs_same.htm">std::is_same</a>&lt;Type::element_type,<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt;(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppStatic_assert.htm">static_assert</a></b>(<a href="CppStdIs_same.htm">std::is_same</a>&lt;Type::element_type,<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a>&gt;(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Use element_type to read the type the <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a> contains");<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Use use_count<br/>
@@ -135,9 +135,9 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppGossip.htm">Gossip</a>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppGossip.htm">Gossip</a> * <b><a href="CppConst.htm">const</a></b> gossip)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Deleting <a href="CppGossip.htm">Gossip</a> with custom deleter\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Deleting <a href="CppGossip.htm">Gossip</a> with custom deleter\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b> gossip;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Deleted <a href="CppGossip.htm">Gossip</a> with custom deleter\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Deleted <a href="CppGossip.htm">Gossip</a> with custom deleter\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;}<br/>

@@ -100,11 +100,11 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> str <a href="CppOperatorAssign.htm">=</a> "The zip code 1234AB is correct";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> str <a href="CppOperatorAssign.htm">=</a> "The zip code 1234AB is correct";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a> <a href="CppRegex.htm">regex</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::s<a href="CppRegex.htm">regex</a>::<a href="CppCompile.htm">compile</a>("(\\d{4})()([A-Z]{2})");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> fix("($1) ($3)");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> fix("($1) ($3)");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoostXpressive.htm">boost::xpressive</a>::<a href="CppRegex.htm">regex</a>_replace(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRegex.htm">regex</a>,<br/>

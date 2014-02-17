@@ -89,14 +89,14 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 <a href="CppComment.htm">///</a>Modeled after the PHP <a href="CppFunction.htm">function</a> <a href="CppArray.htm">array</a>_intersect<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_intersect(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; w)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_intersect(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; w)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end()));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIs_sorted.htm">std::is_sorted</a>(w.begin(),w.end()));<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; x;<br/>
-&nbsp;&nbsp;<a href="CppSet_intersection.htm">std::set_intersection</a>(v.begin(),v.end(),w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(x));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdIs_sorted.htm">std::is_sorted</a>(v.begin(),v.end()));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdIs_sorted.htm">std::is_sorted</a>(w.begin(),w.end()));<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; x;<br/>
+&nbsp;&nbsp;<a href="CppStdSet_intersection.htm">std::set_intersection</a>(v.begin(),v.end(),w.begin(),w.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(x));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
 }<br/>
 <br/>
@@ -104,16 +104,16 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 {<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppInt.htm">Integer</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; a { 0,1,2, 3, 4, 5 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; a { 0,1,2, 3, 4, 5 };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Squares<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; b { 0,1,4,16,25,36 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; b { 0,1,4,16,25,36 };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Zero, one and four are common in both <a href="CppArray.htm">array</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 0,1,4 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 0,1,4 };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppArray.htm">array</a>_intersect will <b><a href="CppReturn.htm">return</a></b> the following form<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; result { <a href="CppArray.htm">array</a>_intersect(a,b) };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; result { <a href="CppArray.htm">array</a>_intersect(a,b) };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(expected <a href="CppOperatorEqual.htm">==</a> result);<br/>
 <br/>

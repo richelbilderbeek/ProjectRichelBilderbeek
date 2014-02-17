@@ -99,18 +99,18 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> Speaker<br/>
 {<br/>
-&nbsp;&nbsp;Speaker(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> hello_message, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> bye_message)<br/>
+&nbsp;&nbsp;Speaker(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> hello_message, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> bye_message)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;: m_hello_message(hello_message),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m_bye_message(bye_message)<br/>
 &nbsp;&nbsp;{<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_hello_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
-&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayBye() <b><a href="CppConst.htm">const</a></b> { <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_bye_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayHello() <b><a href="CppConst.htm">const</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_hello_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
+&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> SayBye() <b><a href="CppConst.htm">const</a></b> { <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m_bye_message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n'; }<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_hello_message;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_bye_message;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_hello_message;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_bye_message;<br/>
 };<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>

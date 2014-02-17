@@ -242,11 +242,11 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Help GetHelp() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> Program&gt; GetProgram() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -277,7 +277,7 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 <br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::ExecuteSpecific(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; <a href="CppArgc.htm">argv</a>) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;Test();<br/>
@@ -285,12 +285,12 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> <a href="CppArgc.htm">argc</a> <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppArgc.htm">argv</a>.size());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<a href="CppArgc.htm">argc</a> <a href="CppOperatorEqual.htm">==</a> 1)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> GetHelp() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;GetAbout().GetFileTitle() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " cannot be run in console mode\n"<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 }<br/>
 <br/>
@@ -332,12 +332,12 @@ include(../../<a href="Games.htm">Games</a>/<a href="GamePaperRockScissors.htm">
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> p;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "0.1";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::PaperRockScissorsMenuDialog::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2013-07-13: <a href="CppVersion.htm">version</a> 0.1: conformized to <a href="ProjectRichelBilderbeek.htm">ProjectRichelBilderbeek</a>ConsoleS"<br/>
@@ -401,40 +401,40 @@ WtPaperRockScissors<a href="CppApplication.htm">Application</a>::WtPaperRockScis
 {<br/>
 &nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> Declare the supported options.<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::options_description d(<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::options_description d(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"Allowed options <b><a href="CppFor.htm">for</a></b> CppWtExample3");<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> docroot;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_address;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> http_port;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> docroot;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> http_address;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> http_port;<br/>
 &nbsp;&nbsp;d.add_options()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("help",<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"produce <b><a href="CppThis.htm">this</a></b> help message")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("docroot",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;docroot)-&gt;default_value("."),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoostProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppStdString.htm">std::string</a>&gt;(&amp;docroot)-&gt;default_value("."),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the docroot")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-address",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_address)-&gt;default_value("0.0.0.0"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoostProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppStdString.htm">std::string</a>&gt;(&amp;http_address)-&gt;default_value("0.0.0.0"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http <a href="CppAddress.htm">address</a>")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;("http-port",<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppString.htm">std::string</a>&gt;(&amp;http_port)-&gt;default_value("8080"),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppBoostProgram_options.htm">boost::program_options</a>::value&lt;<a href="CppStdString.htm">std::string</a>&gt;(&amp;http_port)-&gt;default_value("8080"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "the server's http port")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::store(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::variables_map m;<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::store(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::parse_command_line(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppArgc.htm">argc</a>, <a href="CppArgc.htm">argv</a>, d), m);<br/>
-&nbsp;&nbsp;<a href="CppProgram_options.htm">boost::program_options</a>::notify(m);<br/>
+&nbsp;&nbsp;<a href="CppBoostProgram_options.htm">boost::program_options</a>::notify(m);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m.count("help"))<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Display the options_description<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> d <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "\n";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the arguments in <a href="CppString.htm">std::string</a> format<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v(7);<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create the arguments in <a href="CppStdString.htm">std::string</a> format<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v(7);<br/>
 &nbsp;&nbsp;v[0] <a href="CppOperatorAssign.htm">=</a> <a href="CppArgc.htm">argv</a>[0];<br/>
 &nbsp;&nbsp;v[1] <a href="CppOperatorAssign.htm">=</a> "<a href="CppOperatorDecrement.htm">--</a>docroot";<br/>
 &nbsp;&nbsp;v[2] <a href="CppOperatorAssign.htm">=</a> docroot;<br/>
@@ -444,7 +444,7 @@ WtPaperRockScissors<a href="CppApplication.htm">Application</a>::WtPaperRockScis
 &nbsp;&nbsp;v[6] <a href="CppOperatorAssign.htm">=</a> http_port;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> the arguments to <b><a href="CppChar.htm">char</a></b>* format<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>*&gt; w(7);<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppChar.htm">char</a></b>*&gt; w(7);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>7; <a href="CppOperatorIncrement.htm">++</a>i) w[i] <a href="CppOperatorAssign.htm">=</a> &amp;v[i][0];<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Give <a href="CppWt.htm">Wt</a> the modified parameters<br/>
@@ -537,17 +537,17 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer * <b><a href="CppConst.htm">const</a></b> m_server;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppState.htm">State</a> * m_state;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_about;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_connect;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_login;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_game;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_about;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_connect;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_login;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppState.htm">State</a>&gt; m_state_game;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnClose();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> Show();<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPublic.htm">public</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History();<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>();<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppAbout.htm">About</a> GetAbout();<br/>
 <br/>
 };<br/>
@@ -671,14 +671,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppThis.htm">this</a></b>-&gt;m_state_login.get();<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog::Get<a href="CppVersion.htm">Version</a>History()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;v.push_back("2011-04-15: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>");<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
@@ -755,7 +755,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppProtected.htm">protected</a></b>:<br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog * <b><a href="CppConst.htm">const</a></b> m_dialog;<br/>
@@ -778,7 +778,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>* x);<br/>
 <br/>
 &nbsp;&nbsp;WtPaperRockScissorsDialog<a href="CppState.htm">State</a> * m_prev_state;<br/>
 <br/>
@@ -799,7 +799,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Connect* x);<br/>
 };<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game<br/>
@@ -817,7 +817,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWButtonGroup.htm">Wt::WButtonGroup</a> * m_group;<br/>
 };<br/>
@@ -836,7 +836,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<b><a href="CppVirtual.htm">virtual</a></b> ~WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login() {}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Do not forget the <b><a href="CppTemplate.htm">template</a></b> brackets, as stated in<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppHerbSutter.htm">Herb Sutter</a>. <a href="CppException.htm">Exception</a>al C<a href="CppOperatorIncrement.htm">++</a> style. 2005. ISBN: 0-201-76042-8. Item 8: '<a href="CppFriend.htm">Befriending</a> <a href="CppTemplate.htm">templates</a>'.<br/>
-&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login* x);<br/>
+&nbsp;&nbsp;<b><a href="CppFriend.htm">friend</a></b> <b><a href="CppVoid.htm">void</a></b> <a href="CppBoostChecked_delete.htm">boost::checked_delete</a>&lt;&gt;(WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login* x);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWLineEdit.htm">Wt::WLineEdit</a> * m_edit_username;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> OnEditChanged();<br/>
@@ -960,7 +960,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppWtAboutDialog.htm">WtAboutDialog</a> * <b><a href="CppConst.htm">const</a></b> d <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWtAboutDialog.htm">WtAboutDialog</a>(a);<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("TODO");<br/>
 &nbsp;&nbsp;d-&gt;m_signal_close.connect(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBind.htm">boost::bind</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostBind.htm">boost::bind</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a><a href="CppAbout.htm">About</a>::OnClose,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>));<br/>
 &nbsp;&nbsp;m_dialog-&gt;clear();<br/>
@@ -1001,7 +1001,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <a href="CppComment.htm">///</a>Send the <b><a href="CppNew.htm">new</a></b> selected radio button's index<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Send()<br/>
 {<br/>
-&nbsp;&nbsp;m_server-&gt;SendMessageToServer(<a href="CppRand.htm">std::rand</a>());<br/>
+&nbsp;&nbsp;m_server-&gt;SendMessageToServer(<a href="CppStdRand.htm">std::rand</a>());<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Game::Show()<br/>
@@ -1084,8 +1084,8 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_edit_username<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_username <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <a href="CppWLineEdit.htm">Wt::WLineEdit</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRand.htm">std::rand</a>()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLexical_cast.htm">boost::lexical_cast</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRand.htm">std::rand</a>()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_edit_username-&gt;changed().connect(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,&amp;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsDialog<a href="CppState.htm">State</a>Login::OnEditChanged);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_dialog-&gt;addWidget(m_edit_username);<br/>
@@ -1141,14 +1141,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;WtPaperRockScissorsEvent(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions);<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetIndex() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_index; }<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; GetFractions() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_fractions; }<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; GetFractions() <b><a href="CppConst.htm">const</a></b> { <b><a href="CppReturn.htm">return</a></b> m_fractions; }<br/>
 <br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_index;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_fractions;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; m_fractions;<br/>
 };<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
@@ -1189,7 +1189,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsEvent::WtPaperRockScissorsEvent(<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions)<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;&amp; fractions)<br/>
 &nbsp;&nbsp;: m_index(index),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_fractions(fractions)<br/>
 {<br/>
@@ -1249,7 +1249,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <b><a href="CppPrivate.htm">private</a></b>:<br/>
 &nbsp;&nbsp;WtPaperRockScissorsServer();<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;WtPaperRockScissorsServer&gt; <a href="CppInstance.htm">m_instance</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;WtPaperRockScissorsServer&gt; <a href="CppInstance.htm">m_instance</a>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppWtSignal.htm">Wt::Signal</a>&lt;WtPaperRockScissorsEvent&gt; m_change_index_event;<br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppMutex.htm">mutex</a> m_mutex;<br/>
@@ -1297,7 +1297,7 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 <br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/numeric/conversion/cast.hpp&gt;<br/>
 <br/>
-<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer&gt; <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::<a href="CppInstance.htm">m_instance</a>;<br/>
+<a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer&gt; <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::<a href="CppInstance.htm">m_instance</a>;<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::WtPaperRockScissorsServer::WtPaperRockScissorsServer()<br/>
 {<br/>
@@ -1315,14 +1315,14 @@ along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppMutex.htm">mutex</a>::<a href="CppScope.htm">scope</a>d_lock lock(m_mutex);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; fractions <a href="CppOperatorAssign.htm">=</a> GetCurrentFractions();<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt; fractions <a href="CppOperatorAssign.htm">=</a> GetCurrentFractions();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Update the current index<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>m_current_index <a href="CppOperatorAssign.htm">=</a> index;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>The server emits the message to the clients<br/>
 &nbsp;&nbsp;m_change_index_event.<b><a href="CppEmit.htm">emit</a></b>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;WtPaperRockScissorsEvent(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;()));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;()));<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

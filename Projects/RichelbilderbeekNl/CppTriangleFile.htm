@@ -35,7 +35,7 @@
 <a href="CppQmakeIncludepath.htm">INCLUDEPATH</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleFile<br/>
 <br/>
-<a href="CppQmakeSources.htm">SOURCES</a> +=<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleFile/trianglefile.cpp<br/>
 <br/>
 <a href="CppQmakeHeaders.htm">HEADERS</a>&nbsp;&nbsp;+= \<br/>
@@ -43,6 +43,9 @@
 <br/>
 <a href="CppQmakeOther_files.htm">OTHER_FILES</a> += \<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleFile/Licence.txt<br/>
+<br/>
+<a href="CppQmakeResources.htm">RESOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;../../<a href="CppClass.htm">Classes</a>/CppTriangleFile/CppTriangleFile.qrc<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -75,8 +78,8 @@
 <b><a href="CppStruct.htm">struct</a></b> TriangleFile<br/>
 {<br/>
 &nbsp;&nbsp;TriangleFile(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; <a href="CppShape.htm">shape</a>s,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; holes <a href="CppOperatorAssign.htm">=</a> {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; <a href="CppShape.htm">shape</a>s,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; holes <a href="CppOperatorAssign.htm">=</a> {}<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> CountSegments() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> CountVertices(); } <a href="CppComment.htm">//</a>A polygon has as much vertices as segments<br/>
@@ -85,22 +88,22 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Executes Triangle.exe from a <a href="CppWindows.htm">Windows</a> command line<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ExecuteTriangle(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; node_filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; ele_filename,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; poly_filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; node_filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; ele_filename,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; poly_filename,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> quality <a href="CppOperatorAssign.htm">=</a> 30.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> area <a href="CppOperatorAssign.htm">=</a> 2.0,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose <a href="CppOperatorAssign.htm">=</a> <b><a href="CppFalse.htm">false</a></b>) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Convert</a> the file to a string in a format usable by Triangle.exe<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_holes;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_<a href="CppShape.htm">shape</a>s;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_holes;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt; m_<a href="CppShape.htm">shape</a>s;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
@@ -126,12 +129,18 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppQFile.htm">QFile</a>&gt;<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::TriangleFile::TriangleFile(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; <a href="CppShape.htm">shape</a>s,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; holes<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; <a href="CppShape.htm">shape</a>s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; holes<br/>
 ) : m_holes(holes),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_<a href="CppShape.htm">shape</a>s(<a href="CppShape.htm">shape</a>s)<br/>
 {<br/>
@@ -153,41 +162,50 @@
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::TriangleFile::ExecuteTriangle(<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; node_filename,<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; ele_filename,<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a>&amp; poly_filename,<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; node_filename,<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; ele_filename,<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; poly_filename,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> quality,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> area,<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> verbose) <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename { <a href="CppFileIo.htm">fileio</a>::GetTempFileName(".poly") };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename { <a href="CppFileIo.htm">fileio</a>::GetTempFileName(".poly") };<br/>
 &nbsp;&nbsp;node_filename <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;ele_filename <a href="CppOperatorAssign.htm">=</a> "";<br/>
 &nbsp;&nbsp;poly_filename <a href="CppOperatorAssign.htm">=</a> "";<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <b><a href="CppThis.htm">this</a></b>-&gt;ToStr();<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> exe_filename { "triangle.exe" };<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(exe_filename))<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> file( (<a href="CppStdString.htm">std::string</a>(":/trianglefile/files/") <a href="CppOperatorPlus.htm">+</a> exe_filename).c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.copy(exe_filename.c_str());<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(exe_filename));<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;s<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "triangle.exe <a href="CppOperatorMinus.htm">-</a>j <a href="CppOperatorMinus.htm">-</a>z <a href="CppOperatorMinus.htm">-</a>q"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> exe_filename<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a>j <a href="CppOperatorMinus.htm">-</a>z <a href="CppOperatorMinus.htm">-</a>q"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> quality<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a>a"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> area<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (verbose ? <a href="CppString.htm">std::string</a>("") : <a href="CppString.htm">std::string</a>(" <a href="CppOperatorMinus.htm">-</a>Q"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (verbose ? <a href="CppStdString.htm">std::string</a>("") : <a href="CppStdString.htm">std::string</a>(" <a href="CppOperatorMinus.htm">-</a>Q"))<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(s.str().c_str());<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem.htm">std::system</a>(s.str().c_str());<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (error)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppFileIo.htm">fileio</a>::<a href="CppDeleteFile.htm">DeleteFile</a>(filename);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppRuntime_error.htm">std::runtime_error</a>(s.str().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdRuntime_error.htm">std::runtime_error</a>(s.str().c_str());<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename_base { <a href="CppFileIo.htm">fileio</a>::<a href="CppGetFileBasename.htm">GetFileBasename</a>(filename) };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename_base { <a href="CppFileIo.htm">fileio</a>::<a href="CppGetFileBasename.htm">GetFileBasename</a>(filename) };<br/>
 &nbsp;&nbsp;node_filename <a href="CppOperatorAssign.htm">=</a> filename_base <a href="CppOperatorPlus.htm">+</a> ".1.node";<br/>
 &nbsp;&nbsp;ele_filename <a href="CppOperatorAssign.htm">=</a> filename_base <a href="CppOperatorPlus.htm">+</a> ".1.ele";<br/>
 &nbsp;&nbsp;poly_filename <a href="CppOperatorAssign.htm">=</a> filename_base <a href="CppOperatorPlus.htm">+</a> ".1.poly";<br/>
@@ -197,12 +215,12 @@
 &nbsp;&nbsp;<a href="CppFileIo.htm">fileio</a>::<a href="CppDeleteFile.htm">DeleteFile</a>(filename);<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TriangleFile::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::TriangleFile::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-02-07: <a href="CppVersion.htm">Version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
@@ -219,7 +237,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;is_tested <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>("Starting <a href="CppRibi.htm">ribi</a>::TriangleFile::Test");<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{0.5, 2.0}, <a href="CppComment.htm">//</a>0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{1.0, 1.0}, <a href="CppComment.htm">//</a>1<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{1.0, 0.0}, <a href="CppComment.htm">//</a>2<br/>
@@ -230,9 +248,9 @@
 &nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s);<br/>
 &nbsp;&nbsp;TriangleFile f( {v} );<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppTRACE.htm">TRACE</a>(f.ToStr());<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename_node;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename_ele;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> filename_poly;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_node;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_ele;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_poly;<br/>
 &nbsp;&nbsp;f.ExecuteTriangle(filename_node,filename_ele,filename_poly);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename_node));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename_ele));<br/>
@@ -241,19 +259,19 @@
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::ToStr() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetprecision.htm">std::setprecision</a>(6) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFixed.htm">std::fixed</a>;<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetprecision.htm">std::setprecision</a>(6) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdFixed.htm">std::fixed</a>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Write vertices<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> <a href="CppShape.htm">shape</a>: m_<a href="CppShape.htm">shape</a>s)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::ring&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::<a href="CppConvert.htm">convert</a>(<a href="CppShape.htm">shape</a>,v);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<a href="CppBegin.htm">std::begin</a>(v),<a href="CppEnd.htm">std::end</a>(v),<a href="CppBack_inserter.htm">std::back_inserter</a>(<a href="CppPointer.htm">point</a>s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(<a href="CppStdBegin.htm">std::begin</a>(v),<a href="CppStdEnd.htm">std::end</a>(v),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(<a href="CppPointer.htm">point</a>s));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
@@ -276,7 +294,7 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Write segments<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> segments;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdPair.htm">std::pair</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> segments;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_segments <a href="CppOperatorAssign.htm">=</a> CountSegments();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_segments <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " 0\n";<br/>
 <br/>
@@ -288,11 +306,11 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>A polygon has segments from a <a href="CppPointer.htm">point</a> to the next...<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> j=0; j<a href="CppOperatorNotEqual.htm">!=</a>n_vertices-1; <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;segments.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(cnt,cnt+1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;segments.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(cnt,cnt+1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>...or from the last to the first<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;segments.push_back(<a href="CppMake_pair.htm">std::make_pair</a>(cnt,cnt-n_vertices+1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;segments.push_back(<a href="CppStdMake_pair.htm">std::make_pair</a>(cnt,cnt-n_vertices+1));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>cnt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
@@ -309,12 +327,12 @@
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Write holes<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> holes;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> holes;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> hole: m_holes)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::ring&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::<a href="CppConvert.htm">convert</a>(hole,v);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(<a href="CppBegin.htm">std::begin</a>(v),<a href="CppEnd.htm">std::end</a>(v),<a href="CppBack_inserter.htm">std::back_inserter</a>(holes));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(<a href="CppStdBegin.htm">std::begin</a>(v),<a href="CppStdEnd.htm">std::end</a>(v),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(holes));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>

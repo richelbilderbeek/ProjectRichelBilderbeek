@@ -89,25 +89,25 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 <a href="CppComment.htm">///</a>Modeled after the PHP <a href="CppFunction.htm">function</a> <a href="CppArray.htm">array</a>_merge<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_merge(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; w)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_merge(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; w)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; x { v };<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppBack_inserter.htm">std::back_inserter</a>(x));<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; x { v };<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(w.begin(),w.end(),<a href="CppStdBack_inserter.htm">std::back_inserter</a>(x));<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> x;<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; a { 0,1,2 };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; b { 0,2,4,6 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; a { 0,1,2 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; b { 0,2,4,6 };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Concatenate the <a href="CppArray.htm">array</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 0,1,2,0,2,4,6 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 0,1,2,0,2,4,6 };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Find the merged set, raw<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; result <a href="CppOperatorAssign.htm">=</a> <a href="CppArray.htm">array</a>_merge(a,b);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; result <a href="CppOperatorAssign.htm">=</a> <a href="CppArray.htm">array</a>_merge(a,b);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(result <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 }<br/>
 </code></td></tr></table>

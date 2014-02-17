@@ -77,41 +77,41 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppFstreamH.htm">fstream</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename);<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename);<br/>
 <br/>
 <a href="CppComment.htm">///</a>Delete a file<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppDeleteFile.htm">DeleteFile</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppDeleteFile.htm">DeleteFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppDeleteFile.htm">DeleteFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppRemove.htm">std::remove</a>(filename.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdRemove.htm">std::remove</a>(filename.c_str());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(filename));<br/>
 <br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Determines <b><a href="CppIf.htm">if</a></b> a filename is a regular file<br/>
 <a href="CppComment.htm">///</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppIsRegularFile.htm">IsRegularFile</a>.htm<br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename)<br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppFstream.htm">std::fstream</a> f;<br/>
+&nbsp;&nbsp;<a href="CppStdFstream.htm">std::fstream</a> f;<br/>
 &nbsp;&nbsp;f.open(filename.c_str(),<a href="CppStd.htm">std</a>::ios::in);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> f.is_open();<br/>
 }<br/>
 <br/>
 <a href="CppComment.htm">///</a>Renames a file<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppRenameFile.htm">RenameFile</a>.htm<br/>
-<b><a href="CppVoid.htm">void</a></b> <a href="CppRenameFile.htm">RenameFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; from, <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; to)<br/>
+<b><a href="CppVoid.htm">void</a></b> <a href="CppRenameFile.htm">RenameFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; from, <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; to)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppIsRegularFile.htm">IsRegularFile</a>(from) <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot rename a non-existing file");<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(to)&nbsp;&nbsp; <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Cannot rename to an existing file");<br/>
-&nbsp;&nbsp;<a href="CppRename.htm">std::rename</a>(from.c_str(),to.c_str());<br/>
+&nbsp;&nbsp;<a href="CppStdRename.htm">std::rename</a>(from.c_str(),to.c_str());<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppIsRegularFile.htm">IsRegularFile</a>(from));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( <a href="CppIsRegularFile.htm">IsRegularFile</a>(to)&nbsp;&nbsp;);<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename_from <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename_to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> "tmp2.txt";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename_from <a href="CppOperatorAssign.htm">=</a> "tmp.txt";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename_to&nbsp;&nbsp; <a href="CppOperatorAssign.htm">=</a> "tmp2.txt";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Delete possible old temporary files<br/>
 &nbsp;&nbsp;<a href="CppDeleteFile.htm">DeleteFile</a>(filename_from);<br/>
@@ -119,7 +119,7 @@
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Create <b><a href="CppNew.htm">new</a></b> file<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename_from.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename_from.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "TMP";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f.close();<br/>
 &nbsp;&nbsp;}<br/>

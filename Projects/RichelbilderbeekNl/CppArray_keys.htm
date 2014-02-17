@@ -89,10 +89,10 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 <a href="CppComment.htm">//</a>Modeled after the PHP <a href="CppFunction.htm">function</a> with the same name<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T,<b><a href="CppClass.htm">class</a></b> U&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_keys(<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;T,U&gt;&amp; m)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt; <a href="CppArray.htm">array</a>_keys(<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;T,U&gt;&amp; m)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;T,U&gt;&amp; p: m) { v.push_back(p.first); }<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt;&amp; p: m) { v.push_back(p.first); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
@@ -101,28 +101,28 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <b><a href="CppTemplate.htm">template</a></b> &lt;<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> T,<br/>
 &nbsp;&nbsp;<b><a href="CppClass.htm">class</a></b> U,<br/>
-&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b>&gt; <b><a href="CppClass.htm">class</a></b> <a href="CppArray.htm">Array</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppVector.htm">std::vector</a>,<br/>
-&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b>,<b><a href="CppTypename.htm">typename</a></b>&gt; <b><a href="CppClass.htm">class</a></b> Map <a href="CppOperatorAssign.htm">=</a> <a href="CppMap.htm">std::map</a><br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b>&gt; <b><a href="CppClass.htm">class</a></b> <a href="CppArray.htm">Array</a> <a href="CppOperatorAssign.htm">=</a> <a href="CppStdVector.htm">std::vector</a>,<br/>
+&nbsp;&nbsp;<b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppTypename.htm">typename</a></b>,<b><a href="CppTypename.htm">typename</a></b>&gt; <b><a href="CppClass.htm">class</a></b> Map <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMap.htm">std::map</a><br/>
 &gt;<br/>
 <b><a href="CppConst.htm">const</a></b> <a href="CppArray.htm">Array</a>&lt;T&gt; <a href="CppArray.htm">array</a>_keys(<b><a href="CppConst.htm">const</a></b> Map&lt;T,U&gt;&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppArray.htm">Array</a>&lt;T&gt; v;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppPair.htm">std::pair</a>&lt;T,U&gt;&amp; p: m) { v.push_back(p.first); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdPair.htm">std::pair</a>&lt;T,U&gt;&amp; p: m) { v.push_back(p.first); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <a href="CppEndif.htm">#endif</a><br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<a href="CppString.htm">std::string</a>&gt; m<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<a href="CppStdString.htm">std::string</a>&gt; m<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 0, "Zero" },<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 1, "One"&nbsp;&nbsp;},<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{ 2, "Two"&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;};<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; keys { <a href="CppArray.htm">array</a>_keys(m) };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 0,1,2 };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; keys { <a href="CppArray.htm">array</a>_keys(m) };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; expected { 0,1,2 };<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(keys <a href="CppOperatorEqual.htm">==</a> expected );<br/>
 }<br/>
 </code></td></tr></table>

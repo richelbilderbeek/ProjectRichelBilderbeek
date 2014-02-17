@@ -104,24 +104,24 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <a href="CppComment.htm">///</a>Obtain the key that corresponds to the highest value<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/CppGetKeyWithMaxValue.htm<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> Key GetKeyWithMaxValue(<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;Key,Value&gt;&amp; v)<br/>
+<b><a href="CppConst.htm">const</a></b> Key GetKeyWithMaxValue(<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;Key,Value&gt;&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!v.empty());<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppMax_element.htm">std::max_element</a>(<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppStdMax_element.htm">std::max_element</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLambda.htm">boost::lambda</a>::bind(&amp;<a href="CppPair.htm">std::pair</a>&lt;Key,Value&gt;::second, <a href="CppBoostLambda.htm">boost::lambda</a>::_2)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp; &gt; <a href="CppBoostLambda.htm">boost::lambda</a>::bind(&amp;<a href="CppPair.htm">std::pair</a>&lt;Key,Value&gt;::second, <a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostLambda.htm">boost::lambda</a>::bind(&amp;<a href="CppStdPair.htm">std::pair</a>&lt;Key,Value&gt;::second, <a href="CppBoostLambda.htm">boost::lambda</a>::_2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp; &gt; <a href="CppBoostLambda.htm">boost::lambda</a>::bind(&amp;<a href="CppStdPair.htm">std::pair</a>&lt;Key,Value&gt;::second, <a href="CppBoostLambda.htm">boost::lambda</a>::_1)<br/>
 &nbsp;&nbsp; )-&gt;first;<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;<a href="CppString.htm">std::string</a>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
-&nbsp;&nbsp;m.insert(<a href="CppMake_pair.htm">std::make_pair</a>("eight",8));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppMake_pair.htm">std::make_pair</a>("four",4));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppMake_pair.htm">std::make_pair</a>("one",1));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppMake_pair.htm">std::make_pair</a>("sixteen",16));<br/>
-&nbsp;&nbsp;m.insert(<a href="CppMake_pair.htm">std::make_pair</a>("two",2));<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;<a href="CppStdString.htm">std::string</a>,<b><a href="CppInt.htm">int</a></b>&gt; m;<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>("eight",8));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>("four",4));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>("one",1));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>("sixteen",16));<br/>
+&nbsp;&nbsp;m.insert(<a href="CppStdMake_pair.htm">std::make_pair</a>("two",2));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(GetKeyWithMaxValue(m) <a href="CppOperatorEqual.htm">==</a> "sixteen");<br/>
 }<br/>
 </code></td></tr></table>

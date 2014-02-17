@@ -131,14 +131,14 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 &nbsp;&nbsp;}<br/>
 };<br/>
 <br/>
-<a href="CppComment.htm">///</a>Manager keeps a <a href="CppVector.htm">std::vector</a> in a valid state<br/>
+<a href="CppComment.htm">///</a>Manager keeps a <a href="CppStdVector.htm">std::vector</a> in a valid state<br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> T, <b><a href="CppTypename.htm">typename</a></b> CheckPolicy&gt;<br/>
 <b><a href="CppStruct.htm">struct</a></b> Manager : <b><a href="CppPublic.htm">public</a></b> CheckPolicy<br/>
 {<br/>
-&nbsp;&nbsp;Manager(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;T&gt;&amp; v) : m_v(v) { CheckAll(); }<br/>
+&nbsp;&nbsp;Manager(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;T&gt;&amp; v) : m_v(v) { CheckAll(); }<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;T&gt; m_v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;T&gt; m_v;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> CheckAll()<br/>
 &nbsp;&nbsp;{<br/>
@@ -149,18 +149,18 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b> };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b> *&gt; v<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> { <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>, <b><a href="CppNullptr.htm">nullptr</a></b> }; <a href="CppComment.htm">//</a><b><a href="CppNullptr.htm">nullptr</a></b> will be detected<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Manager&lt;<b><a href="CppInt.htm">int</a></b> *, CheckPolicyNotNull&lt;<b><a href="CppInt.htm">int</a></b> *&gt; &gt; <a href="CppPointer.htm">pointer</a>s( v );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> * p: v) <b><a href="CppDelete.htm">delete</a></b> p;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Manager&lt;<a href="CppString.htm">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppString.htm">std::string</a>&gt; &gt; strings(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Manager&lt;<a href="CppStdString.htm">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppStdString.htm">std::string</a>&gt; &gt; strings(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ "1", "12", "123" } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Manager&lt;<a href="CppString.htm">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppString.htm">std::string</a>&gt; &gt; strings(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;{ "1", "12", "" } ); <a href="CppComment.htm">//</a>empty <a href="CppString.htm">std::string</a> will be detected<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppConst.htm">const</a></b> Manager&lt;<a href="CppStdString.htm">std::string</a>, CheckPolicyNotEmpty&lt;<a href="CppStdString.htm">std::string</a>&gt; &gt; strings(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;{ "1", "12", "" } ); <a href="CppComment.htm">//</a>empty <a href="CppStdString.htm">std::string</a> will be detected<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>

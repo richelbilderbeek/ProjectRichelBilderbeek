@@ -117,7 +117,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 &nbsp;&nbsp; cpp_int limit <a href="CppOperatorAssign.htm">=</a> (cpp_int(1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 128) <a href="CppOperatorMinus.htm">-</a> 1;<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">//</a><br/>
 &nbsp;&nbsp; <a href="CppComment.htm">//</a> Our table of values:<br/>
-&nbsp;&nbsp; <a href="CppVector.htm">std::vector</a>&lt;cpp_int&gt; results;<br/>
+&nbsp;&nbsp; <a href="CppStdVector.htm">std::vector</a>&lt;cpp_int&gt; results;<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">//</a><br/>
 &nbsp;&nbsp; <a href="CppComment.htm">//</a> Initial values:<br/>
 &nbsp;&nbsp; <b><a href="CppUnsigned.htm">unsigned</a></b> i <a href="CppOperatorAssign.htm">=</a> 1;<br/>
@@ -143,17 +143,17 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cpp_int(1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 64) <a href="CppOperatorMinus.htm">-</a> 1,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(cpp_int(1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> 128) <a href="CppOperatorMinus.htm">-</a> 1,<br/>
 &nbsp;&nbsp; };<br/>
-&nbsp;&nbsp; <a href="CppString.htm">std::string</a> bit_counts[] <a href="CppOperatorAssign.htm">=</a> { "16", "32", "64", "128" };<br/>
+&nbsp;&nbsp; <a href="CppStdString.htm">std::string</a> bit_counts[] <a href="CppOperatorAssign.htm">=</a> { "16", "32", "64", "128" };<br/>
 &nbsp;&nbsp; <b><a href="CppUnsigned.htm">unsigned</a></b> current_limit <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp; <b><a href="CppFor.htm">for</a></b>(<b><a href="CppUnsigned.htm">unsigned</a></b> j <a href="CppOperatorAssign.htm">=</a> 0; j &lt; results.size(); <a href="CppOperatorIncrement.htm">++</a>j)<br/>
 &nbsp;&nbsp; {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b>(limits[current_limit] &lt; results[j])<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppString.htm">std::string</a> message <a href="CppOperatorAssign.htm">=</a> "Limit of " <a href="CppOperatorPlus.htm">+</a> bit_counts[current_limit] <a href="CppOperatorPlus.htm">+</a> " bit <a href="CppInt.htm">integer</a>s";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetfill.htm">std::setfill</a>('.') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetw.htm">std::setw</a>(digits+1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRight.htm">std::right</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetfill.htm">std::setfill</a>(' ') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppStdString.htm">std::string</a> message <a href="CppOperatorAssign.htm">=</a> "Limit of " <a href="CppOperatorPlus.htm">+</a> bit_counts[current_limit] <a href="CppOperatorPlus.htm">+</a> " bit <a href="CppInt.htm">integer</a>s";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetfill.htm">std::setfill</a>('.') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetw.htm">std::setw</a>(digits+1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdRight.htm">std::right</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> message <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetfill.htm">std::setfill</a>(' ') <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppOperatorIncrement.htm">++</a>current_limit;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetw.htm">std::setw</a>(digits <a href="CppOperatorPlus.htm">+</a> 1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppRight.htm">std::right</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> results[j] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetw.htm">std::setw</a>(digits <a href="CppOperatorPlus.htm">+</a> 1) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdRight.htm">std::right</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> results[j] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp; }<br/>
 }<br/>
 </code></td></tr></table>

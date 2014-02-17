@@ -80,16 +80,16 @@
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "ABXDEF";<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "ABXDEF";<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>C style way to find a <a href="CppChar.htm">character</a> in a string<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> c <a href="CppOperatorAssign.htm">=</a> <a href="CppStrchr.htm">std::strchr</a>(&amp;s[0],'X');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> c <a href="CppOperatorAssign.htm">=</a> <a href="CppStdStrchr.htm">std::strchr</a>(&amp;s[0],'X');<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*(c-1)<a href="CppOperatorEqual.htm">==</a>'B');<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*(c+1)<a href="CppOperatorEqual.htm">==</a>'D');<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Similar C<a href="CppOperatorIncrement.htm">++</a> style way to find a <a href="CppChar.htm">character</a> in a string<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>::const_iterator i<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppFind.htm">std::find</a>(s.begin(),s.end(),'X');<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>::const_iterator i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppStdFind.htm">std::find</a>(s.begin(),s.end(),'X');<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*(i-1)<a href="CppOperatorEqual.htm">==</a>'B');<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*(i+1)<a href="CppOperatorEqual.htm">==</a>'D');<br/>
 }<br/>

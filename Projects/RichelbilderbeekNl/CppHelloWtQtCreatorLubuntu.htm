@@ -148,10 +148,10 @@ Hello<a href="CppApplication.htm">Application</a>::Hello<a href="CppApplication.
 &nbsp;&nbsp;b-&gt;clicked().connect(<b><a href="CppThis.htm">this</a></b>, &amp;Hello<a href="CppApplication.htm">Application</a>::greet);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
-&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBind.htm">boost::bind</a>())<br/>
+&nbsp;&nbsp; * <a href="CppOperatorMinus.htm">-</a> <b><a href="CppUsing.htm">using</a></b> an arbitrary <a href="CppFunction.htm">function</a> object (binding values with <a href="CppBoostBind.htm">boost::bind</a>())<br/>
 &nbsp;&nbsp; <a href="CppComment.htm">*/</a><br/>
 &nbsp;&nbsp;nameEdit_-&gt;enterPressed().connect<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;(<a href="CppBoostBind.htm">boost::bind</a>(&amp;Hello<a href="CppApplication.htm">Application</a>::greet, <b><a href="CppThis.htm">this</a></b>));<br/>
 }<br/>
 <br/>
 <b><a href="CppVoid.htm">void</a></b> Hello<a href="CppApplication.htm">Application</a>::greet()<br/>

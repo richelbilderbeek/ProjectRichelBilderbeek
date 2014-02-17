@@ -78,35 +78,35 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppIomanipH.htm">iomanip</a>&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppSstreamH.htm">sstream</a>&gt;<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> FormatDigitsBehindTheComma(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> n)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> FormatDigitsBehindTheComma(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> n)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
-&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppSetprecision.htm">std::setprecision</a>(n) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppFixed.htm">std::fixed</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s.str();<br/>
+&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdSetprecision.htm">std::setprecision</a>(n) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdFixed.htm">std::fixed</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> x;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> t <a href="CppOperatorAssign.htm">=</a> s.str();<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
 }<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> 4.0 <a href="CppOperatorDivide.htm">/</a> 3.0;<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 0) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 1) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.3"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 2) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.33"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 3) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 4) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.3333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 5) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.33333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 6) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 7) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.3333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 8) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.33333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 9) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,10) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.3333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,11) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.33333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,12) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.333333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,13) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.3333333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,14) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.33333333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,15) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.333333333333333"));<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,16) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.3333333333333333"));<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,17) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>("1.33333333333333333")); <a href="CppComment.htm">//</a>Fails due to precision of <b><a href="CppDouble.htm">double</a></b><br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 0) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 1) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.3"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 2) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.33"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 3) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 4) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.3333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 5) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.33333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 6) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 7) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.3333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 8) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.33333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x, 9) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,10) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.3333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,11) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.33333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,12) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.333333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,13) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.3333333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,14) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.33333333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,15) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.333333333333333"));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,16) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.3333333333333333"));<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(FormatDigitsBehindTheComma(x,17) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>("1.33333333333333333")); <a href="CppComment.htm">//</a>Fails due to precision of <b><a href="CppDouble.htm">double</a></b><br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

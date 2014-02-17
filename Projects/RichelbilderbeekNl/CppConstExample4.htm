@@ -99,7 +99,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppComment.htm">//</a>Non-<b><a href="CppConst.htm">const</a></b> vector to non-<b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to non-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
-<b><a href="CppVoid.htm">void</a></b> nnn(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> nnn(<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;v.pop_back();<br/>
 &nbsp;&nbsp;v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -107,7 +107,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Const vector to non-<b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to non-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
-<b><a href="CppVoid.htm">void</a></b> cnn(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> cnn(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.pop_back();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -116,7 +116,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <a href="CppComment.htm">//</a>Non-<b><a href="CppConst.htm">const</a></b> vector to <b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to non-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
 <a href="CppComment.htm">//</a>Useless: cannot read<br/>
-<b><a href="CppVoid.htm">void</a></b> ncn(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> ncn(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.pop_back();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -126,7 +126,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <a href="CppComment.htm">//</a>Const vector to <b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to non-<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
 <a href="CppComment.htm">//</a>Useless: cannot read<br/>
-<b><a href="CppVoid.htm">void</a></b> ccn(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> ccn(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.pop_back();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -135,7 +135,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 }<br/>
 <br/>
 <a href="CppComment.htm">//</a>Non-<b><a href="CppConst.htm">const</a></b> vector to non-<b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
-<b><a href="CppVoid.htm">void</a></b> nnc(<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> nnc(<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;v.pop_back();<br/>
 &nbsp;&nbsp;v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -144,7 +144,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <a href="CppComment.htm">//</a>Const vector to non-<b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
 <a href="CppComment.htm">//</a>True read-only<br/>
-<b><a href="CppVoid.htm">void</a></b> cnc(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
+<b><a href="CppVoid.htm">void</a></b> cnc(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; v)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.pop_back();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -154,7 +154,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <a href="CppComment.htm">//</a>Non-<b><a href="CppConst.htm">const</a></b> vector to <b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
 <a href="CppComment.htm">//</a>Useless: cannot read<br/>
-<b><a href="CppVoid.htm">void</a></b> ncc(<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> ncc(<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.pop_back();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>
@@ -164,7 +164,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <a href="CppComment.htm">//</a>Const vector to <b><a href="CppConst.htm">const</a></b> <a href="CppPointer.htm">pointer</a> to <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><br/>
 <a href="CppComment.htm">//</a>Useless: cannot read<br/>
-<b><a href="CppVoid.htm">void</a></b> ccc(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
+<b><a href="CppVoid.htm">void</a></b> ccc(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; <a href="CppComment.htm">/*</a> v <a href="CppComment.htm">*/</a>)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.pop_back();<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>v.back() <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNullptr.htm">nullptr</a></b>;<br/>

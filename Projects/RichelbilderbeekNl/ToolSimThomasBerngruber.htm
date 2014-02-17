@@ -527,7 +527,7 @@ ShowArea(ImageGrid);<br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> SetSeed(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; seed)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> i;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;idum <a href="CppOperatorAssign.htm">=</a> <b><a href="CppLong.htm">long</a></b>(-<a href="CppAbs.htm">std::abs</a>(seed));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;idum <a href="CppOperatorAssign.htm">=</a> <b><a href="CppLong.htm">long</a></b>(-<a href="CppStdAbs.htm">std::abs</a>(seed));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (i=0; i&lt;100; i<a href="CppOperatorIncrement.htm">++</a>) uniform();<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Returns a <a href="CppRandomNumber.htm">random number</a> from a gaussian distrubution<br/>
@@ -540,7 +540,7 @@ ShowArea(ImageGrid);<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> x;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> out;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;x=<a href="CppFloor.htm">std::floor</a>(uniform()*N);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;x=<a href="CppStdFloor.htm">std::floor</a>(uniform()*N);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;out=<b><a href="CppInt.htm">int</a></b> (x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> out;<br/>
 &nbsp;&nbsp;}<br/>

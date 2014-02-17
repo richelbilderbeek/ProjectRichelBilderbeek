@@ -79,33 +79,33 @@
 <b><a href="CppStruct.htm">struct</a></b> Multi<a href="CppCanvas.htm">Canvas</a> : <b><a href="CppPublic.htm">public</a></b> <a href="CppCanvas.htm">Canvas</a><br/>
 {<br/>
 &nbsp;&nbsp;Multi<a href="CppCanvas.htm">Canvas</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; canvases<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; canvases<br/>
 &nbsp;&nbsp;);<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the height of the canvas is <a href="CppChar.htm">character</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetHeight() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the <a href="CppVersion.htm">version</a> history of <b><a href="CppThis.htm">this</a></b> <b><a href="CppClass.htm">class</a></b><br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Obtain the width of the canvas is <a href="CppChar.htm">character</a>s<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> GetWidth() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Convert</a> the Multi<a href="CppCanvas.htm">Canvas</a> to <a href="CppString.htm">std::string</a>s<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; ToStrings() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>/<a href="CppConvert.htm">Convert</a> the Multi<a href="CppCanvas.htm">Canvas</a> to <a href="CppStdString.htm">std::string</a>s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; ToStrings() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppPrivate.htm">private</a></b>:<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_canvases;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> m_canvases;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppVoid.htm">void</a></b> Test() <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 };<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Multi<a href="CppCanvas.htm">Canvas</a>&amp; c);<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Multi<a href="CppCanvas.htm">Canvas</a>&amp; c);<br/>
 <br/>
 } <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
 <br/>
@@ -149,7 +149,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::Multi<a href="CppCanvas.htm">Canvas</a>(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; canvases<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppCanvas.htm">Canvas</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&amp; canvases<br/>
 ) : m_canvases(canvases)<br/>
 {<br/>
 <br/>
@@ -159,16 +159,16 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_canvases.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> h <a href="CppOperatorAssign.htm">=</a> m_canvases[0]-&gt;GetHeight();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { h <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(h,c-&gt;GetHeight()); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { h <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(h,c-&gt;GetHeight()); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> h;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::Get<a href="CppVersion.htm">Version</a>() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "1.0";<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::Get<a href="CppVersion.htm">Version</a>History() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;"2014-01-13: <a href="CppVersion.htm">version</a> 1.0: initial <a href="CppVersion.htm">version</a>"<br/>
@@ -179,30 +179,30 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (m_canvases.empty()) <b><a href="CppReturn.htm">return</a></b> 0;<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> w <a href="CppOperatorAssign.htm">=</a> m_canvases[0]-&gt;GetWidth();<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { w <a href="CppOperatorAssign.htm">=</a> <a href="CppMin.htm">std::min</a>(w,c-&gt;GetWidth()); }<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { w <a href="CppOperatorAssign.htm">=</a> <a href="CppStdMin.htm">std::min</a>(w,c-&gt;GetWidth()); }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::ToStrings() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppRibi.htm">ribi</a>::Multi<a href="CppCanvas.htm">Canvas</a>::ToStrings() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxy <a href="CppOperatorAssign.htm">=</a> GetHeight();<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxx <a href="CppOperatorAssign.htm">=</a> GetWidth();<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (maxx <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> maxy <a href="CppOperatorEqual.htm">==</a> 0) { <b><a href="CppReturn.htm">return</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;(); }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (maxx <a href="CppOperatorEqual.htm">==</a> 0 <a href="CppOperatorLogicalOr.htm">||</a> maxy <a href="CppOperatorEqual.htm">==</a> 0) { <b><a href="CppReturn.htm">return</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(); }<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_canvases.size());<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> c: m_canvases) { v.push_back(c-&gt;ToStrings()); }<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Let the first canvas be drawn last, to give it the heighest Z order<br/>
-&nbsp;&nbsp;<a href="CppReverse.htm">std::reverse</a>(v.begin(),v.end());<br/>
+&nbsp;&nbsp;<a href="CppStdReverse.htm">std::reverse</a>(v.begin(),v.end());<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; w;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; w;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> y=0; y<a href="CppOperatorNotEqual.htm">!=</a>maxy; <a href="CppOperatorIncrement.htm">++</a>y)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> to(maxx,' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> to(maxx,' ');<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> layer=0; layer<a href="CppOperatorNotEqual.htm">!=</a>n_layers; <a href="CppOperatorIncrement.htm">++</a>layer)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(layer &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v.size()));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(y &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(v[layer].size()));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> from { v[layer][y] };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> from { v[layer][y] };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> x=0; x<a href="CppOperatorNotEqual.htm">!=</a>maxx; <a href="CppOperatorIncrement.htm">++</a>x)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x &lt; <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(from.size()));<br/>
@@ -217,11 +217,11 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> w;<br/>
 }<br/>
 <br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Multi<a href="CppCanvas.htm">Canvas</a>&amp; c)<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <a href="CppRibi.htm">ribi</a>::<b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> Multi<a href="CppCanvas.htm">Canvas</a>&amp; c)<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> text <a href="CppOperatorAssign.htm">=</a> c.ToStrings();<br/>
-&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(text.begin(),text.end(),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(os,"\n")<br/>
+&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(text.begin(),text.end(),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(os,"\n")<br/>
 &nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
 }<br/>

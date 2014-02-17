@@ -100,10 +100,10 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; p(<b><a href="CppNew.htm">new</a></b> <b><a href="CppInt.htm">int</a></b>(i));<br/>
@@ -114,27 +114,27 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two identical <a href="CppVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorNotEqual.htm">operator!=</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two identical <a href="CppStdVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorNotEqual.htm">operator!=</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Create(2) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w { Create(2) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Create(2) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w { Create(2) };<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Mismatch: compares the <a href="CppMemory.htm">memory</a> <a href="CppAddress.htm">address</a>es of the <a href="CppInt.htm">integer</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorNotEqual.htm">!=</a> w);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Less preferred, no unexpected behaviour<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!<a href="CppStdEqual.htm">std::equal</a>(v.begin(),v.end(),w.begin()));<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two identical <a href="CppVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorNotEqual.htm">operator!=</a></b><br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two identical <a href="CppStdVector.htm">std::vector</a>s: prefer <b><a href="CppOperatorNotEqual.htm">operator!=</a></b><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Create(2) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w(v);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Create(2) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w(v);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Match: compares the <a href="CppMemory.htm">memory</a> <a href="CppAddress.htm">address</a>es of the <a href="CppInt.htm">integer</a>s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> w);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Less preferred, no unexpected behaviour<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdEqual.htm">std::equal</a>(v.begin(),v.end(),w.begin()));<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSwap.htm">std::swap</a>(*w.begin(),*(w.end()-1));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSwap.htm">std::swap</a>(*w.begin(),*(w.end()-1));<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorNotEqual.htm">!=</a> w);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Less preferred, no unexpected behaviour<br/>
@@ -142,8 +142,8 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or use the code
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Compare two different <a href="CppContainer.htm">container</a>s<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Create(2) };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w(v.begin(),v.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v { Create(2) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppInt.htm">int</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w(v.begin(),v.end());<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Less preferred, no unexpected behaviour<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>( (&nbsp;&nbsp;&nbsp;&nbsp; <a href="CppStdEqual.htm">std::equal</a>(v.begin(),v.end(),w.begin())<br/>

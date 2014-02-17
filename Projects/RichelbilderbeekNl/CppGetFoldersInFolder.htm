@@ -97,24 +97,24 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 <br/>
 <a href="CppComment.htm">///</a>Obtain all files in a folder including thos in a subfolder<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetFoldersInFolder.htm">GetFoldersInFolder</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppGetFoldersInFolder.htm">GetFoldersInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; folder)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; <a href="CppGetFoldersInFolder.htm">GetFoldersInFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; folder)<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppQDir.htm">QDir</a> dir(folder.c_str());<br/>
 &nbsp;&nbsp;dir.setFilter(<a href="CppQDir.htm">QDir</a>::Dirs | <a href="CppQDir.htm">QDir</a>::NoDotAndDotDot&nbsp;&nbsp; );<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppQFile.htm">QFile</a>InfoList list <a href="CppOperatorAssign.htm">=</a> dir.entryInfoList();<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> <a href="CppQFile.htm">QFile</a>InfoList to <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; of filenames<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppConvert.htm">Convert</a> <a href="CppQFile.htm">QFile</a>InfoList to <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; of filenames<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> size <a href="CppOperatorAssign.htm">=</a> list.size();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> 0; i <a href="CppOperatorNotEqual.htm">!=</a> size; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> file_name <a href="CppOperatorAssign.htm">=</a> list.at(i).fileName().toStdString();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> file_name <a href="CppOperatorAssign.htm">=</a> list.at(i).fileName().toStdString();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(file_name);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> WIN32<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> "\\";<br/>
@@ -123,12 +123,12 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsFolder.htm">IsFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsFolder.htm">IsFolder</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <a href="CppQDir.htm">QDir</a>(filename.c_str()).exists();<br/>
 }<br/>
 <br/>
-<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; filename) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppBool.htm">bool</a></b> <a href="CppIsRegularFile.htm">IsRegularFile</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; filename) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> !<a href="CppQDir.htm">QDir</a>(filename.c_str()).exists() <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> <a href="CppQFile.htm">QFile</a>::exists(filename.c_str());<br/>
 }<br/>
@@ -139,45 +139,45 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> local.txt<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> my_folder/in_folder.txt<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a> <a href="CppOperatorMinus.htm">-</a> my_folder/my_subfolder/in_subfolder.txt<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> local_filename { "local.txt" };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> folder_name { "my_folder" };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> in_folder_filename { "in_folder.txt" };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> subfolder_name { "my_subfolder" };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> in_subfolder_filename { "in_subfolder.txt" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> local_filename { "local.txt" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> folder_name { "my_folder" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> in_folder_filename { "in_folder.txt" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> subfolder_name { "my_subfolder" };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> in_subfolder_filename { "in_subfolder.txt" };<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>File and folder creation<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename { local_filename };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename { local_filename };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsRegularFile.htm">IsRegularFile</a>(local_filename));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "mkdir " <a href="CppOperatorPlus.htm">+</a> folder_name;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "mkdir " <a href="CppOperatorPlus.htm">+</a> folder_name;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem.htm">std::system</a>(cmd.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsFolder.htm">IsFolder</a>(folder_name));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> in_folder_filename<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsRegularFile.htm">IsRegularFile</a>(folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> in_folder_filename));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "mkdir " <a href="CppOperatorPlus.htm">+</a> folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> subfolder_name;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppSystem.htm">std::system</a>(cmd.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> cmd <a href="CppOperatorAssign.htm">=</a> "mkdir " <a href="CppOperatorPlus.htm">+</a> folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> subfolder_name;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem.htm">std::system</a>(cmd.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!error);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIsFolder.htm">IsFolder</a>(folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> subfolder_name));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> filename {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> subfolder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator()<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorPlus.htm">+</a> in_subfolder_filename<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(filename.c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppIsRegularFile.htm">IsRegularFile</a>(<br/>
@@ -189,13 +189,13 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Reading of the folder created<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetFoldersInFolder.htm">GetFoldersInFolder</a>(folder_name)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(<a href="CppStdCout.htm">std::cout</a>,"\n"));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCount.htm">std::count</a>(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCount.htm">std::count</a>(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.begin(),v.end(),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subfolder_name<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>
@@ -203,10 +203,10 @@ include(../../<a href="CppConsoleApplication.htm">ConsoleApplication</a>.pri) #O
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppGetFoldersInFolder.htm">GetFoldersInFolder</a>(folder_name <a href="CppOperatorPlus.htm">+</a> <a href="CppGetPath.htm">GetPath</a>Seperator() <a href="CppOperatorPlus.htm">+</a> subfolder_name)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCout.htm">std::cout</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(<a href="CppStdCout.htm">std::cout</a>,"\n"));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v.size() <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

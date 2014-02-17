@@ -46,7 +46,7 @@
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> Sin_approx(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> c)<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ranged_x <a href="CppOperatorAssign.htm">=</a> <a href="CppFmod.htm">std::fmod</a>( (2.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> <a href="CppFmod.htm">std::fmod</a>(x,2.0 * <a href="CppM_PI.htm">M_PI</a>) , 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ranged_x <a href="CppOperatorAssign.htm">=</a> <a href="CppStdFmod.htm">std::fmod</a>( (2.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> <a href="CppStdFmod.htm">std::fmod</a>(x,2.0 * <a href="CppM_PI.htm">M_PI</a>) , 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ranged_x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ranged_x <a href="CppOperatorLessEqual.htm">&lt;=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ranged_x &lt; <a href="CppM_PI.htm">M_PI</a>)<br/>
@@ -67,7 +67,7 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> a <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a> 4.0 <a href="CppOperatorDivide.htm">/</a> pi_squared;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> b <a href="CppOperatorAssign.htm">=</a>&nbsp;&nbsp; 4.0 <a href="CppOperatorDivide.htm">/</a> <a href="CppM_PI.htm">M_PI</a>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ranged_x <a href="CppOperatorAssign.htm">=</a> <a href="CppFmod.htm">std::fmod</a>( (2.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> <a href="CppFmod.htm">std::fmod</a>(x,2.0 * <a href="CppM_PI.htm">M_PI</a>) , 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> ranged_x <a href="CppOperatorAssign.htm">=</a> <a href="CppStdFmod.htm">std::fmod</a>( (2.0 * <a href="CppM_PI.htm">M_PI</a>) <a href="CppOperatorPlus.htm">+</a> <a href="CppStdFmod.htm">std::fmod</a>(x,2.0 * <a href="CppM_PI.htm">M_PI</a>) , 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ranged_x <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 0.0);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(ranged_x <a href="CppOperatorLessEqual.htm">&lt;=</a> 2.0 * <a href="CppM_PI.htm">M_PI</a>);<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (ranged_x &lt; <a href="CppM_PI.htm">M_PI</a>)<br/>
@@ -93,14 +93,14 @@
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>100; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppSin.htm">std::sin</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdSin.htm">std::sin</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDouble.htm">double</a></b> sum <a href="CppOperatorAssign.htm">=</a> 0.0;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostTimer.htm">boost::timer</a> t;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppDouble.htm">double</a></b> d=d_min; d&lt;d_max; d<a href="CppOperatorPlusAssign.htm">+=</a>d_step)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppSin.htm">std::sin</a>(d);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum<a href="CppOperatorPlusAssign.htm">+=</a><a href="CppStdSin.htm">std::sin</a>(d);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> elapsed <a href="CppOperatorAssign.htm">=</a> t.elapsed();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;t_sin<a href="CppOperatorPlusAssign.htm">+=</a>elapsed;<br/>
@@ -119,10 +119,10 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppSin.htm">std::sin</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_sin <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Sin_approx: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_sin_approx <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;<a href="CppCin.htm">std::cin</a>.get();<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppStdSin.htm">std::sin</a>: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_sin <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Sin_approx: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t_sin_approx <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppStdCin.htm">std::cin</a>.get();<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>

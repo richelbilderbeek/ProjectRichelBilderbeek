@@ -82,17 +82,17 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> source[] <a href="CppOperatorAssign.htm">=</a> "0123456789";<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> length <a href="CppOperatorAssign.htm">=</a> <a href="CppStrlen.htm">std::strlen</a>(source);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> length <a href="CppOperatorAssign.htm">=</a> <a href="CppStdStrlen.htm">std::strlen</a>(source);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(length <a href="CppOperatorEqual.htm">==</a> 10<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppStrlen.htm">std::strlen</a> does not count the trailing null terminator");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "<a href="CppStdStrlen.htm">std::strlen</a> does not count the trailing null terminator");<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> buffer <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ length <a href="CppOperatorPlus.htm">+</a> 1]; <a href="CppComment.htm">//</a>Take '\0' into account<br/>
-&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(buffer,source);<br/>
+&nbsp;&nbsp;<a href="CppStdStrcpy.htm">std::strcpy</a>(buffer,source);<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrlen.htm">std::strlen</a>(buffer) <a href="CppOperatorEqual.htm">==</a> length<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrlen.htm">std::strlen</a>(buffer) <a href="CppOperatorEqual.htm">==</a> length<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Source and buffer must contain the same number of <a href="CppChar.htm">character</a>s");<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrcmp.htm">std::strcmp</a>(source,buffer) <a href="CppOperatorEqual.htm">==</a> 0<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrcmp.htm">std::strcmp</a>(source,buffer) <a href="CppOperatorEqual.htm">==</a> 0<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Source and buffer must contain the same <a href="CppChar.htm">character</a>s");<br/>
 }<br/>
 </code></td></tr></table>

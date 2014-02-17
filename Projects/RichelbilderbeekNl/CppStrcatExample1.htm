@@ -80,11 +80,11 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> a[] <a href="CppOperatorAssign.htm">=</a> "ABC";<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> b[] <a href="CppOperatorAssign.htm">=</a> "DEFG";<br/>
-&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * c <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ <a href="CppStrlen.htm">std::strlen</a>(a) <a href="CppOperatorPlus.htm">+</a> <a href="CppStrlen.htm">std::strlen</a>(b) <a href="CppOperatorPlus.htm">+</a> 1 ]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> null terminator<br/>
-&nbsp;&nbsp;<a href="CppStrcpy.htm">std::strcpy</a>(c,a);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrcmp.htm">std::strcmp</a>(c,"ABC") <a href="CppOperatorEqual.htm">==</a> 0);<br/>
-&nbsp;&nbsp;<a href="CppStrcat.htm">std::strcat</a>(c,b);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStrcmp.htm">std::strcmp</a>(c,"ABCDEFG") <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * c <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[ <a href="CppStdStrlen.htm">std::strlen</a>(a) <a href="CppOperatorPlus.htm">+</a> <a href="CppStdStrlen.htm">std::strlen</a>(b) <a href="CppOperatorPlus.htm">+</a> 1 ]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> null terminator<br/>
+&nbsp;&nbsp;<a href="CppStdStrcpy.htm">std::strcpy</a>(c,a);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrcmp.htm">std::strcmp</a>(c,"ABC") <a href="CppOperatorEqual.htm">==</a> 0);<br/>
+&nbsp;&nbsp;<a href="CppStdStrcat.htm">std::strcat</a>(c,b);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdStrcmp.htm">std::strcmp</a>(c,"ABCDEFG") <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] c;<br/>
 }<br/>
 </code></td></tr></table>

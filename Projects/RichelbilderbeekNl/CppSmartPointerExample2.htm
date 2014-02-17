@@ -90,15 +90,15 @@ win32 {<br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdShared_ptr.htm">std::shared_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Invalid: <a href="CppShared_ptr.htm">std::shared_ptr</a> cannot be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Invalid: <a href="CppStdShared_ptr.htm">std::shared_ptr</a> cannot be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdUnique_ptr.htm">std::unique_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppUnique_ptr.htm">std::unique_ptr</a> can be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppStdUnique_ptr.htm">std::unique_ptr</a> can be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
@@ -108,9 +108,9 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a>&lt;Test&gt; p { <b><a href="CppNew.htm">new</a></b> Test };<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(p);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppScoped_ptr.htm">boost::scoped_ptr</a> can be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;p.reset(<b><a href="CppNullptr.htm">nullptr</a></b>); <a href="CppComment.htm">//</a>Valid: <a href="CppBoostScoped_ptr.htm">boost::scoped_ptr</a> can be reset to <b><a href="CppNullptr.htm">nullptr</a></b><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!p);<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

@@ -294,7 +294,7 @@ __published:	<a href="CppComment.htm">//</a> IDE-managed <a href="CppComponent.h
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TShift<a href="CppState.htm">State</a> Shift, <b><a href="CppInt.htm">int</a></b> X, <b><a href="CppInt.htm">int</a></b> Y);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> __fastcall FormCreate(TObject *Sender);<br/>
 <b><a href="CppPrivate.htm">private</a></b>:	<a href="CppComment.htm">//</a> User <a href="CppDeclaration.htm">declaration</a>s<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;Prey&gt; mPrey;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;Prey&gt; mPrey;<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> drawScreen();<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> scorePrey();<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> mRound;<br/>
@@ -373,7 +373,7 @@ __fastcall TFormHunting::TFormHunting(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b>&amp; backgroundColor,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b>&amp; mutationRate)<br/>
 &nbsp;&nbsp;: TForm(Owner),<br/>
-&nbsp;&nbsp;mPrey(<a href="CppVector.htm">std::vector</a>&lt;Prey&gt;(100)),<br/>
+&nbsp;&nbsp;mPrey(<a href="CppStdVector.htm">std::vector</a>&lt;Prey&gt;(100)),<br/>
 &nbsp;&nbsp;<a href="CppIfdef.htm">#ifdef</a> RICHEL_BILDERBEEK_IS_TESTING<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mHunting<a href="CppTime.htm">Time</a>(1),<br/>
 &nbsp;&nbsp;<a href="CppPreElse.htm">#else</a><br/>
@@ -393,8 +393,8 @@ __fastcall TFormHunting::TFormHunting(<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;mPreyMax; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mX <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%(mClientWidth <a href="CppOperatorMinus.htm">-</a> FormStartHunt-&gt;ImageList1-&gt;Width );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mY <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%(mClientHeight<a href="CppOperatorMinus.htm">-</a> FormStartHunt-&gt;ImageList1-&gt;Height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mX <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>()%(mClientWidth <a href="CppOperatorMinus.htm">-</a> FormStartHunt-&gt;ImageList1-&gt;Width );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mY <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>()%(mClientHeight<a href="CppOperatorMinus.htm">-</a> FormStartHunt-&gt;ImageList1-&gt;Height);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mIndex <a href="CppOperatorAssign.htm">=</a> i%FormStartHunt-&gt;mNprey;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;scorePrey();<br/>
@@ -470,17 +470,17 @@ __fastcall TFormHunting::TFormHunting(<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(mPrey.size()) &lt; mPreyMax)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> mPrey.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> mPrey.size();<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> width&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> FormStartHunt-&gt;ImageList1-&gt;Width;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> height <a href="CppOperatorAssign.htm">=</a> FormStartHunt-&gt;ImageList1-&gt;Height;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nPrey <a href="CppOperatorAssign.htm">=</a> FormStartHunt-&gt;mNprey;<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;Prey prey <a href="CppOperatorAssign.htm">=</a> mPrey[i];<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;prey.mX <a href="CppOperatorPlusAssign.htm">+=</a> (<a href="CppRand.htm">std::rand</a>()%(width+width))-width;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;prey.mY <a href="CppOperatorPlusAssign.htm">+=</a> (<a href="CppRand.htm">std::rand</a>()%(height+height))-height;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;prey.mX <a href="CppOperatorPlusAssign.htm">+=</a> (<a href="CppStdRand.htm">std::rand</a>()%(width+width))-width;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;prey.mY <a href="CppOperatorPlusAssign.htm">+=</a> (<a href="CppStdRand.htm">std::rand</a>()%(height+height))-height;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (uniform() &lt; mMutationRate)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prey.mIndex <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>()%nPrey;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;prey.mIndex <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>()%nPrey;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mPrey.push_back(prey);<br/>
@@ -491,8 +491,8 @@ __fastcall TFormHunting::TFormHunting(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Shuffle prey<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;mPreyMax; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mX <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (mClientWidth&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> ImagePrey-&gt;Width );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mY <a href="CppOperatorAssign.htm">=</a> <a href="CppRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (mClientHeight <a href="CppOperatorMinus.htm">-</a> ImagePrey-&gt;Height);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mX <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (mClientWidth&nbsp;&nbsp;<a href="CppOperatorMinus.htm">-</a> ImagePrey-&gt;Width );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mPrey[i].mY <a href="CppOperatorAssign.htm">=</a> <a href="CppStdRand.htm">std::rand</a>() <a href="CppOperatorModulus.htm">%</a> (mClientHeight <a href="CppOperatorMinus.htm">-</a> ImagePrey-&gt;Height);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">/*</a><br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Increment round<br/>
@@ -536,7 +536,7 @@ __fastcall TFormHunting::TFormHunting(<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Panel1-&gt;Visible <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>) <b><a href="CppReturn.htm">return</a></b>;<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppVector.htm">std::vector</a>&lt;Prey&gt;::<a href="CppIterator.htm">iterator</a> iter;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;Prey&gt;::<a href="CppIterator.htm">iterator</a> iter;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nPrey <a href="CppOperatorAssign.htm">=</a> mPrey.size();<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (nPrey &lt; FormStartHunt-&gt;mNprey) <b><a href="CppReturn.htm">return</a></b>;<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=nPrey-1; i&gt;-1; <a href="CppOperatorDecrement.htm">--</a>i)<br/>
@@ -566,7 +566,7 @@ __fastcall TFormHunting::TFormHunting(<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> nPrey <a href="CppOperatorAssign.htm">=</a> FormStartHunt-&gt;mNprey;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> maxPreyIndex <a href="CppOperatorAssign.htm">=</a> <b><a href="CppThis.htm">this</a></b>-&gt;mPrey.size();<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; histo(nPrey,0);<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; histo(nPrey,0);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i&lt;maxPreyIndex; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>histo[ mPrey[i].mIndex ];<br/>
@@ -617,7 +617,7 @@ __fastcall TFormHunting::TFormHunting(<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <b><a href="CppDouble.htm">double</a></b> uniform()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppStdRand.htm">std::rand</a>())/<b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(<a href="CppRAND_MAX.htm">RAND_MAX</a>);<br/>
 }<br/>
 <a href="CppComment.htm">//</a>---------------------------------------------------------------------------<br/>
 <br/>
@@ -972,7 +972,7 @@ __fastcall TFormStartHunt::TFormStartHunt(T<a href="CppComponent.htm">Component<
 <br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Get a vector of images<br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppTImage.htm">TImage</a>*&gt; images(mNprey*2); <a href="CppComment.htm">//</a>*2 as there are as many backgrounds<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppTImage.htm">TImage</a>*&gt; images(mNprey*2); <a href="CppComment.htm">//</a>*2 as there are as many backgrounds<br/>
 &nbsp;&nbsp;images[ 0] <a href="CppOperatorAssign.htm">=</a> Image0;<br/>
 &nbsp;&nbsp;images[ 1] <a href="CppOperatorAssign.htm">=</a> Image1;<br/>
 &nbsp;&nbsp;images[ 2] <a href="CppOperatorAssign.htm">=</a> Image2;<br/>
@@ -1069,7 +1069,7 @@ __fastcall TFormStartHunt::TFormStartHunt(T<a href="CppComponent.htm">Component<
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Sender <a href="CppOperatorEqual.htm">==</a> Image15) backgroundColor <a href="CppOperatorAssign.htm">=</a> mBackgroundColor7;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">Assert</a>(mHunt<a href="CppOperatorNotEqual.htm">!=</a>0);<br/>
-&nbsp;&nbsp;<a href="CppAuto_ptr.htm">std::auto_ptr</a>&lt;TFormHunting&gt; formHunt(<b><a href="CppNew.htm">new</a></b> TFormHunting(<br/>
+&nbsp;&nbsp;<a href="CppStdAuto_ptr.htm">std::auto_ptr</a>&lt;TFormHunting&gt; formHunt(<b><a href="CppNew.htm">new</a></b> TFormHunting(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThis.htm">this</a></b>,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;backgroundColor,<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;(mHunt<a href="CppOperatorEqual.htm">==</a>1 ? 0.0 : 0.1) ));<br/>

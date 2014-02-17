@@ -102,9 +102,9 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> t { <b><a href="CppTrue.htm">true</a></b> };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> f { <b><a href="CppFalse.htm">false</a></b> };<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTribool.htm">boost::logic::tribool</a> i { <a href="CppIndeterminate.htm">boost::logic::indeterminate</a> };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTribool.htm">boost::logic::tribool</a> t { <b><a href="CppTrue.htm">true</a></b> };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTribool.htm">boost::logic::tribool</a> f { <b><a href="CppFalse.htm">false</a></b> };<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostTribool.htm">boost::logic::tribool</a> i { <a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a> };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">/*</a> WILL FAIL<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t);<br/>
@@ -120,26 +120,26 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/Boost.pri) #Or uncomment th
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> f);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorEqual.htm">==</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorEqual.htm">==</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> <a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppTrue.htm">true</a></b>);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorNotEqual.htm">!=</a> <b><a href="CppFalse.htm">false</a></b>);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorEqual.htm">==</a> <a href="CppTribool.htm">boost::logic::tribool</a>::<b><a href="CppTrue.htm">true</a></b>_value);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorEqual.htm">==</a> <a href="CppTribool.htm">boost::logic::tribool</a>::<b><a href="CppFalse.htm">false</a></b>_value);<br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> <a href="CppTribool.htm">boost::logic::tribool</a>::<a href="CppIndeterminate.htm">indeterminate</a>_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t <a href="CppOperatorEqual.htm">==</a> <a href="CppBoostTribool.htm">boost::logic::tribool</a>::<b><a href="CppTrue.htm">true</a></b>_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(f <a href="CppOperatorEqual.htm">==</a> <a href="CppBoostTribool.htm">boost::logic::tribool</a>::<b><a href="CppFalse.htm">false</a></b>_value);<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i <a href="CppOperatorEqual.htm">==</a> <a href="CppBoostTribool.htm">boost::logic::tribool</a>::<a href="CppIndeterminate.htm">indeterminate</a>_value);<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">*/</a><br/>
 <br/>
-&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppIndeterminate.htm">boost::logic::indeterminate</a>(i));<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>(i));<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( t) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!t) { <a href="CppAssert.htm">assert</a>(!"Should not get here"); } <b><a href="CppElse.htm">else</a></b> { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!f) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( f) { <a href="CppAssert.htm">assert</a>(!"Should not get here"); } <b><a href="CppElse.htm">else</a></b> { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> }<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppIndeterminate.htm">boost::logic::indeterminate</a>(i)) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppIndeterminate.htm">boost::logic::indeterminate</a>(t)) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
-&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppIndeterminate.htm">boost::logic::indeterminate</a>(f)) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> ( <a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>(i)) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>(t)) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
+&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppBoostIndeterminate.htm">boost::logic::indeterminate</a>(f)) { <a href="CppComment.htm">/*</a> OK <a href="CppComment.htm">*/</a> } <b><a href="CppElse.htm">else</a></b> { <a href="CppAssert.htm">assert</a>(!"Should not get here"); }<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

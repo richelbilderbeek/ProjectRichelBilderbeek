@@ -81,14 +81,14 @@
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppChar.htm">char</a></b> s[] <a href="CppOperatorAssign.htm">=</a> "0123456789";<br/>
 <br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppStrlen.htm">std::strlen</a>(s));<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> sz <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(<a href="CppStdStrlen.htm">std::strlen</a>(s));<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(sz <a href="CppOperatorEqual.htm">==</a> 10);<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz <a href="CppOperatorPlus.htm">+</a> 1; <a href="CppOperatorIncrement.htm">++</a>i) <a href="CppComment.htm">//</a>+1 because both empty and full string are shown<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppChar.htm">char</a></b> * <b><a href="CppConst.htm">const</a></b> t <a href="CppOperatorAssign.htm">=</a> <b><a href="CppNew.htm">new</a></b> <b><a href="CppChar.htm">char</a></b>[i <a href="CppOperatorPlus.htm">+</a> 1]; <a href="CppComment.htm">//</a>+1 <b><a href="CppFor.htm">for</a></b> null terminator<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStrncpy.htm">std::strncpy</a>(t,s,i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStrncpy.htm">std::strncpy</a>(t,s,i);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;t[i] <a href="CppOperatorAssign.htm">=</a> '\0';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppDelete.htm">delete</a></b>[] t;<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>

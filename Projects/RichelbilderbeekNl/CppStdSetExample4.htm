@@ -132,8 +132,8 @@ win32 {<br/>
 <br/>
 <b><a href="CppStruct.htm">struct</a></b> MyClass<br/>
 {<br/>
-&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_s(s), m_x(x) {}<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> m_s;<br/>
+&nbsp;&nbsp;MyClass(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> x) : m_s(s), m_x(x) {}<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> m_s;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> m_x;<br/>
 };<br/>
 <br/>
@@ -146,7 +146,7 @@ win32 {<br/>
 <b><a href="CppBool.htm">bool</a></b> <b><a href="CppOperatorLess.htm">operator&lt;</a></b>(<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> MyClass&gt; rhs) <a href="CppOperatorAssign.htm">=</a> <b><a href="CppDelete.htm">delete</a></b>;<br/>
 <br/>
 <a href="CppComment.htm">//</a>Display x first<br/>
-<a href="CppOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; m)<br/>
+<a href="CppStdOstream.htm">std::ostream</a>&amp; <b><a href="CppOperatorStreamOut.htm">operator&lt;&lt;</a></b>(<a href="CppStdOstream.htm">std::ostream</a>&amp; os, <b><a href="CppConst.htm">const</a></b> MyClass&amp; m)<br/>
 {<br/>
 &nbsp;&nbsp;os <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.m_x <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ' ' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> m.m_s;<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> os;<br/>
@@ -154,7 +154,7 @@ win32 {<br/>
 <br/>
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppSet.htm">std::set</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,<a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppBool.htm">bool</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;)<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s(<br/>
+&nbsp;&nbsp;<a href="CppStdSet.htm">std::set</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,<a href="CppStdFunction.htm">std::function</a>&lt;<b><a href="CppBool.htm">bool</a></b>(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;,<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;)<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> s(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; lhs, <b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; rhs)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> lhs-&gt;m_x &lt; rhs-&gt;m_x;<br/>
@@ -168,7 +168,7 @@ win32 {<br/>
 &nbsp;&nbsp;s.insert(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass("three",3)));<br/>
 &nbsp;&nbsp;s.insert(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt;(<b><a href="CppNew.htm">new</a></b> MyClass("two",2)));<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Show that the set orders by MyClass their x<br/>
-&nbsp;&nbsp;<a href="CppTransform.htm">std::transform</a>(s.begin(),s.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;MyClass&gt;(<a href="CppCout.htm">std::cout</a>,"\n"),<br/>
+&nbsp;&nbsp;<a href="CppStdTransform.htm">std::transform</a>(s.begin(),s.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;MyClass&gt;(<a href="CppStdCout.htm">std::cout</a>,"\n"),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;MyClass&gt; m) { <b><a href="CppReturn.htm">return</a></b> *m; }<br/>
 &nbsp;&nbsp;);<br/>
 }<br/>

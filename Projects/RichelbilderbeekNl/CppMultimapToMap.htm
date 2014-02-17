@@ -77,10 +77,10 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppMapH.htm">map</a>&gt;<br/>
 <br/>
 <b><a href="CppTemplate.htm">template</a></b> &lt;<b><a href="CppClass.htm">class</a></b> Key, <b><a href="CppClass.htm">class</a></b> Value&gt;<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;Key,Value&gt; MultimapToMap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;Key,Value&gt; m)<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;Key,Value&gt; MultimapToMap(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMultimap.htm">std::multimap</a>&lt;Key,Value&gt; m)<br/>
 {<br/>
-&nbsp;&nbsp;<a href="CppMap.htm">std::map</a>&lt;Key,Value&gt; n;<br/>
+&nbsp;&nbsp;<a href="CppStdMap.htm">std::map</a>&lt;Key,Value&gt; n;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppAuto.htm">auto</a></b> end <a href="CppOperatorAssign.htm">=</a> m.end();<br/>
 &nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppAuto.htm">auto</a></b> begin <a href="CppOperatorAssign.htm">=</a> m.begin(); begin <a href="CppOperatorNotEqual.htm">!=</a> end; )<br/>
 &nbsp;&nbsp;{<br/>
@@ -117,35 +117,35 @@
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { { 1, 1.0} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { { 1, 1.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n.size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { { 1, 1.0}, { 1, 1.0} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { { 1, 1.0 } } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n.size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorEqual.htm">==</a> e);<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { { 1, 1.0}, { 1, 2.0} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { { 1, 1.5 } } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { { 1, 1.0}, { 1, 1.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { { 1, 1.0 } } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n.size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorEqual.htm">==</a> e);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { {0, 0.0}, { 1, 1.0}, { 1, 1.0}, {2, 2.0} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { {0, 0.0}, { 1, 1.0 }, {2, 2.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { { 1, 1.0}, { 1, 2.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { { 1, 1.5 } } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n.size() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorEqual.htm">==</a> e);<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { {0, 0.0}, { 1, 1.0}, { 1, 1.0}, {2, 2.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { {0, 0.0}, { 1, 1.0 }, {2, 2.0} } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorEqual.htm">==</a> e);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { {0, 0.0}, { 1, 1.0}, { 1, 2.0}, {2, 2.0} } );<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { {0, 0.0}, { 1, 1.5 }, {2, 2.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMultimap.htm">std::multimap</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; m ( { {0, 0.0}, { 1, 1.0}, { 1, 2.0}, {2, 2.0} } );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; n(MultimapToMap(m));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdMap.htm">std::map</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>&gt; e( { {0, 0.0}, { 1, 1.5 }, {2, 2.0} } );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n.size() <a href="CppOperatorEqual.htm">==</a> 3);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorEqual.htm">==</a> e);<br/>
 &nbsp;&nbsp;}<br/>

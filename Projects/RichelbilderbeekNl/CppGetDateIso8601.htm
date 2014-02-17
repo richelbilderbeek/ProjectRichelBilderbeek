@@ -104,11 +104,11 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/BoostAll.pri) #Or use the c
 <br/>
 <a href="CppComment.htm">//</a>Returns date in YYYY-MM-DD format<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.htm">GetDateIso8601</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a><a href="CppBoost.htm">Boost</a>()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a><a href="CppBoost.htm">Boost</a>()<br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::gregorian::date today<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::day_clock::local_day();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorAssign.htm">=</a> <a href="CppBoost.htm">boost</a>::gregorian::to_iso_extended_string(today);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size()<a href="CppOperatorEqual.htm">==</a>10);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s[4]<a href="CppOperatorEqual.htm">==</a>'-');<br/>
@@ -119,31 +119,31 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/BoostAll.pri) #Or use the c
 <br/>
 <a href="CppComment.htm">//</a>Returns date in YYYY-MM-DD format<br/>
 <a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppGetDateIso8601.htm">GetDateIso8601</a>.htm<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>Stl()<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>Stl()<br/>
 {<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTime_t.htm">std::time_t</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppTime.htm">std::time</a>(0);<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppTm.htm">std::tm</a> * <b><a href="CppConst.htm">const</a></b> now <a href="CppOperatorAssign.htm">=</a> <a href="CppLocaltime.htm">std::localtime</a>( &amp;t );<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> year;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdTime_t.htm">std::time_t</a> t <a href="CppOperatorAssign.htm">=</a> <a href="CppStdTime.htm">std::time</a>(0);<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdTm.htm">std::tm</a> * <b><a href="CppConst.htm">const</a></b> now <a href="CppOperatorAssign.htm">=</a> <a href="CppStdLocaltime.htm">std::localtime</a>( &amp;t );<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> year;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (now-&gt;tm_year <a href="CppOperatorPlus.htm">+</a> 1900);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;year <a href="CppOperatorAssign.htm">=</a> s.str();<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(year.size() <a href="CppOperatorEqual.htm">==</a> 4);<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> month;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> month;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (now-&gt;tm_mon <a href="CppOperatorPlus.htm">+</a> 1);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;month <a href="CppOperatorAssign.htm">=</a> s.str();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (month.size() <a href="CppOperatorEqual.htm">==</a> 1) month <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("0") <a href="CppOperatorPlus.htm">+</a> month;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (month.size() <a href="CppOperatorEqual.htm">==</a> 1) month <a href="CppOperatorAssign.htm">=</a> <a href="CppStdString.htm">std::string</a>("0") <a href="CppOperatorPlus.htm">+</a> month;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(month.size() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> day;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> day;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStringstream.htm">std::stringstream</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdStringstream.htm">std::stringstream</a> s;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (now-&gt;tm_mday);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;day <a href="CppOperatorAssign.htm">=</a> s.str();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (day.size() <a href="CppOperatorEqual.htm">==</a> 1) day <a href="CppOperatorAssign.htm">=</a> <a href="CppString.htm">std::string</a>("0") <a href="CppOperatorPlus.htm">+</a> month;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (day.size() <a href="CppOperatorEqual.htm">==</a> 1) day <a href="CppOperatorAssign.htm">=</a> <a href="CppStdString.htm">std::string</a>("0") <a href="CppOperatorPlus.htm">+</a> month;<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(day.size() <a href="CppOperatorEqual.htm">==</a> 2);<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> year <a href="CppOperatorPlus.htm">+</a> "-" <a href="CppOperatorPlus.htm">+</a> month <a href="CppOperatorPlus.htm">+</a> "-" <a href="CppOperatorPlus.htm">+</a> day;<br/>
@@ -154,7 +154,7 @@ include(../../<a href="CppLibrary.htm">Libraries</a>/BoostAll.pri) #Or use the c
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> _WIN32<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppGetDateIso8601.htm">GetDateIso8601</a><a href="CppBoost.htm">Boost</a>() <a href="CppOperatorEqual.htm">==</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>Stl());<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
-&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>Stl() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppGetDateIso8601.htm">GetDateIso8601</a>Stl() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

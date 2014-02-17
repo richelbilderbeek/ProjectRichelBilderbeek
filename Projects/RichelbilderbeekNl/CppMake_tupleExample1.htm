@@ -117,7 +117,7 @@ win32 {<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="Cpp11.htm">C++11</a> <a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a><br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; t {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdTuple.htm">std::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppStdString.htm">std::string</a>&gt; t {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStd.htm">std</a>::make_<a href="CppTuple.htm">tuple</a>(1,1.1,"x")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
@@ -133,12 +133,12 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdGet.htm">std::get</a>&lt;1&gt;(t) <a href="CppOperatorEqual.htm">==</a> 2.2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdGet.htm">std::get</a>&lt;2&gt;(t) <a href="CppOperatorEqual.htm">==</a> "xx");<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppBoost.htm">Boost</a>.Tuple<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppString.htm">std::string</a>&gt; t {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppMake_tuple.htm">boost::tuples::make_tuple</a>(1,1.1,"x")<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostTuple.htm">boost::tuple</a>&lt;<b><a href="CppInt.htm">int</a></b>,<b><a href="CppDouble.htm">double</a></b>,<a href="CppStdString.htm">std::string</a>&gt; t {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoostMake_tuple.htm">boost::tuples::make_tuple</a>(1,1.1,"x")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.get&lt;0&gt;() <a href="CppOperatorEqual.htm">==</a> 1);<br/>
@@ -153,7 +153,7 @@ win32 {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.get&lt;1&gt;() <a href="CppOperatorEqual.htm">==</a> 2.2);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(t.get&lt;2&gt;() <a href="CppOperatorEqual.htm">==</a> "xx");<br/>
 <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> t <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
 }<br/>
 <br/>

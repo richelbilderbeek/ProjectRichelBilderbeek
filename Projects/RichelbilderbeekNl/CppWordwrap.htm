@@ -81,40 +81,40 @@
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
 <br/>
 <a href="CppComment.htm">///</a>Undo a Wordwrap<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Unwordwrap(<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Unwordwrap(<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <a href="CppComment.htm">///</a>Wordwrap the text to obtain lines of max_len <a href="CppChar.htm">character</a>s<br/>
 <a href="CppComment.htm">///</a>If the string _must_ be seperable by spaces; a word can have a maximum length of max_len<br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Wordwrap(<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> max_len) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Wordwrap(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s, <b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> max_len) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> Unwordwrap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> Unwordwrap(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;&amp; v) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Simply concatenate<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> t;<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s: v) { t <a href="CppOperatorPlusAssign.htm">+=</a> s; }<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> t;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s: v) { t <a href="CppOperatorPlusAssign.htm">+=</a> s; }<br/>
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> t;<br/>
 }<br/>
 <br/>
-<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; Wordwrap(<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s_original, <b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> max_len) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; Wordwrap(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s_original, <b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> max_len) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
 {<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (max_len <a href="CppOperatorEqual.htm">==</a> 0)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppLogic_error.htm">std::logic_error</a>("Cannot wordwrap <b><a href="CppFor.htm">for</a></b> a max_len of zero");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>("Cannot wordwrap <b><a href="CppFor.htm">for</a></b> a max_len of zero");<br/>
 &nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Wordwrap \'" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s_original <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\'' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s{s_original};<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Wordwrap \'" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s_original <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\'' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> s{s_original};<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.size() <a href="CppOperatorEqual.htm">==</a> s_original.size());<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Replace multiple spaces with '\b ', where x is a <b><a href="CppChar.htm">char</a></b> not in the string<br/>
-&nbsp;&nbsp;<a href="CppString.htm">std::string</a>::value_type x <a href="CppOperatorAssign.htm">=</a> '\b'; <a href="CppComment.htm">//</a>Bell<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>::value_type x <a href="CppOperatorAssign.htm">=</a> '\b'; <a href="CppComment.htm">//</a>Bell<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> s.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> s.size();<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Replace spaces at beginning<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s[i] <a href="CppOperatorEqual.htm">==</a> ' ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s[i] <a href="CppOperatorAssign.htm">=</a> x;<br/>
@@ -125,7 +125,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (sz &gt; 0)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>i<a href="CppOperatorNotEqual.htm">!=</a>0, because <b><a href="CppIf.htm">if</a></b> s[0] is a space, it is already <a href="CppConvert.htm">convert</a>ed to bell<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=sz-1; i<a href="CppOperatorNotEqual.htm">!=</a>0; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=sz-1; i<a href="CppOperatorNotEqual.htm">!=</a>0; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s[i] <a href="CppOperatorEqual.htm">==</a> ' ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s[i] <a href="CppOperatorAssign.htm">=</a> x;<br/>
@@ -134,7 +134,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>/Replace "&nbsp;&nbsp;" by "\b "<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz-1; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz-1; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s[i] <a href="CppOperatorEqual.htm">==</a> ' ' <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> s[i+1] <a href="CppOperatorEqual.htm">==</a> ' ')<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s[i] <a href="CppOperatorAssign.htm">=</a> x;<br/>
@@ -143,7 +143,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
-&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Start the actual wordwrapping<br/>
 &nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (!s.empty())<br/>
@@ -159,43 +159,43 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>No spaces, or space beyond max_len: cut word<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(' ') <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>::npos <a href="CppOperatorLogicalOr.htm">||</a> s.find(' ') &gt; max_len)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (s.find(' ') <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos <a href="CppOperatorLogicalOr.htm">||</a> s.find(' ') &gt; max_len)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s.substr(0,max_len));<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> s.substr(max_len,s.size() <a href="CppOperatorMinus.htm">-</a> max_len);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Find last space before max_len<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSize_t.htm">std::size_t</a> len <a href="CppOperatorAssign.htm">=</a> s.find(' ');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(len <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSize_t.htm">std::size_t</a> len <a href="CppOperatorAssign.htm">=</a> s.find(' ');<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(len <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(len &lt; s.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (1)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> new_len <a href="CppOperatorAssign.htm">=</a> s.find(' ',len <a href="CppOperatorPlus.htm">+</a> 1);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_len &gt; max_len <a href="CppOperatorLogicalOr.htm">||</a> new_len <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>::npos) <b><a href="CppBreak.htm">break</a></b>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> new_len <a href="CppOperatorAssign.htm">=</a> s.find(' ',len <a href="CppOperatorPlus.htm">+</a> 1);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (new_len &gt; max_len <a href="CppOperatorLogicalOr.htm">||</a> new_len <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos) <b><a href="CppBreak.htm">break</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;len <a href="CppOperatorAssign.htm">=</a> new_len;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(len <a href="CppOperatorPlus.htm">+</a> 0 &lt; s.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(len <a href="CppOperatorPlus.htm">+</a> 1 &lt; s.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>cut s, put cut part in vector<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> line <a href="CppOperatorAssign.htm">=</a> s.substr(0,len+1); <a href="CppComment.htm">//</a>Keep space<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> line <a href="CppOperatorAssign.htm">=</a> s.substr(0,len+1); <a href="CppComment.htm">//</a>Keep space<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!line.empty());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;v.push_back(line);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> new_index <a href="CppOperatorAssign.htm">=</a> len+1; <a href="CppComment.htm">//</a>After the space found<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> new_index <a href="CppOperatorAssign.htm">=</a> len+1; <a href="CppComment.htm">//</a>After the space found<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(new_index &lt; s.size());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> new_s <a href="CppOperatorAssign.htm">=</a> s.substr(new_index,s.size() <a href="CppOperatorMinus.htm">-</a> new_index);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> new_s <a href="CppOperatorAssign.htm">=</a> s.substr(new_index,s.size() <a href="CppOperatorMinus.htm">-</a> new_index);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s <a href="CppOperatorNotEqual.htm">!=</a> new_s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;s <a href="CppOperatorAssign.htm">=</a> new_s;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Replace bell <a href="CppChar.htm">character</a>s by spaces again<br/>
-&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppString.htm">std::string</a>&amp; s: v)<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdString.htm">std::string</a>&amp; s: v)<br/>
 &nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(x <a href="CppOperatorNotEqual.htm">!=</a> ' ');<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppSize_t.htm">std::size_t</a> pos <a href="CppOperatorAssign.htm">=</a> s.find(x);<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (pos <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdSize_t.htm">std::size_t</a> pos <a href="CppOperatorAssign.htm">=</a> s.find(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (pos <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos <a href="CppOperatorNotEqual.htm">!=</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos &lt; s.size());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos <a href="CppOperatorEqual.htm">==</a> s.find(x)); <a href="CppComment.htm">//</a>To prevent infinite <b><a href="CppWhile.htm">while</a></b> loop<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s[pos] <a href="CppOperatorAssign.htm">=</a> ' ';<br/>
@@ -203,17 +203,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(pos <a href="CppOperatorNotEqual.htm">!=</a> s.find(x)); <a href="CppComment.htm">//</a>To prevent infinite <b><a href="CppWhile.htm">while</a></b> loop<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pos <a href="CppOperatorAssign.htm">=</a> s.find(x);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.find(x) <a href="CppOperatorEqual.htm">==</a> <a href="CppString.htm">std::string</a>::npos);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(s.find(x) <a href="CppOperatorEqual.htm">==</a> <a href="CppStdString.htm">std::string</a>::npos);<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppIfndef.htm">#ifndef</a> <a href="CppNDEBUG.htm">NDEBUG</a><br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Test <b><a href="CppIf.htm">if</a></b> Unwordwrap the result produces the original input<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (Unwordwrap(v) <a href="CppOperatorNotEqual.htm">!=</a> s_original)<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppString.htm">std::string</a>&gt;(<a href="CppCerr.htm">std::cerr</a>,"\n"));<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Unwordwrap(v) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s_original <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCopy.htm">std::copy</a>(v.begin(),v.end(),<a href="CppStdOstream_iterator.htm">std::ostream_iterator</a>&lt;<a href="CppStdString.htm">std::string</a>&gt;(<a href="CppStdCerr.htm">std::cerr</a>,"\n"));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> Unwordwrap(v) <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> s_original <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 <br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppEndif.htm">#endif</a><br/>
@@ -224,47 +224,47 @@
 <b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
 {<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "123";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "123" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "123";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "123" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Unwordwrap(v) <a href="CppOperatorEqual.htm">==</a> s);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "1234567890 123";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "1234567890 123";<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Note that exected keeps trailing spaces at then end of a cut<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "1234567890 ", "123" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "1234567890 ", "123" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (v <a href="CppOperatorNotEqual.htm">!=</a> expected)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '/' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\'' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '/' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\'' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Unwordwrap(v) <a href="CppOperatorEqual.htm">==</a> s);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "1234567890&nbsp;&nbsp;123";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "1234567890&nbsp;&nbsp;", "123" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "1234567890&nbsp;&nbsp;123";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "1234567890&nbsp;&nbsp;", "123" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><b><a href="CppIf.htm">if</a></b> (v <a href="CppOperatorNotEqual.htm">!=</a> expected)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppStdSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '/' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\'' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '/' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> sz <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> ": '" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\'' <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Unwordwrap(v) <a href="CppOperatorEqual.htm">==</a> s);<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "123 567890 123";<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "123 567890 ", "123" };<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> s <a href="CppOperatorAssign.htm">=</a> "123 567890 123";<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; expected <a href="CppOperatorAssign.htm">=</a> { "123 567890 ", "123" };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppStdString.htm">std::string</a>&gt; v <a href="CppOperatorAssign.htm">=</a> Wordwrap(s,11);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(v <a href="CppOperatorEqual.htm">==</a> expected);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(Unwordwrap(v) <a href="CppOperatorEqual.htm">==</a> s);<br/>
 &nbsp;&nbsp;}<br/>
@@ -358,7 +358,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;};<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> len=1; len<a href="CppOperatorNotEqual.htm">!=</a>1000; <a href="CppOperatorIncrement.htm">++</a>len)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; s: v)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; s: v)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Wordwrap calls Unwordwrap<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wordwrap(s,len);<br/>
