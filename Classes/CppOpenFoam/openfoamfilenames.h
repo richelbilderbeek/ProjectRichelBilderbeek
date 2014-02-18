@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "fileio.h"
 #include "filename.h"
 
 namespace ribi {

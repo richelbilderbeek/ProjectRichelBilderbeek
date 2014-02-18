@@ -1,6 +1,7 @@
 #ifndef OPENFOAMALPHATFILE_H
 #define OPENFOAMALPHATFILE_H
 
+#include <array>
 #include <iosfwd>
 #include <vector>
 #include "openfoamfwd.h"
@@ -40,5 +41,8 @@ struct AlphatFile
 };
 
 std::ostream& operator<<(std::ostream& os, const AlphatFile& f);
+
+} //~namespace foam
+} //~namespace ribi
 
 #endif // OPENFOAMALPHATFILE_H
