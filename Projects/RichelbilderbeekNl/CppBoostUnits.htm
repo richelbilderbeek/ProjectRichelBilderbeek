@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>Boost.Units</title>
+  <meta name="description" content="C++ Boost.Units library"/>
+  <meta name="keywords" content="C++ Boost Boost.Units Units si unit dimensional analysis newton  library"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppUnits.htm">Boost.Units</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppUnits.htm">Boost.Units</a> is the <a href="CppBoost.htm">Boost</a> <a href="CppLibrary.htm">library</a> to specify SI units (meter, 
+kilogram, second, ampere, kelvin, candela, mole) for values. This allows the <a href="CppCompiler.htm">compiler</a> to check your calculations
+at compile-time.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<p>In the example below, two lengths are added with success. Also the <a href="CppCompiler.htm">compiler</a> prevented the adding
+of a force and a length.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/systems/si/prefixes.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppUnits.htm">boost/units</a>/io.hpp&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a length<br/>
+&nbsp;&nbsp;<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; m(1.0 * <a href="CppUnits.htm">boost::units</a>::si::meter);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create another length<br/>
+&nbsp;&nbsp;<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::length&gt; n(1.0 * <a href="CppUnits.htm">boost::units</a>::si::milli * <a href="CppUnits.htm">boost::units</a>::si::meter);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Create a force<br/>
+&nbsp;&nbsp;<a href="CppUnits.htm">boost::units</a>::quantity&lt;<a href="CppUnits.htm">boost::units</a>::si::force&gt; f(1.0 * <a href="CppUnits.htm">boost::units</a>::si::newton);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppAdd.htm">Add</a> the two lengths<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (m <a href="CppOperatorPlus.htm">+</a> n); <a href="CppComment.htm">//</a>OKAY: can add meters to meters<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Try to add force to a length<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (m <a href="CppOperatorPlus.htm">+</a> f); <a href="CppComment.htm">//</a>FAILS: cannot add newtons to meters<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppUnits.htm">Download the Qt Creator project 'CppUnits' (zip)</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Other examples</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="CppBoostUnitsExample1.htm">Units example 1: example from Boost</a></li>
+  <li><a href="CppBoostUnitsExample2.htm">Units example 2: calculate the area from two lengths</a></li>
+  <li><a href="CppBoostUnitsExample3.htm">Units example 3: creating a Length, Width and Area classes</a></li>
+  <li><a href="CppBoostUnitsExample4.htm">Units example 4: creating a Length, Width and Area classes with some typedefs</a></li>
+  <li><a href="CppBoostUnitsExample5.htm">Units example 5: averaging multiple lengths</a></li>
+  <li><a href="CppBoostUnitsExample6.htm">Units example 6: using an angle</a></li>
+  <li><a href="CppBoostUnitsExample7.htm">Units example 7: calculating a force from a mass and an acceleration</a></li>
+  <li><a href="CppBoostUnitsExample8.htm">Units example 8: calculating mass from a volume and a mass density</a></li>
+  <li><a href="CppBoostUnitsExample9.htm">Units example 9: calculating pressure from a force and an area</a></li>
+  <li><a href="CppBoostUnitsExample10.htm">Units example 10: calculating angular acceleration and torque</a></li>
+  <li><a href="CppBoostUnitsExample11.htm">Units example 11: creating the quantity volumetric flow</a></li>
+  <li><a href="CppBoostUnitsExample12.htm">Units example 12: creating the quantity volumetric flow and mass flow</a></li>
+  <li><a href="CppBoostUnitsExample13.htm">Units example 13: removing the unit, converting back to plain double</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><a href="CppUnits.htm">Boost.Units</a> <a href="CppBug.htm">bug</a></h2>
+<p>&nbsp;</p>
+<p>See <a href="CppUnitsBug.htm">Boost.Units bug</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::upper_bound</title>
+  <meta name="description" content="C++ std::upper_bound"/>
+  <meta name="keywords" content="C++ std::upper_bound upper_bound upper bound code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppUpper_bound.htm">std::upper_bound</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppUpper_bound.htm">std::upper_bound</a> is an <a href="CppAlgorithm.htm">algorithm</a> that <a href="CppReturn.htm">returns</a> the location where a given element can be inserted in a sorted <a href="CppContainer.htm">container</a> without violating the order.</p>
+<p>&nbsp;</p>
+<p><a href="CppUpper_bound.htm">std::upper_bound</a> is <a href="CppDefinition.htm">defined</a> in the <a href="CppHeaderFile.htm">header file</a> <a href="CppAlgorithmH.htm">algorithm.h</a>.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(4);<br/>
+&nbsp;&nbsp;v.push_back(9);<br/>
+&nbsp;&nbsp;v.push_back(9);<br/>
+&nbsp;&nbsp;v.push_back(16);<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppSize_t.htm">std::size_t</a> sz <a href="CppOperatorAssign.htm">=</a> v.size();<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppSize_t.htm">std::size_t</a> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>sz; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "v[" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "] <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> v[i] <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>20; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt;::iterator my_iterator <a href="CppOperatorAssign.htm">=</a> <a href="CppUpper_bound.htm">std::upper_bound</a>(v.begin(),v.end(),i);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> index <a href="CppOperatorAssign.htm">=</a> <a href="CppDistance.htm">std::distance</a>(v.begin(),my_iterator);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "The value '"  <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "' can be safely inserted at index "<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> index <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " without violating the order"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+v[0] = 1<br/>
+v[1] = 4<br/>
+v[2] = 9<br/>
+v[3] = 9<br/>
+v[4] = 16<br/>
+The value '0' can be safely inserted at index 0 without violating the order<br/>
+The value '1' can be safely inserted at index 1 without violating the order<br/>
+The value '2' can be safely inserted at index 1 without violating the order<br/>
+The value '3' can be safely inserted at index 1 without violating the order<br/>
+The value '4' can be safely inserted at index 2 without violating the order<br/>
+The value '5' can be safely inserted at index 2 without violating the order<br/>
+The value '6' can be safely inserted at index 2 without violating the order<br/>
+The value '7' can be safely inserted at index 2 without violating the order<br/>
+The value '8' can be safely inserted at index 2 without violating the order<br/>
+The value '9' can be safely inserted at index 4 without violating the order<br/>
+The value '10' can be safely inserted at index 4 without violating the order<br/>
+The value '11' can be safely inserted at index 4 without violating the order<br/>
+The value '12' can be safely inserted at index 4 without violating the order<br/>
+The value '13' can be safely inserted at index 4 without violating the order<br/>
+The value '14' can be safely inserted at index 4 without violating the order<br/>
+The value '15' can be safely inserted at index 4 without violating the order<br/>
+The value '16' can be safely inserted at index 5 without violating the order<br/>
+The value '17' can be safely inserted at index 5 without violating the order<br/>
+The value '18' can be safely inserted at index 5 without violating the order<br/>
+The value '19' can be safely inserted at index 5 without violating the order<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>External links</h2>
+<p>&nbsp;</p>
+<ul>
+  <li><a href="http://www.sgi.com/tech/stl/upper_bound.html">SGI page about std::upper_bound</a></li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

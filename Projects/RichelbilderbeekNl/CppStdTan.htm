@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::tan</title>
+  <meta name="description" content="C++ std::tan"/>
+  <meta name="keywords" content="C++ std::tan tan tangens code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppTan.htm">std::tan</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppTan.htm">std::tan</a> (an abbreviation of 'tangens') is a <a href="CppMath.htm">mathematical</a> <a href="CppStl.htm">STL</a> <a href="CppFunction.htm">function</a> that <a href="CppReturn.htm">returns</a> the tangens of an inputted value. This value must be supplied in radians.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCmathH.htm">cmath</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppIostreamH.htm">iostream</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppShowpos.htm">std::showpos</a>;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b>(<b><a href="CppInt.htm">int</a></b> i <a href="CppOperatorAssign.htm">=</a> <a href="CppOperatorMinus.htm">-</a>8; i <a href="CppOperatorNotEqual.htm">!=</a> 9; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x <a href="CppOperatorAssign.htm">=</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) * (0.125 * M_PI);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y <a href="CppOperatorAssign.htm">=</a> <a href="CppTan.htm">std::tan</a>(x);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<a href="CppTan.htm">std::tan</a>(" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> i <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "/8 pi) <a href="CppOperatorAssign.htm">=</a> " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> y <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>Screen output:</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+std::tan(-8/8 pi) = +1.22461e-16<br/>
+std::tan(-7/8 pi) = +0.414214<br/>
+std::tan(-6/8 pi) = +1<br/>
+std::tan(-5/8 pi) = +2.41421<br/>
+std::tan(-4/8 pi) = -1.63318e+16<br/>
+std::tan(-3/8 pi) = -2.41421<br/>
+std::tan(-2/8 pi) = -1<br/>
+std::tan(-1/8 pi) = -0.414214<br/>
+std::tan(+0/8 pi) = +0<br/>
+std::tan(+1/8 pi) = +0.414214<br/>
+std::tan(+2/8 pi) = +1<br/>
+std::tan(+3/8 pi) = +2.41421<br/>
+std::tan(+4/8 pi) = +1.63318e+16<br/>
+std::tan(+5/8 pi) = -2.41421<br/>
+std::tan(+6/8 pi) = -1<br/>
+std::tan(+7/8 pi) = -0.414214<br/>
+std::tan(+8/8 pi) = -1.22461e-16<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>

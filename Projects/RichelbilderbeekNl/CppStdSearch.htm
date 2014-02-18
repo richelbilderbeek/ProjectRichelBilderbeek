@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>std::search</title>
+  <meta name="description" content="C++ std::search"/>
+  <meta name="keywords" content="C++ std::search std STL search range algorithm code snippet"/>
+  <link rel="stylesheet" href="Richelbilderbeek.css" type="text/css"/>
+</head>
+<!-- End of head, start of body -->
+<body>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!-- Page header -->
+<h1>(<a href="Cpp.htm">C++</a>) <a href="CppSearch.htm">std::search</a></h1>
+<p>&nbsp;</p>
+<p><a href="CppSearch.htm">std::search</a> is an <a href="CppStl.htm">STL</a>
+<a href="CppAlgorithm.htm">algorithm</a> for searching a sequence of elements 
+in <a href="CppContainer.htm">containers</a>.
+It is similar to <a href="CppFind.htm">std::find</a>, except that <a
+href="CppFind.htm">std::find</a> searches for a single element.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example</h2>
+<p>&nbsp;</p>
+<p>Assume you work with a <a href="CppVector.htm">std::vector</a> of <a href="CppInt.htm">integers</a>
+in which two sequences are forbidden: zero-zero and one-zero. With <a href="CppSearch.htm">std::search</a>
+these sequences can be used to find if our exemplary <a href="CppVector.htm">std::vector</a> is valid.</p>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; v;<br/>
+&nbsp;&nbsp;v.push_back(0);<br/>
+&nbsp;&nbsp;v.push_back(1);<br/>
+&nbsp;&nbsp;v.push_back(0);<br/>
+&nbsp;&nbsp;v.push_back(0);<br/>
+&nbsp;&nbsp;v.push_back(2);<br/>
+&nbsp;&nbsp;v.push_back(0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>Two consequtive zeroes are forbidden<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; f1;<br/>
+&nbsp;&nbsp;f1.push_back(0);<br/>
+&nbsp;&nbsp;f1.push_back(0);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppComment.htm">//</a>A one followed by a two is forbidden<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<b><a href="CppInt.htm">int</a></b>&gt; f2;<br/>
+&nbsp;&nbsp;f2.push_back(1);<br/>
+&nbsp;&nbsp;f2.push_back(2);<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppSearch.htm">std::search</a>(v.begin(),v.end(),f1.begin(),f1.end())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorNotEqual.htm">!=</a> v.end()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume forbidden sequence 1 is detected");<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppSearch.htm">std::search</a>(v.begin(),v.end(),f2.begin(),f2.end())<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorEqual.htm">==</a> v.end()<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Assume forbidden sequence 2 is not present");<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Example: <a href="CppSeperateString.htm">SeperateString</a></h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppVectorH.htm">vector</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppCassertH.htm">cassert</a>&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppAlgorithmH.htm">algorithm</a>&gt;<br/>
+ <br/>
+<a href="CppComment.htm">//</a>From http://www.richelbilderbeek.nl/Cpp<a href="CppSeperateString.htm">SeperateString</a>.htm<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; <a href="CppSeperateString.htm">SeperateString</a> (<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; input,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppString.htm">std::string</a>&amp; seperator)<br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppVector.htm">std::vector</a>&lt;<a href="CppString.htm">std::string</a>&gt; v;<br/>
+&nbsp;&nbsp;<b><a href="CppTypedef.htm">typedef</a></b> <a href="CppString.htm">std::string</a>::const_iterator Iterator;<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Iterator end <a href="CppOperatorAssign.htm">=</a> input.end();<br/>
+&nbsp;&nbsp;Iterator i1 <a href="CppOperatorAssign.htm">=</a> input.begin();<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy until first comma<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Iterator i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.htm">std::search</a>(i1,end,seperator.begin(), seperator.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1,i2, <a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppWhile.htm">while</a></b> (i1<a href="CppOperatorNotEqual.htm">!=</a>end)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Copy from comma to (comma <a href="CppOperatorLogicalOr.htm">||</a> end)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;Iterator i2 <a href="CppOperatorAssign.htm">=</a> <a href="CppSearch.htm">std::search</a>(i1 <a href="CppOperatorPlus.htm">+</a> 1,end,seperator.begin(), seperator.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i1<a href="CppOperatorNotEqual.htm">!=</a>i2);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(i2 <a href="CppOperatorEqual.htm">==</a> end <a href="CppOperatorLogicalOr.htm">||</a> <a href="CppEqual.htm">std::equal</a>(seperator.begin(),seperator.end(),i2));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppString.htm">std::string</a> s;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppCopy.htm">std::copy</a>(i1+1,i2, <a href="CppBack_inserter.htm">std::back_inserter</a>(s));<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;v.push_back(s);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;i1 <a href="CppOperatorAssign.htm">=</a> i2;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="Cpp.htm">Go back to Richel Bilderbeek's C++ page</a>.</p>
+<p><a href="index.htm">Go back to Richel Bilderbeek's homepage</a>.</p>
+<p>&nbsp;</p>
+<p><a href="http://validator.w3.org/check?uri=referer"><img src="valid-xhtml10.png" alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a></p>
+</body>
+</html>
