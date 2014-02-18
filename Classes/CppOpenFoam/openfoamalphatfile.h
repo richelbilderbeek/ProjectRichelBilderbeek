@@ -1,7 +1,6 @@
-#ifndef OPENFOAMPRESSUREFILE_H
-#define OPENFOAMPRESSUREFILE_H
+#ifndef OPENFOAMALPHATFILE_H
+#define OPENFOAMALPHATFILE_H
 
-#include <array>
 #include <iosfwd>
 #include <vector>
 #include "openfoamfwd.h"
@@ -10,16 +9,15 @@
 namespace ribi {
 namespace foam {
 
-///Reads and writes an OpenFOAM pressure file
-struct PressureFile
+///Reads and writes an OpenFOAM thermophysicalProperties file
+struct AlphatFile
 {
-  explicit PressureFile(
+  explicit AlphatFile(
     const Header header = GetDefaultHeader()
   );
 
   static const Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
-        Header& GetHeader()       noexcept { return m_header; }
 
   void SetBoundaryField(const std::string& boundary_field) noexcept { m_boundary_field = boundary_field; }
   void SetDimensions(const std::array<int,7>& dimensions) noexcept { m_dimensions = dimensions; }
@@ -38,12 +36,9 @@ struct PressureFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const PressureFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const AlphatFile& f);
 };
 
-std::ostream& operator<<(std::ostream& os, const PressureFile& f);
+std::ostream& operator<<(std::ostream& os, const AlphatFile& f);
 
-} //~namespace foam
-} //~namespace ribi
-
-#endif // OPENFOAMPRESSUREFILE_H
+#endif // OPENFOAMALPHATFILE_H

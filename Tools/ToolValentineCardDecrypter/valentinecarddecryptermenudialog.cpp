@@ -13,6 +13,10 @@
 #include "fileio.h"
 //#include "imagecanvas.h"
 #include "valentinecarddecryptermaindialog.h"
+#include "valentinecardsymbols.h"
+#include "valentinecardsymbol.h"
+#include "textcanvas.h"
+
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -22,45 +26,16 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc != 5
-    || argv[1] == argv[3]
-    || (argv[1] != "-f" && argv[1] != "--filename" && argv[1] != "-r" && argv[1] != "--rotation")
-    || (argv[3] != "-f" && argv[3] != "--filename" && argv[3] != "-r" && argv[3] != "--rotation")
-  )
+  if (argc != 1)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
 
-  std::string filename;
-  if (argv[1] == "-f" || argv[1] == "--filename") filename = argv[2];
-  if (argv[3] == "-f" || argv[3] == "--filename") filename = argv[4];
-  if (!fileio::IsRegularFile(filename))
+  for (auto s: ValentineCardSymbols::CreateAll())
   {
-    std::cout << "Please supply the filename of an existing file" << std::endl;
-    return 1;
+    std::cout << (*s.ToTextCanvas()) << std::endl;
   }
-  std::string angle_str;
-  if (argv[1] == "-r" || argv[1] == "--rotation") angle_str = argv[2];
-  if (argv[3] == "-r" || argv[3] == "--rotation") angle_str = argv[4];
-  double angle = 0.0;
-  try
-  {
-    angle = boost::lexical_cast<double>(angle_str);
-  }
-  catch (boost::bad_lexical_cast&)
-  {
-    std::cout << "Please supply a number for the rotation" << std::endl;
-    return 1;
-  }
-  const double pi = boost::math::constants::pi<double>();
-
-  const QImage source(filename.c_str());
-  assert(!source.isNull());
-  QImage target(source);
-  assert(!target.isNull());
-
-  std::cout << (*canvas) << std::endl;
   return 0;
 }
 
@@ -76,7 +51,7 @@ const ribi::About ribi::ValentineCardDecrypterMenuDialog::GetAbout() const noexc
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
-  a.AddLibrary("ImageCanvas version: " + ImageCanvas::GetVersion());
+  a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;
 }
 
@@ -99,7 +74,7 @@ const ribi::Help ribi::ValentineCardDecrypterMenuDialog::GetHelp() const noexcep
 const boost::shared_ptr<const ribi::Program> ribi::ValentineCardDecrypterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
-    new ribi::ProgramValentineCardDecrypter
+    //new ribi::ProgramValentineCardDecrypter
   };
   assert(p);
   return p;

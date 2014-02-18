@@ -47,11 +47,6 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamControlDict() c
     << "\n"
     << "adjustTimeStep   	no;\n"
 
-
-
-
-
-
     << "\n"
     << "\n"
     << "// ************************************************************************* //\n"

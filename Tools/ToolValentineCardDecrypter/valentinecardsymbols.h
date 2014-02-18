@@ -6,7 +6,6 @@
 
 namespace ribi {
 
-
 struct ValentineCardSymbols
 {
   static const std::vector<ValentineCardSymbol> CreateAll() noexcept;

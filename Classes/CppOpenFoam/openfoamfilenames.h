@@ -14,6 +14,9 @@ struct Filenames
 {
   const std::vector<ribi::fileio::Filename> GetAll() const noexcept;
 
+  ///The filename for the OpenFOAM its case its velocity field
+  const ribi::fileio::Filename GetAlphat() const noexcept;
+
   ///The filename the resulting boundary (needed by OpenFoam) will be written to
   ///Must use Win32 backslashes
   const ribi::fileio::Filename GetBoundary() const noexcept;

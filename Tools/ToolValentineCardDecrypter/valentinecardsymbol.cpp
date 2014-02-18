@@ -22,23 +22,23 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::ValentineCardSymbol::ToTextCanva
   // | | 3 1
   // +-+ +2+
   //Corners
-  canvas->PutChar(0,0, m_lines[0] || m_lines[3] ? '+', ' ');
-  canvas->PutChar(0,2, m_lines[0] || m_lines[1] ? '+', ' ');
-  canvas->PutChar(2,0, m_lines[2] || m_lines[3] ? '+', ' ');
-  canvas->PutChar(2,2, m_lines[1] || m_lines[2] ? '+', ' ');
+  canvas->PutChar(0,0, m_lines[0] || m_lines[3] ? '+' : ' ');
+  canvas->PutChar(2,0, m_lines[0] || m_lines[1] ? '+' : ' ');
+  canvas->PutChar(0,2, m_lines[2] || m_lines[3] ? '+' : ' ');
+  canvas->PutChar(2,2, m_lines[1] || m_lines[2] ? '+' : ' ');
   //Edges
-  canvas->PutChar(1,0, m_lines[0] ? '-', ' ');
-  canvas->PutChar(0,1, m_lines[3] ? '|', ' ');
-  canvas->PutChar(2,1, m_lines[1] ? '|', ' ');
-  canvas->PutChar(1,2, m_lines[2] ? '-', ' ');
+  canvas->PutChar(1,0, m_lines[0] ? '-' : ' ');
+  canvas->PutChar(0,1, m_lines[3] ? '|' : ' ');
+  canvas->PutChar(2,1, m_lines[1] ? '|' : ' ');
+  canvas->PutChar(1,2, m_lines[2] ? '-' : ' ');
   // +-+ +-+ +-+
   // | | |.| |x|
   // +-+ +-+ +-+
   switch (m_center_symbol)
   {
-    case CenterSymbol::none: canvas->PutChar(1,1,' ');
-    case CenterSymbol::dot: canvas->PutChar(1,1,'.');
-    case CenterSymbol::cross: canvas->PutChar(1,1,'x');
+    case CenterSymbol::none : canvas->PutChar(1,1,' '); break;
+    case CenterSymbol::dot  : canvas->PutChar(1,1,'.'); break;
+    case CenterSymbol::cross: canvas->PutChar(1,1,'x'); break;
   }
   return canvas;
 }
