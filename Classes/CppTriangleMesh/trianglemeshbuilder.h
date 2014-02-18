@@ -7,6 +7,7 @@
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include "openfoamfwd.h"
+#include "openfoampatchfieldtype.h"
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
 
@@ -22,7 +23,8 @@ struct TriangleMeshBuilder
 {
   TriangleMeshBuilder(
     const std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells,
-    const std::string& mesh_filename
+    const std::string& mesh_filename,
+    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   );
 
   private:
@@ -30,7 +32,9 @@ struct TriangleMeshBuilder
   std::vector<boost::shared_ptr<Face>> m_faces;
   const std::vector<boost::shared_ptr<Point>> m_points;
 
-  const std::string CreateBoundary() const noexcept;
+  const std::string CreateBoundary(
+    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
+    ) const noexcept;
   const std::pair<std::string,std::string> CreateCells() const noexcept;
   const std::string CreateFaces() const noexcept;
   const std::string CreateHeader() const noexcept;
@@ -53,12 +57,12 @@ struct TriangleMeshBuilder
   const std::string CreateOpenFoamK() const noexcept;
   const std::string CreateOpenFoamMut() const noexcept;
   const std::string CreateOpenFoamNodes() const noexcept;
-  const std::string CreateOpenFoamP() const noexcept;
+  //const std::string CreateOpenFoamP() const noexcept;
   const std::string CreateOpenFoamPin() const noexcept;
   const std::string CreateOpenFoamPout() const noexcept;
   const std::string CreateOpenFoamRasProperties() const noexcept;
   const std::string CreateOpenFoamT() const noexcept;
-  const std::string CreateOpenFoamThermoPhysicalProperties() const noexcept;
+  //const std::string CreateOpenFoamThermoPhysicalProperties() const noexcept;
   const std::string CreateOpenFoamTurbulenceProperties() const noexcept;
   const std::string CreateOpenFoamU() const noexcept;
 

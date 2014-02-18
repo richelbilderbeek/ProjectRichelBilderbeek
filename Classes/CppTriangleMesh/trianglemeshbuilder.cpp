@@ -15,6 +15,8 @@
 #include "trianglemeshcell.h"
 #include "trianglemeshface.h"
 #include "fileio.h"
+#include "openfoamboundaryfile.h"
+#include "openfoamboundaryfileitem.h"
 #include "openfoamfilenames.h"
 #include "openfoampointindex.h"
 #include "php.h"
@@ -24,7 +26,8 @@
 
 ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const std::vector<boost::shared_ptr<Cell>>& cells,
-  const std::string& mesh_filename
+  const std::string& mesh_filename,
+  const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   )
   : m_cells(cells),
     m_faces(SortByBoundary(ExtractFaces(cells))),
@@ -133,41 +136,95 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   }
   {
     std::ofstream f(ribi::foam::Filenames().GetBoundary().Get().c_str());
-    f << CreateBoundary();
+    f << CreateBoundary(boundary_to_patch_field_type_function);
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetOpenFoamCase().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetCase().Get().c_str());
     //Need nothing to stream
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetOpenFoamFvSchemes().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetFvSchemes().Get().c_str());
     f << CreateOpenFoamFvSchemes();
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetOpenFoamFvSolution().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetFvSolution().Get().c_str());
     f << CreateOpenFoamFvSolution();
   }
 
+  //{
+  //  std::ofstream f(ribi::foam::Filenames().GetPressureField().Get().c_str());
+  //  f << CreateOpenFoamP();
+  //}
   {
-    std::ofstream f(ribi::foam::Filenames().GetOpenFoamPressureField().Get().c_str());
-    f << CreateOpenFoamP();
-  }
-  {
-    std::ofstream f(ribi::foam::Filenames().GetOpenFoamVelocityField().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetVelocityField().Get().c_str());
     f << CreateOpenFoamU();
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetOpenFoamControlDict().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetControlDict().Get().c_str());
     f << CreateOpenFoamControlDict();
   }
 
   PROFILER_UPDATE();
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary() const noexcept
+const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
+    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
+  ) const noexcept
 {
   PROFILE_FUNC();
+  #define NEW_APPROACH_20140218
+  #ifdef  NEW_APPROACH_20140218
+  std::vector<ribi::foam::BoundaryFileItem> items;
+
+  const int n_face_indices = static_cast<int>(m_faces.size());
+  assert(n_face_indices > 0);
+
+  std::string boundary_name = m_faces[0]->GetBoundaryType();
+  int start_index = 0;
+  int n_faces = 0;
+  for (int i=0; i!=n_face_indices; ++i)
+  {
+    const boost::shared_ptr<Face> face { m_faces[i] };
+    const std::string new_boundary_name = face->GetBoundaryType();
+    if (new_boundary_name != boundary_name)
+    {
+      const ribi::foam::BoundaryFileItem item(
+        boundary_name,
+        boundary_to_patch_field_type_function(boundary_name),
+        n_faces,
+        ribi::foam::FaceIndex(start_index)
+      );
+      items.push_back(item);
+      boundary_name = new_boundary_name;
+      start_index = i;
+      n_faces = 1; //1, because the current face is now/already detected
+    }
+    else
+    {
+      ++n_faces;
+    }
+  }
+  //Add the last
+  {
+    const ribi::foam::BoundaryFileItem item(
+      boundary_name,
+      boundary_to_patch_field_type_function(boundary_name),
+      n_faces,
+      ribi::foam::FaceIndex(start_index)
+    );
+    items.push_back(item);
+  }
+
+   //std::ofstream f(ribi::foam::Filenames().GetBoundary().Get().c_str());
+  ribi::foam::BoundaryFile file(
+    ribi::foam::BoundaryFile::GetDefaultHeader(),
+    items
+  );
+  std::stringstream s;
+  s << file;
+  return s.str();
+  #else
 
   std::stringstream s;
   s << this->CreateOpenFoamHeader("polyBoundaryMesh","boundary","constant/polyMesh");
@@ -238,6 +295,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary() const noexce
   }
   s << ")";
   return s.str();
+  #endif
 }
 
 const std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells() const noexcept

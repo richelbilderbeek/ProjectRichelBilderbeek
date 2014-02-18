@@ -16,6 +16,7 @@
 #include "openfoamhelper.h"
 #include "openfoamneighbourfile.h"
 #include "openfoamownerfile.h"
+#include "openfoampatchfieldtypes.h"
 #include "openfoampoint.h"
 #include "openfoampointsfile.h"
 #include "trace.h"
@@ -293,7 +294,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::Cr
   {
     const BoundaryFileItem& item { files.GetBoundary()->GetItem(i) };
     const std::string name = item.GetName();
-    const std::string type = item.GetType();
+    const auto type = item.GetType();
 
     std::vector<boost::shared_ptr<Face> > faces;
     const FaceIndex end_face { item.GetEndFace() } ;
@@ -896,7 +897,7 @@ void ribi::foam::Mesh::Test() noexcept
     const std::vector<boost::shared_ptr<Face>> faces { f0,f1,f2,f3,f4,f5 };
     cell->AssignOwnedFaces( { f0,f1,f2,f3,f4,f5 } );
 
-    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces","patch" ) };
+    boost::shared_ptr<Boundary> boundary { new Boundary(  {f0,f1,f2,f3,f4,f5 },"defaultFaces",PatchFieldType::slip ) };
     const std::vector<boost::shared_ptr<Boundary>> boundaries { boundary };
 
     const Mesh m(

@@ -8,14 +8,13 @@
 
 #include "xenonzerofwd.h"
 #include "xenonzeroarea.h"
+#include "xenonzerokey.h"
 
 namespace ribi {
-
 namespace xnz {
 
 struct Dialog
 {
-  enum class Input { up, right, down, left, space, shoot };
 
   typedef boost::shared_ptr<Sprite> SpritePtr;
   typedef std::vector<boost::shared_ptr<Sprite> > SpriteContainer;
@@ -24,7 +23,7 @@ struct Dialog
 
   Dialog();
 
-  const boost::shared_ptr<const Area> ProcessInput(const Input input);
+  const boost::shared_ptr<const Area> ProcessInput(const Key input);
   bool IsGameOver() const;
 
   private:
@@ -36,7 +35,7 @@ struct Dialog
   void MoveSprites();
   void LetSpritesInteract();
 
-  const boost::shared_ptr<xnz::Area> mArea;
+  const boost::shared_ptr<Area> mArea;
 
   boost::shared_ptr<SpritePlayer> mSpritePlayer;
   SpriteContainer mSprites;

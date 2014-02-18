@@ -328,12 +328,12 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
         "<p>&nbsp;</p>",
         "<p>",
-        "  <a href=\"CppChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
-        "  is a <a href=\"CppChecked_delete.htm\">boost::checked_delete</a> <a href=\"CppExample.htm\">example</a>.",
+        "  <a href=\"CppBoostChecked_deleteExample1.htm\">boost::checked_delete example 1</a>",
+        "  is a <a href=\"CppBoostChecked_delete.htm\">boost::checked_delete</a> <a href=\"CppExample.htm\">example</a>.",
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppChecked_deleteExample1.zip\">Download the Qt Creator project 'CppChecked_deleteExample1' (zip)</a></li>",
+        "  <li><a href=\"CppBoostChecked_deleteExample1.zip\">Download the Qt Creator project 'CppBoostChecked_deleteExample1' (zip)</a></li>",
         "</ul>"
       }
     }
@@ -6533,7 +6533,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "<p>",
         "  <a href=\"CppUnique_ptrExample2.htm\">std::unique_ptr example 2: custom deleter</a>",
         "  is a <a href=\"CppUnique_ptr.htm\">std::unique_ptr</a> example that shows how to use a",
-        "  custom deleter (in this case <a href=\"CppChecked_delete.htm\">boost::checked_delete</a>)",
+        "  custom deleter (in this case <a href=\"CppBoostChecked_delete.htm\">boost::checked_delete</a>)",
         "  with <a href=\"CppAuto.htm\">auto</a> and <a href=\"CppStdFunction.htm\">std::function</a>",
         "</p>",
         "<p>&nbsp;</p>",

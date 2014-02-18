@@ -14,7 +14,7 @@ const std::vector<ribi::fileio::Filename> ribi::foam::Filenames::GetAll() const 
     this->GetBoundary(),
     this->GetFaces(),
     this->GetNeighbour(),
-    this->GetOpenFoamCase(),
+    this->GetCase(),
     this->GetOwner(),
     this->GetPoints()
   };
@@ -53,12 +53,12 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetNeighbour() const noexcep
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamCase() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetCase() const noexcept
 {
   return ribi::fileio::Filename("case.foam");
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamControlDict() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetControlDict() const noexcept
 {
   return ribi::fileio::Filename(
       "system"
@@ -67,7 +67,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamControlDict() con
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamFvSchemes() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetFvSchemes() const noexcept
 {
   return ribi::fileio::Filename(
       "system"
@@ -76,7 +76,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamFvSchemes() const
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamFvSolution() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetFvSolution() const noexcept
 {
   return ribi::fileio::Filename(
       "system"
@@ -85,7 +85,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamFvSolution() cons
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamPressureField() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetPressureField() const noexcept
 {
   return ribi::fileio::Filename(
       "0"
@@ -94,7 +94,17 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamPressureField() c
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamTransportProperties() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetThermophysicalProperties() const noexcept
+{
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "thermophysicalProperties"
+  );
+}
+
+
+const ribi::fileio::Filename ribi::foam::Filenames::GetTransportProperties() const noexcept
 {
   return ribi::fileio::Filename(
       "constant"
@@ -103,7 +113,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamTransportProperti
   );
 }
 
-const ribi::fileio::Filename ribi::foam::Filenames::GetOpenFoamVelocityField() const noexcept
+const ribi::fileio::Filename ribi::foam::Filenames::GetVelocityField() const noexcept
 {
   return ribi::fileio::Filename(
       "0"
@@ -141,7 +151,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Filenam
     << ribi::xml::ToXml("filename_boundary",filenames.GetBoundary())
     << ribi::xml::ToXml("filename_faces",filenames.GetFaces())
     << ribi::xml::ToXml("filename_neightbour",filenames.GetNeighbour())
-    << ribi::xml::ToXml("filename_openfoam",filenames.GetOpenFoamCase())
+    << ribi::xml::ToXml("filename_openfoam",filenames.GetCase())
     << ribi::xml::ToXml("filename_owner",filenames.GetOwner())
     << ribi::xml::ToXml("filename_points",filenames.GetPoints())
   ;

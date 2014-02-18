@@ -18,12 +18,14 @@ ribi::foam::Header::Header(
     const std::string& class_name,
     const std::string& location,
     const std::string& note,
-    const std::string& object
+    const std::string& object,
+    const std::string& version
   )
   : m_class_name(class_name),
     m_location(location),
     m_note(note),
-    m_object(object)
+    m_object(object),
+    m_version(version)
 {
   #ifndef NDEBUG
   Test();
@@ -133,7 +135,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const Header& f)
   os
     << "FoamFile" << '\n'
     << "{" << '\n'
-    << "  version  " << "2.0"           << ";\n"
+    << "  version  " << f.GetVersion()  << ";\n"
     << "  format   " << "ascii"         << ";\n"
     << "  class    " << f.GetClass()    << ";\n"
     << "  location \"" << f.GetLocation() << "\";\n"
@@ -193,7 +195,9 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
       std::string t;
       is >> t;
       assert(is);
-      assert(t == "2.0;"  );
+      //assert(t == "2.0;");
+      h.m_version = t.substr(0,t.size() - 1);
+      assert(h.m_version == "2.0");
     }
     else if (s == "format" )
     {

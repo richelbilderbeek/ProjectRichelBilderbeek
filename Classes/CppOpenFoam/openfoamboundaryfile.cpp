@@ -119,7 +119,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
   for (int i=1; i!=4; ++i)
   {
     const std::string name = "some_name" + boost::lexical_cast<std::string>(i);
-    const std::string type = "some_type" + boost::lexical_cast<std::string>(i);
+    const PatchFieldType type = PatchFieldType::codedFixedValue;
     const int n_faces = i;
     const FaceIndex start_face(i * i);
     BoundaryFileItem item(name,type,n_faces,start_face);
@@ -147,7 +147,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
     for (int i=1; i!=3; ++i)
     {
       const std::string name = "some_other_name" + boost::lexical_cast<std::string>(i);
-      const std::string type = "some_other_type" + boost::lexical_cast<std::string>(i);
+      const PatchFieldType type = PatchFieldType::compressible_turbulentTemperatureCoupledBaffleMixed;
       const int n_faces = i + 123;
       const FaceIndex start_face((i * i) + 456);
       BoundaryFileItem item(name,type,n_faces,start_face);

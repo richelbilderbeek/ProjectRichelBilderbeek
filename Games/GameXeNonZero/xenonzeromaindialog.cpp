@@ -66,29 +66,29 @@ void xnzribi::xnz::Dialog::AskUserInputAndProcess()
 */
 
 const boost::shared_ptr<const ribi::xnz::Area>
-  ribi::xnz::Dialog::ProcessInput(const ribi::xnz::Dialog::Input input)
+  ribi::xnz::Dialog::ProcessInput(const ribi::xnz::Key input)
 {
   switch (input)
   {
-    case Input::up:
+    case Key::up:
       mSpritePlayer->Move( 0,-1);
       break;
-    case Input::right:
+    case Key::right:
       mSpritePlayer->Move( 1, 0);
       break;
-    case Input::down:
+    case Key::down:
       mSpritePlayer->Move( 0,-1);
       break;
-    case Input::left:
+    case Key::left:
       mSpritePlayer->Move(-1, 0);
       break;
-    case Input::shoot:
+    case Key::shoot:
     {
       SpriteContainer tempSprites;
       mSpritePlayer->Shoot(tempSprites);
       std::copy(tempSprites.begin(),tempSprites.end(),std::back_inserter(mSprites));
     }
-    case Input::space:
+    case Key::space:
     break;
   }
   MoveSprites();

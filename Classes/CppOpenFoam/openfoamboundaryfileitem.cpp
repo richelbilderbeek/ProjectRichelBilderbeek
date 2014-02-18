@@ -3,11 +3,13 @@
 #include <cassert>
 #include <iostream>
 
+#include "openfoampatchfieldtypes.h"
 #include "trace.h"
 
 ribi::foam::BoundaryFileItem::BoundaryFileItem(
   const std::string& name,
-  const std::string& type,
+  const PatchFieldType patch_field_type,
+  //const std::string& type,
   const int n_faces,
   const FaceIndex n_start_face
   )
@@ -15,7 +17,7 @@ ribi::foam::BoundaryFileItem::BoundaryFileItem(
     m_n_faces{n_faces},
     m_name{name},
     m_start_face{n_start_face},
-    m_type{type}
+    m_type{patch_field_type}
 {
   #ifndef NDEBUG
   Test();
@@ -38,7 +40,7 @@ void ribi::foam::BoundaryFileItem::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::BoundaryFileItem::Test");
-  const BoundaryFileItem i("some_name","some_type",123,FaceIndex(456));
+  const BoundaryFileItem i("some_name",PatchFieldType::empty,123,FaceIndex(456));
   std::stringstream s;
   s << i;
   BoundaryFileItem j;
@@ -99,11 +101,13 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFileItem& f)
     assert(type_text == std::string("type"));
   }
   {
-    is >> f.m_type;
+    std::string type_str;
+    is >> type_str;
     assert(is);
-    assert(f.m_type.back() == ';');
-    f.m_type.pop_back();
-    assert(f.m_type.back() != ';');
+    assert(type_str.back() == ';');
+    type_str.pop_back();
+    assert(type_str.back() != ';');
+    f.m_type = PatchFieldTypes::ToType(type_str);
   }
   {
     std::string n_faces_text;

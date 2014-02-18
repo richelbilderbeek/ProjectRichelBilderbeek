@@ -5,6 +5,7 @@
 #include <iosfwd>
 
 #include "openfoamfaceindex.h"
+#include "openfoampatchfieldtype.h"
 
 namespace ribi {
 namespace foam {
@@ -14,7 +15,7 @@ struct BoundaryFileItem
 {
   explicit BoundaryFileItem(
     const std::string& name = "",
-    const std::string& type = "",
+    const PatchFieldType patch_field_type = PatchFieldType::empty,
     const int n_faces = 0,
     const FaceIndex n_start_face = FaceIndex(0)
   );
@@ -28,14 +29,14 @@ struct BoundaryFileItem
   ///Obtain the last+1 Face index
   const FaceIndex GetEndFace() const noexcept;
 
-  const std::string GetType() const noexcept { return m_type; }
+  PatchFieldType GetType() const noexcept { return m_type; }
 
   private:
 
   int m_n_faces;
   std::string m_name;
   FaceIndex m_start_face;
-  std::string m_type;
+  PatchFieldType m_type;
 
   #ifndef NDEBUG
   static void Test() noexcept;

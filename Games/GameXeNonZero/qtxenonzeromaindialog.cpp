@@ -39,37 +39,37 @@ void ribi::QtXeNonZeroMainDialog::Display(const boost::shared_ptr<const xnz::Are
 void ribi::QtXeNonZeroMainDialog::on_button_a_clicked()
 {
   assert(m_dialog);
-  Display(m_dialog->ProcessInput(xnz::Dialog::Input::left));
+  Display(m_dialog->ProcessInput(xnz::Key::left));
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_d_clicked()
 {
   assert(m_dialog);
-  Display(m_dialog->ProcessInput(xnz::Dialog::Input::right));
+  Display(m_dialog->ProcessInput(xnz::Key::right));
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_e_clicked()
 {
   assert(m_dialog);
-  Display(m_dialog->ProcessInput(xnz::Dialog::Input::shoot));
+  Display(m_dialog->ProcessInput(xnz::Key::shoot));
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_s_clicked()
 {
   assert(m_dialog);
-  Display(m_dialog->ProcessInput(xnz::Dialog::Input::down));
+  Display(m_dialog->ProcessInput(xnz::Key::down));
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_space_clicked()
 {
   assert(m_dialog);
-  Display(m_dialog->ProcessInput(xnz::Dialog::Input::space));
+  Display(m_dialog->ProcessInput(xnz::Key::space));
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_w_clicked()
 {
   assert(m_dialog);
-  Display(m_dialog->ProcessInput(xnz::Dialog::Input::up));
+  Display(m_dialog->ProcessInput(xnz::Key::up));
 }
 
 #ifndef NDEBUG

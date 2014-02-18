@@ -5,11 +5,12 @@
 
 #include "trace.h"
 #include "openfoamface.h"
+#include "openfoampatchfieldtypes.h"
 
 ribi::foam::Boundary::Boundary(
   const std::vector<boost::shared_ptr<Face> >& faces,
   const std::string& name,
-  const std::string& type
+  const PatchFieldType type
   )
   : m_faces(faces),
     m_name(name),

@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
 #include "openfoamfwd.h"
+#include "openfoampatchfieldtype.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -19,19 +20,19 @@ struct Boundary
   Boundary(
     const std::vector<boost::shared_ptr<Face> >& faces,
     const std::string& name,
-    const std::string& type
+    const PatchFieldType type
   );
 
   const std::vector<boost::shared_ptr<      Face> >& GetFaces() noexcept { return m_faces; }
   const std::vector<boost::shared_ptr<const Face> >  GetFaces() const noexcept;
   const std::string& GetName() const noexcept { return m_name; }
-  const std::string& GetType() const noexcept { return m_type; }
+  PatchFieldType GetType() const noexcept { return m_type; }
 
 
   private:
   const std::vector<boost::shared_ptr<Face> > m_faces;
   const std::string m_name;
-  const std::string m_type;
+  const PatchFieldType m_type;
 
   friend std::ostream& operator<<(std::ostream& os, const Boundary& boundary);
 };
