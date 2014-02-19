@@ -25,6 +25,8 @@ const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateA
       const bool d = (line_index >> 3) % 2;
       const int sum = a + b + c + d;
       if (sum < 2) continue;
+      if (!a &&  b && !c &&  d) continue;
+      if ( a && !b &&  c && !d) continue;
       ValentineCardSymbol symbol(
         { a, b, c, d },
         center_symbol

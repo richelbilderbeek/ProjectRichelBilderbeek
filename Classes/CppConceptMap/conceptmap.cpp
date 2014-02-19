@@ -250,6 +250,10 @@ void ribi::cmap::ConceptMap::DeleteNode(const boost::shared_ptr<Node> node)
 {
   #ifndef NDEBUG
   assert(node);
+  if (std::count(m_nodes.begin(),m_nodes.end(),node) == 0)
+  {
+    TRACE("BREAK");
+  }
   assert(std::count(m_nodes.begin(),m_nodes.end(),node) > 0
     && "Can only delete an existing node");
   assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1

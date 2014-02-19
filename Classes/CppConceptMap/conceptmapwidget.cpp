@@ -89,11 +89,11 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
   };
 
   m_conceptmap->AddNode(node);
-  m_signal_add_node(node);
+  //m_signal_add_node(node);
 
   #ifndef NDEBUG
   const auto after = this->GetConceptMap()->GetNodes().size();
-  assert(after >= before);
+  assert(after == before + 1);
   #endif
   return node;
 }
@@ -101,7 +101,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
 void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<Node> node) noexcept
 {
   m_conceptmap->DeleteNode(node);
-  m_signal_delete_node(node);
+  //m_signal_delete_node(node);
 }
 
 void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noexcept
@@ -260,20 +260,39 @@ void ribi::cmap::Widget::Test() noexcept
     assert(cnt_yes > 0);
   }
   */
-  //Start a concept map, add some nodes
+  //Start a concept map, add a node using the concept map
   {
     const boost::shared_ptr<Widget> widget(new Widget);
-    for (int i=0; i!=5; ++i)
-    {
-      assert(widget->GetConceptMap());
-      assert(static_cast<int>(widget->GetConceptMap()->GetNodes().size()) == i
-        && "Concept map starts with one node, now another one must be added");
-      CommandCreateNewNode c;
-      assert(c.CanDoCommand(widget.get()));
-      c.DoCommand(widget.get());
-      assert(static_cast<int>(widget->GetConceptMap()->GetNodes().size()) == i + 1
-        && "Concept map starts with one node, now another one must be added");
-    }
+    assert(widget->GetConceptMap());
+    assert(widget->GetConceptMap()->GetNodes().empty()
+      && "Concept map starts empty");
+    const boost::shared_ptr<Node> node {
+      NodeFactory::GetTest(0)
+    };
+    assert(node);
+    widget->GetConceptMap()->AddNode(node);
+    assert(widget->GetConceptMap()->GetNodes().size() == 1
+      && "Concept map must have one node added now");
+    widget->GetConceptMap()->DeleteNode(node);
+    assert(widget->GetConceptMap()->GetNodes().empty()
+      && "Concept map must be empty again now");
+  }
+  //Start a concept map, add a node using a command
+  {
+    const boost::shared_ptr<Widget> widget(new Widget);
+    assert(widget->GetConceptMap());
+    assert(widget->GetConceptMap()->GetNodes().empty()
+      && "Concept map starts empty");
+    const boost::shared_ptr<CommandCreateNewNode> command {
+      new CommandCreateNewNode
+    };
+    assert(widget->CanDoCommand(command));
+    widget->DoCommand(command);
+    assert(widget->GetConceptMap()->GetNodes().size() == 1
+      && "Concept map must have one node added now");
+    command->Undo();
+    assert(widget->GetConceptMap()->GetNodes().empty()
+      && "Concept map must be empty again now");
   }
   //Test all commands do and undo
   for (const boost::shared_ptr<Widget> widget: WidgetFactory::GetAllTests())

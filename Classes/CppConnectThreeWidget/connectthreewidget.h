@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/tuple/tuple.hpp>
 
 #include "connectthree.h"
+#include "connectthreefwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {

@@ -20,17 +20,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include <Wt/WImage>
 #include <Wt/WPainter>
-//---------------------------------------------------------------------------
+
 #include "trace.h"
 //#include "wtconnectthreeresources.h"
 #include "wtselectplayerwidget.h"
-//---------------------------------------------------------------------------
+
 #include <cassert>
-//---------------------------------------------------------------------------
+
 ///Yes, naming the filename twice feels dumb, but
 ///I could not find enough documentation about
 ///how I should use the Wt::WPainter::Image constructor
-ribi::WtSelectPlayerWidget::WtSelectPlayerWidget(
+ribi::con3::WtSelectPlayerWidget::WtSelectPlayerWidget(
   const boost::shared_ptr<const ConnectThreeResources> resources)
   : m_signal_on_clicked{},
     m_computer_grey(new Wt::WPainter::Image(
@@ -97,11 +97,11 @@ ribi::WtSelectPlayerWidget::WtSelectPlayerWidget(
   const int sprite_height = m_computer_grey->height();
 
   this->resize(2 * sprite_width,3 * sprite_height);
-  this->mouseWentDown().connect(this, &ribi::WtSelectPlayerWidget::OnClick);
+  this->mouseWentDown().connect(this, &ribi::con3::WtSelectPlayerWidget::OnClick);
   this->update();
 }
-//---------------------------------------------------------------------------
-void ribi::WtSelectPlayerWidget::OnClick(const Wt::WMouseEvent& e)
+
+void ribi::con3::WtSelectPlayerWidget::OnClick(const Wt::WMouseEvent& e)
 {
   const int sprite_width  = m_computer_grey->width();
   const int sprite_height = m_computer_grey->height();
@@ -114,8 +114,8 @@ void ribi::WtSelectPlayerWidget::OnClick(const Wt::WMouseEvent& e)
   m_signal_on_clicked();
   this->update();
 }
-//---------------------------------------------------------------------------
-void ribi::WtSelectPlayerWidget::paintEvent(Wt::WPaintDevice *paintDevice)
+
+void ribi::con3::WtSelectPlayerWidget::paintEvent(Wt::WPaintDevice *paintDevice)
 {
   Wt::WPainter painter(paintDevice);
   const int sprite_width  = m_computer_grey->width();
@@ -128,5 +128,5 @@ void ribi::WtSelectPlayerWidget::paintEvent(Wt::WPaintDevice *paintDevice)
   painter.drawImage(1 * sprite_width,1 * sprite_height,m_is_player_human[1] ? *m_computer_grey : *m_computers[1]);
   painter.drawImage(1 * sprite_width,2 * sprite_height,m_is_player_human[2] ? *m_computer_grey : *m_computers[2]);
 }
-//---------------------------------------------------------------------------
+
 

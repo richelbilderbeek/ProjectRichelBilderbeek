@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "wtconnectthreewidget.h"
 
 
-ribi::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
+ribi::con3::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
   const boost::shared_ptr<const ConnectThreeResources> resources,
   const std::bitset<3>& is_player_human)
   : m_board{},
@@ -50,7 +50,7 @@ ribi::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
 
   m_timer->timeout().connect(
     this,
-    &ribi::WtConnectThreeGameDialog::DoComputerTurn);
+    &ribi::con3::WtConnectThreeGameDialog::DoComputerTurn);
   m_timer->setInterval(100);
 
 
@@ -58,16 +58,16 @@ ribi::WtConnectThreeGameDialog::WtConnectThreeGameDialog(
   //OnValidMove(); //Draw screen
 }
 
-ribi::WtConnectThreeGameDialog::~WtConnectThreeGameDialog()
+ribi::con3::WtConnectThreeGameDialog::~WtConnectThreeGameDialog()
 {
   m_timer->stop();
 }
 
-void ribi::WtConnectThreeGameDialog::DoComputerTurn()
+void ribi::con3::WtConnectThreeGameDialog::DoComputerTurn()
 {
   assert(m_board);
   if (m_board->IsComputerTurn()
-    && m_board->GetWinner() == ConnectThree::no_player)
+    && m_board->GetWinner() == Winner::no_winner)
   {
     m_board->DoComputerTurn();
     OnValidMove();
@@ -77,9 +77,9 @@ void ribi::WtConnectThreeGameDialog::DoComputerTurn()
 ///OnValidMove is called after a valid move. The game
 ///is either terminated, or the next player can do
 ///his/her move.
-void ribi::WtConnectThreeGameDialog::OnValidMove()
+void ribi::con3::WtConnectThreeGameDialog::OnValidMove()
 {
-  if (m_board->GetWinner() == ConnectThree::no_player)
+  if (m_board->GetWinner() == Winner::no_winner)
   {
     UpdatePlayersPanel();
     return;
@@ -89,7 +89,7 @@ void ribi::WtConnectThreeGameDialog::OnValidMove()
   ShowWinner();
 }
 
-void ribi::WtConnectThreeGameDialog::RestartGame()
+void ribi::con3::WtConnectThreeGameDialog::RestartGame()
 {
   m_state = state_playing;
   ShowGame();
@@ -99,7 +99,7 @@ void ribi::WtConnectThreeGameDialog::RestartGame()
   StartTimer();
 }
 
-void ribi::WtConnectThreeGameDialog::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
+void ribi::con3::WtConnectThreeGameDialog::SetIsPlayerHuman(const std::bitset<3>& is_player_human)
 {
   if (m_is_player_human != is_player_human)
   {
@@ -111,17 +111,17 @@ void ribi::WtConnectThreeGameDialog::SetIsPlayerHuman(const std::bitset<3>& is_p
   }
 }
 
-void ribi::WtConnectThreeGameDialog::ShowGame()
+void ribi::con3::WtConnectThreeGameDialog::ShowGame()
 {
   assert(m_state == state_playing);
   this->clear();
   m_board = new WtConnectThreeWidget(m_resources,m_is_player_human,16,8);
   m_board->m_signal_valid_move.connect(
     boost::bind(
-      &ribi::WtConnectThreeGameDialog::OnValidMove,
+      &ribi::con3::WtConnectThreeGameDialog::OnValidMove,
       this));
   assert(m_board);
-  assert(m_board->GetWinner() == ConnectThree::no_player);
+  assert(m_board->GetWinner() == Winner::no_winner);
   this->addWidget(m_board);
   this->addWidget(new Wt::WBreak);
   this->addWidget(new Wt::WBreak);
@@ -146,15 +146,15 @@ void ribi::WtConnectThreeGameDialog::ShowGame()
   UpdatePlayersPanel();
 }
 
-void ribi::WtConnectThreeGameDialog::ShowWinner()
+void ribi::con3::WtConnectThreeGameDialog::ShowWinner()
 {
   assert(m_state = state_winner);
-  assert(m_board->GetWinner() != ConnectThree::no_player);
+  assert(m_board->GetWinner() != Winner::no_winner);
   assert(!m_timer->isActive());
   //Request all info from m_board, before deleting it
-  const int winner_index = m_board->GetWinner();
+  const Winner winner_index = m_board->GetWinner();
   const std::string text
-    = (m_board->GetWinner() == ConnectThree::draw
+    = (winner_index == Winner::draw
     ? "draw" : "winner");
 
   //There is a winner
@@ -163,29 +163,29 @@ void ribi::WtConnectThreeGameDialog::ShowWinner()
 
   switch(winner_index)
   {
-      case ConnectThree::player1:
+      case Winner::player1:
         winner->setImageRef(
           m_resources
             ->GetPlayersFilenames()[0]);
         break;
-      case ConnectThree::player2:
+      case Winner::player2:
         winner->setImageRef(
           m_resources
             ->GetPlayersFilenames()[1]);
         break;
-      case ConnectThree::player3:
+      case Winner::player3:
         winner->setImageRef(
           m_resources
             ->GetPlayersFilenames()[2]);
         break;
-      case ConnectThree::draw:
+      case Winner::draw:
         winner->setImageRef(
           m_resources
             ->GetEmptyFilename());
         break;
       default:
         assert(!"Should not get here");
-        throw std::logic_error("Known value of GetCurrentPlayer in ribi::WtConnectThreeGameDialog::OnValidMove");
+        throw std::logic_error("Known value of GetCurrentPlayer in ribi::con3::WtConnectThreeGameDialog::OnValidMove");
   }
   this->addWidget(winner);
   this->addWidget(new Wt::WBreak);
@@ -199,11 +199,11 @@ void ribi::WtConnectThreeGameDialog::ShowWinner()
     Wt::WPushButton * const button(new Wt::WPushButton("Restart",this));
     button->clicked().connect(
       this,
-      &ribi::WtConnectThreeGameDialog::RestartGame);
+      &ribi::con3::WtConnectThreeGameDialog::RestartGame);
   }
 }
 
-void ribi::WtConnectThreeGameDialog::UpdatePlayersPanel()
+void ribi::con3::WtConnectThreeGameDialog::UpdatePlayersPanel()
 {
   assert(m_board);
   assert(m_players.size() == 3);
@@ -214,9 +214,18 @@ void ribi::WtConnectThreeGameDialog::UpdatePlayersPanel()
   const int n_players = 3; //as the name is 'ConnectThree'
   for (int i=0; i!=n_players; ++i)
   {
+    Player i_p;
+    switch (i)
+    {
+      case 0: i_p = Player::player1; break;
+      case 1: i_p = Player::player2; break;
+      case 2: i_p = Player::player3; break;
+      default: assert(!"Should not get here");
+    }
     if (is_player_human[i])
     {
-      if (m_board->GetActivePlayer() == i)
+
+      if (m_board->GetActivePlayer() == i_p)
       {
         m_players[i]->setImageRef(m_resources->GetPlayersFilenames()[i]);
       }
@@ -227,7 +236,7 @@ void ribi::WtConnectThreeGameDialog::UpdatePlayersPanel()
     }
     else
     {
-      if (m_board->GetActivePlayer() == i)
+      if (m_board->GetActivePlayer() == i_p)
       {
         m_players[i]->setImageRef(m_resources->GetComputersFilenames()[i]);
       }
@@ -239,12 +248,12 @@ void ribi::WtConnectThreeGameDialog::UpdatePlayersPanel()
   }
 }
 
-void ribi::WtConnectThreeGameDialog::PauseTimer()
+void ribi::con3::WtConnectThreeGameDialog::PauseTimer()
 {
   m_timer->stop();
 }
 
-void ribi::WtConnectThreeGameDialog::StartTimer()
+void ribi::con3::WtConnectThreeGameDialog::StartTimer()
 {
   m_timer->start();
 }

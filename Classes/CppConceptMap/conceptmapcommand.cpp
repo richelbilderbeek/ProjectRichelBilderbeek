@@ -23,6 +23,7 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
   assert(widget);
   assert(CanDoCommand(widget));
   DoCommandSpecific(widget);
+  /*
   #ifndef NDEBUG
   for (int i=0; i!=2; ++i)
   {
@@ -30,6 +31,7 @@ void ribi::cmap::Command::DoCommand(Widget * const widget) noexcept
     DoCommandSpecific(widget);
   }
   #endif
+  */
 }
 
 

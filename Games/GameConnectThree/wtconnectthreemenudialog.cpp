@@ -43,13 +43,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "qtconnectthreeresources.h"
 #include "wtselectplayerwidget.h"
 
-ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
-  : ribi::WtConnectThreeMenuDialog(ribi::WtConnectThreeMenuDialog::CreateResources())
+ribi::con3::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog()
+  : ribi::con3::WtConnectThreeMenuDialog(ribi::con3::WtConnectThreeMenuDialog::CreateResources())
 {
 
 }
 
-ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog(
+ribi::con3::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog(
     const boost::shared_ptr<const ConnectThreeResources> resources
   )
   : m_game{},
@@ -102,15 +102,15 @@ ribi::WtConnectThreeMenuDialog::WtConnectThreeMenuDialog(
     //Display contents below menu
     this->addWidget(contents);
     m_menu->itemSelected().connect(
-      this,&ribi::WtConnectThreeMenuDialog::OnMenuItemChanged);
+      this,&ribi::con3::WtConnectThreeMenuDialog::OnMenuItemChanged);
   }
   m_select->m_signal_on_clicked.connect(
     boost::bind(
-      &ribi::WtConnectThreeMenuDialog::OnSelectClicked,
+      &ribi::con3::WtConnectThreeMenuDialog::OnSelectClicked,
       this));
 }
 
-ribi::WtAboutDialog * ribi::WtConnectThreeMenuDialog::CreateNewAboutDialog()
+ribi::WtAboutDialog * ribi::con3::WtConnectThreeMenuDialog::CreateNewAboutDialog()
 {
   About a = ConnectThreeMenuDialog().GetAbout();
   a.AddLibrary("WtConnectThreeWidget version: " + WtConnectThreeWidget::GetVersion());
@@ -119,7 +119,7 @@ ribi::WtAboutDialog * ribi::WtConnectThreeMenuDialog::CreateNewAboutDialog()
   return d;
 }
 
-ribi::WtConnectThreeGameDialog * ribi::WtConnectThreeMenuDialog::CreateNewGameDialog()
+ribi::con3::WtConnectThreeGameDialog * ribi::con3::WtConnectThreeMenuDialog::CreateNewGameDialog()
 {
   assert(m_select);
   m_game = new WtConnectThreeGameDialog(m_resources,m_select->GetIsPlayerHuman());
@@ -127,7 +127,7 @@ ribi::WtConnectThreeGameDialog * ribi::WtConnectThreeMenuDialog::CreateNewGameDi
   return m_game;
 }
 
-Wt::WWidget * ribi::WtConnectThreeMenuDialog::CreateNewSelectPlayersDialog()
+Wt::WWidget * ribi::con3::WtConnectThreeMenuDialog::CreateNewSelectPlayersDialog()
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -136,7 +136,7 @@ Wt::WWidget * ribi::WtConnectThreeMenuDialog::CreateNewSelectPlayersDialog()
   return dialog;
 }
 
-Wt::WWidget * ribi::WtConnectThreeMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::con3::WtConnectThreeMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -168,7 +168,7 @@ Wt::WWidget * ribi::WtConnectThreeMenuDialog::CreateNewWelcomeDialog() const
   return dialog;
 }
 
-const boost::shared_ptr<const ribi::ConnectThreeResources> ribi::WtConnectThreeMenuDialog::CreateResources()
+const boost::shared_ptr<const ribi::con3::ConnectThreeResources> ribi::con3::WtConnectThreeMenuDialog::CreateResources()
 {
   boost::shared_ptr<const ConnectThreeResources> r {
     new QtConnectThreeResources()
@@ -177,7 +177,7 @@ const boost::shared_ptr<const ribi::ConnectThreeResources> ribi::WtConnectThreeM
   return r;
 }
 
-void ribi::WtConnectThreeMenuDialog::OnMenuItemChanged()
+void ribi::con3::WtConnectThreeMenuDialog::OnMenuItemChanged()
 {
   if (m_menu->currentItem()->text() == "Start")
   {
@@ -201,7 +201,7 @@ void ribi::WtConnectThreeMenuDialog::OnMenuItemChanged()
   }
 }
 
-void ribi::WtConnectThreeMenuDialog::OnSelectClicked()
+void ribi::con3::WtConnectThreeMenuDialog::OnSelectClicked()
 {
   assert(m_game);
   if (m_game->HasWinner())

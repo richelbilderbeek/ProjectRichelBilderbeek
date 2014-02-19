@@ -2,11 +2,11 @@ include(../../Games/GameXeNonZero/GameXeNonZeroConsole.pri)
 
 HEADERS += \
     ../../Games/GameXeNonZero/qtxenonzeromaindialog.h \
-    qtxenonzerocanvas.h
+    ../../Games/GameXeNonZero/qtxenonzerocanvas.h
 
 SOURCES += \
     ../../Games/GameXeNonZero/qtxenonzeromaindialog.cpp \
-    qtxenonzerocanvas.cpp
+    ../../Games/GameXeNonZero/qtxenonzerocanvas.cpp
 
 FORMS += \
     ../../Games/GameXeNonZero/qtxenonzeromaindialog.ui

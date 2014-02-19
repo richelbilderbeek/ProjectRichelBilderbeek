@@ -66,7 +66,7 @@ void xnzribi::xnz::Dialog::AskUserInputAndProcess()
 */
 
 const boost::shared_ptr<const ribi::xnz::Area>
-  ribi::xnz::Dialog::ProcessInput(const ribi::xnz::Key input)
+  ribi::xnz::Dialog::OnKeyPress(const ribi::xnz::Key input)
 {
   switch (input)
   {

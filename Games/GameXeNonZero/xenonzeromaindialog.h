@@ -11,6 +11,9 @@
 #include "xenonzerokey.h"
 
 namespace ribi {
+
+struct TextCanvas;
+
 namespace xnz {
 
 struct Dialog
@@ -23,8 +26,10 @@ struct Dialog
 
   Dialog();
 
-  const boost::shared_ptr<const Area> ProcessInput(const Key input);
+  const boost::shared_ptr<const Area> OnKeyPress(const Key input);
   bool IsGameOver() const;
+
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
 

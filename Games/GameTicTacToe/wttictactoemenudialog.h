@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
 TicTacToe, tic-tac-toe game
-Copyright (C) 2010 Richel Bilderbeek
+Copyright (C) 2010-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,16 +20,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #ifndef WTTICTACTOEMENUDIALOG_H
 #define WTTICTACTOEMENUDIALOG_H
-//---------------------------------------------------------------------------
+
 #include <boost/signals2.hpp>
-//---------------------------------------------------------------------------
 #include <Wt/WContainerWidget>
-//---------------------------------------------------------------------------
 
 namespace ribi {
 
 struct WtAboutDialog;
-//---------------------------------------------------------------------------
+
+namespace con3 {
+
 struct WtTicTacToeMenuDialog : public Wt::WContainerWidget
 {
   WtTicTacToeMenuDialog();
@@ -38,6 +38,7 @@ struct WtTicTacToeMenuDialog : public Wt::WContainerWidget
   WtAboutDialog * CreateNewAboutDialog() const;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // WTTICTACTOEMENUDIALOG_H

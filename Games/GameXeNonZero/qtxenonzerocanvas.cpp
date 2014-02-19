@@ -52,19 +52,19 @@ void ribi::xnz::QtXeNonZeroCanvas::keyPressEvent(QKeyEvent *e)
   switch(e->key())
   {
     case Qt::Key_Up: case Qt::Key_W:
-      m_dialog->OnKeyPress(ribi::con3::ConnectThreeWidget::Key::up);
+      m_dialog->OnKeyPress(Key::up);
       break;
     case Qt::Key_Down: case Qt::Key_S:
-      m_dialog->OnKeyPress(ribi::con3::ConnectThreeWidget::Key::down);
+      m_dialog->OnKeyPress(Key::down);
       break;
     case Qt::Key_Left: case Qt::Key_A:
-      m_dialog->OnKeyPress(ribi::con3::ConnectThreeWidget::Key::left);
+      m_dialog->OnKeyPress(Key::left);
       break;
     case Qt::Key_Right: case Qt::Key_D:
-      m_dialog->OnKeyPress(ribi::con3::ConnectThreeWidget::Key::right);
+      m_dialog->OnKeyPress(Key::right);
       break;
     case Qt::Key_Space: case Qt::Key_Return:
-      m_dialog->OnKeyPress(ribi::con3::ConnectThreeWidget::Key::select);
+      m_dialog->OnKeyPress(Key::shoot);
       break;
     case Qt::Key_Escape: case Qt::Key_Q:
       close();

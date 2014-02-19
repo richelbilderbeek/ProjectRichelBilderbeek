@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <Wt/WContainerWidget>
 
 #include "connectthreeresources.h"
+#include "connectthreefwd.h"
 
 namespace Wt
 {
@@ -36,9 +37,10 @@ namespace Wt
 
 namespace ribi {
 
-struct WtSelectPlayerWidget;
 struct WtAboutDialog;
-struct WtConnectThreeGameDialog;
+
+namespace con3 {
+
 
 struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
 {
@@ -64,6 +66,7 @@ struct WtConnectThreeMenuDialog : public Wt::WContainerWidget
   const boost::shared_ptr<const ConnectThreeResources> m_resources;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // WTCONNECTTHREEMENUDIALOG_H

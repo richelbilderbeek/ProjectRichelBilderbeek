@@ -125,7 +125,15 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
   return node;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::NodeFactory::GetTests()
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i)
+{
+  const std::vector<boost::shared_ptr<Node>> tests { GetTests() };
+  assert(i >= 0);
+  assert(i < static_cast<int>(tests.size()));
+  return tests[i];
+}
+
+const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests()
 {
   std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   const auto v = ConceptFactory().GetTests();

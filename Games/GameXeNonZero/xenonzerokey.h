@@ -4,7 +4,7 @@
 namespace ribi {
 namespace xnz {
 
-enum class Key { up, right, down, left, space, shoot };
+enum class Key { up, right, down, left, shoot, space };
 
 } //~namespace xnz
 } //~namespace ribi

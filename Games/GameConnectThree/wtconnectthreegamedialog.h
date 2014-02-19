@@ -27,7 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 
 #include <Wt/WContainerWidget>
-
+#include "connectthreefwd.h"
 namespace Wt
 {
   struct WTimer;
@@ -35,9 +35,7 @@ namespace Wt
 
 
 namespace ribi {
-
-struct WtConnectThreeWidget;
-struct ConnectThreeResources;
+namespace con3 {
 
 ///WtConnectThreeGameDialog contains the
 ///ConnectThree game.
@@ -72,6 +70,7 @@ struct WtConnectThreeGameDialog : public Wt::WContainerWidget
   void UpdatePlayersPanel();
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // WTCONNECTTHREEGAMEDIALOG_H

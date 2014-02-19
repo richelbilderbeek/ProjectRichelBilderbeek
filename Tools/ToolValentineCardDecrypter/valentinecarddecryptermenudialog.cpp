@@ -32,9 +32,11 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
     return 1;
   }
 
+  int cnt = 1;
   for (auto s: ValentineCardSymbols::CreateAll())
   {
-    std::cout << (*s.ToTextCanvas()) << std::endl;
+    std::cout << cnt << "\n" << (*s.ToTextCanvas()) << std::endl;
+    ++cnt;
   }
   return 0;
 }

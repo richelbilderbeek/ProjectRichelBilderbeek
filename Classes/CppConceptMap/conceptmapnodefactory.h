@@ -44,6 +44,7 @@ struct NodeFactory
 
   ///Obtain testing nodes
   static const std::vector<boost::shared_ptr<Node> > GetTests();
+  static const boost::shared_ptr<Node> GetTest(const int test);
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -34,8 +34,10 @@ namespace Wt
 }
 
 #include "connectthreeresources.h"
+#include "connectthreefwd.h"
 
 namespace ribi {
+namespace con3 {
 
 struct WtSelectPlayerWidget : public Wt::WPaintedWidget
 {
@@ -59,6 +61,7 @@ struct WtSelectPlayerWidget : public Wt::WPaintedWidget
   const std::vector<const Wt::WPainter::Image *> m_players_grey;
 };
 
+} //~namespace con3
 } //~namespace ribi
 
 #endif // WTSELECTPLAYERWIDGET_H

@@ -17,9 +17,11 @@
 #include "qtrateconceptmap.h"
 #include "conceptmap.h"
 #include "conceptmapcommand.h"
+#include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommandlosefocus.h"
 #include "conceptmapcommandsetfocuswithcoordinat.h"
 #include "conceptmapcommandsetfocusrandom.h"
+#include "conceptmapnodefactory.h"
 #include "conceptmapwidget.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"
@@ -256,6 +258,28 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtConceptMapWidget::Test()");
+  //Test creation of node from empty concept map
+  {
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };
+    assert(m);
+    assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    assert(c);
+    assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
+    const boost::shared_ptr<QtConceptMapWidget> w(
+      new QtConceptMapWidget(c)
+    );
+    const boost::shared_ptr<CommandCreateNewNode> cmd(
+      new CommandCreateNewNode
+    );
+    w->DoCommand(cmd);
+    assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
+    assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
+    cmd->Undo();
+    assert(!m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
+    assert(!c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
+  }
+  assert(1==2);
   //Test that a 'set random focus' results in something getting a focus
   {
     const int concept_map_index = 17;
