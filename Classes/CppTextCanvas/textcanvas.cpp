@@ -30,6 +30,17 @@ ribi::TextCanvas::TextCanvas(
   assert(height > 0);
 }
 
+ribi::TextCanvas::TextCanvas(
+    const std::vector<std::string>& canvas,
+    const CanvasCoordinatSystem coordinatSystem
+) : m_canvas(canvas),
+    m_coordinat_system(coordinatSystem)
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 void ribi::TextCanvas::Clear() noexcept
 {
   for (auto& row: m_canvas)
@@ -160,6 +171,24 @@ void ribi::TextCanvas::Test() noexcept
   TRACE("Finished ribi::TextCanvas::Test successfully");
 }
 #endif
+
+const std::string ribi::TextCanvas::ToString() const noexcept
+{
+  const std::vector<std::string> v { ToStrings() };
+  std::string s;
+  for (const auto t: v)
+  {
+    s += t;
+    s += '\n';
+  }
+  if (!s.empty())
+  {
+    //Remove the trailing '\n'
+    s.pop_back();
+  }
+  return s;
+}
+
 
 const std::vector<std::string> ribi::TextCanvas::ToStrings() const noexcept
 {

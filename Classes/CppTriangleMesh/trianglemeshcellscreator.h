@@ -46,6 +46,8 @@ struct CellsCreator
 
   std::vector<boost::shared_ptr<Cell>> m_cells;
 
+  static void CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept;
+
   const std::vector<boost::shared_ptr<Cell>> CreateCells(
     const boost::shared_ptr<const Template> t,
     const int n_layers,

@@ -55,8 +55,16 @@ struct ConnectThreeWidget
     const int n_cols = 16,
     const int n_rows = 12);
 
+  bool CanDoMove() const noexcept;
+
+  ///Let the computer do a move
+  void DoComputerMove() noexcept;
+
+  ///Press select at the current place
+  void DoMove() noexcept;
+
+
   const boost::shared_ptr<const ConnectThree> GetGame() const noexcept { return m_game; }
-  void DoMove(const int x, const int y) noexcept;
   const std::bitset<3>& GetIsPlayerHuman() const noexcept { return m_is_player_human; }
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
@@ -83,7 +91,13 @@ struct ConnectThreeWidget
   //Y coordinat of cursor
   int m_y;
 
+  bool CanDoMove(const int x, const int y) const noexcept;
+  void DoMove(const int x, const int y) noexcept;
   int PlayerToIndex(const Player player) const noexcept;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace con3

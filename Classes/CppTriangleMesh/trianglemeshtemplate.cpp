@@ -60,10 +60,6 @@ ribi::trim::Template::Template(
       assert(CanLexicalCast<int>(w[3]));
       const double x = boost::lexical_cast<double>(w[1]);
       const double y = boost::lexical_cast<double>(w[2]);
-      //const std::string boundary_type
-      //  = boost::lexical_cast<int>(w[3]) == 0
-      //  ? "inside_from_template"
-      //  : "outside_from_template";
       const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
         new ribi::ConstCoordinat2D(x,y)
       };

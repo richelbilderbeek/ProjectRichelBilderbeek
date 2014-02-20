@@ -6,6 +6,7 @@
 
 #include "xenonzeromaindialog.h"
 #include "ui_qtxenonzeromaindialog.h"
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -31,9 +32,8 @@ void ribi::QtXeNonZeroMainDialog::Display(const boost::shared_ptr<const xnz::Are
 {
   assert(area);
   std::string text;
-  const auto v = area->GetArea();
-  for (const auto s: v) { text += s + "\n"; }
-  ui->text->setPlainText(text.c_str());
+  const boost::shared_ptr<const TextCanvas> v { area->CreateTextCanvas() };
+  ui->text->setPlainText(v->ToString().c_str());
 }
 
 void ribi::QtXeNonZeroMainDialog::on_button_a_clicked()

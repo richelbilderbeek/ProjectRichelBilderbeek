@@ -69,5 +69,5 @@ void ribi::xnz::QtXeNonZeroCanvas::keyPressEvent(QKeyEvent *e)
     case Qt::Key_Escape: case Qt::Key_Q:
       close();
   }
-  SetCanvas(m_dialog->ToTextCanvas());
+  SetCanvas(m_dialog->GetTextCanvas());
 }

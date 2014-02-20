@@ -6,31 +6,47 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
+#include "textcanvas.h"
 #include "xenonzerosprite.h"
 #pragma GCC diagnostic pop
 
 ribi::xnz::Area::Area(const int width,const int height)
-  : mArea(height,std::string(width,' '))
+  : mArea(new TextCanvas(width,height))
 {
   assert(width > 0);
   assert(height > 0);
 
   DrawEdge();
+}
 
-
+const boost::shared_ptr<ribi::TextCanvas> ribi::xnz::Area::CreateTextCanvas() const noexcept
+{
+  const boost::shared_ptr<ribi::TextCanvas> copy {
+    new TextCanvas(mArea->GetCanvas(),mArea->GetCoordinatSystem())
+  };
+  assert(copy);
+  return copy;
 }
 
 void ribi::xnz::Area::DrawEdge()
 {
+  const int maxx = GetWidth();
+  const int maxy = GetHeight();
   //Create an initial edged screen
-  Sprite::mMaxx = GetWidth() - 1;
-  Sprite::mMaxy = GetHeight() - 1;
+  Sprite::mMaxx = maxx - 1;
+  Sprite::mMaxy = maxy - 1;
+  //Top row
+  for (int x=0; x!=maxx; ++x)
+  {
+    mArea->PutChar(x,0,'*');
+    mArea->PutChar(x,maxy-1,'*');
+  }
 
-  const std::string edge = std::string(GetWidth(),'*');
-  const std::string nonEdge = "*" + std::string(GetWidth()-2,' ') + "*";
-  mArea[0] = edge;
-  for (int i=0; i!=GetHeight()-2; ++i) mArea[1+i] = nonEdge;
-  mArea[GetHeight() - 1] = edge;
+  for (int y=0; y!=maxy; ++y)
+  {
+    mArea->PutChar(0,y,'*');
+    mArea->PutChar(maxx-1,y,'*');
+  }
 }
 
 void ribi::xnz::Area::DrawLife(const double fraction)
@@ -41,9 +57,12 @@ void ribi::xnz::Area::DrawLife(const double fraction)
 
   {
     //The edges
-    const std::string s = "[-]";
-    std::copy( s.begin(), s.end(), mArea[y].begin() + x);
-    std::copy( s.begin(), s.end(), mArea[y+height].begin() + x);
+    mArea->PutChar(x+0,y,'[');
+    mArea->PutChar(x+1,y,'-');
+    mArea->PutChar(x+2,y,']');
+    mArea->PutChar(x+0,y+height,'[');
+    mArea->PutChar(x+1,y+height,'-');
+    mArea->PutChar(x+2,y+height,']');
   }
 
   for (int i=1; i!=height; ++i) //Not the edges
@@ -51,8 +70,9 @@ void ribi::xnz::Area::DrawLife(const double fraction)
     const double f
       = 1.0 - static_cast<double>(i)
       / static_cast<double>(height);
-    const std::string s = (f > fraction ? "[ ]" : "[*]");
-    std::copy( s.begin(), s.end(), mArea[y+i].begin() + x);
+    mArea->PutChar(x+0,y+i,'[');
+    mArea->PutChar(x+1,y+i,f > fraction ? ' ' : '*');
+    mArea->PutChar(x+2,y+i,']');
   }
 }
 
@@ -71,32 +91,23 @@ void ribi::xnz::Area::Draw(const int x, const int y, const Container& g)
     for (int i=0; i!=graphicWidth; ++i)
     {
       if (x+i < 0 || x+i>=areaWidth) continue;
-      assert(y+j>=0);
-      assert(y+j < static_cast<int>(mArea.size() ) );
-      assert(x+i>=0);
-      assert(x+i < static_cast<int>(mArea[0].size() ) );
-      mArea[y+j][x+i] = g[j][i];
+      assert(mArea->IsInRange(x+y,y+j));
+      mArea->PutChar(x+y,y+j,g[j][i]);
     }
   }
-
-  /*
-  const Iterator begin = &mArea[ GetInRange(x,0,mArea.size()) ];
-  const Iterator end   = &mArea[ GetInRange(x,0,mArea.size()) ];
-  assert(begin >= mArea.begin() );
-  assert(begin <= mArea.end() );
-  assert(end >= mArea.begin() );
-  assert(end <= mArea.end() );
-  std::for_each(
-  */
 }
+
+
+int ribi::xnz::Area::GetHeight() const noexcept
+{
+  return mArea->GetHeight();
+}
+
+int ribi::xnz::Area::GetWidth() const noexcept { return mArea->GetWidth(); }
 
 std::ostream& ribi::xnz::operator<<(std::ostream& os, const Area& a)
 {
-  const ribi::xnz::Area::Container& v = a.GetArea();
-  std::copy(
-    v.begin(),
-    v.end(),
-    std::ostream_iterator<std::string>(os,"\n"));
+  os << (*a.CreateTextCanvas());
   return os;
 }
 

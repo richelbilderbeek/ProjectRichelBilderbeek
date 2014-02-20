@@ -170,6 +170,11 @@ void ribi::xnz::Dialog::DrawSprites()
     / static_cast<double>(mSpritePlayer->GetMaxHealth() ) );
 }
 
+const boost::shared_ptr<ribi::TextCanvas> ribi::xnz::Dialog::GetTextCanvas() const noexcept
+{
+  return mArea->CreateTextCanvas();
+}
+
 std::ostream& ribi::xnz::operator<<(std::ostream& os, const Dialog& s)
 {
   os << s.GetArea();

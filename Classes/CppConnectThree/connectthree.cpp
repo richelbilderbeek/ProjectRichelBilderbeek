@@ -90,6 +90,9 @@ void ribi::con3::ConnectThree::DoMove(const boost::shared_ptr<Move> p) noexcept
 ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y) const noexcept
 {
   assert(CanGetSquare(x,y));
+  assert(!m_area.empty());
+  assert(x < static_cast<int>(m_area.size()));
+  assert(y < static_cast<int>(m_area[0].size()));
   return m_area[x][y];
 }
 

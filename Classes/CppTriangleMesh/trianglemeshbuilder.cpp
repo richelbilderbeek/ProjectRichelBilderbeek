@@ -4,6 +4,7 @@
 #include "trianglemeshbuilder.h"
 
 #include <array>
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <iomanip>
@@ -15,6 +16,7 @@
 #include "trianglemeshcell.h"
 #include "trianglemeshface.h"
 #include "fileio.h"
+#include "openfoamheader.h"
 #include "openfoamboundaryfile.h"
 #include "openfoamboundaryfileitem.h"
 #include "openfoamfilenames.h"
@@ -48,7 +50,27 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     assert(ribi::fileio::IsFolder(folder));
   }
 
-  //Clean all weakened data
+  //Remove cells with less than 8 faces or less than 8 faces with an owner
+  m_cells.erase(
+    std::remove_if(m_cells.begin(),m_cells.end(),
+      [](const boost::shared_ptr<Cell> cell)
+      {
+        const std::vector<boost::shared_ptr<Face>> faces { cell->GetFaces() };
+        assert(faces.size() == 8);
+        return std::count_if(faces.begin(),faces.end(),
+          [](const boost::shared_ptr<Face> face)
+          {
+            assert(face);
+            assert(face->GetOwner()); //Test: is this loop needed?
+            return face->GetOwner();
+          }
+        ) < 8;
+      }
+    ),
+    m_cells.end()
+  );
+
+
   m_faces.erase(
     std::remove_if(m_faces.begin(),m_faces.end(),
       [](const boost::shared_ptr<const Face> face)
@@ -57,6 +79,26 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       }
     ),
     m_faces.end()
+  );
+
+  //Remove cells with less than 8 faces or less than 8 faces with an owner
+  m_cells.erase(
+    std::remove_if(m_cells.begin(),m_cells.end(),
+      [](const boost::shared_ptr<Cell> cell)
+      {
+        const std::vector<boost::shared_ptr<Face>> faces { cell->GetFaces() };
+        assert(faces.size() == 8);
+        return std::count_if(faces.begin(),faces.end(),
+          [](const boost::shared_ptr<Face> face)
+          {
+            assert(face);
+            assert(face->GetOwner()); //Test: is this loop needed?
+            return face->GetOwner();
+          }
+        ) < 8;
+      }
+    ),
+    m_cells.end()
   );
 
   //Set all indices
@@ -77,6 +119,48 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       m_points[i]->SetIndex(i);
     }
   }
+
+
+  //Check
+  #ifndef NDEBUG
+  {
+    const int cell_usecount = m_cells.empty() ? 0 : m_cells[0].use_count();
+    for (const auto& cell: m_cells)
+    {
+      assert(cell);
+      TRACE(cell_usecount);
+      TRACE(cell.use_count());
+      assert(cell.use_count() == cell_usecount && "Every Cell must have an equal use_count");
+      //All Cells must have existing indices
+      assert(cell->GetIndex() >= 0);
+      assert(cell->GetIndex() <  static_cast<int>(m_cells.size()));
+      const int face_usecount = cell->GetFaces().empty() ? 0 : cell->GetFaces()[0].use_count();
+      for (const auto& face: cell->GetFaces())
+      {
+        assert(face);
+        TRACE(face_usecount);
+        TRACE(face.use_count());
+        assert(std::abs(face_usecount - face.use_count()) <= 1 && "Face are used once or twice");
+        //All Cells must exist of Faces with an existing index
+        assert(face->GetIndex() >= 0);
+        assert(face->GetIndex() <  static_cast<int>(m_faces.size()));
+        //All Faces must have a Cell that owns them with an existing index
+        assert(face->GetOwner()->GetIndex() >= 0);
+        assert(face->GetOwner()->GetIndex() <  static_cast<int>(m_cells.size()));
+        //All Faces must have either no Neighbout or a Neighbour with an existing index
+        assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() >= 0);
+        assert(!face->GetNeighbour() || face->GetNeighbour()->GetIndex() <  static_cast<int>(m_cells.size()));
+        for (const auto point: face->GetPoints())
+        {
+          assert(point);
+          //All Faces must exists of Points with an existing index
+          assert(point->GetIndex() >= 0);
+          assert(point->GetIndex() <  static_cast<int>(m_points.size()));
+        }
+      }
+    }
+  }
+  #endif
 
   const bool verbose = false;
   if (verbose) std::cout << "Writing output...\n";
@@ -173,8 +257,6 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
   ) const noexcept
 {
   PROFILE_FUNC();
-  #define NEW_APPROACH_20140218
-  #ifdef  NEW_APPROACH_20140218
   std::vector<ribi::foam::BoundaryFileItem> items;
 
   const int n_face_indices = static_cast<int>(m_faces.size());
@@ -216,86 +298,15 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
     items.push_back(item);
   }
 
-   //std::ofstream f(ribi::foam::Filenames().GetBoundary().Get().c_str());
+
   ribi::foam::BoundaryFile file(
     ribi::foam::BoundaryFile::GetDefaultHeader(),
     items
   );
+
   std::stringstream s;
   s << file;
   return s.str();
-  #else
-
-  std::stringstream s;
-  s << this->CreateOpenFoamHeader("polyBoundaryMesh","boundary","constant/polyMesh");
-
-  const int n_face_indices = static_cast<int>(m_faces.size());
-  assert(n_face_indices > 0);
-
-  // { boundary_type, start indices, n_faces }
-  typedef std::tuple<std::string,int,int> Row;
-  std::vector<Row> v;
-  std::string type = m_faces[0]->GetBoundaryType();
-  int start_index = 0;
-  int n_faces = 0;
-  for (int i=0; i!=n_face_indices; ++i)
-  {
-    const auto face = m_faces[i];
-    const std::string new_type = face->GetBoundaryType();
-    if (new_type != type)
-    {
-      v.push_back(std::make_tuple(type,start_index,n_faces));
-      type = new_type;
-      start_index = i;
-      n_faces = 1; //1, because the current face is now/already detected
-    }
-    else
-    {
-      ++n_faces;
-    }
-  }
-  v.push_back(std::make_tuple(type,start_index,n_faces));
-
-  const int sum_n_faces {
-    std::accumulate(v.begin(),v.end(),0,
-      [](const int init,const Row& row)
-      {
-        return init + std::get<2>(row);
-      }
-    )
-  };
-  if (sum_n_faces != n_face_indices)
-  {
-    TRACE("ERROR");
-    TRACE(sum_n_faces);
-    TRACE(n_face_indices);
-    for (auto row: v)
-    {
-      std::stringstream s;
-      s
-        << std::get<0>(row) << '\t'
-        << std::get<1>(row) << '\t'
-        << std::get<2>(row)
-        << std::endl
-      ;
-      TRACE(s.str());
-    }
-  }
-  assert(sum_n_faces == n_face_indices);
-
-
-  s << v.size() << "\n(";
-  for(const auto row: v)
-  {
-    s << "\n\t" << std::get<0>(row) << "\n\t{\n"
-      << "\t\t" << "type\tpatch;\n"
-      << "\t\t" << "nFaces\t" << std::get<2>(row) << ";\n"
-      << "\t\t" << "startFace\t" << std::get<1>(row) << ";\n"
-      << "\t}\n";
-  }
-  s << ")";
-  return s.str();
-  #endif
 }
 
 const std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells() const noexcept

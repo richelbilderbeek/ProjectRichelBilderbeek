@@ -40,8 +40,7 @@ ribi::con3::QtConnectThreeWidget::QtConnectThreeWidget(
 void ribi::con3::QtConnectThreeWidget::DoComputerTurn()
 {
   assert(IsComputerTurn());
-  const auto move = m_widget->SuggestMove();
-  m_widget->DoMove(move->GetX(),move->GetY());
+  m_widget->DoComputerMove();
   this->update();
 }
 

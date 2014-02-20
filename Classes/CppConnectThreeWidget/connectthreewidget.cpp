@@ -29,7 +29,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 
 #include "connectthree.h"
+#include "connectthreemove.h"
 #include "textcanvas.h"
+#include "trace.h"
 
 ribi::con3::ConnectThreeWidget::ConnectThreeWidget(
   const std::bitset<3>& is_player_human,
@@ -40,18 +42,29 @@ ribi::con3::ConnectThreeWidget::ConnectThreeWidget(
     m_x{n_cols / 2},
     m_y{n_rows / 2}
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   assert(m_game);
+}
+
+bool ribi::con3::ConnectThreeWidget::CanDoMove(const int x,const int y) const noexcept
+{
+  return m_game->CanDoMove(x,y);
+}
+
+void ribi::con3::ConnectThreeWidget::DoComputerMove() noexcept
+{
+  const auto move = SuggestMove();
+  assert(CanDoMove(move->GetX(),move->GetY()));
+  DoMove(move->GetX(),move->GetY());
 }
 
 void ribi::con3::ConnectThreeWidget::DoMove(const int x,const int y) noexcept
 {
+  assert(CanDoMove(x,y));
   m_game->DoMove(x,y);
 }
-
-//ConnectThree * ribi::con3::ConnectThreeWidget::GetGame()
-//{
-//  return m_game.get();
-//}
 
 const std::string ribi::con3::ConnectThreeWidget::GetVersion() noexcept
 {
@@ -126,6 +139,38 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThreeWidget::Sugges
 {
   return m_game->SuggestMove(m_is_player_human);
 }
+
+#ifndef NDEBUG
+void ribi::con3::ConnectThreeWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::con3::ConnectThreeWidget::Test");
+  const boost::shared_ptr<ConnectThreeWidget> widget {
+    new ConnectThreeWidget
+  };
+  assert(widget->IsHuman(Player::player1));
+  assert(widget->IsHuman(Player::player2));
+  assert(widget->IsHuman(Player::player3));
+  assert(widget->GetGame()->GetCols() == 16);
+  assert(widget->GetGame()->GetRows() == 12);
+  while (widget->GetGame()->GetWinner() == Winner::no_winner)
+  {
+    switch ((std::rand() >> 4) % 5)
+    {
+      case 0: widget->OnKeyPress(Key::up); break;
+      case 1: widget->OnKeyPress(Key::right); break;
+      case 2: widget->OnKeyPress(Key::down); break;
+      case 3: widget->OnKeyPress(Key::left); break;
+      case 4: widget->OnKeyPress(Key::select); break;
+    }
+  }
+  TRACE("Finished ribi::con3::ConnectThreeWidget::Test successfully");
+}
+#endif
 
 ///Tick does either wait for a human to make his/her move
 ///or lets a computer do its move. Tick must be called by

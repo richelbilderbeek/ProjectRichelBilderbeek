@@ -28,7 +28,7 @@ struct TriangleMeshBuilder
   );
 
   private:
-  const std::vector<boost::shared_ptr<Cell>> m_cells;
+  std::vector<boost::shared_ptr<Cell>> m_cells;
   std::vector<boost::shared_ptr<Face>> m_faces;
   const std::vector<boost::shared_ptr<Point>> m_points;
 

@@ -28,15 +28,24 @@ struct TextCanvas : public Canvas
   TextCanvas(
     const int width  = 1,
     const int height = 1,
-    const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen);
+    const CanvasCoordinatSystem coordinatSystem = CanvasCoordinatSystem::screen
+  );
+
+  TextCanvas(
+    const std::vector<std::string>& canvas,
+    const CanvasCoordinatSystem coordinatSystem
+  );
 
   ~TextCanvas() noexcept {}
 
   ///Does the (x,y) coordinat exist?
   bool CanGetChar(const int x, const int y) const noexcept { return IsInRange(x,y); }
+  bool CanPutChar(const int x, const int y) const noexcept { return IsInRange(x,y); }
 
   ///Clears the canvas
   void Clear() noexcept;
+
+  const std::vector<std::string>& GetCanvas() const noexcept { return m_canvas; }
 
   CanvasCoordinatSystem GetCoordinatSystem() const noexcept { return m_coordinat_system; }
 
@@ -73,6 +82,10 @@ struct TextCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinatSystem) noexcept;
 
+  ///Convert to a single string, lines seperated with '\n'
+  const std::string ToString() const noexcept;
+
+  ///Convert to a collection of strings
   const std::vector<std::string> ToStrings() const noexcept;
 
   private:

@@ -1,8 +1,12 @@
 #include "valentinecardsymbols.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <cassert>
 
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateAll() noexcept
 {
@@ -17,16 +21,28 @@ const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateA
       case 2: center_symbol = ValentineCardSymbol::CenterSymbol::cross; break;
       assert(!"Should not get here");
     }
-    for (int line_index=1; line_index!=16; ++line_index)
+    for (int i=0; i!=9; ++i)
     {
-      const bool a = (line_index >> 0) % 2;
-      const bool b = (line_index >> 1) % 2;
-      const bool c = (line_index >> 2) % 2;
-      const bool d = (line_index >> 3) % 2;
-      const int sum = a + b + c + d;
-      if (sum < 2) continue;
-      if (!a &&  b && !c &&  d) continue;
-      if ( a && !b &&  c && !d) continue;
+      // +0+
+      // 3 1
+      // +2+
+      //
+      //   + + + +
+      //   | | | |
+      // +-+ +-+ +-+
+      //
+      // +-+ +-+ +-+
+      //   | | | |
+      // +-+ +-+ +-+
+      //
+      // +-+ +-+ +-+
+      //   | | | |
+      //   + + + +
+      //
+      const bool a = i / 3 >= 1;
+      const bool b = i % 3 <= 1;
+      const bool c = i / 3 <= 1;
+      const bool d = i % 3 >= 1;
       ValentineCardSymbol symbol(
         { a, b, c, d },
         center_symbol
@@ -36,4 +52,19 @@ const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateA
   }
   TRACE(v.size());
   return v;
+}
+
+const boost::bimap<char,ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateAlphabet() noexcept
+{
+  const std::vector<ValentineCardSymbol> v { CreateAll() };
+  boost::bimap<char,ribi::ValentineCardSymbol> m;
+
+  for (int i=0; i!=26; ++i)
+  {
+    const char my_char = 'a' + i;
+    m.insert(boost::bimap<char,ribi::ValentineCardSymbol>::value_type(
+      my_char,v[i]));
+  }
+
+  return m;
 }

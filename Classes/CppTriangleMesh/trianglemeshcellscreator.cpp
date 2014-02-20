@@ -27,6 +27,15 @@ ribi::trim::CellsCreator::CellsCreator(
   #endif
 }
 
+void ribi::trim::CellsCreator::CheckCells(const std::vector<boost::shared_ptr<Cell>>& cells) noexcept
+{
+  for (const auto cell: cells)
+  {
+    assert(cell);
+    assert(cell->GetFaces().size() == 8);
+  }
+}
+
 const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::CreateCells(
   const boost::shared_ptr<const Template> t,
   const int n_layers,
@@ -96,6 +105,9 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
       cells.push_back(cell);
     }
   }
+
+  CheckCells(cells);
+
   return cells;
 }
 

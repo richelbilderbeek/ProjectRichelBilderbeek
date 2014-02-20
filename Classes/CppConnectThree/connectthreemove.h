@@ -19,6 +19,10 @@ struct Move
   const Player m_player;
   const int m_x;
   const int m_y;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace con3

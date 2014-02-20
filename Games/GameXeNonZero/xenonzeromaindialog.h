@@ -4,11 +4,15 @@
 #include <iosfwd>
 #include <vector>
 #include <string>
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 
 #include "xenonzerofwd.h"
 #include "xenonzeroarea.h"
 #include "xenonzerokey.h"
+#pragma GCC diagnostic pop
 
 namespace ribi {
 
@@ -29,7 +33,7 @@ struct Dialog
   const boost::shared_ptr<const Area> OnKeyPress(const Key input);
   bool IsGameOver() const;
 
-  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+  const boost::shared_ptr<TextCanvas> GetTextCanvas() const noexcept;
 
   private:
 
@@ -40,7 +44,7 @@ struct Dialog
   void MoveSprites();
   void LetSpritesInteract();
 
-  const boost::shared_ptr<Area> mArea;
+  boost::shared_ptr<Area> mArea;
 
   boost::shared_ptr<SpritePlayer> mSpritePlayer;
   SpriteContainer mSprites;
