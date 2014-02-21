@@ -9,6 +9,7 @@
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshpointfactory.h"
+#include "trianglemeshhelper.h"
 #include "trace.h"
 
 ribi::trim::FaceFactory::FaceFactory()
@@ -53,8 +54,8 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
   };
-  const std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[1], points[2] };
-  const std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
+        std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[1], points[2] };
+        std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
   const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[4] };
   const std::vector<boost::shared_ptr<Point>> points_b      { points[0], points[3], points[4] };
   const std::vector<boost::shared_ptr<Point>> points_c      { points[1], points[2], points[5] };
@@ -62,16 +63,14 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
   const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
 
-  assert( IsClockwise(points_bottom));
-  assert(!IsClockwise(points_top));
-  //if (!IsClockwise(points_bottom))
-  //{
-  //  std::reverse(points_bottom.begin(),points_bottom.end());
-  //}
-  //if (!IsClockwise(points_toop))
-  //{
-  //  std::reverse(points_top.begin(),points_top.end());
-  //}
+  if (!IsClockwise(points_bottom))
+  {
+    std::reverse(points_bottom.begin(),points_bottom.end());
+  }
+  if (!IsClockwise(points_top))
+  {
+    std::reverse(points_top.begin(),points_top.end());
+  }
 
   const boost::shared_ptr<Face> bottom {
     FaceFactory().Create(points_bottom,FaceOrientation::horizontal)

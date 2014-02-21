@@ -68,6 +68,13 @@ void ribi::con3::ConnectThreeWidget::DoComputerMove() noexcept
   DoMove(move->GetX(),move->GetY());
 }
 
+void ribi::con3::ConnectThreeWidget::DoMove() noexcept
+{
+  assert(CanDoMove());
+  assert(CanDoMove(m_x,m_y));
+  m_game->DoMove(m_x,m_y);
+}
+
 void ribi::con3::ConnectThreeWidget::DoMove(const int x,const int y) noexcept
 {
   assert(CanDoMove(x,y));
@@ -183,6 +190,7 @@ void ribi::con3::ConnectThreeWidget::Test() noexcept
       case 4: widget->OnKeyPress(Key::select); break;
     }
   }
+  assert(1==2);
   TRACE("Finished ribi::con3::ConnectThreeWidget::Test successfully");
 }
 #endif

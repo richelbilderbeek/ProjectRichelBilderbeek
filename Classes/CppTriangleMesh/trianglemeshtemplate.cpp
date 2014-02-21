@@ -128,7 +128,7 @@ ribi::trim::Template::Template(
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::vert
         )
       };
       m_faces.push_back(face);
@@ -149,11 +149,14 @@ ribi::trim::Template::Template(
     const auto face = m_faces[i];
     const auto indices = m_face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
+    /*
     const int n_points = static_cast<int>(indices.size());
     for (int j=0; j!=n_points; ++j)
     {
+      //Only true when points are not reversed
       assert(face->GetPoints()[j] == m_points[ indices[j] ]);
     }
+    */
   }
   #endif
 
@@ -275,7 +278,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::vert
         )
       };
       faces.push_back(face);
@@ -290,11 +293,14 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
+    /*
     const int n_points = static_cast<int>(indices.size());
     for (int j=0; j!=n_points; ++j)
     {
+      //Only true when points are not reversed
       assert(face->GetPoints()[j] == points[ indices[j] ]);
     }
+    */
   }
   #endif
 
@@ -382,7 +388,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
       assert(v[0] >= 0);
       assert(v[1] >= 0);
       assert(v[2] >= 0);
-      const std::vector<boost::shared_ptr<Point>> face_points {
+      std::vector<boost::shared_ptr<Point>> face_points {
         points[ v[0] ],
         points[ v[1] ],
         points[ v[2] ]
@@ -394,7 +400,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal
+          FaceOrientation::vert
         )
       };
       faces.push_back(face);
@@ -409,11 +415,14 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
+    /*
     const int n_points = static_cast<int>(indices.size());
     for (int j=0; j!=n_points; ++j)
     {
+      //Only true when points are not reversed
       assert(face->GetPoints()[j] == points[ indices[j] ]);
     }
+    */
   }
   #endif
 
@@ -516,7 +525,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
         point2,
         point3
       };
-      const std::vector<boost::shared_ptr<Point>> face_points {
+      std::vector<boost::shared_ptr<Point>> face_points {
         points[point1],
         points[point2],
         points[point3]
@@ -543,11 +552,14 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
+    /*
     const int n_points = static_cast<int>(indices.size());
     for (int j=0; j!=n_points; ++j)
     {
+      //Only true when points are not reversed
       assert(face->GetPoints()[j] == points[ indices[j] ]);
     }
+    */
   }
   #endif
 
@@ -689,11 +701,14 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
     const auto face = faces[i];
     const auto indices = face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
+    /*
     const int n_points = static_cast<int>(indices.size());
     for (int j=0; j!=n_points; ++j)
     {
+      //Only true when points are not reversed
       assert(face->GetPoints()[j] == points[ indices[j] ]);
     }
+    */
   }
   #endif
 
@@ -713,29 +728,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
   return my_template;
 }
 
-double ribi::trim::Template::GetAngle(const double dx, const double dy) noexcept
-{
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan2(dx,dy));
-}
 
-double ribi::trim::Template::GetAngle(const boost::shared_ptr<const Point> point) noexcept
-{
-  return GetAngle(point->GetCoordinat()->GetX(),point->GetCoordinat()->GetY());
-}
-
-bool ribi::trim::Template::IsClockwise(const std::vector<boost::shared_ptr<Point>>& points) noexcept
-{
-  assert(points.size() == 3);
-  const double tau = boost::math::constants::two_pi<double>();
-  assert(GetAngle(points[0]) >= 0.0);
-  assert(GetAngle(points[0]) <  tau);
-  assert(GetAngle(points[1]) >= 0.0);
-  assert(GetAngle(points[1]) <  tau);
-  assert(GetAngle(points[2]) >= 0.0);
-  assert(GetAngle(points[2]) <  tau);
-  return GetAngle(points[0]) < GetAngle(points[1]) && GetAngle(points[1]) < GetAngle(points[2]);
-}
 
 const std::vector<std::string> ribi::trim::Template::SeperateString(
   const std::string& input_original) noexcept
@@ -814,7 +807,6 @@ void ribi::trim::Template::Test() noexcept
     };
     assert(my_template);
   }
-  assert(1==2);
   TRACE("Finished ribi::trim::Template::Test successfully");
 }
 #endif

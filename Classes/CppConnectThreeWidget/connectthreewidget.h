@@ -56,7 +56,7 @@ struct ConnectThreeWidget
     const int n_rows = 12);
 
 
-  bool CanDoMove() const noexcept;
+  bool CanDoMove() const noexcept { return CanDoMove(m_x,m_y); }
   bool CanSelect(const int x, const int y) const noexcept;
 
   ///Let the computer do a move
