@@ -1,3 +1,4 @@
+/*
 #include "trianglemeshbuilder.h"
 
 #include <sstream>
@@ -52,3 +53,4 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamEpsilon() const
   ;
   return s.str();
 }
+*/

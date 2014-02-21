@@ -143,6 +143,15 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetTransportProperties() con
   );
 }
 
+const ribi::fileio::Filename ribi::foam::Filenames::GetTurbulenceProperties() const noexcept
+{
+  return ribi::fileio::Filename(
+      "constant"
+    + fileio::GetPathSeperator()
+    + "turbulenceProperties"
+  );
+}
+
 const ribi::fileio::Filename ribi::foam::Filenames::GetVelocityField() const noexcept
 {
   return ribi::fileio::Filename(

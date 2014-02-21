@@ -53,6 +53,7 @@ include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)
+include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri)
 
 
 SOURCES += main.cpp

@@ -27,6 +27,10 @@ struct TriangleFile
   int CountShapes() const noexcept { return static_cast<int>(m_shapes.size()); }
   int CountVertices() const noexcept;
 
+  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHeart(const double scale) noexcept;
+  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeHouse(const double scale) noexcept;
+  static const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> CreateShapeTriangle(const double scale) noexcept;
+
   ///Executes Triangle.exe from a Windows command line
   void ExecuteTriangle(
     std::string& node_filename,

@@ -34,7 +34,7 @@ struct TriangleMeshBuilder
 
   const std::string CreateBoundary(
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
-    ) const noexcept;
+  ) const noexcept;
   const std::pair<std::string,std::string> CreateCells() const noexcept;
   const std::string CreateFaces() const noexcept;
   const std::string CreateHeader() const noexcept;
@@ -63,7 +63,7 @@ struct TriangleMeshBuilder
   const std::string CreateOpenFoamRasProperties() const noexcept;
   const std::string CreateOpenFoamT() const noexcept;
   //const std::string CreateOpenFoamThermoPhysicalProperties() const noexcept;
-  const std::string CreateOpenFoamTurbulenceProperties() const noexcept;
+  //const std::string CreateOpenFoamTurbulenceProperties() const noexcept;
   const std::string CreateOpenFoamU() const noexcept;
 
 

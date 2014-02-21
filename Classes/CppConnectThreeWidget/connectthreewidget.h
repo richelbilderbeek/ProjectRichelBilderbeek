@@ -55,7 +55,9 @@ struct ConnectThreeWidget
     const int n_cols = 16,
     const int n_rows = 12);
 
+
   bool CanDoMove() const noexcept;
+  bool CanSelect(const int x, const int y) const noexcept;
 
   ///Let the computer do a move
   void DoComputerMove() noexcept;
@@ -72,6 +74,7 @@ struct ConnectThreeWidget
   bool IsHuman(const Player player) const noexcept;
   void OnKeyPress(const Key key) noexcept;
   void Restart() noexcept;
+  void Select(const int x, const int y) noexcept;
   void SetIsPlayerHuman(const std::bitset<3>& is_player_human) noexcept;
   const boost::shared_ptr<Move> SuggestMove() const noexcept;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;

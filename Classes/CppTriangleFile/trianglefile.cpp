@@ -35,6 +35,49 @@ int ribi::TriangleFile::CountVertices() const noexcept
   return sum;
 }
 
+const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
+{
+  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    { 0.0 * scale, 1.0 * scale}, //0
+    { 1.0 * scale, 2.0 * scale}, //1
+    { 2.0 * scale, 1.0 * scale}, //2
+    { 2.0 * scale, 0.0 * scale}, //3
+    { 0.0 * scale,-2.0 * scale}, //4
+    {-2.0 * scale, 0.0 * scale}, //5
+    {-2.0 * scale, 1.0 * scale}, //6
+    {-1.0 * scale, 2.0 * scale}  //7
+  };
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
+const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHouse(const double scale) noexcept
+{
+  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    { 0.0 * scale, 2.0 * scale}, //0
+    { 1.0 * scale, 1.0 * scale}, //1
+    { 1.0 * scale,-1.0 * scale}, //2
+    {-1.0 * scale,-1.0 * scale}, //3
+    {-1.0 * scale, 1.0 * scale}  //4
+  };
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
+const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeTriangle(const double scale) noexcept
+{
+  const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+    { 0.0 * scale, 0.0 * scale}, //0
+    { 1.0 * scale, 0.0 * scale}, //1
+    { 0.0 * scale, 1.0 * scale}  //2
+  };
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> v;
+  boost::geometry::append(v, points);
+  return v;
+}
+
 void ribi::TriangleFile::ExecuteTriangle(
   std::string& node_filename,
   std::string& ele_filename,

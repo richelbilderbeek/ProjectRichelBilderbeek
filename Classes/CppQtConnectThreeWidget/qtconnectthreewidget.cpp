@@ -81,11 +81,15 @@ void ribi::con3::QtConnectThreeWidget::mousePressEvent(QMouseEvent * e)
   const int mouse_y = e->y();
   const int x = mouse_x / m_sprite_width;
   const int y = mouse_y / m_sprite_height;
-  if (m_widget->GetGame()->CanDoMove(x,y))
+  if (m_widget->CanSelect(x,y))
   {
-    m_widget->DoMove(x,y);
-    this->update();
-    m_signal_valid_move();
+    m_widget->Select(x,y);
+    if (m_widget->CanDoMove())
+    {
+      m_widget->DoMove();
+      this->update();
+      m_signal_valid_move();
+    }
   }
 }
 

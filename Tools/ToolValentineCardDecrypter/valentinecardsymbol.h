@@ -5,6 +5,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/shared_ptr.hpp>
+
+#include <QImage>
 #pragma GCC diagnostic pop
 
 ///A symbol on the valentine card
@@ -37,12 +39,29 @@ struct ValentineCardSymbol
     const CenterSymbol center_symbol
   );
 
+  ValentineCardSymbol(
+    const int value
+  );
+
+  int CalcValue() const noexcept;
+  CenterSymbol GetCenterSymbol() const noexcept { return m_center_symbol; }
+  const std::array<bool,4>& GetLines() const noexcept { return m_lines; }
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
+  const boost::shared_ptr<QImage> ToImage() const noexcept;
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
-  const CenterSymbol m_center_symbol;
-  const std::array<bool,4> m_lines;
+  CenterSymbol m_center_symbol;
+  std::array<bool,4> m_lines;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
+
+bool operator<(const ValentineCardSymbol& lhs, const ValentineCardSymbol& rhs) noexcept;
 
 } //~namespace ribi
 

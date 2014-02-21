@@ -53,6 +53,23 @@ struct Template
   static const boost::shared_ptr<Template> CreateTestSquare2x2() noexcept;
   static const boost::shared_ptr<Template> CreateTestTriangle2x2() noexcept;
 
+  ///Obtain the angle in radians between two deltas
+  ///12 o'clock is 0.0 * pi
+  /// 3 o'clock is 0.5 * pi
+  /// 6 o'clock is 1.0 * pi
+  /// 9 o'clock is 1.5 * pi
+  //From www.richelbilderbeek.nl/CppGetAngle.htm
+  static double GetAngle(const double dx, const double dy) noexcept;
+
+  ///Obtain the angle in radians between two deltas
+  ///12 o'clock is 0.0 * pi
+  /// 3 o'clock is 0.5 * pi
+  /// 6 o'clock is 1.0 * pi
+  /// 9 o'clock is 1.5 * pi
+  static double GetAngle(const boost::shared_ptr<const Point> point) noexcept;
+
+  static bool IsClockwise(const std::vector<boost::shared_ptr<Point>>& points) noexcept;
+
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
   static const std::vector<std::string> SeperateString(

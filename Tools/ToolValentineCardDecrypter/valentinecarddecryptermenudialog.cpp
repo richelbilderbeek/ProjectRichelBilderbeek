@@ -32,11 +32,10 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
     return 1;
   }
 
-  int cnt = 1;
-  for (auto s: ValentineCardSymbols::CreateAll())
+  for (auto s: ValentineCardSymbols::CreateAlphabet().left)
   {
-    std::cout << cnt << "\n" << (*s.ToTextCanvas()) << std::endl;
-    ++cnt;
+
+    std::cout << s.first << "\n" << (*s.second.ToTextCanvas()) << std::endl;
   }
   return 0;
 }
@@ -63,12 +62,8 @@ const ribi::Help ribi::ValentineCardDecrypterMenuDialog::GetHelp() const noexcep
     GetAbout().GetFileTitle(),
     GetAbout().GetFileDescription(),
     {
-      Help::Option('f',"filename","Image filename"),
-      Help::Option('r',"rotation","Rotation angle in degrees")
     },
     {
-      GetAbout().GetFileTitle() + " -f MyFile.png -r 45",
-      GetAbout().GetFileTitle() + " --filename MyFile.png --rotation 135"
     }
   );
 }

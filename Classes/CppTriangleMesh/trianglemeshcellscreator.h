@@ -25,6 +25,8 @@ struct CellsCreator
   CellsCreator(const CellsCreator&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;
 
+  void Clear() noexcept { m_cells.clear(); }
+
   const std::vector<boost::shared_ptr<Cell>> GetCells() noexcept;
 
   ///The Cells must be released, and this will clear CellsCreator its Cells
@@ -65,8 +67,6 @@ struct CellsCreator
     const int n_layers,
     const boost::units::quantity<boost::units::si::length> layer_height
   );
-
-
 
   static const std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
     const boost::shared_ptr<const Template> t,

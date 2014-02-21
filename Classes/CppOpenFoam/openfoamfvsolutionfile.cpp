@@ -1,4 +1,11 @@
+#include "openfoamfvsolutionfile.h"
+
+OpenFoamFvSolutionFile::OpenFoamFvSolutionFile()
+{
+}
+
 /*
+
 #include "trianglemeshbuilder.h"
 
 #include <sstream>
@@ -52,5 +59,6 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFvSolution() co
     << "}\n";
   return s.str();
 }
+
 
 */

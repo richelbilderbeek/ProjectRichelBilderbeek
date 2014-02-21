@@ -82,6 +82,9 @@ struct Filenames
   ///The filename for the OpenFOAM its case its TransportProperties
   const ribi::fileio::Filename GetTransportProperties() const noexcept;
 
+  ///The filename for the OpenFOAM its case its TransportProperties
+  const ribi::fileio::Filename GetTurbulenceProperties() const noexcept;
+
   ///The filename for the OpenFOAM its case its velocity field
   const ribi::fileio::Filename GetVelocityField() const noexcept;
 

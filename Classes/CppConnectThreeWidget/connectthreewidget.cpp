@@ -53,6 +53,14 @@ bool ribi::con3::ConnectThreeWidget::CanDoMove(const int x,const int y) const no
   return m_game->CanDoMove(x,y);
 }
 
+bool ribi::con3::ConnectThreeWidget::CanSelect(const int x, const int y) const noexcept
+{
+  return
+       x >= 0 && x < GetGame()->GetCols()
+    && y >= 0 && y < GetGame()->GetRows()
+    && GetGame()->GetSquare(x,y) == Square::empty;
+}
+
 void ribi::con3::ConnectThreeWidget::DoComputerMove() noexcept
 {
   const auto move = SuggestMove();
@@ -123,6 +131,13 @@ void ribi::con3::ConnectThreeWidget::Restart() noexcept
 {
   assert(m_game);
   m_game->Restart();
+}
+
+void ribi::con3::ConnectThreeWidget::Select(const int x, const int y) noexcept
+{
+  assert(CanSelect(x,y));
+  m_x = x;
+  m_y = y;
 }
 
 void ribi::con3::ConnectThreeWidget::SetIsPlayerHuman(const std::bitset<3>& is_player_human) noexcept

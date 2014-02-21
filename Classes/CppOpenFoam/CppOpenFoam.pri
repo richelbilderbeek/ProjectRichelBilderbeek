@@ -25,7 +25,19 @@ SOURCES += \
     ../../Classes/CppOpenFoam/openfoamboundaryindex.cpp \
     ../../Classes/CppOpenFoam/openfoamboundaryfileitem.cpp \
     ../../Classes/CppOpenFoam/openfoamboundaryfile.cpp \
-    ../../Classes/CppOpenFoam/openfoamboundary.cpp
+    ../../Classes/CppOpenFoam/openfoamboundary.cpp \
+    ../../Classes/CppOpenFoam/openfoampatchfieldtypes.cpp \
+    ../../Classes/CppOpenFoam/openfoampatchfieldtype.cpp \
+    ../../Classes/CppOpenFoam/openfoamthermophysicalpropertiesfile.cpp \
+    ../../Classes/CppOpenFoam/openfoampressurefile.cpp \
+    ../../Classes/CppOpenFoam/openfoamalphatfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamcontroldictfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamturbulencepropertiesfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamdecomposepardictfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamepsilonfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamfvschemesfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamfvsolutionfile.cpp \
+    ../../Classes/CppOpenFoam/openfoamkfile.cpp
 
 HEADERS  += \
     ../../Classes/CppOpenFoam/openfoamfiles.h \
@@ -52,8 +64,23 @@ HEADERS  += \
     ../../Classes/CppOpenFoam/openfoamboundaryindex.h \
     ../../Classes/CppOpenFoam/openfoamboundaryfileitem.h \
     ../../Classes/CppOpenFoam/openfoamboundaryfile.h \
-    ../../Classes/CppOpenFoam/openfoamboundary.h
+    ../../Classes/CppOpenFoam/openfoamboundary.h \
+    ../../Classes/CppOpenFoam/openfoampatchfieldtypes.h \
+    ../../Classes/CppOpenFoam/openfoampatchfieldtype.h \
+    ../../Classes/CppOpenFoam/openfoamthermophysicalpropertiesfile.h \
+    ../../Classes/CppOpenFoam/openfoampressurefile.h \
+    ../../Classes/CppOpenFoam/openfoamalphatfile.h \
+    ../../Classes/CppOpenFoam/openfoamcontroldictfile.h \
+    ../../Classes/CppOpenFoam/openfoamturbulencepropertiesfile.h \
+    ../../Classes/CppOpenFoam/openfoamdecomposepardictfile.h \
+    ../../Classes/CppOpenFoam/openfoamepsilonfile.h \
+    ../../Classes/CppOpenFoam/openfoamfvschemesfile.h \
+    ../../Classes/CppOpenFoam/openfoamfvsolutionfile.h \
+    ../../Classes/CppOpenFoam/openfoamkfile.h
 
 OTHER_FILES += \
     ../../Classes/CppOpenFoam/Licence.txt
+
+RESOURCES += \
+    ../../Classes/CppOpenFoam/CppOpenFoam.qrc
 

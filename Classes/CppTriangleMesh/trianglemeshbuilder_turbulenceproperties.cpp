@@ -1,3 +1,4 @@
+/*
 #include "trianglemeshbuilder.h"
 
 #include <sstream>
@@ -19,3 +20,4 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamTurbulencePrope
   ;
   return s.str();
 }
+*/

@@ -128,19 +128,19 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     for (const auto& cell: m_cells)
     {
       assert(cell);
-      TRACE(cell_usecount);
-      TRACE(cell.use_count());
+      //TRACE(cell_usecount);
+      //TRACE(cell.use_count());
       assert(cell.use_count() == cell_usecount && "Every Cell must have an equal use_count");
       //All Cells must have existing indices
       assert(cell->GetIndex() >= 0);
       assert(cell->GetIndex() <  static_cast<int>(m_cells.size()));
-      const int face_usecount = cell->GetFaces().empty() ? 0 : cell->GetFaces()[0].use_count();
+      //const int face_usecount = cell->GetFaces().empty() ? 0 : cell->GetFaces()[0].use_count();
       for (const auto& face: cell->GetFaces())
       {
         assert(face);
-        TRACE(face_usecount);
-        TRACE(face.use_count());
-        assert(std::abs(face_usecount - face.use_count()) <= 1 && "Face are used once or twice");
+        //TRACE(face_usecount);
+        //TRACE(face.use_count());
+        //assert(std::abs(face_usecount - face.use_count()) <= 1 && "Face are used once or twice");
         //All Cells must exist of Faces with an existing index
         assert(face->GetIndex() >= 0);
         assert(face->GetIndex() <  static_cast<int>(m_faces.size()));
@@ -170,20 +170,20 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
 
     std::ofstream f(mesh_filename.c_str());
     f << CreateHeader();
-    f << this->CreateNodes();
-    f << this->CreateFaces();
+    f << CreateNodes();
+    f << CreateFaces();
   }
   {
 
     std::ofstream f(ribi::foam::Filenames().GetPoints().Get().c_str());
-    f << this->CreateOpenFoamHeader("vectorField","points","constant/polyMesh");
+    f << CreateOpenFoamHeader("vectorField","points","constant/polyMesh");
     f << CreateOpenFoamNodes();
   }
   {
     std::ofstream fp(ribi::foam::Filenames().GetFaces().Get().c_str());
 
-    fp << this->CreateOpenFoamHeader("faceList","faces","constant/polyMesh");
-    fp << this->CreateOpenFoamFaces();
+    fp << CreateOpenFoamHeader("faceList","faces","constant/polyMesh");
+    fp << CreateOpenFoamFaces();
   }
   {
     const int n_cells = static_cast<int>(m_cells.size());
@@ -212,7 +212,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
       fs.str()
       );
 
-    const std::pair<std::string,std::string> p { this->CreateCells() };
+    const std::pair<std::string,std::string> p { CreateCells() };
     const std::string& out_owner { p.first };
     const std::string& out_neighbour { p.second};
     fo << out_owner;
@@ -227,26 +227,22 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     //Need nothing to stream
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetFvSchemes().Get().c_str());
-    f << CreateOpenFoamFvSchemes();
+    //std::ofstream f(ribi::foam::Filenames().GetFvSchemes().Get().c_str());
+    //f << CreateOpenFoamFvSchemes();
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetFvSolution().Get().c_str());
-    f << CreateOpenFoamFvSolution();
+    //std::ofstream f(ribi::foam::Filenames().GetFvSolution().Get().c_str());
+    //f << CreateOpenFoamFvSolution();
   }
 
-  //{
-  //  std::ofstream f(ribi::foam::Filenames().GetPressureField().Get().c_str());
-  //  f << CreateOpenFoamP();
-  //}
   {
     std::ofstream f(ribi::foam::Filenames().GetVelocityField().Get().c_str());
     f << CreateOpenFoamU();
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetControlDict().Get().c_str());
-    f << CreateOpenFoamControlDict();
+    //std::ofstream f(ribi::foam::Filenames().GetControlDict().Get().c_str());
+    //f << CreateOpenFoamControlDict();
   }
 
   PROFILER_UPDATE();
@@ -415,8 +411,6 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
   }
   return text;
 }
-
-
 
 const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const noexcept
 {

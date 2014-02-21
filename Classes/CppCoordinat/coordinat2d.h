@@ -29,15 +29,9 @@ struct Coordinat2D
   Coordinat2D& operator-=(const Coordinat2D& rhs) noexcept;
 
   private:
-  //Coordinat2D(const Coordinat2D&);
-  //Coordinat2D& operator=(const Coordinat2D&);
-
   static const int dimensionality = 2;
   std::array<double,dimensionality> m_co;
 
-  //friend const Coordinat2D operator*(
-  //  const double scalar,
-  //  const Coordinat2D& v) noexcept;
 };
 
 bool operator==(const Coordinat2D& lhs, const Coordinat2D& rhs) noexcept;

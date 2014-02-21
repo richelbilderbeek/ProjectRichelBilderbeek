@@ -69,7 +69,7 @@ const std::vector<std::string> ribi::Dial::GetVersionHistory() noexcept
   };
 }
 
-void ribi::Dial::SetBlue(const int b)
+void ribi::Dial::SetBlue(const int b) noexcept
 {
   assert(b >=   0);
   assert(b  < 256);
@@ -81,14 +81,14 @@ void ribi::Dial::SetBlue(const int b)
   }
 }
 
-void ribi::Dial::SetColor(const int r,const int g,const int b)
+void ribi::Dial::SetColor(const int r,const int g,const int b) noexcept
 {
   SetRed(r);
   SetGreen(g);
   SetBlue(b);
 }
 
-void ribi::Dial::SetGreen(const int g)
+void ribi::Dial::SetGreen(const int g) noexcept
 {
   assert(g >=   0);
   assert(g  < 256);
@@ -100,7 +100,7 @@ void ribi::Dial::SetGreen(const int g)
   }
 }
 
-void ribi::Dial::SetRed(const int r)
+void ribi::Dial::SetRed(const int r) noexcept
 {
   assert(r >=   0);
   assert(r  < 256);
@@ -112,7 +112,7 @@ void ribi::Dial::SetRed(const int r)
   }
 }
 
-void ribi::Dial::SetPosition(const double position)
+void ribi::Dial::SetPosition(const double position) noexcept
 {
   assert(position >= 0.0);
   assert(position <= 1.0);
@@ -123,13 +123,13 @@ void ribi::Dial::SetPosition(const double position)
   }
 }
 
-double ribi::Dial::GetAngle(const double dx, const double dy)
+double ribi::Dial::GetAngle(const double dx, const double dy) noexcept
 {
   const double pi = boost::math::constants::pi<double>();
   return pi - (std::atan2(dx,dy));
 }
 
-double ribi::Dial::GetDistance(const double dX, const double dY)
+double ribi::Dial::GetDistance(const double dX, const double dY) noexcept
 {
   return std::sqrt( (dX * dX) + (dY * dY) );
 }

@@ -62,11 +62,22 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
   const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
 
+  assert( IsClockwise(points_bottom));
+  assert(!IsClockwise(points_top));
+  //if (!IsClockwise(points_bottom))
+  //{
+  //  std::reverse(points_bottom.begin(),points_bottom.end());
+  //}
+  //if (!IsClockwise(points_toop))
+  //{
+  //  std::reverse(points_top.begin(),points_top.end());
+  //}
+
   const boost::shared_ptr<Face> bottom {
-    FaceFactory().Create(points_top,FaceOrientation::horizontal)
+    FaceFactory().Create(points_bottom,FaceOrientation::horizontal)
   };
   const boost::shared_ptr<Face> top {
-    FaceFactory().Create(points_top,FaceOrientation::horizontal) //,bottom)
+    FaceFactory().Create(points_top,FaceOrientation::horizontal)
   };
   const boost::shared_ptr<Face> a {
     FaceFactory().Create(points_a,FaceOrientation::vertical)

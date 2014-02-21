@@ -1,3 +1,4 @@
+/*
 #include "trianglemeshbuilder.h"
 
 #include <sstream>
@@ -50,3 +51,4 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamDecomposeParDic
   ;
   return s.str();
 }
+*/
