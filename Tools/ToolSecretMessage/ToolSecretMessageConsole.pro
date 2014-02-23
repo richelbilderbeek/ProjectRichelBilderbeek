@@ -1,50 +1,17 @@
-QT += core
-QT -= gui
-TEMPLATE = app
+include(../../ConsoleApplication.pri)
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppAbout \
-    ../../Classes/CppTrace
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-SOURCES += \
-    ../../Classes/CppAbout/about.cpp \
-    secretmessagemenudialog.cpp \
-    main.cpp \
-    secretmessagemaindialog.cpp
+include(../../Classes/CppCodeToHtml/CppCodeToHtml.pri)
+include(../../Classes/CppQrcFile/CppQrcFile.pri)
+include(../../Classes/CppQtCreatorProFile/CppQtCreatorProFile.pri)
 
-HEADERS += \
-    ../../Classes/CppAbout/about.h \
-    secretmessagemenudialog.h \
-    secretmessagemaindialog.h
+include(../../Tools/ToolSecretMessage/ToolSecretMessageConsole.pri)
 
-OTHER_FILES += \
-    ../../Classes/CppAbout/Licence.txt \
-    ../../Classes/CppTrace/Licence.txt \
-    Licence.txt
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
+SOURCES += main.cpp

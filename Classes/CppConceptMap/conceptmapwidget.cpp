@@ -65,6 +65,23 @@ ribi::cmap::Widget::Widget(const Widget& other)
 }
 #endif
 
+void ribi::cmap::Widget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node) noexcept
+{
+  #ifndef NDEBUG
+  const auto before = this->GetConceptMap()->GetNodes().size();
+  #endif
+
+  //ConceptMap does not signal the newly added node...
+  m_conceptmap->AddNode(node);
+  //But ConceptMapWidget does
+  m_signal_add_node(node);
+
+  #ifndef NDEBUG
+  const auto after = this->GetConceptMap()->GetNodes().size();
+  assert(after == before + 1);
+  #endif
+}
+
 bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept
 {
   return command->CanDoCommand(this);
@@ -88,8 +105,10 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
     NodeFactory().CreateFromStrings("...")
   };
 
+  //ConceptMap does not signal the newly added node...
   m_conceptmap->AddNode(node);
-  //m_signal_add_node(node);
+  //But ConceptMapWidget does
+  m_signal_add_node(node);
 
   #ifndef NDEBUG
   const auto after = this->GetConceptMap()->GetNodes().size();
@@ -100,8 +119,17 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
 
 void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<Node> node) noexcept
 {
+  assert(node);
+  assert(!m_conceptmap->GetNodes().empty());
+  #ifndef NDEBUG
+  const int n_nodes_before = static_cast<int>(m_conceptmap->GetNodes().size());
+  #endif
   m_conceptmap->DeleteNode(node);
-  //m_signal_delete_node(node);
+  #ifndef NDEBUG
+  const int n_nodes_after = static_cast<int>(m_conceptmap->GetNodes().size());
+  assert(n_nodes_after + 1 == n_nodes_before);
+  #endif
+  m_signal_delete_node(node);
 }
 
 void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noexcept
@@ -174,7 +202,7 @@ void ribi::cmap::Widget::SetConceptMap(const boost::shared_ptr<ConceptMap> conce
   m_signal_concept_map_changed();
 }
 
-void ribi::cmap::Widget::SetFocus(Node * const node) noexcept
+void ribi::cmap::Widget::SetFocus(const boost::shared_ptr<Node> node) noexcept
 {
   m_focus = node;
   m_signal_set_focus_node(node);

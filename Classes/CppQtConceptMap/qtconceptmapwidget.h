@@ -37,6 +37,7 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   void mouseDoubleClickEvent(QMouseEvent *) noexcept;
   void mouseMoveEvent(QMouseEvent *) noexcept;
   void mousePressEvent(QMouseEvent *) noexcept;
+  //void showEvent(QShowEvent *event) noexcept;
 
   private:
   ///Displaying the concept map, the View

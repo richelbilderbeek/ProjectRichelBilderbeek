@@ -276,12 +276,12 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
 
   std::vector<boost::shared_ptr<ConceptMap> > v(20);
   assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ConceptMap>& p) { return p; } ) == 0);
-  //[0]: as-empty-as-can-get concept map (X = focal question_
+  //[0]: empty concept map
   {
     const Nodes nodes
       =
       {
-        //CenterNodeFactory().Create("X"),
+
       };
 
     const Edges edges
@@ -311,7 +311,8 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(nodes,edges));
+      ConceptMapFactory::Create(nodes,edges)
+    );
     assert(concept_map);
     v[1]=concept_map;
   }

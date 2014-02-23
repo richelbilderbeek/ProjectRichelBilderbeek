@@ -14,7 +14,7 @@
    <string>Test concept map widget</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="1" rowspan="2">
+   <item row="0" column="1">
     <widget class="QFrame" name="frame_buttons">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -31,7 +31,14 @@
      <layout class="QVBoxLayout" name="verticalLayout"/>
     </widget>
    </item>
-   <item row="2" column="0" rowspan="2">
+   <item row="1" column="1">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Commands that need arguments</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="2">
     <widget class="QFrame" name="frame_edit">
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>

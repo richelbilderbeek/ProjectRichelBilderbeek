@@ -8,6 +8,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace sema {
 
 class QtSecretMessageCreateDialog : public QtHideAndShowDialog
 {
@@ -21,18 +22,20 @@ public:
     
 private slots:
   void on_button_load_original_clicked();
-  void paintEvent(QPaintEvent *);
+
+  void on_button_load_secret_clicked();
+
+  void on_button_save_clicked();
 
 private:
   Ui::QtSecretMessageCreateDialog *ui;
-  QPixmap m_original;
-  bool m_needs_repaint;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
 
+} //~namespace sema
 } //~namespace ribi
 
 #endif // QTSECRETMESSAGECREATEDIALOG_H

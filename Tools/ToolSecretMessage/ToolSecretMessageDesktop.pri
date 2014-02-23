@@ -10,9 +10,6 @@ FORMS += \
     ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog.ui \
     ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.ui
 
-RESOURCES += \
-    ../../Tools/ToolSecretMessage/ToolSecretMessage.qrc
-
 SOURCES += \
     ../../Tools/ToolSecretMessage/qtsecretmessagemenudialog.cpp \
     ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog.cpp \

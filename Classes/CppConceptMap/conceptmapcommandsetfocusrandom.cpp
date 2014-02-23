@@ -23,10 +23,11 @@ void ribi::cmap::CommandSetFocusRandom::DoCommandSpecific(Widget * const widget)
 
   //Transfer focus to this Node
   m_widget = widget;
-  m_widget->m_focus = widget->GetRandomNode().get();
+  m_widget->m_focus = widget->GetRandomNode();
   assert(m_widget->m_focus);
 
-  m_widget->m_signal_set_focus_node(m_widget->m_focus);
+  m_widget->SetFocus(m_widget->m_focus);
+  //m_widget->m_signal_set_focus_node();
   //m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);

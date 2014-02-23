@@ -113,6 +113,9 @@ void ribi::cmap::ConceptMap::AddNode(const boost::shared_ptr<Node> node)
   m_nodes.push_back(node);
   assert(std::count(m_nodes.begin(),m_nodes.end(),node) == 1
     && "Every node must be unique");
+  //Do not let concept map signal that a new node has been added:
+  //keep it as stupid as possible. Let ConceptMapWidget
+  //have this behavior
 }
 
 
@@ -252,7 +255,11 @@ void ribi::cmap::ConceptMap::DeleteNode(const boost::shared_ptr<Node> node)
   assert(node);
   if (std::count(m_nodes.begin(),m_nodes.end(),node) == 0)
   {
-    TRACE("BREAK");
+    //There are multiple ways to delete a node:
+    // - QtConceptMap: delete the QtNode, which deletes the Node
+    // - ConceptMapWidget: deletes the Node, which signals its observers of this event
+    //Because the sequence
+    return;
   }
   assert(std::count(m_nodes.begin(),m_nodes.end(),node) > 0
     && "Can only delete an existing node");

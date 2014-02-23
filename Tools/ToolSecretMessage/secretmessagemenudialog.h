@@ -7,7 +7,7 @@
 #include "menudialog.h"
 
 namespace ribi {
-namespace SecretMessage {
+namespace sema {
 
 struct MenuDialog : public ::ribi::MenuDialog
 {
@@ -25,7 +25,7 @@ struct MenuDialog : public ::ribi::MenuDialog
   #endif
 };
 
-} //~namespace SecretMessage
+} //~namespace sema
 } //~namespace ribi
 
 #endif // SECRETMESSAGEMENUDIALOG_H

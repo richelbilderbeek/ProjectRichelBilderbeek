@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "conceptmapwidget.h"
+#include "conceptmapnode.h"
 
 bool ribi::cmap::CommandSetFocusWithCoordinat::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
@@ -18,8 +19,8 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
 
   //Transfer focus to this Node
   m_widget = widget;
-  Node * const node {
-    widget->FindNodeAt(m_x,m_y).get()
+  const boost::shared_ptr<Node> node {
+    widget->FindNodeAt(m_x,m_y)
   };
 
   m_widget->m_focus = node;

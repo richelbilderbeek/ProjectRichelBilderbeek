@@ -9,6 +9,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace sema {
 
 class QtSecretMessageExtractDialog : public QtHideAndShowDialog
 {
@@ -20,10 +21,14 @@ public:
     QtSecretMessageExtractDialog& operator=(const QtSecretMessageExtractDialog&) = delete;
     ~QtSecretMessageExtractDialog() noexcept;
     
+private slots:
+    void on_button_load_clicked();
+
 private:
     Ui::QtSecretMessageExtractDialog *ui;
 };
 
+} //~namespace sema
 } //~namespace ribi
 
 #endif // QTSECRETMESSAGEEXTRACTDIALOG_H

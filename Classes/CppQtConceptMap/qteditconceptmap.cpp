@@ -289,7 +289,8 @@ ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_p
   assert(std::count(
     GetConceptMap()->GetNodes().begin(),
     GetConceptMap()->GetNodes().end(),
-    node) == 1 && "Assume Node is already in the concept map");
+    node) == 1 && "Assume Node is already in the concept map"
+  );
   //this->GetConceptMap()->AddNode(node);
 
   assert(qtnode->pos().x() == node->GetX());

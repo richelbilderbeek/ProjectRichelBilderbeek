@@ -11,6 +11,7 @@ struct CenterNode;
 struct CenterNodeFactory;
 //struct Cluster; //Remove for now, must be added at ProjectBrainweaver later
 struct Command;
+struct CommandDeleteFocusNode;
 struct Concept;
 struct ConceptFactory;
 struct ConceptMap;

@@ -1,16 +1,17 @@
-#include "conceptmapcommandcreatenewnode.h"
+#include "conceptmapcommanddeletefocusnode.h"
 
 #include <cassert>
 
 #include "conceptmapwidget.h"
 
-bool ribi::cmap::CommandCreateNewNode::CanDoCommandSpecific(const Widget * const widget) const noexcept
+bool ribi::cmap::CommandDeleteFocusNode::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->GetConceptMap().get();
+  return widget->GetConceptMap().get()
+    && widget->GetFocus();
 }
 
-void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) noexcept
+void ribi::cmap::CommandDeleteFocusNode::DoCommandSpecific(Widget * const widget) noexcept
 {
   assert(!m_widget);
   assert(!m_node);
@@ -18,13 +19,13 @@ void ribi::cmap::CommandCreateNewNode::DoCommandSpecific(Widget * const widget) 
   assert(widget->GetConceptMap().get());
 
   m_widget = widget;
-  m_node = m_widget->CreateNewNode();
+  m_node = m_widget->GetFocus();
 
   assert(m_widget);
   assert(m_node);
 }
 
-void ribi::cmap::CommandCreateNewNode::Undo() noexcept
+void ribi::cmap::CommandDeleteFocusNode::Undo() noexcept
 {
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());

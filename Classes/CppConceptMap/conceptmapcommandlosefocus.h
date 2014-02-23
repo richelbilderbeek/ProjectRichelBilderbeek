@@ -5,6 +5,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#include <boost/shared_ptr.hpp>
+
 #include "conceptmapcommand.h"
 #pragma GCC diagnostic pop
 
@@ -26,7 +28,7 @@ struct CommandLoseFocus : public Command
   void Undo() noexcept;
 
   private:
-  Node * m_old_focus;
+  boost::shared_ptr<Node> m_old_focus;
   Widget * m_widget;
 };
 

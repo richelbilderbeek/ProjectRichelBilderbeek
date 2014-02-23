@@ -12,3 +12,5 @@ SOURCES += \
 OTHER_FILES += \
     ../../Tools/ToolSecretMessage/Licence.txt
 
+RESOURCES += \
+    ../../Tools/ToolSecretMessage/ToolSecretMessage.qrc

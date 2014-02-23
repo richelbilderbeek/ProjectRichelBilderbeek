@@ -8,16 +8,17 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace sema {
 
-class QtSecretMessageMenuDialog : public QtHideAndShowDialog
+class QtMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtSecretMessageMenuDialog(QWidget *parent = 0);
-  QtSecretMessageMenuDialog(const QtSecretMessageMenuDialog&) = delete;
-  QtSecretMessageMenuDialog& operator=(const QtSecretMessageMenuDialog&) = delete;
-  ~QtSecretMessageMenuDialog() noexcept;
+  explicit QtMenuDialog(QWidget *parent = 0);
+  QtMenuDialog(const QtMenuDialog&) = delete;
+  QtMenuDialog& operator=(const QtMenuDialog&) = delete;
+  ~QtMenuDialog() noexcept;
 
 private slots:
   void on_button_about_clicked();
@@ -33,6 +34,7 @@ private:
   Ui::QtSecretMessageMenuDialog *ui;
 };
 
+} //~namespace sema
 } //~namespace ribi
 
 #endif // QTSECRETMESSAGEMENUDIALOG_H

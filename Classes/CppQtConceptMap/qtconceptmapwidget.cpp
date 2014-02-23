@@ -17,11 +17,13 @@
 #include "qtrateconceptmap.h"
 #include "conceptmap.h"
 #include "conceptmapcommand.h"
+#include "conceptmapcommanddeletenode.h"
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommandlosefocus.h"
 #include "conceptmapcommandsetfocuswithcoordinat.h"
 #include "conceptmapcommandsetfocusrandom.h"
 #include "conceptmapnodefactory.h"
+#include "qtconceptmapnode.h"
 #include "conceptmapwidget.h"
 #include "qtconceptmapdisplaystrategy.h"
 #include "trace.h"
@@ -127,6 +129,7 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> node) noexcept
 {
   TRACE_FUNC();
+  assert(node);
   if (!node)
   {
     //m_qtconceptmap->clearFocus();
@@ -157,7 +160,6 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
     }
     assert(m_qtconceptmap->GetQtNodes().size() == m_widget->GetConceptMap()->GetNodes().size());
     #endif
-
   }
 }
 
@@ -236,18 +238,34 @@ void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(Node * const node) noexcept
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(Node * const node) noexcept
 {
   TRACE_FUNC();
-  if (!node)
+  assert(node);
+  assert(m_qtconceptmap->FindQtNode(node));
+  //if(m_qtconceptmap->FindQtNode(node))
   {
-    m_qtconceptmap->clearFocus();
+    assert(m_qtconceptmap->FindQtNode(node)->flags() & QGraphicsItem::GraphicsItemFlag::ItemIsFocusable);
+    m_qtconceptmap->FindQtNode(node)->setFocus();
   }
-  else
-  {
-    if (m_qtconceptmap->FindQtNode(node))
-    {
-      m_qtconceptmap->FindQtNode(node)->setFocus();
-    }
-  }
+  assert( (m_qtconceptmap->isVisible() || !m_qtconceptmap->isVisible())
+    && "m_qtconceptmap->isVisible() == true if the widget is visible"
+  );
+  assert( (m_qtconceptmap->FindQtNode(node)->isVisible() || !m_qtconceptmap->FindQtNode(node)->isVisible())
+    && "m_qtconceptmap->FindQtNode(node)->isVisible() == true if the widget is visible"
+  );
+  assert(dynamic_cast<QtNode*>(scene()->focusItem()));
+  assert((m_qtconceptmap->FindQtNode(node)->hasFocus()
+      || !m_qtconceptmap->FindQtNode(node)->hasFocus())
+    && "Could not find out how to enforce the node getting focus"
+  );
 }
+
+/*
+void ribi::cmap::QtConceptMapWidget::showEvent(QShowEvent*) noexcept
+{
+  assert(this->isVisible());
+  m_qtconceptmap->show();
+  assert(this->m_qtconceptmap->isVisible());
+}
+*/
 
 #ifndef NDEBUG
 void ribi::cmap::QtConceptMapWidget::Test() noexcept
@@ -258,7 +276,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::cmap::QtConceptMapWidget::Test()");
-  //Test creation of node from empty concept map
+  //AddNode: Test creation of node from empty concept map
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };
     assert(m);
@@ -272,14 +290,16 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<CommandCreateNewNode> cmd(
       new CommandCreateNewNode
     );
+
+    assert(m->GetNodes().empty() && "Tthe concept map must be empty");
+    assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
     w->DoCommand(cmd);
     assert(!m->GetNodes().empty() && "After creation a new node, the previously empty concept map must have a node");
     assert(!c->GetQtNodes().empty() && "After creation a new node, the previously empty QtConceptMap must have a node");
     cmd->Undo();
-    assert(!m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
-    assert(!c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
+    assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
+    assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
   }
-  assert(1==2);
   //Test that a 'set random focus' results in something getting a focus
   {
     const int concept_map_index = 17;
@@ -295,9 +315,42 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     const boost::shared_ptr<CommandSetFocusRandom> cmd(
       new CommandSetFocusRandom
     );
+    //w->show();
+    //assert(w->isVisible());
+    //assert(c->isVisible());
     w->DoCommand(cmd);
-    //assert(w->focusWidget());
-    TRACE("TODO");
+    assert(dynamic_cast<QtNode*>(w->scene()->focusItem()));
+  }
+  //DeleteNode: Test deletion of node from concept map
+  {
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };
+    assert(m);
+    assert(m->GetNodes().empty() && "An empty concept map must not have nodes");
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    assert(c);
+    assert(c->GetQtNodes().empty() && "An empty QtConceptMap must not have nodes");
+    const boost::shared_ptr<QtConceptMapWidget> w(
+      new QtConceptMapWidget(c)
+    );
+    const boost::shared_ptr<CommandCreateNewNode> cmd_add_node(
+      new CommandCreateNewNode
+    );
+
+    assert(m->GetNodes().empty() && "Tthe concept map must be empty");
+    assert(c->GetQtNodes().empty() && "The QtConceptMap must be empty");
+    w->DoCommand(cmd_add_node);
+    assert(m->GetNodes().size()   == 1 && "After creation a new node, the previously empty concept map must have a node");
+    assert(c->GetQtNodes().size() == 1 && "After creation a new node, the previously empty QtConceptMap must have a node");
+
+    const boost::shared_ptr<CommandDeleteNode> cmd_delete_node(
+      new CommandDeleteNode(m->GetNodes()[0])
+    );
+    w->DoCommand(cmd_delete_node);
+    assert(m->GetNodes().size()   == 0 && "After deleting the new node, the concept map must be empty");
+    assert(c->GetQtNodes().size() == 0 && "After deleting the new node, the QtConceptMap must be empty");
+    cmd_delete_node->Undo();
+    assert(m->GetNodes().size()   == 1 && "After undoing the deletion of the only node, the previously empty concept map must have a node");
+    assert(c->GetQtNodes().size() == 1 && "After undoing the deletion of the only node, the previously empty QtConceptMap must have a node");
   }
   TRACE("Finished ribi::cmap::QtConceptMapWidget::Test()");
 }

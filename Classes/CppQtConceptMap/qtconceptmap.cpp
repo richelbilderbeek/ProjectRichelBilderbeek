@@ -296,10 +296,10 @@ void ribi::cmap::QtConceptMap::DeleteNode(QtNode * const qtnode)
     }
   }
 
-  //Remove node from GUI
-  this->scene()->removeItem(qtnode);
   //Remove from non-GUI, which removes the left-overs
   GetConceptMap()->DeleteNode(qtnode->GetNode());
+  //Remove node from GUI
+  this->scene()->removeItem(qtnode);
 
   #ifndef NDEBUG
   const int n_items_after = this->scene()->items().count();
@@ -442,7 +442,7 @@ const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNod
     = Collect<const QtNode>(this->scene());
   if (qtnodes.size() != GetConceptMap()->GetNodes().size())
   {
-    TRACE("GUI and non-GUI must contain an unequal amount of nodes");
+    TRACE("Warning: GUI and non-GUI contain an unequal amount of nodes");
   }
 
   //assert(qtnodes.size() == GetConceptMap()->GetNodes().size()

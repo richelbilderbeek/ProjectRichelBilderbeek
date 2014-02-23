@@ -63,11 +63,11 @@ struct Widget
 
   ///Emitted when a Node loses focus
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(Node*)> m_signal_lose_focus_node;
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus_node;
 
   ///Emitted when a Node receives focus
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(Node*)> m_signal_set_focus_node;
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus_node;
 
   private:
 
@@ -78,7 +78,8 @@ struct Widget
   ///- the label in the middle of an edge
   ///- the CenterNode
   ///nullptr denotes no Node has focus
-  Node * m_focus;
+  ///m_focus used to be a Node*, changed this to boost::shared_ptr at 20140223
+  boost::shared_ptr<Node> m_focus;
 
   const int m_font_height;
   const int m_font_width;
@@ -86,6 +87,10 @@ struct Widget
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
+
+  ///Adds back a deleted Node
+  //This is used by CommandDeleteNode::Undo
+  void AddNode(const boost::shared_ptr<Node> node) noexcept;
 
   static const boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
 
@@ -101,7 +106,8 @@ struct Widget
   const boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
   const boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
-  const Node * GetFocus() const noexcept { return m_focus; }
+  const boost::shared_ptr<const Node> GetFocus() const noexcept { return m_focus; }
+  const boost::shared_ptr<      Node> GetFocus()       noexcept { return m_focus; }
 
   ///Used by CommandSetFocusRandom
   const boost::shared_ptr<Node> GetRandomNode() noexcept;
@@ -109,7 +115,7 @@ struct Widget
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
-  void SetFocus(Node * const node) noexcept;
+  void SetFocus(const boost::shared_ptr<Node> node) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -120,6 +126,7 @@ struct Widget
   friend class CommandCreateNewNode;
   friend class CommandDeleteConceptMap;
   friend class CommandDeleteNode;
+  friend class CommandDeleteFocusNode;
   friend class CommandLoseFocus;
   friend class CommandSetFocusRandom;
   friend class CommandSetFocusWithCoordinat;
