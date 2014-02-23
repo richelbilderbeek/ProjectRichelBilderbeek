@@ -22,29 +22,32 @@ struct NodeFactory
 {
   NodeFactory();
 
-  static const boost::shared_ptr<Node> Create(
+  const boost::shared_ptr<Node> Create(
     const boost::shared_ptr<Concept>& concept,
     const double x = 0.0,
-    const double y = 0.0);
+    const double y = 0.0
+  ) const noexcept;
 
-  static const boost::shared_ptr<Node> Create(
+  const boost::shared_ptr<Node> CreateFromStrings(
     const std::string& name,
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const double x = 0.0,
-    const double y = 0.0);
+    const double y = 0.0
+  ) const noexcept;
 
   #ifndef NDEBUG
   ///DeepCopy is only used for debugging
-  static const boost::shared_ptr<Node> DeepCopy(
-    const boost::shared_ptr<const cmap::Node>& node);
+  const boost::shared_ptr<Node> DeepCopy(
+    const boost::shared_ptr<const cmap::Node>& node
+  ) const noexcept;
   #endif
 
   ///Obtain a Node or CenterNode from an XML std::string
-  static const boost::shared_ptr<Node> FromXml(const std::string& s);
+  const boost::shared_ptr<Node> FromXml(const std::string& s) const noexcept;
 
   ///Obtain testing nodes
-  static const std::vector<boost::shared_ptr<Node> > GetTests();
-  static const boost::shared_ptr<Node> GetTest(const int test);
+  const std::vector<boost::shared_ptr<Node> > GetTests() const noexcept;
+  const boost::shared_ptr<Node> GetTest(const int test) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

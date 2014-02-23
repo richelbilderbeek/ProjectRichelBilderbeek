@@ -14,7 +14,7 @@
 namespace ribi {
 namespace cmap {
 
-struct CenterNodeFactory
+struct  CenterNodeFactory
 {
   CenterNodeFactory();
 
@@ -24,7 +24,7 @@ struct CenterNodeFactory
     const double y = 0.0
   ) const noexcept;
 
-  const boost::shared_ptr<CenterNode> Create(
+  const boost::shared_ptr<CenterNode> CreateFromStrings(
     const std::string& name,
     const std::vector<std::pair<std::string,Competency> >& examples = {},
     const double x = 0.0,

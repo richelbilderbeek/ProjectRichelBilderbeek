@@ -17,8 +17,9 @@
 ribi::cmap::Node::Node(
   const boost::shared_ptr<ribi::cmap::Concept>& concept,
   const double x,
-  const double y)
-  : m_signal_node_changed{},
+  const double y,
+  const NodeFactory&
+) : m_signal_node_changed{},
     m_concept(concept),
     m_x(x),
     m_y(y)
@@ -39,7 +40,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTes
     {
       const int x = (std::rand() % 256) - 128;
       const int y = (std::rand() % 256) - 128;
-      const boost::shared_ptr<Node> node(new Node(concept,x,y));
+      const boost::shared_ptr<Node> node { NodeFactory().Create(concept,x,y) };
       result.push_back(node);
     }
   );
@@ -96,11 +97,11 @@ void ribi::cmap::Node::Test() noexcept
       {
         //Test copy constructor
         assert(node);
-        const boost::shared_ptr<const Node> c = NodeFactory::DeepCopy(node);
+        const boost::shared_ptr<const Node> c { NodeFactory().DeepCopy(node) };
         assert(c);
         assert(*node == *c);
         const std::string s = c->ToXml();
-        const boost::shared_ptr<Node> d = NodeFactory::FromXml(s);
+        const boost::shared_ptr<Node> d = NodeFactory().FromXml(s);
         TRACE(s); //TEMP
         assert(d);
         assert(*c == *d);
@@ -113,8 +114,8 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<Concept> c(ConceptFactory().Create("1"));
       const boost::shared_ptr<Concept> d(ConceptFactory().Create("1"));
       assert(*c == *d);
-      const boost::shared_ptr<Node> a(new Node(c));
-      const boost::shared_ptr<Node> b(new Node(d));
+      const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+      const boost::shared_ptr<Node> b(NodeFactory().Create(d));
       assert(a);
       assert(b);
       assert(HasSameContent(a,b));
@@ -127,8 +128,8 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized} } );
       assert( c !=  d);
       assert(*c == *d);
-      const boost::shared_ptr<Node> a(new Node(c));
-      const boost::shared_ptr<Node> b(new Node(d));
+      const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+      const boost::shared_ptr<Node> b(NodeFactory().Create(d));
       assert(HasSameContent(a,b));
     }
 
@@ -138,8 +139,8 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized},{"3", cmap::Competency::uninitialized} } );
       assert( c !=  d);
       assert(*c == *d);
-      const boost::shared_ptr<Node> a(new Node(c));
-      const boost::shared_ptr<Node> b(new Node(d));
+      const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+      const boost::shared_ptr<Node> b(NodeFactory().Create(d));
       assert(HasSameContent(a,b));
       assert(*a == *b);
     }
@@ -149,8 +150,8 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"3", cmap::Competency::uninitialized},{"2", cmap::Competency::uninitialized} } );
       assert(c != d);
       assert(*c != *d);
-      const boost::shared_ptr<Node> a(new Node(c));
-      const boost::shared_ptr<Node> b(new Node(d));
+      const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+      const boost::shared_ptr<Node> b(NodeFactory().Create(d));
       assert(!HasSameContent(a,b) && "Order in examples is important and cannot be shuffled");
       assert(a != b);
     }
@@ -160,8 +161,8 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<Concept> d = ConceptFactory().Create("1", { {"2", cmap::Competency::uninitialized} } );
       assert(c != d);
       assert(*c != *d);
-      const boost::shared_ptr<Node> a(new Node(c));
-      const boost::shared_ptr<Node> b(new Node(d));
+      const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+      const boost::shared_ptr<Node> b(NodeFactory().Create(d));
       assert(a != b);
       assert(!HasSameContent(a,b));
       assert(*a != *b);
@@ -177,8 +178,8 @@ void ribi::cmap::Node::Test() noexcept
       const boost::shared_ptr<Concept> d = ConceptFactory().GetTests()[i];
       assert(c != d);
       assert(*c == *d);
-      const boost::shared_ptr<Node> a(new Node(c));
-      const boost::shared_ptr<Node> b(new Node(d));
+      const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+      const boost::shared_ptr<Node> b(NodeFactory().Create(d));
       assert(a != b);
       assert(HasSameContent(a,b));
       assert(*a == *b);
@@ -200,8 +201,8 @@ void ribi::cmap::Node::Test() noexcept
         if (i!=j)
         {
           assert(*c != *d);
-          const boost::shared_ptr<Node> a(new Node(c));
-          const boost::shared_ptr<Node> b(new Node(d));
+          const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+          const boost::shared_ptr<Node> b(NodeFactory().Create(d));
           assert(a != b);
           assert(!HasSameContent(a,b));
           assert(*a != *b);
@@ -209,8 +210,8 @@ void ribi::cmap::Node::Test() noexcept
         else
         {
           assert(*c == *d);
-          const boost::shared_ptr<Node> a(new Node(c));
-          const boost::shared_ptr<Node> b(new Node(d));
+          const boost::shared_ptr<Node> a(NodeFactory().Create(c));
+          const boost::shared_ptr<Node> b(NodeFactory().Create(d));
           assert(a != b);
           assert(HasSameContent(a,b));
           assert(*a == *b);

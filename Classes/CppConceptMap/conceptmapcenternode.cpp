@@ -4,12 +4,15 @@
 #include <sstream>
 
 #include "conceptmapconcept.h"
+#include "conceptmapnodefactory.h"
 
 ribi::cmap::CenterNode::CenterNode(
-    const boost::shared_ptr<ribi::cmap::Concept>& concept,
-    const double x,
-    const double y)
-  : Node(concept,x,y)
+  const boost::shared_ptr<Concept>& concept,
+  const double x,
+  const double y,
+  const CenterNodeFactory&
+)
+  : Node(concept,x,y,NodeFactory())
 {
 
 }

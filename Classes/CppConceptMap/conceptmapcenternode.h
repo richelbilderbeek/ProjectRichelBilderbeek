@@ -25,10 +25,14 @@ struct CenterNode : public Node
   ///Block construction, except for NodeFactory
   friend struct CenterNodeFactory;
   CenterNode() = delete;
+
+  //lock to enforce use of CenterNodeFactory
   explicit CenterNode(
     const boost::shared_ptr<Concept>& concept,
-    const double x = 0.0,
-    const double y = 0.0);
+    const double x,
+    const double y,
+    const CenterNodeFactory& lock
+  );
 
   const std::string ToXml() const noexcept;
 };

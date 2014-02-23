@@ -180,8 +180,8 @@ ribi::cmap::QtConceptMapTestEdgeItemDialog::~QtConceptMapTestEdgeItemDialog() no
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDialog::CreateFrom()
 {
   const std::size_t index = 2;
-  assert(index < cmap::NodeFactory::GetTests().size());
-  const boost::shared_ptr<Node> node = cmap::NodeFactory::GetTests().at(index);
+  assert(index < cmap::NodeFactory().GetTests().size());
+  const boost::shared_ptr<Node> node = cmap::NodeFactory().GetTests().at(index);
   assert(node);
   return node;
 }
@@ -189,8 +189,8 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDi
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::QtConceptMapTestEdgeItemDialog::CreateTo()
 {
   const std::size_t index = 2;
-  assert(index < cmap::NodeFactory::GetTests().size());
-  const boost::shared_ptr<Node> node = cmap::NodeFactory::GetTests().at(index);
+  assert(index < cmap::NodeFactory().GetTests().size());
+  const boost::shared_ptr<Node> node = cmap::NodeFactory().GetTests().at(index);
   assert(node);
   return node;
 }

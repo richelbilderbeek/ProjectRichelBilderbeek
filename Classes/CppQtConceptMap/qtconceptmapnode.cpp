@@ -335,10 +335,10 @@ void ribi::cmap::QtNode::Test() noexcept
 
   //Test SetX and SetY being in sync
   {
-    const std::size_t n_nodes = cmap::NodeFactory::GetTests().size();
+    const std::size_t n_nodes = cmap::NodeFactory().GetTests().size();
     for (std::size_t node_index=0; node_index!=n_nodes; ++node_index)
     {
-      const auto nodes = cmap::NodeFactory::GetTests();
+      const auto nodes = cmap::NodeFactory().GetTests();
       boost::shared_ptr<Node> node = nodes[node_index];
       assert(node);
       boost::shared_ptr<QtEditStrategy> qtconcept_item(new QtEditStrategy(node->GetConcept()));

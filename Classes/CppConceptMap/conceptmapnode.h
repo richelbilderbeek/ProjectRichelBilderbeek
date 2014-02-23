@@ -65,10 +65,13 @@ struct Node : public Element
   Node() = delete;
   friend NodeFactory;
 
+  ///Use NodeFactory as an unused argument to enforce using it
   explicit Node(
     const boost::shared_ptr<Concept>& concept,
-    const double x = 0.0,
-    const double y = 0.0);
+    const double x,
+    const double y,
+    const NodeFactory& lock
+  );
 
   ///Block destructor, except for the friend boost::checked_delete
   virtual ~Node() noexcept {}

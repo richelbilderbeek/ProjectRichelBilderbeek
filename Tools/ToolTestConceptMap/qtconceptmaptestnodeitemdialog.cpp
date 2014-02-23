@@ -30,7 +30,7 @@
 ribi::cmap::QtConceptMapTestNodeItemDialog::QtConceptMapTestNodeItemDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtConceptMapTestNodeItemDialog),
-  m_node(cmap::NodeFactory::GetTests().at(1)),
+  m_node(cmap::NodeFactory().GetTests().at(1)),
   m_display_node(nullptr),
   m_edit_node(nullptr),
   m_rate_node(nullptr)

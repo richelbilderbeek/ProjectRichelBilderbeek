@@ -410,12 +410,12 @@ void ribi::cmap::QtEditConceptMap::DoRandomStuff()
   //this->mouseDoubleClickEvent(0); //CAUSES ACCESS VIOLATION
 
   const boost::shared_ptr<Concept> concept1(ConceptFactory().Create("...", { {} } ) );
-  const boost::shared_ptr<Node> node1(cmap::NodeFactory::Create(concept1));
+  const boost::shared_ptr<Node> node1(cmap::NodeFactory().Create(concept1));
   this->GetConceptMap()->AddNode(node1);
   QtNode * const qtnode1 = AddNode(node1);
 
   const boost::shared_ptr<Concept> concept2(ConceptFactory().Create("...", { {} } ) );
-  const boost::shared_ptr<Node> node2(cmap::NodeFactory::Create(concept2));
+  const boost::shared_ptr<Node> node2(cmap::NodeFactory().Create(concept2));
   this->GetConceptMap()->AddNode(node2);
   QtNode * const qtnode2 = AddNode(node2);
 
@@ -521,7 +521,7 @@ void ribi::cmap::QtEditConceptMap::mouseDoubleClickEvent(QMouseEvent *event)
 {
   const boost::shared_ptr<Concept> concept(
     ribi::cmap::ConceptFactory().Create("..."));
-  const boost::shared_ptr<Node> node(cmap::NodeFactory::Create(concept));
+  const boost::shared_ptr<Node> node(cmap::NodeFactory().Create(concept));
   assert(node);
   assert(GetConceptMap());
   GetConceptMap()->AddNode(node);

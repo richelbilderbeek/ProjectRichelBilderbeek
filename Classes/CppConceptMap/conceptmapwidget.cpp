@@ -85,7 +85,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
   const auto before = this->GetConceptMap()->GetNodes().size();
   #endif
   const boost::shared_ptr<Node> node {
-    NodeFactory::Create("...")
+    NodeFactory().CreateFromStrings("...")
   };
 
   m_conceptmap->AddNode(node);
@@ -267,7 +267,7 @@ void ribi::cmap::Widget::Test() noexcept
     assert(widget->GetConceptMap()->GetNodes().empty()
       && "Concept map starts empty");
     const boost::shared_ptr<Node> node {
-      NodeFactory::GetTest(0)
+      NodeFactory().GetTest(0)
     };
     assert(node);
     widget->GetConceptMap()->AddNode(node);

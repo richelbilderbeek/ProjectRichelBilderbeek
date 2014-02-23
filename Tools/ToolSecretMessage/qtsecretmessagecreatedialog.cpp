@@ -7,7 +7,9 @@
 
 ribi::QtSecretMessageCreateDialog::QtSecretMessageCreateDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtSecretMessageCreateDialog)
+    ui(new Ui::QtSecretMessageCreateDialog),
+    m_original{},
+    m_needs_repaint{true}
 {
     ui->setupUi(this);
 }

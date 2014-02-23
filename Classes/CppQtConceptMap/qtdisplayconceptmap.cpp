@@ -204,8 +204,8 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   const int n_edges_before = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
   const int n_nodes_before = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());
   assert(!"Do something here");
-  const auto node_from = cmap::NodeFactory::GetTests().at(0);
-  const auto node_to   = cmap::NodeFactory::GetTests().at(1);
+  const auto node_from = cmap::NodeFactory().GetTests().at(0);
+  const auto node_to   = cmap::NodeFactory().GetTests().at(1);
   assert(node_from != node_to);
   this->AddNode(node_from);
   this->AddNode(node_to  );

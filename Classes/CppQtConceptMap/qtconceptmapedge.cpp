@@ -458,8 +458,8 @@ void ribi::cmap::QtEdge::Test() noexcept
   }
   //Test SetX and SetY being in sync
   {
-    const boost::shared_ptr<Node> node_from = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_from = cmap::NodeFactory().GetTests()[0];
+    const boost::shared_ptr<Node> node_to = cmap::NodeFactory().GetTests()[0];
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_from(new QtEditStrategy(node_from->GetConcept()));
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
@@ -581,8 +581,8 @@ void ribi::cmap::QtEdge::Test() noexcept
   }
   //Test text on edge being in sync
   {
-    const boost::shared_ptr<Node> node_from = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_from = cmap::NodeFactory().GetTests()[0];
+    const boost::shared_ptr<Node> node_to = cmap::NodeFactory().GetTests()[0];
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_from(new QtEditStrategy(node_from->GetConcept()));
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));
@@ -675,8 +675,8 @@ void ribi::cmap::QtEdge::Test() noexcept
 
   //Test boundingRects being in sync
   {
-    const boost::shared_ptr<Node> node_from = cmap::NodeFactory::GetTests()[0];
-    const boost::shared_ptr<Node> node_to = cmap::NodeFactory::GetTests()[0];
+    const boost::shared_ptr<Node> node_from = cmap::NodeFactory().GetTests()[0];
+    const boost::shared_ptr<Node> node_to = cmap::NodeFactory().GetTests()[0];
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_from(new QtEditStrategy(node_from->GetConcept()));
     const boost::shared_ptr<QtEditStrategy> qtconcept_item_to(new QtEditStrategy(node_to->GetConcept()));
     const boost::shared_ptr<QtNode> qtnode_from(new QtNode(node_from,qtconcept_item_from));

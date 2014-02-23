@@ -12,14 +12,22 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
+ribi::cmap::NodeFactory::NodeFactory()
+{
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
   const boost::shared_ptr<ribi::cmap::Concept>& concept,
   const double x,
-  const double y)
+  const double y
+) const noexcept
 {
   assert(concept);
   const boost::shared_ptr<Node> node(
-    new Node(concept,x,y)
+    new Node(concept,x,y,*this)
   );
   assert(node);
   assert(*concept == *node->GetConcept());
@@ -28,17 +36,19 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::CreateFromStrings(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& examples,
   const double x,
-  const double y)
+  const double y
+) const noexcept
 {
-  boost::shared_ptr<Node> node(
+  const boost::shared_ptr<Node> node(
     new Node(
       ConceptFactory().Create(name,examples),
       x,
-      y
+      y,
+      *this
     )
   );
   assert(node);
@@ -50,7 +60,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::Create(
 
 #ifndef NDEBUG
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
-  const boost::shared_ptr<const cmap::Node>& node)
+  const boost::shared_ptr<const cmap::Node>& node) const noexcept
 {
   assert(node);
   assert(node->GetConcept());
@@ -70,7 +80,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::DeepCopy(
 }
 #endif
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::string& s)
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const std::string& s) const noexcept
 {
   {
     const boost::shared_ptr<CenterNode> center_node {
@@ -119,13 +129,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   assert(concept);
-  const boost::shared_ptr<Node> node(new Node(concept,x,y));
+  const boost::shared_ptr<Node> node(NodeFactory().Create(concept,x,y));
   assert(node);
   assert(node->ToXml() == s);
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i)
+const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const int i) const noexcept
 {
   const std::vector<boost::shared_ptr<Node>> tests { GetTests() };
   assert(i >= 0);
@@ -133,7 +143,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::GetTest(const
   return tests[i];
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests()
+const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::GetTests() const noexcept
 {
   std::vector<boost::shared_ptr<ribi::cmap::Node> > nodes;
   const auto v = ConceptFactory().GetTests();
@@ -142,7 +152,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::
     {
       static int x = 0;
       static int y = 1;
-      const boost::shared_ptr<Node> p(new Node(c,x,y));
+      const boost::shared_ptr<Node> p(NodeFactory().Create(c,x,y));
       ++x;
       ++y;
       assert(p);
@@ -151,3 +161,16 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::NodeFactory::
   );
   return nodes;
 }
+
+#ifndef NDEBUG
+void ribi::cmap::NodeFactory::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Started ribi::cmap::NodeFactory::Test");
+  TRACE("Finished ribi::cmap::NodeFactory successfully");
+}
+#endif

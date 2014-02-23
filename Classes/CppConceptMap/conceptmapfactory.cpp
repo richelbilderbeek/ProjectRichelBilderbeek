@@ -76,10 +76,10 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
     }
     else
     {
-      new_node = cmap::NodeFactory::DeepCopy(node);
+      new_node = NodeFactory().DeepCopy(node);
     }
     assert(new_node);
-    assert(operator==(*new_node,*node));
+    assert(*new_node == *node);
     new_nodes.push_back(new_node);
   }
 
@@ -170,7 +170,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
         [&nodes](const std::string& s)
         {
           const boost::shared_ptr<Node> node {
-            NodeFactory::FromXml(s)
+            NodeFactory().FromXml(s)
           };
           assert(node);
           nodes.push_back(node);
@@ -184,8 +184,9 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::F
       const boost::shared_ptr<Concept> concept = old_node->GetConcept();
       const double x = old_node->GetX();
       const double y = old_node->GetY();
-      const boost::shared_ptr<cmap::CenterNode> center_node(
-        new cmap::CenterNode(concept,x,y));
+      const boost::shared_ptr<CenterNode> center_node {
+        CenterNodeFactory().Create(concept,x,y)
+      };
       nodes[0] = center_node;
       assert(*old_node == *center_node);
     }
@@ -270,11 +271,11 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
 
 const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps()
 {
-  typedef std::vector<boost::shared_ptr<ribi::cmap::Edge> > Edges;
-  typedef std::vector<boost::shared_ptr<ribi::cmap::Node> > Nodes;
+  typedef std::vector<boost::shared_ptr<Edge> > Edges;
+  typedef std::vector<boost::shared_ptr<Node> > Nodes;
 
-  std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v(20);
-  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ribi::cmap::ConceptMap>& p) { return p; } ) == 0);
+  std::vector<boost::shared_ptr<ConceptMap> > v(20);
+  assert(std::count_if(v.begin(),v.end(),[](const boost::shared_ptr<ConceptMap>& p) { return p; } ) == 0);
   //[0]: as-empty-as-can-get concept map (X = focal question_
   {
     const Nodes nodes
@@ -290,7 +291,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       };
 
     const boost::shared_ptr<ConceptMap> concept_map(
-      ribi::cmap::ConceptMapFactory::Create(nodes,edges));
+      ConceptMapFactory::Create(nodes,edges));
     assert(concept_map);
     v[0]=concept_map;
   }
@@ -299,8 +300,8 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A")
       };
 
     const Edges edges
@@ -319,9 +320,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        NodeFactory::Create("A"),
-        NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const Edges edges
@@ -340,9 +341,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("edge_a concept"));
@@ -363,9 +364,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("edge_a concept"));
@@ -387,9 +388,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("1"));
@@ -411,9 +412,9 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("1"));
 
@@ -434,10 +435,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const Edges edges
@@ -457,10 +458,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create());
@@ -483,10 +484,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create());
@@ -508,10 +509,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create());
@@ -534,10 +535,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -563,10 +564,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -591,10 +592,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -620,10 +621,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -648,15 +649,15 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const boost::shared_ptr<Concept> concept_c(ConceptFactory().Create("B", { {"B-1",cmap::Competency::uninitialized} },0,1,2));
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("C", { {"C-1",cmap::Competency::uninitialized},{"C-2",cmap::Competency::misc}},-1,1,2));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("D", { {"D-1",cmap::Competency::misc},{"D-2",cmap::Competency::misc},{"D-3",cmap::Competency::misc}},-1,-1,-1));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
-    const boost::shared_ptr<Node> node_e(cmap::NodeFactory::Create(concept_e));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
+    const boost::shared_ptr<Node> node_e(cmap::NodeFactory().Create(concept_e));
 
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
         node_c,
         node_d,
         node_e
@@ -688,15 +689,15 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const boost::shared_ptr<Concept> concept_c(ConceptFactory().Create("B", { {"B-1: profession",cmap::Competency::profession} },0,1,2));
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("C", { {"C-1: organisations",cmap::Competency::organisations},{"C-2: social_surroundings",cmap::Competency::social_surroundings}},2,1,0));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("D", { {"D-1: target_audience",cmap::Competency::target_audience},{"D-2: ti_knowledge",cmap::Competency::ti_knowledge},{"D-3: prof_growth",cmap::Competency::prof_growth},{"D-4: misc",cmap::Competency::misc}},0,1,2));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
-    const boost::shared_ptr<Node> node_e(cmap::NodeFactory::Create(concept_e));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
+    const boost::shared_ptr<Node> node_e(cmap::NodeFactory().Create(concept_e));
 
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
         node_c,
         node_d,
         node_e
@@ -744,15 +745,15 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("D",
       { {"D-1: target_audience",cmap::Competency::target_audience},{"D-2: ti_knowledge",cmap::Competency::ti_knowledge},{"D-3: prof_growth",cmap::Competency::prof_growth},{"D-4: misc",cmap::Competency::misc}},
       0,1,2));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
-    const boost::shared_ptr<Node> node_e(cmap::NodeFactory::Create(concept_e));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
+    const boost::shared_ptr<Node> node_e(cmap::NodeFactory().Create(concept_e));
 
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
         node_c,
         node_d,
         node_e
@@ -819,15 +820,15 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
         {"D-M: this is D its fourth example (out of four) and it is categorized as a competency in the misc domain",cmap::Competency::misc}
       },
       0,1,2));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
-    const boost::shared_ptr<Node> node_e(cmap::NodeFactory::Create(concept_e));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
+    const boost::shared_ptr<Node> node_e(cmap::NodeFactory().Create(concept_e));
 
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X: This is the center node concept that can have no examples, oterwise each of its example name would be multiple lines"),
-        cmap::NodeFactory::Create("A: This is a concept that has none of all types of competencies as its examples, oterwise each of its example name would be multiple lines"),
+        CenterNodeFactory().CreateFromStrings("X: This is the center node concept that can have no examples, oterwise each of its example name would be multiple lines"),
+        NodeFactory().CreateFromStrings("A: This is a concept that has none of all types of competencies as its examples, oterwise each of its example name would be multiple lines"),
         node_c,
         node_d,
         node_e
@@ -902,15 +903,15 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const boost::shared_ptr<Concept> concept_c(ConceptFactory().Create("B", { {"B-1: profession",cmap::Competency::profession} },0,1,2));
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("C", { {"C-1: organisations",cmap::Competency::organisations},{"C-2: social_surroundings",cmap::Competency::social_surroundings}},2,1,0));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("D", { {"D-1: target_audience",cmap::Competency::target_audience},{"D-2: ti_knowledge",cmap::Competency::ti_knowledge},{"D-3: prof_growth",cmap::Competency::prof_growth},{"D-4: misc",cmap::Competency::misc}},0,1,2));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
-    const boost::shared_ptr<Node> node_e(cmap::NodeFactory::Create(concept_e));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
+    const boost::shared_ptr<Node> node_e(cmap::NodeFactory().Create(concept_e));
 
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
         node_c,
         node_d,
         node_e
@@ -987,10 +988,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C"),
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C"),
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1016,10 +1017,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1044,10 +1045,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1072,10 +1073,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("A")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1101,10 +1102,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1130,10 +1131,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        cmap::NodeFactory().CreateFromStrings("C"),
+        cmap::NodeFactory().CreateFromStrings("B"),
+        cmap::NodeFactory().CreateFromStrings("A")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1159,10 +1160,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1188,10 +1189,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1216,19 +1217,19 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("C")
       };
     const boost::shared_ptr<Concept> concept_a(ConceptFactory().Create("X"));
     const boost::shared_ptr<Concept> concept_b(ConceptFactory().Create("B"));
     const boost::shared_ptr<Concept> concept_c(ConceptFactory().Create("A"));
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("C"));
-    const boost::shared_ptr<Node> node_a(cmap::NodeFactory::Create(concept_a));
-    const boost::shared_ptr<Node> node_b(cmap::NodeFactory::Create(concept_b));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
+    const boost::shared_ptr<Node> node_a(cmap::NodeFactory().Create(concept_a));
+    const boost::shared_ptr<Node> node_b(cmap::NodeFactory().Create(concept_b));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().Create("2"));
@@ -1252,19 +1253,19 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("A")
       };
     const boost::shared_ptr<Concept> concept_a(ConceptFactory().Create("X"));
     const boost::shared_ptr<Concept> concept_b(ConceptFactory().Create("B"));
     const boost::shared_ptr<Concept> concept_c(ConceptFactory().Create("C"));
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("A"));
-    const boost::shared_ptr<Node> node_a(cmap::NodeFactory::Create(concept_a));
-    const boost::shared_ptr<Node> node_b(cmap::NodeFactory::Create(concept_b));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::Create(concept_c));
-    const boost::shared_ptr<Node> node_d(cmap::NodeFactory::Create(concept_d));
+    const boost::shared_ptr<Node> node_a(cmap::NodeFactory().Create(concept_a));
+    const boost::shared_ptr<Node> node_b(cmap::NodeFactory().Create(concept_b));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().Create(concept_c));
+    const boost::shared_ptr<Node> node_d(cmap::NodeFactory().Create(concept_d));
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().Create("2"));
@@ -1289,10 +1290,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().Create("2"));
@@ -1317,10 +1318,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("A")
       };
 
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().Create("1"));
@@ -1381,10 +1382,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C")
       };
     const Edges edges
       =
@@ -1403,10 +1404,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("B")
       };
     const Edges edges
       =
@@ -1423,10 +1424,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("C")
+        CenterNodeFactory().CreateFromStrings("X"),
+        cmap::NodeFactory().CreateFromStrings("B"),
+        cmap::NodeFactory().CreateFromStrings("A"),
+        cmap::NodeFactory().CreateFromStrings("C")
       };
 
     const Edges edges
@@ -1445,10 +1446,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("A")
       };
 
     const Edges edges
@@ -1467,10 +1468,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("A"),
-        cmap::NodeFactory::Create("B")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("A"),
+        NodeFactory().CreateFromStrings("B")
       };
 
     const Edges edges
@@ -1490,10 +1491,10 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
     const Nodes nodes
       =
       {
-        CenterNodeFactory().Create("X"),
-        cmap::NodeFactory::Create("C"),
-        cmap::NodeFactory::Create("B"),
-        cmap::NodeFactory::Create("A")
+        CenterNodeFactory().CreateFromStrings("X"),
+        NodeFactory().CreateFromStrings("C"),
+        NodeFactory().CreateFromStrings("B"),
+        NodeFactory().CreateFromStrings("A")
       };
 
     const Edges edges

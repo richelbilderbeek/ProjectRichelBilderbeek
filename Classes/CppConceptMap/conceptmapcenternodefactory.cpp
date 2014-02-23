@@ -31,7 +31,7 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::C
   assert(concept);
   boost::shared_ptr<CenterNode> node(
     new cmap::CenterNode(
-      concept,x,y
+      concept,x,y,*this
     )
   );
   assert(node);
@@ -41,7 +41,7 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::C
   return node;
 }
 
-const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::Create(
+const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::CreateFromStrings(
   const std::string& name,
   const std::vector<std::pair<std::string,Competency> >& examples,
   const double x,
@@ -52,7 +52,8 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::C
     new CenterNode(
       ConceptFactory().Create(name,examples),
       x,
-      y
+      y,
+      *this
     )
   );
   assert(node);
@@ -125,7 +126,7 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
     y = boost::lexical_cast<double>(ribi::xml::StripXmlTag(v[0]));
   }
   assert(concept);
-  const boost::shared_ptr<CenterNode> node(new CenterNode(concept,x,y));
+  const boost::shared_ptr<CenterNode> node(new CenterNode(concept,x,y,*this));
   assert(node);
   assert(node->ToXml() == s);
   return node;

@@ -235,8 +235,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
       {"TextExampleEdge",Competency::misc}
     },
     2,1,0));
-  const boost::shared_ptr<Node> node_focal(NodeFactory::Create(concept_node_focal));
-  const boost::shared_ptr<Node> node_other(NodeFactory::Create(concept_node_other));
+  const boost::shared_ptr<Node> node_focal(NodeFactory().Create(concept_node_focal));
+  const boost::shared_ptr<Node> node_other(NodeFactory().Create(concept_node_other));
 
   const boost::shared_ptr<ConceptMap> sub_concept_map(
     ConceptMapFactory::Create(
