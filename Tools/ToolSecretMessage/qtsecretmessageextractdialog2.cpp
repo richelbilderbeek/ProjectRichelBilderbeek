@@ -1,6 +1,6 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtsecretmessageextractdialog.h"
+#include "qtsecretmessageextractdialog2.h"
 
 #include <cassert>
 #include <boost/shared_ptr.hpp>
@@ -9,22 +9,22 @@
 
 #include "secretmessagemaindialog.h"
 
-#include "ui_qtsecretmessageextractdialog.h"
+#include "ui_qtsecretmessageextractdialog2.h"
 #pragma GCC diagnostic pop
 
-ribi::sema::QtSecretMessageExtractDialog::QtSecretMessageExtractDialog(QWidget *parent)
+ribi::sema::QtSecretMessageExtractDialog2::QtSecretMessageExtractDialog2(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtSecretMessageExtractDialog)
+    ui(new Ui::QtSecretMessageExtractDialog2)
 {
   ui->setupUi(this);
 }
 
-ribi::sema::QtSecretMessageExtractDialog::~QtSecretMessageExtractDialog() noexcept
+ribi::sema::QtSecretMessageExtractDialog2::~QtSecretMessageExtractDialog2() noexcept
 {
   delete ui;
 }
 
-void ribi::sema::QtSecretMessageExtractDialog::on_button_load_clicked()
+void ribi::sema::QtSecretMessageExtractDialog2::on_button_load_clicked()
 {
   const std::string filename
     = QFileDialog::getOpenFileName(

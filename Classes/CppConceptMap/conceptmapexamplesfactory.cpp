@@ -10,6 +10,7 @@
 #include "conceptmapexamplefactory.h"
 #include "conceptmapexamples.h"
 #include "conceptmaphelper.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::Create()
@@ -103,6 +104,16 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
     Create(examples)
   };
   assert(result);
+  #ifndef NDEBUG
+  if(result->ToXml() != s)
+  {
+    TRACE("ERROR");
+    TRACE(result->ToXml());
+    TRACE(s);
+    TRACE("BREAK");
+  }
+
+  #endif
   assert(result->ToXml() == s);
   return result;
 }

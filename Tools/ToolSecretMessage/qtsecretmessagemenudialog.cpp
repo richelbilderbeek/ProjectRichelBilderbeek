@@ -44,7 +44,7 @@ void ribi::sema::QtMenuDialog::on_button_create_clicked()
 
 void ribi::sema::QtMenuDialog::on_button_extract_clicked()
 {
-  QtSecretMessageExtractDialog d;
+  QtSecretMessageExtractDialog2 d;
   this->ShowChild(&d);
 }
 

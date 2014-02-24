@@ -2,15 +2,15 @@ include(../../Tools/ToolSecretMessage/ToolSecretMessageConsole.pri)
 
 HEADERS += \
     ../../Tools/ToolSecretMessage/qtsecretmessagemenudialog.h \
-    ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog.h \
-    ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.h
+    ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.h \
+    ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog2.h
 
 FORMS += \
     ../../Tools/ToolSecretMessage/qtsecretmessagemenudialog.ui \
-    ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog.ui \
-    ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.ui
+    ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.ui \
+    ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog2.ui
 
 SOURCES += \
     ../../Tools/ToolSecretMessage/qtsecretmessagemenudialog.cpp \
-    ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog.cpp \
-    ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.cpp
+    ../../Tools/ToolSecretMessage/qtsecretmessagecreatedialog.cpp \
+    ../../Tools/ToolSecretMessage/qtsecretmessageextractdialog2.cpp

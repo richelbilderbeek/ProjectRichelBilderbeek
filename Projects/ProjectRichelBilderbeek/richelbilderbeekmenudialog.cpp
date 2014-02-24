@@ -1735,7 +1735,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::secretMessage: p.reset(new ribi::SecretMessage::MenuDialog); break;
+      case ProgramType::secretMessage: p.reset(new ribi::sema::MenuDialog); break;
       case ProgramType::secretMessageVcl:
       {
         const std::string version = "x.x";

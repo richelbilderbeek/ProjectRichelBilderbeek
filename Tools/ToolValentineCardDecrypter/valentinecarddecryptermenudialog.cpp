@@ -26,18 +26,45 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc != 1)
+  if (argc != 1 && argc != 3 && argc != 5)
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-
-  for (auto s: ValentineCardSymbols::CreateAlphabet().left)
+  if (argc == 1)
   {
 
-    std::cout << s.first << "\n" << (*s.second.ToTextCanvas()) << std::endl;
+    for (auto s: ValentineCardSymbols::CreateAlphabet().left)
+    {
+      std::cout << s.first << "\n" << (*s.second.ToTextCanvas()) << std::endl;
+    }
+    return 0;
   }
-  return 0;
+  std::string text = "abcdefghijklmnopqrstuvwxyz";
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-t" || argv[i] == "--text")
+    {
+      text = argv[i+1];
+    }
+  }
+  std::string filename;
+  for (int i=0; i!=argc-1; ++i)
+  {
+    if (argv[i] == "-f" || argv[i] == "--filename")
+    {
+      filename = argv[i+1];
+    }
+  }
+  if (filename.empty())
+  {
+    //To std::cout
+    ValentineCardSymbols::
+  }
+  else
+  {
+    //To pixmap
+  }
 }
 
 const ribi::About ribi::ValentineCardDecrypterMenuDialog::GetAbout() const noexcept
@@ -62,8 +89,13 @@ const ribi::Help ribi::ValentineCardDecrypterMenuDialog::GetHelp() const noexcep
     GetAbout().GetFileTitle(),
     GetAbout().GetFileDescription(),
     {
+      Help::Option('f',"filename","save the text as a picture to filename"),
+      Help::Option('t',"text","the text to convert")
     },
     {
+      GetAbout().GetFileTitle(),
+      GetAbout().GetFileTitle() + " -t \"Hello world\"",
+      GetAbout().GetFileTitle() + " --text \"Hello world\" --filename result.png",
     }
   );
 }
@@ -98,7 +130,25 @@ void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ValentineCardDecrypterMenuDialog::Test");
-  //ValentineCardDecrypterMenuDialog d;
+  ValentineCardDecrypterMenuDialog d;
+  d.Execute( {"ValentineCardDecrypter"} );
+  d.Execute( {"ValentineCardDecrypter", "--text", "Hello world"} );
+  {
+    const std::string filename { fileio::GetTempFileName(".png") };
+    assert(!fileio::IsRegularFile(filename));
+    d.Execute( {"ValentineCardDecrypter", "-t", "Test", "-f", filename} );
+    assert(fileio::IsRegularFile(filename));
+    fileio::DeleteFile(filename);
+    assert(!fileio::IsRegularFile(filename));
+  }
+  {
+    const std::string filename { fileio::GetTempFileName(".png") };
+    assert(!fileio::IsRegularFile(filename));
+    d.Execute( {"ValentineCardDecrypter", "--file", filename} );
+    assert(fileio::IsRegularFile(filename));
+    fileio::DeleteFile(filename);
+    assert(!fileio::IsRegularFile(filename));
+  }
   TRACE("Finished ribi::ValentineCardDecrypterMenuDialog::Test successfully");
 }
 #endif

@@ -233,6 +233,8 @@ void ribi::cmap::ConceptMap::DeleteEdge(const boost::shared_ptr<Edge> edge)
 {
   #ifndef NDEBUG
   assert(edge);
+  //One cannot be sure if the edges are already deleted or not
+  if(std::count(m_edges.begin(),m_edges.end(),edge) == 0) return;
   assert(std::count(m_edges.begin(),m_edges.end(),edge) != 0
     && "The edge must exist");
   assert(std::count(m_edges.begin(),m_edges.end(),edge) == 1
@@ -240,7 +242,6 @@ void ribi::cmap::ConceptMap::DeleteEdge(const boost::shared_ptr<Edge> edge)
   const std::size_t n_edges_before = m_edges.size();
   #endif
 
-  //Copied from http://www.richelbilderbeek.nl/CppVector.htm
   m_edges.erase(std::remove(m_edges.begin(),m_edges.end(),edge),m_edges.end());
 
   #ifndef NDEBUG

@@ -120,7 +120,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::QtPvdbConceptMapDial
   {
     const int x = 0;
     const int y = 0;
-    const boost::shared_ptr<Node> node = NodeFactory::Create(v[i],x,y);
+    const boost::shared_ptr<Node> node = cmap::NodeFactory().Create(v[i],x,y);
     assert(node);
     nodes.push_back(node);
   }

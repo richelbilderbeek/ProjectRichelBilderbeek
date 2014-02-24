@@ -150,9 +150,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("Concept F"));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTests().at(index_1));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTests().at(index_2));
-    const boost::shared_ptr<Node> node_a(CenterNodeFactory().Create(question));
-    const boost::shared_ptr<Node> node_b(cmap::NodeFactory::GetTests().at(index_1));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::GetTests().at(index_2));
+    const boost::shared_ptr<Node> node_a(CenterNodeFactory().CreateFromStrings(question));
+    const boost::shared_ptr<Node> node_b(cmap::NodeFactory().GetTests().at(index_1));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().GetTests().at(index_2));
 
     const Nodes nodes = { node_a, node_b, node_c };
 
@@ -207,9 +207,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().GetTests().at(index_1));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTests().at(index_2));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTests().at(index_3));
-    const boost::shared_ptr<Node> node_a(CenterNodeFactory().Create(question));
-    const boost::shared_ptr<Node> node_b(NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<Node> node_c(NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<Node> node_a(CenterNodeFactory().CreateFromStrings(question));
+    const boost::shared_ptr<Node> node_b(NodeFactory().GetTests().at(1));
+    const boost::shared_ptr<Node> node_c(NodeFactory().GetTests().at(1));
 
     const Nodes nodes = { node_a, node_b, node_c };
 
@@ -267,9 +267,9 @@ void ribi::pvdb::QtPvdbConceptMapDialog::Test() noexcept
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().GetTest(index_1));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTest(index_2));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTest(index_3));
-    const boost::shared_ptr<Node> node_a(CenterNodeFactory().Create(question));
-    const boost::shared_ptr<Node> node_b(NodeFactory::GetTests().at(1));
-    const boost::shared_ptr<Node> node_c(NodeFactory::GetTests().at(1));
+    const boost::shared_ptr<Node> node_a(CenterNodeFactory().CreateFromStrings(question));
+    const boost::shared_ptr<Node> node_b(NodeFactory().GetTests().at(1));
+    const boost::shared_ptr<Node> node_c(NodeFactory().GetTests().at(1));
 
     const Nodes nodes = { node_a, node_b, node_c };
 

@@ -967,15 +967,25 @@ const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::Concep
       assert(std::count(
         concept_map->GetNodes().begin(),
         concept_map->GetNodes().end(),
-        edge->GetTo()) == 1);
+        edge->GetTo()) == 1
+      );
       assert(std::count(
         concept_map->GetNodes().begin(),
         concept_map->GetNodes().end(),
-        edge->GetFrom()) == 1);
+        edge->GetFrom()) == 1
+      );
     }
   }
   #endif
   return v;
+}
+
+const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::GetHeteromorphousTestConceptMap(const int i)
+{
+  const std::vector<boost::shared_ptr<ConceptMap> > v { GetHeteromorphousTestConceptMaps() };
+  assert(i >= 0);
+  assert(i < static_cast<int>(v.size()));
+  return v[i];
 }
 
 const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > ribi::cmap::ConceptMapFactory::GetComplexHomomorphousTestConceptMaps()

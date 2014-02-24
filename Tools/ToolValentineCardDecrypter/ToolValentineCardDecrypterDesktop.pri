@@ -1,13 +1,13 @@
-include(../../Tools/ToolImageRotater/ToolImageRotaterConsole.pri)
+include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolImageRotater/qtimagerotatermaindialog.cpp \
-    ../../Tools/ToolImageRotater/qtimagerotatermenudialog.cpp
+    ../../Tools/ToolValentineCardDecrypter/qtvalentinecarddecryptermaindialog.cpp \
+    ../../Tools/ToolValentineCardDecrypter/qtvalentinecarddecryptermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolImageRotater/qtimagerotatermaindialog.h \
-    ../../Tools/ToolImageRotater/qtimagerotatermenudialog.h
+    ../../Tools/ToolValentineCardDecrypter/qtvalentinecarddecryptermaindialog.h \
+    ../../Tools/ToolValentineCardDecrypter/qtvalentinecarddecryptermenudialog.h
 
 FORMS += \
-    ../../Tools/ToolImageRotater/qtimagerotatermenudialog.ui \
-    ../../Tools/ToolImageRotater/qtimagerotatermaindialog.ui
+    ../../Tools/ToolValentineCardDecrypter/qtvalentinecarddecryptermenudialog.ui \
+    ../../Tools/ToolValentineCardDecrypter/qtvalentinecarddecryptermaindialog.ui

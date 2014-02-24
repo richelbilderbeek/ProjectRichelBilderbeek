@@ -18,6 +18,7 @@
 #include "conceptmap.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommanddeletenode.h"
+#include "conceptmapcommanddeletefocusnode.h"
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommandlosefocus.h"
 #include "conceptmapcommandsetfocuswithcoordinat.h"
@@ -218,7 +219,7 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
   }
 }
 
-void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(Node * const node) noexcept
+void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept
 {
   TRACE_FUNC();
   if (!node)
@@ -227,33 +228,33 @@ void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(Node * const node) noexcept
   }
   else
   {
-    if (m_qtconceptmap->FindQtNode(node))
+    if (m_qtconceptmap->FindQtNode(node.get()))
     {
-      m_qtconceptmap->FindQtNode(node)->clearFocus();
+      m_qtconceptmap->FindQtNode(node.get())->clearFocus();
     }
   }
 }
 
 
-void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(Node * const node) noexcept
+void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
 {
   TRACE_FUNC();
   assert(node);
-  assert(m_qtconceptmap->FindQtNode(node));
+  assert(m_qtconceptmap->FindQtNode(node.get()));
   //if(m_qtconceptmap->FindQtNode(node))
   {
-    assert(m_qtconceptmap->FindQtNode(node)->flags() & QGraphicsItem::GraphicsItemFlag::ItemIsFocusable);
-    m_qtconceptmap->FindQtNode(node)->setFocus();
+    assert(m_qtconceptmap->FindQtNode(node.get())->flags() & QGraphicsItem::GraphicsItemFlag::ItemIsFocusable);
+    m_qtconceptmap->FindQtNode(node.get())->setFocus();
   }
   assert( (m_qtconceptmap->isVisible() || !m_qtconceptmap->isVisible())
     && "m_qtconceptmap->isVisible() == true if the widget is visible"
   );
-  assert( (m_qtconceptmap->FindQtNode(node)->isVisible() || !m_qtconceptmap->FindQtNode(node)->isVisible())
+  assert( (m_qtconceptmap->FindQtNode(node.get())->isVisible() || !m_qtconceptmap->FindQtNode(node.get())->isVisible())
     && "m_qtconceptmap->FindQtNode(node)->isVisible() == true if the widget is visible"
   );
   assert(dynamic_cast<QtNode*>(scene()->focusItem()));
-  assert((m_qtconceptmap->FindQtNode(node)->hasFocus()
-      || !m_qtconceptmap->FindQtNode(node)->hasFocus())
+  assert((m_qtconceptmap->FindQtNode(node.get())->hasFocus()
+      || !m_qtconceptmap->FindQtNode(node.get())->hasFocus())
     && "Could not find out how to enforce the node getting focus"
   );
 }
@@ -300,7 +301,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(m->GetNodes().empty() && "After undoing the creation of a new node, the concept map must be empty again");
     assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
   }
-  //Test that a 'set random focus' results in something getting a focus
+  //SetFocusRandom: that a 'set random focus' results in something getting a focus
   {
     const int concept_map_index = 17;
     assert(concept_map_index < static_cast<int>(ConceptMapFactory::GetHeteromorphousTestConceptMaps().size()));
@@ -351,6 +352,46 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     cmd_delete_node->Undo();
     assert(m->GetNodes().size()   == 1 && "After undoing the deletion of the only node, the previously empty concept map must have a node");
     assert(c->GetQtNodes().size() == 1 && "After undoing the deletion of the only node, the previously empty QtConceptMap must have a node");
+  }
+  //DeleteNodeFocus: Test deletion of node with focus from concept map
+  {
+    const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::GetHeteromorphousTestConceptMap(19) };
+    assert(m);
+    assert(!m->GetNodes().empty() && "Concept map must have nodes to delete");
+    const boost::shared_ptr<QtConceptMap> c(new QtEditConceptMap(m,QtEditConceptMap::Mode::simple));
+    assert(c);
+    assert(!c->GetQtNodes().empty() && "QtConceptMap must have nodes to delete");
+    const boost::shared_ptr<QtConceptMapWidget> w(
+      new QtConceptMapWidget(c)
+    );
+
+    {
+      assert(!w->focusWidget());
+      const boost::shared_ptr<CommandSetFocusRandom> cmd(
+        new CommandSetFocusRandom
+      );
+      //w->show();
+      //assert(w->isVisible());
+      //assert(c->isVisible());
+      w->DoCommand(cmd);
+      assert(dynamic_cast<QtNode*>(w->scene()->focusItem()));
+    }
+    {
+      const int n_nodes_before = static_cast<int>(m->GetNodes().size());
+      const int n_qtnodes_before = static_cast<int>(c->GetQtNodes().size());
+      const boost::shared_ptr<CommandDeleteFocusNode> cmd(
+        new CommandDeleteFocusNode
+      );
+      w->DoCommand(cmd);
+
+      assert(static_cast<int>(m->GetNodes().size()) + 1 == n_nodes_before);
+      assert(static_cast<int>(c->GetQtNodes().size()) + 1 == n_qtnodes_before);
+
+      cmd->Undo();
+
+      assert(static_cast<int>(m->GetNodes().size()) == n_nodes_before);
+      assert(static_cast<int>(c->GetQtNodes().size()) == n_qtnodes_before);
+    }
   }
   TRACE("Finished ribi::cmap::QtConceptMapWidget::Test()");
 }

@@ -7,6 +7,7 @@
 #include "conceptmapcommanddeleteconceptmap.h"
 #include "conceptmapcommand.h"
 #include "conceptmapcommandlosefocus.h"
+#include "conceptmapcommanddeletefocusnode.h"
 #include "conceptmapcommandsetfocusrandom.h"
 #include "conceptmapcommandsetfocuswithcoordinat.h"
 
@@ -59,14 +60,12 @@ const std::vector<boost::shared_ptr<ribi::cmap::Command> > ribi::cmap::CommandFa
     assert(p);
     v.push_back(p);
   }
-  /*
   {
     const boost::shared_ptr<ribi::cmap::Command> p {
-      new CommandDeleteNode
+      new CommandDeleteFocusNode
     };
     assert(p);
     v.push_back(p);
   }
-  */
   return v;
 }

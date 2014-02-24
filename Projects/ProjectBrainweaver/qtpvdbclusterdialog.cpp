@@ -439,9 +439,9 @@ void ribi::pvdb::QtPvdbClusterDialog::Test() noexcept
     const boost::shared_ptr<Concept> concept_d(ConceptFactory().Create("Concept F"));
     const boost::shared_ptr<Concept> concept_e(ConceptFactory().GetTests().at(index_1));
     const boost::shared_ptr<Concept> concept_f(ConceptFactory().GetTests().at(index_2));
-    const boost::shared_ptr<Node> node_a(CenterNodeFactory().Create(question));
-    const boost::shared_ptr<Node> node_b(cmap::NodeFactory::GetTests().at(index_1));
-    const boost::shared_ptr<Node> node_c(cmap::NodeFactory::GetTests().at(index_2));
+    const boost::shared_ptr<Node> node_a(CenterNodeFactory().CreateFromStrings(question));
+    const boost::shared_ptr<Node> node_b(cmap::NodeFactory().GetTest(index_1));
+    const boost::shared_ptr<Node> node_c(cmap::NodeFactory().GetTest(index_2));
     const Nodes nodes = { node_a, node_b, node_c };
     const boost::shared_ptr<Edge> edge_a(cmap::EdgeFactory::Create(concept_d,1.2,3.4,nodes.at(0),false,nodes.at(1),true));
     const boost::shared_ptr<Edge> edge_b(cmap::EdgeFactory::Create(concept_e,2.3,4.5,nodes.at(1),false,nodes.at(2),true));

@@ -549,8 +549,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::File::CreateConceptM
   using namespace cmap;
 
   //A single-node ConceptMap contains only the focal question
-  const boost::shared_ptr<CenterNode> focal_node {
-    CenterNodeFactory().Create(text)
+  const boost::shared_ptr<cmap::CenterNode> focal_node {
+    CenterNodeFactory().CreateFromStrings(text)
   };
   assert(focal_node);
   const std::vector<boost::shared_ptr<Node> > nodes = { focal_node };

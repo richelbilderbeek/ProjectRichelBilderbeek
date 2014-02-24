@@ -44,6 +44,7 @@ struct ConceptMapFactory
 
   ///Get the documented heteromorphous test concept maps
   static const std::vector<boost::shared_ptr<ConceptMap> > GetHeteromorphousTestConceptMaps();
+  static const boost::shared_ptr<ConceptMap> GetHeteromorphousTestConceptMap(const int index);
 
   ///Get the documented complex homomorphous test concept maps
   static const std::vector<boost::shared_ptr<ConceptMap> > GetComplexHomomorphousTestConceptMaps();

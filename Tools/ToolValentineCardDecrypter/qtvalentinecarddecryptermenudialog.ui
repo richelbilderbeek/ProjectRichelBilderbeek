@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtImageRotaterMenuDialog</class>
- <widget class="QDialog" name="QtImageRotaterMenuDialog">
+ <class>QtValentineCardDecrypterMenuDialog</class>
+ <widget class="QDialog" name="QtValentineCardDecrypterMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,7 +16,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>ImageRotater</string>
+   <string>ValentineCardDecrypter</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog { 
@@ -28,30 +28,7 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label_title_2">
-     <property name="font">
-      <font>
-       <pointsize>28</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ToolImageRotater.qrc">:/imagerotater/images/ToolImageRotaterTitle.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLabel" name="image_gabor">
+    <widget class="QLabel" name="image_title">
      <property name="text">
       <string/>
      </property>
@@ -96,8 +73,6 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="ToolImageRotater.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

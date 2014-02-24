@@ -208,6 +208,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     for (int i=0; i!=j; ++i)
     {
       QtTestConceptMapWidgetDialog d;
+      d.show();
       d.DoClick(i);
     }
   }
@@ -220,22 +221,64 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       for (int j=0; j!=sz; ++j)
       {
         QtTestConceptMapWidgetDialog d;
+        d.show();
         d.DoClick(i);
         d.DoClick(j);
       }
     }
   }
+  TRACE("Clicking thrice");
+  {
+    const QtTestConceptMapWidgetDialog tmp;
+    const int sz = tmp.GetNumberOfButtons();
+    for (int i=0; i!=sz; ++i)
+    {
+      for (int j=0; j!=sz; ++j)
+      {
+        for (int k=0; k!=sz; ++k)
+        {
+          QtTestConceptMapWidgetDialog d;
+          d.show();
+          d.DoClick(i);
+          d.DoClick(j);
+          d.DoClick(k);
+        }
+      }
+    }
+  }
+  TRACE("Clicking four times");
+  {
+    const QtTestConceptMapWidgetDialog tmp;
+    const int sz = tmp.GetNumberOfButtons();
+    for (int i=0; i!=sz; ++i)
+    {
+      for (int j=0; j!=sz; ++j)
+      {
+        for (int k=0; k!=sz; ++k)
+        {
+          for (int m=0; m!=sz; ++m)
+          {
+            QtTestConceptMapWidgetDialog d;
+            d.show();
+            d.DoClick(i);
+            d.DoClick(j);
+            d.DoClick(k);
+            d.DoClick(m);
+          }
+        }
+      }
+    }
+  }
   TRACE("Random clicking");
-  /*
   {
     QtTestConceptMapWidgetDialog d;
+    d.show();
     const int n_buttons = d.GetNumberOfButtons();
     for (int i=0; i!=100; ++i)
     {
       d.DoClick(std::rand() % n_buttons);
     }
   }
-  */
   TRACE("Finished ribi::cmap::QtTestConceptMapWidgetDialog::Test successfully");
 }
 #endif

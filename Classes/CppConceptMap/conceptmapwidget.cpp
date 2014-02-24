@@ -120,6 +120,13 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() no
 void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<Node> node) noexcept
 {
   assert(node);
+  ///Node might already be deleted by something else
+  if (m_conceptmap->GetNodes().empty()) return;
+  {
+    const std::vector<boost::shared_ptr<Node> >& nodes { m_conceptmap->GetNodes() };
+    if (std::find(nodes.begin(),nodes.end(),node) == nodes.end()) return;
+  }
+
   assert(!m_conceptmap->GetNodes().empty());
   #ifndef NDEBUG
   const int n_nodes_before = static_cast<int>(m_conceptmap->GetNodes().size());

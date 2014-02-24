@@ -68,12 +68,12 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///Called when Widget emits m_signal_lose_focus_node
   ///Which is emitted when a Node loses focus
   ///A Node has no idea of losing focus
-  void OnLoseFocusNode(Node * const node) noexcept;
+  void OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept;
 
   ///Called when Widget emits m_signal_set_focus_node
   ///Which is emitted when a Node is given focus
   ///A Node has no idea of having focus
-  void OnSetFocusNode(Node * const node) noexcept;
+  void OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept;
 };
 
 } //~namespace cmap

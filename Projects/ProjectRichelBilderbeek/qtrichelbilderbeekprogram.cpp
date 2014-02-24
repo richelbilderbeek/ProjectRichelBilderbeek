@@ -224,7 +224,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::rubiksClockVcl: break;
     case ProgramType::searchAndDestroyChess: break;
     case ProgramType::searchAndDestroyChessVcl: break;
-    case ProgramType::secretMessage: p = new QtSecretMessageMenuDialog; break;
+    case ProgramType::secretMessage: p = new sema::QtMenuDialog; break;
     case ProgramType::secretMessageVcl: break;
     case ProgramType::simBrainiac: break;
     case ProgramType::simImmuneResponse: break;
