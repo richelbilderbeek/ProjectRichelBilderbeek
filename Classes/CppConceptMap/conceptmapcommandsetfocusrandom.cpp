@@ -43,7 +43,7 @@ void ribi::cmap::CommandSetFocusRandom::Undo() noexcept
   //Lose focus to this Node
   m_widget->m_focus = nullptr;
 
-  m_widget->m_signal_set_focus_node(m_widget->m_focus);
+  m_widget->m_signal_set_focus_nodes(m_widget->m_focus);
   //m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);

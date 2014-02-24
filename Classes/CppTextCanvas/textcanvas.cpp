@@ -212,3 +212,13 @@ std::ostream& ribi::operator<<(std::ostream& os, const TextCanvas& canvas)
   );
   return os;
 }
+
+bool ribi::operator==(const TextCanvas& lhs, const TextCanvas& rhs) noexcept
+{
+  return lhs.ToString() == rhs.ToString();
+}
+
+bool ribi::operator!=(const TextCanvas& lhs, const TextCanvas& rhs) noexcept
+{
+  return !(lhs == rhs);
+}

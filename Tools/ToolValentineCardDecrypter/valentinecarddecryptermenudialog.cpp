@@ -11,7 +11,6 @@
 #include <QFile>
 
 #include "fileio.h"
-//#include "imagecanvas.h"
 #include "valentinecarddecryptermaindialog.h"
 #include "valentinecardsymbols.h"
 #include "valentinecardsymbol.h"
@@ -57,36 +56,18 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
     }
   }
 
-  const std::vector<ValentineCardSymbol> v {
-    ValentineCardSymbols().TextToSymbols(text)
-  };
   if (filename.empty())
   {
-    //To std::cout
-    for (const ValentineCardSymbol s: v)
-    {
-      std::cout << (*s.ToTextCanvas()) << '\n';
-    }
+    std::cout << (*ValentineCardDecrypterMainDialog().ToSymbolsAsString(text)) << '\n';
     return 0;
   }
   else
   {
-    //To pixmap
-    const int sz = static_cast<int>(v.size());
-    QImage image(sz * 7, 7,QImage::Format::Format_RGB32);
-    for (int i=0; i!=sz; ++i)
-    {
-      const ValentineCardSymbol s { v[i] };
-      const boost::shared_ptr<QImage> image_char { s.ToImage() };
-      for (int row = 0; row!=7; ++row)
-      {
-        for (int col = 0; col!=7; ++col)
-        {
-          image.setPixel((7*i) + col,row,image_char->pixel(col,row));
-        }
-      }
-    }
-    image.save(filename.c_str());
+    const boost::shared_ptr<QImage> image {
+      ValentineCardDecrypterMainDialog().ToSymbolsAsImage(text)
+    };
+    assert(image);
+    image->save(filename.c_str());
     return 0;
   }
 }

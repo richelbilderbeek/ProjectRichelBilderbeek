@@ -41,18 +41,22 @@ const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::TextToS
     ValentineCardSymbols::CreateAlphabet()
   };
   {
+    assert(alphabet.left.find('?') == alphabet.left.end());
     const char my_char = '?';
     assert(26 < CreateAll().size());
     alphabet.insert(boost::bimap<char,ValentineCardSymbol>::value_type(
       my_char,CreateAll()[26])
     );
+    assert(alphabet.left.find('?') != alphabet.left.end());
   }
   {
+    assert(alphabet.left.find(' ') == alphabet.left.end());
     const char my_char = ' ';
     ribi::ValentineCardSymbol s( {false,false,false,false},ValentineCardSymbol::CenterSymbol::none );
     alphabet.insert(boost::bimap<char,ValentineCardSymbol>::value_type(
       my_char,s)
     );
+    assert(alphabet.left.find(' ') != alphabet.left.end());
   }
 
   std::vector<ValentineCardSymbol> v;
@@ -60,11 +64,18 @@ const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::TextToS
   {
     if (c == ' ')
     {
+      assert(alphabet.left.find(' ') != alphabet.left.end());
       v.push_back( (*alphabet.left.find(' ')).second);
       continue;
     }
     const char d = std::tolower(c);
-    if (d < 'a' || d > 'z') { v.push_back( (*alphabet.left.find('?')).second); continue; }
+    if (d < 'a' || d > 'z')
+    {
+      assert(alphabet.left.find('?') != alphabet.left.end());
+      v.push_back( (*alphabet.left.find('?')).second);
+      continue;
+    }
+    assert(alphabet.left.find(d) != alphabet.left.end());
     v.push_back( (*alphabet.left.find(d)).second);
   }
 

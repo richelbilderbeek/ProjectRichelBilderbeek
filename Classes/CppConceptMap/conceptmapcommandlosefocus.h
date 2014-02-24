@@ -13,8 +13,8 @@
 namespace ribi {
 namespace cmap {
 
-///Lose focus
-///- opposite of SetFocus
+///Lose focus of top node
+///- opposite of AddFocus
 struct CommandLoseFocus : public Command
 {
   CommandLoseFocus() : m_old_focus{}, m_widget{} {}

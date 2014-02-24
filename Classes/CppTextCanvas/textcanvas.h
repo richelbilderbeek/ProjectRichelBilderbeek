@@ -125,6 +125,8 @@ struct TextCanvas : public Canvas
 };
 
 std::ostream& operator<<(std::ostream& os, const TextCanvas& canvas);
+bool operator==(const TextCanvas& lhs, const TextCanvas& rhs) noexcept;
+bool operator!=(const TextCanvas& lhs, const TextCanvas& rhs) noexcept;
 
 } //~namespace ribi
 

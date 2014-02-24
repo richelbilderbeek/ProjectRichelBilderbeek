@@ -12,6 +12,7 @@
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommanddeleteconceptmap.h"
 #include "conceptmapcommandfactory.h"
+#include "conceptmaphelper.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
 #include "conceptmapwidgetfactory.h"
@@ -24,7 +25,7 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     m_signal_concept_map_changed{},
     m_signal_delete_node{},
     m_signal_lose_focus_node{},
-    m_signal_set_focus_node{},
+    m_signal_set_focus_nodes{},
     m_conceptmap(conceptmap),
     m_focus{nullptr},
     m_font_height(18),
@@ -47,7 +48,7 @@ ribi::cmap::Widget::Widget(const Widget& other)
     m_signal_concept_map_changed{},
     m_signal_delete_node{},
     m_signal_lose_focus_node{},
-    m_signal_set_focus_node{},
+    m_signal_set_focus_nodes{},
     m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
     m_focus{nullptr},
     m_font_height(other.m_font_height),
@@ -180,6 +181,14 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const d
   return boost::const_pointer_cast<Node>(node);
 }
 
+const std::vector<boost::shared_ptr<const ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() const noexcept
+{
+  const std::vector<boost::shared_ptr<const Node>> focus {
+    AddConst(m_focus)
+  };
+  return focus;
+}
+
 const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode() noexcept
 {
   assert(!GetConceptMap()->GetNodes().empty());
@@ -209,10 +218,10 @@ void ribi::cmap::Widget::SetConceptMap(const boost::shared_ptr<ConceptMap> conce
   m_signal_concept_map_changed();
 }
 
-void ribi::cmap::Widget::SetFocus(const boost::shared_ptr<Node> node) noexcept
+void ribi::cmap::Widget::SetFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {
-  m_focus = node;
-  m_signal_set_focus_node(node);
+  m_focus = nodes;
+  m_signal_set_focus_nodes(nodes);
 }
 
 #ifndef NDEBUG

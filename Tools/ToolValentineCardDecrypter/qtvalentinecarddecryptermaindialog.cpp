@@ -3,14 +3,20 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtvalentinecarddecryptermaindialog.h"
 
+#include <sstream>
+
 #include <boost/lexical_cast.hpp>
 #include <boost/math/constants/constants.hpp>
+
 #include <QFileDialog>
 #include <QLabel>
 
-#include "valentinecarddecryptermaindialog.h"
+#include "textcanvas.h"
 #include "trace.h"
 #include "ui_qtvalentinecarddecryptermaindialog.h"
+#include "valentinecarddecryptermaindialog.h"
+#include "valentinecardsymbol.h"
+#include "valentinecardsymbols.h"
 #pragma GCC diagnostic pop
 
 ribi::QtValentineCardDecrypterMainDialog::QtValentineCardDecrypterMainDialog(QWidget *parent)
@@ -21,11 +27,37 @@ ribi::QtValentineCardDecrypterMainDialog::QtValentineCardDecrypterMainDialog(QWi
   Test();
   #endif
   ui->setupUi(this);
+
+  ui->edit->setText("Hello world");
 }
 
 ribi::QtValentineCardDecrypterMainDialog::~QtValentineCardDecrypterMainDialog() noexcept
 {
   delete ui;
+}
+
+void ribi::QtValentineCardDecrypterMainDialog::on_edit_textChanged(const QString &arg1)
+{
+  const std::string text = arg1.toStdString();
+  if (text.empty())
+  {
+    ui->text->setPlainText("");
+    ui->label->setPixmap(QPixmap());
+  }
+  else
+  {
+    {
+      std::stringstream s;
+      s << (*ValentineCardDecrypterMainDialog().ToSymbolsAsString(text));
+      ui->text->setPlainText(s.str().c_str());
+    }
+    {
+      const boost::shared_ptr<QImage> image {
+        ValentineCardDecrypterMainDialog().ToSymbolsAsImage(text)
+      };
+      ui->label->setPixmap(QPixmap::fromImage(*image));
+    }
+  }
 }
 
 #ifndef NDEBUG
@@ -40,3 +72,4 @@ void ribi::QtValentineCardDecrypterMainDialog::Test() noexcept
   TRACE("Finished ribi::QtValentineCardDecrypterMainDialog::Test successfully");
 }
 #endif
+

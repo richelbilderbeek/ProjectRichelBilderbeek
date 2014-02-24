@@ -139,7 +139,7 @@ void ribi::ValentineCardSymbol::Test() noexcept
 const boost::shared_ptr<QImage> ribi::ValentineCardSymbol::ToImage() const noexcept
 {
   const boost::shared_ptr<QImage> image {
-    new QImage(7,7,QImage::Format_RGB32)
+    new QImage(7,7,QImage::Format_ARGB32)
   };
   // +-----+
   // |     |
@@ -160,8 +160,8 @@ const boost::shared_ptr<QImage> ribi::ValentineCardSymbol::ToImage() const noexc
   // | | 3 1
   // +-+ +2+
   //Corners
-  const QRgb white { qRgb(255,255,255) };
-  const QRgb black { qRgb(0,0,0) };
+  const QRgb white { qRgb(0,0,0) };
+  const QRgb black { qRgb(255,255,255) };
   for (int y=0; y!=7; ++y)
   {
     for (int x=0; x!=7; ++x)
@@ -196,14 +196,14 @@ const boost::shared_ptr<QImage> ribi::ValentineCardSymbol::ToImage() const noexc
     case CenterSymbol::none :
       break;
     case CenterSymbol::dot  :
-      image->setPixel(3,3,black);
+      image->setPixel(3,3,white);
       break;
     case CenterSymbol::cross:
-      image->setPixel(2,2,black);
-      image->setPixel(3,3,black);
-      image->setPixel(4,4,black);
-      image->setPixel(2,4,black);
-      image->setPixel(4,2,black);
+      image->setPixel(2,2,white);
+      image->setPixel(3,3,white);
+      image->setPixel(4,4,white);
+      image->setPixel(2,4,white);
+      image->setPixel(4,2,white);
       break;
   }
   return image;

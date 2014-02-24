@@ -8,24 +8,25 @@
 bool ribi::cmap::CommandSetFocusWithCoordinat::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->FindNodeAt(m_x,m_y).get();
+  return
+    widget->FindNodeAt(m_x,m_y).get();
 }
 
 void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const widget) noexcept
 {
   assert(CanDoCommandSpecific(widget));
   assert(widget);
-  assert(!widget->m_focus || widget->m_focus);
 
-  //Transfer focus to this Node
+  //Set focus to this Node
   m_widget = widget;
   const boost::shared_ptr<Node> node {
     widget->FindNodeAt(m_x,m_y)
   };
 
-  m_widget->m_focus = node;
+  m_widget->m_focus.clear();
+  m_widget->m_focus.push_back(node);
 
-  m_widget->m_signal_set_focus_node(node);
+  m_widget->m_signal_set_focus_nodes({ node);
 
   assert(m_widget);
   assert(widget);

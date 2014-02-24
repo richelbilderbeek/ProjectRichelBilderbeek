@@ -65,21 +65,19 @@ struct Widget
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus_node;
 
-  ///Emitted when a Node receives focus
+  ///Emitted when multiple Nodes receive focus
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus_node;
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_focus_nodes;
 
   private:
 
   boost::shared_ptr<ConceptMap> m_conceptmap;
 
-  ///The element in focus, if any. This might be:
+  ///The elements in focus, if any. These might be:
   ///- a true Node
   ///- the label in the middle of an edge
   ///- the CenterNode
-  ///nullptr denotes no Node has focus
-  ///m_focus used to be a Node*, changed this to boost::shared_ptr at 20140223
-  boost::shared_ptr<Node> m_focus;
+  std::vector<boost::shared_ptr<Node>> m_focus;
 
   const int m_font_height;
   const int m_font_width;
@@ -106,8 +104,8 @@ struct Widget
   const boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
   const boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
-  const boost::shared_ptr<const Node> GetFocus() const noexcept { return m_focus; }
-  const boost::shared_ptr<      Node> GetFocus()       noexcept { return m_focus; }
+  const std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
+  const std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept { return m_focus; }
 
   ///Used by CommandSetFocusRandom
   const boost::shared_ptr<Node> GetRandomNode() noexcept;
@@ -115,7 +113,7 @@ struct Widget
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
-  void SetFocus(const boost::shared_ptr<Node> node) noexcept;
+  void SetFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

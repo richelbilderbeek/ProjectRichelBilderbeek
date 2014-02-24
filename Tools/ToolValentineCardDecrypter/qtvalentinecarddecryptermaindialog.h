@@ -27,6 +27,8 @@ public:
 
 private slots:
 
+  void on_edit_textChanged(const QString &arg1);
+
 private:
   Ui::QtValentineCardDecrypterMainDialog *ui;
 
