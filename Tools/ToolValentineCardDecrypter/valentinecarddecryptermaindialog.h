@@ -1,5 +1,5 @@
-#ifndef IMAGEROTATERMAINDIALOG_H
-#define IMAGEROTATERMAINDIALOG_H
+#ifndef VALENTINECARDDECRYPTERMAINDIALOG_H
+#define VALENTINECARDDECRYPTERMAINDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"

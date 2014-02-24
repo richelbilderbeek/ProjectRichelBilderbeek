@@ -203,6 +203,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   m.insert(Pair(ProgramType::tronCollection,std::string("tronCollection")));
   m.insert(Pair(ProgramType::tronCollectionVcl,std::string("tronCollectionVcl")));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,std::string("ubuntuOneWatcher")));
+  m.insert(Pair(ProgramType::valentineCardDecrypter,std::string("valentineCardDecrypter")));
   m.insert(Pair(ProgramType::vanDenBogaart,std::string("vanDenBogaart")));
   m.insert(Pair(ProgramType::virtualBastard,std::string("virtualBastard")));
   m.insert(Pair(ProgramType::visualAbc,std::string("visualAbc")));
@@ -414,6 +415,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   m.insert(Pair(ProgramType::tronCollection,std::string("Tron Collection")));
   m.insert(Pair(ProgramType::tronCollectionVcl,std::string("Tron Collection (VCL)")));
   m.insert(Pair(ProgramType::ubuntuOneWatcher,std::string("UbuntuOne Watcher")));
+  m.insert(Pair(ProgramType::valentineCardDecrypter,std::string("ValentineCardDecrypter")));
   m.insert(Pair(ProgramType::vanDenBogaart,std::string("Van Den Bogaart")));
   m.insert(Pair(ProgramType::virtualBastard,std::string("Virtual Bastard")));
   m.insert(Pair(ProgramType::visualAbc,std::string("Visual ABC")));

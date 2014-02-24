@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-RandomCodeDesktopConsole, tool to generate random C++ code
-Copyright (C) 2010  Richel Bilderbeek
+RandomCode, tool to generate random C++ code
+Copyright (C) 2007-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -26,27 +26,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "randomcode.h"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include "randomcodemenudialog.h"
 #pragma GCC diagnostic pop
 
-//From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
-void RandomizeTimer()
+int main(int argc, char *argv[])
 {
-  std::srand(std::time(0));
-}
-
-int main()
-{
-  ///Randomize on timer
-  RandomizeTimer();
-
-  //Create the random code
-  const std::vector<std::string> v
-    = ribi::RandomCode::CreateRandomCode();
-
-  //Display the random code
-  std::copy(
-    v.begin(),
-    v.end(),
-    std::ostream_iterator<std::string>(std::cout,"\n"));
+  const std::vector<std::string> args {
+    ribi::RandomCodeMenuDialog::ConvertArguments(argc,argv)
+  };
+  ribi::RandomCodeMenuDialog d;
+  return d.Execute(args);
 }

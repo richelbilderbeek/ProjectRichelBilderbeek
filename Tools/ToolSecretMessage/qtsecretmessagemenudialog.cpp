@@ -2,7 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "qtaboutdialog.h"
 #include "qtsecretmessagecreatedialog.h"
-#include "qtsecretmessageextractdialog.h"
+#include "qtsecretmessageextractdialog2.h"
 #include "qtsecretmessagemenudialog.h"
 #include "secretmessagemenudialog.h"
 #include "trace.h"

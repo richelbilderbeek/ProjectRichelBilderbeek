@@ -178,6 +178,7 @@ include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonConsole.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickConsole.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererConsole.pri)
 include(../../Tools/ToolSurfacePlotter/ToolSurfacePlotterConsole.pri)
+include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterConsole.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcConsole.pri)
 
 SOURCES += main.cpp

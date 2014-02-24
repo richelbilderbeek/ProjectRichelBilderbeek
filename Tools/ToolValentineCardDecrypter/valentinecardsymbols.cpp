@@ -9,7 +9,7 @@
 #include "valentinecardsymbol.h"
 #pragma GCC diagnostic pop
 
-const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateAll() noexcept
+const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateAll() const noexcept
 {
   std::vector<ValentineCardSymbol> v;
   for (int i=0; i!=27; ++i)
@@ -21,7 +21,7 @@ const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateA
   return v;
 }
 
-const boost::bimap<char,ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateAlphabet() noexcept
+const boost::bimap<char,ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::CreateAlphabet() const noexcept
 {
   const std::vector<ValentineCardSymbol> v { CreateAll() };
   boost::bimap<char,ribi::ValentineCardSymbol> m;
@@ -33,4 +33,40 @@ const boost::bimap<char,ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::C
       my_char,v[i]));
   }
   return m;
+}
+
+const std::vector<ribi::ValentineCardSymbol> ribi::ValentineCardSymbols::TextToSymbols(const std::string& s) const noexcept
+{
+  boost::bimap<char,ValentineCardSymbol> alphabet {
+    ValentineCardSymbols::CreateAlphabet()
+  };
+  {
+    const char my_char = '?';
+    assert(26 < CreateAll().size());
+    alphabet.insert(boost::bimap<char,ValentineCardSymbol>::value_type(
+      my_char,CreateAll()[26])
+    );
+  }
+  {
+    const char my_char = ' ';
+    ribi::ValentineCardSymbol s( {false,false,false,false},ValentineCardSymbol::CenterSymbol::none );
+    alphabet.insert(boost::bimap<char,ValentineCardSymbol>::value_type(
+      my_char,s)
+    );
+  }
+
+  std::vector<ValentineCardSymbol> v;
+  for (char c: s)
+  {
+    if (c == ' ')
+    {
+      v.push_back( (*alphabet.left.find(' ')).second);
+      continue;
+    }
+    const char d = std::tolower(c);
+    if (d < 'a' || d > 'z') { v.push_back( (*alphabet.left.find('?')).second); continue; }
+    v.push_back( (*alphabet.left.find(d)).second);
+  }
+
+  return v;
 }

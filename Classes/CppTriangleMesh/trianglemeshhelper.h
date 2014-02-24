@@ -48,9 +48,14 @@ bool CanLexicalCast(const std::string& from)
   }
   return true;
 }
-const std::string FormatDigitsBehindTheComma(const double x, const int n);
 
-double DotProduct(const ribi::Coordinat3D& v1,const ribi::Coordinat3D& v2);
+/*
+const std::string FormatDigitsBehindTheComma(const double x, const int n);
+*/
+
+//double DotProduct(const ribi::Coordinat3D& v1,const ribi::Coordinat3D& v2);
+
+double Fmod(const double x, const double mod) noexcept;
 
 ///Obtain the angle in radians between two deltas
 ///12 o'clock is 0.0 * pi
@@ -69,9 +74,11 @@ double GetAngle(const boost::shared_ptr<const Point> point) noexcept;
 
 bool IsClockwise(const std::vector<boost::shared_ptr<Point>>& points) noexcept;
 
+/*
 const ribi::Coordinat3D vOut(
   const ribi::Coordinat3D& v1,
   const ribi::Coordinat3D& v2);
+*/
 
 } //~namespace trim
 } //~namespace ribi

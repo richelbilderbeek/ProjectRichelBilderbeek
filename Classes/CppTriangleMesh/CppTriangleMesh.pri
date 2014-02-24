@@ -19,10 +19,6 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_pin.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_mut.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_k.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_fvsolution.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_fvschemes.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_epsilon.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_decomposepardict.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshpointfactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.cpp

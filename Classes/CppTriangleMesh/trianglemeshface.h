@@ -47,7 +47,7 @@ struct Face
 
   const std::vector<boost::shared_ptr<Point>>& GetPoints() const noexcept { return m_points; }
 
-  void ReversePoints() noexcept;
+  //void ReversePoints() noexcept;
 
   void SetBoundaryType(const std::string type) const noexcept { m_type = type; }
 

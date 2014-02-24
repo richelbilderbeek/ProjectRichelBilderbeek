@@ -149,11 +149,13 @@ const boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(cons
   return GetPoints()[index];
 }
 
+/*
 void ribi::trim::Face::ReversePoints() noexcept
 {
   PROFILE_FUNC();
   std::reverse(m_points.begin(),m_points.end());
 }
+*/
 
 #ifndef NDEBUG
 void ribi::trim::Face::Test() noexcept

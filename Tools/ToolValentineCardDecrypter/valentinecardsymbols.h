@@ -15,8 +15,10 @@ namespace ribi {
 
 struct ValentineCardSymbols
 {
-  static const std::vector<ValentineCardSymbol> CreateAll() noexcept;
-  static const boost::bimap<char,ValentineCardSymbol> CreateAlphabet() noexcept;
+  ValentineCardSymbols() {}
+  const std::vector<ValentineCardSymbol> CreateAll() const noexcept;
+  const boost::bimap<char,ValentineCardSymbol> CreateAlphabet() const noexcept;
+  const std::vector<ValentineCardSymbol> TextToSymbols(const std::string& s) const noexcept;
 };
 
 } //~namespace ribi

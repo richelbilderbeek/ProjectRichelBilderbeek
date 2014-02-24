@@ -218,6 +218,7 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
     case ProgramType::tronCollection: p.reset(new ProgramTronCollection); break;
     case ProgramType::tronCollectionVcl: p.reset(new ProgramTronCollectionVcl); break;
     case ProgramType::ubuntuOneWatcher: p.reset(new ProgramUbuntuOneWatcher); break;
+    case ProgramType::valentineCardDecrypter: p.reset(new ProgramValentineCardDecrypter); break;
     case ProgramType::vanDenBogaart: p.reset(new ProgramVanDenBogaart); break;
     case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;
     case ProgramType::visualAbc: p.reset(new ProgramVisualAbc); break;

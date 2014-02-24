@@ -14809,6 +14809,19 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
+
+
+  m.push_back(
+    { "ToolValentineCardDecrypter",
+      {
+        "<p>",
+        "  <a href=\"ToolValentineCardDecrypter.htm\">ValentineCardDecrypter</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  I used to decrypt the cipher on a Valentine card I received.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolVirtualBastard",
       {

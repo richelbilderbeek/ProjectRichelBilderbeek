@@ -1,5 +1,5 @@
-#ifndef QTIMAGEROTATERMAINDIALOG_H
-#define QTIMAGEROTATERMAINDIALOG_H
+#ifndef QTVALENTINECARDDECRYPTERMAINDIALOG_H
+#define QTVALENTINECARDDECRYPTERMAINDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -8,44 +8,33 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtImageRotaterMainDialog;
+  class QtValentineCardDecrypterMainDialog;
 }
 
 struct QLabel;
 
 namespace ribi {
 
-class QtImageRotaterMainDialog : public QtHideAndShowDialog
+class QtValentineCardDecrypterMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtImageRotaterMainDialog(QWidget *parent = 0);
-  QtImageRotaterMainDialog(const QtImageRotaterMainDialog&) = delete;
-  QtImageRotaterMainDialog& operator=(const QtImageRotaterMainDialog&) = delete;
-  ~QtImageRotaterMainDialog() noexcept;
+  explicit QtValentineCardDecrypterMainDialog(QWidget *parent = 0);
+  QtValentineCardDecrypterMainDialog(const QtValentineCardDecrypterMainDialog&) = delete;
+  QtValentineCardDecrypterMainDialog& operator=(const QtValentineCardDecrypterMainDialog&) = delete;
+  ~QtValentineCardDecrypterMainDialog() noexcept;
 
 private slots:
-  void on_button_load_clicked();
-  void on_button_save_clicked();
-
-  void on_dial_angle_sliderMoved(int position);
 
 private:
-  Ui::QtImageRotaterMainDialog *ui;
-  QImage m_source;
-  QLabel * m_target;
+  Ui::QtValentineCardDecrypterMainDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
-  double GetAngle() const noexcept;
-
-  void OnAnyChange();
-
 };
 
 } //~namespace ribi
 
-#endif // QTIMAGEROTATERMAINDIALOG_H
+#endif // QTVALENTINECARDDECRYPTERMAINDIALOG_H

@@ -124,11 +124,12 @@ ribi::trim::Template::Template(
       {
         std::reverse(face_points.begin(),face_points.end());
       }
+      assert(IsClockwise(face_points));
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::vert
+          FaceOrientation::horizontal //?20140224
         )
       };
       m_faces.push_back(face);
@@ -149,14 +150,6 @@ ribi::trim::Template::Template(
     const auto face = m_faces[i];
     const auto indices = m_face_point_indices[i];
     assert(face->GetPoints().size() == indices.size());
-    /*
-    const int n_points = static_cast<int>(indices.size());
-    for (int j=0; j!=n_points; ++j)
-    {
-      //Only true when points are not reversed
-      assert(face->GetPoints()[j] == m_points[ indices[j] ]);
-    }
-    */
   }
   #endif
 
@@ -275,10 +268,11 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
       {
         std::reverse(face_points.begin(),face_points.end());
       }
+      assert(IsClockwise(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::vert
+          FaceOrientation::horizontal //?20140224
         )
       };
       faces.push_back(face);
@@ -397,10 +391,11 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
       {
         std::reverse(face_points.begin(),face_points.end());
       }
+      assert(IsClockwise(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::vert
+          FaceOrientation::horizontal //?20140224
         )
       };
       faces.push_back(face);
@@ -534,6 +529,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
       {
         std::reverse(face_points.begin(),face_points.end());
       }
+      assert(IsClockwise(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -683,6 +679,7 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
       {
         std::reverse(face_points.begin(),face_points.end());
       }
+      assert(IsClockwise(face_points));
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
@@ -772,12 +769,14 @@ void ribi::trim::Template::Test() noexcept
       const boost::shared_ptr<const ribi::ConstCoordinat2D> c {
         new ribi::ConstCoordinat2D(-0.83,0.5)
       };
-      const std::vector<boost::shared_ptr<Point>> points {
+      std::vector<boost::shared_ptr<Point>> points {
         PointFactory().Create(a),
         PointFactory().Create(b),
         PointFactory().Create(c)
       };
       assert(IsClockwise(points));
+      std::reverse(points.begin(),points.end());
+      assert(!IsClockwise(points));
     }
     {
       //12 o'clock
@@ -792,20 +791,31 @@ void ribi::trim::Template::Test() noexcept
       const boost::shared_ptr<const ribi::ConstCoordinat2D> c {
         new ribi::ConstCoordinat2D(0.83,0.5)
       };
-      const std::vector<boost::shared_ptr<Point>> points {
+      std::vector<boost::shared_ptr<Point>> points {
         PointFactory().Create(a),
         PointFactory().Create(b),
         PointFactory().Create(c)
       };
       assert(!IsClockwise(points));
+      std::reverse(points.begin(),points.end());
+      assert(IsClockwise(points));
     }
   }
+  assert(1==2);
   for (int i=0; i!=4; ++i)
   {
     const boost::shared_ptr<Template> my_template {
       CreateTest(i)
     };
     assert(my_template);
+    for (auto face: my_template->GetFaces())
+    {
+      if (!IsClockwise(face->GetPoints()))
+      {
+        TRACE("BREAK");
+      }
+      assert(IsClockwise(face->GetPoints()));
+    }
   }
   TRACE("Finished ribi::trim::Template::Test successfully");
 }

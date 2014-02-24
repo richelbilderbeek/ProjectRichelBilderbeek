@@ -2,9 +2,17 @@
 
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/lexical_cast.hpp>
+
 #include <QImage>
+
+#include "fileio.h"
 #include "textcanvas.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::ValentineCardSymbol::ValentineCardSymbol(
   const std::array<bool,4> lines,
@@ -120,6 +128,9 @@ void ribi::ValentineCardSymbol::Test() noexcept
   {
     assert(ValentineCardSymbol(i).CalcValue() == i);
     assert(ValentineCardSymbol(i).ToImage());
+    const std::string filename = fileio::GetTempFileName(
+      boost::lexical_cast<std::string>(i) + ".png");
+    ValentineCardSymbol(i).ToImage()->save(filename.c_str());
   }
   TRACE("Finished ribi::ValentineCardSymbol::Test successfully");
 }
@@ -160,9 +171,9 @@ const boost::shared_ptr<QImage> ribi::ValentineCardSymbol::ToImage() const noexc
   }
 
   image->setPixel(0,0, m_lines[0] || m_lines[3] ? white : black);
-  image->setPixel(7,0, m_lines[0] || m_lines[1] ? white : black);
-  image->setPixel(0,7, m_lines[2] || m_lines[3] ? white : black);
-  image->setPixel(7,7, m_lines[1] || m_lines[2] ? white : black);
+  image->setPixel(6,0, m_lines[0] || m_lines[1] ? white : black);
+  image->setPixel(0,6, m_lines[2] || m_lines[3] ? white : black);
+  image->setPixel(6,6, m_lines[1] || m_lines[2] ? white : black);
   //Edges
   {
     const QRgb color { m_lines[0] ? white : black };

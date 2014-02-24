@@ -220,6 +220,7 @@ include(../../Tools/ToolTestTextCanvas/ToolTestTextCanvasDesktop.pri)
 include(../../Tools/ToolTestToggleButton/ToolTestToggleButtonDesktop.pri)
 include(../../Tools/ToolTestTwoDigitNewick/ToolTestTwoDigitNewickDesktop.pri)
 include(../../Tools/ToolThresholdFilterer/ToolThresholdFiltererDesktop.pri)
+include(../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypterDesktop.pri)
 include(../../Tools/ToolVisualAbc/ToolVisualAbcDesktop.pri)
 
 QT += core gui #svg

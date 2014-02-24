@@ -1,5 +1,5 @@
-#ifndef IMAGEROTATERMENUDIALOG_H
-#define IMAGEROTATERMENUDIALOG_H
+#ifndef VALENTINECARDDECRYPTERMENUDIALOG_H
+#define VALENTINECARDDECRYPTERMENUDIALOG_H
 
 #include "menudialog.h"
 
@@ -24,4 +24,4 @@ struct ValentineCardDecrypterMenuDialog : public MenuDialog
 
 } //~namespace ribi
 
-#endif // IMAGEROTATERMENUDIALOG_H
+#endif // VALENTINECARDDECRYPTERMENUDIALOG_H

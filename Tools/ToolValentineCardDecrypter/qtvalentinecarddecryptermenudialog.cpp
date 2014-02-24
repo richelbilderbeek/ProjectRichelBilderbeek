@@ -1,17 +1,17 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtimagerotatermenudialog.h"
+#include "qtvalentinecarddecryptermenudialog.h"
 
 #include "qtaboutdialog.h"
-#include "imagerotatermenudialog.h"
-#include "qtimagerotatermaindialog.h"
-#include "ui_qtimagerotatermenudialog.h"
+#include "valentinecarddecryptermenudialog.h"
+#include "qtvalentinecarddecryptermaindialog.h"
+#include "ui_qtvalentinecarddecryptermenudialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::QtImageRotaterMenuDialog::QtImageRotaterMenuDialog(QWidget *parent) :
+ribi::QtValentineCardDecrypterMenuDialog::QtValentineCardDecrypterMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
-    ui(new Ui::QtImageRotaterMenuDialog)
+    ui(new Ui::QtValentineCardDecrypterMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -19,38 +19,38 @@ ribi::QtImageRotaterMenuDialog::QtImageRotaterMenuDialog(QWidget *parent) :
   ui->setupUi(this);
 }
 
-ribi::QtImageRotaterMenuDialog::~QtImageRotaterMenuDialog() noexcept
+ribi::QtValentineCardDecrypterMenuDialog::~QtValentineCardDecrypterMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtImageRotaterMenuDialog::on_button_start_clicked()
+void ribi::QtValentineCardDecrypterMenuDialog::on_button_start_clicked()
 {
-  QtImageRotaterMainDialog d;
+  QtValentineCardDecrypterMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtImageRotaterMenuDialog::on_button_about_clicked()
+void ribi::QtValentineCardDecrypterMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(ImageRotaterMenuDialog().GetAbout());
+  QtAboutDialog d(ValentineCardDecrypterMenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 
-void ribi::QtImageRotaterMenuDialog::on_button_quit_clicked()
+void ribi::QtValentineCardDecrypterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtImageRotaterMenuDialog::Test() noexcept
+void ribi::QtValentineCardDecrypterMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtImageRotaterMenuDialog::Test");
-  QtImageRotaterMainDialog();
-  TRACE("Finished ribi::QtImageRotaterMenuDialog::Test successfully");
+  TRACE("Starting ribi::QtValentineCardDecrypterMenuDialog::Test");
+  QtValentineCardDecrypterMainDialog();
+  TRACE("Finished ribi::QtValentineCardDecrypterMenuDialog::Test successfully");
 }
 #endif

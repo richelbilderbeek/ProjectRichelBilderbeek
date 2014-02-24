@@ -139,9 +139,9 @@ void ribi::TestQrcFileMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(fileio::IsRegularFile("../ToolTestQrcFile/ToolTestQrcFile.qrc"));
+  assert(fileio::IsRegularFile("../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc"));
   {
-    QrcFile f("../ToolTestQrcFile/ToolTestQrcFile.qrc");
+    QrcFile f("../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc");
     assert(f.GetFiles().count("R.png"));
   }
 }

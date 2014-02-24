@@ -1577,7 +1577,7 @@ struct ProgramSecretMessage : public ProgramTool
   const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   const std::string GetFilenameWeb() const noexcept { return ""; }
   const std::string GetScreenName() const noexcept { return "SecretMessage"; }
-  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
   ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::wip; }
@@ -2861,6 +2861,23 @@ struct ProgramUbuntuOneWatcher : public ProgramTool
   ProgramType GetType() const noexcept { return ProgramType::ubuntuOneWatcher; }
   const std::string GetUrl() const noexcept { return "ToolUbuntuOneWatcher.htm"; }
 };
+
+
+struct ProgramValentineCardDecrypter : public ProgramTool
+{
+  const std::string GetFilenameConsole() const noexcept { return ""; }
+  const std::string GetFilenameDesktop() const noexcept { return ""; }
+  const std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
+  const std::string GetFilenameWeb() const noexcept { return ""; }
+  const std::string GetScreenName() const noexcept { return "ValentineCardDecrypter"; }
+  ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
+  ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
+  ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::wip; }
+  ProgramStatus GetStatusWebApplication() const noexcept { return ProgramStatus::no; }
+  ProgramType GetType() const noexcept { return ProgramType::valentineCardDecrypter; }
+  const std::string GetUrl() const noexcept { return "ToolValentineCardDecrypter.htm"; }
+};
+
 
 struct ProgramVanDenBogaart : public ProgramProject
 {

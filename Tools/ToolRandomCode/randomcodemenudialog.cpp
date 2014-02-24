@@ -31,8 +31,20 @@ int ribi::RandomCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   #ifndef NDEBUG
   Test();
   #endif
-  assert(!"TODO");
-  return 1;
+  //From http://www.richelbilderbeek.nl/CppRandomizeTimer.htm
+  std::srand(std::time(0));
+
+  //Create the random code
+  const std::vector<std::string> v
+    = RandomCode::CreateRandomCode();
+
+  //Display the random code
+  std::copy(
+    v.begin(),
+    v.end(),
+    std::ostream_iterator<std::string>(std::cout,"\n"));
+
+  return 0;
 }
 
 const ribi::About ribi::RandomCodeMenuDialog::GetAbout() const noexcept
@@ -41,7 +53,7 @@ const ribi::About ribi::RandomCodeMenuDialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "RandomCode",
     "tool to generate random C++ code",
-    "the 25th of December 2012",
+    "the 24th of February 2014",
     "2007-2014",
     "http://www.richelbilderbeek.nl/ToolRandomCode.htm",
     GetVersion(),
@@ -75,7 +87,7 @@ const boost::shared_ptr<const ribi::Program> ribi::RandomCodeMenuDialog::GetProg
 
 const std::string ribi::RandomCodeMenuDialog::GetVersion() const noexcept
 {
-  return "4.2";
+  return "4.3";
 }
 
 const std::vector<std::string> ribi::RandomCodeMenuDialog::GetVersionHistory() const noexcept
@@ -86,7 +98,8 @@ const std::vector<std::string> ribi::RandomCodeMenuDialog::GetVersionHistory() c
     "2011-01-07: version 3.0: added menu, reworked file architecture",
     "2011-04-24: version 4.0: major architectural change, created web version",
     "2011-08-31: version 4.1: added Welcome picture for web version",
-    "2012-12-25: version 4.2: added menu for desktop version"
+    "2012-12-25: version 4.2: added menu for desktop version",
+    "2014-02-24: version 4.3: added command-line version"
   };
 }
 
@@ -99,6 +112,9 @@ void ribi::RandomCodeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::RandomCodeMenuDialog::Test");
+  RandomCodeMenuDialog d;
+  d.Execute( { "RandomCode" } );
+
   TRACE("Finished ribi::RandomCodeMenuDialog::Test successfully");
 }
 #endif

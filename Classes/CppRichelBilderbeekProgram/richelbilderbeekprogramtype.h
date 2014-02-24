@@ -211,6 +211,7 @@ enum class ProgramType
   tronCollectionVcl,
   ubuntuOneWatcher,
   vanDenBogaart,
+  valentineCardDecrypter,
   virtualBastard,
   visualAbc,
   xeNonZero,

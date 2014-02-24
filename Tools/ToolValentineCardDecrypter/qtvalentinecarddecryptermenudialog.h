@@ -1,5 +1,5 @@
-#ifndef QTIMAGEROTATERMENUDIALOG_H
-#define QTIMAGEROTATERMENUDIALOG_H
+#ifndef QTVALENTINECARDDECRYPTERMENUDIALOG_H
+#define QTVALENTINECARDDECRYPTERMENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -7,20 +7,20 @@
 #pragma GCC diagnostic pop
 
 namespace Ui {
-  class QtImageRotaterMenuDialog;
+  class QtValentineCardDecrypterMenuDialog;
 }
 
 namespace ribi {
 
-class QtImageRotaterMenuDialog : public QtHideAndShowDialog
+class QtValentineCardDecrypterMenuDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtImageRotaterMenuDialog(QWidget *parent = 0);
-  QtImageRotaterMenuDialog(const QtImageRotaterMenuDialog&) = delete;
-  QtImageRotaterMenuDialog& operator=(const QtImageRotaterMenuDialog&) = delete;
-  ~QtImageRotaterMenuDialog() noexcept;
+  explicit QtValentineCardDecrypterMenuDialog(QWidget *parent = 0);
+  QtValentineCardDecrypterMenuDialog(const QtValentineCardDecrypterMenuDialog&) = delete;
+  QtValentineCardDecrypterMenuDialog& operator=(const QtValentineCardDecrypterMenuDialog&) = delete;
+  ~QtValentineCardDecrypterMenuDialog() noexcept;
 
 private slots:
   void on_button_about_clicked();
@@ -28,7 +28,7 @@ private slots:
   void on_button_start_clicked();
 
 private:
-  Ui::QtImageRotaterMenuDialog *ui;
+  Ui::QtValentineCardDecrypterMenuDialog *ui;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
@@ -36,4 +36,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTIMAGEROTATERMENUDIALOG_H
+#endif // QTVALENTINECARDDECRYPTERMENUDIALOG_H

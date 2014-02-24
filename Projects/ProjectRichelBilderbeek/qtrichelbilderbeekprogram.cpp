@@ -58,6 +58,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtpvdbmenudialog.h"
 #include "qtpylosmenudialog.h"
 #include "qtqmakewatchermenudialog.h"
+#include "qtvalentinecarddecryptermenudialog.h"
 #include "qtquadraticsolvermenudialog.h"
 #include "qtrandomcodemenudialog.h"
 #include "qtregextestermenudialog.h"
@@ -309,6 +310,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::tronCollection: new tron::QtTronMenuDialog; break;
     case ProgramType::tronCollectionVcl: break;
     case ProgramType::ubuntuOneWatcher: break;
+    case ProgramType::valentineCardDecrypter: p = new QtValentineCardDecrypterMenuDialog; break;
     case ProgramType::vanDenBogaart: break;
     case ProgramType::virtualBastard: break;
     case ProgramType::visualAbc: break;

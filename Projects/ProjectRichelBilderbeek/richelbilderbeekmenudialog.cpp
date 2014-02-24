@@ -23,6 +23,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "richelbilderbeekmenudialog.h"
 
+
 #include "about.h"
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
@@ -32,7 +33,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "asciiartermenudialog.h"
 #include "athleticlandmenudialog.h"
 #include "beerwantermenudialog.h"
-#include "testtwodigitnewickmenudialog.h"
 #include "binarynewickvector.h"
 #include "boenkenmenudialog.h"
 #include "codetohtmlmenudialog.h"
@@ -42,15 +42,14 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "copy_if.h"
 #include "counter.h"
 #include "createglossarymenudialog.h"
-#include "testtogglebuttonmenudialog.h"
 #include "createqtprojectzipfilemenudialog.h"
 #include "daswahreschlagerfestmenudialog.h"
 #include "dial.h"
 #include "dialwidget.h"
+#include "dotmatrixmenudialog.h"
 #include "encranger.h"
 #include "exercise.h"
 #include "filteroperationermenudialog.h"
-#include "richelbilderbeekplaceholdermenudialog.h"
 #include "fixedlagsmootherkalmanfilter.h"
 #include "functionplottermenudialog.h"
 #include "fuzzy_equal_to.h"
@@ -64,7 +63,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "k3opeenrijmenudialog.h"
 #include "kalmanfilter.h"
 #include "kalmanfilterermenudialog.h"
-#include "testentrancemenudialog.h"
 #include "knokfightermenudialog.h"
 #include "laggedwhitenoisesystem.h"
 #include "lazy_init.h"
@@ -115,6 +113,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "regextestermenudialog.h"
 #include "reversimenudialog.h"
 #include "richelbilderbeekgallerymenudialog.h"
+#include "richelbilderbeekplaceholdermenudialog.h"
 #include "richelbilderbeekprogram.h"
 #include "richelbilderbeekprogramstatus.h"
 #include "richelbilderbeekprogramtypes.h"
@@ -146,15 +145,18 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testchessmenudialog.h"
 #include "testconceptmapmenudialog.h"
 #include "testdialmenudialog.h"
+#include "testdrawcanvasmenudialog.h"
+#include "testentrancemenudialog.h"
 #include "testexercisemenudialog.h"
 #include "testfunctionparsermenudialog.h"
 #include "testgroupwidgetmenudialog.h"
+#include "testimagecanvasmenudialog.h"
+#include "testledmenudialog.h"
 #include "testmulticanvasmenudialog.h"
 #include "testmultiplechoicequestionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
 #include "testpylosmenudialog.h"
-#include "testimagecanvasmenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
 #include "testqtcreatorprofilemenudialog.h"
@@ -167,12 +169,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testshinybuttonmenudialog.h"
 #include "testtextcanvasmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
+#include "testtogglebuttonmenudialog.h"
+#include "testtwodigitnewickmenudialog.h"
 #include "thresholdfilterermenudialog.h"
 #include "tictactoe.h"
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-#include "dotmatrixmenudialog.h"
 #include "toolencrangermenudialog.h"
 #include "toolgaborfiltermenudialog.h"
 #include "toolgraycodermenudialog.h"
@@ -182,8 +185,6 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolsurfaceplottermenudialog.h"
 #include "tooltestapproximatormenudialog.h"
 #include "tooltestapproximatormenudialog.h"
-#include "testdrawcanvasmenudialog.h"
-#include "testledmenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
 #include "tooltestqtmodelsmenudialog.h"
 #include "tooltestsimplelinearregressionmenudialog.h"
@@ -191,6 +192,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #include "tronmenudialog.h"
 #include "twodigitnewick.h"
+#include "valentinecarddecryptermenudialog.h"
 #include "xenonzeromenudialog.h"
 #pragma GCC diagnostic pop
 
@@ -492,7 +494,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         const About about(
           About::GetDefaultAuthor(),
           "Bochum",
-          "",
+          "Project about navigation by Kalman filtering and neural nets",
           "someday",
           "200x-200x",
           "http://www.richelbilderbeek.nl/ProjectBochum.htm",
@@ -518,11 +520,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Boenken (VCL)",
+          "game that is a mix between soccer and billiards",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameBoenkenVcl.htm",
           version,
           version_history
         );
@@ -545,11 +547,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Bristol",
+          "Project about dynamic plasticity",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ProjectBristol.htm",
           version,
           version_history
         );
@@ -571,11 +573,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "The Chris Wiley Project",
+          "Project about extra-pair mating",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ProjectChrisWiley.htm",
           version,
           version_history
         );
@@ -599,11 +601,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           "?",
-          "somename",
-          "description",
+          "Corridor",
+          "port of Corridor to Qt Creator",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameCorridor.htm",
           version,
           version_history
         );
@@ -627,11 +629,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "CrossPoll",
+          "project about GMO cross-breeding",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ProjectCrossPoll.htm",
           version,
           version_history
         );
@@ -654,11 +656,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Das Wahre Schlagerfest (VCL)",
+          "a truely fun game",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameDasWahreSchlagerfestVcl.htm",
           version,
           version_history
         );
@@ -681,11 +683,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "DotMatrix (VCL)",
+          "tool to work with a dot-matrix font",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolDotMatrix.htm",
           version,
           version_history
         );
@@ -2796,6 +2798,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
+      case ProgramType::valentineCardDecrypter : p.reset(new ValentineCardDecrypterMenuDialog); break;
       case ProgramType::vanDenBogaart:
       {
         const std::string version = "x.x";

@@ -41,7 +41,9 @@ ribi::reversi::Widget::Widget(const int size)
 ribi::reversi::Widget::Widget(const Widget& other)
   : m_board(boost::shared_ptr<Board>(new Board(*other.m_board))),
     m_current_player(other.m_current_player),
-    m_undo(other.m_undo)
+    m_undo(other.m_undo),
+    m_x{other.m_x},
+    m_y{other.m_y}
 {
   assert(m_board);
   assert(*m_board == *other.m_board && "Must be a copy");
