@@ -68,8 +68,9 @@ double ribi::trim::GetAngle(const double dx, const double dy) noexcept
   const double tau = boost::math::constants::two_pi<double>();
   double angle = pi - (std::atan2(dx,dy));
   assert(angle < tau);
-  if (angle < 0.0) angle += tau;
-  if (angle >= tau) angle -= tau;
+  angle = Fmod(angle + tau,tau);
+  //if (angle < 0.0) angle += tau;
+  //if (angle >= tau) angle -= tau;
   assert(angle >= 0.0);
   assert(angle < tau);
   return angle;
@@ -83,20 +84,29 @@ double ribi::trim::GetAngle(const boost::shared_ptr<const Point> point) noexcept
 bool ribi::trim::IsClockwise(const std::vector<boost::shared_ptr<Point>>& points) noexcept
 {
   assert(points.size() == 3);
+  const double pi  = boost::math::constants::pi<double>();
   const double tau = boost::math::constants::two_pi<double>();
   assert(GetAngle(points[0]) >= 0.0);
-  assert(GetAngle(points[0]) <= tau);
+  assert(GetAngle(points[0]) < tau);
   assert(GetAngle(points[1]) >= 0.0);
-  assert(GetAngle(points[1]) <= tau);
+  assert(GetAngle(points[1]) < tau);
   assert(GetAngle(points[2]) >= 0.0);
-  assert(GetAngle(points[2]) <= tau);
-  TRACE(GetAngle(points[0]));
-  TRACE(GetAngle(points[1]));
-  TRACE(GetAngle(points[2]));
+  assert(GetAngle(points[2]) < tau);
+  const double a = Fmod(GetAngle(points[0]),tau);
+  const double b = Fmod(GetAngle(points[1]),tau);
+  const double c = Fmod(GetAngle(points[2]),tau);
+  TRACE(a);
+  TRACE(b);
+  TRACE(c);
+  TRACE(a < b);
+  TRACE(Fmod(a + pi,tau) > b);
+  TRACE(b < c);
+  TRACE(Fmod(b + pi,tau) > c);
+
 
   const bool is_clockwise {
-       GetAngle(points[0]) < GetAngle(points[1])
-    && GetAngle(points[1]) < GetAngle(points[2])
+       a < b && Fmod(a + pi,tau) > b
+    && b < c && Fmod(b + pi,tau) > c
   };
   TRACE(is_clockwise);
   return is_clockwise;

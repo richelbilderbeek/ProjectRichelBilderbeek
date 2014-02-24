@@ -49,12 +49,6 @@ bool CanLexicalCast(const std::string& from)
   return true;
 }
 
-/*
-const std::string FormatDigitsBehindTheComma(const double x, const int n);
-*/
-
-//double DotProduct(const ribi::Coordinat3D& v1,const ribi::Coordinat3D& v2);
-
 double Fmod(const double x, const double mod) noexcept;
 
 ///Obtain the angle in radians between two deltas
