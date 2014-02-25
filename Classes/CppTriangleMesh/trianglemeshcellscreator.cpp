@@ -232,6 +232,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
         all_points[points_offset + edge.second],
         all_points[points_offset + edge.first + n_points_per_layer]
       };
+      //Cannot order face winding yet, need Cells for this
       const boost::shared_ptr<Face> face_1 {
         FaceFactory().Create(
           face_points_1,
