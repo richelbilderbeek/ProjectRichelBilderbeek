@@ -3,6 +3,7 @@
 
 #include <array>
 #include <iosfwd>
+#include <vector>
 
 namespace ribi {
 
@@ -37,6 +38,10 @@ struct Coordinat3D
   private:
   static const int dimensionality = 3;
   std::array<double,dimensionality> m_co;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 bool operator==(const Coordinat3D& lhs, const Coordinat3D& rhs);
@@ -60,6 +65,31 @@ const Coordinat3D operator/(
 const Coordinat3D operator*(
   const Coordinat3D& c,
   const double f) noexcept;
+
+///Calculate the point in the center of the collection of points
+const Coordinat3D CalcCenter(const std::vector<Coordinat3D>& points) noexcept;
+
+///Calculate the cross product
+const ribi::Coordinat3D CalcCrossProduct(
+  const ribi::Coordinat3D& a,
+  const ribi::Coordinat3D& b
+) noexcept;
+
+///Calculate the cross product
+double CalcDotProduct(
+  const ribi::Coordinat3D& a,
+  const ribi::Coordinat3D& b
+) noexcept;
+
+///Calculate the normal of a triangle
+///The normal will be (0,0,-1) if a,b and c lie in the XY plane and ordered clockwise (when viewed from above)
+///The normal will be (0,0, 1) if a,b and c lie in the XY plane and ordered counter-clockwise (when viewed from above)
+///I use this convention as it appears to be used most extensively
+const ribi::Coordinat3D CalcNormal(
+  const ribi::Coordinat3D& a,
+  const ribi::Coordinat3D& b,
+  const ribi::Coordinat3D& c
+) noexcept;
 
 ///Calculate the distance between two coordinats
 double Distance(const Coordinat3D& lhs,const Coordinat3D& rhs);

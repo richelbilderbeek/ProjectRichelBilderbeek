@@ -42,9 +42,9 @@ struct ConstCoordinat2D
   static const int dimensionality = 2;
   const std::array<double,dimensionality> m_co;
 
-  //friend const ConstCoordinat2D operator*(
-  //  const double scalar,
-  //  const ConstCoordinat2D& v) noexcept;
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 double Distance(const ConstCoordinat2D& lhs,const ConstCoordinat2D& rhs) noexcept;

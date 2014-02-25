@@ -13,101 +13,62 @@
 #include "Shiny.h"
 
 #include "constcoordinat2d.h"
+#include "coordinat2d.h"
 #include "coordinat3d.h"
+#include "geometry.h"
 #include "trace.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshface.h"
 
 #pragma GCC diagnostic pop
 
-/*
-double ribi::trim::DotProduct(const ribi::Coordinat3D& v1,const ribi::Coordinat3D& v2)
-{
-  PROFILE_FUNC();
-  //Don't use v1.GetZ() and v2.GetZ() as the original code didn't as well
-  return
-      ( v1.GetX() * v2.GetX())
-    + ( v1.GetY() * v2.GetY())
-  ;
-}
-*/
-
-/*
-const std::string ribi::trim::FormatDigitsBehindTheComma(const double x, const int n)
-{
-  PROFILE_FUNC();
-  std::stringstream s;
-  s << std::setprecision(n) << std::fixed << x;
-  const std::string t = s.str();
-  return t;
-}
-*/
-/*
-const ribi::Coordinat3D ribi::trim::vOut(
-  const ribi::Coordinat3D& v1,
-  const ribi::Coordinat3D& v2)
-{
-  PROFILE_FUNC();
-  return ribi::Coordinat3D(
-    (v1.GetY()*v2.GetZ())-(v1.GetZ()*v2.GetY()),
-    (v1.GetZ()*v2.GetX())-(v1.GetX()*v2.GetZ()),
-    (v1.GetX()*v2.GetY())-(v1.GetY()*v2.GetX())
-  );
-}
-*/
-
-double ribi::trim::Fmod(const double x, const double mod) noexcept
-{
-  assert(mod != 0.0); //Cannot divide by zero
-  return x - (mod * static_cast<int>(x / mod));
-}
-
-double ribi::trim::GetAngle(const double dx, const double dy) noexcept
-{
-  const double pi = boost::math::constants::pi<double>();
-  const double tau = boost::math::constants::two_pi<double>();
-  double angle = pi - (std::atan2(dx,dy));
-  assert(angle < tau);
-  angle = Fmod(angle + tau,tau);
-  //if (angle < 0.0) angle += tau;
-  //if (angle >= tau) angle -= tau;
-  assert(angle >= 0.0);
-  assert(angle < tau);
-  return angle;
-}
-
 double ribi::trim::GetAngle(const boost::shared_ptr<const Point> point) noexcept
 {
-  return GetAngle(point->GetCoordinat()->GetX(),point->GetCoordinat()->GetY());
+  return Geometry().GetAngle(point->GetCoordinat()->GetX(),point->GetCoordinat()->GetY());
 }
 
-bool ribi::trim::IsClockwise(const std::vector<boost::shared_ptr<Point>>& points) noexcept
+bool ribi::trim::IsClockwiseHorizontal(const std::vector<boost::shared_ptr<Point>>& points) noexcept
 {
   assert(points.size() == 3);
-  const double pi  = boost::math::constants::pi<double>();
-  const double tau = boost::math::constants::two_pi<double>();
-  assert(GetAngle(points[0]) >= 0.0);
-  assert(GetAngle(points[0]) < tau);
-  assert(GetAngle(points[1]) >= 0.0);
-  assert(GetAngle(points[1]) < tau);
-  assert(GetAngle(points[2]) >= 0.0);
-  assert(GetAngle(points[2]) < tau);
-  const double a = Fmod(GetAngle(points[0]),tau);
-  const double b = Fmod(GetAngle(points[1]),tau);
-  const double c = Fmod(GetAngle(points[2]),tau);
-  TRACE(a);
-  TRACE(b);
-  TRACE(c);
-  TRACE(a < b);
-  TRACE(Fmod(a + pi,tau) > b);
-  TRACE(b < c);
-  TRACE(Fmod(b + pi,tau) > c);
+  double center_x = 0.0;
+  double center_y = 0.0;
+  for (const auto point: points)
+  {
+    center_x += point->GetCoordinat()->GetX();
+    center_y += point->GetCoordinat()->GetY();
+  }
+  center_x /= static_cast<double>(points.size());
+  center_y /= static_cast<double>(points.size());
 
-
-  const bool is_clockwise {
-       a < b && Fmod(a + pi,tau) > b
-    && b < c && Fmod(b + pi,tau) > c
+  //const double pi  = boost::math::constants::pi<double>();
+  //const double tau = boost::math::constants::two_pi<double>();
+  const bool a {
+    Geometry().IsClockwise(
+      Geometry().GetAngle(
+        points[0]->GetCoordinat()->GetX() - center_x,
+        points[0]->GetCoordinat()->GetY() - center_y
+      ),
+      Geometry().GetAngle(
+        points[1]->GetCoordinat()->GetX() - center_x,
+        points[1]->GetCoordinat()->GetY() - center_y
+      )
+    )
   };
-  TRACE(is_clockwise);
+  const bool b {
+    Geometry().IsClockwise(
+      Geometry().GetAngle(
+        points[1]->GetCoordinat()->GetX() - center_x,
+        points[1]->GetCoordinat()->GetY() - center_y
+      ),
+      Geometry().GetAngle(
+        points[2]->GetCoordinat()->GetX() - center_x,
+        points[2]->GetCoordinat()->GetY() - center_y
+      )
+    )
+  };
+  //TRACE(a);
+  //TRACE(b);
+  const bool is_clockwise { a && b };
+  //TRACE(is_clockwise);
   return is_clockwise;
 }

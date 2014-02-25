@@ -3,12 +3,15 @@
 #include <array>
 #include <iostream>
 
+#include "trace.h"
 #include "xml.h"
 
 ribi::ConstCoordinat2D::ConstCoordinat2D(const double x, const double y) noexcept
   : m_co{ { x,y } }
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 double ribi::DotProduct(
@@ -52,6 +55,19 @@ const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
   assert(p);
   return p;
 }
+
+#ifndef NDEBUG
+void ribi::ConstCoordinat2D::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::ConstCoordinat2D::Test");
+  TRACE("Finished ribi::ConstCoordinat2D::Test successfully");
+}
+#endif
 
 const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
   const boost::shared_ptr<const ConstCoordinat2D> v1,

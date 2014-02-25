@@ -28,6 +28,7 @@ struct CommandSetFocusRandom : public Command
 
   private:
   Widget * m_widget;
+  std::vector<boost::shared_ptr<Node>> m_old_focus;
 };
 
 } //~namespace cmap

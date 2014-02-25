@@ -35,7 +35,7 @@ int ribi::ValentineCardDecrypterMenuDialog::ExecuteSpecific(const std::vector<st
 
     for (auto s: ValentineCardSymbols().CreateAlphabet().left)
     {
-      std::cout << s.first << "\n" << (*s.second.ToTextCanvas()) << std::endl;
+      std::cout << s.first << "\n" << (*s.second->ToTextCanvas()) << std::endl;
     }
     return 0;
   }
@@ -116,13 +116,14 @@ const boost::shared_ptr<const ribi::Program> ribi::ValentineCardDecrypterMenuDia
 
 const std::string ribi::ValentineCardDecrypterMenuDialog::GetVersion() const noexcept
 {
-  return "1.0";
+  return "2.0";
 }
 
 const std::vector<std::string> ribi::ValentineCardDecrypterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2014-02-18: version 1.0: initial version"
+    "2014-02-18: version 1.0: initial command-line version, displaying the alphabet",
+    "2014-02-25: version 2.0: added functionality to command-line version, added desktop version"
   };
 }
 

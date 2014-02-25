@@ -60,23 +60,15 @@ void ribi::ValentineCardDecrypterMainDialog::Test() noexcept
         CanvasCoordinatSystem::screen
       )
     };
-    if (*canvas != *expected)
-    {
-      TRACE("ERROR");
-      TRACE(*canvas);
-      TRACE(*expected);
-      TRACE("BREAK");
-    }
     assert(*canvas == *expected);
   }
-  assert(1==2);
   TRACE("Finished ribi::ValentineCardDecrypterMainDialog::Test successfully");
 }
 #endif
 
 const boost::shared_ptr<ribi::TextCanvas> ribi::ValentineCardDecrypterMainDialog::ToSymbolsAsString(const std::string& s) const noexcept
 {
-  const std::vector<ValentineCardSymbol> v {
+  const std::vector<boost::shared_ptr<ValentineCardSymbol>> v {
     ValentineCardSymbols().TextToSymbols(s)
   };
   const int sz = static_cast<int>(v.size());
@@ -89,8 +81,9 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::ValentineCardDecrypterMainDialog
   for (int i=0; i!=sz; ++i)
   {
     assert(i < static_cast<int>(v.size()));
-    assert(v[i].ToTextCanvas());
-    const boost::shared_ptr<TextCanvas> text { v[i].ToTextCanvas() };
+    assert(v[i]);
+    assert(v[i]->ToTextCanvas());
+    const boost::shared_ptr<TextCanvas> text { v[i]->ToTextCanvas() };
     assert(text);
     assert(text->GetHeight() == 3);
     assert(text->GetWidth() == 3);
@@ -107,9 +100,8 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::ValentineCardDecrypterMainDialog
 
 const boost::shared_ptr<QImage> ribi::ValentineCardDecrypterMainDialog::ToSymbolsAsImage(const std::string& s) const noexcept
 {
-  const std::vector<ValentineCardSymbol> v {
+  const std::vector<boost::shared_ptr<ValentineCardSymbol>> v {
     ValentineCardSymbols().TextToSymbols(s)
-
   };
   const int sz = static_cast<int>(v.size());
   boost::shared_ptr<QImage> image {
@@ -118,8 +110,9 @@ const boost::shared_ptr<QImage> ribi::ValentineCardDecrypterMainDialog::ToSymbol
   assert(image);
   for (int i=0; i!=sz; ++i)
   {
-    const ValentineCardSymbol s { v[i] };
-    const boost::shared_ptr<QImage> image_char { s.ToImage() };
+    const boost::shared_ptr<ValentineCardSymbol> s { v[i] };
+    assert(s);
+    const boost::shared_ptr<QImage> image_char { s->ToImage() };
     for (int row = 0; row!=7; ++row)
     {
       for (int col = 0; col!=7; ++col)

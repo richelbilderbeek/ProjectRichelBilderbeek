@@ -57,7 +57,7 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocusNode,this,boost::lambda::_1)
   );
   m_widget->m_signal_set_focus_nodes.connect(
-    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNode,this,boost::lambda::_1)
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNodes,this,boost::lambda::_1)
   );
 }
 
@@ -235,6 +235,11 @@ void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(const boost::shared_ptr<Nod
   }
 }
 
+
+void ribi::cmap::QtConceptMapWidget::OnSetFocusNodes(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
+{
+  for (const auto node: nodes) { OnSetFocusNode(node); }
+}
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
 {

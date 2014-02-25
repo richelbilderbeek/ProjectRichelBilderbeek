@@ -710,11 +710,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           "Joost van den Bogaart",
-          "somename",
-          "description",
+          "EverythingToPiecesShooter",
+          "space shooting game",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameEverythingToPiecesShooter.htm",
           version,
           version_history
         );
@@ -736,11 +736,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "FakeEvy",
+          "Running trainer generator",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolFakeEvy.htm",
           version,
           version_history
         );
@@ -763,11 +763,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "FilterOperationer (VCL)",
+          "tool to perform filter operations",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolFilterOperationer.htm",
           version,
           version_history
         );
@@ -789,11 +789,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "FryskLeareLieder",
+          "tool to learn the Frysian language",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolFryskLeareLieder.htm",
           version,
           version_history
         );
@@ -816,11 +816,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "FunctionPlotter (VCL)",
+          "tool to plot a function",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolFunctionPlotterVcl.htm",
           version,
           version_history
         );
@@ -843,11 +843,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "GaborFilter (VCL)",
+          "tool to perform a Gabor filter operation",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolGaborFilterVcl.htm",
           version,
           version_history
         );
@@ -870,11 +870,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "GrayCoder (VCL)",
+          "tool to experiment with Gray codes",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolGrayCoderVcl.htm",
           version,
           version_history
         );
@@ -896,11 +896,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "GTST",
+          "tool to do social experiments",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ProjectGtst.htm",
           version,
           version_history
         );
@@ -923,11 +923,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "HistogramEqualizationer (VCL)",
+          "tool to perform a histogram equalization",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/toolHistogramEqualizationerVcl.htm",
           version,
           version_history
         );
@@ -950,11 +950,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Hometrainer (VCL)",
+          "tool to create and practice drills",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolHometrainerVcl.htm",
           version,
           version_history
         );
@@ -977,11 +977,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "ImageRotater (CLX)",
+          "tool to rotate images",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolImageRotaterClx.htm",
           version,
           version_history
         );
@@ -1003,11 +1003,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "ImageRotater (VCL)",
+          "tool to rotate images",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolImageRotaterVcl.htm",
           version,
           version_history
         );
@@ -1030,11 +1030,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "K3OpEenRij (VCL)",
+          "K3 styled connect-three game",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameK3OpEenRijVcl.htm",
           version,
           version_history
         );
@@ -1057,11 +1057,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "KeySender",
+          "tool to emulate keystrokes",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolKeySender.htm",
           version,
           version_history
         );
@@ -1084,11 +1084,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           "Joost van den Bogaart & Richel Bilderbeek",
-          "somename",
-          "description",
+          "Knokfighter (VCL)",
+          "a Double Dragon clone",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameKnokfighterVcl.htm",
           version,
           version_history
         );
@@ -1110,11 +1110,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "KTouchLectureCreator",
+          "creates exercises for KTouch",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolKtouchLectureCreator.htm",
           version,
           version_history
         );
@@ -1136,11 +1136,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "LambdaBot",
+          "an IRC bot",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolLambdaBot.htm",
           version,
           version_history
         );
@@ -1162,11 +1162,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "LearyCircumplex",
+          "tool to draw a Leary circumplex",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolLearyCircumplex.htm",
           version,
           version_history
         );
@@ -1188,11 +1188,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "LogisticGrowthSimulator",
+          "simulation of the logistic growth equation",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolLogisticGrowthSimulator.htm",
           version,
           version_history
         );
@@ -1214,11 +1214,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Loose",
+          "email address assigner",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolLoose.htm",
           version,
           version_history
         );
@@ -1240,11 +1240,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           "Joost van den Bogaart",
-          "somename",
-          "description",
+          "Martian Cafe Tuinema Tycoon",
+          "pub simulation game",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameMartianCafeTuinemaTycoon.htm",
           version,
           version_history
         );
@@ -1267,11 +1267,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "MazeCreator (VCL)",
+          "tool to demonstrate maze creation",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolMazeCreatorVcl.htm",
           version,
           version_history
         );
@@ -1294,11 +1294,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Maziak (VCL)",
+          "simple maze game",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameMaziak.htm",
           version,
           version_history
         );
@@ -1321,11 +1321,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "MetZnDrieen (VCL)",
+          "Billy themed connect-three game",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/GameMetZnDrieenVcl.htm",
           version,
           version_history
         );
@@ -1347,11 +1347,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "MidiLessonCreator",
+          "tool to create MIDI lessons",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolMidiLessonCreator.htm",
           version,
           version_history
         );
@@ -1373,11 +1373,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "Morpher",
+          "tool to generate morphed images",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolMorpher.htm",
           version,
           version_history
         );
@@ -1400,11 +1400,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "MultiEncranger (VCL)",
+          "multi-line Encranger",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolMultiEncrangerVcl.htm",
           version,
           version_history
         );
@@ -1426,11 +1426,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "MuscaDomestica",
+          "Musca Domestica simulation",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ProjectMuscaDomestica.htm",
           version,
           version_history
         );
@@ -1453,11 +1453,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "ndsmake",
+          "make tool to compile to NDS",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolNdsmake.htm",
           version,
           version_history
         );
@@ -1479,11 +1479,11 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         };
         const About about(
           About::GetDefaultAuthor(),
-          "somename",
-          "description",
+          "NDS paint",
+          "drawing program for NDS",
           "someday",
           "20xx-20xx",
-          "http://www.richelbilderbeek.nl/Somewhere.htm",
+          "http://www.richelbilderbeek.nl/ToolNdsPaint.htm",
           version,
           version_history
         );

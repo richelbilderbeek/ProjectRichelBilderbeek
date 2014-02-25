@@ -16,7 +16,7 @@ namespace cmap {
 /// and a Node in focus
 struct CommandDeleteFocusNode : public Command
 {
-  CommandDeleteFocusNode() : m_node{}, m_widget{} {}
+  CommandDeleteFocusNode() : m_old_focus{}, m_widget{} {}
   CommandDeleteFocusNode(const CommandDeleteFocusNode&) = delete;
   CommandDeleteFocusNode& operator=(const CommandDeleteFocusNode&) = delete;
   ~CommandDeleteFocusNode() noexcept {}
@@ -27,7 +27,7 @@ struct CommandDeleteFocusNode : public Command
   void Undo() noexcept;
 
   private:
-  boost::shared_ptr<Node> m_node;
+  std::vector<boost::shared_ptr<Node>> m_old_focus;
   Widget * m_widget;
 };
 

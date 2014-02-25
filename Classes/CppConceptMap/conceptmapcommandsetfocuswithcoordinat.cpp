@@ -17,31 +17,33 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
   assert(CanDoCommandSpecific(widget));
   assert(widget);
 
-  //Set focus to this Node
+  m_old_focus = widget->GetFocus();
   m_widget = widget;
+
   const boost::shared_ptr<Node> node {
     widget->FindNodeAt(m_x,m_y)
   };
 
-  m_widget->m_focus.clear();
-  m_widget->m_focus.push_back(node);
 
-  m_widget->m_signal_set_focus_nodes({ node);
+  widget->m_focus.clear();
+  widget->m_focus.push_back(node);
+
+  widget->m_signal_set_focus_nodes(widget->GetFocus());
 
   assert(m_widget);
   assert(widget);
-  assert(widget->m_focus);
 }
 
 void ribi::cmap::CommandSetFocusWithCoordinat::Undo() noexcept
 {
   assert(m_widget);
-  assert(m_widget->m_focus);
+  assert(!m_widget->m_focus.empty());
 
   //Lose focus to this Node
-  m_widget->m_focus = nullptr;
+  m_widget->SetFocus(m_old_focus);
+
+  m_old_focus.clear();
   m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);
-  assert(!m_widget->m_focus || m_widget->m_focus); //Widget might have had focus
 }

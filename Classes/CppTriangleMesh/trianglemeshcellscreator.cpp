@@ -149,8 +149,8 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
       }
       assert(layer == 0 || face_index - n_faces_per_layer >= 0);
       assert(layer == 0 || face_index - n_faces_per_layer < static_cast<int>(v.size()));
-      if ( (layer % 2 == 0 && !IsClockwise(face_points))
-        || (layer % 2 == 1 &&  IsClockwise(face_points))
+      if ( (layer % 2 == 0 && !IsClockwiseHorizontal(face_points))
+        || (layer % 2 == 1 &&  IsClockwiseHorizontal(face_points))
       )
       {
         std::reverse(face_points.begin(),face_points.end());

@@ -125,6 +125,7 @@ private:
   ///Block destructor, except for the friend boost::checked_delete
   ~ConceptMap() {}
   friend void boost::checked_delete<>(ConceptMap* x);
+  friend void boost::checked_delete<>(const ConceptMap* x);
 };
 
 ///Count the number of CenterNodes

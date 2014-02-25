@@ -63,11 +63,11 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
   const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
 
-  if (!IsClockwise(points_bottom))
+  if (!IsClockwiseHorizontal(points_bottom))
   {
     std::reverse(points_bottom.begin(),points_bottom.end());
   }
-  if (!IsClockwise(points_top))
+  if (!IsClockwiseHorizontal(points_top))
   {
     std::reverse(points_top.begin(),points_top.end());
   }

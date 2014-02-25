@@ -32,6 +32,9 @@ struct Coordinat2D
   static const int dimensionality = 2;
   std::array<double,dimensionality> m_co;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 bool operator==(const Coordinat2D& lhs, const Coordinat2D& rhs) noexcept;
@@ -46,6 +49,11 @@ double Distance(const Coordinat2D& lhs,const Coordinat2D& rhs) noexcept;
 
 ///Distance to origin
 double Length(const Coordinat2D& v) noexcept;
+
+const Coordinat2D Scale(
+  const double scalar,
+  const Coordinat2D& v
+) noexcept;
 
 const Coordinat2D operator+(
   const Coordinat2D& v1,

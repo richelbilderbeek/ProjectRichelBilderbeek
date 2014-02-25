@@ -53,6 +53,10 @@ struct ValentineCardSymbol
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:
+  ~ValentineCardSymbol() {}
+  friend void boost::checked_delete<>(ValentineCardSymbol* x);
+  friend void boost::checked_delete<>(const ValentineCardSymbol* x);
+
   CenterSymbol m_center_symbol;
   std::array<bool,4> m_lines;
 

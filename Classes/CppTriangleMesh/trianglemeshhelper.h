@@ -49,16 +49,6 @@ bool CanLexicalCast(const std::string& from)
   return true;
 }
 
-double Fmod(const double x, const double mod) noexcept;
-
-///Obtain the angle in radians between two deltas
-///12 o'clock is 0.0 * pi
-/// 3 o'clock is 0.5 * pi
-/// 6 o'clock is 1.0 * pi
-/// 9 o'clock is 1.5 * pi
-//From www.richelbilderbeek.nl/CppGetAngle.htm
-double GetAngle(const double dx, const double dy) noexcept;
-
 ///Obtain the angle in radians between two deltas
 ///12 o'clock is 0.0 * pi
 /// 3 o'clock is 0.5 * pi
@@ -66,13 +56,16 @@ double GetAngle(const double dx, const double dy) noexcept;
 /// 9 o'clock is 1.5 * pi
 double GetAngle(const boost::shared_ptr<const Point> point) noexcept;
 
-bool IsClockwise(const std::vector<boost::shared_ptr<Point>>& points) noexcept;
+///Are the points ordered clockwise in the XY plane seen from above
+/// (e.g. from coordinat {0,0,1} )
+bool IsClockwiseHorizontal(const std::vector<boost::shared_ptr<Point>>& points) noexcept;
 
-/*
-const ribi::Coordinat3D vOut(
-  const ribi::Coordinat3D& v1,
-  const ribi::Coordinat3D& v2);
-*/
+///Are the points ordered clockwise in the XY plane seen from above
+/// (e.g. from coordinat {0,0,1} )
+bool IsClockwiseVertical(
+  const std::vector<boost::shared_ptr<Point>>& points,
+  const boost::shared_ptr<const Point>& observer
+) noexcept;
 
 } //~namespace trim
 } //~namespace ribi

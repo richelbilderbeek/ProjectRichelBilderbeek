@@ -12,15 +12,16 @@ struct Coordinat
   const Length& GetX() const noexcept { return m_x; }
   const Length& GetY() const noexcept { return m_y; }
 
-  ///Test this class
-  static void Test() noexcept;
-
   void Translate(const Length& dx, const Length& dy) noexcept;
   void Translate(const Coordinat& delta) noexcept;
 
   private:
   Length m_x;
   Length m_y;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 
@@ -63,12 +64,14 @@ void Coordinat<Length>::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::Coordinat::Test");
   {
     const Coordinat<double> a(0.0,0.0);
     const Coordinat<double> b(0.0,0.0);
     assert(a == b);
     const Coordinat<double> c(a);
   }
+  TRACE("Finished ribi::Coordinat::Test successfully");
 }
 
 #endif // COORDINAT_H

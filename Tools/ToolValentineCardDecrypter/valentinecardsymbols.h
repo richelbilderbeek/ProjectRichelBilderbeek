@@ -16,9 +16,14 @@ namespace ribi {
 struct ValentineCardSymbols
 {
   ValentineCardSymbols() {}
-  const std::vector<ValentineCardSymbol> CreateAll() const noexcept;
-  const boost::bimap<char,ValentineCardSymbol> CreateAlphabet() const noexcept;
-  const std::vector<ValentineCardSymbol> TextToSymbols(const std::string& s) const noexcept;
+  const std::vector<boost::shared_ptr<ValentineCardSymbol>> CreateAll() const noexcept;
+  const boost::bimap<char,boost::shared_ptr<ValentineCardSymbol>> CreateAlphabet() const noexcept;
+  const std::vector<boost::shared_ptr<ValentineCardSymbol>> TextToSymbols(const std::string& s) const noexcept;
+
+  //private:
+  //~ValentineCardSymbols() {}
+  //friend void boost::checked_delete<>(ValentineCardSymbols* x);
+  //friend void boost::checked_delete<>(const ValentineCardSymbols* x);
 };
 
 } //~namespace ribi

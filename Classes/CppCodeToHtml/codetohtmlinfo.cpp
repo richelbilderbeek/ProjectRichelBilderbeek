@@ -1628,6 +1628,25 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppGeometry",
+      {
+        "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppGeometry.htm\">CppGeometry</a> is a folder with my geometry",
+        "  <a href=\"CppFunction.htm\">functions</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  For the <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppLibrary.htm\">library</a>,",
+        "  go to the page about <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a>.",
+        "</p>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppGetCombinations",
       {
         "<p><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
