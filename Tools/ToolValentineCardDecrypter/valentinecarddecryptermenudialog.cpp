@@ -82,7 +82,8 @@ const ribi::About ribi::ValentineCardDecrypterMenuDialog::GetAbout() const noexc
     "2014",
     "http://www.richelbilderbeek.nl/ToolValentineCardDecrypter.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Canvas version: " + Canvas::GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   return a;

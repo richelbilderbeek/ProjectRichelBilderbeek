@@ -12,3 +12,6 @@ SOURCES += \
     ../../Tools/ToolValentineCardDecrypter/valentinecarddecryptermenudialog.cpp \
     ../../Tools/ToolValentineCardDecrypter/valentinecardsymbol.cpp \
     ../../Tools/ToolValentineCardDecrypter/valentinecardsymbols.cpp
+
+RESOURCES += \
+    ../../Tools/ToolValentineCardDecrypter/ToolValentineCardDecrypter.qrc

@@ -63,7 +63,7 @@ struct Widget
 
   ///Emitted when a Node loses focus
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus_node;
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_lose_focus_nodes;
 
   ///Emitted when multiple Nodes receive focus
   ///This has to be handled by QtConceptMapWidget
@@ -105,7 +105,7 @@ struct Widget
   const boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
   const std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
-  const std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept { return m_focus; }
+  const std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept;
 
   ///Used by CommandSetFocusRandom
   const boost::shared_ptr<Node> GetRandomNode() noexcept;

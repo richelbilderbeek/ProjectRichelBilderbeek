@@ -57,6 +57,7 @@ bool operator==(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noex
       && lhs.GetY() == rhs.GetY();
 }
 
+#ifndef NDEBUG
 template <class Length>
 void Coordinat<Length>::Test() noexcept
 {
@@ -74,5 +75,6 @@ void Coordinat<Length>::Test() noexcept
   }
   TRACE("Finished ribi::Coordinat::Test successfully");
 }
+#endif
 
 #endif // COORDINAT_H

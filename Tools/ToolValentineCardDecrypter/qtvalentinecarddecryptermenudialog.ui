@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>171</width>
-    <height>294</height>
+    <width>320</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="font">
@@ -33,7 +33,10 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/ToolGaborFilter.png</pixmap>
+      <pixmap resource="ToolValentineCardDecrypter.qrc">:/valentinecarddecrypter/files/ToolValentineCardDecrypterWelcome.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -73,6 +76,8 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ToolValentineCardDecrypter.qrc"/>
+ </resources>
  <connections/>
 </ui>

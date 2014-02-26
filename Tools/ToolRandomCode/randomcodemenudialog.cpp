@@ -22,6 +22,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "randomcode.h"
 
 #include <cassert>
+#include <ctime>
+#include <iostream>
+#include <iterator>
 
 #include "randomcodemenudialog.h"
 #include "trace.h"
@@ -42,7 +45,8 @@ int ribi::RandomCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   std::copy(
     v.begin(),
     v.end(),
-    std::ostream_iterator<std::string>(std::cout,"\n"));
+    std::ostream_iterator<std::string>(std::cout,"\n")
+  );
 
   return 0;
 }

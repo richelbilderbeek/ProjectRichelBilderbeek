@@ -75,7 +75,7 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::ValentineCardDecrypterMainDialog
   if (sz == 0) return nullptr;
 
   boost::shared_ptr<TextCanvas> canvas {
-    new TextCanvas(sz * 3, 3)
+    new TextCanvas((sz * 3) + sz - 1, 3) //Add spaces
   };
   assert(canvas);
   for (int i=0; i!=sz; ++i)
@@ -91,8 +91,10 @@ const boost::shared_ptr<ribi::TextCanvas> ribi::ValentineCardDecrypterMainDialog
     {
       for (int col = 0; col!=3; ++col)
       {
-        canvas->PutChar((3*i) + col,row,text->GetChar(col,row));
+        canvas->PutChar((4*i) + col,row,text->GetChar(col,row));
       }
+      const int col = 3;
+      canvas->PutChar((4*i) + col,row,' ');
     }
   }
   return canvas;
@@ -105,7 +107,7 @@ const boost::shared_ptr<QImage> ribi::ValentineCardDecrypterMainDialog::ToSymbol
   };
   const int sz = static_cast<int>(v.size());
   boost::shared_ptr<QImage> image {
-    new QImage(sz * 7, 7,QImage::Format::Format_RGB32)
+    new QImage((sz * 7) + sz - 1, 7,QImage::Format::Format_RGB32)
   };
   assert(image);
   for (int i=0; i!=sz; ++i)
@@ -117,7 +119,12 @@ const boost::shared_ptr<QImage> ribi::ValentineCardDecrypterMainDialog::ToSymbol
     {
       for (int col = 0; col!=7; ++col)
       {
-        image->setPixel((7*i) + col,row,image_char->pixel(col,row));
+        image->setPixel((8*i) + col,row,image_char->pixel(col,row));
+      }
+      if (i + 1 != sz)
+      {
+        const int col = 7;
+        image->setPixel((8*i) + col,row,qRgb(255,255,255));
       }
     }
   }

@@ -20,7 +20,7 @@ const std::vector<boost::shared_ptr<ribi::ValentineCardSymbol>> ribi::ValentineC
     assert(symbol);
     v.push_back(symbol);
   }
-  TRACE(v.size());
+  //TRACE(v.size());
   return v;
 }
 

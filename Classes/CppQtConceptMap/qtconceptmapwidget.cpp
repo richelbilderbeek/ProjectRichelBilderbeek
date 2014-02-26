@@ -53,8 +53,8 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnDeleteNode,this,boost::lambda::_1)
   );
 
-  m_widget->m_signal_lose_focus_node.connect(
-    boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocusNode,this,boost::lambda::_1)
+  m_widget->m_signal_lose_focus_nodes.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocusNodes,this,boost::lambda::_1)
   );
   m_widget->m_signal_set_focus_nodes.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNodes,this,boost::lambda::_1)
@@ -219,22 +219,18 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
   }
 }
 
-void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept
+void ribi::cmap::QtConceptMapWidget::OnLoseFocusNodes(const std::vector<boost::shared_ptr<Node>> nodes) noexcept
 {
-  TRACE_FUNC();
-  if (!node)
-  {
-    //Nothing
-  }
-  else
-  {
-    if (m_qtconceptmap->FindQtNode(node.get()))
-    {
-      m_qtconceptmap->FindQtNode(node.get())->clearFocus();
-    }
-  }
+  for (const auto node: nodes) { OnLoseFocusNode(node); }
 }
 
+void ribi::cmap::QtConceptMapWidget::OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept
+{
+  if (m_qtconceptmap->FindQtNode(node.get()))
+  {
+    m_qtconceptmap->FindQtNode(node.get())->clearFocus();
+  }
+}
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNodes(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
 {

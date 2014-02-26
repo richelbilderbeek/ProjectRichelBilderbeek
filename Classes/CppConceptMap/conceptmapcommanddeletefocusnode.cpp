@@ -22,6 +22,7 @@ void ribi::cmap::CommandDeleteFocusNode::DoCommandSpecific(Widget * const widget
   m_old_focus = m_widget->GetFocus();
   for (const auto node: m_old_focus)
   {
+    assert(node);
     m_widget->DeleteNode(node);
   }
   assert(m_widget);
