@@ -154,8 +154,8 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
   std::array<boost::shared_ptr<Point>,2> points_3 {{}};
   switch (winding)
   {
-    case Winding::clockwise        : points_3 = { points[0], points[1] }; break;
-    case Winding::counter_clockwise: points_3 = { points[2], points[1] }; break;
+    case Winding::clockwise        : points_3 = { points[2], points[0] }; break;
+    case Winding::counter_clockwise: points_3 = { points[1], points[0] }; break;
     case Winding::indeterminate    : points_3 = { points[2], points[0] }; break;
     case Winding::n_types:
       assert(!"Should not get here");

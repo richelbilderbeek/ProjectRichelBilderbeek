@@ -85,6 +85,7 @@ ribi::trim::Winding ribi::trim::CalcWindingHorizontal(const std::vector<boost::s
   }
   assert(points.size() == edges.size());
 
+  HUH, ER IS OOK EEN NORMALE sClockwiseHorizontal(points, MET ABOVE HIERO)
   return Geometry().IsClockwiseHorizontal(points)
     ? Winding::clockwise
     : Winding::counter_clockwise
