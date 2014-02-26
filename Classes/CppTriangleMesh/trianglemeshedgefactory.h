@@ -13,6 +13,7 @@
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
+#include "trianglemeshwinding.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -76,6 +77,31 @@ struct EdgeFactory
 
   */
   const std::vector<boost::shared_ptr<Edge>> CreateTestPrism() const noexcept;
+
+
+  ///Creates a triangle with the requested winding
+  /*
+
+  Points are always the same:
+
+    Y
+
+    |
+  2 + 0   where Z = 1.0 for all points
+    | |\
+  1 + 2-1
+    |
+  0 +-+-+- X
+
+    0 1 2
+
+  clockwise        : 0->1, 1->2, 2->0
+  counter_clockwise: 0->2, 2->1, 1->0
+  indeterminate    : 0->1, 2->1, 2->0
+
+  */
+
+  const std::vector<boost::shared_ptr<Edge>> CreateTestTriangle(const Winding winding) const noexcept;
 
   private:
   #ifndef NDEBUG

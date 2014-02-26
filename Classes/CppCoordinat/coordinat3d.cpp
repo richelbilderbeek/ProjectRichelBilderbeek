@@ -50,7 +50,7 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator*=(const double f) noexcept
 const ribi::Coordinat3D ribi::CalcCenter(const std::vector<ribi::Coordinat3D>& points) noexcept
 {
   Coordinat3D sum;
-  for (const auto point: points)
+  for (const auto& point: points)
   {
     sum += point;
   }

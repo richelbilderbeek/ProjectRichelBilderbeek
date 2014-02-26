@@ -1,19 +1,23 @@
-#include <QApplication>
-#include "dialogmenu.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <vector>
 
-int main(int argc, char *argv[])
+#include <QDir>
+#include <QFile>
+#include <QFileInfoList>
+
+#include "staircasecardcreatormenudialog.h"
+#include "fileio.h"
+#include "trace.h"
+#pragma GCC diagnostic pop
+
+int main(int argc, char* argv[])
 {
-    QApplication a(argc, argv);
-    DialogMenu w;
-    w.show();
-
-    return a.exec();
+  START_TRACE();
+  const std::vector<std::string> args { ribi::MenuDialog::ConvertArguments(argc,argv) };
+  return ribi::scc::StaircaseCardCreatorMenuDialog().Execute(args);
 }
-
-/*
-
-* YYYY-MM-DD: version X.Y: [description]
-* 2009-01-11: version 1.0: initial version developed under C++ Builder, supporting Windows only, supports the bitmap graphic format only
-* 2010-10-19: version 1.1: port to Qt Creator, supporting more operating systems, added support for any graphic format
-
-*/

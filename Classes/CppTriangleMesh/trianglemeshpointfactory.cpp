@@ -96,6 +96,39 @@ const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory
   return prism;
 }
 
+const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::CreateTestTriangle() const noexcept
+{
+  const boost::shared_ptr<ribi::ConstCoordinat2D> co_a {
+    new ribi::ConstCoordinat2D(1.0,2.0)
+  };
+  const boost::shared_ptr<ribi::ConstCoordinat2D> co_b {
+    new ribi::ConstCoordinat2D(2.0,1.0)
+  };
+  const boost::shared_ptr<ribi::ConstCoordinat2D> co_c {
+    new ribi::ConstCoordinat2D(1.0,1.0)
+  };
+
+  const boost::shared_ptr<Point> a {
+    PointFactory().Create(co_a)
+  };
+  const boost::shared_ptr<Point> b {
+    PointFactory().Create(co_b)
+  };
+  const boost::shared_ptr<Point> c {
+    PointFactory().Create(co_c)
+  };
+
+  a->SetZ(1.0 * boost::units::si::meter);
+  b->SetZ(1.0 * boost::units::si::meter);
+  c->SetZ(1.0 * boost::units::si::meter);
+  a->SetIndex(1);
+  b->SetIndex(2);
+  c->SetIndex(3);
+  const std::vector<boost::shared_ptr<Point>> triangle { a,b,c };
+  return triangle;
+}
+
+
 #ifndef NDEBUG
 void ribi::trim::PointFactory::Test() noexcept
 {

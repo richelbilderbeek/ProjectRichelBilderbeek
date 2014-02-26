@@ -1,30 +1,14 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../ConsoleApplication.pri)
+include(../../Libraries/Boost.pri)
 
-QMAKE_CXXFLAGS += -Wall -Wextra
+include(../../Classes/CppAbout/CppAbout.pri)
+include(../../Classes/CppFileIo/CppFileIo.pri)
+include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
+include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
+include(../../Classes/CppTrace/CppTrace.pri)
 
-TEMPLATE = app
+#Specific, console
+include(../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreatorConsole.pri)
 
-
-SOURCES += main.cpp\
-        dialogmenu.cpp \
-    dialogwhatsnew.cpp \
-    dialogabout.cpp \
-    dialogcreate.cpp \
-    staircasecard.cpp \
-    staircasecardwidget.cpp
-
-HEADERS  += dialogmenu.h \
-    dialogwhatsnew.h \
-    dialogabout.h \
-    dialogcreate.h \
-    staircasecard.h \
-    staircasecardwidget.h
-
-FORMS    += dialogmenu.ui \
-    dialogwhatsnew.ui \
-    dialogabout.ui \
-    dialogcreate.ui
-
-RESOURCES += \
-    ToolStaircaseCardCreator.qrc
+SOURCES += main.cpp

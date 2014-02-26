@@ -1,6 +1,7 @@
 #include "trianglemeshedgefactory.h"
 
 #include <cassert>
+#include <stdexcept>
 
 #include "Shiny.h"
 
@@ -10,6 +11,7 @@
 #include "trianglemeshedgefactory.h"
 #include "trianglemeshpointfactory.h"
 #include "trianglemeshhelper.h"
+#include "trianglemeshwindings.h"
 #include "trace.h"
 
 ribi::trim::EdgeFactory::EdgeFactory()
@@ -38,12 +40,9 @@ const boost::shared_ptr<ribi::trim::Edge> ribi::trim::EdgeFactory::Create(
     )
   );
   assert(edge);
-  for (auto point: edge->GetPoints())
-  {
-    assert(point);
-    point->AddBelongsTo(edge);
-  }
-
+  //Let the Points know they belong to the Edge
+  edge->GetFrom()->AddBelongsTo(edge);
+  edge->GetTo()->AddBelongsTo(edge);
   return edge;
 }
 
@@ -116,6 +115,79 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
   };
   return prism;
 }
+
+const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestTriangle(const Winding winding) const noexcept
+{
+  assert(winding != Winding::n_types);
+  const std::vector<boost::shared_ptr<Point>> points {
+    PointFactory().CreateTestTriangle()
+  };
+  assert(std::count(points.begin(),points.end(),nullptr) == 0);
+  //clockwise        : 0->1, 1->2, 2->0
+  //counter_clockwise: 0->2, 2->1, 1->0
+  //indeterminate    : 0->1, 2->1, 2->0
+
+  std::array<boost::shared_ptr<Point>,2> points_1{{}};
+  switch (winding)
+  {
+    case Winding::clockwise        : points_1 = { points[0], points[1] }; break;
+    case Winding::counter_clockwise: points_1 = { points[0], points[2] }; break;
+    case Winding::indeterminate    : points_1 = { points[0], points[1] }; break;
+    case Winding::n_types:
+      assert(!"Should not get here");
+      throw std::logic_error("ribi::trim::EdgeFactory::CreateTestTriangle: invalid Winding");
+  }
+  assert(points_1[0]);
+  assert(points_1[1]);
+  std::array<boost::shared_ptr<Point>,2> points_2 {{}};
+  switch (winding)
+  {
+    case Winding::clockwise        : points_2 = { points[1], points[2] }; break;
+    case Winding::counter_clockwise: points_2 = { points[2], points[1] }; break;
+    case Winding::indeterminate    : points_2 = { points[2], points[1] }; break;
+    case Winding::n_types:
+      assert(!"Should not get here");
+      throw std::logic_error("ribi::trim::EdgeFactory::CreateTestTriangle: invalid Winding");
+  }
+  assert(points_2[0]);
+  assert(points_2[1]);
+  std::array<boost::shared_ptr<Point>,2> points_3 {{}};
+  switch (winding)
+  {
+    case Winding::clockwise        : points_3 = { points[0], points[1] }; break;
+    case Winding::counter_clockwise: points_3 = { points[2], points[1] }; break;
+    case Winding::indeterminate    : points_3 = { points[2], points[0] }; break;
+    case Winding::n_types:
+      assert(!"Should not get here");
+      throw std::logic_error("ribi::trim::EdgeFactory::CreateTestTriangle: invalid Winding");
+  }
+  assert(points_3[0]);
+  assert(points_3[1]);
+  const boost::shared_ptr<Edge> edge_1 { EdgeFactory().Create(points_1) };
+  const boost::shared_ptr<Edge> edge_2 { EdgeFactory().Create(points_2) };
+  const boost::shared_ptr<Edge> edge_3 { EdgeFactory().Create(points_3) };
+  assert(edge_1);
+  assert(edge_2);
+  assert(edge_3);
+  edge_1->SetIndex(1);
+  edge_2->SetIndex(2);
+  edge_3->SetIndex(3);
+  const std::vector<boost::shared_ptr<Edge>> triangle {
+    edge_1,
+    edge_2,
+    edge_3
+  };
+  #ifndef NDEBUG
+  if (CalcWindingHorizontal(AddConst(triangle)) != winding)
+  {
+    TRACE(Windings().ToStr(winding));
+    TRACE(Windings().ToStr(CalcWindingHorizontal(AddConst(triangle))));
+  }
+  #endif
+  assert(CalcWindingHorizontal(AddConst(triangle)) == winding);
+  return triangle;
+}
+
 
 #ifndef NDEBUG
 void ribi::trim::EdgeFactory::Test() noexcept

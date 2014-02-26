@@ -37,6 +37,22 @@ struct PointFactory
   */
   const std::vector<boost::shared_ptr<Point>> CreateTestPrism() const noexcept;
 
+  ///Creates a triangle
+  /*
+
+    Y
+
+    |
+  2 + 0   where Z = 1.0 for all points
+    | |\
+  1 + 2-1
+    |
+  0 +-+-+- X
+
+    0 1 2
+
+  */
+  const std::vector<boost::shared_ptr<Point>> CreateTestTriangle() const noexcept;
 
   private:
   #ifndef NDEBUG

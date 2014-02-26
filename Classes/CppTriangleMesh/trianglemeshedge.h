@@ -26,17 +26,16 @@ struct Edge
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
 
+  const boost::shared_ptr<const Point> GetFrom() const noexcept { return m_points[0]; }
+  const boost::shared_ptr<      Point> GetFrom()       noexcept { return m_points[0]; }
+
   int GetIndex() const noexcept { return m_index; }
 
-  ///nullptr if no neighbour
-  const boost::shared_ptr<const Face> GetNeighbour() const noexcept;
+  const boost::shared_ptr<const Point> GetTo() const noexcept { return m_points[1]; }
+  const boost::shared_ptr<      Point> GetTo()       noexcept { return m_points[1]; }
 
-  ///nullptr if no owner, a Volume:m_cellindex type
-  const boost::shared_ptr<const Cell> GetOwner() const noexcept;
-
-  const boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
-
-  const std::array<boost::shared_ptr<Point>,2>& GetPoints() const noexcept { return m_points; }
+  ///Reverse from and to
+  void Reverse() noexcept;
 
   private:
   ~Edge() noexcept {}

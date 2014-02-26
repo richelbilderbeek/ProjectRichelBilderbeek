@@ -12,6 +12,7 @@
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshpointfactory.h"
 #include "trianglemeshhelper.h"
+#include "trianglemeshwinding.h"
 #include "trace.h"
 
 ribi::trim::FaceFactory::FaceFactory()
@@ -29,10 +30,8 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   std::vector<boost::shared_ptr<Point>> points;
   for (auto edge: edges)
   {
-    for (auto point: edge->GetPoints())
-    {
-      points.push_back(point);
-    }
+    points.push_back(edge->GetFrom());
+    points.push_back(edge->GetTo());
   }
   std::sort(points.begin(),points.end());
   points.erase(std::unique(points.begin(),points.end()),points.end());
@@ -84,8 +83,14 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Edge>> edges_e      { edges[2], edges[ 6], edges[11] };
   const std::vector<boost::shared_ptr<Edge>> edges_f      { edges[5], edges[10], edges[11] };
 
-  if (!HasWindingHorizontal(edges_bottom,Winding::clockwise)) { SetWinding(edges_bottom,Winding::clockwise); }
-  if (!HasWindingHorizontal(edges_bottom,Winding::counter_clockwise)) { SetWinding(edges_bottom,Winding::counter_clockwise); }
+  if (CalcWindingHorizontal(AddConst(edges_bottom)) != Winding::clockwise)
+  {
+    SetWindingHorizontal(edges_bottom,Winding::clockwise);
+  }
+  if (CalcWindingHorizontal(AddConst(edges_top)) != Winding::counter_clockwise)
+  {
+    SetWindingHorizontal(edges_top,Winding::counter_clockwise);
+  }
   /*
   if (!IsClockwiseHorizontal(edges_bottom))
   {
