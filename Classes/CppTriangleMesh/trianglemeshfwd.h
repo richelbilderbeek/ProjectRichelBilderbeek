@@ -8,6 +8,8 @@ struct Cell;
 struct CellFactory;
 struct CellsCreator;
 struct CellsCreatorFactory;
+struct Edge;
+struct EdgeFactory;
 struct Face;
 struct FaceFactory;
 struct Point;

@@ -12,7 +12,8 @@ ribi::trim::Point::Point(
   const int index,
   const PointFactory&
 )
-  : m_connected{},
+  : m_belongs_to{},
+    m_connected{},
     m_coordinat(coordinat),
     m_index{index},
     m_z{}
@@ -22,6 +23,11 @@ ribi::trim::Point::Point(
   #endif
   assert(m_coordinat == coordinat
     && "A shallow copy please");
+}
+
+void ribi::trim::Point::AddBelongsTo(const boost::weak_ptr<Edge> edge)
+{
+  m_belongs_to.insert(edge);
 }
 
 void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face> face)

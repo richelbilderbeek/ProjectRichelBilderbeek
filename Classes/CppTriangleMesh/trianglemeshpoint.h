@@ -26,6 +26,7 @@ struct Point
 
   bool CanGetZ() const noexcept;
 
+  const std::set<boost::weak_ptr<Edge>>& GetBelongsTo() const noexcept { return m_belongs_to; }
   const std::set<boost::weak_ptr<Face>>& GetConnected() const noexcept { return m_connected; }
 
   const boost::units::quantity<boost::units::si::length> GetZ() const noexcept;
@@ -48,6 +49,11 @@ struct Point
     const PointFactory& lock
   );
 
+  /// m_belongs_to must be mutable, because of the interdependent creation of
+  /// Point and Edge: a Point needs to know the Edge it belongs to,
+  /// an Edge consists of Point objects
+  std::set<boost::weak_ptr<Edge>> m_belongs_to;
+
   /// m_connected must be mutable, because of the interdependent creation of
   /// Point and Face: a Point needs to know the Face it is connected to,
   /// a Face consists of Point objects
@@ -59,6 +65,10 @@ struct Point
   mutable int m_index;
 
   mutable boost::shared_ptr<boost::units::quantity<boost::units::si::length>> m_z;
+
+  friend class EdgeFactory;
+  ///Points are connected to Edge in the Edge's construction
+  void AddBelongsTo(const boost::weak_ptr<Edge> edge);
 
   friend class FaceFactory;
   ///Points are connected to Faces in the Faces' construction

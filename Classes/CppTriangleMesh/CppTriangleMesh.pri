@@ -21,7 +21,10 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_k.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshpointfactory.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.cpp
+    ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshedge.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshedgefactory.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshwinding.cpp
 
 HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshtemplate.h \
@@ -36,7 +39,10 @@ HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshcell.h \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder.h \
     ../../Classes/CppTriangleMesh/trianglemeshpointfactory.h \
-    ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.h
+    ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.h \
+    ../../Classes/CppTriangleMesh/trianglemeshedge.h \
+    ../../Classes/CppTriangleMesh/trianglemeshedgefactory.h \
+    ../../Classes/CppTriangleMesh/trianglemeshwinding.h
 
 OTHER_FILES += \
     ../../Classes/CppTriangleMesh/Licence.txt

@@ -78,10 +78,6 @@ bool ribi::trim::Face::CanExtractCoordinats() const noexcept
   return true;
 }
 
-
-
-
-
 void ribi::trim::Face::DoExtractCoordinats() const
 {
   PROFILE_FUNC();

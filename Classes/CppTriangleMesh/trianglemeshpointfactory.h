@@ -24,7 +24,7 @@ struct PointFactory
     const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat
   ) const noexcept;
 
-  ///Create the poinst of a testing prism
+  ///Create the points of a testing prism
   /*
       F
      /|\

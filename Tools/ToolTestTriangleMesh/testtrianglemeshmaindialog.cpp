@@ -15,6 +15,7 @@
 #include "trace.h"
 #include "trianglefile.h"
 #include "trianglemeshcell.h"
+#include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshbuilder.h"
 #include "trianglemeshcellscreator.h"
@@ -29,6 +30,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   )
 {
   PROFILE_FUNC();
+
   const std::string filename_result_mesh { ribi::fileio::GetTempFileName(".ply") };
 
   //Write some geometries, let Triangle.exe work on it

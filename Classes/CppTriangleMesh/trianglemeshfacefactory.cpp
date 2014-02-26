@@ -6,6 +6,8 @@
 
 #include "coordinat3d.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshedge.h"
+#include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshpointfactory.h"
@@ -17,6 +19,24 @@ ribi::trim::FaceFactory::FaceFactory()
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
+  const std::vector<boost::shared_ptr<Edge>>& edges,
+  const FaceOrientation any_orientation
+) const noexcept
+{
+  std::vector<boost::shared_ptr<Point>> points;
+  for (auto edge: edges)
+  {
+    for (auto point: edge->GetPoints())
+    {
+      points.push_back(point);
+    }
+  }
+  std::sort(points.begin(),points.end());
+  points.erase(std::unique(points.begin(),points.end()),points.end());
+  return Create(points,any_orientation);
 }
 
 const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
@@ -50,6 +70,80 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
 }
 
 const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrism() const noexcept
+{
+  const std::vector<boost::shared_ptr<Edge>> edges {
+    EdgeFactory().CreateTestPrism()
+  };
+  assert(edges.size() == 12);
+        std::vector<boost::shared_ptr<Edge>> edges_bottom { edges[0], edges[ 1], edges[ 2] };
+        std::vector<boost::shared_ptr<Edge>> edges_top    { edges[3], edges[ 4], edges[ 5] };
+  const std::vector<boost::shared_ptr<Edge>> edges_a      { edges[0], edges[ 7], edges[ 8] };
+  const std::vector<boost::shared_ptr<Edge>> edges_b      { edges[4], edges[ 7], edges[ 8] };
+  const std::vector<boost::shared_ptr<Edge>> edges_c      { edges[2], edges[ 9], edges[10] };
+  const std::vector<boost::shared_ptr<Edge>> edges_d      { edges[4], edges[ 8], edges[ 9] };
+  const std::vector<boost::shared_ptr<Edge>> edges_e      { edges[2], edges[ 6], edges[11] };
+  const std::vector<boost::shared_ptr<Edge>> edges_f      { edges[5], edges[10], edges[11] };
+
+  if (!HasWindingHorizontal(edges_bottom,Winding::clockwise)) { SetWinding(edges_bottom,Winding::clockwise); }
+  if (!HasWindingHorizontal(edges_bottom,Winding::counter_clockwise)) { SetWinding(edges_bottom,Winding::counter_clockwise); }
+  /*
+  if (!IsClockwiseHorizontal(edges_bottom))
+  {
+    std::reverse(edges_bottom.begin(),edges_bottom.end());
+  }
+  if (!IsClockwiseHorizontal(edges_top))
+  {
+    std::reverse(edges_top.begin(),edges_top.end());
+  }
+  */
+
+  const boost::shared_ptr<Face> bottom {
+    FaceFactory().Create(edges_bottom,FaceOrientation::horizontal)
+  };
+  const boost::shared_ptr<Face> top {
+    FaceFactory().Create(edges_top,FaceOrientation::horizontal)
+  };
+  const boost::shared_ptr<Face> a {
+    FaceFactory().Create(edges_a,FaceOrientation::vertical)
+  };
+  const boost::shared_ptr<Face> b {
+    FaceFactory().Create(edges_b,FaceOrientation::vertical)
+  };
+  const boost::shared_ptr<Face> c {
+    FaceFactory().Create(edges_c,FaceOrientation::vertical)
+  };
+  const boost::shared_ptr<Face> d {
+    FaceFactory().Create(edges_d,FaceOrientation::vertical)
+  };
+  const boost::shared_ptr<Face> e {
+    FaceFactory().Create(edges_e,FaceOrientation::vertical)
+  };
+  const boost::shared_ptr<Face> f {
+    FaceFactory().Create(edges_f,FaceOrientation::vertical)
+  };
+  assert(bottom);
+  assert(top);
+  assert(a);
+  assert(b);
+  assert(c);
+  assert(d);
+  assert(e);
+  assert(f);
+  bottom->SetIndex(1);
+  top->SetIndex(2);
+  a->SetIndex(3);
+  b->SetIndex(4);
+  c->SetIndex(5);
+  d->SetIndex(6);
+  e->SetIndex(7);
+  f->SetIndex(8);
+  const std::vector<boost::shared_ptr<Face>> prism {
+    top,bottom,a,b,c,d,e,f
+  };
+  return prism;
+}
+
+const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismFromPoints() const noexcept
 {
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
