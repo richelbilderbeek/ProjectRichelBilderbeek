@@ -21,7 +21,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef ASCIIARTER_H
 #define ASCIIARTER_H
 
-/*
 #include <string>
 #include <vector>
 
@@ -33,49 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
-///AsciiArter converts a matrix of grey tints
-///to ASCII art
+///AsciiArter was a class to convert a matrix of grey tints to ASCII art
+///AsciiArter is replaced by DrawCanvas
 struct AsciiArter
 {
-  static const std::vector<std::string> ImageToAscii(
-    const std::vector<std::vector<double> >& image,
-    const int width);
-
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
-
-  private:
-
-  //Get a pixel's greyness
-  static double GetGreyness(
-    const std::vector<std::vector<double> >& image,
-    const int x,
-    const int y);
-
-  //Get a line of pixels' average greyness
-  static double GetGreyness(
-    const std::vector<std::vector<double> >& image,
-    const int x1,
-    const int x2,
-    const int y);
-
-  //Get a square of pixels' average greyness
-  static double GetGreyness(
-    const std::vector<std::vector<double> >& image,
-    const int x1,
-    const int y1,
-    const int x2,
-    const int y2);
-
-  static double GetFractionGrey(
-    const std::vector<std::vector<double> >& image,
-    const int x1,
-    const int y1,
-    const int x2,
-    const int y2);
 };
 
 } //~namespace ribi
-*/
 
 #endif // ASCIIARTER_H

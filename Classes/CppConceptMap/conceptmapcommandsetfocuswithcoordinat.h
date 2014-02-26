@@ -19,7 +19,7 @@ namespace cmap {
 struct CommandSetFocusWithCoordinat : public Command
 {
   CommandSetFocusWithCoordinat(const int x, const int y)
-    : m_widget{}, m_x(x), m_y(y) {}
+    : m_old_focus{}, m_widget{}, m_x(x), m_y(y) {}
   CommandSetFocusWithCoordinat(const CommandSetFocusWithCoordinat&) = delete;
   CommandSetFocusWithCoordinat& operator=(const CommandSetFocusWithCoordinat&) = delete;
   ~CommandSetFocusWithCoordinat() noexcept {}

@@ -31,7 +31,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <QImage>
 #include <QFile>
 
-//#include "asciiarter.h"
 #include "canvas.h"
 #include "imagecanvas.h"
 #include "fileio.h"
