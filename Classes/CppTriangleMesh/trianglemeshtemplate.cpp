@@ -129,7 +129,7 @@ ribi::trim::Template::Template(
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(
           face_points,
-          FaceOrientation::horizontal //?20140224
+          FaceOrientation::horizontal
         )
       };
       m_faces.push_back(face);

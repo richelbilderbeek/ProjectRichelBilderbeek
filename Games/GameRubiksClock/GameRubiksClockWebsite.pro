@@ -5,7 +5,6 @@ include(../../Libraries/Wt.pri)
 
 #General, console
 include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
 include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppHelp/CppHelp.pri)
 include(../../Classes/CppMenuDialog/CppMenuDialog.pri)

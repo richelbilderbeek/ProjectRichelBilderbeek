@@ -6,7 +6,6 @@ include(../../Libraries/Fparser.pri)
 
 include(../../Classes/CppAbout/CppAbout.pri)
 include(../../Classes/CppApproximator/CppApproximator.pri)
-include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
 include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppChess/CppChess.pri)

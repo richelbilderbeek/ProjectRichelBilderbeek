@@ -16,7 +16,6 @@ include(../../Classes/CppWtAboutDialog/CppWtAboutDialog.pri)
 include(../../Classes/CppWtAutoConfig/CppWtAutoConfig.pri)
 
 #Specific
-include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
 include(../../Tools/ToolAsciiArter/ToolAsciiArterWebsite.pri)
 
 SOURCES += wtmain.cpp

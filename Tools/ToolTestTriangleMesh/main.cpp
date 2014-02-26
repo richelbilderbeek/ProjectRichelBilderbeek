@@ -3,8 +3,11 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <string>
 
+#include <boost/math/constants/constants.hpp>
+
 #include "Shiny.h"
 #include "testtrianglemeshmaindialog.h"
+
 #include "trianglefile.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -16,12 +19,11 @@ int main()
   PROFILE_FUNC();
   try
   {
-
+    const double tau { boost::math::constants::two_pi<double>() };
     ribi::TestTriangleMeshMainDialog(
       {
-        ribi::TriangleFile::CreateShapeTriangle(1.0)
-        //ribi::TriangleFile::CreateShapeHeart(1.0),
-        //ribi::TriangleFile::CreateShapeHeart(1.5)
+        ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,1.0),
+        ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
       },
       true,
       2

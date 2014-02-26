@@ -7,7 +7,6 @@ include(../../Libraries/Qwt.pri)
 
 include(../../Classes/CppAbout/CppAbout.pri)
 include(../../Classes/CppApproximator/CppApproximator.pri)
-include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
 include(../../Classes/CppBinaryNewickVector/CppBinaryNewickVector.pri)
 include(../../Classes/CppCallStackCounter/CppCallStackCounter.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)

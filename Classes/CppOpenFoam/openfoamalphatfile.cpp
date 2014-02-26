@@ -24,8 +24,10 @@
 
 ribi::foam::AlphatFile::AlphatFile(
   const Header header
-)
-  : m_header{header}
+) : m_boundary_field{},
+    m_dimensions{ {} },
+    m_header{header},
+    m_internal_field{}
 {
   #ifndef NDEBUG
   Test();

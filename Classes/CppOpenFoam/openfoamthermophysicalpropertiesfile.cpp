@@ -25,7 +25,9 @@
 ribi::foam::ThermophysicalPropertiesFile::ThermophysicalPropertiesFile(
   const Header header
 )
-  : m_header{header}
+  : m_header{header},
+    m_mixture{},
+    m_thermo_type{}
 {
   #ifndef NDEBUG
   Test();

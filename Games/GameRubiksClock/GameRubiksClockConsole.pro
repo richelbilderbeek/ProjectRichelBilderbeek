@@ -10,7 +10,6 @@ include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
 #Specific, console
-#include(../../Classes/CppAsciiArter/CppAsciiArter.pri)
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppDial/CppDial.pri)
 include(../../Classes/CppDialWidget/CppDialWidget.pri)

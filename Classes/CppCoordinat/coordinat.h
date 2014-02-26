@@ -2,6 +2,7 @@
 #define COORDINAT_H
 
 #include <cassert>
+#include "trace.h"
 
 ///A normal (x,y) coordinat
 template <class Length>
