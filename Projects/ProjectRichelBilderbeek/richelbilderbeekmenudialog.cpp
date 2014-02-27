@@ -253,7 +253,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noex
     "Richel Bilderbeek",
     "Project Richel Bilderbeek",
     "Richel Bilderbeek's work",
-    "the 15th of November 2013",
+    "the 27th of Febrruary 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ProjectRichelBilderbeek.htm",
     GetVersionStatic(),
@@ -2935,7 +2935,7 @@ const boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDi
 
 const std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
-  return "1.13";
+  return "1.14";
 }
 
 const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
@@ -2992,7 +2992,8 @@ const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersi
     "2013-09-19: Version 1.10: added K3OpEenRij, SimplifyNewick, TestApproximator, TestMultiApproximator, TestSimpleLinearRegression, compiles with -Weffc++, added noexcept specifications, use of .pri file",
     "2013-10-12: Version 1.11: added DotMatrix, Encranger, GrayCoder, MultiEncranger, PrimeExpert, QuadraticSolver, TestCanvas, TestMultipleChoiceQuestion, TestOpenQuestion",
     "2013-11-15: Version 1.12: improved console application interface, use of .pri files, added Brainweaver",
-    "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer"
+    "2013-11-29: Version 1.13: added HistogramEqualizationer, ImageOperationer, ImageRotater, StyleSheetSetter, ThresholdFilterer",
+    "2014-02-27: Version 1.14: added ValentineCardDecrypter, added retro versions to some games, many small improvements",
   };
 }
 
