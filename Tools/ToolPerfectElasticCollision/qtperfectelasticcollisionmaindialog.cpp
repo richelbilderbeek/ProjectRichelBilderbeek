@@ -36,6 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QPainter>
 #include <QTimer>
 
+#include "geometry.h"
 #include "ui_qtperfectelasticcollisionmaindialog.h"
 #pragma GCC diagnostic pop
 
@@ -397,8 +398,9 @@ void ribi::QtPerfectElasticCollisionMainDialog::DoPerfectElasticCollision(
 
 double ribi::QtPerfectElasticCollisionMainDialog::GetAngle(const double dx, const double dy)
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan2(dx,dy));
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - (std::atan2(dx,dy));
 }
 
 #ifndef NDEBUG

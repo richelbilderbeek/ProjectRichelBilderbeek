@@ -347,33 +347,58 @@ void ribi::cmap::Widget::Test() noexcept
     assert(widget->GetConceptMap()->GetNodes().empty()
       && "Concept map must be empty again now");
   }
-  //Test all commands do and undo
-  HIERO: PERFORM ALL COMMAND'S PERMUTATIONS FOR EVERY WIDGET
-  for (const boost::shared_ptr<Widget> widget: WidgetFactory::GetAllTests())
+  //Do all do and undo of a single command
+  const int n_commands { static_cast<int>(CommandFactory::CreateTestCommands().size()) };
+  for (int i=0; i!=n_commands; ++i)
   {
-    assert(widget);
-
-    for (const boost::shared_ptr<Command> command: CommandFactory::CreateTestCommands())
+    for (const boost::shared_ptr<Widget> widget: WidgetFactory::GetAllTests())
     {
-      assert(command);
-      if (widget->CanDoCommand(command))
+      const boost::shared_ptr<Command> cmd { CommandFactory::CreateTestCommands()[i] };
+      assert(cmd);
+      if (widget->CanDoCommand(cmd))
       {
-        //const ribi::cmap::Widget prev_widget(*widget);
-        //assert(prev_widget == *widget);
         {
           const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
           assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
         }
-
-        widget->DoCommand(command);
-        //assert(prev_widget != *widget);
+        widget->DoCommand(cmd);
         {
           const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
           assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
         }
-
         widget->Undo();
-        //assert(prev_widget == *widget);
+      }
+    }
+  }
+  //Do all combinations of two commands
+  for (int i=0; i!=n_commands; ++i)
+  {
+    for (int j=0; j!=n_commands; ++j)
+    {
+      for (const boost::shared_ptr<Widget> widget: WidgetFactory::GetAllTests())
+      {
+        for (const boost::shared_ptr<Command> cmd:
+          {
+            CommandFactory::CreateTestCommands()[i],
+            CommandFactory::CreateTestCommands()[j]
+          }
+        )
+        {
+          assert(cmd);
+          if (widget->CanDoCommand(cmd))
+          {
+            {
+              const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
+              assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
+            }
+            widget->DoCommand(cmd);
+            {
+              const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
+              assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
+            }
+            widget->Undo();
+          }
+        }
       }
     }
   }

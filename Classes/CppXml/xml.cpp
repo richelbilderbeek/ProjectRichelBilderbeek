@@ -32,6 +32,19 @@ bool CanLexicalCast(const SourceType& from)
   return true;
 }
 
+const std::string ribi::xml::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::xml::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
+
 const std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
 {
   std::vector<std::string> v;

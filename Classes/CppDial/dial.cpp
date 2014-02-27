@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 #include <boost/numeric/conversion/cast.hpp>
 
+#include "geometry.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -123,17 +124,6 @@ void ribi::Dial::SetPosition(const double position) noexcept
   }
 }
 
-double ribi::Dial::GetAngle(const double dx, const double dy) noexcept
-{
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan2(dx,dy));
-}
-
-double ribi::Dial::GetDistance(const double dX, const double dY) noexcept
-{
-  return std::sqrt( (dX * dX) + (dY * dY) );
-}
-
 #ifndef NDEBUG
 void ribi::Dial::Test() noexcept
 {
@@ -143,65 +133,66 @@ void ribi::Dial::Test() noexcept
     is_tested = true;
   }
   const double pi = boost::math::constants::pi<double>();
-  //Test GetAngle
+  const Geometry g;
+  //GetAngle
   {
-    const double angle =  GetAngle(0.0,-1.0); //North
+    const double angle =  g.GetAngle(0.0,-1.0); //North
     const double expected = 0.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(1.0,-1.0); //North-East
+    const double angle =  g.GetAngle(1.0,-1.0); //North-East
     const double expected = 0.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(1.0,0.0); //East
+    const double angle =  g.GetAngle(1.0,0.0); //East
     const double expected = 0.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(1.0,1.0); //South-East
+    const double angle =  g.GetAngle(1.0,1.0); //South-East
     const double expected = 0.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(0.0,1.0); //South
+    const double angle =  g.GetAngle(0.0,1.0); //South
     const double expected = 1.0 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(-1.0,1.0); //South-West
+    const double angle =  g.GetAngle(-1.0,1.0); //South-West
     const double expected = 1.25 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(-1.0,0.0); //West
+    const double angle =  g.GetAngle(-1.0,0.0); //West
     const double expected = 1.5 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   {
-    const double angle =  GetAngle(-1.0,-1.0); //North-West
+    const double angle =  g.GetAngle(-1.0,-1.0); //North-West
     const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
   //GetDistance
   {
-    const double distance = GetDistance(3.0,4.0);
+    const double distance = g.GetDistance(3.0,4.0);
     const double expected = 5.0;
     assert(std::abs(distance-expected) < 0.01);
   }
   {
-    const double distance = GetDistance(-3.0,4.0);
+    const double distance = g.GetDistance(-3.0,4.0);
     const double expected = 5.0;
     assert(std::abs(distance-expected) < 0.01);
   }
   {
-    const double distance = GetDistance(3.0,-4.0);
+    const double distance = g.GetDistance(3.0,-4.0);
     const double expected = 5.0;
     assert(std::abs(distance-expected) < 0.01);
   }
   {
-    const double distance = GetDistance(-3.0,-4.0);
+    const double distance = g.GetDistance(-3.0,-4.0);
     const double expected = 5.0;
     assert(std::abs(distance-expected) < 0.01);
   }

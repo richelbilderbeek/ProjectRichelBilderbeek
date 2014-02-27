@@ -20,40 +20,57 @@
 #include "trianglemeshedge.h"
 #include "trianglemeshface.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshpointfactory.h"
 
 #pragma GCC diagnostic pop
 
-const ribi::Coordinat3D ribi::trim::CalcCenter(const std::vector<boost::shared_ptr<Edge>>& edges) noexcept
+ribi::trim::Helper::Helper::Helper()
 {
-  Coordinat3D sum;
+  #ifndef NDEBUG
+  Test();
+  #endif
+}
+
+
+const ribi::Coordinat3D ribi::trim::Helper::CalcCenter(
+  const std::vector<boost::shared_ptr<Edge>>& edges
+) const noexcept
+{
+  std::vector<boost::shared_ptr<Point>> points;
   for (const auto edge: edges)
   {
-    assert(edge);
-    assert(edge->GetFrom());
-    assert(edge->GetTo());
-    Coordinat3D from(
-      edge->GetFrom()->GetCoordinat()->GetX(),
-      edge->GetFrom()->GetCoordinat()->GetY(),
-      edge->GetFrom()->GetZ().value()
-    );
-    sum += from;
-    Coordinat3D to(
-      edge->GetTo()->GetCoordinat()->GetX(),
-      edge->GetTo()->GetCoordinat()->GetY(),
-      edge->GetTo()->GetZ().value()
-    );
-    sum += to;
+    points.push_back(edge->GetFrom());
+    points.push_back(edge->GetTo());
   }
-  const double n { static_cast<double>(2 * edges.size()) }; //multipled by two, because every edge has two points
+  return CalcCenter(points);
+}
+
+const ribi::Coordinat3D ribi::trim::Helper::CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept
+{
+  Coordinat3D sum;
+  for (const auto point: points)
+  {
+    assert(point);
+    Coordinat3D coordinat(
+      point->GetCoordinat()->GetX(),
+      point->GetCoordinat()->GetY(),
+      point->CanGetZ() ? point->GetZ().value() : 0.0
+    );
+    sum += coordinat;
+  }
+  const double n { static_cast<double>(points.size()) };
   const Coordinat3D center(
     sum.GetX() / n,
     sum.GetY() / n,
     sum.GetZ() / n
   );
   return center;
+
 }
 
-ribi::trim::Winding ribi::trim::CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges)
+ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
+  const std::vector<boost::shared_ptr<const Edge>>& edges
+) const noexcept
 {
   //Are Edges nicely ordered
   // 0: A->B (edge[0] has A at its m_points[0] and has B at its m_points[1])
@@ -81,26 +98,28 @@ ribi::trim::Winding ribi::trim::CalcWindingHorizontal(const std::vector<boost::s
       edges[i]->GetFrom()->GetCoordinat()->GetY(),
       edges[i]->GetFrom()->GetZ().value()
     );
+    //TRACE(co);
     points.push_back(co);
   }
+
   assert(points.size() == edges.size());
 
-  HUH, ER IS OOK EEN NORMALE sClockwiseHorizontal(points, MET ABOVE HIERO)
+  //return Geometry().IsClockwise(points, Co`ordinat3D(0.0,0.0,1.0))
   return Geometry().IsClockwiseHorizontal(points)
     ? Winding::clockwise
     : Winding::counter_clockwise
   ;
 }
 
-double ribi::trim::GetAngle(const boost::shared_ptr<const Point> point) noexcept
+double ribi::trim::Helper::GetAngle(const boost::shared_ptr<const Point> point) const noexcept
 {
   return Geometry().GetAngle(point->GetCoordinat()->GetX(),point->GetCoordinat()->GetY());
 }
 
-bool ribi::trim::IsClockwiseHorizontal(
+bool ribi::trim::Helper::IsClockwiseHorizontal(
   const boost::shared_ptr<const Edge> edge,
   const Coordinat3D& center
-  ) noexcept
+  ) const noexcept
 {
   const bool is_clockwise {
     Geometry().IsClockwise(
@@ -117,53 +136,41 @@ bool ribi::trim::IsClockwiseHorizontal(
   return is_clockwise;
 }
 
-bool ribi::trim::IsClockwiseHorizontal(const std::vector<boost::shared_ptr<Point>>& points) noexcept
+bool ribi::trim::Helper::IsClockwiseHorizontal(
+  const std::vector<boost::shared_ptr<Point>>& points
+) const noexcept
 {
   assert(points.size() == 3);
-  double center_x = 0.0;
-  double center_y = 0.0;
-  for (const auto point: points)
-  {
-    center_x += point->GetCoordinat()->GetX();
-    center_y += point->GetCoordinat()->GetY();
-  }
-  center_x /= static_cast<double>(points.size());
-  center_y /= static_cast<double>(points.size());
+  const Coordinat3D center { CalcCenter(points) };
+  const double center_x { center.GetX() };
+  const double center_y { center.GetY() };
 
   //const double pi  = boost::math::constants::pi<double>();
   //const double tau = boost::math::constants::two_pi<double>();
-  const bool a {
-    Geometry().IsClockwise(
-      Geometry().GetAngle(
-        points[0]->GetCoordinat()->GetX() - center_x,
-        points[0]->GetCoordinat()->GetY() - center_y
-      ),
-      Geometry().GetAngle(
-        points[1]->GetCoordinat()->GetX() - center_x,
-        points[1]->GetCoordinat()->GetY() - center_y
-      )
+  const std::vector<double> angles {
+    Geometry().GetAngle(
+      points[0]->GetCoordinat()->GetX() - center_x,
+      points[0]->GetCoordinat()->GetY() - center_y
+    ),
+    Geometry().GetAngle(
+      points[1]->GetCoordinat()->GetX() - center_x,
+      points[1]->GetCoordinat()->GetY() - center_y
+    ),
+    Geometry().GetAngle(
+      points[2]->GetCoordinat()->GetX() - center_x,
+      points[2]->GetCoordinat()->GetY() - center_y
     )
   };
-  const bool b {
-    Geometry().IsClockwise(
-      Geometry().GetAngle(
-        points[1]->GetCoordinat()->GetX() - center_x,
-        points[1]->GetCoordinat()->GetY() - center_y
-      ),
-      Geometry().GetAngle(
-        points[2]->GetCoordinat()->GetX() - center_x,
-        points[2]->GetCoordinat()->GetY() - center_y
-      )
-    )
-  };
-  //TRACE(a);
-  //TRACE(b);
+  const bool a { Geometry().IsClockwise(angles[0],angles[1]) };
+  const bool b { Geometry().IsClockwise(angles[1],angles[2]) };
   const bool is_clockwise { a && b };
-  //TRACE(is_clockwise);
   return is_clockwise;
 }
 
-void ribi::trim::SetWindingHorizontal(std::vector<boost::shared_ptr<Edge>>& edges,const Winding winding)
+void ribi::trim::Helper::SetWindingHorizontal(
+  std::vector<boost::shared_ptr<Edge>>& edges,
+  const Winding winding
+) const noexcept
 {
   assert(CalcWindingHorizontal(AddConst(edges)) != winding);
   switch(winding)
@@ -225,6 +232,120 @@ void ribi::trim::SetWindingHorizontal(std::vector<boost::shared_ptr<Edge>>& edge
       }
     }
     break;
+    case Winding::n_types:
+      assert(!"Should never get here");
+      throw std::logic_error("ribi::trim::Helper::SetWindingHorizontal: unknown Winding");
   }
   assert(CalcWindingHorizontal(AddConst(edges)) == winding);
 }
+
+#ifndef NDEBUG
+void ribi::trim::Helper::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::trim::Helper::Point::Test");
+  //CalcCenter
+  //CalcWindingHorizontal
+  //GetAngle
+  const Helper h;
+  const double pi { boost::math::constants::pi<double>() };
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(0.0,-1.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle = h.GetAngle(point); //North
+    const double expected = 0.0 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(1.0,-1.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //North-East
+    const double expected = 0.25 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(1.0,0.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //East
+    const double expected = 0.5 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(1.0,1.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //South-East
+    const double expected = 0.75 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(0.0,1.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //South
+    const double expected = 1.0 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(-1.0,1.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //South-West
+    const double expected = 1.25 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(-1.0,0.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //West
+    const double expected = 1.5 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  {
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat {
+      new ConstCoordinat2D(-1.0,-1.0)
+    };
+    const boost::shared_ptr<Point> point {
+      PointFactory().Create(coordinat)
+    };
+    const double angle =  h.GetAngle(point); //North-West
+    const double expected = 1.75 * pi;
+    assert(std::abs(angle-expected) < 0.01);
+  }
+  //IsClockwiseHorizontal 1
+  //IsClockwiseHorizontal 2
+  //IsClockwiseVertical
+  //SetWindingHorizontal
+  //
+  TRACE("Finished ribi::trim::Helper::Point::Test successfully");
+}
+#endif

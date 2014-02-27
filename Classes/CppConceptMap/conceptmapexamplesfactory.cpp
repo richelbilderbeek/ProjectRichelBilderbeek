@@ -88,10 +88,13 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
   {
     return nullptr;
   }
+  assert(GetRegexMatches(s,QRegExp("(<examples>)")).size()
+      == GetRegexMatches(s,QRegExp("(</examples>)")).size());
 
   std::vector<boost::shared_ptr<Example> > examples;
-  //m_questions
   {
+    assert(GetRegexMatches(s,QRegExp("(<example>)")).size()
+        == GetRegexMatches(s,QRegExp("(</example>)")).size());
     const std::vector<std::string> v = GetRegexMatches(s,QRegExp("(<example>.*</example>)"));
     std::transform(v.begin(),v.end(),std::back_inserter(examples),
       [](const std::string& s)

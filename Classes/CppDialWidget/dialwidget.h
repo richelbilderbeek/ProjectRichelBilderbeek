@@ -89,17 +89,6 @@ struct DialWidget : public Widget
   boost::scoped_ptr<Dial> m_dial;
 
   friend std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;
-
-  public:
-
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy) noexcept;
-  static double GetDistance(const double dx, const double dy) noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const DialWidget& widget) noexcept;

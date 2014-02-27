@@ -29,6 +29,8 @@ struct Point
   const std::set<boost::weak_ptr<Edge>>& GetBelongsTo() const noexcept { return m_belongs_to; }
   const std::set<boost::weak_ptr<Face>>& GetConnected() const noexcept { return m_connected; }
 
+  int GetIndex() const noexcept { return m_index; }
+
   const boost::units::quantity<boost::units::si::length> GetZ() const noexcept;
 
   ///Let the Point know its Z coordinat itself
@@ -76,7 +78,6 @@ struct Point
 
   friend class TriangleMeshBuilder;
   ///Determined in the end
-  int GetIndex() const noexcept { return m_index; }
   void SetIndex(const int index) const noexcept { m_index = index; }
 
   #ifndef NDEBUG

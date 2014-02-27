@@ -33,6 +33,8 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QGraphicsSceneMouseEvent>
 #include <QKeyEvent>
 #include <QPainter>
+
+#include "geometry.h"
 #pragma GCC diagnostic pop
 
 const double ribi::QtPathArrowItem::m_click_easy_width = 10.0;
@@ -72,8 +74,9 @@ QRectF ribi::QtPathArrowItem::boundingRect() const
 
 double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan(dx/dy));
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - (std::atan(dx/dy));
 }
 
 const std::string ribi::QtPathArrowItem::GetVersion() noexcept

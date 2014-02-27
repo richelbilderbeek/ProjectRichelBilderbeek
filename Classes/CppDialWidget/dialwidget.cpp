@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 #include "drawcanvas.h"
+#include "geometry.h"
 #include "rectangle.h"
 #include "trace.h"
 #include "textcanvas.h"
@@ -62,7 +63,7 @@ void ribi::DialWidget::Click(const int x,const int y) noexcept
   const int midy = GetGeometry().GetY() + (GetGeometry().GetHeight() / 2);
   const double dx = boost::numeric_cast<double>(x - midx);
   const double dy = boost::numeric_cast<double>(y - midy);
-  const double angle = Dial::GetAngle(dx,dy);
+  const double angle = Geometry().GetAngle(dx,dy);
   const double pi = boost::math::constants::pi<double>();
   const double position = angle / (2.0 * pi);
   assert(position >= 0.0);
@@ -87,16 +88,6 @@ const std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
   };
 }
 
-double ribi::DialWidget::GetAngle(const double dx, const double dy) noexcept
-{
-  return Dial::GetAngle(dx,dy);
-}
-
-double ribi::DialWidget::GetDistance(const double dx, const double dy) noexcept
-{
-  return Dial::GetDistance(dx,dy);
-}
-
 bool ribi::DialWidget::IsClicked(const int x, const int y) const noexcept
 {
   const double widget_midx
@@ -107,7 +98,7 @@ bool ribi::DialWidget::IsClicked(const int x, const int y) const noexcept
     + (boost::numeric_cast<double>(this->GetGeometry().GetHeight()) / 2.0);
   const double x_d = boost::numeric_cast<double>(x);
   const double y_d = boost::numeric_cast<double>(y);
-  return GetDistance(x_d - widget_midx, y_d - widget_midy)
+  return Geometry().GetDistance(x_d - widget_midx, y_d - widget_midy)
     < (boost::numeric_cast<double>(this->GetGeometry().GetWidth()) / 2.0);
 }
 

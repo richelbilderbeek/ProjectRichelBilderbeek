@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
+#include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -74,8 +75,7 @@ QRectF ribi::QtArrowItem::boundingRect() const
 
 double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan(dx/dy));
+  return Geometry().GetAngle(dx,dy);
 }
 
 const std::string ribi::QtArrowItem::GetVersion() noexcept
@@ -85,11 +85,11 @@ const std::string ribi::QtArrowItem::GetVersion() noexcept
 
 const std::vector<std::string> ribi::QtArrowItem::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-11-18: version 1.0: initial version");
-  v.push_back("2012-11-20: version 1.1: mouse cursor changes its shape when moving over this item");
-  v.push_back("2012-12-19: version 1.2: allow changing pens");
-  return v;
+  return {
+    "2012-11-18: version 1.0: initial version",
+    "2012-11-20: version 1.1: mouse cursor changes its shape when moving over this item",
+    "2012-12-19: version 1.2: allow changing pens"
+  };
 }
 
 void ribi::QtArrowItem::hoverEnterEvent(QGraphicsSceneHoverEvent *)

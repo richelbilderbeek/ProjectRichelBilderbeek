@@ -35,6 +35,9 @@ struct Help
   const std::string& GetProgramDescription() const noexcept { return  m_program_description; }
   const std::string& GetProgramName() const noexcept { return  m_program_name; }
 
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
   private:
 
   // { "ProjectRichelBilderbeek --about", "ProjectRichelBilderbeek ToolHometrainer Exercise.txt" }

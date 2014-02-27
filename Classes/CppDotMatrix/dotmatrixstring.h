@@ -36,6 +36,9 @@ struct DotMatrixString
   ///Get the matrix width
   int GetMatrixWidth() const noexcept;
 
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
   private:
   const int m_spacing;
   const std::vector<boost::shared_ptr<const DotMatrixChar> > m_v;

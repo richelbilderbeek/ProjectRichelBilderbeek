@@ -36,6 +36,9 @@ struct DotMatrixChar
   ///Get the matrix width
   int GetMatrixWidth() const noexcept { return 5; }
 
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
   private:
   ~DotMatrixChar() noexcept {}
   friend void boost::checked_delete<>(DotMatrixChar* x);

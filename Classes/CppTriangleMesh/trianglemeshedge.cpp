@@ -78,7 +78,7 @@ void ribi::trim::Edge::Test() noexcept
         AddConst(edges)
       };
       TRACE(Windings().ToStr(winding));
-      assert(CalcWindingHorizontal(const_edges) == winding);
+      assert(Helper().CalcWindingHorizontal(const_edges) == winding);
     }
   }
   TRACE("Finished ribi::trim::Edge::Test successfully");

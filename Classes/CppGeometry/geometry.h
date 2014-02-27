@@ -24,6 +24,9 @@ struct Geometry
   //From www.richelbilderbeek.nl/CppGetAngle.htm
   double GetAngle(const double dx, const double dy) const noexcept;
 
+  //From www.richelbilderbeek.nl/CppGetDistance.htm
+  double GetDistance(const double dx, const double dy) const noexcept;
+
   const std::string GetVersion() const noexcept;
   const std::vector<std::string> GetVersionHistory() const noexcept;
 

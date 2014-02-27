@@ -110,7 +110,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
     assert(from != to);
     const boost::shared_ptr<ribi::cmap::Edge> new_edge = cmap::EdgeFactory::DeepCopy(edge,from,to);
     assert(new_edge);
-    assert(operator==(*new_edge,*edge));
+    assert(*new_edge == *edge);
     new_edges.push_back(new_edge);
   }
 

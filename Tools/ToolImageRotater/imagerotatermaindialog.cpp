@@ -1,6 +1,6 @@
 //---------------------------------------------------------------------------
 /*
-imagerotater, tool to perform a histogram equalization
+ImageRotater, tool to perform a histogram equalization
 Copyright (C) 2008-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/Toolimagerotater.htm
+//From http://www.richelbilderbeek.nl/ToolImageRotater.htm
 //---------------------------------------------------------------------------
 #include "imagerotatermaindialog.h"
 
@@ -28,13 +28,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <boost/scoped_ptr.hpp>
 #include <boost/math/constants/constants.hpp>
 
+#include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 double ribi::ImageRotaterMainDialog::GetAngle(const double dx, const double dy)
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan2(dx,dy));
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - (std::atan2(dx,dy));
 }
 
 QRgb ribi::ImageRotaterMainDialog::GetPixel(

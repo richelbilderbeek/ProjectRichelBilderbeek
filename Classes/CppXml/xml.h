@@ -15,6 +15,9 @@ namespace ribi {
 
 namespace xml {
 
+const std::string GetVersion() noexcept;
+const std::vector<std::string> GetVersionHistory() noexcept;
+
 ///Convert a std::string to single-line XML
 ///For example, a std::string with tag name "cat_name" and content "Kitty" becomes
 /// <cat_name>Kitty</cat_name>

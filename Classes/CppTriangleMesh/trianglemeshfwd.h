@@ -2,6 +2,11 @@
 #define TRIANGLEMESHFWD_H
 
 namespace ribi {
+
+struct ConstCoordinat2D;
+struct Coordinat2D;
+struct Coordinat3D;
+
 namespace trim {
 
 struct Cell;

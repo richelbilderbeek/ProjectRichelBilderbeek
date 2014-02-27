@@ -131,7 +131,18 @@ const std::vector<ribi::Help::Option> ribi::Help::AddDefaultOptions(const std::v
   return w;
 }
 
+const std::string ribi::Help::GetVersion() noexcept
+{
+  return "1.1";
+}
 
+const std::vector<std::string> ribi::Help::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
 
 std::ostream& ribi::operator<<(std::ostream& os, const Help& help)
 {

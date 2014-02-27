@@ -125,6 +125,19 @@ int ribi::DotMatrixText::GetMatrixWidth() const noexcept
   ))->GetMatrixWidth();
 }
 
+const std::string ribi::DotMatrixText::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::DotMatrixText::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
+
 #ifndef NDEBUG
 void ribi::DotMatrixText::Test() noexcept
 {

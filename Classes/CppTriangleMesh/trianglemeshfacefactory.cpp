@@ -83,13 +83,13 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Edge>> edges_e      { edges[2], edges[ 6], edges[11] };
   const std::vector<boost::shared_ptr<Edge>> edges_f      { edges[5], edges[10], edges[11] };
 
-  if (CalcWindingHorizontal(AddConst(edges_bottom)) != Winding::clockwise)
+  if (Helper().CalcWindingHorizontal(AddConst(edges_bottom)) != Winding::clockwise)
   {
-    SetWindingHorizontal(edges_bottom,Winding::clockwise);
+    Helper().SetWindingHorizontal(edges_bottom,Winding::clockwise);
   }
-  if (CalcWindingHorizontal(AddConst(edges_top)) != Winding::counter_clockwise)
+  if (Helper().CalcWindingHorizontal(AddConst(edges_top)) != Winding::counter_clockwise)
   {
-    SetWindingHorizontal(edges_top,Winding::counter_clockwise);
+    Helper().SetWindingHorizontal(edges_top,Winding::counter_clockwise);
   }
   /*
   if (!IsClockwiseHorizontal(edges_bottom))
@@ -162,11 +162,11 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Point>> points_e      { points[0], points[2], points[3] };
   const std::vector<boost::shared_ptr<Point>> points_f      { points[2], points[3], points[5] };
 
-  if (!IsClockwiseHorizontal(points_bottom))
+  if (!Helper().IsClockwiseHorizontal(points_bottom))
   {
     std::reverse(points_bottom.begin(),points_bottom.end());
   }
-  if (!IsClockwiseHorizontal(points_top))
+  if (!Helper().IsClockwiseHorizontal(points_top))
   {
     std::reverse(points_top.begin(),points_top.end());
   }

@@ -37,6 +37,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QKeyEvent>
 #include <QPainter>
 
+#include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -222,8 +223,9 @@ QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
 
 double ribi::QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
 {
-  const double pi = boost::math::constants::pi<double>();
-  return pi - (std::atan(dx/dy));
+  return Geometry().GetAngle(dx,dy);
+  //const double pi = boost::math::constants::pi<double>();
+  //return pi - (std::atan(dx/dy));
 }
 
 const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const

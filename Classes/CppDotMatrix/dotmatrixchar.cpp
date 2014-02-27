@@ -929,6 +929,19 @@ bool ribi::DotMatrixChar::GetMatrix(const int x, const int y) const
   return m_matrix[y][x];
 }
 
+const std::string ribi::DotMatrixChar::GetVersion() noexcept
+{
+  return "1.1";
+}
+
+const std::vector<std::string> ribi::DotMatrixChar::GetVersionHistory() noexcept
+{
+  return {
+    "201x-xx-xx: Version 1.0: initial version",
+    "2014-02-27: Version 1.1: started versioning"
+  };
+}
+
 #ifndef NDEBUG
 void ribi::DotMatrixChar::Test() noexcept
 {

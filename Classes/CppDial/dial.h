@@ -102,18 +102,6 @@ struct Dial
 
   friend std::ostream& operator<<(std::ostream& os, const Dial& dial);
 
-  public:
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy) noexcept;
-
-  //From www.richelbilderbeek.nl/CppGetDistance.htm
-  static double GetDistance(const double dX, const double dY) noexcept;
-
   #ifndef NDEBUG
   ///Test this class
   static void Test() noexcept;

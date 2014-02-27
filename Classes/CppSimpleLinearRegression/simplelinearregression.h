@@ -39,11 +39,8 @@ struct SimpleLinearRegression
   ///Obtain Anscombe's Quartet its y values, for index 1 to (and including) 4
   static const std::vector<double> GetAnscombesQuartetY(const int index);
 
-  ///Obtain the version of this class
-  static const std::string GetVersion();
-
-  ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
 

@@ -62,6 +62,7 @@ void ribi::cmap::QtTestConceptMapMenuDialog::Test() noexcept
   QtConceptMapTestEdgeItemDialog();
   QtConceptMapViewTestsDialog();
   QtTestConceptMapWidgetDialog();
+  assert(1==2 && "TEMP");
   TRACE("Finished ribi::cmap::QtTestConceptMapMenuDialog::Test successfully");
 }
 #endif

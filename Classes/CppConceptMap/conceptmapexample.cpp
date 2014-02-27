@@ -102,31 +102,31 @@ void ribi::cmap::Example::Test() noexcept
     {
       boost::shared_ptr<const cmap::Example> a = ExampleFactory().GetTest(i);
       boost::shared_ptr<      Example> b = ExampleFactory().GetTest(i);
-      assert(operator==(*a,*a));
-      assert(operator==(*a,*b));
-      assert(operator==(*b,*a));
-      assert(operator==(*b,*b));
+      assert(*a == *a);
+      assert(*a == *b);
+      assert(*b == *a);
+      assert(*b == *b);
       for (int j=0; j!=sz; ++j)
       {
         boost::shared_ptr<const cmap::Example> c = cmap::ExampleFactory().GetTest(j);
         boost::shared_ptr<      Example> d = cmap::ExampleFactory().GetTest(j);
-        assert(operator==(*c,*c));
-        assert(operator==(*c,*d));
-        assert(operator==(*d,*c));
-        assert(operator==(*d,*d));
+        assert(*c == *c);
+        assert(*c == *d);
+        assert(*d == *c);
+        assert(*d == *d);
         if (i==j)
         {
-          assert(operator==(*a,*c)); assert(operator==(*a,*d));
-          assert(operator==(*b,*c)); assert(operator==(*b,*d));
-          assert(operator==(*c,*a)); assert(operator==(*c,*b));
-          assert(operator==(*d,*a)); assert(operator==(*d,*b));
+          assert(*a == *c); assert(*a == *d);
+          assert(*b == *c); assert(*b == *d);
+          assert(*c == *a); assert(*c == *b);
+          assert(*d == *a); assert(*d == *b);
         }
         else
         {
-          assert(!operator==(*a,*c)); assert(!operator==(*a,*d));
-          assert(!operator==(*b,*c)); assert(!operator==(*b,*d));
-          assert(!operator==(*c,*a)); assert(!operator==(*c,*b));
-          assert(!operator==(*d,*a)); assert(!operator==(*d,*b));
+          assert(*a != *c); assert(*a != *d);
+          assert(*b != *c); assert(*b != *d);
+          assert(*c != *a); assert(*c != *b);
+          assert(*d != *a); assert(*d != *b);
         }
       }
     }
@@ -136,9 +136,9 @@ void ribi::cmap::Example::Test() noexcept
     const boost::shared_ptr<cmap::Example> a = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<cmap::Example> b = ExampleFactory::Create("1",Competency::misc);
     const boost::shared_ptr<cmap::Example> c = ExampleFactory::Create("1",Competency::uninitialized);
-    assert( operator==(*a,*a)); assert( operator==(*a,*b)); assert(!operator==(*a,*c));
-    assert( operator==(*b,*a)); assert( operator==(*b,*b)); assert(!operator==(*b,*c));
-    assert(!operator==(*c,*a)); assert(!operator==(*c,*b)); assert( operator==(*c,*c));
+    assert(*a == *a); assert(*a == *b); assert(*a != *c);
+    assert(*b == *a); assert(*b == *b); assert(*b != *c);
+    assert(*c != *a); assert(*c != *b); assert(*c == *c);
   }
   //Conversion between std::string and competency
   {
@@ -179,7 +179,7 @@ void ribi::cmap::Example::Test() noexcept
         assert(e);
         const std::string s { e->ToXml() };
         const boost::shared_ptr<const Example> f(ExampleFactory().FromXml(s));
-        assert(operator==(*e,*f));
+        assert(*e == *f);
       }
     );
   }

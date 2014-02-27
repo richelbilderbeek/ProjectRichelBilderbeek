@@ -127,6 +127,8 @@ ribi::QtRichelBilderbeekMenuDialog::QtRichelBilderbeekMenuDialog(QWidget *parent
     );
     this->move( screen.center() - this->rect().center() );
   }
+
+  assert(1==2); //TEMP
 }
 
 ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept

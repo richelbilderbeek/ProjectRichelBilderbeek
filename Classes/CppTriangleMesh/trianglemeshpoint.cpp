@@ -44,6 +44,10 @@ bool ribi::trim::Point::CanGetZ() const noexcept
 
 const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ() const noexcept
 {
+  if (!CanGetZ())
+  {
+    TRACE("BREAK");
+  }
   assert(CanGetZ());
   return *m_z;
 }
@@ -70,12 +74,6 @@ void ribi::trim::Point::Test() noexcept
   TRACE("Finished ribi::trim::Point::Test successfully");
 }
 #endif
-
-
-
-
-
-
 
 const std::set<ribi::Coordinat3D> ribi::trim::ExtractCoordinats(
   const std::vector<boost::shared_ptr<Point>>& points

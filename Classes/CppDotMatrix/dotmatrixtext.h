@@ -40,6 +40,9 @@ struct DotMatrixText
   ///Get the matrix width
   int GetMatrixWidth() const noexcept;
 
+  static const std::string GetVersion() noexcept;
+  static const std::vector<std::string> GetVersionHistory() noexcept;
+
   private:
   const ColorSystem m_color_system;
   const int m_spacing;
