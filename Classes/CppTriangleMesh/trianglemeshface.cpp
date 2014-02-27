@@ -162,7 +162,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     {
       std::reverse(m_points.begin(),m_points.end());
     }
-    assert(! /* added */Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+    assert(! /* added */ Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
   }
   else
   {
@@ -176,7 +176,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     {
       std::reverse(m_points.begin(),m_points.end());
     }
-    assert(! /* added */Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+    assert(! /* added */ Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
   }
 }
 
