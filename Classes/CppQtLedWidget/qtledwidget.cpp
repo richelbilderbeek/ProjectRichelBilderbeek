@@ -164,7 +164,7 @@ void ribi::QtLedWidget::DrawLed(
 
 void ribi::QtLedWidget::DrawLed(
   QPainter& painter,
-  const LedWidget * const widget)
+  const boost::shared_ptr<const LedWidget> widget)
 {
   DrawLed(
     painter,
@@ -204,7 +204,7 @@ void ribi::QtLedWidget::OnResize()
 void ribi::QtLedWidget::paintEvent(QPaintEvent *)
 {
   QPainter p(this);
-  DrawLed(p,m_widget.get());
+  DrawLed(p,m_widget);
 }
 
 void ribi::QtLedWidget::resizeEvent(QResizeEvent * )

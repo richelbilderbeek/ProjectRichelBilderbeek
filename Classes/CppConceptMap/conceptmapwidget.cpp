@@ -27,7 +27,7 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     m_signal_lose_focus_nodes{},
     m_signal_set_focus_nodes{},
     m_conceptmap(conceptmap),
-    m_focus{{}},
+    m_focus{},
     m_font_height(18),
     m_font_width(12),
     m_undo{}
@@ -39,6 +39,8 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     && "Allow a widget with and without an actual concept map");
   assert(m_font_height > 0);
   assert(m_font_width > 0);
+
+  assert(std::count(m_focus.begin(),m_focus.end(),nullptr) == 0);
 }
 
 #ifndef NDEBUG
@@ -63,6 +65,8 @@ ribi::cmap::Widget::Widget(const Widget& other)
 
   assert( (m_undo == other.m_undo || m_undo != other.m_undo)
     && "Cannot copy undo");
+
+  assert(std::count(m_focus.begin(),m_focus.end(),nullptr) == 0);
 }
 #endif
 
@@ -183,6 +187,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const d
 
 const std::vector<boost::shared_ptr<const ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() const noexcept
 {
+  if (m_focus.empty()) { return std::vector<boost::shared_ptr<const Node>>(); }
   assert(std::count(m_focus.begin(),m_focus.end(),nullptr) == 0);
   const std::vector<boost::shared_ptr<const Node>> focus {
     AddConst(m_focus)
@@ -355,17 +360,10 @@ void ribi::cmap::Widget::Test() noexcept
     {
       const boost::shared_ptr<Command> cmd { CommandFactory::CreateTestCommands()[i] };
       assert(cmd);
+      TRACE(cmd->ToStr());
       if (widget->CanDoCommand(cmd))
       {
-        {
-          const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
-          assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
-        }
         widget->DoCommand(cmd);
-        {
-          const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
-          assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
-        }
         widget->Undo();
       }
     }
@@ -387,16 +385,7 @@ void ribi::cmap::Widget::Test() noexcept
           assert(cmd);
           if (widget->CanDoCommand(cmd))
           {
-            {
-              const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
-              assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
-            }
             widget->DoCommand(cmd);
-            {
-              const std::vector<boost::shared_ptr<Node>> focus { widget->GetFocus() };
-              assert(std::count(focus.begin(),focus.end(),nullptr) == 0);
-            }
-            widget->Undo();
           }
         }
       }

@@ -107,7 +107,7 @@ void ribi::QtToggleButtonWidget::DrawToggleButton(
 
 void ribi::QtToggleButtonWidget::DrawToggleButton(
   QPainter& painter,
-  const ToggleButtonWidget * const widget)
+  const boost::shared_ptr<const ToggleButtonWidget> widget)
 {
   DrawToggleButton(
     painter,
@@ -139,7 +139,7 @@ void ribi::QtToggleButtonWidget::mousePressEvent(QMouseEvent * e)
 void ribi::QtToggleButtonWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
-  DrawToggleButton(painter,m_widget.get());
+  DrawToggleButton(painter,m_widget);
 }
 
 void ribi::QtToggleButtonWidget::resizeEvent(QResizeEvent *)

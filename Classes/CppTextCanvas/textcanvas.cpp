@@ -89,6 +89,22 @@ const std::vector<std::string> ribi::TextCanvas::GetVersionHistory() noexcept
   };
 }
 
+void ribi::TextCanvas::PutCanvas(
+  const int left, const int top,
+  const boost::shared_ptr<const TextCanvas>& canvas
+) noexcept
+{
+  const int height { canvas->GetHeight() };
+  const int width { canvas->GetWidth() };
+  for (int y=0; y!=height; ++y)
+  {
+    for (int x=0; x!=width; ++x)
+    {
+      PutChar(left + x, top + y,canvas->GetChar(x,y));
+    }
+  }
+}
+
 void ribi::TextCanvas::PutChar(const int x, const int y, const char c) noexcept
 {
   if(!IsInRange(x,y)) return;

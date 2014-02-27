@@ -138,7 +138,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 
   {
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
-      = [](const std::string& boundary)
+      = [](const std::string& /* boundary */ )
       {
         return ribi::foam::PatchFieldType::slip;
       };

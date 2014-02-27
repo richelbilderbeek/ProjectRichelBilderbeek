@@ -139,8 +139,6 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::DoClick(const int button_index)
     );
     assert(command_iter != commands.end());
     assert(*command_iter);
-    TRACE((*command_iter)->ToStr());
-
     assert(m_qtwidget);
     if (m_qtwidget->CanDoCommand(*command_iter))
     {
@@ -208,7 +206,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
     for (int i=0; i!=j; ++i)
     {
       QtTestConceptMapWidgetDialog d;
-      d.show();
+      //d.show();
       d.DoClick(i);
     }
   }
@@ -221,7 +219,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       for (int j=0; j!=sz; ++j)
       {
         QtTestConceptMapWidgetDialog d;
-        d.show();
+        //d.show();
         d.DoClick(i);
         d.DoClick(j);
       }
@@ -238,7 +236,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
         for (int k=0; k!=sz; ++k)
         {
           QtTestConceptMapWidgetDialog d;
-          d.show();
+          //d.show();
           d.DoClick(i);
           d.DoClick(j);
           d.DoClick(k);
@@ -259,7 +257,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
           for (int m=0; m!=sz; ++m)
           {
             QtTestConceptMapWidgetDialog d;
-            d.show();
+            //d.show();
             d.DoClick(i);
             d.DoClick(j);
             d.DoClick(k);
@@ -272,7 +270,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
   TRACE("Random clicking");
   {
     QtTestConceptMapWidgetDialog d;
-    d.show();
+    //d.show();
     const int n_buttons = d.GetNumberOfButtons();
     for (int i=0; i!=100; ++i)
     {

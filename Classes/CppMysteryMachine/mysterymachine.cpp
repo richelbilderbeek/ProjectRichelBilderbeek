@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "dialwidget.h"
 #include "led.h"
 #include "ledwidget.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
 #include "trace.h"
@@ -91,16 +92,23 @@ void ribi::MysteryMachine::Test() noexcept
 
 const boost::shared_ptr<ribi::TextCanvas> ribi::MysteryMachine::ToTextCanvas() const noexcept
 {
+  const int w = 20;
+  const int h = 20;
   boost::shared_ptr<TextCanvas> canvas {
-
+    new TextCanvas(w,h)
   };
-
-  TRACE(*m_dial_back->ToTextCanvas(1));
+  canvas->PutText(0,0,std::string(w,'-'));
+  canvas->PutText(0,h - 1,std::string(w,'-'));
+  canvas->PutChar(0,0,'+');
+  canvas->PutChar(0,h - 1,'+');
+  canvas->PutChar(w - 1,0,'+');
+  canvas->PutChar(w - 1,h - 1,'+');
+  canvas->PutCanvas(1,1,m_dial_back->ToTextCanvas(1));
   TRACE(*m_dial_front->ToTextCanvas(1));
   TRACE(*m_led_front_1->ToCanvas(1));
   TRACE(*m_led_front_2->ToCanvas(1));
   TRACE(*m_led_front_3->ToCanvas(1));
-  m_toggle_button->ToTextCanvas(
+  TRACE(m_toggle_button->ToTextCanvas(6,4));
 
   assert(!"TODO");
   return canvas;

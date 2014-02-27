@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+
 /*
 The zlib/libpng License
 
@@ -106,3 +109,5 @@ namespace Shiny {
 
 } // namespace Shiny
 #endif
+
+#pragma GCC diagnostic pop

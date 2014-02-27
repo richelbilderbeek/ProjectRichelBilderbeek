@@ -52,7 +52,7 @@ ribi::QtDialWidget::QtDialWidget(QWidget *parent)
 
 void ribi::QtDialWidget::DrawDial(
   QPainter& painter,
-  const DialWidget * const widget)
+  const boost::shared_ptr<const DialWidget> widget)
 {
   DrawDial(
     painter,

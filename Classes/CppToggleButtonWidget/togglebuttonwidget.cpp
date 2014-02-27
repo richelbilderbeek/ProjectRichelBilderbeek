@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/math/constants/constants.hpp>
 
 #include "drawcanvas.h"
+#include "textcanvas.h"
 #include "togglebutton.h"
 #include "trace.h"
 
@@ -146,6 +147,34 @@ const boost::shared_ptr<ribi::DrawCanvas> ribi::ToggleButtonWidget::ToDrawCanvas
   );
   return canvas;
 }
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::ToggleButtonWidget::ToTextCanvas(
+  const int width, const int height
+) const noexcept
+{
+  const boost::shared_ptr<TextCanvas> canvas {
+    new TextCanvas(width,height)
+  };
+  assert(width  == 6 && "For now");
+  assert(height == 4 && "For now");
+
+
+  if (GetToggleButton()->IsPressed())
+  {
+    canvas->PutText(0,0," ____ ");
+    canvas->PutText(0,1,"|    |");
+    canvas->PutText(0,2,"|____|");
+  }
+  else
+  {
+    canvas->PutText(0,0," ____ ");
+    canvas->PutText(0,1,"|    |");
+    canvas->PutText(0,2,"|____|");
+    canvas->PutText(0,3,"|____|");
+  }
+  return canvas;
+}
+
 
 std::ostream& ribi::operator<<(std::ostream& os, const ToggleButtonWidget& button)
 {

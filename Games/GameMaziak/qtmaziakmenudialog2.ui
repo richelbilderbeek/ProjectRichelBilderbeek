@@ -14,7 +14,7 @@
    <string>Maziak</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../GameAminoAcidFighter/GameAminoAcidFighter.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -38,36 +38,38 @@
        <height>0</height>
       </size>
      </property>
-     <widget class="QWidget" name="widget_top_left" native="true">
-      <property name="geometry">
-       <rect>
-        <x>9</x>
-        <y>9</y>
-        <width>16</width>
-        <height>132</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QWidget" name="widget_top_middle" native="true">
-      <property name="geometry">
-       <rect>
-        <x>25</x>
-        <y>9</y>
-        <width>16</width>
-        <height>132</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QWidget" name="widget_top_right" native="true">
-      <property name="geometry">
-       <rect>
-        <x>41</x>
-        <y>9</y>
-        <width>16</width>
-        <height>132</height>
-       </rect>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QWidget" name="widget_top_left" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_top_middle" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget_top_right" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
@@ -99,8 +101,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

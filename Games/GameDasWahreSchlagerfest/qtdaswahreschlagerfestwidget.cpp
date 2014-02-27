@@ -56,8 +56,8 @@ void ribi::QtDasWahreSchlagerfestWidget::keyPressEvent(QKeyEvent * e) noexcept
     case Qt::Key_Right:  key = DasWahreSchlagerfestWidget::Key::right; break;
     case Qt::Key_Down:   key = DasWahreSchlagerfestWidget::Key::down; break;
     case Qt::Key_Left:   key = DasWahreSchlagerfestWidget::Key::left; break;
-    case Qt::Key_Escape: this->close();
-    default: return;
+    case Qt::Key_Escape: this->close(); return;
+    //default: return;
   }
   m_widget->PressKey(key);
 }

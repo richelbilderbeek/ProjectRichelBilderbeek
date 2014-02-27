@@ -133,7 +133,8 @@ void ribi::ruco::QtRubiksClockWidget::DrawRubiksClock(
           painter,
           (front_side
             ? clock->GetFrontPegs()
-            : clock->GetBackPegs())->m_pegs[x][y].get());
+            : clock->GetBackPegs())->m_pegs[x][y]
+        );
       }
     }
   }

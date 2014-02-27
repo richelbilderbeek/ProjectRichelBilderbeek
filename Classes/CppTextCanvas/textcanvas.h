@@ -65,6 +65,12 @@ struct TextCanvas : public Canvas
 
   void Load(const std::vector<std::string>& v) { m_canvas = v; }
 
+  ///Put a canvas on the canvas
+  void PutCanvas(
+    const int left, const int top,
+    const boost::shared_ptr<const TextCanvas>& canvas
+  ) noexcept;
+
   ///Put a character on the Canvas
   ///If the character is not in range, nothing happens
   void PutChar(const int x, const int y, const char c) noexcept;

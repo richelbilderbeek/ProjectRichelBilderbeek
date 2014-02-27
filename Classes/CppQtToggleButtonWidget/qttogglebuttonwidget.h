@@ -72,7 +72,8 @@ struct QtToggleButtonWidget : public QWidget
   ///Draw a ToggleButton from a ToggleButtonWidget
   static void DrawToggleButton(
     QPainter& painter,
-    const ToggleButtonWidget * const widget);
+    const boost::shared_ptr<const ToggleButtonWidget> widget
+  );
 
   protected:
   ///Paint the QtToggleButtonWidget
@@ -84,7 +85,7 @@ struct QtToggleButtonWidget : public QWidget
   private:
 
   ///The ToggleButton
-  boost::scoped_ptr<ToggleButtonWidget> m_widget;
+  boost::shared_ptr<ToggleButtonWidget> m_widget;
 
   ///Repaint the QtToggleButtonWidget
   void DoRepaint();

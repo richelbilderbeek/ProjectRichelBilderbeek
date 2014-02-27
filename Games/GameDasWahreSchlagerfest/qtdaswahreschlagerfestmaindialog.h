@@ -44,7 +44,8 @@ public:
 
 private:
   Ui::QtDasWahreSchlagerfestMainDialog *ui;
-
+  void closeEvent(QCloseEvent *);
+  void keyPressEvent(QKeyEvent *event);
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

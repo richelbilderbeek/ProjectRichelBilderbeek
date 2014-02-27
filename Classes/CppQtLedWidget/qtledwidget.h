@@ -56,7 +56,7 @@ public:
   ///Draw a Led from a LedWidget
   static void DrawLed(
     QPainter& painter,
-    const LedWidget * const widget);
+    const boost::shared_ptr<const LedWidget> widget);
 
 
 protected:
@@ -64,7 +64,7 @@ protected:
   void resizeEvent(QResizeEvent *);
 
 private:
-  boost::scoped_ptr<LedWidget> m_widget;
+  boost::shared_ptr<LedWidget> m_widget;
 
   ///OnResize is called when the geometry of the LedWidget is changed
   void OnResize();

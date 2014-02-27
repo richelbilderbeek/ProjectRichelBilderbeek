@@ -81,14 +81,14 @@ void ribi::cmap::QtConceptMapWidget::keyPressEvent(QKeyEvent * e) noexcept
 {
   if (e->key() == Qt::Key_Z && e->modifiers() & Qt::ControlModifier)
   {
-    TRACE("UNDO");
+    //TRACE("UNDO");
     this->m_widget->Undo();
   }
 }
 
 void ribi::cmap::QtConceptMapWidget::mouseDoubleClickEvent(QMouseEvent * e) noexcept
 {
-  TRACE(e);
+  //TRACE(e);
   if (!e) throw std::exception(); //To satisfy the compiler
 }
 
@@ -129,7 +129,7 @@ void ribi::cmap::QtConceptMapWidget::mousePressEvent(QMouseEvent * e) noexcept
 
 void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> node) noexcept
 {
-  TRACE_FUNC();
+  //TRACE_FUNC();
   assert(node);
   if (!node)
   {
@@ -140,7 +140,6 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
     #ifndef NDEBUG
     const std::size_t qtnodes_before { m_qtconceptmap->GetQtNodes().size() };
     const std::size_t nodes_before { m_widget->GetConceptMap()->GetNodes().size() };
-    TRACE(qtnodes_before)
     #endif
     m_qtconceptmap->AddNode(node);
     assert(m_qtconceptmap->FindQtNode(node.get()));
@@ -166,23 +165,13 @@ void ribi::cmap::QtConceptMapWidget::OnAddNode(const boost::shared_ptr<Node> nod
 
 void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
 {
-  TRACE(m_qtconceptmap->scene()->items().count());
   m_qtconceptmap->scene()->update();
-  TRACE(m_qtconceptmap->scene()->items().count());
-
-  TRACE(m_qtconceptmap->items().count());
   m_qtconceptmap->update();
-  TRACE(m_qtconceptmap->items().count());
-
-  TRACE(scene()->items().count());
   scene()->update();
-  TRACE(scene()->items().count());
-
 }
 
 void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> node) noexcept
 {
-  TRACE_FUNC();
   if (!node)
   {
     //m_qtconceptmap->clearFocus();
@@ -192,7 +181,6 @@ void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> 
     #ifndef NDEBUG
     const std::size_t qtnodes_before { m_qtconceptmap->GetQtNodes().size() };
     const std::size_t nodes_before { m_widget->GetConceptMap()->GetNodes().size() };
-    TRACE(qtnodes_before)
     #endif
     assert(m_qtconceptmap->FindQtNode(node.get()));
     m_qtconceptmap->DeleteNode(m_qtconceptmap->FindQtNode(node.get()));
@@ -239,7 +227,7 @@ void ribi::cmap::QtConceptMapWidget::OnSetFocusNodes(const std::vector<boost::sh
 
 void ribi::cmap::QtConceptMapWidget::OnSetFocusNode(const boost::shared_ptr<Node> node) noexcept
 {
-  TRACE_FUNC();
+  //TRACE_FUNC();
   assert(node);
   assert(m_qtconceptmap->FindQtNode(node.get()));
   //if(m_qtconceptmap->FindQtNode(node))

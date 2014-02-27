@@ -1,6 +1,7 @@
 #!/bin/bash
 #Script to check the status of compiles
 #Copies executables (both Linux and Win32) executables to ~/bin (overwrites older)
+set -u
 #set -x verbose #echo on
 
 for superfolder in `ls`

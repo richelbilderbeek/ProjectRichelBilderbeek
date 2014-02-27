@@ -17,7 +17,9 @@ include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 
 #Specific, console
+include(../../Classes/CppCoordinat/CppCoordinat.pri)
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
+include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppXml/CppXml.pri)
 #Specific, desktop
