@@ -94,22 +94,14 @@ bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexce
 
 bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept
 {
-  //assert(!"TODO");
-  //const Coordinat3D center { CalcCenter(points) };
-  //const Coordinat3D center { observer }; //? Correct or not?
   const int n_points { static_cast<int>(points.size()) };
-  for (int i=0; i!=n_points-2; ++i)
-  {
-    const Coordinat3D a { points[i  ] };
-    const Coordinat3D b { points[i+1] };
-    const Coordinat3D c { points[i+2] };
-    const Coordinat3D normal { CalcNormal(a,b,c) };
-    const double direction {
-      CalcDotProduct(normal,a - observer)
-    };
-    if (direction > 0.0) return false;
-  }
-  return true;
+  assert(n_points == 3);
+  const Coordinat3D a { points[0] };
+  const Coordinat3D b { points[1] };
+  const Coordinat3D c { points[2] };
+  const Coordinat3D normal { CalcNormal(a,b,c) };
+  const double direction { CalcDotProduct(normal,a - observer) };
+  return direction > 0.0;
 }
 
 bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept

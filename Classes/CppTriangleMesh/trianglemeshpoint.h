@@ -87,7 +87,6 @@ struct Point
   friend std::ostream& operator<<(std::ostream& os, const Point& n);
 };
 
-const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
 bool operator==(const Point& lhs, const Point& rhs);
 bool operator!=(const Point& lhs, const Point& rhs);
 std::ostream& operator<<(std::ostream& os, const Point& n);

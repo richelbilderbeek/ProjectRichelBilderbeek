@@ -93,14 +93,14 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
       };
       assert(hor_faces[bottom_face_index]);
       assert(hor_faces[top_face_index]);
-      assert(IsHorizontal(*hor_faces[bottom_face_index]));
-      assert(IsHorizontal(*hor_faces[top_face_index]));
-      assert(IsVertical(*these_ver_faces[0]));
-      assert(IsVertical(*these_ver_faces[1]));
-      assert(IsVertical(*these_ver_faces[2]));
-      assert(IsVertical(*these_ver_faces[3]));
-      assert(IsVertical(*these_ver_faces[4]));
-      assert(IsVertical(*these_ver_faces[5]));
+      assert(Helper().IsHorizontal(*hor_faces[bottom_face_index]));
+      assert(Helper().IsHorizontal(*hor_faces[top_face_index]));
+      assert(Helper().IsVertical(*these_ver_faces[0]));
+      assert(Helper().IsVertical(*these_ver_faces[1]));
+      assert(Helper().IsVertical(*these_ver_faces[2]));
+      assert(Helper().IsVertical(*these_ver_faces[3]));
+      assert(Helper().IsVertical(*these_ver_faces[4]));
+      assert(Helper().IsVertical(*these_ver_faces[5]));
 
       cells.push_back(cell);
     }

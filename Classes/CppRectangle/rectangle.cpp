@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 #include <stdexcept>
 
+#include "trace.h"
+
 ribi::Rect::Rect(
     const int any_x,
     const int any_y,
@@ -48,6 +50,19 @@ const std::vector<std::string> ribi::Rect::GetVersionHistory() noexcept
     "2011-08-20: Version 1.0: initial version"
   };
 }
+
+#ifndef NDEBUG
+void ribi::Rect::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Rect::Test");
+  TRACE("Finished ribi::Rect::Test successfully");
+}
+#endif
 
 void ribi::Rect::Translate(const int dx, const int dy) noexcept
 {

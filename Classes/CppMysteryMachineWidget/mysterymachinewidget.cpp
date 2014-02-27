@@ -35,7 +35,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "rectangle.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-//#include "trace.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -44,6 +44,9 @@ ribi::MysteryMachineWidget::MysteryMachineWidget(
   : m_machine(new MysteryMachine)
 
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   this->m_signal_geometry_changed.connect(boost::bind(
     &ribi::MysteryMachineWidget::OnResize,this));
   SetGeometry(geometry);
@@ -121,6 +124,19 @@ void ribi::MysteryMachineWidget::OnResize() noexcept
     s,s));
   //m_signal_mysterymachine_changed();
 }
+
+#ifndef NDEBUG
+void ribi::MysteryMachineWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::MysteryMachineWidget::Test");
+  TRACE("Finished ribi::MysteryMachineWidget::Test successfully");
+}
+#endif
 
 std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept
 {

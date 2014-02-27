@@ -67,6 +67,8 @@ struct FaceFactory
 
   The front plane exists of the edges 1,4,7,9
 
+  All windings are clockwise, when seen from the inside of the prism
+
   */
   const std::vector<boost::shared_ptr<Face>> CreateTestPrism() const noexcept;
 

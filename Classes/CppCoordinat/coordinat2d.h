@@ -44,7 +44,6 @@ std::ostream& operator<<(std::ostream& os, const Coordinat2D& n) noexcept;
 ///The dot product
 double operator*(const Coordinat2D& v1,const Coordinat2D& v2) noexcept;
 
-
 double Distance(const Coordinat2D& lhs,const Coordinat2D& rhs) noexcept;
 
 ///Distance to origin

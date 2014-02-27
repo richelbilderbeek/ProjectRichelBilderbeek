@@ -68,6 +68,35 @@ const ribi::Coordinat3D ribi::trim::Helper::CalcCenter(const std::vector<boost::
 
 }
 
+const ribi::Coordinat3D ribi::trim::Helper::CalcNormal(
+  const std::vector<boost::shared_ptr<Edge>>& edges
+) const noexcept
+{
+  assert(edges.size() == 3);
+  assert(edges[0]->GetTo() == edges[1]->GetFrom());
+  assert(edges[1]->GetTo() == edges[2]->GetFrom());
+  assert(edges[2]->GetTo() == edges[0]->GetFrom());
+
+  return ::ribi::CalcNormal(
+    Coordinat3D(
+      edges[0]->GetFrom()->GetCoordinat()->GetX(),
+      edges[0]->GetFrom()->GetCoordinat()->GetY(),
+      edges[0]->GetFrom()->CanGetZ() ? edges[0]->GetFrom()->GetZ().value() : 0.0
+    ),
+    Coordinat3D(
+      edges[1]->GetFrom()->GetCoordinat()->GetX(),
+      edges[1]->GetFrom()->GetCoordinat()->GetY(),
+      edges[1]->GetFrom()->CanGetZ() ? edges[1]->GetFrom()->GetZ().value() : 0.0
+    ),
+    Coordinat3D(
+      edges[2]->GetFrom()->GetCoordinat()->GetX(),
+      edges[2]->GetFrom()->GetCoordinat()->GetY(),
+      edges[2]->GetFrom()->CanGetZ() ? edges[2]->GetFrom()->GetZ().value() : 0.0
+    )
+  );
+}
+
+
 ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
   const std::vector<boost::shared_ptr<const Edge>>& edges
 ) const noexcept
@@ -111,25 +140,90 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
   ;
 }
 
+const std::set<ribi::Coordinat3D> ribi::trim::Helper::ExtractCoordinats(
+  const std::vector<boost::shared_ptr<Point>>& points
+)
+{
+  PROFILE_FUNC();
+  std::set<ribi::Coordinat3D> s;
+  for (const auto point: points)
+  {
+    if (!point->CanGetZ())
+    {
+      TRACE("Extract these coordinats later: the Face must be assigned to a Layer first");
+    }
+    assert(point->CanGetZ());
+    const ribi::Coordinat3D c(
+      point->GetCoordinat()->GetX(),
+      point->GetCoordinat()->GetY(),
+      point->GetZ().value()
+    );
+    s.insert(s.begin(),c);
+  }
+
+  return s;
+}
+
+const std::set<ribi::Coordinat3D> ribi::trim::Helper::ExtractCoordinats(const ribi::trim::Face& face)
+{
+  face.DoExtractCoordinats();
+  return face.GetCoordinats();
+}
+
 double ribi::trim::Helper::GetAngle(const boost::shared_ptr<const Point> point) const noexcept
 {
   return Geometry().GetAngle(point->GetCoordinat()->GetX(),point->GetCoordinat()->GetY());
 }
 
+bool ribi::trim::Helper::IsClockwise(
+  const std::vector<boost::shared_ptr<const Edge>>& edges,
+  const Coordinat3D& observer
+) const noexcept
+{
+  std::vector<Coordinat3D> coordinats;
+  for (auto edge: edges)
+  {
+    Coordinat3D coordinat(
+      edge->GetFrom()->GetCoordinat()->GetX(),
+      edge->GetFrom()->GetCoordinat()->GetY(),
+      edge->GetFrom()->GetZ().value()
+    );
+    coordinats.push_back(coordinat);
+  }
+  return Geometry().IsClockwise(coordinats,observer);
+}
+
+bool ribi::trim::Helper::IsClockwise(
+  const std::vector<boost::shared_ptr<const Point>>& points,
+  const Coordinat3D& observer) const noexcept
+{
+  std::vector<Coordinat3D> coordinats;
+  for (auto point: points)
+  {
+    Coordinat3D coordinat(
+      point->GetCoordinat()->GetX(),
+      point->GetCoordinat()->GetY(),
+      point->CanGetZ() ? point->GetZ().value() : 0.0
+    );
+    coordinats.push_back(coordinat);
+  }
+  return Geometry().IsClockwise(coordinats,observer);
+}
+
 bool ribi::trim::Helper::IsClockwiseHorizontal(
   const boost::shared_ptr<const Edge> edge,
-  const Coordinat3D& center
+  const Coordinat3D& observer
   ) const noexcept
 {
   const bool is_clockwise {
     Geometry().IsClockwise(
       Geometry().GetAngle(
-        edge->GetFrom()->GetCoordinat()->GetX() - center.GetX(),
-        edge->GetFrom()->GetCoordinat()->GetY() - center.GetY()
+        edge->GetFrom()->GetCoordinat()->GetX() - observer.GetX(),
+        edge->GetFrom()->GetCoordinat()->GetY() - observer.GetY()
       ),
       Geometry().GetAngle(
-        edge->GetTo()->GetCoordinat()->GetX() - center.GetX(),
-        edge->GetTo()->GetCoordinat()->GetY() - center.GetY()
+        edge->GetTo()->GetCoordinat()->GetX() - observer.GetX(),
+        edge->GetTo()->GetCoordinat()->GetY() - observer.GetY()
       )
     )
   };
@@ -165,6 +259,60 @@ bool ribi::trim::Helper::IsClockwiseHorizontal(
   const bool b { Geometry().IsClockwise(angles[1],angles[2]) };
   const bool is_clockwise { a && b };
   return is_clockwise;
+}
+
+bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) noexcept
+{
+  const bool answer_1 = face.GetOrientation() == FaceOrientation::horizontal;
+
+  const std::set<ribi::Coordinat3D> coordinats { ExtractCoordinats(face) };
+
+  typedef std::set<ribi::Coordinat3D>::iterator Iterator;
+  typedef std::pair<Iterator,Iterator> Pair;
+  const Pair xs {
+    std::minmax_element(coordinats.begin(),coordinats.end(),
+      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
+      {
+        return lhs.GetX() < rhs.GetX();
+      }
+    )
+  };
+
+  const double dx { std::abs((*xs.first).GetX() - (*xs.second).GetX()) };
+
+  const Pair ys {
+    std::minmax_element(coordinats.begin(),coordinats.end(),
+      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
+      {
+        return lhs.GetY() < rhs.GetY();
+      }
+    )
+  };
+
+  const double dy { std::abs((*ys.first).GetY() - (*ys.second).GetY()) };
+
+  const Pair zs {
+    std::minmax_element(coordinats.begin(),coordinats.end(),
+      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
+      {
+        return lhs.GetZ() < rhs.GetZ();
+      }
+    )
+  };
+  const double dz { std::abs((*zs.first).GetZ() - (*zs.second).GetZ()) };
+
+  const bool answer_2 { dz * 1000.0 < dx && dz * 1000.0 < dy };
+
+  assert(answer_1 == answer_2);
+  return answer_1;
+}
+
+bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
+{
+  const bool answer_1 = face.GetOrientation() == FaceOrientation::vertical;
+  const bool answer_2 = !IsHorizontal(face);
+  assert(answer_1 == answer_2);
+  return answer_1;
 }
 
 void ribi::trim::Helper::SetWindingHorizontal(

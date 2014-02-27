@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "ledwidget.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -50,6 +51,9 @@ ribi::MysteryMachine::MysteryMachine() noexcept
     //m_back(0),
     //m_front(0),
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   m_dial_back->GetDial()->m_signal_position_changed.connect(boost::bind(
     &ribi::MysteryMachine::Update,this));
   m_dial_front->GetDial()->m_signal_position_changed.connect(boost::bind(
@@ -71,6 +75,37 @@ const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory() noexcep
     "2011-08-20: Version 1.1: added operator<<"
   };
 }
+
+#ifndef NDEBUG
+void ribi::MysteryMachine::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::MysteryMachine::Test");
+  TRACE("Finished ribi::MysteryMachine::Test successfully");
+}
+#endif
+
+const boost::shared_ptr<ribi::TextCanvas> ribi::MysteryMachine::ToTextCanvas() const noexcept
+{
+  boost::shared_ptr<TextCanvas> canvas {
+
+  };
+
+  TRACE(*m_dial_back->ToTextCanvas(1));
+  TRACE(*m_dial_front->ToTextCanvas(1));
+  TRACE(*m_led_front_1->ToCanvas(1));
+  TRACE(*m_led_front_2->ToCanvas(1));
+  TRACE(*m_led_front_3->ToCanvas(1));
+  m_toggle_button->ToTextCanvas(
+
+  assert(!"TODO");
+  return canvas;
+}
+
 
 void ribi::MysteryMachine::Update() noexcept
 {

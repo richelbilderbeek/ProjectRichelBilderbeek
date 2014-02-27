@@ -51,6 +51,10 @@ struct Help
   const std::string m_program_name;
 
   static const std::vector<Option> AddDefaultOptions(const std::vector<Option>& options);
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 std::ostream& operator<<(std::ostream& os, const Help& help);

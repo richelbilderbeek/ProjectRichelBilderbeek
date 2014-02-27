@@ -63,6 +63,10 @@ struct LedWidget : public Widget
   ///Obtain the version history of this class
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
   private:

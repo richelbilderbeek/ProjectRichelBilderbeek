@@ -94,6 +94,10 @@ struct Led
   ///The Led its blueness
   unsigned char m_blue;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   friend std::ostream& operator<<(std::ostream& os, const Led& led);
 
   public:

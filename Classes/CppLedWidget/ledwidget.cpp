@@ -29,6 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "led.h"
 #include "textcanvas.h"
+#include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::LedWidget::LedWidget(
@@ -42,6 +43,9 @@ ribi::LedWidget::LedWidget(
   const unsigned char blue)
   : m_led(new Led(intensity,red,green,blue))
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
   this->SetGeometry(Rect(x,y,width,height));
 }
 
@@ -59,6 +63,19 @@ const std::vector<std::string> ribi::LedWidget::GetVersionHistory() noexcept
     "2011-09-08: Version 1.3: removed redundant signals"
   };
 }
+
+#ifndef NDEBUG
+void ribi::LedWidget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::LedWidget::Test");
+  TRACE("Finished ribi::LedWidget::Test successfully");
+}
+#endif
 
 const boost::shared_ptr<ribi::TextCanvas> ribi::LedWidget::ToCanvas(const int radius) const noexcept
 {

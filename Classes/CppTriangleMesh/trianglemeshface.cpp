@@ -13,8 +13,11 @@
 #include "Shiny.h"
 
 #include "coordinat3d.h"
+#include "geometry.h"
+#include "trianglemeshcell.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshfacefactory.h"
+#include "trianglemeshhelper.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -83,7 +86,7 @@ void ribi::trim::Face::DoExtractCoordinats() const
   PROFILE_FUNC();
   assert(CanExtractCoordinats());
   //assert(m_coordinats.empty()); //This is done multiple times in debugging
-  m_coordinats = ExtractCoordinats(m_points);
+  m_coordinats = Helper().ExtractCoordinats(m_points);
 }
 
 const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
@@ -145,13 +148,37 @@ const boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(cons
   return GetPoints()[index];
 }
 
-/*
-void ribi::trim::Face::ReversePoints() noexcept
+void ribi::trim::Face::SetCorrectWinding() noexcept
 {
   PROFILE_FUNC();
-  std::reverse(m_points.begin(),m_points.end());
+  assert(m_belongs_to.size() == 1 || m_belongs_to.size() == 2);
+  if (!GetNeighbour())
+  {
+    //Boundary face: normal must point away from the Cell its center
+    const boost::shared_ptr<const Cell> observer { GetOwner() };
+    assert(observer);
+    //TEMP: reversed logic..
+    if (/* ! */ Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+    {
+      std::reverse(m_points.begin(),m_points.end());
+    }
+    assert(! /* added */Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+  }
+  else
+  {
+    //Internal face: normal must point to the Cell with the heighest label;
+    //  must point away from the Cell with the lowest index
+    const boost::shared_ptr<const Cell> observer {
+      GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
+    };
+    assert(observer);
+    if (/* ! */Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+    {
+      std::reverse(m_points.begin(),m_points.end());
+    }
+    assert(! /* added */Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+  }
 }
-*/
 
 #ifndef NDEBUG
 void ribi::trim::Face::Test() noexcept
@@ -183,65 +210,7 @@ void ribi::trim::Face::Test() noexcept
 
 
 
-const std::set<ribi::Coordinat3D> ribi::trim::ExtractCoordinats(const ribi::trim::Face& face)
-{
-  face.DoExtractCoordinats();
-  return face.GetCoordinats();
-}
 
-bool ribi::trim::IsHorizontal(const ribi::trim::Face& face) noexcept
-{
-  const bool answer_1 = face.GetOrientation() == FaceOrientation::horizontal;
-
-  const std::set<ribi::Coordinat3D> coordinats { ExtractCoordinats(face) };
-
-  typedef std::set<ribi::Coordinat3D>::iterator Iterator;
-  typedef std::pair<Iterator,Iterator> Pair;
-  const Pair xs {
-    std::minmax_element(coordinats.begin(),coordinats.end(),
-      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
-      {
-        return lhs.GetX() < rhs.GetX();
-      }
-    )
-  };
-
-  const double dx { std::abs((*xs.first).GetX() - (*xs.second).GetX()) };
-
-  const Pair ys {
-    std::minmax_element(coordinats.begin(),coordinats.end(),
-      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
-      {
-        return lhs.GetY() < rhs.GetY();
-      }
-    )
-  };
-
-  const double dy { std::abs((*ys.first).GetY() - (*ys.second).GetY()) };
-
-  const Pair zs {
-    std::minmax_element(coordinats.begin(),coordinats.end(),
-      [](const ribi::Coordinat3D& lhs,const ribi::Coordinat3D& rhs)
-      {
-        return lhs.GetZ() < rhs.GetZ();
-      }
-    )
-  };
-  const double dz { std::abs((*zs.first).GetZ() - (*zs.second).GetZ()) };
-
-  const bool answer_2 { dz * 1000.0 < dx && dz * 1000.0 < dy };
-
-  assert(answer_1 == answer_2);
-  return answer_1;
-}
-
-bool ribi::trim::IsVertical(const ribi::trim::Face& face) noexcept
-{
-  const bool answer_1 = face.GetOrientation() == FaceOrientation::vertical;
-  const bool answer_2 = !IsHorizontal(face);
-  assert(answer_1 == answer_2);
-  return answer_1;
-}
 
 bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs)
 {

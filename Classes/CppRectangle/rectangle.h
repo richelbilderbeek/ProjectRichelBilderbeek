@@ -137,6 +137,10 @@ struct Rect
   int m_w;
   int m_h;
 
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
+
   friend bool operator==(const Rect& lhs, const Rect& rhs) noexcept;
   friend std::ostream& operator<<(std::ostream& os,const Rect& rect) noexcept;
 };

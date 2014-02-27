@@ -35,8 +35,9 @@ ribi::Help::Help(
     m_program_description(program_description),
     m_program_name(program_name)
 {
-
   #ifndef NDEBUG
+  Test();
+
   //checks if there are no short or long option occurring twice
   const std::size_t sz = m_options.size();
   for (std::size_t i=0; i!=sz-1; ++i)
@@ -143,6 +144,19 @@ const std::vector<std::string> ribi::Help::GetVersionHistory() noexcept
     "2014-02-27: Version 1.1: started versioning"
   };
 }
+
+#ifndef NDEBUG
+void ribi::Help::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::Help::Test");
+  TRACE("Finished ribi::Help::Test successfully");
+}
+#endif
 
 std::ostream& ribi::operator<<(std::ostream& os, const Help& help)
 {

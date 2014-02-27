@@ -351,7 +351,8 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
   for (auto face: m_faces)
   {
     s << face->GetPoints().size();
-    //TRACE(face->GetPoints().size());
+
+    face->SetCorrectWinding();
 
     for (const boost::shared_ptr<const Point> point: face->GetPoints())
     {

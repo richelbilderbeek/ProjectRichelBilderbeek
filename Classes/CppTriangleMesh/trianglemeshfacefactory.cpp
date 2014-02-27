@@ -5,6 +5,7 @@
 #include "Shiny.h"
 
 #include "coordinat3d.h"
+#include "geometry.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshedge.h"
 #include "trianglemeshedgefactory.h"
@@ -83,6 +84,8 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   const std::vector<boost::shared_ptr<Edge>> edges_e      { edges[2], edges[ 6], edges[11] };
   const std::vector<boost::shared_ptr<Edge>> edges_f      { edges[5], edges[10], edges[11] };
 
+  const Coordinat3D center { Helper().CalcCenter(edges) };
+
   if (Helper().CalcWindingHorizontal(AddConst(edges_bottom)) != Winding::clockwise)
   {
     Helper().SetWindingHorizontal(edges_bottom,Winding::clockwise);
@@ -91,6 +94,9 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   {
     Helper().SetWindingHorizontal(edges_top,Winding::counter_clockwise);
   }
+
+  assert(Helper().IsClockwise(AddConst(edges_bottom),center));
+
   /*
   if (!IsClockwiseHorizontal(edges_bottom))
   {

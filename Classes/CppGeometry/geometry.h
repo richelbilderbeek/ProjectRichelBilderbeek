@@ -21,6 +21,39 @@ struct Geometry
   /// 3 o'clock is 0.5 * pi
   /// 6 o'clock is 1.0 * pi
   /// 9 o'clock is 1.5 * pi
+
+  /*
+   Y          Y
+   |    (11)  |  (1)
+ -2|          |
+   |          |
+ -1| (10)     |      (2)
+   |          |
+  0+----------0--------X
+   |          |
+ +1| (8)      |      (4)
+   |          |
+ +2|          |
+   |     (7)  |  (5)
+   +----------+--------X
+        - - -   + + +
+        3 2 1 0 1 2 3
+
+  Appriximate coordinat for a point for every hour, with the approximate angle
+   1: ( 1,-2) :  1/6 * pi
+   2: ( 2,-1) :  2/6 * pi
+   3: ( 3, 0) :  3/6 * pi
+   4: ( 2, 1) :  4/6 * pi
+   5: ( 1, 2) :  5/6 * pi
+   6: ( 0, 3) :  6/6 * pi
+   7: (-1, 2) :  7/6 * pi
+   8: (-2, 1) :  8/6 * pi
+   9: (-3, 0) :  9/6 * pi
+  10: (-2,-1) : 10/6 * pi
+  11: (-1,-2) : 11/6 * pi
+  12: ( 0,-3) : 12/6 * pi
+
+  */
   //From www.richelbilderbeek.nl/CppGetAngle.htm
   double GetAngle(const double dx, const double dy) const noexcept;
 

@@ -92,16 +92,9 @@ const ribi::Coordinat3D ribi::CalcNormal(
   const ribi::Coordinat3D& c
 ) noexcept
 {
-  const Coordinat3D u { b - a};
-  const Coordinat3D v { c - a};
+  const Coordinat3D u { c - a};
+  const Coordinat3D v { b - a};
   return CalcCrossProduct(u,v);
-  /*
-  return ribi::Coordinat3D(
-    (u.GetY() * v.GetZ()) - (u.GetZ() * v.GetY()),
-    (u.GetZ() * v.GetX()) - (u.GetX() * v.GetZ()),
-    (u.GetX() * v.GetY()) - (u.GetY() * v.GetX())
-  );
-  */
 }
 
 double ribi::Distance(const Coordinat3D& lhs,const Coordinat3D& rhs)
@@ -223,22 +216,22 @@ void ribi::Coordinat3D::Test() noexcept
   {
     /*
 
-       Y
-     3 |        (Z = 1)
-       |
-     2 | A
-       | |\
-     1 | C-B
-       |
-     0 +------X
        0 1 2 3
+     0 +------X
+       |
+     1 | A    (Z = 1)
+       | |\
+     2 | C-B
+       |
+     3 |
+       Y
 
     */
     const Coordinat3D normal {
       CalcNormal(
-        Coordinat3D(1.0,2.0,-1.0), //A
-        Coordinat3D(2.0,1.0,-1.0), //B
-        Coordinat3D(1.0,1.0,-1.0)  //C
+        Coordinat3D(1.0,1.0,-1.0), //A
+        Coordinat3D(2.0,2.0,-1.0), //B
+        Coordinat3D(1.0,2.0,-1.0)  //C
       )
     };
     TRACE(normal);
@@ -251,22 +244,22 @@ void ribi::Coordinat3D::Test() noexcept
   {
     /*
 
-       Y
-     3 |        (Z = 1)
-       |
-     2 | A
-       | |\
-     1 | B-C
-       |
-     0 +------X
        0 1 2 3
+     0 +------X
+       |
+     1 | A    (Z = 1)
+       | |\
+     2 | B-C
+       |
+     3 |
+       Y
 
     */
     const Coordinat3D normal {
       CalcNormal(
-        Coordinat3D(1.0,2.0,-1.0), //A
-        Coordinat3D(1.0,1.0,-1.0), //B
-        Coordinat3D(2.0,1.0,-1.0)  //C
+        Coordinat3D(1.0,1.0,-1.0), //A
+        Coordinat3D(1.0,2.0,-1.0), //B
+        Coordinat3D(2.0,2.0,-1.0)  //C
       )
     };
     TRACE(normal);

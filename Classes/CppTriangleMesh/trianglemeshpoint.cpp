@@ -75,29 +75,7 @@ void ribi::trim::Point::Test() noexcept
 }
 #endif
 
-const std::set<ribi::Coordinat3D> ribi::trim::ExtractCoordinats(
-  const std::vector<boost::shared_ptr<Point>>& points
-)
-{
-  PROFILE_FUNC();
-  std::set<ribi::Coordinat3D> s;
-  for (const auto point: points)
-  {
-    if (!point->CanGetZ())
-    {
-      TRACE("Extract these coordinats later: the Face must be assigned to a Layer first");
-    }
-    assert(point->CanGetZ());
-    const ribi::Coordinat3D c(
-      point->GetCoordinat()->GetX(),
-      point->GetCoordinat()->GetY(),
-      point->GetZ().value()
-    );
-    s.insert(s.begin(),c);
-  }
 
-  return s;
-}
 
 
 bool ribi::trim::operator==(const ribi::trim::Point& lhs, const ribi::trim::Point& rhs)

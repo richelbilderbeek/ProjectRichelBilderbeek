@@ -63,6 +63,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
   const std::array<boost::shared_ptr<Point>,2> points_a { points[1], points[5] };
   const std::array<boost::shared_ptr<Point>,2> points_b { points[2], points[5] };
   const std::array<boost::shared_ptr<Point>,2> points_c { points[2], points[3] };
+
   const boost::shared_ptr<Edge> edge_1 { EdgeFactory().Create(points_1) };
   const boost::shared_ptr<Edge> edge_2 { EdgeFactory().Create(points_2) };
   const boost::shared_ptr<Edge> edge_3 { EdgeFactory().Create(points_3) };
@@ -99,6 +100,9 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
   edge_a->SetIndex(10);
   edge_b->SetIndex(11);
   edge_c->SetIndex(12);
+
+  const Coordinat3D center { Helper().CalcCenter(points) };
+
   const std::vector<boost::shared_ptr<Edge>> prism {
     edge_1,
     edge_2,

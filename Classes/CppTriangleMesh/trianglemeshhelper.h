@@ -32,10 +32,17 @@ struct Helper
 
   const Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
+  const Coordinat3D CalcNormal(
+    const std::vector<boost::shared_ptr<Edge>>& edges
+  ) const noexcept;
+
   ///Find out the Winding of the edges
   ///knowing that all edges are in the same XY plane
   ///when viewed from above (at an infinite Z coordinat)
   Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
+
+  const std::set<ribi::Coordinat3D> ExtractCoordinats(const Face& face);
+  const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
 
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
@@ -50,15 +57,15 @@ struct Helper
    |          |
  -1| (10)     |      (2)
    |          |
-  0+----------+--------X
+  0+----------0--------X
    |          |
  +1| (8)      |      (4)
    |          |
  +2|          |
    |     (7)  |  (5)
    +----------+--------X
-       - - -   + + +
-       3 2 1 0 1 2 3
+        - - -   + + +
+        3 2 1 0 1 2 3
 
   Appriximate coordinat for a point for every hour, with the approximate angle
    1: ( 1,-2) :  1/6 * pi
@@ -77,11 +84,22 @@ struct Helper
   */
   double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
 
+  ///Are the points ordered clockwise when seen from the observer
+  bool IsClockwise(
+    const std::vector<boost::shared_ptr<const Edge>>& edges,
+    const Coordinat3D& center
+  ) const noexcept;
+
+  bool IsClockwise(
+    const std::vector<boost::shared_ptr<const Point>>& points,
+    const Coordinat3D& observer
+  ) const noexcept;
+
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   bool IsClockwiseHorizontal(
     const boost::shared_ptr<const Edge> edge,
-    const Coordinat3D& center
+    const Coordinat3D& observer
   ) const noexcept;
 
   ///Are the points ordered clockwise in the XY plane seen from above
@@ -94,6 +112,9 @@ struct Helper
     const std::vector<boost::shared_ptr<Point>>& points,
     const boost::shared_ptr<const Point>& observer
   ) const noexcept;
+
+  bool IsHorizontal(const Face& face) noexcept;
+  bool IsVertical(const Face& face) noexcept;
 
   ///Set the edges to get a certain Winding,
   ///knowing that all edges are in the same XY plane

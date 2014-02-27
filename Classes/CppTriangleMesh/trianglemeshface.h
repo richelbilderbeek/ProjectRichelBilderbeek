@@ -51,6 +51,14 @@ struct Face
 
   void SetBoundaryType(const std::string type) const noexcept { m_type = type; }
 
+  ///Before saving a Face to OpenFOAM, its Points' winding needs to be set to the correct order:
+  /// - if the Face is a boundary face, the normal needs to point outwards;
+  ///   going away from the mesh; its points needs to be ordered clockwise
+  ///   when viewed from its cell's center
+  /// - if the Face is an internal face, the normal needs to point inside
+  ///   the cell with the heighest index
+  void SetCorrectWinding() noexcept;
+
   private:
   ~Face() noexcept {}
   friend void boost::checked_delete<>(Face* x);
@@ -99,10 +107,6 @@ struct Face
 
   friend std::ostream& operator<<(std::ostream& os, const Face& f);
 };
-
-const std::set<ribi::Coordinat3D> ExtractCoordinats(const Face& face);
-bool IsHorizontal(const Face& face) noexcept;
-bool IsVertical(const Face& face) noexcept;
 
 bool operator==(const Face& lhs, const Face& rhs);
 bool operator!=(const Face& lhs, const Face& rhs);

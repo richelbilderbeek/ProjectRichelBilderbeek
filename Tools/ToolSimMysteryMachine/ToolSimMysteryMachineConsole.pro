@@ -12,10 +12,6 @@ include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 include(../../Classes/CppTrace/CppTrace.pri)
 
-#General, desktop
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
-
 #Specific, console
 include(../../Classes/CppCanvas/CppCanvas.pri)
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
@@ -35,11 +31,6 @@ include(../../Classes/CppToggleButtonWidget/CppToggleButtonWidget.pri)
 include(../../Classes/CppWidget/CppWidget.pri)
 include(../../Classes/CppXml/CppXml.pri)
 
-#Specific, desktop
-include(../../Classes/CppQtDialWidget/CppQtDialWidget.pri)
-include(../../Classes/CppQtLedWidget/CppQtLedWidget.pri)
-include(../../Classes/CppQtMysteryMachineWidget/CppQtMysteryMachineWidget.pri)
-include(../../Classes/CppQtToggleButtonWidget/CppQtToggleButtonWidget.pri)
-include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineDesktop.pri )
+include(../../Tools/ToolSimMysteryMachine/ToolSimMysteryMachineConsole.pri )
 
-SOURCES += qtmain.cpp
+SOURCES += main.cpp
