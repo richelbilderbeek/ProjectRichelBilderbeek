@@ -76,6 +76,32 @@ struct MysteryMachine
   static const std::string GetVersion() noexcept;
   static const std::vector<std::string> GetVersionHistory() noexcept;
 
+
+  ///Convert the MysteryMachine to a TextCanvas
+  /*
+
++--------------------------------------------------------+
+|  ***     ***     ***     ____                          |
+|** | ** **hhh** **MMM**  |    |           ***           |
+|*  |  * *hhhhh* *MMMMM*  |____|         **MMM**         |
+|*  |  * *hhhhh* *MMMMM*  |____|         *MMMMM*         |
+|*     * *hhhhh* *MMMMM*                 *MMMMM*         |
+| *   *    ***    *MMM*    ***           *MMMMM*         |
+|  ***   **MMM**   ***   **MMM**           ***           |
+|        *MMMMM*         *MMMMM*         **MMM**         |
+|        *MMMMM*         *MMMMM*         *MMMMM*         |
+|        *MMMMM*         *MMMMM*         *MMMMM*         |
+|          ***            *MMM*    ***   *MMMMM*         |
+|        **MMM**           ***   **MMM**   ***     ***   |
+|        *MMMMM*                 *MMMMM* **hhh** ** | ** |
+|        *MMMMM*                 *MMMMM* *hhhhh* *  |  * |
+|        *MMMMM*                 *MMMMM* *hhhhh* *  |  * |
+|         *MMM*                   *MMM*  *hhhhh* *     * |
+|          ***                     ***    *hhh*   *   *  |
+|                                          ***     ***   |
++--------------------------------------------------------+
+
+  */
   const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   private:

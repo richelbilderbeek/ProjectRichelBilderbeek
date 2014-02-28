@@ -106,7 +106,6 @@ const std::string ribi::QtMysteryMachineWidget::GetVersion() noexcept
 const std::vector<std::string> ribi::QtMysteryMachineWidget::GetVersionHistory() noexcept
 {
   return {
-    "YYYY-MM-DD: version X.Y: [description]",
     "2011-07-04: version 1.0: initial version",
     "2011-09-15: version 2.0: made QtMysteryMachineWidget same as WtMysteryMachineWidget"
   };

@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <iostream>
+#include <memory>
 
 #include "dial.h"
 #include "dialwidget.h"
@@ -122,6 +123,7 @@ void ribi::SimMysteryMachineMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::SimMysteryMachineMenuDialog::Test");
+  //::shared_ptr<MysteryMachineWidget> w { std::make_shared<MysteryMachineWidget>() };
   TRACE("Finished ribi::SimMysteryMachineMenuDialog::Test successfully");
 }
 #endif

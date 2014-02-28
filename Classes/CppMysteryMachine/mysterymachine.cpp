@@ -49,8 +49,6 @@ ribi::MysteryMachine::MysteryMachine() noexcept
     m_led_top_middle(new LedWidget(0,0,32,32,0.0,255,0,0)),
     m_led_top_back(  new LedWidget(0,0,32,32,0.0,255,0,0)),
     m_toggle_button(new ToggleButtonWidget)
-    //m_back(0),
-    //m_front(0),
 {
   #ifndef NDEBUG
   Test();
@@ -66,14 +64,15 @@ ribi::MysteryMachine::MysteryMachine() noexcept
 
 const std::string ribi::MysteryMachine::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version",
-    "2011-08-20: Version 1.1: added operator<<"
+    "2011-08-20: Version 1.1: added operator<<",
+    "2014-02-28: Version 1.2: added ToTextCanvas",
   };
 }
 
@@ -86,39 +85,58 @@ void ribi::MysteryMachine::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::MysteryMachine::Test");
+  MysteryMachine m;
+  assert(!m.GetVersion().empty());
   TRACE("Finished ribi::MysteryMachine::Test successfully");
 }
 #endif
 
 const boost::shared_ptr<ribi::TextCanvas> ribi::MysteryMachine::ToTextCanvas() const noexcept
 {
-  const int w = 20;
+  const int w = 58;
   const int h = 20;
   boost::shared_ptr<TextCanvas> canvas {
     new TextCanvas(w,h)
   };
-  canvas->PutText(0,0,std::string(w,'-'));
-  canvas->PutText(0,h - 1,std::string(w,'-'));
-  canvas->PutChar(0,0,'+');
-  canvas->PutChar(0,h - 1,'+');
-  canvas->PutChar(w - 1,0,'+');
-  canvas->PutChar(w - 1,h - 1,'+');
-  canvas->PutCanvas(1,1,m_dial_back->ToTextCanvas(1));
-  TRACE(*m_dial_front->ToTextCanvas(1));
-  TRACE(*m_led_front_1->ToCanvas(1));
-  TRACE(*m_led_front_2->ToCanvas(1));
-  TRACE(*m_led_front_3->ToCanvas(1));
-  TRACE(m_toggle_button->ToTextCanvas(6,4));
+  //Create the edges
+  {
+    canvas->PutText(0,0,std::string(w,'-'));
+    canvas->PutText(0,h - 1,std::string(w,'-'));
+    for (int y=0; y!=h; ++y)
+    {
+      canvas->PutChar(0,y,'|');
+      canvas->PutChar(w-1,y,'|');
+    }
+    canvas->PutChar(  0,0  ,'+');
+    canvas->PutChar(  0,h-1,'+');
+    canvas->PutChar(w-1,0  ,'+');
+    canvas->PutChar(w-1,h-1,'+');
+  }
+  //Put front at left
+  canvas->PutCanvas(1,1,m_dial_front->ToTextCanvas(3));
+  canvas->PutCanvas(49,12,m_dial_back->ToTextCanvas(3));
 
-  assert(!"TODO");
+  canvas->PutCanvas(9,1,m_led_front_1->ToCanvas(3));
+  canvas->PutCanvas(9,6,m_led_front_2->ToCanvas(3));
+  canvas->PutCanvas(9,11,m_led_front_3->ToCanvas(3));
+
+  canvas->PutCanvas(17,1,m_led_top_front->ToCanvas(3));
+  canvas->PutCanvas(25,6,m_led_top_middle->ToCanvas(3));
+  canvas->PutCanvas(33,11,m_led_top_back->ToCanvas(3));
+
+  canvas->PutCanvas(41,2,m_led_back_3->ToCanvas(3));
+  canvas->PutCanvas(41,7,m_led_back_2->ToCanvas(3));
+  canvas->PutCanvas(41,12,m_led_back_1->ToCanvas(3));
+
+  canvas->PutCanvas(26,1,m_toggle_button->ToTextCanvas(6,4));
   return canvas;
 }
 
 
 void ribi::MysteryMachine::Update() noexcept
 {
-  const int back = static_cast<int>(GetDialBack()->GetDial()->GetPosition() * 16.0) % 3;
-  const int front = static_cast<int>(GetDialFront()->GetDial()->GetPosition() * 16.0) % 3;
+  const int back = static_cast<int>(GetDialBack()->GetDial()->GetPosition() * 12.0) % 3;
+  const int front = static_cast<int>(GetDialFront()->GetDial()->GetPosition() * 12.0) % 3;
   int top = (GetToggleButton()->GetToggleButton()->IsPressed()
     ? (1 + front - back + 3) % 3
     : -1);

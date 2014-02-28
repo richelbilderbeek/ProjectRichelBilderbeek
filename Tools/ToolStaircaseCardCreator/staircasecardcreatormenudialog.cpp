@@ -1,7 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "staircasecardcreatormenudialog.h"
 
 #include <algorithm>
@@ -14,6 +14,7 @@
 
 #include "staircasecard.h"
 #include "fileio.h"
+#include "textcanvas.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -27,8 +28,14 @@ ribi::scc::StaircaseCardCreatorMenuDialog::StaircaseCardCreatorMenuDialog()
 int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
-  assert(!"TODO");
-  return 1;
+
+  boost::shared_ptr<StaircaseCard> card {
+    new StaircaseCard(10,30)
+  };
+  std::cout << (*card->ToTextCanvasCompact()) << '\n';
+  std::cout << '\n';
+  std::cout << (*card->ToTextCanvas()) << '\n';
+  return 0;
 }
 
 const ribi::About ribi::scc::StaircaseCardCreatorMenuDialog::GetAbout() const noexcept

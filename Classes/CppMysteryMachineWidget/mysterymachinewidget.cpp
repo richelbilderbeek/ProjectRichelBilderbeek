@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include "mysterymachinewidget.h"
 
 #include <iostream>
@@ -41,13 +42,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 ribi::MysteryMachineWidget::MysteryMachineWidget(
   const Rect& geometry) noexcept
-  : m_machine(new MysteryMachine)
+  : m_signal_changed{},
+    m_machine(new MysteryMachine)
 
 {
   #ifndef NDEBUG
   Test();
   #endif
-  this->m_signal_geometry_changed.connect(boost::bind(
+  m_signal_geometry_changed.connect(boost::bind(
     &ribi::MysteryMachineWidget::OnResize,this));
   SetGeometry(geometry);
 }
@@ -58,34 +60,94 @@ void ribi::MysteryMachineWidget::Click(const int x, const int y) noexcept
   if (m_machine->GetDialBack()->IsClicked(x,y))
   {
     m_machine->GetDialBack()->Click(x,y);
+    m_signal_changed();
   }
   if (m_machine->GetDialFront()->IsClicked(x,y))
   {
     m_machine->GetDialFront()->Click(x,y);
+    m_signal_changed();
   }
   if (m_machine->GetToggleButton()->GetGeometry().IsIn(x,y))
   {
     m_machine->GetToggleButton()->Click(x,y);
+    m_signal_changed();
   }
 }
 
 const std::string ribi::MysteryMachineWidget::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",
-    "2011-08-20: Version 1.1: added operator<<"
+    "2011-08-20: Version 1.1: added operator<<",
+    "2014-02-28: Version 1.2: added ToTextCanvas and KeyPress",
   };
 }
 
-//void ribi::MysteryMachineWidget::OnMysteryMachineChanged()
-//{
-//  m_signal_mysterymachine_changed();
-//}
+void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
+{
+  switch (key)
+  {
+    case MysteryMachineKey::back_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialBack()->GetDial()->GetPosition()
+        + (1.0 / 12.0)
+      };
+      GetMachine()->GetDialBack()->GetDial()->SetPosition(
+        f >= 1.0 ? f - 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::back_counter_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialBack()->GetDial()->GetPosition()
+        - (1.0 / 12.0)
+      };
+      GetMachine()->GetDialBack()->GetDial()->SetPosition(
+        f < 0.0 ? f + 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::front_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialFront()->GetDial()->GetPosition()
+        + (1.0 / 12.0)
+      };
+      GetMachine()->GetDialFront()->GetDial()->SetPosition(
+        f >= 1.0 ? f - 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::front_counter_clockwise:
+    {
+      const double f {
+        GetMachine()->GetDialFront()->GetDial()->GetPosition()
+        - (1.0 / 12.0)
+      };
+      GetMachine()->GetDialFront()->GetDial()->SetPosition(
+        f < 0.0 ? f + 1.0 : f
+      );
+      m_signal_changed();
+    }
+    break;
+    case MysteryMachineKey::toggle:
+    {
+      GetMachine()->GetToggleButton()->GetToggleButton()->Toggle();
+      m_signal_changed();
+    }
+    break;
+  }
+}
 
 void ribi::MysteryMachineWidget::OnResize() noexcept
 {
@@ -93,7 +155,6 @@ void ribi::MysteryMachineWidget::OnResize() noexcept
   const double h = boost::numeric_cast<double>(GetGeometry().GetHeight());
   const double s = std::min(w/4.0,h/8.0);
   const double w8 = w / 8.0;
-
 
   m_machine->GetDialBack()->SetGeometry(Rect((w8 * 1.0) - (s * 0.5),0,s,s));
   m_machine->GetDialFront()->SetGeometry(Rect((w8 * 7.0) - (s * 0.5),h-s,s,s));
@@ -134,9 +195,16 @@ void ribi::MysteryMachineWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::MysteryMachineWidget::Test");
+  MysteryMachineWidget w;
+  assert(!w.GetVersion().empty());
   TRACE("Finished ribi::MysteryMachineWidget::Test successfully");
 }
 #endif
+
+boost::shared_ptr<ribi::TextCanvas> ribi::MysteryMachineWidget::ToTextCanvas() const noexcept
+{
+  return GetMachine()->ToTextCanvas();
+}
 
 std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachineWidget& widget) noexcept
 {

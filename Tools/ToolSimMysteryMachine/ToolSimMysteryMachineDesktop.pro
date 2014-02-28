@@ -5,16 +5,10 @@ include(../../Libraries/Boost.pri)
 include(../../Libraries/Fparser.pri)
 
 #General, console
-include(../../Classes/CppAbout/CppAbout.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
-include(../../Classes/CppHelp/CppHelp.pri)
-include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
+include(../../Libraries/GeneralConsole.pri)
 
 #General, desktop
-include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
-include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
 #Specific, console
 include(../../Classes/CppCanvas/CppCanvas.pri)
@@ -36,6 +30,7 @@ include(../../Classes/CppWidget/CppWidget.pri)
 include(../../Classes/CppXml/CppXml.pri)
 
 #Specific, desktop
+include(../../Classes/CppQtCanvas/CppQtCanvas.pri)
 include(../../Classes/CppQtDialWidget/CppQtDialWidget.pri)
 include(../../Classes/CppQtLedWidget/CppQtLedWidget.pri)
 include(../../Classes/CppQtMysteryMachineWidget/CppQtMysteryMachineWidget.pri)

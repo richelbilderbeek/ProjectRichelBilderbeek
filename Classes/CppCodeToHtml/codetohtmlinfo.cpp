@@ -4382,6 +4382,48 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
     }
   );
 
+
+  m.push_back(
+    { "CppStkExample1",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStkExample1.htm\">STK example 1: beep</a> is an <a href=\"CppStk.htm\">STK</a> example that generates a beep.",
+        "  The code was copied from <a href=\"https://ccrma.stanford.edu/software/stk/crealtime.html\">https://ccrma.stanford.edu/software/stk/crealtime.html</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Note that original copy-pasted code resulted in multiple",
+        "  <a href=\"CppCompileWarning.htm\">compile warnings</a> and that the",
+        "  <a href=\"CppLibrary.htm\">library</a> style, design and example code looks",
+        "  different from the experts' recommendations",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStkExample2",
+      {
+        "<p><img src=\"PicCpp11.png\" alt=\"C++11\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStkExample2.htm\">STK example 2: random beeps</a> is an <a href=\"CppStk.htm\">STK</a> example that generates random beeps infinitely (note: you cannot stop the program).",
+        "  The code was modified from <a href=\"https://ccrma.stanford.edu/software/stk/crealtime.html\">https://ccrma.stanford.edu/software/stk/crealtime.html</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Note that the original copy-pasted code resulted in multiple",
+        "  <a href=\"CppCompileWarning.htm\">compile warnings</a> and that the",
+        "  <a href=\"CppLibrary.htm\">library</a> style, design and example code looks",
+        "  different from the experts' recommendations",
+        "</p>"
+      }
+    }
+  );
+
+
   m.push_back(
     { "CppMultiApproximator",
       {
