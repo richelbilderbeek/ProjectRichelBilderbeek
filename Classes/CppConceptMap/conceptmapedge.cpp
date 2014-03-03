@@ -135,11 +135,11 @@ void ribi::cmap::Edge::Test() noexcept
     assert(nodes.size() >= 2);
     const auto node_from = nodes[0];
     const auto node_to   = nodes[1];
-    for (const boost::shared_ptr<const cmap::Edge>& edge: EdgeFactory::GetTests(node_from,node_to))
+    for (const boost::shared_ptr<const cmap::Edge>& edge: EdgeFactory().GetTests(node_from,node_to))
     {
       //Test copy constructor
       assert(edge);
-      const boost::shared_ptr<const cmap::Edge> c = cmap::EdgeFactory::DeepCopy(edge,node_from,node_to);
+      const boost::shared_ptr<const cmap::Edge> c = cmap::EdgeFactory().DeepCopy(edge,node_from,node_to);
       assert(c);
       assert(*edge == *c);
       assert(*c == *edge);
@@ -148,7 +148,7 @@ void ribi::cmap::Edge::Test() noexcept
       assert(*c->GetTo() == *node_to);
       assert(*c->GetTo() == *nodes[1]);
       const std::string s = ToXml(c,AddConst(nodes));
-      const boost::shared_ptr<ribi::cmap::Edge> d = cmap::EdgeFactory::FromXml(s,nodes);
+      const boost::shared_ptr<ribi::cmap::Edge> d = cmap::EdgeFactory().FromXml(s,nodes);
       assert(d);
       if (*c != *d)
       {

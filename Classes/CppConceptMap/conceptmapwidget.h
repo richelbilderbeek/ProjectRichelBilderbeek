@@ -39,8 +39,8 @@ struct Widget
   const boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
   const boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_conceptmap; }
 
-  ///Obtain all commands possible
-  //const std::vector<boost::shared_ptr<Command>> GetAllCommands() const noexcept;
+  const std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
+  const std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept;
 
   ///Obtain the version
   static const std::string GetVersion() noexcept;
@@ -104,8 +104,6 @@ struct Widget
   const boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
   const boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
-  const std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
-  const std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept;
 
   ///Used by CommandSetFocusRandom
   const boost::shared_ptr<Node> GetRandomNode() noexcept;

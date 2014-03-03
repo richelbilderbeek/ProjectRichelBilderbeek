@@ -35,7 +35,8 @@ HEADERS += \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocuswithcoordinat.h \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocusrandom.h \
     ../../Classes/CppConceptMap/conceptmapcommanddeletenode.h \
-    ../../Classes/CppConceptMap/conceptmapcommanddeletefocusnode.h
+    ../../Classes/CppConceptMap/conceptmapcommanddeletefocusnode.h \
+    ../../Classes/CppConceptMap/conceptmapcommandcreatenewedge.h
 
 SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcenternode.cpp \
@@ -68,4 +69,5 @@ SOURCES += \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocuswithcoordinat.cpp \
     ../../Classes/CppConceptMap/conceptmapcommandsetfocusrandom.cpp \
     ../../Classes/CppConceptMap/conceptmapcommanddeletenode.cpp \
-    ../../Classes/CppConceptMap/conceptmapcommanddeletefocusnode.cpp
+    ../../Classes/CppConceptMap/conceptmapcommanddeletefocusnode.cpp \
+    ../../Classes/CppConceptMap/conceptmapcommandcreatenewedge.cpp

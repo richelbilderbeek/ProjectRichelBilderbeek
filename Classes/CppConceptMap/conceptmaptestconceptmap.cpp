@@ -225,13 +225,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const Nodes nodes_1 = { node_11, node_12, node_13 };
       const Nodes nodes_2 = { node_21, node_22, node_23 };
 
-      const boost::shared_ptr<Edge> edge_11(EdgeFactory::Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
-      const boost::shared_ptr<Edge> edge_12(EdgeFactory::Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
-      const boost::shared_ptr<Edge> edge_13(EdgeFactory::Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_11(EdgeFactory().Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
+      const boost::shared_ptr<Edge> edge_12(EdgeFactory().Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_13(EdgeFactory().Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
 
-      const boost::shared_ptr<Edge> edge_21(EdgeFactory::Create(concept_e21,4.5,6.7,nodes_2.at(0),false,nodes_2.at(1),true));
-      const boost::shared_ptr<Edge> edge_22(EdgeFactory::Create(concept_e22,5.6,7.8,nodes_2.at(0),false,nodes_2.at(2),true));
-      const boost::shared_ptr<Edge> edge_23(EdgeFactory::Create(concept_e23,6.7,8.9,nodes_2.at(1),false,nodes_2.at(2),true));
+      const boost::shared_ptr<Edge> edge_21(EdgeFactory().Create(concept_e21,4.5,6.7,nodes_2.at(0),false,nodes_2.at(1),true));
+      const boost::shared_ptr<Edge> edge_22(EdgeFactory().Create(concept_e22,5.6,7.8,nodes_2.at(0),false,nodes_2.at(2),true));
+      const boost::shared_ptr<Edge> edge_23(EdgeFactory().Create(concept_e23,6.7,8.9,nodes_2.at(1),false,nodes_2.at(2),true));
 
       const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create(
         { node_11, node_12, node_13 },
@@ -285,13 +285,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const Nodes nodes_1 = { node_11, node_12, node_13 };
       const Nodes nodes_2 = { node_21, node_22, node_23 };
 
-      const boost::shared_ptr<Edge> edge_21(EdgeFactory::Create(concept_e21,1.2,3.4,nodes_2.at(2),false,nodes_2.at(1),true));
-      const boost::shared_ptr<Edge> edge_22(EdgeFactory::Create(concept_e22,2.3,4.5,nodes_2.at(0),false,nodes_2.at(2),true));
-      const boost::shared_ptr<Edge> edge_23(EdgeFactory::Create(concept_e23,3.4,4.5,nodes_2.at(0),false,nodes_2.at(1),true));
+      const boost::shared_ptr<Edge> edge_21(EdgeFactory().Create(concept_e21,1.2,3.4,nodes_2.at(2),false,nodes_2.at(1),true));
+      const boost::shared_ptr<Edge> edge_22(EdgeFactory().Create(concept_e22,2.3,4.5,nodes_2.at(0),false,nodes_2.at(2),true));
+      const boost::shared_ptr<Edge> edge_23(EdgeFactory().Create(concept_e23,3.4,4.5,nodes_2.at(0),false,nodes_2.at(1),true));
 
-      const boost::shared_ptr<Edge> edge_11(EdgeFactory::Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
-      const boost::shared_ptr<Edge> edge_12(EdgeFactory::Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
-      const boost::shared_ptr<Edge> edge_13(EdgeFactory::Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_11(EdgeFactory().Create(concept_e11,1.2,3.4,nodes_1.at(0),false,nodes_1.at(1),true));
+      const boost::shared_ptr<Edge> edge_12(EdgeFactory().Create(concept_e12,2.3,4.5,nodes_1.at(0),false,nodes_1.at(2),true));
+      const boost::shared_ptr<Edge> edge_13(EdgeFactory().Create(concept_e13,3.4,5.6,nodes_1.at(1),false,nodes_1.at(2),true));
 
       const boost::shared_ptr<ConceptMap> map_a(ConceptMapFactory::Create(
         { node_11, node_12, node_13 },
@@ -533,7 +533,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
       const int index = 0;
       assert(index < static_cast<int>(ConceptFactory().GetTests().size()));
       const auto concept = ConceptFactory().GetTests().at(index);
-      const auto edge = EdgeFactory::Create(
+      const auto edge = EdgeFactory().Create(
         concept,123.456,456.789,node_a,true,node_b,true);
       concept_map->AddNode(node_a);
       concept_map->AddNode(node_b);
