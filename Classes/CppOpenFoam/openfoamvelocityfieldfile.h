@@ -1,5 +1,5 @@
-#ifndef OPENFOAMPRESSUREFILE_H
-#define OPENFOAMPRESSUREFILE_H
+#ifndef OPENFOAMVELOCITYFIELDFILE_H
+#define OPENFOAMVELOCITYFIELDFILE_H
 
 #include <array>
 #include <iosfwd>
@@ -10,16 +10,15 @@
 namespace ribi {
 namespace foam {
 
-///Reads and writes an OpenFOAM pressure file, which has 'P' as its default name
-struct PressureFile
+///Reads and writes an OpenFOAM turbulenceProperties file
+struct VelocityFieldFile
 {
-  explicit PressureFile(
+  explicit VelocityFieldFile(
     const Header header = GetDefaultHeader()
-  );
+  ) noexcept;
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
-        Header& GetHeader()       noexcept { return m_header; }
 
   void SetBoundaryField(const std::string& boundary_field) noexcept { m_boundary_field = boundary_field; }
   void SetDimensions(const std::array<int,7>& dimensions) noexcept { m_dimensions = dimensions; }
@@ -32,18 +31,19 @@ struct PressureFile
 
   ///The OpenFOAM header
   Header m_header;
+
   std::string m_internal_field;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const PressureFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f);
 };
 
-std::ostream& operator<<(std::ostream& os, const PressureFile& f);
+std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f);
 
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMPRESSUREFILE_H
+#endif // OPENFOAMVELOCITYFIELDFILE_H

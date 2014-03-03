@@ -42,7 +42,7 @@ double ribi::Length(const boost::shared_ptr<const ConstCoordinat2D> v) noexcept
   return std::sqrt((dx*dx)+(dy*dy));
 }
 
-const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
+boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
   const double scalar,
   const boost::shared_ptr<const ConstCoordinat2D> v) noexcept
 {
@@ -69,7 +69,7 @@ void ribi::ConstCoordinat2D::Test() noexcept
 }
 #endif
 
-const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
+boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2) noexcept
 {
@@ -83,7 +83,7 @@ const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
   return p;
 }
 
-const boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator+(
+boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator+(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2) noexcept
 {

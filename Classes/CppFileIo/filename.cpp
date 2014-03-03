@@ -53,8 +53,8 @@ bool ribi::fileio::FilesAreIdentical(const Filename& filename_a,const Filename& 
 {
   return FilesAreIdentical(filename_a.Get(),filename_b.Get());
 }
-const std::vector<std::string> ribi::fileio::FileToVector(const Filename& filename) { return FileToVector(filename.Get()); }
-const std::string ribi::fileio::GetExtensionNoDot(const Filename& filename) { return GetExtensionNoDot(filename.Get()); }
+std::vector<std::string> ribi::fileio::FileToVector(const Filename& filename) { return FileToVector(filename.Get()); }
+std::string ribi::fileio::GetExtensionNoDot(const Filename& filename) { return GetExtensionNoDot(filename.Get()); }
 bool ribi::fileio::IsRegularFile(const Filename& filename) { return IsRegularFile(filename.Get()); }
 
 bool ribi::fileio::operator==(const Filename& lhs, const Filename& rhs)

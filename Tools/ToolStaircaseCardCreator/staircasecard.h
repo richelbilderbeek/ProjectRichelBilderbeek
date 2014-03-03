@@ -12,6 +12,8 @@
 #include <boost/shared_ptr.hpp>
 #pragma GCC diagnostic pop
 
+struct QImage;
+
 namespace ribi {
 
 struct TextCanvas;
@@ -21,14 +23,19 @@ namespace scc {
 struct StaircaseCard
 {
   StaircaseCard(const int n_cols, const int n_rows);
+  StaircaseCard(const std::vector<Column>& v) noexcept : m_v{v} {}
 
-  const boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
-  const boost::shared_ptr<TextCanvas> ToTextCanvasCompact() const noexcept;
+  static boost::shared_ptr<StaircaseCard> GetTest(const int i) noexcept;
+
+  boost::shared_ptr<QImage> ToImage() const noexcept;
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+  boost::shared_ptr<TextCanvas> ToTextCanvasCompact() const noexcept;
 
   private:
   std::vector<Column> m_v;
 
-  static const std::vector<Column> CreateGrid(const int n_cols, const int n_rows) noexcept;
+  static std::vector<int> ColumnToMap(const Column& c) noexcept;
+  static std::vector<Column> CreateGrid(const int n_cols, const int n_rows) noexcept;
 };
 
 std::ostream& operator<<(std::ostream& os, const StaircaseCard& c);

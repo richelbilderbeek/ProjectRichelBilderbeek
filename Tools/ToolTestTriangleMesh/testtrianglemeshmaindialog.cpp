@@ -12,6 +12,11 @@
 #include "Shiny.h"
 
 #include "fileio.h"
+#include "openfoamfilenames.h"
+#include "openfoamcontroldictfile.h"
+#include "openfoamfvschemesfile.h"
+#include "openfoamfvsolutionfile.h"
+#include "openfoamvelocityfieldfile.h"
 #include "trace.h"
 #include "trianglefile.h"
 #include "trianglemeshcell.h"
@@ -34,9 +39,9 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const std::string filename_result_mesh { ribi::fileio::GetTempFileName(".ply") };
 
   //Write some geometries, let Triangle.exe work on it
-  std::string filename_node; //Triangle.exe output file
-  std::string filename_ele;  //Triangle.exe output file
-  std::string filename_poly; //Triangle.exe output file
+  std::string filename_node;
+  std::string filename_ele;
+  std::string filename_poly;
   {
     ribi::TriangleFile f(shapes);
     const double quality = 5.0;
@@ -137,12 +142,15 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
-    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
-      = [](const std::string& /* boundary */ )
+    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function {
+      [](const std::string& patch_name)
       {
-        return ribi::foam::PatchFieldType::slip;
-      };
-
+        if (patch_name == "inside") return ribi::foam::PatchFieldType::slip;
+        if (patch_name == "outside") return ribi::foam::PatchFieldType::zeroGradient;
+        assert(!"Should not get here");
+        throw std::logic_error("boundary_to_patch_field_type: unknown patch name");
+      }
+    };
 
     //Build the OpenFOAM files
     const ribi::trim::TriangleMeshBuilder builder(
@@ -151,6 +159,59 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       boundary_to_patch_field_type_function
     );
     TRACE_FUNC();
+  }
+
+  {
+    std::ofstream f(ribi::foam::Filenames().GetControlDict().Get().c_str());
+    ribi::foam::ControlDictFile file;
+    file.SetAdjustTimeStep(false);
+    file.SetApplication("sonicFoam");
+    file.SetDeltaT(1.0);
+    file.SetEndTime(10.0);
+    file.SetPurgeWrite(0);
+    file.SetRunTimeModifiable(true);
+    file.SetStartFrom("latestTime");
+    file.SetStartTime(0.0);
+    file.SetStopAt("endTime");
+    file.SetTimeFormat("general");
+    file.SetTimePrecision(6);
+    file.SetWriteCompression("uncompressed");
+    file.SetWriteControl("adjustableRunTime");
+    file.SetWriteFormat("ascii");
+    file.SetWriteInterval(1.0);
+    file.SetWritePrecision(6);
+    f << file;
+  }
+
+  {
+    std::ofstream f(ribi::foam::Filenames().GetFvSchemes().Get().c_str());
+    ribi::foam::FvSchemesFile file;
+    f << file;
+  }
+
+  {
+    std::ofstream f(ribi::foam::Filenames().GetFvSolution().Get().c_str());
+    ribi::foam::FvSolutionFile file;
+    f << file;
+  }
+
+  {
+    ribi::foam::VelocityFieldFile file;
+    file.SetDimensions( {0,1,-1,0,0,0,0} );
+    file.SetInternalField("uniform (0 0 0)");
+    file.SetBoundaryField(
+      "inside\n"
+      "{\n"
+      "  type slip;\n"
+      "}\n"
+      "\n"
+      "outside\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+    );
+    std::ofstream f(ribi::foam::Filenames().GetVelocityField().Get().c_str());
+    f << file;
   }
 
   if (show_mesh)

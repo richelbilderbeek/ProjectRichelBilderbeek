@@ -151,7 +151,7 @@ bool ribi::fileio::FilesAreIdentical(
   return v == w;
 }
 
-const std::vector<std::string> ribi::fileio::FileToVector(const std::string& filename)
+std::vector<std::string> ribi::fileio::FileToVector(const std::string& filename)
 {
   #ifndef NDEBUG
   if (!IsRegularFile(filename))
@@ -182,12 +182,12 @@ const std::vector<std::string> ribi::fileio::FileToVector(const std::string& fil
   return v;
 }
 
-const std::string ribi::fileio::GetExtension(const std::string& filename)
+std::string ribi::fileio::GetExtension(const std::string& filename) noexcept
 {
   return GetExtensionWithDot(filename);
 }
 
-const std::string ribi::fileio::GetExtensionNoDot(const std::string& filename)
+std::string ribi::fileio::GetExtensionNoDot(const std::string& filename) noexcept
 {
   static const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
@@ -202,7 +202,7 @@ const std::string ribi::fileio::GetExtensionNoDot(const std::string& filename)
   return "";
 }
 
-const std::string ribi::fileio::GetExtensionWithDot(const std::string& filename)
+std::string ribi::fileio::GetExtensionWithDot(const std::string& filename) noexcept
 {
   return
     ( std::count(filename.begin(),filename.end(),'.')
@@ -212,7 +212,7 @@ const std::string ribi::fileio::GetExtensionWithDot(const std::string& filename)
     + GetExtensionNoDot(filename);
 }
 
-const std::string ribi::fileio::GetFileBasename(const std::string& filename)
+std::string ribi::fileio::GetFileBasename(const std::string& filename)
 {
   const boost::xpressive::sregex rex
     = boost::xpressive::sregex::compile(
@@ -227,7 +227,7 @@ const std::string ribi::fileio::GetFileBasename(const std::string& filename)
   return "";
 }
 
-const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string& folder)
 {
   assert(IsFolder(folder));
   QDir dir(folder.c_str());
@@ -245,7 +245,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolder(const std::string&
   return v;
 }
 
-const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std::string& root_folder)
+std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std::string& root_folder)
 {
   assert(IsFolder(root_folder));
 
@@ -343,7 +343,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderRecursive(const std
   return v;
 }
 
-const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
+std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str)
 {
@@ -377,7 +377,7 @@ const std::vector<std::string> ribi::fileio::GetFilesInFolderByRegex(
   return w;
 }
 
-const std::vector<std::string> ribi::fileio::GetFoldersInFolder(const std::string& folder)
+std::vector<std::string> ribi::fileio::GetFoldersInFolder(const std::string& folder)
 {
   assert(IsFolder(folder));
   QDir dir(folder.c_str());
@@ -403,7 +403,7 @@ const std::vector<std::string> ribi::fileio::GetFoldersInFolder(const std::strin
   return v;
 }
 
-const std::string ribi::fileio::GetPath(const std::string& filename)
+std::string ribi::fileio::GetPath(const std::string& filename)
 {
   const int a = filename.rfind("\\",filename.size());
   const int b = filename.rfind("/",filename.size());
@@ -412,7 +412,7 @@ const std::string ribi::fileio::GetPath(const std::string& filename)
   return filename.substr(0,i);
 }
 
-const std::string ribi::fileio::GetPathSeperator() noexcept
+std::string ribi::fileio::GetPathSeperator() noexcept
 {
   #ifdef _WIN32
   return "\\";
@@ -421,7 +421,7 @@ const std::string ribi::fileio::GetPathSeperator() noexcept
   #endif
 }
 
-const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
+std::string ribi::fileio::GetSuperFolder(const std::string& folder)
 {
   const int a = folder.rfind("\\",folder.size());
   const int b = folder.rfind("/",folder.size());
@@ -433,7 +433,7 @@ const std::string ribi::fileio::GetSuperFolder(const std::string& folder)
     : folder.substr(0,i);
 }
 
-const std::string ribi::fileio::GetTempFileName(const std::string& post)
+std::string ribi::fileio::GetTempFileName(const std::string& post)
 {
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
@@ -453,7 +453,7 @@ const std::string ribi::fileio::GetTempFileName(const std::string& post)
 }
 
 
-const std::string ribi::fileio::GetTempFolderName()
+std::string ribi::fileio::GetTempFolderName()
 {
   //Limit the number of searches, to prevent the program from freezing
   //It might occur that the first random names are taken, because
@@ -471,12 +471,12 @@ const std::string ribi::fileio::GetTempFolderName()
   throw std::runtime_error("Could not find a temporary folder name");
 }
 
-const std::string ribi::fileio::GetVersion() noexcept
+std::string ribi::fileio::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::fileio::GetVersionHistory() noexcept
+std::vector<std::string> ribi::fileio::GetVersionHistory() noexcept
 {
   return {
     "2013-10-14: Version 1.0: initial version",
@@ -495,7 +495,7 @@ bool ribi::fileio::IsRegularFile(const std::string& filename) noexcept
   return !QDir(filename.c_str()).exists() && QFile::exists(filename.c_str());
 }
 
-const std::string ribi::fileio::RemovePath(const std::string& filename)
+std::string ribi::fileio::RemovePath(const std::string& filename)
 {
   std::vector<std::size_t> v;
   const std::size_t a = filename.rfind("\\",filename.size());

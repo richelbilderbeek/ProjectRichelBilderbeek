@@ -56,7 +56,7 @@ double DotProduct(
 ///Distance to origin
 double Length(const boost::shared_ptr<const ConstCoordinat2D> v) noexcept;
 
-const boost::shared_ptr<const ConstCoordinat2D> Scale(
+boost::shared_ptr<const ConstCoordinat2D> Scale(
   const double scalar,
   const boost::shared_ptr<const ConstCoordinat2D> v
 ) noexcept;
@@ -66,12 +66,12 @@ bool operator<(const ConstCoordinat2D& lhs, const ConstCoordinat2D& rhs) noexcep
 std::ostream& operator<<(std::ostream& os, const ConstCoordinat2D& n) noexcept;
 
 
-const boost::shared_ptr<const ConstCoordinat2D> operator+(
+boost::shared_ptr<const ConstCoordinat2D> operator+(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2
 ) noexcept;
 
-const boost::shared_ptr<const ConstCoordinat2D> operator-(
+boost::shared_ptr<const ConstCoordinat2D> operator-(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2
 ) noexcept;

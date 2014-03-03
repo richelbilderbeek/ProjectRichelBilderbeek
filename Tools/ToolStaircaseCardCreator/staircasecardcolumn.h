@@ -12,6 +12,7 @@ namespace scc {
 struct Column
 {
   Column(const int n_vertical, const int n_horizontal);
+  Column(const std::vector<int>& v);
 
   Orientation GetOrientation(const int row) const noexcept;
 
@@ -25,7 +26,8 @@ struct Column
   private:
   std::vector<Orientation> m_v;
 
-  static const std::vector<Orientation> Create(const int n_vertical, const int n_horizontal) noexcept;
+  static std::vector<Orientation> Create(const int n_vertical, const int n_horizontal) noexcept;
+  static std::vector<Orientation> Create(const std::vector<int>& v);
 };
 
 } //~namespace scc

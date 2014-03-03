@@ -10,3 +10,6 @@ HEADERS  += \
 OTHER_FILES += \
     ../../Games/GameAminoAcidFighter/Licence.txt
 
+RESOURCES += \
+    ../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc
+

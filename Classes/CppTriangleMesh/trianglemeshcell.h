@@ -25,9 +25,11 @@ struct Cell
 
   const ribi::Coordinat3D CalculateCenter() const noexcept;
 
-
-  ///Can be used later
   int GetIndex() const noexcept { return m_index; }
+
+  ///Sets the Faces of a Cell by their index
+  void SetCorrectOrder() noexcept;
+
   void SetIndex(const int index) noexcept { m_index = index; }
 
   private:
@@ -35,7 +37,7 @@ struct Cell
   friend void boost::checked_delete<>(Cell* x);
   friend void boost::checked_delete<>(const Cell* x);
 
-  const std::vector<boost::shared_ptr<Face>> m_faces;
+  std::vector<boost::shared_ptr<Face>> m_faces;
   int m_index;
 
   friend class CellFactory;

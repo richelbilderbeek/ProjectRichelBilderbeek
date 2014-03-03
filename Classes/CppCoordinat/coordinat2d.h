@@ -49,20 +49,20 @@ double Distance(const Coordinat2D& lhs,const Coordinat2D& rhs) noexcept;
 ///Distance to origin
 double Length(const Coordinat2D& v) noexcept;
 
-const Coordinat2D Scale(
+Coordinat2D Scale(
   const double scalar,
   const Coordinat2D& v
 ) noexcept;
 
-const Coordinat2D operator+(
+Coordinat2D operator+(
   const Coordinat2D& v1,
   const Coordinat2D& v2) noexcept;
 
-const Coordinat2D operator*(
+Coordinat2D operator*(
   const double scalar,
   const Coordinat2D& v) noexcept;
 
-const Coordinat2D operator-(
+Coordinat2D operator-(
   const Coordinat2D& v1,
   const Coordinat2D& v2) noexcept;
 

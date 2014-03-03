@@ -1,4 +1,4 @@
-#include "openfoamturbulencepropertiesfile.h"
+#include "openfoamraspropertiesfile.h"
 
 #include <cassert>
 #include <fstream>
@@ -22,41 +22,44 @@
 #pragma GCC diagnostic pop
 
 
-ribi::foam::TurbulencePropertiesFile::TurbulencePropertiesFile(
-  const Header header
+ribi::foam::RasPropertiesFile::RasPropertiesFile(
+  const Header& header
 )
-  : m_header{header},
-    m_simulation_type{}
+  : m_header{header}
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-const ribi::foam::Header ribi::foam::TurbulencePropertiesFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::RasPropertiesFile::GetDefaultHeader() noexcept
 {
-  return Header("dictionary","constant","","turbulenceProperties");
+  return Header("dictionary","constant","","RASProperties");
 }
 
 #ifndef NDEBUG
-void ribi::foam::TurbulencePropertiesFile::Test() noexcept
+void ribi::foam::RasPropertiesFile::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::foam::TurbulencePropertiesFile::Test");
-  TRACE("Finished ribi::foam::TurbulencePropertiesFile successfully");
+  TRACE("Starting ribi::foam::RasPropertiesFile::Test");
+  TRACE("Finished ribi::foam::RasPropertiesFile successfully");
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const TurbulencePropertiesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const RasPropertiesFile& f)
 {
   os
     << f.GetHeader() << '\n'
     << "" << '\n'
-    << "simulationType " << f.m_simulation_type << ";\n"
+    << "RASModel realizableKE;\n"
+    << "\n"
+    << "turbulence on;\n"
+    << "\n"
+    << "printCoeffs on;\n"
   ;
   return os;
 }

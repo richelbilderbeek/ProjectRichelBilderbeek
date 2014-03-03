@@ -36,8 +36,8 @@ void CopyFile(
   const ribi::fileio::CopyMode copy_mode = CopyMode::prevent_overwrite);
 void DeleteFile(const Filename& filename);
 bool FilesAreIdentical(const Filename& filename_a,const Filename& filename_b);
-const std::vector<std::string> FileToVector(const Filename& filename);
-const std::string GetExtensionNoDot(const Filename& filename);
+std::vector<std::string> FileToVector(const Filename& filename);
+std::string GetExtensionNoDot(const Filename& filename);
 bool IsRegularFile(const Filename& filename);
 
 bool operator==(const Filename& lhs, const Filename& rhs);

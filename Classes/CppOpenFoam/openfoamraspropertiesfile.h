@@ -1,5 +1,5 @@
-#ifndef OPENFOAMFVSOLUTIONFILE_H
-#define OPENFOAMFVSOLUTIONFILE_H
+#ifndef OPENFOAMRASPROPERTIESFILE_H
+#define OPENFOAMRASPROPERTIESFILE_H
 
 #include <iosfwd>
 #include <vector>
@@ -10,13 +10,13 @@ namespace ribi {
 namespace foam {
 
 ///Reads and writes an OpenFOAM thermophysicalProperties file
-struct FvSolutionFile
+struct RasPropertiesFile
 {
-  explicit FvSolutionFile(
-    const Header header = GetDefaultHeader()
+  explicit RasPropertiesFile(
+    const Header& header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   private:
@@ -28,12 +28,12 @@ struct FvSolutionFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const RasPropertiesFile& f);
 };
 
-std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f);
+std::ostream& operator<<(std::ostream& os, const RasPropertiesFile& f);
 
 } //~namespace foam
 } //~namespace ribi
 
-#endif // OPENFOAMFVSOLUTIONFILE_H
+#endif // OPENFOAMRASPROPERTIESFILE_H

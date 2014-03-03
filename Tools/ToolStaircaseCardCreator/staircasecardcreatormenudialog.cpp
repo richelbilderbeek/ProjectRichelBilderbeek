@@ -12,6 +12,8 @@
 
 #include <boost/scoped_ptr.hpp>
 
+#include <QImage>
+
 #include "staircasecard.h"
 #include "fileio.h"
 #include "textcanvas.h"
@@ -28,13 +30,25 @@ ribi::scc::StaircaseCardCreatorMenuDialog::StaircaseCardCreatorMenuDialog()
 int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
-
-  boost::shared_ptr<StaircaseCard> card {
-    new StaircaseCard(10,30)
-  };
-  std::cout << (*card->ToTextCanvasCompact()) << '\n';
-  std::cout << '\n';
-  std::cout << (*card->ToTextCanvas()) << '\n';
+  /*
+  {
+    boost::shared_ptr<StaircaseCard> card {
+      new StaircaseCard(10,30)
+    };
+    std::cout << (*card->ToTextCanvasCompact()) << '\n';
+    std::cout << '\n';
+    std::cout << (*card->ToTextCanvas()) << '\n';
+  }
+  */
+  {
+    boost::shared_ptr<StaircaseCard> card {
+      StaircaseCard::GetTest(0)
+    };
+    std::cout << (*card->ToTextCanvasCompact()) << '\n';
+    std::cout << '\n';
+    std::cout << (*card->ToTextCanvas()) << '\n';
+    card->ToImage()->save("tmp.png");
+  }
   return 0;
 }
 

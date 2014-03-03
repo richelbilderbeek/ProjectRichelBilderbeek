@@ -16,7 +16,7 @@ struct Coordinat3D
     const double x = 0.0,
     const double y = 0.0,
     const double z = 0.0
-  );
+  ) noexcept;
   void ChangeX(const double dx) noexcept { m_co[0] += dx; }
   void ChangeY(const double dy) noexcept { m_co[1] += dy; }
   void ChangeZ(const double dz) noexcept { m_co[2] += dz; }
@@ -44,33 +44,33 @@ struct Coordinat3D
   #endif
 };
 
-bool operator==(const Coordinat3D& lhs, const Coordinat3D& rhs);
-bool operator<(const Coordinat3D& lhs, const Coordinat3D& rhs);
+bool operator==(const Coordinat3D& lhs, const Coordinat3D& rhs) noexcept;
+bool operator<(const Coordinat3D& lhs, const Coordinat3D& rhs) noexcept;
 std::ostream& operator<<(std::ostream& os, const Coordinat3D& n);
 
-const Coordinat3D operator-(
+Coordinat3D operator-(
   const Coordinat3D& v1,
-  const Coordinat3D& v2);
+  const Coordinat3D& v2) noexcept;
 
-const Coordinat3D operator+(
+Coordinat3D operator+(
   const Coordinat3D& v1,
-  const Coordinat3D& v2);
+  const Coordinat3D& v2) noexcept;
 
 ///Divide all components of the coordinat by f
-const Coordinat3D operator/(
+Coordinat3D operator/(
   const Coordinat3D& c,
   const double f);
 
 ///Multiply all components of the coordinat by f
-const Coordinat3D operator*(
+Coordinat3D operator*(
   const Coordinat3D& c,
   const double f) noexcept;
 
 ///Calculate the point in the center of the collection of points
-const Coordinat3D CalcCenter(const std::vector<Coordinat3D>& points) noexcept;
+Coordinat3D CalcCenter(const std::vector<Coordinat3D>& points) noexcept;
 
 ///Calculate the cross product
-const ribi::Coordinat3D CalcCrossProduct(
+Coordinat3D CalcCrossProduct(
   const ribi::Coordinat3D& a,
   const ribi::Coordinat3D& b
 ) noexcept;
@@ -85,17 +85,17 @@ double CalcDotProduct(
 ///The normal will be (0,0,-1) if a,b and c lie in the XY plane and ordered clockwise (when viewed from above)
 ///The normal will be (0,0, 1) if a,b and c lie in the XY plane and ordered counter-clockwise (when viewed from above)
 ///I use this convention as it appears to be used most extensively
-const ribi::Coordinat3D CalcNormal(
+ribi::Coordinat3D CalcNormal(
   const ribi::Coordinat3D& a,
   const ribi::Coordinat3D& b,
   const ribi::Coordinat3D& c
 ) noexcept;
 
 ///Calculate the distance between two coordinats
-double Distance(const Coordinat3D& lhs,const Coordinat3D& rhs);
+double Distance(const Coordinat3D& lhs,const Coordinat3D& rhs) noexcept;
 
 ///When viewing a coordinat as a vector from origin, calculate its length
-double Length(const Coordinat3D& v);
+double Length(const Coordinat3D& v) noexcept;
 
 } //~namespace ribi
 

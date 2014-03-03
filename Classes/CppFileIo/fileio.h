@@ -45,61 +45,61 @@ bool FilesAreIdentical(
 ///Throws std::bad_alloc if the file is too big to fit in std::vector
 ///Throws std::logic_error if the file does not exist
 //From http://www.richelbilderbeek.nl/CppFileToVector.htm
-const std::vector<std::string> FileToVector(const std::string& filename);
+std::vector<std::string> FileToVector(const std::string& filename);
 
-///Returns the extension of a filename
+///Returns the extension of a filename, starting with a dot
 //From http://www.richelbilderbeek.nl/CppGetExtension.htm
-const std::string GetExtension(const std::string& filename);
+std::string GetExtension(const std::string& filename) noexcept;
 
 ///Returns the extension of a filename, without a trailing dot
-const std::string GetExtensionNoDot(const std::string& filename);
+std::string GetExtensionNoDot(const std::string& filename) noexcept;
 
 ///Returns the extension of a filename, with a trailing dot
-const std::string GetExtensionWithDot(const std::string& filename);
+std::string GetExtensionWithDot(const std::string& filename) noexcept;
 
 ///Obtain the basename of a file or folder
 ///MyFolder/MyFile.txt - > MyFile
 ///MyFolder/MySubFolder -> MySubFolder
 ///GetFileBasename is a replacement of boost::filesystem::basename
 ///From http://www.richelbilderbeek.nl/CppGetFileBasename.htm
-const std::string GetFileBasename(const std::string& filename);
+std::string GetFileBasename(const std::string& filename);
 
 ///Obtain all files in a folder.
 ///This does not include those in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-const std::vector<std::string> GetFilesInFolder(const std::string& folder);
+std::vector<std::string> GetFilesInFolder(const std::string& folder);
 
 ///Obtain all files in a folder including thos in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFilesInFolder.htm
-const std::vector<std::string> GetFilesInFolderRecursive(const std::string& folder);
+std::vector<std::string> GetFilesInFolderRecursive(const std::string& folder);
 
-const std::vector<std::string> GetFilesInFolderByRegex(
+std::vector<std::string> GetFilesInFolderByRegex(
   const std::string& folder,
   const std::string& regex_str);
 
 ///Obtain all folder in a folder.
 ///This does not include those in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
-const std::vector<std::string> GetFoldersInFolder(const std::string& folder);
+std::vector<std::string> GetFoldersInFolder(const std::string& folder);
 
 ///Obtain all folder in a folder.
 ///This does include those in a subfolder
 //From http://www.richelbilderbeek.nl/CppGetFoldersInFolder.htm
-const std::vector<std::string> GetFoldersInFolderRecursive(const std::string& folder);
+std::vector<std::string> GetFoldersInFolderRecursive(const std::string& folder);
 
 ///Returns the path of a filename
 ///From http://www.richelbilderbeek.nl/CppGetPath.htm
-const std::string GetPath(const std::string& filename);
+std::string GetPath(const std::string& filename);
 
 ///Returns the path seperator depending on the operating system
 ///For Linux, this is a slash
 ///For Windows, this is a backslash
 ///From http://www.richelbilderbeek.nl/CppGetPathSeperator.htm
-const std::string GetPathSeperator() noexcept;
+std::string GetPathSeperator() noexcept;
 
 ///Returns the superfolder from a path
 ///For example: '/A/B/C' its superfolder is '/A/B'
-const std::string GetSuperFolder(const std::string& folder);
+std::string GetSuperFolder(const std::string& folder);
 
 ///Obtain the name of a file that does not exist
 ///Will throw a std::runtime_error in the unlikely
@@ -108,19 +108,18 @@ const std::string GetSuperFolder(const std::string& folder);
 ///For example:
 /// - GetTempFileName("") -> tmp01234567
 /// - GetTempFileName(".txt") -> tmp01234567.txt
-const std::string GetTempFileName(
-  const std::string& post = "");
+std::string GetTempFileName(const std::string& post = "");
 
 ///Obtain the name of a folder that does not exist
 ///Will throw a std::runtime_error in the unlikely
 ///case it fails after one thousand times
-const std::string GetTempFolderName();
+std::string GetTempFolderName();
 
 ///Obtain the version
-const std::string GetVersion() noexcept;
+std::string GetVersion() noexcept;
 
 ///Obtain the version history
-const std::vector<std::string> GetVersionHistory() noexcept;
+std::vector<std::string> GetVersionHistory() noexcept;
 
 ///Returns if the name is a folder name
 ///From http://www.richelbilderbeek.nl/CppIsFolder.htm
@@ -133,7 +132,7 @@ bool IsRegularFile(const std::string& filename) noexcept;
 
 ///Removes the path of a filename
 ///From http://www.richelbilderbeek.nl/CppRemovePath.htm
-const std::string RemovePath(const std::string& filename);
+std::string RemovePath(const std::string& filename);
 
 ///Renames a file
 //From http://www.richelbilderbeek.nl/CppRenameFile.htm

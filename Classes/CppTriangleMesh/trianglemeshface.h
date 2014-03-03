@@ -25,25 +25,27 @@ struct Face
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
 
+  int CalcPriority() const noexcept;
+
   ///When the Face its points know their Layers, call DoExtractCoordinats
   bool CanExtractCoordinats() const noexcept;
 
   ///When the Face its points know their Layers, call this member function
   void DoExtractCoordinats() const;
 
-  const std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
+  std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
 
   int GetIndex() const noexcept { return m_index; }
 
   ///nullptr if no neighbour
-  const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
+  boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
 
   FaceOrientation GetOrientation() const noexcept { return m_orientation; }
 
   ///nullptr if no owner, a Volume:m_cellindex type
-  const boost::shared_ptr<const Cell> GetOwner() const noexcept;
+  boost::shared_ptr<const Cell> GetOwner() const noexcept;
 
-  const boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
+  boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
 
   const std::vector<boost::shared_ptr<Point>>& GetPoints() const noexcept { return m_points; }
 
@@ -108,8 +110,8 @@ struct Face
   friend std::ostream& operator<<(std::ostream& os, const Face& f);
 };
 
-bool operator==(const Face& lhs, const Face& rhs);
-bool operator!=(const Face& lhs, const Face& rhs);
+bool operator==(const Face& lhs, const Face& rhs) noexcept;
+bool operator!=(const Face& lhs, const Face& rhs) noexcept;
 std::ostream& operator<<(std::ostream& os, const Face& f);
 
 } //~namespace trim

@@ -64,7 +64,7 @@ double ribi::Length(const Coordinat2D& v) noexcept
   return std::sqrt( (v.GetX() * v.GetX()) + (v.GetY() * v.GetY()));
 }
 
-const ribi::Coordinat2D ribi::Scale(
+ribi::Coordinat2D ribi::Scale(
   const double scalar,
   const ribi::Coordinat2D& v
 ) noexcept
@@ -90,7 +90,7 @@ void ribi::Coordinat2D::Test() noexcept
 }
 #endif
 
-const ribi::Coordinat2D ribi::operator-(
+ribi::Coordinat2D ribi::operator-(
   const Coordinat2D& v1,
   const Coordinat2D& v2) noexcept
 {
@@ -101,7 +101,7 @@ const ribi::Coordinat2D ribi::operator-(
 
 }
 
-const ribi::Coordinat2D ribi::operator+(
+ribi::Coordinat2D ribi::operator+(
   const Coordinat2D& v1,
   const Coordinat2D& v2) noexcept
 {
@@ -111,7 +111,7 @@ const ribi::Coordinat2D ribi::operator+(
   };
 }
 
-const ribi::Coordinat2D ribi::operator*(
+ribi::Coordinat2D ribi::operator*(
   const double scalar,
   const Coordinat2D& v) noexcept
 {

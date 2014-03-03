@@ -53,6 +53,26 @@ const std::vector<boost::shared_ptr<const ribi::trim::Face>> ribi::trim::Cell::G
   return AddConst(m_faces);
 }
 
+void ribi::trim::Cell::SetCorrectOrder() noexcept
+{
+  std::sort(m_faces.begin(), m_faces.end(),
+    [](const boost::shared_ptr<Face>& lhs, const boost::shared_ptr<Face>& rhs)
+    {
+      const int priority_lhs { lhs->CalcPriority() };
+      const int priority_rhs { rhs->CalcPriority() };
+      if (priority_lhs < priority_rhs) return true;
+      if (priority_lhs > priority_rhs) return false;
+      //Sort on Face indices
+      assert(lhs->GetIndex() != rhs->GetIndex());
+      return lhs->GetIndex() < rhs->GetIndex();
+    }
+  );
+
+  #ifndef NDEBUG
+  //for (const auto face: m_faces) TRACE(face->CalcPriority());
+  #endif
+}
+
 #ifndef NDEBUG
 void ribi::trim::Cell::Test() noexcept
 {

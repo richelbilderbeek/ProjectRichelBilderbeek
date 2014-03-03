@@ -8,6 +8,7 @@ namespace Knokfighter {
 Player::Player()
  :  m_attack_state(new PlayerStateAttack(this)),
     m_idle_state(new PlayerStateIdle(this)),
+    m_state{nullptr},
     m_walk_state(new PlayerStateWalk(this))
 {
   SetState(GetIdleState());

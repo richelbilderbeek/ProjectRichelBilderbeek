@@ -72,6 +72,15 @@ void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell) const
   );
 }
 
+int ribi::trim::Face::CalcPriority() const noexcept
+{
+  assert(GetOwner());
+  return std::max(
+    GetOwner()->GetIndex(),
+    GetNeighbour() ? GetNeighbour()->GetIndex() : -1
+  );
+}
+
 bool ribi::trim::Face::CanExtractCoordinats() const noexcept
 {
   for (const auto point: m_points)
@@ -89,7 +98,7 @@ void ribi::trim::Face::DoExtractCoordinats() const
   m_coordinats = Helper().ExtractCoordinats(m_points);
 }
 
-const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
+boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
 {
   PROFILE_FUNC();
   assert(m_belongs_to.size() <= 2);
@@ -113,7 +122,7 @@ const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour()
   return p;
 }
 
-const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noexcept
+boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() const noexcept
 {
   PROFILE_FUNC();
   assert(m_belongs_to.size() <= 2);
@@ -140,7 +149,7 @@ const boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetOwner() con
 }
 
 
-const boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int index) const noexcept
+boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int index) const noexcept
 {
   PROFILE_FUNC();
   assert(index >= 0);
@@ -212,7 +221,7 @@ void ribi::trim::Face::Test() noexcept
 
 
 
-bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs)
+bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs) noexcept
 {
   return
        lhs.GetPoints() == rhs.GetPoints()
@@ -220,7 +229,7 @@ bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face&
   ;
 }
 
-bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs)
+bool ribi::trim::operator!=(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs) noexcept
 {
   return !(lhs == rhs);
 }

@@ -71,6 +71,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   );
 
 
+
   m_faces.erase(
     std::remove_if(m_faces.begin(),m_faces.end(),
       [](const boost::shared_ptr<const Face> face)
@@ -120,6 +121,8 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     }
   }
 
+  for (auto cell: m_cells) { cell->SetCorrectOrder(); }
+  for (auto face: m_faces) { face->SetCorrectWinding(); }
 
   //Check
   #ifndef NDEBUG
@@ -226,29 +229,11 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     std::ofstream f(ribi::foam::Filenames().GetCase().Get().c_str());
     //Need nothing to stream
   }
-  {
-    //std::ofstream f(ribi::foam::Filenames().GetFvSchemes().Get().c_str());
-    //f << CreateOpenFoamFvSchemes();
-  }
-  {
-    //std::ofstream f(ribi::foam::Filenames().GetFvSolution().Get().c_str());
-    //f << CreateOpenFoamFvSolution();
-  }
-
-  {
-    std::ofstream f(ribi::foam::Filenames().GetVelocityField().Get().c_str());
-    f << CreateOpenFoamU();
-  }
-
-  {
-    //std::ofstream f(ribi::foam::Filenames().GetControlDict().Get().c_str());
-    //f << CreateOpenFoamControlDict();
-  }
 
   PROFILER_UPDATE();
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
+std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   ) const noexcept
 {
@@ -305,7 +290,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
   return s.str();
 }
 
-const std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells() const noexcept
+std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::CreateCells() const noexcept
 {
   PROFILE_FUNC();
 
@@ -318,6 +303,7 @@ const std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::Create
   out_neighbour
     << m_faces.size()
     << "\n(\n";
+
 
   for (auto face: m_faces)
   {
@@ -340,7 +326,7 @@ const std::pair<std::string,std::string> ribi::trim::TriangleMeshBuilder::Create
 }
 
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
 {
   PROFILE_FUNC();
 
@@ -366,7 +352,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateFaces() const noexcept
 
 
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateHeader() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateHeader() const noexcept
 {
   PROFILE_FUNC();
   std::stringstream s;
@@ -383,7 +369,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateHeader() const noexcept
   return s.str();
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
 {
   PROFILE_FUNC();
 
@@ -413,7 +399,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
   return text;
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const noexcept
 {
   PROFILE_FUNC();
 
@@ -444,7 +430,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const n
   return s.str();
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
+std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
   const std::string& class_name,
   const std::string& object,
   const std::string& location,
@@ -463,7 +449,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
   return s.str();
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const noexcept
 {
   PROFILE_FUNC();
 
@@ -488,7 +474,7 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const n
   return s.str();
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder::ExtractFaces(
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder::ExtractFaces(
   const std::vector<boost::shared_ptr<Cell>>& cells
 ) noexcept
 {
@@ -513,7 +499,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshB
 
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilder::ExtractPoints(
+std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilder::ExtractPoints(
   const std::vector<boost::shared_ptr<Cell>>& cells
 ) noexcept
 {
@@ -537,7 +523,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMesh
 }
 
 
-const std::vector<std::string> ribi::trim::TriangleMeshBuilder::GetAllFolders() const noexcept
+std::vector<std::string> ribi::trim::TriangleMeshBuilder::GetAllFolders() const noexcept
 {
   return {
     "0",
@@ -547,7 +533,7 @@ const std::vector<std::string> ribi::trim::TriangleMeshBuilder::GetAllFolders() 
   };
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::Implode(
+std::string ribi::trim::TriangleMeshBuilder::Implode(
   const std::string& seperator,
   const std::vector<ribi::foam::PointIndex>& v) noexcept
 {
@@ -565,7 +551,7 @@ const std::string ribi::trim::TriangleMeshBuilder::Implode(
   return s.str();
 }
 
-const std::string ribi::trim::TriangleMeshBuilder::Implode(
+std::string ribi::trim::TriangleMeshBuilder::Implode(
   const std::string& seperator,
   const std::vector<int>& v) noexcept
 {
@@ -583,7 +569,7 @@ const std::string ribi::trim::TriangleMeshBuilder::Implode(
   return s.str();
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder::SortByBoundary(
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder::SortByBoundary(
   std::vector<boost::shared_ptr<Face>> faces
 ) noexcept
 {

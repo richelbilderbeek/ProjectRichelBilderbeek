@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamK() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamK() const noexcept
 {
   std::stringstream s;
   s

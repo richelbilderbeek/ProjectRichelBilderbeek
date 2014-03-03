@@ -14,7 +14,14 @@ ribi::scc::Column::Column(const int n_vertical, const int n_horizontal)
 
 }
 
-const std::vector<ribi::scc::Orientation> ribi::scc::Column::Create(const int n_vertical, const int n_horizontal) noexcept
+ribi::scc::Column::Column(const std::vector<int>& v)
+  : m_v(Create(v))
+{
+  assert(v.size() % 2 == 0 && "A column must have as much vertical as horizontal pieces");
+
+}
+
+std::vector<ribi::scc::Orientation> ribi::scc::Column::Create(const int n_vertical, const int n_horizontal) noexcept
 {
   std::vector<Orientation> v;
   v.reserve(n_vertical + n_horizontal);
@@ -22,6 +29,24 @@ const std::vector<ribi::scc::Orientation> ribi::scc::Column::Create(const int n_
   for (int i=0; i!=n_horizontal; ++i) { v.push_back(Orientation::horizontal); }
   assert(n_vertical + n_horizontal == static_cast<int>(v.size()));
   return v;
+}
+
+std::vector<ribi::scc::Orientation> ribi::scc::Column::Create(const std::vector<int>& v)
+{
+  assert(v.size() % 2 == 0 && "A column must have as much vertical as horizontal pieces");
+  std::vector<Orientation> w;
+  Orientation orientation = Orientation::vertical;
+  for(const int i: v)
+  {
+    for (int j=0; j!=i; ++j) { w.push_back(orientation); }
+    switch (orientation)
+    {
+      case Orientation::vertical  : orientation = Orientation::horizontal; break;
+      case Orientation::horizontal: orientation = Orientation::vertical  ; break;
+    }
+
+  }
+  return w;
 }
 
 ribi::scc::Orientation ribi::scc::Column::GetOrientation(const int row) const noexcept

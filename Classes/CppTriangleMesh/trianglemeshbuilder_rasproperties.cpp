@@ -1,8 +1,9 @@
+/*
 #include "trianglemeshbuilder.h"
 
 #include <sstream>
 
-const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamRasProperties() const noexcept
+std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamRasProperties() const noexcept
 {
   std::stringstream s;
   s
@@ -23,3 +24,4 @@ const std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamRasProperties()
   ;
   return s.str();
 }
+*/

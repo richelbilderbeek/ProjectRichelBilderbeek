@@ -13,6 +13,9 @@ struct PlayerState
 {
   enum class Direction { left, right };
 
+  PlayerState(const PlayerState&) = delete;
+  PlayerState& operator=(const PlayerState&) = delete;
+
   ///The State needs access to the Player it is a state of
   PlayerState(Player * const player);
 
@@ -40,7 +43,7 @@ struct PlayerState
 struct PlayerStateAttack : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateAttack(Player * const player);
+  PlayerStateAttack(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
   void PressKey(const Key& key);
@@ -65,7 +68,7 @@ struct PlayerStateAttack : public PlayerState
 struct PlayerStateIdle : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateIdle(Player * const player);
+  PlayerStateIdle(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
   void PressKey(const Key& key);
@@ -80,7 +83,7 @@ struct PlayerStateIdle : public PlayerState
 struct PlayerStateWalk : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateWalk(Player * const player);
+  PlayerStateWalk(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
   void PressKey(const Key& key);

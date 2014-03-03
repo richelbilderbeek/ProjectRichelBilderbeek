@@ -14,6 +14,8 @@ struct Key;
 struct Player
 {
   Player();
+  Player(const Player&) = delete;
+  Player& operator=(const Player&) = delete;
 
   ///Respond to a key press
   void PressKey(const Key& key);
@@ -40,11 +42,12 @@ struct Player
   ///Player is idle
   boost::scoped_ptr<PlayerState> m_idle_state;
 
+  ///The current state
+  PlayerState * m_state;
+
   ///Player is walking
   boost::scoped_ptr<PlayerState> m_walk_state;
 
-  ///The current state
-  PlayerState * m_state;
 };
 
 std::ostream& operator<<(std::ostream& os, const Player& gumballMachine);
