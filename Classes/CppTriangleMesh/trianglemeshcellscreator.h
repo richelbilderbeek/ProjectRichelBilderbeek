@@ -22,6 +22,7 @@ namespace trim {
 /// - pass the desired cells to TriangleMeshBuilder to create the OpenFOAM files
 struct CellsCreator
 {
+  enum class CreateVerticalFacesStrategy { one_face_per_square, two_faces_per_square };
   CellsCreator(const CellsCreator&) = delete;
   CellsCreator& operator=(const CellsCreator&) = delete;
 
@@ -71,7 +72,8 @@ struct CellsCreator
   static const std::vector<boost::shared_ptr<Face>> CreateVerticalFaces(
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
-    const int n_layers
+    const int n_layers,
+    const CreateVerticalFacesStrategy strategy
   );
 
   static const std::vector<boost::shared_ptr<Face>> FindKnownFacesBetween(

@@ -11,8 +11,6 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshcellfactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcell.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshhelper.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_t.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshbuilder_rasproperties.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_pout.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_pin.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder_mut.cpp \

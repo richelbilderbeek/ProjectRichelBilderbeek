@@ -21,7 +21,7 @@ ribi::trim::Cell::Cell(
   #ifndef NDEBUG
   Test();
   #endif
-  assert(faces.size() == 8);
+  assert(faces.size() == 5 || faces.size() == 8);
 }
 
 const ribi::Coordinat3D ribi::trim::Cell::CalculateCenter() const noexcept
@@ -90,7 +90,7 @@ void ribi::trim::Cell::Test() noexcept
       CellFactory().CreateTestPrism()
     };
     assert(prism);
-    assert(prism->GetFaces().size() == 8);
+    assert(prism->GetFaces().size() == 5 || prism->GetFaces().size() == 8);
     const std::vector<boost::shared_ptr<Face>> faces {
       prism->GetFaces()
     };
@@ -111,7 +111,7 @@ void ribi::trim::Cell::Test() noexcept
       CellFactory().CreateTestCube()
     };
     assert(cube.size() == 2 && "A cube consists out of two prisms");
-    assert(cube[0]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
+    assert(cube[0]->GetFaces().size() == 5 || cube[0]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
     assert(cube[1]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
     //Concatenate the faces
     std::vector<boost::shared_ptr<Face>> faces {

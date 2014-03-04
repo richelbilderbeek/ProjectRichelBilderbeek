@@ -50,9 +50,10 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
   const std::vector<boost::shared_ptr<Face>> hor_faces {
     CreateHorizontalFaces(t,all_points,n_layers)
   };
+  const CreateVerticalFacesStrategy strategy { CreateVerticalFacesStrategy::one_face_per_square };
 
   const std::vector<boost::shared_ptr<Face>> ver_faces {
-    CreateVerticalFaces(t,all_points,n_layers)
+    CreateVerticalFaces(t,all_points,n_layers,strategy)
   };
 
   const int n_hor_faces_per_layer = static_cast<int>(t->GetFaces().size());
@@ -76,33 +77,61 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator:
           hor_faces[top_face_index]
         )
       };
-      assert(these_ver_faces.size() == 6);
-      const boost::shared_ptr<Cell> cell {
-        CellFactory().Create(
-          {
-            hor_faces[bottom_face_index],
-            hor_faces[top_face_index],
-            these_ver_faces[0],
-            these_ver_faces[1],
-            these_ver_faces[2],
-            these_ver_faces[3],
-            these_ver_faces[4],
-            these_ver_faces[5]
-          }
-        )
-      };
-      assert(hor_faces[bottom_face_index]);
-      assert(hor_faces[top_face_index]);
-      assert(Helper().IsHorizontal(*hor_faces[bottom_face_index]));
-      assert(Helper().IsHorizontal(*hor_faces[top_face_index]));
-      assert(Helper().IsVertical(*these_ver_faces[0]));
-      assert(Helper().IsVertical(*these_ver_faces[1]));
-      assert(Helper().IsVertical(*these_ver_faces[2]));
-      assert(Helper().IsVertical(*these_ver_faces[3]));
-      assert(Helper().IsVertical(*these_ver_faces[4]));
-      assert(Helper().IsVertical(*these_ver_faces[5]));
 
-      cells.push_back(cell);
+      if (strategy == CreateVerticalFacesStrategy::one_face_per_square )
+      {
+        assert(these_ver_faces.size() == 3);
+        const boost::shared_ptr<Cell> cell {
+          CellFactory().Create(
+            {
+              hor_faces[bottom_face_index],
+              hor_faces[top_face_index],
+              these_ver_faces[0],
+              these_ver_faces[1],
+              these_ver_faces[2]
+            }
+          )
+        };
+        assert(hor_faces[bottom_face_index]);
+        assert(hor_faces[top_face_index]);
+        assert(Helper().IsHorizontal(*hor_faces[bottom_face_index]));
+        assert(Helper().IsHorizontal(*hor_faces[top_face_index]));
+        assert(Helper().IsVertical(*these_ver_faces[0]));
+        assert(Helper().IsVertical(*these_ver_faces[1]));
+        assert(Helper().IsVertical(*these_ver_faces[2]));
+
+        cells.push_back(cell);
+      }
+      else
+      {
+        assert(these_ver_faces.size() == 6);
+        const boost::shared_ptr<Cell> cell {
+          CellFactory().Create(
+            {
+              hor_faces[bottom_face_index],
+              hor_faces[top_face_index],
+              these_ver_faces[0],
+              these_ver_faces[1],
+              these_ver_faces[2],
+              these_ver_faces[3],
+              these_ver_faces[4],
+              these_ver_faces[5]
+            }
+          )
+        };
+        assert(hor_faces[bottom_face_index]);
+        assert(hor_faces[top_face_index]);
+        assert(Helper().IsHorizontal(*hor_faces[bottom_face_index]));
+        assert(Helper().IsHorizontal(*hor_faces[top_face_index]));
+        assert(Helper().IsVertical(*these_ver_faces[0]));
+        assert(Helper().IsVertical(*these_ver_faces[1]));
+        assert(Helper().IsVertical(*these_ver_faces[2]));
+        assert(Helper().IsVertical(*these_ver_faces[3]));
+        assert(Helper().IsVertical(*these_ver_faces[4]));
+        assert(Helper().IsVertical(*these_ver_faces[5]));
+
+        cells.push_back(cell);
+      }
     }
   }
 
@@ -199,7 +228,8 @@ const std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreato
 const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::CreateVerticalFaces(
   const boost::shared_ptr<const Template> t,
   const std::vector<boost::shared_ptr<Point>>& all_points,
-  const int n_layers
+  const int n_layers,
+  const CreateVerticalFacesStrategy strategy
 )
 {
   PROFILE_FUNC();
@@ -209,7 +239,10 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
   assert(!edges.empty());
   const int n_edges = static_cast<int>(edges.size());
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());
-  const int n_ver_faces = 2 * n_edges; //For every horizontal square face, two triangles are used instead
+  const int n_ver_faces { strategy == CreateVerticalFacesStrategy::one_face_per_square
+    ? 1 * n_edges
+    : 2 * n_edges //For every horizontal edge, two triangles are used instead
+  };
 
   std::vector<boost::shared_ptr<Face> > v;
   v.reserve(n_ver_faces * (n_layers - 1));
@@ -227,36 +260,53 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
       assert(points_offset + edge.first < static_cast<int>(all_points.size()));
       assert(points_offset + edge.second < static_cast<int>(all_points.size()));
       assert(points_offset + edge.first + n_points_per_layer < static_cast<int>(all_points.size()));
-      const std::vector<boost::shared_ptr<Point>> face_points_1 {
-        all_points[points_offset + edge.first],
-        all_points[points_offset + edge.second],
-        all_points[points_offset + edge.first + n_points_per_layer]
-      };
-      //Cannot order face winding yet, need Cells for this
-      const boost::shared_ptr<Face> face_1 {
-        FaceFactory().Create(
-          face_points_1,
-          FaceOrientation::vertical
-        )
-      };
-      v.push_back(face_1);
-
-      assert(points_offset + edge.second < static_cast<int>(all_points.size()));
       assert(points_offset + edge.second + n_points_per_layer < static_cast<int>(all_points.size()));
-      assert(points_offset + edge.first  + n_points_per_layer < static_cast<int>(all_points.size()));
-      const std::vector<boost::shared_ptr<Point>> face_points_2 {
-        all_points[points_offset + edge.second],
-        all_points[points_offset + edge.second + n_points_per_layer],
-        all_points[points_offset + edge.first + n_points_per_layer]
-      };
+      if (strategy == CreateVerticalFacesStrategy::one_face_per_square)
+      {
+        const std::vector<boost::shared_ptr<Point>> face_points {
+          all_points[points_offset + edge.first],
+          all_points[points_offset + edge.second],
+          all_points[points_offset + edge.first + n_points_per_layer],
+            all_points[points_offset + edge.second + n_points_per_layer]
+        };
+        //Cannot order face winding yet, need Cells for this
+        const boost::shared_ptr<Face> face {
+          FaceFactory().Create(
+            face_points,
+            FaceOrientation::vertical
+          )
+        };
+        v.push_back(face);
+      }
+      else
+      {
+        const std::vector<boost::shared_ptr<Point>> face_points_1 {
+          all_points[points_offset + edge.first],
+          all_points[points_offset + edge.second],
+          all_points[points_offset + edge.first + n_points_per_layer]
+        };
+        //Cannot order face winding yet, need Cells for this
+        const boost::shared_ptr<Face> face_1 {
+          FaceFactory().Create(
+            face_points_1,
+            FaceOrientation::vertical
+          )
+        };
+        v.push_back(face_1);
+        const std::vector<boost::shared_ptr<Point>> face_points_2 {
+          all_points[points_offset + edge.second],
+          all_points[points_offset + edge.second + n_points_per_layer],
+          all_points[points_offset + edge.first + n_points_per_layer]
+        };
 
-      const boost::shared_ptr<Face> face_2 {
-        FaceFactory().Create(
-          face_points_2,
-          FaceOrientation::vertical
-        )
-      };
-      v.push_back(face_2);
+        const boost::shared_ptr<Face> face_2 {
+          FaceFactory().Create(
+            face_points_2,
+            FaceOrientation::vertical
+          )
+        };
+        v.push_back(face_2);
+      }
     }
   }
 
@@ -312,7 +362,6 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator:
   faces.pop_back();
   std::remove(faces.begin(),faces.end(),b);
   faces.pop_back();
-  assert(faces.size() == 6);
   return faces;
 }
 
