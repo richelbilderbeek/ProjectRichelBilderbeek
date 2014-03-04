@@ -29,7 +29,7 @@
 </ul>
 <p><a href="CppIde.htm">IDE(s)</a>:</p>
 <ul>
-  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> unknown</li>
+  <li><img src="PicQtCreator.png" alt="Qt Creator"/> <a href="CppQtCreator.htm">Qt Creator</a> 2.7.1</li>
 </ul>
 <p><a href="CppQtProjectType.htm">Project type</a>:</p>
 <ul>
@@ -105,15 +105,33 @@ include(../../<a href="CppClass.htm">Classes</a>/CppContainer/CppContainer.pri)<
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppCoordinat.htm">CppCoordinat</a>/<a href="CppCoordinat.htm">CppCoordinat</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFileIo.htm">CppFileIo</a>/<a href="CppFileIo.htm">CppFileIo</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppFuzzy_equal_to.htm">CppFuzzy_equal_to</a>/<a href="CppFuzzy_equal_to.htm">CppFuzzy_equal_to</a>.pri)<br/>
+include(../../<a href="CppClass.htm">Classes</a>/CppGeometry/CppGeometry.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppOpenFoam.htm">CppOpenFoam</a>/<a href="CppOpenFoam.htm">CppOpenFoam</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/CppPhp/CppPhp.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppTrace.htm">CppTrace</a>/<a href="CppTrace.htm">CppTrace</a>.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/CppTriangleFile/CppTriangleFile.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/CppTriangleMesh/CppTriangleMesh.pri)<br/>
 include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>/<a href="CppXml.htm">CppXml</a>.pri)<br/>
+include(../../<a href="Tools.htm">Tools</a>/ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri)<br/>
 <br/>
 <br/>
 <a href="CppQmakeSources.htm">SOURCES</a> += <a href="CppMain.htm">main</a>.cpp<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri" border = "1"><tr><td><code>
+<a href="CppQmakeHeaders.htm">HEADERS</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;testtrianglemesh<a href="CppMain.htm">main</a>dialog.h<br/>
+<br/>
+<a href="CppQmakeSources.htm">SOURCES</a> += \<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;testtrianglemesh<a href="CppMain.htm">main</a>dialog.cpp<br/>
 </code></td></tr></table>
 <!-- end of the code -->
 <p>&nbsp;</p>
@@ -130,6 +148,106 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppStringH.htm">string</a>&gt;<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/math/constants/constants.hpp&gt;<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "Shiny.h"<br/>
+<a href="CppInclude.htm">#include</a> "testtrianglemeshmaindialog.h"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> "trianglefile.h"<br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<br/>
+<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
+{<br/>
+&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
+&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
+&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> tau { <a href="CppBoost.htm">boost</a>::math::constants::two_pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> show_mesh { <b><a href="CppTrue.htm">true</a></b> };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::TestTriangleMeshMainDialog(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>Polygon(4,tau * 0.0 <a href="CppOperatorDivide.htm">/</a> 6.0,1.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>, <a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>Polygon(3,tau * 0.0 <a href="CppOperatorDivide.htm">/</a> 6.0,2.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;show_mesh,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR: <a href="CppException.htm">Exception</a> caught: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR: Unknown <a href="CppException.htm">exception</a> caught!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
+&nbsp;&nbsp;}<br/>
+}<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestTriangleMesh/testtrianglemeshmaindialog.h</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestTriangleMesh/testtrianglemeshmaindialog.h" border = "1"><tr><td><code>
+<a href="CppIfndef.htm">#ifndef</a> TESTTRIANGLEMESHMAINDIALOG_H<br/>
+<a href="CppDefine.htm">#define</a> TESTTRIANGLEMESHMAINDIALOG_H<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/polygon.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
+<br/>
+<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
+<br/>
+<b><a href="CppStruct.htm">struct</a></b> TestTriangleMeshMainDialog<br/>
+{<br/>
+&nbsp;&nbsp;TestTriangleMeshMainDialog(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; <a href="CppShape.htm">shape</a>s,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> show_mesh,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers<br/>
+&nbsp;&nbsp;);<br/>
+};<br/>
+<br/>
+} <a href="CppComment.htm">//</a>~<b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a><br/>
+<br/>
+<a href="CppEndif.htm">#endif</a> <a href="CppComment.htm">//</a> TESTTRIANGLEMESHMAINDIALOG_H<br/>
+</code></td></tr></table>
+<!-- end of the code -->
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>./ToolTestTriangleMesh/testtrianglemeshmaindialog.cpp</h2>
+<p>&nbsp;</p>
+<!-- start of code -->
+<table summary="./ToolTestTriangleMesh/testtrianglemeshmaindialog.cpp" border = "1"><tr><td><code>
+<a href="CppInclude.htm">#include</a> "testtrianglemeshmaindialog.h"<br/>
+<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic push<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "<a href="CppWeffcpp.htm">-Weffc++</a>"<br/>
+<a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-local-typedefs"<br/>
+<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppShared_ptr.htm">shared_ptr</a>.hpp&gt;<br/>
@@ -137,54 +255,43 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 <br/>
 <a href="CppInclude.htm">#include</a> "Shiny.h"<br/>
 <br/>
+<a href="CppInclude.htm">#include</a> "<a href="CppFileIo.htm">fileio</a>.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamcontroldictfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamfilenames.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamfvschemesfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamfvsolutionfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoampressurefile.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamtemperaturefile.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamthermophysicalpropertiesfile.h"<br/>
+<a href="CppInclude.htm">#include</a> "openfoamvelocityfieldfile.h"<br/>
 <a href="CppInclude.htm">#include</a> "<a href="CppTrace.htm">trace</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglefile.h"<br/>
-<a href="CppInclude.htm">#include</a> "trianglemeshcell.h"<br/>
-<a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshbuilder.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshcell.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcellscreator.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemeshcellscreatorfactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshedgefactory.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemeshface.h"<br/>
+<a href="CppInclude.htm">#include</a> "trianglemesh<a href="CppPointer.htm">point</a>.h"<br/>
 <a href="CppInclude.htm">#include</a> "trianglemesh<b><a href="CppTemplate.htm">template</a></b>.h"<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
-<b><a href="CppVoid.htm">void</a></b> DoMain()<br/>
+<a href="CppRibi.htm">ribi</a>::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;&amp; <a href="CppShape.htm">shape</a>s,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> show_mesh,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers<br/>
+&nbsp;&nbsp;)<br/>
 {<br/>
-&nbsp;&nbsp;START_<a href="CppTRACE.htm">TRACE</a>();<br/>
 &nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> show_mesh <a href="CppOperatorAssign.htm">=</a> <b><a href="CppTrue.htm">true</a></b>;<br/>
-&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename_result_mesh { "mesh.ply" };<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> filename_result_mesh { <a href="CppRibi.htm">ribi</a>::<a href="CppFileIo.htm">fileio</a>::GetTempFileName(".ply") };<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Write some geometries, let Triangle.exe work on it<br/>
-&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_node; <a href="CppComment.htm">//</a>Triangle.exe output file<br/>
-&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_ele;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Triangle.exe output file<br/>
-&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_poly; <a href="CppComment.htm">//</a>Triangle.exe output file<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_node;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_ele;<br/>
+&nbsp;&nbsp;<a href="CppStdString.htm">std::string</a> filename_poly;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>A house-like <a href="CppShape.htm">shape</a><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_house {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0, 2.0}, <a href="CppComment.htm">//</a>0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 1.0, 1.0}, <a href="CppComment.htm">//</a>1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 1.0,-1.0}, <a href="CppComment.htm">//</a>2<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-1.0,-1.0}, <a href="CppComment.htm">//</a>3<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-1.0, 1.0}&nbsp;&nbsp;<a href="CppComment.htm">//</a>4<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s_house);<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s_heart {<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0, 3.0}, <a href="CppComment.htm">//</a>0<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 3.0, 6.0}, <a href="CppComment.htm">//</a>1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 6.0, 3.0}, <a href="CppComment.htm">//</a>2<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 6.0, 0.0}, <a href="CppComment.htm">//</a>3<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0,-6.0}, <a href="CppComment.htm">//</a>4<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-6.0, 0.0}, <a href="CppComment.htm">//</a>5<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-6.0, 3.0}, <a href="CppComment.htm">//</a>6<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{-3.0, 6.0}&nbsp;&nbsp;<a href="CppComment.htm">//</a>7<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> w;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(w, <a href="CppPointer.htm">point</a>s_heart);<br/>
-<br/>
-<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::TriangleFile f( {v,w} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::TriangleFile f(<a href="CppShape.htm">shape</a>s);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> quality <a href="CppOperatorAssign.htm">=</a> 5.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> area <a href="CppOperatorAssign.htm">=</a> 2.0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;f.ExecuteTriangle(<br/>
@@ -199,7 +306,6 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>Read data from Triangle.exe output<br/>
 &nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Cell<a href="CppOperatorStreamIn.htm">&gt;&gt;</a> cells;<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n_layers <a href="CppOperatorAssign.htm">=</a> 10;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::Template&gt; t {<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppNew.htm">new</a></b> <a href="CppRibi.htm">ribi</a>::trim::Template(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filename_node,<br/>
@@ -221,10 +327,10 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Remove some random cells<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of cells before sculpting: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> cells.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRandom_shuffle.htm">std::random_shuffle</a>(cells.begin(),cells.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdReverse.htm">std::reverse</a>(cells.begin(),cells.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdRandom_shuffle.htm">std::random_shuffle</a>(cells.begin(),cells.end());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;cells.resize(cells.size() * 3 <a href="CppOperatorDivide.htm">/</a> 4);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdRandom_shuffle.htm">std::random_shuffle</a>(cells.begin(),cells.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdReverse.htm">std::reverse</a>(cells.begin(),cells.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a><a href="CppStdRandom_shuffle.htm">std::random_shuffle</a>(cells.begin(),cells.end());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>cells.resize(cells.size() * 3 <a href="CppOperatorDivide.htm">/</a> 4);<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "Number of cells after sculpting: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> cells.size() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 <br/>
@@ -256,7 +362,7 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;faces.erase(new_end,faces.end());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppStdCount.htm">std::count</a>(faces.begin(),faces.end(),<b><a href="CppNullptr.htm">nullptr</a></b>) <a href="CppOperatorEqual.htm">==</a> 0);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_internal <a href="CppOperatorAssign.htm">=</a> 0;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_default <a href="CppOperatorAssign.htm">=</a> 0;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> n_<b><a href="CppExtern.htm">extern</a></b>al <a href="CppOperatorAssign.htm">=</a> 0;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;<a href="CppRibi.htm">ribi</a>::trim::Face&gt; face: faces)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (face-&gt;GetNeighbour())<br/>
@@ -270,13 +376,51 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;GetOwner());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!face-&gt;GetNeighbour());<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("outside");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>n_default;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorIncrement.htm">++</a>n_<b><a href="CppExtern.htm">extern</a></b>al;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (face-&gt;GetOrientation() <a href="CppOperatorEqual.htm">==</a> <a href="CppRibi.htm">ribi</a>::trim::FaceOrientation::horizontal)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (face-&gt;Get<a href="CppPoint.htm">Point</a>(0)-&gt;GetZ() &lt; 0.5 * <a href="CppBoostUnits.htm">boost::units</a>::si::meter)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("bottom");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("top");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(face-&gt;GetOrientation() <a href="CppOperatorEqual.htm">==</a> <a href="CppRibi.htm">ribi</a>::trim::FaceOrientation::vertical);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> Coordinat3D center { face-&gt;CalcCenter() };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>(center);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (center.GetX() &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (center.GetY() &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("front");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("back");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (center.GetY() &lt; 0.0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("left");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppElse.htm">else</a></b><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;face-&gt;SetBoundaryType("right");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppContinue.htm">continue</a></b>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "internal faces: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_internal <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExtern.htm">extern</a></b>al faces: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_default <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdClog.htm">std::clog</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "<b><a href="CppExtern.htm">extern</a></b>al faces: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> n_<b><a href="CppExtern.htm">extern</a></b>al <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
@@ -284,12 +428,183 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdFunction.htm">std::function</a>&lt;<a href="CppRibi.htm">ribi</a>::foam::PatchFieldType(<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp;)&gt; boundary_to_patch_field_type_function {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[](<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a>&amp; patch_name)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "inside") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::no_patch_field;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "top") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::zeroGradient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "bottom") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::zeroGradient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "front") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::zeroGradient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "back") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::zeroGradient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "left") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::zeroGradient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (patch_name <a href="CppOperatorEqual.htm">==</a> "right") <b><a href="CppReturn.htm">return</a></b> <a href="CppRibi.htm">ribi</a>::foam::PatchFieldType::zeroGradient;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(!"Should not get here");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppThrow.htm">throw</a></b> <a href="CppStdLogic_error.htm">std::logic_error</a>("boundary_to_patch_field_type: unknown patch name");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br/>
+<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppComment.htm">//</a>Build the OpenFOAM files<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppRibi.htm">ribi</a>::trim::TriangleMeshBuilder builder(<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cells,<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filename_result_mesh<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;filename_result_mesh,<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boundary_to_patch_field_type_function<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;);<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppTRACE.htm">TRACE</a>_FUNC();<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetControlDict().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::ControlDictFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetAdjust<a href="CppTime.htm">Time</a>Step(<b><a href="CppFalse.htm">false</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.Set<a href="CppApplication.htm">Application</a>("sonicFoam");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetDeltaT(1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetEnd<a href="CppTime.htm">Time</a>(10.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetPurgeWrite(0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetRun<a href="CppTime.htm">Time</a>Modifiable(<b><a href="CppTrue.htm">true</a></b>);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetStartFrom("latest<a href="CppTime.htm">Time</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetStart<a href="CppTime.htm">Time</a>(0.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetStopAt("end<a href="CppTime.htm">Time</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.Set<a href="CppTime.htm">Time</a>Format("general");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.Set<a href="CppTime.htm">Time</a>Precision(6);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetWriteCompression("uncompressed");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetWriteControl("adjustableRun<a href="CppTime.htm">Time</a>");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetWriteFormat("ascii");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetWriteInterval(1.0);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetWritePrecision(6);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetFvSchemes().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::FvSchemesFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetFvSolution().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::FvSolutionFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetPressureField().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::PressureFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetBoundaryField(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;top\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;bottom\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;front\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;back\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;left\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;right\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;<b><a href="CppDefault.htm">default</a></b>Faces\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;}"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetDimensions( {1,-1,-2,0,0,0,0} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetInternalField("uniform 1.7e5");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetTemperatureField().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::TemperatureFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetBoundaryField(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"top\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"bottom\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"front\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"back\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"left\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"right\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetDimensions( {0,0,0,1,0,0,0} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetInternalField("uniform 293");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetThermophysicalProperties().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::ThermophysicalPropertiesFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetMixture("air 1 28.9 717 0 1.458e-6 110.4");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetThermoType("ePsiThermo&lt;pureMixture&lt;sutherlandTransport&lt;specieThermo&lt;eConstThermo&lt;perfectGas<a href="CppOperatorStreamIn.htm">&gt;&gt;</a><a href="CppOperatorStreamIn.htm">&gt;&gt;</a>&gt;");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
+<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppRibi.htm">ribi</a>::foam::VelocityFieldFile file;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetDimensions( {0,1,-1,0,0,0,0} );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetInternalField("uniform (0 0 0)");<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;file.SetBoundaryField(<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"inside\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type slip;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"top\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"bottom\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"front\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"back\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"left\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"right\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"{\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"&nbsp;&nbsp;type zeroGradient;\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"}\n"<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdOfstream.htm">std::ofstream</a> f(<a href="CppRibi.htm">ribi</a>::foam::Filenames().GetVelocityField().Get().c_str());<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;f <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> file;<br/>
 &nbsp;&nbsp;}<br/>
 <br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (show_mesh)<br/>
@@ -301,32 +616,7 @@ include(../../<a href="CppClass.htm">Classes</a>/<a href="CppXml.htm">CppXml</a>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem.htm">std::system</a>(s.str().c_str());<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (error) <a href="CppStdCout.htm">std::cout</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "WARNING: cannot display mesh" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> '\n';<br/>
 &nbsp;&nbsp;}<br/>
-}<br/>
 <br/>
-<b><a href="CppInt.htm">int</a></b> <a href="CppMain.htm">main</a>()<br/>
-{<br/>
-&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>_FUNC();<br/>
-&nbsp;&nbsp;<b><a href="CppTry.htm">try</a></b><br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;DoMain();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 0;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (<a href="CppStdException.htm">std::exception</a>&amp; e)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR: <a href="CppException.htm">Exception</a> caught: " <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> e.what() <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
-&nbsp;&nbsp;}<br/>
-&nbsp;&nbsp;<b><a href="CppCatch.htm">catch</a></b> (...)<br/>
-&nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppStdCerr.htm">std::cerr</a> <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> "ERROR: Unknown <a href="CppException.htm">exception</a> caught!" <a href="CppOperatorStreamOut.htm">&lt;&lt;</a> <a href="CppStdEndl.htm">std::endl</a>;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_UPDATE();<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;PRO<a href="CppCfile.htm">FILE</a>R_OUTPUT("shiny_output.txt");<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> 1;<br/>
-&nbsp;&nbsp;}<br/>
 }<br/>
 </code></td></tr></table>
 <!-- end of the code -->

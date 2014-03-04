@@ -101,6 +101,13 @@ boost::shared_ptr<ribi::scc::StaircaseCard> ribi::scc::StaircaseCard::GetTest(co
 
 }
 
+void ribi::scc::StaircaseCard::Shuffle() noexcept
+{
+  std::for_each(m_v.begin()+1,m_v.end()-1,
+    [](Column& col) {col.Shuffle();}
+  );
+}
+
 boost::shared_ptr<QImage> ribi::scc::StaircaseCard::ToImage() const noexcept
 {
   const boost::shared_ptr<TextCanvas> canvas {

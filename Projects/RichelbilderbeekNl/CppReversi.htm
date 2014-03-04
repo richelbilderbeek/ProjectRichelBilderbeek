@@ -1009,7 +1009,9 @@
 <a href="CppRibi.htm">ribi</a>::<a href="GameReversi.htm">reversi</a>::<a href="CppWidget.htm">Widget</a>::<a href="CppWidget.htm">Widget</a>(<b><a href="CppConst.htm">const</a></b> <a href="CppWidget.htm">Widget</a>&amp; other)<br/>
 &nbsp;&nbsp;: m_board(<a href="CppBoostShared_ptr.htm">boost::shared_ptr</a>&lt;Board&gt;(<b><a href="CppNew.htm">new</a></b> Board(*other.m_board))),<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;m_current_player(other.m_current_player),<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;m_undo(other.m_undo)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_undo(other.m_undo),<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_x{other.m_x},<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;m_y{other.m_y}<br/>
 {<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(m_board);<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(*m_board <a href="CppOperatorEqual.htm">==</a> *other.m_board <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "Must be a copy");<br/>

@@ -18,6 +18,8 @@ struct Column
 
   int GetMax() const noexcept { return static_cast<int>(m_v.size()); }
 
+  void Shuffle() noexcept;
+
   //Swap two orientations
   void Swap(const int a, const int b) noexcept;
 

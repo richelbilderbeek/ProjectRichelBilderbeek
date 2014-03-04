@@ -69,6 +69,7 @@
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic ignored "-Wunused-variable"<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>.hpp&gt;<br/>
 <a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/<a href="CppPointer.htm">point</a>_xy.hpp&gt;<br/>
+<a href="CppInclude.htm">#include</a> &lt;<a href="CppBoost.htm">boost</a>/<a href="CppGeometry.htm">geometry</a>/geometries/polygon.hpp&gt;<br/>
 <a href="CppPragma.htm">#pragma</a> GCC diagnostic pop<br/>
 <br/>
 <b><a href="CppNamespace.htm">namespace</a></b> <a href="CppRibi.htm">ribi</a> {<br/>
@@ -85,6 +86,11 @@
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> CountSegments() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> CountVertices(); } <a href="CppComment.htm">//</a>A polygon has as much vertices as segments<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> Count<a href="CppShape.htm">Shape</a>s() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b> { <b><a href="CppReturn.htm">return</a></b> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppInt.htm">int</a></b>&gt;(m_<a href="CppShape.htm">shape</a>s.size()); }<br/>
 &nbsp;&nbsp;<b><a href="CppInt.htm">int</a></b> CountVertices() <b><a href="CppConst.htm">const</a></b> <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create<a href="CppShape.htm">Shape</a>Heart(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale <a href="CppOperatorAssign.htm">=</a> 1.0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create<a href="CppShape.htm">Shape</a>House(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale <a href="CppOperatorAssign.htm">=</a> 1.0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create<a href="CppShape.htm">Shape</a>Polygon(<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation <a href="CppOperatorAssign.htm">=</a> 0.0, <b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale <a href="CppOperatorAssign.htm">=</a> 0.0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
+&nbsp;&nbsp;<b><a href="CppStatic.htm">static</a></b> <b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> Create<a href="CppShape.htm">Shape</a>Triangle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale <a href="CppOperatorAssign.htm">=</a> 1.0) <b><a href="CppNoexcept.htm">noexcept</a></b>;<br/>
 <br/>
 &nbsp;&nbsp;<a href="CppComment.htm">//</a>/Executes Triangle.exe from a <a href="CppWindows.htm">Windows</a> command line<br/>
 &nbsp;&nbsp;<b><a href="CppVoid.htm">void</a></b> ExecuteTriangle(<br/>
@@ -161,6 +167,72 @@
 &nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> sum;<br/>
 }<br/>
 <br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>Heart(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0 * scale, 1.0 * scale}, <a href="CppComment.htm">//</a>0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 1.0 * scale, 2.0 * scale}, <a href="CppComment.htm">//</a>1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 2.0 * scale, 1.0 * scale}, <a href="CppComment.htm">//</a>2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 2.0 * scale, 0.0 * scale}, <a href="CppComment.htm">//</a>3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0 * scale,-2.0 * scale}, <a href="CppComment.htm">//</a>4<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{-2.0 * scale, 0.0 * scale}, <a href="CppComment.htm">//</a>5<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{-2.0 * scale, 1.0 * scale}, <a href="CppComment.htm">//</a>6<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{-1.0 * scale, 2.0 * scale}&nbsp;&nbsp;<a href="CppComment.htm">//</a>7<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>House(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0 * scale, 2.0 * scale}, <a href="CppComment.htm">//</a>0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 1.0 * scale, 1.0 * scale}, <a href="CppComment.htm">//</a>1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 1.0 * scale,-1.0 * scale}, <a href="CppComment.htm">//</a>2<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{-1.0 * scale,-1.0 * scale}, <a href="CppComment.htm">//</a>3<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{-1.0 * scale, 1.0 * scale}&nbsp;&nbsp;<a href="CppComment.htm">//</a>4<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>Polygon(<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppInt.htm">int</a></b> n,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> rotation,<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale<br/>
+) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(n <a href="CppOperatorGreaterEqual.htm">&gt;=</a> 3 <a href="CppOperatorLogicalAnd.htm">&amp;&amp;</a> "A polygon has at least three edges");<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> tau { <a href="CppBoost.htm">boost</a>::math::constants::two_pi&lt;<b><a href="CppDouble.htm">double</a></b>&gt;() };<br/>
+&nbsp;&nbsp;<a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s;<br/>
+&nbsp;&nbsp;<b><a href="CppFor.htm">for</a></b> (<b><a href="CppInt.htm">int</a></b> i=0; i<a href="CppOperatorNotEqual.htm">!=</a>n; <a href="CppOperatorIncrement.htm">++</a>i)<br/>
+&nbsp;&nbsp;{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> angle { tau * <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(i) <a href="CppOperatorDivide.htm">/</a> <b><a href="CppStatic_cast.htm">static_cast</a></b>&lt;<b><a href="CppDouble.htm">double</a></b>&gt;(n) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> x {&nbsp;&nbsp;<a href="CppStdSin.htm">std::sin</a>(angle <a href="CppOperatorPlus.htm">+</a> rotation) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> y { <a href="CppOperatorMinus.htm">-</a><a href="CppStdCos.htm">std::cos</a>(angle <a href="CppOperatorPlus.htm">+</a> rotation) };<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b>&gt; <a href="CppPointer.htm">point</a>(x * scale, y * scale);<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppPointer.htm">point</a>s.push_back(<a href="CppPointer.htm">point</a>);<br/>
+&nbsp;&nbsp;}<br/>
+<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
+<b><a href="CppConst.htm">const</a></b> <a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppRibi.htm">ribi</a>::TriangleFile::Create<a href="CppShape.htm">Shape</a>Triangle(<b><a href="CppConst.htm">const</a></b> <b><a href="CppDouble.htm">double</a></b> scale) <b><a href="CppNoexcept.htm">noexcept</a></b><br/>
+{<br/>
+&nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdVector.htm">std::vector</a>&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> <a href="CppPointer.htm">point</a>s {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0 * scale, 0.0 * scale}, <a href="CppComment.htm">//</a>0<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 1.0 * scale, 0.0 * scale}, <a href="CppComment.htm">//</a>1<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;{ 0.0 * scale, 1.0 * scale}&nbsp;&nbsp;<a href="CppComment.htm">//</a>2<br/>
+&nbsp;&nbsp;};<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::polygon&lt;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::model::d2::<a href="CppPointer.htm">point</a>_xy&lt;<b><a href="CppDouble.htm">double</a></b><a href="CppOperatorStreamIn.htm">&gt;&gt;</a> v;<br/>
+&nbsp;&nbsp;<a href="CppBoost.htm">boost</a>::<a href="CppGeometry.htm">geometry</a>::append(v, <a href="CppPointer.htm">point</a>s);<br/>
+&nbsp;&nbsp;<b><a href="CppReturn.htm">return</a></b> v;<br/>
+}<br/>
+<br/>
 <b><a href="CppVoid.htm">void</a></b> <a href="CppRibi.htm">ribi</a>::TriangleFile::ExecuteTriangle(<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; node_filename,<br/>
 &nbsp;&nbsp;<a href="CppStdString.htm">std::string</a>&amp; ele_filename,<br/>
@@ -183,7 +255,7 @@
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <a href="CppStdString.htm">std::string</a> exe_filename { "triangle.exe" };<br/>
 &nbsp;&nbsp;<b><a href="CppIf.htm">if</a></b> (!<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(exe_filename))<br/>
 &nbsp;&nbsp;{<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> file( (<a href="CppStdString.htm">std::string</a>(":/trianglefile/files/") <a href="CppOperatorPlus.htm">+</a> exe_filename).c_str() );<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppQFile.htm">QFile</a> file( (":/trianglefile/files/" <a href="CppOperatorPlus.htm">+</a> exe_filename).c_str() );<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;file.copy(exe_filename.c_str());<br/>
 &nbsp;&nbsp;}<br/>
 &nbsp;&nbsp;<a href="CppAssert.htm">assert</a>(<a href="CppFileIo.htm">fileio</a>::<a href="CppIsRegularFile.htm">IsRegularFile</a>(exe_filename));<br/>
@@ -195,7 +267,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> quality<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " <a href="CppOperatorMinus.htm">-</a>a"<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> area<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (verbose ? <a href="CppStdString.htm">std::string</a>("") : <a href="CppStdString.htm">std::string</a>(" <a href="CppOperatorMinus.htm">-</a>Q"))<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> (verbose ? "" : " <a href="CppOperatorMinus.htm">-</a>Q")<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> " "<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="CppOperatorStreamOut.htm">&lt;&lt;</a> filename;<br/>
 &nbsp;&nbsp;<b><a href="CppConst.htm">const</a></b> <b><a href="CppBool.htm">bool</a></b> error <a href="CppOperatorAssign.htm">=</a> <a href="CppStdSystem.htm">std::system</a>(s.str().c_str());<br/>

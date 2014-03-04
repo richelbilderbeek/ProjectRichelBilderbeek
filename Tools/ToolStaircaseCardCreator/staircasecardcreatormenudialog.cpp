@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <iterator>
@@ -27,27 +28,17 @@ ribi::scc::StaircaseCardCreatorMenuDialog::StaircaseCardCreatorMenuDialog()
   #endif
 }
 
-int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& /* argv */) noexcept
 {
-  const int argc = static_cast<int>(argv.size());
-  /*
+  //const int argc = static_cast<int>(argv.size());
   {
+    std::srand(std::time(0));
     boost::shared_ptr<StaircaseCard> card {
-      new StaircaseCard(10,30)
+      new StaircaseCard(6,10)
     };
+    card->Shuffle();
     std::cout << (*card->ToTextCanvasCompact()) << '\n';
-    std::cout << '\n';
     std::cout << (*card->ToTextCanvas()) << '\n';
-  }
-  */
-  {
-    boost::shared_ptr<StaircaseCard> card {
-      StaircaseCard::GetTest(0)
-    };
-    std::cout << (*card->ToTextCanvasCompact()) << '\n';
-    std::cout << '\n';
-    std::cout << (*card->ToTextCanvas()) << '\n';
-    card->ToImage()->save("tmp.png");
   }
   return 0;
 }

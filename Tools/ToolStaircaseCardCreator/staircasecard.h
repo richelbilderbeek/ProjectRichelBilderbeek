@@ -27,6 +27,8 @@ struct StaircaseCard
 
   static boost::shared_ptr<StaircaseCard> GetTest(const int i) noexcept;
 
+  void Shuffle() noexcept;
+
   boost::shared_ptr<QImage> ToImage() const noexcept;
   boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
   boost::shared_ptr<TextCanvas> ToTextCanvasCompact() const noexcept;

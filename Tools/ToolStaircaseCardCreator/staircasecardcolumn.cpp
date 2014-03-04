@@ -1,6 +1,7 @@
 #include "staircasecardcolumn.h"
 
 #include <cassert>
+#include <algorithm>
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -56,11 +57,16 @@ ribi::scc::Orientation ribi::scc::Column::GetOrientation(const int row) const no
   return m_v[row];
 }
 
+void ribi::scc::Column::Shuffle() noexcept
+{
+  std::random_shuffle(m_v.begin() + 1,m_v.end() - 1);
+}
+
 void ribi::scc::Column::Swap(const int a, const int b) noexcept
 {
   assert(a >= 0);
   assert(a < GetMax());
-  assert(b <= 0);
+  assert(b >= 0);
   assert(b < GetMax());
   std::swap(m_v[a],m_v[b]);
 }
