@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "trace.h"
+#include "aaffighter.h"
 
 ribi::aaf::FighterFactory::FighterFactory() noexcept
 {
@@ -11,7 +12,7 @@ ribi::aaf::FighterFactory::FighterFactory() noexcept
   #endif
 }
 
-boost::shared_ptr<ribi::aaf::Fighter> ribi::aaf::FighterFactory::Create(const ribi::aaf::AminoAcid a) const noexcept
+boost::shared_ptr<ribi::aaf::Fighter> ribi::aaf::FighterFactory::Create(const ribi::aaf::AminoAcid /* a */) const noexcept
 {
   boost::shared_ptr<Fighter> f;
 

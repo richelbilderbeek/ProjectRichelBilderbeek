@@ -3,7 +3,7 @@
 #include "qtaminoacidfightermenudialog.h"
 
 #include "qtaboutdialog.h"
-#include "aminoacidfightermenudialog.h"
+#include "aafmenudialog.h"
 #include "qtaminoacidfightermaindialog.h"
 #include "ui_qtaminoacidfightermenudialog.h"
 #include "trace.h"
@@ -32,7 +32,7 @@ void ribi::aaf::QtAafMenuDialog::on_button_start_clicked()
 
 void ribi::aaf::QtAafMenuDialog::on_button_about_clicked()
 {
-  QtAboutDialog d(AminoAcidFighterMenuDialog().GetAbout());
+  QtAboutDialog d(aaf::MenuDialog().GetAbout());
   this->ShowChild(&d);
 }
 
@@ -51,7 +51,7 @@ void ribi::aaf::QtAafMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::aaf::QtAafMenuDialog::Test");
   QtAafMainDialog();
-  AminoAcidFighterMenuDialog();
+  aaf::MenuDialog();
   TRACE("Finished ribi::aaf::QtAafMenuDialog::Test successfully");
 }
 #endif

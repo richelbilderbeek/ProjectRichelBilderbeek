@@ -7,10 +7,10 @@ SOURCES += \
     ../../Games/GameAminoAcidFighter/aafaminoacids.cpp \
     ../../Games/GameAminoAcidFighter/aaffighter.cpp \
     ../../Games/GameAminoAcidFighter/aaffighterfactory.cpp \
-    aafmolecule.cpp \
-    aafatom.cpp \
-    aafbond.cpp \
-    aafmoleculefactory.cpp
+    ../../Games/GameAminoAcidFighter/aafmolecule.cpp \
+    ../../Games/GameAminoAcidFighter/aafatom.cpp \
+    ../../Games/GameAminoAcidFighter/aafbond.cpp \
+    ../../Games/GameAminoAcidFighter/aafmoleculefactory.cpp
 
 HEADERS  += \
     ../../Games/GameAminoAcidFighter/aafmenudialog.h \
@@ -19,10 +19,10 @@ HEADERS  += \
     ../../Games/GameAminoAcidFighter/aaffighter.h \
     ../../Games/GameAminoAcidFighter/aaffighterfactory.h \
     ../../Games/GameAminoAcidFighter/aaffwd.h \
-    aafmolecule.h \
-    aafatom.h \
-    aafbond.h \
-    aafmoleculefactory.h
+    ../../Games/GameAminoAcidFighter/aafmolecule.h \
+    ../../Games/GameAminoAcidFighter/aafatom.h \
+    ../../Games/GameAminoAcidFighter/aafbond.h \
+    ../../Games/GameAminoAcidFighter/aafmoleculefactory.h
 
 OTHER_FILES += \
     ../../Games/GameAminoAcidFighter/Licence.txt
