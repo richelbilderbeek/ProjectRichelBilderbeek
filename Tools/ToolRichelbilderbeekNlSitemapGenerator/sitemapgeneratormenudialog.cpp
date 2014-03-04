@@ -242,18 +242,18 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
 
   ///Find page location
   std::string page_location;
-  if (std::count(argv.begin(),argv.end(),std::string("--page")))
+  if (std::count(argv.begin(),argv.end(),"--page"))
   {
     const int index
-      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),std::string("--page")));
+      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),"--page"));
     assert(index < static_cast<int>(argv.size()));
     if (index == static_cast<int>(argv.size() - 1))
     {
       m_signal_log(
-          std::string("Please supply an argument after --page.\n")
-        + std::string("\n")
-        + std::string("For example:")
-        + std::string("  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin\n")
+          "Please supply an argument after --page.\n"
+          "\n"
+          "For example:\n"
+          "  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin"
       );
       return 1;
     }
@@ -262,18 +262,18 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
 
   ///Find page location
   std::string sitemapgen_location;
-  if (std::count(argv.begin(),argv.end(),std::string("--exe")))
+  if (std::count(argv.begin(),argv.end(),"--exe"))
   {
     const int index
-      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),std::string("--exe")));
+      = std::distance(argv.begin(),std::find(argv.begin(),argv.end(),"--exe"));
     assert(index < static_cast<int>(argv.size()));
     if (index == static_cast<int>(argv.size() - 1))
     {
       m_signal_log(
-          std::string("Please supply an argument after --exe.\n")
-        + std::string("\n")
-        + std::string("For example:")
-        + std::string("  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin\n")
+          "Please supply an argument after --exe.\n"
+          "\n"
+          "For example:\n"
+          "  RichelbilderbeekNlSitemapGenerator --page myhome/myhomepagefolder --exe myhome/mybin\n"
       );
       return 1;
     }
@@ -281,15 +281,15 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   }
 
   m_signal_log(
-      std::string("* This application runs in the folder \'")
+      "* This application runs in the folder \'"
     + sitemapgen_location
-    + std::string("'")
+    + "'"
   );
 
   m_signal_log(
-      std::string("* Searching for HTML files found in folder '")
+      "* Searching for HTML files found in folder '"
     + std::string(page_location)
-    + std::string("\'")
+    + "\'"
   );
 
   const std::vector<std::string> files_raw = GetHtmlFilesInFolder(page_location);
@@ -298,9 +298,9 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   if (files_raw.empty())
   {
     m_signal_log(
-        std::string("* No HTML files found in folder '")
+        "* No HTML files found in folder '"
       + std::string(page_location.c_str())
-      + std::string("\'")
+      + "\'"
     );
     m_signal_log(
       "* Please select the correct folder with the websites' HTML files"
@@ -309,11 +309,11 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   }
 
   m_signal_log(
-      std::string("* ")
+      "* "
     + boost::lexical_cast<std::string>(files_raw.size())
-    + std::string(" HTML files found in folder '")
+    + " HTML files found in folder '"
     + page_location
-    + std::string("\'")
+    + "\'"
   );
 
   //Save config.xml to file CreateConfigXml()
@@ -322,17 +322,17 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
     //const std::string config_filename = GetCurrentFolder() + "/config.xml";
 
     m_signal_log(
-        std::string("* Creating '")
+        "* Creating '"
       + config_filename
-      + std::string("' in this app's folder")
+      + "' in this app's folder"
     );
     std::ofstream file(config_filename);
     std::vector<std::string> config_file(CreateConfigXml(page_location,sitemapgen_location));
     std::copy(config_file.begin(),config_file.end(),std::ostream_iterator<std::string>(file,"\n"));
     m_signal_log(
-        std::string("'")
+        "'"
       + config_filename
-      + std::string("' created successfully")
+      + "' created successfully"
     );
   }
 
@@ -356,7 +356,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   {
     m_signal_log("* Check for sitemap_gen.py in this app's folder");
     const std::string sitemap_file
-      = sitemapgen_location + std::string("/sitemap_gen.py");
+      = sitemapgen_location + "/sitemap_gen.py";
     if (QFile::exists(sitemap_file.c_str()))
     {
       m_signal_log("* sitemap_gen.py present");
@@ -390,7 +390,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   #else
   const int system_return_code = std::system(python_command.c_str());
   m_signal_log(
-      std::string("* System command finished with return code ")
+      "* System command finished with return code "
     + boost::lexical_cast<std::string>(system_return_code)
   );
   #endif
@@ -401,7 +401,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
     const std::vector<std::string> output(ribi::fileio::FileToVector("output.txt"));
     for(const std::string& s: output)
     {
-      m_signal_log(std::string(" ") + s);
+      m_signal_log(" " + s);
     }
   }
 
@@ -440,7 +440,7 @@ const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
     std::stringstream s;
     s << (now->tm_mon + 1);
     month = s.str();
-    if (month.size() == 1) month = std::string("0") + month;
+    if (month.size() == 1) month = "0" + month;
   }
   assert(month.size() == 2);
   std::string day;
@@ -448,7 +448,7 @@ const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
     std::stringstream s;
     s << (now->tm_mday);
     day = s.str();
-    if (day.size() == 1) day = std::string("0") + month;
+    if (day.size() == 1) day = "0" + month;
   }
   assert(day.size() == 2);
   return year + "-" + month + "-" + day;

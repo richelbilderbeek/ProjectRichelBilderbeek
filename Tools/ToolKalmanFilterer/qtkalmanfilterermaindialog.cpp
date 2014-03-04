@@ -377,7 +377,7 @@ void ribi::kalman::QtKalmanFiltererMainDialog::ShowCalculation(
     assert(experiment->GetCalculationElements()[i]->IsComplete());
 
     std::string style_sheet = calculation_dialog->styleSheet().toStdString()
-      + std::string("QDialog { background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 ");
+      + "QDialog { background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0 ";
     switch (i % 6)
     {
       case 0: style_sheet+= "#f00, stop: 1 #000); }"; break;

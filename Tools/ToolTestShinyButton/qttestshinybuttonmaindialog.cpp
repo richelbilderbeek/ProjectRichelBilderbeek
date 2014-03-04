@@ -73,7 +73,7 @@ void ribi::QtTestShinyButtonMainDialog::OnChanged()
     = static_cast<double>(ui->dial_gradient->value())
     / static_cast<double>(ui->dial_gradient->maximum());
   const std::string s
-    = std::string("Color: (")
+    = "Color: ("
     + boost::lexical_cast<std::string>(color)
     + ","
     + boost::lexical_cast<std::string>(gradient)

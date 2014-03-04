@@ -41,16 +41,16 @@ ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
   }
 
   ui->label_name->setText(
-    (std::string("Cluster bij concept: ") + node->GetConcept()->GetName()).c_str()
+    ("Cluster bij concept: " + node->GetConcept()->GetName()).c_str()
   );
   ui->label_complexity->setText(
-    (std::string("Complexiteit: ") + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingComplexity())).c_str()
+    ("Complexiteit: " + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingComplexity())).c_str()
   );
   ui->label_concreteness->setText(
-    (std::string("Concreetheid: ") + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingConcreteness())).c_str()
+    ("Concreetheid: " + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingConcreteness())).c_str()
   );
   ui->label_specificity->setText(
-    (std::string("Specificiteit: ") + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingSpecificity())).c_str()
+    ("Specificiteit: " + boost::lexical_cast<std::string>(node->GetConcept()->GetRatingSpecificity())).c_str()
   );
 
   //Put examples in list
@@ -100,7 +100,7 @@ ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
       {
         ui->list_cluster_relations->addItem(
           new QListWidgetItem(
-            (std::string("  ") + example->GetText()).c_str()
+            ("  " + example->GetText()).c_str()
           )
         );
       }

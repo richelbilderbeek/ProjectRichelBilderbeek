@@ -235,8 +235,8 @@ const std::string ribi::cmap::Node::ToXml() const noexcept
 
   const std::string r = s.str();
   assert(r.size() >= 13);
-  assert(r.substr(0,6) == std::string("<node>"));
-  assert(r.substr(r.size() - 7,7) == std::string("</node>"));
+  assert(r.substr(0,6) == "<node>");
+  assert(r.substr(r.size() - 7,7) == "</node>");
 
   return r;
 }

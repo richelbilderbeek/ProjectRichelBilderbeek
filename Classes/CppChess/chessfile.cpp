@@ -166,22 +166,6 @@ int ribi::Chess::File::ToInt() const
   return value;
 }
 
-/*
-File& ribi::Chess::File::operator++()
-{
-  assert(m_s != std::string("h"));
-  m_s = IntToCharToStr(++this->ToInt());
-  return *this;
-}
-
-File& ribi::Chess::File::operator--()
-{
-  assert(m_s != std::string("a"));
-  m_s = IntToCharToStr(--this->ToInt());
-  return *this;
-}
-*/
-
 bool ribi::Chess::operator==(const File& lhs, const File& rhs)
 {
   return lhs.ToStr() == rhs.ToStr();

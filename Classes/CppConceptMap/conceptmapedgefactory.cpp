@@ -106,8 +106,8 @@ const boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::EdgeFactory::FromXml(
 ) const noexcept
 {
   assert(s.size() >= 13);
-  assert(s.substr(0,6) == std::string("<edge>"));
-  assert(s.substr(s.size() - 7,7) == std::string("</edge>"));
+  assert(s.substr(0,6) == "<edge>");
+  assert(s.substr(s.size() - 7,7) == "</edge>");
   //m_concept
   boost::shared_ptr<Concept> concept;
   {

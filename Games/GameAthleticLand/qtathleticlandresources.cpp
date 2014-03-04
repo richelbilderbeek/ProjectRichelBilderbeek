@@ -22,7 +22,7 @@ ribi::athl::QtAthleticLandResources::QtAthleticLandResources()
     {
       const std::string qtfilename {
         GetQtResourcesBasename()
-        + std::string("/")
+        + "/"
         + filename
       };
       TRACE(qtfilename);

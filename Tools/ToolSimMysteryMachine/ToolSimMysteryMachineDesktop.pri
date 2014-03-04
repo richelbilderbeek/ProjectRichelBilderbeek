@@ -14,11 +14,11 @@ SOURCES += \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemenudialog.cpp \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemaindialog.cpp \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachineinstructionsdialog.cpp \
-    qtmysterymachinecanvas.cpp
+    ../../Tools/ToolSimMysteryMachine/qtmysterymachinecanvas.cpp
 
 HEADERS += \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinerealmachinedialog.h \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemenudialog.h \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachinemaindialog.h \
     ../../Tools/ToolSimMysteryMachine/qtsimmysterymachineinstructionsdialog.h \
-    qtmysterymachinecanvas.h
+    ../../Tools/ToolSimMysteryMachine/qtmysterymachinecanvas.h

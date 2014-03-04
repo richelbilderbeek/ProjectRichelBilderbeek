@@ -45,14 +45,14 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> >
       w.push_back(move);
       {
         const boost::shared_ptr<Move> m = MoveFactory::Create(
-          move->ToStr() + std::string("+")
+          move->ToStr() + "+"
         );
         assert(m);
         w.push_back(m);
       }
       {
         const boost::shared_ptr<Move> m = MoveFactory::Create(
-          move->ToStr() + std::string("#")
+          move->ToStr() + "#"
         );
         assert(m);
         w.push_back(m);
@@ -95,7 +95,7 @@ const std::vector<std::string> ribi::Chess::Piece::GetVersionHistory() noexcept
 const std::string ribi::Chess::Piece::ToStr() const noexcept
 {
   return Chess::ColorToStr(GetColor())
-    + std::string(" ")
+    + " "
     + this->GetName()
     + " at "
     + (this->GetSquare() ? this->GetSquare()->ToStr() : "an indetermined position");
@@ -491,23 +491,23 @@ bool ribi::Chess::PiecePawn::CanDoMove(const boost::shared_ptr<const Chess::Move
     if (this->GetColor() == Color::white)
     {
       if (dy <= 0) return false; //A white pawn must move forward
-      if (move->From()->GetRank() == Rank(std::string("2")) && dy == 2) return true;
-      if (!(move->From()->GetRank() == Rank(std::string("2"))) && dy == 2) return false;
+      if (move->From()->GetRank() == Rank("2") && dy == 2) return true;
+      if (!(move->From()->GetRank() == Rank("2")) && dy == 2) return false;
       return dy == 1;
     }
     else if (this->GetColor() == Color::black)
     {
       if (dy >= 0) return false; //A black pawn must move backward in the y direction
-      if (move->From()->GetRank() == Rank(std::string("7")) && dy == -2) return true;
-      if (!(move->From()->GetRank() == Rank(std::string("7"))) && dy == -2) return false;
+      if (move->From()->GetRank() == Rank("7") && dy == -2) return true;
+      if (!(move->From()->GetRank() == Rank("7")) && dy == -2) return false;
       return dy == -1;
     }
     else if (this->GetColor() == Color::indeterminate)
     {
-      if (move->From()->GetRank() == Rank(std::string("2")) && dy ==  2) return true;
-      if (move->From()->GetRank() == Rank(std::string("7")) && dy == -2) return true;
-      if (!(move->From()->GetRank() == Rank(std::string("2"))) && dy ==  2) return false;
-      if (!(move->From()->GetRank() == Rank(std::string("7"))) && dy == -2) return false;
+      if (move->From()->GetRank() == Rank("2") && dy ==  2) return true;
+      if (move->From()->GetRank() == Rank("7") && dy == -2) return true;
+      if (!(move->From()->GetRank() == Rank("2")) && dy ==  2) return false;
+      if (!(move->From()->GetRank() == Rank("7")) && dy == -2) return false;
     }
   }
 
@@ -517,20 +517,20 @@ bool ribi::Chess::PiecePawn::CanDoMove(const boost::shared_ptr<const Chess::Move
     if (GetColor() == Color::indeterminate)
     {
       return
-        (move->From()->GetRank().ToStr() == std::string("4")
-          && move->To()->GetRank().ToStr() == std::string("3"))
-        || ( move->From()->GetRank().ToStr() == std::string("5")
-          && move->To()->GetRank().ToStr() == std::string("6"));
+        (move->From()->GetRank().ToStr() == "4"
+          && move->To()->GetRank().ToStr() == "3")
+        || ( move->From()->GetRank().ToStr() == "5"
+          && move->To()->GetRank().ToStr() == "6");
     }
     if (GetColor() == Color::white)
     {
-      return ( move->From()->GetRank().ToStr() == std::string("5")
-          && move->To()->GetRank().ToStr() == std::string("6"));
+      return ( move->From()->GetRank().ToStr() == "5"
+          && move->To()->GetRank().ToStr() == "6");
     }
     if (GetColor() == Color::black)
     {
-      return move->From()->GetRank().ToStr() == std::string("4")
-          && move->To()->GetRank().ToStr() == std::string("3");
+      return move->From()->GetRank().ToStr() == "4"
+          && move->To()->GetRank().ToStr() == "3";
     }
   }
 
@@ -591,7 +591,7 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn:
 
         //TRACE(p.first); TRACE(p.second);
         boost::shared_ptr<Move> m = MoveFactory::Create(this->GetSquare()->ToStr()
-          + (p.first == 0 ? std::string(" ") : std::string("x"))
+          + (p.first == 0 ? " " : "x")
           + s->ToStr());
         //TRACE(m);
         v.push_back(m);

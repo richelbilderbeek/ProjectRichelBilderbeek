@@ -52,7 +52,7 @@ int ribi::GrayCoderMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   for (int i=0; i!=argc-1; ++i) //-1 as the next argument is used
   {
     const std::string s = argv[i];
-    if (s == std::string("-d") || s == std::string("--dec"))
+    if (s == "-d" || s == "--dec")
     {
       try
       {
@@ -68,7 +68,7 @@ int ribi::GrayCoderMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
         return 1;
       }
     }
-    if (s == std::string("-b") || s == std::string("--bin"))
+    if (s == "-b" || s == "--bin")
     {
       try
       {

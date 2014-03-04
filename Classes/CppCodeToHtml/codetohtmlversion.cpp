@@ -56,9 +56,9 @@ const std::string ribi::c2h::Version::GetGccVersion()
 {
   return
       boost::lexical_cast<std::string>(__GNUC__)
-    + std::string(".")
+    + "."
     + boost::lexical_cast<std::string>(__GNUC_MINOR__)
-    + std::string(".")
+    + "."
     + boost::lexical_cast<std::string>(__GNUC_PATCHLEVEL__);
 }
 
@@ -69,7 +69,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersion()
   //Save info to temporary filename
   {
     const std::string cmd
-      = std::string("cat /etc/*-release > ")
+      = "cat /etc/*-release > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -107,7 +107,7 @@ const std::string ribi::c2h::Version::GetLubuntuVersionCodename()
   //Save info to temporary filename
   {
     const std::string cmd
-      = std::string("cat /etc/*-release > ")
+      = "cat /etc/*-release > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -164,7 +164,7 @@ const std::string ribi::c2h::Version::GetQtCreatorVersion()
   for (std::size_t i=0; i!=sz; ++i)
   {
     const std::string& s = v[i];
-    if (s.substr(0,11) == std::string("Qt Creator "))
+    if (s.substr(0,11) == "Qt Creator ")
     {
       return s.substr(11,5);
     }
@@ -185,7 +185,7 @@ const std::string ribi::c2h::Version::GetUbuntuVersion()
   //Save info to temporary filename
   {
     const std::string cmd
-      = std::string("cat /etc/*-release > ")
+      = "cat /etc/*-release > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -258,7 +258,7 @@ const std::string ribi::c2h::Version::GetVirtualBoxVersion()
   //Save info to temporary file
   {
     const std::string cmd
-      = std::string("vboxmanage --version > ")
+      = "vboxmanage --version > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";
@@ -280,7 +280,7 @@ const std::string ribi::c2h::Version::GetWineVersion()
   //Save info to temporary file
   {
     const std::string cmd
-      = std::string("wine --version > ")
+      = "wine --version > "
       + filename;
     const int error_code = std::system(cmd.c_str());
     if (error_code) return "unknown";

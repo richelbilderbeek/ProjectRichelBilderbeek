@@ -80,7 +80,7 @@ ribi::c2h::Replacements::Replacements(
       for (auto j=m_replacements.begin();j!=end;++j)
       {
         if (i==j) continue;
-        if ((*i).first == std::string("$")) continue;
+        if ((*i).first == "$") continue;
         if ((*i).first == (*j).first)
         {
           TRACE("ERROR: duplicate in replacements");

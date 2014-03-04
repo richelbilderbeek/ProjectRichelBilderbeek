@@ -273,7 +273,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptMap::Cr
     nodes.push_back(other_node);
     assert(qtedge);
     assert(qtedge->GetEdge());
-    const boost::shared_ptr<Edge> edge(cmap::EdgeFactory::Create(
+    const boost::shared_ptr<Edge> edge(EdgeFactory().Create(
       qtedge->GetEdge()->GetConcept(),
       qtedge->GetEdge()->GetX(),
       qtedge->GetEdge()->GetY(),

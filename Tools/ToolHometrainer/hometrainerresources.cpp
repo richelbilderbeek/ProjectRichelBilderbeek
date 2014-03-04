@@ -165,7 +165,7 @@ ribi::HometrainerResources::HometrainerResources()
       {
         if (!(QFile::exists(filename.c_str())))
         {
-          QFile f( (std::string(":/textfiles/") + filename).c_str() );
+          QFile f( (":/textfiles/" + filename).c_str() );
           f.copy(filename.c_str());
         }
         if (!QFile::exists(filename.c_str()))
@@ -187,7 +187,7 @@ ribi::HometrainerResources::HometrainerResources()
     {
       if (!(QFile::exists(filename.c_str())))
       {
-        QFile f( (std::string(":/docs/") + filename).c_str() );
+        QFile f( (":/docs/" + filename).c_str() );
         f.copy(filename.c_str());
       }
       if (!QFile::exists(filename.c_str()))

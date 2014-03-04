@@ -12,11 +12,11 @@ const boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman:
 
   boost::bimap<WhiteNoiseSystemType,std::string> m;
   m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
-    WhiteNoiseSystemType::gaps_filled,std::string("gaps_filled")));
+    WhiteNoiseSystemType::gaps_filled,"gaps_filled"));
   m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
-    WhiteNoiseSystemType::lagged,std::string("lagged")));
+    WhiteNoiseSystemType::lagged,"lagged"));
   m.insert(boost::bimap<WhiteNoiseSystemType,std::string>::value_type(
-    WhiteNoiseSystemType::standard,std::string("standard")));
+    WhiteNoiseSystemType::standard,"standard"));
   return m;
 }
 

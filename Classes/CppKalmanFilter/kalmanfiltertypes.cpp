@@ -10,11 +10,11 @@ const boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::Kal
 
   boost::bimap<KalmanFilterType,std::string> m;
   m.insert(boost::bimap<KalmanFilterType,std::string>::value_type(
-    KalmanFilterType::fixed_lag_smoother,std::string("fixed lag smoother")));
+    KalmanFilterType::fixed_lag_smoother,"fixed lag smoother"));
   m.insert(boost::bimap<KalmanFilterType,std::string>::value_type(
-    KalmanFilterType::standard,std::string("discrete")));
+    KalmanFilterType::standard,"discrete"));
   m.insert(boost::bimap<KalmanFilterType,std::string>::value_type(
-    KalmanFilterType::steady_state,std::string("steady state")));
+    KalmanFilterType::steady_state,"steady state"));
   return m;
 }
 

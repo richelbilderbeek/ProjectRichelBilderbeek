@@ -94,7 +94,14 @@ struct Widget
 
   ///Creates a new Node in the concept map. The return value is
   ///that node. This is used by CommandCreateNode::Undo
+  const boost::shared_ptr<Edge> CreateNewEdge() noexcept;
+
+  ///Creates a new Node in the concept map. The return value is
+  ///that node. This is used by CommandCreateNode::Undo
   const boost::shared_ptr<Node> CreateNewNode() noexcept;
+
+  ///Delete an Edge in the concept map
+  void DeleteEdge(const boost::shared_ptr<Edge> edge) noexcept;
 
   ///Delete a Node in the concept map
   void DeleteNode(const boost::shared_ptr<Node> node) noexcept;
@@ -119,10 +126,11 @@ struct Widget
 
   //friend class Command;
   friend class CommandCreateNewConceptMap;
+  friend class CommandCreateNewEdge;
   friend class CommandCreateNewNode;
   friend class CommandDeleteConceptMap;
-  friend class CommandDeleteNode;
   friend class CommandDeleteFocusNode;
+  friend class CommandDeleteNode;
   friend class CommandLoseFocus;
   friend class CommandSetFocusRandom;
   friend class CommandSetFocusWithCoordinat;

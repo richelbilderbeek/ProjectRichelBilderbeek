@@ -34,8 +34,8 @@ const std::string ribi::cmap::CenterNode::ToXml() const noexcept
 
   const std::string r = s.str();
   assert(r.size() >= 13);
-  assert(r.substr(0,13) == std::string("<center_node>"));
-  assert(r.substr(r.size() - 14,14) == std::string("</center_node>"));
+  assert(r.substr(0,13) == "<center_node>");
+  assert(r.substr(r.size() - 14,14) == "</center_node>");
 
   return r;
 }

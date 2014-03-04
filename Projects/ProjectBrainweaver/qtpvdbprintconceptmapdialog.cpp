@@ -42,7 +42,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
 
 
   ui->label_student_name->setText(
-    (std::string("Concept map van ")
+    ("Concept map van "
       + m_file->GetStudentName()).c_str()
   );
   {
@@ -50,7 +50,7 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
     std::time( &my_time );
     const std::tm * const time_and_date = std::localtime(&my_time);
     const std::string s = std::asctime(time_and_date);
-    ui->label_date->setText( (std::string("Datum: ") + s).c_str());
+    ui->label_date->setText( ("Datum: " + s).c_str());
   }
 
   //Much work done in ShowEvent

@@ -74,7 +74,8 @@ struct TriangleMeshBuilder
     const std::vector<int>& v) noexcept;
 
   static std::vector<boost::shared_ptr<Face>> SortByBoundary(
-    std::vector<boost::shared_ptr<Face>> faces
+    std::vector<boost::shared_ptr<Face>> faces,
+    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   ) noexcept;
 
   #ifndef NDEBUG

@@ -62,7 +62,7 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   }
   assert(argc >= 2);
   const std::string arg = argv[1];
-  if (arg == std::string("-e") || arg == std::string("--example"))
+  if (arg == "-e" || arg == "--example")
   {
     CreateExamples();
     return 0;
@@ -73,7 +73,7 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     d.Execute();
     return 0;
   }
-  if ( (arg == std::string("-f") || arg == std::string("--filename"))
+  if ( (arg == "-f" || arg == "--filename")
     && argc >= 3 && fileio::IsRegularFile(argv[2]))
   {
     HometrainerMainDialog d(argv[2]);

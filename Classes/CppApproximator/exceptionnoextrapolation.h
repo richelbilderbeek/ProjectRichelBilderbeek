@@ -34,7 +34,7 @@ struct ExceptionNoExtrapolation : public std::exception
     : m_is_above_max(false),
       m_is_below_min(false),
       m_what(
-        std::string("Value of ")
+        "Value of "
       + boost::lexical_cast<std::string>(value)
       + " out of range [unknown]"
     )
@@ -47,7 +47,7 @@ struct ExceptionNoExtrapolation : public std::exception
     : m_is_above_max(value > highest),
       m_is_below_min(value < lowest),
       m_what(
-        std::string("Value of ")
+        "Value of "
       + boost::lexical_cast<std::string>(value)
       + " out of range ["
       + boost::lexical_cast<std::string>(lowest)

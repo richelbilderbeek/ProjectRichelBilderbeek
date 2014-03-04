@@ -38,8 +38,8 @@ const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::Create(
 const boost::shared_ptr<ribi::cmap::Example> ribi::cmap::ExampleFactory::FromXml(const std::string& s)
 {
   assert(s.size() >= 17);
-  assert(s.substr(0,9) == std::string("<example>"));
-  assert(s.substr(s.size() - 10,10) == std::string("</example>"));
+  assert(s.substr(0,9) == "<example>");
+  assert(s.substr(s.size() - 10,10) == "</example>");
 
   std::string text;
   cmap::Competency competency = cmap::Competency::uninitialized;

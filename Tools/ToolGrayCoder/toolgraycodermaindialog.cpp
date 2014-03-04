@@ -126,22 +126,22 @@ void ribi::GrayCoderMainDialog::Test() noexcept
   }
   ///IntToBitString
   {
-    assert(IntToBitString(  0) == std::string(   "0"));
-    assert(IntToBitString(  1) == std::string(   "1"));
-    assert(IntToBitString(  2) == std::string(  "10"));
-    assert(IntToBitString(  3) == std::string(  "11"));
-    assert(IntToBitString(  4) == std::string( "100"));
-    assert(IntToBitString(  5) == std::string( "101"));
-    assert(IntToBitString(  6) == std::string( "110"));
-    assert(IntToBitString(  7) == std::string( "111"));
-    assert(IntToBitString(  8) == std::string("1000"));
-    assert(IntToBitString(  9) == std::string("1001"));
-    assert(IntToBitString( 16) == std::string("10000"));
-    assert(IntToBitString( 32) == std::string("100000"));
-    assert(IntToBitString( 64) == std::string("1000000"));
-    assert(IntToBitString(128) == std::string("10000000"));
-    assert(IntToBitString(256) == std::string("100000000"));
-    assert(IntToBitString(512) == std::string("1000000000"));
+    assert(IntToBitString(  0) ==    "0");
+    assert(IntToBitString(  1) ==    "1");
+    assert(IntToBitString(  2) ==   "10");
+    assert(IntToBitString(  3) ==   "11");
+    assert(IntToBitString(  4) ==  "100");
+    assert(IntToBitString(  5) ==  "101");
+    assert(IntToBitString(  6) ==  "110");
+    assert(IntToBitString(  7) ==  "111");
+    assert(IntToBitString(  8) == "1000");
+    assert(IntToBitString(  9) == "1001");
+    assert(IntToBitString( 16) == "10000");
+    assert(IntToBitString( 32) == "100000");
+    assert(IntToBitString( 64) == "1000000");
+    assert(IntToBitString(128) == "10000000");
+    assert(IntToBitString(256) == "100000000");
+    assert(IntToBitString(512) == "1000000000");
   }
   //IntToGray
   {

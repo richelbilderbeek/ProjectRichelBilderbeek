@@ -23,7 +23,7 @@ struct CommandSetFocusRandom : public Command
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
-  const std::string ToStr() const noexcept { return "set focus random"; }
+  std::string ToStr() const noexcept { return "set focus random"; }
   void Undo() noexcept;
 
   private:

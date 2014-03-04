@@ -33,7 +33,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   std::string text = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == std::string("-t") || argv[i] == std::string("--text"))
+    if (argv[i] == "-t" || argv[i] == "--text")
     {
       text = argv[i + 1];
       break;
@@ -50,7 +50,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   int spacing = 1;
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == std::string("-s") || argv[i] == std::string("--spacing"))
+    if (argv[i] == "-s" || argv[i] == "--spacing")
     {
       const std::string s = argv[i + 1];
       try
@@ -73,7 +73,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   std::string filename = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument will be used
   {
-    if (argv[i] == std::string("-f") || argv[i] == std::string("--filename"))
+    if (argv[i] == "-f" || argv[i] == "--filename")
     {
       filename = argv[i + 1];
       break;

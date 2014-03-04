@@ -78,6 +78,7 @@ const boost::bimap<ribi::foam::PatchFieldType,std::string> ribi::foam::PatchFiel
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::mutUWallFunction,"mutUWallFunction"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::mutkRoughWallFunction,"mutkRoughWallFunction"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::mutkWallFunction,"mutkWallFunction"));
+  m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::no_patch_field,"no_patch_field"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::nonuniformTransformCyclic,"nonuniformTransformCyclic"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::oscillatingFixedValue,"oscillatingFixedValue"));
   m.insert(boost::bimap<PatchFieldType,std::string>::value_type(PatchFieldType::outletInlet,"outletInlet"));
@@ -169,6 +170,7 @@ const std::vector<ribi::foam::PatchFieldType> ribi::foam::PatchFieldTypes::GetAl
     PatchFieldType::mutUWallFunction,
     PatchFieldType::mutkRoughWallFunction,
     PatchFieldType::mutkWallFunction,
+    PatchFieldType::no_patch_field,
     PatchFieldType::nonuniformTransformCyclic,
     PatchFieldType::oscillatingFixedValue,
     PatchFieldType::outletInlet,

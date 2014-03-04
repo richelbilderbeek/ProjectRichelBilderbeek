@@ -12,19 +12,23 @@
 #include "Shiny.h"
 
 #include "fileio.h"
-#include "openfoamfilenames.h"
 #include "openfoamcontroldictfile.h"
+#include "openfoamfilenames.h"
 #include "openfoamfvschemesfile.h"
 #include "openfoamfvsolutionfile.h"
+#include "openfoampressurefile.h"
+#include "openfoamtemperaturefile.h"
+#include "openfoamthermophysicalpropertiesfile.h"
 #include "openfoamvelocityfieldfile.h"
 #include "trace.h"
 #include "trianglefile.h"
-#include "trianglemeshcell.h"
-#include "trianglemeshedgefactory.h"
-#include "trianglemeshface.h"
 #include "trianglemeshbuilder.h"
+#include "trianglemeshcell.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
+#include "trianglemeshedgefactory.h"
+#include "trianglemeshface.h"
+#include "trianglemeshpoint.h"
 #include "trianglemeshtemplate.h"
 #pragma GCC diagnostic pop
 
@@ -114,7 +118,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       int n_internal = 0;
-      int n_default = 0;
+      int n_external = 0;
       for (boost::shared_ptr<ribi::trim::Face> face: faces)
       {
         if (face->GetNeighbour())
@@ -128,13 +132,51 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         {
           assert(face->GetOwner());
           assert(!face->GetNeighbour());
-          face->SetBoundaryType("outside");
-          ++n_default;
+          ++n_external;
+          if (face->GetOrientation() == ribi::trim::FaceOrientation::horizontal)
+          {
+            if (face->GetPoint(0)->GetZ() < 0.5 * boost::units::si::meter)
+            {
+              face->SetBoundaryType("bottom");
+            }
+            else
+            {
+              face->SetBoundaryType("top");
+            }
+          }
+          else
+          {
+            assert(face->GetOrientation() == ribi::trim::FaceOrientation::vertical);
+            const Coordinat3D center { face->CalcCenter() };
+            TRACE(center);
+            if (center.GetX() < 0.0)
+            {
+              if (center.GetY() < 0.0)
+              {
+                face->SetBoundaryType("front");
+              }
+              else
+              {
+                face->SetBoundaryType("back");
+              }
+            }
+            else
+            {
+              if (center.GetY() < 0.0)
+              {
+                face->SetBoundaryType("left");
+              }
+              else
+              {
+                face->SetBoundaryType("right");
+              }
+            }
+          }
           continue;
         }
       }
       std::clog << "internal faces: " << n_internal << std::endl;
-      std::clog << "external faces: " << n_default << std::endl;
+      std::clog << "external faces: " << n_external << std::endl;
     }
 
     PROFILER_UPDATE();
@@ -145,8 +187,13 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function {
       [](const std::string& patch_name)
       {
-        if (patch_name == "inside") return ribi::foam::PatchFieldType::slip;
-        if (patch_name == "outside") return ribi::foam::PatchFieldType::zeroGradient;
+        if (patch_name == "inside") return ribi::foam::PatchFieldType::no_patch_field;
+        if (patch_name == "top") return ribi::foam::PatchFieldType::zeroGradient;
+        if (patch_name == "bottom") return ribi::foam::PatchFieldType::zeroGradient;
+        if (patch_name == "front") return ribi::foam::PatchFieldType::zeroGradient;
+        if (patch_name == "back") return ribi::foam::PatchFieldType::zeroGradient;
+        if (patch_name == "left") return ribi::foam::PatchFieldType::zeroGradient;
+        if (patch_name == "right") return ribi::foam::PatchFieldType::zeroGradient;
         assert(!"Should not get here");
         throw std::logic_error("boundary_to_patch_field_type: unknown patch name");
       }
@@ -196,6 +243,88 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
+    std::ofstream f(ribi::foam::Filenames().GetPressureField().Get().c_str());
+    ribi::foam::PressureFile file;
+    file.SetBoundaryField(
+      "  top\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }\n"
+      "  bottom\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }\n"
+      "  front\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }\n"
+      "  back\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }\n"
+      "  left\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }\n"
+      "  right\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }\n"
+      "  \n"
+      "  defaultFaces\n"
+      "  {\n"
+      "    type zeroGradient;\n"
+      "  }"
+    );
+    file.SetDimensions( {1,-1,-2,0,0,0,0} );
+    file.SetInternalField("uniform 1.7e5");
+    f << file;
+  }
+
+  {
+    std::ofstream f(ribi::foam::Filenames().GetTemperatureField().Get().c_str());
+    ribi::foam::TemperatureFile file;
+    file.SetBoundaryField(
+      "top\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "bottom\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "front\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "back\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "left\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "right\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+    );
+    file.SetDimensions( {0,0,0,1,0,0,0} );
+    file.SetInternalField("uniform 293");
+    f << file;
+  }
+
+  {
+    std::ofstream f(ribi::foam::Filenames().GetThermophysicalProperties().Get().c_str());
+    ribi::foam::ThermophysicalPropertiesFile file;
+    file.SetMixture("air 1 28.9 717 0 1.458e-6 110.4");
+    file.SetThermoType("ePsiThermo<pureMixture<sutherlandTransport<specieThermo<eConstThermo<perfectGas>>>>>");
+    f << file;
+
+  }
+
+  {
     ribi::foam::VelocityFieldFile file;
     file.SetDimensions( {0,1,-1,0,0,0,0} );
     file.SetInternalField("uniform (0 0 0)");
@@ -205,7 +334,27 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       "  type slip;\n"
       "}\n"
       "\n"
-      "outside\n"
+      "top\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "bottom\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "front\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "back\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "left\n"
+      "{\n"
+      "  type zeroGradient;\n"
+      "}\n"
+      "right\n"
       "{\n"
       "  type zeroGradient;\n"
       "}\n"

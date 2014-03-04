@@ -1,4 +1,4 @@
-#include "aminoacidfightermenudialog.h"
+#include "aafmenudialog.h"
 
 #include <cassert>
 #include <cstdlib>
@@ -8,7 +8,7 @@
 
 #include "trace.h"
 
-int ribi::AminoAcidFighterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::aaf::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -26,7 +26,7 @@ int ribi::AminoAcidFighterMenuDialog::ExecuteSpecific(const std::vector<std::str
   return 0;
 }
 
-const ribi::About ribi::AminoAcidFighterMenuDialog::GetAbout() const noexcept
+const ribi::About ribi::aaf::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -41,7 +41,7 @@ const ribi::About ribi::AminoAcidFighterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::AminoAcidFighterMenuDialog::GetHelp() const noexcept
+const ribi::Help ribi::aaf::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -55,7 +55,7 @@ const ribi::Help ribi::AminoAcidFighterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::AminoAcidFighterMenuDialog::GetProgram() const noexcept
+const boost::shared_ptr<const ribi::Program> ribi::aaf::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramAminoAcidFighter
@@ -64,12 +64,12 @@ const boost::shared_ptr<const ribi::Program> ribi::AminoAcidFighterMenuDialog::G
   return p;
 }
 
-const std::string ribi::AminoAcidFighterMenuDialog::GetVersion() const noexcept
+const std::string ribi::aaf::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::AminoAcidFighterMenuDialog::GetVersionHistory() const noexcept
+const std::vector<std::string> ribi::aaf::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 1.1: Initial Qt version"
@@ -77,14 +77,23 @@ const std::vector<std::string> ribi::AminoAcidFighterMenuDialog::GetVersionHisto
 }
 
 #ifndef NDEBUG
-void ribi::AminoAcidFighterMenuDialog::Test() noexcept
+void ribi::aaf::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::AminoAcidFighterMenuDialog::Test()");
-  TRACE("Finished ribi::AminoAcidFighterMenuDialog::Test()");
+  TRACE("Starting ribi::aaf::AminoAcidFighterMenuDialog::Test()");
+  MenuDialog d;
+  assert(d.Execute( { "AminoAcidFigher", "-a" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "--about" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "-h" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "--help" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "-l" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "--licence" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "-v" } ) == 0);
+  assert(d.Execute( { "AminoAcidFigher", "--version" } ) == 0);
+  TRACE("Finished ribi::aaf::AminoAcidFighterMenuDialog::Test()");
 }
 #endif

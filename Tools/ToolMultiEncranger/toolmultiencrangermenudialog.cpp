@@ -37,7 +37,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
   std::string source_filename = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument is needed
   {
-    if (argv[i] == std::string("-s") || argv[i] == std::string("--source"))
+    if (argv[i] == "-s" || argv[i] == "--source")
     {
       source_filename = argv[i + 1];
     }
@@ -51,7 +51,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
   std::string target_filename = "";
   for (int i=0; i!=argc-1; ++i) //-1 because next argument is needed
   {
-    if (argv[i] == std::string("-t") || argv[i] == std::string("--target"))
+    if (argv[i] == "-t" || argv[i] == "--target")
     {
       target_filename = argv[i + 1];
     }
@@ -66,7 +66,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
   int key = 0;
   for (int i=0; i!=argc-1; ++i) //-1 because next argument is needed
   {
-    if (argv[i] == std::string("-k") || argv[i] == std::string("--key"))
+    if (argv[i] == "-k" || argv[i] == "--key")
     {
       const std::string s = argv[i + 1];
       try
@@ -85,7 +85,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
       argv.begin(),argv.end(),
       [](const std::string& s)
       {
-        return s == std::string("-e") || s == std::string("--encrypt");
+        return s == "-e" || s == "--encrypt";
       }
     );
 
@@ -94,7 +94,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
       argv.begin(),argv.end(),
       [](const std::string& s)
       {
-        return s == std::string("-d") || s == std::string("--deencrypt");
+        return s == "-d" || s == "--deencrypt";
       }
     );
 

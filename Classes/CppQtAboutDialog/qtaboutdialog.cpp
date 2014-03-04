@@ -64,9 +64,9 @@ ribi::QtAboutDialog::QtAboutDialog(const ribi::About& about) noexcept
   ui->label_build_date_time->setText(
     QString(
       (std::string("Source code built on ")
-      + std::string(__DATE__)
-      + std::string(" ")
-      + std::string(__TIME__)).c_str()));
+      + __DATE__
+      + " "
+      + __TIME__).c_str()));
 
   #ifdef NDEBUG
   ui->label_build_type->setText(QString("Release version"));

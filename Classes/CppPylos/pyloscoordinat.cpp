@@ -105,13 +105,13 @@ bool ribi::pylos::Coordinat::IsValid() const noexcept
 
 const std::string ribi::pylos::Coordinat::ToStr() const noexcept
 {
-  return std::string("(")
+  return "("
     + boost::lexical_cast<std::string>(m_layer)
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(m_x)
-    + std::string(",")
+    + ","
     + boost::lexical_cast<std::string>(m_y)
-    + std::string(")");
+    + ")";
 
 }
 

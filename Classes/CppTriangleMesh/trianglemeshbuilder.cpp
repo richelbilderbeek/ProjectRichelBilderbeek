@@ -32,7 +32,7 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   )
   : m_cells(cells),
-    m_faces(SortByBoundary(ExtractFaces(cells))),
+    m_faces(SortByBoundary(ExtractFaces(cells),boundary_to_patch_field_type_function)),
     m_points(ExtractPoints(cells))
 {
   #ifndef NDEBUG
@@ -238,38 +238,64 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
   ) const noexcept
 {
   PROFILE_FUNC();
-  std::vector<ribi::foam::BoundaryFileItem> items;
+  //Tally all boundary names
+  std::map<std::string,int> sorted_tally;
 
-  const int n_face_indices = static_cast<int>(m_faces.size());
-  assert(n_face_indices > 0);
-
-  std::string boundary_name = m_faces[0]->GetBoundaryType();
-  int start_index = 0;
-  int n_faces = 0;
-  for (int i=0; i!=n_face_indices; ++i)
+  for (auto face: m_faces)
   {
-    const boost::shared_ptr<Face> face { m_faces[i] };
-    const std::string new_boundary_name = face->GetBoundaryType();
-    if (new_boundary_name != boundary_name)
+    const std::string s { face->GetBoundaryType() };
+    const auto iter(sorted_tally.find(s));
+    if (iter == sorted_tally.end())
     {
-      const ribi::foam::BoundaryFileItem item(
-        boundary_name,
-        boundary_to_patch_field_type_function(boundary_name),
-        n_faces,
-        ribi::foam::FaceIndex(start_index)
-      );
-      items.push_back(item);
-      boundary_name = new_boundary_name;
-      start_index = i;
-      n_faces = 1; //1, because the current face is now/already detected
+      sorted_tally.insert(sorted_tally.begin(),std::make_pair(s,1));
     }
     else
     {
-      ++n_faces;
+      ++(*iter).second;
     }
   }
-  //Add the last
+
+  //Create a tally sorted as such that the PatchFieldType::no_patch_field comes last
+  //so these can be omitted
+  typedef std::pair<std::string,int> Pair;
+  std::vector<Pair> tally;
+  std::copy(sorted_tally.begin(),sorted_tally.end(),std::back_inserter(tally));
+
+  std::sort(tally.begin(),tally.end(),
+    [boundary_to_patch_field_type_function](const Pair& lhs, const Pair& rhs)
+    {
+      if (boundary_to_patch_field_type_function(lhs.first) == ribi::foam::PatchFieldType::no_patch_field)
+      {
+        if (boundary_to_patch_field_type_function(rhs.first) == ribi::foam::PatchFieldType::no_patch_field)
+        {
+          return lhs.first < rhs.first;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      if (boundary_to_patch_field_type_function(rhs.first) == ribi::foam::PatchFieldType::no_patch_field)
+      {
+        return true;
+      }
+      return lhs.first < rhs.first;
+    }
+  );
+
+  for (auto p: tally)
   {
+    TRACE(p.first);
+    TRACE(p.second);
+  }
+
+  //Create the items
+  std::vector<ribi::foam::BoundaryFileItem> items;
+  int start_index = 0;
+  for (auto p: tally)
+  {
+    const std::string boundary_name = p.first;
+    const int n_faces = p.second;
     const ribi::foam::BoundaryFileItem item(
       boundary_name,
       boundary_to_patch_field_type_function(boundary_name),
@@ -277,8 +303,8 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
       ribi::foam::FaceIndex(start_index)
     );
     items.push_back(item);
+    start_index += p.second;
   }
-
 
   ribi::foam::BoundaryFile file(
     ribi::foam::BoundaryFile::GetDefaultHeader(),
@@ -422,7 +448,7 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const noexcep
     s
       << points_indices.size()
       << "("
-      << Implode(std::string(" "),points_indices)
+      << Implode(" ",points_indices)
       << ")\n";
   }
   s << ")";
@@ -570,17 +596,33 @@ std::string ribi::trim::TriangleMeshBuilder::Implode(
 }
 
 std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder::SortByBoundary(
-  std::vector<boost::shared_ptr<Face>> faces
+  std::vector<boost::shared_ptr<Face>> faces,
+  const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
 ) noexcept
 {
   PROFILE_FUNC();
 
   std::sort(std::begin(faces),std::end(faces),
-    [](const boost::shared_ptr<const Face> lhs, const boost::shared_ptr<const Face> rhs)
+    [boundary_to_patch_field_type_function](const boost::shared_ptr<const Face> lhs, const boost::shared_ptr<const Face> rhs)
     {
-      if (lhs->GetBoundaryType() < rhs->GetBoundaryType()) return true;
-      if (lhs->GetBoundaryType() > rhs->GetBoundaryType()) return false;
-      return lhs < rhs;
+      const std::string a { lhs->GetBoundaryType() };
+      const std::string b { rhs->GetBoundaryType() };
+      if (boundary_to_patch_field_type_function(a) == ribi::foam::PatchFieldType::no_patch_field)
+      {
+        if (boundary_to_patch_field_type_function(b) == ribi::foam::PatchFieldType::no_patch_field)
+        {
+          return a < b;
+        }
+        else
+        {
+          return false;
+        }
+      }
+      if (boundary_to_patch_field_type_function(b) == ribi::foam::PatchFieldType::no_patch_field)
+      {
+        return true;
+      }
+      return a < b;
     }
   );
   return faces;

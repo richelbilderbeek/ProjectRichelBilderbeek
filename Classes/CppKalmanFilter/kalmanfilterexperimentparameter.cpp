@@ -489,9 +489,9 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(c
   switch (type)
   {
     case KalmanFilterExperimentParameterType::input:
-      return std::string("Vector of inputs");
+      return "Vector of inputs";
     case KalmanFilterExperimentParameterType::state_names:
-      return std::string("Vector of the state element names");
+      return "Vector of the state element names";
     default: assert(!"Unimplemented type of KalmanFilterExperimentParameterType");
       throw std::logic_error(__func__);
   }
@@ -517,9 +517,9 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const Ka
   switch (type)
   {
     case KalmanFilterExperimentParameterType::input:
-      return std::string("Input");
+      return "Input";
     case KalmanFilterExperimentParameterType::state_names:
-      return std::string("State names");
+      return "State names";
     default: assert(!"Unimplemented type of KalmanFilterExperimentParameterType");
       throw std::logic_error(__func__);
   }
@@ -545,9 +545,9 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToSymbol(const 
   switch (type)
   {
     case KalmanFilterExperimentParameterType::input:
-      return std::string("y");
+      return "y";
     case KalmanFilterExperimentParameterType::state_names:
-      return std::string(""); //State names has no symbol
+      return ""; //State names has no symbol
     default: assert(!"Unimplemented type of KalmanFilterExperimentParameterType");
       throw std::logic_error(__func__);
   }

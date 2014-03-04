@@ -56,6 +56,13 @@ int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<
       << "Please supply a valid folder name\n";
     return 1;
   }
+  if (folder.substr(0,6) != "../../")
+  {
+    std::cout
+      << "Folder must start with '../../'\n"
+      << "Please supply a folder name starting with '/../..'\n";
+    return 1;
+  }
   std::cout << CreateQtProjectZipFileMainDialog(folder).GetScript() << '\n';
   return 0;
 }

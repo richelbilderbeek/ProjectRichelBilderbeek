@@ -161,9 +161,9 @@ double ribi::BinaryNewickVector::CalculateProbabilityInternal(
             coefficients.push_back( (f_d*(f_d-1.0)) / d);
           }
           #ifdef DEBUG_BINARYNEWICKVECTOR_CALCULATEPROBABILITYINTERNAL
-          TRACE(std::string("BinaryNewickVector ")
+          TRACE("BinaryNewickVector "
             + Newick::NewickToString(p.first)
-            + std::string(" has coefficient ")
+            + " has coefficient "
             + boost::lexical_cast<std::string>(coefficients.back())
             + '\n';
          #endif
@@ -433,7 +433,7 @@ void ribi::BinaryNewickVector::Test() noexcept
     const std::vector<std::string> v = Newick::CreateValidNewicks();
     for(const std::string& s: v)
     {
-      TRACE(std::string("I must be accepted: ") + s);
+      TRACE("I must be accepted: " + s);
       //Check if valid newicks (as std::string) are marked as valid
       try
       {

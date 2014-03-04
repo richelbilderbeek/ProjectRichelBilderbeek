@@ -1,3 +1,4 @@
+/*
 #include "trianglemeshbuilder.h"
 
 #include <sstream>
@@ -6,19 +7,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamT() const noexcept
 {
   std::stringstream s;
   s
-    << "FoamFile\n"
-    << "{\n"
-    << "    version     2.0;\n"
-    << "    format      ascii;\n"
-    << "    class       volScalarField;\n"
-    << "    object      T;\n"
-    << "}\n"
-    << "// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //\n"
-    << "\n"
-    << "dimensions      [0 0 0 1 0 0 0];\n"
-    << "\n"
-    << "internalField   uniform 293;\n"
-    << "\n"
     << "boundaryField\n"
     << "{\n"
     << "    	inlet           \n"
@@ -51,3 +39,4 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamT() const noexcept
   ;
   return s.str();
 }
+*/

@@ -77,7 +77,7 @@ void ribi::QtCreateQtProjectZipFileMainDialog::on_lineEdit_textChanged(const QSt
 
   if (!QFile::exists(source_folder.c_str()))
   {
-    const std::string text = "Folder '" + source_folder + std::string("' does not exist.");
+    const std::string text = "Folder '" + source_folder + "' does not exist.";
     ui->text->setPlainText(text.c_str());
     return;
   }

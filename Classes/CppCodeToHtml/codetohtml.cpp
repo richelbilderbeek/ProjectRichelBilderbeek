@@ -67,7 +67,7 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
     const std::string command = "tidy -q -e -f " + temp_filename_tidy + " " + temp_filename;
     const int error = std::system(command.c_str());
     /*
-    if (error && html[5] != std::string(" <title>XXX</title>"))
+    if (error && html[5] != " <title>XXX</title>")
     {
       TRACE("Dear assert, check tmp.htm, as this is the HTML tidy failed on");
       TRACE(command);
@@ -78,7 +78,7 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
         TRACE(s);
       }
       #endif
-      assert(!error || html[5] != std::string(" <title>XXX</title>");
+      assert(!error || html[5] != " <title>XXX</title>");
       return false;
     }
     assert(!error);

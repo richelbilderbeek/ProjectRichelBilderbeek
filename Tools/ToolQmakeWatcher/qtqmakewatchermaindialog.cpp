@@ -109,16 +109,16 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
       if (!s.empty() && s[0] == '>')
       {
         //Old
-        t = std::string("<font color=#0000FF>&lt;")
+        t = "<font color=#0000FF>&lt;"
           + s.substr(1,s.size()-1)
-          + std::string("</font>");
+          + "</font>";
       }
       if (!s.empty() && s[0] == '<')
       {
         //New
-        t = std::string("<b><font color=#FF0000>&gt;")
+        t = "<b><font color=#FF0000>&gt;"
           + s.substr(1,s.size()-1)
-          + std::string("</font></b>");
+          + "</font></b>";
       }
       ui->edit_diff->appendHtml(QString(t.c_str()));
     }

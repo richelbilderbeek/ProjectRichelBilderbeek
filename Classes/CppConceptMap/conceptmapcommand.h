@@ -28,7 +28,7 @@ struct Command
   void DoCommand(Widget * const widget) noexcept;
   void DoCommand(const boost::shared_ptr<Widget> widget) noexcept { DoCommand(widget.get()); }
 
-  virtual const std::string ToStr() const noexcept = 0;
+  virtual std::string ToStr() const noexcept = 0;
   virtual void Undo() noexcept = 0;
 
   private:

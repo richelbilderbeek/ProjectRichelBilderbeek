@@ -203,14 +203,16 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
   assert(to);
   assert(from != to);
   const boost::shared_ptr<Edge> edge(
-    cmap::EdgeFactory::Create(
+    EdgeFactory().Create(
       concept,
       (qt_from->pos().x() + qt_to->pos().x()) / 2.0,
       (qt_from->pos().y() + qt_to->pos().y()) / 2.0,
       from,
       tail_arrow,
       to,
-      head_arrow));
+      head_arrow
+    )
+  );
 
   //Step 1: Create an Edge concept
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));

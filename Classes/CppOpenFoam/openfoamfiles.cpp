@@ -507,13 +507,13 @@ void ribi::foam::Files::CreateFolders(const std::string& folder_name)
 {
   {
     const std::string s { fileio::GetPathSeperator() };
-    const std::string f { folder_name + s + std::string("constant") };
+    const std::string f { folder_name + s + "constant" };
     if (!fileio::IsFolder(f)) { fileio::CreateFolder(f); }
     assert(fileio::IsFolder(f));
   }
   {
     const std::string s { fileio::GetPathSeperator() };
-    const std::string f { folder_name + s + std::string("constant") + s + std::string("polyMesh") };
+    const std::string f { folder_name + s + "constant" + s + "polyMesh" };
     if (!fileio::IsFolder(f)) { fileio::CreateFolder(f); }
     assert(fileio::IsFolder(f));
   }

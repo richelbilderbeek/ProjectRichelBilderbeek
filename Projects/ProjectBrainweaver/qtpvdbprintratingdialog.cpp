@@ -40,15 +40,15 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
   ui->setupUi(this);    
   assert(m_file);
   ui->label_focal_question->setText(
-    (std::string("FOCUSVRAAG: ")
+    ("FOCUSVRAAG: "
     + m_file->GetQuestion()).c_str()
   );
   ui->label_student_name->setText(
-    (std::string("VAN: ")
+    ("VAN: "
       + m_file->GetStudentName()).c_str()
   );
   ui->label_assessor_name->setText(
-    (std::string("ASSESSOR: ")
+    ("ASSESSOR: "
       + m_file->GetAssessorName()).c_str()
   );
 
@@ -64,7 +64,7 @@ ribi::pvdb::QtPvdbPrintRatingDialog::QtPvdbPrintRatingDialog(
     std::time( &my_time );
     const std::tm * const time_and_date = std::localtime(&my_time);
     const std::string s = std::asctime(time_and_date);
-    ui->label_date->setText( (std::string("Datum: ") + s).c_str()
+    ui->label_date->setText( ("Datum: " + s).c_str()
     );
   }
 }

@@ -105,7 +105,7 @@ bool ribi::CreateQtProjectZipFile::Path::IsComplete() const
 bool ribi::CreateQtProjectZipFile::Path::IsPresent() const
 {
   const std::string path
-    = std::string("..")
+    = ".."
     + ribi::fileio::GetPathSeperator()
     + ".."
     + ribi::fileio::GetPathSeperator()

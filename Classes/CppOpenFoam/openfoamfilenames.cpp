@@ -125,6 +125,15 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetPressureField() const noe
   );
 }
 
+const ribi::fileio::Filename ribi::foam::Filenames::GetTemperatureField() const noexcept
+{
+  return ribi::fileio::Filename(
+      "0"
+    + fileio::GetPathSeperator()
+    + "T"
+  );
+}
+
 const ribi::fileio::Filename ribi::foam::Filenames::GetThermophysicalProperties() const noexcept
 {
   return ribi::fileio::Filename(

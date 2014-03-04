@@ -206,9 +206,9 @@ void ribi::c2h::QtCodeToHtmlMainDialog::on_edit_source_textChanged(QString ) noe
           c2h::FilterFiles(
             ribi::fileio::GetFilesInFolder(source)));
     const std::string s
-      = std::string("Convert (source type: folder, ")
+      = "Convert (source type: folder, "
       + boost::lexical_cast<std::string>(v.size())
-      + std::string(" files)");
+      + " files)";
 
     ui->button_convert->setText(s.c_str());
     ui->button_convert->setEnabled(true);

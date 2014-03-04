@@ -76,7 +76,7 @@ const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   std::transform(v.begin(),v.end(),std::back_inserter(w),
     [](const std::string& s)
     {
-      return s + std::string("<br/>");
+      return s + "<br/>";
     }
   );
 
@@ -461,46 +461,46 @@ void ribi::c2h::Dialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(ExtractPageName("X") == std::string("X"));
-  assert(ExtractPageName("/X") == std::string("X"));
-  assert(ExtractPageName("/A/X") == std::string("X"));
-  assert(ExtractPageName("/A/B/X") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X") == std::string("X"));
-  assert(ExtractPageName("/X/") == std::string("X"));
-  assert(ExtractPageName("/A/X/") == std::string("X"));
-  assert(ExtractPageName("/A/B/X/") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X/") == std::string("X"));
+  assert(ExtractPageName("X") == "X");
+  assert(ExtractPageName("/X") == "X");
+  assert(ExtractPageName("/A/X") == "X");
+  assert(ExtractPageName("/A/B/X") == "X");
+  assert(ExtractPageName("/A/B/C/X") == "X");
+  assert(ExtractPageName("/X/") == "X");
+  assert(ExtractPageName("/A/X/") == "X");
+  assert(ExtractPageName("/A/B/X/") == "X");
+  assert(ExtractPageName("/A/B/C/X/") == "X");
 
-  assert(ExtractPageName("\\X") == std::string("X"));
-  assert(ExtractPageName("\\A\\X") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\X") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\C\\X") == std::string("X"));
-  assert(ExtractPageName("\\X\\") == std::string("X"));
-  assert(ExtractPageName("\\A\\X\\") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\X\\") == std::string("X"));
-  assert(ExtractPageName("\\A\\B\\C\\X\\") == std::string("X"));
+  assert(ExtractPageName("\\X") == "X");
+  assert(ExtractPageName("\\A\\X") == "X");
+  assert(ExtractPageName("\\A\\B\\X") == "X");
+  assert(ExtractPageName("\\A\\B\\C\\X") == "X");
+  assert(ExtractPageName("\\X\\") == "X");
+  assert(ExtractPageName("\\A\\X\\") == "X");
+  assert(ExtractPageName("\\A\\B\\X\\") == "X");
+  assert(ExtractPageName("\\A\\B\\C\\X\\") == "X");
 
-  assert(ExtractPageName("/X") == std::string("X"));
-  assert(ExtractPageName("/A\\X") == std::string("X"));
-  assert(ExtractPageName("/A\\B/X") == std::string("X"));
-  assert(ExtractPageName("\\A\\B/C/X") == std::string("X"));
-  assert(ExtractPageName("\\X/") == std::string("X"));
-  assert(ExtractPageName("/A\\X/") == std::string("X"));
-  assert(ExtractPageName("/A/B\\X/") == std::string("X"));
-  assert(ExtractPageName("/A/B\\C/X/") == std::string("X"));
+  assert(ExtractPageName("/X") == "X");
+  assert(ExtractPageName("/A\\X") == "X");
+  assert(ExtractPageName("/A\\B/X") == "X");
+  assert(ExtractPageName("\\A\\B/C/X") == "X");
+  assert(ExtractPageName("\\X/") == "X");
+  assert(ExtractPageName("/A\\X/") == "X");
+  assert(ExtractPageName("/A/B\\X/") == "X");
+  assert(ExtractPageName("/A/B\\C/X/") == "X");
 
-  assert(ExtractPageName("main.cpp") == std::string(""));
-  assert(ExtractPageName("/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/A/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/A/B/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X/main.cpp") == std::string("X"));
-  assert(ExtractPageName("/X/main.cpp/") == std::string("X"));
-  assert(ExtractPageName("/A/X/main.cpp/") == std::string("X"));
-  assert(ExtractPageName("/A/B/X/main.cpp/") == std::string("X"));
-  assert(ExtractPageName("/A/B/C/X/main.cpp/") == std::string("X"));
+  assert(ExtractPageName("main.cpp") == "");
+  assert(ExtractPageName("/X/main.cpp") == "X");
+  assert(ExtractPageName("/A/X/main.cpp") == "X");
+  assert(ExtractPageName("/A/B/X/main.cpp") == "X");
+  assert(ExtractPageName("/A/B/C/X/main.cpp") == "X");
+  assert(ExtractPageName("/X/main.cpp/") == "X");
+  assert(ExtractPageName("/A/X/main.cpp/") == "X");
+  assert(ExtractPageName("/A/B/X/main.cpp/") == "X");
+  assert(ExtractPageName("/A/B/C/X/main.cpp/") == "X");
 
   assert(ExtractPageName("/home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml")
-    == std::string("ToolCodeToHtml"));
+    == "ToolCodeToHtml");
 
   //GetProFiles
   {

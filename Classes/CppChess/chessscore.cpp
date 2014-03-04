@@ -12,9 +12,9 @@
 
 
 ribi::Chess::Score::Score(const std::string& s)
-  : m_is_black_winner(s == std::string("0-1")),
-    m_is_draw(s == std::string("1/2-1/2")),
-    m_is_white_winner(s == std::string("1-0"))
+  : m_is_black_winner(s == "0-1"),
+    m_is_draw(s == "1/2-1/2"),
+    m_is_white_winner(s == "1-0")
 {
   #ifndef NDEBUG
   Test();

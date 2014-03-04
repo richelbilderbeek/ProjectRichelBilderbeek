@@ -123,7 +123,7 @@ void ribi::TriangleFile::ExecuteTriangle(
   const std::string exe_filename { "triangle.exe" };
   if (!fileio::IsRegularFile(exe_filename))
   {
-    QFile file( (std::string(":/trianglefile/files/") + exe_filename).c_str() );
+    QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
     file.copy(exe_filename.c_str());
   }
   assert(fileio::IsRegularFile(exe_filename));
@@ -135,7 +135,7 @@ void ribi::TriangleFile::ExecuteTriangle(
     << quality
     << " -a"
     << area
-    << (verbose ? std::string("") : std::string(" -Q"))
+    << (verbose ? "" : " -Q")
     << " "
     << filename;
   const bool error = std::system(s.str().c_str());

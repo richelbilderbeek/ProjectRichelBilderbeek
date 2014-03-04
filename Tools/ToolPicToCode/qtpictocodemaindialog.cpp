@@ -151,28 +151,29 @@ const std::vector<std::string>
       const int g = boost::numeric_cast<int>(line[x*4+1]) >> 3;
       const int b = boost::numeric_cast<int>(line[x*4+0]) >> 3;
       v.push_back(
-          std::string("    buffer[((y+")
+          "    buffer[((y+"
         + boost::lexical_cast<std::string>(y)
-        + std::string(")*maxx)+(x+")
+        + ")*maxx)+(x+"
         + boost::lexical_cast<std::string>(x)
-        + std::string(")] = RGB15(")
+        + ")] = RGB15("
         + boost::lexical_cast<std::string>(r)
-        + std::string(",")
+        + ","
         + boost::lexical_cast<std::string>(g)
-        + std::string(",")
+        + ","
         + boost::lexical_cast<std::string>(b)
-        + std::string(");"));
+        + ");");
     }
   }
   v.push_back("  }");
   v.push_back(
-    std::string("  int GetWidth() const { return ")
+    "  int GetWidth() const { return "
     + boost::lexical_cast<std::string>(width)
-    + std::string("; }"));
+    + "; }"
+  );
   v.push_back(
-    std::string("  int GetHeight() const { return ")
+    "  int GetHeight() const { return "
     + boost::lexical_cast<std::string>(height)
-    + std::string("; }"));
+    + "; }");
 
   v.push_back("};");
   return v;

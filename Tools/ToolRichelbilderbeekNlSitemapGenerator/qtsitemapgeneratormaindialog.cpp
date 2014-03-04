@@ -93,7 +93,7 @@ void ribi::QtSitemapGeneratorMainDialog::on_button_start_clicked()
   );
   const int result = d.Execute(args);
   const std::string text {
-    std::string("SitemapGeneratorMenuDialog returned with error code ")
+    "SitemapGeneratorMenuDialog returned with error code "
     + boost::lexical_cast<std::string>(result)
   };
   ui->text_output->appendPlainText(text.c_str());

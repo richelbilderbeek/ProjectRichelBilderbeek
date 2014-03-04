@@ -663,8 +663,8 @@ const std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ri
 
   const std::string r = s.str();
   assert(r.size() >= 27);
-  assert(r.substr(0,13) == std::string("<concept_map>"));
-  assert(r.substr(r.size() - 14,14) == std::string("</concept_map>"));
+  assert(r.substr(0,13) == "<concept_map>");
+  assert(r.substr(r.size() - 14,14) == "</concept_map>");
 
   return r;
 }

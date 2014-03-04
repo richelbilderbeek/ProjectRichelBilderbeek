@@ -80,11 +80,11 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
   {
     return nullptr;
   }
-  if (s.substr(0,10) != std::string("<examples>"))
+  if (s.substr(0,10) != "<examples>")
   {
     return nullptr;
   }
-  if (s.substr(s.size() - 11,11) != std::string("</examples>"))
+  if (s.substr(s.size() - 11,11) != "</examples>")
   {
     return nullptr;
   }

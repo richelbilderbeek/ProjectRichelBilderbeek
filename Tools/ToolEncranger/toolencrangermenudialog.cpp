@@ -49,7 +49,7 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
   int key = 0;
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
   {
-    if (argv[i] == std::string("-k") || argv[i] == std::string("--key"))
+    if (argv[i] == "-k" || argv[i] == "--key")
     {
       const std::string s = argv[i+1];
       try
@@ -67,7 +67,7 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
   //Determine if plaintext is supplied, if yes: execute
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
   {
-    if (argv[i] == std::string("-t") || argv[i] == std::string("--text"))
+    if (argv[i] == "-t" || argv[i] == "--text")
     {
       const std::string plaintext = argv[i + 1];
       ToolEncrangerMainDialog d;
@@ -81,7 +81,7 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
   //Determine if cipertext is supplied, if yes: execute
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
   {
-    if (argv[i] == std::string("-c") || argv[i] == std::string("--cipher"))
+    if (argv[i] == "-c" || argv[i] == "--cipher")
     {
       const std::string ciphertext = argv[i + 1];
       ToolEncrangerMainDialog d;

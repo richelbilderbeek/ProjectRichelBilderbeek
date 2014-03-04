@@ -54,7 +54,7 @@ void ribi::pvdb::QtPvdbViewFilesDialog::on_button_left_clicked()
     [&text](std::string s)
     {
       text+=s;
-      text+=std::string("\n");
+      text+="\n";
     }
   );
   ui->text_left->clear();
@@ -85,7 +85,7 @@ void ribi::pvdb::QtPvdbViewFilesDialog::on_button_right_clicked()
     [&text](std::string s)
     {
       text+=s;
-      text+=std::string("\n");
+      text+="\n";
     }
   );
 

@@ -201,8 +201,8 @@ const std::string ribi::cmap::Examples::ToXml() const noexcept
 
   const std::string r = s.str();
   assert(r.size() >= 20);
-  assert(r.substr(0,10) == std::string("<examples>"));
-  assert(r.substr(r.size() - 11,11) == std::string("</examples>"));
+  assert(r.substr(0,10) == "<examples>");
+  assert(r.substr(r.size() - 11,11) == "</examples>");
   return r;
 }
 

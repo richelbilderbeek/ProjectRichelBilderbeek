@@ -29,8 +29,8 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetOpenFileDialog()
   //enum Option { ShowDirsOnly, DontResolveSymlinks, DontConfirmOverwrite, DontUseSheet, DontUseNativeDialog, ReadOnly, HideNameFilterDetails }
   d->setOptions(QFileDialog::ReadOnly);
 
-  const std::string namefile = std::string("Brainweaver concept map (*.")
-    + pvdb::File::GetFilenameExtension() + std::string(")");
+  const std::string namefile = "Brainweaver concept map (*."
+    + pvdb::File::GetFilenameExtension() + ")";
 
   d->setNameFilter(namefile.c_str());
 
@@ -61,11 +61,11 @@ const boost::shared_ptr<QFileDialog> QtFileDialog::GetSaveFileDialog(const FileT
   switch (type)
   {
     case FileType::cmp:
-      namefile = std::string("Brainweaver concept map (*.")
-      + pvdb::File::GetFilenameExtension() + std::string(")");
+      namefile = "Brainweaver concept map (*."
+      + pvdb::File::GetFilenameExtension() + ")";
     break;
     case FileType::pdf:
-      namefile = std::string("Portable document format (*.pdf)");
+      namefile = "Portable document format (*.pdf)";
     break;
   }
 

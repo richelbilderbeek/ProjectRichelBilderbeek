@@ -72,6 +72,24 @@ void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell) const
   );
 }
 
+ribi::Coordinat3D ribi::trim::Face::CalcCenter() const noexcept
+{
+  const ribi::Coordinat3D sum {
+    std::accumulate(m_points.begin(),m_points.end(),
+      Coordinat3D(),
+      [](const Coordinat3D& init, const boost::shared_ptr<const Point>& point)
+      {
+        return init + Coordinat3D(
+          point->GetCoordinat()->GetX(),
+          point->GetCoordinat()->GetY(),
+          point->GetZ().value()
+        );
+      }
+    )
+  };
+  return sum / static_cast<double>(m_points.size());
+}
+
 int ribi::trim::Face::CalcPriority() const noexcept
 {
   assert(GetOwner());

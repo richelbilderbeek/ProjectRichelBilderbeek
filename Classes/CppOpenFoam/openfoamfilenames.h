@@ -76,6 +76,9 @@ struct Filenames
   ///The filename for the OpenFOAM its case its pressure field
   const ribi::fileio::Filename GetPressureField() const noexcept;
 
+  ///The filename for the OpenFOAM its case its pressure field
+  const ribi::fileio::Filename GetTemperatureField() const noexcept;
+
   ///The filename for the OpenFOAM its case its thermophysicalProperties
   const ribi::fileio::Filename GetThermophysicalProperties() const noexcept;
 

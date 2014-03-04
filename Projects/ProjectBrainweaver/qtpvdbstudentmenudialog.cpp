@@ -96,7 +96,7 @@ void ribi::pvdb::QtPvdbStudentMenuDialog::on_button_save_clicked()
   const std::string filename
     =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
       || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     ? filename_raw + "." + pvdb::File::GetFilenameExtension()
      : filename_raw);
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()

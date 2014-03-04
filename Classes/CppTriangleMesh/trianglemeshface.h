@@ -25,6 +25,8 @@ struct Face
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
 
+  ribi::Coordinat3D CalcCenter() const noexcept;
+
   int CalcPriority() const noexcept;
 
   ///When the Face its points know their Layers, call DoExtractCoordinats

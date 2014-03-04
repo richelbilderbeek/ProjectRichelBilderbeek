@@ -385,7 +385,7 @@ namespace Newick
             coefficients.push_back( (f_d*(f_d-1.0)) / d);
           }
           #ifdef TRACE_NEWICK_CALCULATEPROBABILITY
-          TRACE(std::string("BinaryNewickVector ")
+          TRACE("BinaryNewickVector "
             + Newick::NewickToString(p.first)
             + " has coefficient "
             + boost::lexical_cast<std::string>(coefficients.back()))

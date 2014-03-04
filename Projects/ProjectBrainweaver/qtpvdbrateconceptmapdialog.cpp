@@ -51,7 +51,7 @@ ribi::pvdb::QtPvdbRateConceptMapDialog::QtPvdbRateConceptMapDialog(
   }
 
   {
-    const std::string s = std::string("Naam student: ") + m_file->GetStudentName();
+    const std::string s = "Naam student: " + m_file->GetStudentName();
     ui->label_name->setText(s.c_str());
   }
 
@@ -188,7 +188,7 @@ void ribi::pvdb::QtPvdbRateConceptMapDialog::Save()
   const std::string filename
     =  (filename_raw.size() < pvdb::File::GetFilenameExtension().size()
       || filename_raw.substr( filename_raw.size() - 3, 3 ) != pvdb::File::GetFilenameExtension()
-     ? filename_raw + std::string(".") + pvdb::File::GetFilenameExtension()
+     ? filename_raw + "." + pvdb::File::GetFilenameExtension()
      : filename_raw);
   assert(filename.size() > 3
     && filename.substr( filename.size() - 3, 3 ) == pvdb::File::GetFilenameExtension()

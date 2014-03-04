@@ -27,7 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "alphabetafilter.h"
 #include "alphabetagammafilter.h"
 #include "alphafilter.h"
-#include "aminoacidfightermenudialog.h"
+#include "aafmenudialog.h"
 #include "approximator.h"
 #include "asciiartermenudialog.h"
 #include "athleticlandmenudialog.h"
@@ -242,12 +242,12 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
     return 1;
   }
   const std::string s { argv[1] };
-  if (s == std::string("--status") || s == std::string("-s"))
+  if (s == "--status" || s == "-s")
   {
     ShowStatus();
     return 0;
   }
-  if (s == std::string("--program") || s == std::string("-p"))
+  if (s == "--program" || s == "-p")
   {
     for (const auto m: CreateMenus())
     {
@@ -286,7 +286,7 @@ const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noex
   a.AddLibrary("AlphaBetaFilter version: " + AlphaBetaFilter::GetVersion());
   a.AddLibrary("AlphaBetaGammaFilter version: " + AlphaBetaGammaFilter::GetVersion());
   a.AddLibrary("AlphaFilter version: " + AlphaFilter::GetVersion());
-  a.AddLibrary("AminoAcidFighter version: " + AminoAcidFighterMenuDialog().GetVersion());
+  a.AddLibrary("AminoAcidFighter version: " + aaf::MenuDialog().GetVersion());
   a.AddLibrary("Approximator version: " + Approximator<double,double>::GetVersion());
   a.AddLibrary("AsciiArter version: " + AsciiArterMenuDialog().GetVersion());
   a.AddLibrary("AthleticLand version: " + AthleticLandMenuDialog().GetVersion());
@@ -440,7 +440,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
     boost::shared_ptr<ribi::MenuDialog> p;
     switch (t)
     {
-      case ProgramType::aminoAcidFighter: p.reset(new AminoAcidFighterMenuDialog); break;
+      case ProgramType::aminoAcidFighter: p.reset(new aaf::MenuDialog); break;
       case ProgramType::asciiArter: p.reset(new AsciiArterMenuDialog); break;
       case ProgramType::asciiArterVcl:
       {
@@ -2977,15 +2977,15 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
 const ribi::Help ribi::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
-    GetAbout().GetFileTitle() + std::string("Console"),
+    GetAbout().GetFileTitle() + "Console",
     GetAbout().GetFileDescription(),
     {
       Help::Option('p',"program","lists all possible programs"),
       Help::Option('s',"status", "lists all programs' statuses")
     },
     {
-      std::string("ProjectRichelBilderbeekConsole --help"),
-      std::string("ProjectRichelBilderbeekConsole Hometrainer --help")
+      "ProjectRichelBilderbeekConsole --help",
+      "ProjectRichelBilderbeekConsole Hometrainer --help"
     }
   );
 }

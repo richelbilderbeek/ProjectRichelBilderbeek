@@ -331,12 +331,19 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFile& f)
   os
     << f.GetHeader() << '\n'
     << "" << '\n'
-    << f.m_items.size() << '\n'
+    << std::count_if(
+      f.m_items.begin(),f.m_items.end(),
+      [](const BoundaryFileItem& item)
+      {
+        return item.GetType() != PatchFieldType::no_patch_field;
+      }
+    ) << '\n'
     << "(" << '\n'
   ;
 
   for(const BoundaryFileItem item: f.m_items)
   {
+    if (item.GetType() == PatchFieldType::no_patch_field) continue;
     os << item << '\n';
   }
 

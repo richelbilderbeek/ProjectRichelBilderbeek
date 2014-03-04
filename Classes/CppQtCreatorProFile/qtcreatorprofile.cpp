@@ -235,7 +235,7 @@ void ribi::QtCreatorProFile::Parse(std::stringstream& data)
     {
       if (verbose) { const std::string msg = "Added " + s; TRACE(msg); }
       p->insert(
-        (prefix == Prefix::minus ? std::string("-") : std::string()) + s);
+        (prefix == Prefix::minus ? "-" : "") + s);
     }
   }
 }
@@ -250,7 +250,7 @@ void ribi::QtCreatorProFile::RemoveComments(std::vector<std::string>& v)
       s = "";
       continue;
     }
-    if (t.size() >= 7 && t.substr(0,7) == std::string("message"))
+    if (t.size() >= 7 && t.substr(0,7) == "message")
     {
       s = "";
       continue;
@@ -530,7 +530,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
           if (w.size() > 1)
           {
             std::transform(w.begin(),--w.end(),std::ostream_iterator<std::string>(os," \\\n"),
-              [](const std::string& s) { return std::string("    ") + s; } );
+              [](const std::string& s) { return "    " + s; } );
           }
           os << "    " + (*(--w.end())) + '\n';
           os << "\n";
@@ -545,7 +545,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
   {
     const std::vector<std::string> v = p.GetAbout().CreateAboutText();
     std::transform(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"),
-      [](const std::string& s) { return std::string("# ") + s; } );
+      [](const std::string& s) { return "# " + s; } );
   }
   os << "#\n";
   os << "#\n";
@@ -553,7 +553,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const QtCreatorProFile& p)
   {
     const std::vector<std::string> v = p.GetAbout().CreateLicenceText();
     std::transform(v.begin(),v.end(),std::ostream_iterator<std::string>(os,"\n"),
-      [](const std::string& s) { return std::string("# ") + s; } );
+      [](const std::string& s) { return "# " + s; } );
   }
   os << "#--------------------------------------------------------------------------";
   return os;

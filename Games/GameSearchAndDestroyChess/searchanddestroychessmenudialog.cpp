@@ -45,24 +45,9 @@
 
 ribi::sadc::MenuDialog::MenuDialog()
 {
-  /*
-  const std::vector<std::string> filenames = Chess::Resources::GetFilenames();
-
-  std::for_each(filenames.begin(),filenames.end(),
-    [](const std::string& filename)
-  {
-    if (!QFile::exists(filename.c_str()))
-    {
-      QFile f( (std::string(":/images/") + filename).c_str() );
-        f.copy(filename.c_str());
-    }
-  } );
-
   #ifndef NDEBUG
-  std::for_each(filenames.begin(),filenames.end(),
-    [](const std::string& filename) { assert(QFile::exists(filename.c_str())); } );
+  Test();
   #endif
-  */
 }
 
 int ribi::sadc::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept

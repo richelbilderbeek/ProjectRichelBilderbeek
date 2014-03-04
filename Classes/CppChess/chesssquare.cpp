@@ -88,7 +88,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test a1");
         Chess::Square s("a1");
         assert(s.GetFile().ToStr() == "a");
-        assert(s.GetRank().ToStr() == std::string("1"));
+        assert(s.GetRank().ToStr() == "1");
         assert(s.GetFile().ToInt() == 0);
         assert(s.GetRank().ToInt() == 0);
         assert(s.GetColor() == Color::black);
@@ -97,7 +97,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test b1");
         Chess::Square s("b1");
         assert(s.GetFile().ToStr() == "b");
-        assert(s.GetRank().ToStr() == std::string("1"));
+        assert(s.GetRank().ToStr() == "1");
         assert(s.GetFile().ToInt() == 1);
         assert(s.GetRank().ToInt() == 0);
         assert(s.GetColor() == Color::white);
@@ -106,7 +106,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test a2");
         Chess::Square s("a2");
         assert(s.GetFile().ToStr() == "a");
-        assert(s.GetRank() == Chess::Rank(std::string("2")));
+        assert(s.GetRank() == Chess::Rank("2"));
         assert(s.GetFile().ToInt() == 0);
         assert(s.GetRank().ToInt() == 1);
         assert(s.GetColor() == Color::white);
@@ -125,7 +125,7 @@ void ribi::Chess::Square::Test() noexcept
         FTRACE("Test g8");
         Chess::Square s("g8");
         assert(s.GetFile().ToStr() == "g");
-        assert(s.GetRank() == Rank(std::string("8")));
+        assert(s.GetRank() == Rank("8"));
         assert(s.GetFile().ToInt() == 6);
         assert(s.GetRank().ToInt() == 7);
       }

@@ -16,13 +16,13 @@ namespace ribi {
 
 struct CanvasColorSystems
 {
-  static const std::vector<CanvasColorSystem> GetAll() noexcept;
-  static const std::string ToStr(const CanvasColorSystem s) noexcept;
+  static std::vector<CanvasColorSystem> GetAll() noexcept;
+  static std::string ToStr(const CanvasColorSystem s) noexcept;
   static CanvasColorSystem ToType(const std::string& s);
 
   private:
   static boost::bimap<CanvasColorSystem,std::string> m_map;
-  static const boost::bimap<CanvasColorSystem,std::string> CreateMap();
+  static boost::bimap<CanvasColorSystem,std::string> CreateMap();
 
   #ifndef NDEBUG
   static void Test() noexcept;

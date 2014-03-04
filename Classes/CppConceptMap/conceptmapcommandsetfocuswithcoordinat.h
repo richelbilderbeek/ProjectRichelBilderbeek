@@ -26,7 +26,7 @@ struct CommandSetFocusWithCoordinat : public Command
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
-  const std::string ToStr() const noexcept { return "set focus with coordinat"; }
+  std::string ToStr() const noexcept { return "set focus with coordinat"; }
   void Undo() noexcept;
 
   private:

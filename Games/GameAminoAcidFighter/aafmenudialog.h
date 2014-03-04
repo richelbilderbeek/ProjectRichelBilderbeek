@@ -4,8 +4,9 @@
 #include "menudialog.h"
 
 namespace ribi {
+namespace aaf {
 
-struct AminoAcidFighterMenuDialog : public MenuDialog
+struct MenuDialog : public ::ribi::MenuDialog
 {
   const About GetAbout() const noexcept;
   const Help GetHelp() const noexcept;
@@ -21,6 +22,7 @@ struct AminoAcidFighterMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace aaf
 } //~namespace ribi
 
 #endif // AMINOACIDFIGHTERMENUDIALOG_H

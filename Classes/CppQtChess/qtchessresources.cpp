@@ -23,7 +23,7 @@ ribi::Chess::QtResources::QtResources()
     {
       if (!fileio::IsRegularFile(s))
       {
-        QFile f( (std::string(":/images/") + s).c_str() );
+        QFile f( (":/images/" + s).c_str() );
         f.copy(s.c_str());
         if (!fileio::IsRegularFile(s))
         {

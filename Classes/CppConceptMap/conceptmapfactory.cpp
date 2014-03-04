@@ -129,8 +129,8 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::D
 const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::ConceptMapFactory::FromXml(const std::string &s)
 {
   assert(s.size() >= 27);
-  assert(s.substr(0,13) == std::string("<concept_map>"));
-  assert(s.substr(s.size() - 14,14) == std::string("</concept_map>"));
+  assert(s.substr(0,13) == "<concept_map>");
+  assert(s.substr(s.size() - 14,14) == "</concept_map>");
 
 
   //Obtain the <concept_map> ... </concept_map> string

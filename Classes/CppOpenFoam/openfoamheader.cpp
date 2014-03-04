@@ -156,10 +156,10 @@ std::istream& ribi::foam::operator>>(std::istream& is, Header& h)
       assert(title.size() >= 2);
 
       //Eat comment
-      if (title.substr(0,2) == std::string("/*"))
+      if (title.substr(0,2) == "/*")
       {
         std::string s;
-        while (s.size() < 2 || s.substr(s.size()-2,2) != std::string("*/"))
+        while (s.size() < 2 || s.substr(s.size()-2,2) != "*/")
         {
           is >> s;
           assert(is);

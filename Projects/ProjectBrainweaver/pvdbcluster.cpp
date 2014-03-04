@@ -43,8 +43,8 @@ bool ribi::pvdb::Cluster::Empty() const
 const boost::shared_ptr<ribi::pvdb::Cluster> ribi::pvdb::Cluster::FromXml(const std::string &s)
 {
   assert(s.size() >= 19);
-  assert(s.substr(0,9) == std::string("<cluster>"));
-  assert(s.substr(s.size() - 10,10) == std::string("</cluster>"));
+  assert(s.substr(0,9) == "<cluster>");
+  assert(s.substr(s.size() - 10,10) == "</cluster>");
 
   std::vector<boost::shared_ptr<ribi::cmap::Concept> > concepts;
 
@@ -93,8 +93,8 @@ const std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb:
 
   const std::string r = s.str();
   assert(r.size() >= 19);
-  assert(r.substr(0,9) == std::string("<cluster>"));
-  assert(r.substr(r.size() - 10,10) == std::string("</cluster>"));
+  assert(r.substr(0,9) == "<cluster>");
+  assert(r.substr(r.size() - 10,10) == "</cluster>");
 
   return r;
 }

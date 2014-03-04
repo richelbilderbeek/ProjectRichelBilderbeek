@@ -128,7 +128,7 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
   {
     const std::vector<std::string> v = f(source);
     const std::string output_filename = ribi::fileio::GetFileBasename(source) + ".htm";
-    assert(output_filename != std::string(".htm"));
+    assert(output_filename != ".htm");
     std::cout << "Output written to '" << output_filename << "'" << std::endl;
     std::ofstream f(output_filename.c_str());
     std::copy(v.begin(),v.end(),std::ostream_iterator<std::string>(f,"\n"));
@@ -263,7 +263,7 @@ void ribi::c2h::CodeToHtmlMenuDialog::Test() noexcept
       [](const boost::shared_ptr<Program> program)
       {
         const std::string s = program->GetUrl();
-        assert(s.substr(s.size() - 4, 4) == std::string(".htm"));
+        assert(s.substr(s.size() - 4, 4) == ".htm");
         const std::string t = s.substr(0,s.size() - 4);
         return t;
       }

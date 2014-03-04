@@ -167,22 +167,6 @@ const std::string& ribi::Chess::Rank::ToStr() const
   return m_rank;
 }
 
-/*
-Rank& ribi::Chess::Rank::operator++()
-{
-  assert(m_rank != std::string("8"));
-  m_rank = boost::lexical_cast<std::string>(++boost::lexical_cast<int>(m_rank));
-  return *this;
-}
-
-Rank& ribi::Chess::Rank::operator--()
-{
-  assert(m_rank != std::string("1"));
-  m_rank = boost::lexical_cast<std::string>(--boost::lexical_cast<int>(m_rank));
-  return *this;
-}
-*/
-
 bool ribi::Chess::operator==(const Chess::Rank& lhs, const Chess::Rank& rhs)
 {
   return lhs.ToStr() == rhs.ToStr();

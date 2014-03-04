@@ -96,12 +96,12 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
     return nullptr;
 
   }
-  if (s.substr(0,6) != std::string("<node>"))
+  if (s.substr(0,6) != "<node>")
   {
     if (verbose) TRACE("incorrect starting tag");
     return nullptr;
   }
-  if (s.substr(s.size() - 7,7) != std::string("</node>"))
+  if (s.substr(s.size() - 7,7) != "</node>")
   {
     if (verbose) TRACE("incorrect ending tag");
     return nullptr;

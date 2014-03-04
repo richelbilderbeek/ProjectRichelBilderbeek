@@ -95,11 +95,11 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
   {
     return nullptr;
   }
-  if (s.substr(0,13) != std::string("<center_node>"))
+  if (s.substr(0,13) != "<center_node>")
   {
     return nullptr;
   }
-  if (s.substr(s.size() - 14,14) != std::string("</center_node>"))
+  if (s.substr(s.size() - 14,14) != "</center_node>")
   {
     return nullptr;
   }

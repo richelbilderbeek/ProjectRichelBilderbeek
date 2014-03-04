@@ -928,9 +928,9 @@ void ribi::kalman::QtKalmanFilterExperimentModel::OnStateNamesChanged()
 
 void ribi::kalman::QtKalmanFilterExperimentModel::ReadContext(const std::vector<std::string>& v)
 {
-  const auto begin = std::find(v.begin(),v.end(),std::string("<html>"));
+  const auto begin = std::find(v.begin(),v.end(),"<html>");
   if (begin == v.end()) return;
-  auto end = std::find(v.begin(),v.end(),std::string("</html>"));
+  auto end = std::find(v.begin(),v.end(),"</html>");
   assert(end != v.end());
   std::string new_context;
 
@@ -971,7 +971,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(
   const int sz = boost::numeric_cast<int>(text.size());
 
   //Find begin
-  const std::string header = std::string("^ ") + name;
+  const std::string header = "^ " + name;
   int begin_tmp = -1;
   for (int i=0; i!=sz; ++i)
   {
@@ -1107,7 +1107,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Read(const std::string& line,c
 {
   if (line.find(sub) != std::string::npos)
   {
-    if (line.substr(line.size() - 5,5) == std::string("</li>"))
+    if (line.substr(line.size() - 5,5) == "</li>")
     {
       Read(line.substr(0,line.size() - 5),sub,value_to_change);
       return;
@@ -1411,20 +1411,20 @@ const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() cons
 
       assert(n_cols >= 0);
       assert(n_rows >= 0);
-      assert(std::string(0,'^') == std::string(""));
-      s << std::string("^ ") << name << " " << std::string(n_cols,'^') << "^ \n";
+      assert(std::string(0,'^') == "");
+      s << "^ " << name << " " << std::string(n_cols,'^') << "^ \n";
       for (int row = 0; row!=n_rows; ++row)
       {
-        s  << std::string("^ ") << model->headerData(row,Qt::Vertical).toString().toStdString() << std::string(" | ");
+        s  << "^ " << model->headerData(row,Qt::Vertical).toString().toStdString() << " | ";
         for (int col = 0; col!=n_cols; ++col)
         {
           const QModelIndex index = model->index(row,col);
           const QString q = model->data(index).toString();
-          s << q.toStdString() << std::string(" | ");
+          s << q.toStdString() << " | ";
         }
-        s << std::string("\n");
+        s << "\n";
       }
-      s << std::string(" \n"); //Empty line after every table, space is really needed
+      s << " \n"; //Empty line after every table, space is really needed
     }
   }
   const std::string text = s.str();

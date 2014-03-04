@@ -138,8 +138,8 @@ const std::string ribi::cmap::Concept::ToXml() const noexcept
   const std::string r = s.str();
 
   assert(r.size() >= 19);
-  assert(r.substr(0,9) == std::string("<concept>"));
-  assert(r.substr(r.size() - 10,10) == std::string("</concept>"));
+  assert(r.substr(0,9) == "<concept>");
+  assert(r.substr(r.size() - 10,10) == "</concept>");
   return r;
 }
 

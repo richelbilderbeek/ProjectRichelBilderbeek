@@ -414,6 +414,82 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   );
 
   m.push_back(
+    { "CppBoostGraphExample1",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample1.htm\">Boost.Graph example 1: four human names and their relationships + plotting</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGraphExample1.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGraphExample2",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample2.htm\">Boost.Graph example 2: four human names and their relationships + plotting</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGraphExample2.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
+    { "CppBoostGraphExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample3.htm\">Boost.Graph example 3: four human names and their relationships + plotting</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGraphExample3.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGraphExample4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGraphExample4.htm\">Boost.Graph example 4: four human names and their relationships displayed in Qt</a>",
+        "  is a <a href=\"CppBoostGraph.htm\">Boost.Graph</a> <a href=\"CppExample.htm\">example</a>.",
+        "  It defines a graph of person names and their relationships. Then the graph is written to .dot file and plotted using KGraphViewer.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppGraphExample2.png\">View the graph of this example (png)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+
+
+  m.push_back(
     { "CppBoostRefExample2",
       {
         "<p>",
@@ -15078,9 +15154,9 @@ void ribi::c2h::Info::Test() noexcept
         TRACE(p.first);
         TRACE("SOLUTION: Clean HTML in ribi::c2h::Info::CreatePageInfo");
 
-        if (p.first == std::string("ZZZ_I_MUST_FAIL")) continue;
+        if (p.first == "ZZZ_I_MUST_FAIL") continue;
       }
-      assert(IsCleanHtml(v) && p.first != std::string("ZZZ_I_MUST_FAIL"));
+      assert(IsCleanHtml(v) && p.first != "ZZZ_I_MUST_FAIL");
     }
     #endif
     assert(!t.ToHtml("").empty());

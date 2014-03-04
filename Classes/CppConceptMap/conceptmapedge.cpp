@@ -193,8 +193,8 @@ const std::string ribi::cmap::Edge::ToXml(
 
   const std::string r = s.str();
   assert(r.size() >= 13);
-  assert(r.substr(0,6) == std::string("<edge>"));
-  assert(r.substr(r.size() - 7,7) == std::string("</edge>"));
+  assert(r.substr(0,6) == "<edge>");
+  assert(r.substr(r.size() - 7,7) == "</edge>");
 
   return r;
 }

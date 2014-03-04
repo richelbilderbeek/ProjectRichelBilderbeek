@@ -10,7 +10,7 @@
 namespace ribi {
 namespace foam {
 
-///Reads and writes an OpenFOAM thermophysicalProperties file
+///Reads and writes an OpenFOAM alphat file
 struct AlphatFile
 {
   explicit AlphatFile(

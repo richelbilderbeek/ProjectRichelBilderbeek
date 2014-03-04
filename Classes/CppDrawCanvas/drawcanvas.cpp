@@ -90,8 +90,8 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
     f >> s;
   }
   assert(s.size() >= 17);
-  assert(s.substr(0,8) == std::string("<canvas>"));
-  assert(s.substr(s.size() - 9,9) == std::string("</canvas>"));
+  assert(s.substr(0,8) == "<canvas>");
+  assert(s.substr(s.size() - 9,9) == "</canvas>");
   {
     const std::vector<std::string> v { GetRegexMatches(s,QRegExp("(<color_system>.*</color_system>)")) };
     assert(v.size() == 1);

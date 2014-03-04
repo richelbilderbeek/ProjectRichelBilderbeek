@@ -111,7 +111,7 @@ const std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
     "<concept_map><nodes><node><concept><name>(.*)</name></concept>",
     "$1");
   const std::string c = boost::algorithm::replace_all_copy(b,"</concept_map><student_name>"
-    , std::string("</concept_map><question>") + question + "</question><student_name>");
+    , "</concept_map><question>" + question + "</question><student_name>");
 
 
   const std::string d
@@ -144,8 +144,8 @@ const std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string &s)
 {
   assert(s.size() >= 13);
-  assert(s.substr(0,6) == std::string("<file>"));
-  assert(s.substr(s.size() - 7,7) == std::string("</file>"));
+  assert(s.substr(0,6) == "<file>");
+  assert(s.substr(s.size() - 7,7) == "</file>");
 
   boost::shared_ptr<pvdb::File> f(new File);
   //m_about_str
@@ -227,12 +227,12 @@ const std::string ribi::pvdb::File::GetQuestion() const
 
 const std::string ribi::pvdb::File::GetTempFileName()
 {
-  return std::string("tmp.") + m_filename_extension;
+  return "tmp." + m_filename_extension;
 }
 
 const std::string ribi::pvdb::File::GetTestFileName()
 {
-  return std::string("test.") + m_filename_extension;
+  return "test." + m_filename_extension;
 }
 
 const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
@@ -289,7 +289,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
     const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
     const std::string version = ribi::xml::StripXmlTag(v[0]);
-    if (version == std::string("0.1"))
+    if (version == "0.1")
     {
       xml = ConvertFrom_0_1(xml);
     }
@@ -299,7 +299,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
     const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
     const std::string version = ribi::xml::StripXmlTag(v[0]);
-    if (version == std::string("0.2"))
+    if (version == "0.2")
     {
       xml = ConvertFrom_0_2(xml);
     }
@@ -309,7 +309,7 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::stri
     const std::vector<std::string> v = pvdb::GetRegexMatches(xml,QRegExp("(<version>.*</version>)"));
     assert(v.size() == 1);
     const std::string version = ribi::xml::StripXmlTag(v[0]);
-    if (version == std::string("0.3"))
+    if (version == "0.3")
     {
       xml = ConvertFrom_0_3(xml);
     }
@@ -537,8 +537,8 @@ const std::string ribi::pvdb::File::ToXml(const File& file)
 
   const std::string r = s.str();
   assert(r.size() >= 13);
-  assert(r.substr(0,6) == std::string("<file>"));
-  assert(r.substr(r.size() - 7,7) == std::string("</file>"));
+  assert(r.substr(0,6) == "<file>");
+  assert(r.substr(r.size() - 7,7) == "</file>");
 
   return r;
 }

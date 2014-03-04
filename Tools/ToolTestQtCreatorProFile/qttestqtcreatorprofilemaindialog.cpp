@@ -60,7 +60,7 @@ void ribi::QtTestQtCreatorProFileMainDialog::on_button_select_clicked()
   if (!QFile::exists(filename.c_str()))
   {
     ui->text_result->clear();
-    const std::string text = std::string("File '") + filename + std::string("' does not exist.");
+    const std::string text = "File '" + filename + "' does not exist.";
     ui->text_result->setPlainText(text.c_str());
     return;
   }

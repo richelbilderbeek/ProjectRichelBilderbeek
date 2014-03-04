@@ -855,7 +855,7 @@ std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExa
     = boost::numeric::ublas::trans(Matrix::CreateMatrix(n,n, { tau } ));
 
   //Reach a 10% value after 1000 timesteps with the closed-form solution
-  const std::string input = std::string("exp(-") + boost::lexical_cast<std::string>(gamma) + "*(t+1))";
+  const std::string input = "exp(-" + boost::lexical_cast<std::string>(gamma) + "*(t+1))";
   const std::vector<std::string> inputs = { input };
 
   const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
@@ -1018,8 +1018,8 @@ std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExa
       } ));
 
   //Reach a 10% value after 1000 timesteps with the closed-form solution
-  const std::string input1 = std::string("sin(") + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
-  const std::string input2 = std::string("cos(") + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
+  const std::string input1 = "sin(" + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
+  const std::string input2 = "cos(" + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
   const std::vector<std::string> inputs = { input1, input2 };
 
   const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(
@@ -1185,17 +1185,17 @@ std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExa
 
   //Reach a 10% value after 1000 timesteps with the closed-form solution
   const std::string input1
-    = std::string("sin(") + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
+    = "sin(" + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
   const std::string input2
     = boost::lexical_cast<std::string>(angular_frequency)
-    + std::string("*cos(") + boost::lexical_cast<std::string>(angular_frequency)
+    + "*cos(" + boost::lexical_cast<std::string>(angular_frequency)
     + "*(t+1))";
   const std::string input3
-    = std::string("-")
+    = "-"
     + boost::lexical_cast<std::string>(angular_frequency)
-    + std::string("*")
+    + "*"
     + boost::lexical_cast<std::string>(angular_frequency)
-    + std::string("*sin(") + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
+    + "*sin(" + boost::lexical_cast<std::string>(angular_frequency) + "*(t+1))";
   const std::vector<std::string> inputs = { input1, input2, input3 };
 
   const boost::shared_ptr<const StandardKalmanFilterParameters> kalman_filter_parameters(

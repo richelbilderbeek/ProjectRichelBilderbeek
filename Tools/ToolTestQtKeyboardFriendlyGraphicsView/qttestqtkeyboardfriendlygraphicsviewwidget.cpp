@@ -302,7 +302,7 @@ ribi::QtTestKeyboardFriendlyGraphicsViewWidget::QtTestKeyboardFriendlyGraphicsVi
       text.push_back("* *");
       for (int j=0; j!=i; ++j)
       {
-        const std::string s = std::string(j+2,'*') + std::string(" *");
+        const std::string s = std::string(j+2,'*') + " *";
         text.push_back(s);
       }
 

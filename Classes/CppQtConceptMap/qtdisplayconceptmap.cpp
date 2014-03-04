@@ -214,8 +214,9 @@ void ribi::cmap::QtDisplayConceptMap::DoRandomStuff()
   const auto edge_concept = ribi::cmap::ConceptFactory().GetTests().at(index);
   const double node_x = 12.34; //Just some coordinat
   const double node_y = 45.67; //Just some coordinat
-  const boost::shared_ptr<Edge> edge = cmap::EdgeFactory::Create(
-    edge_concept,node_x,node_y,node_from,true,node_to,true);
+  const boost::shared_ptr<Edge> edge = EdgeFactory().Create(
+    edge_concept,node_x,node_y,node_from,true,node_to,true
+  );
   this->AddEdge(edge);
   const int n_edges_after = boost::numeric_cast<int>(GetConceptMap()->GetEdges().size());
   const int n_nodes_after = boost::numeric_cast<int>(GetConceptMap()->GetNodes().size());

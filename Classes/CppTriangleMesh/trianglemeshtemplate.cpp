@@ -49,7 +49,7 @@ ribi::trim::Template::Template(
       const std::string line = v[n];
       if(n==0) continue; //No idea why this has to be skipped
       const std::vector<std::string> w { SeperateString(line) };
-      if (w.empty() || w[0].empty() ||  w[0] == std::string("#"))
+      if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
         continue;
@@ -89,7 +89,7 @@ ribi::trim::Template::Template(
       const std::string line = v[n];
       if(n==0) continue;
       const std::vector<std::string> w { SeperateString(line) };
-      if (w.empty() || w[0].empty() ||  w[0] == std::string("#"))
+      if (w.empty() || w[0].empty() ||  w[0] == "#")
       {
         //The final comment line
         continue;

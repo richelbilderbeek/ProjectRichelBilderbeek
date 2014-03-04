@@ -70,7 +70,7 @@ void ribi::VisualAbcMainDialog::ConvertToPng(const std::string& s)
 
   {
     const std::string cmd
-      = std::string("convert -density 250 -trim Out.ps ")
+      = "convert -density 250 -trim Out.ps "
       + m_png_filename;
     const int error = std::system(cmd.c_str());
     assert(!error);

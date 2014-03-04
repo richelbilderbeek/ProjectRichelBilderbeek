@@ -1,21 +1,25 @@
 #include "canvascolorsystems.h"
 
+#include <cassert>
+
+#include "trace.h"
+
 boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::m_map;
 
-const boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::CreateMap()
+boost::bimap<ribi::CanvasColorSystem,std::string> ribi::CanvasColorSystems::CreateMap()
 {
   #ifndef NDEBUG
   Test();
   #endif
   boost::bimap<CanvasColorSystem,std::string> m;
   m.insert(boost::bimap<CanvasColorSystem,std::string>::value_type(
-    CanvasColorSystem::invert,std::string("invert")));
+    CanvasColorSystem::invert,"invert"));
   m.insert(boost::bimap<CanvasColorSystem,std::string>::value_type(
-    CanvasColorSystem::normal,std::string("normal")));
+    CanvasColorSystem::normal,"normal"));
   return m;
 }
 
-const std::vector<ribi::CanvasColorSystem> ribi::CanvasColorSystems::GetAll() noexcept
+std::vector<ribi::CanvasColorSystem> ribi::CanvasColorSystems::GetAll() noexcept
 {
   const std::vector<CanvasColorSystem> v {
     CanvasColorSystem::invert,
@@ -33,6 +37,7 @@ void ribi::CanvasColorSystems::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
+  TRACE("Starting ribi::CanvasColorSystems::Test");
   const std::vector<CanvasColorSystem> v = GetAll();
   const std::size_t sz = v.size();
   for (std::size_t i=0; i!=sz; ++i)
@@ -44,10 +49,11 @@ void ribi::CanvasColorSystems::Test() noexcept
     const CanvasColorSystem u = ToType(s);
     assert(u == t);
   }
+  TRACE("Finished ribi::CanvasColorSystems::Test successfully");
 }
 #endif
 
-const std::string ribi::CanvasColorSystems::ToStr(const CanvasColorSystem type) noexcept
+std::string ribi::CanvasColorSystems::ToStr(const CanvasColorSystem type) noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

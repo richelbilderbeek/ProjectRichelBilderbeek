@@ -18,16 +18,15 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   //assert(!m_node);
   assert(widget);
   assert(widget->GetConceptMap().get());
+  assert(CanDoCommand(widget));
 
   m_widget = widget;
   m_nodes = m_widget->GetFocus();
-  assert(m_widget->GetFocus().size() == 2);
-  m_widget->CreateNewEdge(
-
-  cmap::EdgeFactory().C
+  assert(m_nodes.size() == 2);
+  m_edge = m_widget->CreateNewEdge();
 
   assert(m_widget);
-  assert(m_node);
+  assert(m_edge);
 }
 
 void ribi::cmap::CommandCreateNewEdge::Undo() noexcept
@@ -35,9 +34,10 @@ void ribi::cmap::CommandCreateNewEdge::Undo() noexcept
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());
 
-  m_widget->DeleteEdge(m_node);
+  m_widget->DeleteEdge(m_edge);
 
   m_widget = nullptr;
-  m_node = boost::shared_ptr<Edge>();
+  m_nodes.clear();
+  m_edge = boost::shared_ptr<Edge>();
 
 }

@@ -91,6 +91,7 @@ const std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > ribi::QtCreatorPro
 const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& source_folder)
 {
   assert(fileio::IsFolder(source_folder));
+  assert(source_folder.substr(0,6) == "../../");
 
   //Also include .pri files in that folder
   std::vector<std::string> pro_filenames = GetProAndPriFilesInFolder(source_folder);
@@ -173,14 +174,14 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   for (const std::string qrc_filename_raw: pro_file->GetResources())
   {
     const std::string qrc_filename_full
-        = qrc_filename_raw.size() < 7 || qrc_filename_raw.substr(0,6) != std::string("../../")
+        = qrc_filename_raw.size() < 7 || qrc_filename_raw.substr(0,6) != "../../"
         ? ribi::fileio::GetPath(pro_file->GetQtCreatorProFilename())
         //? boost::filesystem::path(pro_file->GetQtCreatorProFilename()).parent_path().string()
             + "/" + qrc_filename_raw
         : qrc_filename_raw;
 
     assert(qrc_filename_full.size() > 6);
-    assert(qrc_filename_full.substr(0,6) == std::string("../../"));
+    assert(qrc_filename_full.substr(0,6) == "../../");
 
     if (!ribi::fileio::IsRegularFile(qrc_filename_full))
     {
@@ -189,8 +190,8 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
       continue;
     }
     assert(ribi::fileio::IsRegularFile(qrc_filename_full));
-    assert(qrc_filename_full.size() > 6 && qrc_filename_full.substr(0,6) == std::string("../../"));
-    assert(qrc_filename_full.size() > 7 && qrc_filename_full.substr(0,7) != std::string("../../."));
+    assert(qrc_filename_full.size() > 6 && qrc_filename_full.substr(0,6) == "../../");
+    assert(qrc_filename_full.size() > 7 && qrc_filename_full.substr(0,7) != "../../.");
     const boost::shared_ptr<const QrcFile> qrc_file(
       new QrcFile(qrc_filename_full));
     assert(qrc_file);
@@ -378,7 +379,7 @@ void ribi::QtCreatorProFileZipScript::Test() noexcept
 std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept
 {
   assert(script.GetProFileName().size() > 6);
-  assert(script.GetProFileName().substr(0,6) == std::string("../../"));
+  assert(script.GetProFileName().substr(0,6) == "../../");
 
   os << "#!/bin/sh" << '\n';
   os << "# Created from file '"
@@ -433,7 +434,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
 
   for (const std::string& s: folder_names)
   {
-    if (s.size() > 6 && s.substr(0,6) == std::string("../../"))
+    if (s.size() > 6 && s.substr(0,6) == "../../")
     {
       os << "mkdir Projects/" <<  s.substr(6,s.size() - 6) << '\n';
     }
@@ -445,11 +446,11 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
 
   for (const std::string& s: file_names)
   {
-    if (s.size() > 6 && s.substr(0,6) == std::string("../../"))
+    if (s.size() > 6 && s.substr(0,6) == "../../")
     {
       os << "cp " << s << " Projects/" + s.substr(6,s.size() - 6) << '\n';
     }
-    else if (s.size() > 3 && s.substr(0,1) != std::string("."))
+    else if (s.size() > 3 && s.substr(0,1) != ".")
     {
       //A file in the .pro file its folder
       os << "cp " << s << " Projects/"
@@ -479,7 +480,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   std::for_each(folder_names.rbegin(),folder_names.rend(),
     [&os](const std::string& s)
     {
-      if (s.size() > 6 && s.substr(0,6) == std::string("../../"))
+      if (s.size() > 6 && s.substr(0,6) == "../../")
       {
          os << "rm Projects/" + s.substr(6,s.size() - 6) << "/*.*" << '\n';
       }
@@ -491,7 +492,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
   std::for_each(folder_names.rbegin(),folder_names.rend(),
     [&os](const std::string& s)
     {
-      if (s.size() > 6 && s.substr(0,6) == std::string("../../"))
+      if (s.size() > 6 && s.substr(0,6) == "../../")
       {
         os << "rmdir Projects/" << s.substr(6,s.size()-6) << '\n';
       }
@@ -508,7 +509,7 @@ std::ostream& ribi::operator<<(std::ostream& os,const QtCreatorProFileZipScript&
     std::ostream_iterator<std::string>(os,"\n"),
       [](const std::string& s)
       {
-        return std::string("# ") + s;
+        return "# " + s;
       }
     );
   }

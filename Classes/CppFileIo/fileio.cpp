@@ -206,8 +206,8 @@ std::string ribi::fileio::GetExtensionWithDot(const std::string& filename) noexc
 {
   return
     ( std::count(filename.begin(),filename.end(),'.')
-    ? std::string(".")
-    : std::string("")
+    ? "."
+    : ""
     )
     + GetExtensionNoDot(filename);
 }
@@ -429,7 +429,7 @@ std::string ribi::fileio::GetSuperFolder(const std::string& folder)
   assert(i < static_cast<int>(folder.size()));
   return
     i == static_cast<int>(std::string::npos)
-    ? std::string("")
+    ? ""
     : folder.substr(0,i);
 }
 
@@ -696,87 +696,87 @@ void ribi::fileio::Test() noexcept
   }
   //GetFileBasename
   {
-    assert(GetFileBasename("") == std::string(""));
-    assert(GetFileBasename("tmp") == std::string("tmp"));
-    assert(GetFileBasename("tmp.") == std::string("tmp"));
-    assert(GetFileBasename("tmp.x") == std::string("tmp"));
-    assert(GetFileBasename("tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("tmp.text") == std::string("tmp"));
-    assert(GetFileBasename("tmp.longextension") == std::string("tmp"));
-    assert(GetFileBasename("input_triangle.txt") == std::string("input_triangle"));
-    assert(GetFileBasename("tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder/tmp") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/My-Folder\\tmp.txt") == std::string("tmp"));
-    assert(GetFileBasename("MyFolder/My_Folder\\tmp.txt") == std::string("tmp"));
+    assert(GetFileBasename("") == "");
+    assert(GetFileBasename("tmp") == "tmp");
+    assert(GetFileBasename("tmp.") == "tmp");
+    assert(GetFileBasename("tmp.x") == "tmp");
+    assert(GetFileBasename("tmp.txt") == "tmp");
+    assert(GetFileBasename("tmp.text") == "tmp");
+    assert(GetFileBasename("tmp.longextension") == "tmp");
+    assert(GetFileBasename("input_triangle.txt") == "input_triangle");
+    assert(GetFileBasename("tmp") == "tmp");
+    assert(GetFileBasename("MyFolder/tmp") == "tmp");
+    assert(GetFileBasename("MyFolder/tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder\\tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/MyFolder/tmp") == "tmp");
+    assert(GetFileBasename("MyFolder/MyFolder/tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/MyFolder\\tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/My-Folder\\tmp.txt") == "tmp");
+    assert(GetFileBasename("MyFolder/My_Folder\\tmp.txt") == "tmp");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameConnectThree")
-      == std::string("GameConnectThree"));
+      == "GameConnectThree");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameAminoAcidFighter")
-      == std::string("GameAminoAcidFighter"));
+      == "GameAminoAcidFighter");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Games/GameK3OpEenRij")
-      == std::string("GameK3OpEenRij"));
+      == "GameK3OpEenRij");
     assert(GetFileBasename("/home/richel/ProjectRichelBilderbeek/Projects/ProjectRichelBilderbeek")
-      == std::string("ProjectRichelBilderbeek"));
+      == "ProjectRichelBilderbeek");
   }
   //GetExtension
   {
-    assert(GetExtensionNoDot("") == std::string(""));
-    assert(GetExtensionNoDot("tmp") == std::string(""));
-    assert(GetExtensionNoDot("tmp.") == std::string(""));
-    assert(GetExtensionNoDot("tmp.x") == std::string("x"));
-    assert(GetExtensionNoDot("tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("tmp.text") == std::string("text"));
-    assert(GetExtensionNoDot("tmp.longextension") == std::string("longextension"));
-    assert(GetExtensionNoDot("input_triangle.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("tmp") == std::string(""));
-    assert(GetExtensionNoDot("MyFolder/tmp") == std::string(""));
-    assert(GetExtensionNoDot("MyFolder/tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder\\tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp") == std::string(""));
-    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/MyFolder\\tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/My-Folder\\tmp.txt") == std::string("txt"));
-    assert(GetExtensionNoDot("MyFolder/My_Folder\\tmp.txt") == std::string("txt"));
+    assert(GetExtensionNoDot("") == "");
+    assert(GetExtensionNoDot("tmp") == "");
+    assert(GetExtensionNoDot("tmp.") == "");
+    assert(GetExtensionNoDot("tmp.x") == "x");
+    assert(GetExtensionNoDot("tmp.txt") == "txt");
+    assert(GetExtensionNoDot("tmp.text") == "text");
+    assert(GetExtensionNoDot("tmp.longextension") == "longextension");
+    assert(GetExtensionNoDot("input_triangle.txt") == "txt");
+    assert(GetExtensionNoDot("tmp") == "");
+    assert(GetExtensionNoDot("MyFolder/tmp") == "");
+    assert(GetExtensionNoDot("MyFolder/tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder\\tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp") == "");
+    assert(GetExtensionNoDot("MyFolder/MyFolder/tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/MyFolder\\tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/My-Folder\\tmp.txt") == "txt");
+    assert(GetExtensionNoDot("MyFolder/My_Folder\\tmp.txt") == "txt");
 
-    assert(GetExtensionWithDot("") == std::string(""));
-    assert(GetExtensionWithDot("tmp") == std::string(""));
-    assert(GetExtensionWithDot("tmp.") == std::string("."));
-    assert(GetExtensionWithDot("tmp.x") == std::string(".x"));
-    assert(GetExtensionWithDot("tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("tmp.text") == std::string(".text"));
-    assert(GetExtensionWithDot("tmp.longextension") == std::string(".longextension"));
-    assert(GetExtensionWithDot("input_triangle.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("tmp") == std::string(""));
-    assert(GetExtensionWithDot("MyFolder/tmp") == std::string(""));
-    assert(GetExtensionWithDot("MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp") == std::string(""));
-    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/My-Folder/tmp.txt") == std::string(".txt"));
-    assert(GetExtensionWithDot("MyFolder/My_Folder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtensionWithDot("") == "");
+    assert(GetExtensionWithDot("tmp") == "");
+    assert(GetExtensionWithDot("tmp.") == ".");
+    assert(GetExtensionWithDot("tmp.x") == ".x");
+    assert(GetExtensionWithDot("tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("tmp.text") == ".text");
+    assert(GetExtensionWithDot("tmp.longextension") == ".longextension");
+    assert(GetExtensionWithDot("input_triangle.txt") == ".txt");
+    assert(GetExtensionWithDot("tmp") == "");
+    assert(GetExtensionWithDot("MyFolder/tmp") == "");
+    assert(GetExtensionWithDot("MyFolder/tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp") == "");
+    assert(GetExtensionWithDot("MyFolder/MyFolder/tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/My-Folder/tmp.txt") == ".txt");
+    assert(GetExtensionWithDot("MyFolder/My_Folder\\tmp.txt") == ".txt");
 
-    assert(GetExtension("") == std::string(""));
-    assert(GetExtension("tmp") == std::string(""));
-    assert(GetExtension("tmp.") == std::string("."));
-    assert(GetExtension("tmp.x") == std::string(".x"));
-    assert(GetExtension("tmp.txt") == std::string(".txt"));
-    assert(GetExtension("tmp.text") == std::string(".text"));
-    assert(GetExtension("tmp.longextension") == std::string(".longextension"));
-    assert(GetExtension("input_triangle.txt") == std::string(".txt"));
-    assert(GetExtension("tmp") == std::string(""));
-    assert(GetExtension("MyFolder/tmp") == std::string(""));
-    assert(GetExtension("MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/MyFolder/tmp") == std::string(""));
-    assert(GetExtension("MyFolder/MyFolder/tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/My_Folder/tmp.txt") == std::string(".txt"));
-    assert(GetExtension("MyFolder/My-Folder\\tmp.txt") == std::string(".txt"));
+    assert(GetExtension("") == "");
+    assert(GetExtension("tmp") == "");
+    assert(GetExtension("tmp.") == ".");
+    assert(GetExtension("tmp.x") == ".x");
+    assert(GetExtension("tmp.txt") == ".txt");
+    assert(GetExtension("tmp.text") == ".text");
+    assert(GetExtension("tmp.longextension") == ".longextension");
+    assert(GetExtension("input_triangle.txt") == ".txt");
+    assert(GetExtension("tmp") == "");
+    assert(GetExtension("MyFolder/tmp") == "");
+    assert(GetExtension("MyFolder/tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/MyFolder/tmp") == "");
+    assert(GetExtension("MyFolder/MyFolder/tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/MyFolder\\tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/My_Folder/tmp.txt") == ".txt");
+    assert(GetExtension("MyFolder/My-Folder\\tmp.txt") == ".txt");
   }
   //GetFilesInFolderRecursive
   {
@@ -916,21 +916,21 @@ void ribi::fileio::Test() noexcept
   }
   //RemovePath
   {
-    assert(RemovePath("x.txt") == std::string("x.txt"));
-    assert(RemovePath("MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another/MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet/Another/MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another\\MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another/MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Another\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\An-other\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\An_other\\MyFolder/x.txt") == std::string("x.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder/x_y.txt") == std::string("x_y.txt"));
-    assert(RemovePath("Yet\\Another\\MyFolder/x-y.txt") == std::string("x-y.txt"));
+    assert(RemovePath("x.txt") == "x.txt");
+    assert(RemovePath("MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Another/MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet/Another/MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Another\\MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Another/MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Another\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another/MyFolder\\x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\An-other\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\An_other\\MyFolder/x.txt") == "x.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder/x_y.txt") == "x_y.txt");
+    assert(RemovePath("Yet\\Another\\MyFolder/x-y.txt") == "x-y.txt");
   }
   //RenameFile
   {

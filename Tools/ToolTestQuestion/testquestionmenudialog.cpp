@@ -51,7 +51,7 @@ ribi::TestQuestionMenuDialog::TestQuestionMenuDialog()
   {
     if (!QFile::exists(filename.c_str()))
     {
-      QFile f( (std::string(":/images/") + filename).c_str() );
+      QFile f( (":/images/" + filename).c_str() );
         f.copy(filename.c_str());
     }
     assert(QFile::exists(filename.c_str()));
