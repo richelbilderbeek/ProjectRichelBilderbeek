@@ -29,7 +29,7 @@ struct Score
   #endif
 
   ///Convert a Score to string
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
 

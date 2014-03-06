@@ -4,7 +4,7 @@
 
 #include "chessplayer.h"
 
-std::string ribi::Chess::PlayerToStr(const Player player)
+std::string ribi::Chess::PlayerToStr(const Player player) noexcept
 {
   switch (player)
   {

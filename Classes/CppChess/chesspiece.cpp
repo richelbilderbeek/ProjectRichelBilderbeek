@@ -75,7 +75,7 @@ ribi::Chess::Color ribi::Chess::Piece::GetColor() const noexcept
   return m_color;
 }
 
-const boost::shared_ptr<const ribi::Chess::Square> ribi::Chess::Piece::GetSquare() const noexcept
+boost::shared_ptr<const ribi::Chess::Square> ribi::Chess::Piece::GetSquare() const noexcept
 {
   return m_square;
 }
@@ -143,7 +143,7 @@ bool ribi::Chess::PieceBishop::CanDoMove(const boost::shared_ptr<const Chess::Mo
   }
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() const
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() const
 {
   const Color color = this->GetColor();
   assert(this->GetSquare());
@@ -154,7 +154,7 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() co
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceBishop::GetMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move> > v;
   for (int i=1; i!=8; ++i)
@@ -325,13 +325,13 @@ bool ribi::Chess::PieceKing::CanDoMove(const boost::shared_ptr<const Chess::Move
   }
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKing::Clone() const
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKing::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceKing(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKing::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKing::GetMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move> > v;
   std::vector<std::pair<int,int> > ds
@@ -408,13 +408,13 @@ bool ribi::Chess::PieceKnight::CanDoMove(const boost::shared_ptr<const Chess::Mo
   }
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKnight::Clone() const
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKnight::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceKnight(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKnight::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKnight::GetMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move> > v;
   std::vector<std::pair<int,int> > ds
@@ -551,13 +551,13 @@ bool ribi::Chess::PiecePawn::CanDoMove(const boost::shared_ptr<const Chess::Move
   return true;
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PiecePawn::Clone() const
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PiecePawn::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PiecePawn(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn::GetMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move> > v;
 
@@ -650,13 +650,13 @@ bool ribi::Chess::PieceQueen::CanDoMove(const boost::shared_ptr<const Chess::Mov
   }
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceQueen::Clone() const
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceQueen::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceQueen(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move> > v;
   for (int i=1; i!=8; ++i)
@@ -822,13 +822,13 @@ bool ribi::Chess::PieceRook::CanDoMove(const boost::shared_ptr<const Chess::Move
   }
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceRook::Clone() const
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceRook::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceRook(*this));
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceRook::GetMoves() const noexcept
 {
   std::vector<boost::shared_ptr<Move> > v;
   for (int i=1; i!=8; ++i)
