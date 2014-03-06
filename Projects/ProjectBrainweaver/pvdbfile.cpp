@@ -31,7 +31,7 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-const std::string ribi::pvdb::File::m_filename_extension = "cmp";
+std::string ribi::pvdb::File::m_filename_extension = "cmp";
 
 ribi::pvdb::File::File()
   : m_about("ProjectVanDenBogaart"),
@@ -78,7 +78,7 @@ void ribi::pvdb::File::AutoSave() const
   this->Save("autosave2." + m_filename_extension);
 }
 
-const std::string ribi::pvdb::File::ConvertFrom_0_1(const std::string& s)
+std::string ribi::pvdb::File::ConvertFrom_0_1(const std::string& s)
 {
   //Put <examples> around existing <example> tags
   const std::string a = boost::algorithm::replace_all_copy(s,"</name><example>","</name><examples><example>");
@@ -93,14 +93,14 @@ const std::string ribi::pvdb::File::ConvertFrom_0_1(const std::string& s)
   return h;
 }
 
-const std::string ribi::pvdb::File::ConvertFrom_0_2(const std::string& s)
+std::string ribi::pvdb::File::ConvertFrom_0_2(const std::string& s)
 {
   const std::string a = boost::algorithm::replace_all_copy(s,"</about><cluster>","</about><assessor_name></assessor_name><cluster>");
   const std::string b = boost::algorithm::replace_all_copy(a,"<version>0.2</version>","<version>0.3</version>");
   return b;
 }
 
-const std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
+std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
 {
   const std::string a
     = boost::algorithm::replace_all_copy(s,"<about>ProjectVanDenBogaart</about>","<about>Brainweaver</about>");
@@ -127,7 +127,7 @@ const std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
   return e;
 }
 
-const std::string ribi::pvdb::File::FileToStr(const std::string& filename)
+std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 {
   assert(fileio::IsRegularFile(filename.c_str()));
   std::string s;
@@ -220,17 +220,17 @@ const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::s
   return f;
 }
 
-const std::string ribi::pvdb::File::GetQuestion() const
+std::string ribi::pvdb::File::GetQuestion() const
 {
   return m_question;
 }
 
-const std::string ribi::pvdb::File::GetTempFileName()
+std::string ribi::pvdb::File::GetTempFileName()
 {
   return "tmp." + m_filename_extension;
 }
 
-const std::string ribi::pvdb::File::GetTestFileName()
+std::string ribi::pvdb::File::GetTestFileName()
 {
   return "test." + m_filename_extension;
 }
@@ -519,7 +519,7 @@ void ribi::pvdb::File::Test() noexcept
 }
 #endif
 
-const std::string ribi::pvdb::File::ToXml(const File& file)
+std::string ribi::pvdb::File::ToXml(const File& file)
 {
   //assert(file.m_cluster);
   //assert(file.m_concept_map);
@@ -563,7 +563,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::File::CreateConceptM
   return p;
 }
 
-const std::string ribi::pvdb::File::DoXpressiveRegexReplace(
+std::string ribi::pvdb::File::DoXpressiveRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str)

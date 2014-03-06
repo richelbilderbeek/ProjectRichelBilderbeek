@@ -94,7 +94,7 @@ void ribi::QtCreatorProFile::DoReplacements(std::vector<std::string>& v)
   }
 }
 
-const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
+ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
 {
   ribi::About a(
     "Richel Bilderbeek",
@@ -108,12 +108,12 @@ const ribi::About ribi::QtCreatorProFile::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::QtCreatorProFile::GetVersion() noexcept
+std::string ribi::QtCreatorProFile::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtCreatorProFile::GetVersionHistory() noexcept
 {
   return {
     "2010-12-19: version 1.0: initial version",
@@ -268,7 +268,7 @@ void ribi::QtCreatorProFile::RemoveComments(std::vector<std::string>& v)
 
 }
 
-const std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
+std::vector<std::string> ribi::QtCreatorProFile::SeperateString(
   const std::string& input,
   const char seperator)
 {

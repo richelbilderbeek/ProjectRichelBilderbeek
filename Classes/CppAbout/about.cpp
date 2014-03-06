@@ -72,7 +72,7 @@ void ribi::About::AddLibrary(const std::string& s) noexcept
   std::sort(m_libraries.begin(),m_libraries.end());
 }
 
-const std::vector<std::string> ribi::About::CreateAboutText() const noexcept
+std::vector<std::string> ribi::About::CreateAboutText() const noexcept
 {
   const std::vector<std::string> v
   {
@@ -87,7 +87,7 @@ const std::vector<std::string> ribi::About::CreateAboutText() const noexcept
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const noexcept
+std::vector<std::string> ribi::About::CreateLibrariesUsedText() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("Libraries and classes used: ");
@@ -98,7 +98,7 @@ const std::vector<std::string> ribi::About::CreateLibrariesUsedText() const noex
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateLicenceText() const noexcept
+std::vector<std::string> ribi::About::CreateLicenceText() const noexcept
 {
   std::vector<std::string> v {
     m_file_title + ", " + m_file_description,
@@ -119,7 +119,7 @@ const std::vector<std::string> ribi::About::CreateLicenceText() const noexcept
   return v;
 }
 
-const std::vector<std::string> ribi::About::CreateVersionHistory() const noexcept
+std::vector<std::string> ribi::About::CreateVersionHistory() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("Version history:");
@@ -131,12 +131,12 @@ const std::vector<std::string> ribi::About::CreateVersionHistory() const noexcep
   return v;
 }
 
-const std::string ribi::About::GetAboutVersion() noexcept
+std::string ribi::About::GetAboutVersion() noexcept
 {
   return "1.7";
 }
 
-const std::vector<std::string> ribi::About::GetAboutVersionHistory() noexcept
+std::vector<std::string> ribi::About::GetAboutVersionHistory() noexcept
 {
   return {
     "2011-01-07: version 1.0: initial version",
@@ -150,14 +150,14 @@ const std::vector<std::string> ribi::About::GetAboutVersionHistory() noexcept
   };
 }
 
-const std::string ribi::About::GetBoostVersion() noexcept
+std::string ribi::About::GetBoostVersion() noexcept
 {
   std::string s = BOOST_LIB_VERSION;
   std::replace(s.begin(),s.end(),'_','.');
   return s;
 }
 
-const std::string ribi::About::GetStlVersion() noexcept
+std::string ribi::About::GetStlVersion() noexcept
 {
   return boost::lexical_cast<std::string>(__VERSION__);
 }

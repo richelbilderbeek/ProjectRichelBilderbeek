@@ -212,12 +212,12 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode() no
   return nodes[i];
 }
 
-const std::string ribi::cmap::Widget::GetVersion() noexcept
+std::string ribi::cmap::Widget::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::cmap::Widget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::cmap::Widget::GetVersionHistory() noexcept
 {
   return {
     "2013-12-xx: Version 1.0: initial version",

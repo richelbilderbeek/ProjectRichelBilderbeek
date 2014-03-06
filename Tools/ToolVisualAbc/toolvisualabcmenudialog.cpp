@@ -20,7 +20,7 @@ int ribi::VisualAbcMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 1;
 }
 
-const ribi::About ribi::VisualAbcMenuDialog::GetAbout() const noexcept
+ribi::About ribi::VisualAbcMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -36,7 +36,7 @@ const ribi::About ribi::VisualAbcMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::VisualAbcMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::VisualAbcMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -50,7 +50,7 @@ const ribi::Help ribi::VisualAbcMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::VisualAbcMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::VisualAbcMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramVisualAbc
@@ -59,12 +59,12 @@ const boost::shared_ptr<const ribi::Program> ribi::VisualAbcMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::VisualAbcMenuDialog::GetVersion() const noexcept
+std::string ribi::VisualAbcMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::VisualAbcMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::VisualAbcMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-05-01: Version 1.0: initial version",

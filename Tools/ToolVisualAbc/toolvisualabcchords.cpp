@@ -1,6 +1,6 @@
 #include "toolvisualabcchords.h"
 
-const std::vector<std::string> ribi::Chords::GetChords()
+std::vector<std::string> ribi::Chords::GetChords()
 {
   std::vector<std::string> v;
   v.push_back("Am: A  C  E: [ACE]");

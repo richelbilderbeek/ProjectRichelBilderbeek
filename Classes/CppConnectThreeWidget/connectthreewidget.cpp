@@ -81,12 +81,12 @@ void ribi::con3::ConnectThreeWidget::DoMove(const int x,const int y) noexcept
   m_game->DoMove(x,y);
 }
 
-const std::string ribi::con3::ConnectThreeWidget::GetVersion() noexcept
+std::string ribi::con3::ConnectThreeWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::con3::ConnectThreeWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::con3::ConnectThreeWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-04-20: version 1.0: initial version"

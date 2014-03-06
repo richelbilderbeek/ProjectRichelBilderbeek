@@ -23,7 +23,7 @@ bool ribi::cmap::IsCenterNode(const boost::shared_ptr<const ribi::cmap::Node> no
   return boost::dynamic_pointer_cast<const CenterNode>(node).get();
 }
 
-const std::string ribi::cmap::CenterNode::ToXml() const noexcept
+std::string ribi::cmap::CenterNode::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<center_node>";

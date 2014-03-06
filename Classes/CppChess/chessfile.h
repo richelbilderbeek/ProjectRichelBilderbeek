@@ -17,10 +17,10 @@ struct File
   explicit File(const int x);
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Test this class
   static void Test() noexcept;
@@ -41,7 +41,6 @@ struct File
 
   private:
   const std::string m_s;
-
 
   ///Convert 0 to 'a', 1 to 'b', etc...
   static std::string IntToCharToStr(const int x);

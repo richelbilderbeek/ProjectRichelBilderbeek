@@ -160,12 +160,12 @@ const boost::shared_ptr<const ribi::kalman::FixedLagSmootherKalmanFilterParamete
 }
 
 
-const std::string ribi::kalman::FixedLagSmootherKalmanFilter::GetVersion() noexcept
+std::string ribi::kalman::FixedLagSmootherKalmanFilter::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::FixedLagSmootherKalmanFilter::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::FixedLagSmootherKalmanFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-05-03: version 1.0: initial version"

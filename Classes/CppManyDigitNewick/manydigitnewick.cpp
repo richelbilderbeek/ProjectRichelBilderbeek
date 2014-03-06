@@ -139,12 +139,12 @@ int ribi::ManyDigitNewick::GetSumTermsAboveZero() const
   return m_sum_terms_above_zero;
 }
 
-const std::string ribi::ManyDigitNewick::GetVersion() noexcept
+std::string ribi::ManyDigitNewick::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ManyDigitNewick::GetVersionHistory() noexcept
 {
   return {
     "2010-08-22: version 1.0: initial version",

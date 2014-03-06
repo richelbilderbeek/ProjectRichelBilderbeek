@@ -89,7 +89,7 @@ ribi::Question * ribi::OpenQuestion::Clone() const noexcept
   );
 }
 
-const std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::string& input)
+std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::string& input)
 {
   const std::vector<std::string> v = SeperateString(input,',');
   if (v.size() != 3)
@@ -110,7 +110,7 @@ const std::vector<std::string> ribi::OpenQuestion::ExtractAnswers(const std::str
 //  this->GetCorrectAnswers()
 //}
 
-const std::vector<std::string> ribi::OpenQuestion::GetInvalidOpenQuestions() noexcept
+std::vector<std::string> ribi::OpenQuestion::GetInvalidOpenQuestions() noexcept
 {
   return {
     "-,1+1=,2,3", //Incorrect options are
@@ -137,7 +137,7 @@ const std::vector<std::string> ribi::OpenQuestion::GetInvalidOpenQuestions() noe
   };
 }
 
-const std::vector<std::string> ribi::OpenQuestion::GetValidOpenQuestions() noexcept
+std::vector<std::string> ribi::OpenQuestion::GetValidOpenQuestions() noexcept
 {
   return {
     "-,1+1=,2",
@@ -147,12 +147,12 @@ const std::vector<std::string> ribi::OpenQuestion::GetValidOpenQuestions() noexc
 }
 
 
-const std::string ribi::OpenQuestion::GetVersion() noexcept
+std::string ribi::OpenQuestion::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
+std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
 {
   return {
     "2011-06-27: version 1.0: initial version",
@@ -161,7 +161,7 @@ const std::vector<std::string> ribi::OpenQuestion::GetVersionHistory() noexcept
   };
 }
 
-const std::vector<std::string> ribi::OpenQuestion::SeperateString(
+std::vector<std::string> ribi::OpenQuestion::SeperateString(
   const std::string& input,
   const char seperator) noexcept
 {
@@ -288,7 +288,7 @@ void ribi::OpenQuestion::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::OpenQuestion::ToLines() const
+std::vector<std::string> ribi::OpenQuestion::ToLines() const
 {
   std::vector<std::string> v;
 
@@ -320,7 +320,7 @@ const std::vector<std::string> ribi::OpenQuestion::ToLines() const
   return v;
 }
 
-const std::string ribi::OpenQuestion::ToStr() const noexcept
+std::string ribi::OpenQuestion::ToStr() const noexcept
 {
   //Concatenate the correct answer
   assert(!this->GetCorrectAnswers().empty());

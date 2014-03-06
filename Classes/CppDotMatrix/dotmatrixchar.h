@@ -37,7 +37,7 @@ struct DotMatrixChar
   int GetMatrixWidth() const noexcept { return 5; }
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ~DotMatrixChar() noexcept {}

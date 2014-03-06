@@ -44,12 +44,12 @@ ribi::ShinyButton::ShinyButton(
 
 }
 
-const std::string ribi::ShinyButton::GetVersion() noexcept
+std::string ribi::ShinyButton::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::ShinyButton::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ShinyButton::GetVersionHistory() noexcept
 {
   return {
     "2011-09-21: Version 1.0: initial version"

@@ -108,12 +108,12 @@ void ribi::ruco::ClockWidget::Flip() noexcept
   m_signal_widget_flipped();
 }
 
-const std::string ribi::ruco::ClockWidget::GetVersion() noexcept
+std::string ribi::ruco::ClockWidget::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::ruco::ClockWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::ClockWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-01: Version 1.0: initial version",

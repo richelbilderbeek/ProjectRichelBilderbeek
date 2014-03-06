@@ -109,12 +109,12 @@ int ribi::TicTacToe::GetSummarizedState() const
   return z;
 }
 
-const std::string ribi::TicTacToe::GetVersion() noexcept
+std::string ribi::TicTacToe::GetVersion() noexcept
 {
   return "1.5";
 }
 
-const std::vector<std::string> ribi::TicTacToe::GetVersionHistory() noexcept
+std::vector<std::string> ribi::TicTacToe::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
     "2010-09-19: version 1.3: made CanDoMove method a const member function",

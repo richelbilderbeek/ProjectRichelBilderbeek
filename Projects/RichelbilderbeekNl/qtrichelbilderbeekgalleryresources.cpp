@@ -111,12 +111,12 @@ ribi::QtResources::QtResources()
   }
 }
 
-const std::string ribi::QtResources::GetVersion() noexcept
+std::string ribi::QtResources::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtResources::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version",

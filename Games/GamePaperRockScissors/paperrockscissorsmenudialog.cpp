@@ -25,7 +25,7 @@ int ribi::PaperRockScissorsMenuDialog::ExecuteSpecific(const std::vector<std::st
   return 0;
 }
 
-const ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
+ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,7 +40,7 @@ const ribi::About ribi::PaperRockScissorsMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::PaperRockScissorsMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::PaperRockScissorsMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -54,7 +54,7 @@ const ribi::Help ribi::PaperRockScissorsMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::PaperRockScissorsMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::PaperRockScissorsMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPaperRockScissors
@@ -63,12 +63,12 @@ const boost::shared_ptr<const ribi::Program> ribi::PaperRockScissorsMenuDialog::
   return p;
 }
 
-const std::string ribi::PaperRockScissorsMenuDialog::GetVersion() const noexcept
+std::string ribi::PaperRockScissorsMenuDialog::GetVersion() const noexcept
 {
   return "0.1";
 }
 
-const std::vector<std::string> ribi::PaperRockScissorsMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::PaperRockScissorsMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-07-13: version 0.1: conformized to ProjectRichelBilderbeekConsoleS"

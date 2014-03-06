@@ -44,12 +44,12 @@ ribi::Chess::Color ribi::Chess::Square::GetColor() const
   return ((this->GetFile().ToInt() + this->GetRank().ToInt()) % 2 == 1 ? Color::white : Color::black);
 }
 
-const std::string ribi::Chess::Square::GetVersion()
+std::string ribi::Chess::Square::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Square::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("2012-01-25: version 1.0: initial version");
@@ -188,7 +188,7 @@ void ribi::Chess::Square::Test() noexcept
 }
 #endif
 
-const std::string ribi::Chess::Square::ToStr() const
+std::string ribi::Chess::Square::ToStr() const
 {
   std::string s
     = boost::lexical_cast<std::string>(GetFile().ToStr())

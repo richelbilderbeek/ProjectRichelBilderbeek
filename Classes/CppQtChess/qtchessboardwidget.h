@@ -78,10 +78,10 @@ struct QtChessBoardWidget : public QWidget
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Obtain the QtChessBoardWidget its version
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the QtChessBoardWidget its version history
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   protected:
 

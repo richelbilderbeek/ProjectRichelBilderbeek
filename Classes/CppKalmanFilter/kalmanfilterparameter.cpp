@@ -35,7 +35,7 @@ bool ribi::kalman::KalmanFilterParameter::IsVector(const KalmanFilterParameterTy
   return type == KalmanFilterParameterType::initial_state_estimate;
 }
 
-const std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
+std::string ribi::kalman::KalmanFilterParameter::ToDescription(const KalmanFilterParameterType type)
 {
   switch (type)
   {
@@ -63,7 +63,7 @@ const std::string ribi::kalman::KalmanFilterParameter::ToDescription(const Kalma
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
+std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilterParameterType type)
 {
   switch (type)
   {
@@ -91,7 +91,7 @@ const std::string ribi::kalman::KalmanFilterParameter::ToName(const KalmanFilter
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
+std::string ribi::kalman::KalmanFilterParameter::ToSymbol(const KalmanFilterParameterType type)
 {
   switch (type)
   {

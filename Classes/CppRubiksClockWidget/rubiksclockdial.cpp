@@ -52,12 +52,12 @@ ribi::ruco::ClockDial::ClockDial(
   this->Turn(-1);
 }
 
-const std::string ribi::ruco::ClockDial::GetVersion() noexcept
+std::string ribi::ruco::ClockDial::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ruco::ClockDial::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::ClockDial::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version, called RubiksClockDial",

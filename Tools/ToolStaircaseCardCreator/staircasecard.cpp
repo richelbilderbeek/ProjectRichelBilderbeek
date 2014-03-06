@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <cassert>
+#include <cmath>
 
 #include <QImage>
 
@@ -101,11 +102,102 @@ boost::shared_ptr<ribi::scc::StaircaseCard> ribi::scc::StaircaseCard::GetTest(co
 
 }
 
+int ribi::scc::StaircaseCard::RateAesthetics() const noexcept
+{
+  const int n_cols { static_cast<int>(m_v.size()) };
+  const int n_rows { m_v[0].GetMax() };
+
+  //Number of alterations: increase livelyhood
+  int n_alterations = 0;
+
+  for (int y=0; y!=n_cols; ++y)
+  {
+    const Column& column { m_v[y] };
+    for (int x=0; x!=n_rows-1; ++x)
+    {
+      n_alterations += (column.GetOrientation(x) != column.GetOrientation(x+1) ? 1 : 0);
+    }
+  }
+
+  //Number of vertical lines: increase coherence
+  int n_vertical_merges = 0;
+  int n_vertical_diffs = 0;
+  for (int y=0; y!=n_cols-1; ++y)
+  {
+    assert(m_v[y].GetMax() == m_v[y+1].GetMax());
+    const std::vector<int> a { ColumnToMap(m_v[y  ]) };
+    const std::vector<int> b { ColumnToMap(m_v[y+1]) };
+    for (int x=0; x!=n_rows; ++x)
+    {
+      n_vertical_merges += (a[x] == b[x] ? 1 : 0);
+      n_vertical_diffs  += (a[x] != b[x] ? 1 : 0);
+    }
+  }
+
+  //Number of triangle: increase complexity
+  int n_triangles = 0;
+  for (int y=0; y!=n_cols-1; ++y)
+  {
+    assert(m_v[y].GetMax() == m_v[y+1].GetMax());
+    const std::vector<int> a { ColumnToMap(m_v[y  ]) };
+    const std::vector<int> b { ColumnToMap(m_v[y+1]) };
+    for (int x=0; x!=n_rows-1; ++x)
+    {
+      n_triangles +=
+          (a[x] == b[x] && std::abs(a[x+1] - b[x]) <= 1 && std::abs(b[x+1] - b[x]) > 1 ? 1 : 0)
+        + (a[x] == b[x] && std::abs(b[x+1] - b[x]) <= 1 && std::abs(a[x+1] - b[x]) > 1 ? 1 : 0);
+    }
+  }
+  //TRACE(n_alterations);
+  //TRACE(n_vertical_merges);
+  //TRACE(n_triangles);
+  //assert(n_triangles == 0);
+
+  int result
+    = (n_alterations)
+    + (n_vertical_merges * n_vertical_merges)
+    + (n_vertical_diffs * n_vertical_diffs)
+    + (n_triangles * n_triangles * n_triangles * n_triangles)
+  ;
+
+  return result;
+}
+
 void ribi::scc::StaircaseCard::Shuffle() noexcept
 {
   std::for_each(m_v.begin()+1,m_v.end()-1,
     [](Column& col) {col.Shuffle();}
   );
+}
+
+void ribi::scc::StaircaseCard::ShuffleAesthetic() noexcept
+{
+  Shuffle();
+  int n = RateAesthetics();
+  for (int i=0; i!=1000; ++i)
+  {
+    const int n_cols { static_cast<int>(m_v.size()) };
+    const int n_rows { m_v[0].GetMax() };
+    const int y { 1 + (std::rand() % ( n_cols - 2)) };
+    Column& column = m_v[y];
+    for (int j=0; j!=n_rows; ++j)
+    {
+      const int x1 { 1 + (std::rand() % (n_rows - 2)) };
+      const int x2 { 1 + (std::rand() % (n_rows - 2)) };
+      column.Swap(x1,x2);
+      const int new_n { RateAesthetics() };
+      if (new_n > n)
+      {
+        n = new_n;
+        i = 0;
+        TRACE(n);
+      }
+      else
+      {
+        column.Swap(x1,x2);
+      }
+    }
+  }
 }
 
 boost::shared_ptr<QImage> ribi::scc::StaircaseCard::ToImage() const noexcept
@@ -242,7 +334,6 @@ boost::shared_ptr<ribi::TextCanvas> ribi::scc::StaircaseCard::ToTextCanvas() con
         a[x] == b[x] ? ' ' : '-'
       );
     }
-
   }
 
   for (int y=0; y!=height; ++y)

@@ -53,7 +53,7 @@ int ribi::SimMysteryMachineMenuDialog::ExecuteSpecific(const std::vector<std::st
   return 1;
 }
 
-const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
+ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -77,7 +77,7 @@ const ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::SimMysteryMachineMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::SimMysteryMachineMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -91,7 +91,7 @@ const ribi::Help ribi::SimMysteryMachineMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::SimMysteryMachineMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::SimMysteryMachineMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramSimMysteryMachine
@@ -100,12 +100,12 @@ const boost::shared_ptr<const ribi::Program> ribi::SimMysteryMachineMenuDialog::
   return p;
 }
 
-const std::string ribi::SimMysteryMachineMenuDialog::GetVersion() const noexcept
+std::string ribi::SimMysteryMachineMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::SimMysteryMachineMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version (web application version not working yet)",

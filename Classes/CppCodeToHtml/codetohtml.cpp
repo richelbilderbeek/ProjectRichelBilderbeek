@@ -172,7 +172,7 @@ void ribi::c2h::Test()
 }
 #endif
 
-const std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& folder)
 {
   std::vector<std::string> files {
     FilterFiles(
@@ -183,7 +183,7 @@ const std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::stri
   return files;
 }
 
-const std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files)
+std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& files)
 {
   std::vector<std::string> v;
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
@@ -205,7 +205,7 @@ const std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::str
 }
 
 
-const std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
+std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
 {
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)

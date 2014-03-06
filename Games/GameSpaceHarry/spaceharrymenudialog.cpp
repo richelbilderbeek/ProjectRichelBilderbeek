@@ -18,7 +18,7 @@ int ribi::SpaceHarryMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   return 1;
 }
 
-const ribi::About ribi::SpaceHarryMenuDialog::GetAbout() const noexcept
+ribi::About ribi::SpaceHarryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -33,7 +33,7 @@ const ribi::About ribi::SpaceHarryMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::SpaceHarryMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::SpaceHarryMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -47,7 +47,7 @@ const ribi::Help ribi::SpaceHarryMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::SpaceHarryMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::SpaceHarryMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramSpaceHarry
@@ -56,12 +56,12 @@ const boost::shared_ptr<const ribi::Program> ribi::SpaceHarryMenuDialog::GetProg
   return p;
 }
 
-const std::string ribi::SpaceHarryMenuDialog::GetVersion() const noexcept
+std::string ribi::SpaceHarryMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::SpaceHarryMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::SpaceHarryMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 1.1: conformized to ProjectRichelBilderbeekConsole"

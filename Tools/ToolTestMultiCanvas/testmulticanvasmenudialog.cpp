@@ -78,7 +78,7 @@ int ribi::TestMultiCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 0;
 }
 
-const ribi::About ribi::TestMultiCanvasMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestMultiCanvasMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -95,7 +95,7 @@ const ribi::About ribi::TestMultiCanvasMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestMultiCanvasMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestMultiCanvasMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -109,7 +109,7 @@ const ribi::Help ribi::TestMultiCanvasMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestMultiCanvasMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestMultiCanvasMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestMultiCanvas
@@ -118,12 +118,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestMultiCanvasMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::TestMultiCanvasMenuDialog::GetVersion() const noexcept
+std::string ribi::TestMultiCanvasMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestMultiCanvasMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestMultiCanvasMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2014-01-13: version 1.0: initial desktop version",

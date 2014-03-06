@@ -74,12 +74,12 @@ void ribi::MysteryMachineWidget::Click(const int x, const int y) noexcept
   }
 }
 
-const std::string ribi::MysteryMachineWidget::GetVersion() noexcept
+std::string ribi::MysteryMachineWidget::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MysteryMachineWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",

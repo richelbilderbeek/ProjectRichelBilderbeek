@@ -34,9 +34,9 @@ int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector
   {
     std::srand(std::time(0));
     boost::shared_ptr<StaircaseCard> card {
-      new StaircaseCard(6,10)
+      new StaircaseCard(8,10)
     };
-    card->Shuffle();
+    card->ShuffleAesthetic();
     std::cout << (*card->ToTextCanvasCompact()) << '\n';
     std::cout << (*card->ToTextCanvas()) << '\n';
   }
@@ -49,7 +49,7 @@ const ribi::About ribi::scc::StaircaseCardCreatorMenuDialog::GetAbout() const no
     "Richel Bilderbeek",
     "StaircaseCardCreator",
     "tool to generate staircase cards",
-    "the 26th of Februari 2014",
+    "the 6th of March 2014",
     "2010-2014",
     "http://www.richelbilderbeek.nl/ToolStaircaseCardCreator.htm",
     GetVersion(),
@@ -82,14 +82,15 @@ const boost::shared_ptr<const ribi::Program> ribi::scc::StaircaseCardCreatorMenu
 
 const std::string ribi::scc::StaircaseCardCreatorMenuDialog::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 const std::vector<std::string> ribi::scc::StaircaseCardCreatorMenuDialog::GetVersionHistory() const noexcept
 {
   const std::vector<std::string> v {
-    "20xx-xx-xx: version 1.0: initial version",
-    "2014-02-26: version 1.1: first versioning"
+    "2010-xx-xx: version 1.0: initial version",
+    "2014-02-26: version 1.1: first versioning",
+    "2014-03-06: version 1.2: added aesthetic functions"
   };
   return v;
 }

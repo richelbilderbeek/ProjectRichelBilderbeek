@@ -71,12 +71,12 @@ const boost::shared_ptr<const ribi::Question> ribi::MultipleChoiceQuestionDialog
   return m_question;
 }
 
-const std::string ribi::MultipleChoiceQuestionDialog::GetVersion() noexcept
+std::string ribi::MultipleChoiceQuestionDialog::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MultipleChoiceQuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-29: version 1.0: initial version",

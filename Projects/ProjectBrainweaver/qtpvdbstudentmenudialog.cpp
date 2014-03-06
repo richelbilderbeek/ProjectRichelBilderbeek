@@ -34,7 +34,7 @@ ribi::pvdb::QtPvdbStudentMenuDialog::~QtPvdbStudentMenuDialog() noexcept
   delete ui;
 }
 
-const std::string ribi::pvdb::QtPvdbStudentMenuDialog::GetName() const
+std::string ribi::pvdb::QtPvdbStudentMenuDialog::GetName() const
 {
   return ui->edit_name->text().toStdString();
 }

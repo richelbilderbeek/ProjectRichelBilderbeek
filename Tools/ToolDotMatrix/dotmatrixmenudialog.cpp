@@ -94,7 +94,7 @@ int ribi::DotMatrixMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 0;
 }
 
-const ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
+ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -110,7 +110,7 @@ const ribi::About ribi::DotMatrixMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -129,19 +129,19 @@ const ribi::Help ribi::DotMatrixMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::DotMatrixMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::DotMatrixMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramDotMatrix);
   assert(p);
   return p;
 }
 
-const std::string ribi::DotMatrixMenuDialog::GetVersion() const noexcept
+std::string ribi::DotMatrixMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::DotMatrixMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::DotMatrixMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-xx-xx: version 1.0: initial VCL desktop version",

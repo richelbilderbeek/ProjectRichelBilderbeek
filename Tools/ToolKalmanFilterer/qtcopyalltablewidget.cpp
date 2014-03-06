@@ -114,7 +114,7 @@ void ribi::QtCopyAllTableWidget::keyPressEvent(QKeyEvent *event)
   }
 }
 
-const std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
+std::vector<std::string> ribi::QtCopyAllTableWidget::SeperateString(
   const std::string& input,
   const char seperator)
 {

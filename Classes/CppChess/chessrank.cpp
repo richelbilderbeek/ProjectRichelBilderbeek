@@ -52,12 +52,12 @@ ribi::Chess::Rank::Rank(const int y)
   }
 }
 
-const std::string ribi::Chess::Rank::GetVersion()
+std::string ribi::Chess::Rank::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Rank::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");

@@ -224,7 +224,7 @@ void ribi::cmap::Node::Test() noexcept
 }
 #endif
 
-const std::string ribi::cmap::Node::ToXml() const noexcept
+std::string ribi::cmap::Node::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<node>";

@@ -62,7 +62,7 @@ struct Approximator
   void Add(const Key& key, const Value& value);
 
   ///Approximate a key its value
-  const Value Approximate(const Key& key) const;
+  Value Approximate(const Key& key) const;
 
   ///Can only add a value if its key is not present
   bool CanAdd(const Key& key, const Value& ) const noexcept;
@@ -71,16 +71,16 @@ struct Approximator
   const Container& Get() const noexcept { return m_m; }
 
   ///Obtain the lowest key value
-  const Key GetMax() const { assert(!m_m.empty()); return (*m_m.rbegin()).first; }
+  Key GetMax() const { assert(!m_m.empty()); return (*m_m.rbegin()).first; }
 
   ///Obtain the heighest key value
-  const Key GetMin() const { assert(!m_m.empty()); return (*m_m.begin()).first; }
+  Key GetMin() const { assert(!m_m.empty()); return (*m_m.begin()).first; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The container used
@@ -115,7 +115,7 @@ void Approximator<Key,Value,Container>::Add(const Key& key, const Value& value)
 }
 
 template <class Key, class Value, class Container>
-const Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
+Value Approximator<Key,Value,Container>::Approximate(const Key& key) const
 {
   typedef typename Container::const_iterator Iterator;
 
@@ -158,14 +158,14 @@ bool Approximator<Key,Value,Container>::CanAdd(const Key& key, const Value& ) co
 }
 
 template <class Key, class Value, class Container>
-const std::string Approximator<Key,Value,Container>::GetVersion() noexcept
+std::string Approximator<Key,Value,Container>::GetVersion() noexcept
 {
   return "1.0";
 }
 
 ///Obtain the version history of this class
 template <class Key, class Value, class Container>
-const std::vector<std::string> Approximator<Key,Value,Container>::GetVersionHistory() noexcept
+std::vector<std::string> Approximator<Key,Value,Container>::GetVersionHistory() noexcept
 {
   const std::vector<std::string> v {
     "2013-08-22: version 1.0: initial version"

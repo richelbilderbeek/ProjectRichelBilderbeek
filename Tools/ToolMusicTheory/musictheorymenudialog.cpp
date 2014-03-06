@@ -42,7 +42,7 @@ int ribi::MusicTheoryMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
+ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -59,7 +59,7 @@ const ribi::About ribi::MusicTheoryMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::MusicTheoryMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::MusicTheoryMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -73,7 +73,7 @@ const ribi::Help ribi::MusicTheoryMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::MusicTheoryMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::MusicTheoryMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramMusicTheory
@@ -82,12 +82,12 @@ const boost::shared_ptr<const ribi::Program> ribi::MusicTheoryMenuDialog::GetPro
   return p;
 }
 
-const std::string ribi::MusicTheoryMenuDialog::GetVersion() const noexcept
+std::string ribi::MusicTheoryMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::MusicTheoryMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version",

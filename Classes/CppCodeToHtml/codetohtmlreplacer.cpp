@@ -65,7 +65,7 @@ const ribi::c2h::Replacements& ribi::c2h::Replacer::GetReplacementsTxt()
   return *m_replacements_txt;
 }
 
-const std::string ribi::c2h::Replacer::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
+std::string ribi::c2h::Replacer::MultiReplace(const std::string& line, const std::vector<std::pair<std::string,std::string> >& replacements)
 {
   std::string s(line);
   #ifdef DEBUG_PROGRAM_HANGS
@@ -83,7 +83,7 @@ const std::string ribi::c2h::Replacer::MultiReplace(const std::string& line, con
 }
 
 //From http://www.richelbilderbeek.nl/CppReplaceAll.htm
-const std::string ribi::c2h::Replacer::ReplaceAll(
+std::string ribi::c2h::Replacer::ReplaceAll(
   std::string s,
   const std::string& replaceWhat,
   const std::string& replaceWithWhat)
@@ -145,7 +145,7 @@ void ribi::c2h::Replacer::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::c2h::Replacer::ToHtml(
+std::vector<std::string> ribi::c2h::Replacer::ToHtml(
   const std::vector<std::string>& text,
   const FileType file_type
   ) noexcept

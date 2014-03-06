@@ -62,7 +62,7 @@ int ribi::TestTwoDigitNewickMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 0;
 }
 
-const ribi::About ribi::TestTwoDigitNewickMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestTwoDigitNewickMenuDialog::GetAbout() const noexcept
 {
   return About(
     "Richel Bilderbeek",
@@ -76,7 +76,7 @@ const ribi::About ribi::TestTwoDigitNewickMenuDialog::GetAbout() const noexcept
 };
 
 
-const ribi::Help ribi::TestTwoDigitNewickMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestTwoDigitNewickMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -90,7 +90,7 @@ const ribi::Help ribi::TestTwoDigitNewickMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestTwoDigitNewickMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestTwoDigitNewickMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramTestTwoDigitNewick
@@ -98,12 +98,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestTwoDigitNewickMenuDialog:
   assert(p);
   return p;
 }
-const std::string ribi::TestTwoDigitNewickMenuDialog::GetVersion() const noexcept
+std::string ribi::TestTwoDigitNewickMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::TestTwoDigitNewickMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestTwoDigitNewickMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-08-22: version 0.1: initial version, only simple Newicks",

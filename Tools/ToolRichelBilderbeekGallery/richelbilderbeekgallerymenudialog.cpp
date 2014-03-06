@@ -54,7 +54,7 @@ int ribi::GalleryMenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
   return 1;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -95,7 +95,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlClassGallery()
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -135,7 +135,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlGameGallery() 
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery() const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -177,7 +177,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlProjectGallery
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus() const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus() const noexcept
 {
   std::vector<std::string> v;
 
@@ -245,7 +245,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlStatus() const
   return v;
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() const noexcept
 {
   std::vector<std::string> v;
 
@@ -287,7 +287,7 @@ const std::vector<std::string> ribi::GalleryMenuDialog::CreateHtmlToolGallery() 
   return v;
 }
 
-const ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
+ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -303,7 +303,7 @@ const ribi::About ribi::GalleryMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::GalleryMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::GalleryMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -317,7 +317,7 @@ const ribi::Help ribi::GalleryMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::GalleryMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::GalleryMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramRichelBilderbeekGallery
@@ -326,12 +326,12 @@ const boost::shared_ptr<const ribi::Program> ribi::GalleryMenuDialog::GetProgram
   return p;
 }
 
-const std::string ribi::GalleryMenuDialog::GetVersion() const noexcept
+std::string ribi::GalleryMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GalleryMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-02-20: Version 1.0: initial version"
@@ -357,7 +357,7 @@ void ribi::GalleryMenuDialog::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::GalleryMenuDialog::ToHtml(const Program& p) const noexcept
+std::vector<std::string> ribi::GalleryMenuDialog::ToHtml(const Program& p) const noexcept
 {
   std::vector<std::string> v;
   {

@@ -20,7 +20,7 @@ int ribi::StyleSheetSetterMenuDialog::ExecuteSpecific(const std::vector<std::str
   return 1;
 }
 
-const ribi::About ribi::StyleSheetSetterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::StyleSheetSetterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -35,7 +35,7 @@ const ribi::About ribi::StyleSheetSetterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::StyleSheetSetterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::StyleSheetSetterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -49,7 +49,7 @@ const ribi::Help ribi::StyleSheetSetterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::StyleSheetSetterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::StyleSheetSetterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramStyleSheetSetter
@@ -58,12 +58,12 @@ const boost::shared_ptr<const ribi::Program> ribi::StyleSheetSetterMenuDialog::G
   return p;
 }
 
-const std::string ribi::StyleSheetSetterMenuDialog::GetVersion() const noexcept
+std::string ribi::StyleSheetSetterMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::StyleSheetSetterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::StyleSheetSetterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
    "2013-01-09: version 0.1: initial version with a main dialog only",

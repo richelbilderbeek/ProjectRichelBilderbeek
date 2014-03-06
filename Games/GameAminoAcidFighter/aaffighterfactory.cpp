@@ -4,6 +4,7 @@
 
 #include "trace.h"
 #include "aaffighter.h"
+#include "aafmoleculefactory.h"
 
 ribi::aaf::FighterFactory::FighterFactory() noexcept
 {
@@ -12,10 +13,14 @@ ribi::aaf::FighterFactory::FighterFactory() noexcept
   #endif
 }
 
-boost::shared_ptr<ribi::aaf::Fighter> ribi::aaf::FighterFactory::Create(const ribi::aaf::AminoAcid /* a */) const noexcept
+boost::shared_ptr<ribi::aaf::Fighter> ribi::aaf::FighterFactory::Create(const ribi::aaf::AminoAcid a) const noexcept
 {
-  boost::shared_ptr<Fighter> f;
-
+  const boost::shared_ptr<Molecule> molecule {
+    MoleculeFactory().Create(a)
+  };
+  boost::shared_ptr<Fighter> f {
+    new Fighter(molecule)
+  };
   assert(f);
   return f;
 }

@@ -35,7 +35,8 @@
 ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
   const bool show_mesh,
-  const int n_layers
+  const int n_layers,
+  const ::ribi::trim::CreateVerticalFacesStrategy strategy
   )
 {
   PROFILE_FUNC();
@@ -76,7 +77,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       );
 
       const boost::shared_ptr<ribi::trim::CellsCreator> c {
-        ribi::trim::CellsCreatorFactory().Create(t,n_layers,layer_height)
+        ribi::trim::CellsCreatorFactory().Create(
+          t,
+          n_layers,
+          layer_height,
+          strategy
+        )
       };
 
       cells = c->GetCells();
@@ -203,7 +209,8 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     const ribi::trim::TriangleMeshBuilder builder(
       cells,
       filename_result_mesh,
-      boundary_to_patch_field_type_function
+      boundary_to_patch_field_type_function,
+      strategy
     );
     TRACE_FUNC();
   }

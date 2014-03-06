@@ -50,12 +50,12 @@ ribi::Canvas::Canvas()
 
 }
 
-const std::vector<char> ribi::Canvas::GetAsciiArtGradient() noexcept
+std::vector<char> ribi::Canvas::GetAsciiArtGradient() noexcept
 {
   return { 'M','N','m','d','h','y','s','o','+','/',':','-','.','`',' ' };
 }
 
-const std::vector<std::string> ribi::Canvas::GetRegexMatches(
+std::vector<std::string> ribi::Canvas::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -73,12 +73,12 @@ const std::vector<std::string> ribi::Canvas::GetRegexMatches(
 
   return v;
 }
-const std::string ribi::Canvas::GetVersion() noexcept
+std::string ribi::Canvas::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Canvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Canvas::GetVersionHistory() noexcept
 {
   return {
     "2014-01-10: version 1.0: initial version, split up from DrawCanvas"
@@ -86,7 +86,7 @@ const std::vector<std::string> ribi::Canvas::GetVersionHistory() noexcept
 }
 
 template <class Container>
-const typename Container::value_type::value_type ribi::Canvas::MinElement(const Container& v)
+typename Container::value_type::value_type ribi::Canvas::MinElement(const Container& v)
 {
   assert(v.empty() == false && "Container must have a size");
   //Obtain an initial lowest value
@@ -108,7 +108,7 @@ const typename Container::value_type::value_type ribi::Canvas::MinElement(const 
 }
 
 template <class Container>
-const typename Container::value_type::value_type ribi::Canvas::MaxElement(const Container& v)
+typename Container::value_type::value_type ribi::Canvas::MaxElement(const Container& v)
 {
   assert(v.empty() == false && "Container must have a size");
 
@@ -129,7 +129,7 @@ const typename Container::value_type::value_type ribi::Canvas::MaxElement(const 
   return maxValue;
 }
 
-const std::vector<std::string> ribi::Canvas::SeperateString(
+std::vector<std::string> ribi::Canvas::SeperateString(
   const std::string& input,
   const char seperator) noexcept
 {

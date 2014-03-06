@@ -8,7 +8,10 @@ namespace aaf {
 
 struct Bond
 {
-  std::string m_name;
+  Bond(const int n_bonds = 1) : m_n_bonds(n_bonds) {}
+
+  private:
+  int m_n_bonds;
 };
 
 } //~namespace aaf

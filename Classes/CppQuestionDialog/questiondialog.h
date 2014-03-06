@@ -53,7 +53,7 @@ struct QuestionDialog
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Check if an answer has been submitted
   bool HasSubmitted() const { return !m_is_correct.empty(); }

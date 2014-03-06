@@ -34,7 +34,7 @@ int ribi::PlaceholderMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 0;
 }
 
-const ribi::Help ribi::PlaceholderMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::PlaceholderMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),

@@ -10,13 +10,13 @@
 #include "toolvisualabcmaindialog.h"
 #pragma GCC diagnostic pop
 
-const std::string ribi::VisualAbcMainDialog::m_abc_filename = "temp.abc";
-const std::string ribi::VisualAbcMainDialog::m_log_filename = "temp.log";
-const std::string ribi::VisualAbcMainDialog::m_mid_filename = "temp.mid";
-const std::string ribi::VisualAbcMainDialog::m_png_filename = "temp.png";
-const std::string ribi::VisualAbcMainDialog::m_pngs_filename = "temp-0.png";
+std::string ribi::VisualAbcMainDialog::m_abc_filename = "temp.abc";
+std::string ribi::VisualAbcMainDialog::m_log_filename = "temp.log";
+std::string ribi::VisualAbcMainDialog::m_mid_filename = "temp.mid";
+std::string ribi::VisualAbcMainDialog::m_png_filename = "temp.png";
+std::string ribi::VisualAbcMainDialog::m_pngs_filename = "temp-0.png";
 
-const std::vector<std::string> ribi::VisualAbcMainDialog::GetAbcFriday()
+std::vector<std::string> ribi::VisualAbcMainDialog::GetAbcFriday()
 {
   std::vector<std::string> v;
   v.push_back("X:1");

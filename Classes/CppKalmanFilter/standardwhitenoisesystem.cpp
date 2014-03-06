@@ -20,12 +20,12 @@ ribi::kalman::StandardWhiteNoiseSystem::StandardWhiteNoiseSystem(
   assert(m_parameters);
 }
 
-const std::string ribi::kalman::StandardWhiteNoiseSystem::GetVersion() noexcept
+std::string ribi::kalman::StandardWhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version"

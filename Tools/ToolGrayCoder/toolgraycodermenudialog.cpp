@@ -91,7 +91,7 @@ int ribi::GrayCoderMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 1;
 }
 
-const ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
+ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -106,7 +106,7 @@ const ribi::About ribi::GrayCoderMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::GrayCoderMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::GrayCoderMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -122,7 +122,7 @@ const ribi::Help ribi::GrayCoderMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::GrayCoderMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::GrayCoderMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramGrayCoder
@@ -132,12 +132,12 @@ const boost::shared_ptr<const ribi::Program> ribi::GrayCoderMenuDialog::GetProgr
 }
 
 
-const std::string ribi::GrayCoderMenuDialog::GetVersion() const noexcept
+std::string ribi::GrayCoderMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::GrayCoderMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-05-02: version 1.0: initial version in C++ Builder",

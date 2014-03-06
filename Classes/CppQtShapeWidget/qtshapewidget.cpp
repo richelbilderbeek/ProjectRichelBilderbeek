@@ -133,12 +133,12 @@ void ribi::QtShapeWidget::DrawShape(
   painter.drawConvexPolygon(polygon);
 }
 
-const std::string ribi::QtShapeWidget::GetVersion() noexcept
+std::string ribi::QtShapeWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::QtShapeWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtShapeWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2011-07-13: Version 1.0: initial version");

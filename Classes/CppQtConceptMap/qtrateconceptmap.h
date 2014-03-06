@@ -31,8 +31,8 @@ struct QtRateConceptMap : public QtConceptMap
   void DoRandomStuff();
   #endif
 
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///If the user wants to rate the focal concept of the already generated sub concept map
   ///the dialog using this widget must display the tally dialog

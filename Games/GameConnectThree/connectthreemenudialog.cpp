@@ -72,7 +72,7 @@ int ribi::con3::ConnectThreeMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 0;
 }
 
-const ribi::About ribi::con3::ConnectThreeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::con3::ConnectThreeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -89,7 +89,7 @@ const ribi::About ribi::con3::ConnectThreeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::con3::ConnectThreeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::con3::ConnectThreeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -103,7 +103,7 @@ const ribi::Help ribi::con3::ConnectThreeMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::con3::ConnectThreeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::con3::ConnectThreeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramConnectThree
@@ -112,12 +112,12 @@ const boost::shared_ptr<const ribi::Program> ribi::con3::ConnectThreeMenuDialog:
   return p;
 }
 
-const std::string ribi::con3::ConnectThreeMenuDialog::GetVersion() const noexcept
+std::string ribi::con3::ConnectThreeMenuDialog::GetVersion() const noexcept
 {
   return "6.6";
 }
 
-const std::vector<std::string> ribi::con3::ConnectThreeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::con3::ConnectThreeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial version as part of K3OpEenRij",

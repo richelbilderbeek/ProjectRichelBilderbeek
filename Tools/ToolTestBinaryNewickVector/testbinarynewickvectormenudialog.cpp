@@ -32,7 +32,7 @@ int ribi::TestBinaryNewickVectorMenuDialog::ExecuteSpecific(const std::vector<st
   return 1;
 }
 
-const ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -49,7 +49,7 @@ const ribi::About ribi::TestBinaryNewickVectorMenuDialog::GetAbout() const noexc
   return a;
 }
 
-const ribi::Help ribi::TestBinaryNewickVectorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestBinaryNewickVectorMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -63,19 +63,19 @@ const ribi::Help ribi::TestBinaryNewickVectorMenuDialog::GetHelp() const noexcep
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestBinaryNewickVectorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestBinaryNewickVectorMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramTestBinaryNewickVector);
   assert(p);
   return p;
 }
 
-const std::string ribi::TestBinaryNewickVectorMenuDialog::GetVersion() const noexcept
+std::string ribi::TestBinaryNewickVectorMenuDialog::GetVersion() const noexcept
 {
   return "3.2";
 }
 
-const std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestBinaryNewickVectorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-08-20: Version 1.0: initial version, tool was called TestNewickVector",

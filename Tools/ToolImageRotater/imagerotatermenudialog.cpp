@@ -72,7 +72,7 @@ int ribi::ImageRotaterMenuDialog::ExecuteSpecific(const std::vector<std::string>
   return 0;
 }
 
-const ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -88,7 +88,7 @@ const ribi::About ribi::ImageRotaterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -104,7 +104,7 @@ const ribi::Help ribi::ImageRotaterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramImageRotater
@@ -113,12 +113,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ImageRotaterMenuDialog::GetPr
   return p;
 }
 
-const std::string ribi::ImageRotaterMenuDialog::GetVersion() const noexcept
+std::string ribi::ImageRotaterMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::ImageRotaterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ImageRotaterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial Windows-only version",

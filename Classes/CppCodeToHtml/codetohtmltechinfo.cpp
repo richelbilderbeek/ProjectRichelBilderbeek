@@ -121,7 +121,7 @@ ribi::c2h::TechInfo::TechInfo(const std::vector<std::string>& profile_filenames)
 
 }
 
-const std::vector<std::string> ribi::c2h::TechInfo::ToHtml() const
+std::vector<std::string> ribi::c2h::TechInfo::ToHtml() const
 {
   std::vector<std::string> v;
   v.push_back("<h2>Technical facts</h2>");

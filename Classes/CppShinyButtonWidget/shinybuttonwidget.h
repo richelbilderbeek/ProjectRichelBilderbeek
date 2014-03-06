@@ -57,7 +57,7 @@ struct ShinyButtonWidget : public Widget
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///The signal emitted when the ShinyButtonWidget is clicked
   mutable boost::signals2::signal<void (const ShinyButtonWidget* const)> m_signal_clicked;

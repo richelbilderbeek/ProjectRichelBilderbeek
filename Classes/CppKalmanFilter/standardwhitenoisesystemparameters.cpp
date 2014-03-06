@@ -24,12 +24,12 @@ ribi::kalman::StandardWhiteNoiseSystemParameters::StandardWhiteNoiseSystemParame
 
 }
 
-const std::string ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersion() noexcept
+std::string ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::StandardWhiteNoiseSystemParameters::GetVersionHistory() noexcept
 {
   return {
     "2013-04-28: version 1.0: initial version"

@@ -8,6 +8,8 @@
 
 #include "aafatom.h"
 #include "aafbond.h"
+#include "aafmolecule.h"
+#include "aafaminoacid.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -15,6 +17,11 @@ namespace aaf {
 
 struct MoleculeFactory
 {
+  MoleculeFactory() {}
+  boost::shared_ptr<Molecule> Create(const AminoAcid a) const noexcept;
+
+  private:
+  boost::shared_ptr<Molecule> CreateGlycine() const noexcept;
 };
 
 } //~namespace aaf

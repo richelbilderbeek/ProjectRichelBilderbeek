@@ -100,12 +100,12 @@ const std::vector<double>
   }
 }
 
-const std::string ribi::SimpleLinearRegression::GetVersion() noexcept
+std::string ribi::SimpleLinearRegression::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::SimpleLinearRegression::GetVersionHistory() noexcept
+std::vector<std::string> ribi::SimpleLinearRegression::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
     "2013-08-27: version 1.0: initial version, as ToolTestSimpleLinearRegressionMainDialog",

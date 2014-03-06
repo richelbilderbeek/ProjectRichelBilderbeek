@@ -38,7 +38,7 @@ struct SquareSelector
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the location of the cursor
   const boost::shared_ptr<const Square> GetCursor() const { return m_cursor; }

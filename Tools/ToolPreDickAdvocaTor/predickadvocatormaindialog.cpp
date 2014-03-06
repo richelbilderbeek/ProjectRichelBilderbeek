@@ -14,7 +14,7 @@ ribi::PreDickAdvocaTorMainDialog::PreDickAdvocaTorMainDialog(const int seed)
   #endif
 }
 
-const std::vector<std::string> ribi::PreDickAdvocaTorMainDialog::GetTeamNames() noexcept
+std::vector<std::string> ribi::PreDickAdvocaTorMainDialog::GetTeamNames() noexcept
 {
   const std::vector<std::string> v {
     "Algeria",

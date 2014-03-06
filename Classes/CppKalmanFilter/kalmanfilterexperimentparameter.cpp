@@ -469,7 +469,7 @@ void ribi::kalman::KalmanFilterExperimentParameter::Test() noexcept
 }
 #endif
 
-const std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type)
+std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type)
 {
   #ifndef NDEBUG
   Test();
@@ -497,7 +497,7 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(c
   }
 }
 
-const std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type)
+std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type)
 {
   #ifndef NDEBUG
   Test();
@@ -525,7 +525,7 @@ const std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const Ka
   }
 }
 
-const std::string ribi::kalman::KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type)
+std::string ribi::kalman::KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type)
 {
   #ifndef NDEBUG
   Test();

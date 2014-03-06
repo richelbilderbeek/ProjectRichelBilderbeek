@@ -58,7 +58,7 @@ int ribi::maziak::MenuDialog::ExecuteSpecific(const std::vector<std::string>& ar
 
 }
 
-const ribi::About ribi::maziak::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::maziak::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -73,7 +73,7 @@ const ribi::About ribi::maziak::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::maziak::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::maziak::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -87,7 +87,7 @@ const ribi::Help ribi::maziak::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::maziak::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::maziak::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramMaziak
@@ -96,12 +96,12 @@ const boost::shared_ptr<const ribi::Program> ribi::maziak::MenuDialog::GetProgra
   return p;
 }
 
-const std::string ribi::maziak::MenuDialog::GetVersion() const noexcept
+std::string ribi::maziak::MenuDialog::GetVersion() const noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::maziak::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::maziak::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-10-22: version 1.0: Initial version",

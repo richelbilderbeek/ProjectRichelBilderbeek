@@ -110,7 +110,7 @@ boost::shared_ptr<ribi::Chess::Square> ribi::Chess::SquareSelector::GetInitialSq
   return SquareFactory::Create(s);
 }
 
-const std::string ribi::Chess::SquareSelector::GetVersion() noexcept
+std::string ribi::Chess::SquareSelector::GetVersion() noexcept
 {
   return "1.0";
 }
@@ -120,7 +120,7 @@ const boost::shared_ptr<const ribi::Chess::Square> ribi::Chess::SquareSelector::
   return m_selected;
 }
 
-const std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Chess::SquareSelector::GetVersionHistory() noexcept
 {
   return {
     "2012-01-25: version 1.0: initial version"
@@ -193,7 +193,7 @@ void ribi::Chess::SquareSelector::MoveUp()
   }
 }
 
-const std::string ribi::Chess::SquareSelector::ToStr() const
+std::string ribi::Chess::SquareSelector::ToStr() const
 {
   assert(m_cursor);
   std::string s = "Cursor: " + m_cursor->ToStr();

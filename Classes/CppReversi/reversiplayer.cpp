@@ -3,7 +3,7 @@
 #include <cassert>
 #include <stdexcept>
 
-const std::string ribi::reversi::PlayerToStr(const Player player) noexcept
+std::string ribi::reversi::PlayerToStr(const Player player) noexcept
 {
   switch (player)
   {

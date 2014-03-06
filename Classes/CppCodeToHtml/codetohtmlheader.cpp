@@ -26,7 +26,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "codetohtml.h"
 #include "fileio.h"
 
-const std::string ribi::c2h::Header::CreateFilename(
+std::string ribi::c2h::Header::CreateFilename(
   const HeaderType page_type,
   const std::string& filename_original)
 {
@@ -49,7 +49,7 @@ const std::string ribi::c2h::Header::CreateFilename(
   }
 }
 
-const std::string ribi::c2h::Header::CreateTitle(
+std::string ribi::c2h::Header::CreateTitle(
   const HeaderType page_type,
   const std::string& filename)
 {
@@ -77,7 +77,7 @@ const std::string ribi::c2h::Header::CreateTitle(
   }
 }
 
-const std::vector<std::string> ribi::c2h::Header::ToHtml(
+std::vector<std::string> ribi::c2h::Header::ToHtml(
   const HeaderType header_type,
   const std::string& filename
   ) noexcept

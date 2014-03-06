@@ -17,7 +17,7 @@ ribi::maziak::Sprites::Sprites()
   #endif
 }
 
-const std::string ribi::maziak::Sprites::CamelCasify(const std::string& s) noexcept
+std::string ribi::maziak::Sprites::CamelCasify(const std::string& s) noexcept
 {
   std::string t;
   const std::size_t sz = s.size();
@@ -205,7 +205,7 @@ char ribi::maziak::Sprites::ToChar(const ribi::maziak::Sprite sprite) noexcept
   throw std::logic_error("Unknown Sprite");
 }
 
-const std::string ribi::maziak::Sprites::ToStr(const ribi::maziak::Sprite sprite) noexcept
+std::string ribi::maziak::Sprites::ToStr(const ribi::maziak::Sprite sprite) noexcept
 {
   switch (sprite)
   {

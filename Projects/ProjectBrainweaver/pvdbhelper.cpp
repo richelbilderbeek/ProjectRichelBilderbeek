@@ -32,7 +32,7 @@ double ribi::pvdb::GetDistance(const double x1, const double y1, const double x2
   return GetDistance(x1-x2,y1-y2);
 }
 
-const std::vector<std::string> ribi::pvdb::GetRegexMatches(
+std::vector<std::string> ribi::pvdb::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -54,14 +54,14 @@ const std::vector<std::string> ribi::pvdb::GetRegexMatches(
   return v;
 }
 
-const std::vector<std::string> ribi::pvdb::SafeFileToVector(const std::string& filename)
+std::vector<std::string> ribi::pvdb::SafeFileToVector(const std::string& filename)
 {
   std::vector<std::string> v = ribi::fileio::FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }
 
-const std::vector<std::string> ribi::pvdb::SplitXml(const std::string& s)
+std::vector<std::string> ribi::pvdb::SplitXml(const std::string& s)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();
@@ -303,7 +303,7 @@ void ribi::pvdb::TestHelperFunctions()
 }
 #endif
 
-const std::string ribi::pvdb::Unwordwrap(
+std::string ribi::pvdb::Unwordwrap(
   const std::vector<std::string>& v) noexcept
 {
   //Simply concatenate
@@ -312,7 +312,7 @@ const std::string ribi::pvdb::Unwordwrap(
   return t;
 }
 
-const std::vector<std::string> ribi::pvdb::Wordwrap(
+std::vector<std::string> ribi::pvdb::Wordwrap(
   const std::string& s_original, const std::size_t max_len) noexcept
 {
   if (max_len == 0)
@@ -436,7 +436,7 @@ const std::vector<std::string> ribi::pvdb::Wordwrap(
   return v;
 }
 
-const std::vector<std::string> ribi::pvdb::XmlToPretty(const std::string& s)
+std::vector<std::string> ribi::pvdb::XmlToPretty(const std::string& s)
 {
   #ifndef NDEBUG
   pvdb::TestHelperFunctions();

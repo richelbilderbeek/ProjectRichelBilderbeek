@@ -96,12 +96,12 @@ ribi::con3::Square ribi::con3::ConnectThree::GetSquare(const int x, const int y)
   return m_area[x][y];
 }
 
-const std::string ribi::con3::ConnectThree::GetVersion() noexcept
+std::string ribi::con3::ConnectThree::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
+std::vector<std::string> ribi::con3::ConnectThree::GetVersionHistory() noexcept
 {
   return {
     "2010-12-28: version 0.1: initial seperation of game logic from GUI",

@@ -54,12 +54,12 @@ ribi::Led::Led(
     && "An LED intensity must be equal or lower than 1.0 (that is, 100%)");
 }
 
-const std::string ribi::Led::GetVersion() noexcept
+std::string ribi::Led::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::Led::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Led::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version",

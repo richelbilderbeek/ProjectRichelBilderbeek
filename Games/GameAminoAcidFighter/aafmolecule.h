@@ -5,12 +5,16 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/graph/adjacency_list.hpp>
+#include <boost/shared_ptr.hpp>
 
 #include "aafatom.h"
 #include "aafbond.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
+
+struct TextCanvas;
+
 namespace aaf {
 
 struct Molecule
@@ -32,7 +36,15 @@ struct Molecule
     boost::property<boost::graph_name_t,std::string>
   > Graph;
 
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
+
+  //private:
+  Molecule(const Graph& graph) : m_graph(graph) {}
+
+  Graph m_graph;
 };
+
+
 
 } //~namespace aaf {
 } //~namespace ribi {

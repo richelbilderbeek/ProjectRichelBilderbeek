@@ -36,7 +36,7 @@ const boost::shared_ptr<ribi::RegexTesterMainDialog> ribi::RegexTesterQtMainDial
   return d;
 }
 
-const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
+std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const std::string& r) const
 {
@@ -47,7 +47,7 @@ const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
 
 ///Obtain all regex matches in a std::string
 //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
+std::vector<std::string> ribi::RegexTesterQtMainDialog::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -78,7 +78,7 @@ bool ribi::RegexTesterQtMainDialog::GetRegexMatchLine(
   //return boost::regex_match(line,r);
 }
 
-const std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
+std::string ribi::RegexTesterQtMainDialog::GetRegexReplace(
   const std::string& /* str */,
   const std::string& /* regex_str */,
   const std::string& /* format_str */) const

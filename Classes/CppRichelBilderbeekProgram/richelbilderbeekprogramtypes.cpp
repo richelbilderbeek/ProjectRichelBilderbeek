@@ -476,14 +476,14 @@ const std::vector<ribi::ProgramType>
   return v;
 }
 
-const std::string ribi::ProgramTypes::ProgramTypeToEnumName(const ProgramType t) noexcept
+std::string ribi::ProgramTypes::ProgramTypeToEnumName(const ProgramType t) noexcept
 {
   if (m_map_to_enumname.left.empty()) { m_map_to_enumname = CreateEnumNameMap(); }
   assert(m_map_to_enumname.left.find(t) != m_map_to_enumname.left.end());
   return m_map_to_enumname.left.find(t)->second;
 }
 
-const std::string ribi::ProgramTypes::ProgramTypeToScreenName(const ProgramType t) noexcept
+std::string ribi::ProgramTypes::ProgramTypeToScreenName(const ProgramType t) noexcept
 {
   if (m_map_to_screenname.left.empty()) { m_map_to_screenname = CreateEnumNameMap(); }
   assert(m_map_to_screenname.left.find(t) != m_map_to_screenname.left.end());

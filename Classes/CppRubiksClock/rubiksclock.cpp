@@ -440,12 +440,12 @@ const boost::shared_ptr<ribi::ruco::Pegs> ribi::ruco::Clock::CreatePegsFromIndex
   return pegs;
 }
 
-const std::string ribi::ruco::Clock::GetVersion() noexcept
+std::string ribi::ruco::Clock::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ruco::Clock::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ruco::Clock::GetVersionHistory() noexcept
 {
   return {
     "2011-09-08: Version 1.0: initial version",
@@ -453,7 +453,7 @@ const std::vector<std::string> ribi::ruco::Clock::GetVersionHistory() noexcept
   };
 }
 
-const std::string ribi::ruco::Clock::ToXml() const noexcept
+std::string ribi::ruco::Clock::ToXml() const noexcept
 {
   std::stringstream s;
   s

@@ -40,7 +40,7 @@ struct SimpleLinearRegression
   static const std::vector<double> GetAnscombesQuartetY(const int index);
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 private:
 

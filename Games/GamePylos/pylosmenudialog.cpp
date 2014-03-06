@@ -57,7 +57,7 @@ int ribi::pylos::MenuDialog::ExecuteSpecific(const std::vector<std::string>& arg
   return 0;
 }
 
-const ribi::About ribi::pylos::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::pylos::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -78,7 +78,7 @@ const ribi::About ribi::pylos::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::pylos::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::pylos::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -92,7 +92,7 @@ const ribi::Help ribi::pylos::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::pylos::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::pylos::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPylos
@@ -101,12 +101,12 @@ const boost::shared_ptr<const ribi::Program> ribi::pylos::MenuDialog::GetProgram
   return p;
 }
 
-const std::string ribi::pylos::MenuDialog::GetVersion() const noexcept
+std::string ribi::pylos::MenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::pylos::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::pylos::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-22: version 1.0: initial release version",

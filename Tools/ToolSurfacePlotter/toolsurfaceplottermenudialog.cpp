@@ -41,7 +41,7 @@ int ribi::ToolSurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 1;
 }
 
-const ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -58,7 +58,7 @@ const ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolSurfacePlotterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolSurfacePlotterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -72,7 +72,7 @@ const ribi::Help ribi::ToolSurfacePlotterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolSurfacePlotterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolSurfacePlotterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramSurfacePlotter
@@ -81,12 +81,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolSurfacePlotterMenuDialog:
   return p;
 }
 
-const std::string ribi::ToolSurfacePlotterMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolSurfacePlotterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-02-07: version 1.0: initial Windows-only version",

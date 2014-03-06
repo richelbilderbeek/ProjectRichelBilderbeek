@@ -56,7 +56,7 @@ ribi::ImageCanvas::ImageCanvas(
   #endif
 }
 
-const std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
+std::vector<std::string> ribi::ImageCanvas::ConvertGreynessesToAscii(
   const std::vector<std::vector<double> >& image,
   const int width) //How many chars the ASCII image will be wide
 {
@@ -293,12 +293,12 @@ int ribi::ImageCanvas::GetHeight() const noexcept
   return static_cast<int>(m_canvas.size());
 }
 
-const std::string ribi::ImageCanvas::GetVersion() noexcept
+std::string ribi::ImageCanvas::GetVersion() noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ImageCanvas::GetVersionHistory() noexcept
 {
   return {
     "2011-03-23: Version 1.0: initial version, then called AsciiArter",
@@ -370,7 +370,7 @@ void ribi::ImageCanvas::Test() noexcept
 #endif
 
 
-const std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::ImageCanvas::ToStrings() const noexcept
 {
   std::vector<std::vector<double>> canvas { m_canvas };
   if (m_color_system == CanvasColorSystem::invert)

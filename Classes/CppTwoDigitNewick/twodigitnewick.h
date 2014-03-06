@@ -68,7 +68,7 @@ struct TwoDigitNewick
   static void SetTheta(const double theta);
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///m_derivatives contains all the information

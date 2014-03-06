@@ -9,6 +9,8 @@
 #include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/geometry/geometries/polygon.hpp>
 #include <boost/shared_ptr.hpp>
+
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -18,7 +20,8 @@ struct TestTriangleMeshMainDialog
   TestTriangleMeshMainDialog(
     const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
     const bool show_mesh,
-    const int n_layers
+    const int n_layers,
+    const ::ribi::trim::CreateVerticalFacesStrategy strategy
   );
 };
 

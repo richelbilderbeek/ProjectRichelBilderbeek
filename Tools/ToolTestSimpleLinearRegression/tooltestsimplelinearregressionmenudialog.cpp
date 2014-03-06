@@ -24,7 +24,7 @@ int ribi::ToolTestSimpleLinearRegressionMenuDialog::ExecuteSpecific(const std::v
   return 1;
 }
 
-const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -40,7 +40,7 @@ const ribi::About ribi::ToolTestSimpleLinearRegressionMenuDialog::GetAbout() con
   return a;
 }
 
-const ribi::Help ribi::ToolTestSimpleLinearRegressionMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolTestSimpleLinearRegressionMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -54,7 +54,7 @@ const ribi::Help ribi::ToolTestSimpleLinearRegressionMenuDialog::GetHelp() const
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestSimpleLinearRegression
@@ -63,12 +63,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolTestSimpleLinearRegressio
   return p;
 }
 
-const std::string ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolTestSimpleLinearRegressionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-27: version 1.0: initial version",

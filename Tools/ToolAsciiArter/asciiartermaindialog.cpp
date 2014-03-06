@@ -50,7 +50,7 @@ ribi::AsciiArterMainDialog::AsciiArterMainDialog(
 
 
 
-const std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcept
+std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcept
 {
   const boost::shared_ptr<ribi::ImageCanvas> canvas { GetImageCanvas() };
   return canvas->ToStrings();

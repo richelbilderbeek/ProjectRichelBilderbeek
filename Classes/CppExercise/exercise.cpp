@@ -89,7 +89,7 @@ ribi::Exercise::Exercise(const std::string& filename)
   assert(m_current != m_questions.end());
 }
 
-const std::string ribi::Exercise::GetCurrentQuestion() const noexcept
+std::string ribi::Exercise::GetCurrentQuestion() const noexcept
 {
   assert(m_current != m_questions.end());
   return *m_current;
@@ -101,12 +101,12 @@ int ribi::Exercise::GetNumberOfQuestions() const noexcept
   return boost::numeric_cast<int>(m_questions.size());
 }
 
-const std::string ribi::Exercise::GetVersion() noexcept
+std::string ribi::Exercise::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Exercise::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Exercise::GetVersionHistory() noexcept
 {
   return {
     "2011-09-26: Version 1.0: initial version",

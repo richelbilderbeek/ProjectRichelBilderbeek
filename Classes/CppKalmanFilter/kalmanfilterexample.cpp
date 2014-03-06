@@ -1295,7 +1295,7 @@ std::unique_ptr<ribi::kalman::KalmanFilterExample> ribi::kalman::KalmanFilterExa
   return example;
 }
 
-const std::string ribi::kalman::KalmanFilterExample::DisplayAsUblasVector(const std::vector<std::string>& v)
+std::string ribi::kalman::KalmanFilterExample::DisplayAsUblasVector(const std::vector<std::string>& v)
 {
   std::stringstream s;
   s << "[" << v.size() << "](";

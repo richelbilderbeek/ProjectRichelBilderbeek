@@ -271,7 +271,7 @@ int ribi::ProjectRichelBilderbeekMenuDialog::ExecuteSpecific(const std::vector<s
   return 1;
 }
 
-const ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
+ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -2974,7 +2974,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
 }
 
 
-const ribi::Help ribi::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle() + "Console",
@@ -2993,19 +2993,19 @@ const ribi::Help ribi::ProjectRichelBilderbeekMenuDialog::GetHelp() const noexce
 
 
 
-const boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ProjectRichelBilderbeekMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramProjectRichelBilderbeek);
   assert(p);
   return p;
 }
 
-const std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
+std::string ribi::ProjectRichelBilderbeekMenuDialog::GetVersionStatic() noexcept
 {
   return "1.14";
 }
 
-const std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
+std::vector<std::string> ribi::ProjectRichelBilderbeekMenuDialog::GetVersionHistoryStatic() noexcept
 {
   return {
     "2010-12-20: Version 0.1: web-application-only project called 'ProjectWtWebsite', initial setup with BeerWanter and Loose",

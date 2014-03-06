@@ -27,7 +27,14 @@ struct StaircaseCard
 
   static boost::shared_ptr<StaircaseCard> GetTest(const int i) noexcept;
 
+  ///Give a measurement of aesthetics
+  int RateAesthetics() const noexcept;
+
+  ///Create a random card
   void Shuffle() noexcept;
+
+  ///Create a random card with an aesthetic algorithm
+  void ShuffleAesthetic() noexcept;
 
   boost::shared_ptr<QImage> ToImage() const noexcept;
   boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;

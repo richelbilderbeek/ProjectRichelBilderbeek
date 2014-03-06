@@ -49,12 +49,12 @@ ribi::LedWidget::LedWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-const std::string ribi::LedWidget::GetVersion() noexcept
+std::string ribi::LedWidget::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::LedWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::LedWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",

@@ -253,7 +253,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
   return sub_concept_map;
 }
 
-const std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
+std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
   const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
 {
   if (sub_concept_map)

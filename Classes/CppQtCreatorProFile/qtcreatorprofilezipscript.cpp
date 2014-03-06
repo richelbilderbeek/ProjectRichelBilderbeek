@@ -88,7 +88,7 @@ const std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > ribi::QtCreatorPro
   return pro_files;
 }
 
-const std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& source_folder)
+std::string ribi::QtCreatorProFileZipScript::CreateScript(const std::string& source_folder)
 {
   assert(fileio::IsFolder(source_folder));
   assert(source_folder.substr(0,6) == "../../");
@@ -236,7 +236,7 @@ const std::set<std::string> ribi::QtCreatorProFileZipScript::ExtractFilenames(
   return filenames;
 }
 
-const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
+ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
 {
   ribi::About a(
     "Richel Bilderbeek",
@@ -253,25 +253,25 @@ const ribi::About ribi::QtCreatorProFileZipScript::GetAbout() noexcept
   return a;
 }
 
-//const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
+//std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProFilesInFolder(const std::string& folder)
 //{
 //  assert(fileio::IsFolder(folder));
 //  return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 //}
 
-const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProAndPriFilesInFolder(const std::string& folder)
+std::vector<std::string> ribi::QtCreatorProFileZipScript::GetProAndPriFilesInFolder(const std::string& folder)
 {
   assert(fileio::IsFolder(folder));
   const std::vector<std::string> v = ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro|pri)\\>");
   return v;
 }
 
-const std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept
+std::string ribi::QtCreatorProFileZipScript::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() noexcept
 {
   return {
     "2013-05-19: version 1.0: initial version",

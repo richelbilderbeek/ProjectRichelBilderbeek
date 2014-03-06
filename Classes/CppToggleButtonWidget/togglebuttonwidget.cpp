@@ -50,12 +50,12 @@ void ribi::ToggleButtonWidget::Click(const int, const int)
   m_button->Toggle();
 }
 
-const std::string ribi::ToggleButtonWidget::GetVersion() noexcept
+std::string ribi::ToggleButtonWidget::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",

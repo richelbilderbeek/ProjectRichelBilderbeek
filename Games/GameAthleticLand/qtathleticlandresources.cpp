@@ -38,7 +38,7 @@ ribi::athl::QtAthleticLandResources::QtAthleticLandResources()
   }
 }
 
-const std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilenames() const noexcept
+std::vector<std::string> ribi::athl::QtAthleticLandResources::GetAllFilenames() const noexcept
 {
   return {
     GetBackgroundFilename(),

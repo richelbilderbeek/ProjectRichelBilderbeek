@@ -45,8 +45,8 @@ struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
   ~ProjectRichelBilderbeekMenuDialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
   const About GetAbout() const noexcept { return GetAboutStatic(); }
-  const Help GetHelp() const noexcept;
-  const boost::shared_ptr<const Program> GetProgram() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
   //const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }

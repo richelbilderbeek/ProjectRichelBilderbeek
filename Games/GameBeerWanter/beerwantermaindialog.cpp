@@ -97,7 +97,7 @@ int ribi::BeerWanterMainDialog::GetRandomWindowShake() const
     - ((m_level-1)/4);
 }
 
-const std::string ribi::BeerWanterMainDialog::GetWindowTitle() const
+std::string ribi::BeerWanterMainDialog::GetWindowTitle() const
 {
   return "BeerWanter (C) 2005-2014 Richel Bilderbeek. Beer already got: "
     + boost::lexical_cast<std::string>(m_level - 1);

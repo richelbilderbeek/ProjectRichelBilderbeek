@@ -78,12 +78,12 @@ double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
   return Geometry().GetAngle(dx,dy);
 }
 
-const std::string ribi::QtArrowItem::GetVersion() noexcept
+std::string ribi::QtArrowItem::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtArrowItem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtArrowItem::GetVersionHistory() noexcept
 {
   return {
     "2012-11-18: version 1.0: initial version",

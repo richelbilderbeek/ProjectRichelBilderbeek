@@ -38,7 +38,7 @@ bool ribi::c2h::SnippetTypes::CanStrToSnippetType(const std::string& s)
   }
 }
 
-const std::string ribi::c2h::SnippetTypes::SnippetTypeToStr(const SnippetType t)
+std::string ribi::c2h::SnippetTypes::SnippetTypeToStr(const SnippetType t)
 {
   switch (t)
   {

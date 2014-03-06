@@ -29,6 +29,7 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
 ) const noexcept
 {
   std::vector<boost::shared_ptr<Point>> points;
+  assert(edges.size() == 3 || edges.size() == 4);
   for (auto edge: edges)
   {
     points.push_back(edge->GetFrom());
@@ -50,6 +51,7 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const int n = cnt;
   ++cnt;
 
+  assert(points.size() == 3 || points.size() == 4);
 
   const boost::shared_ptr<Face> face(
     new Face(

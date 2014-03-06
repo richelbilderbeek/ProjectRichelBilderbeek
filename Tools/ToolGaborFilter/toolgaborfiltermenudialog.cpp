@@ -43,7 +43,7 @@ int ribi::ToolGaborFilterMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 0;
 }
 
-const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -58,7 +58,7 @@ const ribi::About ribi::ToolGaborFilterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolGaborFilterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolGaborFilterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -72,7 +72,7 @@ const ribi::Help ribi::ToolGaborFilterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolGaborFilterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolGaborFilterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramGaborFilter
@@ -81,12 +81,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolGaborFilterMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::ToolGaborFilterMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolGaborFilterMenuDialog::GetVersion() const noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolGaborFilterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial Windows-only version",

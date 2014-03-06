@@ -44,32 +44,32 @@ struct About
   void AddLibrary(const std::string& s) noexcept;
 
   ///Create the 'about' text
-  const std::vector<std::string> CreateAboutText() const noexcept;
+  std::vector<std::string> CreateAboutText() const noexcept;
 
   ///Create a version history
-  const std::vector<std::string> CreateVersionHistory() const noexcept;
+  std::vector<std::string> CreateVersionHistory() const noexcept;
 
   ///Create a text with all libraries used
-  const std::vector<std::string> CreateLibrariesUsedText() const noexcept;
+  std::vector<std::string> CreateLibrariesUsedText() const noexcept;
 
   ///CreateLicence creates a GPL 3.0 licence.
-  const std::vector<std::string> CreateLicenceText() const noexcept;
+  std::vector<std::string> CreateLicenceText() const noexcept;
 
   ///Obtain the version of this About class itself
-  static const std::string GetAboutVersion() noexcept;
+  static std::string GetAboutVersion() noexcept;
 
   ///Obtain the version history of this About class itself
-  static const std::vector<std::string> GetAboutVersionHistory() noexcept;
+  static std::vector<std::string> GetAboutVersionHistory() noexcept;
 
   ///Get the author of this class
   const std::string& GetAuthor() const noexcept { return m_author; }
 
   ///GetBoostVersion returns the version of the current Boost library.
   ///From http://www.richelbilderbeek.nl/CppGetBoostVersion.htm
-  static const std::string GetBoostVersion() noexcept;
+  static std::string GetBoostVersion() noexcept;
 
   ///Get the author of my classes
-  static const std::string GetDefaultAuthor() noexcept { return "Richel Bilderbeek"; }
+  static std::string GetDefaultAuthor() noexcept { return "Richel Bilderbeek"; }
 
   ///Get the file/class/program its description
   const std::string& GetFileDescription() const noexcept { return m_file_description; }
@@ -86,7 +86,7 @@ struct About
 
   ///GetStlVersion returns the version number of the GCC STL currently installed.
   ///From http://www.richelbilderbeek.nl/CppGetStlVersion.htm
-  static const std::string GetStlVersion() noexcept;
+  static std::string GetStlVersion() noexcept;
 
   ///Get the URL this class can be downloaded from
   const std::string& GetUrl() const noexcept { return m_url; }

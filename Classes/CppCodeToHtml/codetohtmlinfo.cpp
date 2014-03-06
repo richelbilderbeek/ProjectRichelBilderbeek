@@ -425,7 +425,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppGraphExample1.png\">View the graph of this example (png)</a></li>",
+        "  <li><a href=\"CppBoostGraphExample1.png\">View the graph of this example (png)</a></li>",
         "</ul>"
       }
     }
@@ -443,7 +443,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppGraphExample2.png\">View the graph of this example (png)</a></li>",
+        "  <li><a href=\"CppBoostGraphExample2.png\">View the graph of this example (png)</a></li>",
         "</ul>"
       }
     }
@@ -462,7 +462,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppGraphExample3.png\">View the graph of this example (png)</a></li>",
+        "  <li><a href=\"CppBoostGraphExample3.png\">View the graph of this example (png)</a></li>",
         "</ul>"
       }
     }
@@ -480,7 +480,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
         "</p>",
         "<p>&nbsp;</p>",
         "<ul>",
-        "  <li><a href=\"CppGraphExample2.png\">View the graph of this example (png)</a></li>",
+        "  <li><a href=\"CppBoostGraphExample4.png\">View the graph of this example (png)</a></li>",
         "</ul>"
       }
     }
@@ -15093,7 +15093,7 @@ const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePag
   return n;
 }
 
-const std::string ribi::c2h::Info::GetTime() noexcept
+std::string ribi::c2h::Info::GetTime() noexcept
 {
   const std::time_t t = std::time(0);
   const std::string s = std::ctime( &t);
@@ -15101,12 +15101,12 @@ const std::string ribi::c2h::Info::GetTime() noexcept
 }
 
 
-const std::string ribi::c2h::Info::GetVersion() noexcept
+std::string ribi::c2h::Info::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
+std::vector<std::string> ribi::c2h::Info::GetVersionHistory() noexcept
 {
   return {
     "2013-09-20: version 1.0: initial versioning, added tests",
@@ -15166,7 +15166,7 @@ void ribi::c2h::Info::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
+std::vector<std::string> ribi::c2h::Info::ToHtml(const std::string page_name) const
 {
   assert(page_name.find('/') == std::string::npos
     && "A c2h::Info page must not contain a slash");

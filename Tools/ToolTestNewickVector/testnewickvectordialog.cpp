@@ -396,7 +396,7 @@ bool ribi::TestNewickVectorDialog::CheckTheta() noexcept
   return true;
 }
 
-const ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
+ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
 {
   About about(
     "Richel Bilderbeek",
@@ -413,12 +413,12 @@ const ribi::About ribi::TestNewickVectorDialog::GetAbout() noexcept
   return about;
 }
 
-const std::string ribi::TestNewickVectorDialog::GetVersion() noexcept
+std::string ribi::TestNewickVectorDialog::GetVersion() noexcept
 {
   return "3.2";
 }
 
-const std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::TestNewickVectorDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-02-20: Version 1.0: initial version",

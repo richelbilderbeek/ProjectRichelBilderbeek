@@ -69,12 +69,12 @@ const QRectF ribi::QtRoundedTextRectItem::GetTextRect() const
   #endif
 }
 
-const std::string ribi::QtRoundedTextRectItem::GetVersion() noexcept
+std::string ribi::QtRoundedTextRectItem::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::QtRoundedTextRectItem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtRoundedTextRectItem::GetVersionHistory() noexcept
 {
   return {
     "2012-12-19: version 1.0: initial version",

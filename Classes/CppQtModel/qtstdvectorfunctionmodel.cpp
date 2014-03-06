@@ -78,12 +78,12 @@ Qt::ItemFlags ribi::QtStdVectorFunctionModel::flags(const QModelIndex &) const n
   | Qt::ItemIsEnabled;
 }
 
-const std::string ribi::QtStdVectorFunctionModel::GetVersion() noexcept
+std::string ribi::QtStdVectorFunctionModel::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::QtStdVectorFunctionModel::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtStdVectorFunctionModel::GetVersionHistory() noexcept
 {
   return {
     "2013-05-15: version 1.0: initial version",

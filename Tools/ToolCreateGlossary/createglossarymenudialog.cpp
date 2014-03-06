@@ -41,7 +41,7 @@ int ribi::CreateGlossaryMenuDialog::ExecuteSpecific(const std::vector<std::strin
   return 0;
 }
 
-const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
+ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -56,7 +56,7 @@ const ribi::About ribi::CreateGlossaryMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::CreateGlossaryMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::CreateGlossaryMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -70,7 +70,7 @@ const ribi::Help ribi::CreateGlossaryMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::CreateGlossaryMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::CreateGlossaryMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramCreateGlossary
@@ -79,12 +79,12 @@ const boost::shared_ptr<const ribi::Program> ribi::CreateGlossaryMenuDialog::Get
   return p;
 }
 
-const std::string ribi::CreateGlossaryMenuDialog::GetVersion() const noexcept
+std::string ribi::CreateGlossaryMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::CreateGlossaryMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-xx-xx: version 1.0: initial version",

@@ -51,7 +51,7 @@ int ribi::HistogramEqualizationerMenuDialog::ExecuteSpecific(const std::vector<s
   return 0;
 }
 
-const ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -68,7 +68,7 @@ const ribi::About ribi::HistogramEqualizationerMenuDialog::GetAbout() const noex
   return a;
 }
 
-const ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -83,7 +83,7 @@ const ribi::Help ribi::HistogramEqualizationerMenuDialog::GetHelp() const noexce
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramHistogramEqualizationer
@@ -92,12 +92,12 @@ const boost::shared_ptr<const ribi::Program> ribi::HistogramEqualizationerMenuDi
   return p;
 }
 
-const std::string ribi::HistogramEqualizationerMenuDialog::GetVersion() const noexcept
+std::string ribi::HistogramEqualizationerMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::HistogramEqualizationerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::HistogramEqualizationerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-07-11: version 1.0: initial Windows-only version",

@@ -183,13 +183,13 @@ ribi::reversi::Square ribi::reversi::Board::Get(const int x, const int y) const 
   return m_board[y][x];
 }
 
-const std::string ribi::reversi::Board::GetVersion() noexcept
+std::string ribi::reversi::Board::GetVersion() noexcept
 {
   return "2.1";
 }
 
 
-const std::vector<std::string> ribi::reversi::Board::GetVersionHistory() noexcept
+std::vector<std::string> ribi::reversi::Board::GetVersionHistory() noexcept
 {
   return {
     "2007-09-24: version 1.0: initial version developed under C++ Builder, called Reversi",

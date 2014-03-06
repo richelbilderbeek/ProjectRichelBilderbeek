@@ -61,7 +61,7 @@ int ribi::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 0;
 }
 
-const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -76,7 +76,7 @@ const ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TicTacToeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TicTacToeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -90,7 +90,7 @@ const ribi::Help ribi::TicTacToeMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramTicTacToe
@@ -99,12 +99,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TicTacToeMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::TicTacToeMenuDialog::GetVersion() const noexcept
+std::string ribi::TicTacToeMenuDialog::GetVersion() const noexcept
 {
   return "1.6";
 }
 
-const std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TicTacToeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-24: Version 1.0: initial version",

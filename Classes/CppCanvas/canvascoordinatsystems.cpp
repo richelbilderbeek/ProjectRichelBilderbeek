@@ -6,7 +6,7 @@
 
 boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::m_map;
 
-const boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::CreateMap()
+boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordinatSystems::CreateMap()
 {
   #ifndef NDEBUG
   Test();
@@ -19,7 +19,7 @@ const boost::bimap<ribi::CanvasCoordinatSystem,std::string> ribi::CanvasCoordina
   return m;
 }
 
-const std::vector<ribi::CanvasCoordinatSystem> ribi::CanvasCoordinatSystems::GetAll() noexcept
+std::vector<ribi::CanvasCoordinatSystem> ribi::CanvasCoordinatSystems::GetAll() noexcept
 {
   const std::vector<CanvasCoordinatSystem> v {
     CanvasCoordinatSystem::graph,
@@ -54,7 +54,7 @@ void ribi::CanvasCoordinatSystems::Test() noexcept
 #endif
 
 
-const std::string ribi::CanvasCoordinatSystems::ToStr(const CanvasCoordinatSystem type) noexcept
+std::string ribi::CanvasCoordinatSystems::ToStr(const CanvasCoordinatSystem type) noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

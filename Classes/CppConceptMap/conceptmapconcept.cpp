@@ -112,7 +112,7 @@ void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity)
   }
 }
 
-const std::string ribi::cmap::Concept::ToXml() const noexcept
+std::string ribi::cmap::Concept::ToXml() const noexcept
 {
   std::stringstream s;
   s

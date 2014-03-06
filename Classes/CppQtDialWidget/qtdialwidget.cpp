@@ -106,12 +106,12 @@ void ribi::QtDialWidget::DrawDial(
   painter.setPen(initial_pen);
 }
 
-const std::string ribi::QtDialWidget::GetVersion() noexcept
+std::string ribi::QtDialWidget::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::QtDialWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtDialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version",

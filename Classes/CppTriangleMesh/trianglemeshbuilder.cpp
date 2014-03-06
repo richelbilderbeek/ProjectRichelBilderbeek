@@ -23,13 +23,15 @@
 #include "openfoampointindex.h"
 #include "php.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
 ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   const std::vector<boost::shared_ptr<Cell>>& cells,
   const std::string& mesh_filename,
-  const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
+  const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
+  const CreateVerticalFacesStrategy strategy
   )
   : m_cells(cells),
     m_faces(SortByBoundary(ExtractFaces(cells),boundary_to_patch_field_type_function)),
@@ -53,18 +55,21 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   //Remove cells with less than 8 faces or less than 8 faces with an owner
   m_cells.erase(
     std::remove_if(m_cells.begin(),m_cells.end(),
-      [](const boost::shared_ptr<Cell> cell)
+      [strategy](const boost::shared_ptr<Cell> cell)
       {
         const std::vector<boost::shared_ptr<Face>> faces { cell->GetFaces() };
-        assert(faces.size() == 8);
+        const int n_faces_expected {
+          strategy == CreateVerticalFacesStrategy::one_face_per_square ? 5 : 8
+        };
+        assert(static_cast<int>(faces.size()) == n_faces_expected);
         return std::count_if(faces.begin(),faces.end(),
           [](const boost::shared_ptr<Face> face)
           {
             assert(face);
-            assert(face->GetOwner()); //Test: is this loop needed?
+            assert(face->GetOwner());
             return face->GetOwner();
           }
-        ) < 8;
+        ) < n_faces_expected;
       }
     ),
     m_cells.end()
@@ -85,18 +90,22 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   //Remove cells with less than 8 faces or less than 8 faces with an owner
   m_cells.erase(
     std::remove_if(m_cells.begin(),m_cells.end(),
-      [](const boost::shared_ptr<Cell> cell)
+      [strategy](const boost::shared_ptr<Cell> cell)
       {
         const std::vector<boost::shared_ptr<Face>> faces { cell->GetFaces() };
-        assert(faces.size() == 8);
+        const int n_faces_expected {
+          CreateVerticalFacesStrategies().GetFacesPerCell(strategy)
+        };
+
+        assert(static_cast<int>(faces.size()) == n_faces_expected);
         return std::count_if(faces.begin(),faces.end(),
           [](const boost::shared_ptr<Face> face)
           {
             assert(face);
-            assert(face->GetOwner()); //Test: is this loop needed?
+            assert(face->GetOwner());
             return face->GetOwner();
           }
-        ) < 8;
+        ) < n_faces_expected;
       }
     ),
     m_cells.end()

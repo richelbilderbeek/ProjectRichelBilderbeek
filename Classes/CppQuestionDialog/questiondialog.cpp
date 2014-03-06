@@ -45,14 +45,14 @@ ribi::QuestionDialog::QuestionDialog()
   assert(!HasSubmitted());
 }
 
-const std::string ribi::QuestionDialog::AskUserForInput() const noexcept
+std::string ribi::QuestionDialog::AskUserForInput() const noexcept
 {
   std::string t;
   std::getline(std::cin,t);
   return t;
 }
 
-//const std::vector<std::string> ribi::QuestionDialog::GetCorrectAnswers() const noexcept
+//std::vector<std::string> ribi::QuestionDialog::GetCorrectAnswers() const noexcept
 //{
 // return this->GetQuestion()->GetAnswers();
 //}
@@ -111,12 +111,12 @@ void ribi::QuestionDialog::Execute()
   std::cout << std::endl;
 }
 
-const std::string ribi::QuestionDialog::GetVersion() noexcept
+std::string ribi::QuestionDialog::GetVersion() noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::QuestionDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QuestionDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-06-29: version 1.0: initial version",

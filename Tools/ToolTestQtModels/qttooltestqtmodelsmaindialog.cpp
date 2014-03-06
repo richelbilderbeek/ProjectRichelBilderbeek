@@ -54,7 +54,7 @@ ribi::QtToolTestQtModelsMainDialog::~QtToolTestQtModelsMainDialog() noexcept
   delete ui;
 }
 
-const std::string ribi::QtToolTestQtModelsMainDialog::CreateRandomText()
+std::string ribi::QtToolTestQtModelsMainDialog::CreateRandomText()
 {
   const int sz = (std::rand() >> 4) % 10;
   std::string s;
@@ -66,7 +66,7 @@ const std::string ribi::QtToolTestQtModelsMainDialog::CreateRandomText()
   return s;
 }
 
-const std::vector<std::string> ribi::QtToolTestQtModelsMainDialog::CreateRandomTexts()
+std::vector<std::string> ribi::QtToolTestQtModelsMainDialog::CreateRandomTexts()
 {
   const int sz = (std::rand() >> 4) % 10;
   std::vector<std::string> v;

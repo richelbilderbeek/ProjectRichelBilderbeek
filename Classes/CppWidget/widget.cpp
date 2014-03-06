@@ -24,12 +24,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "widget.h"
 #pragma GCC diagnostic pop
 
-const std::string ribi::Widget::GetVersion() noexcept
+std::string ribi::Widget::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Widget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Widget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",

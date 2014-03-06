@@ -81,7 +81,7 @@ struct Clock
   static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Convert to a Canvas
   const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;

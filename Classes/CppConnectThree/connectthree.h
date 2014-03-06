@@ -60,7 +60,7 @@ struct ConnectThree
   int GetRows() const noexcept;
   Square GetSquare(const int x, const int y) const noexcept;
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the index of the winner.
   ///Returns draw if the board is full without a winner

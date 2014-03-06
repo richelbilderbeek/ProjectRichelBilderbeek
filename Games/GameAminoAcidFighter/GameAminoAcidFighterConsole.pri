@@ -10,7 +10,8 @@ SOURCES += \
     ../../Games/GameAminoAcidFighter/aafmolecule.cpp \
     ../../Games/GameAminoAcidFighter/aafatom.cpp \
     ../../Games/GameAminoAcidFighter/aafbond.cpp \
-    ../../Games/GameAminoAcidFighter/aafmoleculefactory.cpp
+    ../../Games/GameAminoAcidFighter/aafmoleculefactory.cpp \
+    ../../Games/GameAminoAcidFighter/aafatomtype.cpp
 
 HEADERS  += \
     ../../Games/GameAminoAcidFighter/aafmenudialog.h \
@@ -22,7 +23,8 @@ HEADERS  += \
     ../../Games/GameAminoAcidFighter/aafmolecule.h \
     ../../Games/GameAminoAcidFighter/aafatom.h \
     ../../Games/GameAminoAcidFighter/aafbond.h \
-    ../../Games/GameAminoAcidFighter/aafmoleculefactory.h
+    ../../Games/GameAminoAcidFighter/aafmoleculefactory.h \
+    ../../Games/GameAminoAcidFighter/aafatomtype.h
 
 OTHER_FILES += \
     ../../Games/GameAminoAcidFighter/Licence.txt

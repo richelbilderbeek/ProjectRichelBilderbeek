@@ -8,6 +8,7 @@
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshtemplate.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
 
 ribi::trim::CellFactory::CellFactory()
@@ -26,9 +27,13 @@ const boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
   const int n = cnt;
   ++cnt;
 
+  assert((faces.size() == 5 || faces.size() == 8)
+    && "A cell (in the shape of a prism) consists out of 5 or 8 faces");
+
   const boost::shared_ptr<Cell> cell {
     new Cell(faces,n,*this)
   };
+  assert(cell);
 
   for (auto face: faces)
   {
@@ -36,11 +41,12 @@ const boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
     face->AddBelongsTo(cell);
   }
 
-  assert(cell);
   return cell;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::CreateTestCube() const noexcept
+const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::CreateTestCube(
+  const CreateVerticalFacesStrategy strategy
+) const noexcept
 {
   const boost::shared_ptr<Template> my_template {
     Template::CreateTest(1)
@@ -48,13 +54,16 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::
   assert(my_template->CountFaces() == 2);
   const int n_layers = 2;
   const boost::shared_ptr<CellsCreator> cells_creator {
-    CellsCreatorFactory().Create(my_template,n_layers,1.0 * boost::units::si::meter)
+    CellsCreatorFactory().Create(
+      my_template,
+      n_layers,
+      1.0 * boost::units::si::meter,
+      strategy
+    )
   };
   const std::vector<boost::shared_ptr<Cell>> cells { cells_creator->GetCells() };
 
   assert(cells.size() == 2 && "A cube consists out of two prisms");
-  assert(cells[0]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
-  assert(cells[1]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
   #ifndef NDEBUG
   for (int i=0; i!=2; ++i)
   {
@@ -62,7 +71,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::
     for (const auto face: faces)
     {
       assert(face);
-      assert(face->GetPoints().size() == 3);
+      assert(face->GetPoints().size() == 3 || face->GetPoints().size() == 4);
     }
   }
   #endif
@@ -96,16 +105,16 @@ void ribi::trim::CellFactory::Test() noexcept
     const boost::shared_ptr<Cell> prism {
       CellFactory().CreateTestPrism()
     };
-    assert(prism->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+    assert((prism->GetFaces().size() == 5 || prism->GetFaces().size() == 8)
+      && "A prism has 5 or 8 faces (as the vertical faces are split into 1 or 2 triangle)");
   }
   //Create cube
+  for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Cell>> cube {
-      CellFactory().CreateTestCube()
+      CellFactory().CreateTestCube(strategy)
     };
     assert(cube.size() == 2 && "A cube consists of two prisms");
-    assert(cube[0]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
-    assert(cube[1]->GetFaces().size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
 
   }
   TRACE("Finished ribi::trim::CellFactory::Test successfully");

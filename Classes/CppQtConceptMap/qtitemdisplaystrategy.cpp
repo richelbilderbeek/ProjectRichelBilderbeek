@@ -69,7 +69,7 @@ const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtItemDisplayStra
   return p;
 }
 
-const std::string ribi::cmap::QtItemDisplayStrategy::GetName() const noexcept
+std::string ribi::cmap::QtItemDisplayStrategy::GetName() const noexcept
 {
   return Unwordwrap(this->GetText());
 }

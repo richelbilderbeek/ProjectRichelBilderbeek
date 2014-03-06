@@ -15,7 +15,7 @@
 ///CreateValidTrinaryNewicks creates std::strings
 ///that can be converted to a TrinaryNewickVector.
 ///From http://www.richelbilderbeek.nl/CppCreateValidTinaryNewicks.htm
-const std::vector<std::string> ribi::NewickCpp98::CreateValidTrinaryNewicks()
+std::vector<std::string> ribi::NewickCpp98::CreateValidTrinaryNewicks()
 {
   std::vector<std::string> v;
   v.push_back("(1,1,1)");

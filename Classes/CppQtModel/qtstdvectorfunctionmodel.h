@@ -47,7 +47,7 @@ struct QtStdVectorFunctionModel: public QAbstractTableModel
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Working with the raw data
   void SetRawData(const std::vector<std::string>& data);

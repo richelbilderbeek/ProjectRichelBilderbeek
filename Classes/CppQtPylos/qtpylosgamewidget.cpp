@@ -88,12 +88,12 @@ ribi::pylos::MustRemoveState ribi::pylos::QtPylosGameWidget::GetMustRemove() con
   return m_pylos->GetMustRemove();
 }
 
-const std::string ribi::pylos::QtPylosGameWidget::GetVersion() noexcept
+std::string ribi::pylos::QtPylosGameWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::QtPylosGameWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::QtPylosGameWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2010-09-22: version 1.2: initial release version");

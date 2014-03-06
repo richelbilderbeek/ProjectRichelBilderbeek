@@ -11,6 +11,7 @@
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfwd.h"
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -41,7 +42,8 @@ struct CellFactory
   const boost::shared_ptr<Cell> CreateTestPrism() const noexcept;
 
 
-  const std::vector<boost::shared_ptr<Cell>> CreateTestCube() const noexcept;
+  const std::vector<boost::shared_ptr<Cell>> CreateTestCube(
+    const CreateVerticalFacesStrategy strategy) const noexcept;
   ///Create two prims-shaped cell to form a cube
   /*
 

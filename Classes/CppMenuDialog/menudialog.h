@@ -34,19 +34,19 @@ struct MenuDialog
   int Execute(const std::vector<std::string>& argv) noexcept;
 
   ///Obtain the About information of this class
-  virtual const About GetAbout() const noexcept = 0;
+  virtual About GetAbout() const noexcept = 0;
 
   ///Obtain the help information of this class
-  virtual const Help GetHelp() const noexcept = 0;
+  virtual Help GetHelp() const noexcept = 0;
 
   ///Obtain information about the program
-  virtual const boost::shared_ptr<const Program> GetProgram() const noexcept = 0;
+  virtual boost::shared_ptr<const Program> GetProgram() const noexcept = 0;
 
   ///Obtain the version of this class
-  virtual const std::string GetVersion() const noexcept = 0;
+  virtual std::string GetVersion() const noexcept = 0;
 
   ///Obtain the version history of this class
-  virtual const std::vector<std::string> GetVersionHistory() const noexcept = 0;
+  virtual std::vector<std::string> GetVersionHistory() const noexcept = 0;
 
   protected:
   ///When Execute has done the default parse, the arguments are passed to ExecuteSpecific.

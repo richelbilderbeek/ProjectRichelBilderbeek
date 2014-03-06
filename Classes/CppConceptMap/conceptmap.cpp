@@ -365,7 +365,7 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Node> > ribi::cmap::Concep
   return AddConst(m_nodes);
 }
 
-const std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
+std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
 {
   const boost::shared_ptr<const CenterNode> center_node(FindCenterNode());
   if (center_node)
@@ -376,12 +376,12 @@ const std::string ribi::cmap::ConceptMap::GetQuestion() const noexcept
   else return "";
 }
 
-const std::string ribi::cmap::ConceptMap::GetVersion() noexcept
+std::string ribi::cmap::ConceptMap::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
+std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
 {
   return {
     "2013-xx-xx: Version 1.0: initial version",
@@ -641,7 +641,7 @@ bool ribi::cmap::ConceptMap::IsValid() const
 }
 #endif
 
-const std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map)
+std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map)
 {
   std::stringstream s;
   s << "<concept_map>";

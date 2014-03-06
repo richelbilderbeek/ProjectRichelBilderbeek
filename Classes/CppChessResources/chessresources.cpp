@@ -19,7 +19,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const std::string ribi::Chess::Resources::Find(
+std::string ribi::Chess::Resources::Find(
   const boost::shared_ptr<const Chess::Piece>& piece,
   const Chess::Color selection_color,
   const bool big)
@@ -67,7 +67,7 @@ const std::string ribi::Chess::Resources::Find(
   return filename;
 }
 
-const std::string ribi::Chess::Resources::Find(
+std::string ribi::Chess::Resources::Find(
   const boost::shared_ptr<const Square> square,
   const Chess::Color selection_color)
 {
@@ -98,7 +98,7 @@ const std::string ribi::Chess::Resources::Find(
   return filename;
 }
 
-const std::vector<std::string> ribi::Chess::Resources::GetFilenames()
+std::vector<std::string> ribi::Chess::Resources::GetFilenames()
 {
   #ifndef NDEBUG
   //Test(); //Cannot do this: QtResources calls this member function to create the resources
@@ -178,12 +178,12 @@ const std::vector<std::string> ribi::Chess::Resources::GetFilenames()
   return filenames;
 }
 
-const std::string ribi::Chess::Resources::GetVersion()
+std::string ribi::Chess::Resources::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Chess::Resources::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Resources::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version",

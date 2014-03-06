@@ -91,7 +91,7 @@ ribi::c2h::FileType ribi::c2h::FileTypes::DeduceFileType(const std::string& file
   return FileType::txt;
 }
 
-const std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
+std::string ribi::c2h::FileTypes::FileTypeToStr(const FileType t)
 {
   switch (t)
   {

@@ -106,7 +106,7 @@ const std::string& ribi::MultipleChoiceQuestion::GetAnswer() const noexcept
   return GetCorrectAnswers()[0];
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
+std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
   const std::vector<std::string>& wrong_answers,
   const std::string& answer) noexcept
 {
@@ -116,7 +116,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::CreateOptions(
   return v;
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractOptions(const std::string& input)
+std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractOptions(const std::string& input)
 {
   const std::vector<std::string> v = SeperateString(input,',');
   std::vector<std::string> w;
@@ -125,7 +125,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractOptions(cons
   return w;
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractWrongAnswers(const std::string& input)
+std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractWrongAnswers(const std::string& input)
 {
   const std::vector<std::string> v = SeperateString(input,',');
   if (v.size() < 4)
@@ -142,7 +142,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::ExtractWrongAnswers
   return w;
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::GetInvalidMultipleChoiceQuestions() noexcept
+std::vector<std::string> ribi::MultipleChoiceQuestion::GetInvalidMultipleChoiceQuestions() noexcept
 {
   return {
     "-,1+1=,2", //No incorrect options
@@ -175,7 +175,7 @@ const std::vector<std::string>& ribi::MultipleChoiceQuestion::GetOptions() const
   return m_options;
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::GetValidMultipleChoiceQuestions() noexcept
+std::vector<std::string> ribi::MultipleChoiceQuestion::GetValidMultipleChoiceQuestions() noexcept
 {
   return {
     "-,1+1=,2,1",
@@ -184,12 +184,12 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::GetValidMultipleCho
   };
 }
 
-const std::string ribi::MultipleChoiceQuestion::GetVersion() noexcept
+std::string ribi::MultipleChoiceQuestion::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory() noexcept
 {
   return {
     "2011-06-27: version 1.0: initial version",
@@ -198,7 +198,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::GetVersionHistory()
   };
 }
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
+std::vector<std::string> ribi::MultipleChoiceQuestion::SeperateString(
   const std::string& input,
   const char seperator) noexcept
 {
@@ -309,7 +309,7 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
+std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
 {
   std::vector<std::string> question_lines;
   question_lines.push_back(this->GetQuestion());
@@ -356,7 +356,7 @@ const std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
   return lines;
 }
 
-const std::string ribi::MultipleChoiceQuestion::ToStr() const noexcept
+std::string ribi::MultipleChoiceQuestion::ToStr() const noexcept
 {
   //Concatenate the correct answer
   assert(!this->GetCorrectAnswers().empty());

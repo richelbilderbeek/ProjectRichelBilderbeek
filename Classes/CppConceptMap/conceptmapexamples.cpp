@@ -184,7 +184,7 @@ void ribi::cmap::Examples::Test() noexcept
   TRACE("Examples::Test finished successfully");
 }
 
-const std::string ribi::cmap::Examples::ToXml() const noexcept
+std::string ribi::cmap::Examples::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<examples>";

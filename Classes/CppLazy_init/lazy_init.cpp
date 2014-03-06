@@ -21,12 +21,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 #include "lazy_init.h"
 
-const std::string ribi::Lazy_initVersion::GetVersion() noexcept
+std::string ribi::Lazy_initVersion::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Lazy_initVersion::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Lazy_initVersion::GetVersionHistory() noexcept
 {
   return {
     "2012-02-11: version 1.0: initial version"

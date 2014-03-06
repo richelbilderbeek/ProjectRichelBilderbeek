@@ -95,7 +95,7 @@ struct QtCreatorProFile
   static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the CONFIG
   void SetConfig(const std::set<std::string>& s) { m_config = s; }

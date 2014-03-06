@@ -74,7 +74,7 @@ int ribi::TestQrcFileMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestQrcFileMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -91,7 +91,7 @@ const ribi::About ribi::TestQrcFileMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestQrcFileMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestQrcFileMenuDialog::GetHelp() const noexcept
 {
   return Help(
     GetAbout().GetFileTitle(),
@@ -106,7 +106,7 @@ const ribi::Help ribi::TestQrcFileMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestQrcFileMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestQrcFileMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestQrcFile
@@ -115,12 +115,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestQrcFileMenuDialog::GetPro
   return p;
 }
 
-const std::string ribi::TestQrcFileMenuDialog::GetVersion() const noexcept
+std::string ribi::TestQrcFileMenuDialog::GetVersion() const noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestQrcFileMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-06-13: version 1.0: initial version",

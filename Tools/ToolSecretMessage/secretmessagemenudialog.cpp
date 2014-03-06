@@ -86,7 +86,7 @@ int ribi::sema::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
   return 1;
 }
 
-const ribi::About ribi::sema::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::sema::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -102,7 +102,7 @@ const ribi::About ribi::sema::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::sema::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::sema::MenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -121,7 +121,7 @@ const ribi::Help ribi::sema::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::sema::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::sema::MenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramSecretMessage
@@ -130,12 +130,12 @@ const boost::shared_ptr<const ribi::Program> ribi::sema::MenuDialog::GetProgram(
   return p;
 }
 
-const std::string ribi::sema::MenuDialog::GetVersion() const noexcept
+std::string ribi::sema::MenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::sema::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::sema::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-01-11: version 1.0: initial Windows-only version",

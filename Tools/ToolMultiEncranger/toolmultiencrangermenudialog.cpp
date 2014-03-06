@@ -125,7 +125,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
   return 0;
 }
 
-const ribi::About ribi::ToolMultiEncrangerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolMultiEncrangerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -141,7 +141,7 @@ const ribi::About ribi::ToolMultiEncrangerMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolMultiEncrangerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolMultiEncrangerMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -161,19 +161,19 @@ const ribi::Help ribi::ToolMultiEncrangerMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolMultiEncrangerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolMultiEncrangerMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramMultiEncranger);
   assert(p);
   return p;
 }
 
-const std::string ribi::ToolMultiEncrangerMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolMultiEncrangerMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::ToolMultiEncrangerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolMultiEncrangerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "20xx-xx-xx: Version 1.0: initial version programmed in C++ Builder",

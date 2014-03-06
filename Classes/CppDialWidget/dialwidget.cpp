@@ -72,12 +72,12 @@ void ribi::DialWidget::Click(const int x,const int y) noexcept
   m_dial->SetPosition(position);
 }
 
-const std::string ribi::DialWidget::GetVersion() noexcept
+std::string ribi::DialWidget::GetVersion() noexcept
 {
   return "2.4";
 }
 
-const std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::DialWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: Version 1.0: initial version",

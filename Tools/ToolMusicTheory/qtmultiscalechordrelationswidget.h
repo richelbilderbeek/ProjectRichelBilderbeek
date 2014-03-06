@@ -41,7 +41,7 @@ struct QtMultiScaleChordRelationsWidget : public QGraphicsView
   static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the two collections of chords
   void SetChords(

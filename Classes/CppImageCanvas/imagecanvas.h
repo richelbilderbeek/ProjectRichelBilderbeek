@@ -63,7 +63,7 @@ struct ImageCanvas : public Canvas
 
   static const std::string GetVersion() noexcept;
 
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   int GetWidth() const noexcept { return m_n_cols; }
 

@@ -84,7 +84,7 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -108,7 +108,7 @@ const ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -125,19 +125,19 @@ const ribi::Help ribi::HometrainerMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::HometrainerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::HometrainerMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramHometrainer);
   assert(p);
   return p;
 }
 
-const std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept
+std::string ribi::HometrainerMenuDialog::GetVersion() const noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::HometrainerMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2009-xx-xx: Version 0.9: initial version (called HomeTrainer)",

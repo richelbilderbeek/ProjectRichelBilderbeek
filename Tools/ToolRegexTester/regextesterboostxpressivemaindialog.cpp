@@ -92,7 +92,7 @@ bool ribi::RegexTesterBoostXpressiveMainDialog::GetRegexMatchLine(
   return boost::xpressive::regex_match(line,r);
 }
 
-const std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
+std::string ribi::RegexTesterBoostXpressiveMainDialog::GetRegexReplace(
   const std::string& str,
   const std::string& regex_str,
   const std::string& format_str) const

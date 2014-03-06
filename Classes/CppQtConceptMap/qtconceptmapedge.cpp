@@ -178,7 +178,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept()
   return p;
 }
 
-const std::string ribi::cmap::QtEdge::GetName() const
+std::string ribi::cmap::QtEdge::GetName() const
 {
   return m_edge->GetConcept()->GetName();
 }

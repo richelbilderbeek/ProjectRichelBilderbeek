@@ -1149,7 +1149,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::ReadWhiteNoiseSystemType(const
 }
 
 
-const std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
+std::vector<std::string> ribi::kalman::QtKalmanFilterExperimentModel::SeperateString(
   const std::string& input,
   const char seperator)
 {
@@ -1373,7 +1373,7 @@ void ribi::kalman::QtKalmanFilterExperimentModel::Test() noexcept
 }
 #endif
 
-const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
+std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() const
 {
   if (m_version != m_version_current)
   {
@@ -1432,7 +1432,7 @@ const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToDokuWiki() cons
 }
 
 
-const std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
+std::string ribi::kalman::QtKalmanFilterExperimentModel::ToHtml() const
 {
   std::string s =
 

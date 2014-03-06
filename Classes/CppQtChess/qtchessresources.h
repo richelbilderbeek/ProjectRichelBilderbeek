@@ -23,10 +23,10 @@ struct QtResources : public Chess::Resources
   const Qt::QPixmap& GetSquare(const Square& s) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   private:
   boost::shared_ptr<Qt::QPixmap> m_square_black;

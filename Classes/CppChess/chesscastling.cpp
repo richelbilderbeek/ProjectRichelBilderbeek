@@ -11,7 +11,7 @@ bool ribi::Chess::CanStrToCastling(const std::string& s)
   return boost::xpressive::regex_match(s,GetCastlingRegex());
 }
 
-const std::string ribi::Chess::CastlingToStr(const Castling castling)
+std::string ribi::Chess::CastlingToStr(const Castling castling)
 {
   switch (castling)
   {

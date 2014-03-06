@@ -9,6 +9,7 @@
 #include "openfoamfwd.h"
 #include "openfoampatchfieldtype.h"
 #include "trianglemeshfwd.h"
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -24,7 +25,8 @@ struct TriangleMeshBuilder
   TriangleMeshBuilder(
     const std::vector<boost::shared_ptr<ribi::trim::Cell>>& cells,
     const std::string& mesh_filename,
-    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
+    const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function,
+    const CreateVerticalFacesStrategy strategy
   );
 
   private:

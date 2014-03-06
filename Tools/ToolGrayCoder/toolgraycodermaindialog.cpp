@@ -77,7 +77,7 @@ int ribi::GrayCoderMainDialog::GrayToInt(int i)
   }
 }
 
-const std::string ribi::GrayCoderMainDialog::IntToBitString(int i)
+std::string ribi::GrayCoderMainDialog::IntToBitString(int i)
 {
   assert( i >= 0 && "Did not bother to supply this yet");
   std::string s =(i%2 ? "1" : "0" );

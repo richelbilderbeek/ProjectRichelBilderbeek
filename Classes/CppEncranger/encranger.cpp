@@ -54,7 +54,7 @@ const std::vector<int> ribi::Encranger::CreateTestKeys() noexcept
   return v;
 }
 
-const std::string ribi::Encranger::Encrypt(std::string s) const noexcept
+std::string ribi::Encranger::Encrypt(std::string s) const noexcept
 {
   typedef std::string::iterator StringIterator;
   typedef std::vector<int>::const_iterator LoopReaderIteratorType;
@@ -68,7 +68,7 @@ const std::string ribi::Encranger::Encrypt(std::string s) const noexcept
   return s;
 }
 
-const std::string ribi::Encranger::Deencrypt(std::string s) const noexcept
+std::string ribi::Encranger::Deencrypt(std::string s) const noexcept
 {
   typedef std::string::iterator StringIterator;
   LoopReader<std::vector<int>::const_iterator> table_reader(table.begin(), table.end());
@@ -237,12 +237,12 @@ const std::vector<char> ribi::Encranger::CreateCharacters() noexcept
   return v;
 }
 
-const std::string ribi::Encranger::GetVersion() noexcept
+std::string ribi::Encranger::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
 {
   return {
     "2010-01-05: version 1.0: initial version",

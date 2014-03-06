@@ -30,7 +30,7 @@ int ribi::TestConceptMapMenuDialog::ExecuteSpecific(const std::vector<std::strin
   return 1;
 }
 
-const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -48,7 +48,7 @@ const ribi::About ribi::TestConceptMapMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestConceptMapMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestConceptMapMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -62,7 +62,7 @@ const ribi::Help ribi::TestConceptMapMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestConceptMapMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestConceptMapMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramTestConceptMap
@@ -71,12 +71,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestConceptMapMenuDialog::Get
   return p;
 }
 
-const std::string ribi::TestConceptMapMenuDialog::GetVersion() const noexcept
+std::string ribi::TestConceptMapMenuDialog::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestConceptMapMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-12-03: version 1.0: initial version"

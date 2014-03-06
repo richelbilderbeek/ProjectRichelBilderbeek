@@ -100,7 +100,7 @@ int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   return 0;
 }
 
-const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -116,19 +116,19 @@ const ribi::About ribi::AsciiArterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::AsciiArterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::AsciiArterMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramAsciiArter);
   assert(p);
   return p;
 }
 
-const std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
+std::string ribi::AsciiArterMenuDialog::GetVersion() const noexcept
 {
   return "6.0";
 }
 
-const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2006-12-13: Version 1.0: initial C++ Builder version, called 'AsciiArter'",
@@ -146,7 +146,7 @@ const std::vector<std::string> ribi::AsciiArterMenuDialog::GetVersionHistory() c
   };
 }
 
-const ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::AsciiArterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     "AsciiArter",

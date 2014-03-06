@@ -19,7 +19,7 @@ const std::vector<ribi::cmap::Competency> ribi::cmap::GetAllCompetencies()
 
 }
 
-const std::string ribi::cmap::CompetencyToDutchStr(const ribi::cmap::Competency type)
+std::string ribi::cmap::CompetencyToDutchStr(const ribi::cmap::Competency type)
 {
   switch (type)
   {

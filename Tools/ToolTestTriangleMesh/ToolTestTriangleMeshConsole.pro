@@ -43,14 +43,14 @@ include(../../Libraries/Shiny.pri) #Or use the code below
 #     ../../Libraries/Shiny/include/ShinyConfig.h \
 #     ../../Libraries/Shiny/include/Shiny.h
 
+include(../../Libraries/GeneralConsole.pri)
+
 include(../../Classes/CppContainer/CppContainer.pri)
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
-include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppOpenFoam/CppOpenFoam.pri)
 include(../../Classes/CppPhp/CppPhp.pri)
-include(../../Classes/CppTrace/CppTrace.pri)
 include(../../Classes/CppTriangleFile/CppTriangleFile.pri)
 include(../../Classes/CppTriangleMesh/CppTriangleMesh.pri)
 include(../../Classes/CppXml/CppXml.pri)

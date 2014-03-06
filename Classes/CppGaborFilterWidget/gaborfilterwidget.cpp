@@ -42,12 +42,12 @@ ribi::GaborFilterWidget::GaborFilterWidget(
   this->SetGeometry(Rect(x,y,width,height));
 }
 
-const std::string ribi::GaborFilterWidget::GetVersion() noexcept
+std::string ribi::GaborFilterWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::GaborFilterWidget::GetVersionHistory() noexcept
 {
   return {
     "2012-07-09: version 1.0: initial version"

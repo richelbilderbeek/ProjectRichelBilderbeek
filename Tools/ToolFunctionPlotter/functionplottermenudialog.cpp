@@ -62,7 +62,7 @@ int ribi::FunctionPlotterMenuDialog::ExecuteSpecific(const std::vector<std::stri
   }
 }
 
-const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -79,7 +79,7 @@ const ribi::About ribi::FunctionPlotterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::FunctionPlotterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::FunctionPlotterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     GetAbout().GetFileTitle(),
@@ -94,7 +94,7 @@ const ribi::Help ribi::FunctionPlotterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::FunctionPlotterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::FunctionPlotterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramFunctionPlotter
@@ -103,12 +103,12 @@ const boost::shared_ptr<const ribi::Program> ribi::FunctionPlotterMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::FunctionPlotterMenuDialog::GetVersion() const noexcept
+std::string ribi::FunctionPlotterMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::FunctionPlotterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-xx-xx: version 1.0: initial Windows-only version",

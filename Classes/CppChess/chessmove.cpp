@@ -72,8 +72,7 @@ ribi::Chess::Move::Move(const std::string& s)
   }
 }
 
-const std::vector<std::string>
-  ribi::Chess::Move::GetRegexMatches(
+std::vector<std::string> ribi::Chess::Move::GetRegexMatches(
   const std::string& s,
   const boost::xpressive::sregex& r)
 {
@@ -88,12 +87,12 @@ const std::vector<std::string>
   return v;
 }
 
-const std::string ribi::Chess::Move::GetVersion()
+std::string ribi::Chess::Move::GetVersion()
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Chess::Move::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Move::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version"
@@ -107,7 +106,7 @@ bool ribi::Chess::Move::IsCastling() const
   return m_is_castling;
 }
 
-const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseFrom(const std::string& s)
+boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseFrom(const std::string& s)
 {
   boost::shared_ptr<Chess::Square> square;
   static const boost::xpressive::sregex r { boost::xpressive::sregex::compile("[a-h][1-8]") };
@@ -187,7 +186,7 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const 
   return p;
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiecePromotion(const std::string& s)
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiecePromotion(const std::string& s)
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
   const boost::shared_ptr<Chess::Piece> p = PieceFactory::CreateFromPromotion(s);
@@ -195,7 +194,7 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiecePromoti
   return p;
 }
 
-const boost::shared_ptr<ribi::Chess::Score> ribi::Chess::Move::ParseScore(const std::string& s)
+boost::shared_ptr<ribi::Chess::Score> ribi::Chess::Move::ParseScore(const std::string& s)
 {
   boost::shared_ptr<Chess::Score> p;
   try
@@ -210,7 +209,7 @@ const boost::shared_ptr<ribi::Chess::Score> ribi::Chess::Move::ParseScore(const 
   return p;
 }
 
-const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseTo(const std::string& s)
+boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseTo(const std::string& s)
 {
   static const boost::xpressive::sregex r {
     boost::xpressive::sregex::compile("[a-h][1-8]")
@@ -228,7 +227,7 @@ const boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseTo(const st
   return square;
 }
 
-const std::string ribi::Chess::Move::ToStr() const
+std::string ribi::Chess::Move::ToStr() const
 {
   std::string s;
   if (m_piece)

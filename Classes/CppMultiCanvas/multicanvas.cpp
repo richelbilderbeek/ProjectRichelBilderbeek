@@ -40,12 +40,12 @@ int ribi::MultiCanvas::GetHeight() const noexcept
   return h;
 }
 
-const std::string ribi::MultiCanvas::GetVersion() noexcept
+std::string ribi::MultiCanvas::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::MultiCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MultiCanvas::GetVersionHistory() noexcept
 {
   return {
     "2014-01-13: version 1.0: initial version"
@@ -60,7 +60,7 @@ int ribi::MultiCanvas::GetWidth() const noexcept
   return w;
 }
 
-const std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
 {
   const int maxy = GetHeight();
   const int maxx = GetWidth();

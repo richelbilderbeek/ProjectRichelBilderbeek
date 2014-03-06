@@ -51,7 +51,7 @@ ribi::CreateQtProjectZipFile::Path::Path(const std::string& main_folder,const st
   #endif
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std::string& filename)
+std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std::string& filename)
 {
   const char seperator = fileio::GetPathSeperator()[0];
   std::vector<std::string> v;
@@ -62,7 +62,7 @@ const std::string ribi::CreateQtProjectZipFile::Path::ExtractFilename(const std:
   else return std::string();
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const std::string& filename)
+std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const std::string& filename)
 {
   const char seperator = fileio::GetPathSeperator()[0];
   std::vector<std::string> v;
@@ -79,7 +79,7 @@ const std::string ribi::CreateQtProjectZipFile::Path::ExtractMainFolder(const st
   return t;
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ExtractSubFolder(const std::string& filename)
+std::string ribi::CreateQtProjectZipFile::Path::ExtractSubFolder(const std::string& filename)
 {
   const char seperator = fileio::GetPathSeperator()[0];
   std::vector<std::string> v;
@@ -149,7 +149,7 @@ void ribi::CreateQtProjectZipFile::Path::Test() noexcept
   TRACE("Finished ribi::CreateQtProjectZipFile::Path::Test() successfully");
 }
 
-const std::string ribi::CreateQtProjectZipFile::Path::ToStr() const
+std::string ribi::CreateQtProjectZipFile::Path::ToStr() const
 {
   return m_main_folder + fileio::GetPathSeperator() + m_sub_folder + fileio::GetPathSeperator() + m_filename;
 }

@@ -53,10 +53,10 @@ struct ChessWidget : public ribi::Widget
   const boost::scoped_ptr<Chess::SquareSelector>& GetSelector() const { return m_selector; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Respond to a key being pressed
   void PressKey(const Chess::ChessWidget::Key key);

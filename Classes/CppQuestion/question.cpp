@@ -46,12 +46,12 @@ ribi::Question::Question(
   }
 }
 
-const std::string ribi::Question::GetVersion() noexcept
+std::string ribi::Question::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Question::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Question::GetVersionHistory() noexcept
 {
   return {
     "2011-06-27: version 1.0: initial version",

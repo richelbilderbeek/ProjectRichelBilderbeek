@@ -8,6 +8,7 @@
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
 #include "xml.h"
 
@@ -90,7 +91,6 @@ void ribi::trim::Cell::Test() noexcept
       CellFactory().CreateTestPrism()
     };
     assert(prism);
-    assert(prism->GetFaces().size() == 5 || prism->GetFaces().size() == 8);
     const std::vector<boost::shared_ptr<Face>> faces {
       prism->GetFaces()
     };
@@ -106,13 +106,12 @@ void ribi::trim::Cell::Test() noexcept
     );
   }
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
+  for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Cell>> cube {
-      CellFactory().CreateTestCube()
+      CellFactory().CreateTestCube(strategy)
     };
     assert(cube.size() == 2 && "A cube consists out of two prisms");
-    assert(cube[0]->GetFaces().size() == 5 || cube[0]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
-    assert(cube[1]->GetFaces().size() == 8 && "A prism consists out of 8 faces");
     //Concatenate the faces
     std::vector<boost::shared_ptr<Face>> faces {
       cube[0]->GetFaces()
@@ -122,45 +121,29 @@ void ribi::trim::Cell::Test() noexcept
       std::back_inserter(faces)
     );
     std::sort(faces.begin(),faces.end());
-    assert(faces.size() == 16);
-    /*
-    for (auto face: faces)
-    {
-      std::stringstream all_face_str;
-      if (face)
-      {
-        all_face_str << face->GetIndex() << " -> " << (face->GetNeighbour() ? face->GetNeighbour()->GetIndex() : -1);
-      }
-      else
-      {
-        all_face_str << "No face";
-      }
-      TRACE(all_face_str.str());
-    }
-    */
+
+    TRACE(faces.size());
+    assert(
+      (
+           (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() == 10)
+        || (strategy == CreateVerticalFacesStrategy::two_faces_per_square && faces.size() == 16)
+      )
+      && "One or two faces are in both Cells, and must be made unique"
+    );
     assert(std::count(std::begin(faces),std::end(faces),nullptr) == 0);
     assert(std::unique(faces.begin(),faces.end()) != faces.end() && "Two faces must be present twice");
     faces.erase(std::unique(std::begin(faces),std::end(faces)),faces.end());
     faces.erase(std::remove(std::begin(faces),std::end(faces),nullptr),faces.end()); //OBLIGATORY! std::unique creates nullptrs!
-    /*
     TRACE(faces.size());
-    TRACE(std::count(std::begin(faces),std::end(faces),nullptr));
-    for (auto face: faces)
-    {
-      std::stringstream face_str;
-      if (face)
-      {
-        face_str << face->GetIndex() << " -> " << (face->GetNeighbour() ? face->GetNeighbour()->GetIndex() : -1);
-      }
-      else
-      {
-        face_str << "No face";
-      }
-      TRACE(face_str.str());
-    }
-    */
-    assert(faces.size() == 14 && "Two faces were in both Cells, and are now present only once");
     assert(
+      (
+           (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() ==  9)
+        || (strategy == CreateVerticalFacesStrategy::two_faces_per_square && faces.size() == 14)
+      )
+      && "One or two faces were in both Cells, and are now present only once"
+    );
+
+    const int n_faces_with_neighbours {
       std::count_if(faces.begin(),faces.end(),
         [](const boost::shared_ptr<Face> face)
         {
@@ -168,8 +151,9 @@ void ribi::trim::Cell::Test() noexcept
           assert(face->GetOwner());
           return face->GetNeighbour().get();
         }
-      ) == 2
-    );
+      )
+    };
+    assert(n_faces_with_neighbours == 1 || n_faces_with_neighbours == 2);
   }
   TRACE("Finished ribi::trim::Cell::Test successfully");
 }

@@ -52,7 +52,7 @@ struct QtResources
   static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   const std::string GetWeb() const noexcept { return "PicWeb.png"; }
   const std::string GetWindows() const noexcept { return "PicWindows.png"; }

@@ -68,7 +68,7 @@ struct ShapeWidget : public Widget
 
   public:
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
 bool operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept;

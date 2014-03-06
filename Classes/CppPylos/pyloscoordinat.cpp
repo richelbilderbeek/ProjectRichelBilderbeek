@@ -86,12 +86,12 @@ const std::vector<ribi::pylos::Coordinat> ribi::pylos::GetAllCoordinats() noexce
   return v;
 }
 
-const std::string ribi::pylos::Coordinat::GetVersion() noexcept
+std::string ribi::pylos::Coordinat::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::Coordinat::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::Coordinat::GetVersionHistory() noexcept
 {
   return {
     "2012-05-05: version 2.0: initial release version"
@@ -103,7 +103,7 @@ bool ribi::pylos::Coordinat::IsValid() const noexcept
   return IsValid(m_layer,m_x,m_y);
 }
 
-const std::string ribi::pylos::Coordinat::ToStr() const noexcept
+std::string ribi::pylos::Coordinat::ToStr() const noexcept
 {
   return "("
     + boost::lexical_cast<std::string>(m_layer)

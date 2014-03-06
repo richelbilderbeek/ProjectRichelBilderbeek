@@ -241,12 +241,12 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
   }
 }
 
-const std::string ribi::Chess::QtChessBoardWidget::GetVersion()
+std::string ribi::Chess::QtChessBoardWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::QtChessBoardWidget::GetVersionHistory()
+std::vector<std::string> ribi::Chess::QtChessBoardWidget::GetVersionHistory()
 {
   return {
     "2012-01-26: version 1.0: initial version"

@@ -40,7 +40,7 @@ int ribi::TestPylosMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
   return 1;
 }
 
-const ribi::About ribi::TestPylosMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestPylosMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -55,7 +55,7 @@ const ribi::About ribi::TestPylosMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestPylosMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestPylosMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -69,7 +69,7 @@ const ribi::Help ribi::TestPylosMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestPylosMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestPylosMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestPylos
@@ -78,12 +78,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestPylosMenuDialog::GetProgr
   return p;
 }
 
-const std::string ribi::TestPylosMenuDialog::GetVersion() const noexcept
+std::string ribi::TestPylosMenuDialog::GetVersion() const noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestPylosMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-09-19: version 0.1: initial version: cannot move marbles, cannot switch to advanced game, winner can be requested clumsily (by clicking next to the Pylos widget)",

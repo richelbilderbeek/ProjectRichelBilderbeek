@@ -47,12 +47,12 @@ void ribi::QtHideAndShowDialog::closeEvent(QCloseEvent*)
   //QDialog::closeEvent(event); //Not needed
 }
 
-const std::string ribi::QtHideAndShowDialog::GetVersion() noexcept
+std::string ribi::QtHideAndShowDialog::GetVersion() noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtHideAndShowDialog::GetVersionHistory() noexcept
 {
   std::vector<std::string> v {
     "2012-11-13: version 1.0: initial version",

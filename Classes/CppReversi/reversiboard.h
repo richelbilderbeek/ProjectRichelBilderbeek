@@ -43,7 +43,7 @@ struct Board
   int GetSize() const noexcept;
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   const std::vector<std::pair<int,int>> GetValidMoves(const Player player) const noexcept;
 

@@ -51,7 +51,7 @@ public:
   void mousePressEvent(QMouseEvent *);
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_changed;
   boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_has_winner;

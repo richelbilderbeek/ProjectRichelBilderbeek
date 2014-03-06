@@ -51,12 +51,12 @@ ribi::Shape::Shape(
   #endif
 }
 
-const std::string ribi::Shape::GetVersion() noexcept
+std::string ribi::Shape::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::Shape::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Shape::GetVersionHistory() noexcept
 {
   return {
     "2011-07-13: Version 1.0: initial version",

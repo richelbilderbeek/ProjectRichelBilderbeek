@@ -40,7 +40,7 @@ int ribi::ToolTestQtModelsMenuDialog::ExecuteSpecific(const std::vector<std::str
   return 1;
 }
 
-const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -55,7 +55,7 @@ const ribi::About ribi::ToolTestQtModelsMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolTestQtModelsMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolTestQtModelsMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -69,7 +69,7 @@ const ribi::Help ribi::ToolTestQtModelsMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolTestQtModelsMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolTestQtModelsMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestQtModels
@@ -78,12 +78,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolTestQtModelsMenuDialog::G
   return p;
 }
 
-const std::string ribi::ToolTestQtModelsMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolTestQtModelsMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolTestQtModelsMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-05-15: version 1.0: initial version",

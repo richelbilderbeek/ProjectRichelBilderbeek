@@ -54,12 +54,12 @@ ribi::Dial::Dial(
   assert(m_position <= 1.0);
 }
 
-const std::string ribi::Dial::GetVersion() noexcept
+std::string ribi::Dial::GetVersion() noexcept
 {
   return "3.3";
 }
 
-const std::vector<std::string> ribi::Dial::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Dial::GetVersionHistory() noexcept
 {
   return {
     "2011-04-11: Version 1.0: initial version",

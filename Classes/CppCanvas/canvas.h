@@ -45,16 +45,16 @@ struct Canvas
   virtual ~Canvas() noexcept {}
 
   //From http://www.richelbilderbeek.nl/CppGetAsciiArtGradient.htm
-  static const std::vector<char> GetAsciiArtGradient() noexcept;
+  static std::vector<char> GetAsciiArtGradient() noexcept;
 
   ///Obtain the height of the canvas is characters
   virtual int GetHeight() const noexcept = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the width of the canvas is characters
   virtual int GetWidth() const noexcept = 0;
@@ -64,14 +64,14 @@ struct Canvas
   ///virtual void Load(const std::vector<std::string>& v) = 0;
 
   ///Convert the Canvas to std::strings
-  virtual const std::vector<std::string> ToStrings() const noexcept = 0;
+  virtual std::vector<std::string> ToStrings() const noexcept = 0;
 
   ///This signal is emitted when any member variable changes
   boost::signals2::signal<void(Canvas*)> m_signal_changed;
 
   private:
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  static std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const QRegExp& r);
 
@@ -81,14 +81,14 @@ struct Canvas
   //Obtains the minimum element of a 2D container
   //From http://www.richelbilderbeek.nl/CppMinElement.htm
   template <class Container>
-  static const typename Container::value_type::value_type MinElement(const Container& v);
+  static typename Container::value_type::value_type MinElement(const Container& v);
 
   //Obtains the maximal element of a 2D container
   //From http://www.richelbilderbeek.nl/CppMaxElement.htm
   template <class Container>
-  static const typename Container::value_type::value_type MaxElement(const Container& v);
+  static typename Container::value_type::value_type MaxElement(const Container& v);
 
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator) noexcept;
 

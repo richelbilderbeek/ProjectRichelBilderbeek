@@ -46,12 +46,12 @@ ribi::QtSurfacePlotWidget::QtSurfacePlotWidget(QWidget *parent)
   SetSurfaceGrey(v);
 }
 
-const std::string ribi::QtSurfacePlotWidget::GetVersion()
+std::string ribi::QtSurfacePlotWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtSurfacePlotWidget::GetVersionHistory()
+std::vector<std::string> ribi::QtSurfacePlotWidget::GetVersionHistory()
 {
   return {
     "2012-07-14: version 1.0: initial version"

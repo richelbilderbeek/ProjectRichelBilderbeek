@@ -18,7 +18,7 @@ int ribi::TankBattalionMenuDialog::ExecuteSpecific(const std::vector<std::string
   return 1;
 }
 
-const ribi::About ribi::TankBattalionMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TankBattalionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -33,7 +33,7 @@ const ribi::About ribi::TankBattalionMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TankBattalionMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TankBattalionMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -47,7 +47,7 @@ const ribi::Help ribi::TankBattalionMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TankBattalionMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TankBattalionMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramTankBattalion
@@ -56,12 +56,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TankBattalionMenuDialog::GetP
   return p;
 }
 
-const std::string ribi::TankBattalionMenuDialog::GetVersion() const noexcept
+std::string ribi::TankBattalionMenuDialog::GetVersion() const noexcept
 {
   return "0.1";
 }
 
-const std::vector<std::string> ribi::TankBattalionMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TankBattalionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 0.1: conformized to ProjectRichelBilderbeekConsole"

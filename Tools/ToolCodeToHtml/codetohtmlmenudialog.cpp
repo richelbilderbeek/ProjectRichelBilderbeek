@@ -147,7 +147,7 @@ int ribi::c2h::CodeToHtmlMenuDialog::ExecuteSpecific(const std::vector<std::stri
   }
 }
 
-const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
+ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
@@ -167,7 +167,7 @@ const ribi::About ribi::c2h::CodeToHtmlMenuDialog::GetAbout() const noexcept
 }
 
 
-const ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -180,19 +180,19 @@ const ribi::Help ribi::c2h::CodeToHtmlMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::c2h::CodeToHtmlMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramCodeToHtml);
   assert(p);
   return p;
 }
 
-const std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
+std::string ribi::c2h::CodeToHtmlMenuDialog::GetVersion() const noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::c2h::CodeToHtmlMenuDialog::GetVersionHistory() const noexcept
 {
   const std::vector<std::string> v {
     "2010-03-14: version 1.0: programmed initial console version of CodeToHtml. Due to my switch from Windows to Ubuntu, I had to abandon MS Word as my favorite HTML editor. Then I had to write my webpages in plain HTML, but adding links to all my code snippets was tiresome. CodeToHtml automated this for me",

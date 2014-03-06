@@ -59,7 +59,7 @@ const boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexc
 }
 
 
-const std::string ribi::DotMatrixString::GetString() const noexcept
+std::string ribi::DotMatrixString::GetString() const noexcept
 {
   std::string s;
   for (const auto c: m_v) { s += c->GetChar(); }
@@ -109,12 +109,12 @@ int ribi::DotMatrixString::GetMatrixWidth() const noexcept
   return n_chars * char_width;
 }
 
-const std::string ribi::DotMatrixString::GetVersion() noexcept
+std::string ribi::DotMatrixString::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::DotMatrixString::GetVersionHistory() noexcept
+std::vector<std::string> ribi::DotMatrixString::GetVersionHistory() noexcept
 {
   return {
     "201x-xx-xx: Version 1.0: initial version",

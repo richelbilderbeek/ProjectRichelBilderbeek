@@ -4,8 +4,12 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 #include <string>
 #include <vector>
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
+//#include <boost/geometry/geometries/ring.hpp>
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -60,8 +64,8 @@ struct Geometry
   //From www.richelbilderbeek.nl/CppGetDistance.htm
   double GetDistance(const double dx, const double dy) const noexcept;
 
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   ///Are two angles ordered clockwise
   ///12 o'clock is 0.0 * pi
@@ -89,6 +93,20 @@ struct Geometry
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
+
+  ///Creates a polygon from the points and checks if the polygon is convex
+  /*
+
+   A---------B      A---------B
+   E        /        \   D   /
+    \      /          \ / \ /
+     D----C            E   C
+
+     Convex           Concave
+
+  */
+  bool IsConvex(boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon) const noexcept;
+  bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
 
   private:
   ///Take the floating point modulus

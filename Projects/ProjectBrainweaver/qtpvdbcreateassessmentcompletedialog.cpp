@@ -29,7 +29,7 @@ ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::~QtPvdbCreateAssessmentComplet
   delete ui;
 }
 
-const std::string ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::GetQuestion() const
+std::string ribi::pvdb::QtPvdbCreateAssessmentCompleteDialog::GetQuestion() const
 {
   return ui->edit->text().toStdString();
 }

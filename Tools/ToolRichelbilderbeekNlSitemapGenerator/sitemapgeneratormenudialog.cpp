@@ -45,7 +45,7 @@ ribi::SitemapGeneratorMenuDialog::SitemapGeneratorMenuDialog()
   #endif
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const std::vector<std::string>& files) noexcept
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const std::vector<std::string>& files) noexcept
 {
   std::vector<std::string> v;
   v.push_back("# To add a list of URLs, make a space-delimited text file. The first");
@@ -67,7 +67,7 @@ const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::AddHeader(const
   return v;
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::CreateConfigXml(
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::CreateConfigXml(
   const std::string& local_website_path,
   const std::string& urllist_path) noexcept
 {
@@ -409,7 +409,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   return 0;
 }
 
-const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -424,7 +424,7 @@ const ribi::About ribi::SitemapGeneratorMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
+std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
 {
   const std::time_t t = std::time(0);
   const std::tm * const now = std::localtime( &t );
@@ -454,7 +454,7 @@ const std::string ribi::SitemapGeneratorMenuDialog::GetDateIso8601() noexcept
   return year + "-" + month + "-" + day;
 }
 
-const ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -471,7 +471,7 @@ const ribi::Help ribi::SitemapGeneratorMenuDialog::GetHelp() const noexcept
 
 
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInFolder(
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInFolder(
   const std::string& folder) noexcept
 {
   //Get all filenames
@@ -492,7 +492,7 @@ const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInF
   return w;
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramRichelBilderbeekNlSitemapGenerator
@@ -501,12 +501,12 @@ const boost::shared_ptr<const ribi::Program> ribi::SitemapGeneratorMenuDialog::G
   return p;
 }
 
-const std::string ribi::SitemapGeneratorMenuDialog::GetVersion() const noexcept
+std::string ribi::SitemapGeneratorMenuDialog::GetVersion() const noexcept
 {
   return "1.3";
 }
 
-const std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-08-08: version 1.0: initial version",

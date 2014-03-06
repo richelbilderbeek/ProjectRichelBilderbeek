@@ -163,7 +163,7 @@ void ribi::cmap::Edge::Test() noexcept
 }
 #endif
 
-const std::string ribi::cmap::Edge::ToXml(
+std::string ribi::cmap::Edge::ToXml(
   const boost::shared_ptr<const cmap::Edge>& edge,
   const std::vector<boost::shared_ptr<const cmap::Node> >& nodes)
 {

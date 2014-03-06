@@ -48,12 +48,12 @@ int ribi::PrimeExpert::CalculateMax(const int x)
 
 }
 
-const std::string ribi::PrimeExpert::GetVersion() noexcept
+std::string ribi::PrimeExpert::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::PrimeExpert::GetVersionHistory() noexcept
+std::vector<std::string> ribi::PrimeExpert::GetVersionHistory() noexcept
 {
   return {
     "2008-07-12: Version 1.0: initial version in C++ Builder",

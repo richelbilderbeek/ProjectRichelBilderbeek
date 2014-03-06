@@ -20,7 +20,7 @@ int ribi::PrimeExpertMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 1;
 }
 
-const ribi::About ribi::PrimeExpertMenuDialog::GetAbout() const noexcept
+ribi::About ribi::PrimeExpertMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -35,7 +35,7 @@ const ribi::About ribi::PrimeExpertMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::PrimeExpertMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::PrimeExpertMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -50,7 +50,7 @@ const ribi::Help ribi::PrimeExpertMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::PrimeExpertMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::PrimeExpertMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPrimeExpert
@@ -59,12 +59,12 @@ const boost::shared_ptr<const ribi::Program> ribi::PrimeExpertMenuDialog::GetPro
   return p;
 }
 
-const std::string ribi::PrimeExpertMenuDialog::GetVersion() const noexcept
+std::string ribi::PrimeExpertMenuDialog::GetVersion() const noexcept
 {
   return "2.2";
 }
 
-const std::vector<std::string> ribi::PrimeExpertMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::PrimeExpertMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2008-07-12: Version 1.0: initial version in C++ Builder",

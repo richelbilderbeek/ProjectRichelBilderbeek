@@ -53,7 +53,7 @@ void ribi::kalman::WhiteNoiseSystemTypes::Test() noexcept
 }
 #endif
 
-const std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
+std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

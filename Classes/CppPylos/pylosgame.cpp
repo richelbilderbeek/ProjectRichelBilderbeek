@@ -151,12 +151,12 @@ ribi::pylos::Player ribi::pylos::Game::GetCurrentTurn() const noexcept
   return m_current_player;
 }
 
-const std::string ribi::pylos::Game::GetVersion() noexcept
+std::string ribi::pylos::Game::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::Game::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::Game::GetVersionHistory() noexcept
 {
   return {
     "2010-09-19: version 0.1: initial version",

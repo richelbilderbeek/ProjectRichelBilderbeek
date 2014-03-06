@@ -74,7 +74,7 @@ struct MysteryMachine
   const boost::shared_ptr<const ToggleButtonWidget> GetToggleButton() const noexcept { return m_toggle_button; }
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 
   ///Convert the MysteryMachine to a TextCanvas

@@ -18,12 +18,12 @@ ribi::Chess::BitBoard::BitBoard()
   assert(m_v[7].size() == 8);
 }
 
-const std::string ribi::Chess::BitBoard::GetVersion()
+std::string ribi::Chess::BitBoard::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::BitBoard::GetVersionHistory()
+std::vector<std::string> ribi::Chess::BitBoard::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version"

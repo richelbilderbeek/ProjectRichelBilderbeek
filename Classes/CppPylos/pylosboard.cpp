@@ -418,12 +418,12 @@ int ribi::pylos::Board::GetLayerSize(const int layer) const
   return boost::numeric_cast<int>(m_board[layer].size());
 }
 
-const std::string ribi::pylos::Board::GetVersion() noexcept
+std::string ribi::pylos::Board::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::pylos::Board::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::Board::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-05-05: version 2.0: initial release version");
@@ -948,7 +948,7 @@ void ribi::pylos::Board::Test() noexcept
 }
 #endif
 
-const std::string ribi::pylos::Board::ToStr() const
+std::string ribi::pylos::Board::ToStr() const
 {
   const std::vector<std::string> v = this->ToText();
   std::string s;
@@ -957,7 +957,7 @@ const std::string ribi::pylos::Board::ToStr() const
   return s;
 }
 
-const std::vector<std::string> ribi::pylos::Board::ToText() const
+std::vector<std::string> ribi::pylos::Board::ToText() const
 {
   std::vector<std::string> v(7,std::string(7,' '));
   for (int layer = 0; layer!=4; ++layer)

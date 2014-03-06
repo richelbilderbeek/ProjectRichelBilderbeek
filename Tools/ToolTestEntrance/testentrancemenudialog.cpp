@@ -41,7 +41,7 @@ int ribi::ToolTestEntrance::MenuDialog::ExecuteSpecific(const std::vector<std::s
   return 1;
 }
 
-const ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -57,7 +57,7 @@ const ribi::About ribi::ToolTestEntrance::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ToolTestEntrance::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolTestEntrance::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -71,7 +71,7 @@ const ribi::Help ribi::ToolTestEntrance::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolTestEntrance::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolTestEntrance::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestEntrance
@@ -80,12 +80,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolTestEntrance::MenuDialog:
   return p;
 }
 
-const std::string ribi::ToolTestEntrance::MenuDialog::GetVersion() const noexcept
+std::string ribi::ToolTestEntrance::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ToolTestEntrance::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolTestEntrance::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-09-19: Version 1.0: initial version",

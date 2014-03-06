@@ -32,7 +32,7 @@ double ribi::cmap::GetDistance(const double x1, const double y1, const double x2
   return GetDistance(x1-x2,y1-y2);
 }
 
-const std::vector<std::string> ribi::cmap::GetRegexMatches(
+std::vector<std::string> ribi::cmap::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -54,7 +54,7 @@ const std::vector<std::string> ribi::cmap::GetRegexMatches(
   return v;
 }
 
-const std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename)
+std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename)
 {
   std::vector<std::string> v = ribi::fileio::FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
@@ -62,7 +62,7 @@ const std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& f
 }
 
 /*
-const std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
+std::vector<std::string> ribi::cmap::SplitXml(const std::string& s)
 {
   #ifndef NDEBUG
   cmap::TestHelperFunctions();
@@ -304,7 +304,7 @@ void ribi::cmap::TestHelperFunctions()
 }
 #endif
 
-const std::string ribi::cmap::Unwordwrap(
+std::string ribi::cmap::Unwordwrap(
   const std::vector<std::string>& v) noexcept
 {
   //Simply concatenate
@@ -313,7 +313,7 @@ const std::string ribi::cmap::Unwordwrap(
   return t;
 }
 
-const std::vector<std::string> ribi::cmap::Wordwrap(
+std::vector<std::string> ribi::cmap::Wordwrap(
   const std::string& s_original, const std::size_t max_len) noexcept
 {
   if (max_len == 0)
@@ -438,7 +438,7 @@ const std::vector<std::string> ribi::cmap::Wordwrap(
 }
 
 /*
-const std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
+std::vector<std::string> ribi::cmap::XmlToPretty(const std::string& s)
 {
   #ifndef NDEBUG
   cmap::TestHelperFunctions();

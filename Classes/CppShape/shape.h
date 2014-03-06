@@ -115,7 +115,7 @@ struct Shape
   //From www.richelbilderbeek.nl/CppGetDistance.htm
   static double GetDistance(const double dX, const double dY) noexcept;
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
 };
 

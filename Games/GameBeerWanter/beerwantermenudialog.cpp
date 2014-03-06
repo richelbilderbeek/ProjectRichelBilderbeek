@@ -80,7 +80,7 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   return 0;
 }
 
-const ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -96,7 +96,7 @@ const ribi::About ribi::BeerWanterMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::BeerWanterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::BeerWanterMenuDialog::GetHelp() const noexcept
 {
   return Help(
     GetAbout().GetFileTitle(),
@@ -110,7 +110,7 @@ const ribi::Help ribi::BeerWanterMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::BeerWanterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::BeerWanterMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramBeerWanter
@@ -119,12 +119,12 @@ const boost::shared_ptr<const ribi::Program> ribi::BeerWanterMenuDialog::GetProg
   return p;
 }
 
-const std::string ribi::BeerWanterMenuDialog::GetVersion() const noexcept
+std::string ribi::BeerWanterMenuDialog::GetVersion() const noexcept
 {
   return "7.2";
 }
 
-const std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::BeerWanterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2005-11-16: version 1.0: (at that time called) 'Beerwanter 1' was programmed in C++ using the C++ Builder IDE during a 'Spass programmieren' session, which made BeerWanter a game for Windows users only",

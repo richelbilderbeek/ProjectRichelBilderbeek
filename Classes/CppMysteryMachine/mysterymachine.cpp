@@ -62,12 +62,12 @@ ribi::MysteryMachine::MysteryMachine() noexcept
   Update();
 }
 
-const std::string ribi::MysteryMachine::GetVersion() noexcept
+std::string ribi::MysteryMachine::GetVersion() noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::MysteryMachine::GetVersionHistory() noexcept
+std::vector<std::string> ribi::MysteryMachine::GetVersionHistory() noexcept
 {
   return {
     "2011-04-10: Version 1.0: initial version",

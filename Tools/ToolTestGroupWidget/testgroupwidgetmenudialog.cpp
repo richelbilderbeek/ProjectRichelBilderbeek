@@ -40,7 +40,7 @@ int ribi::TestGroupWidgetMenuDialog::ExecuteSpecific(const std::vector<std::stri
   return 1;
 }
 
-const ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -54,7 +54,7 @@ const ribi::About ribi::TestGroupWidgetMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::TestGroupWidgetMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestGroupWidgetMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -68,7 +68,7 @@ const ribi::Help ribi::TestGroupWidgetMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestGroupWidgetMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestGroupWidgetMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestGroupWidget
@@ -77,12 +77,12 @@ const boost::shared_ptr<const ribi::Program> ribi::TestGroupWidgetMenuDialog::Ge
   return p;
 }
 
-const std::string ribi::TestGroupWidgetMenuDialog::GetVersion() const noexcept
+std::string ribi::TestGroupWidgetMenuDialog::GetVersion() const noexcept
 {
   return "1.4";
 }
 
-const std::vector<std::string> ribi::TestGroupWidgetMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestGroupWidgetMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2011-06-16: Version 1.0: initial version",

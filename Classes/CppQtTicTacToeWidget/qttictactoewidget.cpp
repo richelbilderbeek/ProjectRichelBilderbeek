@@ -57,12 +57,12 @@ ribi::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
 
 }
 
-const std::string ribi::QtTicTacToeWidget::GetVersion() noexcept
+std::string ribi::QtTicTacToeWidget::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QtTicTacToeWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtTicTacToeWidget::GetVersionHistory() noexcept
 {
   return {
     "20xx-xx-xx: version 1.0: initial version",

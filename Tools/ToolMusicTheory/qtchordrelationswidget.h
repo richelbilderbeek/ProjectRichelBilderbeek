@@ -38,7 +38,7 @@ struct QtChordRelationsWidget : public QGraphicsView
   static const std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the collection of chords
   void SetChords(std::vector<boost::shared_ptr<Music::Chord> >& chords);

@@ -51,7 +51,7 @@ int ribi::RandomCodeMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   return 0;
 }
 
-const ribi::About ribi::RandomCodeMenuDialog::GetAbout() const noexcept
+ribi::About ribi::RandomCodeMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -66,7 +66,7 @@ const ribi::About ribi::RandomCodeMenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::RandomCodeMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::RandomCodeMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -80,7 +80,7 @@ const ribi::Help ribi::RandomCodeMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::RandomCodeMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::RandomCodeMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramRandomCode
@@ -89,12 +89,12 @@ const boost::shared_ptr<const ribi::Program> ribi::RandomCodeMenuDialog::GetProg
   return p;
 }
 
-const std::string ribi::RandomCodeMenuDialog::GetVersion() const noexcept
+std::string ribi::RandomCodeMenuDialog::GetVersion() const noexcept
 {
   return "4.3";
 }
 
-const std::vector<std::string> ribi::RandomCodeMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::RandomCodeMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-xx-xx: version 1.0: initial version in C++ Builder",

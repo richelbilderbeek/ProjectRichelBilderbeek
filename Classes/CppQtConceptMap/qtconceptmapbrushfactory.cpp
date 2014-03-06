@@ -14,7 +14,7 @@ const int ribi::cmap::QtBrushFactory::sm_top = -10;
 const int ribi::cmap::QtBrushFactory::sm_color_low_value  =  64;
 const int ribi::cmap::QtBrushFactory::sm_color_mid_value  = 128;
 
-const std::string ribi::cmap::QtBrushFactory::BrushToStr(const QBrush& brush)
+std::string ribi::cmap::QtBrushFactory::BrushToStr(const QBrush& brush)
 {
   if (brush == CreateBlueGradientBrush()) return "blue";
   if (brush == CreateGoldGradientBrush()) return "gold";

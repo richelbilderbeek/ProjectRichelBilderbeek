@@ -56,12 +56,12 @@ void ribi::Chess::ChessWidget::ClickPixel(const int x,const int y)
   }
 }
 
-const std::string ribi::Chess::ChessWidget::GetVersion()
+std::string ribi::Chess::ChessWidget::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::ChessWidget::GetVersionHistory()
+std::vector<std::string> ribi::Chess::ChessWidget::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version"

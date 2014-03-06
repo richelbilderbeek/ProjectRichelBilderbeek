@@ -39,12 +39,12 @@ ribi::IpAddress::IpAddress(const std::string& ip_address)
   }
 }
 
-const std::string ribi::IpAddress::GetVersion() noexcept
+std::string ribi::IpAddress::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::IpAddress::GetVersionHistory() noexcept
+std::vector<std::string> ribi::IpAddress::GetVersionHistory() noexcept
 {
   return {
     "2011-06-08: version 1.0: initial version",

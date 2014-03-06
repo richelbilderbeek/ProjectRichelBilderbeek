@@ -46,7 +46,7 @@ struct IpAddress
   static const std::string GetVersion() noexcept;
 
   ///Obtain the IpAddress version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
   ///The std::string guaranteed to hold a valid IP address

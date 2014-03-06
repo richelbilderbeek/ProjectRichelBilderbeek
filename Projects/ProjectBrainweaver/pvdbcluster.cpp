@@ -76,7 +76,7 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Concept> > ribi::pvdb::Clu
   return std::vector<boost::shared_ptr<const ribi::cmap::Concept> >(m_v.begin(),m_v.end());
 }
 
-const std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb::Cluster>& cluster)
+std::string ribi::pvdb::Cluster::ToXml(const boost::shared_ptr<const pvdb::Cluster>& cluster)
 {
   std::stringstream s;
   s << "<cluster>";

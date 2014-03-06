@@ -76,7 +76,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is there an arrow at the 'to' point (x2,y2)?
   bool HasHead() const { return m_head; }

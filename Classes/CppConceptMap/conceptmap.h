@@ -78,7 +78,7 @@ struct ConceptMap
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
   static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs);

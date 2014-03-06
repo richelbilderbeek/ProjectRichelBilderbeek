@@ -100,7 +100,7 @@ struct TicTacToe
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the winner.
   /// * TicTacToe::player1   : player1 has won.

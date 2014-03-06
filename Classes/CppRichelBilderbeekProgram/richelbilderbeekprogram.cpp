@@ -248,12 +248,12 @@ const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const Progra
   return p;
 }
 
-const std::string ribi::Program::GetName() const noexcept
+std::string ribi::Program::GetName() const noexcept
 {
   return ribi::ProgramTypes::ProgramTypeToEnumName(this->GetType());
 }
 
-const std::string ribi::Program::GetScreenName() const noexcept
+std::string ribi::Program::GetScreenName() const noexcept
 {
   return ribi::ProgramTypes::ProgramTypeToScreenName(this->GetType());
 }
@@ -276,24 +276,24 @@ const std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllProgra
   return v;
 }
 
-const std::string ribi::Program::GetFilenameBase() const noexcept
+std::string ribi::Program::GetFilenameBase() const noexcept
 {
   std::string s = this->GetTypeName();
   s[0] = std::toupper(s[0]);
   return s + GetScreenName();
 }
 
-const std::string ribi::Program::GetTypeName() const noexcept
+std::string ribi::Program::GetTypeName() const noexcept
 {
   return ProgramTypes::ProgramTypeToEnumName(this->GetType());
 }
 
-const std::string ribi::Program::GetVersion() noexcept
+std::string ribi::Program::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Program::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Program::GetVersionHistory() noexcept
 {
   return {
     "2012-02-19: Version 1.0: initial version"

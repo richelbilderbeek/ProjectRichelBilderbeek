@@ -159,12 +159,12 @@ const std::vector<ribi::pylos::Coordinat>& ribi::pylos::QtPylosWidget::GetOtherS
   return m_other_selectors;
 }
 
-const std::string ribi::pylos::QtPylosWidget::GetVersion() noexcept
+std::string ribi::pylos::QtPylosWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::pylos::QtPylosWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::pylos::QtPylosWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-05-28: version 1.0: initial version. Added tilt.");

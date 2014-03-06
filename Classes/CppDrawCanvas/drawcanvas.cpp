@@ -298,7 +298,7 @@ void ribi::DrawCanvas::DrawText(const double top, const double left, const std::
   }
 }
 
-const std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
+std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
   const std::string& s,
   const QRegExp& r_original)
 {
@@ -316,12 +316,12 @@ const std::vector<std::string> ribi::DrawCanvas::GetRegexMatches(
 
   return v;
 }
-const std::string ribi::DrawCanvas::GetVersion() noexcept
+std::string ribi::DrawCanvas::GetVersion() noexcept
 {
   return "3.0";
 }
 
-const std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
+std::vector<std::string> ribi::DrawCanvas::GetVersionHistory() noexcept
 {
   return {
     "2008-xx-xx: version 1.0: initial C++ Builder version, initially called Canvas",
@@ -503,7 +503,7 @@ void ribi::DrawCanvas::Save(const std::string& filename) const noexcept
   #endif
 }
 
-const std::vector<std::string> ribi::DrawCanvas::SeperateString(
+std::vector<std::string> ribi::DrawCanvas::SeperateString(
   const std::string& input,
   const char seperator) noexcept
 {
@@ -663,7 +663,7 @@ void ribi::DrawCanvas::Test() noexcept
 }
 #endif
 
-const std::vector<std::string> ribi::DrawCanvas::ToStrings() const noexcept
+std::vector<std::string> ribi::DrawCanvas::ToStrings() const noexcept
 {
   std::stringstream s;
   s << (*this);

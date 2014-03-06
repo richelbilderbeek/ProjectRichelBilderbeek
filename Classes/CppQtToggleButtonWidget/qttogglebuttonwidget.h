@@ -60,7 +60,7 @@ struct QtToggleButtonWidget : public QWidget
   static const std::string GetVersion() noexcept;
 
   ///Obtain the QtToggleButtonWidget its version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Draw a ToggleButton from a ToggleButton
   static void DrawToggleButton(

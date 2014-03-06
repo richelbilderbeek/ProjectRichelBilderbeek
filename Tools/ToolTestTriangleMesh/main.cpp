@@ -17,6 +17,10 @@ int main()
 {
   START_TRACE();
   PROFILE_FUNC();
+  const ::ribi::trim::CreateVerticalFacesStrategy strategy {
+    ::ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
+  };
+
   try
   {
     const double tau { boost::math::constants::two_pi<double>() };
@@ -27,7 +31,8 @@ int main()
         //, ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
       },
       show_mesh,
-      2
+      2,
+      strategy
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");

@@ -42,12 +42,12 @@ ribi::Chess::QtResources::QtResources()
   #endif
 }
 
-const std::string ribi::Chess::QtResources::GetVersion()
+std::string ribi::Chess::QtResources::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::QtResources::GetVersionHistory()
+std::vector<std::string> ribi::Chess::QtResources::GetVersionHistory()
 {
   return {
     "2012-01-27: version 1.0: initial version"

@@ -59,7 +59,7 @@ ribi::c2h::File::File(
   #endif
 }
 
-const std::vector<std::string> ribi::c2h::File::CreateHtml(
+std::vector<std::string> ribi::c2h::File::CreateHtml(
   const std::string& m_filename,
   const FileType file_type
   ) noexcept

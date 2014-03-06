@@ -45,12 +45,12 @@ ribi::ShapeWidget * ribi::ShapeWidget::Clone() const noexcept
   return w;
 }
 
-const std::string ribi::ShapeWidget::GetVersion() noexcept
+std::string ribi::ShapeWidget::GetVersion() noexcept
 {
   return "2.0";
 }
 
-const std::vector<std::string> ribi::ShapeWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ShapeWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-13: Version 1.0: initial version",

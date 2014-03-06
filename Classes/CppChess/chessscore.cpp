@@ -27,12 +27,12 @@ ribi::Chess::Score::Score(const std::string& s)
   }
 }
 
-const std::string ribi::Chess::Score::GetVersion()
+std::string ribi::Chess::Score::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Score::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Score::GetVersionHistory()
 {
   std::vector<std::string> v;
   v.push_back("YYYY-MM-DD: version X.Y: [description]");
@@ -99,7 +99,7 @@ void ribi::Chess::Score::Test() noexcept
 }
 #endif
 
-const std::string ribi::Chess::Score::ToStr() const
+std::string ribi::Chess::Score::ToStr() const
 {
   if (m_is_black_winner) return "0-1";
   if (m_is_draw) return "1/2-1/2";

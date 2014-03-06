@@ -40,10 +40,10 @@ struct Resources
   //Resources();
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Resources its only instance
   //static Resources * m_instance;

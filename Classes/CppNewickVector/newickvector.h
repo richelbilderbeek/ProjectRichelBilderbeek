@@ -52,7 +52,7 @@ struct NewickVector
   bool IsSimple() const;
   const std::string ToStr() const;
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
   int Size() const noexcept;
   const NewickVector TermIsNotOne(const int i) const;
   const NewickVector TermIsOne(const int i) const;

@@ -23,12 +23,12 @@ double ribi::kalman::WhiteNoiseSystem::GetRandomNormal(const double mean, const 
   return value;
 }
 
-const std::string ribi::kalman::WhiteNoiseSystem::GetVersion() noexcept
+std::string ribi::kalman::WhiteNoiseSystem::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::kalman::WhiteNoiseSystem::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::WhiteNoiseSystem::GetVersionHistory() noexcept
 {
   return {
     "2013-05-03: version 1.0: initial version"

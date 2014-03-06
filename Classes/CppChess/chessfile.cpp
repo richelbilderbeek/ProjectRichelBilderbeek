@@ -46,12 +46,12 @@ ribi::Chess::File::File(const int x)
   #endif
 }
 
-const std::string ribi::Chess::File::GetVersion()
+std::string ribi::Chess::File::GetVersion()
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::File::GetVersionHistory()
+std::vector<std::string> ribi::Chess::File::GetVersionHistory()
 {
   return {
     "2012-01-25: version 1.0: initial version"

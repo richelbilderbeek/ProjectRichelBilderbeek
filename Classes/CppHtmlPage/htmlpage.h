@@ -47,7 +47,7 @@ struct HtmlPage
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Replace all occurrences of a string within a string
   ///From http://www.richelbilderbeek.nl/CppReplaceAll.htm

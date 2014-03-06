@@ -32,12 +32,12 @@ bool CanLexicalCast(const SourceType& from)
   return true;
 }
 
-const std::string ribi::xml::GetVersion() noexcept
+std::string ribi::xml::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::xml::GetVersionHistory() noexcept
+std::vector<std::string> ribi::xml::GetVersionHistory() noexcept
 {
   return {
     "201x-xx-xx: Version 1.0: initial version",
@@ -45,7 +45,7 @@ const std::vector<std::string> ribi::xml::GetVersionHistory() noexcept
   };
 }
 
-const std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
+std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
 {
   std::vector<std::string> v;
   std::string::const_iterator i = s.begin();
@@ -68,7 +68,7 @@ const std::vector<std::string> ribi::xml::SplitXml(const std::string& s)
   return v;
 }
 
-const std::string ribi::xml::StripXmlTag(const std::string& s)
+std::string ribi::xml::StripXmlTag(const std::string& s)
 {
   if (s.empty()) return "";
   if (s[0]!='<') return "";
@@ -603,7 +603,7 @@ void ribi::xml::Test() noexcept
 #endif
 
 
-const std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s)
+std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s)
 {
   std::vector<std::string> v = SplitXml(s);
   int n = -2;

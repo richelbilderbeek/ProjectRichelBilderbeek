@@ -117,12 +117,12 @@ const std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::Game::GetM
   return m_board->GetMoves(square);
 }
 
-const std::string ribi::Chess::Game::GetVersion()
+std::string ribi::Chess::Game::GetVersion()
 {
   return "0.1";
 }
 
-const std::vector<std::string> ribi::Chess::Game::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Game::GetVersionHistory()
 {
   return {
     "2012-06-16: version 0.1: initial seperation from Chess::Board"

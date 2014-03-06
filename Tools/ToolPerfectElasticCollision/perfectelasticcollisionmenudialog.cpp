@@ -42,7 +42,7 @@ int ribi::PerfectElasticCollisionMenuDialog::ExecuteSpecific(const std::vector<s
   return 1;
 }
 
-const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noexcept
+ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -57,7 +57,7 @@ const ribi::About ribi::PerfectElasticCollisionMenuDialog::GetAbout() const noex
   return a;
 }
 
-const ribi::Help ribi::PerfectElasticCollisionMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::PerfectElasticCollisionMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -71,7 +71,7 @@ const ribi::Help ribi::PerfectElasticCollisionMenuDialog::GetHelp() const noexce
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::PerfectElasticCollisionMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::PerfectElasticCollisionMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramPerfectElasticCollision
@@ -80,12 +80,12 @@ const boost::shared_ptr<const ribi::Program> ribi::PerfectElasticCollisionMenuDi
   return p;
 }
 
-const std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion() const noexcept
+std::string ribi::PerfectElasticCollisionMenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::PerfectElasticCollisionMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-08-14: version 1.0: initial version",

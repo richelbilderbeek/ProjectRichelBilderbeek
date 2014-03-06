@@ -6,13 +6,17 @@
 #include <sstream>
 #include <stdexcept>
 
+#include "aaffighter.h"
+#include "aaffighterfactory.h"
+#include "textcanvas.h"
 #include "trace.h"
 
-int ribi::aaf::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::aaf::MenuDialog::ExecuteSpecific(const std::vector<std::string>& /*argv*/) noexcept
 {
   #ifndef NDEBUG
   Test();
   #endif
+  /*
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -23,10 +27,15 @@ int ribi::aaf::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv)
   std::cout
     << this->GetAbout().GetFileTitle() << " cannot be run in console mode\n"
     << std::endl;
+  */
+  const boost::shared_ptr<Fighter> fighter {
+    aaf::FighterFactory().Create(AminoAcid::glycine)
+  };
+  std::cout << (*fighter->ToTextCanvas()) << std::endl;
   return 0;
 }
 
-const ribi::About ribi::aaf::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::aaf::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -41,7 +50,7 @@ const ribi::About ribi::aaf::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::aaf::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::aaf::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -55,7 +64,7 @@ const ribi::Help ribi::aaf::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::aaf::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::aaf::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramAminoAcidFighter
@@ -64,12 +73,12 @@ const boost::shared_ptr<const ribi::Program> ribi::aaf::MenuDialog::GetProgram()
   return p;
 }
 
-const std::string ribi::aaf::MenuDialog::GetVersion() const noexcept
+std::string ribi::aaf::MenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::aaf::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::aaf::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-11-07: version 1.1: Initial Qt version"

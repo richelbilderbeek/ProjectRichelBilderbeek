@@ -116,12 +116,12 @@ ribi::QtAboutDialog::~QtAboutDialog() noexcept
   delete ui;
 }
 
-const std::string ribi::QtAboutDialog::GetVersion() noexcept
+std::string ribi::QtAboutDialog::GetVersion() noexcept
 {
   return "1.9";
 }
 
-const std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtAboutDialog::GetVersionHistory() noexcept
 {
   return {
     "2011-01-11: version 1.0: initial version of QtAboutDialog",

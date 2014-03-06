@@ -30,10 +30,10 @@ struct Square
   const Chess::Rank& GetRank() const { return m_rank; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Test the correct working of Square
   #ifndef NDEBUG

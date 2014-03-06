@@ -37,7 +37,7 @@ ribi::cmap::Example::Example(
   #endif
 }
 
-const std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency)
+std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency)
 {
   switch (competency)
   {
@@ -210,7 +210,7 @@ void ribi::cmap::Example::Test() noexcept
   TRACE("Example::Test finished successfully");
 }
 
-const std::string ribi::cmap::Example::ToXml() const noexcept
+std::string ribi::cmap::Example::ToXml() const noexcept
 {
   std::stringstream s;
   s << "<example>";

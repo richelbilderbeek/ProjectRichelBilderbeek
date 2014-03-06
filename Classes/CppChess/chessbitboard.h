@@ -28,10 +28,10 @@ struct BitBoard
   bool Get(const boost::shared_ptr<const Square> s) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion();
+  static std::string GetVersion();
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory();
+  static std::vector<std::string> GetVersionHistory();
 
   ///Test the BitBoard
   static void Test() noexcept;

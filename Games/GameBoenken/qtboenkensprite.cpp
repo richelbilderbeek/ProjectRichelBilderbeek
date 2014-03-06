@@ -75,12 +75,12 @@ void ribi::Boenken::Sprite::Draw(QPainter& painter) const
   painter.drawPixmap(this->rect(),this->pixmap());
 }
 
-const std::string ribi::Boenken::Sprite::GetVersion() noexcept
+std::string ribi::Boenken::Sprite::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Boenken::Sprite::GetVersionHistory() noexcept
 {
   return
   {

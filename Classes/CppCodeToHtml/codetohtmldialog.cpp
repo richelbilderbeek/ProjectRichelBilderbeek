@@ -51,7 +51,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
+std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   const std::vector<std::string>& code,
   const SnippetType snippet_type) noexcept
 {
@@ -90,7 +90,7 @@ const std::vector<std::string> ribi::c2h::Dialog::SnippetToHtml(
   return w;
 }
 
-const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
+std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexcept
 {
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml
   // /home/richel/ProjectRichelBilderbeek/Tools/ToolCodeToHtml/
@@ -167,7 +167,7 @@ const std::string ribi::c2h::Dialog::ExtractPageName(const std::string& s) noexc
   return t;
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
+std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   const std::string& filename) noexcept
 {
   const std::vector<std::string> v {
@@ -177,7 +177,7 @@ const std::vector<std::string> ribi::c2h::Dialog::FileToHtml(
   return Replacer::ToHtml(v,file_type);
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
   const std::string& foldername) noexcept
 {
   assert(fileio::IsFolder(foldername));
@@ -195,7 +195,7 @@ const std::vector<std::string> ribi::c2h::Dialog::FolderToHtml(
   throw std::logic_error("ribi::c2h::Dialog::FolderToHtml");
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
   const std::string& foldername) noexcept
 {
   assert(fileio::IsFolder(foldername));
@@ -274,14 +274,14 @@ const std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
   return v;
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(
+std::vector<std::string> ribi::c2h::Dialog::GetProFilesInFolder(
   const std::string& folder)
 {
   return ribi::fileio::GetFilesInFolderByRegex(folder,".*\\.(pro)\\>");
 }
 
 
-const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
   const std::string& foldername) noexcept
 {
   std::vector<std::string> v;
@@ -374,7 +374,7 @@ const std::vector<std::string> ribi::c2h::Dialog::ProFolderToHtml(
   return v;
 }
 
-const std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
+std::vector<std::string> ribi::c2h::Dialog::TextFolderToHtml(
   const std::string& foldername ) noexcept
 {
   assert(fileio::IsFolder(foldername));

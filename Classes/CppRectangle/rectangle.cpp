@@ -39,12 +39,12 @@ ribi::Rect::Rect(
   if (any_h < 0.0) throw std::logic_error("Cannot create Rect with negative height");
 }
 
-const std::string ribi::Rect::GetVersion() noexcept
+std::string ribi::Rect::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Rect::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Rect::GetVersionHistory() noexcept
 {
   return {
     "2011-08-20: Version 1.0: initial version"

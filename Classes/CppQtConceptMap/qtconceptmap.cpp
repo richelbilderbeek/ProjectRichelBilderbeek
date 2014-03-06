@@ -456,12 +456,12 @@ QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const
   return this->scene();
 }
 
-const std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
+std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noexcept
+std::vector<std::string> ribi::cmap::QtConceptMap::GetVersionHistory() noexcept
 {
   return {
     "201x-xx-xx: version 1.0: initial version"

@@ -22,7 +22,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
-const std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) noexcept
+std::vector<std::string> ribi::c2h::Footer::ToHtml(const FooterType page_type) noexcept
 {
   #ifndef NDEBUG
   //Test();

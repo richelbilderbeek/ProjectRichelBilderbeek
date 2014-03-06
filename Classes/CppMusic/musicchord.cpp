@@ -119,12 +119,12 @@ const std::vector<ribi::Music::Note> ribi::Music::Chord::GetNotes() const noexce
   return notes;
 }
 
-const std::string ribi::Music::Chord::GetVersion() noexcept
+std::string ribi::Music::Chord::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Music::Chord::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Music::Chord::GetVersionHistory() noexcept
 {
   return {
     "2012-08-10: version 1.0: initial version"
@@ -140,7 +140,7 @@ void ribi::Music::Chord::Test() noexcept
   }
 }
 
-const std::string ribi::Music::Chord::ToStr() const noexcept
+std::string ribi::Music::Chord::ToStr() const noexcept
 {
   return m_root.ToStr() + m_postfix;
 }

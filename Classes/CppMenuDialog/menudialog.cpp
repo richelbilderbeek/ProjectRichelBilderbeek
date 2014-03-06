@@ -7,7 +7,7 @@
 #include <iostream>
 #pragma GCC diagnostic pop
 
-const std::vector<std::string> ribi::MenuDialog::ConvertArguments(
+std::vector<std::string> ribi::MenuDialog::ConvertArguments(
   const int argc, const char * const argv[]) noexcept
 {
    std::vector<std::string> v;

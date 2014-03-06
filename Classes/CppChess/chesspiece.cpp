@@ -80,19 +80,19 @@ const boost::shared_ptr<const ribi::Chess::Square> ribi::Chess::Piece::GetSquare
   return m_square;
 }
 
-const std::string ribi::Chess::Piece::GetVersion() noexcept
+std::string ribi::Chess::Piece::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Chess::Piece::GetVersionHistory() noexcept
+std::vector<std::string> ribi::Chess::Piece::GetVersionHistory() noexcept
 {
   return {
     "2012-01-25: version 1.0: initial version"
   };
 }
 
-const std::string ribi::Chess::Piece::ToStr() const noexcept
+std::string ribi::Chess::Piece::ToStr() const noexcept
 {
   return Chess::ColorToStr(GetColor())
     + " "

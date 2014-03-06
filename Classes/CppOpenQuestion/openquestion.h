@@ -58,7 +58,7 @@ struct OpenQuestion : public Question
   static const std::vector<std::string> GetValidOpenQuestions() noexcept;
 
   static const std::string GetVersion() noexcept;
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///How to display the question as multiple lines
   const std::vector<std::string> ToLines() const;

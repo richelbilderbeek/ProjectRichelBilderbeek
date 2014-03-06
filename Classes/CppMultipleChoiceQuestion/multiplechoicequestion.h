@@ -63,7 +63,7 @@ struct MultipleChoiceQuestion : public Question
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the wrong answers
   const std::vector<std::string>& GetWrongAnswers() const noexcept { return m_wrong_answers; }

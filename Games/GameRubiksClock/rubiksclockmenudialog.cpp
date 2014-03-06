@@ -84,7 +84,7 @@ int ribi::ruco::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
   return 0;
 }
 
-const ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -112,7 +112,7 @@ const ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::ruco::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ruco::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -126,7 +126,7 @@ const ribi::Help ribi::ruco::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ruco::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ruco::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramRubiksClock
@@ -135,12 +135,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ruco::MenuDialog::GetProgram(
   return p;
 }
 
-const std::string ribi::ruco::MenuDialog::GetVersion() const noexcept
+std::string ribi::ruco::MenuDialog::GetVersion() const noexcept
 {
   return "2.3";
 }
 
-const std::vector<std::string> ribi::ruco::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ruco::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2007-12-19: Version 1.0: initial Windows-only version using C++ Builder",

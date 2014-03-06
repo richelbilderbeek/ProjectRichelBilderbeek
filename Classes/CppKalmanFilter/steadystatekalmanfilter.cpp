@@ -51,12 +51,12 @@ int ribi::kalman::SteadyStateKalmanFilter::GetStateSize() const noexcept
   return sz;
 }
 
-const std::string ribi::kalman::SteadyStateKalmanFilter::GetVersion() noexcept
+std::string ribi::kalman::SteadyStateKalmanFilter::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistory() noexcept
+std::vector<std::string> ribi::kalman::SteadyStateKalmanFilter::GetVersionHistory() noexcept
 {
   return {
     "2013-05-01: version 1.0: initial version",

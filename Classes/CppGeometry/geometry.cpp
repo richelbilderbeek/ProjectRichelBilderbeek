@@ -54,12 +54,12 @@ double ribi::Geometry::GetDistance(const double dx, const double dy) const noexc
   return std::sqrt( (dx * dx) + (dy * dy) );
 }
 
-const std::string ribi::Geometry::GetVersion() const noexcept
+std::string ribi::Geometry::GetVersion() const noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
 {
   return {
     "2014-02-25: version 1.0: initial version"
@@ -95,13 +95,27 @@ bool ribi::Geometry::IsClockwise(const std::vector<double>& angles) const noexce
 bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept
 {
   const int n_points { static_cast<int>(points.size()) };
-  assert(n_points == 3);
-  const Coordinat3D a { points[0] };
-  const Coordinat3D b { points[1] };
-  const Coordinat3D c { points[2] };
-  const Coordinat3D normal { CalcNormal(a,b,c) };
-  const double direction { CalcDotProduct(normal,a - observer) };
-  return direction > 0.0;
+  assert(n_points == 3 || n_points == 4);
+  if (n_points == 3)
+  {
+    const Coordinat3D a { points[0] };
+    const Coordinat3D b { points[1] };
+    const Coordinat3D c { points[2] };
+    const Coordinat3D normal { CalcNormal(a,b,c) };
+    const double direction { CalcDotProduct(normal,a - observer) };
+    return direction > 0.0;
+  }
+  else
+  {
+    assert(n_points == 4);
+    std::vector<Coordinat3D> a;
+    std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
+    std::vector<Coordinat3D> b;
+    std::copy(points.begin() + 1,points.begin() + 4,std::back_inserter(b));
+    assert(a.size() == 3);
+    assert(b.size() == 3);
+    return IsClockwise(a,observer) && IsClockwise(b,observer);
+  }
 }
 
 bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept
@@ -123,6 +137,19 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& point
     }
   );
   return IsClockwise(angles);
+}
+
+bool ribi::Geometry::IsConvex(boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon) const noexcept
+{
+  boost::geometry::correct(polygon);
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> hull;
+  boost::geometry::convex_hull(polygon, hull);
+  return boost::geometry::area(hull) == boost::geometry::area(polygon);
+}
+
+bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
+{
+  return points.empty();
 }
 
 #ifndef NDEBUG
@@ -259,6 +286,93 @@ void ribi::Geometry::Test() noexcept
     assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi, 3.25 * pi } ));
     assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi, 3.25 * pi } ));
   }
+  //IsClockWise of four, vector
+  {
+    //Correct order
+    assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.5 * pi,-1.0 * pi} ));
+    assert( g.IsClockwise( {-2.0 * pi,-1.5 * pi,-1.0 * pi,-0.5 * pi} ));
+    assert( g.IsClockwise( {-1.5 * pi,-1.0 * pi,-0.5 * pi, 0.0 * pi} ));
+    assert( g.IsClockwise( {-1.0 * pi,-0.5 * pi, 0.0 * pi, 0.5 * pi} ));
+    assert( g.IsClockwise( {-0.5 * pi, 0.0 * pi, 0.5 * pi, 1.0 * pi} ));
+    assert( g.IsClockwise( { 0.0 * pi, 0.5 * pi, 1.0 * pi, 1.5 * pi} ));
+    assert( g.IsClockwise( { 0.5 * pi, 1.0 * pi, 1.5 * pi, 2.0 * pi} ));
+    assert( g.IsClockwise( { 1.0 * pi, 1.5 * pi, 2.0 * pi, 2.5 * pi} ));
+    assert( g.IsClockwise( { 1.5 * pi, 2.0 * pi, 2.5 * pi, 3.0 * pi} ));
+    assert( g.IsClockwise( { 2.0 * pi, 2.5 * pi, 3.0 * pi, 3.5 * pi} ));
+    assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi, 3.5 * pi, 4.0 * pi} ));
+
+    //Swap [0] and [1]
+    assert(!g.IsClockwise( {-2.0 * pi,-2.5 * pi,-1.5 * pi,-1.0 * pi} ));
+    assert(!g.IsClockwise( {-1.5 * pi,-2.0 * pi,-1.0 * pi,-0.5 * pi} ));
+    assert(!g.IsClockwise( {-1.0 * pi,-1.5 * pi,-0.5 * pi, 0.0 * pi} ));
+    assert(!g.IsClockwise( {-0.5 * pi,-1.0 * pi, 0.0 * pi, 0.5 * pi} ));
+    assert(!g.IsClockwise( { 0.0 * pi,-0.5 * pi, 0.5 * pi, 1.0 * pi} ));
+    assert(!g.IsClockwise( { 0.5 * pi, 0.0 * pi, 1.0 * pi, 1.5 * pi} ));
+    assert(!g.IsClockwise( { 1.0 * pi, 0.5 * pi, 1.5 * pi, 2.0 * pi} ));
+    assert(!g.IsClockwise( { 1.5 * pi, 1.0 * pi, 2.0 * pi, 2.5 * pi} ));
+    assert(!g.IsClockwise( { 2.0 * pi, 1.5 * pi, 2.5 * pi, 3.0 * pi} ));
+    assert(!g.IsClockwise( { 2.5 * pi, 2.0 * pi, 3.0 * pi, 3.5 * pi} ));
+    assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi, 3.5 * pi, 4.0 * pi} ));
+
+    //Swap [2] and [3]
+    assert(!g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.0 * pi,-1.5 * pi} ));
+    assert(!g.IsClockwise( {-2.0 * pi,-1.5 * pi,-0.5 * pi,-1.0 * pi} ));
+    assert(!g.IsClockwise( {-1.5 * pi,-1.0 * pi, 0.0 * pi,-0.5 * pi} ));
+    assert(!g.IsClockwise( {-1.0 * pi,-0.5 * pi, 0.5 * pi, 0.0 * pi} ));
+    assert(!g.IsClockwise( {-0.5 * pi, 0.0 * pi, 1.0 * pi, 0.5 * pi} ));
+    assert(!g.IsClockwise( { 0.0 * pi, 0.5 * pi, 1.5 * pi, 1.0 * pi} ));
+    assert(!g.IsClockwise( { 0.5 * pi, 1.0 * pi, 2.0 * pi, 1.5 * pi} ));
+    assert(!g.IsClockwise( { 1.0 * pi, 1.5 * pi, 2.5 * pi, 2.0 * pi} ));
+    assert(!g.IsClockwise( { 1.5 * pi, 2.0 * pi, 3.0 * pi, 2.5 * pi} ));
+    assert(!g.IsClockwise( { 2.0 * pi, 2.5 * pi, 3.5 * pi, 3.0 * pi} ));
+    assert(!g.IsClockwise( { 2.5 * pi, 3.0 * pi, 4.0 * pi, 3.5 * pi} ));
+  }
+  //IsConvex, two dimensions
+  {
+    /* Polygons used:
+
+    0123456789012    0123456789012
+   0+------------   0+------------
+   1|               1|
+   2| A---------B   2| A---------B
+   3| E        /    3|  \   D   /
+   4|  \      /     4|   \ / \ /
+   5|   D----C      5|    E   C
+    |                |
+
+       Convex           Concave
+
+    */
+
+    //Convex shape
+    {
+      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+        { 2.0, 2.0}, //A
+        {12.0, 2.0}, //B
+        { 9.0, 5.0}, //C
+        { 4.0, 5.0}, //D
+        { 2.0, 3.0}  //E
+      };
+
+      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      boost::geometry::append(polygon, points);
+      assert(g.IsConvex(polygon));
+    }
+    //Concave shape
+    {
+      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+        { 2.0, 2.0}, //A
+        {12.0, 2.0}, //B
+        { 9.0, 5.0}, //C
+        { 7.0, 3.0}, //D
+        { 5.0, 5.0}  //E
+      };
+
+      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      boost::geometry::append(polygon, points);
+      assert(!g.IsConvex(polygon));
+    }
+  }
   //IsClockwise in three dimensions, points in XY plane
   {
     /*
@@ -322,6 +436,108 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
+
+
+
+
+  //IsClockwise, clockwise, in three dimensions, four points in XY plane
+  {
+    /*
+
+       0 1 2 3
+     0 +------X
+       |
+     1 | A-B     (seen from above, Z = 1)
+       | | |
+     2 | D-C
+       |
+     3 |
+       Y
+
+    */
+    const Coordinat3D a(1.0, 1.0, 1.0);
+    const Coordinat3D b(2.0, 1.0, 1.0);
+    const Coordinat3D c(2.0, 2.0, 1.0);
+    const Coordinat3D d(1.0, 2.0, 1.0);
+    const std::vector<Coordinat3D> coordinats { a,b,c,d };
+    for (int i = 0; i!=3; ++i)
+    {
+      for (int j=0; j!=3; ++j)
+      {
+        const double x = static_cast<double>(i-1) * 5.0;
+        const double y = static_cast<double>(j-1) * 5.0;
+        const Coordinat3D above(x, y, 2.0);
+        const Coordinat3D below(x, y,-1.0);
+        assert( g.IsClockwise(coordinats,above));
+        assert(!g.IsClockwise(coordinats,below));
+      }
+    }
+  }
+  //IsClockwise, counter-clockwise, in three dimensions, four points in XY plane
+  {
+    /*
+       0 1 2 3
+     0 +------X
+       |
+     1 | A-D     (seen from above, Z = 1)
+       | | |
+     2 | B-C
+       |
+     3 |
+       Y
+
+    */
+    const Coordinat3D a(1.0, 1.0, 1.0);
+    const Coordinat3D b(1.0, 2.0, 1.0);
+    const Coordinat3D c(2.0, 2.0, 1.0);
+    const Coordinat3D d(2.0, 1.0, 1.0);
+    const std::vector<Coordinat3D> coordinats { a,b,c,d };
+    for (int i = 0; i!=3; ++i)
+    {
+      for (int j=0; j!=3; ++j)
+      {
+        const double x = static_cast<double>(i-1) * 5.0;
+        const double y = static_cast<double>(j-1) * 5.0;
+        const Coordinat3D above(x, y, 2.0);
+        const Coordinat3D below(x, y,-1.0);
+        assert(!g.IsClockwise(coordinats,above));
+        assert( g.IsClockwise(coordinats,below));
+      }
+    }
+  }
+  //IsClockwise, indetermined direction, in three dimensions, four points in XY plane
+  {
+    /*
+       0 1 2 3
+     0 +------X
+       |
+     1 | A-D     (seen from above, Z = 1)
+       |  x
+     2 | C-B
+       |
+     3 |
+       Y
+
+    */
+    const Coordinat3D a(1.0, 1.0, 1.0);
+    const Coordinat3D b(2.0, 2.0, 1.0);
+    const Coordinat3D c(1.0, 2.0, 1.0);
+    const Coordinat3D d(2.0, 1.0, 1.0);
+    const std::vector<Coordinat3D> coordinats { a,b,c,d };
+    for (int i = 0; i!=3; ++i)
+    {
+      for (int j=0; j!=3; ++j)
+      {
+        const double x = static_cast<double>(i-1) * 5.0;
+        const double y = static_cast<double>(j-1) * 5.0;
+        const Coordinat3D above(x, y, 2.0);
+        const Coordinat3D below(x, y,-1.0);
+        assert(!g.IsClockwise(coordinats,above));
+        assert(!g.IsClockwise(coordinats,below));
+      }
+    }
+  }
+  assert(1==2);
   TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif

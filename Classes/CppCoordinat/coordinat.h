@@ -51,11 +51,21 @@ void Coordinat<Length>::Translate(const Length& dx, const Length& dy) noexcept
 }
 
 template <class Length>
+Coordinat<Length> operator+(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noexcept
+{
+  return Coordinat<Length>(
+    lhs.GetX() + rhs.GetX(),
+    lhs.GetY() + rhs.GetY()
+  );
+}
+
+template <class Length>
 bool operator==(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noexcept
 {
   return lhs.GetX() == rhs.GetX()
       && lhs.GetY() == rhs.GetY();
 }
+
 
 #ifndef NDEBUG
 template <class Length>

@@ -24,7 +24,7 @@ int ribi::pvdb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv
   return 1;
 }
 
-const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek (programming) and Toine van den Bogaart (research)",
@@ -43,7 +43,7 @@ const ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-const ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -57,7 +57,7 @@ const ribi::Help ribi::pvdb::MenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramBrainweaver
@@ -66,12 +66,12 @@ const boost::shared_ptr<const ribi::Program> ribi::pvdb::MenuDialog::GetProgram(
   return p;
 }
 
-const std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
+std::string ribi::pvdb::MenuDialog::GetVersion() const noexcept
 {
   return "0.45";
 }
 
-const std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::pvdb::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2012-06-17: Version 0.01: concept version of ProjectVanDenBogaart, using 'IronHide' style",

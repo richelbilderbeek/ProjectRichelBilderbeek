@@ -64,12 +64,12 @@ void ribi::QtSitemapGeneratorMainDialog::keyPressEvent(QKeyEvent * e)
 
 
 
-const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
+std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder(const std::string& s)
 {
   return ribi::fileio::GetPath(s);
 }
 
-const std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder()
+std::string ribi::QtSitemapGeneratorMainDialog::GetCurrentFolder()
 {
   QString s = QApplication::applicationDirPath();
   return s.toStdString();

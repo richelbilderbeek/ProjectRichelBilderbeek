@@ -70,7 +70,7 @@ void ribi::kalman::QtKalmanFiltererParameterDialog::keyPressEvent(QKeyEvent * ev
   QDialog::keyPressEvent(event);
 }
 
-const std::string ribi::kalman::QtKalmanFiltererParameterDialog::ToHtml() const
+std::string ribi::kalman::QtKalmanFiltererParameterDialog::ToHtml() const
 {
   std::string s;
   s+="<table summary=\"" + ui->label->text().toStdString() + "\" border=\"1\">";

@@ -168,13 +168,13 @@ const std::vector<boost::shared_ptr<ribi::reversi::Move>> ribi::reversi::Widget:
   return moves;
 }
 
-const std::string ribi::reversi::Widget::GetVersion() noexcept
+std::string ribi::reversi::Widget::GetVersion() noexcept
 {
   return "1.1";
 }
 
 
-const std::vector<std::string> ribi::reversi::Widget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::reversi::Widget::GetVersionHistory() noexcept
 {
   return {
     "2013-12-19: version 1.0: split off from Reversi",

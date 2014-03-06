@@ -87,7 +87,7 @@ int ribi::DasWahreSchlagerfestMenuDialog::ExecuteSpecific(const std::vector<std:
   return 0;
 }
 
-const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
+ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcept
 {
   return About(
     "Richel Bilderbeek",
@@ -101,7 +101,7 @@ const ribi::About ribi::DasWahreSchlagerfestMenuDialog::GetAbout() const noexcep
   );
 }
 
-const ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
 {
   return Help(
     GetAbout().GetFileTitle(),
@@ -119,7 +119,7 @@ const ribi::Help ribi::DasWahreSchlagerfestMenuDialog::GetHelp() const noexcept
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p {
     new ProgramDasWahreSchlagerfest
@@ -128,12 +128,12 @@ const boost::shared_ptr<const ribi::Program> ribi::DasWahreSchlagerfestMenuDialo
   return p;
 }
 
-const std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
+std::string ribi::DasWahreSchlagerfestMenuDialog::GetVersion() const noexcept
 {
   return "2.5";
 }
 
-const std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::DasWahreSchlagerfestMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2003-09-30: version 1.1: Windows-only version",

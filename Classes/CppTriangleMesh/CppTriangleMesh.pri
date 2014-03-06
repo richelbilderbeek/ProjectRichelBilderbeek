@@ -21,7 +21,9 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshedge.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshedgefactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshwinding.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshwindings.cpp
+    ../../Classes/CppTriangleMesh/trianglemeshwindings.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.cpp \
+    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.cpp
 
 HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshtemplate.h \
@@ -40,7 +42,9 @@ HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshedge.h \
     ../../Classes/CppTriangleMesh/trianglemeshedgefactory.h \
     ../../Classes/CppTriangleMesh/trianglemeshwinding.h \
-    ../../Classes/CppTriangleMesh/trianglemeshwindings.h
+    ../../Classes/CppTriangleMesh/trianglemeshwindings.h \
+    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.h \
+    ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategies.h
 
 OTHER_FILES += \
     ../../Classes/CppTriangleMesh/Licence.txt

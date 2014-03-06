@@ -30,7 +30,7 @@ int ribi::kalman::KalmanFiltererMenuDialog::ExecuteSpecific(const std::vector<st
   return 0;
 }
 
-const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
+ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -58,7 +58,7 @@ const ribi::About ribi::kalman::KalmanFiltererMenuDialog::GetAbout() const noexc
   return a;
 }
 
-const ribi::Help ribi::kalman::KalmanFiltererMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::kalman::KalmanFiltererMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -72,7 +72,7 @@ const ribi::Help ribi::kalman::KalmanFiltererMenuDialog::GetHelp() const noexcep
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramKalmanFilterer
@@ -81,12 +81,12 @@ const boost::shared_ptr<const ribi::Program> ribi::kalman::KalmanFiltererMenuDia
   return p;
 }
 
-const std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() const noexcept
+std::string ribi::kalman::KalmanFiltererMenuDialog::GetVersion() const noexcept
 {
   return "1.15";
 }
 
-const std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::kalman::KalmanFiltererMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-04-28: version 1.0: initial Qt4 and Boost 1.49.0 version that started from CppKalmanFilterExample13",

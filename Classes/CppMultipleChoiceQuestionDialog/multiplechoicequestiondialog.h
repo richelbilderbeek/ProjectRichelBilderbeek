@@ -48,7 +48,7 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Submit an answer
   ///For a multiple choice question, s will be the index of the answer

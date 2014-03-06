@@ -46,7 +46,7 @@ bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemPar
   return !ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(type);
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -70,7 +70,7 @@ const std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const W
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {
@@ -94,7 +94,7 @@ const std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoi
   throw std::logic_error(__func__);
 }
 
-const std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
 {
   switch (type)
   {

@@ -6,7 +6,7 @@
 #include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
 
-const std::string ribi::reversi::MovePlacePiece::ToStr() const noexcept
+std::string ribi::reversi::MovePlacePiece::ToStr() const noexcept
 {
   std::stringstream s;
   s << this->GetX() << ',' << this->GetY();

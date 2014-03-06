@@ -26,7 +26,7 @@ int ribi::ToolTestMultiApproximatorMenuDialog::ExecuteSpecific(const std::vector
   return 1;
 }
 
-const ribi::About ribi::ToolTestMultiApproximatorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::ToolTestMultiApproximatorMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -43,7 +43,7 @@ const ribi::About ribi::ToolTestMultiApproximatorMenuDialog::GetAbout() const no
   return a;
 }
 
-const ribi::Help ribi::ToolTestMultiApproximatorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::ToolTestMultiApproximatorMenuDialog::GetHelp() const noexcept
 {
   return Help(
     this->GetAbout().GetFileTitle(),
@@ -57,7 +57,7 @@ const ribi::Help ribi::ToolTestMultiApproximatorMenuDialog::GetHelp() const noex
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::ToolTestMultiApproximatorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::ToolTestMultiApproximatorMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const Program> p {
     new ProgramTestMultiApproximator
@@ -66,12 +66,12 @@ const boost::shared_ptr<const ribi::Program> ribi::ToolTestMultiApproximatorMenu
   return p;
 }
 
-const std::string ribi::ToolTestMultiApproximatorMenuDialog::GetVersion() const noexcept
+std::string ribi::ToolTestMultiApproximatorMenuDialog::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ToolTestMultiApproximatorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::ToolTestMultiApproximatorMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2013-08-23: version 1.0: initial version",

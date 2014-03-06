@@ -47,12 +47,12 @@ void ribi::ShinyButtonWidget::Click()
   m_signal_clicked(this);
 }
 
-const std::string ribi::ShinyButtonWidget::GetVersion() noexcept
+std::string ribi::ShinyButtonWidget::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::ShinyButtonWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::ShinyButtonWidget::GetVersionHistory() noexcept
 {
   return {
     "2011-09-21: version 1.0: initial version",

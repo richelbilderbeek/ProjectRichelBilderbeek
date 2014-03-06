@@ -136,7 +136,7 @@ ribi::QtRichelBilderbeekMenuDialog::~QtRichelBilderbeekMenuDialog() noexcept
   delete ui;
 }
 
-const ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
+ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
 {
   About a = ProjectRichelBilderbeekMenuDialog().GetAbout();
   a.AddLibrary("QtArrowItem version: " + QtArrowItem::GetVersion());

@@ -65,8 +65,10 @@ struct PolarCoordinat
 
 };
 
+/*
 template <class T, class U>
 T CalculateSqrt(const U& x);
+*/
 
 template <class Angle,class Length>
 Coordinat<Length> ToCoordinat(const PolarCoordinat<Angle,Length>& c)
@@ -108,11 +110,34 @@ const Angle PolarCoordinat<Angle,Length>::CalcAngle(const Length& dx, const Leng
 template <class Angle, class Length>
 const Length PolarCoordinat<Angle,Length>::CalcLength(const Length& dx, const Length& dy)
 {
-  //return Length(std::sqrt(((dx*dx)+(dy*dy)).value()) * meter);
-  return Length(
-    CalculateSqrt<boost::units::quantity<boost::units::si::length> >(
-      (dx*dx)+(dy*dy)
-    )
+  const double a { dx.value() };
+  const double b { dy.value() };
+  return std::sqrt((a*a)+(b*b)) * boost::units::si::meter;
+}
+
+template <class T>
+bool IsAboutEqual(
+  const boost::units::quantity<T>& lhs,
+  const boost::units::quantity<T>& rhs,
+  const boost::units::quantity<T>& max_error)
+{
+  return lhs < rhs
+    ? lhs + max_error > rhs
+    : rhs + max_error > lhs;
+}
+
+template <class Angle,class Length>
+PolarCoordinat<Angle,Length> operator+(
+  const PolarCoordinat<Angle,Length>& a,
+  const PolarCoordinat<Angle,Length>& b
+  )
+{
+  const Coordinat<Length> coordinat {
+    ToCoordinat(a) + ToCoordinat(b)
+  };
+  return PolarCoordinat<Angle,Length>(
+    coordinat.GetX(),
+    coordinat.GetY()
   );
 }
 

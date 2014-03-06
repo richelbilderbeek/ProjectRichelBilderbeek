@@ -73,7 +73,7 @@ ribi::QrcFile::QrcFile(const std::string& filename)
   }
 }
 
-const ribi::About ribi::QrcFile::GetAbout() noexcept
+ribi::About ribi::QrcFile::GetAbout() noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -87,12 +87,12 @@ const ribi::About ribi::QrcFile::GetAbout() noexcept
   return a;
 }
 
-const std::string ribi::QrcFile::GetVersion() noexcept
+std::string ribi::QrcFile::GetVersion() noexcept
 {
   return "1.1";
 }
 
-const std::vector<std::string> ribi::QrcFile::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QrcFile::GetVersionHistory() noexcept
 {
   return {
     "2012-06-13: version 1.0: initial version",

@@ -44,7 +44,7 @@ public:
   static const std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Hide the parent, show a child, show the parent
   void ShowChild(QtHideAndShowDialog * const dialog);

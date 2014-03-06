@@ -103,12 +103,12 @@ void ribi::QtGaborFilterWidget::DrawGaborFilter(
     widget->GetGaborFilter());
 }
 
-const std::string ribi::QtGaborFilterWidget::GetVersion() noexcept
+std::string ribi::QtGaborFilterWidget::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::QtGaborFilterWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::QtGaborFilterWidget::GetVersionHistory() noexcept
 {
   std::vector<std::string> v;
   v.push_back("2012-07-07: Version 1.0: initial version");

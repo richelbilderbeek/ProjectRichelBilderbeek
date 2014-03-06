@@ -236,12 +236,12 @@ const std::pair<ribi::NewickVector,ribi::NewickVector> ribi::NewickVector::GetRo
   return p;
 }
 
-const std::string ribi::NewickVector::GetVersion() noexcept
+std::string ribi::NewickVector::GetVersion() noexcept
 {
   return "2.1";
 }
 
-const std::vector<std::string> ribi::NewickVector::GetVersionHistory() noexcept
+std::vector<std::string> ribi::NewickVector::GetVersionHistory() noexcept
 {
   return {
     "2009-06-01: Version 1.0: Initial version",
@@ -836,7 +836,7 @@ void ribi::NewickVector::Test() noexcept
 }
 #endif
 
-const std::string ribi::NewickVector::ToStr() const
+std::string ribi::NewickVector::ToStr() const
 {
   assert(Newick::IsNewick(m_v));
   return Newick::NewickToString(m_v);
