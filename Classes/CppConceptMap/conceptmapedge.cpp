@@ -63,7 +63,7 @@ void ribi::cmap::Edge::EmitSignalEdgeChanged()
   m_signal_edge_changed(this);
 }
 
-void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from)
+void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from) noexcept
 {
   assert(from);
   if (m_from != from)
@@ -73,7 +73,7 @@ void ribi::cmap::Edge::SetFrom(const boost::shared_ptr<ribi::cmap::Node> from)
   }
 }
 
-void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow)
+void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow) noexcept
 {
   if (m_head_arrow != has_head_arrow)
   {
@@ -82,7 +82,7 @@ void ribi::cmap::Edge::SetHeadArrow(const bool has_head_arrow)
   }
 }
 
-void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow)
+void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow) noexcept
 {
   if (m_tail_arrow != has_tail_arrow)
   {
@@ -91,7 +91,7 @@ void ribi::cmap::Edge::SetTailArrow(const bool has_tail_arrow)
   }
 }
 
-void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to)
+void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to) noexcept
 {
   assert(to);
   if (m_to != to)
@@ -102,7 +102,7 @@ void ribi::cmap::Edge::SetTo(const boost::shared_ptr<ribi::cmap::Node> to)
   }
 }
 
-void ribi::cmap::Edge::SetX(const double x)
+void ribi::cmap::Edge::SetX(const double x) noexcept
 {
   if (m_x != x)
   {
@@ -111,7 +111,7 @@ void ribi::cmap::Edge::SetX(const double x)
   }
 }
 
-void ribi::cmap::Edge::SetY(const double y)
+void ribi::cmap::Edge::SetY(const double y) noexcept
 {
   if (m_y != y)
   {
@@ -165,7 +165,8 @@ void ribi::cmap::Edge::Test() noexcept
 
 std::string ribi::cmap::Edge::ToXml(
   const boost::shared_ptr<const cmap::Edge>& edge,
-  const std::vector<boost::shared_ptr<const cmap::Node> >& nodes)
+  const std::vector<boost::shared_ptr<const cmap::Node> >& nodes
+) noexcept
 {
   std::stringstream s;
   s << "<edge>";

@@ -63,11 +63,11 @@ private:
   ///The name of this concept, for example 'my own development'
   const std::string m_focus_name;
 
-  static const std::vector<Row>
+  static std::vector<Row>
     CreateData(const boost::shared_ptr</* const */ ConceptMap> map);
 
-  static const std::string
-    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_concept_map);
+  static std::string
+    GetFocusName(const boost::shared_ptr<const ConceptMap> sub_concept_map) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

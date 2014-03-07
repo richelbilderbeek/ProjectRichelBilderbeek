@@ -21,7 +21,7 @@ namespace ribi {
 ///Help adding constness a bit
 template <class T>
 const std::vector<boost::shared_ptr<const T> > AddConst(
-  const std::vector<boost::shared_ptr<T> > v)
+  const std::vector<boost::shared_ptr<T> > v) noexcept
 {
   const std::vector<boost::shared_ptr<const T> > w(v.begin(),v.end());
   #ifndef NDEBUG
@@ -35,7 +35,7 @@ const std::vector<boost::shared_ptr<const T> > AddConst(
 ///Help adding constness a bit
 template <class T>
 const std::vector<const T *> AddConst(
-  const std::vector<T *> v)
+  const std::vector<T *> v) noexcept
 {
   const std::vector<const T *> w(v.begin(),v.end());
   #ifndef NDEBUG
@@ -86,34 +86,27 @@ double GetDistance(const double delta_x, const double delta_y);
 double GetDistance(const double x1, const double y1, const double x2, const double y2);
 
 ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-const std::vector<std::string> GetRegexMatches(
+std::vector<std::string> GetRegexMatches(
   const std::string& s,
-  const QRegExp& r);
+  const QRegExp& r
+) noexcept;
 
 ///SafeFileToVector calls FileToVector and
 ///removes an empty trailing line that can be created under
 ///the Windows operating system, due to different line endings
-const std::vector<std::string> SafeFileToVector(const std::string& filename);
-
-///Split an XML std::string into its parts
-//From http://www.richelbilderbeek.nl/CppSplitXml.htm
-//const std::vector<std::string> SplitXml(const std::string& s);
+std::vector<std::string> SafeFileToVector(const std::string& filename) noexcept;
 
 #ifndef NDEBUG
 ///Test the helper functions
-void TestHelperFunctions();
+void TestHelperFunctions() noexcept;
 #endif
 
 ///Undo a Wordwrap
-const std::string Unwordwrap(const std::vector<std::string>& v) noexcept;
+std::string Unwordwrap(const std::vector<std::string>& v) noexcept;
 
 ///Wordwrap the text to obtain lines of max_len characters
 ///If the string _must_ be seperable by spaces; a word can have a maximum length of max_len
-const std::vector<std::string> Wordwrap(const std::string& s, const std::size_t max_len) noexcept;
-
-///Pretty-print an XML std::string by indenting its elements
-//From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
-//const std::vector<std::string> XmlToPretty(const std::string& s);
+std::vector<std::string> Wordwrap(const std::string& s, const std::size_t max_len) noexcept;
 
 } //~namespace cmap
 } //~namespace ribi

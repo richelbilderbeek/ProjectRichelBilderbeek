@@ -641,7 +641,7 @@ bool ribi::cmap::ConceptMap::IsValid() const
 }
 #endif
 
-std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map)
+std::string ribi::cmap::ConceptMap::ToXml(const boost::shared_ptr<const ribi::cmap::ConceptMap> map) noexcept
 {
   std::stringstream s;
   s << "<concept_map>";
@@ -697,7 +697,7 @@ int ribi::cmap::CountCenterNodeEdges(const boost::shared_ptr<const ConceptMap> c
   return cnt;
 }
 
-bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs)
+bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs) noexcept
 {
   //Compare nodes
   {
@@ -745,7 +745,7 @@ bool ribi::cmap::operator==(const ribi::cmap::ConceptMap& lhs, const ribi::cmap:
 
 }
 
-bool ribi::cmap::operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs)
+bool ribi::cmap::operator!=(const ribi::cmap::ConceptMap& lhs, const ribi::cmap::ConceptMap& rhs) noexcept
 {
   return !(lhs == rhs);
 }

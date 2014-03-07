@@ -43,7 +43,7 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   virtual ~QtKeyboardFriendlyGraphicsView() noexcept {}
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -66,16 +66,16 @@ struct QtKeyboardFriendlyGraphicsView : public QGraphicsView
   static double GetDistance(const QPointF& a, const QPointF& b);
 
   ///Obtain the items above the focus_item
-  const std::vector<QGraphicsItem *> GetItemsAbove(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsAbove(const QGraphicsItem* const focus_item) const;
 
   ///Obtain the items below the focus_item
-  const std::vector<QGraphicsItem *> GetItemsBelow(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsBelow(const QGraphicsItem* const focus_item) const;
 
   ///Obtain the items left of the focus_item
-  const std::vector<QGraphicsItem *> GetItemsLeft(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsLeft(const QGraphicsItem* const focus_item) const;
 
   ///Obtain the items right of the focus_item
-  const std::vector<QGraphicsItem *> GetItemsRight(const QGraphicsItem* const focus_item) const;
+  std::vector<QGraphicsItem *> GetItemsRight(const QGraphicsItem* const focus_item) const;
 
   ///Give focus to a random item
   void SetRandomFocus();

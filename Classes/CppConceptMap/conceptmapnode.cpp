@@ -31,7 +31,7 @@ ribi::cmap::Node::Node(
 }
 
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests()
+std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTests() noexcept
 {
   const auto test_concepts = ConceptFactory().GetTests();
   std::vector<boost::shared_ptr<Node> > result;
@@ -47,14 +47,14 @@ const std::vector<boost::shared_ptr<ribi::cmap::Node> > ribi::cmap::Node::GetTes
   return result;
 }
 
-bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs)
+bool ribi::cmap::Node::HasSameContent(const boost::shared_ptr<const cmap::Node>& lhs, const boost::shared_ptr<const cmap::Node>& rhs) noexcept
 {
   assert(lhs);
   assert(rhs);
   return *lhs->GetConcept() == *rhs->GetConcept();
 }
 
-void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept)
+void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept) noexcept
 {
   if (m_concept != concept)
   {
@@ -63,7 +63,7 @@ void ribi::cmap::Node::SetConcept(const boost::shared_ptr<Concept> concept)
   }
 }
 
-void ribi::cmap::Node::SetX(const double x)
+void ribi::cmap::Node::SetX(const double x) noexcept
 {
   if (m_x != x)
   {
@@ -72,7 +72,7 @@ void ribi::cmap::Node::SetX(const double x)
   }
 }
 
-void ribi::cmap::Node::SetY(const double y)
+void ribi::cmap::Node::SetY(const double y) noexcept
 {
   if (m_y != y)
   {
@@ -241,7 +241,7 @@ std::string ribi::cmap::Node::ToXml() const noexcept
   return r;
 }
 
-bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs)
+bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
 {
   assert(lhs.GetConcept());
   assert(rhs.GetConcept());
@@ -251,7 +251,7 @@ bool ribi::cmap::operator==(const cmap::Node& lhs, const cmap::Node& rhs)
     && lhs.GetY() == rhs.GetY();
 }
 
-bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs)
+bool ribi::cmap::operator!=(const cmap::Node& lhs, const cmap::Node& rhs) noexcept
 {
   return !(lhs == rhs);
 }

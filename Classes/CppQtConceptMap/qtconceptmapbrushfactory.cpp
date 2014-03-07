@@ -27,7 +27,7 @@ std::string ribi::cmap::QtBrushFactory::BrushToStr(const QBrush& brush)
 
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateBlueGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateBlueGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor( sm_color_mid_value, sm_color_mid_value,255));
@@ -35,7 +35,7 @@ const QBrush ribi::cmap::QtBrushFactory::CreateBlueGradientBrush()
   return linearGradient;
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateGoldGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateGoldGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor( sm_color_mid_value, sm_color_mid_value,sm_color_low_value));
@@ -43,7 +43,7 @@ const QBrush ribi::cmap::QtBrushFactory::CreateGoldGradientBrush()
   return linearGradient;
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateGrayGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateGrayGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor(196,196,196));
@@ -51,7 +51,7 @@ const QBrush ribi::cmap::QtBrushFactory::CreateGrayGradientBrush()
   return linearGradient;
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateGreenGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateGreenGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor( sm_color_mid_value,255, sm_color_mid_value));
@@ -59,7 +59,7 @@ const QBrush ribi::cmap::QtBrushFactory::CreateGreenGradientBrush()
   return linearGradient;
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateRedGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateRedGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor(255, sm_color_mid_value, sm_color_mid_value));
@@ -67,7 +67,7 @@ const QBrush ribi::cmap::QtBrushFactory::CreateRedGradientBrush()
   return linearGradient;
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateYellowGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateYellowGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   linearGradient.setColorAt(0.0,QColor(255,255, sm_color_mid_value));
@@ -75,7 +75,7 @@ const QBrush ribi::cmap::QtBrushFactory::CreateYellowGradientBrush()
   return linearGradient;
 }
 
-const QBrush ribi::cmap::QtBrushFactory::CreateWhiteGradientBrush()
+QBrush ribi::cmap::QtBrushFactory::CreateWhiteGradientBrush() noexcept
 {
   QLinearGradient linearGradient(sm_left,sm_top,sm_right,sm_bottom);
   const int low_value = 250;

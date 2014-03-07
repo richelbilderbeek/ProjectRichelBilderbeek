@@ -10,6 +10,9 @@
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
 //#include <boost/geometry/geometries/ring.hpp>
+#ifndef _WIN32
+#include <boost/geometry/geometries/polygon.hpp>
+#endif
 #pragma GCC diagnostic pop
 
 namespace ribi {

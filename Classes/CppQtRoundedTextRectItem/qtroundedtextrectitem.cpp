@@ -116,7 +116,7 @@ void ribi::QtRoundedTextRectItem::paint(QPainter* painter, const QStyleOptionGra
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
-void ribi::QtRoundedTextRectItem::SetFont(const QFont& font)
+void ribi::QtRoundedTextRectItem::SetFont(const QFont& font) noexcept
 {
   if (m_font != font)
   {
@@ -128,7 +128,7 @@ void ribi::QtRoundedTextRectItem::SetFont(const QFont& font)
 }
 #pragma GCC diagnostic pop
 
-void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding)
+void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding) noexcept
 {
   if ( padding.bottom != m_padding.bottom
     || padding.left   != m_padding.left
@@ -153,7 +153,7 @@ void ribi::QtRoundedTextRectItem::SetPadding(const Padding& padding)
   }
 }
 
-void ribi::QtRoundedTextRectItem::SetText(const std::string& text)
+void ribi::QtRoundedTextRectItem::SetText(const std::string& text) noexcept
 {
   if (text != m_text)
   {
@@ -174,7 +174,7 @@ void ribi::QtRoundedTextRectItem::SetText(const std::string& text)
   }
 }
 
-void ribi::QtRoundedTextRectItem::SetTextPen(const QPen& pen)
+void ribi::QtRoundedTextRectItem::SetTextPen(const QPen& pen) noexcept
 {
   if (m_text_pen != pen)
   {

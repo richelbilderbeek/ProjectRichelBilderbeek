@@ -20,9 +20,9 @@ enum class Competency
   misc                 //NL: 'Overig'
 };
 
-const std::vector<Competency> GetAllCompetencies();
+std::vector<Competency> GetAllCompetencies() noexcept;
 
-const std::string CompetencyToDutchStr(const Competency competency);
+std::string CompetencyToDutchStr(const Competency competency) noexcept;
 
 } //~namespace cmap
 

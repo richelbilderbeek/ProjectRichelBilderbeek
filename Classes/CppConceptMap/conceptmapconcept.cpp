@@ -48,7 +48,7 @@ ribi::cmap::Concept::Concept(
 }
 
 
-const boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExamples() const
+boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExamples() const noexcept
 {
   assert(m_examples);
   const boost::shared_ptr<const Examples> p(m_examples);
@@ -56,7 +56,7 @@ const boost::shared_ptr<const ribi::cmap::Examples> ribi::cmap::Concept::GetExam
   return p;
 }
 
-void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples)
+void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Examples>& examples) noexcept
 {
   if (examples != m_examples)
   {
@@ -65,7 +65,7 @@ void ribi::cmap::Concept::SetExamples(const boost::shared_ptr<ribi::cmap::Exampl
   }
 }
 
-void ribi::cmap::Concept::SetName(const std::string& name)
+void ribi::cmap::Concept::SetName(const std::string& name) noexcept
 {
   assert(this);
   assert(this->GetExamples());
@@ -76,7 +76,7 @@ void ribi::cmap::Concept::SetName(const std::string& name)
   }
 }
 
-void ribi::cmap::Concept::SetRatingComplexity(const int rating_complexity)
+void ribi::cmap::Concept::SetRatingComplexity(const int rating_complexity) noexcept
 {
   assert(rating_complexity >= -1);
   assert(rating_complexity <=  2);
@@ -90,7 +90,7 @@ void ribi::cmap::Concept::SetRatingComplexity(const int rating_complexity)
   }
 }
 
-void ribi::cmap::Concept::SetRatingConcreteness(const int rating_concreteness)
+void ribi::cmap::Concept::SetRatingConcreteness(const int rating_concreteness) noexcept
 {
   if (m_rating_concreteness != rating_concreteness)
   {
@@ -101,7 +101,7 @@ void ribi::cmap::Concept::SetRatingConcreteness(const int rating_concreteness)
   }
 }
 
-void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity)
+void ribi::cmap::Concept::SetRatingSpecificity(const int rating_specificity) noexcept
 {
   if (m_rating_specificity != rating_specificity)
   {

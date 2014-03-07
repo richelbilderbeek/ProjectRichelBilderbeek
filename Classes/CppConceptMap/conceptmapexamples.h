@@ -21,10 +21,10 @@ struct Examples
   Examples& operator=(const Example& rhs) = delete;
 
 
-  const std::vector<boost::shared_ptr<Example> >& Get() { return m_v; }
-  const std::vector<boost::shared_ptr<const Example> > Get() const;
+  std::vector<boost::shared_ptr<Example> >& Get() noexcept { return m_v; }
+  std::vector<boost::shared_ptr<const Example> > Get() const noexcept;
 
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   ///Something of one of the examples was changed
   mutable boost::signals2::signal<void(const Examples*)> m_signal_examples_changed;
@@ -36,7 +36,7 @@ private:
   //void Add(const boost::shared_ptr<cmap::Example>& example);
 
   ///All signals emitted from the examples are connected to this member function
-  void OnExampleChanged();
+  void OnExampleChanged() noexcept;
 
   ///Test this class
   static void Test() noexcept;

@@ -164,21 +164,21 @@ void ribi::cmap::QtEdge::EnableAll()
   this->m_arrow->setVisible(true);
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() const
+boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() const noexcept
 {
   const boost::shared_ptr<const ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept()
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtEdge::GetConcept() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> p = m_edge->GetConcept();
   assert(p);
   return p;
 }
 
-std::string ribi::cmap::QtEdge::GetName() const
+std::string ribi::cmap::QtEdge::GetName() const noexcept
 {
   return m_edge->GetConcept()->GetName();
 }
@@ -368,7 +368,7 @@ void ribi::cmap::QtEdge::SetConcept(const boost::shared_ptr<Concept> concept) //
   this->m_edge->SetConcept(concept);
 }
 
-void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow)
+void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow) noexcept
 {
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -380,7 +380,7 @@ void ribi::cmap::QtEdge::SetHasHeadArrow(const bool has_head_arrow)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow)
+void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow) noexcept
 {
   assert(m_arrow);
   assert(m_edge);
@@ -394,12 +394,12 @@ void ribi::cmap::QtEdge::SetHasTailArrow(const bool has_tail_arrow)
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
 }
 
-void ribi::cmap::QtEdge::SetName(const std::string& name)
+void ribi::cmap::QtEdge::SetName(const std::string& name) noexcept
 {
   m_edge->GetConcept()->SetName(name);
 }
 
-void ribi::cmap::QtEdge::SetX(const double x)
+void ribi::cmap::QtEdge::SetX(const double x) noexcept
 {
   if ( x != this->pos().x()
     || x != this->GetEdge()->GetX()
@@ -423,7 +423,7 @@ void ribi::cmap::QtEdge::SetX(const double x)
   assert(std::abs(x - this->GetDisplayStrategy()->pos().x()) < 0.000001);
 }
 
-void ribi::cmap::QtEdge::SetY(const double y)
+void ribi::cmap::QtEdge::SetY(const double y) noexcept
 {
   if ( y != this->pos().y()
     || y != this->GetEdge()->GetY()

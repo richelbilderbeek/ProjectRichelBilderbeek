@@ -221,14 +221,14 @@ QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-double ribi::QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
-{
-  return Geometry().GetAngle(dx,dy);
+//double ribi::QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
+//{
+//  return Geometry().GetAngle(dx,dy);
   //const double pi = boost::math::constants::pi<double>();
   //return pi - (std::atan(dx/dy));
-}
+//}
 
-const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const
+const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
 {
   const QPointF center = GetCenter();
   const double dx_mid_center = m_mid->pos().x() - center.x();
@@ -237,13 +237,13 @@ const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const
   return beyond;
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetCenter() const
+const QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
 {
   const QPointF center((m_from->pos() + m_to->pos()) / 2.0);
   return center;
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetHead() const
+const QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;
@@ -299,7 +299,7 @@ const QPointF ribi::QtQuadBezierArrowItem::GetHead() const
   }
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetTail() const
+const QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
 {
 
   typedef boost::geometry::model::d2::point_xy<double> Point;
@@ -458,7 +458,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       const double pi = boost::math::constants::pi<double>();
       const double dx = beyond.x() - m_from->pos().x();
       const double dy = beyond.y() - m_from->pos().y();
-      double angle = GetAngle(dx,dy);
+      double angle = Geometry().GetAngle(dx,dy);
       if (dy >= 0.0) angle = (1.0 * pi) + angle;
       const QPointF p0(p_tail_end.x(),p_tail_end.y());
       const QPointF p1
@@ -478,7 +478,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       const double pi = boost::math::constants::pi<double>();
       const double dx = m_to->pos().x() - beyond.x();
       const double dy = m_to->pos().y() - beyond.y();
-      double angle = GetAngle(dx,dy);
+      double angle = Geometry().GetAngle(dx,dy);
       if (dy >= 0.0) angle = (1.0 * pi) + angle;
 
       const QPointF p0(p_head_end.x(),p_head_end.y());
@@ -496,7 +496,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   }
 }
 
-void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head)
+void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head) noexcept
 {
 
   if (m_head != has_head)
@@ -507,7 +507,7 @@ void ribi::QtQuadBezierArrowItem::SetHasHead(const bool has_head)
   }
 }
 
-void ribi::QtQuadBezierArrowItem::SetHasTail(const bool has_tail)
+void ribi::QtQuadBezierArrowItem::SetHasTail(const bool has_tail) noexcept
 {
   if (m_tail != has_tail)
   {

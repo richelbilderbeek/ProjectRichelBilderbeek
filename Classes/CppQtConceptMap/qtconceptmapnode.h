@@ -34,24 +34,24 @@ struct QtNode : public QtConceptMapElement
   void DisableAll();
   void EnableAll();
 
-  const boost::shared_ptr<const Concept>  GetConcept() const;
-  const boost::shared_ptr<      Concept>  GetConcept()      ;
+  boost::shared_ptr<const Concept>  GetConcept() const noexcept;
+  boost::shared_ptr<      Concept>  GetConcept()       noexcept;
 
-  const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_display_strategy; }
-  const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_display_strategy; }
+  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
+  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
 
-  const boost::shared_ptr<const cmap::Node>  GetNode() const { return m_node; }
-  const boost::shared_ptr<      cmap::Node>& GetNode()       { return m_node; }
+        boost::shared_ptr<const cmap::Node>  GetNode() const noexcept { return m_node; }
+  const boost::shared_ptr<      cmap::Node>& GetNode()       noexcept { return m_node; }
 
   void SetConcept(const boost::shared_ptr<Concept> concept);
 
-  void SetName(const std::string& name);
+  void SetName(const std::string& name) noexcept;
 
   ///Set the X coordinat of the central concept
-  void SetX(const double x);
+  void SetX(const double x) noexcept;
 
   ///Set the Y coordinat of the central concept
-  void SetY(const double y);
+  void SetY(const double y) noexcept;
 
   ///m_signal_request_rate_node is emitted due to a m_signal_request_rate_node
   ///of the Node its QtRateConceptItem

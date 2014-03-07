@@ -73,10 +73,10 @@ QRectF ribi::QtArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
-{
-  return Geometry().GetAngle(dx,dy);
-}
+//double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
+//{
+//  return Geometry().GetAngle(dx,dy);
+//}
 
 std::string ribi::QtArrowItem::GetVersion() noexcept
 {
@@ -161,7 +161,7 @@ void ribi::QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem 
   const double pi = boost::math::constants::pi<double>();
 
   //The angle from tail to head
-  double angle = GetAngle(line().dx(),line().dy());
+  double angle = Geometry().GetAngle(line().dx(),line().dy());
   if (line().dy() >= 0.0) angle = (1.0 * pi) + angle;
   const double sz = 10.0; //pixels
   if (m_tail)
@@ -194,12 +194,12 @@ void ribi::QtArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem 
   }
 }
 
-void ribi::QtArrowItem::SetArrowHeadClickingDistance(const double manhattan_distance)
+void ribi::QtArrowItem::SetArrowHeadClickingDistance(const double manhattan_distance) noexcept
 {
   m_arrow_head_clicking_distance = manhattan_distance;
 }
 
-void ribi::QtArrowItem::SetHeadPos(const double x, const double y)
+void ribi::QtArrowItem::SetHeadPos(const double x, const double y) noexcept
 {
   if (line().x2() != x || line().y2() != y)
   {
@@ -210,7 +210,7 @@ void ribi::QtArrowItem::SetHeadPos(const double x, const double y)
   }
 }
 
-void ribi::QtArrowItem::SetTailPos(const double x, const double y)
+void ribi::QtArrowItem::SetTailPos(const double x, const double y) noexcept
 {
   if (line().x1() != x || line().y1() != y)
   {

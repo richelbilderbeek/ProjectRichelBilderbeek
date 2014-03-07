@@ -37,7 +37,7 @@ struct Cluster
   void SetConcepts(const std::vector<boost::shared_ptr<ribi::cmap::Concept> >& concepts);
 
   ///Convert a Cluster from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const pvdb::Cluster>& c);
+  static std::string ToXml(const boost::shared_ptr<const pvdb::Cluster>& c) noexcept;
 
   private:
 

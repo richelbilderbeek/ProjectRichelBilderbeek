@@ -31,7 +31,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType type) noexcept
+boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType type) noexcept
 {
   boost::shared_ptr<Program> p;
   switch (type)
@@ -258,7 +258,7 @@ std::string ribi::Program::GetScreenName() const noexcept
   return ribi::ProgramTypes::ProgramTypeToScreenName(this->GetType());
 }
 
-const std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
+std::vector<boost::shared_ptr<ribi::Program> > ribi::Program::GetAllPrograms() noexcept
 {
   const std::vector<ProgramType> types = ProgramTypes::GetAll();
   std::vector<boost::shared_ptr<Program> > v;

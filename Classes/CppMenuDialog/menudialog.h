@@ -25,7 +25,7 @@ struct MenuDialog
 
   ///Convert the C style array and string to C++ equivalents
   ///This is used when menu
-  static const std::vector<std::string> ConvertArguments(const int argc, const char * const argv[]) noexcept;
+  static std::vector<std::string> ConvertArguments(const int argc, const char * const argv[]) noexcept;
 
   ///Start the command line version
   ///First performs a default parse, then passed arguments on to ExecuteSpecific

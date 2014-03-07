@@ -40,10 +40,10 @@ struct Info
   Info(const Info&) = delete;
   Info& operator=(const Info&) = delete;
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  const std::vector<std::string> ToHtml(const std::string page_name) const;
+  std::vector<std::string> ToHtml(const std::string page_name) const;
 
   private:
   ~Info() noexcept {}
@@ -56,10 +56,10 @@ struct Info
   ///Create, for every page name (the key), the HTML info (the value)
   ///The purpose of this is to be able to check every HTML info
   ///for validity
-  static const std::map<std::string,std::vector<std::string> > CreatePageInfo();
+  static std::map<std::string,std::vector<std::string> > CreatePageInfo();
 
   //From http://www.richelbilderbeek.nl/CppGetTime.htm
-  static const std::string GetTime() noexcept;
+  static std::string GetTime() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

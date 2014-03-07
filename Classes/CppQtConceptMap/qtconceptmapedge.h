@@ -31,42 +31,42 @@ struct QtEdge : public QtConceptMapElement
   void DisableAll();
   void EnableAll();
 
-  const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
-  const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }
+  boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const noexcept { return m_arrow; }
+  boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       noexcept { return m_arrow; }
 
-  const boost::shared_ptr<const Concept>  GetConcept() const;
-  const boost::shared_ptr<      Concept>  GetConcept()      ;
+  boost::shared_ptr<const Concept>  GetConcept() const noexcept;
+  boost::shared_ptr<      Concept>  GetConcept()       noexcept;
 
-  const boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const final { return m_concept_item; }
-  const boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       final { return m_concept_item; }
+  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_concept_item; }
+  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_concept_item; }
 
-  const boost::shared_ptr<const cmap::Edge>  GetEdge() const { return m_edge; }
-  const boost::shared_ptr<      cmap::Edge>& GetEdge()       { return m_edge; }
+        boost::shared_ptr<const cmap::Edge>  GetEdge() const noexcept { return m_edge; }
+  const boost::shared_ptr<      cmap::Edge>& GetEdge()       noexcept { return m_edge; }
 
   ///The node item the arrow originates from
-  const QtNode * GetFrom() const { return m_from; }
-        QtNode * GetFrom()       { return m_from; }
+  const QtNode * GetFrom() const noexcept { return m_from; }
+        QtNode * GetFrom()       noexcept { return m_from; }
 
   ///Get the name of the relation
-  const std::string GetName() const;
+  std::string GetName() const noexcept;
 
   ///The node item the arrow targets
-  const QtNode * GetTo() const { return m_to; }
-        QtNode * GetTo()       { return m_to; }
+  const QtNode * GetTo() const noexcept { return m_to; }
+        QtNode * GetTo()       noexcept { return m_to; }
 
   void SetConcept(const boost::shared_ptr<Concept> concept);
 
-  void SetHasHeadArrow(const bool has_head_arrow);
-  void SetHasTailArrow(const bool has_tail_arrow);
+  void SetHasHeadArrow(const bool has_head_arrow) noexcept;
+  void SetHasTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the name of the relation on the edge
-  void SetName(const std::string& name);
+  void SetName(const std::string& name) noexcept;
 
   ///Set the X coordinat of the central concept
-  void SetX(const double x);
+  void SetX(const double x) noexcept;
 
   ///Set the Y coordinat of the central concept
-  void SetY(const double y);
+  void SetY(const double y) noexcept;
 
   ///No 'own/autonomous' signals, these are present in the ConceptItems
 
@@ -101,7 +101,7 @@ private:
   QtNode * const m_to;
 
   ///Called whenever the edge changes
-  void OnEdgeChanged(const cmap::Edge * const edge);
+  void OnEdgeChanged(const Edge * const edge);
 
   ///Called whenever the arrow updates
   void OnItemHasUpdated();

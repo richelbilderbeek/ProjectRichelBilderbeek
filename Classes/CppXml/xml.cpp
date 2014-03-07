@@ -603,7 +603,7 @@ void ribi::xml::Test() noexcept
 #endif
 
 
-std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s)
+std::vector<std::string> ribi::xml::XmlToPretty(const std::string& s) noexcept
 {
   std::vector<std::string> v = SplitXml(s);
   int n = -2;
@@ -643,7 +643,7 @@ const std::pair<std::string,std::string> ribi::xml::XmlToStr(const std::string& 
 }
 */
 
-const std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
+std::pair<std::string,std::vector<std::string>> ribi::xml::XmlToVector(
   const std::string& s)
 {
   assert(!s.empty());

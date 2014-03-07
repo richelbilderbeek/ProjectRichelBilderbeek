@@ -72,12 +72,12 @@ QRectF ribi::QtPathArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
-{
-  return Geometry().GetAngle(dx,dy);
+//double ribi::QtPathArrowItem::GetAngle(const double dx, const double dy)
+//{
+// return Geometry().GetAngle(dx,dy);
   //const double pi = boost::math::constants::pi<double>();
   //return pi - (std::atan(dx/dy));
-}
+//}
 
 std::string ribi::QtPathArrowItem::GetVersion() noexcept
 {
@@ -175,7 +175,7 @@ void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsI
     const double pi = boost::math::constants::pi<double>();
     const double dx = m_mid_pos[0].x() - m_tail_pos.x();
     const double dy = m_mid_pos[0].y() - m_tail_pos.y();
-    double angle = GetAngle(dx,dy);
+    double angle = Geometry().GetAngle(dx,dy);
     if (dy >= 0.0) angle = (1.0 * pi) + angle;
     //const QPointF m_tail_pos(m_tail_x,m_tail_y);
     const QPointF p1
@@ -193,7 +193,7 @@ void ribi::QtPathArrowItem::paint(QPainter *painter, const QStyleOptionGraphicsI
     const double pi = boost::math::constants::pi<double>();
     const double dx = m_head_pos.x() - m_mid_pos[m_mid_pos.size() - 1].x();
     const double dy = m_head_pos.y() - m_mid_pos[m_mid_pos.size() - 1].y();
-    double angle = GetAngle(dx,dy);
+    double angle = Geometry().GetAngle(dx,dy);
     if (dy >= 0.0) angle = (1.0 * pi) + angle;
     const QPointF p1
       = m_head_pos + QPointF(

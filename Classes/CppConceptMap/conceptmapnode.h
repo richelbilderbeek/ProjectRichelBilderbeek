@@ -24,39 +24,34 @@ struct Node : public Element
   Node& operator=(const Node&) = delete;
 
   ///Get the Concept
-  const boost::shared_ptr<const Concept>  GetConcept() const noexcept { return m_concept; }
-  const boost::shared_ptr<      Concept>& GetConcept()       noexcept { return m_concept; }
-
-  #ifndef NDEBUG
-  ///Get boost::shared_ptr::use_count
-  int GetConceptUseCount() const { return m_concept.use_count(); }
-  #endif
+  boost::shared_ptr<const Concept>  GetConcept() const noexcept { return m_concept; }
+  boost::shared_ptr<      Concept>& GetConcept()       noexcept { return m_concept; }
 
   ///Get some test nodes
-  static const std::vector<boost::shared_ptr<Node> > GetTests();
+  static std::vector<boost::shared_ptr<Node> > GetTests() noexcept;
 
   ///Get the x coordinat
-  double GetX() const { return m_x; }
+  double GetX() const noexcept { return m_x; }
 
   ///Get the y coordinat
-  double GetY() const { return m_y; }
+  double GetY() const noexcept { return m_y; }
 
   ///Similar to operator==, except that GUI elements are not tested for equality
-  static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs);
+  static bool HasSameContent(const boost::shared_ptr<const Node>& lhs, const boost::shared_ptr<const Node>& rhs) noexcept;
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept> concept);
+  void SetConcept(const boost::shared_ptr<Concept> concept) noexcept;
 
   ///Set the position
-  void SetPos(const double x, const double y) { SetX(x); SetY(y); }
+  void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
 
   ///Set the x coordinat
-  void SetX(const double x);
+  void SetX(const double x) noexcept;
 
   ///Set the y coordinat
-  void SetY(const double y);
+  void SetY(const double y) noexcept;
 
-  virtual const std::string ToXml() const noexcept;
+  virtual std::string ToXml() const noexcept;
 
   boost::signals2::signal<void(const Node *)> m_signal_node_changed;
 
@@ -93,8 +88,8 @@ struct Node : public Element
 
 };
 
-bool operator==(const Node& lhs, const Node& rhs);
-bool operator!=(const Node& lhs, const Node& rhs);
+bool operator==(const Node& lhs, const Node& rhs) noexcept;
+bool operator!=(const Node& lhs, const Node& rhs) noexcept;
 
 bool operator<(
   const boost::shared_ptr<Node>& lhs,

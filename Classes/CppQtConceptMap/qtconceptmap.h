@@ -35,29 +35,29 @@ public:
   #endif
 
   ///Obtain the concept map
-  const boost::shared_ptr<const ConceptMap> GetConceptMap() const { return m_concept_map; }
-        boost::shared_ptr<      ConceptMap> GetConceptMap()       { return m_concept_map; }
+  boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_concept_map; }
+  boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_concept_map; }
 
   ///Obtain the read-only Qt edge items
   ///Read-and-write Qt edge items are only supported for QtEditConceptMap
-  const std::vector<const QtEdge *> GetQtEdges() const;
+  std::vector<const QtEdge *> GetQtEdges() const;
 
   ///Obtain the read-only Qt node items
   ///Read-and-write Qt node items are only supported for QtEditConceptMap
-  const std::vector<const QtNode *> GetQtNodes() const;
+  std::vector<const QtNode *> GetQtNodes() const;
 
   ///Obtain the QGraphicsScene
-  QGraphicsScene* GetScene() const;
+  QGraphicsScene* GetScene() const noexcept;
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   #ifndef NDEBUG
   ///Shuffle the concepts (used in debugging)
-  void Shuffle();
+  void Shuffle() noexcept;
 
   ///Test this class with a derived class instance
-  static void Test(const boost::shared_ptr<const QtConceptMap>& concept_map);
+  static void Test(const boost::shared_ptr<const QtConceptMap>& concept_map) noexcept;
   #endif
 
 public slots:
@@ -90,23 +90,23 @@ protected:
   void DeleteNode(QtNode * const node);
 
   ///Get all the edges connected to the concept
-  const std::vector<QtEdge*> FindEdges(const QtNode * const from) const;
+  std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
 
   //Find the edge with the same from and to
   const QtEdge * FindQtEdge(
     const QtNode* const from,
-    const QtNode* const to) const;
+    const QtNode* const to) const noexcept;
 
   ///Find the QtNode containing the Node
   //QtNode * FindQtNode(boost::shared_ptr<Node> node) const { return FindQtNode(node.get()); }
-  QtNode * FindQtNode(Node * const node) const;
+  QtNode * FindQtNode(Node * const node) const noexcept;
 
   ///Obtain the center node
-  const QtNode * GetCenterNode() const;
+  const QtNode * GetCenterNode() const noexcept;
 
   ///Obtain the read-and-write Qt edge items
   ///The read-only Qt edge items is already supplied by QtConceptMap
-  const std::vector<QtEdge *> GetQtEdges();
+  std::vector<QtEdge *> GetQtEdges();
 
   ///Obtain the rectangle with text showing the examples
   const QtExamplesItem * GetExamplesItem() const;

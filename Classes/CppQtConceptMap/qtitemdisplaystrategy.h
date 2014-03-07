@@ -46,7 +46,7 @@ struct QtItemDisplayStrategy : public QtRoundedEditRectItem
   const QPen& GetIndicatorPen() const noexcept { return m_indicator_pen; }
 
   ///Get the (un-word-wrapped) name (the text written on the concept-item)
-  const std::string GetName() const noexcept;
+  std::string GetName() const noexcept;
 
   //Move hove
   virtual void hoverStartEvent(QGraphicsSceneHoverEvent *) final;

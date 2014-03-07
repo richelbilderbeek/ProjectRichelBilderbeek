@@ -27,7 +27,7 @@ class QtPvdbStudentMenuDialog : public ribi::QtHideAndShowDialog
   ~QtPvdbStudentMenuDialog() noexcept;
 
   ///Get the student his/her name
-  const std::string GetName() const;
+  std::string GetName() const noexcept;
 
   ///Save to file
   void Save(const std::string& filename) const;

@@ -40,28 +40,28 @@ struct QtRoundedTextRectItem : public QtRoundedRectItem
   virtual ~QtRoundedTextRectItem() noexcept {}
 
   ///Get the font by which the text is drawn
-  const QFont& GetFont() const { return m_font; }
+  const QFont& GetFont() const noexcept { return m_font; }
 
   ///Get the text
-  const std::string& GetText() const { return m_text; }
+  const std::string& GetText() const noexcept { return m_text; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Set the font by which the text is drawn
-  void SetFont(const QFont& font);
+  void SetFont(const QFont& font) noexcept;
 
   ///Set the padding between text and rectangle
-  void SetPadding(const Padding& padding);
+  void SetPadding(const Padding& padding) noexcept;
 
   ///Set the text displayed
-  void SetText(const std::string& text);
+  void SetText(const std::string& text) noexcept;
 
   ///Set the pen by which the text is drawn
-  void SetTextPen(const QPen& pen);
+  void SetTextPen(const QPen& pen) noexcept;
 
 protected:
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget);

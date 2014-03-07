@@ -167,7 +167,7 @@ ribi::cmap::QtRateConceptTallyDialogNewName::~QtRateConceptTallyDialogNewName() 
   delete ui;
 }
 
-const std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
+std::vector<ribi::cmap::QtRateConceptTallyDialogNewName::Row>
   ribi::cmap::QtRateConceptTallyDialogNewName::CreateData(const boost::shared_ptr</* const */ ribi::cmap::ConceptMap> map)
 {
   std::vector<Row> data;
@@ -254,7 +254,7 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::QtRateConceptTallyDi
 }
 
 std::string ribi::cmap::QtRateConceptTallyDialogNewName::GetFocusName(
-  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map)
+  const boost::shared_ptr<const ribi::cmap::ConceptMap> sub_concept_map) noexcept
 {
   if (sub_concept_map)
   {

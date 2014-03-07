@@ -10,7 +10,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::m_map_to_enumnam
 //Lazy initializion
 boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::m_map_to_screenname {};
 
-const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMap()
+boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMap()
 {
   #ifndef NDEBUG
   Test();
@@ -222,7 +222,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnum
   return m;
 }
 
-const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenNameMap()
+boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenNameMap()
 {
   #ifndef NDEBUG
   Test();
@@ -434,8 +434,7 @@ const boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScre
   return m;
 }
 
-const std::vector<std::string>
-  ribi::ProgramTypes::GetAllEnumNames() noexcept
+std::vector<std::string> ribi::ProgramTypes::GetAllEnumNames() noexcept
 {
   if (m_map_to_enumname.right.empty()) { m_map_to_enumname = CreateEnumNameMap(); }
   assert(!m_map_to_enumname.right.empty());
@@ -448,8 +447,7 @@ const std::vector<std::string>
   return v;
 }
 
-const std::vector<std::string>
-  ribi::ProgramTypes::GetAllScreenNames() noexcept
+std::vector<std::string> ribi::ProgramTypes::GetAllScreenNames() noexcept
 {
   if (m_map_to_screenname.right.empty()) { m_map_to_screenname = CreateScreenNameMap(); }
   assert(!m_map_to_screenname.right.empty());
@@ -462,8 +460,7 @@ const std::vector<std::string>
   return v;
 }
 
-const std::vector<ribi::ProgramType>
-  ribi::ProgramTypes::GetAll() noexcept
+std::vector<ribi::ProgramType> ribi::ProgramTypes::GetAll() noexcept
 {
   if (m_map_to_enumname.left.empty()) { m_map_to_enumname = CreateEnumNameMap(); }
   assert(!m_map_to_enumname.left.empty());

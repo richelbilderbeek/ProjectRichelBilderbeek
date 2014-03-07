@@ -36,19 +36,23 @@ struct Widget
   bool CanDoCommand(const boost::shared_ptr<const Command> command) const noexcept;
   void DoCommand(const boost::shared_ptr<Command> command) noexcept;
 
-  const boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
-  const boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_conceptmap; }
+  boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
+  boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_conceptmap; }
 
-  const std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
-  const std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept;
+  std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
+  std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  void Undo();
+  void Undo() noexcept;
+
+  ///Emitted when an Edge is added
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Edge>)> m_signal_add_edge;
 
   ///Emitted when a Node is added
   ///This has to be handled by QtConceptMapWidget
@@ -90,15 +94,15 @@ struct Widget
   //This is used by CommandDeleteNode::Undo
   void AddNode(const boost::shared_ptr<Node> node) noexcept;
 
-  static const boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
+  static boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
 
   ///Creates a new Node in the concept map. The return value is
   ///that node. This is used by CommandCreateNode::Undo
-  const boost::shared_ptr<Edge> CreateNewEdge() noexcept;
+  boost::shared_ptr<Edge> CreateNewEdge() noexcept;
 
   ///Creates a new Node in the concept map. The return value is
   ///that node. This is used by CommandCreateNode::Undo
-  const boost::shared_ptr<Node> CreateNewNode() noexcept;
+  boost::shared_ptr<Node> CreateNewNode() noexcept;
 
   ///Delete an Edge in the concept map
   void DeleteEdge(const boost::shared_ptr<Edge> edge) noexcept;
@@ -108,12 +112,12 @@ struct Widget
 
   ///Find a Node at a coordinat
   ///Returns nullptr if none is present
-  const boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
-  const boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
+  boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
+  boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
 
   ///Used by CommandSetFocusRandom
-  const boost::shared_ptr<Node> GetRandomNode() noexcept;
+  boost::shared_ptr<Node> GetRandomNode() noexcept;
 
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
@@ -134,12 +138,12 @@ struct Widget
   friend class CommandLoseFocus;
   friend class CommandSetFocusRandom;
   friend class CommandSetFocusWithCoordinat;
-  friend bool operator==(const Widget& lhs, const Widget& rhs);
+  friend bool operator==(const Widget& lhs, const Widget& rhs) noexcept;
 
 };
 
-bool operator==(const Widget& lhs, const Widget& rhs);
-bool operator!=(const Widget& lhs, const Widget& rhs);
+bool operator==(const Widget& lhs, const Widget& rhs) noexcept;
+bool operator!=(const Widget& lhs, const Widget& rhs) noexcept;
 
 //std::ostream& operator<<(std::ostream& os, const Widget& w);
 

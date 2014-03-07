@@ -72,10 +72,10 @@ struct ConceptMap
 
   ///Get the focus question
   ///TODO: remove this member function, use GetCenterNode instead
-  const std::string GetQuestion() const noexcept;
+  std::string GetQuestion() const noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -89,7 +89,7 @@ struct ConceptMap
   #endif
 
   ///Convert a ConceptMap from an XML std::string
-  static const std::string ToXml(const boost::shared_ptr<const ConceptMap> c);
+  static std::string ToXml(const boost::shared_ptr<const ConceptMap> c) noexcept;
 
 private:
 
@@ -136,8 +136,8 @@ int CountCenterNodes(const boost::shared_ptr<const ConceptMap> conceptmap) noexc
 ///Count the number of Edges connected to a CenterNodes
 int CountCenterNodeEdges(const boost::shared_ptr<const ConceptMap> conceptmap) noexcept;
 
-bool operator==(const ConceptMap& lhs, const ConceptMap& rhs);
-bool operator!=(const ConceptMap& lhs, const ConceptMap& rhs);
+bool operator==(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
+bool operator!=(const ConceptMap& lhs, const ConceptMap& rhs) noexcept;
 
 } //~namespace cmap
 } //~namespace ribi

@@ -37,7 +37,7 @@ ribi::cmap::Example::Example(
   #endif
 }
 
-std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency)
+std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competency) noexcept
 {
   switch (competency)
   {
@@ -55,7 +55,7 @@ std::string ribi::cmap::Example::CompetencyToStr(const cmap::Competency competen
 }
 
 
-void ribi::cmap::Example::SetCompetency(const cmap::Competency competency)
+void ribi::cmap::Example::SetCompetency(const cmap::Competency competency) noexcept
 {
   if (m_competency != competency)
   {
@@ -64,7 +64,7 @@ void ribi::cmap::Example::SetCompetency(const cmap::Competency competency)
   }
 }
 
-void ribi::cmap::Example::SetText(const std::string& text)
+void ribi::cmap::Example::SetText(const std::string& text) noexcept
 {
   if (m_text != text)
   {
@@ -238,30 +238,28 @@ std::string ribi::cmap::Example::ToXml() const noexcept
   return r;
 }
 
-bool ribi::cmap::operator==(const cmap::Example& lhs, const cmap::Example& rhs)
+bool ribi::cmap::operator==(const cmap::Example& lhs, const cmap::Example& rhs) noexcept
 {
   return
        lhs.GetText() == rhs.GetText()
     && lhs.GetCompetency() == rhs.GetCompetency();
 }
 
-bool ribi::cmap::operator!=(const cmap::Example& lhs, const cmap::Example& rhs)
+bool ribi::cmap::operator!=(const cmap::Example& lhs, const cmap::Example& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-bool ribi::cmap::operator<(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs)
+bool ribi::cmap::operator<(const cmap::Example& lhs,const cmap::Example& rhs) noexcept
 {
-  assert(lhs && rhs);
-  if (lhs->GetText() < rhs->GetText()) return true;
-  if (lhs->GetText() > rhs->GetText()) return false;
-  return lhs->GetCompetency() < rhs->GetCompetency();
+  if (lhs.GetText() < rhs.GetText()) return true;
+  if (lhs.GetText() > rhs.GetText()) return false;
+  return lhs.GetCompetency() < rhs.GetCompetency();
 }
 
-bool ribi::cmap::operator>(const boost::shared_ptr<const cmap::Example>& lhs,const boost::shared_ptr<const cmap::Example>& rhs)
+bool ribi::cmap::operator>(const cmap::Example& lhs,const cmap::Example& rhs) noexcept
 {
-  assert(lhs && rhs);
-  if (lhs->GetText() > rhs->GetText()) return true;
-  if (lhs->GetText() < rhs->GetText()) return false;
-  return lhs->GetCompetency() > rhs->GetCompetency();
+  if (lhs.GetText() > rhs.GetText()) return true;
+  if (lhs.GetText() < rhs.GetText()) return false;
+  return lhs.GetCompetency() > rhs.GetCompetency();
 }

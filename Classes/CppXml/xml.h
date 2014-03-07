@@ -15,15 +15,15 @@ namespace ribi {
 
 namespace xml {
 
-const std::string GetVersion() noexcept;
-const std::vector<std::string> GetVersionHistory() noexcept;
+std::string GetVersion() noexcept;
+std::vector<std::string> GetVersionHistory() noexcept;
 
 ///Convert a std::string to single-line XML
 ///For example, a std::string with tag name "cat_name" and content "Kitty" becomes
 /// <cat_name>Kitty</cat_name>
 ///The data can be converted back with XmlToStr
 template <class T, class U>
-const std::string ToXml(
+std::string ToXml(
   const T& tag_name,
   const U& content)
 {
@@ -38,7 +38,7 @@ const std::string ToXml(
 /// <cat_name>Kitty</cat_name>
 ///The data can be converted back with XmlToStr
 template <class T, class U>
-const std::string ToXml(
+std::string ToXml(
   const T& tag_name,
   const U& content,
   const std::function<std::string(const T&)> tag_to_str_function,
@@ -59,7 +59,7 @@ const std::string ToXml(
 /// <animals><0>cat</0><1>dog</1></animals>
 ///The data can be converted back with FromXml
 template <class Iter>
-const std::string ToXml(
+std::string ToXml(
   const std::string& tag_name,
   Iter begin,
   const Iter& end)
@@ -90,7 +90,7 @@ const std::string ToXml(
 ///becomes a std::pair with elements {"cat_name","Kitty"}
 ///The data can be converted back with ToXml
 template <class T = std::string, class U = std::string>
-const std::pair<T,U> FromXml(const std::string& xml)
+std::pair<T,U> FromXml(const std::string& xml)
 {
   assert(!xml.empty());
   assert(xml[0] == '<');
@@ -115,7 +115,7 @@ const std::pair<T,U> FromXml(const std::string& xml)
 ///becomes a std::pair with elements {"cat_name","Kitty"}
 ///The data can be converted back with ToXml
 template <class T, class U>
-const std::pair<T,U> FromXml(
+std::pair<T,U> FromXml(
   const std::string& xml,
   const std::function<T(const std::string&)> str_to_tag_function,
   const std::function<U(const std::string&)> str_to_content_function
@@ -163,7 +163,7 @@ template <
   class TagType = std::string,
   class KeyType = std::string,
   class ValueType = std::string>
-const std::string MapToXml(
+std::string MapToXml(
   const TagType& tag_name,
   const std::map<KeyType,ValueType> m
   )
@@ -198,7 +198,7 @@ const std::string MapToXml(
 ///(indentation is added for readability)
 ///The data can be converted back with XmlToPtrs
 template <class TagType, class KeyType, class ValueType>
-const std::string MapToXml(
+std::string MapToXml(
   const TagType& tag_name,
   const std::map<KeyType,ValueType> m,
   const std::function<std::string(const TagType&  )> tag_to_str_function,
@@ -222,7 +222,7 @@ const std::string MapToXml(
 /// <animals><0>cat</0><1>dog</1></animals>
 ///The data can be converted back with XmlToPtrs
 template <class Iter>
-const std::string PtrsToXml(
+std::string PtrsToXml(
   const std::string& tag_name,
   Iter begin,
   const Iter& end
@@ -252,13 +252,13 @@ const std::string SetToXml(
 
 ///Split an XML std::string into its parts
 //From http://www.richelbilderbeek.nl/CppSplitXml.htm
-const std::vector<std::string> SplitXml(const std::string& s);
+std::vector<std::string> SplitXml(const std::string& s);
 
 ///Strip the XML tags of an XML item
 ///For example '<tag>text</tag>' becomes 'text'
 ///Note that also '<any_tag>text</other_tag>' fails
 //From http://www.richelbilderbeek.nl/CppStripXmlTag.htm
-const std::string StripXmlTag(const std::string& s);
+std::string StripXmlTag(const std::string& s);
 
 ///Convert a std::string to single-line XML
 ///For example, a std::string with tag name "cat_name" and content "Kitty" becomes
@@ -281,7 +281,7 @@ void Test() noexcept;
 /// <animals><0>cat</0><1>dog</1></animals>
 ///The data can be converted back with XmlToVector
 template <class T>
-const std::string VectorToXml(
+std::string VectorToXml(
   const std::string& tag_name,
   const std::vector<T>& v
 )
@@ -293,7 +293,7 @@ const std::string VectorToXml(
 ///Convert a single-line XML to a map
 ///The data can be converted back with MapToXml
 template <class KeyType, class ValueType>
-const std::pair<std::string,std::map<KeyType,ValueType>> XmlToMap(
+std::pair<std::string,std::map<KeyType,ValueType>> XmlToMap(
     const std::string& s,
     const std::function<KeyType(const std::string&)> str_to_key_function,
     const std::function<ValueType(const std::string&)> str_to_value_function
@@ -344,7 +344,7 @@ const std::pair<std::string,std::map<KeyType,ValueType>> XmlToMap(
 
 ///Pretty-print an XML std::string by indenting its elements
 //From http://www.richelbilderbeek.nl/CppXmlToPretty.htm
-const std::vector<std::string> XmlToPretty(const std::string& s);
+std::vector<std::string> XmlToPretty(const std::string& s) noexcept;
 
 ///Convert a single-line XML to a std::vector of smart pointers and its name
 ///For example, the XML line "<animals><0>cat</0><1>dog</1></animals>"
@@ -362,7 +362,7 @@ const std::vector<std::string> XmlToPretty(const std::string& s);
 ///
 ///The data can be converted back with PtrsToXml
 template <class T>
-const std::pair<
+std::pair<
     std::string,
     std::vector<boost::shared_ptr<T>>
   >
@@ -420,8 +420,7 @@ const std::pair<
 ///For example, the XML line "<animals><0>cat</0><1>dog</1></animals>"
 ///becomes a std::vector with elements {"cat","dog"} and the name "animals"
 ///The data can be converted back with VectorToXml
-const std::pair<std::string,std::vector<std::string>> XmlToVector(
-  const std::string& s);
+std::pair<std::string,std::vector<std::string>> XmlToVector(const std::string& s);
 
 } //~namespace xml
 

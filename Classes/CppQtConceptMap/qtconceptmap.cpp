@@ -309,8 +309,8 @@ void ribi::cmap::QtConceptMap::DeleteNode(QtNode * const qtnode)
   #endif
 }
 
-const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
-  const QtNode* const from) const
+std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
+  const QtNode* const from) const noexcept
 {
   assert(from);
   const std::vector<QtEdge*> v = Collect<QtEdge>(scene());
@@ -326,7 +326,7 @@ const std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
 
 const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
   const QtNode* const from,
-  const QtNode* const to) const
+  const QtNode* const to) const noexcept
 {
 
   assert(from);
@@ -346,7 +346,7 @@ const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
 }
 
 
-ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * const node) const
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * const node) const noexcept
 {
   assert(node);
   const std::vector<QtNode *> qtnodes = Collect<QtNode>(scene());
@@ -357,7 +357,7 @@ ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(ribi::cmap::Node * con
   return nullptr;
 }
 
-const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const
+const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::GetCenterNode() const noexcept
 {
 
   assert(scene());
@@ -417,7 +417,7 @@ ribi::cmap::QtNode* ribi::cmap::QtConceptMap::GetItemBelowCursor(const QPointF& 
   return nullptr;
 }
 
-const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges() const
+std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges() const
 {
   const std::vector<const QtEdge *> qtedges
     = Collect<const QtEdge>(this->scene());
@@ -426,7 +426,7 @@ const std::vector<const ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdg
   return qtedges;
 }
 
-const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
+std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
 {
   const std::vector<QtEdge *> qtedges
     = Collect<QtEdge>(this->scene());
@@ -436,7 +436,7 @@ const std::vector<ribi::cmap::QtEdge *> ribi::cmap::QtConceptMap::GetQtEdges()
   return qtedges;
 }
 
-const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
+std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() const
 {
   const std::vector<const QtNode *> qtnodes
     = Collect<const QtNode>(this->scene());
@@ -450,10 +450,10 @@ const std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNod
   return qtnodes;
 }
 
-QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const
+QGraphicsScene* ribi::cmap::QtConceptMap::GetScene() const noexcept
 {
 
-  return this->scene();
+  return scene();
 }
 
 std::string ribi::cmap::QtConceptMap::GetVersion() noexcept
@@ -658,7 +658,7 @@ void ribi::cmap::QtConceptMap::SetExamplesItem(QtExamplesItem * const item)
 }
 
 #ifndef NDEBUG
-void ribi::cmap::QtConceptMap::Shuffle()
+void ribi::cmap::QtConceptMap::Shuffle() noexcept
 {
   const std::vector<QtNode*> nodes = Collect<QtNode>(scene());
   std::for_each(nodes.begin(),nodes.end(),

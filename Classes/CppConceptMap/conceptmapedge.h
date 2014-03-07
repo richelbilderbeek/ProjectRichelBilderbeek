@@ -23,63 +23,63 @@ struct Edge : public Element
 {
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
-  const boost::shared_ptr<const Concept> GetConcept() const { return m_concept; }
-  const boost::shared_ptr<      Concept> GetConcept()       { return m_concept; }
+  boost::shared_ptr<const Concept> GetConcept() const noexcept { return m_concept; }
+  boost::shared_ptr<      Concept> GetConcept()       noexcept { return m_concept; }
 
   ///Get the Node this edge originates from
-  const boost::shared_ptr<const Node> GetFrom() const { return m_from; }
-  const boost::shared_ptr<      Node> GetFrom()       { return m_from; }
+  boost::shared_ptr<const Node> GetFrom() const noexcept { return m_from; }
+  boost::shared_ptr<      Node> GetFrom()       noexcept { return m_from; }
 
   ///Get the Node index this edge goes to
-  const boost::shared_ptr<const Node> GetTo() const { return m_to; }
-  const boost::shared_ptr<      Node> GetTo()       { return m_to; }
+  boost::shared_ptr<const Node> GetTo() const noexcept { return m_to; }
+  boost::shared_ptr<      Node> GetTo()       noexcept { return m_to; }
 
   ///Get the x coordinat
-  double GetX() const { return m_x; }
+  double GetX() const noexcept { return m_x; }
 
   ///Get the y coordinat
-  double GetY() const { return m_y; }
+  double GetY() const noexcept { return m_y; }
 
   ///Does the edge have an arrow at the head?
-  bool HasHeadArrow() const { return m_head_arrow; }
+  bool HasHeadArrow() const noexcept { return m_head_arrow; }
 
   //Similar to operator==, except that the coordinats are not checked
-  static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs);
+  static bool HasSameContent(const boost::shared_ptr<const Edge>& lhs, const boost::shared_ptr<const Edge>& rhs) noexcept;
 
   ///Does the edge have an arrow at the tail?
-  bool HasTailArrow() const { return m_tail_arrow; }
+  bool HasTailArrow() const noexcept { return m_tail_arrow; }
 
   ///Set the concept
-  void SetConcept(const boost::shared_ptr<Concept> concept) { m_concept = concept; }
+  void SetConcept(const boost::shared_ptr<Concept> concept) noexcept { m_concept = concept; }
 
   ///Set the Node index this edge originates from
-  void SetFrom(const boost::shared_ptr<Node> from);
+  void SetFrom(const boost::shared_ptr<Node> from) noexcept;
 
   ///Set if the head has an arrow
-  void SetHeadArrow(const bool has_head_arrow);
+  void SetHeadArrow(const bool has_head_arrow) noexcept;
 
   ///Set the coordinat of the concept at the center of the node
-  void SetPos(const double x, const double y) { SetX(x); SetY(y); }
+  void SetPos(const double x, const double y) noexcept { SetX(x); SetY(y); }
 
   ///Set if the tail has an arrow
-  void SetTailArrow(const bool has_tail_arrow);
+  void SetTailArrow(const bool has_tail_arrow) noexcept;
 
   ///Set the Node index this edge goes to
-  void SetTo(const boost::shared_ptr<Node> to);
+  void SetTo(const boost::shared_ptr<Node> to) noexcept;
 
   ///Set the x coordinat of the concept at the center of the node
-  void SetX(const double x);
+  void SetX(const double x) noexcept;
 
   ///Set the y coordinat of the concept at the center of the node
-  void SetY(const double y);
+  void SetY(const double y) noexcept;
 
   ///Convert an Edge from an XML std::string
   ///The container of nodes is needed to convert the 'to' and 'from'
   ///field to indices
-  static const std::string ToXml(
+  static std::string ToXml(
     const boost::shared_ptr<const Edge>& c,
     const std::vector<boost::shared_ptr<const Node> >& nodes
-    );
+    ) noexcept;
 
   ///Emitted when an Edge attribute has changed
   boost::signals2::signal<void (const Edge*)> m_signal_edge_changed;

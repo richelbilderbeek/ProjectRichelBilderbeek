@@ -12,6 +12,7 @@
 #include "conceptmapcommandcreatenewnode.h"
 #include "conceptmapcommanddeleteconceptmap.h"
 #include "conceptmapcommandfactory.h"
+#include "conceptmapedgefactory.h"
 #include "conceptmaphelper.h"
 #include "conceptmapnode.h"
 #include "conceptmapnodefactory.h"
@@ -92,7 +93,7 @@ bool ribi::cmap::Widget::CanDoCommand(const boost::shared_ptr<const Command> com
   return command->CanDoCommand(this);
 }
 
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::Widget::CreateEmptyConceptMap() noexcept
+boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::Widget::CreateEmptyConceptMap() noexcept
 {
   const boost::shared_ptr<ConceptMap> concept_map {
     ConceptMapFactory().Create()
@@ -101,7 +102,32 @@ const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::cmap::Widget::CreateEmptyC
   return concept_map;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() noexcept
+boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::Widget::CreateNewEdge() noexcept
+{
+  #ifndef NDEBUG
+  const auto before = this->GetConceptMap()->GetEdges().size();
+
+  assert(GetFocus().size() == 2);
+  const boost::shared_ptr<Node> from { GetFocus()[0] };
+  const boost::shared_ptr<Node> to   { GetFocus()[1] };
+  #endif
+  const boost::shared_ptr<Edge> edge {
+    EdgeFactory().Create(from,to)
+  };
+
+  //ConceptMap does not signal the newly added node...
+  m_conceptmap->AddEdge(edge);
+  //But ConceptMapWidget does
+  m_signal_add_edge(edge);
+
+  #ifndef NDEBUG
+  const auto after = this->GetConceptMap()->GetEdges().size();
+  assert(after == before + 1);
+  #endif
+  return edge;
+}
+
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() noexcept
 {
   #ifndef NDEBUG
   const auto before = this->GetConceptMap()->GetNodes().size();
@@ -156,7 +182,7 @@ void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noe
   command->DoCommand(this);
 }
 
-const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(
+boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(
   const double x,
   const double y
 ) const noexcept
@@ -176,7 +202,7 @@ const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(
   return boost::shared_ptr<const Node>();
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const double x, const double y) noexcept
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const double x, const double y) noexcept
 {
   const boost::shared_ptr<const ribi::cmap::Node> node {
     const_cast<const Widget*>(this)->FindNodeAt(x,y)
@@ -185,7 +211,7 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::FindNodeAt(const d
   return boost::const_pointer_cast<Node>(node);
 }
 
-const std::vector<boost::shared_ptr<const ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() const noexcept
+std::vector<boost::shared_ptr<const ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() const noexcept
 {
   if (m_focus.empty()) { return std::vector<boost::shared_ptr<const Node>>(); }
   assert(std::count(m_focus.begin(),m_focus.end(),nullptr) == 0);
@@ -196,13 +222,13 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Node>> ribi::cmap::Widget:
   return focus;
 }
 
-const std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() noexcept
 {
   assert(std::count(m_focus.begin(),m_focus.end(),nullptr) == 0);
   return m_focus;
 }
 
-const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode() noexcept
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode() noexcept
 {
   assert(!GetConceptMap()->GetNodes().empty());
   const std::vector<boost::shared_ptr<Node>> nodes = GetConceptMap()->GetNodes();
@@ -395,7 +421,7 @@ void ribi::cmap::Widget::Test() noexcept
 }
 #endif
 
-void ribi::cmap::Widget::Undo()
+void ribi::cmap::Widget::Undo() noexcept
 {
   assert(!m_undo.empty());
   assert(m_undo.back());
@@ -403,7 +429,7 @@ void ribi::cmap::Widget::Undo()
   m_undo.pop_back();
 }
 
-bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs)
+bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs) noexcept
 {
   if (static_cast<bool>(lhs.m_conceptmap.get()) != static_cast<bool>(rhs.m_conceptmap.get()))
   {
@@ -425,7 +451,7 @@ bool ribi::cmap::operator==(const Widget& lhs, const Widget& rhs)
   );
 }
 
-bool ribi::cmap::operator!=(const Widget& lhs, const Widget& rhs)
+bool ribi::cmap::operator!=(const Widget& lhs, const Widget& rhs) noexcept
 {
   return !(lhs == rhs);
 }

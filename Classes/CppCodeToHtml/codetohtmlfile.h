@@ -64,7 +64,7 @@ struct File
   const std::vector<std::string> m_html;
 
   ///Create the HTML of the file
-  static const std::vector<std::string> CreateHtml(
+  std::vector<std::string> CreateHtml(
     const std::string& filename,
     const FileType content_type) noexcept;
 

@@ -32,13 +32,13 @@ enum class ProgramStatus { yes, no, nvr, n_a, wip, tbd, unk };
 struct ProgramStatusVersion
 {
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
-  static const std::vector<std::string> GetVersionHistory() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
 };
 
-const std::string ProgramStatusToStr(const ProgramStatus c);
+std::string ProgramStatusToStr(const ProgramStatus c);
 std::ostream& operator<<(std::ostream& os, const ProgramStatus c);
 
 } //~namespace ribi

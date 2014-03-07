@@ -45,7 +45,7 @@ struct QtRoundedEditRectItem : public QtRoundedRectItem
   const std::vector<std::string>& GetText() const { return m_text; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;

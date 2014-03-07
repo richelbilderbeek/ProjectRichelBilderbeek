@@ -71,7 +71,7 @@ double ribi::QtKeyboardFriendlyGraphicsView::GetDistance(const QPointF& a, const
   return std::sqrt((dx * dx) + (dy * dy));
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsAbove(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -103,7 +103,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsBelow(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -135,7 +135,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsLeft(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();
@@ -166,7 +166,7 @@ const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItem
   return v;
 }
 
-const std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
+std::vector<QGraphicsItem *> ribi::QtKeyboardFriendlyGraphicsView::GetItemsRight(const QGraphicsItem* const focus_item) const
 {
   std::vector<QGraphicsItem *> v;
   const QList<QGraphicsItem *> items = this->items();

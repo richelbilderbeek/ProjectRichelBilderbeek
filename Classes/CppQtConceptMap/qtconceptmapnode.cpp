@@ -155,14 +155,14 @@ void ribi::cmap::QtNode::focusOutEvent(QFocusEvent*)
   //m_signal_item_has_updated(0); //causes Examples to get hidden
 }
 
-const boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const
+boost::shared_ptr<const ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() const noexcept
 {
   const boost::shared_ptr<const ribi::cmap::Concept> p = m_node->GetConcept();
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept()
+boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::QtNode::GetConcept() noexcept
 {
   const boost::shared_ptr<ribi::cmap::Concept> p = m_node->GetConcept();
   assert(p);
@@ -274,12 +274,12 @@ void ribi::cmap::QtNode::SetConcept(const boost::shared_ptr<Concept> concept)
   this->m_node->SetConcept(concept);
 }
 
-void ribi::cmap::QtNode::SetName(const std::string& name)
+void ribi::cmap::QtNode::SetName(const std::string& name) noexcept
 {
   m_node->GetConcept()->SetName(name);
 }
 
-void ribi::cmap::QtNode::SetX(const double x)
+void ribi::cmap::QtNode::SetX(const double x) noexcept
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;
@@ -301,7 +301,7 @@ void ribi::cmap::QtNode::SetX(const double x)
   assert(std::abs(x - m_display_strategy->pos().x()) < epsilon);
 }
 
-void ribi::cmap::QtNode::SetY(const double y)
+void ribi::cmap::QtNode::SetY(const double y) noexcept
 {
   #ifndef NDEBUG
   const double epsilon = 0.000001;

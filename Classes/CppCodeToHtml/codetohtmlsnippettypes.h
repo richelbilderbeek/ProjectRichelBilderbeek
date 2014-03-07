@@ -31,8 +31,8 @@ namespace c2h {
 struct SnippetTypes
 {
   static bool CanStrToSnippetType(const std::string& s);
-  static const std::string SnippetTypeToStr(const SnippetType t);
-  static const std::vector<SnippetType> GetAllSnippetTypes();
+  static std::string SnippetTypeToStr(const SnippetType t) noexcept;
+  static std::vector<SnippetType> GetAllSnippetTypes() noexcept;
   static SnippetType StrToSnippetType(const std::string& s);
 };
 

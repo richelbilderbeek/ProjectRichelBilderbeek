@@ -31,7 +31,7 @@
 #include "xml.h"
 #pragma GCC diagnostic pop
 
-std::string ribi::pvdb::File::m_filename_extension = "cmp";
+const std::string ribi::pvdb::File::m_filename_extension = "cmp";
 
 ribi::pvdb::File::File()
   : m_about("ProjectVanDenBogaart"),
@@ -141,7 +141,7 @@ std::string ribi::pvdb::File::FileToStr(const std::string& filename)
   return s;
 }
 
-const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string &s)
+boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string &s)
 {
   assert(s.size() >= 13);
   assert(s.substr(0,6) == "<file>");
@@ -235,7 +235,7 @@ std::string ribi::pvdb::File::GetTestFileName()
   return "test." + m_filename_extension;
 }
 
-const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
+std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTests()
 {
   std::vector<boost::shared_ptr<pvdb::File> > v;
   const int n_clusters = static_cast<int>(pvdb::ClusterFactory::GetTests().size());
@@ -273,7 +273,7 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::File::GetTes
   return v;
 }
 
-const boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &filename)
+boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::Load(const std::string &filename)
 {
   std::string xml;
   //Read XML from file
@@ -543,7 +543,7 @@ std::string ribi::pvdb::File::ToXml(const File& file)
   return r;
 }
 
-const boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::File::CreateConceptMap(
+boost::shared_ptr<ribi::cmap::ConceptMap> ribi::pvdb::File::CreateConceptMap(
   const std::string& text) noexcept
 {
   using namespace cmap;

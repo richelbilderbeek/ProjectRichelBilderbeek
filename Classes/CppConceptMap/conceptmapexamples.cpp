@@ -72,12 +72,12 @@ void ribi::cmap::Examples::Add(const boost::shared_ptr<cmap::Example>& example)
 */
 
 
-const std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples::Get() const
+std::vector<boost::shared_ptr<const ribi::cmap::Example> > ribi::cmap::Examples::Get() const noexcept
 {
   return AddConst(m_v);
 }
 
-void ribi::cmap::Examples::OnExampleChanged()
+void ribi::cmap::Examples::OnExampleChanged() noexcept
 {
   m_signal_examples_changed(this);
 }
@@ -236,8 +236,8 @@ bool ribi::cmap::operator<(const cmap::Examples& lhs, const cmap::Examples& rhs)
   const int sz = lhs.Get().size();
   for (int i = 0; i!=sz; ++i)
   {
-    if (lhs.Get()[i] < rhs.Get()[i]) return true;
-    if (lhs.Get()[i] > rhs.Get()[i]) return false;
+    if (*lhs.Get()[i] < *rhs.Get()[i]) return true;
+    if (*lhs.Get()[i] > *rhs.Get()[i]) return false;
   }
   return false;
 }

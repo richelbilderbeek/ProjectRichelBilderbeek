@@ -34,7 +34,7 @@ struct CenterNode : public Node
     const CenterNodeFactory& lock
   );
 
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 };
 
 ///Returns true if Node is of derived class type CenterNode

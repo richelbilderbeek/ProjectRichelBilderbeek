@@ -46,7 +46,7 @@ ribi::c2h::Info::Info()
   //}
 }
 
-const std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo()
+std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo()
 {
   //Do not create this map from a single huge initializer list: the compiler will choke on it after about 5000 lines
   typedef std::string Key;

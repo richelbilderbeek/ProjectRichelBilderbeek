@@ -37,8 +37,8 @@ struct FileTypes
   ///Deduce the content type from a filename
   static FileType DeduceFileType(const std::string& filename);
 
-  const std::string FileTypeToStr(const FileType t);
-  const std::vector<FileType> GetAllFileTypes() noexcept;
+  std::string FileTypeToStr(const FileType t) noexcept;
+  std::vector<FileType> GetAllFileTypes() noexcept;
   FileType StrToFileType(const std::string& s);
 
   private:

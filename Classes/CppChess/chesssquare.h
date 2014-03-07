@@ -41,7 +41,7 @@ struct Square
   #endif
 
   ///Convert the Square to a string
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   private:
   ///Obtain a Square from its coordinats
@@ -61,9 +61,9 @@ struct Square
   friend class SquareFactory;
 };
 
-std::ostream& operator<<(std::ostream& os, const Chess::Square& s);
-bool operator==(const Chess::Square& lhs, const Chess::Square& rhs);
-bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs);
+std::ostream& operator<<(std::ostream& os, const Chess::Square& s) noexcept;
+bool operator==(const Chess::Square& lhs, const Chess::Square& rhs) noexcept;
+bool operator!=(const Chess::Square& lhs, const Chess::Square& rhs) noexcept;
 
 } //~namespace Chess
 } //~namespace ribi

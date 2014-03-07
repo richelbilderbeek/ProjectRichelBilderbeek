@@ -35,11 +35,11 @@ std::string ribi::QtRoundedRectItem::GetVersion() noexcept
 
 std::vector<std::string> ribi::QtRoundedRectItem::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2012-12-13: version 1.0: initial version");
-  v.push_back("2012-12-19: version 1.1: added use of pen, brush and focus-indicating pen");
-  v.push_back("2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen");
-  return v;
+  return {
+    "2012-12-13: version 1.0: initial version",
+    "2012-12-19: version 1.1: added use of pen, brush and focus-indicating pen",
+    "2012-12-22: version 1.2: correctly uses the focus and regular pen, added contour pen"
+  };
 }
 
 #pragma GCC diagnostic push

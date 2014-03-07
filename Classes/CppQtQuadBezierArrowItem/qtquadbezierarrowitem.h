@@ -50,39 +50,39 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   virtual ~QtQuadBezierArrowItem() noexcept {}
 
   ///Get the QPen used to indicate that the arrow has focus
-  const QPen& GetFocusPen() const { return m_focus_pen; }
+  const QPen& GetFocusPen() const noexcept { return m_focus_pen; }
 
   ///Get the item where the arrow originates from
   ///(would the arrow and tail heads not be reversible)
-  const QGraphicsItem* GetFromItem() const { return m_from; }
+  const QGraphicsItem* GetFromItem() const noexcept { return m_from; }
 
   ///Obtain the head point of the arrow, on the edge of the rectangle m_from
-  const QPointF GetHead() const;
+  const QPointF GetHead() const noexcept;
 
   ///Get the item where the arrow pass through in the middle
-  const QGraphicsItem* GetMidItem() const { return m_mid; }
+  const QGraphicsItem* GetMidItem() const noexcept { return m_mid; }
 
   ///Get the QPen used to draw a regular, non-focused, arrow
-  const QPen& GetPen() const { return m_pen; }
+  const QPen& GetPen() const noexcept { return m_pen; }
 
   ///Obtain the tail point of the arrow, on the edge of the rectangle m_from
-  const QPointF GetTail() const;
+  const QPointF GetTail() const noexcept;
 
   ///Get the item where the arrow points to
   ///(would the arrow and tail heads not be reversible)
-  const QGraphicsItem* GetToItem() const { return m_to; }
+  const QGraphicsItem* GetToItem() const noexcept { return m_to; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is there an arrow at the 'to' point (x2,y2)?
-  bool HasHead() const { return m_head; }
+  bool HasHead() const noexcept { return m_head; }
 
   ///Is there an arrow at the 'from' point (x1,y1)?
-  bool HasTail() const { return m_tail; }
+  bool HasTail() const noexcept { return m_tail; }
 
   ///Respond to key press
   void keyPressEvent(QKeyEvent *event);
@@ -98,16 +98,16 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   virtual void paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *);
 
   ///Set if the arrow has a point at the head
-  void SetHasHead(const bool has_head);
+  void SetHasHead(const bool has_head) noexcept;
 
   ///Set if the arrow has a point at the tail
-  void SetHasTail(const bool has_tail);
+  void SetHasTail(const bool has_tail) noexcept;
 
   ///Set the pen used to show focus
-  void SetFocusPen(const QPen& pen) { m_focus_pen = pen; }
+  void SetFocusPen(const QPen& pen) noexcept { m_focus_pen = pen; }
 
   ///Set the regular pen used to draw the arrow
-  void SetPen(const QPen& pen) { m_pen = pen; }
+  void SetPen(const QPen& pen) noexcept { m_pen = pen; }
 
   ///More precise shape compared to boundingRect
   ///In this example, it is redefined to ease selecting those thin lines
@@ -152,13 +152,13 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   /// 6 o'clock is 1.0 * pi
   /// 9 o'clock is 1.5 * pi
   //From www.richelbilderbeek.nl/CppGetAngle.htm
-  static double GetAngle(const double dx, const double dy);
+  //static double GetAngle(const double dx, const double dy);
 
   ///Obtain point 'beyond'
-  const QPointF GetBeyond() const;
+  const QPointF GetBeyond() const noexcept;
 
   ///Obtain point 'center'
-  const QPointF GetCenter() const;
+  const QPointF GetCenter() const noexcept;
 
   QPointF pos() const = delete;
 };

@@ -27,7 +27,7 @@ class QtPvdbCreateAssessmentCompleteDialog : public ribi::QtHideAndShowDialog
   ~QtPvdbCreateAssessmentCompleteDialog() noexcept;
 
   ///Get the filled in concept map focal question
-  const std::string GetQuestion() const;
+  std::string GetQuestion() const noexcept;
 
   ///Must the parent go back to the menu?
   bool GoBackToMenu() const { return m_back_to_menu; }

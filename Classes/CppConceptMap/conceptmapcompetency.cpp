@@ -3,7 +3,7 @@
 #include <cassert>
 #include <stdexcept>
 
-const std::vector<ribi::cmap::Competency> ribi::cmap::GetAllCompetencies()
+std::vector<ribi::cmap::Competency> ribi::cmap::GetAllCompetencies() noexcept
 {
   return
   {
@@ -19,7 +19,7 @@ const std::vector<ribi::cmap::Competency> ribi::cmap::GetAllCompetencies()
 
 }
 
-std::string ribi::cmap::CompetencyToDutchStr(const ribi::cmap::Competency type)
+std::string ribi::cmap::CompetencyToDutchStr(const ribi::cmap::Competency type) noexcept
 {
   switch (type)
   {

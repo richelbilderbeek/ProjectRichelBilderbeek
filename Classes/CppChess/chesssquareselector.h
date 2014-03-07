@@ -32,34 +32,34 @@ struct SquareSelector
   void DoSelect();
 
   ///The initially selected Square
-  static boost::shared_ptr<Square> GetInitialSquare();
+  static boost::shared_ptr<Square> GetInitialSquare() noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Obtain the location of the cursor
-  const boost::shared_ptr<const Square> GetCursor() const { return m_cursor; }
+  const boost::shared_ptr<const Square> GetCursor() const noexcept { return m_cursor; }
 
   ///Obtain the location of the cursor
   const boost::shared_ptr<const Square> GetSelected() const noexcept;
 
   ///Try to move the cursor down
-  void MoveDown();
+  void MoveDown() noexcept;
 
   ///Try to move the cursor to the left
-  void MoveLeft();
+  void MoveLeft() noexcept;
 
   ///Try to move the cursor to the right
-  void MoveRight();
+  void MoveRight() noexcept;
 
   ///Try to move the cursor up
-  void MoveUp();
+  void MoveUp() noexcept;
 
   ///Convert the SquareSelector to a std::string
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   ///Respond to a change in size
   mutable boost::signals2::signal<void ()> m_signal_changed;

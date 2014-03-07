@@ -188,7 +188,7 @@ void ribi::Chess::Square::Test() noexcept
 }
 #endif
 
-std::string ribi::Chess::Square::ToStr() const
+std::string ribi::Chess::Square::ToStr() const noexcept
 {
   std::string s
     = boost::lexical_cast<std::string>(GetFile().ToStr())
@@ -196,19 +196,19 @@ std::string ribi::Chess::Square::ToStr() const
   return s;
 }
 
-std::ostream& ribi::Chess::operator<<(std::ostream& os, const Square& s)
+std::ostream& ribi::Chess::operator<<(std::ostream& os, const Square& s) noexcept
 {
   os << s.ToStr();
   return os;
 }
 
-bool ribi::Chess::operator==(const Square& lhs, const Square& rhs)
+bool ribi::Chess::operator==(const Square& lhs, const Square& rhs) noexcept
 {
   return lhs.GetFile() == rhs.GetFile()
     && lhs.GetRank() == rhs.GetRank();
 }
 
-bool ribi::Chess::operator!=(const Square& lhs, const Square& rhs)
+bool ribi::Chess::operator!=(const Square& lhs, const Square& rhs) noexcept
 {
   return !(lhs == rhs);
 }

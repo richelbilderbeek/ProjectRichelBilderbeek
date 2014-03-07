@@ -30,11 +30,11 @@ struct QtLabeledQuadBezierArrowItem : public QtRoundedTextRectItem
   QtLabeledQuadBezierArrowItem& operator=(const QtLabeledQuadBezierArrowItem&) = delete;
   ~QtLabeledQuadBezierArrowItem() noexcept {}
 
-  const boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const { return m_arrow; }
-  const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       { return m_arrow; }
+        boost::shared_ptr<const QtQuadBezierArrowItem>  GetArrow() const noexcept { return m_arrow; }
+  const boost::shared_ptr<      QtQuadBezierArrowItem>& GetArrow()       noexcept { return m_arrow; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
