@@ -37,7 +37,7 @@ struct QrcFile
   explicit QrcFile(const std::string& filename);
 
   ///Obtain this class its About information
-  static const ribi::About GetAbout() noexcept;
+  static About GetAbout() noexcept;
 
   ///Obtain the items between <file> and </file>
   const std::set<std::string>& GetFiles() const noexcept { return m_files; }
@@ -46,7 +46,7 @@ struct QrcFile
   const std::string& GetQrcFilename() const noexcept { return m_qrc_filename; }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

@@ -84,10 +84,10 @@ struct Board
   int Count(const PositionState state) const;
 
   ///Create a BoardAdvanced
-  static const boost::shared_ptr<Board> CreateAdvancedBoard() noexcept;
+  static boost::shared_ptr<Board> CreateAdvancedBoard() noexcept;
 
   ///Create a BoardBasic
-  static const boost::shared_ptr<Board> CreateBasicBoard() noexcept;
+  static boost::shared_ptr<Board> CreateBasicBoard() noexcept;
 
   ///Do performs a move in Pylos notation
   void Do(const std::string& s, const Player player);
@@ -104,10 +104,10 @@ struct Board
   ///GetLayerSize returns how many marbles this is wide/height.
   ///For example; layer 0 has 4x4 marbles, so GetLayerSize
   ///will return 4.
-  int GetLayerSize(const int layer) const;
+  int GetLayerSize(const int layer) const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -116,7 +116,7 @@ struct Board
   Winner GetWinner() const noexcept;
 
   ///PlayRandomPylosGame plays a random Pylos game and returns the winner.
-  static Winner PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original = boost::shared_ptr<Board>());
+  static Winner PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original = boost::shared_ptr<Board>()) noexcept;
 
   ///Remove removes one or two marbles.
   void Remove(const std::vector<Coordinat>& v, const Player player);
@@ -133,13 +133,13 @@ struct Board
 
 
   ///Display the board as a std::string
-  const std::string ToStr() const;
+  std::string ToStr() const noexcept;
 
   ///Display the board as a 2D std::string
-  const std::vector<std::string> ToText() const;
+  std::vector<std::string> ToText() const noexcept;
 
   ///Display the board as a 2D std::string
-  const boost::shared_ptr<TextCanvas> ToTextCanvas() const;
+  boost::shared_ptr<TextCanvas> ToTextCanvas() const noexcept;
 
   ///Transfer lets current player transfer his marble to a new, higher position
   void Transfer(
@@ -166,7 +166,7 @@ struct Board
 
   private:
   ///CreateEmptyBoard created an empty board.
-  const std::vector<Layer> CreateEmptyBoard() const noexcept;
+  std::vector<Layer> CreateEmptyBoard() const noexcept;
 
   ///CreateLayer creates an empty layer.
   const Layer CreateLayer(const int sz) const;

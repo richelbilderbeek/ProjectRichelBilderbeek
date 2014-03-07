@@ -55,7 +55,7 @@ struct fuzzy_equal_to
   }
   const double m_tolerance;
 
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.3";
   }
@@ -90,7 +90,7 @@ struct fuzzy_equal_to_abs
   }
   const double m_tolerance;
 
-  static const std::string GetVersion() noexcept
+  static std::string GetVersion() noexcept
   {
     return "1.0";
   }

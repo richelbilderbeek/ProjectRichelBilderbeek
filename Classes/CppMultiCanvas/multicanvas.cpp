@@ -18,16 +18,15 @@
 
 #include "canvascolorsystems.h"
 #include "canvascoordinatsystems.h"
-//#include "dotmatrixstring.h"
 #include "fileio.h"
 #include "trace.h"
-//#include "xml.h"
 
 #pragma GCC diagnostic pop
 
 ribi::MultiCanvas::MultiCanvas(
   const std::vector<boost::shared_ptr<Canvas>>& canvases
-) : m_canvases(canvases)
+) noexcept
+: m_canvases(canvases)
 {
 
 }
@@ -94,7 +93,7 @@ std::vector<std::string> ribi::MultiCanvas::ToStrings() const noexcept
   return w;
 }
 
-std::ostream& ribi::operator<<(std::ostream& os, const MultiCanvas& c)
+std::ostream& ribi::operator<<(std::ostream& os, const MultiCanvas& c) noexcept
 {
   const auto text = c.ToStrings();
   std::copy(text.begin(),text.end(),

@@ -41,8 +41,7 @@ struct QtRateConceptMap : public QtConceptMap
 private:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  void AddEdge(
-    const boost::shared_ptr<Edge> edge);
+  QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///For rating and editing, the node must be non-cost

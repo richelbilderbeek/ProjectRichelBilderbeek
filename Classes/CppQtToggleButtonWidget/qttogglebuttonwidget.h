@@ -57,7 +57,7 @@ struct QtToggleButtonWidget : public QWidget
   mutable boost::signals2::signal<void ()> m_signal_toggled;
 
   ///Obtain the QtToggleButtonWidget its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the QtToggleButtonWidget its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

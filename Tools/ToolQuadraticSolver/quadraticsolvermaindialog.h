@@ -40,7 +40,7 @@ struct QuadraticSolverMainDialog
 
   private:
   //From http://www.richelbilderbeek.nl/CppAskUserForString.htm
-  static const std::string AskUserForString() noexcept;
+  static std::string AskUserForString() noexcept;
 
   //From http://www.richelbilderbeek.nl/CppAskUserForDouble.htm
   static double AskUserForDouble() noexcept;

@@ -53,22 +53,22 @@ struct MultiApproximator
   ///Will throw a std::logic_error if there is no data in the MultiApproximator
   ///Will throw ExceptionNoExtrapolation if the key is beyond the range
   ///of the keys stored in MultiApproxitor
-  const Value Approximate(const Key& key) const;
+  Value Approximate(const Key& key) const;
 
   ///Obtain the container
   const Container& GetContainer() const noexcept{ return m_m; }
 
   ///Get the heighest key value
-  const Key GetMax() const;
+  Key GetMax() const;
 
   ///Get the lowest key value
-  const Key GetMin() const;
+  Key GetMin() const;
 
   ///Obtain the true or averaged value at the key when the key is present
-  const Value GetValue(const Key& key) const;
+  Value GetValue(const Key& key) const;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -127,7 +127,7 @@ void MultiApproximator<Key,Value,Container>::Add(const Key& key, const Value& va
 }
 
 template <class Key, class Value, class Container>
-const Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) const
+Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) const
 {
   if (m_m.empty())
   {
@@ -165,21 +165,21 @@ const Value MultiApproximator<Key,Value,Container>::Approximate(const Key& key) 
 }
 
 template <class Key, class Value, class Container>
-const Key MultiApproximator<Key,Value,Container>::GetMax() const
+Key MultiApproximator<Key,Value,Container>::GetMax() const
 {
   assert(!m_m.empty());
   return (*m_m.rbegin()).first;
 }
 
 template <class Key, class Value, class Container>
-const Key MultiApproximator<Key,Value,Container>::GetMin() const
+Key MultiApproximator<Key,Value,Container>::GetMin() const
 {
   assert(!m_m.empty());
   return (*m_m.begin()).first;
 }
 
 template <class Key, class Value, class Container>
-const Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) const
+Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) const
 {
   assert(m_m.find(key) != m_m.end());
 
@@ -210,14 +210,14 @@ const Value MultiApproximator<Key,Value,Container>::GetValue(const Key& key) con
 }
 
 template <class Key, class Value, class Container>
-const std::string MultiApproximator<Key,Value,Container>::GetVersion() noexcept
+std::string MultiApproximator<Key,Value,Container>::GetVersion() noexcept
 {
   return "1.1";
 }
 
 ///Obtain the version history of this class
 template <class Key, class Value, class Container>
-const std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersionHistory() noexcept
+std::vector<std::string> MultiApproximator<Key,Value,Container>::GetVersionHistory() noexcept
 {
   return {
     "2013-08-23: version 1.0: initial version",
@@ -364,7 +364,7 @@ template <
   class MultiContainer,
   class Container
   >
-const Approximator<Key,Value,Container> ToApproximator(
+Approximator<Key,Value,Container> ToApproximator(
   const MultiApproximator<Key,Value,MultiContainer>& multi_approximator) noexcept
 {
   const MultiContainer m = multi_approximator.GetContainer();

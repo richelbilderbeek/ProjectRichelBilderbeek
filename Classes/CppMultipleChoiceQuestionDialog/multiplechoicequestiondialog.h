@@ -40,12 +40,12 @@ struct MultipleChoiceQuestionDialog : public QuestionDialog
   ///Will work if question is not nullptr
   explicit MultipleChoiceQuestionDialog(const boost::shared_ptr<const MultipleChoiceQuestion> question);
 
-  const boost::shared_ptr<const MultipleChoiceQuestion> GetMultipleChoiceQuestion() const { return m_question; }
+  boost::shared_ptr<const MultipleChoiceQuestion> GetMultipleChoiceQuestion() const noexcept { return m_question; }
 
-  const boost::shared_ptr<const Question> GetQuestion() const;
+  boost::shared_ptr<const Question> GetQuestion() const noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;

@@ -60,7 +60,7 @@ struct MysteryMachineWidget : public Widget
   const boost::shared_ptr<      MysteryMachine> GetMachine()       noexcept { return m_machine; }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;

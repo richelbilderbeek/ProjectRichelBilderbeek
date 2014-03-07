@@ -59,7 +59,7 @@ public:
 
   const boost::shared_ptr<const QuestionDialog> GetDialog() const;
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
 private slots:

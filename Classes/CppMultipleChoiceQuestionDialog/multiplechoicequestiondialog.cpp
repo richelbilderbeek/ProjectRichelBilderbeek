@@ -66,7 +66,7 @@ boost::shared_ptr<ribi::MultipleChoiceQuestion>
   );
 }
 
-const boost::shared_ptr<const ribi::Question> ribi::MultipleChoiceQuestionDialog::GetQuestion() const
+boost::shared_ptr<const ribi::Question> ribi::MultipleChoiceQuestionDialog::GetQuestion() const noexcept
 {
   return m_question;
 }

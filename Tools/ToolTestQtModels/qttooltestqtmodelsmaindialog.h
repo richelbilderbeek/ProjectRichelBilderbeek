@@ -47,8 +47,8 @@ private slots:
 private:
   Ui::QtToolTestQtModelsMainDialog *ui;
 
-  static const std::string CreateRandomText();
-  static const std::vector<std::string> CreateRandomTexts();
+  static std::string CreateRandomText();
+  static std::vector<std::string> CreateRandomTexts();
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -43,7 +43,7 @@ struct IpAddress
   const std::string& Get() const noexcept { return m_ip_address; }
 
   ///Obtain the IpAddress version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the IpAddress version history
   static std::vector<std::string> GetVersionHistory() noexcept;

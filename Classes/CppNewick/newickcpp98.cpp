@@ -15,7 +15,7 @@
 ///CreateValidTrinaryNewicks creates std::strings
 ///that can be converted to a TrinaryNewickVector.
 ///From http://www.richelbilderbeek.nl/CppCreateValidTinaryNewicks.htm
-std::vector<std::string> ribi::NewickCpp98::CreateValidTrinaryNewicks()
+std::vector<std::string> ribi::NewickCpp98::CreateValidTrinaryNewicks() noexcept
 {
   std::vector<std::string> v;
   v.push_back("(1,1,1)");
@@ -47,7 +47,7 @@ std::vector<std::string> ribi::NewickCpp98::CreateValidTrinaryNewicks()
   return v;
 }
 
-std::vector<boost::tuple<std::string,double,double> > ribi::NewickCpp98::GetKnownProbabilities()
+std::vector<boost::tuple<std::string,double,double> > ribi::NewickCpp98::GetKnownProbabilities() noexcept
 {
   std::vector<boost::tuple<std::string,double,double> > v;
 
@@ -199,7 +199,7 @@ std::vector<boost::tuple<std::string,double,double> > ribi::NewickCpp98::GetKnow
 ///(1,2,3)             -> { 1     , 2     , 3     }
 ///((1,1),(2,2),(3,3)) -> { (1,1) , (2,2) , (3,3) }
 ///From http://www.richelbilderbeek.nl/CppGetRootBranchesBinary.htm
-const std::vector<std::vector<int> >
+std::vector<std::vector<int> >
   ribi::NewickCpp98::GetRootBranches(const std::vector<int>& n)
 {
   //#define DEBUG_GETROOTBRANCHES
@@ -269,7 +269,7 @@ const std::vector<std::vector<int> >
 ///GetSimplerNewicksFrequencyPairs creates simpler, derived Newicks from a Newick.
 ///Its simpler Newicks are identical to those created by GetSimplerNewicks.
 ///From http://www.richelbilderbeek.nl/CppGetSimplerNewicksFrequencyPairs.htm
-const std::vector<std::pair<std::vector<int>,int> >
+std::vector<std::pair<std::vector<int>,int> >
   ribi::NewickCpp98::GetSimplerNewicksFrequencyPairs(const std::vector<int>& n)
 {
   //#define DEBUG_GETSIMPLERNEWICKSFREQUENCYPAIRS

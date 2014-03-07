@@ -41,13 +41,13 @@ struct Exercise
   explicit Exercise(const std::string& filename);
 
   ///Read the current question
-  const std::string GetCurrentQuestion() const noexcept;
+  std::string GetCurrentQuestion() const noexcept;
 
   ///Get the number of questions, will be at least one
   int GetNumberOfQuestions() const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

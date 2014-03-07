@@ -44,7 +44,7 @@ struct QtScopedDisable
   }
 
   ///Obtain the version of this class
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.2";
   }

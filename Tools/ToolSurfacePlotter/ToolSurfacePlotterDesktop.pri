@@ -1,16 +1,13 @@
 include(../../Tools/ToolSurfacePlotter/ToolSurfacePlotterConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolSurfacePlotter/qttoolsurfaceplottermenudialog.cpp \
-    ../../Tools/ToolSurfacePlotter/qttoolsurfaceplottermaindialog.cpp
+    ../../Tools/ToolSurfacePlotter/qtsurfaceplottermenudialog.cpp \
+    ../../Tools/ToolSurfacePlotter/qtsurfaceplottermaindialog.cpp
 
 FORMS += \
-    ../../Tools/ToolSurfacePlotter/qttoolsurfaceplottermenudialog.ui \
-    ../../Tools/ToolSurfacePlotter/qttoolsurfaceplottermaindialog.ui
-
-RESOURCES += \
-    ../../Tools/ToolSurfacePlotter/ToolSurfacePlotter.qrc
+    ../../Tools/ToolSurfacePlotter/qtsurfaceplottermenudialog.ui \
+    ../../Tools/ToolSurfacePlotter/qtsurfaceplottermaindialog.ui
 
 HEADERS += \
-    ../../Tools/ToolSurfacePlotter/qttoolsurfaceplottermenudialog.h \
-    ../../Tools/ToolSurfacePlotter/qttoolsurfaceplottermaindialog.h
+    ../../Tools/ToolSurfacePlotter/qtsurfaceplottermenudialog.h \
+    ../../Tools/ToolSurfacePlotter/qtsurfaceplottermaindialog.h

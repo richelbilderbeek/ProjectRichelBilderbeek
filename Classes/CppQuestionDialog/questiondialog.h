@@ -47,10 +47,10 @@ struct QuestionDialog
   void Execute();
 
   ///Obtain the question
-  virtual const boost::shared_ptr<const Question> GetQuestion() const = 0;
+  virtual boost::shared_ptr<const Question> GetQuestion() const = 0;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -97,7 +97,7 @@ struct QuestionDialog
   ///The question
   //boost::shared_ptr<const Question> m_question;
 
-  const std::string AskUserForInput() const noexcept;
+  std::string AskUserForInput() const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

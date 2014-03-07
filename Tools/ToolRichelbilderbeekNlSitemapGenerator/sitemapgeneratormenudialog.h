@@ -46,9 +46,9 @@ struct SitemapGeneratorMenuDialog : public MenuDialog
 
   private:
 
-  static const std::vector<std::string> AddHeader(const std::vector<std::string>& files) noexcept;
+  static std::vector<std::string> AddHeader(const std::vector<std::string>& files) noexcept;
 
-  static const std::vector<std::string> CreateConfigXml(
+  static std::vector<std::string> CreateConfigXml(
     const std::string& local_website_path,
     const std::string& urllist_path) noexcept;
 
@@ -56,9 +56,9 @@ struct SitemapGeneratorMenuDialog : public MenuDialog
 
   //Returns date in YYYY-MM-DD format
   //From http://www.richelbilderbeek.nl/CppGetDateIso8601.htm
-  static const std::string GetDateIso8601() noexcept;
+  static std::string GetDateIso8601() noexcept;
 
-  static const std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
+  static std::vector<std::string> GetHtmlFilesInFolder(const std::string& folder) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

@@ -49,7 +49,7 @@ public:
   QtRichelBilderbeekMenuDialog& operator=(const QtRichelBilderbeekMenuDialog&) = delete;
   ~QtRichelBilderbeekMenuDialog() noexcept;
 
-  static const About GetAbout() noexcept;
+  static About GetAbout() noexcept;
 
 private slots:
   void OnAbout();

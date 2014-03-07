@@ -46,7 +46,7 @@ public:
   QtTicTacToeGameDialog(const QtTicTacToeGameDialog&) = delete;
   QtTicTacToeGameDialog& operator=(const QtTicTacToeGameDialog&) = delete;
   ~QtTicTacToeGameDialog() noexcept;
-  static const std::string GetVersion() { return "1.2"; }
+  static std::string GetVersion() { return "1.2"; }
 
 private:
   Ui::QtTicTacToeGameDialog *ui;

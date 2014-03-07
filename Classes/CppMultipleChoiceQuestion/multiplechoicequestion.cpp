@@ -309,7 +309,7 @@ void ribi::MultipleChoiceQuestion::Test() noexcept
 }
 #endif
 
-std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const
+std::vector<std::string> ribi::MultipleChoiceQuestion::ToLines() const noexcept
 {
   std::vector<std::string> question_lines;
   question_lines.push_back(this->GetQuestion());

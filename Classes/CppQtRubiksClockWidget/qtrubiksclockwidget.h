@@ -62,7 +62,7 @@ public:
   ClockWidget * GetWidget() { return m_widget.get(); }
 
   ///Obtain the QtRubiksClockWidget its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the QtRubiksClockWidget its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

@@ -46,7 +46,7 @@ ribi::HtmlPage::HtmlPage(const std::string& filename)
 
 }
 
-std::string ribi::HtmlPage::FindTitle(const std::string& filename)
+std::string ribi::HtmlPage::FindTitle(const std::string& filename) noexcept
 {
   const boost::xpressive::sregex title_regex
     = boost::xpressive::sregex::compile("<title>.*</title>");

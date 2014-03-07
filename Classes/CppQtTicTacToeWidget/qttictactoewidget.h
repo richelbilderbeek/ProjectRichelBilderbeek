@@ -50,7 +50,7 @@ public:
   ///virtual mouse clicks
   void mousePressEvent(QMouseEvent *);
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_changed;

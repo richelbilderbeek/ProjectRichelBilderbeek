@@ -13,6 +13,7 @@
 #include "qtconceptmap.h"
 #include "qtconceptmapnode.h"
 #include "qteditconceptmap.h"
+#include "qtconceptmapedge.h"
 #include "qtdisplayconceptmap.h"
 #include "qtrateconceptmap.h"
 #include "conceptmap.h"
@@ -51,6 +52,9 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   );
   m_widget->m_signal_add_node.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnAddNode,this,boost::lambda::_1)
+  );
+  m_widget->m_signal_delete_edge.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnDeleteEdge,this,boost::lambda::_1)
   );
   m_widget->m_signal_delete_node.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnDeleteNode,this,boost::lambda::_1)
@@ -144,16 +148,16 @@ void ribi::cmap::QtConceptMapWidget::OnAddEdge(const boost::shared_ptr<Edge> edg
     const std::size_t qtedge_before { m_qtconceptmap->GetQtEdges().size() };
     const std::size_t edges_before { m_widget->GetConceptMap()->GetEdges().size() };
     #endif
-    m_qtconceptmap->AddEdge(edge);
-    assert(m_qtconceptmap->FindQtEdge(edge.get()));
-    m_qtconceptmap->FindQtEdge(edge.get())->setFocus();
+    QtEdge * const qtedge { m_qtconceptmap->AddEdge(edge) };
+    assert(m_qtconceptmap->FindQtEdge(qtedge));
+    m_qtconceptmap->FindQtEdge(qtedge)->setFocus();
 
     #ifndef NDEBUG
     const std::size_t qtedges_after { m_qtconceptmap->GetQtEdges().size() };
     const std::size_t edges_after { m_widget->GetConceptMap()->GetEdges().size() };
     assert(qtedges_after > qtedge_before);
     assert(edges_after == edges_before && "These edges are already added to the Widget");
-    if(m_qtconceptmap->GetQtNodes().size() != m_widget->GetConceptMap()->GetNodes().size())
+    if(m_qtconceptmap->GetQtEdges().size() != m_widget->GetConceptMap()->GetEdges().size())
     {
       TRACE(qtedge_before);
       TRACE(edges_before);
@@ -207,6 +211,43 @@ void ribi::cmap::QtConceptMapWidget::OnConceptMapChanged() noexcept
   m_qtconceptmap->scene()->update();
   m_qtconceptmap->update();
   scene()->update();
+}
+
+void ribi::cmap::QtConceptMapWidget::OnDeleteEdge(const boost::shared_ptr<Edge> edge) noexcept
+{
+  if (!edge)
+  {
+    //m_qtconceptmap->clearFocus();
+  }
+  else
+  {
+    #ifndef NDEBUG
+    const std::size_t qtedges_before { m_qtconceptmap->GetQtEdges().size() };
+    const std::size_t edges_before { m_widget->GetConceptMap()->GetEdges().size() };
+    #endif
+    assert(m_qtconceptmap->FindQtEdge(edge));
+    m_qtconceptmap->DeleteEdge(m_qtconceptmap->FindQtEdge(edge));
+    assert(!m_qtconceptmap->FindQtEdge(edge));
+    //m_qtconceptmap->FindQtEdge(node.get())->setFocus();
+    m_qtconceptmap->clearFocus();
+
+    #ifndef NDEBUG
+    const std::size_t qtedges_after { m_qtconceptmap->GetQtEdges().size() };
+    const std::size_t edges_after { m_widget->GetConceptMap()->GetEdges().size() };
+    assert(qtedges_after < qtedges_before);
+    assert(edges_after == edges_before && "These nodes are already added to the Widget");
+    if(m_qtconceptmap->GetQtEdges().size() != m_widget->GetConceptMap()->GetEdges().size())
+    {
+      TRACE(qtedges_before);
+      TRACE(edges_before);
+      TRACE(qtedges_after);
+      TRACE(edges_after);
+      TRACE("BREAK");
+    }
+    assert(m_qtconceptmap->GetQtEdges().size() == m_widget->GetConceptMap()->GetEdges().size());
+    #endif
+
+  }
 }
 
 void ribi::cmap::QtConceptMapWidget::OnDeleteNode(const boost::shared_ptr<Node> node) noexcept

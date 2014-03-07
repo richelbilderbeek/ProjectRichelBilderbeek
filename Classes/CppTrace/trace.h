@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 struct Trace
 {
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "2.6";
   }

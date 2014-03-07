@@ -58,7 +58,7 @@ ribi::cmap::QtDisplayConceptMap::QtDisplayConceptMap(
 }
 
 
-void ribi::cmap::QtDisplayConceptMap::AddEdge(
+ribi::cmap::QtEdge * ribi::cmap::QtDisplayConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
@@ -116,6 +116,7 @@ void ribi::cmap::QtDisplayConceptMap::AddEdge(
   }
   assert(qtedge->pos().y() == edge->GetY());
   #endif
+  return qtedge;
 }
 
 ribi::cmap::QtNode * ribi::cmap::QtDisplayConceptMap::AddNode(const boost::shared_ptr<Node> node)

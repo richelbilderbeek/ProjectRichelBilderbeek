@@ -41,7 +41,7 @@ ribi::kalman::KalmanFilterExample::KalmanFilterExample(
 
 }
 
-const std::vector<boost::shared_ptr<ribi::kalman::KalmanFilterExample> > ribi::kalman::KalmanFilterExample::CreateExamples()
+std::vector<boost::shared_ptr<ribi::kalman::KalmanFilterExample> > ribi::kalman::KalmanFilterExample::CreateExamples() noexcept
 {
   std::vector<boost::shared_ptr<KalmanFilterExample> > v;
   for (int i=0; ; ++i)

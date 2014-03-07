@@ -60,7 +60,7 @@ private:
   void Display(const std::vector<std::string>& v) noexcept;
 
   ///Convert a QPlainTextEdit to std::vector<std::string>
-  static const std::vector<std::string> EditToVector(const QPlainTextEdit * const edit) noexcept;
+  static std::vector<std::string> EditToVector(const QPlainTextEdit * const edit) noexcept;
 
 private slots:
 

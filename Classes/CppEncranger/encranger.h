@@ -47,11 +47,11 @@ struct Encranger
   #pragma GCC diagnostic pop
 
   Encranger(const int key);
-  const std::string Encrypt(std::string s) const noexcept;
-  const std::string Deencrypt(std::string s) const noexcept;
+  std::string Encrypt(std::string s) const noexcept;
+  std::string Deencrypt(std::string s) const noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

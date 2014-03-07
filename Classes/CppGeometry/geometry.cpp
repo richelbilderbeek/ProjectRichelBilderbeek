@@ -8,7 +8,9 @@
 
 #include <boost/math/constants/constants.hpp>
 
+#include "coordinat2d.h"
 #include "coordinat3d.h"
+#include "plane.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
@@ -18,6 +20,46 @@ ribi::Geometry::Geometry()
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geometry::CalcCrossProduct(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+) const noexcept
+{
+  using boost::geometry::get;
+  return boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
+    (get<1>(a) * get<2>(b)) - (get<2>(a) * get<1>(b)),
+    (get<2>(a) * get<0>(b)) - (get<0>(a) * get<2>(b)),
+    (get<0>(a) * get<1>(b)) - (get<1>(a) * get<0>(b))
+  );
+}
+
+std::vector<double> ribi::Geometry::CalcPlane(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+) const noexcept
+{
+  using boost::geometry::cs::cartesian;
+  using boost::geometry::get;
+  using boost::geometry::model::point;
+  const point<double,3,cartesian> v1 { p3 - p1 };
+  const point<double,3,cartesian> v2 { p2 - p1 };
+
+  const point<double,3,cartesian> cross { CalcCrossProduct(v1,v2) };
+
+  const double a { get<0>(cross) };
+  const double b { get<1>(cross) };
+  const double c { get<2>(cross) };
+
+  const double x { get<0>(p1) };
+  const double y { get<1>(p1) };
+  const double z { get<2>(p1) };
+
+  const double d { ((a * x) + (b * y) + (c * z)) };
+  return { a,b,c,d };
+
 }
 
 double ribi::Geometry::Fmod(const double x, const double mod) const noexcept
@@ -108,14 +150,45 @@ bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const C
   else
   {
     assert(n_points == 4);
+    //See if the points in the projection are in the same direction
+    const auto v(
+      Plane().CalcProjection(
+        {
+          points[0].ToBoostGeometryPoint(),
+          points[1].ToBoostGeometryPoint(),
+          points[2].ToBoostGeometryPoint(),
+          points[3].ToBoostGeometryPoint()
+        }
+      )
+    );
+    //If the points are messed up, they cannot be clockwise
+    if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
+    //The neatly orderder point have the same winding as the first three
     std::vector<Coordinat3D> a;
     std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
-    std::vector<Coordinat3D> b;
-    std::copy(points.begin() + 1,points.begin() + 4,std::back_inserter(b));
-    assert(a.size() == 3);
-    assert(b.size() == 3);
-    return IsClockwise(a,observer) && IsClockwise(b,observer);
+    return IsClockwise(a,observer);
   }
+}
+
+bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept
+{
+  //Points are determined from their center
+  const Coordinat2D center {
+    CalcCenter(points)
+  };
+  std::vector<double> angles;
+  angles.reserve(points.size());
+  std::transform(points.begin(),points.end(),
+    std::back_inserter(angles),
+    [this,center](const Coordinat2D& coordinat)
+    {
+      return GetAngle(
+        coordinat.GetX() - center.GetX(),
+        coordinat.GetY() - center.GetY()
+      );
+    }
+  );
+  return IsClockwise(angles);
 }
 
 bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept
@@ -163,6 +236,104 @@ void ribi::Geometry::Test() noexcept
   TRACE("Starting ribi::Geometry::Test");
   const double pi = boost::math::constants::pi<double>();
   const Geometry g;
+  //CalcPlane
+  {
+    using boost::geometry::model::point;
+    using boost::geometry::cs::cartesian;
+    const double p1_x { 1.0 };
+    const double p1_y { 2.0 };
+    const double p1_z { 3.0 };
+    const double p2_x { 4.0 };
+    const double p2_y { 6.0 };
+    const double p2_z { 9.0 };
+    const double p3_x {12.0 };
+    const double p3_y {11.0 };
+    const double p3_z { 9.0 };
+    const point<double,3,cartesian> p1(p1_x,p1_y,p1_z);
+    const point<double,3,cartesian> p2(p2_x,p2_y,p2_z);
+    const point<double,3,cartesian> p3(p3_x,p3_y,p3_z);
+    const auto t(g.CalcPlane(p1,p2,p3));
+    const double a { t[0] };
+    const double b { t[1] };
+    const double c { t[2] };
+    const double d { t[3] };
+    const double d_p1_expected { (a * p1_x) + (b * p1_y) + (c * p1_z) };
+    const double d_p2_expected { (a * p2_x) + (b * p2_y) + (c * p2_z) };
+    const double d_p3_expected { (a * p3_x) + (b * p3_y) + (c * p3_z) };
+    const bool verbose = false;
+    if (verbose)
+    {
+      std::clog
+        << "(a * x) + (b * y) + (c * z) = d" << '\n'
+        << "(" << a << " * x) + (" << b << " * y) + (" << c << " * z) = " << d << '\n'
+        << "(" << a << " * " << p1_x << ") + (" << b << " * " << p1_y << ") + (" << c << " * " << p1_z << ") = " << d << '\n'
+        << "(" << (a * p1_x) << ") + (" << (b * p1_y) << ") + (" << (c * p1_z) << ") = " << d << '\n'
+        << "(" << a << " * " << p2_x << ") + (" << b << " * " << p2_y << ") + (" << c << " * " << p2_z << ") = " << d << '\n'
+        << "(" << (a * p2_x) << ") + (" << (b * p2_y) << ") + (" << (c * p2_z) << ") = " << d << '\n'
+        << "(" << a << " * " << p3_x << ") + (" << b << " * " << p3_y << ") + (" << c << " * " << p3_z << ") = " << d << '\n'
+        << "(" << (a * p3_x) << ") + (" << (b * p3_y) << ") + (" << (c * p3_z) << ") = " << d << '\n'
+      ;
+      /* Screen output
+
+      (a * x) + (b * y) + (c * z) = d
+      (30 * x) + (-48 * y) + (17 * z) = -15
+      (30 * 1) + (-48 * 2) + (17 * 3) = -15
+      (30) + (-96) + (51) = -15
+      (30 * 4) + (-48 * 6) + (17 * 9) = -15
+      (120) + (-288) + (153) = -15
+      (30 * 12) + (-48 * 11) + (17 * 9) = -15
+      (360) + (-528) + (153) = -15
+
+      */
+    }
+    assert(std::abs(d - d_p1_expected) < 0.001);
+    assert(std::abs(d - d_p2_expected) < 0.001);
+    assert(std::abs(d - d_p3_expected) < 0.001);
+  }
+  //CalcPlane
+  {
+    //CalcPlane return the coefficients in the following form:
+    // A.x + B.y + C.z = D
+    //Converting this to z being a function of x and y:
+    // -C.z = A.x + B.y - D
+    // z = -A/C.x - B/C.y + D/C
+    //In this test, use the formula:
+    //  z = (2.0 * x) + (3.0 * y) + (5.0)
+    //Coefficients must then become:
+    //  -A/C = 2.0
+    //  -B/C = 3.0
+    //   D/C = 5.0
+    //Coefficients are, when setting C to 1.0:
+    //  -A = 2.0 => A = -2.0
+    //  -B = 3.0 => B = -3.0
+    //   C = 1.0
+    //   D = 5.0
+    using boost::geometry::model::point;
+    using boost::geometry::cs::cartesian;
+    const point<double,3,cartesian> p1(1.0,1.0,10.0);
+    const point<double,3,cartesian> p2(1.0,2.0,13.0);
+    const point<double,3,cartesian> p3(2.0,1.0,12.0);
+    const auto t(g.CalcPlane(p1,p2,p3));
+    const double a { t[0] };
+    const double b { t[1] };
+    const double c { t[2] };
+    const double d { t[3] };
+    const double a_expected { -2.0 };
+    const double b_expected { -3.0 };
+    const double c_expected {  1.0 };
+    const double d_expected {  5.0 };
+    assert(std::abs(a - a_expected) < 0.001);
+    assert(std::abs(b - b_expected) < 0.001);
+    assert(std::abs(c - c_expected) < 0.001);
+    assert(std::abs(d - d_expected) < 0.001);
+    const double d_p1_expected { (a * 1.0) + (b * 1.0) + (c * 10.0) };
+    const double d_p2_expected { (a * 1.0) + (b * 2.0) + (c * 13.0) };
+    const double d_p3_expected { (a * 2.0) + (b * 1.0) + (c * 12.0) };
+    assert(std::abs(d - d_p1_expected) < 0.001);
+    assert(std::abs(d - d_p2_expected) < 0.001);
+    assert(std::abs(d - d_p3_expected) < 0.001);
+
+  }
   //Fmod
   {
     const double expected_min = 1.0 - 0.00001;
@@ -436,10 +607,6 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
-
-
-
-
   //IsClockwise, clockwise, in three dimensions, four points in XY plane
   {
     /*
@@ -537,7 +704,19 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
-  assert(1==2);
   TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>
+  ribi::operator-(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+  ) noexcept
+{
+  return boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
+    boost::geometry::get<0>(a) - boost::geometry::get<0>(b),
+    boost::geometry::get<1>(a) - boost::geometry::get<1>(b),
+    boost::geometry::get<2>(a) - boost::geometry::get<2>(b)
+  );
+}

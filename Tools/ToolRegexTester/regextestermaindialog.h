@@ -76,8 +76,8 @@ struct RegexTesterMainDialog
   ///Obtain a description of the used implementation
   virtual const std::string GetUsedImplementation() const noexcept = 0;
 
-  static const std::vector<std::string> GetTestRegexes() noexcept;
-  static const std::vector<std::string> GetTestStrings() noexcept;
+  static std::vector<std::string> GetTestRegexes() noexcept;
+  static std::vector<std::string> GetTestStrings() noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

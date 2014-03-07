@@ -82,7 +82,7 @@ struct About
 
   ///GetQtCreatorVersion returns the version number of the Qt Creator currently installed.
   ///From http://www.richelbilderbeek.nl/CppGetQtCreatorVersion.htm
-  static const std::string GetQtCreatorVersion() noexcept;
+  static std::string GetQtCreatorVersion() noexcept;
 
   ///GetStlVersion returns the version number of the GCC STL currently installed.
   ///From http://www.richelbilderbeek.nl/CppGetStlVersion.htm

@@ -8,7 +8,7 @@ namespace ribi {
 
 struct Chords
 {
-  static const std::vector<std::string> GetChords();
+  static std::vector<std::string> GetChords();
 };
 
 } //~namespace ribi

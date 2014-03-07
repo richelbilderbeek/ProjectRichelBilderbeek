@@ -26,13 +26,13 @@ struct DotMatrixText
     const int spacing,
     const ColorSystem color_system = ColorSystem::normal);
 
-  const boost::shared_ptr<QImage> CreateImage() const noexcept;
+  boost::shared_ptr<QImage> CreateImage() const noexcept;
 
   ///Read back the string
-  const std::vector<std::string> GetText() const noexcept;
+  std::vector<std::string> GetText() const noexcept;
 
   ///Read if the coordinat is black/high or white/low
-  bool GetMatrix(const int x, const int y) const;
+  bool GetMatrix(const int x, const int y) const noexcept;
 
   ///Get the matrix height
   int GetMatrixHeight() const noexcept;
@@ -40,7 +40,7 @@ struct DotMatrixText
   ///Get the matrix width
   int GetMatrixWidth() const noexcept;
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:
@@ -48,15 +48,15 @@ struct DotMatrixText
   const int m_spacing;
   const std::vector<boost::shared_ptr<const DotMatrixString> > m_v;
 
-  static const std::vector<boost::shared_ptr<const DotMatrixString> >
-    CreateDotMatrixText(const std::vector<std::string>& s, const int spacing);
+  static std::vector<boost::shared_ptr<const DotMatrixString> >
+    CreateDotMatrixText(const std::vector<std::string>& s, const int spacing) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 };
 
-std::ostream& operator<<(std::ostream& os, const DotMatrixText& m);
+std::ostream& operator<<(std::ostream& os, const DotMatrixText& m) noexcept;
 
 } //~namespace ribi
 

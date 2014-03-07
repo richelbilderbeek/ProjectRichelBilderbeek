@@ -64,7 +64,7 @@ struct GrayCoderMainDialog
   static int GrayToInt(int i);
 
   ///From http://www.richelbilderbeek.nl/CppIntToBitString.htm
-  static const std::string IntToBitString(int i);
+  static std::string IntToBitString(int i);
 
   ///Convert a normal integer to a Gray coded integer
   ///From http://www.richelbilderbeek.nl/CppIntToGray.htm

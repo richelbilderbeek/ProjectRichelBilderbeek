@@ -61,8 +61,8 @@ struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
   static const std::vector<boost::shared_ptr<MenuDialog>> CreateMenus() noexcept;
 
   static const About GetAboutStatic() noexcept;
-  static const std::string GetVersionStatic() noexcept;
-  static const std::vector<std::string> GetVersionHistoryStatic() noexcept;
+  static std::string GetVersionStatic() noexcept;
+  static std::vector<std::string> GetVersionHistoryStatic() noexcept;
 
   ///Shows all programs' statuses
   void ShowStatus() const noexcept;

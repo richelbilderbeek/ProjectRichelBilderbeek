@@ -6,10 +6,10 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <string>
+#include <tuple>
 #include <vector>
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
-//#include <boost/geometry/geometries/ring.hpp>
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
@@ -17,11 +17,30 @@
 
 namespace ribi {
 
+struct Coordinat2D;
 struct Coordinat3D;
 
 struct Geometry
 {
   Geometry();
+
+  boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> CalcCrossProduct(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+  ) const noexcept;
+
+  ///Determine the plane that goes through these three points
+  ///Returns a std::vector of size 4
+  ///CalcPlane return the coefficients in the following form:
+  /// A.x + B.y + C.z = D
+  ///Converting this to z being a function of x and y:
+  /// -C.z = A.x + B.y - D
+  /// z = -A/C.x - B/C.y + D/C
+  std::vector<double> CalcPlane(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  ) const noexcept;
 
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
@@ -96,6 +115,8 @@ struct Geometry
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
+  bool IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept;
+
 
   ///Creates a polygon from the points and checks if the polygon is convex
   /*
@@ -119,6 +140,12 @@ struct Geometry
   static void Test() noexcept;
   #endif
 };
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>
+  operator-(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
+  ) noexcept;
 
 } //~namespace ribi
 

@@ -31,7 +31,7 @@ struct QtChordEdge : public QGraphicsLineItem
   QtChordEdge(QGraphicsItem *parent);
 
   ///Obtain this class its version number
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

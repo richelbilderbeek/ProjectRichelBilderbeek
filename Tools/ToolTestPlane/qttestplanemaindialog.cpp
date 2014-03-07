@@ -1,23 +1,3 @@
-//---------------------------------------------------------------------------
-/*
-SurfacePlotter, plots a bivariate function
-Copyright (C) 2010-2014 Richel Bilderbeek
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.If not, see <http://www.gnu.org/licenses/>.
-*/
-//---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
-//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -26,15 +6,15 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QDesktopWidget>
 
 #include "fparser.hh"
-#include "qttoolsurfaceplottermaindialog.h"
+#include "qttestplanemaindialog.h"
 #include "trace.h"
-#include "ui_qttoolsurfaceplottermaindialog.h"
+#include "ui_qttestplanemaindialog.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtToolSurfacePlotterMainDialog::QtToolSurfacePlotterMainDialog(QWidget *parent)
+ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtToolSurfacePlotterMainDialog)
+    ui(new Ui::QtTestPlaneMainDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -67,12 +47,12 @@ ribi::QtToolSurfacePlotterMainDialog::QtToolSurfacePlotterMainDialog(QWidget *pa
   }
 }
 
-ribi::QtToolSurfacePlotterMainDialog::~QtToolSurfacePlotterMainDialog() noexcept
+ribi::QtTestPlaneMainDialog::~QtTestPlaneMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolSurfacePlotterMainDialog::OnAnyChange()
+void ribi::QtTestPlaneMainDialog::OnAnyChange()
 {
   try { boost::lexical_cast<double>(ui->edit_minx->text().toStdString()); }
   catch (boost::bad_lexical_cast&)
@@ -154,7 +134,7 @@ void ribi::QtToolSurfacePlotterMainDialog::OnAnyChange()
   ui->surfaceplotwidget->SetSurfaceGrey(v);
 }
 
-double ribi::QtToolSurfacePlotterMainDialog::Rescale(
+double ribi::QtTestPlaneMainDialog::Rescale(
   const double value,
   const double old_min,
   const double old_max,
@@ -175,20 +155,20 @@ double ribi::QtToolSurfacePlotterMainDialog::Rescale(
   return new_value;
 }
 
-void ribi::QtToolSurfacePlotterMainDialog::resizeEvent(QResizeEvent *)
+void ribi::QtTestPlaneMainDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }
 
 #ifndef NDEBUG
-void ribi::QtToolSurfacePlotterMainDialog::Test() noexcept
+void ribi::QtTestPlaneMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolSurfacePlotterMainDialog::Test");
-  TRACE("Finished ribi::QtToolSurfacePlotterMainDialog::Test successfully");
+  TRACE("Starting ribi::QtTestPlaneMainDialog::Test");
+  TRACE("Finished ribi::QtTestPlaneMainDialog::Test successfully");
 }
 #endif

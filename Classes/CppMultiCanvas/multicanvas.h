@@ -24,13 +24,13 @@ struct MultiCanvas : public Canvas
 {
   MultiCanvas(
     const std::vector<boost::shared_ptr<Canvas>>& canvases
-  );
+  ) noexcept;
 
   ///Obtain the height of the canvas is characters
   int GetHeight() const noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -39,7 +39,7 @@ struct MultiCanvas : public Canvas
   int GetWidth() const noexcept;
 
   ///Convert the MultiCanvas to std::strings
-  const std::vector<std::string> ToStrings() const noexcept;
+  std::vector<std::string> ToStrings() const noexcept;
 
   private:
   const std::vector<boost::shared_ptr<Canvas>> m_canvases;
@@ -49,7 +49,7 @@ struct MultiCanvas : public Canvas
   #endif
 };
 
-std::ostream& operator<<(std::ostream& os, const MultiCanvas& c);
+std::ostream& operator<<(std::ostream& os, const MultiCanvas& c) noexcept;
 
 } //~namespace ribi
 

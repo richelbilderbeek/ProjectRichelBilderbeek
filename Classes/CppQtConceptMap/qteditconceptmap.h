@@ -67,10 +67,10 @@ private:
   QtTool * m_tools;
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
-  void AddEdge(const boost::shared_ptr<Edge> edge);
+  QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
 
   ///Add a new edge
-  void AddEdge(QtNode * const from, QtNode* const to);
+  QtEdge * AddEdge(QtNode * const from, QtNode* const to);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   QtNode * AddNode(const boost::shared_ptr<Node> node);

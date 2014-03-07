@@ -61,7 +61,7 @@ struct ImageCanvas : public Canvas
 
   int GetHeight() const noexcept;
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   static std::vector<std::string> GetVersionHistory() noexcept;
 
@@ -73,7 +73,7 @@ struct ImageCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
-  const std::vector<std::string> ToStrings() const noexcept;
+  std::vector<std::string> ToStrings() const noexcept;
 
   private:
   ~ImageCanvas() noexcept {}
@@ -100,12 +100,12 @@ struct ImageCanvas : public Canvas
   ///
   /// a three pixel gradient line -> {0.0, 0.5, 1.0 }
   ///
-  static const std::vector<std::vector<double> >
-    ConvertToGreyYx(const QImage * const i);
+  static std::vector<std::vector<double> >
+    ConvertToGreyYx(const QImage * const i) noexcept;
 
   ///Returns a Y-X-ordered std::vector of greynesses, with the same size as the original image
-  static const std::vector<std::vector<double> >
-    ConvertToGreyYx(const std::string& filename);
+  static std::vector<std::vector<double> >
+    ConvertToGreyYx(const std::string& filename) noexcept;
 
   ///Converts a Y-X-ordered std::vector of greynesses
   ///to a text with a certain number of columns,
@@ -117,9 +117,9 @@ struct ImageCanvas : public Canvas
   ///ranging from [0.0,1.0], where 0.0 denotes black and
   ///1.0 denotes white.
   ///From http://www.richelbilderbeek.nl/CppImageToAscii.htm
-  static const std::vector<std::string>
+  static std::vector<std::string>
     ConvertGreynessesToAscii(const std::vector<std::vector<double> >& greynesses,
-    const int n_cols);
+    const int n_cols) noexcept;
 
 
   ///Generalizes a pixel, line or rectangle to one average greyness
@@ -154,10 +154,10 @@ struct ImageCanvas : public Canvas
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas);
+  friend std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas);
+std::ostream& operator<<(std::ostream& os, const ImageCanvas& canvas) noexcept;
 
 } //~namespace ribi
 

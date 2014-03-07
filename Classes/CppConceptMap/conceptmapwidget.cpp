@@ -22,8 +22,10 @@
 
 ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
   : //Signals first, as these are public
+    m_signal_add_edge{},
     m_signal_add_node{},
     m_signal_concept_map_changed{},
+    m_signal_delete_edge{},
     m_signal_delete_node{},
     m_signal_lose_focus_nodes{},
     m_signal_set_focus_nodes{},
@@ -47,8 +49,10 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
 #ifndef NDEBUG
 ribi::cmap::Widget::Widget(const Widget& other)
   : //Signals first, as these are public
+    m_signal_add_edge{},
     m_signal_add_node{},
     m_signal_concept_map_changed{},
+    m_signal_delete_edge{},
     m_signal_delete_node{},
     m_signal_lose_focus_nodes{},
     m_signal_set_focus_nodes{},
@@ -108,9 +112,9 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::Widget::CreateNewEdge() noexcept
   const auto before = this->GetConceptMap()->GetEdges().size();
 
   assert(GetFocus().size() == 2);
+  #endif
   const boost::shared_ptr<Node> from { GetFocus()[0] };
   const boost::shared_ptr<Node> to   { GetFocus()[1] };
-  #endif
   const boost::shared_ptr<Edge> edge {
     EdgeFactory().Create(from,to)
   };
@@ -146,6 +150,28 @@ boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::CreateNewNode() noexcept
   assert(after == before + 1);
   #endif
   return node;
+}
+
+void ribi::cmap::Widget::DeleteEdge(const boost::shared_ptr<Edge> edge) noexcept
+{
+  assert(edge);
+  ///Edge might already be deleted by something else
+  if (m_conceptmap->GetEdges().empty()) return;
+  {
+    const std::vector<boost::shared_ptr<Edge> >& edges { m_conceptmap->GetEdges() };
+    if (std::find(edges.begin(),edges.end(),edge) == edges.end()) return;
+  }
+
+  assert(!m_conceptmap->GetEdges().empty());
+  #ifndef NDEBUG
+  const int n_edges_before = static_cast<int>(m_conceptmap->GetEdges().size());
+  #endif
+  m_conceptmap->DeleteEdge(edge);
+  #ifndef NDEBUG
+  const int n_edges_after = static_cast<int>(m_conceptmap->GetEdges().size());
+  assert(n_edges_after + 1 == n_edges_before);
+  #endif
+  m_signal_delete_edge(edge);
 }
 
 void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<Node> node) noexcept

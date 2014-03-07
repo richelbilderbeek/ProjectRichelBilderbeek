@@ -45,7 +45,7 @@ struct QtQuestionDialog : public QtHideAndShowDialog
   virtual const boost::shared_ptr<const QuestionDialog> GetDialog() const = 0;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;

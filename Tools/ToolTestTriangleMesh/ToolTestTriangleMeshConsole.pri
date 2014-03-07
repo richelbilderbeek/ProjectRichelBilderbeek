@@ -1,5 +1,12 @@
+INCLUDEPATH += ../../Tools/ToolTestTriangleMesh
+
 HEADERS += \
-    testtrianglemeshmaindialog.h
+    ../../Tools/ToolTestTriangleMesh/testtrianglemeshmaindialog.h \
+    ../../Tools/ToolTestTriangleMesh/testtrianglemeshmenudialog.h
 
 SOURCES += \
-    testtrianglemeshmaindialog.cpp
+    ../../Tools/ToolTestTriangleMesh/testtrianglemeshmaindialog.cpp \
+    ../../Tools/ToolTestTriangleMesh/testtrianglemeshmenudialog.cpp
+
+OTHER_FILES += \
+    ../../Tools/ToolTestTriangleMesh/Licence.txt

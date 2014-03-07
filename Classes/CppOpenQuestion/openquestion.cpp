@@ -288,7 +288,7 @@ void ribi::OpenQuestion::Test() noexcept
 }
 #endif
 
-std::vector<std::string> ribi::OpenQuestion::ToLines() const
+std::vector<std::string> ribi::OpenQuestion::ToLines() const noexcept
 {
   std::vector<std::string> v;
 

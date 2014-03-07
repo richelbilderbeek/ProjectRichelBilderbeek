@@ -19,7 +19,7 @@ const std::vector<std::pair<ribi::kalman::WhiteNoiseSystemParameterType,ribi::ka
   ribi::kalman::KalmanFilterExperimentParameter::m_map_white_noise_system = CreateMapWhiteNoiseSystem();
 
 bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToKalmanFilterParameter(
-  const KalmanFilterExperimentParameterType parameter)
+  const KalmanFilterExperimentParameterType parameter) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -35,7 +35,7 @@ bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToKalmanFilterPara
 
 
 bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystemParameter(
-  const KalmanFilterExperimentParameterType parameter)
+  const KalmanFilterExperimentParameterType parameter) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -50,7 +50,7 @@ bool ribi::kalman::KalmanFilterExperimentParameter::CanConvertToWhiteNoiseSystem
 }
 
 ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
-  const KalmanFilterParameterType parameter)
+  const KalmanFilterParameterType parameter) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -68,7 +68,7 @@ ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExpe
 }
 
 ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToKalmanFilterExperimentParameter(
-  const WhiteNoiseSystemParameterType parameter)
+  const WhiteNoiseSystemParameterType parameter) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -85,7 +85,7 @@ ribi::kalman::KalmanFilterExperimentParameterType ribi::kalman::KalmanFilterExpe
 }
 
 ribi::kalman::KalmanFilterParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToKalmanFilterParameter(
-  const KalmanFilterExperimentParameterType parameter)
+  const KalmanFilterExperimentParameterType parameter) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -103,7 +103,7 @@ ribi::kalman::KalmanFilterParameterType ribi::kalman::KalmanFilterExperimentPara
 }
 
 ribi::kalman::WhiteNoiseSystemParameterType ribi::kalman::KalmanFilterExperimentParameter::ConvertToWhiteNoiseSystemParameter(
-  const KalmanFilterExperimentParameterType parameter)
+  const KalmanFilterExperimentParameterType parameter) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -191,7 +191,7 @@ const std::vector<std::pair<ribi::kalman::WhiteNoiseSystemParameterType,ribi::ka
   return v;
 }
 
-const std::vector<ribi::kalman::KalmanFilterExperimentParameterType> ribi::kalman::KalmanFilterExperimentParameter::GetAll()
+std::vector<ribi::kalman::KalmanFilterExperimentParameterType> ribi::kalman::KalmanFilterExperimentParameter::GetAll() noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -469,7 +469,7 @@ void ribi::kalman::KalmanFilterExperimentParameter::Test() noexcept
 }
 #endif
 
-std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type)
+std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(const KalmanFilterExperimentParameterType type) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -497,7 +497,7 @@ std::string ribi::kalman::KalmanFilterExperimentParameter::ToDescription(const K
   }
 }
 
-std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type)
+std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const KalmanFilterExperimentParameterType type) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -525,7 +525,7 @@ std::string ribi::kalman::KalmanFilterExperimentParameter::ToName(const KalmanFi
   }
 }
 
-std::string ribi::kalman::KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type)
+std::string ribi::kalman::KalmanFilterExperimentParameter::ToSymbol(const KalmanFilterExperimentParameterType type) noexcept
 {
   #ifndef NDEBUG
   Test();

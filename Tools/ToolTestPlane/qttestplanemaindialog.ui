@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtToolSurfacePlotterMainDialog</class>
- <widget class="QDialog" name="QtToolSurfacePlotterMainDialog">
+ <class>QtTestPlaneMainDialog</class>
+ <widget class="QDialog" name="QtTestPlaneMainDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <string>SurfacePlotter</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolSurfacePlotter.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -176,8 +176,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="ToolSurfacePlotter.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

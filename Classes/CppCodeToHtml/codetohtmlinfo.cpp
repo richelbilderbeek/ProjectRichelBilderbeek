@@ -414,6 +414,46 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppBoostGeometryExample3",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample3.htm\">Boost.Geometry example 3: IsConvex: determine if a 2D polygon is convex or concave</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  IsConvex is maintained in <a href=\"CppGeometry.htm\">CppGeometry</a>.",
+        "  See <a href=\"CppGeometry.htm\">CppGeometry</a>",
+        "  for the heavily used, debugged and tested version of IsConvex",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppBoostGeometryExample4",
+      {
+        "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostGeometryExample4.htm\">Boost.Geometry example 4: CalcPlane: determine the plane passing through three point</a>",
+        "  is a <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  CalcCrossProduct and CalcPlane are maintained in <a href=\"CppGeometry.htm\">CppGeometry</a>.",
+        "  See <a href=\"CppGeometry.htm\">CppGeometry</a>",
+        "  for the heavily used, debugged and tested versions of CalcCrossProduct and CalcPlane.",
+        "</p>"
+      }
+    }
+  );
+
+
+
+  m.push_back(
     { "CppBoostGraphExample1",
       {
         "<p><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
@@ -1716,7 +1756,32 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>",
         "  For the <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a> <a href=\"CppLibrary.htm\">library</a>,",
         "  go to the page about <a href=\"CppBoostGeometry.htm\">Boost.Geometry</a>.",
-        "</p>"
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<h2><a href=\"CppGeometry.htm\">CppGeometry</a> code snippets</h2>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">CalcCrossProduct: determine the cross-product of two 3D points</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">CalcPlane: determine the 3D plane passing through three 3D points</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample3.htm\">Determine if a 2D polygon is convex or concave, IsConvex</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample1.htm\">Determine if a 2D point is within a polygon</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample3.htm\">Determine the 2D convex hull of a concave polygon</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample2.htm\">Determine the 3D area of a 2D polygon</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">Determine the 3D plane passing through three 3D points, CalcPlane</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample4.htm\">Determine the cross-product of two 3D points</a></li>",
+        "  <li><a href=\"CppGetAngle.htm\">GetAngle: calculate the angle between two points</a></li>",
+        "  <li><a href=\"CppGetDistance.htm\">GetDistance: calculate the distance between two points</a></li>",
+        "  <li><a href=\"CppBoostGeometryExample3.htm\">IsConvex: determine if a 2D polygon is convex or concave</a></li>",
+        "</ul>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>"
       }
     }
   );

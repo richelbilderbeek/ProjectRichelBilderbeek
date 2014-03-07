@@ -61,6 +61,10 @@ struct Widget
   ///Emitted when the ConceptMap is modified as a whole: deleted, created or overwritten
   boost::signals2::signal<void()> m_signal_concept_map_changed;
 
+  ///Emitted when an Edge is deleted
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Edge>)> m_signal_delete_edge;
+
   ///Emitted when a Node is deleted
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_delete_node;

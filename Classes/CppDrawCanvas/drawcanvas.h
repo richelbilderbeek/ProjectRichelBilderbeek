@@ -97,6 +97,9 @@ struct DrawCanvas : public Canvas
   ///the edges of the line
   void DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept;
 
+  ///Draw a Y-X-ordered surface to the DrawCanvas
+  void DrawSurface(const std::vector<std::vector<double> >& v);
+
   ///Draw (or actually: add) text to the DrawCanvas, where (top,left) is the topleft coordinat
   ///of the text. The text will end up as dots drawn for each character its pixel.
   ///The DotMatrix font is used, with a spacing of two pixel, as the letters tend to
@@ -133,7 +136,7 @@ struct DrawCanvas : public Canvas
   int GetHeight() const noexcept { return m_canvas.size(); }
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -150,13 +153,13 @@ struct DrawCanvas : public Canvas
   ///Set the coordinat system used
   void SetCoordinatSystem(const CanvasCoordinatSystem coordinat_system) noexcept;
 
-  const std::vector<std::string> ToStrings() const noexcept;
+  std::vector<std::string> ToStrings() const noexcept;
 
   private:
   ///The DrawCanvas its internal data: a 2D y-x-ordered std::vector
   ///of doubles, where 0.0 denotes empty/non-drawn
   ///and 1.0 denotes full/drawn.
-  std::vector<std::vector<double> > m_canvas;
+  std::vector<std::vector<double>> m_canvas;
 
   ///The color system used:
   ///- normal: full/drawn is displayed by M
@@ -169,7 +172,7 @@ struct DrawCanvas : public Canvas
   CanvasCoordinatSystem m_coordinat_system;
 
   ///From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  static std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const QRegExp& r);
 
@@ -197,7 +200,7 @@ struct DrawCanvas : public Canvas
     const bool use_normal_color_system,
     const bool as_screen_coordinat_system);
 
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator) noexcept;
 

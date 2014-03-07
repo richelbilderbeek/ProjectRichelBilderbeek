@@ -18,30 +18,67 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
-#include "toolsurfaceplottermenudialog.h"
+#include "surfaceplottermenudialog.h"
 
 #include <cassert>
 #include <iostream>
 
-#include "profile.h"
+#include "fparser.hh"
+
+#include "drawcanvas.h"
 #include "trace.h"
 
-int ribi::ToolSurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::SurfacePlotterMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
   #endif
   const int argc = static_cast<int>(argv.size());
-  if (argc == 1)
+  if (argc < 1) //TEMP
   {
     std::cout << GetHelp() << '\n';
     return 1;
   }
-  assert(!"TODO");
-  return 1;
+  const int w { 78 };
+  const int h { 18 };
+  boost::shared_ptr<DrawCanvas> canvas { new DrawCanvas(78,18) };
+
+  FunctionParser f;
+
+  //Parse the formula
+  const std::string formula { "sin(x / 10.0) + cos(y / 5.0)" };
+  f.Parse(formula.c_str(),"x,y");
+  if (f.GetParseErrorType()!= FunctionParser::FP_NO_ERROR)
+  {
+    std::cout << "Function cannot not be parsed" << std::endl;
+    return 1;
+  }
+
+  //Y-X ordered
+  std::vector<std::vector<double> > v(h,std::vector<double>(w,0.0));
+  for (int y=0; y!=h; ++y)
+  {
+    for (int x=0; x!=w; ++x)
+    {
+      const double xs[2] = { static_cast<double>(x),static_cast<double>(y) };
+      const double z = f.Eval(xs);
+      if (!f.EvalError())
+      {
+        v[y][x] = z;
+      }
+      else
+      {
+        v[y][x] = 0.0;
+      }
+    }
+  }
+  canvas->DrawSurface(v);
+  std::cout << (*canvas) << std::endl;
+
+  return 0;
 }
 
-ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout() const noexcept
+ribi::About ribi::SurfacePlotterMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -53,12 +90,13 @@ ribi::About ribi::ToolSurfacePlotterMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   //a.AddLibrary("Rectangle version: " + Rect::GetVersion());
-
+  a.AddLibrary("Canvas version: " + Canvas::GetVersion());
+  a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
 }
 
-ribi::Help ribi::ToolSurfacePlotterMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::SurfacePlotterMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -72,7 +110,7 @@ ribi::Help ribi::ToolSurfacePlotterMenuDialog::GetHelp() const noexcept
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::ToolSurfacePlotterMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::SurfacePlotterMenuDialog::GetProgram() const noexcept
 {
   boost::shared_ptr<const ribi::Program> p {
     new ribi::ProgramSurfacePlotter
@@ -81,29 +119,30 @@ boost::shared_ptr<const ribi::Program> ribi::ToolSurfacePlotterMenuDialog::GetPr
   return p;
 }
 
-std::string ribi::ToolSurfacePlotterMenuDialog::GetVersion() const noexcept
+std::string ribi::SurfacePlotterMenuDialog::GetVersion() const noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
-std::vector<std::string> ribi::ToolSurfacePlotterMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::SurfacePlotterMenuDialog::GetVersionHistory() const noexcept
 {
   return {
     "2010-02-07: version 1.0: initial Windows-only version",
     "2010-02-15: version 1.1: let user specify the range of x and y coordinats",
-    "2012-07-07: version 2.0: port to Qt"
+    "2012-07-07: version 2.0: port to Qt",
+    "2014-03-07: version 2.1: command-line version plots a hard-coded function"
   };
 }
 
 #ifndef NDEBUG
-void ribi::ToolSurfacePlotterMenuDialog::Test() noexcept
+void ribi::SurfacePlotterMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolSurfacePlotterMenuDialog::Test");
-  TRACE("Finished ribi::ToolSurfacePlotterMenuDialog::Test successfully");
+  TRACE("Starting ribi::SurfacePlotterMenuDialog::Test");
+  TRACE("Finished ribi::SurfacePlotterMenuDialog::Test successfully");
 }
 #endif

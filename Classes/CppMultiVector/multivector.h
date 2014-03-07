@@ -127,7 +127,7 @@ struct MultiVector
 
   public:
 
-  static const std::string GetVersion()
+  static std::string GetVersion()
   {
     return "1.1";
   }

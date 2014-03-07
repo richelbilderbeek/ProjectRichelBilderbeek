@@ -2,7 +2,7 @@
 
 boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFilterTypes::m_map;
 
-const boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFilterTypes::CreateMap()
+boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::KalmanFilterTypes::CreateMap() noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -18,7 +18,7 @@ const boost::bimap<ribi::kalman::KalmanFilterType,std::string> ribi::kalman::Kal
   return m;
 }
 
-const std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::GetAllTypes()
+std::vector<ribi::kalman::KalmanFilterType> ribi::kalman::KalmanFilterTypes::GetAllTypes() noexcept
 {
   const std::vector<KalmanFilterType> v
   =
@@ -53,7 +53,7 @@ void ribi::kalman::KalmanFilterTypes::Test() noexcept
 }
 #endif
 
-std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type)
+std::string ribi::kalman::KalmanFilterTypes::ToStr(const KalmanFilterType type) noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

@@ -75,7 +75,7 @@ std::string ribi::c2h::Replacer::MultiReplace(const std::string& line, const std
   const Iterator j = replacements.end();
   for (Iterator i = replacements.begin(); i!=j; ++i)
   {
-    std::string from = i->first;
+    const std::string from = i->first;
     const std::string to = i->second;
     s = ReplaceAll(s,from,to);
   }

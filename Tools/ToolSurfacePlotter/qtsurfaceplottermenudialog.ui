@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtToolSurfacePlotterMenuDialog</class>
- <widget class="QDialog" name="QtToolSurfacePlotterMenuDialog">
+ <class>QtSurfacePlotterMenuDialog</class>
+ <widget class="QDialog" name="QtSurfacePlotterMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>274</width>
-    <height>475</height>
+    <height>490</height>
    </rect>
   </property>
   <property name="font">

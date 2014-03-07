@@ -28,7 +28,7 @@ protected:
 
 private:
   Ui::QtToolMultiEncrangerMainDialog *ui;
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
   ToolMultiEncrangerMainDialog * const m_dialog;
 

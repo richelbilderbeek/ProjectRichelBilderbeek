@@ -324,6 +324,25 @@ std::vector<ribi::cmap::QtEdge*> ribi::cmap::QtConceptMap::FindEdges(
   return w;
 }
 
+ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
+  const QtEdge* const edge) noexcept
+{
+  //Calls the const version of this member function
+  //To avoid duplication in const and non-const member functions [1]
+  //[1] Scott Meyers. Effective C++ (3rd edition). ISBN: 0-321-33487-6.
+  //    Item 3, paragraph 'Avoid duplication in const and non-const member functions'
+  QtEdge * const qtedge {
+    dynamic_cast<const QtConceptMap*>(this)->FindQtEdge(edge)
+  };
+  return qtedge;
+}
+
+const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
+  const QtEdge* const edge) const noexcept
+{
+  return FindQtEdge(edge->GetFrom(),edge->GetTo());
+}
+
 const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdge(
   const QtNode* const from,
   const QtNode* const to) const noexcept

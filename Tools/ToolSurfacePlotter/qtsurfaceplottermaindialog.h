@@ -18,34 +18,44 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSurfacePlotter.htm
 //---------------------------------------------------------------------------
-#ifndef QTTOOLSURFACEPLOTTERMENUDIALOG_H
-#define QTTOOLSURFACEPLOTTERMENUDIALOG_H
+#ifndef QtSurfacePlotterMAINDIALOG_H
+#define QtSurfacePlotterMAINDIALOG_H
 
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtToolSurfacePlotterMenuDialog;
+  class QtSurfacePlotterMainDialog;
 }
 
 namespace ribi {
 
-class QtToolSurfacePlotterMenuDialog : public QtHideAndShowDialog
+class QtSurfacePlotterMainDialog : public QtHideAndShowDialog
 {
-    Q_OBJECT
+  Q_OBJECT
     
 public:
-  explicit QtToolSurfacePlotterMenuDialog(QWidget *parent = 0);
-  QtToolSurfacePlotterMenuDialog(const QtToolSurfacePlotterMenuDialog&) = delete;
-  QtToolSurfacePlotterMenuDialog& operator=(const QtToolSurfacePlotterMenuDialog&) = delete;
-  ~QtToolSurfacePlotterMenuDialog() noexcept;
+  explicit QtSurfacePlotterMainDialog(QWidget *parent = 0);
+  QtSurfacePlotterMainDialog(const QtSurfacePlotterMainDialog&) = delete;
+  QtSurfacePlotterMainDialog& operator=(const QtSurfacePlotterMainDialog&) = delete;
+  ~QtSurfacePlotterMainDialog() noexcept;
     
 private slots:
-  void on_button_start_clicked();
-  void on_button_about_clicked();
-  void on_button_quit_clicked();
+  void OnAnyChange();
+  void resizeEvent(QResizeEvent *);
 
 private:
-  Ui::QtToolSurfacePlotterMenuDialog *ui;
+  Ui::QtSurfacePlotterMainDialog *ui;
+
+  ///Rescale calculates a value between old_min and old_max its relative place and transforms
+  ///this relative position to a new_min and new_max
+  ///For example: for the old range [1,5], the value 2 is at 25% of this range. Transforming this
+  ///to the new range range [0,100] results in a 25
+  static double Rescale(
+    const double value,
+    const double oldMin,
+    const double oldMax,
+    const double newMin,
+    const double newMax);
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -54,4 +64,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTTOOLSURFACEPLOTTERMENUDIALOG_H
+#endif // QtSurfacePlotterMAINDIALOG_H

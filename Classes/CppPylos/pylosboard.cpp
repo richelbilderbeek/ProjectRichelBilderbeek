@@ -261,17 +261,17 @@ int ribi::pylos::Board::Count(const PositionState state) const
   return Count(v,state);
 }
 
-const boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateAdvancedBoard() noexcept
+boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateAdvancedBoard() noexcept
 {
   return boost::shared_ptr<Board>(new BoardAdvanced);
 }
 
-const boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateBasicBoard() noexcept
+boost::shared_ptr<ribi::pylos::Board> ribi::pylos::Board::CreateBasicBoard() noexcept
 {
   return boost::shared_ptr<Board>(new BoardBasic);
 }
 
-const std::vector<ribi::pylos::Board::Layer> ribi::pylos::Board::CreateEmptyBoard() const noexcept
+std::vector<ribi::pylos::Board::Layer> ribi::pylos::Board::CreateEmptyBoard() const noexcept
 {
   std::vector<Layer> v;
   v.push_back(CreateLayer(4));
@@ -411,7 +411,7 @@ const std::vector<ribi::pylos::Move> ribi::pylos::Board::GetAllPossibleMoves(con
   return w;
 }
 
-int ribi::pylos::Board::GetLayerSize(const int layer) const
+int ribi::pylos::Board::GetLayerSize(const int layer) const noexcept
 {
   assert(layer >= 0);
   assert(layer < boost::numeric_cast<int>(m_board.size()));
@@ -446,7 +446,7 @@ ribi::pylos::Winner ribi::pylos::Board::GetWinner() const noexcept
   return Winner::none;
 }
 
-ribi::pylos::Winner ribi::pylos::Board::PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original)
+ribi::pylos::Winner ribi::pylos::Board::PlayRandomPylosGame(const boost::shared_ptr<Board>& board_original) noexcept
 {
   boost::shared_ptr<Board> board;
   if (board_original)
@@ -948,7 +948,7 @@ void ribi::pylos::Board::Test() noexcept
 }
 #endif
 
-std::string ribi::pylos::Board::ToStr() const
+std::string ribi::pylos::Board::ToStr() const noexcept
 {
   const std::vector<std::string> v = this->ToText();
   std::string s;
@@ -957,7 +957,7 @@ std::string ribi::pylos::Board::ToStr() const
   return s;
 }
 
-std::vector<std::string> ribi::pylos::Board::ToText() const
+std::vector<std::string> ribi::pylos::Board::ToText() const noexcept
 {
   std::vector<std::string> v(7,std::string(7,' '));
   for (int layer = 0; layer!=4; ++layer)
@@ -988,7 +988,7 @@ std::vector<std::string> ribi::pylos::Board::ToText() const
   return v;
 }
 
-const boost::shared_ptr<ribi::TextCanvas> ribi::pylos::Board::ToTextCanvas() const
+boost::shared_ptr<ribi::TextCanvas> ribi::pylos::Board::ToTextCanvas() const noexcept
 {
   boost::shared_ptr<TextCanvas> canvas {
     new TextCanvas(7,7)

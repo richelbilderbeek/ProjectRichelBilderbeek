@@ -111,7 +111,7 @@ struct PieceBishop : public Piece
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   PieceBishop(
@@ -150,7 +150,7 @@ struct PieceKing : public Piece
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   PieceKing(
@@ -191,7 +191,7 @@ struct PieceKnight : public Piece
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   PieceKnight(
@@ -223,7 +223,7 @@ struct PiecePawn : public Piece
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   PiecePawn(
@@ -256,7 +256,7 @@ struct PieceQueen : public Piece
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
 
@@ -290,7 +290,7 @@ struct PieceRook : public Piece
   #endif
 
   ///Convert a Piece to std::string for operator<<
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   PieceRook(

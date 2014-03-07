@@ -183,6 +183,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testNewick: p.reset(new ProgramTestNewick); break;
     case ProgramType::testNewickVector: p.reset(new ProgramTestNewickVector); break;
     case ProgramType::testOpenQuestion: p.reset(new ProgramTestOpenQuestion); break;
+    case ProgramType::testPlane: p.reset(new ProgramTestPlane); break;
     case ProgramType::testPylos: p.reset(new ProgramTestPylos); break;
     case ProgramType::testQrcFile: p.reset(new ProgramTestQrcFile); break;
     case ProgramType::testQtArrowItems: p.reset(new ProgramTestQtArrowItems); break;
@@ -207,6 +208,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::testTicTacToe: p.reset(new ProgramTestTicTacToe); break;
     case ProgramType::testTimedServerPusher: p.reset(new ProgramTestTimedServerPusher); break;
     case ProgramType::testToggleButton: p.reset(new ProgramTestToggleButton); break;
+    case ProgramType::testTriangleMesh: p.reset(new ProgramTestTriangleMesh); break;
     case ProgramType::testTwoDigitNewick: p.reset(new ProgramTestTwoDigitNewick); break;
     case ProgramType::thorVeen: p.reset(new ProgramThorVeen); break;
     case ProgramType::thresholdFilterer: p.reset(new ProgramThresholdFilterer); break;

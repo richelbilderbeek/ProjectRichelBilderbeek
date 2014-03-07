@@ -68,7 +68,7 @@ struct ConnectThreeWidget
 
   const boost::shared_ptr<const ConnectThree> GetGame() const noexcept { return m_game; }
   const std::bitset<3>& GetIsPlayerHuman() const noexcept { return m_is_player_human; }
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
   bool IsComputerTurn() const noexcept;
   bool IsHuman(const Player player) const noexcept;

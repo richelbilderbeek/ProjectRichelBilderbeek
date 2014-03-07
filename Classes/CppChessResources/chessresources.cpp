@@ -98,7 +98,7 @@ std::string ribi::Chess::Resources::Find(
   return filename;
 }
 
-std::vector<std::string> ribi::Chess::Resources::GetFilenames()
+std::vector<std::string> ribi::Chess::Resources::GetFilenames() noexcept
 {
   #ifndef NDEBUG
   //Test(); //Cannot do this: QtResources calls this member function to create the resources
@@ -178,12 +178,12 @@ std::vector<std::string> ribi::Chess::Resources::GetFilenames()
   return filenames;
 }
 
-std::string ribi::Chess::Resources::GetVersion()
+std::string ribi::Chess::Resources::GetVersion() noexcept
 {
   return "1.1";
 }
 
-std::vector<std::string> ribi::Chess::Resources::GetVersionHistory()
+std::vector<std::string> ribi::Chess::Resources::GetVersionHistory() noexcept
 {
   return {
     "2012-01-25: version 1.0: initial version",

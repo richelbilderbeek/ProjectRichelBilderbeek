@@ -13,7 +13,7 @@ std::string ribi::reversi::MovePlacePiece::ToStr() const noexcept
   return s.str();
 }
 
-const boost::shared_ptr<ribi::reversi::Move> ribi::reversi::Move::Parse(
+boost::shared_ptr<ribi::reversi::Move> ribi::reversi::Move::Parse(
   const std::string& s) noexcept
 {
   boost::shared_ptr<ribi::reversi::Move> move;

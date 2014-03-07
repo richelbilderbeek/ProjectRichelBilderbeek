@@ -41,7 +41,7 @@ private:
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as it has a Concept on it that the user might want to edit
   ///In this derived class, I promise not to change the Edge
-  void AddEdge(const boost::shared_ptr<Edge> edge);
+  QtEdge * AddEdge(const boost::shared_ptr<Edge> edge);
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///In this derived class, I promise not to change the Node

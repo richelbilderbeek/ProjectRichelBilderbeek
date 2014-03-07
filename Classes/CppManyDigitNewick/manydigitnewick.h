@@ -70,7 +70,7 @@ struct ManyDigitNewick
   void SetProbability(const double p);
   static void SetTheta(const double theta);
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   private:

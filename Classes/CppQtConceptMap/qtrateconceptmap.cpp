@@ -66,7 +66,7 @@ ribi::cmap::QtRateConceptMap::QtRateConceptMap(
   //scene()->addItem(m_tools); //Give m_tools a parent
 }
 
-void ribi::cmap::QtRateConceptMap::AddEdge(
+ribi::cmap::QtEdge * ribi::cmap::QtRateConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -142,6 +142,7 @@ void ribi::cmap::QtRateConceptMap::AddEdge(
   #endif
   assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
+  return qtedge;
 }
 
 ribi::cmap::QtNode * ribi::cmap::QtRateConceptMap::AddNode(const boost::shared_ptr<Node> node)

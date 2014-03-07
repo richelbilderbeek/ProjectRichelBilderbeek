@@ -5,6 +5,16 @@
 #include <iosfwd>
 #include <vector>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
+#ifndef _WIN32
+#include <boost/geometry/geometries/polygon.hpp>
+#endif
+#pragma GCC diagnostic pop
+
 namespace ribi {
 
 ///An X-Y-Z coordinat
@@ -17,9 +27,22 @@ struct Coordinat3D
     const double y = 0.0,
     const double z = 0.0
   ) noexcept;
+
+  explicit Coordinat3D(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p
+  ) noexcept
+  : Coordinat3D(
+    boost::geometry::get<0>(p),
+    boost::geometry::get<1>(p),
+    boost::geometry::get<2>(p)
+  ) {}
+
   void ChangeX(const double dx) noexcept { m_co[0] += dx; }
   void ChangeY(const double dy) noexcept { m_co[1] += dy; }
   void ChangeZ(const double dz) noexcept { m_co[2] += dz; }
+
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   double GetX() const noexcept { return m_co[0]; }
   double GetY() const noexcept { return m_co[1]; }
@@ -28,6 +51,14 @@ struct Coordinat3D
   void SetX(const double x) noexcept { m_co[0] = x; }
   void SetY(const double y) noexcept { m_co[1] = y; }
   void SetZ(const double z) noexcept { m_co[2] = z; }
+
+  boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>
+    ToBoostGeometryPoint() const noexcept
+  {
+    return boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
+      m_co[0],m_co[1],m_co[2]
+    );
+  }
 
   Coordinat3D& operator+=(const Coordinat3D& rhs) noexcept;
   Coordinat3D& operator-=(const Coordinat3D& rhs) noexcept;
@@ -46,7 +77,7 @@ struct Coordinat3D
 
 bool operator==(const Coordinat3D& lhs, const Coordinat3D& rhs) noexcept;
 bool operator<(const Coordinat3D& lhs, const Coordinat3D& rhs) noexcept;
-std::ostream& operator<<(std::ostream& os, const Coordinat3D& n);
+std::ostream& operator<<(std::ostream& os, const Coordinat3D& n) noexcept;
 
 Coordinat3D operator-(
   const Coordinat3D& v1,

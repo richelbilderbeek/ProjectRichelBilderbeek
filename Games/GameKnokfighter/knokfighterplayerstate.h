@@ -55,7 +55,7 @@ struct PlayerStateAttack : public PlayerState
   void Tick();
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
   ///The Attack being done
@@ -77,7 +77,7 @@ struct PlayerStateIdle : public PlayerState
   void Tick();
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  const std::string ToStr() const;
+  std::string ToStr() const;
 };
 
 struct PlayerStateWalk : public PlayerState
@@ -92,7 +92,7 @@ struct PlayerStateWalk : public PlayerState
   void Tick();
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  const std::string ToStr() const;
+  std::string ToStr() const;
 };
 
 } //~namespace Knokfighter

@@ -29,7 +29,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 namespace ribi {
 
 ///GUI independent SurfacePlotter menu dialog
-struct ToolSurfacePlotterMenuDialog : public MenuDialog
+struct SurfacePlotterMenuDialog : public MenuDialog
 {
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;

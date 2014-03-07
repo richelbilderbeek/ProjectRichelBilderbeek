@@ -49,6 +49,21 @@ double ribi::operator*(const Coordinat2D& v1,const Coordinat2D& v2) noexcept
   ;
 }
 
+ribi::Coordinat2D ribi::CalcCenter(const std::vector<ribi::Coordinat2D>& points) noexcept
+{
+  Coordinat2D sum;
+  for (const auto& point: points)
+  {
+    sum += point;
+  }
+  const double n { static_cast<double>(points.size()) };
+  const Coordinat2D center(
+    sum.GetX() / n,
+    sum.GetY() / n
+  );
+  return center;
+}
+
 double ribi::Distance(const Coordinat2D& lhs,const Coordinat2D& rhs) noexcept
 {
   const double dx = lhs.GetX() - rhs.GetX();

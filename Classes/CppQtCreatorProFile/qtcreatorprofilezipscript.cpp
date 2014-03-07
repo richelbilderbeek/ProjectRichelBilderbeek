@@ -74,7 +74,7 @@ ribi::QtCreatorProFileZipScript::QtCreatorProFileZipScript(
 
 }
 
-const std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > ribi::QtCreatorProFileZipScript::CreateProFiles(
+std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > ribi::QtCreatorProFileZipScript::CreateProFiles(
   const std::vector<std::string>& filenames)
 {
   std::vector<boost::shared_ptr<ribi::QtCreatorProFile> > pro_files;
@@ -280,7 +280,7 @@ std::vector<std::string> ribi::QtCreatorProFileZipScript::GetVersionHistory() no
   };
 }
 
-const boost::shared_ptr<ribi::QtCreatorProFileZipScript> ribi::QtCreatorProFileZipScript::Merge(
+boost::shared_ptr<ribi::QtCreatorProFileZipScript> ribi::QtCreatorProFileZipScript::Merge(
   const std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> >& scripts)
 {
   boost::shared_ptr<ribi::QtCreatorProFileZipScript> p;

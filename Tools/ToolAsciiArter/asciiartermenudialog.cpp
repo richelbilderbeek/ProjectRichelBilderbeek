@@ -90,7 +90,7 @@ int ribi::AsciiArterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
 
   assert(argc >= 3);
   const std::string from_name { argv[1] };
-  const std::string to_name { argv[2] };
+  std::string To_name { argv[2] };
   const int n_cols = (argc == 4 ? boost::lexical_cast<int>(argv[3]) : 78);
 
   AsciiArterMainDialog d(from_name,n_cols);

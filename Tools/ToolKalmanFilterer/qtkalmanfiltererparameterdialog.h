@@ -34,7 +34,7 @@ public:
   ~QtKalmanFiltererParameterDialog() noexcept;
 
   ///Convert the table and its content to HTML
-  const std::string ToHtml() const;
+  std::string ToHtml() const;
 
 signals:
   ///Emitted when table changes from/to a valid to/from an invalid state

@@ -7,7 +7,7 @@
 #include <boost/numeric/conversion/cast.hpp>
 #pragma GCC diagnostic pop
 
-const std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll()
+std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::WhiteNoiseSystemParameter::GetAll() noexcept
 {
   const std::vector<WhiteNoiseSystemParameterType> v {
     WhiteNoiseSystemParameterType::control,
@@ -23,7 +23,7 @@ const std::vector<ribi::kalman::WhiteNoiseSystemParameterType> ribi::kalman::Whi
   return v;
 }
 
-bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type)
+bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
@@ -41,12 +41,12 @@ bool ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(const WhiteNoiseSystemPar
   throw std::logic_error(__func__);
 }
 
-bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type)
+bool ribi::kalman::WhiteNoiseSystemParameter::IsVector(const WhiteNoiseSystemParameterType type) noexcept
 {
   return !ribi::kalman::WhiteNoiseSystemParameter::IsMatrix(type);
 }
 
-std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
@@ -70,7 +70,7 @@ std::string ribi::kalman::WhiteNoiseSystemParameter::ToDescription(const WhiteNo
   throw std::logic_error(__func__);
 }
 
-std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {
@@ -94,7 +94,7 @@ std::string ribi::kalman::WhiteNoiseSystemParameter::ToName(const WhiteNoiseSyst
   throw std::logic_error(__func__);
 }
 
-std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type)
+std::string ribi::kalman::WhiteNoiseSystemParameter::ToSymbol(const WhiteNoiseSystemParameterType type) noexcept
 {
   switch (type)
   {

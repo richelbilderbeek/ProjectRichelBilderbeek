@@ -67,7 +67,7 @@ struct ShapeWidget : public Widget
   boost::scoped_ptr<Shape> m_shape;
 
   public:
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 };
 

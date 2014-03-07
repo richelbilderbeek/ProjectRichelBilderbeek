@@ -23,16 +23,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
-#include "toolsurfaceplottermenudialog.h"
-#include "qttoolsurfaceplottermaindialog.h"
-#include "qttoolsurfaceplottermenudialog.h"
+#include "surfaceplottermenudialog.h"
+#include "qtsurfaceplottermaindialog.h"
+#include "qtsurfaceplottermenudialog.h"
 #include "trace.h"
-#include "ui_qttoolsurfaceplottermenudialog.h"
+#include "ui_qtsurfaceplottermenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtToolSurfacePlotterMenuDialog::QtToolSurfacePlotterMenuDialog(QWidget *parent)
+ribi::QtSurfacePlotterMenuDialog::QtSurfacePlotterMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtToolSurfacePlotterMenuDialog)
+    ui(new Ui::QtSurfacePlotterMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -40,39 +40,39 @@ ribi::QtToolSurfacePlotterMenuDialog::QtToolSurfacePlotterMenuDialog(QWidget *pa
   ui->setupUi(this);
 }
 
-ribi::QtToolSurfacePlotterMenuDialog::~QtToolSurfacePlotterMenuDialog() noexcept
+ribi::QtSurfacePlotterMenuDialog::~QtSurfacePlotterMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtToolSurfacePlotterMenuDialog::on_button_start_clicked()
+void ribi::QtSurfacePlotterMenuDialog::on_button_start_clicked()
 {
-  QtToolSurfacePlotterMainDialog d;
+  QtSurfacePlotterMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtToolSurfacePlotterMenuDialog::on_button_about_clicked()
+void ribi::QtSurfacePlotterMenuDialog::on_button_about_clicked()
 {
-  About a(ToolSurfacePlotterMenuDialog().GetAbout());
+  About a(SurfacePlotterMenuDialog().GetAbout());
   a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);
 }
 
-void ribi::QtToolSurfacePlotterMenuDialog::on_button_quit_clicked()
+void ribi::QtSurfacePlotterMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtToolSurfacePlotterMenuDialog::Test() noexcept
+void ribi::QtSurfacePlotterMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtToolSurfacePlotterMenuDialog::Test");
-  TRACE("Finished ribi::QtToolSurfacePlotterMenuDialog::Test successfully");
+  TRACE("Starting ribi::QtSurfacePlotterMenuDialog::Test");
+  TRACE("Finished ribi::QtSurfacePlotterMenuDialog::Test successfully");
 }
 #endif

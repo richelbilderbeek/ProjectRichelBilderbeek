@@ -254,6 +254,14 @@ void ribi::DrawCanvas::DrawEllipse(const double left, const double top, const do
   m_signal_changed(this);
 }
 
+void ribi::DrawCanvas::DrawSurface(const std::vector<std::vector<double> >& v)
+{
+  if (m_canvas != v)
+  {
+    m_canvas = v;
+    m_signal_changed(this);
+  }
+}
 
 void ribi::DrawCanvas::DrawLine(const double x1, const double y1, const double x2, const double y2) noexcept
 {

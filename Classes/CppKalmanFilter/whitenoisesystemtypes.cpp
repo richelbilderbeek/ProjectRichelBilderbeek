@@ -4,7 +4,7 @@
 
 boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::m_map;
 
-const boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::CreateMap()
+boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman::WhiteNoiseSystemTypes::CreateMap() noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -20,7 +20,7 @@ const boost::bimap<ribi::kalman::WhiteNoiseSystemType,std::string> ribi::kalman:
   return m;
 }
 
-const std::vector<ribi::kalman::WhiteNoiseSystemType> ribi::kalman::WhiteNoiseSystemTypes::GetAllTypes()
+std::vector<ribi::kalman::WhiteNoiseSystemType> ribi::kalman::WhiteNoiseSystemTypes::GetAllTypes() noexcept
 {
   const std::vector<WhiteNoiseSystemType> v {
     WhiteNoiseSystemType::gaps_filled,
@@ -53,7 +53,7 @@ void ribi::kalman::WhiteNoiseSystemTypes::Test() noexcept
 }
 #endif
 
-std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type)
+std::string ribi::kalman::WhiteNoiseSystemTypes::ToStr(const WhiteNoiseSystemType type) noexcept
 {
   if (m_map.left.empty()) m_map = CreateMap();
   assert(!m_map.left.empty());

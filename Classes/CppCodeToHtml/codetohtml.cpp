@@ -214,12 +214,12 @@ std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
       const std::string rhs_base = ribi::fileio::GetFileBasename(rhs);
       const std::string lhs_ext = ribi::fileio::GetExtension(lhs);
       const std::string rhs_ext = ribi::fileio::GetExtension(rhs);
-      static const std::string pro(".pro");
-      static const std::string pri(".pri");
-      static const std::string sh(".sh");
-      static const std::string h(".h");
-      static const std::string cpp(".cpp");
-      static const std::string py(".py");
+      static std::string pro(".pro");
+      static std::string pri(".pri");
+      static std::string sh(".sh");
+      static std::string h(".h");
+      static std::string cpp(".cpp");
+      static std::string py(".py");
       if (lhs_ext == pro)
       {
         //.pro files first

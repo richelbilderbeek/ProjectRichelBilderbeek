@@ -63,7 +63,7 @@ struct ClockWidget : public Widget
   const Clock * GetRubiksClock() const noexcept { return m_clock.get(); }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

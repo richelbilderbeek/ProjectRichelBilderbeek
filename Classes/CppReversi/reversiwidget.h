@@ -42,7 +42,7 @@ struct Widget
 
   const std::vector<boost::shared_ptr<Move>> GetValidMoves() const noexcept;
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
   Winner GetWinner() const noexcept;
 

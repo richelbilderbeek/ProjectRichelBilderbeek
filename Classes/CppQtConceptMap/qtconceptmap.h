@@ -68,7 +68,7 @@ protected:
 
   ///Adds an Edge and connects (some of) its signals to slots present in the derived classes
   ///Edge cannot be const, as an Edge has a Concept that the user might want to edit
-  virtual void AddEdge(const boost::shared_ptr<Edge> edge) = 0;
+  virtual QtEdge * AddEdge(const boost::shared_ptr<Edge> edge) = 0;
 
   ///Adds a node and connects (some of) its signals to slots present in the derived classes
   ///It returns (the derived class of) the QtConceptMapNodeConcept added to the scene
@@ -92,7 +92,11 @@ protected:
   ///Get all the edges connected to the concept
   std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
 
-  //Find the edge with the same from and to
+  //Find the Qt edge with the same from and to
+  const QtEdge * FindQtEdge(const boost::shared_ptr<const Edge> edge) const noexcept;
+        QtEdge * FindQtEdge(const boost::shared_ptr<      Edge> edge)       noexcept;
+  const QtEdge * FindQtEdge(const QtEdge* const edge) const noexcept;
+        QtEdge * FindQtEdge(const QtEdge* const edge)       noexcept;
   const QtEdge * FindQtEdge(
     const QtNode* const from,
     const QtNode* const to) const noexcept;

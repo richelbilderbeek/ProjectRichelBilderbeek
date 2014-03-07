@@ -45,19 +45,19 @@ struct Path
   ///Examples:
   ///-'Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro' -> 'ProjectRichelBilderbeekDesktop.pro'
   ///-'Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro' -> 'ToolCreateQtProjectZipFileDesktop.pro'
-  static const std::string ExtractFilename(const std::string& filename);
+  static std::string ExtractFilename(const std::string& filename);
 
   ///Extract the main folder from a path.
   ///Examples:
   ///-'Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro' -> 'Projects'
   ///-'Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro' -> 'Tools'
-  static const std::string ExtractMainFolder(const std::string& filename);
+  static std::string ExtractMainFolder(const std::string& filename);
 
   ///Extract the sub-folder from a path.
   ///Examples:
   ///-'Projects/ProjectRichelBilderbeek/ProjectRichelBilderbeekDesktop.pro' -> 'ProjectRichelBilderbeek'
   ///-'Tools/ToolCreateQtProjectZipFile/ToolCreateQtProjectZipFileDesktop.pro' -> 'ToolCreateQtProjectZipFile'
-  static const std::string ExtractSubFolder(const std::string& filename);
+  static std::string ExtractSubFolder(const std::string& filename);
 
   ///Get the sub folder, e.g. 'ProjectRichelBilderbeekDesktop.pro', 'ToolCreateQtProjectZipFileDesktop.pro'
   const std::string& GetFilename() const { return m_filename; }
@@ -90,7 +90,7 @@ struct Path
   /// - m_filename: toolcreatezipfiledesktop.pro
   ///becomes
   /// '/home/richel/Projects/Tools/ToolCreateQtProjectZipFile/toolcreatezipfiledesktop.pro'
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
   const std::string m_filename;

@@ -50,7 +50,7 @@ struct SortedBinaryNewickVector
   const SortedBinaryNewickVector LoseBrackets(const int x,const int i) const;
 
   const std::vector<int>& Peek() const { return m_v;}
-  const std::string ToStr() const;
+  std::string ToStr() const;
 
   private:
   std::vector<int> m_v;
@@ -72,7 +72,7 @@ struct SortedBinaryNewickVector
     const std::string& newick_str,
     const double theta);
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   static bool NewickCompare(

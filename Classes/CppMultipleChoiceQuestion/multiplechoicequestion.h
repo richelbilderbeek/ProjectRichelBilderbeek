@@ -48,19 +48,19 @@ struct MultipleChoiceQuestion : public Question
   const std::string& GetAnswer() const noexcept;
 
   ///Obtain an example multiple choice question
-  static const std::string GetExampleMultipleChoiceQuestion() noexcept { return "-,1+1=,2,0,4"; }
+  static std::string GetExampleMultipleChoiceQuestion() noexcept { return "-,1+1=,2,0,4"; }
 
   ///Obtain valid multiple choice question
-  static const std::vector<std::string> GetInvalidMultipleChoiceQuestions() noexcept;
+  static std::vector<std::string> GetInvalidMultipleChoiceQuestions() noexcept;
 
   ///Obtain the possible options to be chosen in a random order
   const std::vector<std::string>& GetOptions() const noexcept;
 
   ///Obtain valid multiple choice question
-  static const std::vector<std::string> GetValidMultipleChoiceQuestions() noexcept;
+  static std::vector<std::string> GetValidMultipleChoiceQuestions() noexcept;
 
   ///Obtain the version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -69,10 +69,10 @@ struct MultipleChoiceQuestion : public Question
   const std::vector<std::string>& GetWrongAnswers() const noexcept { return m_wrong_answers; }
 
   ///How to display the question as multiple lines
-  const std::vector<std::string> ToLines() const;
+  std::vector<std::string> ToLines() const noexcept;
 
   ///Convert to std::string line
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
   friend void boost::checked_delete<>(MultipleChoiceQuestion *);
@@ -86,21 +86,21 @@ struct MultipleChoiceQuestion : public Question
   const std::vector<std::string> m_options;
 
   ///Create the possible options to be chosen in a random order
-  static const std::vector<std::string> CreateOptions(
+  static std::vector<std::string> CreateOptions(
     const std::vector<std::string>& wrong_answers,
     const std::string& answer) noexcept;
 
   ///The options (correct + wrong answers) are at indices 2 to SeperateString(input,',').size()
-  static const std::vector<std::string> ExtractOptions(
+  static std::vector<std::string> ExtractOptions(
     const std::string& input);
 
   ///The wrong answers are at indices 3 to SeperateString(input,',').size()
-  static const std::vector<std::string> ExtractWrongAnswers(
+  static std::vector<std::string> ExtractWrongAnswers(
     const std::string& input);
 
   //Split a string
   //From http://www.richelbilderbeek.nl/CppSeperateString.htm
-  static const std::vector<std::string> SeperateString(
+  static std::vector<std::string> SeperateString(
     const std::string& input,
     const char seperator) noexcept;
 

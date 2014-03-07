@@ -158,7 +158,7 @@ bool ribi::con3::ConnectThree::IsInvalidMove(const Move& p) noexcept
 }
 */
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(const std::bitset<3>& is_player_human) const noexcept
 {
   //const std::bitset<3>& is_player_human
   if (CanDoMove(CheckTwoHorizontalOwn())) return CheckTwoHorizontalOwn();
@@ -169,7 +169,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::SuggestMove(
   return MakeRandomMove();
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoHorizontalOwn() const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoHorizontalOwn() const noexcept
 {
   const int n_rows = GetRows();
   for (int y=0; y!=n_rows; ++y)
@@ -211,7 +211,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoHori
   return nullptr;
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoVerticalOwn() const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoVerticalOwn() const noexcept
 {
   const int n_rows = GetRows();
   assert(n_rows > 1);
@@ -258,7 +258,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoVert
   return nullptr;
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept
 {
   const auto moves(GetAllPossibleMoves());
 
@@ -320,7 +320,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoOthe
 //boost::get<0>: x coordinat
 //boost::get<1>: y coordinat
 //boost::get<2>: player that would dislike this move
-const std::vector<boost::shared_ptr<ribi::con3::Move>>
+std::vector<boost::shared_ptr<ribi::con3::Move>>
   ribi::con3::ConnectThree::GetAllPossibleMoves() const noexcept
 {
   std::vector<boost::shared_ptr<ribi::con3::Move>> v(GetTwoHorizontalOtherMoves());
@@ -329,7 +329,7 @@ const std::vector<boost::shared_ptr<ribi::con3::Move>>
   return v;
 }
 
-const std::vector<boost::shared_ptr<ribi::con3::Move>> ribi::con3::ConnectThree::GetTwoHorizontalOtherMoves() const noexcept
+std::vector<boost::shared_ptr<ribi::con3::Move>> ribi::con3::ConnectThree::GetTwoHorizontalOtherMoves() const noexcept
 {
   const int n_rows = GetRows();
   std::vector<boost::shared_ptr<ribi::con3::Move>> moves;
@@ -376,7 +376,7 @@ const std::vector<boost::shared_ptr<ribi::con3::Move>> ribi::con3::ConnectThree:
 }
 
 //A X B C (x is focus of for loop)
-const std::vector<boost::shared_ptr<ribi::con3::Move>>
+std::vector<boost::shared_ptr<ribi::con3::Move>>
   ribi::con3::ConnectThree::GetTwoVerticalOtherMoves() const noexcept
 {
   const int n_rows = GetRows();
@@ -423,7 +423,7 @@ const std::vector<boost::shared_ptr<ribi::con3::Move>>
   return v;
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoDiagonally() const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoDiagonally() const noexcept
 {
   std::vector<boost::shared_ptr<Move>> v;
 
@@ -460,7 +460,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckTwoDiag
   return m;
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckOneOther(const std::bitset<3>& is_player_human) const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckOneOther(const std::bitset<3>& is_player_human) const noexcept
 {
   std::vector<boost::shared_ptr<Move>> v;
 
@@ -563,7 +563,7 @@ const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::CheckOneOthe
   }
 }
 
-const boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::MakeRandomMove() const noexcept
+boost::shared_ptr<ribi::con3::Move> ribi::con3::ConnectThree::MakeRandomMove() const noexcept
 {
   std::vector<boost::shared_ptr<Move>> v;
   const int n_cols = GetCols();

@@ -46,7 +46,7 @@ struct Chord
   const std::vector<Note> GetNotes() const noexcept;
 
   ///Obtain the version of this class
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -55,7 +55,7 @@ struct Chord
   static void Test() noexcept;
 
   ///Return the Chord as a music notation string
-  const std::string ToStr() const noexcept;
+  std::string ToStr() const noexcept;
 
   private:
 

@@ -24,7 +24,7 @@ struct CommandCreateNewConceptMap : public Command
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
-  const std::string ToStr() const noexcept { return "create new concept map"; }
+  std::string ToStr() const noexcept { return "create new concept map"; }
   void Undo() noexcept;
 
   private:

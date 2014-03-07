@@ -67,7 +67,7 @@ struct RegexTesterBoostXpressiveMainDialog : public RegexTesterMainDialog
   private:
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  static const std::vector<std::string> GetRegexMatches(
+  static std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const boost::xpressive::sregex& r);
 

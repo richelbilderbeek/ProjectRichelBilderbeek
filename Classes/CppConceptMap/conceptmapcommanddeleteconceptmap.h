@@ -23,7 +23,7 @@ struct CommandDeleteConceptMap : public Command
   ~CommandDeleteConceptMap() noexcept {}
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
-  const std::string ToStr() const noexcept { return "delete concept map"; }
+  std::string ToStr() const noexcept { return "delete concept map"; }
   void Undo() noexcept;
 
   private:

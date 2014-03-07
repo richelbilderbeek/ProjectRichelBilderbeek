@@ -53,6 +53,10 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   static void Test() noexcept;
   #endif
 
+  ///Called when Widget emits m_signal_add_edge
+  ///Which is emitted when the ConceptMap has an edge added
+  void OnAddEdge(const boost::shared_ptr<Edge> edge) noexcept;
+
   ///Called when Widget emits m_signal_add_node
   ///Which is emitted when the ConceptMap has a node added
   void OnAddNode(const boost::shared_ptr<Node> node) noexcept;
@@ -61,8 +65,12 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///Which is emitted when the ConceptMap changes as a whole
   void OnConceptMapChanged() noexcept;
 
-  ///Called when Widget emits m_signal_add_node
-  ///Which is emitted when the ConceptMap has a node added
+  ///Called when Widget emits m_signal_delete_edge
+  ///Which is emitted when the ConceptMap an edge deleted
+  void OnDeleteEdge(const boost::shared_ptr<Edge> edge) noexcept;
+
+  ///Called when Widget emits m_signal_delete_node
+  ///Which is emitted when the ConceptMap has a node deleted
   void OnDeleteNode(const boost::shared_ptr<Node> node) noexcept;
 
   ///Called when Widget emits m_signal_lose_focus_node

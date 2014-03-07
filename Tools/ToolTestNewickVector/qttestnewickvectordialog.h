@@ -46,7 +46,7 @@ public:
   QtTestNewickVectorDialog(const QtTestNewickVectorDialog&) = delete;
   QtTestNewickVectorDialog& operator=(const QtTestNewickVectorDialog&) = delete;
   ~QtTestNewickVectorDialog() noexcept;
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 protected:
   

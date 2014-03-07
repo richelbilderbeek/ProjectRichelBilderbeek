@@ -35,7 +35,7 @@ struct ToolSimplifyNewickMainDialog
   ///For example, for the phylogeny (100,2), SimplifyNewick
   ///returns (99,2) 50x as often as (100,1).
   ///From http://www.richelbilderbeek.nl/CppSimplifyNewick.htm
-  static const std::string SimplifyNewick(
+  static std::string SimplifyNewick(
     const std::string& s,
     const BigInteger& max_complexity);
 

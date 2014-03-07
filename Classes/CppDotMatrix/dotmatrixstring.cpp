@@ -23,8 +23,8 @@ ribi::DotMatrixString::DotMatrixString(const std::string& s,
   assert(GetString() == s);
 }
 
-const std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
-  ribi::DotMatrixString::CreateDotMatrixChars(const std::string& s)
+std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
+  ribi::DotMatrixString::CreateDotMatrixChars(const std::string& s) noexcept
 {
   std::vector<boost::shared_ptr<const DotMatrixChar> > v;
   for (const char c: s)
@@ -38,7 +38,7 @@ const std::vector<boost::shared_ptr<const ribi::DotMatrixChar> >
   return v;
 }
 
-const boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
+boost::shared_ptr<QImage> ribi::DotMatrixString::CreateImage() const noexcept
 {
   const int height = GetMatrixHeight();
   const int width  = GetMatrixWidth();
@@ -66,7 +66,7 @@ std::string ribi::DotMatrixString::GetString() const noexcept
   return s;
 }
 
-bool ribi::DotMatrixString::GetMatrix(const int x, const int y) const
+bool ribi::DotMatrixString::GetMatrix(const int x, const int y) const noexcept
 {
   assert(x >= 0);
   assert(x < GetMatrixWidth());
@@ -143,7 +143,7 @@ void ribi::DotMatrixString::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixString& m)
+std::ostream& ribi::operator<<(std::ostream& os, const DotMatrixString& m) noexcept
 {
   const int height  = m.GetMatrixHeight();
   const int width   = m.GetMatrixWidth();

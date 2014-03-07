@@ -98,7 +98,7 @@ struct ToggleButton
   friend std::ostream& operator<<(std::ostream& os, const ToggleButton& button) noexcept;
 
   public:
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 };
 

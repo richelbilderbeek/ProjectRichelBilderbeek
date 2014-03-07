@@ -103,7 +103,7 @@ ribi::cmap::QtEditConceptMap::~QtEditConceptMap() noexcept
   }
 }
 
-void ribi::cmap::QtEditConceptMap::AddEdge(
+ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(
   const boost::shared_ptr<Edge> edge)
 {
   const boost::shared_ptr<QtEditStrategy> qtconcept(new QtEditStrategy(edge->GetConcept()));
@@ -157,9 +157,11 @@ void ribi::cmap::QtEditConceptMap::AddEdge(
   #endif
   assert(std::abs(qtedge->pos().x() - edge->GetX()) < epsilon);
   assert(std::abs(qtedge->pos().y() - edge->GetY()) < epsilon);
+
+  return qtedge;
 }
 
-void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
+ribi::cmap::QtEdge * ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const qt_to)
 {
   assert(qt_from);
   assert(qt_to);
@@ -187,7 +189,7 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
       if (qtedge->GetArrow()->GetToItem()   == qt_to && !qtedge->GetArrow()->HasHead()) { qtedge->SetHasHeadArrow(true); }
       if (qtedge->GetArrow()->GetFromItem() == qt_to && !qtedge->GetArrow()->HasTail()) { qtedge->SetHasTailArrow(true); }
       this->scene()->update();
-      return;
+      return qtedge;
     }
   }
 
@@ -251,6 +253,8 @@ void ribi::cmap::QtEditConceptMap::AddEdge(QtNode * const qt_from, QtNode* const
     && "GUI and non-GUI concept map must match");
 
   this->scene()->update();
+
+  return qtedge;
 }
 
 ribi::cmap::QtNode * ribi::cmap::QtEditConceptMap::AddNode(const boost::shared_ptr<Node> node)

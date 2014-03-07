@@ -69,7 +69,7 @@ int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
 
   assert(argc >= 3);
   const std::string from_name { argv[1] };
-  const std::string to_name { argv[2] };
+  std::string To_name { argv[2] };
   const int n_cols = (argc == 4 ? boost::lexical_cast<int>(argv[3]) : 78);
 
   const boost::shared_ptr<const ImageCanvas> d {

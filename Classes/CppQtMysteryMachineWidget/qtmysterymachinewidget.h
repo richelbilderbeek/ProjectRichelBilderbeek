@@ -68,7 +68,7 @@ struct QtMysteryMachineWidget : public QWidget
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
   ///Obtain the QtMysteryMachineWidget its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain the QtMysteryMachineWidget its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

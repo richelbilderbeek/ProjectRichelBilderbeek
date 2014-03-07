@@ -44,10 +44,10 @@ struct QtCreatorProFileZipScript
   QtCreatorProFileZipScript& operator=(const QtCreatorProFileZipScript&) = delete;
 
   ///Create a script to zip all .pro files (and all they refer to) in a folder
-  static const std::string CreateScript(const std::string& source_folder);
+  static std::string CreateScript(const std::string& source_folder);
 
   ///Obtain this class its About information
-  static const About GetAbout() noexcept;
+  static About GetAbout() noexcept;
 
   ///Obtain all filenames
   const std::set<std::string>& GetFilenames() const { return m_filenames; }
@@ -57,12 +57,12 @@ struct QtCreatorProFileZipScript
   const std::string& GetProFileName() const { return m_pro_file_name; }
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
-  static const boost::shared_ptr<QtCreatorProFileZipScript> Merge(
+  static boost::shared_ptr<QtCreatorProFileZipScript> Merge(
     const std::vector<boost::shared_ptr<const QtCreatorProFileZipScript> >& v);
 
   ///Set all filenames
@@ -86,7 +86,7 @@ struct QtCreatorProFileZipScript
   //const boost::shared_ptr<const QtCreatorProFile> m_pro_file;
 
   ///Create a QtCreatorProFile from every filename
-  static const std::vector<boost::shared_ptr<QtCreatorProFile> > CreateProFiles(const std::vector<std::string>& pro_files);
+  static std::vector<boost::shared_ptr<QtCreatorProFile> > CreateProFiles(const std::vector<std::string>& pro_files);
 
   ///Extract a QtCreatorProFile its filenames
   const std::set<std::string> ExtractFilenames(
@@ -95,17 +95,15 @@ struct QtCreatorProFileZipScript
   ///Get all the .pro files in a folder
   //From http://www.richelbilderbeek.nl/CppGetProFilesInFolder.htm
   //static const std::vector<std::string> GetProFilesInFolder(const std::string& folder);
-  static const std::vector<std::string> GetProAndPriFilesInFolder(const std::string& folder);
+  static std::vector<std::string> GetProAndPriFilesInFolder(const std::string& folder);
 
   #ifndef NDEBUG
-  ///Test this class
   static void Test() noexcept;
   #endif
 
   friend std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept;
 };
 
-///Write the script to a stream
 std::ostream& operator<<(std::ostream& os,const QtCreatorProFileZipScript& script) noexcept;
 
 } //~namespace ribi

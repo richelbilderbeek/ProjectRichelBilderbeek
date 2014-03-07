@@ -169,6 +169,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testNewickVector,"testNewickVector"));
   m.insert(Pair(ProgramType::testOpenQuestion,"testOpenQuestion"));
   m.insert(Pair(ProgramType::testPylos,"testPylos"));
+  m.insert(Pair(ProgramType::testPlane,"testPlane"));
   m.insert(Pair(ProgramType::testQrcFile,"testQrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"testQtArrowItems"));
   m.insert(Pair(ProgramType::testQtCreatorProFile,"testQtCreatorProFile"));
@@ -192,6 +193,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::testTicTacToe,"testTicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"testTimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"testToggleButton"));
+  m.insert(Pair(ProgramType::testTriangleMesh,"testTriangleMesh"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"testTwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"thorVeen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"thresholdFilterer"));
@@ -380,6 +382,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testNewick,"Test Newick"));
   m.insert(Pair(ProgramType::testNewickVector,"Test NewickVector"));
   m.insert(Pair(ProgramType::testOpenQuestion,"Test OpenQuestion"));
+  m.insert(Pair(ProgramType::testPlane,"Test Plane"));
   m.insert(Pair(ProgramType::testPylos,"Test Pylos"));
   m.insert(Pair(ProgramType::testQrcFile,"Test QrcFile"));
   m.insert(Pair(ProgramType::testQtArrowItems,"Test QtArrowItems"));
@@ -404,6 +407,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::testTicTacToe,"Test TicTacToe"));
   m.insert(Pair(ProgramType::testTimedServerPusher,"Test TimedServerPusher"));
   m.insert(Pair(ProgramType::testToggleButton,"Test ToggleButton"));
+  m.insert(Pair(ProgramType::testTriangleMesh,"Test TriangleMesh"));
   m.insert(Pair(ProgramType::testTwoDigitNewick,"Test TwoDigitNewick"));
   m.insert(Pair(ProgramType::thorVeen,"Thor Veen"));
   m.insert(Pair(ProgramType::thresholdFilterer,"ThresholdFilterer"));

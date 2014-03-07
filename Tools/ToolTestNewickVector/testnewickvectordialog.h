@@ -73,8 +73,8 @@ struct TestNewickVectorDialog
 
   public:
 
-  static const About GetAbout() noexcept;
-  static const std::string GetVersion() noexcept;
+  static About GetAbout() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   #ifndef NDEBUG

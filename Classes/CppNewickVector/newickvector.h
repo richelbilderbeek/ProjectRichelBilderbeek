@@ -50,8 +50,8 @@ struct NewickVector
   const std::vector<NewickVector> GetSimplerNewicks() const;
   const std::pair<NewickVector,NewickVector> GetRootBranches() const;
   bool IsSimple() const;
-  const std::string ToStr() const;
-  static const std::string GetVersion() noexcept;
+  std::string ToStr() const;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
   int Size() const noexcept;
   const NewickVector TermIsNotOne(const int i) const;

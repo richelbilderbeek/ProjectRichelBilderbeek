@@ -73,7 +73,7 @@ struct MysteryMachine
   const boost::shared_ptr<const LedWidget> GetLedTopBack() const noexcept   { return m_led_top_back;   }
   const boost::shared_ptr<const ToggleButtonWidget> GetToggleButton() const noexcept { return m_toggle_button; }
 
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
 

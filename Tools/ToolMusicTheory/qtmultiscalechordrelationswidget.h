@@ -38,7 +38,7 @@ struct QtMultiScaleChordRelationsWidget : public QGraphicsView
   QtMultiScaleChordRelationsWidget(QWidget *parent = 0);
 
   ///Obtain this class its version number
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;

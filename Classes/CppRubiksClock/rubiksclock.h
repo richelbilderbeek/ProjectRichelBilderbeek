@@ -78,7 +78,7 @@ struct Clock
   //Pegs& GetFrontPegs() noexcept;
 
   ///Obtain this class its version
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
 
   ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
@@ -87,7 +87,7 @@ struct Clock
   const boost::shared_ptr<TextCanvas> ToCanvas(const int radius) const noexcept;
 
   ///Convert to XML
-  const std::string ToXml() const noexcept;
+  std::string ToXml() const noexcept;
 
   ///Respond to a change in the clock
   mutable boost::signals2::signal<void ()> m_signal_clock_changed;

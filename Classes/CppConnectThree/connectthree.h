@@ -59,7 +59,7 @@ struct ConnectThree
   int GetCols() const noexcept;
   int GetRows() const noexcept;
   Square GetSquare(const int x, const int y) const noexcept;
-  static const std::string GetVersion() noexcept;
+  static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///GetWinner returns the index of the winner.
@@ -71,7 +71,7 @@ struct ConnectThree
 
   ///SuggestMove suggests a good move. If the game is a draw,
   ///it returns nullptr
-  const boost::shared_ptr<Move> SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
+  boost::shared_ptr<Move> SuggestMove(const std::bitset<3>& is_player_human) const noexcept;
 
 private:
   ~ConnectThree() noexcept {}
@@ -83,18 +83,17 @@ private:
   Player m_player;
 
   bool CanDoMove(const boost::shared_ptr<Move> p) const noexcept;
-  const boost::shared_ptr<Move> CheckOneOther(const std::bitset<3>& is_player_human) const noexcept;
-  const boost::shared_ptr<Move> CheckTwoDiagonally() const noexcept;
-  const boost::shared_ptr<Move> CheckTwoHorizontalOwn() const noexcept;
-  const boost::shared_ptr<Move> CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept;
-  const boost::shared_ptr<Move> CheckTwoVerticalOwn() const noexcept;
-  const std::vector<boost::shared_ptr<Move>> GetAllPossibleMoves() const noexcept;
+  boost::shared_ptr<Move> CheckOneOther(const std::bitset<3>& is_player_human) const noexcept;
+  boost::shared_ptr<Move> CheckTwoDiagonally() const noexcept;
+  boost::shared_ptr<Move> CheckTwoHorizontalOwn() const noexcept;
+  boost::shared_ptr<Move> CheckTwoOther(const std::bitset<3>& is_player_human) const noexcept;
+  boost::shared_ptr<Move> CheckTwoVerticalOwn() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetAllPossibleMoves() const noexcept;
   Player GetNextPlayer() const noexcept;
-  //static double GetRandomUniform() noexcept;
-  const std::vector<boost::shared_ptr<Move>> GetTwoHorizontalOtherMoves() const noexcept;
-  const std::vector<boost::shared_ptr<Move>> GetTwoVerticalOtherMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetTwoHorizontalOtherMoves() const noexcept;
+  std::vector<boost::shared_ptr<Move>> GetTwoVerticalOtherMoves() const noexcept;
   bool IsPlayerHuman(const Player player, const std::bitset<3>& is_player_human) const noexcept;
-  const boost::shared_ptr<Move> MakeRandomMove() const noexcept;
+  boost::shared_ptr<Move> MakeRandomMove() const noexcept;
   Square PlayerToSquare(const Player player) const noexcept;
   Player SquareToPlayer(const Square square) const noexcept;
   Winner SquareToWinner(const Square square) const noexcept;

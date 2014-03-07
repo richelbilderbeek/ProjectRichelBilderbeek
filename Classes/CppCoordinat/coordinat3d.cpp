@@ -14,6 +14,19 @@ ribi::Coordinat3D::Coordinat3D(const double x, const double y, const double z) n
   #endif
 }
 
+std::string ribi::Coordinat3D::GetVersion() const noexcept
+{
+  return "1.1";
+}
+
+std::vector<std::string> ribi::Coordinat3D::GetVersionHistory() const noexcept
+{
+  return {
+    "201x-xx-xx: version 1.0: initial version"
+    "2014-03-07: version 1.1: initial versioning"
+  };
+}
+
 ribi::Coordinat3D& ribi::Coordinat3D::operator+=(const Coordinat3D& rhs) noexcept
 {
   m_co[0] += rhs.GetX();
@@ -234,7 +247,6 @@ void ribi::Coordinat3D::Test() noexcept
         Coordinat3D(1.0,2.0,-1.0)  //C
       )
     };
-    TRACE(normal);
     const Coordinat3D expected(0.0,0.0,-1.0);
     assert(std::abs(normal.GetX() - expected.GetX()) < 0.0001);
     assert(std::abs(normal.GetY() - expected.GetY()) < 0.0001);
@@ -262,7 +274,6 @@ void ribi::Coordinat3D::Test() noexcept
         Coordinat3D(2.0,2.0,-1.0)  //C
       )
     };
-    TRACE(normal);
     const Coordinat3D expected(0.0,0.0,1.0);
     assert(std::abs(normal.GetX() - expected.GetX()) < 0.0001);
     assert(std::abs(normal.GetY() - expected.GetY()) < 0.0001);
@@ -338,8 +349,7 @@ bool ribi::operator<(const Coordinat3D& lhs, const Coordinat3D& rhs) noexcept
   return lhs.GetZ() < rhs.GetZ();
 }
 
-
-std::ostream& ribi::operator<<(std::ostream& os, const Coordinat3D& n)
+std::ostream& ribi::operator<<(std::ostream& os, const Coordinat3D& n) noexcept
 {
   std::stringstream s;
   s

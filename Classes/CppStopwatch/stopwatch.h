@@ -35,7 +35,7 @@ struct Stopwatch
   {
     return std::difftime(std::time(0),m_time_start);
   }
-  static const std::string GetVersion() noexcept
+  static std::string GetVersion() noexcept
   {
     return "1.1";
   }
