@@ -81,6 +81,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestmulticanvasmenudialog.h"
 #include "qttestmultiplechoicequestionmenudialog.h"
 #include "qttestopenquestionmenudialog.h"
+#include "qttestplanemenudialog.h"
 #include "qttestpylosmenudialog.h"
 #include "qttestqrcfilemenudialog.h"
 #include "qttestqtarrowitemsmenudialog.h"
@@ -94,6 +95,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestshapemenudialog.h"
 #include "qttestshinybuttonmenudialog.h"
 #include "qttesttextcanvasmenudialog.h"
+#include "qttesttrianglemeshmenudialog.h"
 #include "qttesttogglebuttonmaindialog.h"
 #include "qttesttogglebuttonmenudialog.h"
 #include "qttesttwodigitnewickmenudialog.h"
@@ -275,6 +277,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testNewick: break;
     case ProgramType::testNewickVector: break;
     case ProgramType::testOpenQuestion: p = new QtTestOpenQuestionMenuDialog;  break;
+    case ProgramType::testPlane: p = new QtTestPlaneMenuDialog; break;
     case ProgramType::testPylos: p = new pylos::QtTestPylosMenuDialog; break;
     case ProgramType::testQrcFile: p = new QtTestQrcFileMenuDialog; break;
     case ProgramType::testQtCreatorProFile: p = new QtTestQtCreatorProFileMenuDialog; break;
@@ -298,6 +301,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::testTextPositionWidget: break;
     case ProgramType::testTicTacToe: break;
     case ProgramType::testTimedServerPusher: break;
+    case ProgramType::testTriangleMesh: p = new QtTestTriangleMeshMenuDialog; break;
     case ProgramType::testToggleButton: p = new QtTestToggleButtonMenuDialog; break;
     case ProgramType::testTwoDigitNewick: p = new QtTestTwoDigitNewickMenuDialog; break;
     case ProgramType::thorVeen: break;

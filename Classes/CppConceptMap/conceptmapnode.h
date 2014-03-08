@@ -91,19 +91,6 @@ struct Node : public Element
 bool operator==(const Node& lhs, const Node& rhs) noexcept;
 bool operator!=(const Node& lhs, const Node& rhs) noexcept;
 
-bool operator<(
-  const boost::shared_ptr<Node>& lhs,
-  const boost::shared_ptr<Node>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<const Node>& lhs,
-  const boost::shared_ptr<      Node>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<      Node>& lhs,
-  const boost::shared_ptr<const Node>& rhs) = delete;
-bool operator<(
-  const boost::shared_ptr<const Node>& lhs,
-  const boost::shared_ptr<const Node>& rhs) = delete;
-
 } //~namespace cmap
 
 } //~namespace ribi

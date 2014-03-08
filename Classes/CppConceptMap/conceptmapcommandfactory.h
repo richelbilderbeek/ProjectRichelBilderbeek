@@ -17,7 +17,7 @@ namespace cmap {
 ///CommandFactory creates Commands
 struct CommandFactory
 {
-  static const std::vector<boost::shared_ptr<Command> > CreateTestCommands() noexcept;
+  static std::vector<boost::shared_ptr<Command> > CreateTestCommands() noexcept;
 };
 
 } //~namespace cmap

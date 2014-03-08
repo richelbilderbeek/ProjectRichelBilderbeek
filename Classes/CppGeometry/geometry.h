@@ -24,6 +24,9 @@ struct Geometry
 {
   Geometry();
 
+  boost::geometry::model::d2::point_xy<double> CalcCenter(const std::vector<boost::geometry::model::d2::point_xy<double>>& v) const noexcept;
+  boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> CalcCenter(const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& v) const noexcept;
+
   boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> CalcCrossProduct(
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
@@ -40,6 +43,14 @@ struct Geometry
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  ) const noexcept;
+
+  boost::geometry::model::d2::point_xy<double> Coordinat2DToBoostGeometryPointXy(
+    const Coordinat2D& c
+  ) const noexcept;
+
+  std::vector<boost::geometry::model::d2::point_xy<double>> Coordinats2DToBoostGeometryPointsXy(
+    const std::vector<Coordinat2D>& v
   ) const noexcept;
 
   ///Obtain the angle in radians between two deltas
@@ -65,7 +76,7 @@ struct Geometry
         - - -   + + +
         3 2 1 0 1 2 3
 
-  Appriximate coordinat for a point for every hour, with the approximate angle
+  Approximate coordinat for a point for every hour, with the approximate angle
    1: ( 1,-2) :  1/6 * pi
    2: ( 2,-1) :  2/6 * pi
    3: ( 3, 0) :  3/6 * pi
@@ -112,10 +123,31 @@ struct Geometry
   ///Are the points ordered clockwise in the XYZ plane, seen from the observer?
   bool IsClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
 
+  ///Are two angles ordered counter-clockwise
+  ///12 o'clock is 0.0 * pi
+  /// 3 o'clock is 0.5 * pi
+  /// 6 o'clock is 1.0 * pi
+  /// 9 o'clock is 1.5 * pi
+  ///
+  ///Yes: 0.5 * pi and 0.0 * pi
+  ///No : 0.0 * pi and 0.5 * pi
+  bool IsCounterClockwise(const double a, const double b) const noexcept;
+
+  ///Are the angles ordered counter-clockwise?
+  ///12 o'clock is 0.0 * pi
+  /// 3 o'clock is 0.5 * pi
+  /// 6 o'clock is 1.0 * pi
+  /// 9 o'clock is 1.5 * pi
+  ///
+  ///Yes: 0.5 * pi and 0.0 * pi
+  ///No : 0.0 * pi and 0.5 * pi
+  bool IsCounterClockwise(const std::vector<double>& angles) const noexcept;
+
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
   bool IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept;
+  bool IsClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& v) const noexcept;
 
 
   ///Creates a polygon from the points and checks if the polygon is convex
@@ -131,6 +163,12 @@ struct Geometry
   */
   bool IsConvex(boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon) const noexcept;
   bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
+
+  ///Are the points ordered counter-clockwise in the XY plane seen from above
+  /// (e.g. from coordinat {0,0,1} )
+  bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
+  bool IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept;
+  bool IsCounterClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& v) const noexcept;
 
   private:
   ///Take the floating point modulus

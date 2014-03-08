@@ -1,30 +1,30 @@
-#ifndef QTTESTPLANEMAINDIALOG_H
-#define QTTESTPLANEMAINDIALOG_H
+#ifndef QTTESTTRIANGLEMESHMAINDIALOG_H
+#define QTTESTTRIANGLEMESHMAINDIALOG_H
 
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtTestPlaneMainDialog;
+  class QtTestTriangleMeshMainDialog;
 }
 
 namespace ribi {
 
-class QtTestPlaneMainDialog : public QtHideAndShowDialog
+class QtTestTriangleMeshMainDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
     
 public:
-  explicit QtTestPlaneMainDialog(QWidget *parent = 0);
-  QtTestPlaneMainDialog(const QtTestPlaneMainDialog&) = delete;
-  QtTestPlaneMainDialog& operator=(const QtTestPlaneMainDialog&) = delete;
-  ~QtTestPlaneMainDialog() noexcept;
+  explicit QtTestTriangleMeshMainDialog(QWidget *parent = 0);
+  QtTestTriangleMeshMainDialog(const QtTestTriangleMeshMainDialog&) = delete;
+  QtTestTriangleMeshMainDialog& operator=(const QtTestTriangleMeshMainDialog&) = delete;
+  ~QtTestTriangleMeshMainDialog() noexcept;
     
 private slots:
   void OnAnyChange();
   void resizeEvent(QResizeEvent *);
 
 private:
-  Ui::QtTestPlaneMainDialog *ui;
+  Ui::QtTestTriangleMeshMainDialog *ui;
 
   ///Rescale calculates a value between old_min and old_max its relative place and transforms
   ///this relative position to a new_min and new_max
@@ -44,4 +44,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTTESTPLANEMAINDIALOG_H
+#endif // QTTESTTRIANGLEMESHMAINDIALOG_H

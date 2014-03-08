@@ -36,7 +36,10 @@ std::vector<double> ribi::Plane::CalcPlane(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>&
+  #ifndef NDEBUG
+  p4
+  #endif
 ) noexcept
 {
   const auto v(Geometry().CalcPlane(p1,p2,p3));

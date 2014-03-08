@@ -2991,7 +2991,7 @@ struct ProgramNewickVector : public ProgramProject
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "NewickVector"; }
+  std::string GetName() const { return "NewickVector"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
@@ -3007,7 +3007,7 @@ struct ProgramTwoDigitNewick : public ProgramProject
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "TwoDigitNewick"; }
+  std::string GetName() const { return "TwoDigitNewick"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }
@@ -3027,7 +3027,7 @@ struct ProgramCreateSitemap : public ProgramTool
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return ""; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "CreateSitemap"; }
+  std::string GetName() const { return "CreateSitemap"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::nvr; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::yes; }
@@ -3043,7 +3043,7 @@ struct ProgramEncranger : public ProgramTool
   std::string GetFilenameDesktop() const noexcept { return ""; }
   std::string GetFilenameDesktopWindowsOnly() const noexcept { return "ToolEncranger_1_0.png"; }
   std::string GetFilenameWeb() const noexcept { return ""; }
-  const std::string GetName() const { return "Encranger"; }
+  std::string GetName() const { return "Encranger"; }
   ProgramStatus GetStatusConsole() const noexcept { return ProgramStatus::no; }
   ProgramStatus GetStatusDesktopWindowsOnly() const noexcept { return ProgramStatus::yes; }
   ProgramStatus GetStatusDesktop() const noexcept { return ProgramStatus::no; }

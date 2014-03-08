@@ -94,6 +94,9 @@ struct Widget
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
 
+  ///Add the nodes to the current (can be zero) nodes in focus
+  void AddFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
+
   ///Adds back a deleted Node
   //This is used by CommandDeleteNode::Undo
   void AddNode(const boost::shared_ptr<Node> node) noexcept;
@@ -120,12 +123,16 @@ struct Widget
   boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
 
-  ///Used by CommandSetFocusRandom
-  boost::shared_ptr<Node> GetRandomNode() noexcept;
+  ///Used by CommandAddFocusRandom and CommandSetFocusRandom
+  ///Of all the concept maps its nodes, except for the uses supplied as the
+  ///argument, return 1 to all the nodes, except when there is no node
+  ///left (as all are excluded) or the concept map does not have any nodes
+  std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
 
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
+  ///Set the nodes to the only nodes in focus
   void SetFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
 
   #ifndef NDEBUG
@@ -133,6 +140,7 @@ struct Widget
   #endif
 
   //friend class Command;
+  friend class CommandAddFocusRandom;
   friend class CommandCreateNewConceptMap;
   friend class CommandCreateNewEdge;
   friend class CommandCreateNewNode;

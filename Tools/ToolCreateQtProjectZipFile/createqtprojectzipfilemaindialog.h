@@ -9,7 +9,7 @@ struct CreateQtProjectZipFileMainDialog
 {
   CreateQtProjectZipFileMainDialog(const std::string& source_folder);
 
-  const std::string GetScript() const noexcept { return m_script; }
+  std::string GetScript() const noexcept { return m_script; }
 
   private:
   const std::string m_script;

@@ -38,7 +38,7 @@ struct TestShapeMenuDialog : public MenuDialog
   ///
   ///This is a non-static method to force this class its constructor being
   ///called, creating the file from the application its resource file
-  const std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
+  std::string GetFilenameImageWelcome() const { return "ToolTestShapeWelcome.png"; }
   boost::shared_ptr<const Program> GetProgram() const noexcept;
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;

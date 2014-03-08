@@ -44,14 +44,14 @@ struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
   ProjectRichelBilderbeekMenuDialog();
   ~ProjectRichelBilderbeekMenuDialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
-  const About GetAbout() const noexcept { return GetAboutStatic(); }
+  About GetAbout() const noexcept { return GetAboutStatic(); }
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;
 
   ///Get every Program by Richel Bilderbeek
   //const std::vector<boost::shared_ptr<Program> >& GetPrograms() const noexcept { return m_programs; }
-  const std::string GetVersion() const noexcept { return GetVersionStatic(); }
-  const std::vector<std::string> GetVersionHistory() const noexcept { return GetVersionHistoryStatic(); }
+  std::string GetVersion() const noexcept { return GetVersionStatic(); }
+  std::vector<std::string> GetVersionHistory() const noexcept { return GetVersionHistoryStatic(); }
 
   private:
   ///All program menus
@@ -60,7 +60,7 @@ struct ProjectRichelBilderbeekMenuDialog : public ::ribi::MenuDialog
   ///Create all menus
   static const std::vector<boost::shared_ptr<MenuDialog>> CreateMenus() noexcept;
 
-  static const About GetAboutStatic() noexcept;
+  static About GetAboutStatic() noexcept;
   static std::string GetVersionStatic() noexcept;
   static std::vector<std::string> GetVersionHistoryStatic() noexcept;
 

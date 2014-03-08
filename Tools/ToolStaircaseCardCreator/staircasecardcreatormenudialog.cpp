@@ -21,14 +21,14 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-ribi::scc::StaircaseCardCreatorMenuDialog::StaircaseCardCreatorMenuDialog()
+ribi::scc::MenuDialog::MenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
 }
 
-int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector<std::string>& /* argv */) noexcept
+int ribi::scc::MenuDialog::ExecuteSpecific(const std::vector<std::string>& /* argv */) noexcept
 {
   //const int argc = static_cast<int>(argv.size());
   {
@@ -43,7 +43,7 @@ int ribi::scc::StaircaseCardCreatorMenuDialog::ExecuteSpecific(const std::vector
   return 0;
 }
 
-const ribi::About ribi::scc::StaircaseCardCreatorMenuDialog::GetAbout() const noexcept
+ribi::About ribi::scc::MenuDialog::GetAbout() const noexcept
 {
   ribi::About a {
     "Richel Bilderbeek",
@@ -61,7 +61,7 @@ const ribi::About ribi::scc::StaircaseCardCreatorMenuDialog::GetAbout() const no
 }
 
 
-const ribi::Help ribi::scc::StaircaseCardCreatorMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::scc::MenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -73,19 +73,19 @@ const ribi::Help ribi::scc::StaircaseCardCreatorMenuDialog::GetHelp() const noex
   );
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::scc::StaircaseCardCreatorMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::scc::MenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramStaircaseCardCreator);
   assert(p);
   return p;
 }
 
-const std::string ribi::scc::StaircaseCardCreatorMenuDialog::GetVersion() const noexcept
+std::string ribi::scc::MenuDialog::GetVersion() const noexcept
 {
   return "1.2";
 }
 
-const std::vector<std::string> ribi::scc::StaircaseCardCreatorMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::scc::MenuDialog::GetVersionHistory() const noexcept
 {
   const std::vector<std::string> v {
     "2010-xx-xx: version 1.0: initial version",
@@ -96,7 +96,7 @@ const std::vector<std::string> ribi::scc::StaircaseCardCreatorMenuDialog::GetVer
 }
 
 #ifndef NDEBUG
-void ribi::scc::StaircaseCardCreatorMenuDialog::Test() noexcept
+void ribi::scc::MenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;

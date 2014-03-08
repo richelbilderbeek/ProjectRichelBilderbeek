@@ -20,7 +20,7 @@ namespace ribi {
 
 ///Help adding constness a bit
 template <class T>
-const std::vector<boost::shared_ptr<const T> > AddConst(
+std::vector<boost::shared_ptr<const T> > AddConst(
   const std::vector<boost::shared_ptr<T> > v) noexcept
 {
   const std::vector<boost::shared_ptr<const T> > w(v.begin(),v.end());
@@ -34,7 +34,7 @@ const std::vector<boost::shared_ptr<const T> > AddConst(
 
 ///Help adding constness a bit
 template <class T>
-const std::vector<const T *> AddConst(
+std::vector<const T *> AddConst(
   const std::vector<T *> v) noexcept
 {
   const std::vector<const T *> w(v.begin(),v.end());

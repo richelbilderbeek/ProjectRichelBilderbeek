@@ -25,7 +25,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::RegexTesterMainDialog>
+boost::shared_ptr<ribi::RegexTesterMainDialog>
   ribi::RegexTesterCpp11MainDialog::Clone() const noexcept
 {
   boost::shared_ptr<RegexTesterMainDialog> d(

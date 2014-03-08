@@ -22,7 +22,7 @@ struct CommandCreateNewEdge : public Command
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
   void DoCommandSpecific(Widget * const widget) noexcept;
-  std::string ToStr() const noexcept { return "create new node"; }
+  std::string ToStr() const noexcept { return "create new edge"; }
   void Undo() noexcept;
 
   private:

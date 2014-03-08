@@ -22,6 +22,45 @@ ribi::Geometry::Geometry()
   #endif
 }
 
+boost::geometry::model::d2::point_xy<double> ribi::Geometry::CalcCenter(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
+{
+  typedef boost::geometry::model::d2::point_xy<double> T;
+  T sum(0.0,0.0);
+  for (const auto& point: points)
+  {
+    sum.x(sum.x() + point.x());
+    sum.y(sum.y() + point.y());
+  }
+  const double n { static_cast<double>(points.size()) };
+  const T center(
+    sum.x() / n,
+    sum.y() / n
+  );
+  return center;
+
+}
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geometry::CalcCenter(const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points) const noexcept
+{
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> T;
+  double sum_x = 0.0;
+  double sum_y = 0.0;
+  double sum_z = 0.0;
+  for (const auto& point: points)
+  {
+    sum_x += boost::geometry::get<0>(point);
+    sum_y += boost::geometry::get<1>(point);
+    sum_z += boost::geometry::get<2>(point);
+  }
+  const double n { static_cast<double>(points.size()) };
+  const T center(
+    sum_x / n,
+    sum_y / n,
+    sum_z / n
+  );
+  return center;
+}
+
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Geometry::CalcCrossProduct(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& a,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& b
@@ -60,6 +99,24 @@ std::vector<double> ribi::Geometry::CalcPlane(
   const double d { ((a * x) + (b * y) + (c * z)) };
   return { a,b,c,d };
 
+}
+
+boost::geometry::model::d2::point_xy<double> ribi::Geometry::Coordinat2DToBoostGeometryPointXy(
+  const ribi::Coordinat2D& c
+) const noexcept
+{
+  return boost::geometry::model::d2::point_xy<double>(
+    c.GetX(),c.GetY()
+  );
+}
+
+std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordinats2DToBoostGeometryPointsXy(
+  const std::vector<ribi::Coordinat2D>& v
+) const noexcept
+{
+  std::vector<boost::geometry::model::d2::point_xy<double>> w;
+  for (auto c: v) { w.push_back(Coordinat2DToBoostGeometryPointXy(c)); }
+  return w;
 }
 
 double ribi::Geometry::Fmod(const double x, const double mod) const noexcept
@@ -151,7 +208,7 @@ bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const C
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    const auto v(
+    const std::vector<boost::geometry::model::d2::point_xy<double>> v(
       Plane().CalcProjection(
         {
           points[0].ToBoostGeometryPoint(),
@@ -162,6 +219,7 @@ bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const C
       )
     );
     //If the points are messed up, they cannot be clockwise
+
     if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
     //The neatly orderder point have the same winding as the first three
     std::vector<Coordinat3D> a;
@@ -174,7 +232,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat2D>& point
 {
   //Points are determined from their center
   const Coordinat2D center {
-    CalcCenter(points)
+    ::ribi::CalcCenter(points)
   };
   std::vector<double> angles;
   angles.reserve(points.size());
@@ -195,7 +253,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& point
 {
   //Points are determined from their center
   const Coordinat3D center {
-    CalcCenter(points)
+    ::ribi::CalcCenter(points)
   };
   std::vector<double> angles;
   angles.reserve(points.size());
@@ -206,6 +264,25 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& point
       return GetAngle(
         coordinat.GetX() - center.GetX(),
         coordinat.GetY() - center.GetY()
+      );
+    }
+  );
+  return IsClockwise(angles);
+}
+
+bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
+{
+  //Points are determined from their center
+  const auto center(CalcCenter(points));
+  std::vector<double> angles;
+  angles.reserve(points.size());
+  std::transform(points.begin(),points.end(),
+    std::back_inserter(angles),
+    [this,center](const boost::geometry::model::d2::point_xy<double>& coordinat)
+    {
+      return GetAngle(
+        coordinat.x() - center.x(),
+        coordinat.y() - center.y()
       );
     }
   );
@@ -223,6 +300,83 @@ bool ribi::Geometry::IsConvex(boost::geometry::model::polygon<boost::geometry::m
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
 {
   return points.empty();
+}
+
+bool ribi::Geometry::IsCounterClockwise(const double a, const double b) const noexcept
+{
+  return !IsClockwise(a,b);
+}
+
+bool ribi::Geometry::IsCounterClockwise(const std::vector<double>& angles) const noexcept
+{
+  const int sz = static_cast<int>(angles.size());
+  assert(sz >= 2 && "Need at least two angles to determine if these are counter-clockwise");
+  for (int i=0; i!=sz-1; ++i)
+  {
+    if (!IsCounterClockwise(angles[i],angles[i+1])) return false;
+  }
+  return true;
+}
+
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept
+{
+  //Points are determined from their center
+  const Coordinat2D center {
+    ::ribi::CalcCenter(points)
+  };
+  std::vector<double> angles;
+  angles.reserve(points.size());
+  std::transform(points.begin(),points.end(),
+    std::back_inserter(angles),
+    [this,center](const Coordinat2D& coordinat)
+    {
+      return GetAngle(
+        coordinat.GetX() - center.GetX(),
+        coordinat.GetY() - center.GetY()
+      );
+    }
+  );
+  return IsCounterClockwise(angles);
+}
+
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept
+{
+  //Points are determined from their center
+  const Coordinat3D center {
+    ::ribi::CalcCenter(points)
+  };
+  std::vector<double> angles;
+  angles.reserve(points.size());
+  std::transform(points.begin(),points.end(),
+    std::back_inserter(angles),
+    [this,center](const Coordinat3D& coordinat)
+    {
+      return GetAngle(
+        coordinat.GetX() - center.GetX(),
+        coordinat.GetY() - center.GetY()
+      );
+    }
+  );
+  return IsCounterClockwise(angles);
+}
+
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
+{
+  //Points are determined from their center
+  const auto center(CalcCenter(points));
+  std::vector<double> angles;
+  angles.reserve(points.size());
+  std::transform(points.begin(),points.end(),
+    std::back_inserter(angles),
+    [this,center](const boost::geometry::model::d2::point_xy<double>& coordinat)
+    {
+      return GetAngle(
+        coordinat.x() - center.x(),
+        coordinat.y() - center.y()
+      );
+    }
+  );
+  return IsCounterClockwise(angles);
 }
 
 #ifndef NDEBUG

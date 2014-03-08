@@ -6,15 +6,15 @@
 #include <QDesktopWidget>
 
 #include "fparser.hh"
-#include "qttestplanemaindialog.h"
+#include "qttesttrianglemeshmaindialog.h"
 #include "trace.h"
-#include "ui_qttestplanemaindialog.h"
+#include "ui_qttesttrianglemeshmaindialog.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
+ribi::QtTestTriangleMeshMainDialog::QtTestTriangleMeshMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestPlaneMainDialog)
+    ui(new Ui::QtTestTriangleMeshMainDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -47,12 +47,12 @@ ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
   }
 }
 
-ribi::QtTestPlaneMainDialog::~QtTestPlaneMainDialog() noexcept
+ribi::QtTestTriangleMeshMainDialog::~QtTestTriangleMeshMainDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestPlaneMainDialog::OnAnyChange()
+void ribi::QtTestTriangleMeshMainDialog::OnAnyChange()
 {
   try { boost::lexical_cast<double>(ui->edit_minx->text().toStdString()); }
   catch (boost::bad_lexical_cast&)
@@ -134,7 +134,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
   ui->surfaceplotwidget->SetSurfaceGrey(v);
 }
 
-double ribi::QtTestPlaneMainDialog::Rescale(
+double ribi::QtTestTriangleMeshMainDialog::Rescale(
   const double value,
   const double old_min,
   const double old_max,
@@ -155,20 +155,20 @@ double ribi::QtTestPlaneMainDialog::Rescale(
   return new_value;
 }
 
-void ribi::QtTestPlaneMainDialog::resizeEvent(QResizeEvent *)
+void ribi::QtTestTriangleMeshMainDialog::resizeEvent(QResizeEvent *)
 {
   OnAnyChange();
 }
 
 #ifndef NDEBUG
-void ribi::QtTestPlaneMainDialog::Test() noexcept
+void ribi::QtTestTriangleMeshMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneMainDialog::Test");
-  TRACE("Finished ribi::QtTestPlaneMainDialog::Test successfully");
+  TRACE("Starting ribi::QtTestTriangleMeshMainDialog::Test");
+  TRACE("Finished ribi::QtTestTriangleMeshMainDialog::Test successfully");
 }
 #endif

@@ -30,11 +30,11 @@ struct HometrainerResources
   ///Creates the resources from the resource file
   ///Throws a std::runtime_error if one of these is not found
   HometrainerResources();
-  const std::string GetQuestion() const noexcept { return "ToolHometrainerQuestion.png"; }
-  const std::string GetExerciseClouds() const noexcept { return "ToolHometrainerExerciseClouds.txt"; }
-  const std::string GetExerciseTest() const noexcept { return "ToolHometrainerExerciseTest.txt"; }
-  const std::string GetQuestionMark() const noexcept { return "ToolHometrainerQuestionmark.png"; }
-  const std::string GetWelcome() const noexcept { return "ToolHometrainerWelcome.png"; }
+  std::string GetQuestion() const noexcept { return "ToolHometrainerQuestion.png"; }
+  std::string GetExerciseClouds() const noexcept { return "ToolHometrainerExerciseClouds.txt"; }
+  std::string GetExerciseTest() const noexcept { return "ToolHometrainerExerciseTest.txt"; }
+  std::string GetQuestionMark() const noexcept { return "ToolHometrainerQuestionmark.png"; }
+  std::string GetWelcome() const noexcept { return "ToolHometrainerWelcome.png"; }
 };
 
 } //~namespace ribi

@@ -1,16 +1,16 @@
-include(../../Tools/ToolCodeToHtml/ToolCodeToHtmlConsole.pri)
+include(../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreatorConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.cpp \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmenudialog.cpp
+    ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormaindialog.cpp \
+    ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.h \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmenudialog.h
+    ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormaindialog.h \
+    ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormenudialog.h
 
 FORMS += \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmaindialog.ui \
-    ../../Tools/ToolCodeToHtml/qtcodetohtmlmenudialog.ui
+    ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormaindialog.ui \
+    ../../Tools/ToolStaircaseCardCreator/qtstaircasecardcreatormenudialog.ui
 
 RESOURCES += \
-    ../../Tools/ToolCodeToHtml/ToolCodeToHtml.qrc
+    ../../Tools/ToolStaircaseCardCreator/ToolStaircaseCardCreator.qrc

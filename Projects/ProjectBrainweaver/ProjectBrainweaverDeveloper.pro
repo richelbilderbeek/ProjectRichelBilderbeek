@@ -13,7 +13,7 @@ include(../../Libraries/GeneralDesktop.pri)
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
-#include(../../Classes/CppHelp/CppHelp.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
 #include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
 #include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 

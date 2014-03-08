@@ -75,6 +75,13 @@ ribi::cmap::Widget::Widget(const Widget& other)
 }
 #endif
 
+void ribi::cmap::Widget::AddFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept
+{
+  assert(std::count(nodes.begin(),nodes.end(),nullptr) == 0);
+  std::copy(nodes.begin(),nodes.end(),std::back_inserter(m_focus));
+  m_signal_set_focus_nodes(nodes);
+}
+
 void ribi::cmap::Widget::AddNode(const boost::shared_ptr<ribi::cmap::Node> node) noexcept
 {
   #ifndef NDEBUG
@@ -254,14 +261,26 @@ std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetFocus() 
   return m_focus;
 }
 
-boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode() noexcept
+std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetRandomNodes(
+  std::vector<boost::shared_ptr<const Node>> nodes_to_exclude
+) noexcept
 {
   assert(!GetConceptMap()->GetNodes().empty());
-  const std::vector<boost::shared_ptr<Node>> nodes = GetConceptMap()->GetNodes();
-  const int i = (std::rand() >> 4) % nodes.size();
-  assert(i < static_cast<int>(nodes.size()));
-  assert(nodes[i]);
-  return nodes[i];
+  auto nodes(GetConceptMap()->GetNodes());
+  std::sort(nodes.begin(),nodes.end());
+  std::sort(nodes_to_exclude.begin(),nodes_to_exclude.end());
+  //Find the Nodes present in nodes, absent in nodes_to_exclude
+  decltype(nodes) focus_nodes;
+  std::set_difference(
+    nodes.begin(),nodes.end(),
+    nodes_to_exclude.begin(),nodes_to_exclude.end(),
+    std::back_inserter(focus_nodes)
+  );
+
+  std::random_shuffle(focus_nodes.begin(),focus_nodes.end());
+  const int n = std::rand() % focus_nodes.size();
+  focus_nodes.resize(n);
+  return focus_nodes;
 }
 
 std::string ribi::cmap::Widget::GetVersion() noexcept

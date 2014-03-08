@@ -38,13 +38,13 @@ struct GrayCoderMainDialog
   int GetGrayInt() const noexcept { return IntToGray(m_i); }
 
   ///Get the Gray code integer as a std::string of zeroes and ones
-  const std::string GetGrayIntAsBitStr() const { return IntToBitString(IntToGray(m_i)); }
+  std::string GetGrayIntAsBitStr() const { return IntToBitString(IntToGray(m_i)); }
 
   ///Get the normal integer
   int GetNormalInt() const noexcept { return m_i; }
 
   ///Get the normal integer as a std::string of zeroes and ones
-  const std::string GetNormalIntAsBitStr() const { return IntToBitString(m_i); }
+  std::string GetNormalIntAsBitStr() const { return IntToBitString(m_i); }
 
   ///Set the Gray code integer, creates the normal integer
   void SetGrayInt(const int i) { m_i = GrayToInt(i); }

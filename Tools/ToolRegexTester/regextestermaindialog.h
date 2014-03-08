@@ -41,19 +41,19 @@ struct RegexTesterMainDialog
   virtual ~RegexTesterMainDialog() noexcept {}
 
   ///Clone this class
-  virtual const boost::shared_ptr<RegexTesterMainDialog> Clone() const noexcept = 0;
+  virtual boost::shared_ptr<RegexTesterMainDialog> Clone() const noexcept = 0;
 
   ///Get an example format used to replace regex matches
-  virtual const std::string GetExampleFormat() const noexcept = 0;
+  virtual std::string GetExampleFormat() const noexcept = 0;
 
   ///Get an example line to apply a regex on
-  virtual const std::string GetExampleLine() const noexcept
+  virtual std::string GetExampleLine() const noexcept
   {
     return "Both '1234 AB' and '9999 ZZ' are valid Dutch zip codes";
   }
 
   ///Get an example regex
-  virtual const std::string GetExampleRegex() const noexcept = 0;
+  virtual std::string GetExampleRegex() const noexcept = 0;
 
   ///Is the regex valid?
   virtual bool GetRegexValid(const std::string& regex_str) const noexcept = 0;
@@ -63,18 +63,18 @@ struct RegexTesterMainDialog
 
   ///Get all regex matches withing a line
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm
-  virtual const std::vector<std::string> GetRegexMatches(
+  virtual std::vector<std::string> GetRegexMatches(
     const std::string& s,
     const std::string& r) const = 0;
 
   ///Replace all regexes in a std::string following a regex and a format
-  virtual const std::string GetRegexReplace(
+  virtual std::string GetRegexReplace(
     const std::string& str,
     const std::string& regex_str,
     const std::string& format_str) const = 0;
 
   ///Obtain a description of the used implementation
-  virtual const std::string GetUsedImplementation() const noexcept = 0;
+  virtual std::string GetUsedImplementation() const noexcept = 0;
 
   static std::vector<std::string> GetTestRegexes() noexcept;
   static std::vector<std::string> GetTestStrings() noexcept;

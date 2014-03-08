@@ -1,14 +1,14 @@
-include(../../Tools/ToolTestPlane/ToolTestPlaneConsole.pri)
+include(../../Tools/ToolTestTriangleMesh/ToolTestTriangleMeshConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolTestPlane/qttestplanemenudialog.cpp \
-    ../../Tools/ToolTestPlane/qttestplanemaindialog.cpp
+    ../../Tools/ToolTestTriangleMesh/qttesttrianglemeshmenudialog.cpp \
+    ../../Tools/ToolTestTriangleMesh/qttesttrianglemeshmaindialog.cpp
 
 FORMS += \
-    ../../Tools/ToolTestPlane/qttestplanemenudialog.ui \
-    ../../Tools/ToolTestPlane/qttestplanemaindialog.ui
+    ../../Tools/ToolTestTriangleMesh/qttesttrianglemeshmenudialog.ui \
+    ../../Tools/ToolTestTriangleMesh/qttesttrianglemeshmaindialog.ui
 
 HEADERS += \
-    ../../Tools/ToolTestPlane/qttestplanemenudialog.h \
-    ../../Tools/ToolTestPlane/qttestplanemaindialog.h
+    ../../Tools/ToolTestTriangleMesh/qttesttrianglemeshmenudialog.h \
+    ../../Tools/ToolTestTriangleMesh/qttesttrianglemeshmaindialog.h
 

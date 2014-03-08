@@ -155,6 +155,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "sitemapgeneratormenudialog.h"
 #include "sortedbinarynewickvector.h"
 #include "spaceharrymenudialog.h"
+#include "staircasecardcreatormenudialog.h"
 #include "stateobservermenudialog.h"
 #include "steadystatekalmanfilter.h"
 #include "steadystatekalmanfilterparameters.h"
@@ -177,6 +178,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testmultiplechoicequestionmenudialog.h"
 #include "testnewickvectordialog.h"
 #include "testopenquestionmenudialog.h"
+#include "testplanemenudialog.h"
 #include "testpylosmenudialog.h"
 #include "testqrcfilemenudialog.h"
 #include "testqtarrowitemsmenudialog.h"
@@ -191,6 +193,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testtextcanvasmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
 #include "testtogglebuttonmenudialog.h"
+#include "testtrianglemeshmenudialog.h"
 #include "testtwodigitnewickmenudialog.h"
 #include "textcanvas.h"
 #include "thresholdfilterermenudialog.h"
@@ -204,7 +207,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "toolmultiencrangermenudialog.h"
 #include "toolprimeexpertmenudialog.h"
 #include "toolsimplifynewickmenudialog.h"
-#include "toolsurfaceplottermenudialog.h"
+#include "surfaceplottermenudialog.h"
 #include "tooltestapproximatormenudialog.h"
 #include "tooltestapproximatormenudialog.h"
 #include "tooltestmultiapproximatormenudialog.h"
@@ -399,6 +402,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("SimpleLinearRegression version: " + SimpleLinearRegression::GetVersion());
   a.AddLibrary("SortedBinaryNewickVector version: " + SortedBinaryNewickVector::GetVersion());
   a.AddLibrary("SpaceHarry version: " + SpaceHarryMenuDialog().GetVersion());
+  a.AddLibrary("StaircaseCardCreator version: " + scc::MenuDialog().GetVersion());
   a.AddLibrary("StateObserver version: " + StateObserverMenuDialog().GetVersion());
   a.AddLibrary("Stopwatch version: " + Stopwatch::GetVersion());
   a.AddLibrary("SuperNsanaBros version: " + NsanaBrosMenuDialog().GetVersion());
@@ -417,6 +421,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestShinyButton version: " + TestShinyButtonMenuDialog().GetVersion());
   a.AddLibrary("TestSimpleLinearRegression version: " + ToolTestSimpleLinearRegressionMenuDialog().GetVersion());
   a.AddLibrary("TestToggleButton version: " + TestToggleButtonMenuDialog().GetVersion());
+  a.AddLibrary("TestTriangleMesh version: " + TestTriangleMeshMenuDialog().GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
   a.AddLibrary("TicTacToe (game) version: " + TicTacToeMenuDialog().GetVersion());
   a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
@@ -2020,7 +2025,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       case ProgramType::stateObserver: p.reset(new StateObserverMenuDialog); break;
       case ProgramType::styleSheetSetter: p.reset(new StyleSheetSetterMenuDialog); break;
       case ProgramType::superNsanaBros: p.reset(new NsanaBrosMenuDialog); break;
-      case ProgramType::surfacePlotter: p.reset(new ToolSurfacePlotterMenuDialog); break;
+      case ProgramType::surfacePlotter: p.reset(new SurfacePlotterMenuDialog); break;
       case ProgramType::surfacePlotterVcl:
       {
         const std::string version = "x.x";
@@ -2429,6 +2434,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       }
       break;
       case ProgramType::testOpenQuestion: p.reset(new TestOpenQuestionMenuDialog); break;
+      case ProgramType::testPlane: p.reset(new TestPlaneMenuDialog); break;
       case ProgramType::testPylos: p.reset(new TestPylosMenuDialog); break;
       case ProgramType::testQrcFile: p.reset(new TestQrcFileMenuDialog); break;
       case ProgramType::testQtArrowItems : p.reset(new TestQtArrowItemsMenuDialog); break;
@@ -2679,6 +2685,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
       }
       break;
       case ProgramType::testToggleButton: p.reset(new TestToggleButtonMenuDialog); break;
+      case ProgramType::testTriangleMesh: p.reset(new TestTriangleMeshMenuDialog); break;
       case ProgramType::testTwoDigitNewick: p.reset(new TestTwoDigitNewickMenuDialog); break;
       case ProgramType::thorVeen:
       {

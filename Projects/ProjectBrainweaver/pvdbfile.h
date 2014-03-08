@@ -125,7 +125,7 @@ struct File
   boost::shared_ptr<ribi::cmap::ConceptMap> m_concept_map;
 
   ///The file extension of a a File
-  static std::string m_filename_extension;
+  static const std::string m_filename_extension;
 
   ///The question the student must answer
   std::string m_question;

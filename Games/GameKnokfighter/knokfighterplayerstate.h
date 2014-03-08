@@ -28,7 +28,7 @@ struct PlayerState
   virtual void Tick() = 0;
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  virtual const std::string ToStr() const = 0;
+  virtual std::string ToStr() const = 0;
 
   protected:
 
@@ -43,7 +43,7 @@ struct PlayerState
 struct PlayerStateAttack : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateAttack(Player * const player) : PlayerState(player) {}
+  PlayerStateAttack(Player * const player) : PlayerState(player), m_ticks_left{0} {}
 
   ///Respond to a key press
   void PressKey(const Key& key);

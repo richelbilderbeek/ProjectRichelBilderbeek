@@ -35,7 +35,7 @@ struct CodeToHtmlMenuDialog : public MenuDialog
 {
   CodeToHtmlMenuDialog();
   ~CodeToHtmlMenuDialog() noexcept {}
-  const ribi::About GetAbout() const noexcept;
+  About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;
   std::string GetVersion() const noexcept;

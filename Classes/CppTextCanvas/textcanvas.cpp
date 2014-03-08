@@ -66,7 +66,7 @@ char ribi::TextCanvas::GetChar(const int x, const int y) const noexcept
   return m_canvas[y][x];
 }
 
-bool ribi::TextCanvas::IsInRange(const int x, const int y) const
+bool ribi::TextCanvas::IsInRange(const int x, const int y) const noexcept
 {
   if (   x < 0
       || y < 0

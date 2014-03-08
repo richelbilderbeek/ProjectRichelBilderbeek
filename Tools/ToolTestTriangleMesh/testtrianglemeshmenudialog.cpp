@@ -44,7 +44,7 @@ ribi::About ribi::TestTriangleMeshMenuDialog::GetAbout() const noexcept
 
 ribi::Help ribi::TestTriangleMeshMenuDialog::GetHelp() const noexcept
 {
-  return ribi::Help(
+  return Help(
     this->GetAbout().GetFileTitle(),
     this->GetAbout().GetFileDescription(),
     {

@@ -21,6 +21,7 @@ include(../../Classes/CppCoordinat/CppCoordinat.pri)
 include(../../Classes/CppConceptMap/CppConceptMap.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
+include(../../Classes/CppPlane/CppPlane.pri)
 include(../../Classes/CppXml/CppXml.pri)
 #Specific, desktop
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)

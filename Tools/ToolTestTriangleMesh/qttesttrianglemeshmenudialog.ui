@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtTestPlaneMenuDialog</class>
- <widget class="QDialog" name="QtTestPlaneMenuDialog">
+ <class>QtTestTriangleMeshMenuDialog</class>
+ <widget class="QDialog" name="QtTestTriangleMeshMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
    <string>SurfacePlotter</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -29,7 +29,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>:/images/ToolSurfacePlotterMenuImage.png</pixmap>
+      <pixmap resource="../ToolSurfacePlotter/ToolSurfacePlotter.qrc">:/images/ToolSurfacePlotterMenuImage.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -60,6 +60,9 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc"/>
+  <include location="../ToolSurfacePlotter/ToolSurfacePlotter.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -23,10 +23,10 @@ struct QtAthleticLandResources
   const QPixmap m_background;
   const std::map<State,QPixmap> m_player;
 
-  const std::vector<std::string> GetAllFilenames() const noexcept;
-  const std::string GetBackgroundFilename() const noexcept { return "Background1.png"; }
-  const std::string GetPlayerFilename() const noexcept { return "MainCharStandRight.png"; }
-  const std::string GetQtResourcesBasename() const noexcept { return ":/GameAthleticLand/images"; }
+  std::vector<std::string> GetAllFilenames() const noexcept;
+  std::string GetBackgroundFilename() const noexcept { return "Background1.png"; }
+  std::string GetPlayerFilename() const noexcept { return "MainCharStandRight.png"; }
+  std::string GetQtResourcesBasename() const noexcept { return ":/GameAthleticLand/images"; }
 };
 
 } //~namespace ribi

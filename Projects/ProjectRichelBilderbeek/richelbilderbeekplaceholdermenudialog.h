@@ -14,11 +14,11 @@ struct PlaceholderMenuDialog : public MenuDialog
     const std::string& version,
     const std::vector<std::string> version_history);
   ~PlaceholderMenuDialog() noexcept {}
-  const About GetAbout() const noexcept { return m_about; }
+  About GetAbout() const noexcept { return m_about; }
   Help GetHelp() const noexcept;
-  const boost::shared_ptr<const Program> GetProgram() const noexcept { return m_program; }
-  const std::string GetVersion() const noexcept { return m_version; }
-  const std::vector<std::string> GetVersionHistory() const noexcept { return m_version_history; }
+  boost::shared_ptr<const Program> GetProgram() const noexcept { return m_program; }
+  std::string GetVersion() const noexcept { return m_version; }
+  std::vector<std::string> GetVersionHistory() const noexcept { return m_version_history; }
 
   private:
   const About m_about;

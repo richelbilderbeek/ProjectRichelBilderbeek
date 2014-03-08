@@ -1,23 +1,23 @@
-#ifndef QTTESTPLANEMENUDIALOG_H
-#define QTTESTPLANEMENUDIALOG_H
+#ifndef QTTESTTRIANGLEMESHMENUDIALOG_H
+#define QTTESTTRIANGLEMESHMENUDIALOG_H
 
 #include "qthideandshowdialog.h"
 
 namespace Ui {
-  class QtTestPlaneMenuDialog;
+  class QtTestTriangleMeshMenuDialog;
 }
 
 namespace ribi {
 
-class QtTestPlaneMenuDialog : public QtHideAndShowDialog
+class QtTestTriangleMeshMenuDialog : public QtHideAndShowDialog
 {
     Q_OBJECT
     
 public:
-  explicit QtTestPlaneMenuDialog(QWidget *parent = 0);
-  QtTestPlaneMenuDialog(const QtTestPlaneMenuDialog&) = delete;
-  QtTestPlaneMenuDialog& operator=(const QtTestPlaneMenuDialog&) = delete;
-  ~QtTestPlaneMenuDialog() noexcept;
+  explicit QtTestTriangleMeshMenuDialog(QWidget *parent = 0);
+  QtTestTriangleMeshMenuDialog(const QtTestTriangleMeshMenuDialog&) = delete;
+  QtTestTriangleMeshMenuDialog& operator=(const QtTestTriangleMeshMenuDialog&) = delete;
+  ~QtTestTriangleMeshMenuDialog() noexcept;
     
 private slots:
   void on_button_start_clicked();
@@ -25,7 +25,7 @@ private slots:
   void on_button_quit_clicked();
 
 private:
-  Ui::QtTestPlaneMenuDialog *ui;
+  Ui::QtTestTriangleMeshMenuDialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -34,4 +34,4 @@ private:
 
 } //~namespace ribi
 
-#endif // QTTESTPLANEMENUDIALOG_H
+#endif // QTTESTTRIANGLEMESHMENUDIALOG_H

@@ -3,16 +3,16 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtaboutdialog.h"
 #include "qtsurfaceplotwidget.h"
-#include "testplanemenudialog.h"
-#include "qttestplanemaindialog.h"
-#include "qttestplanemenudialog.h"
+#include "testtrianglemeshmenudialog.h"
+#include "qttesttrianglemeshmaindialog.h"
+#include "qttesttrianglemeshmenudialog.h"
 #include "trace.h"
-#include "ui_qttestplanemenudialog.h"
+#include "ui_qttesttrianglemeshmenudialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestPlaneMenuDialog::QtTestPlaneMenuDialog(QWidget *parent)
+ribi::QtTestTriangleMeshMenuDialog::QtTestTriangleMeshMenuDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
-    ui(new Ui::QtTestPlaneMenuDialog)
+    ui(new Ui::QtTestTriangleMeshMenuDialog)
 {
   #ifndef NDEBUG
   Test();
@@ -20,39 +20,39 @@ ribi::QtTestPlaneMenuDialog::QtTestPlaneMenuDialog(QWidget *parent)
   ui->setupUi(this);
 }
 
-ribi::QtTestPlaneMenuDialog::~QtTestPlaneMenuDialog() noexcept
+ribi::QtTestTriangleMeshMenuDialog::~QtTestTriangleMeshMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTestPlaneMenuDialog::on_button_start_clicked()
+void ribi::QtTestTriangleMeshMenuDialog::on_button_start_clicked()
 {
-  QtTestPlaneMainDialog d;
+  QtTestTriangleMeshMainDialog d;
   this->ShowChild(&d);
 }
 
-void ribi::QtTestPlaneMenuDialog::on_button_about_clicked()
+void ribi::QtTestTriangleMeshMenuDialog::on_button_about_clicked()
 {
-  About a(TestPlaneMenuDialog().GetAbout());
+  About a(TestTriangleMeshMenuDialog().GetAbout());
   //a.AddLibrary("QtSurfacePlotWidget version: " + QtSurfacePlotWidget::GetVersion());
   QtAboutDialog d(a);
   this->ShowChild(&d);
 }
 
-void ribi::QtTestPlaneMenuDialog::on_button_quit_clicked()
+void ribi::QtTestTriangleMeshMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::QtTestPlaneMenuDialog::Test() noexcept
+void ribi::QtTestTriangleMeshMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestPlaneMenuDialog::Test");
-  TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");
+  TRACE("Starting ribi::QtTestTriangleMeshMenuDialog::Test");
+  TRACE("Finished ribi::QtTestTriangleMeshMenuDialog::Test successfully");
 }
 #endif

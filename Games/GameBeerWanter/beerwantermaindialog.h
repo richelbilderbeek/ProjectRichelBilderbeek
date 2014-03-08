@@ -52,7 +52,7 @@ struct BeerWanterMainDialog
   int GetSpriteHeight() const { return m_sprite_height; }
   int GetSpriteWidth()  const { return m_sprite_width ; }
   int GetWindowHeight() const { return m_window_height; }
-  const std::string GetWindowTitle() const;
+  std::string GetWindowTitle() const;
   int GetWindowWidth()  const { return m_window_width ; }
   int GetWindowX() const { return m_window_x; }
   int GetWindowY() const { return m_window_y; }

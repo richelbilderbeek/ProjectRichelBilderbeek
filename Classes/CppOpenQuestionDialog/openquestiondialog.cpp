@@ -47,7 +47,7 @@ ribi::OpenQuestionDialog::OpenQuestionDialog(const boost::shared_ptr<const OpenQ
   assert(GetQuestion());
 }
 
-const boost::shared_ptr<const ribi::Question> ribi::OpenQuestionDialog::GetQuestion() const noexcept
+boost::shared_ptr<const ribi::Question> ribi::OpenQuestionDialog::GetQuestion() const noexcept
 {
   return m_question;
 }
