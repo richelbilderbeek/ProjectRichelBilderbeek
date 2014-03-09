@@ -6,7 +6,8 @@
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 
-namespace Knokfighter {
+namespace ribi {
+namespace knok {
 
 struct PlayerState;
 struct Key;
@@ -52,6 +53,7 @@ struct Player
 
 std::ostream& operator<<(std::ostream& os, const Player& gumballMachine);
 
-} //~namespace Knokfighter
+} //~namespace knok
+} //~namespace ribi
 
 #endif // KNOKFIGHTERPLAYER_H

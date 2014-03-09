@@ -1,6 +1,6 @@
 #include "knokfighterkey.h"
 
-namespace Knokfighter {
+namespace knok {
 
 
-} //~namespace Knokfighter
+} //~namespace knok

@@ -205,6 +205,14 @@ void ribi::cmap::Widget::DeleteNode(const boost::shared_ptr<Node> node) noexcept
 
 void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noexcept
 {
+  assert(command);
+  if (!CanDoCommand(command))
+  {
+    TRACE("ERROR");
+    TRACE(command->ToStr());
+    TRACE("BREAK");
+  }
+
   assert(CanDoCommand(command));
   TRACE(command->ToStr());
 
@@ -277,8 +285,10 @@ std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetRandomNo
     std::back_inserter(focus_nodes)
   );
 
+  if (focus_nodes.empty()) return focus_nodes;
+  if (focus_nodes.size() == 1) return focus_nodes;
   std::random_shuffle(focus_nodes.begin(),focus_nodes.end());
-  const int n = std::rand() % focus_nodes.size();
+  const int n = 1 + (std::rand() % (focus_nodes.size() - 1));
   focus_nodes.resize(n);
   return focus_nodes;
 }
@@ -429,7 +439,8 @@ void ribi::cmap::Widget::Test() noexcept
   {
     for (const boost::shared_ptr<Widget> widget: WidgetFactory::GetAllTests())
     {
-      const boost::shared_ptr<Command> cmd { CommandFactory::CreateTestCommands()[i] };
+      assert(widget);
+      const boost::shared_ptr<Command> cmd(CommandFactory::CreateTestCommands()[i]);
       assert(cmd);
       TRACE(cmd->ToStr());
       if (widget->CanDoCommand(cmd))

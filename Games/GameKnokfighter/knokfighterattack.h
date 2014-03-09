@@ -1,10 +1,10 @@
 #ifndef KNOKFIGHTERATTACK_H
 #define KNOKFIGHTERATTACK_H
 
-namespace Knokfighter {
+namespace knok {
 
 enum class Attack { high_kick, high_punch, low_kick, low_punch };
 
-} //~namespace Knokfighter
+} //~namespace knok
 
 #endif // KNOKFIGHTERATTACK_H

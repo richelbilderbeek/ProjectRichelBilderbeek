@@ -69,9 +69,12 @@ const std::vector<boost::shared_ptr<ribi::pvdb::File> > ribi::pvdb::FileFactory:
     assert(f);
     const boost::shared_ptr<ribi::cmap::ConceptMap> concept_map
       = cmap::ConceptMapFactory::GetHeteromorphousTestConceptMaps().at(0);
-    assert(concept_map);
-    f->SetConceptMap(concept_map);
-    v.push_back(f);
+    if (!concept_map->GetNodes().empty())
+    {
+      assert(concept_map);
+      f->SetConceptMap(concept_map);
+      v.push_back(f);
+    }
   }
   //[2]: file with complex concept map
   {

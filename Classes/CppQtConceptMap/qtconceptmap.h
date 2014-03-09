@@ -93,17 +93,20 @@ protected:
   std::vector<QtEdge*> FindEdges(const QtNode * const from) const noexcept;
 
   //Find the Qt edge with the same from and to
-  const QtEdge * FindQtEdge(const boost::shared_ptr<const Edge> edge) const noexcept;
+  const QtEdge * FindQtEdgeConst(const boost::shared_ptr<const Edge> edge) const noexcept;
         QtEdge * FindQtEdge(const boost::shared_ptr<      Edge> edge)       noexcept;
-  const QtEdge * FindQtEdge(const QtEdge* const edge) const noexcept;
+  const QtEdge * FindQtEdge(     const QtEdge* const edge) const noexcept { return FindQtEdgeConst(edge); }
+  const QtEdge * FindQtEdgeConst(const QtEdge* const edge) const noexcept;
         QtEdge * FindQtEdge(const QtEdge* const edge)       noexcept;
-  const QtEdge * FindQtEdge(
+  const QtEdge * FindQtEdgeConst(
     const QtNode* const from,
     const QtNode* const to) const noexcept;
 
   ///Find the QtNode containing the Node
   //QtNode * FindQtNode(boost::shared_ptr<Node> node) const { return FindQtNode(node.get()); }
-  QtNode * FindQtNode(Node * const node) const noexcept;
+  const QtNode * FindQtNodeConst(const Node * const node) const noexcept;
+  const QtNode * FindQtNode     (const Node * const node) const noexcept { return FindQtNodeConst(node); }
+        QtNode * FindQtNode(           Node * const node)       noexcept;
 
   ///Obtain the center node
   const QtNode * GetCenterNode() const noexcept;

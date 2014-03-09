@@ -439,6 +439,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
       const boost::shared_ptr<CommandSetFocusRandom> cmd(
         new CommandSetFocusRandom
       );
+
       //w->show();
       //assert(w->isVisible());
       //assert(c->isVisible());
@@ -452,9 +453,9 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
         new CommandDeleteFocusNode
       );
       w->DoCommand(cmd);
-
-      assert(static_cast<int>(m->GetNodes().size()) + 1 == n_nodes_before);
-      assert(static_cast<int>(c->GetQtNodes().size()) + 1 == n_qtnodes_before);
+      const int n_deleted = cmd->CountDeleted();
+      assert(static_cast<int>(m->GetNodes().size()) + n_deleted == n_nodes_before);
+      assert(static_cast<int>(c->GetQtNodes().size()) + n_deleted == n_qtnodes_before);
 
       cmd->Undo();
 

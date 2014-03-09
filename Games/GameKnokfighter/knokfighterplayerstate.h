@@ -3,7 +3,8 @@
 
 #include <string>
 
-namespace Knokfighter {
+namespace ribi {
+namespace knok {
 
 struct Attack;
 struct Key;
@@ -95,6 +96,7 @@ struct PlayerStateWalk : public PlayerState
   std::string ToStr() const;
 };
 
-} //~namespace Knokfighter
+} //~namespace knok
+} //~namespace ribi
 
 #endif // KNOKFIGHTERPLAYERSTATE_H

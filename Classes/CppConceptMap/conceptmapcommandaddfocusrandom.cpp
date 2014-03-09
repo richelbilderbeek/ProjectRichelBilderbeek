@@ -7,16 +7,34 @@
 #include "conceptmap.h"
 #include "conceptmapwidget.h"
 #include "conceptmaphelper.h"
+#include "trace.h"
 bool ribi::cmap::CommandAddFocusRandom::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
   assert(widget->GetConceptMap() || !widget->GetConceptMap());
-  return
-        widget->GetConceptMap()
-    && !widget->GetConceptMap()->GetNodes().empty()
-    && !const_cast<Widget*>(widget)->GetRandomNodes(AddConst(widget->GetFocus())).empty()
-  ;
+  const bool verbose = true;
+  if (!widget->GetConceptMap())
+  {
+    if (verbose) TRACE("AddFocus needs a concept map");
+    return false;
+  }
+  if (widget->GetConceptMap()->GetNodes().empty())
+  {
+    if (verbose) TRACE("AddFocus needs nodes to focus on");
+    return false;
+  }
 
+  if (const_cast<Widget*>(widget)->GetRandomNodes(AddConst(widget->GetFocus())).empty())
+  {
+    if (verbose)
+    {
+      TRACE("AddFocus needs non-focused nodes to focus on");
+      TRACE(widget->GetFocus().size());
+      TRACE(widget->GetConceptMap()->GetNodes().size());
+    }
+    return false;
+  }
+  return true;
 }
 
 void ribi::cmap::CommandAddFocusRandom::DoCommandSpecific(Widget * const widget) noexcept
@@ -42,7 +60,7 @@ void ribi::cmap::CommandAddFocusRandom::Undo() noexcept
 
   //Lose focus to this Node
   assert(std::count(m_old_focus.begin(),m_old_focus.end(),nullptr) == 0);
-  m_widget->AddFocus(m_old_focus);
+  m_widget->SetFocus(m_old_focus);
 
   m_widget->m_signal_set_focus_nodes(m_widget->m_focus);
 

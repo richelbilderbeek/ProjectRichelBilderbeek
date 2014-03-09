@@ -81,7 +81,7 @@ ribi::c2h::QtCodeToHtmlMainDialog::~QtCodeToHtmlMainDialog() noexcept
   delete ui;
 }
 
-const std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
+std::vector<std::string> ribi::c2h::QtCodeToHtmlMainDialog::EditToVector(
   const QPlainTextEdit * const edit) noexcept
 {
   std::vector<std::string> v;

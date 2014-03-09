@@ -81,6 +81,13 @@ void ribi::pvdb::File::AutoSave() const
 std::string ribi::pvdb::File::ConvertFrom_0_1(const std::string& s)
 {
   //Put <examples> around existing <example> tags
+  #ifndef NDEBUG
+  {
+    const std::string a = "a$b";
+    const std::string b = boost::algorithm::replace_all_copy(a,"$","");
+    assert(b == "ab");
+  }
+  #endif
   const std::string a = boost::algorithm::replace_all_copy(s,"</name><example>","</name><examples><example>");
   const std::string b = boost::algorithm::replace_all_copy(a,"</example></concept>","</example></examples></concept>");
   const std::string c = boost::algorithm::replace_all_copy(b,"<example>","<e$xample><text>");
@@ -89,7 +96,9 @@ std::string ribi::pvdb::File::ConvertFrom_0_1(const std::string& s)
   //Add <examples> when no <example> tags are present
   const std::string f = boost::algorithm::replace_all_copy(e,"</name></concept>","</name><examples></examples><complexity>-1</complexity><concreteness>-1</concreteness><specificity>-1</specificity></concept>");
   const std::string g = boost::algorithm::replace_all_copy(f,"$","");
+  assert(std::count(g.begin(),g.end(),'$') == 0);
   const std::string h = boost::algorithm::replace_all_copy(f,"<version>0.1</version>","<version>0.2</version>");
+  assert(std::count(h.begin(),h.end(),'$') == 0);
   return h;
 }
 
@@ -97,6 +106,7 @@ std::string ribi::pvdb::File::ConvertFrom_0_2(const std::string& s)
 {
   const std::string a = boost::algorithm::replace_all_copy(s,"</about><cluster>","</about><assessor_name></assessor_name><cluster>");
   const std::string b = boost::algorithm::replace_all_copy(a,"<version>0.2</version>","<version>0.3</version>");
+  assert(std::count(b.begin(),b.end(),'$') == 0);
   return b;
 }
 
@@ -124,6 +134,7 @@ std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
       "</examples><complexity>",
       "</examples><concept_is_complex>1</concept_is_complex><complexity>");
 
+  assert(std::count(e.begin(),e.end(),'$') == 0);
   return e;
 }
 
@@ -363,9 +374,10 @@ void ribi::pvdb::File::SetConceptMap(const boost::shared_ptr<ribi::cmap::Concept
 {
   assert(!m_concept_map && "Can only set when there is no concept map present yet");
   m_concept_map = concept_map;
-  assert(!m_concept_map->GetNodes().empty());
+  assert(m_concept_map->GetNodes().empty()
+    && "In Brainweaver, every ConceptMap must have at least one node");
   assert(m_concept_map->FindCenterNode()
-    && "The file's ConceptMap must have a CenterNode");
+    && "In Brainweaver, every ConceptMap must have a CenterNode");
   this->AutoSave();
 }
 

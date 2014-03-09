@@ -66,7 +66,7 @@ struct GalleryMenuDialog : public MenuDialog
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
   ///<p>&nbsp;</p>
-  const std::vector<std::string> ToHtml(const Program& p) const noexcept;
+  std::vector<std::string> ToHtml(const Program& p) const noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

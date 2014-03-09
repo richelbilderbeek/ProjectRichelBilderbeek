@@ -1,6 +1,6 @@
 #include "knokfighterattack.h"
 
-namespace Knokfighter {
+namespace knok {
 
 
-} //~namespace Knokfighter
+} //~namespace knok

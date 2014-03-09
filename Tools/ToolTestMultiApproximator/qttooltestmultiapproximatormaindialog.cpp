@@ -236,8 +236,10 @@ void ribi::QtToolTestMultiApproximatorMainDialog::Plot() noexcept
   }
   //Plot (non-multi)approximation
   {
-    const Approximator<Key,Value,Container> approximator
-      = ToApproximator<Key,Value,MultiContainer,Container>(m_multi_approximator);
+    //const Approximator<Key,Value,Container> approximator(
+    const auto approximator(
+      ToApproximator<Key,Value,MultiContainer,Container>(m_multi_approximator)
+    );
     //Plot raw data
     {
       std::vector<double> xs;

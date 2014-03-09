@@ -369,7 +369,7 @@ Approximator<Key,Value,Container> ToApproximator(
 {
   const MultiContainer m = multi_approximator.GetContainer();
   const Container n = MultimapToMap(m);
-  const Approximator<Key,Value,Container> a(n);
+  Approximator<Key,Value,Container> a(n);
   return a;
 }
 
