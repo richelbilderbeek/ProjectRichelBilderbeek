@@ -5030,6 +5030,124 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
 
     }
   );
+
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample1",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample1.htm\">QGraphicsSimpleTextItem example 1: Hello World</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with the text 'Hello World'. These items are movable",
+        "and selectable.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample1.png\">View a screenshot of 'QGraphicsSimpleTextItemExample1' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample1.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample1' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample1Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample1' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample2",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample2.htm\">QGraphicsSimpleTextItem example 2: coordinat display</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample2.png\">View a screenshot of 'QGraphicsSimpleTextItemExample2' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample2.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample2' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample2Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample2' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample3",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample3.htm\">QGraphicsSimpleTextItem example 3: use tab to change focus</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable. By pressing tab, focus will be set to a random item.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample3.png\">View a screenshot of 'QGraphicsSimpleTextItemExample3' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample3.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample3' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample3Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample3' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample4",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample4.htm\">QGraphicsSimpleTextItem example 4: use arrow keys to change focus</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable. By pressing tab, focus will be set to a random item. By pressing the arrow, focus will be given to the nearest item",
+        "in that direction.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample4.png\">View a screenshot of 'QGraphicsSimpleTextItemExample4' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample4.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample4' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample4Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample4' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample5",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample5.htm\">QGraphicsSimpleTextItem example 5: keyboard-friendly view</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with their coordinats as text. These items are movable",
+        "and selectable. By pressing space, focus will be set to a random item. By pressing an arrow keys, focus will be given to the nearest item",
+        "in that direction. By pressing an arrow key while holding shift, the item is moved.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample5.png\">View a screenshot of 'QGraphicsSimpleTextItemExample5' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample5.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample5' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample5Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample5' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppQGraphicsSimpleTextItemExample6",
+      {
+        "<p><img src=\"PicQt.png\" alt=\"Qt\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p><a href=\"CppQGraphicsSimpleTextItemExample6.htm\">QGraphicsSimpleTextItem example 6: remote texting</a> is a",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItem</a> example that displays multiple",
+        "<a href=\"CppQGraphicsSimpleTextItem.htm\">QGraphicsSimpleTextItems</a> with a text that changes in time. These items, however, are not",
+        "modified themselves: they are updated with a <a href=\"CppBoostSignal.htm\">boost::signal2</a>.</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppQGraphicsSimpleTextItemExample6.png\">View a screenshot of 'QGraphicsSimpleTextItemExample6' (png)</a></li>",
+        "  <li><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/> <a href=\"CppQGraphicsSimpleTextItemExample6.zip\">Download the Qt Creator project 'QGraphicsSimpleTextItemExample6' (zip)</a></li>",
+        "  <li><img src=\"PicWindows.png\" alt=\"Windows\"/> <a href=\"CppQGraphicsSimpleTextItemExample6Exe.zip\">Download a Windows executable of 'QGraphicsSimpleTextItemExample6' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
   m.push_back(
     { "CppQmakeErrorUnknownModulesInQtLocationSensors",
       {
