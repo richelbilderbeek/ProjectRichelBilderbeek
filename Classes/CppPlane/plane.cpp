@@ -18,9 +18,41 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProje
   {
     throw std::logic_error("Plane::CalcProjection: cannot express any plane");
   }
-  if (m_plane_x) { return m_plane_x->CalcProjection(points); }
-  if (m_plane_y) { return m_plane_y->CalcProjection(points); }
-  if (m_plane_z) { return m_plane_z->CalcProjection(points); }
+  try { if (m_plane_x) { return m_plane_x->CalcProjection(points); }}
+  catch (std::logic_error&) { /* OK, try next plane */ }
+
+  try { if (m_plane_y) { return m_plane_y->CalcProjection(points); }}
+  catch (std::logic_error&) { /* OK, try next plane */ }
+
+  try { if (m_plane_z) { return m_plane_z->CalcProjection(points); }}
+  catch (std::logic_error&) { /* OK, try next plane */ }
+
+  TRACE("ERROR");
+  TRACE(points.size());
+  {
+    const auto plane (m_plane_x);
+    if (plane) { try { TRACE(plane->ToFunction()); } catch(std::logic_error&) { /* OK */ } }
+  }
+  {
+    const auto plane (m_plane_y);
+    if (plane) { try { TRACE(plane->ToFunction()); } catch(std::logic_error&) { /* OK */ } }
+  }
+  {
+    const auto plane (m_plane_z);
+    if (plane) { try { TRACE(plane->ToFunction()); } catch(std::logic_error&) { /* OK */ } }
+  }
+  for (auto point: points)
+  {
+    std::stringstream s;
+    s
+      << "("
+      << boost::geometry::get<0>(point) << ","
+      << boost::geometry::get<1>(point) << ","
+      << boost::geometry::get<2>(point)
+      << ")"
+    ;
+    TRACE(s.str());
+  }
   assert(!"Should not get here");
   throw std::logic_error("Plane::CalcProjection: unexpected behavior");
 }
@@ -224,7 +256,7 @@ void ribi::Plane::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Plane::Test");
-  typedef boost::geometry::model::d2::point_xy<double> Point2D;
+  //typedef boost::geometry::model::d2::point_xy<double> Point2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   using boost::geometry::get;
 
@@ -360,6 +392,16 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
+  //CalcProjection, from a crash in the program
+  {
+    //assert(!"TODO");
+    /*
+    TRACE 's.str()' line 42 in file '..\..\..\Projects\Classes\CppPlane\plane.cpp':'(0.000515,0.000754,0.0015)'
+    TRACE 's.str()' line 42 in file '..\..\..\Projects\Classes\CppPlane\plane.cpp':'(-0.000515,0.000754,0.0015)'
+    TRACE 's.str()' line 42 in file '..\..\..\Projects\Classes\CppPlane\plane.cpp':'(0.000515,0.000754,0.002)'
+    TRACE 's.str()' line 42 in file '..\..\..\Projects\Classes\CppPlane\plane.cpp':'(-0.000515,0.000754,0.002)'
+    */
+  }
   TRACE("Finished ribi::Plane::Test successfully");
 }
 #endif
@@ -410,3 +452,5 @@ std::string ribi::Plane::ToFunctionZ() const
     throw std::logic_error("Plane::ToFunctionZ: plane cannot be expressed as Z = A*X + B*Y");
   }
 }
+
+

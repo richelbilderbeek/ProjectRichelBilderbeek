@@ -28,9 +28,6 @@ public:
   QtStaircaseCardCreatorMainDialog& operator=(const QtStaircaseCardCreatorMainDialog&) = delete;
   ~QtStaircaseCardCreatorMainDialog() noexcept;
 
-protected:
-  void keyPressEvent(QKeyEvent *) noexcept;
-
 private:
   Ui::QtStaircaseCardCreatorMainDialog *ui;
 

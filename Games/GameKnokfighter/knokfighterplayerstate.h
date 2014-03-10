@@ -3,10 +3,11 @@
 
 #include <string>
 
+#include "knokfighterattack.h"
+
 namespace ribi {
 namespace knok {
 
-struct Attack;
 struct Key;
 struct Player;
 
@@ -49,10 +50,10 @@ struct PlayerStateAttack : public PlayerState
   void OnKeyPress(const Key&) {}
 
   ///Set the type of Attack and how many ticks it will last
-  void StartAttack(const Attack& attack, const int n_ticks);
+  void StartAttack(const Attack& attack, const int n_ticks) {}
 
   ///Respond to the main timer ticking
-  void Tick();
+  void Tick() {}
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
   std::string ToStr() const { return "attack"; }
@@ -71,10 +72,10 @@ struct PlayerStateIdle : public PlayerState
   PlayerStateIdle(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void OnKeyPress(const Key& key);
+  void OnKeyPress(const Key& key) {}
 
   ///Respond to the main timer ticking
-  void Tick();
+  void Tick() {}
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
   std::string ToStr() const { return "idle"; }
@@ -86,10 +87,10 @@ struct PlayerStateWalk : public PlayerState
   PlayerStateWalk(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void OnKeyPress(const Key& key);
+  void OnKeyPress(const Key& key) {}
 
   ///Respond to the main timer ticking
-  void Tick();
+  void Tick() {}
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
   std::string ToStr() const { return "walk"; }

@@ -2,7 +2,6 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "qtaboutdialog.h"
-#include "qtsurfaceplotwidget.h"
 #include "testtrianglemeshmenudialog.h"
 #include "qttesttrianglemeshmaindialog.h"
 #include "qttesttrianglemeshmenudialog.h"

@@ -11,15 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SurfacePlotter</string>
+   <string>TestTriangleMesh</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc">
+   <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
  </widget>
- <resources>
-  <include location="../../Games/GameDasWahreSchlagerfest/GameDasWahreSchlagerfest.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

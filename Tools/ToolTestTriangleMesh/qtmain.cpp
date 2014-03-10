@@ -2,13 +2,13 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "qttestplanemenudialog.h"
+#include "qttesttrianglemeshmenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::QtTestPlaneMenuDialog w;
+  ribi::QtTestTriangleMeshMenuDialog w;
   w.show();
   return a.exec();
 }
