@@ -53,6 +53,14 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestPlaneMenuDialog::Test");
+  {
+    const QtTestPlaneMenuDialog d;
+    assert(!d.GetVersion().empty());
+  }
+  {
+    const QtTestPlaneMainDialog d;
+    assert(!d.GetVersion().empty());
+  }
   TRACE("Finished ribi::QtTestPlaneMenuDialog::Test successfully");
 }
 #endif

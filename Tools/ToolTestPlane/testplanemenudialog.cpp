@@ -61,15 +61,15 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     std::cout
       << "Coefficients: " << '\n'
       << "  a: " << '\n'
-      << p.GetCoefficients()[0] << '\n'
+      << p.GetCoefficientsZ()[0] << '\n'
       << "  b: " << '\n'
-      << p.GetCoefficients()[1] << '\n'
+      << p.GetCoefficientsZ()[1] << '\n'
       << "  c: " << '\n'
-      << p.GetCoefficients()[2] << '\n'
+      << p.GetCoefficientsZ()[2] << '\n'
       << "  d: " << '\n'
-      << p.GetCoefficients()[3] << '\n'
+      << p.GetCoefficientsZ()[3] << '\n'
       << "Function: " << '\n'
-      << p.ToFunction() << '\n'
+      << p.ToFunctionZ() << '\n'
     ;
   }
 

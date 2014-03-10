@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtCodeToHtmlMenuDialog</class>
- <widget class="QDialog" name="QtCodeToHtmlMenuDialog">
+ <class>QtStaircaseCardCreatorMenuDialog</class>
+ <widget class="QDialog" name="QtStaircaseCardCreatorMenuDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -19,7 +19,7 @@
    <string>CodeToHtml</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="ToolCodeToHtml.qrc">
+   <iconset resource="../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc">
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
   </property>
   <property name="styleSheet">
@@ -31,27 +31,7 @@ QPushButton { color: rgb(0,0,0); }
 QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QPushButton" name="button_about">
-     <property name="text">
-      <string>About</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="button_quit">
-     <property name="text">
-      <string>Quit</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <widget class="QPushButton" name="button_start">
      <property name="text">
       <string>Start</string>
@@ -61,16 +41,23 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label">
+   <item row="1" column="0">
+    <widget class="QPushButton" name="button_about">
      <property name="text">
-      <string/>
+      <string>About</string>
      </property>
-     <property name="pixmap">
-      <pixmap resource="ToolCodeToHtml.qrc">:/images/ToolCodeToHtmlHelloWorld.png</pixmap>
+     <property name="flat">
+      <bool>true</bool>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="button_quit">
+     <property name="text">
+      <string>Quit</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -82,7 +69,7 @@ QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }</string>
   <tabstop>button_quit</tabstop>
  </tabstops>
  <resources>
-  <include location="ToolCodeToHtml.qrc"/>
+  <include location="../../Games/GameAminoAcidFighter/GameAminoAcidFighter.qrc"/>
  </resources>
  <connections/>
 </ui>

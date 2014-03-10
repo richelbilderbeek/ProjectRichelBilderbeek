@@ -1,15 +1,14 @@
+#include "qttestplanemaindialog.h"
+
+#include <cassert>
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <cassert>
 #include <boost/lexical_cast.hpp>
-#include <QDesktopWidget>
-
-#include "fparser.hh"
-#include "qttestplanemaindialog.h"
+#include "plane.h"
 #include "trace.h"
 #include "ui_qttestplanemaindialog.h"
-
 #pragma GCC diagnostic pop
 
 ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
@@ -21,30 +20,19 @@ ribi::QtTestPlaneMainDialog::QtTestPlaneMainDialog(QWidget *parent)
   #endif
   ui->setupUi(this);
 
-  #ifndef NDEBUG
-  assert(Rescale(2.0,1.0,5.0,0.0,100.0) >= 24.9999 && Rescale(2.0,1.0,5.0,0.0,100.0) < 25.0001);
-  #endif
-
-  QObject::connect(this->ui->edit_equation,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_minx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_miny,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxx,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-  QObject::connect(this->ui->edit_maxy,SIGNAL(textChanged(QString)),this,SLOT(OnAnyChange()));
-
-
-  ui->edit_minx->setText(boost::lexical_cast<std::string>(-1.0).c_str());
-  ui->edit_miny->setText(boost::lexical_cast<std::string>(-1.0).c_str());
-  ui->edit_maxx->setText(boost::lexical_cast<std::string>( 1.0).c_str());
-  ui->edit_maxy->setText(boost::lexical_cast<std::string>( 1.0).c_str());
-
-  ui->edit_equation->setText("cos(x*y*100)");
-
-  {
-    //Put the dialog in the screen center at 50% x 50% of its size
-    const QRect screen = QApplication::desktop()->screenGeometry();
-    this->setGeometry(0,0,screen.width() / 2,screen.height() /2 );
-    this->move( screen.center() - this->rect().center() );
-  }
+  QObject::connect(this->ui->slider_x1,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_y1,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_z1,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_x2,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_y2,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_z2,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_x3,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_y3,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_z3,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_x,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_y,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(this->ui->slider_z,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  OnAnyChange();
 }
 
 ribi::QtTestPlaneMainDialog::~QtTestPlaneMainDialog() noexcept
@@ -54,110 +42,112 @@ ribi::QtTestPlaneMainDialog::~QtTestPlaneMainDialog() noexcept
 
 void ribi::QtTestPlaneMainDialog::OnAnyChange()
 {
-  try { boost::lexical_cast<double>(ui->edit_minx->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of x_min is not a valid double"); return;
-  }
-  try { boost::lexical_cast<double>(ui->edit_miny->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of y_min is not a valid double"); return;
-  }
-  try { boost::lexical_cast<double>(ui->edit_maxx->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of x_max is not a valid double"); return;
-  }
-  try { boost::lexical_cast<double>(ui->edit_maxy->text().toStdString()); }
-  catch (boost::bad_lexical_cast&)
-  {
-    this->setWindowTitle("Value of y_max is not a valid double"); return;
-  }
+  std::stringstream s;
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p1(
+    static_cast<double>(ui->slider_x1->value()),
+    static_cast<double>(ui->slider_y1->value()),
+    static_cast<double>(ui->slider_z1->value())
+  );
+  s << "Point 1: " << p1 << '\n';
 
-  FunctionParser f;
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p2(
+    static_cast<double>(ui->slider_x2->value()),
+    static_cast<double>(ui->slider_y2->value()),
+    static_cast<double>(ui->slider_z2->value())
+  );
+  s << "Point 2: " << p2 << '\n';
 
-  //Parse the formula
-  f.Parse(ui->edit_equation->text().toStdString().c_str(),"x,y");
-  if (f.GetParseErrorType()!= FunctionParser::FP_NO_ERROR)
-  {
-    this->setWindowTitle("Function cannot not be parsed"); return;
-  }
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p3(
+    static_cast<double>(ui->slider_x3->value()),
+    static_cast<double>(ui->slider_y3->value()),
+    static_cast<double>(ui->slider_z3->value())
+  );
+  s << "Point 3: " << p3 << '\n';
 
 
-  const double x_min = boost::lexical_cast<double>(ui->edit_minx->text().toStdString());
-  const double y_min = boost::lexical_cast<double>(ui->edit_miny->text().toStdString());
-  const double x_max = boost::lexical_cast<double>(ui->edit_maxx->text().toStdString());
-  const double y_max = boost::lexical_cast<double>(ui->edit_maxy->text().toStdString());
+  const ribi::Plane plane(p1,p2,p3);
 
-  if (x_min >= x_max)
+  try
   {
-    this->setWindowTitle("Value of x_min must be smaller than x_max"); return;
+    s << "Function (X): " << plane.ToFunctionX() << '\n'
+      << "Coefficients (X): " << '\n'
+      << " - A: " << plane.GetCoefficientsX()[0] << '\n'
+      << " - B: " << plane.GetCoefficientsX()[1] << '\n'
+      << " - C: " << plane.GetCoefficientsX()[2] << '\n'
+      << " - D: " << plane.GetCoefficientsX()[3] << '\n'
+    ;
   }
-
-  if (y_min >= y_max)
+  catch (std::exception& e)
   {
-    this->setWindowTitle("Value of y_min must be smaller than y_max"); return;
+    s << "Exception: " << e.what() << '\n';
   }
 
-  //Evaluate the function in a 2D std::vector
-  const int n_rows = ui->surfaceplotwidget->height();
-  const int n_cols = ui->surfaceplotwidget->width();
-  std::vector<std::vector<double> > v(n_rows,std::vector<double>(n_cols,0.0));
-  const double n_rows_d = static_cast<double>(n_rows);
-  const double n_cols_d = static_cast<double>(n_cols);
-
-  for (int y = 0; y!=n_rows; ++y)
+  try
   {
-    const double yD = static_cast<double>(y);
-    const double y_scaled = Rescale(yD,0.0,n_rows_d,y_min,y_max);
-    for (int x = 0; x!=n_cols; ++x)
-    {
-      const double xD = static_cast<double>(x);
-      const double x_scaled = Rescale(xD,0.0,n_cols_d,x_min,x_max);
-      const double xs[2] = { x_scaled,y_scaled };
-      const double z = f.Eval(xs);
-      if (!f.EvalError())
-      {
-        v[y][x] = z;
-      }
-      else
-      {
-        v[y][x] = 0.0;
-      }
-    }
+    s << "Function (Y): " << plane.ToFunctionY() << '\n'
+      << "Coefficients (Y): " << '\n'
+      << " - A: " << plane.GetCoefficientsY()[0] << '\n'
+      << " - B: " << plane.GetCoefficientsY()[1] << '\n'
+      << " - C: " << plane.GetCoefficientsY()[2] << '\n'
+      << " - D: " << plane.GetCoefficientsY()[3] << '\n'
+    ;
+  }
+  catch (std::exception& e)
+  {
+    s << "Exception: " << e.what() << '\n';
   }
 
-  this->setWindowTitle("Function plotted successfully");
+  try
+  {
+    s << "Function (Z): " << plane.ToFunctionZ() << '\n'
+      << "Coefficients (Z): " << '\n'
+      << " - A: " << plane.GetCoefficientsZ()[0] << '\n'
+      << " - B: " << plane.GetCoefficientsZ()[1] << '\n'
+      << " - C: " << plane.GetCoefficientsZ()[2] << '\n'
+      << " - D: " << plane.GetCoefficientsZ()[3] << '\n'
+    ;
+  }
+  catch (std::exception& e)
+  {
+    s << "Exception: " << e.what() << '\n';
+  }
 
-  //Plot the 2D std::vector
-  ui->surfaceplotwidget->SetSurfaceGrey(v);
-}
 
-double ribi::QtTestPlaneMainDialog::Rescale(
-  const double value,
-  const double old_min,
-  const double old_max,
-  const double new_min,
-  const double new_max)
-{
-  assert(value >= old_min);
-  assert(value <= old_max);
-  const double old_distance = old_max - old_min;
-  //At which relative distance is value on old_min to old_max ?
-  const double distance = (value - old_min) / old_distance;
-  assert(distance >= 0.0);
-  assert(distance <= 1.0);
-  const double new_distance = new_max - new_min;
-  const double new_value = new_min + (distance * new_distance);
-  assert(new_value >= new_min);
-  assert(new_value <= new_max);
-  return new_value;
-}
+  const double x = static_cast<double>(ui->slider_x->value());
+  const double y = static_cast<double>(ui->slider_y->value());
+  const double z = static_cast<double>(ui->slider_z->value());
 
-void ribi::QtTestPlaneMainDialog::resizeEvent(QResizeEvent *)
-{
-  OnAnyChange();
+  try
+  {
+    const double x_on_plane = plane.CalcX(y,z);
+    s << "X(Y,Z) = X(" << y << "," << z << ") = " << x_on_plane << '\n';
+  }
+  catch (std::logic_error& e)
+  {
+    s << "X(Y,Z) = " << e.what() << '\n';
+  }
+
+  try
+  {
+    const double y_on_plane = plane.CalcY(x,z);
+    s << "Y(X,Z) = Y(" << x << "," << z << ") = " << y_on_plane << '\n';
+  }
+  catch (std::logic_error& e)
+  {
+    s << "Y(X,Z) = " << e.what() << '\n';
+  }
+
+  try
+  {
+    const double z_on_plane = plane.CalcZ(x,y);
+    s << "Z(X,Y) = Z(" << x << "," << y << ") = " << z_on_plane << '\n';
+  }
+  catch (std::logic_error& e)
+  {
+    s << "Z(X,Y) = " << e.what() << '\n';
+  }
+
+  ui->text->setPlainText(s.str().c_str());
 }
 
 #ifndef NDEBUG
@@ -169,6 +159,22 @@ void ribi::QtTestPlaneMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtTestPlaneMainDialog::Test");
+  QtTestPlaneMainDialog d;
+  assert(!d.GetVersion().empty());
   TRACE("Finished ribi::QtTestPlaneMainDialog::Test successfully");
 }
 #endif
+
+std::ostream& ribi::operator<<(std::ostream& os, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept
+{
+  os
+    << "("
+    << boost::geometry::get<0>(p)
+    << ","
+    << boost::geometry::get<1>(p)
+    << ","
+    << boost::geometry::get<2>(p)
+    << ")"
+  ;
+  return os;
+}

@@ -103,7 +103,7 @@ template <
   class MultiContainer,
   class Container
   >
-const Approximator<Key,Value,Container> ToApproximator(
+Approximator<Key,Value,Container> ToApproximator(
   const MultiApproximator<Key,Value,MultiContainer>& m) noexcept;
 
 

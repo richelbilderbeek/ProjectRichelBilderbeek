@@ -23,7 +23,7 @@ struct PlayerState
   virtual ~PlayerState() {}
 
   ///Respond to a key press
-  virtual void PressKey(const Key& key) = 0;
+  virtual void OnKeyPress(const Key& key) = 0;
 
   ///Respond to the main timer ticking
   virtual void Tick() = 0;
@@ -40,14 +40,13 @@ struct PlayerState
   Player * const m_player;
 };
 
-
 struct PlayerStateAttack : public PlayerState
 {
   ///The State needs access to the Player it is a state of
   PlayerStateAttack(Player * const player) : PlayerState(player), m_ticks_left{0} {}
 
   ///Respond to a key press
-  void PressKey(const Key& key);
+  void OnKeyPress(const Key&) {}
 
   ///Set the type of Attack and how many ticks it will last
   void StartAttack(const Attack& attack, const int n_ticks);
@@ -56,11 +55,11 @@ struct PlayerStateAttack : public PlayerState
   void Tick();
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  std::string ToStr() const;
+  std::string ToStr() const { return "attack"; }
 
   private:
   ///The Attack being done
-  //Attack m_attack;
+  Attack m_attack;
 
   ///The number of ticks this attack will last before Player goes back to PlayerStateIdle
   int m_ticks_left;
@@ -72,13 +71,13 @@ struct PlayerStateIdle : public PlayerState
   PlayerStateIdle(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void PressKey(const Key& key);
+  void OnKeyPress(const Key& key);
 
   ///Respond to the main timer ticking
   void Tick();
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  std::string ToStr() const;
+  std::string ToStr() const { return "idle"; }
 };
 
 struct PlayerStateWalk : public PlayerState
@@ -87,13 +86,13 @@ struct PlayerStateWalk : public PlayerState
   PlayerStateWalk(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void PressKey(const Key& key);
+  void OnKeyPress(const Key& key);
 
   ///Respond to the main timer ticking
   void Tick();
 
   ///Convert the state to (part of) a filename, for example 'HighKickLeft'
-  std::string ToStr() const;
+  std::string ToStr() const { return "walk"; }
 };
 
 } //~namespace knok

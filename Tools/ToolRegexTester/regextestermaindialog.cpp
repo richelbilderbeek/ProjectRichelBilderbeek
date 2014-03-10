@@ -32,6 +32,7 @@ std::vector<std::string> ribi::RegexTesterMainDialog::GetTestRegexes() noexcept
     "\\",
     "{d}2",
     ""
+    //"(\\2)" //Results in crash
   };
 }
 

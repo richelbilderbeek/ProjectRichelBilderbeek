@@ -1,5 +1,5 @@
-#ifndef COORDINAT_H
-#define COORDINAT_H
+#ifndef PLANE_H
+#define PLANE_H
 
 #include <vector>
 #pragma GCC diagnostic push
@@ -7,6 +7,10 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/shared_ptr.hpp>
+#include "planex.h"
+#include "planey.h"
+#include "planez.h"
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
@@ -24,14 +28,39 @@ namespace ribi {
 struct Plane
 {
   ///Construct a Plane from its coefficients
-  explicit Plane(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
+  /*
+  explicit Plane(
+    const std::vector<double>& coefficients_z = {0.0,0.0,0.0,0.0}
+  ) noexcept : m_plane_z(CreatePlaneZ(coefficients_z)) { }
+  */
 
   ///Construct a Plane from three points
+  /*
+
+   |
+   |   /
+   +--+
+   |\/|
+   |/\|
+ --+--+---------
+  /|
+ / |
+
+  */
   explicit Plane(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
-  ) noexcept : Plane(CalcPlane(p1,p2,p3)) {}
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1 = {},
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2 = {},
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3 = {}
+  ) noexcept
+  : m_plane_x(CreatePlaneX(p1,p2,p3)),
+    m_plane_y(CreatePlaneY(p1,p2,p3)),
+    m_plane_z(CreatePlaneZ(p1,p2,p3))
+  {
+    #ifndef NDEBUG
+    Test();
+    #endif
+  }
+
 
   ///Construct a Plane from four points
   ///Assumes these are in the same plane
@@ -40,7 +69,15 @@ struct Plane
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
-  ) noexcept : Plane(CalcPlane(p1,p2,p3,p4)) {}
+  ) noexcept
+    : m_plane_x(CreatePlaneX(p1,p2,p3,p4)),
+      m_plane_y(CreatePlaneY(p1,p2,p3,p4)),
+      m_plane_z(CreatePlaneZ(p1,p2,p3,p4))
+  {
+    #ifndef NDEBUG
+    Test();
+    #endif
+  }
 
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a Plane
@@ -58,31 +95,95 @@ struct Plane
   +--B---                     A--B-----
 
   */
-  static std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
+  std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
     const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
-  );
+  ) const;
 
-  ///Throws when cannot calculate Z, which is when the plane is vertical
+  ///If the Plane can be expressed as X = A*Y + B*Z + C, return the X
+  double CalcX(const double y, const double z) const;
+
+  ///If the Plane can be expressed as Y = A*X + B*Z + C, return the Y
+  double CalcY(const double x, const double z) const;
+
+  ///If the Plane can be expressed as Z = A*X + B*Y + C, return the Z
   double CalcZ(const double x, const double y) const;
 
-  const std::vector<double>& GetCoefficients() const noexcept { return m_coefficients; }
+  ///If the Plane can be expressed as X = A*Y + B*Z + C, return the coefficients,
+  std::vector<double> GetCoefficientsX() const;
+
+  ///If the Plane can be expressed as Y = A*X + B*Z + C, return the coefficients,
+  std::vector<double> GetCoefficientsY() const;
+
+  ///If the Plane can be expressed as Z = A*X + B*Y + C, return the coefficients,
+  std::vector<double> GetCoefficientsZ() const;
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
-  ///Convert the Plane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
-  std::string ToFunction() const;
+  ///If possible, convert the Plane to a x(y,z), e.g 'x=(2*y) + (3*z) + 5' (spaces exactly as shown)
+  std::string ToFunctionX() const;
+
+  ///If possible, convert the Plane to a y(x,z), e.g 'y=(2*x) + (3*z) + 5' (spaces exactly as shown)
+  std::string ToFunctionY() const;
+
+  ///If possible, convert the Plane to a z(x,y), e.g 'z=(2*x) + (3*y) + 5' (spaces exactly as shown)
+  std::string ToFunctionZ() const;
 
   private:
-  const std::vector<double> m_coefficients;
+  ///A non-horizontal plane; a plane that can be expressed as 'X(Y,Z) = A*Y + B*Z + C'
+  const boost::shared_ptr<const PlaneX> m_plane_x;
 
-  static std::vector<double> CalcPlane(
+  ///A non-horizontal plane; a plane that can be expressed as 'Y(X,Z) = A*X + B*Z + C'
+  const boost::shared_ptr<const PlaneY> m_plane_y;
+
+  ///A non-vertical plane; a plane that can be expressed as 'Z(X,Y) = A*X + B*Y + C'
+  const boost::shared_ptr<const PlaneZ> m_plane_z;
+
+  static boost::shared_ptr<PlaneX> CreatePlaneX(
+    const std::vector<double>& coefficients_x
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneY> CreatePlaneY(
+    const std::vector<double>& coefficients_y
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
+    const std::vector<double>& coefficients_z
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneX> CreatePlaneX(
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
   ) noexcept;
 
-  static std::vector<double> CalcPlane(
+  static boost::shared_ptr<PlaneY> CreatePlaneY(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneX> CreatePlaneX(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneY> CreatePlaneY(
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+  ) noexcept;
+
+  static boost::shared_ptr<PlaneZ> CreatePlaneZ(
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
     const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
@@ -96,4 +197,4 @@ struct Plane
 
 } //~namespace ribi
 
-#endif // COORDINAT_H
+#endif // PLANE_H

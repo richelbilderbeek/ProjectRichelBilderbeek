@@ -7,3 +7,4 @@ ribi::knok::PlayerState::PlayerState(
 {
 
 }
+

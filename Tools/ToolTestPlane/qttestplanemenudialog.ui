@@ -6,21 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>274</width>
-    <height>490</height>
+    <width>291</width>
+    <height>500</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <pointsize>36</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>SurfacePlotter</string>
+   <string>TestPlane</string>
   </property>
   <property name="windowIcon">
    <iconset>
     <normaloff>:/images/R.png</normaloff>:/images/R.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog { 
+background-color: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1, stop: 0  #808080, stop: 1 #ffffff);
+}
+QPushButton { background-color: rgb(255, 255, 255);  }
+QPushButton { color: rgb(0,0,0); }
+QPushButton { font: 48px &quot;Courier New&quot;, courier, monospace }
+QPlainTextEdit { font: 12px &quot;Courier New&quot;, courier, monospace }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

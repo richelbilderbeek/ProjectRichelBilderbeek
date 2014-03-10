@@ -34,7 +34,7 @@ const ribi::knok::PlayerState * ribi::knok::Player::GetState() const
 
 void ribi::knok::Player::PressKey(const Key& key)
 {
-  m_state->PressKey(key);
+  m_state->OnKeyPress(key);
 }
 
 void ribi::knok::Player::Tick()
