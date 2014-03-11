@@ -1,6 +1,9 @@
 #ifndef COORDINAT3D_H
 #define COORDINAT3D_H
 
+//typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
+#ifdef USE_CUSTOM_RIBI_COORDINAT3D
 #include <array>
 #include <iosfwd>
 #include <vector>
@@ -102,24 +105,24 @@ Coordinat3D CalcCenter(const std::vector<Coordinat3D>& points) noexcept;
 
 ///Calculate the cross product
 Coordinat3D CalcCrossProduct(
-  const ribi::Coordinat3D& a,
-  const ribi::Coordinat3D& b
+  const Coordinat3D& a,
+  const Coordinat3D& b
 ) noexcept;
 
 ///Calculate the cross product
 double CalcDotProduct(
-  const ribi::Coordinat3D& a,
-  const ribi::Coordinat3D& b
+  const Coordinat3D& a,
+  const Coordinat3D& b
 ) noexcept;
 
 ///Calculate the normal of a triangle
 ///The normal will be (0,0,-1) if a,b and c lie in the XY plane and ordered clockwise (when viewed from above)
 ///The normal will be (0,0, 1) if a,b and c lie in the XY plane and ordered counter-clockwise (when viewed from above)
 ///I use this convention as it appears to be used most extensively
-ribi::Coordinat3D CalcNormal(
-  const ribi::Coordinat3D& a,
-  const ribi::Coordinat3D& b,
-  const ribi::Coordinat3D& c
+Coordinat3D CalcNormal(
+  const Coordinat3D& a,
+  const Coordinat3D& b,
+  const Coordinat3D& c
 ) noexcept;
 
 ///Calculate the distance between two coordinats
@@ -129,5 +132,7 @@ double Distance(const Coordinat3D& lhs,const Coordinat3D& rhs) noexcept;
 double Length(const Coordinat3D& v) noexcept;
 
 } //~namespace ribi
+
+#endif
 
 #endif // COORDINAT3D_H

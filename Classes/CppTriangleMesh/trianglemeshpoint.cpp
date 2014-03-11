@@ -4,11 +4,12 @@
 #include "Shiny.h"
 
 #include "trianglemeshface.h"
+#include "trianglemeshhelper.h"
 #include "trace.h"
 #include "xml.h"
 
 ribi::trim::Point::Point(
-  const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat,
+  const boost::shared_ptr<const ConstCoordinat2D> coordinat,
   const int index,
   const PointFactory&
 )
@@ -21,8 +22,12 @@ ribi::trim::Point::Point(
   #ifndef NDEBUG
   Test();
   #endif
+  using boost::geometry::get;
+  assert(m_coordinat);
   assert(m_coordinat == coordinat
     && "A shallow copy please");
+  assert(!std::isnan(get<0>(*m_coordinat)));
+  assert(!std::isnan(get<1>(*m_coordinat)));
 }
 
 void ribi::trim::Point::AddBelongsTo(const boost::weak_ptr<Edge> edge)
@@ -60,6 +65,16 @@ void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::leng
   };
   m_z = p;
   assert(m_z);
+
+  //Let the Point check for themselves for being horizontal or vertical
+  #ifndef NDEBUG
+  if (GetConnected().empty()) return;
+  for (auto face: GetConnected())
+  {
+    assert(face.lock());
+    face.lock()->CheckOrientation();
+  }
+  #endif
 }
 
 #ifndef NDEBUG
@@ -93,7 +108,7 @@ std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
 {
   os
     << ribi::xml::ToXml("point_index",n.GetIndex())
-    << ribi::xml::ToXml("coordinat",*n.GetCoordinat())
+    << Helper().ToXml(*n.GetCoordinat())
   ;
   return os;
 }

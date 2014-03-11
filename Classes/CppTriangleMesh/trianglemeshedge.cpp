@@ -12,7 +12,6 @@
 
 #include "Shiny.h"
 
-#include "coordinat3d.h"
 #include "trianglemeshedgefactory.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshfacefactory.h"

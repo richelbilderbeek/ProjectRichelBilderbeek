@@ -680,6 +680,26 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "CppBoostUnitsBug",
+      {
+        "<p>",
+        "  <img src=\"PicCpp98.png\" alt=\"Cpp98\"/><img src=\"PicBoost.png\" alt=\"Boost\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/><img src=\"PicWindows.png\" alt=\"Windows\"/>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppBoostUnitsBug.htm\">Boost.Units bug</a> shows a <a href=\"CppBoostUnits.htm\">Boost.Units</a> <a href=\"CppBug.htm\">bug</a>.",
+        "  Feel free, however, to call it an 'unexpected feature'.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<ul>",
+        "  <li><a href=\"CppBoostUnitsBug.htm\">Download the Qt Creator project 'CppUnitsBug' (zip)</a></li>",
+        "</ul>"
+      }
+    }
+  );
+
+
+  m.push_back(
     { "CppBoostUnitsExample1",
       {
         "<p>",
@@ -6807,6 +6827,78 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<ul>",
         "  <li><a href=\"CppStdFunctionExample2.zip\">Download the Qt Creator project 'CppStdFunctionExample2' (zip)</a></li>",
         "</ul>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample1",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample1.htm\">std::set example 1: basics</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample2",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample2.htm\">std::set example 2: put a custom class in a std::set</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample3",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample3.htm\">std::set example 3: put a custom class in a std::set in a custom order</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample4",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample4.htm\">std::set example 4: put smart pointers of a custom class in a std::set in a custom order</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample5",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample5.htm\">std::set example 5</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "CppStdSetExample6",
+      {
+        "<p><img src=\"PicCpp98.png\" alt=\"C++98\"/><img src=\"PicStl.png\" alt=\"STL\"/><img src=\"PicQtCreator.png\" alt=\"Qt Creator\"/><img src=\"PicLubuntu.png\" alt=\"Lubuntu\"/></p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <a href=\"CppStdSetExample6.htm\">std::set example 6</a> is a <a href=\"CppStdSet.htm\">std::set</a> <a href=\"CppExample.htm\">example</a>.",
+        "</p>"
       }
     }
   );

@@ -44,13 +44,13 @@ struct PlayerState
 struct PlayerStateAttack : public PlayerState
 {
   ///The State needs access to the Player it is a state of
-  PlayerStateAttack(Player * const player) : PlayerState(player), m_ticks_left{0} {}
+  PlayerStateAttack(Player * const player) : PlayerState(player), m_attack{Attack::high_kick}, m_ticks_left{0} {}
 
   ///Respond to a key press
   void OnKeyPress(const Key&) {}
 
   ///Set the type of Attack and how many ticks it will last
-  void StartAttack(const Attack& attack, const int n_ticks) {}
+  void StartAttack(const Attack& /* attack */, const int /* n_ticks */) {}
 
   ///Respond to the main timer ticking
   void Tick() {}
@@ -72,7 +72,7 @@ struct PlayerStateIdle : public PlayerState
   PlayerStateIdle(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void OnKeyPress(const Key& key) {}
+  void OnKeyPress(const Key& /* key */) {}
 
   ///Respond to the main timer ticking
   void Tick() {}
@@ -87,7 +87,7 @@ struct PlayerStateWalk : public PlayerState
   PlayerStateWalk(Player * const player) : PlayerState(player) {}
 
   ///Respond to a key press
-  void OnKeyPress(const Key& key) {}
+  void OnKeyPress(const Key& /* key */) {}
 
   ///Respond to the main timer ticking
   void Tick() {}

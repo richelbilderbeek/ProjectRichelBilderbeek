@@ -1,6 +1,7 @@
 #ifndef TOOLTESTPLANEMENUDIALOG_H
 #define TOOLTESTPLANEMENUDIALOG_H
 
+#include <iosfwd>
 #include <string>
 #include <vector>
 
@@ -11,6 +12,7 @@ namespace ribi {
 ///GUI independent TestPlane menu dialog
 struct TestPlaneMenuDialog : public MenuDialog
 {
+  TestPlaneMenuDialog();
   About GetAbout() const noexcept;
   Help GetHelp() const noexcept;
   boost::shared_ptr<const Program> GetProgram() const noexcept;

@@ -8,7 +8,6 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
-#include "coordinat3d.h"
 #include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

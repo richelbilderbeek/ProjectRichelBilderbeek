@@ -10,9 +10,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
-#include "coordinat3d.h"
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop

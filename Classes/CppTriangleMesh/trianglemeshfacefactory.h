@@ -9,6 +9,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
@@ -19,6 +20,8 @@ namespace trim {
 
 struct FaceFactory
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   FaceFactory();
 
   const boost::shared_ptr<Face> Create(

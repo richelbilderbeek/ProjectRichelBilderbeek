@@ -4,7 +4,6 @@
 
 #include "Shiny.h"
 
-#include "coordinat3d.h"
 #include "geometry.h"
 #include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
@@ -37,7 +36,7 @@ const boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::CreateFromX
 #endif
 
 const boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
-  const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat
+  const boost::shared_ptr<const ConstCoordinat2D> coordinat
 ) const noexcept
 {
   PROFILE_FUNC();
@@ -60,23 +59,23 @@ const boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
 
 const std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::CreateTestPrism() const noexcept
 {
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_a {
-    new ribi::ConstCoordinat2D(0.0,0.0)
+  const boost::shared_ptr<ConstCoordinat2D> co_a {
+    new ConstCoordinat2D(0.0,0.0)
   };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_b {
-    new ribi::ConstCoordinat2D(1.0,0.0)
+  const boost::shared_ptr<ConstCoordinat2D> co_b {
+    new ConstCoordinat2D(1.0,0.0)
   };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_c {
-    new ribi::ConstCoordinat2D(0.0,1.0)
+  const boost::shared_ptr<ConstCoordinat2D> co_c {
+    new ConstCoordinat2D(0.0,1.0)
   };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_d {
-    new ribi::ConstCoordinat2D(0.0,0.0)
+  const boost::shared_ptr<ConstCoordinat2D> co_d {
+    new ConstCoordinat2D(0.0,0.0)
   };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_e {
-    new ribi::ConstCoordinat2D(1.0,0.0)
+  const boost::shared_ptr<ConstCoordinat2D> co_e {
+    new ConstCoordinat2D(1.0,0.0)
   };
-  const boost::shared_ptr<ribi::ConstCoordinat2D> co_f {
-    new ribi::ConstCoordinat2D(0.0,1.0)
+  const boost::shared_ptr<ConstCoordinat2D> co_f {
+    new ConstCoordinat2D(0.0,1.0)
   };
 
   const boost::shared_ptr<Point> a {

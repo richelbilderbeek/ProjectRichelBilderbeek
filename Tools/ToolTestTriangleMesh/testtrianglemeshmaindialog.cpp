@@ -153,11 +153,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
           else
           {
             assert(face->GetOrientation() == ribi::trim::FaceOrientation::vertical);
-            const Coordinat3D center { face->CalcCenter() };
-            TRACE(center);
-            if (center.GetX() < 0.0)
+            const auto center(face->CalcCenter());
+            const double center_x = boost::geometry::get<0>(center);
+            const double center_y = boost::geometry::get<1>(center);
+            if (center_x < 0.0)
             {
-              if (center.GetY() < 0.0)
+              if (center_y < 0.0)
               {
                 face->SetBoundaryType("front");
               }
@@ -168,7 +169,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
             }
             else
             {
-              if (center.GetY() < 0.0)
+              if (center_y < 0.0)
               {
                 face->SetBoundaryType("left");
               }

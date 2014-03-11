@@ -5,7 +5,11 @@
 #include <vector>
 #include <iosfwd>
 
-#include "coordinat3d.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry.hpp>
+#pragma GCC diagnostic pop
 
 namespace ribi {
 namespace foam {
@@ -13,6 +17,8 @@ namespace foam {
 ///An item in an OpenFOAM 'points' file
 struct PointsFileItem
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   explicit PointsFileItem(
     const Coordinat3D& coordinat = Coordinat3D(0.0, 0.0, 0.0)
   );

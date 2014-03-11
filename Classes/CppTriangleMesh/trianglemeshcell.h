@@ -8,8 +8,8 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
-#include "coordinat3d.h"
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
 
@@ -20,10 +20,12 @@ namespace trim {
 ///Sure, the Faces can change...
 struct Cell
 {
-  const std::vector<boost::shared_ptr<const Face>> GetFaces() const noexcept;
-  const std::vector<boost::shared_ptr<      Face>> GetFaces()       noexcept { return m_faces; }
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  const ribi::Coordinat3D CalculateCenter() const noexcept;
+  std::vector<boost::shared_ptr<const Face>> GetFaces() const noexcept;
+  std::vector<boost::shared_ptr<      Face>> GetFaces()       noexcept { return m_faces; }
+
+  Coordinat3D CalculateCenter() const noexcept;
 
   int GetIndex() const noexcept { return m_index; }
 
@@ -52,9 +54,9 @@ struct Cell
   #endif
 };
 
-bool operator==(const Cell& lhs, const Cell& rhs);
-bool operator!=(const Cell& lhs, const Cell& rhs);
-std::ostream& operator<<(std::ostream& os, const Cell& cell);
+bool operator==(const Cell& lhs, const Cell& rhs) noexcept;
+bool operator!=(const Cell& lhs, const Cell& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
 
 } //~namespace trim
 } //~namespace ribi

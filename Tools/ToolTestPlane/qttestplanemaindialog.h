@@ -38,7 +38,7 @@ private:
   #endif
 };
 
-std::ostream& operator<<(std::ostream& os, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept;
+//std::ostream& operator<<(std::ostream& os, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept;
 
 } //~namespace ribi
 

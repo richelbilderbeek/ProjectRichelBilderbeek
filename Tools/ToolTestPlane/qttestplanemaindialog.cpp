@@ -6,6 +6,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include "geometry.h"
 #include "plane.h"
 #include "trace.h"
 #include "ui_qttestplanemaindialog.h"
@@ -48,21 +49,21 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
     static_cast<double>(ui->slider_y1->value()),
     static_cast<double>(ui->slider_z1->value())
   );
-  s << "Point 1: " << p1 << '\n';
+  s << "Point 1: " << Geometry().ToStr(p1) << '\n';
 
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p2(
     static_cast<double>(ui->slider_x2->value()),
     static_cast<double>(ui->slider_y2->value()),
     static_cast<double>(ui->slider_z2->value())
   );
-  s << "Point 2: " << p2 << '\n';
+  s << "Point 2: " << Geometry().ToStr(p2) << '\n';
 
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p3(
     static_cast<double>(ui->slider_x3->value()),
     static_cast<double>(ui->slider_y3->value()),
     static_cast<double>(ui->slider_z3->value())
   );
-  s << "Point 3: " << p3 << '\n';
+  s << "Point 3: " << Geometry().ToStr(p3) << '\n';
 
 
   const ribi::Plane plane(p1,p2,p3);
@@ -165,6 +166,7 @@ void ribi::QtTestPlaneMainDialog::Test() noexcept
 }
 #endif
 
+/*
 std::ostream& ribi::operator<<(std::ostream& os, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) noexcept
 {
   os
@@ -178,3 +180,4 @@ std::ostream& ribi::operator<<(std::ostream& os, const boost::geometry::model::p
   ;
   return os;
 }
+*/

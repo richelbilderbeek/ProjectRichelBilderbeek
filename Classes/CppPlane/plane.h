@@ -47,10 +47,11 @@ struct Plane
  / |
 
   */
+  ///By default, create the plane Z = 0
   explicit Plane(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1 = {},
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2 = {},
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3 = {}
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1, //= boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(0.0,0.0,0.0),
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2, //= boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(0.0,1.0,0.0),
+    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3  //= boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(1.0,0.0,0.0)
   ) noexcept
   : m_plane_x(CreatePlaneX(p1,p2,p3)),
     m_plane_y(CreatePlaneY(p1,p2,p3)),

@@ -1,6 +1,10 @@
 #ifndef COORDINAT2D_H
 #define COORDINAT2D_H
 
+//typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+
+#ifdef USE_CUSTOM_RIBI_COORDINAT2D
+
 #include <array>
 #include <iosfwd>
 #include <vector>
@@ -71,5 +75,7 @@ Coordinat2D operator-(
   const Coordinat2D& v2) noexcept;
 
 } //~namespace ribi
+
+#endif
 
 #endif // COORDINAT2D_H

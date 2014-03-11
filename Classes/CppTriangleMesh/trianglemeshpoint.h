@@ -8,12 +8,13 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/length.hpp>
-#include "constcoordinat2d.h"
+//
 #include "trianglemeshfwd.h"
-#include "coordinat3d.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -22,7 +23,8 @@ namespace trim {
 ///An OpenFOAM point, as in the file 'points'
 struct Point
 {
-  const boost::shared_ptr<const ribi::ConstCoordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
+  typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+  const boost::shared_ptr<const ConstCoordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
 
   bool CanGetZ() const noexcept;
 
@@ -46,7 +48,7 @@ struct Point
 
   friend class PointFactory;
   Point(
-    const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat,
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat,
     const int index,
     const PointFactory& lock
   );
@@ -61,7 +63,7 @@ struct Point
   /// a Face consists of Point objects
   std::set<boost::weak_ptr<Face>> m_connected;
 
-  const boost::shared_ptr<const ribi::ConstCoordinat2D> m_coordinat;
+  const boost::shared_ptr<const ConstCoordinat2D> m_coordinat;
 
   ///The index of this Point in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;

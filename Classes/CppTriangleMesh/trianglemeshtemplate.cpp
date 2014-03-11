@@ -61,9 +61,9 @@ ribi::trim::Template::Template(
       assert(CanLexicalCast<int>(w[3]));
       const double x = boost::lexical_cast<double>(w[1]);
       const double y = boost::lexical_cast<double>(w[2]);
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
-      };
+      const boost::shared_ptr<const ConstCoordinat2D> bottom(
+        new ConstCoordinat2D(x,y)
+      );
 
       const boost::shared_ptr<Point> node {
         PointFactory().Create(bottom)
@@ -206,8 +206,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
       const std::string boundary_type = "two_times_two";
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -220,17 +220,19 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestSq
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          //assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          //assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -332,8 +334,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
       const std::string boundary_type = "two_times_two";
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -346,17 +348,17 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTestTr
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -463,8 +465,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
     {
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -477,17 +479,17 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest2x
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -602,8 +604,8 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
       const double x = static_cast<double>(i % width);
       const double y = static_cast<double>(i / width);
       const std::string boundary_type = "three_times_three";
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> bottom {
-        new ribi::ConstCoordinat2D(x,y)
+      const boost::shared_ptr<const ConstCoordinat2D> bottom {
+        new ConstCoordinat2D(x,y)
       };
       const boost::shared_ptr<Point> point {
         PointFactory().Create(bottom)
@@ -616,17 +618,17 @@ const boost::shared_ptr<ribi::trim::Template> ribi::trim::Template::CreateTest3x
   {
     for (int i=0; i!=n_points; ++i)
     {
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a { points[i]->GetCoordinat() };
+      const boost::shared_ptr<const ConstCoordinat2D> a { points[i]->GetCoordinat() };
       for (int j=0; j!=n_points; ++j)
       {
-        const boost::shared_ptr<const ribi::ConstCoordinat2D> b { points[j]->GetCoordinat() };
+        const boost::shared_ptr<const ConstCoordinat2D> b { points[j]->GetCoordinat() };
         if (a == b)
         {
-          assert(ribi::Distance(*a,*b) < 0.001);
+          assert(boost::geometry::distance(*a,*b) < 0.001);
         }
         else
         {
-          assert(ribi::Distance(*a,*b) > 0.001);
+          assert(boost::geometry::distance(*a,*b) > 0.001);
         }
       }
     }
@@ -768,16 +770,16 @@ void ribi::trim::Template::Test() noexcept
   {
     {
       //12 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a {
-        new ribi::ConstCoordinat2D(0.0,-1.0)
+      const boost::shared_ptr<const ConstCoordinat2D> a {
+        new ConstCoordinat2D(0.0,-1.0)
       };
       //4 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> b {
-        new ribi::ConstCoordinat2D(0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> b {
+        new ConstCoordinat2D(0.83,0.5)
       };
       //8 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> c {
-        new ribi::ConstCoordinat2D(-0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> c {
+        new ConstCoordinat2D(-0.83,0.5)
       };
       std::vector<boost::shared_ptr<Point>> points {
         PointFactory().Create(a),
@@ -793,16 +795,16 @@ void ribi::trim::Template::Test() noexcept
     }
     {
       //12 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> a {
-        new ribi::ConstCoordinat2D(0.0,-1.0)
+      const boost::shared_ptr<const ConstCoordinat2D> a {
+        new ConstCoordinat2D(0.0,-1.0)
       };
       //8 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> b {
-        new ribi::ConstCoordinat2D(-0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> b {
+        new ConstCoordinat2D(-0.83,0.5)
       };
       //4 o'clock
-      const boost::shared_ptr<const ribi::ConstCoordinat2D> c {
-        new ribi::ConstCoordinat2D(0.83,0.5)
+      const boost::shared_ptr<const ConstCoordinat2D> c {
+        new ConstCoordinat2D(0.83,0.5)
       };
       std::vector<boost::shared_ptr<Point>> points {
         PointFactory().Create(a),

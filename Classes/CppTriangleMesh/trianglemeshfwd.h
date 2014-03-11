@@ -3,9 +3,9 @@
 
 namespace ribi {
 
-struct ConstCoordinat2D;
-struct Coordinat2D;
-struct Coordinat3D;
+//struct ConstCoordinat2D;
+//struct Coordinat2D;
+//struct Coordinat3D;
 
 namespace trim {
 

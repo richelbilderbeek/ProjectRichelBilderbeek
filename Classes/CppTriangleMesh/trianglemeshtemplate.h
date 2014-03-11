@@ -6,6 +6,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
@@ -19,6 +20,8 @@ namespace trim {
 ///The next step will be to create a multiple layers of Cells by CellsCreator
 struct Template
 {
+  typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+
   Template(
     const std::string& filename_node,
     const std::string& filename_ele

@@ -10,17 +10,20 @@
 
 #include "fparser.hh"
 
-#include "coordinat3d.h"
 #include "geometry.h"
 #include "plane.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+ribi::TestPlaneMenuDialog::TestPlaneMenuDialog()
 {
   #ifndef NDEBUG
   Test();
   #endif
+}
+
+int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+{
   const int argc = static_cast<int>(argv.size());
   if (argc == 1)
   {
@@ -30,47 +33,98 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
   if (argc == 5)
   {
-    std::cout << "Construct plane from coefficients" << '\n';
-    const Plane p(
-      boost::lexical_cast<double>(argv[1]),
-      boost::lexical_cast<double>(argv[2]),
-      boost::lexical_cast<double>(argv[3]),
-      boost::lexical_cast<double>(argv[4])
-    );
+    std::stringstream s;
+    s << "Construct plane from coefficients" << '\n';
+    try
+    {
+      const Plane p(
+        boost::lexical_cast<double>(argv[1]),
+        boost::lexical_cast<double>(argv[2]),
+        boost::lexical_cast<double>(argv[3]),
+        boost::lexical_cast<double>(argv[4])
+      );
+    }
+    catch (std::logic_error& e)
+    {
+      s << "Exception: " << e.what() << '\n';
+    }
+    std::cout << s.str() << '\n';
   }
   else if (argc == 10)
   {
-    std::cout << "Construct plane from three points" << '\n';
-    const Plane p(
-      boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
-        boost::lexical_cast<double>(argv[1]),
-        boost::lexical_cast<double>(argv[2]),
-        boost::lexical_cast<double>(argv[3])
-      ),
-      boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
-        boost::lexical_cast<double>(argv[4]),
-        boost::lexical_cast<double>(argv[5]),
-        boost::lexical_cast<double>(argv[6])
-      ),
-      boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(
-        boost::lexical_cast<double>(argv[7]),
-        boost::lexical_cast<double>(argv[8]),
-        boost::lexical_cast<double>(argv[9])
-      )
+    std::stringstream s;
+    s << "Construct plane from three points" << '\n';
+
+    boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p1(
+      boost::lexical_cast<double>(argv[1]),
+      boost::lexical_cast<double>(argv[2]),
+      boost::lexical_cast<double>(argv[3])
     );
-    std::cout
-      << "Coefficients: " << '\n'
-      << "  a: " << '\n'
-      << p.GetCoefficientsZ()[0] << '\n'
-      << "  b: " << '\n'
-      << p.GetCoefficientsZ()[1] << '\n'
-      << "  c: " << '\n'
-      << p.GetCoefficientsZ()[2] << '\n'
-      << "  d: " << '\n'
-      << p.GetCoefficientsZ()[3] << '\n'
-      << "Function: " << '\n'
-      << p.ToFunctionZ() << '\n'
-    ;
+
+    s << "Point 1: " << Geometry().ToStr(p1) << '\n';
+
+    boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p2(
+      boost::lexical_cast<double>(argv[4]),
+      boost::lexical_cast<double>(argv[5]),
+      boost::lexical_cast<double>(argv[6])
+    );
+
+    s << "Point 2: " << Geometry().ToStr(p2) << '\n';
+
+    boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> p3(
+      boost::lexical_cast<double>(argv[7]),
+      boost::lexical_cast<double>(argv[8]),
+      boost::lexical_cast<double>(argv[9])
+    );
+
+    s << "Point 3: " << Geometry().ToStr(p3) << '\n';
+
+    const ribi::Plane plane(p1,p2,p3);
+    try
+    {
+      s << "Function (X): " << plane.ToFunctionX() << '\n'
+        << "Coefficients (X): " << '\n'
+        << " - A: " << plane.GetCoefficientsX()[0] << '\n'
+        << " - B: " << plane.GetCoefficientsX()[1] << '\n'
+        << " - C: " << plane.GetCoefficientsX()[2] << '\n'
+        << " - D: " << plane.GetCoefficientsX()[3] << '\n'
+      ;
+    }
+    catch (std::logic_error& e)
+    {
+      s << "Exception: " << e.what() << '\n';
+    }
+
+    try
+    {
+      s << "Function (Y): " << plane.ToFunctionY() << '\n'
+        << "Coefficients (Y): " << '\n'
+        << " - A: " << plane.GetCoefficientsY()[0] << '\n'
+        << " - B: " << plane.GetCoefficientsY()[1] << '\n'
+        << " - C: " << plane.GetCoefficientsY()[2] << '\n'
+        << " - D: " << plane.GetCoefficientsY()[3] << '\n'
+      ;
+    }
+    catch (std::logic_error& e)
+    {
+      s << "Exception: " << e.what() << '\n';
+    }
+
+    try
+    {
+      s << "Function (Z): " << plane.ToFunctionZ() << '\n'
+        << "Coefficients (Z): " << '\n'
+        << " - A: " << plane.GetCoefficientsZ()[0] << '\n'
+        << " - B: " << plane.GetCoefficientsZ()[1] << '\n'
+        << " - C: " << plane.GetCoefficientsZ()[2] << '\n'
+        << " - D: " << plane.GetCoefficientsZ()[3] << '\n'
+      ;
+    }
+    catch (std::logic_error& e)
+    {
+      s << "Exception: " << e.what() << '\n';
+    }
+    std::cout << s.str() << '\n';
   }
 
 
@@ -88,7 +142,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Coordinat3D version: " + Coordinat3D().GetVersion());
+  //a.AddLibrary("Coordinat3D version: " + Coordinat3D().GetVersion());
   a.AddLibrary("Plane version: " + Plane().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
@@ -151,12 +205,8 @@ void ribi::TestPlaneMenuDialog::Test() noexcept
       "2.0","1.0","12.0"
     }
   );
-  //a_expected { -2.0 };
-  //b_expected { -3.0 };
-  //c_expected {  1.0 };
-  //d_expected {  5.0 };
-  assert(1==2);
-
   TRACE("Finished ribi::TestPlaneMenuDialog::Test successfully");
 }
+
+
 #endif

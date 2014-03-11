@@ -1,3 +1,5 @@
+#ifdef USE_CUSTOM_RIBI_COORDINAT3D
+
 #include "coordinat2d.h"
 
 #include <array>
@@ -162,3 +164,5 @@ std::ostream& ribi::operator<<(std::ostream& os, const Coordinat2D& n) noexcept
   os << ribi::xml::ToXml("coordinat2d",s.str());
   return os;
 }
+
+#endif

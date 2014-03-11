@@ -17,7 +17,7 @@ ribi::trim::CellsCreatorFactory::CellsCreatorFactory()
   #endif
 }
 
-const boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Create(
+boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Create(
   const boost::shared_ptr<const Template> t,
   const int n_layers,
   const boost::units::quantity<boost::units::si::length> layer_height,
@@ -31,7 +31,7 @@ const boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactor
   return creator;
 }
 
-const boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::CreateTestCube(
+boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::CreateTestCube(
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
@@ -63,7 +63,7 @@ const boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactor
   return cells_creator;
 }
 
-const boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::CreateTestPrism(
+boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::CreateTestPrism(
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {

@@ -25,7 +25,7 @@ ribi::foam::Mesh::Mesh(
   const std::vector<boost::shared_ptr<Boundary>>& boundaries,
   const std::vector<boost::shared_ptr<Cell>>& cells,
   const std::vector<boost::shared_ptr<Face>>& faces,
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points
+  const std::vector<boost::shared_ptr<Coordinat3D>>& points
   )
   : m_boundaries(boundaries),
     m_cells(cells),
@@ -62,7 +62,7 @@ ribi::foam::Mesh::Mesh(
 
 ribi::foam::Mesh::Mesh(
   const Files& files,
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points
+  const std::vector<boost::shared_ptr<Coordinat3D>>& points
   )
   : m_boundaries{},
     m_cells{CreateEmptyCells(files)},
@@ -211,36 +211,68 @@ bool ribi::foam::Mesh::AreFacesOrdered() const noexcept
 }
 
 double ribi::foam::Mesh::CalcSimilarityFaster(
-  const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
-  const std::vector<ribi::Coordinat3D>& w) noexcept
+  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+  const std::vector<Coordinat3D>& w) noexcept
 {
   if (v.size() != w.size()) return std::numeric_limits<double>::max();
   //Sum all coordinats, distance equals the distance between the center points
+
+  #ifdef USE_CUSTOM_RIBI_COORDINAT3D
   const Coordinat3D a = std::accumulate(v.begin(),v.end(),Coordinat3D(),
-    [](const Coordinat3D& init, const boost::shared_ptr<const ribi::Coordinat3D> c)
+    [](const Coordinat3D& init, const boost::shared_ptr<const Coordinat3D> c)
     {
       return init + (*c);
     }
   );
-  //for (const boost::shared_ptr<const ribi::Coordinat3D> c: v) { a += (*c); }
+  //for (const boost::shared_ptr<const Coordinat3D> c: v) { a += (*c); }
   const Coordinat3D b = std::accumulate(w.begin(),w.end(),Coordinat3D());
   return Distance(a,b);
+  #else
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  const auto a(
+    std::accumulate(v.begin(),v.end(),Coordinat3D(),
+      [](const Coordinat3D& init, const boost::shared_ptr<const Coordinat3D> c)
+      {
+        return Coordinat3D(
+          boost::geometry::get<0>(init) + boost::geometry::get<0>(*c),
+          boost::geometry::get<1>(init) + boost::geometry::get<1>(*c),
+          boost::geometry::get<2>(init) + boost::geometry::get<2>(*c)
+        );
+      }
+    )
+  );
+  const auto b(
+    std::accumulate(w.begin(),w.end(),Coordinat3D(),&ribi::foam::Add
+      /*
+      ,[](const Coordinat3D& init, const Coordinat3D& c)
+      {
+        return Coordinat3D(
+          boost::geometry::get<0>(init) + boost::geometry::get<0>(c),
+          boost::geometry::get<1>(init) + boost::geometry::get<1>(c),
+          boost::geometry::get<2>(init) + boost::geometry::get<2>(c)
+        );
+      }
+      */
+    )
+  );
+  return boost::geometry::distance(a,b);
+  #endif
 }
 
-
+/*
 double ribi::foam::Mesh::CalcSimilaritySlow(
-  const std::vector<ribi::Coordinat3D>& v,
-  const std::vector<ribi::Coordinat3D>& w) noexcept
+  const std::vector<Coordinat3D>& v,
+  const std::vector<Coordinat3D>& w) noexcept
 {
   if (v.size() != w.size()) return std::numeric_limits<double>::max();
   const double distance {
     std::accumulate(v.begin(),v.end(),0.0,
-      [w](const double init,const ribi::Coordinat3D& c)
+      [w](const double init,const Coordinat3D& c)
       {
         //Find the closest coordinat in w to c
-        const std::vector<ribi::Coordinat3D>::const_iterator closest {
+        const std::vector<Coordinat3D>::const_iterator closest {
           std::min_element(w.begin(),w.end(),
-            [c](const ribi::Coordinat3D& lhs, const ribi::Coordinat3D& rhs)
+            [c](const Coordinat3D& lhs, const Coordinat3D& rhs)
             {
               return Distance(lhs,c) < Distance(rhs,c);
             }
@@ -252,21 +284,23 @@ double ribi::foam::Mesh::CalcSimilaritySlow(
   };
   return distance;
 }
+*/
 
+/*
 double ribi::foam::Mesh::CalcSimilaritySlow(
-  const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
-  const std::vector<ribi::Coordinat3D>& w) noexcept
+  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+  const std::vector<Coordinat3D>& w) noexcept
 {
   if (v.size() != w.size()) return std::numeric_limits<double>::max();
   const double distance {
     std::accumulate(v.begin(),v.end(),0.0,
-      [w](const double init,const boost::shared_ptr<const ribi::Coordinat3D>& c)
+      [w](const double init,const boost::shared_ptr<const Coordinat3D>& c)
       {
 
         //Find the closest coordinat in w to c
-        const std::vector<ribi::Coordinat3D>::const_iterator closest {
+        const std::vector<Coordinat3D>::const_iterator closest {
           std::min_element(w.begin(),w.end(),
-            [c](const ribi::Coordinat3D& lhs, const ribi::Coordinat3D& rhs)
+            [c](const Coordinat3D& lhs, const Coordinat3D& rhs)
             {
               return Distance(lhs,*c) < Distance(rhs,*c);
             }
@@ -278,7 +312,7 @@ double ribi::foam::Mesh::CalcSimilaritySlow(
   };
   return distance;
 }
-
+*/
 
 const std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::CreateBoundaries(
   const Files& files,
@@ -418,15 +452,15 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Mesh::CreateFaces() c
     [this](const boost::shared_ptr<const Face> face)
     {
       assert(face);
-      const std::vector<boost::shared_ptr<const ribi::Coordinat3D> > points {
+      const std::vector<boost::shared_ptr<const Coordinat3D> > points {
         face->GetPoints()
       };
       std::vector<PointIndex> point_indices;
       std::transform(points.begin(),points.end(),
         std::back_inserter(point_indices),
-        [this](boost::shared_ptr<const ribi::Coordinat3D> coordinat)
+        [this](boost::shared_ptr<const Coordinat3D> coordinat)
         {
-          const std::vector<boost::shared_ptr<ribi::Coordinat3D>>::const_iterator iter {
+          const std::vector<boost::shared_ptr<Coordinat3D>>::const_iterator iter {
             std::find(m_points.begin(),m_points.end(),coordinat)
           };
           assert(iter != m_points.end());
@@ -454,7 +488,7 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Mesh::CreateFaces() c
 
 const std::vector<boost::shared_ptr<ribi::foam::Face>> ribi::foam::Mesh::CreateFacesWithPoints(
   const Files& files,
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& all_points)
+  const std::vector<boost::shared_ptr<Coordinat3D>>& all_points)
 {
   const FaceIndex n_faces { files.GetFaces()->GetMaxFaceIndex() };
 
@@ -465,7 +499,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Face>> ribi::foam::Mesh::CreateF
       files.GetFaces()->GetItem(i).GetPointIndices()
     };
 
-    std::vector<boost::shared_ptr<ribi::Coordinat3D>> points;
+    std::vector<boost::shared_ptr<Coordinat3D>> points;
     for (const PointIndex& point_index: point_indices)
     {
       assert(point_index.Get() >= 0);
@@ -595,7 +629,7 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Mesh::CreatePoints()
     m_points.begin(),
     m_points.end(),
     std::back_inserter(items),
-    [](const boost::shared_ptr<ribi::Coordinat3D> point)
+    [](const boost::shared_ptr<Coordinat3D> point)
     {
       assert(point);
       return PointsFileItem(*point);
@@ -612,18 +646,18 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Mesh::CreatePoints()
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::Coordinat3D> >
+const std::vector<boost::shared_ptr<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>>
   ribi::foam::Mesh::CreatePoints(const Files& files)
 {
-  std::vector<boost::shared_ptr<ribi::Coordinat3D> > v;
+  std::vector<boost::shared_ptr<Coordinat3D>> v;
   assert(files.GetPoints());
   for (const PointsFileItem& item: files.GetPoints()->GetItems())
   {
     static_assert(std::is_same<PointsFileItem,Point>(),
       "Point is a typedef for PointsFileItem"
     );
-    const boost::shared_ptr<ribi::Coordinat3D> p {
-      new ribi::Coordinat3D(item.GetCoordinat())
+    const boost::shared_ptr<Coordinat3D> p {
+      new Coordinat3D(item.GetCoordinat())
 
     };
     assert(p);
@@ -633,7 +667,7 @@ const std::vector<boost::shared_ptr<ribi::Coordinat3D> >
 }
 
 const boost::shared_ptr<const ribi::foam::Face> ribi::foam::Mesh::FindMostSimilarFace(
-  const std::vector<ribi::Coordinat3D>& coordinats
+  const std::vector<Coordinat3D>& coordinats
   ) const
 {
   ///Obtain the distance from focal coordinats to each face its coordinat
@@ -771,21 +805,21 @@ void ribi::foam::Mesh::Test() noexcept
   }
   //CalcSimilarity: empty
   {
-    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
-    std::vector<ribi::Coordinat3D> w;
+    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<Coordinat3D> w;
     assert(CalcSimilarityFaster(v,w) < 0.001);
   }
   //CalcSimilarity: one point
   {
-    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
-    std::vector<ribi::Coordinat3D> w;
+    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<Coordinat3D> w;
     {
-      const ribi::Coordinat3D c(1.1,2.2,3.3);
-      boost::shared_ptr<const ribi::Coordinat3D> d {
-        new ribi::Coordinat3D(c)
+      const Coordinat3D c(1.1,2.2,3.3);
+      boost::shared_ptr<const Coordinat3D> d {
+        new Coordinat3D(c)
       };
       assert(c == *d); //Exact comparison
-      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      assert(boost::geometry::distance(c,*d) < 0.0000001); //Fuzzier comparison
       w.push_back(c);
       v.push_back(d);
     }
@@ -793,25 +827,25 @@ void ribi::foam::Mesh::Test() noexcept
   }
   //CalcSimilarity: two points
   {
-    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
-    std::vector<ribi::Coordinat3D> w;
+    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<Coordinat3D> w;
     {
-      const ribi::Coordinat3D c(1.1,2.2,3.3);
-      boost::shared_ptr<const ribi::Coordinat3D> d {
-        new ribi::Coordinat3D(c)
+      const Coordinat3D c(1.1,2.2,3.3);
+      boost::shared_ptr<const Coordinat3D> d {
+        new Coordinat3D(c)
       };
       assert(c == *d); //Exact comparison
-      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      assert(boost::geometry::distance(c,*d) < 0.0000001); //Fuzzier comparison
       w.push_back(c);
       v.push_back(d);
     }
     {
-      const ribi::Coordinat3D c(2.2,3.3,4.4);
-      boost::shared_ptr<const ribi::Coordinat3D> d {
-        new ribi::Coordinat3D(c)
+      const Coordinat3D c(2.2,3.3,4.4);
+      boost::shared_ptr<const Coordinat3D> d {
+        new Coordinat3D(c)
       };
       assert(c == *d); //Exact comparison
-      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      assert(boost::geometry::distance(c,*d) < 0.0000001); //Fuzzier comparison
       w.push_back(c);
       v.push_back(d);
     }
@@ -819,20 +853,20 @@ void ribi::foam::Mesh::Test() noexcept
   }
   //CalcSimilarity: one versus two points
   {
-    std::vector<boost::shared_ptr<const ribi::Coordinat3D> > v;
-    std::vector<ribi::Coordinat3D> w;
+    std::vector<boost::shared_ptr<const Coordinat3D> > v;
+    std::vector<Coordinat3D> w;
     {
-      const ribi::Coordinat3D c(1.1,2.2,3.3);
-      boost::shared_ptr<const ribi::Coordinat3D> d {
-        new ribi::Coordinat3D(c)
+      const Coordinat3D c(1.1,2.2,3.3);
+      boost::shared_ptr<const Coordinat3D> d {
+        new Coordinat3D(c)
       };
       assert(c == *d); //Exact comparison
-      assert(Distance(c,*d) < 0.0000001); //Fuzzier comparison
+      assert(boost::geometry::distance(c,*d) < 0.0000001); //Fuzzier comparison
       w.push_back(c);
       v.push_back(d);
     }
     {
-      const ribi::Coordinat3D c(2.2,3.3,4.4);
+      const Coordinat3D c(2.2,3.3,4.4);
       w.push_back(c);
     }
     assert(CalcSimilarityFaster(v,w) > 1000000000.0);
@@ -846,14 +880,14 @@ void ribi::foam::Mesh::Test() noexcept
     // 8((0 0 0) (1 0 0) (0 1 0) (1 1 0) (0 0 1) (1 0 1) (0 1 1) (1 1 1))
     //
     // The order of points is determined by blockMesh
-    const boost::shared_ptr<ribi::Coordinat3D> p0 { new ribi::Coordinat3D(0.0,0.0,0.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p1 { new ribi::Coordinat3D(1.0,0.0,0.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p2 { new ribi::Coordinat3D(0.0,1.0,0.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p3 { new ribi::Coordinat3D(1.0,1.0,0.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p4 { new ribi::Coordinat3D(0.0,0.0,1.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p5 { new ribi::Coordinat3D(1.0,0.0,1.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p6 { new ribi::Coordinat3D(0.0,1.0,1.0) };
-    const boost::shared_ptr<ribi::Coordinat3D> p7 { new ribi::Coordinat3D(1.0,1.0,1.0) };
+    const boost::shared_ptr<Coordinat3D> p0 { new Coordinat3D(0.0,0.0,0.0) };
+    const boost::shared_ptr<Coordinat3D> p1 { new Coordinat3D(1.0,0.0,0.0) };
+    const boost::shared_ptr<Coordinat3D> p2 { new Coordinat3D(0.0,1.0,0.0) };
+    const boost::shared_ptr<Coordinat3D> p3 { new Coordinat3D(1.0,1.0,0.0) };
+    const boost::shared_ptr<Coordinat3D> p4 { new Coordinat3D(0.0,0.0,1.0) };
+    const boost::shared_ptr<Coordinat3D> p5 { new Coordinat3D(1.0,0.0,1.0) };
+    const boost::shared_ptr<Coordinat3D> p6 { new Coordinat3D(0.0,1.0,1.0) };
+    const boost::shared_ptr<Coordinat3D> p7 { new Coordinat3D(1.0,1.0,1.0) };
     assert(p0); assert(p1); assert(p2); assert(p3);
     assert(p4); assert(p5); assert(p6); assert(p7);
     const boost::shared_ptr<Cell> cell { new Cell };
@@ -872,7 +906,7 @@ void ribi::foam::Mesh::Test() noexcept
     const boost::shared_ptr<Cell> own4 { cell }; //The only Cell owns all Faces
     const boost::shared_ptr<Cell> own5 { cell }; //The only Cell owns all Faces
 
-    const std::vector<boost::shared_ptr<ribi::Coordinat3D>> points { p0,p1,p2,p3,p4,p5,p6,p7 };
+    const std::vector<boost::shared_ptr<Coordinat3D>> points { p0,p1,p2,p3,p4,p5,p6,p7 };
     //For the Faces, I used the same setup as in Classes/CppOpenFoam/faces_1x1x1:
     //
     //
@@ -909,13 +943,13 @@ void ribi::foam::Mesh::Test() noexcept
     for (const boost::shared_ptr<Face> face: faces)
     {
       assert(face);
-      const std::vector<boost::shared_ptr<const ribi::Coordinat3D>> points { AddConst(face->GetPoints()) };
-      std::vector<ribi::Coordinat3D> coordinats;
+      const std::vector<boost::shared_ptr<const Coordinat3D>> points { AddConst(face->GetPoints()) };
+      std::vector<Coordinat3D> coordinats;
       std::transform(points.begin(),points.end(),
         std::back_inserter(coordinats),
-        [](const boost::shared_ptr<const ribi::Coordinat3D> shared_coordinat)
+        [](const boost::shared_ptr<const Coordinat3D> shared_coordinat)
         {
-          return ribi::Coordinat3D(*shared_coordinat);
+          return Coordinat3D(*shared_coordinat);
         }
       );
       //For every Face, extract the coordinats
@@ -940,12 +974,14 @@ void ribi::foam::Mesh::Test() noexcept
 
 std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Mesh& mesh)
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   TRACE("Smallest: points");
   os << "Points: ";
-  for (boost::shared_ptr<ribi::Coordinat3D> point: mesh.m_points)
+  for (boost::shared_ptr<Coordinat3D> point: mesh.m_points)
   {
     assert(point);
-    os << "* " << *point << '\n';
+    os << "* " << ToStr(*point) << '\n';
   }
   TRACE("Small: faces");
   os << "Faces:\n";
@@ -955,7 +991,7 @@ std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Mesh& m
       << "* Neighbour: " << face->GetNeighbour() << '\n'
       << "* Owner: " << face->GetOwner() << '\n'
       << "* Coordinats: ";
-    for(boost::shared_ptr<const ribi::Coordinat3D> coordinat: face->GetPoints())
+    for(boost::shared_ptr<const Coordinat3D> coordinat: face->GetPoints())
     {
       os << coordinat << ' ';
     }

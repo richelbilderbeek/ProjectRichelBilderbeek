@@ -50,7 +50,7 @@ struct Replacements
   Replacements(const Replacements&) = delete;
   Replacements& operator=(const Replacements&) = delete;
 
-  const std::vector<std::pair<std::string,std::string> >& Get() const { return m_replacements; }
+  const std::vector<std::pair<std::string,std::string>>& Get() const { return m_replacements; }
 
   private:
   friend struct Replacer;
@@ -62,12 +62,12 @@ struct Replacements
 
 
   ///The replacements
-  const std::vector<std::pair<std::string,std::string> > m_replacements;
+  const std::vector<std::pair<std::string,std::string>> m_replacements;
 
-  static const std::vector<std::pair<std::string,std::string> > CreateAllReplacements(
-    const std::vector<std::pair<std::string,std::string> >& replacements);
-  static const std::vector<std::pair<std::string,std::string> > CreateEndReplacements();
-  static const std::vector<std::pair<std::string,std::string> > CreateInitialReplacements();
+  static std::vector<std::pair<std::string,std::string>> CreateAllReplacements(
+    const std::vector<std::pair<std::string,std::string>>& replacements);
+  static std::vector<std::pair<std::string,std::string>> CreateEndReplacements();
+  static std::vector<std::pair<std::string,std::string>> CreateInitialReplacements();
 };
 
 } //~namespace c2h

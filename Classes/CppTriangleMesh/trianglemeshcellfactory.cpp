@@ -18,7 +18,7 @@ ribi::trim::CellFactory::CellFactory()
   #endif
 }
 
-const boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
+boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
   const std::vector<boost::shared_ptr<Face>>& faces
 )
 {
@@ -44,13 +44,14 @@ const boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
   return cell;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::CreateTestCube(
+std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::CreateTestCube(
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
   const boost::shared_ptr<Template> my_template {
     Template::CreateTest(1)
   };
+  assert(my_template);
   assert(my_template->CountFaces() == 2);
   const int n_layers = 2;
   const boost::shared_ptr<CellsCreator> cells_creator {
@@ -79,7 +80,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::
   return cells;
 }
 
-const boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism() const noexcept
+boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism() const noexcept
 {
   const std::vector<boost::shared_ptr<Face> > faces {
     FaceFactory().CreateTestPrism()

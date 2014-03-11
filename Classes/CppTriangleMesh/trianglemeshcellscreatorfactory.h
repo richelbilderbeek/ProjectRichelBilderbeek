@@ -24,7 +24,7 @@ struct CellsCreatorFactory
 {
   CellsCreatorFactory();
 
-  const boost::shared_ptr<CellsCreator> Create(
+  boost::shared_ptr<CellsCreator> Create(
     const boost::shared_ptr<const Template> t,
     const int n_layers,
     const boost::units::quantity<boost::units::si::length> layer_height,
@@ -44,12 +44,12 @@ struct CellsCreatorFactory
     +---+
 
   */
-  const boost::shared_ptr<CellsCreator> CreateTestPrism(
+  boost::shared_ptr<CellsCreator> CreateTestPrism(
     const CreateVerticalFacesStrategy strategy
   ) const noexcept;
 
 
-  const boost::shared_ptr<CellsCreator> CreateTestCube(
+  boost::shared_ptr<CellsCreator> CreateTestCube(
     const CreateVerticalFacesStrategy strategy
   ) const noexcept;
   ///Create two prisms-shaped cell to form a cube

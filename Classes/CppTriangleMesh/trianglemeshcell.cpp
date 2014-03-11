@@ -25,19 +25,20 @@ ribi::trim::Cell::Cell(
   assert(faces.size() == 5 || faces.size() == 8);
 }
 
-const ribi::Coordinat3D ribi::trim::Cell::CalculateCenter() const noexcept
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept
 {
   PROFILE_FUNC();
-  ribi::Coordinat3D center;
+  using boost::geometry::get;
+  Coordinat3D center;
   int cnt = 0;
   for(boost::shared_ptr<const Face> face: m_faces)
   {
 
     for(auto point: face->GetPoints())
     {
-      const ribi::Coordinat3D coordinat(
-        point->GetCoordinat()->GetX(),
-        point->GetCoordinat()->GetY(),
+      const Coordinat3D coordinat(
+        get<0>(*point->GetCoordinat()),
+        get<1>(*point->GetCoordinat()),
         point->GetZ().value()
       );
       center += coordinat;
@@ -49,7 +50,7 @@ const ribi::Coordinat3D ribi::trim::Cell::CalculateCenter() const noexcept
 }
 
 
-const std::vector<boost::shared_ptr<const ribi::trim::Face>> ribi::trim::Cell::GetFaces() const noexcept
+std::vector<boost::shared_ptr<const ribi::trim::Face>> ribi::trim::Cell::GetFaces() const noexcept
 {
   return AddConst(m_faces);
 }
@@ -159,17 +160,17 @@ void ribi::trim::Cell::Test() noexcept
 }
 #endif
 
-bool ribi::trim::operator==(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs)
+bool ribi::trim::operator==(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs) noexcept
 {
   return lhs.GetFaces() == rhs.GetFaces();
 }
 
-bool ribi::trim::operator!=(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs)
+bool ribi::trim::operator!=(const ribi::trim::Cell& lhs, const ribi::trim::Cell& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Cell& cell)
+std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Cell& cell) noexcept
 {
   const auto faces = cell.GetFaces();
   std::stringstream s;

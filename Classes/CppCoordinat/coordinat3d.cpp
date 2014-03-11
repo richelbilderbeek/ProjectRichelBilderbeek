@@ -1,3 +1,4 @@
+#ifdef USE_CUSTOM_RIBI_COORDINAT3D
 #include "coordinat3d.h"
 
 #include <array>
@@ -6,7 +7,7 @@
 #include "trace.h"
 #include "xml.h"
 
-ribi::Coordinat3D::Coordinat3D(const double x, const double y, const double z) noexcept
+Coordinat3D::Coordinat3D(const double x, const double y, const double z) noexcept
   : m_co{ { x,y,z } }
 {
   #ifndef NDEBUG
@@ -14,12 +15,12 @@ ribi::Coordinat3D::Coordinat3D(const double x, const double y, const double z) n
   #endif
 }
 
-std::string ribi::Coordinat3D::GetVersion() const noexcept
+std::string Coordinat3D::GetVersion() const noexcept
 {
   return "1.1";
 }
 
-std::vector<std::string> ribi::Coordinat3D::GetVersionHistory() const noexcept
+std::vector<std::string> Coordinat3D::GetVersionHistory() const noexcept
 {
   return {
     "201x-xx-xx: version 1.0: initial version"
@@ -27,7 +28,7 @@ std::vector<std::string> ribi::Coordinat3D::GetVersionHistory() const noexcept
   };
 }
 
-ribi::Coordinat3D& ribi::Coordinat3D::operator+=(const Coordinat3D& rhs) noexcept
+Coordinat3D& Coordinat3D::operator+=(const Coordinat3D& rhs) noexcept
 {
   m_co[0] += rhs.GetX();
   m_co[1] += rhs.GetY();
@@ -35,7 +36,7 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator+=(const Coordinat3D& rhs) noexcep
   return *this;
 }
 
-ribi::Coordinat3D& ribi::Coordinat3D::operator-=(const Coordinat3D& rhs) noexcept
+Coordinat3D& Coordinat3D::operator-=(const Coordinat3D& rhs) noexcept
 {
   m_co[0] -= rhs.GetX();
   m_co[1] -= rhs.GetY();
@@ -43,7 +44,7 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator-=(const Coordinat3D& rhs) noexcep
   return *this;
 }
 
-ribi::Coordinat3D& ribi::Coordinat3D::operator/=(const double f)
+Coordinat3D& Coordinat3D::operator/=(const double f)
 {
   assert(f != 0.0);
   m_co[0] /= f;
@@ -52,7 +53,7 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator/=(const double f)
   return *this;
 }
 
-ribi::Coordinat3D& ribi::Coordinat3D::operator*=(const double f) noexcept
+Coordinat3D& Coordinat3D::operator*=(const double f) noexcept
 {
   m_co[0] *= f;
   m_co[1] *= f;
@@ -60,7 +61,7 @@ ribi::Coordinat3D& ribi::Coordinat3D::operator*=(const double f) noexcept
   return *this;
 }
 
-ribi::Coordinat3D ribi::CalcCenter(const std::vector<ribi::Coordinat3D>& points) noexcept
+Coordinat3D ribi::CalcCenter(const std::vector<Coordinat3D>& points) noexcept
 {
   Coordinat3D sum;
   for (const auto& point: points)
@@ -76,12 +77,12 @@ ribi::Coordinat3D ribi::CalcCenter(const std::vector<ribi::Coordinat3D>& points)
   return center;
 }
 
-ribi::Coordinat3D ribi::CalcCrossProduct(
-  const ribi::Coordinat3D& a,
-  const ribi::Coordinat3D& b
+Coordinat3D ribi::CalcCrossProduct(
+  const Coordinat3D& a,
+  const Coordinat3D& b
 ) noexcept
 {
-  return ribi::Coordinat3D(
+  return Coordinat3D(
     (a.GetY() * b.GetZ()) - (a.GetZ() * b.GetY()),
     (a.GetZ() * b.GetX()) - (a.GetX() * b.GetZ()),
     (a.GetX() * b.GetY()) - (a.GetY() * b.GetX())
@@ -89,8 +90,8 @@ ribi::Coordinat3D ribi::CalcCrossProduct(
 }
 
 double ribi::CalcDotProduct(
-  const ribi::Coordinat3D& a,
-  const ribi::Coordinat3D& b
+  const Coordinat3D& a,
+  const Coordinat3D& b
 ) noexcept
 {
   return
@@ -99,10 +100,10 @@ double ribi::CalcDotProduct(
     + (a.GetZ() * b.GetZ());
 }
 
-ribi::Coordinat3D ribi::CalcNormal(
-  const ribi::Coordinat3D& a,
-  const ribi::Coordinat3D& b,
-  const ribi::Coordinat3D& c
+Coordinat3D ribi::CalcNormal(
+  const Coordinat3D& a,
+  const Coordinat3D& b,
+  const Coordinat3D& c
 ) noexcept
 {
   const Coordinat3D u { c - a};
@@ -132,14 +133,14 @@ double ribi::Length(const Coordinat3D& v) noexcept
 }
 
 #ifndef NDEBUG
-void ribi::Coordinat3D::Test() noexcept
+void Coordinat3D::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::Coordinat3D::Test");
+  TRACE("Starting Coordinat3D::Test");
   //CalcCenter, one Coordinat3D
   {
     assert(CalcCenter( { Coordinat3D() } ) == Coordinat3D());
@@ -280,11 +281,11 @@ void ribi::Coordinat3D::Test() noexcept
     assert(std::abs(normal.GetZ() - expected.GetZ()) < 0.0001);
   }
 
-  TRACE("Finished ribi::Coordinat3D::Test successfully");
+  TRACE("Finished Coordinat3D::Test successfully");
 }
 #endif
 
-ribi::Coordinat3D ribi::operator-(
+Coordinat3D ribi::operator-(
   const Coordinat3D& v1,
   const Coordinat3D& v2) noexcept
 {
@@ -295,7 +296,7 @@ ribi::Coordinat3D ribi::operator-(
   );
 }
 
-ribi::Coordinat3D ribi::operator+(
+Coordinat3D ribi::operator+(
   const Coordinat3D& v1,
   const Coordinat3D& v2) noexcept
 {
@@ -306,7 +307,7 @@ ribi::Coordinat3D ribi::operator+(
   );
 }
 
-ribi::Coordinat3D ribi::operator/(
+Coordinat3D ribi::operator/(
   const Coordinat3D& c,
   const double f)
 {
@@ -318,7 +319,7 @@ ribi::Coordinat3D ribi::operator/(
   );
 }
 
-ribi::Coordinat3D ribi::operator*(
+Coordinat3D ribi::operator*(
   const Coordinat3D& c,
   const double f) noexcept
 {
@@ -359,3 +360,5 @@ std::ostream& ribi::operator<<(std::ostream& os, const Coordinat3D& n) noexcept
   os << ribi::xml::ToXml("coordinat3d",s.str());
   return os;
 }
+
+#endif

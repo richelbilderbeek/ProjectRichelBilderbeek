@@ -68,6 +68,8 @@ void ribi::foam::PointsFile::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::foam::PointsFile::Test");
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   //Some initial data
   const Header header("some_name","some_location","some_object");
   std::vector<PointsFileItem> items;

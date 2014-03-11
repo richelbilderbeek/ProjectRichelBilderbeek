@@ -22,7 +22,7 @@ struct CellFactory
 {
   CellFactory();
 
-  const boost::shared_ptr<Cell> Create(
+  boost::shared_ptr<Cell> Create(
     const std::vector<boost::shared_ptr<Face>>& faces
   );
 
@@ -39,10 +39,10 @@ struct CellFactory
     +---+
 
   */
-  const boost::shared_ptr<Cell> CreateTestPrism() const noexcept;
+  boost::shared_ptr<Cell> CreateTestPrism() const noexcept;
 
 
-  const std::vector<boost::shared_ptr<Cell>> CreateTestCube(
+  std::vector<boost::shared_ptr<Cell>> CreateTestCube(
     const CreateVerticalFacesStrategy strategy) const noexcept;
   ///Create two prims-shaped cell to form a cube
   /*

@@ -1,6 +1,8 @@
 #ifndef COORDINAT_H
 #define COORDINAT_H
 
+#ifdef USE_CUSTOM_RIBI_COORDINAT
+
 #include <cassert>
 #include "trace.h"
 
@@ -86,5 +88,7 @@ void Coordinat<Length>::Test() noexcept
   TRACE("Finished ribi::Coordinat::Test successfully");
 }
 #endif
+
+#endif // USE_CUSTOM_RIBI_COORDINAT
 
 #endif // COORDINAT_H

@@ -407,6 +407,7 @@ std::string ribi::trim::TriangleMeshBuilder::CreateHeader() const noexcept
 std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
 {
   PROFILE_FUNC();
+  using boost::geometry::get;
 
   std::string text;
   for (const auto point: m_points)
@@ -415,8 +416,8 @@ std::string ribi::trim::TriangleMeshBuilder::CreateNodes() const noexcept
     int cnt = 0;
     for (const double p:
       {
-        point->GetCoordinat()->GetX(),
-        point->GetCoordinat()->GetY(),
+        get<0>(*point->GetCoordinat()),
+        get<1>(*point->GetCoordinat()),
         point->GetZ().value()
       }
     )
@@ -487,7 +488,7 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamHeader(
 std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const noexcept
 {
   PROFILE_FUNC();
-
+  using boost::geometry::get;
   std::stringstream s;
   s
     << std::setprecision(17)
@@ -498,8 +499,8 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamNodes() const noexcep
   for (const auto point: m_points)
   {
     const std::array<double,3> co {
-      point->GetCoordinat()->GetX(),
-      point->GetCoordinat()->GetY(),
+      get<0>(*point->GetCoordinat()),
+      get<1>(*point->GetCoordinat()),
       point->GetZ().value()
     };
     s <<  "(" << ribi::php::implode(" ",co) << ")\n";

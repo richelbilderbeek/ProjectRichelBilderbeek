@@ -30,16 +30,13 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProje
   TRACE("ERROR");
   TRACE(points.size());
   {
-    const auto plane (m_plane_x);
-    if (plane) { try { TRACE(plane->ToFunction()); } catch(std::logic_error&) { /* OK */ } }
+    if (m_plane_x) { try { TRACE(m_plane_x->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_x->ToFunction()"); } }
   }
   {
-    const auto plane (m_plane_y);
-    if (plane) { try { TRACE(plane->ToFunction()); } catch(std::logic_error&) { /* OK */ } }
+    if (m_plane_y) { try { TRACE(m_plane_y->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_y->ToFunction()"); } }
   }
   {
-    const auto plane (m_plane_z);
-    if (plane) { try { TRACE(plane->ToFunction()); } catch(std::logic_error&) { /* OK */ } }
+    if (m_plane_z) { try { TRACE(m_plane_z->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_z->ToFunction()"); } }
   }
   for (auto point: points)
   {

@@ -1,6 +1,10 @@
 #ifndef CONSTCOORDINAT2D_H
 #define CONSTCOORDINAT2D_H
 
+//typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+
+#ifdef USE_CUSTOM_RIBI_CONSTCOORDINAT2D
+
 #include <array>
 #include <iosfwd>
 #pragma GCC diagnostic push
@@ -25,12 +29,6 @@ struct ConstCoordinat2D
 
   double GetX() const noexcept { return m_co[0]; }
   double GetY() const noexcept { return m_co[1]; }
-
-  //void SetX(const double x) noexcept { m_co[0] = x; }
-  //void SetY(const double y) noexcept { m_co[1] = y; }
-
-  //ConstCoordinat2D& operator+=(const ConstCoordinat2D& rhs) noexcept;
-  //ConstCoordinat2D& operator-=(const ConstCoordinat2D& rhs) noexcept;
 
   private:
   ConstCoordinat2D(const ConstCoordinat2D&) = delete;
@@ -78,4 +76,7 @@ boost::shared_ptr<const ConstCoordinat2D> operator-(
 
 } //~namespace ribi
 
+#endif
+
 #endif // CONSTCOORDINAT2D_H
+

@@ -4,7 +4,6 @@
 
 #include "Shiny.h"
 
-#include "coordinat3d.h"
 #include "geometry.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshedge.h"

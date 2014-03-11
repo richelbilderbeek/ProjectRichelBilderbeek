@@ -12,7 +12,6 @@
 
 #include "Shiny.h"
 
-#include "coordinat3d.h"
 #include "geometry.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshpoint.h"
@@ -72,21 +71,22 @@ void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell) const
   );
 }
 
-ribi::Coordinat3D ribi::trim::Face::CalcCenter() const noexcept
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Face::CalcCenter() const noexcept
 {
-  const ribi::Coordinat3D sum {
+  using boost::geometry::get;
+  const auto sum(
     std::accumulate(m_points.begin(),m_points.end(),
       Coordinat3D(),
       [](const Coordinat3D& init, const boost::shared_ptr<const Point>& point)
       {
         return init + Coordinat3D(
-          point->GetCoordinat()->GetX(),
-          point->GetCoordinat()->GetY(),
+          get<0>(*point->GetCoordinat()),
+          get<1>(*point->GetCoordinat()),
           point->GetZ().value()
         );
       }
     )
-  };
+  );
   return sum / static_cast<double>(m_points.size());
 }
 
@@ -106,6 +106,21 @@ bool ribi::trim::Face::CanExtractCoordinats() const noexcept
     if (!point->CanGetZ()) return false;
   }
   return true;
+}
+
+void ribi::trim::Face::CheckOrientation() const
+{
+  assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
+  std::set<double> zs;
+  for (auto point: m_points)
+  {
+    if (point->CanGetZ()) { zs.insert(zs.begin(),point->GetZ().value()); }
+  }
+  if (zs.size() > 1)
+  {
+    assert(m_orientation == FaceOrientation::vertical
+      && "Only a vertical face has multiple Z values");
+  }
 }
 
 void ribi::trim::Face::DoExtractCoordinats() const

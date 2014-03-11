@@ -16,7 +16,6 @@
 #include "filename.h"
 #include "openfoamboundaryfile.h"
 #include "openfoamfacesfile.h"
-#include "coordinat3d.h"
 #include "openfoamneighbourfile.h"
 #include "openfoamownerfile.h"
 #include "openfoamfilenames.h"

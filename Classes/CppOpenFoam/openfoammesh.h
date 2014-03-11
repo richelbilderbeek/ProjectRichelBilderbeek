@@ -8,9 +8,17 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/shared_ptr.hpp>
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
+#ifndef _WIN32
+#include <boost/geometry/geometries/polygon.hpp>
+#endif
 #include "openfoamfwd.h"
 #pragma GCC diagnostic pop
+
+
 
 namespace ribi {
 namespace foam {
@@ -19,6 +27,8 @@ namespace foam {
 ///A Mesh can be converted to a Files and vice versa
 struct Mesh
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   ///Step #0
   ///Create Points so these can be shared over the Faces
   ///Create Cells so these can be shared over the Faces
@@ -28,14 +38,14 @@ struct Mesh
     const std::vector<boost::shared_ptr<Boundary>>& boundaries,
     const std::vector<boost::shared_ptr<Cell>>& cells,
     const std::vector<boost::shared_ptr<Face>>& faces,
-    const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points
+    const std::vector<boost::shared_ptr<Coordinat3D>>& points
   );
 
   ///Write the Mesh to a Files
   Files CreateFiles() const noexcept;
 
   const boost::shared_ptr<const Face> FindMostSimilarFace(
-    const std::vector<ribi::Coordinat3D>& coordinats
+    const std::vector<Coordinat3D>& coordinats
   ) const;
 
   int GetNumberOfBoundaries() const noexcept;
@@ -47,7 +57,7 @@ struct Mesh
   const std::vector<boost::shared_ptr<Cell> >& GetCells() noexcept { return  m_cells; }
   const std::vector<boost::shared_ptr<      Face> >& GetFaces()       noexcept { return m_faces; }
   const std::vector<boost::shared_ptr<const Face> >  GetFaces() const noexcept;
-  const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& GetPoints() noexcept { return m_points; }
+  const std::vector<boost::shared_ptr<Coordinat3D>>& GetPoints() noexcept { return m_points; }
 
   private:
 
@@ -61,29 +71,29 @@ struct Mesh
   std::vector<boost::shared_ptr<Face>> m_faces;
 
   ///Order is not important
-  std::vector<boost::shared_ptr<ribi::Coordinat3D>> m_points;
+  std::vector<boost::shared_ptr<Coordinat3D>> m_points;
 
   ///Step #1
   ///Create Faces so these can be shared over Boundary and Cell
   Mesh(const Files& files,
-    const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points);
+    const std::vector<boost::shared_ptr<Coordinat3D>>& points);
 
   ///Checks if the Faces their indices are adjacent
   ///when they belong to the
   ///same Boundary
   bool AreFacesOrdered() const noexcept;
 
-  static double CalcSimilaritySlow(
-    const std::vector<ribi::Coordinat3D>& v,
-    const std::vector<ribi::Coordinat3D>& w) noexcept;
+  //static double CalcSimilaritySlow(
+  //  const std::vector<Coordinat3D>& v,
+  //  const std::vector<Coordinat3D>& w) noexcept;
 
   static double CalcSimilarityFaster(
-    const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
-    const std::vector<ribi::Coordinat3D>& w) noexcept;
+    const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+    const std::vector<Coordinat3D>& w) noexcept;
 
-  static double CalcSimilaritySlow(
-    const std::vector<boost::shared_ptr<const ribi::Coordinat3D> >& v,
-    const std::vector<ribi::Coordinat3D>& w) noexcept;
+  //static double CalcSimilaritySlow(
+  //  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
+  //  const std::vector<Coordinat3D>& w) noexcept;
 
   static const std::vector<boost::shared_ptr<Boundary> > CreateBoundaries(
     const Files& files, const std::vector<boost::shared_ptr<Face>>& faces);
@@ -99,13 +109,13 @@ struct Mesh
   ///Create the Faces from the points, but cannot initialize Owner and Neighbour
   static const std::vector<boost::shared_ptr<Face> > CreateFacesWithPoints(
     const Files& files,
-    const std::vector<boost::shared_ptr<ribi::Coordinat3D>>& points);
+    const std::vector<boost::shared_ptr<Coordinat3D>>& points);
 
   const boost::shared_ptr<NeighbourFile> CreateNeighbour() const noexcept;
   const boost::shared_ptr<OwnerFile> CreateOwner() const noexcept;
   const boost::shared_ptr<PointsFile> CreatePoints() const noexcept;
 
-  static const std::vector<boost::shared_ptr<ribi::Coordinat3D> > CreatePoints(const Files& files);
+  static const std::vector<boost::shared_ptr<Coordinat3D> > CreatePoints(const Files& files);
 
   ///This member function is called to reorder the faces in such a way
   ///that indices in m_faces are adjacent when they belong to the

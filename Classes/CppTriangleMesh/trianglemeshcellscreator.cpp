@@ -84,6 +84,11 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
       if (strategy == CreateVerticalFacesStrategy::one_face_per_square )
       {
         assert(these_ver_faces.size() == 3);
+        assert(hor_faces[bottom_face_index]);
+        assert(hor_faces[top_face_index]);
+        assert(these_ver_faces[0]);
+        assert(these_ver_faces[1]);
+        assert(these_ver_faces[2]);
         const boost::shared_ptr<Cell> cell {
           CellFactory().Create(
             {

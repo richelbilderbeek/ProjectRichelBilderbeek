@@ -9,9 +9,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/weak_ptr.hpp>
-#include "coordinat3d.h"
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
@@ -22,20 +22,27 @@ namespace trim {
 ///Sure, its points can change...
 struct Face
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
+
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
 
-  ribi::Coordinat3D CalcCenter() const noexcept;
+  Coordinat3D CalcCenter() const noexcept;
 
   int CalcPriority() const noexcept;
 
   ///When the Face its points know their Layers, call DoExtractCoordinats
   bool CanExtractCoordinats() const noexcept;
 
+  ///Throws is the face its m_orientation and Points orientationare mismatch
+  ///This function is called by the Faces' Points, after they received a Z value
+  void CheckOrientation() const;
+
   ///When the Face its points know their Layers, call this member function
   void DoExtractCoordinats() const;
 
-  std::set<ribi::Coordinat3D> GetCoordinats() const noexcept { return m_coordinats; }
+  Coordinat3dSet GetCoordinats() const noexcept { return m_coordinats; }
 
   int GetIndex() const noexcept { return m_index; }
 
@@ -73,7 +80,7 @@ struct Face
 
   ///m_coordinats is used to speed up 'FaceExists', which compares a new Face
   ///with one already present, by comparing their sorted coordinats
-  mutable std::set<ribi::Coordinat3D> m_coordinats;
+  mutable Coordinat3dSet m_coordinats;
 
   ///The index of this Face in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;

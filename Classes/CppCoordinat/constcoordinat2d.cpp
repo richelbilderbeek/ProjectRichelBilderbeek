@@ -1,3 +1,5 @@
+#ifdef USE_CUSTOM_RIBI_CONSTCOORDINAT2D
+
 #include "constcoordinat2d.h"
 
 #include <array>
@@ -6,7 +8,7 @@
 #include "trace.h"
 #include "xml.h"
 
-ribi::ConstCoordinat2D::ConstCoordinat2D(const double x, const double y) noexcept
+ConstCoordinat2D::ConstCoordinat2D(const double x, const double y) noexcept
   : m_co{ { x,y } }
 {
   #ifndef NDEBUG
@@ -42,7 +44,7 @@ double ribi::Length(const boost::shared_ptr<const ConstCoordinat2D> v) noexcept
   return std::sqrt((dx*dx)+(dy*dy));
 }
 
-boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
+boost::shared_ptr<const ConstCoordinat2D> ribi::Scale(
   const double scalar,
   const boost::shared_ptr<const ConstCoordinat2D> v) noexcept
 {
@@ -57,19 +59,19 @@ boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::Scale(
 }
 
 #ifndef NDEBUG
-void ribi::ConstCoordinat2D::Test() noexcept
+void ConstCoordinat2D::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ConstCoordinat2D::Test");
-  TRACE("Finished ribi::ConstCoordinat2D::Test successfully");
+  TRACE("Starting ConstCoordinat2D::Test");
+  TRACE("Finished ConstCoordinat2D::Test successfully");
 }
 #endif
 
-boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
+boost::shared_ptr<const ConstCoordinat2D> ribi::operator-(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2) noexcept
 {
@@ -83,7 +85,7 @@ boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator-(
   return p;
 }
 
-boost::shared_ptr<const ribi::ConstCoordinat2D> ribi::operator+(
+boost::shared_ptr<const ConstCoordinat2D> ribi::operator+(
   const boost::shared_ptr<const ConstCoordinat2D> v1,
   const boost::shared_ptr<const ConstCoordinat2D> v2) noexcept
 {
@@ -124,3 +126,5 @@ std::ostream& ribi::operator<<(std::ostream& os, const ConstCoordinat2D& n) noex
   os << ribi::xml::ToXml("coordinat2d",s.str());
   return os;
 }
+
+#endif

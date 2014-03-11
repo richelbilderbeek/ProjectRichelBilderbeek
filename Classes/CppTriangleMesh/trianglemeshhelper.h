@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <cassert>
+#include <functional>
 #include <map>
 #include <set>
 #include <string>
@@ -11,10 +12,10 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry.hpp>
 #include <boost/lexical_cast.hpp>
-
-#include "constcoordinat2d.h"
-#include "coordinat3d.h"
+#include <boost/geometry/geometries/point_xy.hpp>
+//#include "constcoordinat2d.h"
 #include "trianglemeshfwd.h"
 #include "trianglemeshwinding.h"
 
@@ -25,14 +26,17 @@ namespace trim {
 
 struct Helper
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
+
   Helper();
 
   ///Calculate the point in the center of the collection of edges
-  const Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Edge>>& edges) const noexcept;
+  Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Edge>>& edges) const noexcept;
 
-  const Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+  Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
-  const Coordinat3D CalcNormal(
+  Coordinat3D CalcNormal(
     const std::vector<boost::shared_ptr<Edge>>& edges
   ) const noexcept;
 
@@ -41,8 +45,8 @@ struct Helper
   ///when viewed from above (at an infinite Z coordinat)
   Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
 
-  const std::set<ribi::Coordinat3D> ExtractCoordinats(const Face& face);
-  const std::set<ribi::Coordinat3D> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
+  Coordinat3dSet ExtractCoordinats(const Face& face);
+  std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
 
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
@@ -124,6 +128,8 @@ struct Helper
     const Winding winding
   ) const noexcept;
 
+  std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
+
   private:
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -132,7 +138,7 @@ struct Helper
 
 ///Help adding constness a bit
 template <class T>
-const std::vector<boost::shared_ptr<const T> > AddConst(
+std::vector<boost::shared_ptr<const T> > AddConst(
   const std::vector<boost::shared_ptr<T> > v)
 {
   return std::vector<boost::shared_ptr<const T> >(v.begin(),v.end());
@@ -157,6 +163,50 @@ bool CanLexicalCast(const std::string& from)
   }
   return true;
 }
+
+//bool operator==(
+//  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
+//  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
+//) noexcept;
+
+bool operator<(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
+) noexcept;
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> operator+(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
+) noexcept;
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& operator+=(
+  boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
+) noexcept;
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& operator/=(
+  boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p,
+  const double factor
+) noexcept;
+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> operator/(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p,
+  const double factor
+) noexcept;
+
+//Name for operator<
+bool Less(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
+) noexcept;
+
+
+//Name for operator+
+boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Add(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& lhs,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
+) noexcept;
+
 
 } //~namespace trim
 } //~namespace ribi

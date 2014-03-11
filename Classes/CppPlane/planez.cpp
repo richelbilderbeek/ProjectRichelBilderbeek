@@ -47,6 +47,7 @@ std::vector<double> ribi::PlaneZ::CalcPlaneZ(
   const auto v(Geometry().CalcPlane(p1,p2,p3));
   assert(v.size() == 4);
   #ifndef NDEBUG
+  try
   {
     PlaneZ p(v);
     const double x { boost::geometry::get<0>(p4) };
@@ -54,6 +55,10 @@ std::vector<double> ribi::PlaneZ::CalcPlaneZ(
     const double z { boost::geometry::get<2>(p4) };
     const double z_expected { p.CalcZ(x,y) };
     assert(std::abs(z - z_expected) < 0.001);
+  }
+  catch (std::logic_error&)
+  {
+    //OK as well
   }
   #endif
   return v;
@@ -100,19 +105,23 @@ double ribi::PlaneZ::CalcZ(const double x, const double y) const
   const double b = m_coefficients[1];
   const double c = m_coefficients[2];
   const double d = m_coefficients[3];
-  if (c == 0.0) throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
+  if (c == 0.0)
+  {
+    throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
+  }
   return ((-a*x) - (b*y) + d) / c;
 }
 
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
 {
   return {
-    "2014-03-10: version 1.0: initial version, split off from Plane"
+    "2014-03-10: version 1.0: initial version, split off from Plane",
+    "2014-03-10: version 1.1: bug fixed, only occurred at debugging"
   };
 }
 

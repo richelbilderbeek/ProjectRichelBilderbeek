@@ -8,8 +8,9 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
+#include <boost/geometry.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/shared_ptr.hpp>
-//#include "constcoordinat2d.h"
 #include "trianglemeshfwd.h"
 #include "trianglemeshwinding.h"
 #pragma GCC diagnostic pop
@@ -19,6 +20,9 @@ namespace trim {
 
 struct PointFactory
 {
+  typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
   PointFactory();
 
   #ifndef NDEBUG
@@ -34,11 +38,11 @@ struct PointFactory
   ///ConstCoordinat2D
   ///Create a Point with an undetermined Z coordinat
   const boost::shared_ptr<Point> Create(
-    const boost::shared_ptr<const ribi::ConstCoordinat2D> coordinat
+    const boost::shared_ptr<const ConstCoordinat2D> coordinat
   ) const noexcept;
 
   const boost::shared_ptr<Point> CreateFrom3D(
-    const boost::shared_ptr<const ribi::Coordinat3D> coordinat
+    const boost::shared_ptr<const Coordinat3D> coordinat
   ) const noexcept;
 
   ///Create the points of a testing prism

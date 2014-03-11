@@ -3,6 +3,8 @@
 #include <cassert>
 #include <stdexcept>
 
+#include "aafbond.h"
+
 boost::shared_ptr<ribi::aaf::Molecule> ribi::aaf::MoleculeFactory::Create(
   const AminoAcid a
 ) const noexcept
@@ -26,7 +28,7 @@ boost::shared_ptr<ribi::aaf::Molecule> ribi::aaf::MoleculeFactory::CreateGlycine
   //All vertex names
   //Note: cannot use spaces
   using namespace boost::units::si;
-  const Atom::Length bond_length { 109.0 * pico * meter };
+  const auto bond_length(GetAverageBondLength());
   typedef PolarCoordinat<Atom::Angle,Atom::Length> Coordinat;
 
   const double pi { boost::math::constants::pi<double>() };

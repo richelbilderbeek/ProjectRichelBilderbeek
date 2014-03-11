@@ -5,7 +5,6 @@
 
 #include "Shiny.h"
 
-#include "coordinat3d.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshedge.h"
 #include "trianglemeshedgefactory.h"
@@ -101,7 +100,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
   edge_b->SetIndex(11);
   edge_c->SetIndex(12);
 
-  const Coordinat3D center { Helper().CalcCenter(points) };
+  const auto center(Helper().CalcCenter(points));
 
   const std::vector<boost::shared_ptr<Edge>> prism {
     edge_1,

@@ -58,6 +58,10 @@ void ribi::QtTestPlaneMenuDialog::Test() noexcept
     assert(!d.GetVersion().empty());
   }
   {
+    const TestPlaneMenuDialog d;
+    assert(!d.GetVersion().empty());
+  }
+  {
     const QtTestPlaneMainDialog d;
     assert(!d.GetVersion().empty());
   }
