@@ -28,15 +28,41 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProje
   catch (std::logic_error&) { /* OK, try next plane */ }
 
   TRACE("ERROR");
+  TRACE("INITIAL POINTS");
+  for (auto point: m_points)
+  {
+    std::stringstream s;
+    s
+      << "("
+      << boost::geometry::get<0>(point) << ","
+      << boost::geometry::get<1>(point) << ","
+      << boost::geometry::get<2>(point)
+      << ")"
+    ;
+    TRACE(s.str());
+  }
+
   TRACE(points.size());
   {
-    if (m_plane_x) { try { TRACE(m_plane_x->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_x->ToFunction()"); } }
+    if (m_plane_x)
+    {
+      try { TRACE(m_plane_x->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_x->ToFunction()"); }
+      try { m_plane_x->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_x->CalcProjection") }
+    }
   }
   {
-    if (m_plane_y) { try { TRACE(m_plane_y->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_y->ToFunction()"); } }
+    if (m_plane_y)
+    {
+      try { TRACE(m_plane_y->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_y->ToFunction()"); }
+      try { m_plane_y->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_y->CalcProjection") }
+    }
   }
   {
-    if (m_plane_z) { try { TRACE(m_plane_z->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_z->ToFunction()"); } }
+    if (m_plane_z)
+    {
+      try { TRACE(m_plane_z->ToFunction()); } catch(std::logic_error&) { TRACE("Failed m_plane_z->ToFunction()"); }
+      try { m_plane_z->CalcProjection(points); } catch (std::logic_error&) { TRACE("Failed m_plane_z->CalcProjection") }
+    }
   }
   for (auto point: points)
   {

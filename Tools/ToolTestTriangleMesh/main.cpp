@@ -18,7 +18,7 @@ int main()
 {
   START_TRACE();
   PROFILE_FUNC();
-  ribi::Plane();
+  ribi::Plane( {0.0,0.0,0.0},{0.0,1.0,0.0},{1.0,0.0,0.0} );
 
   const ::ribi::trim::CreateVerticalFacesStrategy strategy {
     ::ribi::trim::CreateVerticalFacesStrategy::one_face_per_square

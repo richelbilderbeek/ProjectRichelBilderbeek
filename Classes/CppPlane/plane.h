@@ -27,6 +27,7 @@ namespace ribi {
 //    z = -A/C.x - B/C.y + D/C
 struct Plane
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   ///Construct a Plane from its coefficients
   /*
   explicit Plane(
@@ -49,13 +50,14 @@ struct Plane
   */
   ///By default, create the plane Z = 0
   explicit Plane(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1, //= boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(0.0,0.0,0.0),
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2, //= boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(0.0,1.0,0.0),
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3  //= boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>(1.0,0.0,0.0)
+    const Coordinat3D& p1, //= Coordinat3D(0.0,0.0,0.0),
+    const Coordinat3D& p2, //= Coordinat3D(0.0,1.0,0.0),
+    const Coordinat3D& p3  //= Coordinat3D(1.0,0.0,0.0)
   ) noexcept
   : m_plane_x(CreatePlaneX(p1,p2,p3)),
     m_plane_y(CreatePlaneY(p1,p2,p3)),
-    m_plane_z(CreatePlaneZ(p1,p2,p3))
+    m_plane_z(CreatePlaneZ(p1,p2,p3)),
+    m_points( {p1,p2,p3} )
   {
     #ifndef NDEBUG
     Test();
@@ -66,14 +68,15 @@ struct Plane
   ///Construct a Plane from four points
   ///Assumes these are in the same plane
   explicit Plane(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept
     : m_plane_x(CreatePlaneX(p1,p2,p3,p4)),
       m_plane_y(CreatePlaneY(p1,p2,p3,p4)),
-      m_plane_z(CreatePlaneZ(p1,p2,p3,p4))
+      m_plane_z(CreatePlaneZ(p1,p2,p3,p4)),
+      m_points( {p1,p2,p3,p4} )
   {
     #ifndef NDEBUG
     Test();
@@ -97,7 +100,7 @@ struct Plane
 
   */
   std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
-    const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
+    const std::vector<Coordinat3D>& points
   ) const;
 
   ///If the Plane can be expressed as X = A*Y + B*Z + C, return the X
@@ -140,6 +143,8 @@ struct Plane
   ///A non-vertical plane; a plane that can be expressed as 'Z(X,Y) = A*X + B*Y + C'
   const boost::shared_ptr<const PlaneZ> m_plane_z;
 
+  const std::vector<Coordinat3D> m_points;
+
   static boost::shared_ptr<PlaneX> CreatePlaneX(
     const std::vector<double>& coefficients_x
   ) noexcept;
@@ -153,42 +158,42 @@ struct Plane
   ) noexcept;
 
   static boost::shared_ptr<PlaneX> CreatePlaneX(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static boost::shared_ptr<PlaneY> CreatePlaneY(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static boost::shared_ptr<PlaneZ> CreatePlaneZ(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static boost::shared_ptr<PlaneX> CreatePlaneX(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept;
 
   static boost::shared_ptr<PlaneY> CreatePlaneY(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept;
 
   static boost::shared_ptr<PlaneZ> CreatePlaneZ(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept;
 
   #ifndef NDEBUG
