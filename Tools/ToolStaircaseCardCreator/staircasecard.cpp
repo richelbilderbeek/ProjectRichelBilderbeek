@@ -336,7 +336,8 @@ boost::shared_ptr<ribi::TextCanvas> ribi::scc::StaircaseCard::ToTextCanvas() con
     }
   }
 
-  for (int y=0; y!=height; ++y)
+  //Draw plusses if something is adjacent
+  for (int y=1; y!=height-1; ++y)
   {
     if (y % 2) continue;
     for (int x=0; x!=width; ++x)
@@ -350,6 +351,32 @@ boost::shared_ptr<ribi::TextCanvas> ribi::scc::StaircaseCard::ToTextCanvas() con
       )
       {
         canvas->PutChar(x,y,'+');
+      }
+    }
+  }
+
+  //Remove plusses if there is a line
+  for (int y=0; y!=height-2; ++y)
+  {
+    for (int x=0; x!=width-2; ++x)
+    {
+      if ( canvas->GetChar(x+0,y+1) == '-'
+        && canvas->GetChar(x+1,y+1) == '+'
+        && canvas->GetChar(x+2,y+1) == '-'
+        && canvas->GetChar(x+1,y+0) == ' '
+        && canvas->GetChar(x+1,y+2) == ' '
+      )
+      {
+        canvas->PutChar(x+1,y+1,'-');
+      }
+      if ( canvas->GetChar(x+1,y+0) == '|'
+        && canvas->GetChar(x+1,y+1) == '+'
+        && canvas->GetChar(x+2,y+2) == '|'
+        && canvas->GetChar(x+0,y+1) == ' '
+        && canvas->GetChar(x+2,y+1) == ' '
+      )
+      {
+        canvas->PutChar(x+1,y+1,'|');
       }
     }
   }
