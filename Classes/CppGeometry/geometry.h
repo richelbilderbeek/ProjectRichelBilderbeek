@@ -188,6 +188,9 @@ struct Geometry
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& v) const noexcept;
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& v) const noexcept;
 
+  ///Determines if these coordinats are in a plane
+  bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
+
   std::string ToStr(const Coordinat3D& p) const noexcept;
 
   private:

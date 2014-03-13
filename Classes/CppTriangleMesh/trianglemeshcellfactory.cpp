@@ -108,6 +108,10 @@ void ribi::trim::CellFactory::Test() noexcept
     };
     assert((prism->GetFaces().size() == 5 || prism->GetFaces().size() == 8)
       && "A prism has 5 or 8 faces (as the vertical faces are split into 1 or 2 triangle)");
+    for (auto& face: prism->GetFaces())
+    {
+      face->SetCorrectWinding();
+    }
   }
   //Create cube
   for (CreateVerticalFacesStrategy strategy: CreateVerticalFacesStrategies().GetAll())

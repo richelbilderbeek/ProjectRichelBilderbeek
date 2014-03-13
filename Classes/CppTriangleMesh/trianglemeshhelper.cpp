@@ -99,6 +99,35 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
   );
 }
 
+ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
+  const std::vector<boost::shared_ptr<const Point>>& points
+) const noexcept
+{
+  using boost::geometry::get;
+
+  const int n_points { static_cast<int>(points.size()) };
+
+  //Extract the points
+  std::vector<Coordinat3D> coordinats;
+  for (int i=0; i!=n_points; ++i)
+  {
+    Coordinat3D co(
+      get<0>(*points[i]->GetCoordinat()),
+      get<1>(*points[i]->GetCoordinat()),
+      points[i]->GetZ().value()
+    );
+    //TRACE(co);
+    coordinats.push_back(co);
+  }
+
+  assert(coordinats.size() == coordinats.size());
+
+  const bool a { Geometry().IsClockwiseHorizontal(coordinats) };
+  const bool b { Geometry().IsCounterClockwiseHorizontal(coordinats) };
+  if ( a && !b) return Winding::clockwise;
+  if (!a &&  b) return Winding::counter_clockwise;
+  return Winding::indeterminate;
+}
 
 ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
   const std::vector<boost::shared_ptr<const Edge>>& edges
@@ -124,7 +153,7 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
     }
   }
   //Extract the points
-  std::vector<Coordinat3D> points;
+  std::vector<Coordinat3D> coordinats;
   for (int i=0; i!=n_edges; ++i)
   {
     Coordinat3D co(
@@ -133,16 +162,16 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
       edges[i]->GetFrom()->GetZ().value()
     );
     //TRACE(co);
-    points.push_back(co);
+    coordinats.push_back(co);
   }
 
-  assert(points.size() == edges.size());
+  assert(coordinats.size() == edges.size());
 
-  //return Geometry().IsClockwise(points, Coordinat3D(0.0,0.0,1.0))
-  return Geometry().IsClockwiseHorizontal(points)
-    ? Winding::clockwise
-    : Winding::counter_clockwise
-  ;
+  const bool a { Geometry().IsClockwiseHorizontal(coordinats) };
+  const bool b { Geometry().IsCounterClockwiseHorizontal(coordinats) };
+  if ( a && !b) return Winding::clockwise;
+  if (!a &&  b) return Winding::counter_clockwise;
+  return Winding::indeterminate;
 }
 
 std::set<

@@ -13,6 +13,7 @@
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
+#include "trianglemeshwinding.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -24,15 +25,16 @@ struct FaceFactory
 
   FaceFactory();
 
-  const boost::shared_ptr<Face> Create(
+  boost::shared_ptr<Face> Create(
     const std::vector<boost::shared_ptr<Edge>>& edges,
     const FaceOrientation any_orientation
   ) const noexcept;
 
-  const boost::shared_ptr<Face> Create(
+  boost::shared_ptr<Face> Create(
     const std::vector<boost::shared_ptr<Point>>& points,
     const FaceOrientation any_orientation
   ) const noexcept;
+
 
   ///Create the faces of a testing prism from edges
   /*
@@ -73,7 +75,7 @@ struct FaceFactory
   All windings are clockwise, when seen from the inside of the prism
 
   */
-  const std::vector<boost::shared_ptr<Face>> CreateTestPrism() const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrism() const noexcept;
 
   ///Create the faces of a testing prism from points
   ///The indices are { top, bottom, a,b,c }
@@ -111,7 +113,9 @@ struct FaceFactory
   The front planes are 'a' and 'b', where 'a' has two nodes at the base
 
   */
-  const std::vector<boost::shared_ptr<Face>> CreateTestPrismFromPoints() const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrismFromPoints() const noexcept;
+
+  boost::shared_ptr<Face> CreateTestSquare(const Winding winding) const noexcept;
 
   private:
   #ifndef NDEBUG

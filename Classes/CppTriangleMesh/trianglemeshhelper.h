@@ -43,6 +43,7 @@ struct Helper
   ///Find out the Winding of the edges
   ///knowing that all edges are in the same XY plane
   ///when viewed from above (at an infinite Z coordinat)
+  Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Point>>& points) const noexcept;
   Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
 
   Coordinat3dSet ExtractCoordinats(const Face& face);

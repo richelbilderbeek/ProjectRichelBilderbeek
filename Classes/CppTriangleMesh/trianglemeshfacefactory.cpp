@@ -22,7 +22,7 @@ ribi::trim::FaceFactory::FaceFactory()
   #endif
 }
 
-const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
+boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const std::vector<boost::shared_ptr<Edge>>& edges,
   const FaceOrientation any_orientation
 ) const noexcept
@@ -39,7 +39,7 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   return Create(points,any_orientation);
 }
 
-const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
+boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const std::vector<boost::shared_ptr<Point>>& points,
   const FaceOrientation any_orientation
 ) const noexcept
@@ -70,7 +70,7 @@ const boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   return face;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrism() const noexcept
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrism() const noexcept
 {
   const std::vector<boost::shared_ptr<Edge>> edges {
     EdgeFactory().CreateTestPrism()
@@ -155,7 +155,7 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
   return prism;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismFromPoints() const noexcept
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismFromPoints() const noexcept
 {
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
@@ -222,6 +222,23 @@ const std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::
     top,bottom,a,b,c,d,e,f
   };
   return prism;
+}
+
+boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::CreateTestSquare(const Winding winding) const noexcept
+{
+  const std::vector<boost::shared_ptr<Point>> points {
+    PointFactory().CreateTestSquare(winding)
+  };
+  assert(points.size() == 4);
+
+  const boost::shared_ptr<Face> square {
+    FaceFactory().Create(
+      { points[0],points[1],points[2],points[3] },
+      FaceOrientation::horizontal)
+  };
+  assert(square);
+  square->SetIndex(1);
+  return square;
 }
 
 #ifndef NDEBUG

@@ -300,8 +300,9 @@ bool ribi::Geometry::IsClockwise(const std::vector<boost::geometry::model::point
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
+    assert(Geometry().IsPlane(points));
     const auto v(
-      Plane(points[0],points[1],points[2],points[3]).CalcProjection(
+      Plane(points[0],points[1],points[2]).CalcProjection(
         {
           points[0],
           points[1],
@@ -311,7 +312,6 @@ bool ribi::Geometry::IsClockwise(const std::vector<boost::geometry::model::point
       )
     );
     //If the points are messed up, they cannot be clockwise
-
     if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
     //The neatly orderder point have the same winding as the first three
     std::remove_const<std::remove_reference<decltype(points)>::type>::type a;
@@ -424,36 +424,26 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>
     {
       return GetAngle(
         coordinat - center
-        //coordinat.GetX() - center.GetX(),
-        //coordinat.GetY() - center.GetY()
       );
     }
   );
   return IsCounterClockwise(angles);
 }
 
-/*
-bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept
+bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& points3d) const noexcept
 {
-  //Points are determined from their center
-  const Coordinat3D center {
-    ::ribi::CalcCenter(points)
-  };
-  std::vector<double> angles;
-  angles.reserve(points.size());
-  std::transform(points.begin(),points.end(),
-    std::back_inserter(angles),
-    [this,center](const Coordinat3D& coordinat)
-    {
-      return GetAngle(
-        coordinat.GetX() - center.GetX(),
-        coordinat.GetY() - center.GetY()
-      );
-    }
-  );
-  return IsCounterClockwise(angles);
+  std::vector<Coordinat2D> points2d;
+  for (auto point3d: points3d)
+  {
+    points2d.push_back(
+      {
+        boost::geometry::get<0>(point3d),
+        boost::geometry::get<1>(point3d)
+      }
+    );
+  }
+  return IsCounterClockwiseHorizontal(points2d);
 }
-*/
 
 /*
 bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
@@ -476,6 +466,15 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geome
 }
 */
 
+bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) const noexcept
+{
+  assert(v.size() == 4);
+  //if (v.size() < 3) return false;
+  //if (v.size() == 3) return true;
+  Plane plane(v[0],v[1],v[2]);
+  return plane.IsInPlane(v[3]);
+}
+
 #ifndef NDEBUG
 void ribi::Geometry::Test() noexcept
 {
@@ -485,10 +484,11 @@ void ribi::Geometry::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Geometry::Test");
-  const double pi = boost::math::constants::pi<double>();
+  const bool verbose { true };
+  const double pi { boost::math::constants::pi<double>() };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   const Geometry g;
-  //CalcPlane
+  if (verbose) TRACE("CalcPlane");
   {
     using boost::geometry::model::point;
     using boost::geometry::cs::cartesian;
@@ -542,7 +542,7 @@ void ribi::Geometry::Test() noexcept
     assert(std::abs(d - d_p2_expected) < 0.001);
     assert(std::abs(d - d_p3_expected) < 0.001);
   }
-  //CalcPlane
+  if (verbose) TRACE("CalcPlane");
   {
     //CalcPlane return the coefficients in the following form:
     // A.x + B.y + C.z = D
@@ -586,7 +586,7 @@ void ribi::Geometry::Test() noexcept
     assert(std::abs(d - d_p3_expected) < 0.001);
 
   }
-  //Fmod
+  if (verbose) TRACE("Fmod");
   {
     const double expected_min = 1.0 - 0.00001;
     const double expected_max = 1.0 + 0.00001;
@@ -596,7 +596,7 @@ void ribi::Geometry::Test() noexcept
     assert(g.Fmod(-3.0,2.0) > expected_min && g.Fmod(-3.0,2.0) < expected_max);
     assert(g.Fmod(-13.0,2.0) > expected_min && g.Fmod(-13.0,2.0) < expected_max);
   }
-  //GetAngle
+  if (verbose) TRACE("GetAngle");
   {
     const double angle =  g.GetAngle(0.0,-1.0); //North
     const double expected = 0.0 * pi;
@@ -637,7 +637,7 @@ void ribi::Geometry::Test() noexcept
     const double expected = 1.75 * pi;
     assert(std::abs(angle-expected) < 0.01);
   }
-  //GetDistance
+  if (verbose) TRACE("GetDistance");
   {
     const double distance = g.GetDistance(3.0,4.0);
     const double expected = 5.0;
@@ -658,7 +658,7 @@ void ribi::Geometry::Test() noexcept
     const double expected = 5.0;
     assert(std::abs(distance-expected) < 0.01);
   }
-  //IsClockWise of two angles, doubles
+  if (verbose) TRACE("IsClockWise of two angles, doubles");
   {
     assert( g.IsClockwise(-2.5 * pi,-2.0 * pi));
     assert(!g.IsClockwise(-2.0 * pi,-2.5 * pi));
@@ -675,7 +675,7 @@ void ribi::Geometry::Test() noexcept
     assert( g.IsClockwise( 2.5 * pi, 3.0 * pi));
     assert(!g.IsClockwise( 3.0 * pi, 2.5 * pi));
   }
-  //IsClockWise of two, vector
+  if (verbose) TRACE("IsClockWise of two, vector");
   {
     assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi } ));
     assert(!g.IsClockwise( {-2.0 * pi,-2.5 * pi } ));
@@ -692,7 +692,7 @@ void ribi::Geometry::Test() noexcept
     assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi } ));
     assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi } ));
   }
-  //IsClockWise of three, vector
+  if (verbose) TRACE("IsClockWise of three, vector");
   {
     assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.75 * pi} ));
     assert(!g.IsClockwise( {-2.0 * pi,-2.5 * pi,-1.75 * pi} ));
@@ -709,7 +709,7 @@ void ribi::Geometry::Test() noexcept
     assert( g.IsClockwise( { 2.5 * pi, 3.0 * pi, 3.25 * pi } ));
     assert(!g.IsClockwise( { 3.0 * pi, 2.5 * pi, 3.25 * pi } ));
   }
-  //IsClockWise of four, vector
+  if (verbose) TRACE("IsClockWise of four, vector");
   {
     //Correct order
     assert( g.IsClockwise( {-2.5 * pi,-2.0 * pi,-1.5 * pi,-1.0 * pi} ));
@@ -750,7 +750,7 @@ void ribi::Geometry::Test() noexcept
     assert(!g.IsClockwise( { 2.0 * pi, 2.5 * pi, 3.5 * pi, 3.0 * pi} ));
     assert(!g.IsClockwise( { 2.5 * pi, 3.0 * pi, 4.0 * pi, 3.5 * pi} ));
   }
-  //IsConvex, two dimensions
+  if (verbose) TRACE("IsConvex, two dimensions");
   {
     /* Polygons used:
 
@@ -796,7 +796,7 @@ void ribi::Geometry::Test() noexcept
       assert(!g.IsConvex(polygon));
     }
   }
-  //IsClockwise in three dimensions, points in XY plane
+  if (verbose) TRACE("IsClockwise in three dimensions, points in XY plane");
   {
     /*
 
@@ -829,7 +829,7 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
-  //IsClockwise in three dimensions, points in XY plane
+  if (verbose) TRACE("IsClockwise in three dimensions, points in XY plane");
   {
     /*
        0 1 2 3
@@ -860,7 +860,7 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
-  //IsClockwise, clockwise, in three dimensions, four points in XY plane
+  if (verbose) TRACE("IsClockwise, clockwise, in three dimensions, four points in XY plane");
   {
     /*
 
@@ -888,12 +888,14 @@ void ribi::Geometry::Test() noexcept
         const double y = static_cast<double>(j-1) * 5.0;
         const Coordinat3D above(x, y, 2.0);
         const Coordinat3D below(x, y,-1.0);
+        assert( g.IsClockwiseHorizontal(coordinats));
         assert( g.IsClockwise(coordinats,above));
+        assert(!g.IsCounterClockwiseHorizontal(coordinats));
         assert(!g.IsClockwise(coordinats,below));
       }
     }
   }
-  //IsClockwise, counter-clockwise, in three dimensions, four points in XY plane
+  if (verbose) TRACE("IsClockwise, counter-clockwise, in three dimensions, four points in XY plane");
   {
     /*
        0 1 2 3
@@ -925,7 +927,7 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
-  //IsClockwise, indetermined direction, in three dimensions, four points in XY plane
+  if (verbose) TRACE("IsClockwise, indetermined direction, in three dimensions, four points in XY plane");
   {
     /*
        0 1 2 3

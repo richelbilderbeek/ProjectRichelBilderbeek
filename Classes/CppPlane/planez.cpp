@@ -35,36 +35,6 @@ std::vector<double> ribi::PlaneZ::CalcPlaneZ(
   return v;
 }
 
-std::vector<double> ribi::PlaneZ::CalcPlaneZ(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>&
-  #ifndef NDEBUG
-  p4
-  #endif
-) noexcept
-{
-  const auto v(Geometry().CalcPlane(p1,p2,p3));
-  assert(v.size() == 4);
-  #ifndef NDEBUG
-  try
-  {
-    PlaneZ p(v);
-    const double x { boost::geometry::get<0>(p4) };
-    const double y { boost::geometry::get<1>(p4) };
-    const double z { boost::geometry::get<2>(p4) };
-    const double z_expected { p.CalcZ(x,y) };
-    assert(std::abs(z - z_expected) < 0.001);
-  }
-  catch (std::logic_error&)
-  {
-    //OK as well
-  }
-  #endif
-  return v;
-}
-
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneZ::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
 ) const
@@ -135,6 +105,7 @@ void ribi::PlaneZ::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneZ::Test");
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   const bool verbose = false;
   if (verbose) TRACE("Default construction");
   {
@@ -144,9 +115,6 @@ void ribi::PlaneZ::Test() noexcept
   }
   if (verbose) TRACE("Check formulas");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
     const double p1_x { 1.0 };
     const double p1_y { 2.0 };
     const double p1_z { 3.0 };
@@ -157,9 +125,9 @@ void ribi::PlaneZ::Test() noexcept
     const double p3_y {11.0 };
     const double p3_z { 9.0 };
     PlaneZ p(
-      Point(p1_x,p1_y,p1_z),
-      Point(p2_x,p2_y,p2_z),
-      Point(p3_x,p3_y,p3_z)
+      Point3D(p1_x,p1_y,p1_z),
+      Point3D(p2_x,p2_y,p2_z),
+      Point3D(p3_x,p3_y,p3_z)
     );
     const auto t(p.GetCoefficients());
     assert(t.size() == 4);
@@ -225,11 +193,11 @@ void ribi::PlaneZ::Test() noexcept
     //  -B = 3.0 => B = -3.0
     //   C = 1.0
     //   D = 5.0
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    const point<double,3,cartesian> p1(1.0,1.0,10.0);
-    const point<double,3,cartesian> p2(1.0,2.0,13.0);
-    const point<double,3,cartesian> p3(2.0,1.0,12.0);
+
+
+    const Point3D p1(1.0,1.0,10.0);
+    const Point3D p2(1.0,2.0,13.0);
+    const Point3D p3(2.0,1.0,12.0);
     const PlaneZ p(p1,p2,p3);
     const auto t(p.GetCoefficients());
     const double a { t[0] };
@@ -253,16 +221,13 @@ void ribi::PlaneZ::Test() noexcept
   }
   if (verbose) TRACE("CalcZ, diagonal plane");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    const point<double,3,cartesian> p1(1.0,2.0,3.0);
-    const point<double,3,cartesian> p2(2.0,5.0,8.0);
-    const point<double,3,cartesian> p3(3.0,7.0,11.0);
-
+    const Point3D p1(1.0,2.0,3.0);
+    const Point3D p2(2.0,5.0,8.0);
+    const Point3D p3(3.0,7.0,11.0);
     const PlaneZ p(p1,p2,p3);
-    assert( std::abs(p.CalcZ(1.0,2.0)- 3.0) < 0.001);
-    assert( std::abs(p.CalcZ(2.0,5.0)- 8.0) < 0.001);
-    assert( std::abs(p.CalcZ(3.0,7.0)-11.0) < 0.001);
+    assert(std::abs(p.CalcZ(1.0,2.0)- 3.0) < 0.001);
+    assert(std::abs(p.CalcZ(2.0,5.0)- 8.0) < 0.001);
+    assert(std::abs(p.CalcZ(3.0,7.0)-11.0) < 0.001);
   }
   if (verbose) TRACE("CalcZ, horizontal plane Z = 5.0");
   /*
@@ -279,11 +244,11 @@ void ribi::PlaneZ::Test() noexcept
 
   */
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    const point<double,3,cartesian> p1( 2.0, 3.0,5.0);
-    const point<double,3,cartesian> p2( 7.0,11.0,5.0);
-    const point<double,3,cartesian> p3(13.0,17.0,5.0);
+
+
+    const Point3D p1( 2.0, 3.0,5.0);
+    const Point3D p2( 7.0,11.0,5.0);
+    const Point3D p3(13.0,17.0,5.0);
     const PlaneZ p(p1,p2,p3);
     assert( std::abs(p.CalcZ(1.0,2.0)-5.0) < 0.001);
     assert( std::abs(p.CalcZ(3.0,5.0)-5.0) < 0.001);
@@ -297,8 +262,8 @@ void ribi::PlaneZ::Test() noexcept
         return (2.0 * x) + (3.0 * y) + 5.0;
       }
     };
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
+
+
     const double x1 { 2.0 };
     const double y1 { 3.0 };
     const double x2 { 5.0 };
@@ -307,14 +272,33 @@ void ribi::PlaneZ::Test() noexcept
     const double y3 { 13.0 };
     const double x4 { 17.0 };
     const double y4 { 29.0 };
-    const point<double,3,cartesian> p1(x1,y1,f(x1,y1));
-    const point<double,3,cartesian> p2(x2,y2,f(x2,y2));
-    const point<double,3,cartesian> p3(x3,y3,f(x3,y3));
+    const Point3D p1(x1,y1,f(x1,y1));
+    const Point3D p2(x2,y2,f(x2,y2));
+    const Point3D p3(x3,y3,f(x3,y3));
     const PlaneZ a(p1,p2,p3);
     assert(a.ToFunction() == "z=(2*x) + (3*y) + 5");
-    const point<double,3,cartesian> p4(x4,y4,f(x4,y4));
-    const PlaneZ b(p1,p2,p3,p4);
-    assert(a.ToFunction() == b.ToFunction());
+    const Point3D p4(x4,y4,f(x4,y4));
+    assert(a.ToFunction() == PlaneZ(p1,p2,p4).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p1,p3,p4).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p1,p4,p3).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p2,p1,p3).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p2,p1,p4).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p2,p3,p1).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p2,p3,p4).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p2,p4,p1).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p2,p4,p3).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p3,p1,p2).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p3,p1,p4).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p3,p2,p1).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p3,p2,p4).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p3,p4,p1).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p3,p4,p2).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p4,p1,p2).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p4,p1,p3).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p4,p2,p1).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p4,p2,p3).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p4,p3,p1).ToFunction());
+    assert(a.ToFunction() == PlaneZ(p4,p3,p2).ToFunction());
   }
   if (verbose) TRACE("GetProjection, for Z = 0 plane");
   {
@@ -393,54 +377,6 @@ void ribi::PlaneZ::Test() noexcept
     assert(std::abs(get<0>(v[2]) - 1.0 ) < 0.001);
     assert(std::abs(get<1>(v[2]) - 1.0 ) < 0.001);
 
-  }
-  if (verbose) TRACE("CalcProjection, from a crash in the program");
-  {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1( 1.0,0.0,-0.0);
-    const Point p2(-1.0,0.0, 0.0);
-    const Point p3( 1.0,1.0,-0.0);
-    const Point p4(-1.0,1.0, 0.0);
-    const PlaneZ p(p1,p2,p3,p4);
-    assert(!p.ToFunction().empty());
-    assert(!p.CalcProjection( { p1,p2,p3,p4 } ).empty());
-  }
-  if (verbose) TRACE("CalcProjection, from a crash in the program");
-  {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1(0.0, 1.0,-0.0);
-    const Point p2(0.0,-1.0, 0.0);
-    const Point p3(1.0, 1.0,-0.0);
-    const Point p4(1.0,-1.0, 0.0);
-    const PlaneZ p(p1,p2,p3,p4);
-    assert(!p.ToFunction().empty());
-    assert(!p.CalcProjection( { p1,p2,p3,p4 } ).empty());
-  }
-  if (verbose) TRACE("CalcProjection, from a crash in the program");
-  {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-
-    const Point p1(0.0, 1.0,-0.0);
-    const Point p2(0.0,-1.0, 0.0);
-    const Point p3(1.0, 1.0,-0.0);
-    const Point p4(1.0,-1.0, 0.0);
-    const PlaneZ p(p1,p2,p3,p4);
-    assert(!p.ToFunction().empty());
-    assert(
-      !p.CalcProjection(
-        {
-          Point(1.0,0.0,0.0),
-          Point(0.0,1.0,0.0),
-          Point(0.0,1.0,1.0),
-        }
-      ).empty()
-    );
   }
   TRACE("Finished ribi::PlaneZ::Test successfully");
 }

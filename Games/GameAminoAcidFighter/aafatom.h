@@ -18,12 +18,6 @@ struct Atom
   typedef boost::units::quantity<boost::units::si::plane_angle> Angle;
   typedef boost::units::quantity<boost::units::si::length> Length;
 
-  //Atom(
-  //  const AtomType type = AtomType::H,
-  //  const Angle angle = 0.0 * boost::units::si::radian,
-  //  const Length length = 0.0 * boost::units::si::meter
-  //);
-
   Atom(
     const AtomType type = AtomType::H,
     const PolarCoordinat<Angle,Length> coordinat = CreateDefaultCoordinat()

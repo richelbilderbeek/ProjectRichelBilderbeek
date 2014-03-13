@@ -30,8 +30,8 @@ int main()
     const bool show_mesh { true };
     ribi::TestTriangleMeshMainDialog(
       {
-        ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
-        //, ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
+        ///ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
+        ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
       },
       show_mesh,
       2,

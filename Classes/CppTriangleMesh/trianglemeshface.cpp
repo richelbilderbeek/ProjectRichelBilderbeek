@@ -193,18 +193,19 @@ boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
   PROFILE_FUNC();
-  assert(m_belongs_to.size() == 1 || m_belongs_to.size() == 2);
+  assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
+    && "A Face its winding can only be set if it belongs to a cell"
+  );
   if (!GetNeighbour())
   {
     //Boundary face: normal must point away from the Cell its center
     const boost::shared_ptr<const Cell> observer { GetOwner() };
     assert(observer);
-    //TEMP: reversed logic..
-    if (/* ! */ Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+    if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
     {
       std::reverse(m_points.begin(),m_points.end());
     }
-    assert(! /* added */ Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+    assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
   }
   else
   {
@@ -214,11 +215,11 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
       GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
     };
     assert(observer);
-    if (/* ! */Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+    if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
     {
       std::reverse(m_points.begin(),m_points.end());
     }
-    assert(! /* added */ Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+    assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
   }
 }
 
@@ -238,21 +239,11 @@ void ribi::trim::Face::Test() noexcept
   {
     assert(!(face->GetOwner().get()) && "Faces obtain an owner when being added to a Cell");
     assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");
+    //face->SetCorrectWinding(); //Cannot! A Face must belong to a Cell for this to work
   }
   TRACE("Finished ribi::trim::Face::Test successfully");
 }
 #endif
-
-
-
-
-
-
-
-
-
-
-
 
 bool ribi::trim::operator==(const ribi::trim::Face& lhs, const ribi::trim::Face& rhs) noexcept
 {

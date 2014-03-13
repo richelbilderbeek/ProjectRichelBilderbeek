@@ -46,20 +46,6 @@ struct PlaneX
     #endif
   }
 
-  ///Construct from four points
-  ///Assumes these are in the same plane
-  explicit PlaneX(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3,
-    const Coordinat3D& p4
-  ) noexcept : m_plane_z{Create(p1,p2,p3,p4)}
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
-
   ///Get the 2D projection of these 3D points,
   /*
 
@@ -98,13 +84,6 @@ struct PlaneX
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept;
-
-  static PlaneZ Create(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3,
-    const Coordinat3D& p4
   ) noexcept;
 
   static std::vector<double> Rotate(const std::vector<double>& coefficients) noexcept;

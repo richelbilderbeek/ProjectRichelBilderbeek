@@ -21,11 +21,6 @@ struct PlaneY
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  ///Construct from its coefficients
-  /*
-  explicit PlaneY(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
-  */
-
   ///Create plane Y = 0.0
   PlaneY() : PlaneY(Coordinat3D(0.0,0.0,0.0),Coordinat3D(1.0,0.0,0.0),Coordinat3D(0.0,0.0,1.0))
   {
@@ -40,20 +35,6 @@ struct PlaneY
     const Coordinat3D& p2,
     const Coordinat3D& p3
   ) noexcept : m_plane_z{Create(p1,p2,p3)}
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
-
-  ///Construct from four points
-  ///Assumes these are in the same plane
-  explicit PlaneY(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3,
-    const Coordinat3D& p4
-  ) noexcept : m_plane_z{Create(p1,p2,p3,p4)}
   {
     #ifndef NDEBUG
     Test();
@@ -98,13 +79,6 @@ struct PlaneY
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
-  ) noexcept;
-
-  static PlaneZ Create(
-    const Coordinat3D& p1,
-    const Coordinat3D& p2,
-    const Coordinat3D& p3,
-    const Coordinat3D& p4
   ) noexcept;
 
   //From http://www.richelbilderbeek.nl/CppGetRegexMatches.htm

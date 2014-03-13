@@ -107,23 +107,6 @@ double ribi::Plane::CalcZ(const double x, const double y) const
   return m_plane_z->CalcZ(x,y);
 }
 
-/*
-boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
-  const std::vector<double>& coefficients_z
-) noexcept
-{
-  try
-  {
-    const boost::shared_ptr<PlaneZ> p(new PlaneZ(coefficients_z));
-    return p;
-  }
-  catch (std::exception&)
-  {
-    return nullptr;
-  }
-}
-*/
-
 boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
@@ -175,60 +158,6 @@ boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
   }
 }
 
-boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
-) noexcept
-{
-  try
-  {
-    const boost::shared_ptr<PlaneX> p(new PlaneX(p1,p2,p3,p4));
-    return p;
-  }
-  catch (std::exception&)
-  {
-    return nullptr;
-  }
-}
-
-boost::shared_ptr<ribi::PlaneY> ribi::Plane::CreatePlaneY(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
-) noexcept
-{
-  try
-  {
-    const boost::shared_ptr<PlaneY> p(new PlaneY(p1,p2,p3,p4));
-    return p;
-  }
-  catch (std::exception&)
-  {
-    return nullptr;
-  }
-}
-
-boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
-) noexcept
-{
-  try
-  {
-    const boost::shared_ptr<PlaneZ> p(new PlaneZ(p1,p2,p3,p4));
-    return p;
-  }
-  catch (std::exception&)
-  {
-    return nullptr;
-  }
-}
-
 std::vector<double> ribi::Plane::GetCoefficientsX() const
 {
   if (!m_plane_x)
@@ -271,6 +200,21 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
   };
 }
 
+bool ribi::Plane::IsInPlane(const Coordinat3D& coordinat) const noexcept
+{
+  const double x { boost::geometry::get<0>(coordinat) };
+  const double y { boost::geometry::get<1>(coordinat) };
+  const double z { boost::geometry::get<2>(coordinat) };
+  const double e { 0.001 };
+  try { return std::abs(CalcX(y,z) - x) < e; }
+  catch (std::logic_error&) { /* OK */ }
+  try { return std::abs(CalcY(x,z) - y) < e; }
+  catch (std::logic_error&) { /* OK */ }
+  try { return std::abs(CalcZ(x,y) - z) < e; }
+  catch (std::logic_error&) { /* OK */ }
+  return false;
+}
+
 #ifndef NDEBUG
 void ribi::Plane::Test() noexcept
 {
@@ -280,18 +224,15 @@ void ribi::Plane::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::Plane::Test");
-  //typedef boost::geometry::model::d2::point_xy<double> Point2D;
+  const bool verbose { true };
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   using boost::geometry::get;
 
-  //Plane that can be expressed in all three forms
+  if (verbose) TRACE("Plane that can be expressed in all three forms");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1( 1.0, 2.0,3.0);
-    const Point p2( 4.0, 6.0,9.0);
-    const Point p3(12.0,11.0,9.0);
+    const Point3D p1( 1.0, 2.0,3.0);
+    const Point3D p2( 4.0, 6.0,9.0);
+    const Point3D p3(12.0,11.0,9.0);
     const Plane p(p1,p2,p3);
     assert(!p.ToFunctionX().empty());
     assert(!p.ToFunctionY().empty());
@@ -307,14 +248,11 @@ void ribi::Plane::Test() noexcept
     );
 
   }
-  ///Plane X = 2
+  if (verbose) TRACE("Plane X = 2");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1(2.0, 2.0,3.0);
-    const Point p2(2.0, 6.0,9.0);
-    const Point p3(2.0,11.0,9.0);
+    const Point3D p1(2.0, 2.0,3.0);
+    const Point3D p2(2.0, 6.0,9.0);
+    const Point3D p3(2.0,11.0,9.0);
     const Plane p(p1,p2,p3);
     assert(!p.ToFunctionX().empty());
     try { p.ToFunctionY(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
@@ -329,14 +267,11 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
-  //Plane Y = 3
+  if (verbose) TRACE("Plane Y = 3");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1( 2.0, 3.0, 5.0);
-    const Point p2( 7.0, 3.0, 9.0);
-    const Point p3(11.0,3.0,13.0);
+    const Point3D p1( 2.0, 3.0, 5.0);
+    const Point3D p2( 7.0, 3.0, 9.0);
+    const Point3D p3(11.0,3.0,13.0);
     const Plane p(p1,p2,p3);
     assert(!p.ToFunctionY().empty());
     try { p.ToFunctionX(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
@@ -351,14 +286,11 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
-  //Plane Z = 5
+  if (verbose) TRACE("Plane Z = 5");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1( 2.0, 3.0,5.0);
-    const Point p2( 7.0,11.0,5.0);
-    const Point p3(13.0,17.0,5.0);
+    const Point3D p1( 2.0, 3.0,5.0);
+    const Point3D p2( 7.0,11.0,5.0);
+    const Point3D p3(13.0,17.0,5.0);
     const Plane p(p1,p2,p3);
     assert(!p.ToFunctionZ().empty());
     try { p.ToFunctionX(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
@@ -373,17 +305,46 @@ void ribi::Plane::Test() noexcept
       ).empty()
     );
   }
-
-  //CalcProjection, from a crash in the program
+  if (verbose) TRACE("IsInPlane, X = 0 plane");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
-    const Point p1( 1.0,-0.0,0.0);
-    const Point p2(-1.0, 0.0,0.0);
-    const Point p3( 1.0,-0.0,1.0);
-    const Point p4(-1.0, 0.0,1.0);
-    const Plane p(p1,p2,p3,p4);
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,0.0,1.0);
+    const Point3D p3(0.0,1.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(p.IsInPlane(Point3D(0.0, 2.0, 2.0)));
+    assert(p.IsInPlane(Point3D(0.0, 2.0,-2.0)));
+    assert(p.IsInPlane(Point3D(0.0,-2.0, 2.0)));
+    assert(p.IsInPlane(Point3D(0.0,-2.0,-2.0)));
+  }
+  if (verbose) TRACE("IsInPlane, Y = 0 plane");
+  {
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,0.0,1.0);
+    const Point3D p3(1.0,0.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(p.IsInPlane(Point3D( 2.0,0.0, 2.0)));
+    assert(p.IsInPlane(Point3D( 2.0,0.0,-2.0)));
+    assert(p.IsInPlane(Point3D(-2.0,0.0, 2.0)));
+    assert(p.IsInPlane(Point3D(-2.0,0.0,-2.0)));
+  }
+  if (verbose) TRACE("IsInPlane, Z = 0 plane");
+  {
+    const Point3D p1(0.0,0.0,0.0);
+    const Point3D p2(0.0,1.0,0.0);
+    const Point3D p3(1.0,0.0,0.0);
+    const Plane p(p1,p2,p3);
+    assert(p.IsInPlane(Point3D( 2.0, 2.0,0.0)));
+    assert(p.IsInPlane(Point3D( 2.0,-2.0,0.0)));
+    assert(p.IsInPlane(Point3D(-2.0, 2.0,0.0)));
+    assert(p.IsInPlane(Point3D(-2.0,-2.0,0.0)));
+  }
+  if (verbose) TRACE("CalcProjection, from a crash in the program");
+  {
+    const Point3D p1( 1.0,-0.0,0.0);
+    const Point3D p2(-1.0, 0.0,0.0);
+    const Point3D p3( 1.0,-0.0,1.0);
+    const Point3D p4(-1.0, 0.0,1.0);
+    const Plane p(p1,p2,p3);
     assert(!p.ToFunctionY().empty());
     try { p.ToFunctionX(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
     try { p.ToFunctionZ(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }

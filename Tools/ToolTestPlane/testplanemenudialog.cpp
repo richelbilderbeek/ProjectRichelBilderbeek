@@ -30,7 +30,7 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     std::cout << GetHelp() << '\n';
     return 1;
   }
-
+  /*
   if (argc == 5)
   {
     std::stringstream s;
@@ -50,7 +50,9 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     }
     std::cout << s.str() << '\n';
   }
-  else if (argc == 10)
+  else
+  */
+  if (argc == 10)
   {
     std::stringstream s;
     s << "Construct plane from three points" << '\n';

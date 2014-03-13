@@ -37,11 +37,11 @@ struct PointFactory
   ///This way is used in mesh creation: every 3D point shares the same
   ///ConstCoordinat2D
   ///Create a Point with an undetermined Z coordinat
-  const boost::shared_ptr<Point> Create(
+  boost::shared_ptr<Point> Create(
     const boost::shared_ptr<const ConstCoordinat2D> coordinat
   ) const noexcept;
 
-  const boost::shared_ptr<Point> CreateFrom3D(
+  boost::shared_ptr<Point> CreateFrom3D(
     const boost::shared_ptr<const Coordinat3D> coordinat
   ) const noexcept;
 
@@ -56,7 +56,48 @@ struct PointFactory
     A---B
 
   */
-  const std::vector<boost::shared_ptr<Point>> CreateTestPrism() const noexcept;
+  std::vector<boost::shared_ptr<Point>> CreateTestPrism() const noexcept;
+
+  ///Creates a square for a certain winding (when viewed from above)
+  /*
+
+    Clockwise:
+
+    0 1 2
+  0 +-+-+-X
+    |
+  1 + 0-1  where Z = 1.0 for all points
+    | | |
+  2 + 3-2
+    |
+    Y
+
+    Counter-clockwise:
+
+    0 1 2
+  0 +-+-+-X
+    |
+  1 + 0-3 where Z = 1.0 for all points
+    | | |
+  2 + 1-2
+    |
+    Y
+
+    Indeterminate:
+
+    0  1  2
+  0 +--+--+-X
+    |
+    |
+  1 +  0--3 where Z = 1.0 for all points
+    |   \/
+    |   /\
+  2 +  2--1
+    |
+    Y
+
+  */
+  std::vector<boost::shared_ptr<Point>> CreateTestSquare(const Winding winding) const noexcept;
 
   ///Creates a triangle for a certain winding (when viewed from above)
   /*
@@ -84,7 +125,7 @@ struct PointFactory
     Y
 
   */
-  const std::vector<boost::shared_ptr<Point>> CreateTestTriangle(const Winding winding) const noexcept;
+  std::vector<boost::shared_ptr<Point>> CreateTestTriangle(const Winding winding) const noexcept;
 
   private:
   #ifndef NDEBUG

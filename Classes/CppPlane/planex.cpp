@@ -14,19 +14,6 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-/*
-ribi::PlaneX::PlaneX(
-  const std::vector<double>& coefficients
-) : m_plane_z(Rotate(coefficients))
-{
-  #ifndef NDEBUG
-  Test();
-  #endif
-  assert(GetCoefficients().size() == 4);
-
-}
-*/
-
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneX::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
 ) const
@@ -62,16 +49,6 @@ ribi::PlaneZ ribi::PlaneX::Create(
 ) noexcept
 {
   return PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3));
-}
-
-ribi::PlaneZ ribi::PlaneX::Create(
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
-) noexcept
-{
-  return PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3), Rotate(p4));
 }
 
 const std::vector<double> ribi::PlaneX::GetCoefficients() const noexcept
@@ -126,6 +103,7 @@ void ribi::PlaneX::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneX::Test");
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
   const bool verbose = false;
   if (verbose) TRACE("Default construction");
   {
@@ -135,9 +113,9 @@ void ribi::PlaneX::Test() noexcept
   }
   /*
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    typedef point<double,3,cartesian> Point;
+
+
+    typedef Point3D Point;
     const double p1_x { 1.0 };
     const double p1_y { 2.0 };
     const double p1_z { 3.0 };
@@ -208,11 +186,11 @@ void ribi::PlaneX::Test() noexcept
     //  -B = 3.0 => B = -3.0
     //   C = 1.0
     //   D = 5.0
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    const point<double,3,cartesian> p1(1.0,1.0,10.0);
-    const point<double,3,cartesian> p2(1.0,2.0,13.0);
-    const point<double,3,cartesian> p3(2.0,1.0,12.0);
+
+
+    const Point3D p1(1.0,1.0,10.0);
+    const Point3D p2(1.0,2.0,13.0);
+    const Point3D p3(2.0,1.0,12.0);
     PlaneX p(p1,p2,p3);
     const auto t(p.GetCoefficients());
     const double a { t[0] };
@@ -238,11 +216,11 @@ void ribi::PlaneX::Test() noexcept
   */
   if (verbose) TRACE("CalcX, diagonal plane");
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    const point<double,3,cartesian> p1(1.0,2.0,3.0);
-    const point<double,3,cartesian> p2(2.0,5.0,8.0);
-    const point<double,3,cartesian> p3(3.0,7.0,11.0);
+
+
+    const Point3D p1(1.0,2.0,3.0);
+    const Point3D p2(2.0,5.0,8.0);
+    const Point3D p3(3.0,7.0,11.0);
     PlaneX p(p1,p2,p3);
     assert( std::abs(p.CalcX(2.0, 3.0)- 1.0) < 0.001);
     assert( std::abs(p.CalcX(5.0, 8.0)- 2.0) < 0.001);
@@ -263,11 +241,11 @@ void ribi::PlaneX::Test() noexcept
 
   */
   {
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
-    const point<double,3,cartesian> p1(2.0, 3.0, 5.0);
-    const point<double,3,cartesian> p2(2.0, 7.0,11.0);
-    const point<double,3,cartesian> p3(2.0,13.0,17.0);
+
+
+    const Point3D p1(2.0, 3.0, 5.0);
+    const Point3D p2(2.0, 7.0,11.0);
+    const Point3D p3(2.0,13.0,17.0);
     PlaneX p(p1,p2,p3);
     assert( std::abs(p.CalcX(1.0,2.0)-2.0) < 0.001);
     assert( std::abs(p.CalcX(3.0,5.0)-2.0) < 0.001);
@@ -281,8 +259,8 @@ void ribi::PlaneX::Test() noexcept
         return (2.0 * y) + (3.0 * z) + 5.0;
       }
     };
-    using boost::geometry::model::point;
-    using boost::geometry::cs::cartesian;
+
+
     const double y1 { 2.0 };
     const double z1 { 3.0 };
     const double y2 { 5.0 };
@@ -291,14 +269,33 @@ void ribi::PlaneX::Test() noexcept
     const double z3 { 13.0 };
     const double y4 { 17.0 };
     const double z4 { 29.0 };
-    const point<double,3,cartesian> p1(f(y1,z1),y1,z1);
-    const point<double,3,cartesian> p2(f(y2,z2),y2,z2);
-    const point<double,3,cartesian> p3(f(y3,z3),y3,z3);
+    const Point3D p1(f(y1,z1),y1,z1);
+    const Point3D p2(f(y2,z2),y2,z2);
+    const Point3D p3(f(y3,z3),y3,z3);
     const PlaneX a(p1,p2,p3);
     assert(a.ToFunction() == "x=(2*y) + (3*z) + 5");
-    const point<double,3,cartesian> p4(f(y4,z4),y4,z4);
-    const PlaneX b(p1,p2,p3,p4);
-    assert(a.ToFunction() == b.ToFunction());
+    const Point3D p4(f(y4,z4),y4,z4);
+    assert(a.ToFunction() == PlaneX(p1,p2,p4).ToFunction());
+    assert(a.ToFunction() == PlaneX(p1,p3,p4).ToFunction());
+    assert(a.ToFunction() == PlaneX(p1,p4,p3).ToFunction());
+    assert(a.ToFunction() == PlaneX(p2,p1,p3).ToFunction());
+    assert(a.ToFunction() == PlaneX(p2,p1,p4).ToFunction());
+    assert(a.ToFunction() == PlaneX(p2,p3,p1).ToFunction());
+    assert(a.ToFunction() == PlaneX(p2,p3,p4).ToFunction());
+    assert(a.ToFunction() == PlaneX(p2,p4,p1).ToFunction());
+    assert(a.ToFunction() == PlaneX(p2,p4,p3).ToFunction());
+    assert(a.ToFunction() == PlaneX(p3,p1,p2).ToFunction());
+    assert(a.ToFunction() == PlaneX(p3,p1,p4).ToFunction());
+    assert(a.ToFunction() == PlaneX(p3,p2,p1).ToFunction());
+    assert(a.ToFunction() == PlaneX(p3,p2,p4).ToFunction());
+    assert(a.ToFunction() == PlaneX(p3,p4,p1).ToFunction());
+    assert(a.ToFunction() == PlaneX(p3,p4,p2).ToFunction());
+    assert(a.ToFunction() == PlaneX(p4,p1,p2).ToFunction());
+    assert(a.ToFunction() == PlaneX(p4,p1,p3).ToFunction());
+    assert(a.ToFunction() == PlaneX(p4,p2,p1).ToFunction());
+    assert(a.ToFunction() == PlaneX(p4,p2,p3).ToFunction());
+    assert(a.ToFunction() == PlaneX(p4,p3,p1).ToFunction());
+    assert(a.ToFunction() == PlaneX(p4,p3,p2).ToFunction());
   }
   if (verbose) TRACE("GetProjection");
   {
