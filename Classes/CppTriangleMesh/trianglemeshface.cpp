@@ -39,6 +39,12 @@ ribi::trim::Face::Face(
   #endif
   PROFILE_FUNC();
   #ifndef NDEBUG
+  if (!ribi::Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))))
+  {
+    TRACE(*this);
+    TRACE("ERROR");
+  }
+  assert(ribi::Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))));
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -128,7 +134,7 @@ void ribi::trim::Face::DoExtractCoordinats() const
   PROFILE_FUNC();
   assert(CanExtractCoordinats());
   //assert(m_coordinats.empty()); //This is done multiple times in debugging
-  m_coordinats = Helper().ExtractCoordinats(m_points);
+  m_coordinats = Helper().ExtractCoordinats(AddConst(m_points));
 }
 
 boost::shared_ptr<const ribi::trim::Cell> ribi::trim::Face::GetNeighbour() const noexcept
@@ -201,6 +207,7 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     //Boundary face: normal must point away from the Cell its center
     const boost::shared_ptr<const Cell> observer { GetOwner() };
     assert(observer);
+    assert(Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))));
     if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
     {
       std::reverse(m_points.begin(),m_points.end());

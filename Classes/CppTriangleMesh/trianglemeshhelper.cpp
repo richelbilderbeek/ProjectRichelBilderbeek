@@ -184,7 +184,7 @@ std::set<
   >
 >
   ribi::trim::Helper::ExtractCoordinats(
-  const std::vector<boost::shared_ptr<Point>>& points
+  const std::vector<boost::shared_ptr<const Point>>& points
 )
 {
   PROFILE_FUNC();
@@ -210,7 +210,6 @@ std::set<
     );
     s.insert(s.begin(),c);
   }
-
   return s;
 }
 
@@ -263,6 +262,8 @@ bool ribi::trim::Helper::IsClockwise(
     );
     coordinats.push_back(coordinat);
   }
+  assert(Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(points))));
+
   return Geometry().IsClockwise(coordinats,observer);
 }
 
@@ -384,12 +385,83 @@ bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) noexcept
   return answer_1;
 }
 
+bool ribi::trim::Helper::IsPlane(
+  const std::vector<boost::shared_ptr<const ribi::trim::Edge>>& edges
+) const noexcept
+{
+  std::vector<Coordinat3D> coordinats;
+  for (auto edge: edges)
+  {
+    assert(edge);
+    assert(edge->GetFrom());
+    assert(edge->GetFrom()->CanGetZ());
+    assert(edge->GetTo());
+    assert(edge->GetTo()->CanGetZ());
+    coordinats.push_back(
+      Coordinat3D(
+        boost::geometry::get<0>(*edge->GetFrom()->GetCoordinat()),
+        boost::geometry::get<1>(*edge->GetFrom()->GetCoordinat()),
+        edge->GetFrom()->GetZ().value()
+      )
+    );
+    coordinats.push_back(
+      Coordinat3D(
+        boost::geometry::get<0>(*edge->GetTo()->GetCoordinat()),
+        boost::geometry::get<1>(*edge->GetTo()->GetCoordinat()),
+        edge->GetTo()->GetZ().value()
+      )
+    );
+  }
+  std::sort(
+    coordinats.begin(),
+    coordinats.end(),
+    Geometry().OrderByZ()
+  );
+  coordinats.erase(
+    std::unique(
+      coordinats.begin(),
+      coordinats.end(),
+      [](const Coordinat3D& lhs, const Coordinat3D& rhs)
+      {
+        using boost::geometry::get;
+        return
+             get<0>(lhs) == get<0>(rhs)
+          && get<1>(lhs) == get<1>(rhs)
+          && get<2>(lhs) == get<2>(rhs)
+        ;
+      }
+    ),coordinats.end()
+  );
+  return Geometry().IsPlane(coordinats);
+}
+
 bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
 {
   const bool answer_1 = face.GetOrientation() == FaceOrientation::vertical;
   const bool answer_2 = !IsHorizontal(face);
   assert(answer_1 == answer_2);
   return answer_1;
+}
+
+std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
+  ribi::trim::Helper::PointsToCoordinats(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
+) const noexcept
+{
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  std::vector<Coordinat3D> v;
+  for (auto p: points)
+  {
+    assert(p);
+    assert(p->GetCoordinat());
+    v.push_back(
+      Coordinat3D(
+        boost::geometry::get<0>(*p->GetCoordinat()),
+        boost::geometry::get<1>(*p->GetCoordinat()),
+        p->GetZ().value()
+      )
+    );
+  }
+  return v;
 }
 
 void ribi::trim::Helper::SetWindingHorizontal(
@@ -463,6 +535,17 @@ void ribi::trim::Helper::SetWindingHorizontal(
   }
   assert(CalcWindingHorizontal(AddConst(edges)) == winding);
 }
+
+/*
+void ribi::trim::Helper::Sort(std::vector<ribi::trim::Helper::Coordinat3D>& coordinats) const noexcept
+{
+  std::sort(
+    coordinats.begin(),
+    coordinats.end(),
+    Geometry().OrderByZ()
+  );
+}
+*/
 
 #ifndef NDEBUG
 void ribi::trim::Helper::Test() noexcept

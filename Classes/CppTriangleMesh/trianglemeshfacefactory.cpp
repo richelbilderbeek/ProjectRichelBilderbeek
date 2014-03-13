@@ -36,6 +36,8 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   }
   std::sort(points.begin(),points.end());
   points.erase(std::unique(points.begin(),points.end()),points.end());
+
+  assert(ribi::Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(points))));
   return Create(points,any_orientation);
 }
 
@@ -51,6 +53,7 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   ++cnt;
 
   assert(points.size() == 3 || points.size() == 4);
+  assert(ribi::Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(points))));
 
   const boost::shared_ptr<Face> face(
     new Face(
@@ -84,6 +87,15 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   const std::vector<boost::shared_ptr<Edge>> edges_d      { edges[4], edges[ 8], edges[ 9] };
   const std::vector<boost::shared_ptr<Edge>> edges_e      { edges[2], edges[ 6], edges[11] };
   const std::vector<boost::shared_ptr<Edge>> edges_f      { edges[5], edges[10], edges[11] };
+
+  assert(Helper().IsPlane(AddConst(edges_bottom)));
+  assert(Helper().IsPlane(AddConst(edges_top)));
+  assert(Helper().IsPlane(AddConst(edges_a)));
+  assert(Helper().IsPlane(AddConst(edges_b)));
+  assert(Helper().IsPlane(AddConst(edges_c)));
+  assert(Helper().IsPlane(AddConst(edges_d)));
+  assert(Helper().IsPlane(AddConst(edges_e)));
+  assert(Helper().IsPlane(AddConst(edges_f)));
 
   const Coordinat3D center { Helper().CalcCenter(edges) };
 

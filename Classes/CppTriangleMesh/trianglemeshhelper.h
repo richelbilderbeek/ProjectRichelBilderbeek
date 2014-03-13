@@ -47,7 +47,7 @@ struct Helper
   Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
 
   Coordinat3dSet ExtractCoordinats(const Face& face);
-  std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<Point>>& points);
+  std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<const Point>>& points);
 
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
@@ -119,7 +119,16 @@ struct Helper
   ) const noexcept;
 
   bool IsHorizontal(const Face& face) noexcept;
+
+  bool IsPlane(
+    const std::vector<boost::shared_ptr<const Edge>>& edges
+  ) const noexcept;
+
   bool IsVertical(const Face& face) noexcept;
+
+  std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
+    PointsToCoordinats(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
+  ) const noexcept;
 
   ///Set the edges to get a certain Winding,
   ///knowing that all edges are in the same XY plane
@@ -128,6 +137,8 @@ struct Helper
     std::vector<boost::shared_ptr<Edge>>& edges,
     const Winding winding
   ) const noexcept;
+
+  //void Sort(std::vector<Coordinat3D>& coordinats) const noexcept;
 
   std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
 

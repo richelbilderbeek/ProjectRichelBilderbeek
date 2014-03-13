@@ -300,6 +300,12 @@ bool ribi::Geometry::IsClockwise(const std::vector<boost::geometry::model::point
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
+    #ifndef NDEBUG
+    if (!Geometry().IsPlane(points))
+    {
+      TRACE("ERROR");
+    }
+    #endif
     assert(Geometry().IsPlane(points));
     const auto v(
       Plane(points[0],points[1],points[2]).CalcProjection(
@@ -466,13 +472,61 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geome
 }
 */
 
+std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
+  ribi::Geometry::IsEqual() const noexcept
+{
+  return [](const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)
+  {
+    using boost::geometry::get;
+    return
+      get<0>(lhs) == get<0>(rhs)
+      && get<1>(lhs) == get<1>(rhs)
+      && get<2>(lhs) == get<2>(rhs)
+    ;
+  };
+}
+
 bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) const noexcept
 {
+  if (v.size() < 3) return false;
+  if (v.size() == 3) return true;
+  #ifndef NDEBUG
+  if (v.size() > 4)
+  {
+    TRACE("ERROR");
+  }
+  #endif
   assert(v.size() == 4);
-  //if (v.size() < 3) return false;
-  //if (v.size() == 3) return true;
   Plane plane(v[0],v[1],v[2]);
   return plane.IsInPlane(v[3]);
+}
+
+std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
+  ribi::Geometry::OrderByX() const noexcept
+{
+  return [](const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)
+  {
+    using boost::geometry::get;
+    if (get<0>(lhs) < get<0>(rhs)) return true;
+    if (get<0>(lhs) > get<0>(rhs)) return false;
+    if (get<1>(lhs) < get<1>(rhs)) return true;
+    if (get<1>(lhs) > get<1>(rhs)) return false;
+    return get<2>(lhs) < get<2>(rhs);
+  };
+}
+
+std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
+  ribi::Geometry::OrderByZ() const noexcept
+{
+  return [](const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)
+  {
+    using boost::geometry::get;
+    if (get<2>(lhs) < get<2>(rhs)) return true;
+    if (get<2>(lhs) > get<2>(rhs)) return false;
+    if (get<1>(lhs) < get<1>(rhs)) return true;
+    if (get<1>(lhs) > get<1>(rhs)) return false;
+    return get<0>(lhs) < get<0>(rhs);
+  };
 }
 
 #ifndef NDEBUG

@@ -110,5 +110,9 @@ std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
     << ribi::xml::ToXml("point_index",n.GetIndex())
     << Helper().ToXml(*n.GetCoordinat())
   ;
+  os << ribi::xml::ToXml("z", n.CanGetZ()
+    ?  boost::lexical_cast<std::string>(n.GetZ().value())
+    : ""
+  );
   return os;
 }

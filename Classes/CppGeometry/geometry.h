@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#include <functional>
 #include <string>
 #include <tuple>
 #include <vector>
@@ -188,8 +189,17 @@ struct Geometry
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& v) const noexcept;
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& v) const noexcept;
 
+  ///Functor for X-Y-Z ordering
+  std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> IsEqual() const noexcept;
+
   ///Determines if these coordinats are in a plane
   bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
+
+  ///Functor for X-Y-Z ordering
+  std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> OrderByX() const noexcept;
+
+  ///Functor for Z-Y-X ordering
+  std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> OrderByZ() const noexcept;
 
   std::string ToStr(const Coordinat3D& p) const noexcept;
 
