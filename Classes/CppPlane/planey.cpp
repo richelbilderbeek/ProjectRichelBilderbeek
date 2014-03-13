@@ -14,6 +14,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+/*
 ribi::PlaneY::PlaneY(
   const std::vector<double>& coefficients
 ) : m_plane_z(Rotate(coefficients))
@@ -24,16 +25,17 @@ ribi::PlaneY::PlaneY(
   assert(GetCoefficients().size() == 4);
 
 }
+*/
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneY::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
-)
+) const
 {
   auto v(points);
-  for(auto& i: v) { i = Rotate(Rotate(i)); }
+  for(auto& i: v) { i = Rotate(i); }
   try
   {
-    return PlaneZ::CalcProjection(v);
+    return m_plane_z.CalcProjection(v);
   }
   catch (std::logic_error&)
   {
@@ -98,13 +100,14 @@ std::vector<std::string>
 
 std::string ribi::PlaneY::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
 {
   return {
-    "2014-03-10: version 1.0: initial version, split off from PlaneX"
+    "2014-03-10: version 1.0: initial version, split off from PlaneX",
+    "2014-03-13: version 1.1: bug fixed"
   };
 }
 
@@ -124,9 +127,11 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Pla
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& point
 ) noexcept
 {
+  //The 0-2-1 order is confirmed by doing a projection of a triangle on the Y=0 plane
+  //on a Y=0 plane
   return {
-    boost::geometry::get<2>(point),
     boost::geometry::get<0>(point),
+    boost::geometry::get<2>(point),
     boost::geometry::get<1>(point)
   };
 }
@@ -140,6 +145,48 @@ void ribi::PlaneY::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneY::Test");
+  const bool verbose = false;
+  if (verbose) TRACE("Default construction");
+  {
+    const PlaneY p;
+    assert(!p.ToFunction().empty());
+    assert(!p.GetCoefficients().empty());
+  }
+  if (verbose) TRACE("GetProjection, for plane Y = 0.0, points on plane");
+  {
+    typedef boost::geometry::model::d2::point_xy<double> Point2D;
+    typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
+    using boost::geometry::get;
+    /*
+
+    A: (0,0,1)                  A: (0,1)
+    B: (0,0,0)                  B: (0,0)
+    C: (1,0,0)                  C: (1,0)
+
+    |    /
+    |   /                       |
+    A  /                        A
+    |\/         -> becomes ->   |\
+    |/\                         | \
+  --B--C---                   --B--C-----
+   /|                           |
+  / |                           |
+
+    */
+    const Point3D a(0.0,0.0,1.0);
+    const Point3D b(0.0,0.0,0.0);
+    const Point3D c(1.0,0.0,0.0);
+    assert(PlaneY().ToFunction() == PlaneY(a,b,c).ToFunction()
+      && "The three points are on the Y = 0 plane");
+    const std::vector<Point2D> v { PlaneY().CalcProjection( { a,b,c } ) };
+    assert(v.size() == 3);
+    assert(std::abs(get<0>(v[0]) - 0.0 ) < 0.001);
+    assert(std::abs(get<1>(v[0]) - 1.0 ) < 0.001);
+    assert(std::abs(get<0>(v[1]) - 0.0 ) < 0.001);
+    assert(std::abs(get<1>(v[1]) - 0.0 ) < 0.001);
+    assert(std::abs(get<0>(v[2]) - 1.0 ) < 0.001);
+    assert(std::abs(get<1>(v[2]) - 0.0 ) < 0.001);
+  }
   /*
   {
     using boost::geometry::model::point;
@@ -197,7 +244,7 @@ void ribi::PlaneY::Test() noexcept
     assert(std::abs(d - d_p3_expected) < 0.001);
   }
   */
-  //CalcPlaneY
+  if (verbose) TRACE("CalcPlaneY");
   /*
   {
     //CalcPlaneY return the coefficients in the following form:
@@ -244,7 +291,7 @@ void ribi::PlaneY::Test() noexcept
     TRACE(p.ToFunction());
   }
   */
-  //CalcY, diagonal plane
+  if (verbose) TRACE("CalcY, diagonal plane");
   {
     using boost::geometry::model::point;
     using boost::geometry::cs::cartesian;
@@ -256,7 +303,7 @@ void ribi::PlaneY::Test() noexcept
     assert( std::abs(p.CalcY(2.0, 8.0)- 5.0) < 0.001);
     assert( std::abs(p.CalcY(3.0,11.0)- 7.0) < 0.001);
   }
-  //CalcY, vertical plane Y = 3.0
+  if (verbose) TRACE("CalcY, vertical plane Y = 3.0");
   /*
 
     |####/
@@ -281,7 +328,7 @@ void ribi::PlaneY::Test() noexcept
     assert( std::abs(p.CalcY(3.0,5.0)-3.0) < 0.001);
     assert( std::abs(p.CalcY(7.0,9.0)-3.0) < 0.001);
   }
-  //ToFunction, 3 points and 4 points
+  if (verbose) TRACE("ToFunction, 3 points and 4 points");
   {
     std::function<double(double,double)> f {
       [](const double x, const double z)
@@ -303,21 +350,23 @@ void ribi::PlaneY::Test() noexcept
     const point<double,3,cartesian> p2(x2,f(x2,z2),z2);
     const point<double,3,cartesian> p3(x3,f(x3,z3),z3);
     const PlaneY a(p1,p2,p3);
-    assert(a.ToFunction() == "y=(3*z) + (2*x) + 5");
+    assert(a.ToFunction() == "y=(2*x) + (3*z) + 5");
     const point<double,3,cartesian> p4(x4,f(x4,z4),z4);
     const PlaneY b(p1,p2,p3,p4);
     assert(a.ToFunction() == b.ToFunction());
   }
-  //GetProjection
+
+
+  if (verbose) TRACE("GetProjection, for plane Y = 0.0, points not on plane");
   {
     typedef boost::geometry::model::d2::point_xy<double> Point2D;
     typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
     using boost::geometry::get;
     /*
 
-    A: (0,0,1)                  A: (0,SQRT(2))
-    B: (1,0,0)                  B: (0,0)
-    C: (1,1,0)                  C: (1,0)
+    A: (0,0,1)                  A: (0,1)
+    B: (1,0,0)                  B: (1,0)
+    C: (1,1,0)                  C: (SQRT(2),0)
 
     |    /
     |   /                       |
@@ -329,9 +378,8 @@ void ribi::PlaneY::Test() noexcept
   / |                           |
 
     */
-    TRACE_FUNC();
     const std::vector<Point2D> v {
-      CalcProjection(
+      PlaneY().CalcProjection(
         {
           Point3D(0.0,0.0,1.0),
           Point3D(1.0,0.0,0.0),
@@ -339,22 +387,27 @@ void ribi::PlaneY::Test() noexcept
         }
       )
     };
-    TRACE_FUNC();
     assert(v.size() == 3);
-    TRACE(get<0>(v[0]));
-    TRACE(get<1>(v[0]));
-    TRACE(get<0>(v[1]));
-    TRACE(get<1>(v[1]));
-    TRACE(get<0>(v[2]));
-    TRACE(get<1>(v[2]));
     assert(std::abs(get<0>(v[0]) -           0.0 ) < 0.001);
-    assert(std::abs(get<1>(v[0]) - std::sqrt(2.0)) < 0.001);
-    assert(std::abs(get<0>(v[1]) -           0.0 ) < 0.001);
+    assert(std::abs(get<1>(v[0]) -           1.0 ) < 0.001);
+    assert(std::abs(get<0>(v[1]) -           1.0 ) < 0.001);
     assert(std::abs(get<1>(v[1]) -           0.0 ) < 0.001);
-
-    assert(std::abs(get<0>(v[2]) -           1.0 ) < 0.001);
+    assert(std::abs(get<0>(v[2]) - std::sqrt(2.0)) < 0.001);
     assert(std::abs(get<1>(v[2]) -           0.0 ) < 0.001);
+  }
 
+  if (verbose) TRACE("CalcProjection, from a crash in the program");
+  {
+    using boost::geometry::model::point;
+    using boost::geometry::cs::cartesian;
+    typedef point<double,3,cartesian> Point;
+    const Point p1( 1.0,-0.0,0.0);
+    const Point p2(-1.0, 0.0,0.0);
+    const Point p3( 1.0,-0.0,1.0);
+    const Point p4(-1.0, 0.0,1.0);
+    const PlaneY p(p1,p2,p3,p4);
+    assert(!p.ToFunction().empty());
+    assert(!p.CalcProjection( { p1,p2,p3,p4 } ).empty());
   }
   TRACE("Finished ribi::PlaneY::Test successfully");
 }
@@ -367,28 +420,11 @@ std::string ribi::PlaneY::ToFunction() const
     std::string s = m_plane_z.ToFunction();
     // 'z=(2*x) + (3*y) + 5'
     //          =>
-    // 'y=(2*z) + (3*x) + 5'
+    // 'y=(2*x) + (3*z) + 5'
     assert(!s.empty());
-    s = boost::algorithm::replace_all_copy(s,"*x","*z");
-    s = boost::algorithm::replace_all_copy(s,"*y","*x");
+    s = boost::algorithm::replace_all_copy(s,"*x","*x");
+    s = boost::algorithm::replace_all_copy(s,"*y","*z");
     s = boost::algorithm::replace_all_copy(s,"z=","y=");
-    /*
-    TRACE(s);
-    const auto v(GetRegexMatchesBoostXpressive(s,R"((=(.*\*z)))"));
-    TRACE(v.size());
-    assert(v.size() == 1);
-    const std::string z = v[0].substr(2,v[0].size() - 2);
-    TRACE(z);
-    TRACE(v[0]);
-    const auto w(GetRegexMatchesBoostXpressive(s,R"((\+ (.*\*x)))"));
-    TRACE(w.size());
-    assert(w.size() == 1);
-    TRACE(w[0]);
-    const std::string x = w[0].substr(3,w[0].size() - 3);
-    TRACE(x)
-    s = boost::algorithm::replace_all_copy(s,"y=");
-    TRACE(s);
-    */
     return s;
   }
   catch (std::logic_error&)

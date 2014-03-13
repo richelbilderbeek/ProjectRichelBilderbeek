@@ -14,6 +14,7 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+/*
 ribi::PlaneX::PlaneX(
   const std::vector<double>& coefficients
 ) : m_plane_z(Rotate(coefficients))
@@ -24,16 +25,17 @@ ribi::PlaneX::PlaneX(
   assert(GetCoefficients().size() == 4);
 
 }
+*/
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneX::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
-)
+) const
 {
   auto v(points);
   for(auto& i: v) { i = Rotate(i); }
   try
   {
-    return PlaneZ::CalcProjection(v);
+    return m_plane_z.CalcProjection(v);
   }
   catch (std::logic_error&)
   {
@@ -81,13 +83,14 @@ const std::vector<double> ribi::PlaneX::GetCoefficients() const noexcept
 
 std::string ribi::PlaneX::GetVersion() const noexcept
 {
-  return "1.0";
+  return "1.1";
 }
 
 std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
 {
   return {
-    "2014-03-10: version 1.0: initial version, split off from PlaneZ"
+    "2014-03-10: version 1.0: initial version, split off from PlaneZ",
+    "2014-03-13: version 1.1: bug fixed"
   };
 }
 
@@ -123,6 +126,13 @@ void ribi::PlaneX::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::PlaneX::Test");
+  const bool verbose = false;
+  if (verbose) TRACE("Default construction");
+  {
+    const PlaneX p;
+    assert(!p.ToFunction().empty());
+    assert(!p.GetCoefficients().empty());
+  }
   /*
   {
     using boost::geometry::model::point;
@@ -226,7 +236,7 @@ void ribi::PlaneX::Test() noexcept
     TRACE(p.ToFunction());
   }
   */
-  //CalcX, diagonal plane
+  if (verbose) TRACE("CalcX, diagonal plane");
   {
     using boost::geometry::model::point;
     using boost::geometry::cs::cartesian;
@@ -238,7 +248,7 @@ void ribi::PlaneX::Test() noexcept
     assert( std::abs(p.CalcX(5.0, 8.0)- 2.0) < 0.001);
     assert( std::abs(p.CalcX(7.0,11.0)-3.0) < 0.001);
   }
-  //CalcX, vertical plane X = 2.0
+  if (verbose) TRACE("CalcX, vertical plane X = 2.0");
   /*
 
     |####/
@@ -263,7 +273,7 @@ void ribi::PlaneX::Test() noexcept
     assert( std::abs(p.CalcX(3.0,5.0)-2.0) < 0.001);
     assert( std::abs(p.CalcX(7.0,9.0)-2.0) < 0.001);
   }
-  //ToFunction, 3 points and 4 points
+  if (verbose) TRACE("ToFunction, 3 points and 4 points");
   {
     std::function<double(double,double)> f {
       [](const double y, const double z)
@@ -290,16 +300,16 @@ void ribi::PlaneX::Test() noexcept
     const PlaneX b(p1,p2,p3,p4);
     assert(a.ToFunction() == b.ToFunction());
   }
-  //GetProjection
+  if (verbose) TRACE("GetProjection");
   {
     typedef boost::geometry::model::d2::point_xy<double> Point2D;
     typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
     using boost::geometry::get;
     /*
 
-    A: (0,0,1)                  A: ( 0,SQRT(2))
+    A: (0,0,1)                  A: ( 0,1)
     B: (1,0,0)                  B: ( 0,0)
-    C: (1,1,0)                  C: ( 1,0)
+    C: (1,1,0)                  C: (SQRT(2),0)
 
     |    /
     |   /                          |
@@ -311,7 +321,7 @@ void ribi::PlaneX::Test() noexcept
   / |                              |
     */
     const std::vector<Point2D> v {
-      CalcProjection(
+      PlaneX().CalcProjection(
         {
           Point3D(0.0,0.0,1.0),
           Point3D(1.0,0.0,0.0),
@@ -320,16 +330,15 @@ void ribi::PlaneX::Test() noexcept
       )
     };
     assert(v.size() == 3);
-    assert(std::abs(get<0>(v[0]) -           0.0  ) < 0.001);
-    assert(std::abs(get<1>(v[0]) - std::sqrt(2.0) ) < 0.001);
-    assert(std::abs(get<0>(v[1]) -           0.0  ) < 0.001);
-    assert(std::abs(get<1>(v[1]) -           0.0  ) < 0.001);
-
-    assert(std::abs(get<0>(v[2]) -           1.0  ) < 0.001);
-    assert(std::abs(get<1>(v[2]) -           0.0  ) < 0.001);
+    assert(std::abs(get<0>(v[0]) - 0.0 ) < 0.001);
+    assert(std::abs(get<1>(v[0]) - 1.0 ) < 0.001);
+    assert(std::abs(get<0>(v[1]) - 0.0 ) < 0.001);
+    assert(std::abs(get<1>(v[1]) - 0.0 ) < 0.001);
+    assert(std::abs(get<0>(v[2]) - std::sqrt(2.0) ) < 0.001);
+    assert(std::abs(get<1>(v[2]) - 0.0 ) < 0.001);
 
   }
-  //GetProjection, for X = 2 plane
+  if (verbose) TRACE("GetProjection, for X = 2 plane");
   {
     typedef boost::geometry::model::d2::point_xy<double> Point2D;
     typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Point3D;
@@ -354,11 +363,16 @@ void ribi::PlaneX::Test() noexcept
 
     */
     const std::vector<Point2D> v {
-      CalcProjection(
+      PlaneX(
+        Point3D(0.0+2.0,0.0,0.0),
+        Point3D(0.0+2.0,1.0,0.0),
+        Point3D(0.0+2.0,0.0,1.0)
+
+      ).CalcProjection(
         {
-          Point3D(2.0,0.0,0.0),
-          Point3D(2.0,1.0,0.0),
-          Point3D(2.0,0.0,1.0)
+          Point3D(0.0+2.0,0.0,0.0),
+          Point3D(0.0+2.0,1.0,0.0),
+          Point3D(0.0+2.0,0.0,1.0)
         }
       )
     };
@@ -369,7 +383,6 @@ void ribi::PlaneX::Test() noexcept
     assert(std::abs(get<1>(v[1]) - 0.0) < 0.001);
     assert(std::abs(get<0>(v[2]) - 0.0) < 0.001);
     assert(std::abs(get<1>(v[2]) - 1.0) < 0.001);
-
   }
   TRACE("Finished ribi::PlaneX::Test successfully");
 }

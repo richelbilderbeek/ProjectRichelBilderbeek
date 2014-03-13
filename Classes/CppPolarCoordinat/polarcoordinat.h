@@ -3,6 +3,8 @@
 
 #include <cassert>
 #include <cmath>
+
+#define USE_CUSTOM_RIBI_COORDINAT
 #include "coordinat.h"
 
 #pragma GCC diagnostic push
@@ -23,6 +25,7 @@ namespace ribi {
 template <class Angle, class Length>
 struct PolarCoordinat
 {
+  //typedef boost::geometry::model::d2::point_xy Coordinat;
   explicit PolarCoordinat(const Angle& angle, const Length& length);
   explicit PolarCoordinat(const Length& x, const Length& y);
 

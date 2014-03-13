@@ -23,14 +23,24 @@ namespace ribi {
 //    z = -A/C.x - B/C.y + D/C
 struct PlaneZ
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
+  ///Create plane Z = 0.0
+  PlaneZ() : PlaneZ(Coordinat3D(0.0,0.0,0.0),Coordinat3D(1.0,0.0,0.0),Coordinat3D(0.0,1.0,0.0))
+  {
+    #ifndef NDEBUG
+    Test();
+    #endif
+  }
+
   ///Construct from its coefficients
-  explicit PlaneZ(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
+  explicit PlaneZ(const std::vector<double>& coefficients);
 
   ///Construct from three points
   explicit PlaneZ(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept : PlaneZ(CalcPlaneZ(p1,p2,p3))
   {
     #ifndef NDEBUG
@@ -42,10 +52,10 @@ struct PlaneZ
   ///Construct from four points
   ///Assumes these are in the same plane
   explicit PlaneZ(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept : PlaneZ(CalcPlaneZ(p1,p2,p3,p4))
   {
     #ifndef NDEBUG
@@ -69,9 +79,9 @@ struct PlaneZ
   +--B---                     A--B-----
 
   */
-  static std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
-    const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
-  );
+  std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
+    const std::vector<Coordinat3D>& points
+  ) const;
 
   ///Throws when cannot calculate Z, which is when the plane is vertical
   double CalcZ(const double x, const double y) const;
@@ -89,16 +99,16 @@ struct PlaneZ
   const std::vector<double> m_coefficients;
 
   static std::vector<double> CalcPlaneZ(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static std::vector<double> CalcPlaneZ(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept;
 
   #ifndef NDEBUG

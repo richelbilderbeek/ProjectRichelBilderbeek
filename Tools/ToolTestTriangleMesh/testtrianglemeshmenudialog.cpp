@@ -8,7 +8,9 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
+#include "fileio.h"
 #include "geometry.h"
+#include "plane.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -37,7 +39,15 @@ ribi::About ribi::TestTriangleMeshMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestTriangleMesh.htm",
     GetVersion(),
     GetVersionHistory());
+  a.AddLibrary("FileIo version: " + fileio::GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
+  a.AddLibrary("Plane version: "
+    + Plane(
+      Plane::Coordinat3D(0.0,0.0,0.0),
+      Plane::Coordinat3D(1.0,0.0,0.0),
+      Plane::Coordinat3D(0.0,1.0,0.0)
+    ).GetVersion()
+  );
   return a;
 }
 

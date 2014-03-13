@@ -8,8 +8,8 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
 
+#include "fileio.h"
 #include "fparser.hh"
-
 #include "geometry.h"
 #include "plane.h"
 #include "trace.h"
@@ -142,8 +142,14 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
     GetVersionHistory());
-  //a.AddLibrary("Coordinat3D version: " + Coordinat3D().GetVersion());
-  a.AddLibrary("Plane version: " + Plane().GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::GetVersion());
+  a.AddLibrary("Plane version: "
+    + Plane(
+      Plane::Coordinat3D(0.0,0.0,0.0),
+      Plane::Coordinat3D(1.0,0.0,0.0),
+      Plane::Coordinat3D(0.0,1.0,0.0)
+    ).GetVersion()
+  );
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
   return a;
@@ -196,7 +202,6 @@ void ribi::TestPlaneMenuDialog::Test() noexcept
   TestPlaneMenuDialog d;
   d.Execute( {"TestPlane" } );
   d.Execute( {"TestPlane","30.0","-48.0","17.0","15.0"} );
-
   d.Execute(
     {
       "TestPlane",

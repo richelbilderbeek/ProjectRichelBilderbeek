@@ -19,14 +19,26 @@ namespace ribi {
 //    x = -A/B.z - C/B.y + D/B
 struct PlaneX
 {
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   ///Construct from its coefficients
+  /*
   explicit PlaneX(const std::vector<double>& coefficients = {0.0,0.0,0.0,0.0});
+  */
+
+  ///Create plane X = 0.0
+  PlaneX() : PlaneX(Coordinat3D(0.0,0.0,0.0),Coordinat3D(0.0,1.0,0.0),Coordinat3D(0.0,0.0,1.0))
+  {
+    #ifndef NDEBUG
+    Test();
+    #endif
+  }
+
 
   ///Construct from three points
   explicit PlaneX(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept : m_plane_z{Create(p1,p2,p3)}
   {
     #ifndef NDEBUG
@@ -37,10 +49,10 @@ struct PlaneX
   ///Construct from four points
   ///Assumes these are in the same plane
   explicit PlaneX(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept : m_plane_z{Create(p1,p2,p3,p4)}
   {
     #ifndef NDEBUG
@@ -63,9 +75,9 @@ struct PlaneX
   +--B---                     A--B-----
 
   */
-  static std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
-    const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
-  );
+  std::vector<boost::geometry::model::d2::point_xy<double>> CalcProjection(
+    const std::vector<Coordinat3D>& points
+  ) const;
 
   ///Throws when cannot calculate X, which is when the plane is horizontal
   double CalcX(const double y, const double z) const;
@@ -83,21 +95,21 @@ struct PlaneX
   const PlaneZ m_plane_z;
 
   static PlaneZ Create(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3
   ) noexcept;
 
   static PlaneZ Create(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3,
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p4
+    const Coordinat3D& p1,
+    const Coordinat3D& p2,
+    const Coordinat3D& p3,
+    const Coordinat3D& p4
   ) noexcept;
 
   static std::vector<double> Rotate(const std::vector<double>& coefficients) noexcept;
-  static boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Rotate(
-    const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& point
+  static Coordinat3D Rotate(
+    const Coordinat3D& point
   ) noexcept;
 
   #ifndef NDEBUG
