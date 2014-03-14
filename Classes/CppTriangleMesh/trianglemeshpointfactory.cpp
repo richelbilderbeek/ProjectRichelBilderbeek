@@ -58,45 +58,48 @@ boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
   return point;
 }
 
+std::vector<boost::shared_ptr<ribi::trim::Point>>
+  ribi::trim::PointFactory::CreateTestInvalid() const noexcept
+{
+  //1: -1  0 0
+  //2:  1 -0 1
+  //7:  1 -0 0
+  //3: -1  0 1
+  const boost::shared_ptr<ConstCoordinat2D> co_a { new ConstCoordinat2D(-1.0, 0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_b { new ConstCoordinat2D( 1.0,-0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_c { new ConstCoordinat2D( 1.0,-0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_d { new ConstCoordinat2D(-1.0, 0.0) };
+  const auto a(PointFactory().Create(co_a));
+  const auto b(PointFactory().Create(co_b));
+  const auto c(PointFactory().Create(co_c));
+  const auto d(PointFactory().Create(co_d));
+  a->SetZ(0.0 * boost::units::si::meter);
+  b->SetZ(1.0 * boost::units::si::meter);
+  c->SetZ(0.0 * boost::units::si::meter);
+  d->SetZ(1.0 * boost::units::si::meter);
+  a->SetIndex(1);
+  b->SetIndex(2);
+  c->SetIndex(3);
+  d->SetIndex(4);
+  const std::vector<boost::shared_ptr<Point>> square { a,b,c,d };
+  return square;
+}
+
 std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::CreateTestPrism() const noexcept
 {
-  const boost::shared_ptr<ConstCoordinat2D> co_a {
-    new ConstCoordinat2D(0.0,0.0)
-  };
-  const boost::shared_ptr<ConstCoordinat2D> co_b {
-    new ConstCoordinat2D(1.0,0.0)
-  };
-  const boost::shared_ptr<ConstCoordinat2D> co_c {
-    new ConstCoordinat2D(0.0,1.0)
-  };
-  const boost::shared_ptr<ConstCoordinat2D> co_d {
-    new ConstCoordinat2D(0.0,0.0)
-  };
-  const boost::shared_ptr<ConstCoordinat2D> co_e {
-    new ConstCoordinat2D(1.0,0.0)
-  };
-  const boost::shared_ptr<ConstCoordinat2D> co_f {
-    new ConstCoordinat2D(0.0,1.0)
-  };
+  const boost::shared_ptr<ConstCoordinat2D> co_a { new ConstCoordinat2D(0.0,0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_b { new ConstCoordinat2D(1.0,0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_c { new ConstCoordinat2D(0.0,1.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_d { new ConstCoordinat2D(0.0,0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_e { new ConstCoordinat2D(1.0,0.0) };
+  const boost::shared_ptr<ConstCoordinat2D> co_f { new ConstCoordinat2D(0.0,1.0) };
 
-  const boost::shared_ptr<Point> a {
-    PointFactory().Create(co_a)
-  };
-  const boost::shared_ptr<Point> b {
-    PointFactory().Create(co_b)
-  };
-  const boost::shared_ptr<Point> c {
-    PointFactory().Create(co_c)
-  };
-  const boost::shared_ptr<Point> d {
-    PointFactory().Create(co_d)
-  };
-  const boost::shared_ptr<Point> e {
-    PointFactory().Create(co_e)
-  };
-  const boost::shared_ptr<Point> f {
-    PointFactory().Create(co_f)
-  };
+  const auto a(PointFactory().Create(co_a));
+  const auto b(PointFactory().Create(co_b));
+  const auto c(PointFactory().Create(co_c));
+  const auto d(PointFactory().Create(co_d));
+  const auto e(PointFactory().Create(co_e));
+  const auto f(PointFactory().Create(co_f));
   a->SetZ(0.0 * boost::units::si::meter);
   b->SetZ(0.0 * boost::units::si::meter);
   c->SetZ(0.0 * boost::units::si::meter);

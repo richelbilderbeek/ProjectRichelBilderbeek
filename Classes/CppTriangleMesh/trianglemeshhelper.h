@@ -118,7 +118,27 @@ struct Helper
     const boost::shared_ptr<const Point>& observer
   ) const noexcept;
 
+  bool IsConvex(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points) const noexcept;
+  bool IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept;
+
+  bool IsCounterClockwise(
+    const std::vector<boost::shared_ptr<const Point>>& points,
+    const Coordinat3D& observer
+  ) const noexcept;
+  bool IsCounterClockwise(
+    const std::vector<boost::shared_ptr<Point>>& points,
+    const Coordinat3D& observer
+  ) const noexcept;
+
   bool IsHorizontal(const Face& face) noexcept;
+
+  bool IsPlane(
+    const std::vector<boost::shared_ptr<const Point>>& points
+  ) const noexcept;
+
+  bool IsPlane(
+    const std::vector<boost::shared_ptr<Point>>& points
+  ) const noexcept;
 
   bool IsPlane(
     const std::vector<boost::shared_ptr<const Edge>>& edges
@@ -127,7 +147,7 @@ struct Helper
   bool IsVertical(const Face& face) noexcept;
 
   std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
-    PointsToCoordinats(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
+    PointsToCoordinats3D(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
   ) const noexcept;
 
   ///Set the edges to get a certain Winding,

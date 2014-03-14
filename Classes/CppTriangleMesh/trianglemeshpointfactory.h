@@ -45,6 +45,10 @@ struct PointFactory
     const boost::shared_ptr<const Coordinat3D> coordinat
   ) const noexcept;
 
+
+  //Create points that should fail to construct a Face from
+  std::vector<boost::shared_ptr<Point>> CreateTestInvalid() const noexcept;
+
   ///Create the points of a testing prism
   /*
       F

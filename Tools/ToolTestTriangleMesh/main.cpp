@@ -22,6 +22,7 @@ int main()
 
   const ::ribi::trim::CreateVerticalFacesStrategy strategy {
     ::ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
+    //::ribi::trim::CreateVerticalFacesStrategy::two_faces_per_square
   };
 
   try
@@ -30,8 +31,8 @@ int main()
     const bool show_mesh { true };
     ribi::TestTriangleMeshMainDialog(
       {
-        ///ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
-        ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
+        ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
+        //ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
       },
       show_mesh,
       2,

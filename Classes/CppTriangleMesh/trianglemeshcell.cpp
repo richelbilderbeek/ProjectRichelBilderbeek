@@ -29,20 +29,15 @@ ribi::trim::Cell::Cell(
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Cell::CalculateCenter() const noexcept
 {
   PROFILE_FUNC();
-  using boost::geometry::get;
-  Coordinat3D center;
+  Coordinat3D center(0.0,0.0,0.0);
   int cnt = 0;
-  for(boost::shared_ptr<const Face> face: m_faces)
+  for(const boost::shared_ptr<const Face> face: m_faces)
   {
-
-    for(auto point: face->GetPoints())
+    assert(face);
+    for(const auto point: face->GetPoints())
     {
-      const Coordinat3D coordinat(
-        get<0>(*point->GetCoordinat()),
-        get<1>(*point->GetCoordinat()),
-        point->GetZ().value()
-      );
-      center += coordinat;
+      assert(point);
+      center += point->GetCoordinat3D();
       ++cnt;
     }
   }
@@ -85,7 +80,6 @@ void ribi::trim::Cell::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Cell::Test");
-  //Do not use the Cell its contructor! Use CellFactory::Create instead!
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
   {
     const boost::shared_ptr<Cell> prism {
@@ -157,8 +151,8 @@ void ribi::trim::Cell::Test() noexcept
     assert(n_faces_with_neighbours == 1 || n_faces_with_neighbours == 2);
   }
 
-  //Test that CalCenter returns the same value each time
-  //Fails!
+  //Test that CalcCenter returns the same value each time
+  //Failed once...
   {
     const auto center(CellFactory().CreateTestPrism()->CalculateCenter());
     assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));

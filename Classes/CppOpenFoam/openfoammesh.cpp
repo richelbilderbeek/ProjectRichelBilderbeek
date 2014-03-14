@@ -230,7 +230,7 @@ double ribi::foam::Mesh::CalcSimilarityFaster(
   #else
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   const auto a(
-    std::accumulate(v.begin(),v.end(),Coordinat3D(),
+    std::accumulate(v.begin(),v.end(),Coordinat3D(0.0,0.0,0.0),
       [](const Coordinat3D& init, const boost::shared_ptr<const Coordinat3D> c)
       {
         return Coordinat3D(

@@ -1,5 +1,7 @@
 #include "testtrianglemeshmaindialog.h"
 
+#include <fstream>
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -370,6 +372,9 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     std::ofstream f(ribi::foam::Filenames().GetVelocityField().Get().c_str());
     f << file;
   }
+
+  std::clog << std::endl;
+  std::cout << std::endl;
 
   if (show_mesh)
   {

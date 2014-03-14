@@ -324,6 +324,41 @@ bool ribi::trim::Helper::IsClockwiseHorizontal(
   return is_clockwise;
 }
 
+bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points) const noexcept
+{
+  return Geometry().IsConvex(PointsToCoordinats3D(points));
+}
+
+bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
+{
+  return Geometry().IsConvex(PointsToCoordinats3D(AddConst(points)));
+}
+
+bool ribi::trim::Helper::IsCounterClockwise(
+  const std::vector<boost::shared_ptr<const Point>>& points,
+  const Coordinat3D& observer) const noexcept
+{
+  /*
+  //using boost::geometry::get;
+  std::vector<Coordinat3D> coordinats;
+  for (auto point: points)
+  {
+    assert(point);
+    coordinats.push_back(point->GetCoordinat3D());
+  }
+  */
+  assert(Geometry().IsPlane(PointsToCoordinats3D(points)));
+  return Geometry().IsCounterClockwise(PointsToCoordinats3D(points),observer);
+}
+
+bool ribi::trim::Helper::IsCounterClockwise(
+  const std::vector<boost::shared_ptr<Point>>& points,
+  const Coordinat3D& observer) const noexcept
+{
+  assert(Geometry().IsPlane(PointsToCoordinats3D(AddConst(points))));
+  return Geometry().IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
+}
+
 bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) noexcept
 {
   using boost::geometry::get;
@@ -380,6 +415,20 @@ bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) noexcept
 }
 
 bool ribi::trim::Helper::IsPlane(
+  const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
+) const noexcept
+{
+  return Geometry().IsPlane(PointsToCoordinats3D(points));
+}
+
+bool ribi::trim::Helper::IsPlane(
+  const std::vector<boost::shared_ptr<ribi::trim::Point>>& points
+) const noexcept
+{
+  return Geometry().IsPlane(PointsToCoordinats3D(AddConst(points)));
+}
+
+bool ribi::trim::Helper::IsPlane(
   const std::vector<boost::shared_ptr<const ribi::trim::Edge>>& edges
 ) const noexcept
 {
@@ -392,18 +441,20 @@ bool ribi::trim::Helper::IsPlane(
     assert(edge->GetTo());
     assert(edge->GetTo()->CanGetZ());
     coordinats.push_back(
-      Coordinat3D(
-        boost::geometry::get<0>(*edge->GetFrom()->GetCoordinat()),
-        boost::geometry::get<1>(*edge->GetFrom()->GetCoordinat()),
-        edge->GetFrom()->GetZ().value()
-      )
+      edge->GetFrom()->GetCoordinat3D()
+      //Coordinat3D(
+      //  boost::geometry::get<0>(*edge->GetFrom()->GetCoordinat()),
+      //  boost::geometry::get<1>(*edge->GetFrom()->GetCoordinat()),
+      //  edge->GetFrom()->GetZ().value()
+      //)
     );
     coordinats.push_back(
-      Coordinat3D(
-        boost::geometry::get<0>(*edge->GetTo()->GetCoordinat()),
-        boost::geometry::get<1>(*edge->GetTo()->GetCoordinat()),
-        edge->GetTo()->GetZ().value()
-      )
+      edge->GetTo()->GetCoordinat3D()
+      //Coordinat3D(
+      //  boost::geometry::get<0>(*edge->GetTo()->GetCoordinat()),
+      //  boost::geometry::get<1>(*edge->GetTo()->GetCoordinat()),
+      //  edge->GetTo()->GetZ().value()
+      //)
     );
   }
   std::sort(
@@ -415,15 +466,16 @@ bool ribi::trim::Helper::IsPlane(
     std::unique(
       coordinats.begin(),
       coordinats.end(),
-      [](const Coordinat3D& lhs, const Coordinat3D& rhs)
-      {
-        using boost::geometry::get;
-        return
-             get<0>(lhs) == get<0>(rhs)
-          && get<1>(lhs) == get<1>(rhs)
-          && get<2>(lhs) == get<2>(rhs)
-        ;
-      }
+      Geometry().Equals()
+      //[](const Coordinat3D& lhs, const Coordinat3D& rhs)
+      //{
+      //  using boost::geometry::get;
+      //  return
+      //       get<0>(lhs) == get<0>(rhs)
+      //    && get<1>(lhs) == get<1>(rhs)
+      //    && get<2>(lhs) == get<2>(rhs)
+      //  ;
+      //}
     ),coordinats.end()
   );
   return Geometry().IsPlane(coordinats);
@@ -438,7 +490,8 @@ bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
 }
 
 std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
-  ribi::trim::Helper::PointsToCoordinats(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
+  ribi::trim::Helper::PointsToCoordinats3D(
+    const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
 ) const noexcept
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
@@ -447,14 +500,7 @@ std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesia
   {
     assert(p);
     assert(p->GetCoordinat());
-    v.push_back(
-      p->GetCoordinat3D()
-      //Coordinat3D(
-      //  boost::geometry::get<0>(*p->GetCoordinat()),
-      //  boost::geometry::get<1>(*p->GetCoordinat()),
-      //  p->CanGetZ() ? p->GetZ().value() : 0.0
-      //)
-    );
+    v.push_back(p->GetCoordinat3D());
   }
   return v;
 }

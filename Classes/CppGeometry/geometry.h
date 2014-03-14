@@ -164,6 +164,9 @@ struct Geometry
   ///No : 0.0 * pi and 0.5 * pi
   bool IsCounterClockwise(const std::vector<double>& angles) const noexcept;
 
+  ///Are the points ordered counterclockwise in the XYZ plane, seen from the observer?
+  bool IsCounterClockwise(const std::vector<Coordinat3D>& points, const Coordinat3D& observer) const noexcept;
+
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
   //bool IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept;
@@ -184,7 +187,8 @@ struct Geometry
 
   */
   bool IsConvex(boost::geometry::model::polygon<Coordinat2D> polygon) const noexcept;
-  //bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
+  bool IsConvex(const std::vector<Coordinat2D>& points) const noexcept;
+  bool IsConvex(const std::vector<Coordinat3D>& points) const noexcept;
 
   ///Are the points ordered counter-clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )

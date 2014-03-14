@@ -43,6 +43,9 @@ struct Point
   ///Can be done exactly once
   void SetZ(const boost::units::quantity<boost::units::si::length> z) const noexcept; //const due to mutable
 
+  std::string ToStr() const noexcept;
+  std::string ToXml() const noexcept;
+
   private:
   Point(const Point&) = delete;
   Point& operator=(const Point&) = delete;

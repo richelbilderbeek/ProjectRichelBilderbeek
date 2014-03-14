@@ -3,6 +3,7 @@
 
 #include "Shiny.h"
 
+#include "geometry.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
 #include "trace.h"
@@ -102,8 +103,30 @@ void ribi::trim::Point::Test() noexcept
 }
 #endif
 
+std::string ribi::trim::Point::ToStr() const noexcept
+{
+  std::stringstream s;
+  s
+    << Geometry().ToStr(GetCoordinat3D())
+    << " (index: "
+    << GetIndex()
+    << ")";
+  ;
+  return s.str();
+}
 
-
+std::string ribi::trim::Point::ToXml() const noexcept
+{
+  std::stringstream s;
+  s
+    << ribi::xml::ToXml("point_index",GetIndex())
+    << Helper().ToXml(*GetCoordinat())
+    << ribi::xml::ToXml("z", CanGetZ()
+    ?  boost::lexical_cast<std::string>(GetZ().value())
+    : ""
+    );
+  return s.str();
+}
 
 bool ribi::trim::operator==(const ribi::trim::Point& lhs, const ribi::trim::Point& rhs)
 {
@@ -118,13 +141,6 @@ bool ribi::trim::operator!=(const ribi::trim::Point& lhs, const ribi::trim::Poin
 
 std::ostream& ribi::trim::operator<<(std::ostream& os, const Point& n)
 {
-  os
-    << ribi::xml::ToXml("point_index",n.GetIndex())
-    << Helper().ToXml(*n.GetCoordinat())
-  ;
-  os << ribi::xml::ToXml("z", n.CanGetZ()
-    ?  boost::lexical_cast<std::string>(n.GetZ().value())
-    : ""
-  );
+  os << n.ToStr();
   return os;
 }

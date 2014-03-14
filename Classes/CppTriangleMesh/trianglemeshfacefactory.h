@@ -30,7 +30,7 @@ struct FaceFactory
   ) const noexcept;
 
   boost::shared_ptr<Face> Create(
-    const std::vector<boost::shared_ptr<Point>>& points,
+    std::vector<boost::shared_ptr<Point>> points,
     const FaceOrientation any_orientation
   ) const noexcept;
 

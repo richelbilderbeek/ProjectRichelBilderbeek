@@ -17,6 +17,9 @@
 #include "trianglemeshpoint.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshhelper.h"
+#include "trianglemeshpointfactory.h"
+#include "trianglemeshwinding.h"
+#include "trianglemeshwindings.h"
 #include "trace.h"
 #include "xml.h"
 #pragma GCC diagnostic pop
@@ -36,15 +39,14 @@ ribi::trim::Face::Face(
 {
   #ifndef NDEBUG
   Test();
-  #endif
   PROFILE_FUNC();
-  #ifndef NDEBUG
-  if (!ribi::Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))))
+  assert(Helper().IsPlane(m_points));
+  if (!Helper().IsConvex(m_points))
   {
-    TRACE(*this);
     TRACE("ERROR");
+    for (auto point: m_points) TRACE(point->ToStr());
   }
-  assert(ribi::Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))));
+  assert(Helper().IsConvex(m_points));
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -203,7 +205,9 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
   );
-  std::sort(m_points.begin(),m_points.end()); //For std::next_permutation
+  assert(Helper().IsPlane(m_points));
+  assert(Helper().IsConvex(m_points));
+
 
   const boost::shared_ptr<const Cell> observer(
     !GetNeighbour()
@@ -211,41 +215,37 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     : GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
   );
   assert(observer);
-  assert(Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))));
-  static int cnt = 0;
-  cnt = 0;
-  while (std::next_permutation(m_points.begin(),m_points.end()))
+  assert(Helper().IsPlane(m_points));
+
+  if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
-    TRACE(cnt);
-    TRACE(Geometry().ToStr(observer->CalculateCenter()));
-    assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
-    if (Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+    std::sort(m_points.begin(),m_points.end()); //For std::next_permutation
+    //Must be ordered counter-clockwise (although the documentation says otherwise?)
+    while (std::next_permutation(m_points.begin(),m_points.end()))
     {
-      TRACE("OK");
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
-      TRACE(Geometry().ToStr(observer->CalculateCenter()));
-      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
-      TRACE(Geometry().ToStr(observer->CalculateCenter()));
-      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
-      TRACE(Geometry().ToStr(observer->CalculateCenter()));
-      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
-      TRACE(Geometry().ToStr(observer->CalculateCenter()));
-      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
-      TRACE(Geometry().ToStr(observer->CalculateCenter()));
-      break;
+      if (
+        Helper().IsCounterClockwise(m_points,observer->CalculateCenter())
+        && Helper().IsConvex(m_points)
+      )
+      {
+        assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
+        break;
+      }
     }
-    ++cnt;
   }
-  TRACE(cnt);
+
   #ifndef NDEBUG
-  if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+  if (!Helper().IsCounterClockwise(AddConst(m_points),observer->CalculateCenter()))
   {
     TRACE(m_points.size());
     for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
     TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }
   #endif
-  assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+  assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+  assert(Helper().IsPlane(m_points));
+  assert(Helper().IsConvex(m_points));
 }
 
 #ifndef NDEBUG
@@ -257,14 +257,28 @@ void ribi::trim::Face::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::Face::Test");
-  const std::vector<boost::shared_ptr<Face>> faces {
-    FaceFactory().CreateTestPrism()
-  };
-  for (auto face: faces)
+  //Check that a Face has no owner nor neighbour when not added to a Cell
   {
-    assert(!(face->GetOwner().get()) && "Faces obtain an owner when being added to a Cell");
-    assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");
-    //face->SetCorrectWinding(); //Cannot! A Face must belong to a Cell for this to work
+    const std::vector<boost::shared_ptr<Face>> faces {
+      FaceFactory().CreateTestPrism()
+    };
+    for (auto face: faces)
+    {
+      assert(!(face->GetOwner().get()) && "Faces obtain an owner when being added to a Cell");
+      assert(!(face->GetNeighbour().get()) && "Faces obtain a neighbour when beging added to a Cell twice");
+      //face->SetCorrectWinding(); //Cannot! A Face must belong to a Cell for this to work
+    }
+  }
+  //Check that incorrect Faces cannot be constructed
+  for (Winding winding: Windings().GetAll())
+  {
+    const std::vector<boost::shared_ptr<Point>> points {
+      PointFactory().CreateTestSquare(winding)
+    };
+    assert(points.size() == 4);
+    assert(Helper().IsConvex(points)
+      == (winding == Winding::clockwise || winding == Winding::counter_clockwise)
+    );
   }
   TRACE("Finished ribi::trim::Face::Test successfully");
 }

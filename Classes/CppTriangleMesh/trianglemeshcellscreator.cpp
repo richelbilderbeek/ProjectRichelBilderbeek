@@ -271,11 +271,12 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
       assert(points_offset + edge.second + n_points_per_layer < static_cast<int>(all_points.size()));
       if (strategy == CreateVerticalFacesStrategy::one_face_per_square)
       {
+        //Ordering cannot be known for sure to be convex
         const std::vector<boost::shared_ptr<Point>> face_points {
           all_points[points_offset + edge.first],
           all_points[points_offset + edge.second],
           all_points[points_offset + edge.first + n_points_per_layer],
-            all_points[points_offset + edge.second + n_points_per_layer]
+          all_points[points_offset + edge.second + n_points_per_layer]
         };
         //Cannot order face winding yet, need Cells for this
         const boost::shared_ptr<Face> face {

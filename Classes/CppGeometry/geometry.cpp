@@ -283,7 +283,10 @@ bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const C
 }
 */
 
-bool ribi::Geometry::IsClockwise(const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points, const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& observer) const noexcept
+bool ribi::Geometry::IsClockwise(
+  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& observer
+) const noexcept
 {
   const int n_points = static_cast<int>(points.size());
   assert(n_points == 3 || n_points == 4);
@@ -366,12 +369,21 @@ bool ribi::Geometry::IsConvex(boost::geometry::model::polygon<boost::geometry::m
   return boost::geometry::area(hull) == boost::geometry::area(polygon);
 }
 
-/*
+bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
+{
+  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+  for (auto point: points) { boost::geometry::append(polygon,point); };
+  return IsConvex(polygon);
+}
+
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
 {
-  return points.empty();
+  assert(points.size() >= 3);
+  assert(IsPlane(points));
+  Plane plane(points[0],points[1],points[2]);
+  const auto coordinats2d(plane.CalcProjection(points));
+  return IsConvex(coordinats2d);
 }
-*/
 
 bool ribi::Geometry::IsCounterClockwise(const double a, const double b) const noexcept
 {
@@ -387,6 +399,46 @@ bool ribi::Geometry::IsCounterClockwise(const std::vector<double>& angles) const
     if (!IsCounterClockwise(angles[i],angles[i+1])) return false;
   }
   return true;
+}
+
+bool ribi::Geometry::IsCounterClockwise(
+  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points,
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& observer
+) const noexcept
+{
+  const int n_points = static_cast<int>(points.size());
+  assert(n_points == 3 || n_points == 4);
+  if (n_points == 3)
+  {
+    const auto a(points[0]);
+    const auto b(points[1]);
+    const auto c(points[2]);
+    const auto normal(CalcNormal(a,b,c));
+    const auto direction(CalcDotProduct(normal,a - observer));
+    return direction < 0.0; //Difference between CW ('>') and CCW ('<')
+  }
+  else
+  {
+    assert(n_points == 4);
+    //See if the points in the projection are in the same direction
+    assert(Geometry().IsPlane(points));
+    const auto v(
+      Plane(points[0],points[1],points[2]).CalcProjection(
+        {
+          points[0],
+          points[1],
+          points[2],
+          points[3]
+        }
+      )
+    );
+    //If the points are messed up, they cannot be clockwise
+    if (!IsClockwiseHorizontal(v) && !IsCounterClockwiseHorizontal(v)) return false;
+    //The neatly orderder point have the same winding as the first three
+    std::remove_const<std::remove_reference<decltype(points)>::type>::type a;
+    std::copy(points.begin() + 0,points.begin() + 3,std::back_inserter(a));
+    return IsCounterClockwise(a,observer);
+  }
 }
 
 bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept
