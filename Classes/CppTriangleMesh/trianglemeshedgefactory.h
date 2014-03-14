@@ -23,7 +23,7 @@ struct EdgeFactory
 {
   EdgeFactory();
 
-  const boost::shared_ptr<Edge> Create(
+  boost::shared_ptr<Edge> Create(
     const std::array<boost::shared_ptr<Point>,2>& points
   ) const noexcept;
 
@@ -31,52 +31,60 @@ struct EdgeFactory
   ///The indices are { top, bottom, a,b,c }
   /*
 
-  Point indices:
+  Edge indices are:
 
-      f
+      +
      /|\
-    d---e
-    | | |
-    | c |
-    |/ \|
-    a---b
-
-
-  Edge indices will become:
-
-      f
-     /|\
-    6 | 5
+    5 | 4
    /  |  \
-  d---4---e    d---4---e---5---f---6---d
+  +---3---+    +---3---+---4---+---5---+
   |   |   |    |      /|      /|      /|
-  |   |   |    |     / |     / |     / |
+  |   A   |    |     / |     / |     / |
   |   |   |    |    /  |    /  |    /  |
-  |   c   |    7   8   9   A   B   C   7 <--- here, A,B,C denote 10,11,12
+  6   +   8    6   7   8   9   A   B   6 <--- here, A and B denote 10,11 respectively
   |  / \  |    |  /    |  /    |  /    |
-  | 3   2 |    | /     | /     | /     |
+  | 2   1 |    | /     | /     | /     |
   |/     \|    |/      |/      |/      |
-  a---1---b    a---1---b---2---c---3---a
-
+  +---0---+    +---0---+---1---+---2---+
 
   Folded out, with the bottom (marked #) at the center
 
-          f
-         /|\
-        B | 5
-       /  |  \
-  f-B-c   A   e
+          f-5-d
+         /|\  |
+        A | 4 3
+    1  /  |  \|
+  f-0-c   9   e
   |  /|\  |  /
-  6 C 3#2 | 9
+  5 B 2#1 | 8
   |/  |##\|/
-  d-7-a-1-b
+  d-6-a-0-b
       |\  |
-      7 8 9
+      6 7 8
       |  \|
-      d-4-e
+      d-3-e
+
+  The front plane exists of the edges 0,3,6,8
+
+  Face indices:
+
+          +---+
+         /|\ 1|
+        / | \ |
+       /  |  \|
+  +---+ 4 | 5 +
+  |7 /|\  |  /
+  | / | \ | /
+  |/ 6|0 \|/
+  +---+---+
+      |\ 2|
+      | \ |
+      |3 \|
+      +---+
+
+  The front plane exists of the edges 0,3,6,8
 
   */
-  const std::vector<boost::shared_ptr<Edge>> CreateTestPrism() const noexcept;
+  std::vector<boost::shared_ptr<Edge>> CreateTestPrism() const noexcept;
 
 
   ///Creates a triangle with the requested winding (when viewed from above)
@@ -99,7 +107,7 @@ struct EdgeFactory
 
   */
 
-  const std::vector<boost::shared_ptr<Edge>> CreateTestTriangle(const Winding winding) const noexcept;
+  std::vector<boost::shared_ptr<Edge>> CreateTestTriangle(const Winding winding) const noexcept;
 
   private:
   #ifndef NDEBUG

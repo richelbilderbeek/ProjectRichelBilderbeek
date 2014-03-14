@@ -1,8 +1,10 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <iostream>
 #include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/graphviz.hpp>
+#include <boost/graph/breadth_first_search.hpp>
+#include <boost/graph/visitors.hpp>
 #pragma GCC diagnostic pop
 
 //Define the type of graph:
@@ -57,10 +59,21 @@ Graph Create()
   return g;
 }
 
+
+class custom_bfs_visitor : public boost::default_bfs_visitor
+{
+public:
+
+  template < typename Vertex, typename Graph >
+  void discover_vertex(Vertex u, const Graph & g) const
+  {
+    std::cout << u << std::endl;
+  }
+};
+
 int main()
 {
   const auto g(Create());
-  Graph::vertex_list_selector
-
-  TODO: Show how to iterator over the vertices and edges
+  Create().named_vertices()
+  TODO: Iterate over nodes
 }

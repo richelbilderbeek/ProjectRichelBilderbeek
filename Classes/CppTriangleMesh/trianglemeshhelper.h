@@ -138,8 +138,6 @@ struct Helper
     const Winding winding
   ) const noexcept;
 
-  //void Sort(std::vector<Coordinat3D>& coordinats) const noexcept;
-
   std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
 
   private:
@@ -150,10 +148,13 @@ struct Helper
 
 ///Help adding constness a bit
 template <class T>
-std::vector<boost::shared_ptr<const T> > AddConst(
-  const std::vector<boost::shared_ptr<T> > v)
+std::vector<boost::shared_ptr<const T>> AddConst(
+  const std::vector<boost::shared_ptr<T>> v)
 {
-  return std::vector<boost::shared_ptr<const T> >(v.begin(),v.end());
+  assert(std::count(v.begin(),v.end(),nullptr) == 0);
+  const std::vector<boost::shared_ptr<const T>> w(v.begin(),v.end());
+  assert(std::count(w.begin(),w.end(),nullptr) == 0);
+  return w;
 }
 
 //From http://www.richelbilderbeek.nl/CppCanLexicalCast.htm

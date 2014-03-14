@@ -68,6 +68,9 @@ struct Geometry
     const std::vector<Coordinat2D>& v
   ) const noexcept;
 
+  ///Functor for X-Y-Z ordering
+  std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> Equals() const noexcept;
+
   ///Obtain the angle in radians between two deltas
   ///12 o'clock is 0.0 * pi
   /// 3 o'clock is 0.5 * pi
@@ -189,8 +192,7 @@ struct Geometry
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat2D>& v) const noexcept;
   bool IsCounterClockwiseHorizontal(const std::vector<Coordinat3D>& v) const noexcept;
 
-  ///Functor for X-Y-Z ordering
-  std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> IsEqual() const noexcept;
+  bool IsEqual(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs) const noexcept { return Equals()(lhs,rhs); }
 
   ///Determines if these coordinats are in a plane
   bool IsPlane(const std::vector<Coordinat3D>& v) const noexcept;
@@ -201,6 +203,7 @@ struct Geometry
   ///Functor for Z-Y-X ordering
   std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)> OrderByZ() const noexcept;
 
+  std::string ToStr(const Coordinat2D& p) const noexcept;
   std::string ToStr(const Coordinat3D& p) const noexcept;
 
   private:

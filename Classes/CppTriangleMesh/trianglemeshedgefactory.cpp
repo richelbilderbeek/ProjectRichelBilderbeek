@@ -20,7 +20,7 @@ ribi::trim::EdgeFactory::EdgeFactory()
   #endif
 }
 
-const boost::shared_ptr<ribi::trim::Edge> ribi::trim::EdgeFactory::Create(
+boost::shared_ptr<ribi::trim::Edge> ribi::trim::EdgeFactory::Create(
   const std::array<boost::shared_ptr<Point>,2>& points
 ) const noexcept
 {
@@ -45,36 +45,38 @@ const boost::shared_ptr<ribi::trim::Edge> ribi::trim::EdgeFactory::Create(
   return edge;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestPrism() const noexcept
+std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestPrism() const noexcept
 {
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
   };
-  const std::array<boost::shared_ptr<Point>,2> points_1 { points[0], points[1] };
-  const std::array<boost::shared_ptr<Point>,2> points_2 { points[1], points[2] };
-  const std::array<boost::shared_ptr<Point>,2> points_3 { points[2], points[0] };
-  const std::array<boost::shared_ptr<Point>,2> points_4 { points[3], points[4] };
-  const std::array<boost::shared_ptr<Point>,2> points_5 { points[4], points[5] };
-  const std::array<boost::shared_ptr<Point>,2> points_6 { points[5], points[3] };
-  const std::array<boost::shared_ptr<Point>,2> points_7 { points[0], points[3] };
-  const std::array<boost::shared_ptr<Point>,2> points_8 { points[0], points[4] };
-  const std::array<boost::shared_ptr<Point>,2> points_9 { points[1], points[4] };
-  const std::array<boost::shared_ptr<Point>,2> points_a { points[1], points[5] };
-  const std::array<boost::shared_ptr<Point>,2> points_b { points[2], points[5] };
-  const std::array<boost::shared_ptr<Point>,2> points_c { points[2], points[3] };
+  assert(points.size() == 6);
+  const std::array<boost::shared_ptr<Point>,2> points_0 { points[0], points[1] };
+  const std::array<boost::shared_ptr<Point>,2> points_1 { points[1], points[2] };
+  const std::array<boost::shared_ptr<Point>,2> points_2 { points[2], points[0] };
+  const std::array<boost::shared_ptr<Point>,2> points_3 { points[3], points[4] };
+  const std::array<boost::shared_ptr<Point>,2> points_4 { points[4], points[5] };
+  const std::array<boost::shared_ptr<Point>,2> points_5 { points[5], points[3] };
+  const std::array<boost::shared_ptr<Point>,2> points_6 { points[0], points[3] };
+  const std::array<boost::shared_ptr<Point>,2> points_7 { points[0], points[4] };
+  const std::array<boost::shared_ptr<Point>,2> points_8 { points[1], points[4] };
+  const std::array<boost::shared_ptr<Point>,2> points_9 { points[1], points[5] };
+  const std::array<boost::shared_ptr<Point>,2> points_10 { points[2], points[5] };
+  const std::array<boost::shared_ptr<Point>,2> points_11 { points[2], points[3] };
 
-  const boost::shared_ptr<Edge> edge_1 { EdgeFactory().Create(points_1) };
-  const boost::shared_ptr<Edge> edge_2 { EdgeFactory().Create(points_2) };
-  const boost::shared_ptr<Edge> edge_3 { EdgeFactory().Create(points_3) };
-  const boost::shared_ptr<Edge> edge_4 { EdgeFactory().Create(points_4) };
-  const boost::shared_ptr<Edge> edge_5 { EdgeFactory().Create(points_5) };
-  const boost::shared_ptr<Edge> edge_6 { EdgeFactory().Create(points_6) };
-  const boost::shared_ptr<Edge> edge_7 { EdgeFactory().Create(points_7) };
-  const boost::shared_ptr<Edge> edge_8 { EdgeFactory().Create(points_8) };
-  const boost::shared_ptr<Edge> edge_9 { EdgeFactory().Create(points_9) };
-  const boost::shared_ptr<Edge> edge_a { EdgeFactory().Create(points_a) };
-  const boost::shared_ptr<Edge> edge_b { EdgeFactory().Create(points_b) };
-  const boost::shared_ptr<Edge> edge_c { EdgeFactory().Create(points_c) };
+  const auto edge_0(EdgeFactory().Create(points_0));
+  const auto edge_1(EdgeFactory().Create(points_1));
+  const auto edge_2(EdgeFactory().Create(points_2));
+  const auto edge_3(EdgeFactory().Create(points_3));
+  const auto edge_4(EdgeFactory().Create(points_4));
+  const auto edge_5(EdgeFactory().Create(points_5));
+  const auto edge_6(EdgeFactory().Create(points_6));
+  const auto edge_7(EdgeFactory().Create(points_7));
+  const auto edge_8(EdgeFactory().Create(points_8));
+  const auto edge_9(EdgeFactory().Create(points_9));
+  const auto edge_10(EdgeFactory().Create(points_10));
+  const auto edge_11(EdgeFactory().Create(points_11));
+  assert(edge_0);
   assert(edge_1);
   assert(edge_2);
   assert(edge_3);
@@ -84,25 +86,25 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
   assert(edge_7);
   assert(edge_8);
   assert(edge_9);
-  assert(edge_a);
-  assert(edge_b);
-  assert(edge_c);
-  edge_1->SetIndex(1);
-  edge_2->SetIndex(2);
-  edge_3->SetIndex(3);
-  edge_4->SetIndex(4);
-  edge_5->SetIndex(5);
-  edge_6->SetIndex(6);
-  edge_7->SetIndex(7);
-  edge_8->SetIndex(8);
-  edge_9->SetIndex(9);
-  edge_a->SetIndex(10);
-  edge_b->SetIndex(11);
-  edge_c->SetIndex(12);
+  assert(edge_10);
+  assert(edge_11);
+  edge_0->SetIndex(1);
+  edge_1->SetIndex(2);
+  edge_2->SetIndex(3);
+  edge_3->SetIndex(4);
+  edge_4->SetIndex(5);
+  edge_5->SetIndex(6);
+  edge_6->SetIndex(7);
+  edge_7->SetIndex(8);
+  edge_8->SetIndex(9);
+  edge_9->SetIndex(10);
+  edge_10->SetIndex(11);
+  edge_11->SetIndex(12);
 
   const auto center(Helper().CalcCenter(points));
 
   const std::vector<boost::shared_ptr<Edge>> prism {
+    edge_0,
     edge_1,
     edge_2,
     edge_3,
@@ -112,14 +114,13 @@ const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::
     edge_7,
     edge_8,
     edge_9,
-    edge_a,
-    edge_b,
-    edge_c
+    edge_10,
+    edge_11
   };
   return prism;
 }
 
-const std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestTriangle(
+std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestTriangle(
   const Winding winding) const noexcept
 {
   assert(winding != Winding::n_types);

@@ -9,7 +9,7 @@
 #include "xml.h"
 
 ribi::trim::Point::Point(
-  const boost::shared_ptr<const ConstCoordinat2D> coordinat,
+  const boost::shared_ptr<const Coordinat2D> coordinat,
   const int index,
   const PointFactory&
 )
@@ -38,6 +38,18 @@ void ribi::trim::Point::AddBelongsTo(const boost::weak_ptr<Edge> edge)
 void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face> face)
 {
   m_connected.insert(face);
+}
+
+ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcept
+{
+  assert(!std::isnan(boost::geometry::get<0>(*GetCoordinat())));
+  assert(!std::isnan(boost::geometry::get<1>(*GetCoordinat())));
+  assert(!CanGetZ() || !std::isnan(GetZ().value()));
+  return {
+    boost::geometry::get<0>(*GetCoordinat()),
+    boost::geometry::get<1>(*GetCoordinat()),
+    CanGetZ() ? GetZ().value() : 0.0
+  };
 }
 
 bool ribi::trim::Point::CanGetZ() const noexcept

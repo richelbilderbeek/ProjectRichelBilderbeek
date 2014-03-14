@@ -300,12 +300,6 @@ bool ribi::Geometry::IsClockwise(const std::vector<boost::geometry::model::point
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    #ifndef NDEBUG
-    if (!Geometry().IsPlane(points))
-    {
-      TRACE("ERROR");
-    }
-    #endif
     assert(Geometry().IsPlane(points));
     const auto v(
       Plane(points[0],points[1],points[2]).CalcProjection(
@@ -325,29 +319,6 @@ bool ribi::Geometry::IsClockwise(const std::vector<boost::geometry::model::point
     return IsClockwise(a,observer);
   }
 }
-
-/*
-bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat2D>& points) const noexcept
-{
-  //Points are determined from their center
-  const Coordinat2D center {
-    ::ribi::CalcCenter(points)
-  };
-  std::vector<double> angles;
-  angles.reserve(points.size());
-  std::transform(points.begin(),points.end(),
-    std::back_inserter(angles),
-    [this,center](const Coordinat2D& coordinat)
-    {
-      return GetAngle(
-        coordinat.GetX() - center.GetX(),
-        coordinat.GetY() - center.GetY()
-      );
-    }
-  );
-  return IsClockwise(angles);
-}
-*/
 
 bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<Coordinat3D>& points) const noexcept
 {
@@ -473,7 +444,7 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geome
 */
 
 std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>
-  ribi::Geometry::IsEqual() const noexcept
+  ribi::Geometry::Equals() const noexcept
 {
   return [](const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)
   {
@@ -1016,6 +987,19 @@ void ribi::Geometry::Test() noexcept
   TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif
+
+std::string ribi::Geometry::ToStr(const boost::geometry::model::d2::point_xy<double>& p) const noexcept
+{
+  std::stringstream s;
+  s
+    << "("
+    << boost::geometry::get<0>(p)
+    << ","
+    << boost::geometry::get<1>(p)
+    << ")"
+  ;
+  return s.str();
+}
 
 std::string ribi::Geometry::ToStr(const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p) const noexcept
 {

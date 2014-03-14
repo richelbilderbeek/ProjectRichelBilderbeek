@@ -657,6 +657,7 @@ const std::vector<std::pair<std::string,std::string> > ribi::c2h::Replacer::Crea
     { "FunctorIncrease","<a href=\"CppIn$crease.htm\">Functo$rIn$crease</a>" },
     { "GetBoostVersion","<a href=\"CppG$etB$oostV$ersion.htm\">G$etB$oostV$ersion</a>" },
     { "GetCombinations","<a href=\"C$ppG$etC$ombin$at$io$ns.htm\">G$etC$ombi$nat$io$ns</a>" },
+    { "GetPermutations","<a href=\"C$ppG$etP$erm$ut$at$io$ns.htm\">G$etP$erm$ut$at$io$ns</a>" },
     { "GetRegexMatches","<a href=\"CppGetR$egexMatches.htm\">GetR$egexMatches</a>" },
     { "GetRootBranches","<a href=\"CppGetR$ootBranches.htm\">G$etRootBranches</a>" },
     { "imageRotaterClx","<a href=\"T$oolI$mageR$otaterC$lx.htm\">i$mageR$otaterC$lx</a>" },

@@ -59,12 +59,8 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
     assert(!std::isnan( get<0>(*point->GetCoordinat())));
     assert(!std::isnan( get<1>(*point->GetCoordinat())));
     assert(!point->CanGetZ() || !std::isnan(point->GetZ().value()));
-    const Value coordinat(
-      get<0>(*point->GetCoordinat()),
-      get<1>(*point->GetCoordinat()),
-      point->CanGetZ() ? point->GetZ().value() : 0.0
-    );
-    sum += coordinat;
+    //const Value coordinat(point->GetCoordinat3D());
+    sum += point->GetCoordinat3D();
   }
   const double n { static_cast<double>(points.size()) };
   return sum / n;
@@ -81,21 +77,24 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
   assert(edges[2]->GetTo() == edges[0]->GetFrom());
 
   return Geometry().CalcNormal(
-    Coordinat3D(
-      get<0>(*edges[0]->GetFrom()->GetCoordinat()),
-      get<1>(*edges[0]->GetFrom()->GetCoordinat()),
-      edges[0]->GetFrom()->CanGetZ() ? edges[0]->GetFrom()->GetZ().value() : 0.0
-    ),
-    Coordinat3D(
-      get<0>(*edges[1]->GetFrom()->GetCoordinat()),
-      get<1>(*edges[1]->GetFrom()->GetCoordinat()),
-      edges[1]->GetFrom()->CanGetZ() ? edges[1]->GetFrom()->GetZ().value() : 0.0
-    ),
-    Coordinat3D(
-      get<0>(*edges[2]->GetFrom()->GetCoordinat()),
-      get<1>(*edges[2]->GetFrom()->GetCoordinat()),
-      edges[2]->GetFrom()->CanGetZ() ? edges[2]->GetFrom()->GetZ().value() : 0.0
-    )
+    edges[0]->GetFrom()->GetCoordinat3D(),
+    edges[1]->GetFrom()->GetCoordinat3D(),
+    edges[2]->GetFrom()->GetCoordinat3D()
+    //Coordinat3D(
+    //  get<0>(*edges[0]->GetFrom()->GetCoordinat()),
+    //  get<1>(*edges[0]->GetFrom()->GetCoordinat()),
+    //  edges[0]->GetFrom()->CanGetZ() ? edges[0]->GetFrom()->GetZ().value() : 0.0
+    //),
+    //Coordinat3D(
+    //  get<0>(*edges[1]->GetFrom()->GetCoordinat()),
+    //  get<1>(*edges[1]->GetFrom()->GetCoordinat()),
+    //  edges[1]->GetFrom()->CanGetZ() ? edges[1]->GetFrom()->GetZ().value() : 0.0
+    //),
+    //Coordinat3D(
+    //  get<0>(*edges[2]->GetFrom()->GetCoordinat()),
+    //  get<1>(*edges[2]->GetFrom()->GetCoordinat()),
+    //  edges[2]->GetFrom()->CanGetZ() ? edges[2]->GetFrom()->GetZ().value() : 0.0
+    //)
   );
 }
 
@@ -149,28 +148,28 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
     assert(j < static_cast<int>(edges.size()));
     if (edges[i]->GetTo() != edges[j]->GetFrom())
     {
+      assert(!IsClockwise(AddConst(edges),Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
       return Winding::indeterminate;
     }
   }
   //Extract the points
   std::vector<Coordinat3D> coordinats;
-  for (int i=0; i!=n_edges; ++i)
-  {
-    Coordinat3D co(
-      get<0>(*edges[i]->GetFrom()->GetCoordinat()),
-      get<1>(*edges[i]->GetFrom()->GetCoordinat()),
-      edges[i]->GetFrom()->GetZ().value()
-    );
-    //TRACE(co);
-    coordinats.push_back(co);
-  }
-
+  for (const auto edge: edges) { coordinats.push_back(edge->GetFrom()->GetCoordinat3D()); }
   assert(coordinats.size() == edges.size());
 
   const bool a { Geometry().IsClockwiseHorizontal(coordinats) };
   const bool b { Geometry().IsCounterClockwiseHorizontal(coordinats) };
-  if ( a && !b) return Winding::clockwise;
-  if (!a &&  b) return Winding::counter_clockwise;
+  if ( a && !b)
+  {
+    assert(IsClockwise(AddConst(edges),Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
+    return Winding::clockwise;
+  }
+  if (!a &&  b)
+  {
+    assert(!IsClockwise(AddConst(edges),Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
+    return Winding::counter_clockwise;
+  }
+  assert(!IsClockwise(AddConst(edges),Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
   return Winding::indeterminate;
 }
 
@@ -251,19 +250,14 @@ bool ribi::trim::Helper::IsClockwise(
   const std::vector<boost::shared_ptr<const Point>>& points,
   const Coordinat3D& observer) const noexcept
 {
-  using boost::geometry::get;
+  //using boost::geometry::get;
   std::vector<Coordinat3D> coordinats;
   for (auto point: points)
   {
-    Coordinat3D coordinat(
-      get<0>(*point->GetCoordinat()),
-      get<1>(*point->GetCoordinat()),
-      point->CanGetZ() ? point->GetZ().value() : 0.0
-    );
-    coordinats.push_back(coordinat);
+    assert(point);
+    coordinats.push_back(point->GetCoordinat3D());
   }
-  assert(Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(points))));
-
+  assert(Geometry().IsPlane(coordinats));
   return Geometry().IsClockwise(coordinats,observer);
 }
 
@@ -454,11 +448,12 @@ std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesia
     assert(p);
     assert(p->GetCoordinat());
     v.push_back(
-      Coordinat3D(
-        boost::geometry::get<0>(*p->GetCoordinat()),
-        boost::geometry::get<1>(*p->GetCoordinat()),
-        p->GetZ().value()
-      )
+      p->GetCoordinat3D()
+      //Coordinat3D(
+      //  boost::geometry::get<0>(*p->GetCoordinat()),
+      //  boost::geometry::get<1>(*p->GetCoordinat()),
+      //  p->CanGetZ() ? p->GetZ().value() : 0.0
+      //)
     );
   }
   return v;

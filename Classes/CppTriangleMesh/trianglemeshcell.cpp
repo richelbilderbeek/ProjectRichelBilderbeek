@@ -4,6 +4,7 @@
 
 #include "Shiny.h"
 
+#include "geometry.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshhelper.h"
@@ -85,7 +86,6 @@ void ribi::trim::Cell::Test() noexcept
   }
   TRACE("Starting ribi::trim::Cell::Test");
   //Do not use the Cell its contructor! Use CellFactory::Create instead!
-
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
   {
     const boost::shared_ptr<Cell> prism {
@@ -156,6 +156,18 @@ void ribi::trim::Cell::Test() noexcept
     };
     assert(n_faces_with_neighbours == 1 || n_faces_with_neighbours == 2);
   }
+
+  //Test that CalCenter returns the same value each time
+  //Fails!
+  {
+    const auto center(CellFactory().CreateTestPrism()->CalculateCenter());
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
+  }
+
   TRACE("Finished ribi::trim::Cell::Test successfully");
 }
 #endif

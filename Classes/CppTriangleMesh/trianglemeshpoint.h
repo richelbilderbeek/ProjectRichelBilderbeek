@@ -23,8 +23,11 @@ namespace trim {
 ///An OpenFOAM point, as in the file 'points'
 struct Point
 {
-  typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
-  const boost::shared_ptr<const ConstCoordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+  typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+
+  const boost::shared_ptr<const Coordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
+  Coordinat3D GetCoordinat3D() const noexcept;
 
   bool CanGetZ() const noexcept;
 
@@ -48,7 +51,7 @@ struct Point
 
   friend class PointFactory;
   Point(
-    const boost::shared_ptr<const ConstCoordinat2D> coordinat,
+    const boost::shared_ptr<const Coordinat2D> coordinat,
     const int index,
     const PointFactory& lock
   );
@@ -63,7 +66,7 @@ struct Point
   /// a Face consists of Point objects
   std::set<boost::weak_ptr<Face>> m_connected;
 
-  const boost::shared_ptr<const ConstCoordinat2D> m_coordinat;
+  const boost::shared_ptr<const Coordinat2D> m_coordinat;
 
   ///The index of this Point in an TriangleMeshBuilder vector. It is determined at the end
   mutable int m_index;

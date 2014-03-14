@@ -30,7 +30,7 @@ struct Coordinat
 
 
 template <class Length>
-Coordinat<Length>::Coordinat(const Length& x, const Length& y) noexcept
+Coordinat::Coordinat(const Length& x, const Length& y) noexcept
   : m_x { x },
     m_y { y }
 {
@@ -40,29 +40,29 @@ Coordinat<Length>::Coordinat(const Length& x, const Length& y) noexcept
 }
 
 template <class Length>
-void Coordinat<Length>::Translate(const Coordinat& delta) noexcept
+void Coordinat::Translate(const Coordinat& delta) noexcept
 {
   Translate(delta.GetX(),delta.GetY());
 }
 
 template <class Length>
-void Coordinat<Length>::Translate(const Length& dx, const Length& dy) noexcept
+void Coordinat::Translate(const Length& dx, const Length& dy) noexcept
 {
   m_x += dx;
   m_y += dy;
 }
 
 template <class Length>
-Coordinat<Length> operator+(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noexcept
+Coordinat operator+(const Coordinat& lhs, const Coordinat& rhs) noexcept
 {
-  return Coordinat<Length>(
+  return Coordinat(
     lhs.GetX() + rhs.GetX(),
     lhs.GetY() + rhs.GetY()
   );
 }
 
 template <class Length>
-bool operator==(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noexcept
+bool operator==(const Coordinat& lhs, const Coordinat& rhs) noexcept
 {
   return lhs.GetX() == rhs.GetX()
       && lhs.GetY() == rhs.GetY();
@@ -71,7 +71,7 @@ bool operator==(const Coordinat<Length>& lhs, const Coordinat<Length>& rhs) noex
 
 #ifndef NDEBUG
 template <class Length>
-void Coordinat<Length>::Test() noexcept
+void Coordinat::Test() noexcept
 {
   {
     static bool is_tested { false };

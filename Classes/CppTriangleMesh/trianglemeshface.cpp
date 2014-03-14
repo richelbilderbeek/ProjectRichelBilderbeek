@@ -199,35 +199,53 @@ boost::shared_ptr<const ribi::trim::Point> ribi::trim::Face::GetPoint(const int 
 void ribi::trim::Face::SetCorrectWinding() noexcept
 {
   PROFILE_FUNC();
+  assert(m_points.size() == 3 || m_points.size() == 4);
   assert( (m_belongs_to.size() == 1 || m_belongs_to.size() == 2)
     && "A Face its winding can only be set if it belongs to a cell"
   );
-  if (!GetNeighbour())
+  std::sort(m_points.begin(),m_points.end()); //For std::next_permutation
+
+  const boost::shared_ptr<const Cell> observer(
+    !GetNeighbour()
+    ? GetOwner()
+    : GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
+  );
+  assert(observer);
+  assert(Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))));
+  static int cnt = 0;
+  cnt = 0;
+  while (std::next_permutation(m_points.begin(),m_points.end()))
   {
-    //Boundary face: normal must point away from the Cell its center
-    const boost::shared_ptr<const Cell> observer { GetOwner() };
-    assert(observer);
-    assert(Geometry().IsPlane(Helper().PointsToCoordinats(AddConst(m_points))));
-    if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
+    TRACE(cnt);
+    TRACE(Geometry().ToStr(observer->CalculateCenter()));
+    assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
+    if (Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
     {
-      std::reverse(m_points.begin(),m_points.end());
+      TRACE("OK");
+      assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
+      TRACE(Geometry().ToStr(observer->CalculateCenter()));
+      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+      TRACE(Geometry().ToStr(observer->CalculateCenter()));
+      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+      TRACE(Geometry().ToStr(observer->CalculateCenter()));
+      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+      TRACE(Geometry().ToStr(observer->CalculateCenter()));
+      assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+      TRACE(Geometry().ToStr(observer->CalculateCenter()));
+      break;
     }
-    assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+    ++cnt;
   }
-  else
+  TRACE(cnt);
+  #ifndef NDEBUG
+  if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
   {
-    //Internal face: normal must point to the Cell with the heighest label;
-    //  must point away from the Cell with the lowest index
-    const boost::shared_ptr<const Cell> observer {
-      GetOwner()->GetIndex() < GetNeighbour()->GetIndex() ? GetOwner() : GetNeighbour()
-    };
-    assert(observer);
-    if (!Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()))
-    {
-      std::reverse(m_points.begin(),m_points.end());
-    }
-    assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
+    TRACE(m_points.size());
+    for (const auto point: m_points) TRACE(Geometry().ToStr(point->GetCoordinat3D()));
+    TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }
+  #endif
+  assert(Helper().IsClockwise(AddConst(m_points),observer->CalculateCenter()));
 }
 
 #ifndef NDEBUG

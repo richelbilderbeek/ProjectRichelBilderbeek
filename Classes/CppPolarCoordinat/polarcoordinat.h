@@ -10,6 +10,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/geometry/geometries/point_xy.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <boost/units/base_units/angle/radian.hpp>
 #include <boost/units/quantity.hpp>
@@ -25,7 +26,7 @@ namespace ribi {
 template <class Angle, class Length>
 struct PolarCoordinat
 {
-  //typedef boost::geometry::model::d2::point_xy Coordinat;
+  typedef boost::geometry::model::d2::point_xy<Length> Coordinat;
   explicit PolarCoordinat(const Angle& angle, const Length& length);
   explicit PolarCoordinat(const Length& x, const Length& y);
 
@@ -54,7 +55,7 @@ struct PolarCoordinat
 
 
   ///Translate with a coordinat
-  void Translate(const Coordinat<Length>& c);
+  void Translate(const Coordinat& c);
 
   private:
   ///The angle
@@ -74,9 +75,9 @@ T CalculateSqrt(const U& x);
 */
 
 template <class Angle,class Length>
-Coordinat<Length> ToCoordinat(const PolarCoordinat<Angle,Length>& c)
+boost::geometry::model::d2::point_xy<Length> ToCoordinat(const PolarCoordinat<Angle,Length>& c)
 {
-  return Coordinat<Length>(
+  return boost::geometry::model::d2::point_xy<Length>(
      std::sin(c.GetAngle().value()) * c.GetLength(),
     -std::cos(c.GetAngle().value()) * c.GetLength()
   );
@@ -135,9 +136,8 @@ PolarCoordinat<Angle,Length> operator+(
   const PolarCoordinat<Angle,Length>& b
   )
 {
-  const Coordinat<Length> coordinat {
-    ToCoordinat(a) + ToCoordinat(b)
-  };
+  //const PolarCoordinat::Coordinat coordinat {
+  const auto coordinat(ToCoordinat(a) + ToCoordinat(b));
   return PolarCoordinat<Angle,Length>(
     coordinat.GetX(),
     coordinat.GetY()
@@ -189,7 +189,7 @@ void PolarCoordinat<Angle,Length>::Test()
       Angle(0.0 * boost::math::constants::pi<double>() * radian),
       Length(1.0 * meter)
     );
-    const Coordinat<Length> c(ToCoordinat(p));
+    const Coordinat c(ToCoordinat(p));
     assert(c.GetX() > Length(-1.0 * micro * meter));
     assert(c.GetX() < Length( 1.0 * micro * meter));
     assert(c.GetY() > Length(-1.00001 * meter));
@@ -197,7 +197,7 @@ void PolarCoordinat<Angle,Length>::Test()
   }
   {
     const PolarCoordinat<Angle,Length> p(Angle(0.5 * boost::math::constants::pi<double>() * radian),Length(1.0 * meter));
-    const Coordinat<Length> c(ToCoordinat(p));
+    const Coordinat c(ToCoordinat(p));
     assert(c.GetY() > Length(-1.0 * micro * meter));
     assert(c.GetY() < Length( 1.0 * micro * meter));
     assert(c.GetX() > Length(0.99999 * meter));
@@ -205,7 +205,7 @@ void PolarCoordinat<Angle,Length>::Test()
   }
   {
     const PolarCoordinat<Angle,Length> p(Angle(1.0 * boost::math::constants::pi<double>() * radian),Length(1.0 * meter));
-    const Coordinat<Length> c(ToCoordinat(p));
+    const Coordinat c(ToCoordinat(p));
     assert(c.GetX() > Length(-1.0 * micro * meter));
     assert(c.GetX() < Length( 1.0 * micro * meter));
     assert(c.GetY() > Length(0.99999 * meter));
@@ -213,7 +213,7 @@ void PolarCoordinat<Angle,Length>::Test()
   }
   {
     const PolarCoordinat<Angle,Length> p(Angle(1.5 * boost::math::constants::pi<double>() * radian),Length(1.0 * meter));
-    const Coordinat<Length> c(ToCoordinat(p));
+    const Coordinat c(ToCoordinat(p));
     assert(c.GetY() > Length(-1.0 * micro * meter));
     assert(c.GetY() < Length( 1.0 * micro * meter));
     assert(c.GetX() > Length(-1.00001 * meter));
@@ -221,7 +221,7 @@ void PolarCoordinat<Angle,Length>::Test()
   }
   {
     const PolarCoordinat<Angle,Length> p(Angle(2.0 * boost::math::constants::pi<double>() * radian),Length(1.0 * meter));
-    const Coordinat<Length> c(ToCoordinat(p));
+    const Coordinat c(ToCoordinat(p));
     assert(c.GetX() > Length(-1.0 * micro * meter));
     assert(c.GetX() < Length( 1.0 * micro * meter));
     assert(c.GetY() > Length(-1.00001 * meter));
@@ -231,29 +231,29 @@ void PolarCoordinat<Angle,Length>::Test()
   {
     const PolarCoordinat<Angle,Length> c(Length(1.0 * meter),Length(1.0 * meter));
     PolarCoordinat<Angle,Length> d(c);
-    d.Translate(Coordinat<Length>(Length(2.0 * meter),Length(2.0 * meter)));
+    d.Translate(Coordinat(Length(2.0 * meter),Length(2.0 * meter)));
     assert(IsAboutEqual(c.GetAngle(),d.GetAngle(),Angle(1.0 * nano * radian)));
   }
   {
     const PolarCoordinat<Angle,Length> c(Length(-1.0 * meter),Length(1.0 * meter));
     PolarCoordinat<Angle,Length> d(c);
-    d.Translate(Coordinat<Length>(Length(-2.0 * meter),Length(2.0 * meter)));
+    d.Translate(Coordinat(Length(-2.0 * meter),Length(2.0 * meter)));
     assert(IsAboutEqual(c.GetAngle(),d.GetAngle(),Angle(1.0 * nano * radian)));
   }
   {
     const PolarCoordinat<Angle,Length> c(Length( 3.0 * meter),Length( 4.0 * meter));
     const PolarCoordinat<Angle,Length> d(Length(-3.0 * meter),Length(-4.0 * meter));
     PolarCoordinat<Angle,Length> e(d);
-    e.Translate(Coordinat<Length>(Length(6.0 * meter),Length(8.0 * meter)));
+    e.Translate(Coordinat(Length(6.0 * meter),Length(8.0 * meter)));
     assert(IsAboutEqual(c.GetAngle(),e.GetAngle(),Angle(1.0 * nano * radian)));
     assert(IsAboutEqual(c.GetLength(),e.GetLength(),Length(1.0 * nano * meter)));
   }
 }
 
 template <class Angle, class Length>
-void PolarCoordinat<Angle,Length>::Translate(const Coordinat<Length>& c)
+void PolarCoordinat<Angle,Length>::Translate(const Coordinat& c)
 {
-  Coordinat<Length> old_coordinat(ToCoordinat(*this));
+  Coordinat old_coordinat(ToCoordinat(*this));
   old_coordinat.Translate(c);
   const PolarCoordinat<Angle,Length> new_coordinat(old_coordinat.GetX(),old_coordinat.GetY());
   m_angle = new_coordinat.GetAngle();

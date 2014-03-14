@@ -1,5 +1,8 @@
 #ifndef EUCLIDEANVECTOR_H
 #define EUCLIDEANVECTOR_H
+
+#ifdef USE_CUSTOM_RIBI_EUCLIDIAN_VECTOR
+
 #include <cassert>
 #include <utility>
 
@@ -71,5 +74,6 @@ const EuclideanVector<T> operator/(const EuclideanVector<U>& lhs, const V& rhs)
 
 } //~namespace ribi
 
+#endif
 
 #endif // EUCLIDEANVECTOR_H

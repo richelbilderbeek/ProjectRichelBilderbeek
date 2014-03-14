@@ -26,16 +26,19 @@ struct Edge
   Edge(const Edge&) = delete;
   Edge& operator=(const Edge&) = delete;
 
-  const boost::shared_ptr<const Point> GetFrom() const noexcept { return m_points[0]; }
-  const boost::shared_ptr<      Point> GetFrom()       noexcept { return m_points[0]; }
+  boost::shared_ptr<const Point> GetFrom() const noexcept { return m_points[0]; }
+  boost::shared_ptr<      Point> GetFrom()       noexcept { return m_points[0]; }
 
   int GetIndex() const noexcept { return m_index; }
 
-  const boost::shared_ptr<const Point> GetTo() const noexcept { return m_points[1]; }
-  const boost::shared_ptr<      Point> GetTo()       noexcept { return m_points[1]; }
+  boost::shared_ptr<const Point> GetTo() const noexcept { return m_points[1]; }
+  boost::shared_ptr<      Point> GetTo()       noexcept { return m_points[1]; }
 
   ///Reverse from and to
   void Reverse() noexcept;
+
+  std::string ToStr() const noexcept;
+  std::string ToXml() const noexcept;
 
   private:
   ~Edge() noexcept {}
@@ -71,12 +74,12 @@ struct Edge
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const Edge& f);
+  friend std::ostream& operator<<(std::ostream& os, const Edge& f) noexcept;
 };
 
-bool operator==(const Edge& lhs, const Edge& rhs);
-bool operator!=(const Edge& lhs, const Edge& rhs);
-std::ostream& operator<<(std::ostream& os, const Edge& f);
+bool operator==(const Edge& lhs, const Edge& rhs) noexcept;
+bool operator!=(const Edge& lhs, const Edge& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const Edge& f) noexcept;
 
 } //~namespace trim
 } //~namespace ribi

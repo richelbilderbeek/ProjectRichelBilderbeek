@@ -12,6 +12,7 @@
 
 #include "Shiny.h"
 
+#include "geometry.h"
 #include "trianglemeshedgefactory.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshfacefactory.h"
@@ -34,6 +35,7 @@ ribi::trim::Edge::Edge(
   Test();
   #endif
   PROFILE_FUNC();
+  assert(any_points[0] != any_points[1]);
 }
 
 void ribi::trim::Edge::AddBelongsTo(boost::weak_ptr<const Face> face) const
@@ -41,16 +43,6 @@ void ribi::trim::Edge::AddBelongsTo(boost::weak_ptr<const Face> face) const
   assert(face.lock());
   m_belongs_to.push_back(face);
 }
-
-/*
-const boost::shared_ptr<const ribi::trim::Point> ribi::trim::Edge::GetPoint(const int index) const noexcept
-{
-  PROFILE_FUNC();
-  assert(index >= 0);
-  assert(index < static_cast<int>(GetPoints().size()));
-  return GetPoints()[index];
-}
-*/
 
 void ribi::trim::Edge::Reverse() noexcept
 {
@@ -84,7 +76,38 @@ void ribi::trim::Edge::Test() noexcept
 }
 #endif
 
-bool ribi::trim::operator==(const ribi::trim::Edge& lhs, const ribi::trim::Edge& rhs)
+std::string ribi::trim::Edge::ToStr() const noexcept
+{
+
+  std::stringstream s;
+  s
+    << Geometry().ToStr(GetFrom()->GetCoordinat3D())
+    << " -> "
+    << Geometry().ToStr(GetTo()->GetCoordinat3D())
+    << " (index: "
+    << GetIndex()
+    << ")";
+  ;
+  return s.str();
+}
+
+std::string ribi::trim::Edge::ToXml() const noexcept
+{
+  std::stringstream s;
+  s
+    << ribi::xml::ToXml("edge_index",GetIndex())
+  ;
+  {
+    std::stringstream t;
+    t << ribi::xml::ToXml("from",*GetFrom());
+    t << ribi::xml::ToXml("to",*GetTo());
+    s << ribi::xml::ToXml("points",t.str());
+  }
+
+  return ribi::xml::ToXml("edge",s.str());
+}
+
+bool ribi::trim::operator==(const ribi::trim::Edge& lhs, const ribi::trim::Edge& rhs) noexcept
 {
   return
        lhs.GetFrom() == rhs.GetFrom()
@@ -92,22 +115,13 @@ bool ribi::trim::operator==(const ribi::trim::Edge& lhs, const ribi::trim::Edge&
   ;
 }
 
-bool ribi::trim::operator!=(const ribi::trim::Edge& lhs, const ribi::trim::Edge& rhs)
+bool ribi::trim::operator!=(const ribi::trim::Edge& lhs, const ribi::trim::Edge& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Edge& f)
+std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Edge& f) noexcept
 {
-  os
-    << ribi::xml::ToXml("edge_index",f.GetIndex())
-  ;
-  {
-    std::stringstream s;
-    s << ribi::xml::ToXml("from",*f.GetFrom());
-    s << ribi::xml::ToXml("to",*f.GetTo());
-    os << ribi::xml::ToXml("points",s.str());
-  }
-
+  os << f.ToStr();
   return os;
 }

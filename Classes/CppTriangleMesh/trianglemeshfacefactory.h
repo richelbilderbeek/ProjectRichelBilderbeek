@@ -2,7 +2,6 @@
 #define TRIANGLEMESHFACEFACTORY_H
 
 #include <iosfwd>
-//#include <set>
 #include <vector>
 
 #pragma GCC diagnostic push
@@ -42,35 +41,53 @@ struct FaceFactory
 
       +
      /|\
-    6 | 5
+    5 | 4
    /  |  \
-  +---4---+    +---4---+---5---+---6---+
+  +---3---+    +---3---+---4---+---5---+
   |   |   |    |      /|      /|      /|
-  |   B   |    |     / |     / |     / |
+  |   A   |    |     / |     / |     / |
   |   |   |    |    /  |    /  |    /  |
-  7   +   9    7   8   9   A   B   C   7 <--- here, A,B,C denote 10,11,12
+  6   +   8    6   7   8   9   A   B   6 <--- here, A and B denote 10,11 respectively
   |  / \  |    |  /    |  /    |  /    |
-  | 3   2 |    | /     | /     | /     |
+  | 2   1 |    | /     | /     | /     |
   |/     \|    |/      |/      |/      |
-  +---1---+    +---1---+---2---+---3---+
+  +---0---+    +---0---+---1---+---2---+
 
   Folded out, with the bottom (marked #) at the center
 
-          f
-         /|\
-        B | 5
-       /  |  \
-  f-B-c   A   e
+          f-5-d
+         /|\  |
+        A | 4 3
+    1  /  |  \|
+  f-0-c   9   e
   |  /|\  |  /
-  6 C 3#2 | 9
+  5 B 2#1 | 8
   |/  |##\|/
-  d-7-a-1-b
+  d-6-a-0-b
       |\  |
-      7 8 9
+      6 7 8
       |  \|
-      d-4-e
+      d-3-e
 
-  The front plane exists of the edges 1,4,7,9
+  The front plane exists of the edges 0,3,6,8
+
+  Face indices:
+
+          +---+
+         /|\ 1|
+        / | \ |
+       /  |  \|
+  +---+ 4 | 5 +
+  |7 /|\  |  /
+  | / | \ | /
+  |/ 6|0 \|/
+  +---+---+
+      |\ 2|
+      | \ |
+      |3 \|
+      +---+
+
+  The front plane exists of the edges 0,3,6,8
 
   All windings are clockwise, when seen from the inside of the prism
 

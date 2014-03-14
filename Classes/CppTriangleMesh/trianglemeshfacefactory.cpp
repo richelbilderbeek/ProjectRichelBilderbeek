@@ -79,71 +79,75 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
     EdgeFactory().CreateTestPrism()
   };
   assert(edges.size() == 12);
-        std::vector<boost::shared_ptr<Edge>> edges_bottom { edges[0], edges[ 1], edges[ 2] };
-        std::vector<boost::shared_ptr<Edge>> edges_top    { edges[3], edges[ 4], edges[ 5] };
-  const std::vector<boost::shared_ptr<Edge>> edges_a      { edges[0], edges[ 7], edges[ 8] };
-  const std::vector<boost::shared_ptr<Edge>> edges_b      { edges[4], edges[ 7], edges[ 8] };
-  const std::vector<boost::shared_ptr<Edge>> edges_c      { edges[2], edges[ 9], edges[10] };
-  const std::vector<boost::shared_ptr<Edge>> edges_d      { edges[4], edges[ 8], edges[ 9] };
-  const std::vector<boost::shared_ptr<Edge>> edges_e      { edges[2], edges[ 6], edges[11] };
-  const std::vector<boost::shared_ptr<Edge>> edges_f      { edges[5], edges[10], edges[11] };
-
-  assert(Helper().IsPlane(AddConst(edges_bottom)));
-  assert(Helper().IsPlane(AddConst(edges_top)));
-  assert(Helper().IsPlane(AddConst(edges_a)));
-  assert(Helper().IsPlane(AddConst(edges_b)));
-  assert(Helper().IsPlane(AddConst(edges_c)));
-  assert(Helper().IsPlane(AddConst(edges_d)));
-  assert(Helper().IsPlane(AddConst(edges_e)));
-  assert(Helper().IsPlane(AddConst(edges_f)));
+        std::vector<boost::shared_ptr<Edge>> edges_0 { edges[0], edges[ 1], edges[ 2] };
+        std::vector<boost::shared_ptr<Edge>> edges_1 { edges[3], edges[ 4], edges[ 5] };
+  const std::vector<boost::shared_ptr<Edge>> edges_2 { edges[0], edges[ 7], edges[ 8] };
+  const std::vector<boost::shared_ptr<Edge>> edges_3 { edges[3], edges[ 6], edges[ 7] };
+  const std::vector<boost::shared_ptr<Edge>> edges_4 { edges[1], edges[ 9], edges[10] };
+  const std::vector<boost::shared_ptr<Edge>> edges_5 { edges[4], edges[ 8], edges[ 9] };
+  const std::vector<boost::shared_ptr<Edge>> edges_6 { edges[2], edges[ 6], edges[11] };
+  const std::vector<boost::shared_ptr<Edge>> edges_7 { edges[5], edges[10], edges[11] };
 
   const Coordinat3D center { Helper().CalcCenter(edges) };
+  assert(Geometry().IsEqual(center,Helper().CalcCenter(edges)));
+  assert(Geometry().IsEqual(center,Helper().CalcCenter(edges)));
+  assert(Geometry().IsEqual(center,Helper().CalcCenter(edges)));
 
-  if (Helper().CalcWindingHorizontal(AddConst(edges_bottom)) != Winding::clockwise)
+  const auto edgeses { edges_0,edges_1,edges_2,edges_3,edges_4,edges_5,edges_6,edges_7 };
+  for (const auto my_edges: edgeses)
   {
-    Helper().SetWindingHorizontal(edges_bottom,Winding::clockwise);
-  }
-  if (Helper().CalcWindingHorizontal(AddConst(edges_top)) != Winding::counter_clockwise)
-  {
-    Helper().SetWindingHorizontal(edges_top,Winding::counter_clockwise);
+    assert(Helper().IsPlane(AddConst(my_edges)));
+    const bool a(Helper().IsClockwise(AddConst(my_edges),center));
+    const bool b(Helper().IsClockwise(AddConst(my_edges),center));
+    assert(a == b);
   }
 
-  assert(Helper().IsClockwise(AddConst(edges_bottom),center));
-
-  /*
-  if (!IsClockwiseHorizontal(edges_bottom))
+  if (Helper().CalcWindingHorizontal(AddConst(edges_0)) != Winding::clockwise)
   {
-    std::reverse(edges_bottom.begin(),edges_bottom.end());
+    Helper().SetWindingHorizontal(edges_0,Winding::clockwise);
   }
-  if (!IsClockwiseHorizontal(edges_top))
-  {
-    std::reverse(edges_top.begin(),edges_top.end());
-  }
-  */
+  assert(Helper().CalcWindingHorizontal(AddConst(edges_0)) == Winding::clockwise);
+  assert( Helper().IsClockwise(AddConst(edges_0),center));
+  //assert(!Helper().IsCounterClockwise(AddConst(edges_0),center));
 
-  const boost::shared_ptr<Face> bottom {
-    FaceFactory().Create(edges_bottom,FaceOrientation::horizontal)
-  };
+  if (Helper().CalcWindingHorizontal(AddConst(edges_1)) != Winding::counter_clockwise)
+  {
+    Helper().SetWindingHorizontal(edges_1,Winding::counter_clockwise);
+  }
+
+  //When viewed from above:
+  assert(Helper().CalcWindingHorizontal(AddConst(edges_1)) == Winding::counter_clockwise);
+
+  //When viewed from center/below:
+  assert(Helper().IsClockwise(AddConst(edges_1),center));
+
+  for (const auto my_edges: edgeses)
+  {
+    assert(Helper().IsPlane(AddConst(my_edges)));
+    const bool a(Helper().IsClockwise(AddConst(my_edges),center));
+    const bool b(Helper().IsClockwise(AddConst(my_edges),center));
+    assert(a == b);
+  }
+
+  const auto bottom(FaceFactory().Create(edges_0,FaceOrientation::horizontal));
   const boost::shared_ptr<Face> top {
-    FaceFactory().Create(edges_top,FaceOrientation::horizontal)
+    FaceFactory().Create(edges_1,FaceOrientation::horizontal)
   };
-  const boost::shared_ptr<Face> a {
-    FaceFactory().Create(edges_a,FaceOrientation::vertical)
-  };
+  const auto a(FaceFactory().Create(edges_2,FaceOrientation::vertical));
   const boost::shared_ptr<Face> b {
-    FaceFactory().Create(edges_b,FaceOrientation::vertical)
+    FaceFactory().Create(edges_3,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> c {
-    FaceFactory().Create(edges_c,FaceOrientation::vertical)
+    FaceFactory().Create(edges_4,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> d {
-    FaceFactory().Create(edges_d,FaceOrientation::vertical)
+    FaceFactory().Create(edges_5,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> e {
-    FaceFactory().Create(edges_e,FaceOrientation::vertical)
+    FaceFactory().Create(edges_6,FaceOrientation::vertical)
   };
   const boost::shared_ptr<Face> f {
-    FaceFactory().Create(edges_f,FaceOrientation::vertical)
+    FaceFactory().Create(edges_7,FaceOrientation::vertical)
   };
   assert(bottom);
   assert(top);
@@ -262,10 +266,33 @@ void ribi::trim::FaceFactory::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::FaceFactory::Test");
-  const std::vector<boost::shared_ptr<Face>> prism {
-    FaceFactory().CreateTestPrism()
-  };
-  assert(prism.size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+  //Bug found
+  {
+    const std::vector<boost::shared_ptr<Edge>> edges {
+      EdgeFactory().CreateTestPrism()
+    };
+    assert(edges.size() == 12);
+    const Coordinat3D center { Helper().CalcCenter(edges) };
+    std::vector<boost::shared_ptr<Edge>> edges_1 { edges[3], edges[ 4], edges[ 5] };
+    if (Helper().CalcWindingHorizontal(AddConst(edges_1)) != Winding::counter_clockwise)
+    {
+      Helper().SetWindingHorizontal(edges_1,Winding::counter_clockwise);
+    }
+    TRACE(Geometry().ToStr(center));
+    for (const auto edge: edges_1) { TRACE(*edge); }
+
+    //When viewed from above:
+    assert(Helper().CalcWindingHorizontal(AddConst(edges_1)) == Winding::counter_clockwise);
+
+    //When viewed from center:
+    assert(Helper().IsClockwise(AddConst(edges_1),center));
+  }
+  {
+    const std::vector<boost::shared_ptr<Face>> prism {
+      FaceFactory().CreateTestPrism()
+    };
+    assert(prism.size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+  }
   TRACE("Finished ribi::trim::FaceFactory::Test successfully");
 }
 #endif
