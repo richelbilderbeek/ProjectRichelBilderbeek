@@ -25,6 +25,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <Wt/WContainerWidget>
 
+
+namespace ribi {
+
 struct IpAddress;
 
 namespace ToolRasper {
@@ -39,5 +42,6 @@ struct WtMenuDialog : public Wt::WContainerWidget
 };
 
 } //~namespace ToolRasper
+} //~namespace ribi
 
 #endif // WTRASPERMENUDIALOG_H

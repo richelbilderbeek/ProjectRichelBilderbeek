@@ -21,9 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "about.h"
 #include "raspermenudialog.h"
 
-namespace ToolRasper {
-
-const About MenuDialog::GetAbout()
+ribi::About ribi::ToolRasper::MenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -39,12 +37,12 @@ const About MenuDialog::GetAbout()
   return a;
 }
 
-const std::string MenuDialog::GetVersion()
+std::string ribi::ToolRasper::MenuDialog::GetVersion() const noexcept
 {
   return "0.3";
 }
 
-const std::vector<std::string> MenuDialog::GetVersionHistory()
+std::vector<std::string> ribi::ToolRasper::MenuDialog::GetVersionHistory() const noexcept
 {
   std::vector<std::string> v;
   v.push_back("2013-01-23: Version 0.1: initial version");
@@ -52,6 +50,3 @@ const std::vector<std::string> MenuDialog::GetVersionHistory()
   v.push_back("2013-02-09: Version 0.3: initial GUI");
   return v;
 }
-
-} //~namespace ToolRasper
-

@@ -506,7 +506,7 @@ std::vector<const ribi::cmap::QtNode *> ribi::cmap::QtConceptMap::GetQtNodes() c
     = Collect<const QtNode>(this->scene());
   if (qtnodes.size() != GetConceptMap()->GetNodes().size())
   {
-    TRACE("Warning: GUI and non-GUI contain an unequal amount of nodes");
+    //TRACE("Warning: GUI and non-GUI contain an unequal amount of nodes");
   }
 
   //assert(qtnodes.size() == GetConceptMap()->GetNodes().size()

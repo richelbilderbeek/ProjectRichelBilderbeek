@@ -40,9 +40,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <QFile>
 
-namespace ToolRasper {
-
-WtMenuDialog::WtMenuDialog()
+ribi::ToolRasper::WtMenuDialog::WtMenuDialog()
 {
   this->setContentAlignment(Wt::AlignCenter);
   {
@@ -81,23 +79,23 @@ WtMenuDialog::WtMenuDialog()
   }
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewAboutDialog()
+Wt::WWidget * ribi::ToolRasper::WtMenuDialog::CreateNewAboutDialog()
 {
-  About a = MenuDialog::GetAbout();
+  About a = MenuDialog().GetAbout();
   a.AddLibrary("WtAutoConfig version: " + WtAutoConfig::GetVersion());
   WtAboutDialog * const d = new WtAboutDialog(a,false);
   assert(d);
   return d;
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewMainDialog() const
+Wt::WWidget * ribi::ToolRasper::WtMenuDialog::CreateNewMainDialog() const
 {
   WtMainDialog * const d = new WtMainDialog;
   assert(d);
   return d;
 }
 
-Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
+Wt::WWidget * ribi::ToolRasper::WtMenuDialog::CreateNewWelcomeDialog() const
 {
   Wt::WContainerWidget * dialog = new Wt::WContainerWidget;
   dialog->setContentAlignment(Wt::AlignCenter);
@@ -114,6 +112,3 @@ Wt::WWidget * WtMenuDialog::CreateNewWelcomeDialog() const
   box->addWidget(new Wt::WAnchor( WtResources().GetImageRaspberryPiDiagonallySource(), WtResources().GetImageRaspberryPiDiagonallyAttribute()));
   return dialog;
 }
-
-} //~namespace ToolRasper
-
