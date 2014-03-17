@@ -73,11 +73,6 @@ QRectF ribi::QtArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-//double ribi::QtArrowItem::GetAngle(const double dx, const double dy)
-//{
-//  return Geometry().GetAngle(dx,dy);
-//}
-
 std::string ribi::QtArrowItem::GetVersion() noexcept
 {
   return "1.2";

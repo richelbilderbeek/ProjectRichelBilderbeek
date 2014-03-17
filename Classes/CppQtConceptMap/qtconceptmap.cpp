@@ -392,6 +392,12 @@ const ribi::cmap::QtEdge * ribi::cmap::QtConceptMap::FindQtEdgeConst(
   return * iter;
 }
 
+/*
+ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNode(Node * const node) noexcept
+{
+  return const_cast<QtNode *>(FindQtNodeConst(node));
+}
+*/
 
 const ribi::cmap::QtNode * ribi::cmap::QtConceptMap::FindQtNodeConst(
   const ribi::cmap::Node * const node) const noexcept

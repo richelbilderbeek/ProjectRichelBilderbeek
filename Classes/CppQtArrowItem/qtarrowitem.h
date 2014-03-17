@@ -120,15 +120,6 @@ private:
 
   ///Show arrow at tail
   bool m_tail;
-
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  //static double GetAngle(const double dx, const double dy) noexcept;
-
 };
 
 } //~namespace ribi

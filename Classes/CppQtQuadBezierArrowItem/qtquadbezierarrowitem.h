@@ -37,12 +37,13 @@ namespace ribi {
 
 ///The QtQuadBezierArrowItem is a QGraphicsItem that
 ///follows the three QGraphicsItem positions
+///If mid is nullptr, the line will be straight
 struct QtQuadBezierArrowItem : public QGraphicsItem
 {
   QtQuadBezierArrowItem(
     const QGraphicsItem* const from,
     const bool tail,
-    const QGraphicsItem* const mid,
+    const QGraphicsItem* const mid, HIERO
     const bool head,
     const QGraphicsItem* const to,
     QGraphicsItem* parent = 0);
@@ -57,7 +58,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   const QGraphicsItem* GetFromItem() const noexcept { return m_from; }
 
   ///Obtain the head point of the arrow, on the edge of the rectangle m_from
-  const QPointF GetHead() const noexcept;
+  QPointF GetHead() const noexcept;
 
   ///Get the item where the arrow pass through in the middle
   const QGraphicsItem* GetMidItem() const noexcept { return m_mid; }
@@ -66,7 +67,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   const QPen& GetPen() const noexcept { return m_pen; }
 
   ///Obtain the tail point of the arrow, on the edge of the rectangle m_from
-  const QPointF GetTail() const noexcept;
+  QPointF GetTail() const noexcept;
 
   ///Get the item where the arrow points to
   ///(would the arrow and tail heads not be reversible)
@@ -146,19 +147,11 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   ///(would the arrow and tail heads not be reversible)
   const QGraphicsItem* const m_to;
 
-  ///Obtain the angle in radians between two deltas
-  ///12 o'clock is 0.0 * pi
-  /// 3 o'clock is 0.5 * pi
-  /// 6 o'clock is 1.0 * pi
-  /// 9 o'clock is 1.5 * pi
-  //From www.richelbilderbeek.nl/CppGetAngle.htm
-  //static double GetAngle(const double dx, const double dy);
-
   ///Obtain point 'beyond'
-  const QPointF GetBeyond() const noexcept;
+  QPointF GetBeyond() const noexcept;
 
   ///Obtain point 'center'
-  const QPointF GetCenter() const noexcept;
+  QPointF GetCenter() const noexcept;
 
   QPointF pos() const = delete;
 };

@@ -11,15 +11,15 @@ namespace ribi {
 
 namespace cmap {
 
-///The QtEdge is a QtEditStrategy that
-///draws a bezier curve underneath itself, between head and tail arrowhead
+///The QtEdge is a QtConceptMapElement that
+///draws a curve underneath itself, between head and tail arrowhead
 ///concept_item is the Strategy for displaying the ConceptItem
 struct QtEdge : public QtConceptMapElement
 {
 
   QtEdge(
     const boost::shared_ptr<Edge> edge,
-    const boost::shared_ptr<QtItemDisplayStrategy> concept_item,
+    const boost::shared_ptr<QtItemDisplayStrategy> display_strategy,
     QtNode* const from,
     QtNode* const to);
   QtEdge(const QtEdge&) = delete;
@@ -37,11 +37,11 @@ struct QtEdge : public QtConceptMapElement
   boost::shared_ptr<const Concept>  GetConcept() const noexcept;
   boost::shared_ptr<      Concept>  GetConcept()       noexcept;
 
-  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_concept_item; }
-  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_concept_item; }
+  boost::shared_ptr<const QtItemDisplayStrategy> GetDisplayStrategy() const noexcept final { return m_display_strategy; }
+  boost::shared_ptr<      QtItemDisplayStrategy> GetDisplayStrategy()       noexcept final { return m_display_strategy; }
 
-        boost::shared_ptr<const cmap::Edge>  GetEdge() const noexcept { return m_edge; }
-  const boost::shared_ptr<      cmap::Edge>& GetEdge()       noexcept { return m_edge; }
+        boost::shared_ptr<const Edge>  GetEdge() const noexcept { return m_edge; }
+  const boost::shared_ptr<      Edge>& GetEdge()       noexcept { return m_edge; }
 
   ///The node item the arrow originates from
   const QtNode * GetFrom() const noexcept { return m_from; }
@@ -86,7 +86,7 @@ private:
   boost::shared_ptr<QtQuadBezierArrowItem> m_arrow;
 
   ///The Strategy for displaying the Concept
-  const boost::shared_ptr<QtItemDisplayStrategy> m_concept_item;
+  const boost::shared_ptr<QtItemDisplayStrategy> m_display_strategy;
 
   const QPen m_contour_pen;
   const QPen m_focus_pen;
