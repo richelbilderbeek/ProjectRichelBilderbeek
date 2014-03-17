@@ -1,6 +1,8 @@
 #ifndef TRIANGLEMESHEDGE_H
 #define TRIANGLEMESHEDGE_H
 
+#ifdef USE_TRIANGLEMESHEDGE
+
 #include <array>
 #include <iosfwd>
 #include <set>
@@ -83,5 +85,7 @@ std::ostream& operator<<(std::ostream& os, const Edge& f) noexcept;
 
 } //~namespace trim
 } //~namespace ribi
+
+#endif
 
 #endif // TRIANGLEMESHEDGE_H

@@ -14,7 +14,10 @@ ribi::trim::Point::Point(
   const int index,
   const PointFactory&
 )
-  : m_belongs_to{},
+  :
+    #ifdef USE_TRIANGLEMESHEDGE
+    m_belongs_to{},
+    #endif
     m_connected{},
     m_coordinat(coordinat),
     m_index{index},
@@ -31,10 +34,12 @@ ribi::trim::Point::Point(
   assert(!std::isnan(get<1>(*m_coordinat)));
 }
 
+#ifdef USE_TRIANGLEMESHEDGE
 void ribi::trim::Point::AddBelongsTo(const boost::weak_ptr<Edge> edge)
 {
   m_belongs_to.insert(edge);
 }
+#endif
 
 void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face> face)
 {

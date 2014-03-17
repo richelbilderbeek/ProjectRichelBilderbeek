@@ -6,11 +6,12 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
+
+#include "tictactoefwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-struct TicTacToeWidget;
+namespace tictactoe {
 
 struct QtTicTacToeCanvas : public QtCanvas
 {
@@ -20,15 +21,15 @@ struct QtTicTacToeCanvas : public QtCanvas
 
 
   private:
-  const boost::shared_ptr<TicTacToeWidget> m_widget;
+  const boost::shared_ptr<Widget> m_widget;
 
   static const boost::shared_ptr<Canvas> CreateCanvas() noexcept;
-  static const boost::shared_ptr<TicTacToeWidget> CreateWidget() noexcept;
+  static const boost::shared_ptr<Widget> CreateWidget() noexcept;
 
   void OnChanged();
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
-
 
 #endif // QTTICTACTOECANVAS_H

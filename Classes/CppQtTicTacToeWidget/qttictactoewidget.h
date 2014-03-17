@@ -29,22 +29,22 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
 #include <QWidget>
+
+#include "tictactoefwd.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-struct TicTacToe;
+namespace tictactoe {
 
 class QtTicTacToeWidget : public QWidget
 {
   Q_OBJECT
 public:
   explicit QtTicTacToeWidget(QWidget *parent = 0);
-  const boost::shared_ptr<const TicTacToe> GetTicTacToe() const { return m_tictactoe; }
+  boost::shared_ptr<const Widget> GetWidget() const { return m_widget; }
 
-  //const TicTacToe * GetTicTacToe() const { return m_tictactoe.get(); } //Why did I once use this form?
 
-  void Restart();
+  void Restart() noexcept;
 
   ///mousePressEvent must be public for TicTacToeTest's
   ///virtual mouse clicks
@@ -61,21 +61,16 @@ protected:
   void resizeEvent(QResizeEvent *);
 
 private:
-  boost::shared_ptr<TicTacToe> m_tictactoe;
+  boost::shared_ptr<Widget> m_widget;
 
-  void OnChanged(const TicTacToe * const);
+  void OnChanged();
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
-
-//signals:
-//  void hasWinner();
-//  void stateChanged();
-//public slots:
-
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEWIDGET_H

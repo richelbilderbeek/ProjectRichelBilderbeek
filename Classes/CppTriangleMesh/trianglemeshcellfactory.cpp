@@ -19,7 +19,11 @@ ribi::trim::CellFactory::CellFactory()
 }
 
 boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
-  const std::vector<boost::shared_ptr<Face>>& faces
+  const std::vector<boost::shared_ptr<Face>>& faces,
+  const CreateVerticalFacesStrategy
+  #ifndef NDEBUG
+    strategy
+  #endif
 )
 {
   //Give every Cell some index at creation
@@ -27,9 +31,10 @@ boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::Create(
   const int n = cnt;
   ++cnt;
 
-  assert((faces.size() == 5 || faces.size() == 8)
-    && "A cell (in the shape of a prism) consists out of 5 or 8 faces");
-
+  #ifndef NDEBUG
+  if (strategy == CreateVerticalFacesStrategy::one_face_per_square ) { assert(faces.size() == 5 && "A cell (in the shape of a prism) consists out of 5 faces"); }
+  if (strategy == CreateVerticalFacesStrategy::two_faces_per_square) { assert(faces.size() == 8 && "A cell (in the shape of a prism) consists out of 8 faces"); }
+  #endif
   const boost::shared_ptr<Cell> cell {
     new Cell(faces,n,*this)
   };
@@ -80,13 +85,15 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellFactory::Create
   return cells;
 }
 
-boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism() const noexcept
+boost::shared_ptr<ribi::trim::Cell> ribi::trim::CellFactory::CreateTestPrism(
+  const CreateVerticalFacesStrategy strategy
+) const noexcept
 {
   const std::vector<boost::shared_ptr<Face> > faces {
-    FaceFactory().CreateTestPrism()
+    FaceFactory().CreateTestPrism(strategy)
   };
   const boost::shared_ptr<Cell> prism {
-    CellFactory().Create(faces)
+    CellFactory().Create(faces,strategy)
   };
   assert(prism);
   return prism;
@@ -102,12 +109,13 @@ void ribi::trim::CellFactory::Test() noexcept
   }
   TRACE("Starting ribi::trim::CellFactory::Test");
   //Create prism
+  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
-      CellFactory().CreateTestPrism()
+      CellFactory().CreateTestPrism(strategy)
     };
-    assert((prism->GetFaces().size() == 5 || prism->GetFaces().size() == 8)
-      && "A prism has 5 or 8 faces (as the vertical faces are split into 1 or 2 triangle)");
+    if (strategy == CreateVerticalFacesStrategy::one_face_per_square ) { assert(prism->GetFaces().size() == 5 && "A prism has 5 faces (as the vertical faces square)"); }
+    if (strategy == CreateVerticalFacesStrategy::two_faces_per_square) { assert(prism->GetFaces().size() == 8 && "A prism has 5 or 8 faces (as the vertical faces are split into 2 triangles)"); }
     for (auto& face: prism->GetFaces())
     {
       face->SetCorrectWinding();

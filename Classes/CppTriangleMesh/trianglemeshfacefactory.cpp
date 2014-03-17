@@ -5,13 +5,14 @@
 #include "Shiny.h"
 
 #include "geometry.h"
-#include "trianglemeshpoint.h"
-#include "trianglemeshedge.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
+//#include "trianglemeshedge.h"
 #include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
-#include "trianglemeshpointfactory.h"
 #include "trianglemeshhelper.h"
+#include "trianglemeshpoint.h"
+#include "trianglemeshpointfactory.h"
 #include "trianglemeshwinding.h"
 #include "trianglemeshwindings.h"
 #include "trace.h"
@@ -23,6 +24,7 @@ ribi::trim::FaceFactory::FaceFactory()
   #endif
 }
 
+#ifdef USE_TRIANGLEMESHEDGE
 boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   const std::vector<boost::shared_ptr<Edge>>& edges,
   const FaceOrientation any_orientation
@@ -41,6 +43,7 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   assert(ribi::Geometry().IsPlane(Helper().PointsToCoordinats3D(AddConst(points))));
   return Create(points,any_orientation);
 }
+#endif
 
 boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   std::vector<boost::shared_ptr<Point>> points,
@@ -102,10 +105,116 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
   return face;
 }
 
-std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrism() const noexcept
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrism(
+  const CreateVerticalFacesStrategy strategy
+) const noexcept
+{
+  switch (strategy)
+  {
+    case CreateVerticalFacesStrategy::one_face_per_square : return CreateTestPrismOneFacePerVerticalFace();
+    case CreateVerticalFacesStrategy::two_faces_per_square: return CreateTestPrismTwoFacesPerVerticalFace();
+  }
+  assert(!"FaceFactory::CreateTestPrism: Should not get here");
+  throw std::logic_error("FaceFactory::CreateTestPrism: Should not get here");
+}
+
+#ifdef USE_TRIANGLEMESHEDGE
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismOneFacePerVerticalFace() const noexcept
 {
   const std::vector<boost::shared_ptr<Edge>> edges {
-    EdgeFactory().CreateTestPrism()
+    EdgeFactory().CreateTestPrism(CreateVerticalFacesStrategy::one_face_per_square)
+  };
+  assert(edges.size() == 9);
+  std::vector<boost::shared_ptr<Edge>> edges_0 { edges[0], edges[ 1], edges[ 2] };
+  std::vector<boost::shared_ptr<Edge>> edges_1 { edges[3], edges[ 4], edges[ 5] };
+  std::vector<boost::shared_ptr<Edge>> edges_2 { edges[0], edges[ 3], edges[ 6], edges[ 7] };
+  std::vector<boost::shared_ptr<Edge>> edges_3 { edges[1], edges[ 4], edges[ 7], edges[ 8] };
+  std::vector<boost::shared_ptr<Edge>> edges_4 { edges[2], edges[ 5], edges[ 6], edges[ 8] };
+  assert(Helper().IsPlane(edges_0));
+  assert(Helper().IsPlane(edges_1));
+  assert(Helper().IsPlane(edges_2));
+  assert(Helper().IsPlane(edges_3));
+  assert(Helper().IsPlane(edges_4));
+  Helper().Direct(edges_0);
+  Helper().Direct(edges_1);
+  Helper().Direct(edges_2);
+  Helper().Direct(edges_3);
+  Helper().Direct(edges_4);
+  assert(Helper().IsDirected(edges_0));
+  assert(Helper().IsDirected(edges_1));
+  assert(Helper().IsDirected(edges_2));
+  assert(Helper().IsDirected(edges_3));
+  assert(Helper().IsDirected(edges_4));
+
+  const Coordinat3D center { Helper().CalcCenter(edges) };
+  assert(Geometry().IsEqual(center,Helper().CalcCenter(edges)));
+  assert(Geometry().IsEqual(center,Helper().CalcCenter(edges)));
+  assert(Geometry().IsEqual(center,Helper().CalcCenter(edges)));
+
+  #ifndef NDEBUG
+  const auto edgeses { edges_0,edges_1,edges_2,edges_3,edges_4 };
+  for (const auto my_edges: edgeses)
+  {
+    assert(Helper().IsPlane(my_edges));
+    assert(Helper().IsDirected(my_edges));
+    const bool a(Helper().IsClockwise(my_edges,center));
+    const bool b(Helper().IsClockwise(my_edges,center));
+    assert(a == b);
+  }
+  #endif
+
+  if (Helper().CalcWindingHorizontal(AddConst(edges_0)) != Winding::clockwise)
+  {
+    Helper().SetWindingHorizontal(edges_0,Winding::clockwise);
+  }
+  assert(Helper().CalcWindingHorizontal(AddConst(edges_0)) == Winding::clockwise);
+  assert( Helper().IsClockwise(AddConst(edges_0),center));
+  //assert(!Helper().IsCounterClockwise(AddConst(edges_0),center));
+
+  if (Helper().CalcWindingHorizontal(AddConst(edges_1)) != Winding::counter_clockwise)
+  {
+    Helper().SetWindingHorizontal(edges_1,Winding::counter_clockwise);
+  }
+
+  //When viewed from above:
+  assert(Helper().CalcWindingHorizontal(AddConst(edges_1)) == Winding::counter_clockwise);
+
+  //When viewed from center/below:
+  assert(Helper().IsClockwise(AddConst(edges_1),center));
+
+  #ifndef NDEBUG
+  for (const auto my_edges: edgeses)
+  {
+    assert(Helper().IsPlane(AddConst(my_edges)));
+    const bool a(Helper().IsClockwise(AddConst(my_edges),center));
+    const bool b(Helper().IsClockwise(AddConst(my_edges),center));
+    assert(a == b);
+  }
+  #endif
+
+  const auto bottom(FaceFactory().Create(edges_0,FaceOrientation::horizontal));
+  const auto top(FaceFactory().Create(edges_1,FaceOrientation::horizontal));
+  const auto a(FaceFactory().Create(edges_2,FaceOrientation::vertical));
+  const auto b(FaceFactory().Create(edges_3,FaceOrientation::vertical));
+  const auto c(FaceFactory().Create(edges_4,FaceOrientation::vertical));
+  assert(bottom);
+  assert(top);
+  assert(a);
+  assert(b);
+  assert(c);
+  bottom->SetIndex(1);
+  top->SetIndex(2);
+  a->SetIndex(3);
+  b->SetIndex(4);
+  c->SetIndex(5);
+  const std::vector<boost::shared_ptr<Face>> prism { top,bottom,a,b,c };
+  return prism;
+}
+
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismTwoFacesPerVerticalFace() const noexcept
+{
+  const std::vector<boost::shared_ptr<Edge>> edges {
+    EdgeFactory().CreateTestPrism(CreateVerticalFacesStrategy::two_faces_per_square)
   };
   assert(edges.size() == 12);
         std::vector<boost::shared_ptr<Edge>> edges_0 { edges[0], edges[ 1], edges[ 2] };
@@ -163,25 +272,13 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   #endif
 
   const auto bottom(FaceFactory().Create(edges_0,FaceOrientation::horizontal));
-  const boost::shared_ptr<Face> top {
-    FaceFactory().Create(edges_1,FaceOrientation::horizontal)
-  };
+  const auto top(FaceFactory().Create(edges_1,FaceOrientation::horizontal));
   const auto a(FaceFactory().Create(edges_2,FaceOrientation::vertical));
-  const boost::shared_ptr<Face> b {
-    FaceFactory().Create(edges_3,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> c {
-    FaceFactory().Create(edges_4,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> d {
-    FaceFactory().Create(edges_5,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> e {
-    FaceFactory().Create(edges_6,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> f {
-    FaceFactory().Create(edges_7,FaceOrientation::vertical)
-  };
+  const auto b(FaceFactory().Create(edges_3,FaceOrientation::vertical));
+  const auto c(FaceFactory().Create(edges_4,FaceOrientation::vertical));
+  const auto d(FaceFactory().Create(edges_5,FaceOrientation::vertical));
+  const auto e(FaceFactory().Create(edges_6,FaceOrientation::vertical));
+  const auto f(FaceFactory().Create(edges_7,FaceOrientation::vertical));
   assert(bottom);
   assert(top);
   assert(a);
@@ -203,8 +300,50 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   };
   return prism;
 }
+#endif
 
-std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismFromPoints() const noexcept
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismOneFacePerVerticalFace() const noexcept
+{
+  const std::vector<boost::shared_ptr<Point>> points {
+    PointFactory().CreateTestPrism()
+  };
+        std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[1], points[2] };
+        std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
+  const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[3], points[4] };
+  const std::vector<boost::shared_ptr<Point>> points_b      { points[1], points[2], points[4], points[5] };
+  const std::vector<boost::shared_ptr<Point>> points_c      { points[2], points[0], points[5], points[3] };
+
+  if (!Helper().IsClockwiseHorizontal(points_bottom))
+  {
+    std::reverse(points_bottom.begin(),points_bottom.end());
+  }
+  if (!Helper().IsClockwiseHorizontal(points_top))
+  {
+    std::reverse(points_top.begin(),points_top.end());
+  }
+
+  const auto bottom(FaceFactory().Create(points_bottom,FaceOrientation::horizontal));
+  const auto top(FaceFactory().Create(points_top,FaceOrientation::horizontal));
+  const auto a(FaceFactory().Create(points_a,FaceOrientation::vertical));
+  const auto b(FaceFactory().Create(points_b,FaceOrientation::vertical));
+  const auto c(FaceFactory().Create(points_c,FaceOrientation::vertical));
+  assert(bottom);
+  assert(top);
+  assert(a);
+  assert(b);
+  assert(c);
+  bottom->SetIndex(1);
+  top->SetIndex(2);
+  a->SetIndex(3);
+  b->SetIndex(4);
+  c->SetIndex(5);
+  const std::vector<boost::shared_ptr<Face>> prism {
+    top,bottom,a,b,c
+  };
+  return prism;
+}
+
+std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::CreateTestPrismTwoFacesPerVerticalFace() const noexcept
 {
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
@@ -227,30 +366,14 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
     std::reverse(points_top.begin(),points_top.end());
   }
 
-  const boost::shared_ptr<Face> bottom {
-    FaceFactory().Create(points_bottom,FaceOrientation::horizontal)
-  };
-  const boost::shared_ptr<Face> top {
-    FaceFactory().Create(points_top,FaceOrientation::horizontal)
-  };
-  const boost::shared_ptr<Face> a {
-    FaceFactory().Create(points_a,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> b {
-    FaceFactory().Create(points_b,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> c {
-    FaceFactory().Create(points_c,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> d {
-    FaceFactory().Create(points_d,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> e {
-    FaceFactory().Create(points_e,FaceOrientation::vertical)
-  };
-  const boost::shared_ptr<Face> f {
-    FaceFactory().Create(points_f,FaceOrientation::vertical)
-  };
+  const auto bottom(FaceFactory().Create(points_bottom,FaceOrientation::horizontal));
+  const auto top(FaceFactory().Create(points_top,FaceOrientation::horizontal));
+  const auto a(FaceFactory().Create(points_a,FaceOrientation::vertical));
+  const auto b(FaceFactory().Create(points_b,FaceOrientation::vertical));
+  const auto c(FaceFactory().Create(points_c,FaceOrientation::vertical));
+  const auto d(FaceFactory().Create(points_d,FaceOrientation::vertical));
+  const auto e(FaceFactory().Create(points_e,FaceOrientation::vertical));
+  const auto f(FaceFactory().Create(points_f,FaceOrientation::vertical));
   assert(bottom);
   assert(top);
   assert(a);
@@ -302,11 +425,20 @@ void ribi::trim::FaceFactory::Test() noexcept
   }
   TRACE("Starting ribi::trim::FaceFactory::Test");
   //Create a testing prism
+  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Face>> prism {
-      FaceFactory().CreateTestPrism()
+      FaceFactory().CreateTestPrism(strategy)
     };
-    assert(prism.size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+    switch (strategy)
+    {
+      case CreateVerticalFacesStrategy::one_face_per_square:
+        assert(prism.size() == 5 && "A prism has 5 faces (when the vertical faces are kept as squares)");
+        break;
+      case CreateVerticalFacesStrategy::two_faces_per_square:
+        assert(prism.size() == 8 && "A prism has 8 faces (as the vertical faces are split into 2 triangle)");
+        break;
+    }
   }
   //Check that incorrect Faces cannot be constructed
   //(as this test is done in each Face its contructor)
@@ -330,9 +462,11 @@ void ribi::trim::FaceFactory::Test() noexcept
     assert(!Helper().IsConvex(points));
   }
   //Bug found
+  #ifdef USE_TRIANGLEMESHEDGE
+  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Edge>> edges {
-      EdgeFactory().CreateTestPrism()
+      EdgeFactory().CreateTestPrism(strategy)
     };
     assert(edges.size() == 12);
     const Coordinat3D center { Helper().CalcCenter(edges) };
@@ -350,6 +484,7 @@ void ribi::trim::FaceFactory::Test() noexcept
     //When viewed from center:
     assert(Helper().IsClockwise(AddConst(edges_1),center));
   }
+  #endif
   TRACE("Finished ribi::trim::FaceFactory::Test successfully");
 }
 #endif

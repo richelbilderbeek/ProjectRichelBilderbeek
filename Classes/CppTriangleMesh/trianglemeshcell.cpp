@@ -81,9 +81,10 @@ void ribi::trim::Cell::Test() noexcept
   }
   TRACE("Starting ribi::trim::Cell::Test");
   //Test that in a prism-shaped Cell, all Faces are owned, and no faces have a neighbour
+  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const boost::shared_ptr<Cell> prism {
-      CellFactory().CreateTestPrism()
+      CellFactory().CreateTestPrism(strategy)
     };
     assert(prism);
     const std::vector<boost::shared_ptr<Face>> faces {
@@ -153,13 +154,14 @@ void ribi::trim::Cell::Test() noexcept
 
   //Test that CalcCenter returns the same value each time
   //Failed once...
+  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
-    const auto center(CellFactory().CreateTestPrism()->CalculateCenter());
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
-    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism()->CalculateCenter()));
+    const auto center(CellFactory().CreateTestPrism(strategy)->CalculateCenter());
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
+    assert(Geometry().IsEqual(center,CellFactory().CreateTestPrism(strategy)->CalculateCenter()));
   }
 
   TRACE("Finished ribi::trim::Cell::Test successfully");

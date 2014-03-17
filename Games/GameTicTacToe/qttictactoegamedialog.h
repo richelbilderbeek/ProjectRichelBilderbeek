@@ -34,6 +34,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace tictactoe {
 
 struct QtTicTacToeWidget;
 
@@ -60,6 +61,7 @@ private slots:
   void HasWinner();
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEGAMEDIALOG_H

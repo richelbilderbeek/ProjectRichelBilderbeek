@@ -1,10 +1,13 @@
 #include "trianglemeshedgefactory.h"
 
+#ifdef USE_TRIANGLEMESHEDGE
+
 #include <cassert>
 #include <stdexcept>
 
 #include "Shiny.h"
 
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshedge.h"
 #include "trianglemeshedgefactory.h"
@@ -45,12 +48,86 @@ boost::shared_ptr<ribi::trim::Edge> ribi::trim::EdgeFactory::Create(
   return edge;
 }
 
-std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestPrism() const noexcept
+std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestPrism(
+  const CreateVerticalFacesStrategy strategy
+) const noexcept
+{
+  switch (strategy)
+  {
+    case CreateVerticalFacesStrategy::one_face_per_square: return CreateTestPrismOneFacePerVerticalSquare();
+    case CreateVerticalFacesStrategy::two_faces_per_square: return CreateTestPrismTwoFacesPerVerticalSquare();
+  }
+  assert(!"EdgeFactory::CreateTestPrism: Should not get here");
+  throw std::logic_error("EdgeFactory::CreateTestPrism: Should not get here");
+}
+
+std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestPrismOneFacePerVerticalSquare() const noexcept
 {
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
   };
   assert(points.size() == 6);
+  const std::array<boost::shared_ptr<Point>,2> points_0 { points[0], points[1] };
+  const std::array<boost::shared_ptr<Point>,2> points_1 { points[1], points[2] };
+  const std::array<boost::shared_ptr<Point>,2> points_2 { points[2], points[0] };
+  const std::array<boost::shared_ptr<Point>,2> points_3 { points[3], points[4] };
+  const std::array<boost::shared_ptr<Point>,2> points_4 { points[4], points[5] };
+  const std::array<boost::shared_ptr<Point>,2> points_5 { points[5], points[3] };
+  const std::array<boost::shared_ptr<Point>,2> points_6 { points[0], points[3] };
+  const std::array<boost::shared_ptr<Point>,2> points_7 { points[1], points[4] };
+  const std::array<boost::shared_ptr<Point>,2> points_8 { points[2], points[5] };
+
+  const auto edge_0(EdgeFactory().Create(points_0));
+  const auto edge_1(EdgeFactory().Create(points_1));
+  const auto edge_2(EdgeFactory().Create(points_2));
+  const auto edge_3(EdgeFactory().Create(points_3));
+  const auto edge_4(EdgeFactory().Create(points_4));
+  const auto edge_5(EdgeFactory().Create(points_5));
+  const auto edge_6(EdgeFactory().Create(points_6));
+  const auto edge_7(EdgeFactory().Create(points_7));
+  const auto edge_8(EdgeFactory().Create(points_8));
+  assert(edge_0);
+  assert(edge_1);
+  assert(edge_2);
+  assert(edge_3);
+  assert(edge_4);
+  assert(edge_5);
+  assert(edge_6);
+  assert(edge_7);
+  assert(edge_8);
+  edge_0->SetIndex(1);
+  edge_1->SetIndex(2);
+  edge_2->SetIndex(3);
+  edge_3->SetIndex(4);
+  edge_4->SetIndex(5);
+  edge_5->SetIndex(6);
+  edge_6->SetIndex(7);
+  edge_7->SetIndex(8);
+  edge_8->SetIndex(9);
+
+  const auto center(Helper().CalcCenter(points));
+
+  const std::vector<boost::shared_ptr<Edge>> prism {
+    edge_0,
+    edge_1,
+    edge_2,
+    edge_3,
+    edge_4,
+    edge_5,
+    edge_6,
+    edge_7,
+    edge_8
+  };
+  return prism;
+}
+
+std::vector<boost::shared_ptr<ribi::trim::Edge>> ribi::trim::EdgeFactory::CreateTestPrismTwoFacesPerVerticalSquare() const noexcept
+{
+  const std::vector<boost::shared_ptr<Point>> points {
+    PointFactory().CreateTestPrism()
+  };
+  assert(points.size() == 6);
+
   const std::array<boost::shared_ptr<Point>,2> points_0 { points[0], points[1] };
   const std::array<boost::shared_ptr<Point>,2> points_1 { points[1], points[2] };
   const std::array<boost::shared_ptr<Point>,2> points_2 { points[2], points[0] };
@@ -223,12 +300,16 @@ void ribi::trim::EdgeFactory::Test() noexcept
       assert(Helper().CalcWindingHorizontal(AddConst(triangle)) == winding);
     }
   }
+  for (const auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Edge>> prism {
-      EdgeFactory().CreateTestPrism()
+      EdgeFactory().CreateTestPrism(strategy)
     };
-    assert(prism.size() == 12 && "A prism has 12 edges (as the vertical faces are split into 2 triangle)");
+    if (strategy == CreateVerticalFacesStrategy::one_face_per_square ) { assert(prism.size() == 9 && "A prism has 9 edges (when the vertical faces are square)"); }
+    if (strategy == CreateVerticalFacesStrategy::two_faces_per_square) { assert(prism.size() == 12 && "A prism has 12 edges (as the vertical faces are split into 2 triangle)"); }
   }
   TRACE("Finished ribi::trim::EdgeFactory::Test successfully");
 }
 #endif
+
+#endif //~USE_TRIANGLEMESHEDGE

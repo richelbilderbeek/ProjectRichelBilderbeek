@@ -31,65 +31,69 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <QMouseEvent>
 #include <QPainter>
 
-#include "tictactoe.h"
+#include "tictactoeboard.h"
+#include "tictactoegame.h"
+#include "tictactoewidget.h"
 #include "trace.h"
 
 #pragma GCC diagnostic pop
 
-ribi::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
+ribi::tictactoe::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   QWidget(parent),
   m_signal_changed{},
   m_signal_has_winner{},
-  m_tictactoe(new TicTacToe)
+  m_widget(new Widget)
 {
   #ifndef NDEBUG
   Test();
   #endif
 
-  assert(m_tictactoe);
+  assert(m_widget);
   this->setMinimumHeight(64);
   this->setMinimumWidth(64);
 
-  m_tictactoe->m_signal_changed.connect(
-    boost::bind(&QtTicTacToeWidget::OnChanged,this,boost::lambda::_1)
+  m_widget->m_signal_changed.connect(
+    boost::bind(&QtTicTacToeWidget::OnChanged,this)
   );
 
 
 }
 
-std::string ribi::QtTicTacToeWidget::GetVersion() noexcept
+std::string ribi::tictactoe::QtTicTacToeWidget::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
-std::vector<std::string> ribi::QtTicTacToeWidget::GetVersionHistory() noexcept
+std::vector<std::string> ribi::tictactoe::QtTicTacToeWidget::GetVersionHistory() noexcept
 {
   return {
     "20xx-xx-xx: version 1.0: initial version",
-    "2014-02-03: version 1.1: improved interface"
+    "2014-02-03: version 1.1: improved interface",
+    "2014-03-17: version 1.2: use Widget as a member variable"
   };
 
 }
 
-void ribi::QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
+void ribi::tictactoe::QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
 {
-  if (m_tictactoe->GetWinner() != TicTacToe::no_winner) return;
+  if (m_widget->GetGame()->GetWinner() != Winner::no_winner) return;
   const int x = 3 * e->x() / this->width();
   if (x < 0 || x > 2) return;
   const int y = 3 * e->y() / this->height();
   if (y < 0 || y > 2) return;
-  if (m_tictactoe->CanDoMove(x,y))
+  if (m_widget->CanSelect(x,y))
   {
-    m_tictactoe->DoMove(x,y);
+    m_widget->Select(x,y);
+    m_widget->DoMove();
   }
-  if (m_tictactoe->GetWinner() != TicTacToe::no_winner)
+  if (m_widget->GetGame()->GetWinner() != Winner::no_winner)
   {
     m_signal_has_winner(this);
   }
   repaint();
 }
 
-void ribi::QtTicTacToeWidget::paintEvent(QPaintEvent *)
+void ribi::tictactoe::QtTicTacToeWidget::paintEvent(QPaintEvent *)
 {
   const int width  = this->width();
   const int height = this->height();
@@ -130,14 +134,14 @@ void ribi::QtTicTacToeWidget::paintEvent(QPaintEvent *)
     {
       const int y1 = ((col + 0) * (height / 3)) + (line_width/1) + 4;
       const int y2 = ((col + 1) * (height / 3)) - (line_width/1) - 4;
-      const int state = m_tictactoe->GetSquare(row,col);
-      if (state == TicTacToe::player1)
+      const auto state(m_widget->GetGame()->GetBoard()->GetSquare(row,col));
+      if (state == Square::player1)
       {
         //player1 = cross
         painter.drawLine(x1,y1,x2,y2);
         painter.drawLine(x1,y2,x2,y1);
       }
-      else if (state == TicTacToe::player2)
+      else if (state == Square::player2)
       {
         //player1 = circle
         painter.drawEllipse(x1,y1,x2-x1,y2-y1);
@@ -146,33 +150,33 @@ void ribi::QtTicTacToeWidget::paintEvent(QPaintEvent *)
   }
 }
 
-void ribi::QtTicTacToeWidget::OnChanged(const TicTacToe * const)
+void ribi::tictactoe::QtTicTacToeWidget::OnChanged()
 {
   repaint();
   m_signal_changed(this);
 }
 
-void ribi::QtTicTacToeWidget::resizeEvent(QResizeEvent *)
+void ribi::tictactoe::QtTicTacToeWidget::resizeEvent(QResizeEvent *)
 {
   repaint();
 }
 
-void ribi::QtTicTacToeWidget::Restart()
+void ribi::tictactoe::QtTicTacToeWidget::Restart() noexcept
 {
-  m_tictactoe->Restart();
+  m_widget->Restart();
 }
 
 #ifndef NDEBUG
-void ribi::QtTicTacToeWidget::Test() noexcept
+void ribi::tictactoe::QtTicTacToeWidget::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTicTacToeWidget::Test");
+  TRACE("Starting ribi::tictactoe::QtTicTacToeWidget::Test");
   QtTicTacToeWidget w;
-  assert(w.GetTicTacToe());
-  TRACE("Finished ribi::QtTicTacToeWidget::Test successfully");
+  assert(w.GetWidget());
+  TRACE("Finished ribi::tictactoe::QtTicTacToeWidget::Test successfully");
 }
 #endif

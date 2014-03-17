@@ -31,6 +31,7 @@ namespace Ui {
 }
 
 namespace ribi {
+namespace tictactoe {
 
 class QtTicTacToeWinnerDialog : public QtHideAndShowDialog
 {
@@ -53,6 +54,7 @@ private:
   #endif
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTICTACTOEWINNERDIALOG_H

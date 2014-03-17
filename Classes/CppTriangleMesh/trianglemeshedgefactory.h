@@ -1,6 +1,8 @@
 #ifndef TRIANGLEMESHEDGEFACTORY_H
 #define TRIANGLEMESHEDGEFACTORY_H
 
+#ifdef USE_TRIANGLEMESHEDGE
+
 #include <array>
 #include <iosfwd>
 //#include <set>
@@ -11,6 +13,7 @@
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/checked_delete.hpp>
 #include <boost/shared_ptr.hpp>
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
 #include "trianglemeshwinding.h"
@@ -28,10 +31,9 @@ struct EdgeFactory
   ) const noexcept;
 
   ///Create the edges of a testing prism
-  ///The indices are { top, bottom, a,b,c }
   /*
 
-  Edge indices are:
+  For CreateVerticalFacesStrategy::one_face_per_square, edge indices are:
 
       +
      /|\
@@ -81,10 +83,58 @@ struct EdgeFactory
       |3 \|
       +---+
 
-  The front plane exists of the edges 0,3,6,8
+  For CreateVerticalFacesStrategy::two_faces_per_square, edge indices are:
+
+      +
+     /|\
+    5 | 4
+   /  |  \
+  +---3---+    +---3---+---4---+---5---+
+  |   |   |    |       |       |       |
+  |   8   |    |       |       |       |
+  |   |   |    |       |       |       |
+  6   +   7    6       7       8       6
+  |  / \  |    |       |       |       |
+  | 2   1 |    |       |       |       |
+  |/     \|    |       |       |       |
+  +---0---+    +---0---+---1---+---2---+
+
+  Folded out, with the bottom (marked #) at the center
+
+          +-5-+
+         / \  |
+        8   4 3
+       /     \|
+  +-8-+       +
+  |   |\     /
+  5   2#1   7
+  |   |##\ /
+  +-6-+-0-+
+      |   |
+      6   7
+      |   |
+      +-3-+
+
+  The front plane exists of the edges 0,3,6,7
+
+  Face indices:
+
+          +---+
+         / \ 1|
+        /   \ |
+       /     \|
+  +---+   3   +
+  |   |\     /
+  | 4 | \   /
+  |   |0 \ /
+  +---+---+
+      |   |
+      | 2 |
+      |   |
+      +---+
 
   */
-  std::vector<boost::shared_ptr<Edge>> CreateTestPrism() const noexcept;
+  std::vector<boost::shared_ptr<Edge>> CreateTestPrism(const CreateVerticalFacesStrategy strategy) const noexcept;
 
 
   ///Creates a triangle with the requested winding (when viewed from above)
@@ -110,6 +160,9 @@ struct EdgeFactory
   std::vector<boost::shared_ptr<Edge>> CreateTestTriangle(const Winding winding) const noexcept;
 
   private:
+  std::vector<boost::shared_ptr<Edge>> CreateTestPrismOneFacePerVerticalSquare() const noexcept;
+  std::vector<boost::shared_ptr<Edge>> CreateTestPrismTwoFacesPerVerticalSquare() const noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
@@ -118,5 +171,7 @@ struct EdgeFactory
 } //~namespace trim
 } //~namespace ribi
 
+
+#endif
 
 #endif // TRIANGLEMESHEDGEFACTORY_H

@@ -34,36 +34,32 @@ struct CellsCreatorFactory
 
   ///Create a cell in the shape of a prism
   /*
-
-      +
-     /|\
-    +---+
-    | | |
-    | + |
-    |/ \|
-    +---+
-
+        +
+       /|\
+      +---+
+      | | |
+      | + |
+      |/ \|
+      +---+
   */
   boost::shared_ptr<CellsCreator> CreateTestPrism(
     const CreateVerticalFacesStrategy strategy
   ) const noexcept;
 
 
+  ///Create two prisms-shaped cell to form a cube
+  /*
+        +---+
+       /|\ /|
+      +---+ |
+      | | | |
+      | +-|-+
+      |/ \|/
+      +---+
+  */
   boost::shared_ptr<CellsCreator> CreateTestCube(
     const CreateVerticalFacesStrategy strategy
   ) const noexcept;
-  ///Create two prisms-shaped cell to form a cube
-  /*
-
-      +---+
-     /|\ /|
-    +---+ |
-    | | | |
-    | +-|-+
-    |/ \|/
-    +---+
-
-  */
 
   #ifndef NDEBUG
   static void Test() noexcept;

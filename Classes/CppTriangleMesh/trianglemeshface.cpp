@@ -14,6 +14,7 @@
 
 #include "geometry.h"
 #include "trianglemeshcell.h"
+#include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshhelper.h"
@@ -258,9 +259,10 @@ void ribi::trim::Face::Test() noexcept
   }
   TRACE("Starting ribi::trim::Face::Test");
   //Check that a Face has no owner nor neighbour when not added to a Cell
+  for (auto strategy: CreateVerticalFacesStrategies().GetAll())
   {
     const std::vector<boost::shared_ptr<Face>> faces {
-      FaceFactory().CreateTestPrism()
+      FaceFactory().CreateTestPrism(strategy)
     };
     for (auto face: faces)
     {

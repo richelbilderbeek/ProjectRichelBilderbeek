@@ -14478,6 +14478,17 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "ToolTestPlane",
+      {
+        "<p>",
+        "  <a href=\"ToolTestPlane.htm\">TestPlane</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppPlane.htm\">Plane</a> <a href=\"CppClass.htm\">class</a>.",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolTestPrimeExpert",
       {
         "<p><a href=\"ToolTestPrimeExpert.htm\">TestPrimeExpert</a> is a <a href=\"Tools.htm\">tool</a> to test ",
@@ -14995,6 +15006,19 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
       }
     }
   );
+
+
+  m.push_back(
+    { "ToolTestTriangleMesh",
+      {
+        "<p>",
+        "  <a href=\"ToolTestTriangleMesh.htm\">TestTriangleMesh</a> is a <a href=\"Tools.htm\">tool</a>",
+        "  to test the <a href=\"CppTriangleMesh.htm\">TriangleMesh</a> <a href=\"CppClass.htm\">classes</a>.",
+        "</p>"
+      }
+    }
+  );
+
   m.push_back(
     { "ToolTestTwoDigitNewick",
       {

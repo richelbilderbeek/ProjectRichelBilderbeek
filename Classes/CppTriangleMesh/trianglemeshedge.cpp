@@ -1,5 +1,7 @@
 #include "trianglemeshedge.h"
 
+#ifdef USE_TRIANGLEMESHEDGE
+
 #include <algorithm>
 #include <fstream>
 #include <set>
@@ -125,3 +127,5 @@ std::ostream& ribi::trim::operator<<(std::ostream& os, const ribi::trim::Edge& f
   os << f.ToStr();
   return os;
 }
+
+#endif //~USE_TRIANGLEMESHEDGE

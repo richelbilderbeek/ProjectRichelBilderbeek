@@ -454,7 +454,6 @@ std::string ribi::trim::TriangleMeshBuilder::CreateOpenFoamFaces() const noexcep
     {
       points_indices.push_back(point->GetIndex());
     }
-
     s
       << points_indices.size()
       << "("

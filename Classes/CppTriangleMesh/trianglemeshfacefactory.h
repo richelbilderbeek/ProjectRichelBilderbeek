@@ -10,6 +10,7 @@
 #include <boost/checked_delete.hpp>
 #include <boost/geometry.hpp>
 #include <boost/shared_ptr.hpp>
+#include "trianglemeshcreateverticalfacesstrategy.h"
 #include "trianglemeshfaceorientation.h"
 #include "trianglemeshfwd.h"
 #include "trianglemeshwinding.h"
@@ -24,10 +25,12 @@ struct FaceFactory
 
   FaceFactory();
 
+  #ifdef USE_TRIANGLEMESHEDGE
   boost::shared_ptr<Face> Create(
     const std::vector<boost::shared_ptr<Edge>>& edges,
     const FaceOrientation any_orientation
   ) const noexcept;
+  #endif
 
   boost::shared_ptr<Face> Create(
     std::vector<boost::shared_ptr<Point>> points,
@@ -35,6 +38,7 @@ struct FaceFactory
   ) const noexcept;
 
 
+  #ifdef USE_TRIANGLEMESHEDGE
   ///Create the faces of a testing prism from edges
   /*
   Edge indices are:
@@ -87,54 +91,78 @@ struct FaceFactory
       |3 \|
       +---+
 
-  The front plane exists of the edges 0,3,6,8
+          +---+
+         / \ 1|
+        /   \ |
+       /     \|
+  +---+   3   +
+  |   |\     /
+  | 4 | \   /
+  |   |0 \ /
+  +---+---+
+      |   |
+      | 2 |
+      |   |
+      +---+
 
-  All windings are clockwise, when seen from the inside of the prism
 
   */
-  std::vector<boost::shared_ptr<Face>> CreateTestPrism() const noexcept;
-
+  #endif
   ///Create the faces of a testing prism from points
   ///The indices are { top, bottom, a,b,c }
   /*
-           top
-            v
 
-            F
+            5
            /|\
-          D---E
+          3---4
           | | |
-    c ->  | C | <- b
+          | 2 |
           |/ \|
-          A---B
-
-            ^
-           bottom
+          0---1
 
   Folder out, with the bottom (marked #) at the center
 
-          +
-         /|\
-        / | \
-       /  |  \
-  +---C c | d +
-  |f /|\  |  /
-  | / |#\ | /
-  |/ e|##\|/
-  +---A---B
-      |\ a|
+          +---+
+         /|\ 1|
+        / | \ |
+       /  |  \|
+  +---+ 4 | 5 +
+  |7 /|\  |  /
+  | / | \ | /
+  |/ 6|0 \|/
+  +---+---+
+      |\ 2|
       | \ |
-      |b \|
+      |3 \|
       +---+
+
+          +---+
+         / \ 1|
+        /   \ |
+       /     \|
+  +---+   3   +
+  |   |\     /
+  | 4 | \   /
+  |   |0 \ /
+  +---+---+
+      |   |
+      | 2 |
+      |   |
+      +---+
+
 
   The front planes are 'a' and 'b', where 'a' has two nodes at the base
 
   */
-  std::vector<boost::shared_ptr<Face>> CreateTestPrismFromPoints() const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrism(const CreateVerticalFacesStrategy strategy) const noexcept;
 
   boost::shared_ptr<Face> CreateTestSquare(const Winding winding) const noexcept;
 
   private:
+
+  std::vector<boost::shared_ptr<Face>> CreateTestPrismOneFacePerVerticalFace() const noexcept;
+  std::vector<boost::shared_ptr<Face>> CreateTestPrismTwoFacesPerVerticalFace() const noexcept;
+
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

@@ -23,10 +23,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttictactoegamedialog.h"
 
 #include <cassert>
+#include <stdexcept>
 
 #include <QDesktopWidget>
 
-#include "tictactoe.h"
+#include "tictactoegame.h"
+#include "tictactoewidget.h"
 #include "qttictactoewidget.h"
 #include "qttictactoewinnerdialog.h"
 #include "trace.h"
@@ -34,7 +36,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent)
+ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeGameDialog),
     m_tictactoe(new QtTicTacToeWidget)
@@ -54,35 +56,37 @@ ribi::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent)
   this->move( screen.center() - this->rect().center() );
 }
 
-ribi::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
+ribi::tictactoe::QtTicTacToeGameDialog::~QtTicTacToeGameDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::QtTicTacToeGameDialog::HasWinner()
+void ribi::tictactoe::QtTicTacToeGameDialog::HasWinner()
 {
 
   QtTicTacToeWinnerDialog d;
-  switch (m_tictactoe->GetTicTacToe()->GetWinner())
+  switch (m_tictactoe->GetWidget()->GetWinner())
   {
-    case TicTacToe::player1: d.SetWinnerCross(); break;
-    case TicTacToe::player2: d.SetWinnerCircle(); break;
-    case TicTacToe::draw: d.SetDraw(); break;
-    default: assert(!"Should not get here");
+    case Winner::player1: d.SetWinnerCross(); break;
+    case Winner::player2: d.SetWinnerCircle(); break;
+    case Winner::draw: d.SetDraw(); break;
+    case Winner::no_winner:
+      assert(!"QtTicTacToeGameDialog::HasWinner: should not respond to no winner");
+      throw std::logic_error("QtTicTacToeGameDialog::HasWinner: should not respond to no winner");
   }
   d.exec();
   m_tictactoe->Restart();
 }
 
 #ifndef NDEBUG
-void ribi::QtTicTacToeGameDialog::Test() noexcept
+void ribi::tictactoe::QtTicTacToeGameDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTicTacToeGameDialog::Test");
-  TRACE("Finished ribi::QtTicTacToeGameDialog::Test successfully");
+  TRACE("Starting ribi::tictactoe::QtTicTacToeGameDialog::Test");
+  TRACE("Finished ribi::tictactoe::QtTicTacToeGameDialog::Test successfully");
 }
 #endif

@@ -26,7 +26,9 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "textcanvas.h"
-#include "tictactoe.h"
+#include "tictactoeboard.h"
+#include "tictactoegame.h"
+#include "tictactoewidget.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
@@ -46,9 +48,9 @@ int ribi::TicTacToeMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
     return 1;
   }
 
-  TicTacToe t;
+  tictactoe::Game t;
   std::cout << (*t.ToTextCanvas()) << std::endl;
-  while (t.GetWinner() == TicTacToe::no_winner)
+  while (t.GetWinner() == tictactoe::Winner::no_winner)
   {
     const int x = (std::rand() >> 4) % 3;
     const int y = (std::rand() >> 4) % 3;
@@ -72,7 +74,9 @@ ribi::About ribi::TicTacToeMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/GameTicTacToe.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
+  a.AddLibrary("tictactoe::Board version: " + tictactoe::Board::GetVersion());
+  a.AddLibrary("tictactoe::Game version: " + tictactoe::Game::GetVersion());
+  a.AddLibrary("tictactoe::Widget version: " + tictactoe::Widget::GetVersion());
   return a;
 }
 
@@ -127,6 +131,9 @@ void ribi::TicTacToeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::TicTacToeMenuDialog::Test");
+  {
+    TicTacToeMenuDialog().Execute( { "TicTacToeMenuDialog" } );
+  }
   TRACE("Finished ribi::TicTacToeMenuDialog::Test successfully");
 }
 #endif

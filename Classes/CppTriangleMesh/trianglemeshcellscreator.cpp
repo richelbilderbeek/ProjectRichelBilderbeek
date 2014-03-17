@@ -97,7 +97,8 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
               these_ver_faces[0],
               these_ver_faces[1],
               these_ver_faces[2]
-            }
+            },
+            strategy
           )
         };
         assert(hor_faces[bottom_face_index]);
@@ -124,7 +125,8 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
               these_ver_faces[3],
               these_ver_faces[4],
               these_ver_faces[5]
-            }
+            },
+            strategy
           )
         };
         assert(hor_faces[bottom_face_index]);

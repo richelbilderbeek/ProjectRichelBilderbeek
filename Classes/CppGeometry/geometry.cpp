@@ -297,12 +297,27 @@ bool ribi::Geometry::IsClockwise(
     const auto c(points[2]);
     const auto normal(CalcNormal(a,b,c));
     const auto direction(CalcDotProduct(normal,a - observer));
-    return direction > 0.0;
+    const bool is_clockwise { direction > 0.0 };
+    #ifndef NDEBUG
+    if (!is_clockwise)
+    {
+      TRACE(Geometry().ToStr(a));
+      TRACE(Geometry().ToStr(b));
+      TRACE(Geometry().ToStr(c));
+    }
+    #endif
+    return is_clockwise;
   }
   else
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
+    #ifndef NDEBUG
+    if(!Geometry().IsPlane(points))
+    {
+      TRACE("ERROR");
+    }
+    #endif
     assert(Geometry().IsPlane(points));
     const auto v(
       Plane(points[0],points[1],points[2]).CalcProjection(
