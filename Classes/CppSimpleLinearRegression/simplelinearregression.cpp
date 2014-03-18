@@ -48,8 +48,7 @@ double ribi::SimpleLinearRegression::CalculateVariance(
   return mean_of_squares - (mean * mean);
 }
 
-const std::vector<double>
-  ribi::SimpleLinearRegression::GetAnscombesQuartetX(const int index)
+std::vector<double> ribi::SimpleLinearRegression::GetAnscombesQuartetX(const int index)
 {
   switch (index)
   {
@@ -73,7 +72,7 @@ const std::vector<double>
   }
 }
 
-const std::vector<double>
+std::vector<double>
   ribi::SimpleLinearRegression::GetAnscombesQuartetY(const int index)
 {
   switch (index)

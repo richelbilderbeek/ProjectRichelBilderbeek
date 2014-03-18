@@ -33,7 +33,7 @@ ribi::foam::FvSolutionFile::FvSolutionFile(
 
 const ribi::foam::Header ribi::foam::FvSolutionFile::GetDefaultHeader() noexcept
 {
-  return Header("dictionary","system","","fvSchemes");
+  return Header("dictionary","system","","fvSolution");
 }
 
 #ifndef NDEBUG
@@ -52,9 +52,7 @@ void ribi::foam::FvSolutionFile::Test() noexcept
 std::ostream& ribi::foam::operator<<(std::ostream& os, const FvSolutionFile& f)
 {
   os
-    << f.GetHeader() << '\n'
-    << "" << '\n'
-    << "}\n";
+    << f.GetHeader() << '\n';
   return os;
 }
 

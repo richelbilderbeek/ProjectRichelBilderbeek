@@ -8489,6 +8489,33 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
     }
   );
 
+
+  m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFound",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a> shows an <a href=\"ToolOpenFoam.htm\">OpenFOAM</a>",
+        "  error",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  I posted this question at <a href=\"http://www.cfd-online.com/Forums/openfoam-meshing-technical/131611-checkmesh-states-faces-do-not-form-cell-mesh-appears-correct.html#post480639\">cfd-online.com its OpenFOAM forum</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The top-left image shows the point indices, the others the face indices",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFound.png\" alt=\"ToolOpenFoamErrorOpenCellsFound.png\"/>",
+        "</p>",
+
+
+      }
+    }
+  );
+
+
   m.push_back(
     { "ToolPreDickAdvocaTor",
       {

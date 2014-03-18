@@ -120,6 +120,10 @@ private:
 
   ///Show arrow at tail
   bool m_tail;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

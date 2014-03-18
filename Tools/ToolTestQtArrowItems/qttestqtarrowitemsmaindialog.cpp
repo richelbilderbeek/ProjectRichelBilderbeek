@@ -107,7 +107,7 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       this->ui->view->scene()->addItem(item);
     }
   }
-  //Add quad arrows
+  //Add QtQuadBezierArrowItem
   {
     const int n_items = 18;
     const double ray = 200;
@@ -150,11 +150,52 @@ ribi::QtTestQtArrowItemsMainDialog::QtTestQtArrowItemsMainDialog(QWidget *parent
       this->ui->view->scene()->addItem(item);
     }
   }
-  //ui->view->scene()->update();
+  //Add QtQuadBezierArrowItem, no mid
+  {
+    const int n_items = 18;
+    const double ray = 250;
+    std::vector<QtRoundedRectItem *> rects;
 
+    for (int i=0; i!=n_items; ++i)
+    {
+      const double angle = 2.0 * pi * (static_cast<double>(i) / static_cast<double>(n_items));
+      const double x1 =  std::sin(angle) * ray;
+      const double y1 = -std::cos(angle) * ray;
+      QtRoundedRectItem * rect = nullptr;
+      //if ((i%3)!=1)
+      {
+        rect = new QtRoundedRectItem;
+        rect->SetRoundedRect(QRectF(-4.0,-4.0,4.0,4.0),0.0,0.0);
+      }
+      //else
+      {
+        rect = new QtRoundedTextRectItem(boost::lexical_cast<std::string>(i));
+      }
+      rect->SetFocusPen(QPen(QColor(255,0,0),2));
+      rect->setPos(x1,y1);
+      assert(!rect->scene());
+      this->ui->view->scene()->addItem(rect);
+      rects.push_back(rect);
+
+      rect->m_signal_request_scene_update.connect(
+        boost::bind(&ribi::QtTestQtArrowItemsMainDialog::OnRequestSceneUpdate,this));
+    }
+    for (int i=0; i<n_items-1; i+=2)
+    {
+      assert(i + 1 < n_items);
+      QtQuadBezierArrowItem * const item = new QtQuadBezierArrowItem(
+        rects[(i+0) % n_items],
+        false,
+        nullptr, //Straight line
+        true,
+        rects[(i+1) % n_items]);
+      assert(!item->scene());
+      this->ui->view->scene()->addItem(item);
+    }
+  }
   //Add labeled quad arrows
   {
-    const double ray = 250;
+    const double ray = 300;
     const int n_items = 18;
     std::vector<QtRoundedRectItem *> rects;
     for (int i=0; i!=n_items; ++i)
