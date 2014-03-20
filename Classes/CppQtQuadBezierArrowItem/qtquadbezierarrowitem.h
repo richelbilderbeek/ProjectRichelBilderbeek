@@ -43,7 +43,7 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   QtQuadBezierArrowItem(
     const QGraphicsItem* const from,
     const bool tail,
-    const QGraphicsItem* const mid, HIERO
+    const QGraphicsItem* const mid,
     const bool head,
     const QGraphicsItem* const to,
     QGraphicsItem* parent = 0);
@@ -154,6 +154,10 @@ struct QtQuadBezierArrowItem : public QGraphicsItem
   QPointF GetCenter() const noexcept;
 
   QPointF pos() const = delete;
+
+  #ifndef NDEBUG
+  static void Test() noexcept;
+  #endif
 };
 
 } //~namespace ribi

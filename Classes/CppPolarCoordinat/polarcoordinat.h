@@ -4,8 +4,7 @@
 #include <cassert>
 #include <cmath>
 
-#define USE_CUSTOM_RIBI_COORDINAT
-#include "coordinat.h"
+//#include "coordinat.h"
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"

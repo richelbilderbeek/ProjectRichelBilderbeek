@@ -9,6 +9,7 @@
 #include <boost/cast.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include <QColor>
 #include "tronworldtype.h"
 #pragma GCC diagnostic pop
 
@@ -18,19 +19,13 @@ namespace tron {
 struct Player
 {
   Player(
-    const unsigned char r,
-    const unsigned char g,
-    const unsigned char b)
-  : m_r(r), m_g(g), m_b(b), m_dead(false)
+    const QColor& color)
+  : m_color{color}
   {
 
   }
 
-  const unsigned char m_r;
-  const unsigned char m_g;
-  const unsigned char m_b;
-  bool m_dead;
-
+  const QColor m_color;
   static boost::shared_ptr<WorldType> m_world;
 
   bool IsDead() const { return m_dead; }

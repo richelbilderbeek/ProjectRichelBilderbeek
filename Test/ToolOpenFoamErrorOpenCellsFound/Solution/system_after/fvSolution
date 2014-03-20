@@ -4,8 +4,6 @@ FoamFile
   format   ascii;
   class    dictionary;
   location "system";
-  object   fvSchemes;
+  object   fvSolution;
 }
 
-
-}

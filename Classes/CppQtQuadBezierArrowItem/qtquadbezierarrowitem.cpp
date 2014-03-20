@@ -200,7 +200,8 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
     m_tail(tail),
     m_to(to)
 {
-  assert(from); assert(to); assert(mid);
+  assert(from); assert(to);
+  assert((mid || !mid) && "No mid results in a straight arrow");
   assert(from != to); assert(from != mid); assert(mid != to);
   this->setFlags(
       QGraphicsItem::ItemIsFocusable
@@ -213,7 +214,7 @@ ribi::QtQuadBezierArrowItem::QtQuadBezierArrowItem(
   this->setAcceptHoverEvents(true);
 
   //Put this arrow item under the rect
-  this->setZValue(mid->zValue() - 1.0);
+  if (mid) { setZValue(mid->zValue() - 1.0); }
 }
 
 QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
@@ -221,29 +222,22 @@ QRectF ribi::QtQuadBezierArrowItem::boundingRect() const
   return shape().boundingRect();
 }
 
-//double ribi::QtQuadBezierArrowItem::GetAngle(const double dx, const double dy)
-//{
-//  return Geometry().GetAngle(dx,dy);
-  //const double pi = boost::math::constants::pi<double>();
-  //return pi - (std::atan(dx/dy));
-//}
-
-const QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
+QPointF ribi::QtQuadBezierArrowItem::GetBeyond() const noexcept
 {
   const QPointF center = GetCenter();
-  const double dx_mid_center = m_mid->pos().x() - center.x();
-  const double dy_mid_center = m_mid->pos().y() - center.y();
+  const double dx_mid_center = GetMidItem() ? (GetMidItem()->pos().x() - center.x()) : 0.0;
+  const double dy_mid_center = GetMidItem() ? (GetMidItem()->pos().y() - center.y()) : 0.0;
   const QPointF beyond(center.x() + dx_mid_center + dx_mid_center, center.y() + dy_mid_center + dy_mid_center);
   return beyond;
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
+QPointF ribi::QtQuadBezierArrowItem::GetCenter() const noexcept
 {
   const QPointF center((m_from->pos() + m_to->pos()) / 2.0);
   return center;
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
+QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
 {
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::linestring<Point> Line;
@@ -299,7 +293,7 @@ const QPointF ribi::QtQuadBezierArrowItem::GetHead() const noexcept
   }
 }
 
-const QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
+QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
 {
 
   typedef boost::geometry::model::d2::point_xy<double> Point;
@@ -357,7 +351,7 @@ const QPointF ribi::QtQuadBezierArrowItem::GetTail() const noexcept
 
 std::string ribi::QtQuadBezierArrowItem::GetVersion() noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexcept
@@ -367,7 +361,8 @@ std::vector<std::string> ribi::QtQuadBezierArrowItem::GetVersionHistory() noexce
     "2012-12-13: version 1.1: respond to focus",
     "2012-12-29: version 1.2: fixed bug in GetHead and GetTail that occurs when GetLineRectIntersections returns two points",
     "2013-01-01: version 1.3: added QGraphicsItem getters",
-    "2013-07-10: version 1.4: setting arrow heads emits a notification signal"
+    "2013-07-10: version 1.4: setting arrow heads emits a notification signal",
+    "2014-03-18: version 1.5: allow arrow to be straight"
   };
 }
 
@@ -426,7 +421,8 @@ void ribi::QtQuadBezierArrowItem::mousePressEvent(QGraphicsSceneMouseEvent *even
 void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem *, QWidget *)
 {
   painter->setRenderHint(QPainter::Antialiasing);
-  painter->drawEllipse(this->GetMidItem()->pos(),1,1);
+
+  if (GetMidItem()) painter->drawEllipse(GetMidItem()->pos(),1,1);
 
   if (this->isSelected() || this->hasFocus())
   {

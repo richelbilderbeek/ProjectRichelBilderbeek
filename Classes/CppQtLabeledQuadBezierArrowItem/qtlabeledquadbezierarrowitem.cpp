@@ -39,6 +39,7 @@ ribi::QtLabeledQuadBezierArrowItem::QtLabeledQuadBezierArrowItem(
     (from->pos().x() + to->pos().x()) * 0.49,
     (from->pos().y() + to->pos().y()) * 0.49
   );
+  assert(m_arrow->GetMidItem());
   assert(m_arrow->GetMidItem()->pos() == this->pos());
   assert(m_arrow->GetFromItem()->pos() == from->pos());
   assert(m_arrow->GetToItem()->pos() == to->pos());
@@ -70,6 +71,7 @@ void ribi::QtLabeledQuadBezierArrowItem::keyPressEvent(QKeyEvent *event)
 
 void ribi::QtLabeledQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
 {
+  assert(m_arrow->GetMidItem());
   assert(this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());
   m_arrow->paint(painter,option,widget);
