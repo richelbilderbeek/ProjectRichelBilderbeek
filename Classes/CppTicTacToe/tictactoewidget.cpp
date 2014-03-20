@@ -7,6 +7,7 @@
 #include <cassert>
 #include "textcanvas.h"
 #include "tictactoegame.h"
+#include "trace.h"
 
 #pragma GCC diagnostic pop
 
@@ -16,7 +17,9 @@ ribi::tictactoe::Widget::Widget()
     m_x{1},
     m_y{1}
 {
-
+  #ifndef NDEBUG
+  Test();
+  #endif
 }
 
 bool ribi::tictactoe::Widget::CanSelect(const int x, const int y) const noexcept
@@ -28,6 +31,16 @@ void ribi::tictactoe::Widget::DoMove() noexcept
 {
   assert(GetGame()->CanDoMove(m_x,m_y));
   m_game->DoMove(m_x,m_y);
+}
+
+ribi::tictactoe::Player ribi::tictactoe::Widget::GetCurrentPlayer() const noexcept
+{
+  return GetGame()->GetCurrentPlayer();
+}
+
+int ribi::tictactoe::Widget::GetSummarizedState() const noexcept
+{
+  return GetGame()->GetSummarizedState();
 }
 
 std::string ribi::tictactoe::Widget::GetVersion() noexcept
@@ -85,6 +98,21 @@ void ribi::tictactoe::Widget::Select(const int x, const int y) noexcept
   }
 }
 
+#ifndef NDEBUG
+void ribi::tictactoe::Widget::Test() noexcept
+{
+  {
+    static bool is_tested = false;
+    if (is_tested) return;
+    is_tested = true;
+  }
+  TRACE("Starting ribi::tictactoe::Widget::Test");
+  Widget w;
+  assert(!w.GetVersion().empty());
+  TRACE("Finished ribi::tictactoe::Widget::Test successfully");
+}
+#endif
+
 boost::shared_ptr<ribi::TextCanvas> ribi::tictactoe::Widget::ToTextCanvas() const noexcept
 {
   const boost::shared_ptr<TextCanvas> canvas {
@@ -117,5 +145,3 @@ boost::shared_ptr<ribi::TextCanvas> ribi::tictactoe::Widget::ToTextCanvas() cons
   canvas->PutChar(m_x,m_y,d);
   return canvas;
 }
-
-

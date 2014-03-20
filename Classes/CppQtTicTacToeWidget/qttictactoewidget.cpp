@@ -175,8 +175,14 @@ void ribi::tictactoe::QtTicTacToeWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::tictactoe::QtTicTacToeWidget::Test");
-  QtTicTacToeWidget w;
-  assert(w.GetWidget());
+  {
+    QtTicTacToeWidget w;
+    assert(w.GetWidget());
+  }
+  {
+    Widget w;
+    assert(!w.GetVersion().empty());
+  }
   TRACE("Finished ribi::tictactoe::QtTicTacToeWidget::Test successfully");
 }
 #endif

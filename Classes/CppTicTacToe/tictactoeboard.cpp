@@ -199,6 +199,12 @@ void ribi::tictactoe::Board::SetSummarizedState(const int original_state) noexce
   if (GetSummarizedState() == original_state) return;
 
   assert(original_state >= 0);
+  #ifndef NDEBUG
+  if (original_state >= Helper().IntPower(3,9))
+  {
+    TRACE("ERROR");
+  }
+  #endif
   assert(original_state < Helper().IntPower(3,9));
 
   int s = original_state;

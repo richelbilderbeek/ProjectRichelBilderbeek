@@ -9,7 +9,8 @@ SOURCES += \
     ../../Classes/CppTicTacToe/tictactoegame.cpp \
     ../../Classes/CppTicTacToe/tictactoehelper.cpp \
     ../../Classes/CppTicTacToe/tictactoewidget.cpp \
-    ../../Classes/CppTicTacToe/tictactoekey.cpp
+    ../../Classes/CppTicTacToe/tictactoekey.cpp \
+    ../../Classes/CppTicTacToe/tictactoeai.cpp
 
 HEADERS  += \
     ../../Classes/CppTicTacToe/tictactoewinner.h \
@@ -20,7 +21,8 @@ HEADERS  += \
     ../../Classes/CppTicTacToe/tictactoehelper.h \
     ../../Classes/CppTicTacToe/tictactoewidget.h \
     ../../Classes/CppTicTacToe/tictactoefwd.h \
-    ../../Classes/CppTicTacToe/tictactoekey.h
+    ../../Classes/CppTicTacToe/tictactoekey.h \
+    ../../Classes/CppTicTacToe/tictactoeai.h
 
 OTHER_FILES += \
     ../../Classes/CppTicTacToe/Licence.txt

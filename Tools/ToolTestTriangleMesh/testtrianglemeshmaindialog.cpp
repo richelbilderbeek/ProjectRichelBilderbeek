@@ -43,7 +43,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 {
   PROFILE_FUNC();
 
-  const std::string filename_result_mesh { ribi::fileio::GetTempFileName(".ply") };
+  const auto filename_result_mesh(ribi::fileio::GetTempFileName(".ply"));
 
   //Write some geometries, let Triangle.exe work on it
   std::string filename_node;
@@ -78,14 +78,14 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         1.0 * boost::units::si::meter
       );
 
-      const boost::shared_ptr<ribi::trim::CellsCreator> c {
+      const auto c(
         ribi::trim::CellsCreatorFactory().Create(
           t,
           n_layers,
           layer_height,
           strategy
         )
-      };
+      );
 
       cells = c->GetCells();
     }
@@ -375,6 +375,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 
   std::clog << std::endl;
   std::cout << std::endl;
+
 
   if (show_mesh)
   {

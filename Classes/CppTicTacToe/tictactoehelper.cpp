@@ -3,6 +3,19 @@
 #include <cassert>
 #include <stdexcept>
 
+ribi::tictactoe::Player ribi::tictactoe::Helper::GetOtherPlayer(
+  const ribi::tictactoe::Player player
+) const noexcept
+{
+  switch (player)
+  {
+    case Player::player1: return Player::player2;
+    case Player::player2: return Player::player1;
+  }
+  assert(!"Should not get here");
+  throw std::logic_error("GetOtherPlayer: unknown player");
+}
+
 int ribi::tictactoe::Helper::IntPower(const int base, const int exponent) const noexcept
 {
   assert(exponent != 0

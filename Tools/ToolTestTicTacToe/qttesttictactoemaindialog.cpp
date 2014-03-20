@@ -36,12 +36,12 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcanvas.h"
 #include "qttictactoewidget.h"
 #include "textcanvas.h"
-#include "tictactoe.h"
+#include "tictactoewidget.h"
 #include "trace.h"
 #include "ui_qttesttictactoemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::QtTestTicTacToeMainDialog::QtTestTicTacToeMainDialog(QWidget *parent)
+ribi::tictactoe::QtTestTicTacToeMainDialog::QtTestTicTacToeMainDialog(QWidget *parent)
   : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestTicTacToeMainDialog),
     m_canvas{},
@@ -61,19 +61,19 @@ ribi::QtTestTicTacToeMainDialog::QtTestTicTacToeMainDialog(QWidget *parent)
   {
     assert(ui->verticalLayout);
     assert(!m_canvas);
-    m_canvas = new QtCanvas(m_tictactoewidget->GetTicTacToe()->ToTextCanvas());
+    m_canvas = new ::ribi::QtCanvas(m_tictactoewidget->GetWidget()->ToTextCanvas());
     ui->verticalLayout->addWidget(m_canvas);
   }
 
   m_tictactoewidget->m_signal_changed.connect(
-    boost::bind(&ribi::QtTestTicTacToeMainDialog::OnStateChange,this,boost::lambda::_1)
+    boost::bind(&ribi::tictactoe::QtTestTicTacToeMainDialog::OnStateChange,this,boost::lambda::_1)
   );
   m_tictactoewidget->m_signal_has_winner.connect(
-    boost::bind(&ribi::QtTestTicTacToeMainDialog::OnStateChange,this,boost::lambda::_1)
+    boost::bind(&ribi::tictactoe::QtTestTicTacToeMainDialog::OnStateChange,this,boost::lambda::_1)
   );
 
   QObject::connect(this->m_timer,&QTimer::timeout,
-    this,&ribi::QtTestTicTacToeMainDialog::OnTick);
+    this,&ribi::tictactoe::QtTestTicTacToeMainDialog::OnTick);
 
   m_timer->setInterval(50);
 
@@ -85,15 +85,15 @@ ribi::QtTestTicTacToeMainDialog::QtTestTicTacToeMainDialog(QWidget *parent)
 
 }
 
-ribi::QtTestTicTacToeMainDialog::~QtTestTicTacToeMainDialog()
+ribi::tictactoe::QtTestTicTacToeMainDialog::~QtTestTicTacToeMainDialog()
 {
   delete ui;
   m_timer->stop();
 }
 
-void ribi::QtTestTicTacToeMainDialog::OnTick()
+void ribi::tictactoe::QtTestTicTacToeMainDialog::OnTick()
 {
-  if (m_tictactoewidget->GetTicTacToe()->GetWinner() != TicTacToe::no_winner)
+  if (m_tictactoewidget->GetWidget()->GetWinner() != Winner::no_winner)
   {
     on_button_restart_clicked();
     return;
@@ -113,24 +113,24 @@ void ribi::QtTestTicTacToeMainDialog::OnTick()
   m_tictactoewidget->mousePressEvent(e.get());
 }
 
-void ribi::QtTestTicTacToeMainDialog::OnStateChange(QtTicTacToeWidget*)
+void ribi::tictactoe::QtTestTicTacToeMainDialog::OnStateChange(QtTicTacToeWidget*)
 {
   //Give feedback
   ui->text->clear();
   //Determine game state
   {
     std::string s = "Winner: ";
-    switch (m_tictactoewidget->GetTicTacToe()->GetWinner())
+    switch (m_tictactoewidget->GetWidget()->GetWinner())
     {
-      case TicTacToe::no_winner:
+      case Winner::no_winner:
         s+="none";
         break;
-      case TicTacToe::player1: s+="player 1 ('X')";
+      case Winner::player1: s+="player 1 ('X')";
         break;
-      case TicTacToe::player2:
+      case Winner::player2:
         s+="player 2 ('O')";
         break;
-      case TicTacToe::draw:
+      case Winner::draw:
         s+="draw";
         break;
       default: assert(!"Should not get here");
@@ -139,41 +139,47 @@ void ribi::QtTestTicTacToeMainDialog::OnStateChange(QtTicTacToeWidget*)
   }
   {
     std::string s = "Current active player: ";
-    switch (m_tictactoewidget->GetTicTacToe()->GetCurrentPlayer())
+    switch (m_tictactoewidget->GetWidget()->GetCurrentPlayer())
     {
-      case TicTacToe::player1: s+="player 1 ('X')"; break;
-      case TicTacToe::player2: s+="player 2 ('O')"; break;
+      case Player::player1: s+="player 1 ('X')"; break;
+      case Player::player2: s+="player 2 ('O')"; break;
       default: assert(!"Should not get here");
     }
     ui->text->appendPlainText(s.c_str());
   }
   ui->text->appendPlainText("Summarized state: "
-    + QString::number(m_tictactoewidget->GetTicTacToe()->GetSummarizedState()));
+    + QString::number(m_tictactoewidget->GetWidget()->GetSummarizedState()));
 
-  m_canvas->SetCanvas(m_tictactoewidget->GetTicTacToe()->ToTextCanvas());
+  m_canvas->SetCanvas(m_tictactoewidget->GetWidget()->ToTextCanvas());
 }
 
 #ifndef NDEBUG
-void ribi::QtTestTicTacToeMainDialog::Test() noexcept
+void ribi::tictactoe::QtTestTicTacToeMainDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::QtTestTicTacToeMainDialog::Test");
-  QtTestTicTacToeMainDialog d;
-  assert(!d.GetVersion().empty());
-  TRACE("Finished ribi::QtTestTicTacToeMainDialog::Test successfully");
+  TRACE("Starting ribi::tictactoe::QtTestTicTacToeMainDialog::Test");
+  {
+    QtTestTicTacToeMainDialog d;
+    assert(!d.GetVersion().empty());
+  }
+  {
+    QtTicTacToeWidget w;
+    assert(!w.GetVersion().empty());
+  }
+  TRACE("Finished ribi::tictactoe::QtTestTicTacToeMainDialog::Test successfully");
 }
 #endif
 
-void ribi::QtTestTicTacToeMainDialog::on_button_restart_clicked()
+void ribi::tictactoe::QtTestTicTacToeMainDialog::on_button_restart_clicked()
 {
   m_tictactoewidget->Restart();
 }
 
-void ribi::QtTestTicTacToeMainDialog::on_button_auto_play_clicked()
+void ribi::tictactoe::QtTestTicTacToeMainDialog::on_button_auto_play_clicked()
 {
   if (m_timer->isActive())
   {

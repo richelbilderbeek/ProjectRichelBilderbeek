@@ -24,7 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 
 #include "qthideandshowdialog.h"
-
+#include "tictactoefwd.h"
 
 struct QTableWidget;
 
@@ -35,6 +35,9 @@ namespace Ui {
 namespace ribi {
 
 struct QtCanvas;
+
+namespace tictactoe {
+
 struct QtTicTacToeWidget;
 
 class QtTestTicTacToeMainDialog : public QtHideAndShowDialog
@@ -67,6 +70,7 @@ private slots:
 };
 
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTESTTICTACTOEMAINDIALOG_H

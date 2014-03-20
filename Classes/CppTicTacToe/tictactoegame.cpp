@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "textcanvas.h"
+#include "tictactoeai.h"
 #include "tictactoeboard.h"
 #include "tictactoehelper.h"
 #include "trace.h"
@@ -13,6 +14,9 @@ ribi::tictactoe::Game::Game() noexcept
     m_current_player(Player::player1)
 
 {
+  #ifndef NDEBUG
+  Test();
+  #endif
 
   assert(GetCurrentTurn() == 0);
 }
@@ -217,19 +221,45 @@ void ribi::tictactoe::Game::Test() noexcept
       t.DoMove(i/3,i%3);
       assert(t.CanDoMove(i/3,i%3)==false);
     }
-    //Check all states
-    //59049 = 3^10
-    for (int i=0; i!=Helper().IntPower(3,10); ++i)
+    //Check AI's
     {
-      try
+      for (int a = 0; a!=3; ++a)
       {
-        Board t(i);
-        assert(t.GetSummarizedState() == i);
+        for (int b = 0; b!=3; ++b)
+        {
+          TRACE(a);
+          TRACE(b);
+          boost::shared_ptr<Ai> c;
+          switch (a)
+          {
+            case 0: c.reset(new AiEnforceDraw); break;
+            case 1: c.reset(new AiEnforceWin); break;
+            case 2: c.reset(new AiPlayRandom); break;
+          }
+          assert(c);
+          boost::shared_ptr<Ai> d;
+          switch (b)
+          {
+            case 0: d.reset(new AiEnforceDraw); break;
+            case 1: d.reset(new AiEnforceWin); break;
+            case 2: d.reset(new AiPlayRandom); break;
+          }
+          assert(d);
+          Game g;
+          while (g.GetWinner() == Winner::no_winner)
+          {
+            const std::pair<int,int> move_1(c->SuggestMove(g));
+            assert(g.CanDoMove(move_1.first,move_1.second));
+            g.DoMove(move_1.first,move_1.second);
+            if (g.GetWinner() != Winner::no_winner) break;
+            const std::pair<int,int> move_2(c->SuggestMove(g));
+            assert(g.CanDoMove(move_2.first,move_2.second));
+            g.DoMove(move_2.first,move_2.second);
+          }
+          TRACE(WinnerToName(g.GetWinner()));
+        }
       }
-      catch (std::exception&)
-      {
-        //No problem
-      }
+      assert(1==2);
     }
   }
   TRACE("Finished ribi::tictactoe::Board::Test successfully");

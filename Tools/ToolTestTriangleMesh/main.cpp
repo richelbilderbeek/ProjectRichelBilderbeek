@@ -8,14 +8,38 @@
 #include "Shiny.h"
 #include "testtrianglemeshmaindialog.h"
 
+#include "fileio.h"
 #include "trianglefile.h"
 #include "trace.h"
 #include "plane.h"
 #pragma GCC diagnostic pop
 
 
-int main()
+int main(int argc, char* argv[])
 {
+  {
+    std::stringstream cmd;
+    cmd
+      << R"(%windir%\system32\cmd.exe /K call "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat" "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
+      << " & d: && cd \\" << ribi::fileio::GetPath(argv[0])
+      << " & checkMesh"
+    ;
+    TRACE(cmd.str());
+    std::system(cmd.str().c_str());
+  }
+  assert(1==2);
+  {
+    std::stringstream cmd;
+    cmd
+      << R"(%windir%\system32\cmd.exe /K call "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat" "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
+      << " & d: && cd \\" << ribi::fileio::GetPath(argv[0])
+      << " & checkMesh"
+    ;
+    TRACE(cmd.str());
+    std::system(cmd.str().c_str());
+  }
+  assert(1==2);
+
   START_TRACE();
   PROFILE_FUNC();
   ribi::Plane( {0.0,0.0,0.0},{0.0,1.0,0.0},{1.0,0.0,0.0} );
@@ -28,7 +52,7 @@ int main()
   try
   {
     const double tau { boost::math::constants::two_pi<double>() };
-    const bool show_mesh { true };
+    const bool show_mesh { false };
     ribi::TestTriangleMeshMainDialog(
       {
         ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
@@ -40,6 +64,17 @@ int main()
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
+    {
+      std::stringstream cmd;
+      cmd
+        << R"(%windir%\system32\cmd.exe /K call "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat" "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
+        << " & cd \\" << ribi::fileio::GetPath(argv[0])
+        << " & checkMesh"
+      ;
+      TRACE(cmd.str());
+      std::system(cmd.str().c_str());
+    }
+
     return 0;
   }
   catch (std::exception& e)

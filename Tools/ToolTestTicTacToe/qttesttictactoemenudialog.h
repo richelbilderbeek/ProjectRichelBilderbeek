@@ -2,12 +2,14 @@
 #define QTTESTTICTACTOEMENUDIALOG_H
 
 #include "qthideandshowdialog.h"
+#include "tictactoefwd.h"
 
 namespace Ui {
   class QtTestTicTacToeMenuDialog;
 }
 
 namespace ribi {
+namespace tictactoe {
 
 class QtTestTicTacToeMenuDialog : public QtHideAndShowDialog
 {
@@ -36,6 +38,7 @@ private slots:
   void on_button_start_clicked();
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // QTTESTTICTACTOEMENUDIALOG_H

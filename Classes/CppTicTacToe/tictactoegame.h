@@ -42,7 +42,7 @@ struct Game
   ///# : content\n
   ///0-8: board
   ///9 : current turn\n
-  ///The current turn is stored as:
+  ///The current turn is stored as:\n
   ///[#] : description\n
   /// 0  : ERROR\n
   /// 1  : player1\n

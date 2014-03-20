@@ -15,6 +15,7 @@ enum class Winner
 };
 
 std::string WinnerToStr(const Winner winner) noexcept;
+std::string WinnerToName(const Winner winner) noexcept;
 
 } //~namespace tictactoe
 } //~namespace ribi
