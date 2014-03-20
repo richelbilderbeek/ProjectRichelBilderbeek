@@ -8508,13 +8508,39 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "<p>&nbsp;</p>",
         "<p>",
         "  <img src=\"ToolOpenFoamErrorOpenCellsFound.png\" alt=\"ToolOpenFoamErrorOpenCellsFound.png\"/>",
-        "</p>",
+        "</p>"
 
 
       }
     }
   );
 
+  m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFoundCorrected",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFoundCorrected.htm\">ToolOpenFoamErrorOpenCellsFoundCorrected</a> shows an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> error",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This is a follow-up on <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a>.",
+        "  After that error, I did a 'renumberMesh' and 'zipUpMesh'. These commands put the pseudo-corrected in the folder",
+        "  1.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The image shows the points and faces of the pseudo-corrected mesh, put in fodler 1.",
+        "  The top-left image shows the point indices, the others the face indices. Of the bottom right two folded faces,",
+        "  I number the indices of the face its vertices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFoundCorrected.png\" alt=\"ToolOpenFoamErrorOpenCellsFoundCorrected.png\"/>",
+        "</p>"
+      }
+    }
+  );
 
   m.push_back(
     { "ToolPreDickAdvocaTor",

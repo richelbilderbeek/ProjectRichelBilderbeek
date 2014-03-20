@@ -211,6 +211,15 @@ std::vector<std::string> ribi::c2h::Dialog::FoamFolderToHtml(
     };
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
+  //Info
+  {
+    const boost::shared_ptr<const Info> info(new Info);
+    const std::vector<std::string> w {
+      info->ToHtml(ExtractPageName(foldername))
+    };
+
+    std::copy(w.begin(),w.end(),std::back_inserter(v));
+  }
   //Body
   {
     const std::vector<std::string> files_no_path {
