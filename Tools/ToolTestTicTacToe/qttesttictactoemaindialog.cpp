@@ -36,16 +36,20 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtcanvas.h"
 #include "qttictactoewidget.h"
 #include "textcanvas.h"
+#include "tictactoeais.h"
 #include "tictactoewidget.h"
 #include "trace.h"
 #include "ui_qttesttictactoemaindialog.h"
 #pragma GCC diagnostic pop
 
-ribi::tictactoe::QtTestTicTacToeMainDialog::QtTestTicTacToeMainDialog(QWidget *parent)
-  : QtHideAndShowDialog(parent),
+ribi::tictactoe::QtTestTicTacToeMainDialog::QtTestTicTacToeMainDialog(
+  const boost::shared_ptr<Ai>& player1,
+  const boost::shared_ptr<Ai>& player2,
+  QWidget *parent
+) : QtHideAndShowDialog(parent),
     ui(new Ui::QtTestTicTacToeMainDialog),
     m_canvas{},
-    m_tictactoewidget(new QtTicTacToeWidget),
+    m_tictactoewidget(new QtTicTacToeWidget(player1,player2)),
     m_timer(new QTimer(this))
 {
   #ifndef NDEBUG
@@ -162,12 +166,14 @@ void ribi::tictactoe::QtTestTicTacToeMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::tictactoe::QtTestTicTacToeMainDialog::Test");
+  for (auto ai: Ais().GetAll())
   {
-    QtTestTicTacToeMainDialog d;
+    QtTestTicTacToeMainDialog d(ai,nullptr);
     assert(!d.GetVersion().empty());
   }
+  for (auto ai: Ais().GetAll())
   {
-    QtTicTacToeWidget w;
+    QtTicTacToeWidget w(nullptr,ai);
     assert(!w.GetVersion().empty());
   }
   TRACE("Finished ribi::tictactoe::QtTestTicTacToeMainDialog::Test successfully");

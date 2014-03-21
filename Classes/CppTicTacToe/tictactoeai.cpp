@@ -13,6 +13,20 @@
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+std::string ribi::tictactoe::Ai::GetVersion() noexcept
+{
+  return "1.0";
+}
+
+std::vector<std::string> ribi::tictactoe::Ai::GetVersionHistory() noexcept
+{
+  return {
+    "2014-03-21: version 1.0: initial version"
+  };
+}
+
+std::vector<std::string> ribi::tictactoe::Ai::GetVersionHistory() noexcept;
+
 std::pair<int,int> ribi::tictactoe::AiEnforceDraw::SuggestMove(
   const ribi::tictactoe::Game& game
 ) const
@@ -43,7 +57,7 @@ std::pair<int,int> ribi::tictactoe::AiEnforceDraw::SuggestMove(
   {
     for (int col=0; col!=3; ++col)
     {
-      if (like[col][row] == 0) continue;
+      if (like[col][row] <= 0) continue;
       //Horizontal
       if ( game.GetBoard()->GetSquare((col + 1) % 3,(row + 0) % 3) == Helper().PlayerToSquare(me)
         && game.GetBoard()->GetSquare((col + 2) % 3,(row + 0) % 3) == Helper().PlayerToSquare(me)
@@ -83,7 +97,7 @@ std::pair<int,int> ribi::tictactoe::AiEnforceDraw::SuggestMove(
   {
     for (int col=0; col!=3; ++col)
     {
-      if (like[col][row] == 0) continue;
+      if (like[col][row] <= 0) continue;
       //Horizontal
       if ( game.GetBoard()->GetSquare((col + 1) % 3,(row + 0) % 3) == Helper().PlayerToSquare(other)
         && game.GetBoard()->GetSquare((col + 2) % 3,(row + 0) % 3) == Helper().PlayerToSquare(other)
@@ -131,13 +145,7 @@ std::pair<int,int> ribi::tictactoe::AiEnforceDraw::SuggestMove(
     }
   }
   //Find moves with maximum likedness
-  for (const auto like_score: moves)
-  {
-    TRACE(like_score.first);
-    for (const auto move: like_score.second) { TRACE(move.first); TRACE(move.second); }
-  }
   std::vector<std::pair<int,int>> best_liked( (*moves.rbegin()).second);
-  for (auto i: best_liked) { TRACE(i.first); TRACE(i.second); }
   //Choose one at random
   std::random_shuffle(best_liked.begin(),best_liked.end());
   assert(!best_liked.empty());
@@ -175,7 +183,7 @@ std::pair<int,int> ribi::tictactoe::AiEnforceWin::SuggestMove(
   {
     for (int col=0; col!=3; ++col)
     {
-      if (like[col][row] == 0) continue;
+      if (like[col][row] <= 0) continue;
       //Horizontal
       if ( game.GetBoard()->GetSquare((col + 1) % 3,(row + 0) % 3) == Helper().PlayerToSquare(me)
         && game.GetBoard()->GetSquare((col + 2) % 3,(row + 0) % 3) == Helper().PlayerToSquare(me)
@@ -215,7 +223,7 @@ std::pair<int,int> ribi::tictactoe::AiEnforceWin::SuggestMove(
   {
     for (int col=0; col!=3; ++col)
     {
-      if (like[col][row] == 0) continue;
+      if (like[col][row] <= 0) continue;
       //Horizontal
       if ( game.GetBoard()->GetSquare((col + 1) % 3,(row + 0) % 3) == Helper().PlayerToSquare(other)
         && game.GetBoard()->GetSquare((col + 2) % 3,(row + 0) % 3) == Helper().PlayerToSquare(other)

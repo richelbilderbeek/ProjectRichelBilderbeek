@@ -24,6 +24,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "menudialog.h"
 
 namespace ribi {
+namespace tictactoe {
 
 struct TicTacToeMenuDialog : public MenuDialog
 {
@@ -42,6 +43,7 @@ struct TicTacToeMenuDialog : public MenuDialog
   #endif
 };
 
+} //~namespace tictactoe
 } //~namespace ribi
 
 #endif // TICTACTOEMENUDIALOG_H

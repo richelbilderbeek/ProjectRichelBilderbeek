@@ -5,6 +5,7 @@
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
+#include "tictactoeais.h"
 #include "testtictactoemenudialog.h"
 #include "qtaboutdialog.h"
 #include "qttesttictactoemaindialog.h"
@@ -51,7 +52,7 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_quit_clicked()
 
 void ribi::tictactoe::QtTestTicTacToeMenuDialog::on_button_start_clicked()
 {
-  QtTestTicTacToeMainDialog d;
+  QtTestTicTacToeMainDialog d(nullptr,nullptr);
   d.setStyleSheet(this->styleSheet());
   ShowChild(&d);
 }
@@ -65,7 +66,10 @@ void ribi::tictactoe::QtTestTicTacToeMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::tictactoe::QtTestTicTacToeMenuDialog::Test");
-  QtTestTicTacToeMainDialog();
+  for (auto ai: Ais().GetAll())
+  {
+    QtTestTicTacToeMainDialog(nullptr,ai);
+  }
   assert(TestTicTacToeMenuDialog().GetVersion().empty());
   TRACE("Finished ribi::tictactoe::QtTestTicTacToeMenuDialog::Test successfully");
 }

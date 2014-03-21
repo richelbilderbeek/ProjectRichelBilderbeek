@@ -40,10 +40,14 @@ class QtTicTacToeWidget : public QWidget
 {
   Q_OBJECT
 public:
-  explicit QtTicTacToeWidget(QWidget *parent = 0);
+  explicit QtTicTacToeWidget(
+    const boost::shared_ptr<Ai>& player1,
+    const boost::shared_ptr<Ai>& player2,
+    QWidget *parent = 0);
   boost::shared_ptr<const Widget> GetWidget() const { return m_widget; }
 
-
+  ///Called every second, makes the AI do a move
+  void OnTimer() noexcept;
   void Restart() noexcept;
 
   ///mousePressEvent must be public for TicTacToeTest's
@@ -57,10 +61,13 @@ public:
   boost::signals2::signal<void(QtTicTacToeWidget*)> m_signal_has_winner;
 
 protected:
-  void paintEvent(QPaintEvent *);
-  void resizeEvent(QResizeEvent *);
+  void paintEvent(QPaintEvent *) noexcept;
+  void resizeEvent(QResizeEvent *) noexcept;
 
 private:
+  const boost::shared_ptr<Ai> m_player1;
+  const boost::shared_ptr<Ai> m_player2;
+
   boost::shared_ptr<Widget> m_widget;
 
   void OnChanged();

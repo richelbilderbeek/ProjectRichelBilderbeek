@@ -30,7 +30,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #include <QMouseEvent>
 #include <QPainter>
+#include <QTimer>
 
+#include "tictactoeai.h"
+#include "tictactoeais.h"
 #include "tictactoeboard.h"
 #include "tictactoegame.h"
 #include "tictactoewidget.h"
@@ -38,11 +41,16 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::tictactoe::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
-  QWidget(parent),
-  m_signal_changed{},
-  m_signal_has_winner{},
-  m_widget(new Widget)
+ribi::tictactoe::QtTicTacToeWidget::QtTicTacToeWidget(
+  const boost::shared_ptr<Ai>& player1,
+  const boost::shared_ptr<Ai>& player2,
+  QWidget *parent)
+  : QWidget(parent),
+    m_signal_changed{},
+    m_signal_has_winner{},
+    m_player1{player1},
+    m_player2{player2},
+    m_widget(new Widget)
 {
   #ifndef NDEBUG
   Test();
@@ -51,6 +59,13 @@ ribi::tictactoe::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
   assert(m_widget);
   this->setMinimumHeight(64);
   this->setMinimumWidth(64);
+
+  {
+    QTimer * const timer = new QTimer(this);
+    QObject::connect(timer,&QTimer::timeout,this,&ribi::tictactoe::QtTicTacToeWidget::OnTimer);
+    timer->setInterval(1000);
+    timer->start();
+  }
 
   m_widget->m_signal_changed.connect(
     boost::bind(&QtTicTacToeWidget::OnChanged,this)
@@ -61,7 +76,7 @@ ribi::tictactoe::QtTicTacToeWidget::QtTicTacToeWidget(QWidget *parent) :
 
 std::string ribi::tictactoe::QtTicTacToeWidget::GetVersion() noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::tictactoe::QtTicTacToeWidget::GetVersionHistory() noexcept
@@ -70,6 +85,7 @@ std::vector<std::string> ribi::tictactoe::QtTicTacToeWidget::GetVersionHistory()
     "20xx-xx-xx: version 1.0: initial version",
     "2014-02-03: version 1.1: improved interface",
     "2014-03-17: version 1.2: use Widget as a member variable"
+    "2014-03-21: version 1.3: added computer AI"
   };
 
 }
@@ -93,7 +109,23 @@ void ribi::tictactoe::QtTicTacToeWidget::mousePressEvent(QMouseEvent * e)
   repaint();
 }
 
-void ribi::tictactoe::QtTicTacToeWidget::paintEvent(QPaintEvent *)
+void ribi::tictactoe::QtTicTacToeWidget::OnChanged()
+{
+  repaint();
+  m_signal_changed(this);
+}
+
+void ribi::tictactoe::QtTicTacToeWidget::OnTimer() noexcept
+{
+  if (m_widget->GetWinner() != Winner::no_winner) return;
+  const boost::shared_ptr<const Ai> ai(m_widget->GetCurrentPlayer() == Player::player1 ? m_player1: m_player2);
+  if (!ai) return;
+  const auto move(ai->SuggestMove(*m_widget->GetGame()));
+  m_widget->Select(move.first,move.second);
+  m_widget->DoMove();
+}
+
+void ribi::tictactoe::QtTicTacToeWidget::paintEvent(QPaintEvent *) noexcept
 {
   const int width  = this->width();
   const int height = this->height();
@@ -150,13 +182,8 @@ void ribi::tictactoe::QtTicTacToeWidget::paintEvent(QPaintEvent *)
   }
 }
 
-void ribi::tictactoe::QtTicTacToeWidget::OnChanged()
-{
-  repaint();
-  m_signal_changed(this);
-}
 
-void ribi::tictactoe::QtTicTacToeWidget::resizeEvent(QResizeEvent *)
+void ribi::tictactoe::QtTicTacToeWidget::resizeEvent(QResizeEvent *) noexcept
 {
   repaint();
 }
@@ -175,8 +202,9 @@ void ribi::tictactoe::QtTicTacToeWidget::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::tictactoe::QtTicTacToeWidget::Test");
+  for (auto ai: Ais().GetAll())
   {
-    QtTicTacToeWidget w;
+    QtTicTacToeWidget w(ai,nullptr);
     assert(w.GetWidget());
   }
   {

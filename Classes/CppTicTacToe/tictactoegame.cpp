@@ -65,10 +65,9 @@ std::string ribi::tictactoe::Game::GetVersion() noexcept
 
 std::vector<std::string> ribi::tictactoe::Game::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v {
+  return {
     "2014-03-17: version 1.0: initial version, extracted from Board"
   };
-  return v;
 }
 
 ribi::tictactoe::Winner ribi::tictactoe::Game::GetWinner() const noexcept
@@ -227,8 +226,6 @@ void ribi::tictactoe::Game::Test() noexcept
       {
         for (int b = 0; b!=3; ++b)
         {
-          TRACE(a);
-          TRACE(b);
           boost::shared_ptr<Ai> c;
           switch (a)
           {

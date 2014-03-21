@@ -15,30 +15,8 @@
 #pragma GCC diagnostic pop
 
 
-int main(int argc, char* argv[])
+int main(int, char* argv[])
 {
-  {
-    std::stringstream cmd;
-    cmd
-      << R"(%windir%\system32\cmd.exe /K call "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat" "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-      << " & d: && cd \\" << ribi::fileio::GetPath(argv[0])
-      << " & checkMesh"
-    ;
-    TRACE(cmd.str());
-    std::system(cmd.str().c_str());
-  }
-  assert(1==2);
-  {
-    std::stringstream cmd;
-    cmd
-      << R"(%windir%\system32\cmd.exe /K call "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat" "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-      << " & d: && cd \\" << ribi::fileio::GetPath(argv[0])
-      << " & checkMesh"
-    ;
-    TRACE(cmd.str());
-    std::system(cmd.str().c_str());
-  }
-  assert(1==2);
 
   START_TRACE();
   PROFILE_FUNC();
@@ -52,7 +30,7 @@ int main(int argc, char* argv[])
   try
   {
     const double tau { boost::math::constants::two_pi<double>() };
-    const bool show_mesh { false };
+    const bool show_mesh { true };
     ribi::TestTriangleMeshMainDialog(
       {
         ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
@@ -67,9 +45,15 @@ int main(int argc, char* argv[])
     {
       std::stringstream cmd;
       cmd
-        << R"(%windir%\system32\cmd.exe /K call "C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat" "WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
-        << " & cd \\" << ribi::fileio::GetPath(argv[0])
-        << " & checkMesh"
+        << R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )"
+        << R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
+        // Changing to drive D is important...
+        << " && D: "
+        // ...although this also indicates the drive
+        //<< R"( && cd D:\Projects\Test\ToolOpenFoamErrorOpenCellsFoundCorrected)"
+        // ...although this also indicates the drive
+        << " && cd " << ribi::fileio::GetPath(argv[0])
+        << " && cd .. && dir && checkMesh"
       ;
       TRACE(cmd.str());
       std::system(cmd.str().c_str());
