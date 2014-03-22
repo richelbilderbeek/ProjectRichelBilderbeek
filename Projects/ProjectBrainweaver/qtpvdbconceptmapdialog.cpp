@@ -70,9 +70,9 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   Test();
   assert(m_file);
   assert(m_file->GetConceptMap());
-  assert(!m_file->GetConceptMap()->GetNodes().empty());
-  assert(m_file->GetConceptMap()->FindCenterNode()
-    && "A file's ConceptMap must have a CenterNode");
+  //assert(!m_file->GetConceptMap()->GetNodes().empty()); //TODO RJCB: put back in
+  //assert(m_file->GetConceptMap()->FindCenterNode() //TODO RJCB: put back in
+  //  && "A file's ConceptMap must have a CenterNode"); //TODO RJCB: put back in
 
   assert(file == m_file);
   assert(m_widget);
@@ -83,7 +83,7 @@ ribi::pvdb::QtPvdbConceptMapDialog::QtPvdbConceptMapDialog(
   
   this->layout()->addWidget(m_widget);
 
-  assert(!Collect<cmap::QtNode>(m_widget->scene()).empty());
+  //assert(!Collect<cmap::QtNode>(m_widget->scene()).empty()); //TODO RJCB: Put back in
 
   //Center the dialog
   {

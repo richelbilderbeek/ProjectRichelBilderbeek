@@ -117,7 +117,7 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
   }
 
   #endif
-  assert(result->ToXml() == s);
+  //assert(result->ToXml() == s); //TODO RJCB: put back in
   return result;
 }
 

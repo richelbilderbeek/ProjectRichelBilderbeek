@@ -436,6 +436,7 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
   //Solution:
   // - define point 'center' as the middle between from and to
   // - define point 'beyond' as the mirror point of 'center', using mid_pos as a mirror
+
   const QPointF beyond = GetBeyond();
   const QPointF p_tail_end = GetTail();
   const QPointF p_head_end = GetHead();
@@ -455,7 +456,11 @@ void ribi::QtQuadBezierArrowItem::paint(QPainter* painter, const QStyleOptionGra
       const double dx = beyond.x() - m_from->pos().x();
       const double dy = beyond.y() - m_from->pos().y();
       double angle = Geometry().GetAngle(dx,dy);
-      if (dy >= 0.0) angle = (1.0 * pi) + angle;
+      if (dy >= 0.0) angle = (1.0 * pi) + angle; //???
+      TRACE(dx);
+      TRACE(dy);
+      TRACE(angle);
+      //assert(1==2); //TODO yurtman: put back in
       const QPointF p0(p_tail_end.x(),p_tail_end.y());
       const QPointF p1
         = p0 + QPointF(
