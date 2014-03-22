@@ -486,11 +486,13 @@ void ribi::cmap::ConceptMap::Test() noexcept
         //Count the number of sub concept maps with a center node
         const std::vector<boost::shared_ptr<ConceptMap> > subs = map->CreateSubs();
         const int n_center_nodes_here {
-          std::count_if(subs.begin(),subs.end(),
-            [](const boost::shared_ptr<const ConceptMap> sub)
-            {
-              return CountCenterNodes(sub) > 0;
-            }
+          static_cast<int>(
+            std::count_if(subs.begin(),subs.end(),
+              [](const boost::shared_ptr<const ConceptMap> sub)
+              {
+                return CountCenterNodes(sub) > 0;
+              }
+            )
           )
         };
         const int n_center_nodes_found = n_center_nodes_here;

@@ -120,7 +120,7 @@ boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
   }
   catch (std::exception&)
   {
-    return nullptr;
+    return boost::shared_ptr<PlaneX>();
   }
 }
 
@@ -137,7 +137,7 @@ boost::shared_ptr<ribi::PlaneY> ribi::Plane::CreatePlaneY(
   }
   catch (std::exception&)
   {
-    return nullptr;
+    return boost::shared_ptr<PlaneY>();
   }
 }
 
@@ -154,7 +154,7 @@ boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
   }
   catch (std::exception&)
   {
-    return nullptr;
+    return boost::shared_ptr<PlaneZ>();
   }
 }
 

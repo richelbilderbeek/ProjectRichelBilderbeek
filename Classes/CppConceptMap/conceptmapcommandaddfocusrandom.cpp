@@ -12,7 +12,7 @@ bool ribi::cmap::CommandAddFocusRandom::CanDoCommandSpecific(const Widget * cons
 {
   assert(widget);
   assert(widget->GetConceptMap() || !widget->GetConceptMap());
-  const bool verbose = true;
+  const bool verbose = false;
   if (!widget->GetConceptMap())
   {
     if (verbose) TRACE("AddFocus needs a concept map");
