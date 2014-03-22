@@ -62,7 +62,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
       m_buttons.push_back(button);
       button->setText(command->ToStr().c_str());
       layout->addWidget(button);
-      QObject::connect(button,SIGNAL(clicked),this,SLOT(OnClick));
+      QObject::connect(button,SIGNAL(clicked()),this,SLOT(OnClick()));
     }
 
     assert(m_buttons.size() == CommandFactory::CreateTestCommands().size());
