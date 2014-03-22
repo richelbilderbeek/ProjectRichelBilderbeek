@@ -57,15 +57,18 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnConceptMapChanged()
   m_concept_map.reset(new cmap::QtDisplayConceptMap(concept_map));
   ui->widget_concept_map->layout()->addWidget(m_concept_map.get());
 
+  #ifdef RJCB_TODO //TODO RJCB
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > subs = concept_map->CreateSubs();
   const int n_subs = boost::numeric_cast<int>(subs.size());
   assert(n_subs != 0);
   ui->box_index_sub->setMaximum(n_subs - 1); //-1: 0-based counting
   ui->box_index_sub->setValue(0);
+  #endif
 }
 
 void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
 {
+  #ifdef TODO_RJCB //TODO RJCB: Put back in
   const int i = ui->box_index->value();
   const std::vector<boost::shared_ptr<ribi::cmap::ConceptMap> > v = ribi::cmap::ConceptMapFactory::GetAllTests();
   assert(i < boost::numeric_cast<int>(v.size()));
@@ -84,6 +87,7 @@ void ribi::pvdb::QtPvdbTestCreateSubConceptMapDialog::OnSubConceptMapChanged()
   assert(ui->widget_sub_concept_map->layout());
   m_sub_concept_map.reset(new cmap::QtDisplayConceptMap(sub));
   ui->widget_sub_concept_map->layout()->addWidget(m_sub_concept_map.get());
+  #endif //TODO RJCB: Put back in
 }
 
 

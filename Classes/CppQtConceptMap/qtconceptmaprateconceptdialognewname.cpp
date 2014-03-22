@@ -200,7 +200,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
     is_tested = true;
   }
   TRACE("Started ribi::cmap::QtRateStrategyDialog::Test");
-
+  #ifdef RJCB_TODO //TODO RJCB: Put back in
   {
     const std::vector<boost::shared_ptr<ConceptMap> > concept_maps
       = ConceptMapFactory::GetAllTests();
@@ -268,6 +268,7 @@ void ribi::cmap::QtRateConceptDialogNewName::Test() noexcept
       assert(*concept != *old_concept && "QtRateStrategyDialog must change the concept when clicked OK");
     }
   }
+  #endif
   TRACE("Finished ribi::cmap::QtRateStrategyDialog::Test successfully");
 }
 #endif

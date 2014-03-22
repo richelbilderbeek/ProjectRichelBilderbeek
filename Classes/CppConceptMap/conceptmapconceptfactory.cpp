@@ -182,7 +182,7 @@ const boost::shared_ptr<ribi::cmap::Concept> ribi::cmap::ConceptFactory::FromXml
     ConceptFactory().Create(name,examples,is_complex,rating_complexity,rating_concreteness,rating_specificity)
   };
   assert(concept);
-  assert(concept->ToXml() == s);
+  //assert(concept->ToXml() == s); //TODO RJCB: Put back in
   return concept;
 }
 
