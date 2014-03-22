@@ -341,7 +341,7 @@ const std::vector<boost::shared_ptr<const ribi::cmap::Edge> > ribi::cmap::Concep
 
 const boost::shared_ptr<const ribi::cmap::Node> ribi::cmap::ConceptMap::GetFocalNode() const noexcept
 {
-  if (m_nodes.empty()) return nullptr;
+  if (m_nodes.empty()) return boost::shared_ptr<const Node>();
   return m_nodes[0];
 }
 

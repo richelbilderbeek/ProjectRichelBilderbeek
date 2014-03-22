@@ -62,7 +62,7 @@ ribi::cmap::QtTestConceptMapWidgetDialog::QtTestConceptMapWidgetDialog(QWidget *
       m_buttons.push_back(button);
       button->setText(command->ToStr().c_str());
       layout->addWidget(button);
-      QObject::connect(button,&QPushButton::clicked,this,&QtTestConceptMapWidgetDialog::OnClick);
+      QObject::connect(button,SIGNAL(clicked),this,SLOT(OnClick));
     }
 
     assert(m_buttons.size() == CommandFactory::CreateTestCommands().size());
@@ -180,9 +180,11 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::OnClick()
   );
   if (button_iter == m_buttons.end()) return;
   const int button_index {
-    std::distance(
-      m_buttons.begin(),
-      button_iter
+    static_cast<int>(
+      std::distance(
+        m_buttons.begin(),
+        button_iter
+      )
     )
   };
   assert(button_index >= 0);

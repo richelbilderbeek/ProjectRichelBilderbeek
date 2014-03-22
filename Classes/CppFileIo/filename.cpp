@@ -24,7 +24,7 @@ ribi::fileio::Filename::Filename(
   assert(!m_filename.empty());
 }
 
-ribi::fileio::Filename::~Filename()
+ribi::fileio::Filename::~Filename() noexcept
 {
   if (m_delete_file_on_destroy)
   {

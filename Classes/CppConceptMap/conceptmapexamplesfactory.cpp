@@ -78,15 +78,15 @@ const boost::shared_ptr<ribi::cmap::Examples> ribi::cmap::ExamplesFactory::FromX
 {
   if (s.size() < 20)
   {
-    return nullptr;
+    return boost::shared_ptr<Examples>();
   }
   if (s.substr(0,10) != "<examples>")
   {
-    return nullptr;
+    return boost::shared_ptr<Examples>();
   }
   if (s.substr(s.size() - 11,11) != "</examples>")
   {
-    return nullptr;
+    return boost::shared_ptr<Examples>();
   }
   assert(GetRegexMatches(s,QRegExp("(<examples>)")).size()
       == GetRegexMatches(s,QRegExp("(</examples>)")).size());
@@ -133,7 +133,7 @@ const std::vector<boost::shared_ptr<ribi::cmap::Examples> > ribi::cmap::Examples
   const std::vector<std::vector<int> > is = { {0}, {1}, {0,1,2,3}, {} };
   std::vector<boost::shared_ptr<ribi::cmap::Examples> > v;
   std::transform(is.begin(),is.end(),std::back_inserter(v),
-    [](const std::vector<int>& js)
+    [this](const std::vector<int>& js)
     {
       std::vector<boost::shared_ptr<cmap::Example> > w;
       std::transform(js.begin(),js.end(),std::back_inserter(w),

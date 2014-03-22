@@ -93,15 +93,15 @@ const boost::shared_ptr<ribi::cmap::CenterNode> ribi::cmap::CenterNodeFactory::F
 {
   if (s.size() < 27)
   {
-    return nullptr;
+    return boost::shared_ptr<CenterNode>();
   }
   if (s.substr(0,13) != "<center_node>")
   {
-    return nullptr;
+    return boost::shared_ptr<CenterNode>();
   }
   if (s.substr(s.size() - 14,14) != "</center_node>")
   {
-    return nullptr;
+    return boost::shared_ptr<CenterNode>();
   }
 
   //m_concept

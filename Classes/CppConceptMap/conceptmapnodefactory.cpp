@@ -93,18 +93,18 @@ const boost::shared_ptr<ribi::cmap::Node> ribi::cmap::NodeFactory::FromXml(const
   if (s.size() < 13)
   {
     if (verbose) TRACE("string too short");
-    return nullptr;
+    return boost::shared_ptr<Node>();
 
   }
   if (s.substr(0,6) != "<node>")
   {
     if (verbose) TRACE("incorrect starting tag");
-    return nullptr;
+    return boost::shared_ptr<Node>();
   }
   if (s.substr(s.size() - 7,7) != "</node>")
   {
     if (verbose) TRACE("incorrect ending tag");
-    return nullptr;
+    return boost::shared_ptr<Node>();
   }
 
   //m_concept

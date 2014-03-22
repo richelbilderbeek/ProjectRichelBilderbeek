@@ -108,8 +108,9 @@ ribi::cmap::QtConceptMapRatedConceptDialog::QtConceptMapRatedConceptDialog(
   }
 
   QObject::connect(
-    m_timer,&QTimer::timeout,
-    this,&ribi::cmap::QtConceptMapRatedConceptDialog::DoResizeLists);
+    m_timer,SIGNAL(timeout),
+    this,SLOT(DoResizeLists)
+  );
   m_timer->setInterval(1);
   m_timer->start();
 }
