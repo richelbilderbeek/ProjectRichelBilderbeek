@@ -74,10 +74,7 @@ struct ConceptMap
   ///TODO: remove this member function, use GetCenterNode instead
   std::string GetQuestion() const noexcept;
 
-  ///Obtain the version
   static std::string GetVersion() noexcept;
-
-  ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Similar to operator==, except that the GUI member variables aren't checked for equality

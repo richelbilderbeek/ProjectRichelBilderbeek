@@ -8,18 +8,12 @@ include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
 
 
-#include(../../Classes/CppAbout/CppAbout.pri)
-#include(../../Classes/CppFileIo/CppFileIo.pri)
 include(../../Classes/CppCoordinat/CppCoordinat.pri)
 include(../../Classes/CppFuzzy_equal_to/CppFuzzy_equal_to.pri)
 include(../../Classes/CppGeometry/CppGeometry.pri)
 include(../../Classes/CppPlane/CppPlane.pri)
-#include(../../Classes/CppMenuDialog/CppMenuDialog.pri)
-#include(../../Classes/CppRichelBilderbeekProgram/CppRichelBilderbeekProgram.pri)
 
-#include(../../Classes/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../../Classes/CppQtArrowItem/CppQtArrowItem.pri)
-#include(../../Classes/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../../Classes/CppQtKeyboardFriendlyGraphicsView/CppQtKeyboardFriendlyGraphicsView.pri)
 include(../../Classes/CppQtLabeledQuadBezierArrowItem/CppQtLabeledQuadBezierArrowItem.pri)
 include(../../Classes/CppQtPathArrowItem/CppQtPathArrowItem.pri)

@@ -18,7 +18,7 @@
 
 namespace ribi {
 
-///A 3D plane that must not be perfectly vertical
+///Any 3D plane, even a single point
 ///Can be constructed from its equation and at least three 3D points
 //A plane stores its coefficients in the following form:
 // A.x + B.y + C.z = D
