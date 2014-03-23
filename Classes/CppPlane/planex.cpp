@@ -87,11 +87,11 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Pla
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& point
 ) noexcept
 {
-  return {
+  return Coordinat3D(
     boost::geometry::get<1>(point),
     boost::geometry::get<2>(point),
     boost::geometry::get<0>(point)
-  };
+  );
 }
 
 #ifndef NDEBUG

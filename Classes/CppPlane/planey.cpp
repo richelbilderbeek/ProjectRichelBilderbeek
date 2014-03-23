@@ -106,11 +106,11 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::Pla
 {
   //The 0-2-1 order is confirmed by doing a projection of a triangle on the Y=0 plane
   //on a Y=0 plane
-  return {
+  return Coordinat3D(
     boost::geometry::get<0>(point),
     boost::geometry::get<2>(point),
     boost::geometry::get<1>(point)
-  };
+  );
 }
 
 #ifndef NDEBUG
