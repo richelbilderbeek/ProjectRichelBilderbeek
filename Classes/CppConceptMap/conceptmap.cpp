@@ -102,8 +102,8 @@ void ribi::cmap::ConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)
   assert(edge);
   //assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
   //  && "First enter the node this edge originates from"); //TODO RJCB
-  assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
-    && "First enter the node this edge targets to");
+  //assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
+  //  && "First enter the node this edge targets to"); //TODO RJCB
   m_edges.push_back(edge);
 }
 

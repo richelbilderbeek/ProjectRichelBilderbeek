@@ -24,6 +24,9 @@
 #include "qtconceptmapnode.h"
 #include "qtquadbezierarrowitem.h"
 #include "trace.h"
+
+#include "qtconceptmapcenternode.h"
+
 #pragma GCC diagnostic pop
 
 ribi::cmap::QtEdge::QtEdge(
@@ -49,7 +52,15 @@ ribi::cmap::QtEdge::QtEdge(
   assert(from != to);
   assert(m_from != m_to);
   //m_edge must be initialized before m_arrow
-  m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+  //if 'from' or 'to' are CenterNodes, then no item must be put at the center
+  if (dynamic_cast<QtCenterNode*>(from) || dynamic_cast<QtCenterNode*>(to))
+  {
+    m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),nullptr,edge->HasHeadArrow(),to));
+  }
+  else
+  {
+    m_arrow.reset(new QtQuadBezierArrowItem(from,edge->HasTailArrow(),this,edge->HasHeadArrow(),to));
+  }
   assert(m_arrow);
   assert( m_arrow->HasTail() == m_edge->HasTailArrow() );
   assert( m_arrow->HasHead() == m_edge->HasHeadArrow() );
@@ -333,8 +344,8 @@ void ribi::cmap::QtEdge::paint(QPainter* painter, const QStyleOptionGraphicsItem
     //Notifies the GUI-independent collaborators
     this->m_display_strategy->SetPos(x(),y());
   }
-
-  assert(this->pos() == m_arrow->GetMidItem()->pos());
+  assert(m_arrow);
+  assert(!m_arrow->GetMidItem() || this->pos() == m_arrow->GetMidItem()->pos());
   painter->translate(-this->pos());
   m_arrow->paint(painter,option,widget);
   painter->translate(this->pos());
