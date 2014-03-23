@@ -38,11 +38,12 @@ public:
 
 protected:
   void keyPressEvent(QKeyEvent * event);
+  void resizeEvent(QResizeEvent *);
   void showEvent(QShowEvent *);
 
 private slots:
   void on_button_print_clicked();
-
+  void fitConceptMap();
 private:
   Ui::QtPvdbPrintConceptMapDialog *ui;
 
@@ -52,6 +53,8 @@ private:
   cmap::QtDisplayConceptMap * const m_widget;
 
   const std::vector<QWidget *> CollectWidgets() const;
+
+
 
 };
 
