@@ -11,6 +11,7 @@
 
 #include <QFileDialog>
 #include <QPrinter>
+#include <QTimer>
 
 #include "pvdbfile.h"
 #include "conceptmapconcept.h"
@@ -54,6 +55,9 @@ ribi::pvdb::QtPvdbPrintConceptMapDialog::QtPvdbPrintConceptMapDialog(
   }
 
   //Much work done in ShowEvent
+  {
+    QTimer::singleShot(1000,this,SLOT(fitConceptMap()));
+  }
 }
 
 ribi::pvdb::QtPvdbPrintConceptMapDialog::~QtPvdbPrintConceptMapDialog() noexcept
@@ -136,6 +140,21 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::Print()
   painter.end();
 }
 
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::resizeEvent(QResizeEvent *)
+{
+    fitConceptMap();
+}
+
+void ribi::pvdb::QtPvdbPrintConceptMapDialog::fitConceptMap()
+{
+  assert(m_widget);
+  assert(m_widget->GetConceptMap());
+  const QRectF all_items_rect = m_widget->scene()->itemsBoundingRect();
+  m_widget->setMinimumHeight(all_items_rect.height() + 2);
+  m_widget->fitInView(all_items_rect);
+
+}
+
 void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
 {
   //Concept map
@@ -187,4 +206,5 @@ void ribi::pvdb::QtPvdbPrintConceptMapDialog::showEvent(QShowEvent *)
       ui->frame_concept_map_as_text->layout()->addWidget(widget);
     }
   }
+    fitConceptMap();
 }

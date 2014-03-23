@@ -1,24 +1,17 @@
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+include(../../DesktopApplication.pri)
 
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Werror
-
-TEMPLATE = app
+include(../../Libraries/GeneralConsole.pri)
+include(../../Libraries/GeneralDesktop.pri)
 
 INCLUDEPATH += \
     ../../Classes/CppQtHideAndShowDialog
 
 SOURCES += \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.cpp \
     qtmain.cpp \
     qttesthideandshowmaindialog.cpp
 
 HEADERS += \
-    ../../Classes/CppQtHideAndShowDialog/qthideandshowdialog.h \
     qttesthideandshowmaindialog.h
-
-OTHER_FILES += \
-    ../../Classes/CppQtHideAndShowDialog/Licence.txt
 
 FORMS += \
     qttesthideandshowmaindialog.ui
