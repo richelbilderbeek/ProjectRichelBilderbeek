@@ -51,14 +51,13 @@ struct ConceptMap
   ///Delete a node and all the edges connected to it
   void DeleteNode(const boost::shared_ptr<Node> node);
 
-  ///Check if the ConceptMap is empty
+  ///Check if the ConceptMap is empty, that is: it has no nodes and (thus) no edges
   bool Empty() const;
 
   ///Find the CenterNode, if any
   const boost::shared_ptr<const CenterNode> FindCenterNode() const noexcept;
   const boost::shared_ptr<      CenterNode> FindCenterNode()       noexcept;
 
-  ///Get the edges
   const std::vector<boost::shared_ptr<const Edge> >  GetEdges() const;
   const std::vector<boost::shared_ptr<      Edge> >& GetEdges() { return m_edges; }
 
@@ -66,13 +65,15 @@ struct ConceptMap
   const boost::shared_ptr<const Node> GetFocalNode() const noexcept;
   const boost::shared_ptr<      Node> GetFocalNode()       noexcept;
 
-  ///Get the nodes
   const std::vector<boost::shared_ptr<const Node> >  GetNodes() const;
   const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
 
-  ///Get the focus question
-  ///TODO: remove this member function, use GetCenterNode instead
-  std::string GetQuestion() const noexcept;
+  //Use this instead:
+  //  assert(FindCenterNode());
+  //  assert(FindCenterNode()->GetConcept());
+  //  return FindCenterNode()->GetConcept()->GetName();
+  //
+  //std::string GetQuestion() const noexcept
 
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;

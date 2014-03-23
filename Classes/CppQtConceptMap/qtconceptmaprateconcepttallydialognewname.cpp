@@ -454,11 +454,12 @@ void ribi::cmap::QtRateConceptTallyDialogNewName::Test() noexcept
 
   QtRateConceptTallyDialogNewName d(concept_map);
 
-  //TEMP
+  #ifndef NDEBUG
   {
     if(d.ui->table->columnCount() != 4) TRACE(d.ui->table->columnCount());
     if(d.ui->table->rowCount() != 3) TRACE(d.ui->table->rowCount());
   }
+  #endif
 
   assert(d.ui->table->columnCount() == 4);
   assert(d.ui->table->rowCount() == 3);

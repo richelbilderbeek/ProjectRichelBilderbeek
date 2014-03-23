@@ -102,7 +102,6 @@ void ribi::cmap::Node::Test() noexcept
         assert(*node == *c);
         const std::string s = c->ToXml();
         const boost::shared_ptr<Node> d = NodeFactory().FromXml(s);
-        TRACE(s); //TEMP
         assert(d);
         assert(*c == *d);
       }

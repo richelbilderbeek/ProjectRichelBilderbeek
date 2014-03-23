@@ -179,7 +179,7 @@ void ribi::cmap::QtConceptMapConceptEditDialog::Test() noexcept
         #ifdef CONCEPTMAP_WRITE_TO_CONCEPT
         TRACE("TODO");
         #else
-        TRACE("TODO");
+        //TODO
         //assert(concept != old_concept);
         #endif
       }
