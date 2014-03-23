@@ -51,16 +51,8 @@ To pull your own code:
 git pull origin develop
 </code>
 
-To update with the integration GitHub (note: I am not sure which of these commands is the correct one):
+To update with the integration GitHub:
 
 <code>
 git pull upstream develop
-</code>
-
-<code>
-git fetch upstream develop
-</code>
-
-<code>
-git fetch upstream
 </code>
