@@ -103,7 +103,7 @@
       </sizepolicy>
      </property>
      <property name="text">
-      <string>Maak een lijst en groepeer de items.</string>
+      <string>Maak een lijst en groepeer de items door te slepen. Met F2 kunt u een geselecteerd item bewerken.</string>
      </property>
     </widget>
    </item>

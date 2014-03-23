@@ -1,4 +1,4 @@
-#ifndef QTPVDBCLUSTERWIDGET_H
+ #ifndef QTPVDBCLUSTERWIDGET_H
 #define QTPVDBCLUSTERWIDGET_H
 
 
@@ -64,6 +64,8 @@ private:
 
   ///Write the widget its data to the cluster
   void WriteToCluster();
+
+  void SetCorrectFlags() noexcept;
 };
 
 } //~namespace pvdb

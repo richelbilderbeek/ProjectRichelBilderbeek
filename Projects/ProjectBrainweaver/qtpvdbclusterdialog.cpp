@@ -164,6 +164,10 @@ ribi::pvdb::QtPvdbClusterWidget * ribi::pvdb::QtPvdbClusterDialog::GetWidget()
 
 void ribi::pvdb::QtPvdbClusterDialog::keyPressEvent(QKeyEvent* e)
 {
+  if (!m_widget)
+  {
+    return;
+  }
   if (e->key()  == Qt::Key_Escape)
   {
     close();
