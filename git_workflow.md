@@ -46,6 +46,8 @@ To update with the integration GitHub (note: I am not sure which of these comman
 
 <code>
 git pull upstream develop
+
 git fetch upstream develop
+
 git fetch upstream
 </code>
