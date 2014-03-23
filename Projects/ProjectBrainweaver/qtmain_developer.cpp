@@ -10,7 +10,7 @@
 #include <QIcon>
 #include <QVBoxLayout>
 
-#define TODO_COEN
+//#define TODO_COEN
 #ifdef TODO_COEN
 #include <pvdbfile.h>
 #include <pvdbfilefactory.h>
@@ -103,19 +103,10 @@ int main(int argc, char *argv[])
       assert(concept_map);
       assert(!file->GetConceptMap() && "Can only set concept map once");
       file->SetQuestion(question);
-      file->SetConceptMap(concept_map);
-
-      assert(!file->GetCluster());
-      assert( file->GetConceptMap());
-
-      //file->SetQuestion("Wat zal ik als test focusvraag schrijven?");
       assert(file->GetQuestion() == question);
     }
     ribi::pvdb::QtPvdbClusterDialog d(file);
-
-    assert(!file->GetCluster());
-    assert( file->GetConceptMap());
-    d.exec();
+      d.exec();
   }
   assert(1==2);
   #endif
