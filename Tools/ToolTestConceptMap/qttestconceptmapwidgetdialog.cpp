@@ -274,7 +274,7 @@ void ribi::cmap::QtTestConceptMapWidgetDialog::Test() noexcept
       }
     }
   }
-  if (n_depth >= 1)
+  if (n_depth >= 4)
   {
     TRACE("Random clicking");
     QtTestConceptMapWidgetDialog d;
