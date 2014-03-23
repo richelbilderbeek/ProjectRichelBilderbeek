@@ -27,8 +27,17 @@ git remote add upstream https://github.com/richelbilderbeek/ProjectRichelBilderb
 
 <code>
 git add .
+</code>
+
+<code>
 git add --all
+</code>
+
+<code>
 git commit -m "your description of the commit here"
+</code>
+
+<code>
 git push origin develop
 </code>
 
@@ -46,8 +55,12 @@ To update with the integration GitHub (note: I am not sure which of these comman
 
 <code>
 git pull upstream develop
+</code>
 
+<code>
 git fetch upstream develop
+</code>
 
+<code>
 git fetch upstream
 </code>
