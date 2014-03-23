@@ -2,6 +2,7 @@
 
 #include <cassert>
 
+#include "conceptmap.h"
 #include "conceptmapwidget.h"
 #include "conceptmapedgefactory.h"
 
@@ -23,6 +24,10 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   m_widget = widget;
   m_nodes = m_widget->GetFocus();
   assert(m_nodes.size() == 2);
+  assert(m_nodes[0]);
+  assert(m_nodes[1]);
+  m_widget->GetConceptMap()->HasNode(m_nodes[0]);
+  m_widget->GetConceptMap()->HasNode(m_nodes[1]);
   m_edge = m_widget->CreateNewEdge();
 
   assert(m_widget);

@@ -78,6 +78,9 @@ struct ConceptMap
   static std::string GetVersion() noexcept;
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  bool HasNode(const boost::shared_ptr<const Node>& node) const noexcept;
+  //const std::vector<boost::shared_ptr<      Node> >& GetNodes() { return m_nodes; }
+
   ///Similar to operator==, except that the GUI member variables aren't checked for equality
   static bool HasSameContent(const ConceptMap& lhs, const ConceptMap& rhs);
 

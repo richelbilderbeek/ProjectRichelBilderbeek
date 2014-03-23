@@ -100,16 +100,18 @@ ribi::cmap::ConceptMap::ConceptMap(
 void ribi::cmap::ConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
-  #ifdef TODO_RJCB
+  //#ifdef TODO_RJCB
   if (std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 0)
   {
     TRACE("ERROR");
   }
+  assert(HasNode(edge->GetFrom()));
+  assert(HasNode(edge->GetTo()));
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
     && "First enter the node this edge originates from"); //TODO RJCB
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
     && "First enter the node this edge targets to");
-  #endif
+  //#endif
   m_edges.push_back(edge);
 }
 
@@ -398,6 +400,11 @@ std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
     "2013-12-23: Version 1.1: started versioning",
     "2014-02-08: Version 1.2: support an empty concept map"
   };
+}
+
+bool ribi::cmap::ConceptMap::HasNode(const boost::shared_ptr<const Node>& node) const noexcept
+{
+  return std::count(m_nodes.begin(),m_nodes.end(),node);
 }
 
 bool ribi::cmap::ConceptMap::HasSameContent(

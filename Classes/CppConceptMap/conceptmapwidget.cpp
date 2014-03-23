@@ -122,6 +122,10 @@ boost::shared_ptr<ribi::cmap::Edge> ribi::cmap::Widget::CreateNewEdge() noexcept
   #endif
   const boost::shared_ptr<Node> from { GetFocus()[0] };
   const boost::shared_ptr<Node> to   { GetFocus()[1] };
+  assert(from);
+  assert(to);
+  assert(m_conceptmap->HasNode(from));
+  assert(m_conceptmap->HasNode(to));
   const boost::shared_ptr<Edge> edge {
     EdgeFactory().Create(from,to)
   };
@@ -214,7 +218,7 @@ void ribi::cmap::Widget::DoCommand(const boost::shared_ptr<Command> command) noe
   }
 
   assert(CanDoCommand(command));
-  TRACE(command->ToStr());
+  //TRACE(command->ToStr());
 
   //Undo
   m_undo.push_back(command);
@@ -442,7 +446,7 @@ void ribi::cmap::Widget::Test() noexcept
       assert(widget);
       const boost::shared_ptr<Command> cmd(CommandFactory::CreateTestCommands()[i]);
       assert(cmd);
-      TRACE(cmd->ToStr());
+      //TRACE(cmd->ToStr());
       if (widget->CanDoCommand(cmd))
       {
         widget->DoCommand(cmd);
