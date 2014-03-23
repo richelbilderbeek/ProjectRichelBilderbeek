@@ -83,6 +83,7 @@ void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
     cmap::Competency::uninitialized,true,-1,-1,-1);
   item->setText(0,text.c_str());
   this->addTopLevelItem(item);
+  SetCorrectFlags();
 }
 
 void ribi::pvdb::QtPvdbClusterWidget::DoRandomStuff()
@@ -167,37 +168,40 @@ void ribi::pvdb::QtPvdbClusterWidget::dropEvent(QDropEvent *event)
     }
   }
   #endif
-  //Process all items
+  SetCorrectFlags();
+}
+
+//Process all items
+void ribi::pvdb::QtPvdbClusterWidget::SetCorrectFlags() noexcept
+{
+  const int n_top = this->topLevelItemCount();
+  for (int i=0; i!=n_top; ++i)
   {
-    const int n_top = this->topLevelItemCount();
-    for (int i=0; i!=n_top; ++i)
+    QTreeWidgetItem * const top = this->topLevelItem(i); //FIX
+    //QtPvdbTreeWidgetItem * const top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //BUG 2012-12-30
+    assert(top);
+
+    //Let all top items auto-expand
+    top->setExpanded(true);
+
+    //Allow dropping on top-level items
+    top->setFlags(
+          Qt::ItemIsSelectable
+        | Qt::ItemIsEnabled
+        | Qt::ItemIsEditable
+        | Qt::ItemIsDragEnabled
+        | Qt::ItemIsDropEnabled);
+    assert(GetDepth(top)==0);
+    const int n_child = top->childCount();
+    for (int j=0; j!=n_child; ++j)
     {
-      QTreeWidgetItem * const top = this->topLevelItem(i); //FIX
-      //QtPvdbTreeWidgetItem * const top = dynamic_cast<QtPvdbTreeWidgetItem *>(this->topLevelItem(i)); //BUG 2012-12-30
-      assert(top);
-
-      //Let all top items auto-expand
-      top->setExpanded(true);
-
-      //Allow dropping on top-level items
-      top->setFlags(
-            Qt::ItemIsSelectable
+        assert(GetDepth(top->child(j))==1);
+        //Disallow dropping on non-top-level items
+        top->child(j)->setFlags(
+              Qt::ItemIsSelectable
           | Qt::ItemIsEnabled
           | Qt::ItemIsEditable
-          | Qt::ItemIsDragEnabled
-          | Qt::ItemIsDropEnabled);
-      assert(GetDepth(top)==0);
-      const int n_child = top->childCount();
-      for (int j=0; j!=n_child; ++j)
-      {
-          assert(GetDepth(top->child(j))==1);
-          //Disallow dropping on non-top-level items
-          top->child(j)->setFlags(
-                Qt::ItemIsSelectable
-            | Qt::ItemIsEnabled
-            | Qt::ItemIsEditable
-            | Qt::ItemIsDragEnabled);
-      }
+          | Qt::ItemIsDragEnabled);
     }
   }
 }

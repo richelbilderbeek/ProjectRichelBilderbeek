@@ -10,6 +10,12 @@
 #include <QIcon>
 #include <QVBoxLayout>
 
+#define TODO_COEN
+#ifdef TODO_COEN
+#include <pvdbfile.h>
+#include <pvdbfilefactory.h>
+#endif
+
 #include "pvdbfile.h"
 #include "pvdbhelper.h"
 #include "qtpvdbclusterdialog.h"
@@ -73,9 +79,9 @@ int main(int argc, char *argv[])
   #ifndef NDEBUG
   std::clog << "DEBUG mode" << std::endl;
   ribi::pvdb::TestHelperFunctions();
-  ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
+  //ribi::pvdb::QtPvdbMenuDialog::Test(); //Tests all
   #else
-  std::clog << "RELEASE mode" << std::endl;
+  std::clog << "REL5EASE mode" << std::endl;
   assert(1==2 && "Assume debugging is really disabled");
   #endif
 
@@ -85,6 +91,34 @@ int main(int argc, char *argv[])
   //QtPvdbMenuDialog::Test();
   a.setStyleSheet(CreateStyleSheet().c_str());
   a.setWindowIcon(QIcon(":/images/R.png"));
+
+  #ifdef TODO_COEN
+  {
+    const boost::shared_ptr<ribi::pvdb::File> file = ribi::pvdb::FileFactory::Create();
+    assert(!file->GetCluster());
+    assert(!file->GetConceptMap());
+    {
+      const std::string question = "qtvdbmenudialog.cpp 79?";
+      boost::shared_ptr<ribi::cmap::ConceptMap> concept_map(ribi::pvdb::File::CreateConceptMap(question));
+      assert(concept_map);
+      assert(!file->GetConceptMap() && "Can only set concept map once");
+      file->SetQuestion(question);
+      file->SetConceptMap(concept_map);
+
+      assert(!file->GetCluster());
+      assert( file->GetConceptMap());
+
+      //file->SetQuestion("Wat zal ik als test focusvraag schrijven?");
+      assert(file->GetQuestion() == question);
+    }
+    ribi::pvdb::QtPvdbClusterDialog d(file);
+
+    assert(!file->GetCluster());
+    assert( file->GetConceptMap());
+    d.exec();
+  }
+  assert(1==2);
+  #endif
 
   ribi::pvdb::QtPvdbMenuDialog d;
   if (argc != 1)
