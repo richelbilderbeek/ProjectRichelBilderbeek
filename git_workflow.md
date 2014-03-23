@@ -44,7 +44,7 @@ git pull origin develop
 
 To update with the integration GitHub (note: I am not sure which of these commands is the correct one):
 
-</code>
+<code>
 git pull upstream develop
 git fetch upstream develop
 git fetch upstream
