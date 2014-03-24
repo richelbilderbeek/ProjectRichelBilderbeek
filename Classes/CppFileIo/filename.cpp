@@ -46,18 +46,17 @@ void ribi::fileio::CopyFile(
   const Filename& fileNameTo,
   const CopyMode copy_mode)
 {
-  CopyFile(fileNameFrom.Get(),fileNameTo.Get(),copy_mode);
+  ribi::fileio::FileIo().CopyFile(fileNameFrom.Get(),fileNameTo.Get(),copy_mode);
 }
 
-void ribi::fileio::DeleteFile(const Filename& filename) { DeleteFile(filename.Get()); }
+void ribi::fileio::DeleteFile(const Filename& filename) { ribi::fileio::FileIo().DeleteFile(filename.Get()); }
 bool ribi::fileio::FilesAreIdentical(const Filename& filename_a,const Filename& filename_b)
 {
-  return FilesAreIdentical(filename_a.Get(),filename_b.Get());
+  return ribi::fileio::FileIo().FilesAreIdentical(filename_a.Get(),filename_b.Get());
 }
-std::vector<std::string> ribi::fileio::FileToVector(const Filename& filename) { return FileToVector(filename.Get()); }
-std::string ribi::fileio::GetExtensionNoDot(const Filename& filename) { return GetExtensionNoDot(filename.Get()); }
-bool ribi::fileio::IsRegularFile(const Filename& filename) { return IsRegularFile(filename.Get()); }
-
+std::vector<std::string> ribi::fileio::FileToVector(const Filename& filename) { return ribi::fileio::FileIo().FileToVector(filename.Get()); }
+std::string ribi::fileio::GetExtensionNoDot(const Filename& filename) { return ribi::fileio::FileIo().GetExtensionNoDot(filename.Get()); }
+bool ribi::fileio::IsRegularFile(const Filename& filename) { return ribi::fileio::FileIo().IsRegularFile(filename.Get()); }
 bool ribi::fileio::operator==(const Filename& lhs, const Filename& rhs)
 {
   return lhs.Get() == rhs.Get();

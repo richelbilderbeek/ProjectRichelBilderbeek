@@ -9,7 +9,6 @@
 ribi::foam::BoundaryFileItem::BoundaryFileItem(
   const std::string& name,
   const PatchFieldType patch_field_type,
-  //const std::string& type,
   const int n_faces,
   const FaceIndex n_start_face
   )
@@ -26,7 +25,7 @@ ribi::foam::BoundaryFileItem::BoundaryFileItem(
   assert(m_start_face.Get() >= 0);
 }
 
-const ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
+ribi::foam::FaceIndex ribi::foam::BoundaryFileItem::GetEndFace() const noexcept
 {
   return m_start_face + FaceIndex(m_n_faces);
 }
@@ -55,7 +54,7 @@ void ribi::foam::BoundaryFileItem::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs)
+bool ribi::foam::operator==(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs) noexcept
 {
   return
        lhs.GetName() == rhs.GetName()
@@ -65,12 +64,12 @@ bool ribi::foam::operator==(const BoundaryFileItem& lhs, const BoundaryFileItem&
   ;
 }
 
-bool ribi::foam::operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs)
+bool ribi::foam::operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFileItem& item)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFileItem& item) noexcept
 {
   os
     << "  " << item.GetName() << '\n'

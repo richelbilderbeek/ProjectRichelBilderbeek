@@ -32,7 +32,7 @@ ribi::foam::DecomposeParDictFile::DecomposeParDictFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::DecomposeParDictFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::DecomposeParDictFile::GetDefaultHeader() noexcept
 {
   return Header("dictionary","system","","decomposeParDict");
 }
@@ -50,7 +50,7 @@ void ribi::foam::DecomposeParDictFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const DecomposeParDictFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const DecomposeParDictFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

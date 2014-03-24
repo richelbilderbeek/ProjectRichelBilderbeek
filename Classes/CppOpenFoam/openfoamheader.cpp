@@ -92,7 +92,7 @@ void ribi::foam::Header::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs)
+bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs) noexcept
 {
   if (lhs.GetClass() != rhs.GetClass())
   {
@@ -125,12 +125,12 @@ bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Hea
   return true;
 }
 
-bool ribi::foam::operator!=(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs)
+bool ribi::foam::operator!=(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const Header& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const Header& f) noexcept
 {
   os
     << "FoamFile" << '\n'

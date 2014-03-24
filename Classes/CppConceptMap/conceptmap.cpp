@@ -100,7 +100,8 @@ ribi::cmap::ConceptMap::ConceptMap(
 void ribi::cmap::ConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
-  //#ifdef TODO_RJCB
+  #define TODO_RICHEL
+  #ifdef  TODO_RICHEL
   if (std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 0)
   {
     TRACE("ERROR");
@@ -111,7 +112,7 @@ void ribi::cmap::ConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)
     && "First enter the node this edge originates from"); //TODO RJCB
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
     && "First enter the node this edge targets to");
-  //#endif
+  #endif
   m_edges.push_back(edge);
 }
 

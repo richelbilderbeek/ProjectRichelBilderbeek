@@ -17,7 +17,7 @@ struct TemperatureFile
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
         Header& GetHeader()       noexcept { return m_header; }
 
@@ -38,10 +38,10 @@ struct TemperatureFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const TemperatureFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const TemperatureFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const TemperatureFile& f);
+std::ostream& operator<<(std::ostream& os, const TemperatureFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

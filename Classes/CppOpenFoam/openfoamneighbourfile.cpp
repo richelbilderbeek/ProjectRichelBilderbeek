@@ -42,7 +42,7 @@ bool ribi::foam::NeighbourFile::CanGetItem(
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
-const ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::NeighbourFile::GetDefaultHeader() noexcept
 {
   return Header("labelList","constant/polyMesh","","neighbour");
 }
@@ -60,7 +60,7 @@ const ribi::foam::NeighbourFileItem& ribi::foam::NeighbourFile::GetItem(
   return m_items[ static_cast<int>(face_index.Get()) ];
 }
 
-const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& is)
+ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& is)
 {
   NeighbourFile b;
   is >> b;
@@ -68,7 +68,7 @@ const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(std::istream& i
   return b;
 }
 
-const ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(const std::string& filename)
+ribi::foam::NeighbourFile ribi::foam::NeighbourFile::Parse(const std::string& filename)
 {
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
   fileio::CopyFile(filename,tmp_filename);
@@ -185,7 +185,7 @@ void ribi::foam::NeighbourFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const NeighbourFile& lhs,const NeighbourFile& rhs)
+bool ribi::foam::operator==(const NeighbourFile& lhs,const NeighbourFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -200,7 +200,7 @@ bool ribi::foam::operator==(const NeighbourFile& lhs,const NeighbourFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const NeighbourFile& lhs,const NeighbourFile& rhs)
+bool ribi::foam::operator!=(const NeighbourFile& lhs,const NeighbourFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -284,7 +284,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, NeighbourFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

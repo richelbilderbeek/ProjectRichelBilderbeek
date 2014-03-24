@@ -28,7 +28,7 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
   widget->m_focus.clear();
   widget->m_focus.push_back(node);
 
-  widget->m_signal_set_focus_nodes(widget->GetFocus());
+  widget->m_signal_set_selected_nodes(widget->GetFocus());
 
   assert(m_widget);
   assert(widget);

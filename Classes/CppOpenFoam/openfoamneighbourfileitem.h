@@ -33,7 +33,7 @@ struct NeighbourFileItem
   explicit NeighbourFileItem(const CellIndex cell_index = CellIndex(-1));
 
   ///A CellIndex of -1 denotes that a Face has no Neighbour
-  const CellIndex GetCellIndex() const noexcept { return m_cell_index; }
+  const CellIndex& GetCellIndex() const noexcept { return m_cell_index; }
 
   private:
 
@@ -47,9 +47,9 @@ struct NeighbourFileItem
   friend std::istream& operator>>(std::istream& is, NeighbourFileItem& f);
 };
 
-bool operator==(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs);
-bool operator!=(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs);
-std::ostream& operator<<(std::ostream& os, const NeighbourFileItem& f);
+bool operator==(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs) noexcept;
+bool operator!=(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const NeighbourFileItem& f) noexcept;
 std::istream& operator>>(std::istream& is, NeighbourFileItem& f);
 
 } //~namespace foam

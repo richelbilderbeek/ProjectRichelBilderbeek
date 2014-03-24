@@ -162,6 +162,7 @@ int main(int argc, char *argv[])
       std::cerr << "Incorrect argument: please supply a number from 0 to " << v.size() << std::endl;
     }
   }
+  assert(1==2);
   d.show();
   return a.exec();
 }

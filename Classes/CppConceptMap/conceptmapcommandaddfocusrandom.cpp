@@ -46,7 +46,7 @@ void ribi::cmap::CommandAddFocusRandom::DoCommandSpecific(Widget * const widget)
   m_old_focus = widget->GetFocus();
   assert(std::count(m_old_focus.begin(),m_old_focus.end(),nullptr) == 0);
   const auto focus_to_add(widget->GetRandomNodes(AddConst(m_old_focus)));
-  m_widget->AddFocus(focus_to_add);
+  m_widget->AddSelected(focus_to_add);
   //m_widget->m_signal_set_focus_node();
   //m_widget->m_signal_concept_map_changed();
 
@@ -62,7 +62,7 @@ void ribi::cmap::CommandAddFocusRandom::Undo() noexcept
   assert(std::count(m_old_focus.begin(),m_old_focus.end(),nullptr) == 0);
   m_widget->SetFocus(m_old_focus);
 
-  m_widget->m_signal_set_focus_nodes(m_widget->m_focus);
+  m_widget->m_signal_set_selected_nodes(m_widget->m_focus);
 
   assert(m_widget);
 

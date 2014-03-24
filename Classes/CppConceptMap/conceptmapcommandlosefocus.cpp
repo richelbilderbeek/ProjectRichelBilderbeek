@@ -7,7 +7,7 @@
 bool ribi::cmap::CommandLoseFocus::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return !widget->GetFocus().empty();
+  return !widget->GetFocus();
 }
 
 void ribi::cmap::CommandLoseFocus::DoCommandSpecific(Widget * const widget) noexcept

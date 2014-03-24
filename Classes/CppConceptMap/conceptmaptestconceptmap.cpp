@@ -48,7 +48,7 @@ void ribi::cmap::ConceptMap::Test() noexcept
     {
   #endif
   TRACE("Started ribi::cmap::ConceptMap::Test");
-  const bool trace_verbose = false;
+  const bool trace_verbose = true;
   typedef std::vector<boost::shared_ptr<Node> > Nodes;
 
   if (trace_verbose) { TRACE("operator==, DeepCopy"); }

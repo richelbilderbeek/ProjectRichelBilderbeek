@@ -95,27 +95,27 @@ struct Mesh
   //  const std::vector<boost::shared_ptr<const Coordinat3D> >& v,
   //  const std::vector<Coordinat3D>& w) noexcept;
 
-  static const std::vector<boost::shared_ptr<Boundary> > CreateBoundaries(
+  static std::vector<boost::shared_ptr<Boundary> > CreateBoundaries(
     const Files& files, const std::vector<boost::shared_ptr<Face>>& faces);
 
-  const boost::shared_ptr<BoundaryFile> CreateBoundary() const noexcept;
+  boost::shared_ptr<BoundaryFile> CreateBoundary() const noexcept;
 
   ///Create empty Cells, as much as needed
-  static const std::vector<boost::shared_ptr<Cell> > CreateEmptyCells(
+  static std::vector<boost::shared_ptr<Cell>> CreateEmptyCells(
     const Files& files);
 
-  const boost::shared_ptr<FacesFile> CreateFaces() const noexcept;
+  boost::shared_ptr<FacesFile> CreateFaces() const noexcept;
 
   ///Create the Faces from the points, but cannot initialize Owner and Neighbour
-  static const std::vector<boost::shared_ptr<Face> > CreateFacesWithPoints(
+  static std::vector<boost::shared_ptr<Face>> CreateFacesWithPoints(
     const Files& files,
     const std::vector<boost::shared_ptr<Coordinat3D>>& points);
 
-  const boost::shared_ptr<NeighbourFile> CreateNeighbour() const noexcept;
-  const boost::shared_ptr<OwnerFile> CreateOwner() const noexcept;
-  const boost::shared_ptr<PointsFile> CreatePoints() const noexcept;
+  boost::shared_ptr<NeighbourFile> CreateNeighbour() const noexcept;
+  boost::shared_ptr<OwnerFile> CreateOwner() const noexcept;
+  boost::shared_ptr<PointsFile> CreatePoints() const noexcept;
 
-  static const std::vector<boost::shared_ptr<Coordinat3D> > CreatePoints(const Files& files);
+  static std::vector<boost::shared_ptr<Coordinat3D> > CreatePoints(const Files& files);
 
   ///This member function is called to reorder the faces in such a way
   ///that indices in m_faces are adjacent when they belong to the
@@ -151,10 +151,10 @@ struct Mesh
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const Mesh& mesh);
+  friend std::ostream& operator<<(std::ostream& os, const Mesh& mesh) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const Mesh& mesh);
+std::ostream& operator<<(std::ostream& os, const Mesh& mesh) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

@@ -62,7 +62,7 @@ ribi::foam::BoundaryFileItem& ribi::foam::BoundaryFile::Find(const FaceIndex& fa
   throw std::logic_error("ribi::foam::BoundaryFile::Find");
 }
 
-const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
 {
   const std::string class_name = "polyBoundaryMesh";
   const std::string location   = "constant" + fileio::FileIo().GetPathSeperator() + "polyMesh";
@@ -72,19 +72,19 @@ const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
   return Header(class_name,location,note,object);
 }
 
-const ribi::foam::BoundaryFileItem ribi::foam::BoundaryFile::GetItem(const ribi::foam::BoundaryIndex& boundary_index) const noexcept
+ribi::foam::BoundaryFileItem ribi::foam::BoundaryFile::GetItem(const ribi::foam::BoundaryIndex& boundary_index) const noexcept
 {
   assert(boundary_index.Get() >= 0);
   assert(boundary_index < GetMaxBoundaryIndex());
   return m_items[ boundary_index.Get() ];
 }
 
-const ribi::foam::BoundaryIndex ribi::foam::BoundaryFile::GetMaxBoundaryIndex() const noexcept
+ribi::foam::BoundaryIndex ribi::foam::BoundaryFile::GetMaxBoundaryIndex() const noexcept
 {
   return BoundaryIndex(static_cast<int>(m_items.size()));
 }
 
-const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
+ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 {
   BoundaryFile b;
   is >> b;
@@ -92,7 +92,7 @@ const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
+ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
 {
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
   fileio::CopyFile(filename,tmp_filename);
@@ -213,7 +213,7 @@ void ribi::foam::BoundaryFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs)
+bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -242,7 +242,7 @@ bool ribi::foam::operator==(const BoundaryFile& lhs,const BoundaryFile& rhs)
   return all_items_equal;
 }
 
-bool ribi::foam::operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs)
+bool ribi::foam::operator!=(const BoundaryFile& lhs,const BoundaryFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -326,7 +326,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, BoundaryFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const BoundaryFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

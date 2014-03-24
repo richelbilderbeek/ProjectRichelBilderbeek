@@ -300,7 +300,7 @@ void ribi::foam::Files::CheckMe() const
   TRACE("CheckMe finished successfully");
 }
 
-const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
+boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
@@ -431,7 +431,7 @@ void ribi::foam::Files::CreateCopy(
   }
 }
 
-const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefaultBoundary() noexcept
+boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefaultBoundary() noexcept
 {
   const boost::shared_ptr<BoundaryFile> p {
     new BoundaryFile
@@ -440,7 +440,7 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefau
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateDefaultFaces() noexcept
+boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateDefaultFaces() noexcept
 {
   const boost::shared_ptr<FacesFile> p {
     new FacesFile
@@ -449,7 +449,7 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateDefaultF
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateDefaultNeighbour() noexcept
+boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateDefaultNeighbour() noexcept
 {
   const boost::shared_ptr<NeighbourFile> p {
     new NeighbourFile
@@ -458,7 +458,7 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateDefa
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateDefaultOwner() noexcept
+boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateDefaultOwner() noexcept
 {
   const boost::shared_ptr<OwnerFile> p {
     new OwnerFile
@@ -467,7 +467,7 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateDefaultO
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefaultPoints() noexcept
+boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefaultPoints() noexcept
 {
   const boost::shared_ptr<PointsFile> p {
     new PointsFile
@@ -476,7 +476,7 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefault
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
+boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
@@ -493,7 +493,7 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::Filenames> ribi::foam::Files::CreateFilenames() noexcept
+boost::shared_ptr<ribi::foam::Filenames> ribi::foam::Files::CreateFilenames() noexcept
 {
   const boost::shared_ptr<ribi::foam::Filenames> p {
     new Filenames
@@ -518,7 +518,7 @@ void ribi::foam::Files::CreateFolders(const std::string& folder_name)
   }
 }
 
-const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeighbour(
+boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeighbour(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
@@ -535,7 +535,7 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeig
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
+boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
@@ -556,7 +556,7 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
+boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
@@ -573,7 +573,7 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::CreateTestFiles() noexcept
+std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::CreateTestFiles() noexcept
 {
   std::vector<boost::shared_ptr<ribi::foam::Files>> v;
   //Empty
@@ -797,7 +797,7 @@ void ribi::foam::Files::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs)
+bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs) noexcept
 {
   //Split function for ease in debugging
   if (*lhs.GetBoundary()!= *rhs.GetBoundary())
@@ -838,12 +838,12 @@ bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::File
   return true;
 }
 
-bool ribi::foam::operator!=(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs)
+bool ribi::foam::operator!=(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const Files& files)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const Files& files) noexcept
 {
   os
     << (*files.GetBoundary()) << '\n'

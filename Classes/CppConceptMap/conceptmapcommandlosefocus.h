@@ -28,7 +28,7 @@ struct CommandLoseFocus : public Command
   void Undo() noexcept;
 
   private:
-  std::vector<boost::shared_ptr<Node>> m_old_focus;
+  boost::shared_ptr<Node> m_old_focus;
   Widget * m_widget;
 };
 

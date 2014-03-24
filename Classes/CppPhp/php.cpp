@@ -9,9 +9,9 @@
 #include <boost/lexical_cast.hpp>
 #pragma GCC diagnostic pop
 
-const std::string ribi::php::implode(
+std::string ribi::php::implode(
   const std::string& seperator,
-  const std::vector<std::string>& v)
+  const std::vector<std::string>& v) noexcept
 {
   std::string s;
   if (v.empty()) return s;
@@ -24,9 +24,9 @@ const std::string ribi::php::implode(
   return s;
 }
 
-const std::string ribi::php::implode(
+std::string ribi::php::implode(
   const std::string& seperator,
-  const std::vector<int>& v)
+  const std::vector<int>& v) noexcept
 {
   std::stringstream s;
   s << std::setprecision(17);
@@ -41,9 +41,9 @@ const std::string ribi::php::implode(
   return s.str();
 }
 
-const std::string ribi::php::implode(
+std::string ribi::php::implode(
   const std::string& seperator,
-  const std::array<double,3>& v)
+  const std::array<double,3>& v) noexcept
 {
   std::string s;
   if (v.empty()) return s;
@@ -56,7 +56,7 @@ const std::string ribi::php::implode(
   return s;
 }
 
-template <> const std::string
-  ribi::php::php_private::TypeToStr<int>() { return "int"; }
-template <> const std::string
-  ribi::php::php_private::TypeToStr<double>() { return "float"; }
+template <> std::string
+  ribi::php::php_private::TypeToStr<int>() noexcept { return "int"; }
+template <> std::string
+  ribi::php::php_private::TypeToStr<double>() noexcept { return "float"; }

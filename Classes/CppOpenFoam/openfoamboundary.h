@@ -17,14 +17,14 @@ namespace foam {
 ///A Boundary contains Faces that form a surface boundary
 struct Boundary
 {
-  Boundary(
+  explicit Boundary(
     const std::vector<boost::shared_ptr<Face> >& faces,
     const std::string& name,
     const PatchFieldType type
-  );
+  ) noexcept;
 
   const std::vector<boost::shared_ptr<      Face> >& GetFaces() noexcept { return m_faces; }
-  const std::vector<boost::shared_ptr<const Face> >  GetFaces() const noexcept;
+        std::vector<boost::shared_ptr<const Face> >  GetFaces() const noexcept;
   const std::string& GetName() const noexcept { return m_name; }
   PatchFieldType GetType() const noexcept { return m_type; }
 
@@ -34,10 +34,10 @@ struct Boundary
   const std::string m_name;
   const PatchFieldType m_type;
 
-  friend std::ostream& operator<<(std::ostream& os, const Boundary& boundary);
+  friend std::ostream& operator<<(std::ostream& os, const Boundary& boundary) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const Boundary& boundary);
+std::ostream& operator<<(std::ostream& os, const Boundary& boundary) noexcept;
 
 } //namespace foam
 } //namespace ribi

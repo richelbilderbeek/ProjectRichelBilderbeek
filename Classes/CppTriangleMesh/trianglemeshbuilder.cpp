@@ -264,7 +264,7 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
     }
   }
 
-  //Create a tally sorted as such that the PatchFieldType::no_patch_field comes last
+  //Create a tally sorted as such that the PatchFieldType::no_patch_field comes first
   //so these can be omitted
   typedef std::pair<std::string,int> Pair;
   std::vector<Pair> tally;
@@ -273,22 +273,30 @@ std::string ribi::trim::TriangleMeshBuilder::CreateBoundary(
   std::sort(tally.begin(),tally.end(),
     [boundary_to_patch_field_type_function](const Pair& lhs, const Pair& rhs)
     {
+      return OrderByPatchFieldType(
+        lhs.first,
+        rhs.first,
+        boundary_to_patch_field_type_function(lhs.first),
+        boundary_to_patch_field_type_function(rhs.first)
+      );
+      /*
       if (boundary_to_patch_field_type_function(lhs.first) == ribi::foam::PatchFieldType::no_patch_field)
       {
         if (boundary_to_patch_field_type_function(rhs.first) == ribi::foam::PatchFieldType::no_patch_field)
         {
-          return lhs.first < rhs.first;
+          return lhs.first > rhs.first;
         }
         else
         {
-          return false;
+          return true;
         }
       }
       if (boundary_to_patch_field_type_function(rhs.first) == ribi::foam::PatchFieldType::no_patch_field)
       {
-        return true;
+        return false;
       }
-      return lhs.first < rhs.first;
+      return lhs.first > rhs.first;
+      */
     }
   );
 
@@ -604,6 +612,29 @@ std::string ribi::trim::TriangleMeshBuilder::Implode(
   return s.str();
 }
 
+bool ribi::trim::TriangleMeshBuilder::OrderByPatchFieldType(
+  const std::string lhs_name, const std::string rhs_name,
+  const ribi::foam::PatchFieldType lhs_type, const ribi::foam::PatchFieldType rhs_type
+) noexcept
+{
+  if (lhs_type == ribi::foam::PatchFieldType::no_patch_field)
+  {
+    if (rhs_type == ribi::foam::PatchFieldType::no_patch_field)
+    {
+      return lhs_name > rhs_name;
+    }
+    else
+    {
+      return true;
+    }
+  }
+  if (rhs_type == ribi::foam::PatchFieldType::no_patch_field)
+  {
+    return false;
+  }
+  return lhs_name > rhs_name;
+}
+
 std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder::SortByBoundary(
   std::vector<boost::shared_ptr<Face>> faces,
   const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
@@ -614,24 +645,12 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   std::sort(std::begin(faces),std::end(faces),
     [boundary_to_patch_field_type_function](const boost::shared_ptr<const Face> lhs, const boost::shared_ptr<const Face> rhs)
     {
-      const std::string a { lhs->GetBoundaryType() };
-      const std::string b { rhs->GetBoundaryType() };
-      if (boundary_to_patch_field_type_function(a) == ribi::foam::PatchFieldType::no_patch_field)
-      {
-        if (boundary_to_patch_field_type_function(b) == ribi::foam::PatchFieldType::no_patch_field)
-        {
-          return a < b;
-        }
-        else
-        {
-          return false;
-        }
-      }
-      if (boundary_to_patch_field_type_function(b) == ribi::foam::PatchFieldType::no_patch_field)
-      {
-        return true;
-      }
-      return a < b;
+      return OrderByPatchFieldType(
+        lhs->GetBoundaryType(),
+        rhs->GetBoundaryType(),
+        boundary_to_patch_field_type_function(lhs->GetBoundaryType()),
+        boundary_to_patch_field_type_function(rhs->GetBoundaryType())
+      );
     }
   );
   return faces;
@@ -646,6 +665,11 @@ void ribi::trim::TriangleMeshBuilder::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::trim::TriangleMeshBuilder::Test");
+  //bool OrderByPatchFieldType(
+  //  const std::string lhs_name, const std::string rhs_name,
+  //  const ribi::foam::PatchFieldType lhs_type, const ribi::foam::PatchFieldType rhs_type
+  //) const noexcept;
+
   TRACE("Finished ribi::trim::TriangleMeshBuilder::Test successfully");
 }
 #endif

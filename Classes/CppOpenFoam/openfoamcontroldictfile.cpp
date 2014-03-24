@@ -48,7 +48,7 @@ ribi::foam::ControlDictFile::ControlDictFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::ControlDictFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::ControlDictFile::GetDefaultHeader() noexcept
 {
   return Header("dictionary","system","","controlDict");
 }
@@ -66,7 +66,7 @@ void ribi::foam::ControlDictFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const ControlDictFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ControlDictFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

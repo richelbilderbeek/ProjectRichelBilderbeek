@@ -22,11 +22,11 @@ struct OwnerFile
 
   ///Find the first CellIndex beyond the cell indices present
   ///Or: find the first CellIndex that does not exist anymore
-  const CellIndex CountNumberOfCells() const noexcept;
+  CellIndex CountNumberOfCells() const noexcept;
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
-  const std::vector<OwnerFileItem> GetItems() const noexcept { return m_items; }
+  std::vector<OwnerFileItem> GetItems() const noexcept { return m_items; }
   const OwnerFileItem& GetItem(const FaceIndex& face_index) const noexcept;
 
 
@@ -40,20 +40,20 @@ struct OwnerFile
   std::vector<OwnerFileItem> m_items;
 
   explicit OwnerFile(std::istream& is) : OwnerFile(Parse(is)) {}
-  static const OwnerFile Parse(std::istream& is);
-  static const OwnerFile Parse(const std::string& filename);
+  static OwnerFile Parse(std::istream& is);
+  static OwnerFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const OwnerFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const OwnerFile& f) noexcept;
   friend std::istream& operator>>(std::istream& is, OwnerFile& f);
 };
 
-bool operator==(const OwnerFile& lhs,const OwnerFile& rhs);
-bool operator!=(const OwnerFile& lhs,const OwnerFile& rhs);
-std::ostream& operator<<(std::ostream& os, const OwnerFile& f);
+bool operator==(const OwnerFile& lhs,const OwnerFile& rhs) noexcept;
+bool operator!=(const OwnerFile& lhs,const OwnerFile& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const OwnerFile& f) noexcept;
 std::istream& operator>>(std::istream& is, OwnerFile& f);
 
 } //~namespace foam

@@ -45,19 +45,19 @@ void ribi::foam::FacesFileItem::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const FacesFileItem& lhs, const FacesFileItem& rhs)
+bool ribi::foam::operator==(const FacesFileItem& lhs, const FacesFileItem& rhs) noexcept
 {
   return
        lhs.GetPointIndices() == rhs.GetPointIndices()
   ;
 }
 
-bool ribi::foam::operator!=(const FacesFileItem& lhs, const FacesFileItem& rhs)
+bool ribi::foam::operator!=(const FacesFileItem& lhs, const FacesFileItem& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFileItem& item)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFileItem& item) noexcept
 {
   os
     << item.GetPointIndices().size()

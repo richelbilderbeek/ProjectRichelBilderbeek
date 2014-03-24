@@ -39,8 +39,19 @@ struct Widget
   boost::shared_ptr<const ConceptMap> GetConceptMap() const noexcept { return m_conceptmap; }
   boost::shared_ptr<      ConceptMap> GetConceptMap()       noexcept { return m_conceptmap; }
 
-  std::vector<boost::shared_ptr<const Node>> GetFocus() const noexcept;
-  std::vector<boost::shared_ptr<      Node>> GetFocus()       noexcept;
+  ///There is one item in focus at most
+  ///There can be multiple items selected
+  ///The node in focus is never in the collection of selected nodes
+  ///Use GetFocusAndSelected to get all
+  boost::shared_ptr<const Node> GetFocus() const noexcept;
+  boost::shared_ptr<      Node> GetFocus()       noexcept;
+
+  ///There can be multiple items selected
+  ///There is one item in focus at most
+  ///The node in focus is never in the collection of selected nodes
+  ///Use GetFocusAndSelected to get all
+  std::vector<boost::shared_ptr<const Node>> GetSelected() const noexcept;
+  std::vector<boost::shared_ptr<      Node>> GetSelected()       noexcept;
 
   ///Obtain the version
   static std::string GetVersion() noexcept;
@@ -73,9 +84,9 @@ struct Widget
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_lose_focus_nodes;
 
-  ///Emitted when multiple Nodes receive focus
+  ///Emitted when multiple Nodes are selected
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_focus_nodes;
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_selected_nodes;
 
   private:
 
@@ -85,21 +96,29 @@ struct Widget
   ///- a true Node
   ///- the label in the middle of an edge
   ///- the CenterNode
-  std::vector<boost::shared_ptr<Node>> m_focus;
+  boost::shared_ptr<Node> m_focus;
+
 
   const int m_font_height;
   const int m_font_width;
+
+  ///The elements selected
+  ///- a true Node
+  ///- the label in the middle of an edge
+  ///- the CenterNode
+  std::vector<boost::shared_ptr<Node>> m_selected;
 
   ///The undo stack (use std::vector because it is a true STL container)
   ///The Commands aren't const, because Command::Undo changes their state
   std::vector<boost::shared_ptr<Command>> m_undo;
 
-  ///Add the nodes to the current (can be zero) nodes in focus
-  void AddFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
 
   ///Adds back a deleted Node
   //This is used by CommandDeleteNode::Undo
   void AddNode(const boost::shared_ptr<Node> node) noexcept;
+
+  ///Add the nodes to the current (can be zero) selecetd nodes
+  void AddSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
 
   static boost::shared_ptr<ConceptMap> CreateEmptyConceptMap() noexcept;
 
@@ -133,7 +152,7 @@ struct Widget
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
   ///Set the nodes to the only nodes in focus
-  void SetFocus(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
+  void SetSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
 
   #ifndef NDEBUG
   static void Test() noexcept;

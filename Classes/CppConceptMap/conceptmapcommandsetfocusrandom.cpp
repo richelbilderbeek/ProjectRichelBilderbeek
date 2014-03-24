@@ -41,7 +41,7 @@ void ribi::cmap::CommandSetFocusRandom::Undo() noexcept
   assert(std::count(m_old_focus.begin(),m_old_focus.end(),nullptr) == 0);
   m_widget->SetFocus(m_old_focus);
 
-  m_widget->m_signal_set_focus_nodes(m_widget->m_focus);
+  m_widget->m_signal_set_selected_nodes(m_widget->m_focus);
 
   m_added_focus.clear();
   m_old_focus.clear();

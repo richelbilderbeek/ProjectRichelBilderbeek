@@ -34,7 +34,7 @@ ribi::foam::TemperatureFile::TemperatureFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::TemperatureFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::TemperatureFile::GetDefaultHeader() noexcept
 {
   return Header("volScalarField","0","","T");
 }
@@ -52,7 +52,7 @@ void ribi::foam::TemperatureFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const TemperatureFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const TemperatureFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

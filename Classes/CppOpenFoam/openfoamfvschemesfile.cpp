@@ -31,7 +31,7 @@ ribi::foam::FvSchemesFile::FvSchemesFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::FvSchemesFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::FvSchemesFile::GetDefaultHeader() noexcept
 {
   return Header("dictionary","system","","fvSchemes");
 }
@@ -49,7 +49,7 @@ void ribi::foam::FvSchemesFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const FvSchemesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const FvSchemesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

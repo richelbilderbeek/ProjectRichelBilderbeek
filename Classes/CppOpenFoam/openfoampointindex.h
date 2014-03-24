@@ -24,7 +24,7 @@ struct PointIndex
   friend std::istream& operator>>(std::istream& is, PointIndex& face_index);
 };
 
-std::ostream& operator<<(std::ostream& os, const PointIndex& face_index);
+std::ostream& operator<<(std::ostream& os, const PointIndex& face_index) noexcept;
 std::istream& operator>>(std::istream& is, PointIndex& face_index);
 
 const PointIndex operator+(const PointIndex& lhs, const PointIndex& rhs) noexcept;

@@ -41,7 +41,7 @@ bool ribi::foam::FacesFile::CanGetItem(const ribi::foam::FaceIndex& face_index) 
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
-const ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
 {
   return Header("faceList","constant/polyMesh","","faces");
 }
@@ -53,12 +53,12 @@ const ribi::foam::FacesFileItem& ribi::foam::FacesFile::GetItem(const ribi::foam
 }
 
 
-const ribi::foam::FaceIndex ribi::foam::FacesFile::GetMaxFaceIndex() const noexcept
+ribi::foam::FaceIndex ribi::foam::FacesFile::GetMaxFaceIndex() const noexcept
 {
   return FaceIndex(static_cast<int>(m_items.size()));
 }
 
-const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
+ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
 {
   FacesFile b;
   is >> b;
@@ -66,7 +66,7 @@ const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(const std::string& filename)
+ribi::foam::FacesFile ribi::foam::FacesFile::Parse(const std::string& filename)
 {
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
   fileio::CopyFile(filename,tmp_filename);
@@ -179,7 +179,7 @@ void ribi::foam::FacesFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const FacesFile& lhs,const FacesFile& rhs)
+bool ribi::foam::operator==(const FacesFile& lhs,const FacesFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -194,7 +194,7 @@ bool ribi::foam::operator==(const FacesFile& lhs,const FacesFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const FacesFile& lhs,const FacesFile& rhs)
+bool ribi::foam::operator!=(const FacesFile& lhs,const FacesFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -278,7 +278,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

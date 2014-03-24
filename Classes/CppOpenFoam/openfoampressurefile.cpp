@@ -34,7 +34,7 @@ ribi::foam::PressureFile::PressureFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::PressureFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::PressureFile::GetDefaultHeader() noexcept
 {
   return Header("volScalarField","0","","p");
 }
@@ -52,7 +52,7 @@ void ribi::foam::PressureFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PressureFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PressureFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

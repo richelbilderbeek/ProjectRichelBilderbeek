@@ -29,11 +29,11 @@ int main(int, char* argv[])
 
   try
   {
-    const double tau { boost::math::constants::two_pi<double>() };
-    const bool show_mesh { true };
+    const double pi { boost::math::constants::pi<double>() };
+    const bool show_mesh { false };
     ribi::TestTriangleMeshMainDialog(
       {
-        ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
+        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.25,1.0)
         //ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
       },
       show_mesh,

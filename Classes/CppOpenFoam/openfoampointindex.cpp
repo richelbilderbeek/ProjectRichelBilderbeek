@@ -59,7 +59,7 @@ ribi::foam::PointIndex& ribi::foam::PointIndex::operator-=(const PointIndex& rhs
 }
 
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PointIndex& face_index)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PointIndex& face_index) noexcept
 {
   os << face_index.Get();
   return os;

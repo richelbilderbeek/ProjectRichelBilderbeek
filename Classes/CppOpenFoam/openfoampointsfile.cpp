@@ -34,12 +34,12 @@ ribi::foam::PointsFile::PointsFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::PointsFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::PointsFile::GetDefaultHeader() noexcept
 {
   return Header("vectorField","constant/polyMesh","","points");
 }
 
-const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
+ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
 {
   PointsFile b;
   is >> b;
@@ -47,7 +47,7 @@ const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename)
+ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename)
 {
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
   fileio::CopyFile(filename,tmp_filename);
@@ -173,7 +173,7 @@ void ribi::foam::PointsFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const PointsFile& lhs,const PointsFile& rhs)
+bool ribi::foam::operator==(const PointsFile& lhs,const PointsFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -188,7 +188,7 @@ bool ribi::foam::operator==(const PointsFile& lhs,const PointsFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const PointsFile& lhs,const PointsFile& rhs)
+bool ribi::foam::operator!=(const PointsFile& lhs,const PointsFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -272,7 +272,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, PointsFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

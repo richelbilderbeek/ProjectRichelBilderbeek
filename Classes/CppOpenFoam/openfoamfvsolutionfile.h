@@ -16,7 +16,7 @@ struct FvSolutionFile
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   private:
@@ -28,10 +28,10 @@ struct FvSolutionFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f);
+std::ostream& operator<<(std::ostream& os, const FvSolutionFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

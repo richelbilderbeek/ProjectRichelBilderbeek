@@ -38,9 +38,9 @@ struct PointsFileItem
   friend std::istream& operator>>(std::istream& is, PointsFileItem& f);
 };
 
-bool operator==(const PointsFileItem& lhs, const PointsFileItem& rhs);
-bool operator!=(const PointsFileItem& lhs, const PointsFileItem& rhs);
-std::ostream& operator<<(std::ostream& os, const PointsFileItem& f);
+bool operator==(const PointsFileItem& lhs, const PointsFileItem& rhs) noexcept;
+bool operator!=(const PointsFileItem& lhs, const PointsFileItem& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const PointsFileItem& f) noexcept;
 std::istream& operator>>(std::istream& is, PointsFileItem& f);
 
 } //~namespace foam

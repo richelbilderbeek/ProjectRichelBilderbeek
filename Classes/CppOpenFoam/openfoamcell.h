@@ -34,8 +34,8 @@ struct Cell
   void AssignOwnedFaces(const std::vector<boost::shared_ptr<Face>>& owned_faces);
 
   //const boost::shared_ptr<const Cell> GetNeighbour() const noexcept;
-  const std::vector<boost::shared_ptr<const Face> > GetOwnedFaces() const noexcept;
-  const std::vector<boost::shared_ptr<      Face> > GetOwnedFaces()       noexcept { return m_owned_faces; }
+        std::vector<boost::shared_ptr<const Face> >  GetOwnedFaces() const noexcept;
+  const std::vector<boost::shared_ptr<      Face> >& GetOwnedFaces()       noexcept { return m_owned_faces; }
 
   bool HasFace(const boost::shared_ptr<const Face> face) const noexcept;
   bool OwnsFace(const boost::shared_ptr<const Face> face) const noexcept;
@@ -48,10 +48,10 @@ struct Cell
   ///m_owned_faces is a subset of m_all_faces
   std::vector<boost::shared_ptr<Face>> m_owned_faces;
 
-  friend std::ostream& operator<<(std::ostream& os, const Cell& cell);
+  friend std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const Cell& cell);
+std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
 
 } //namespace foam
 } //namespace ribi

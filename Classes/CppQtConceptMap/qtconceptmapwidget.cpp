@@ -63,7 +63,7 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   m_widget->m_signal_lose_focus_nodes.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnLoseFocusNodes,this,boost::lambda::_1)
   );
-  m_widget->m_signal_set_focus_nodes.connect(
+  m_widget->m_signal_set_selected_nodes.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNodes,this,boost::lambda::_1)
   );
 }

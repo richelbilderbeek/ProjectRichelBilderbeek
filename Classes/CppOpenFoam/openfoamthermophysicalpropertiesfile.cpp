@@ -34,7 +34,7 @@ ribi::foam::ThermophysicalPropertiesFile::ThermophysicalPropertiesFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::ThermophysicalPropertiesFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::ThermophysicalPropertiesFile::GetDefaultHeader() noexcept
 {
   return Header("dictionary","constant","","thermophysicalProperties");
 }
@@ -52,7 +52,7 @@ void ribi::foam::ThermophysicalPropertiesFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const ThermophysicalPropertiesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ThermophysicalPropertiesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

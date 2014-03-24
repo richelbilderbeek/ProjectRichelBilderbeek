@@ -75,10 +75,17 @@ struct TriangleMeshBuilder
     const std::string& seperator,
     const std::vector<int>& v) noexcept;
 
+  ///no_patch_field comes first, name comes second
+  static bool OrderByPatchFieldType(
+    const std::string lhs_name, const std::string rhs_name,
+    const ribi::foam::PatchFieldType lhs_type, const ribi::foam::PatchFieldType rhs_type
+  ) noexcept;
+
   static std::vector<boost::shared_ptr<Face>> SortByBoundary(
     std::vector<boost::shared_ptr<Face>> faces,
     const std::function<ribi::foam::PatchFieldType(const std::string&)> boundary_to_patch_field_type_function
   ) noexcept;
+
 
   #ifndef NDEBUG
   static void Test() noexcept;

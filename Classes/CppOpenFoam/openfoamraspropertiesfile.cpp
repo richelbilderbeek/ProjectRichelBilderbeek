@@ -50,7 +50,7 @@ void ribi::foam::RasPropertiesFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const RasPropertiesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const RasPropertiesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

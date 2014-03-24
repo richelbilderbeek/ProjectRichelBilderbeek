@@ -53,7 +53,7 @@ void ribi::foam::VelocityFieldFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const VelocityFieldFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const VelocityFieldFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

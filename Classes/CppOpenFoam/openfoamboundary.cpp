@@ -11,7 +11,7 @@ ribi::foam::Boundary::Boundary(
   const std::vector<boost::shared_ptr<Face> >& faces,
   const std::string& name,
   const PatchFieldType type
-  )
+  ) noexcept
   : m_faces(faces),
     m_name(name),
     m_type(type)
@@ -19,7 +19,7 @@ ribi::foam::Boundary::Boundary(
 
 }
 
-const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Boundary::GetFaces() const noexcept
+std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Boundary::GetFaces() const noexcept
 {
   std::vector<boost::shared_ptr<const ribi::foam::Face>> v;
   std::transform(
@@ -43,7 +43,7 @@ const std::vector<boost::shared_ptr<const ribi::foam::Face> > ribi::foam::Bounda
   return v;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Boundary& boundary)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Boundary& boundary) noexcept
 {
   os
     << boundary.m_name << '\n'

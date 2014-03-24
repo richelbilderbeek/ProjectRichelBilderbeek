@@ -35,7 +35,7 @@ int ribi::TriangleFile::CountVertices() const noexcept
   return sum;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 1.0 * scale}, //0
@@ -52,7 +52,7 @@ const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<doubl
   return v;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHouse(const double scale) noexcept
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHouse(const double scale) noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 2.0 * scale}, //0
@@ -66,7 +66,7 @@ const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<doubl
   return v;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapePolygon(
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapePolygon(
   const int n,
   const double rotation,
   const double scale
@@ -89,7 +89,7 @@ const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<doubl
   return v;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeTriangle(const double scale) noexcept
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeTriangle(const double scale) noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 0.0 * scale}, //0
@@ -155,12 +155,12 @@ void ribi::TriangleFile::ExecuteTriangle(
   fileio::FileIo().DeleteFile(filename);
 }
 
-const std::string ribi::TriangleFile::GetVersion() noexcept
+std::string ribi::TriangleFile::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
+std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
 {
   return {
     "2014-02-07: Version 1.0: initial version"
@@ -199,7 +199,7 @@ void ribi::TriangleFile::Test() noexcept
 }
 #endif
 
-const std::string ribi::TriangleFile::ToStr() const noexcept
+std::string ribi::TriangleFile::ToStr() const noexcept
 {
   std::stringstream s;
   s << std::setprecision(6) << std::fixed;
