@@ -43,7 +43,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
 {
   PROFILE_FUNC();
 
-  const auto filename_result_mesh(ribi::fileio::GetTempFileName(".ply"));
+  const auto filename_result_mesh(ribi::fileio::FileIo().GetTempFileName(".ply"));
 
   //Write some geometries, let Triangle.exe work on it
   std::string filename_node;

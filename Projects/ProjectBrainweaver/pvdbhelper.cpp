@@ -56,7 +56,7 @@ std::vector<std::string> ribi::pvdb::GetRegexMatches(
 
 std::vector<std::string> ribi::pvdb::SafeFileToVector(const std::string& filename)
 {
-  std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }

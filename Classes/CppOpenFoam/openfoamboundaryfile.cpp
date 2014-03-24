@@ -65,7 +65,7 @@ ribi::foam::BoundaryFileItem& ribi::foam::BoundaryFile::Find(const FaceIndex& fa
 const ribi::foam::Header ribi::foam::BoundaryFile::GetDefaultHeader() noexcept
 {
   const std::string class_name = "polyBoundaryMesh";
-  const std::string location   = "constant" + fileio::GetPathSeperator() + "polyMesh";
+  const std::string location   = "constant" + fileio::FileIo().GetPathSeperator() + "polyMesh";
   const std::string note       = "";
   const std::string object     = "boundary";
 
@@ -94,13 +94,13 @@ const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 
 const ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
 {
-  const std::string tmp_filename { fileio::GetTempFileName() };
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
   fileio::CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   const ribi::foam::BoundaryFile file { Parse(f) };
   f.close();
-  fileio::DeleteFile(tmp_filename);
+  fileio::FileIo().DeleteFile(tmp_filename);
   return file;
 }
 
@@ -194,12 +194,12 @@ void ribi::foam::BoundaryFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         TRACE("ERROR");
         TRACE(filename);
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       BoundaryFile b(filename);
       if (b.GetItems().empty())
       {

@@ -24,7 +24,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetAlphat() const noexcept
 {
   return ribi::fileio::Filename(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "alphat"
   );
 }
@@ -33,9 +33,9 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetBoundary() const noexcept
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "boundary"
   );
 }
@@ -44,9 +44,9 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetFaces() const noexcept
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "faces"
   );
 }
@@ -55,9 +55,9 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetNeighbour() const noexcep
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "neighbour"
   );
 }
@@ -71,7 +71,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetControlDict() const noexc
 {
   return ribi::fileio::Filename(
       "system"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "controlDict"
   );
 }
@@ -80,7 +80,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetFvSchemes() const noexcep
 {
   return ribi::fileio::Filename(
       "system"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "fvSchemes"
   );
 }
@@ -89,7 +89,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetFvSolution() const noexce
 {
   return ribi::fileio::Filename(
       "system"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "fvSolution"
   );
 }
@@ -98,9 +98,9 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetOwner() const noexcept
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "owner"
   );
 }
@@ -109,9 +109,9 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetPoints() const noexcept
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "points"
   );
 }
@@ -120,7 +120,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetPressureField() const noe
 {
   return ribi::fileio::Filename(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "p"
   );
 }
@@ -129,7 +129,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetTemperatureField() const 
 {
   return ribi::fileio::Filename(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "T"
   );
 }
@@ -138,7 +138,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetThermophysicalProperties(
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "thermophysicalProperties"
   );
 }
@@ -147,7 +147,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetTransportProperties() con
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "transportProperties"
   );
 }
@@ -156,7 +156,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetTurbulenceProperties() co
 {
   return ribi::fileio::Filename(
       "constant"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "turbulenceProperties"
   );
 }
@@ -165,7 +165,7 @@ const ribi::fileio::Filename ribi::foam::Filenames::GetVelocityField() const noe
 {
   return ribi::fileio::Filename(
       "0"
-    + fileio::GetPathSeperator()
+    + fileio::FileIo().GetPathSeperator()
     + "U"
   );
 }

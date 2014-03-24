@@ -52,7 +52,7 @@ int main(int, char* argv[])
         // ...although this also indicates the drive
         //<< R"( && cd D:\Projects\Test\ToolOpenFoamErrorOpenCellsFoundCorrected)"
         // ...although this also indicates the drive
-        << " && cd " << ribi::fileio::GetPath(argv[0])
+        << " && cd " << ribi::fileio::FileIo().GetPath(argv[0])
         << " && cd .. && dir && checkMesh"
       ;
       TRACE(cmd.str());

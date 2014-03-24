@@ -45,11 +45,11 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
 
   for (const std::string& folder: GetAllFolders())
   {
-    if (!ribi::fileio::IsFolder(folder))
+    if (!ribi::fileio::FileIo().IsFolder(folder))
     {
-      ribi::fileio::CreateFolder(folder);
+      ribi::fileio::FileIo().CreateFolder(folder);
     }
-    assert(ribi::fileio::IsFolder(folder));
+    assert(ribi::fileio::FileIo().IsFolder(folder));
   }
 
   //Remove cells with less than 8 faces or less than 8 faces with an owner
@@ -563,7 +563,7 @@ std::vector<std::string> ribi::trim::TriangleMeshBuilder::GetAllFolders() const 
   return {
     "0",
     "constant",
-    "constant" + ribi::fileio::GetPathSeperator() + "polyMesh",
+    "constant" + ribi::fileio::FileIo().GetPathSeperator() + "polyMesh",
     "system"
   };
 }

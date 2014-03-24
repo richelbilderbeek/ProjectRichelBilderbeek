@@ -36,10 +36,13 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
-ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(QWidget *parent)
-  : QtHideAndShowDialog(parent),
+ribi::tictactoe::QtTicTacToeGameDialog::QtTicTacToeGameDialog(
+  const boost::shared_ptr<Ai>& player1,
+  const boost::shared_ptr<Ai>& player2,
+  QWidget *parent
+) : QtHideAndShowDialog(parent),
     ui(new Ui::QtTicTacToeGameDialog),
-    m_tictactoe(new QtTicTacToeWidget)
+    m_tictactoe(new QtTicTacToeWidget(player1,player2))
 {
   #ifndef NDEBUG
   Test();

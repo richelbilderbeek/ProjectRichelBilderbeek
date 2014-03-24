@@ -39,7 +39,7 @@ ribi::About ribi::TestTriangleMeshMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestTriangleMesh.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("FileIo version: " + fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Plane version: "
     + Plane(

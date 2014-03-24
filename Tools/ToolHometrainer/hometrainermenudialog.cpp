@@ -67,14 +67,14 @@ int ribi::HometrainerMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     CreateExamples();
     return 0;
   }
-  if (fileio::IsRegularFile(arg))
+  if (fileio::FileIo().IsRegularFile(arg))
   {
     HometrainerMainDialog d(arg);
     d.Execute();
     return 0;
   }
   if ( (arg == "-f" || arg == "--filename")
-    && argc >= 3 && fileio::IsRegularFile(argv[2]))
+    && argc >= 3 && fileio::FileIo().IsRegularFile(argv[2]))
   {
     HometrainerMainDialog d(argv[2]);
     d.Execute();
@@ -96,7 +96,7 @@ ribi::About ribi::HometrainerMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
-  a.AddLibrary("FileIo version: " + ribi::fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("Hometrainer version: " + ribi::HometrainerMenuDialog::GetVersion());
   a.AddLibrary("MultipleChoiceQuestion version: " + MultipleChoiceQuestion::GetVersion());
   a.AddLibrary("MultipleChoiceQuestionDialog version: " + MultipleChoiceQuestionDialog::GetVersion());

@@ -118,7 +118,7 @@ void ribi::QtRichelBilderbeekGalleryMenuDialog::on_button_create_html_clicked()
   QMessageBox box;
   box.setWindowIcon(this->windowIcon());
   box.setStyleSheet(this->styleSheet());
-  const std::string s = fileio::GetPath( qApp->arguments()[0].toStdString() );
+  const std::string s = fileio::FileIo().GetPath( qApp->arguments()[0].toStdString() );
   box.setWindowTitle( this->windowTitle() );
   box.setText( ("HTML pages have been created in folder " + s).c_str());
   box.exec();

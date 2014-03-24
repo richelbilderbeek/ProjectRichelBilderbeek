@@ -42,7 +42,7 @@ ribi::HtmlPage::HtmlPage(const std::string& filename)
   #ifndef NDEBUG
   Test();
   #endif
-  assert(ribi::fileio::IsRegularFile(filename));
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
 
 }
 
@@ -52,7 +52,7 @@ std::string ribi::HtmlPage::FindTitle(const std::string& filename) noexcept
     = boost::xpressive::sregex::compile("<title>.*</title>");
 
   //Copy all filenames matching the regex in the resulting std::vector
-  const std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  const std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   for (const std::string s: v)
   {
     if (boost::xpressive::regex_search(s,title_regex))

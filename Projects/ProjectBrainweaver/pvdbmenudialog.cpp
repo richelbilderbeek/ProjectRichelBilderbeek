@@ -37,7 +37,7 @@ ribi::About ribi::pvdb::MenuDialog::GetAbout() const noexcept
     GetVersionHistory());
 
   a.AddLibrary("ConceptMap version: " + ribi::cmap::ConceptMap::GetVersion());
-  a.AddLibrary("FileIo version: " + ribi::fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + ribi::fileio::FileIo().GetVersion());
   a.AddLibrary("fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;

@@ -488,12 +488,12 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_create_test_files_clicked() noexcep
         qtfile.copy(filename.c_str());
         qtfile.close();
       }
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         break;
       }
 
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
     }
   }
   //Obtain the artificial concept maps
@@ -521,7 +521,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_print_concept_map_clicked() noexcep
 {
   on_button_create_test_files_clicked();
   const std::string filename = "1." + pvdb::File::GetFilenameExtension();
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(filename);
   assert(file);
   QtPvdbPrintConceptMapDialog d(file);
@@ -532,7 +532,7 @@ void ribi::pvdb::QtPvdbMenuDialog::on_button_print_rating_clicked() noexcept
 {
   on_button_create_test_files_clicked();
   const std::string filename = "1." + pvdb::File::GetFilenameExtension();
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   const boost::shared_ptr<pvdb::File> file = pvdb::File::Load(filename);
   assert(file);
   QtPvdbPrintRatingDialog d(file);

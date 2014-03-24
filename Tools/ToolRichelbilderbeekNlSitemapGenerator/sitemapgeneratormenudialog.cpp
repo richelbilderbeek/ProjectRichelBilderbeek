@@ -368,7 +368,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
       f_in.copy(sitemap_file.c_str());
 
       //Assume file does exist now
-      assert(ribi::fileio::IsRegularFile(sitemap_file));
+      assert(ribi::fileio::FileIo().IsRegularFile(sitemap_file));
       m_signal_log("* sitemap_py created successfully");
     }
   }
@@ -398,7 +398,7 @@ int ribi::SitemapGeneratorMenuDialog::ExecuteSpecific(const std::vector<std::str
   m_signal_log("* Program finished");
 
   {
-    const std::vector<std::string> output(ribi::fileio::FileToVector("output.txt"));
+    const std::vector<std::string> output(ribi::fileio::FileIo().FileToVector("output.txt"));
     for(const std::string& s: output)
     {
       m_signal_log(" " + s);
@@ -475,7 +475,7 @@ std::vector<std::string> ribi::SitemapGeneratorMenuDialog::GetHtmlFilesInFolder(
   const std::string& folder) noexcept
 {
   //Get all filenames
-  const std::vector<std::string> v = ribi::fileio::GetFilesInFolder(folder);
+  const std::vector<std::string> v = ribi::fileio::FileIo().GetFilesInFolder(folder);
 
   //Create the regex for a correct HTML filename
   const boost::xpressive::sregex cpp_file_regex

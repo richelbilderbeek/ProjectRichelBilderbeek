@@ -43,13 +43,13 @@ ribi::TestOpenQuestionMenuDialog::TestOpenQuestionMenuDialog()
   const std::vector<std::string> files = { "Question.png" };
   for(const std::string& filename: files)
   {
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       QFile f( (":/images/" + filename).c_str() );
       f.copy(filename.c_str());
     }
-    assert(fileio::IsRegularFile(filename));
-    if (!fileio::IsRegularFile(filename))
+    assert(fileio::FileIo().IsRegularFile(filename));
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string s = "TestOpenQuestionMenuDialog: file not found: " + filename;
       throw std::logic_error(s.c_str());

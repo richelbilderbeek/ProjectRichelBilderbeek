@@ -65,7 +65,7 @@ std::string ribi::c2h::Version::GetGccVersion() noexcept
 #ifndef _WIN32
 std::string ribi::c2h::Version::GetLubuntuVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
@@ -92,7 +92,7 @@ std::string ribi::c2h::Version::GetLubuntuVersion() noexcept
       && s.substr(0,15)=="DISTRIB_RELEASE")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -103,7 +103,7 @@ std::string ribi::c2h::Version::GetLubuntuVersion() noexcept
 #ifndef _WIN32
 std::string ribi::c2h::Version::GetLubuntuVersionCodename() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
@@ -130,7 +130,7 @@ std::string ribi::c2h::Version::GetLubuntuVersionCodename() noexcept
       && s.substr(0,16)=="DISTRIB_CODENAME")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -146,7 +146,7 @@ std::string ribi::c2h::Version::GetQtVersion() noexcept
 #ifndef _WIN32
 std::string ribi::c2h::Version::GetQtCreatorVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   const std::string cmd { "qtcreator -version 2> " + filename };
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const int error = std::system(cmd.c_str());
@@ -155,9 +155,9 @@ std::string ribi::c2h::Version::GetQtCreatorVersion() noexcept
     return "unknown";
   }
   assert(error == 0);
-  const std::vector<std::string> v { ribi::fileio::FileToVector(filename) };
+  const std::vector<std::string> v { ribi::fileio::FileIo().FileToVector(filename) };
 
-  fileio::DeleteFile(filename);
+  fileio::FileIo().DeleteFile(filename);
 
   const std::size_t sz = v.size();
   assert(sz > 1);
@@ -181,7 +181,7 @@ std::string ribi::c2h::Version::GetStlVersion() noexcept
 #ifndef _WIN32
 std::string ribi::c2h::Version::GetUbuntuVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd
@@ -208,7 +208,7 @@ std::string ribi::c2h::Version::GetUbuntuVersion() noexcept
       && s.substr(0,15)=="DISTRIB_RELEASE")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -219,7 +219,7 @@ std::string ribi::c2h::Version::GetUbuntuVersion() noexcept
 #ifndef _WIN32
 std::string ribi::c2h::Version::GetUbuntuVersionCodename() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary filename
   {
     const std::string cmd = "cat /etc/*-release > " + filename;
@@ -244,7 +244,7 @@ std::string ribi::c2h::Version::GetUbuntuVersionCodename() noexcept
       && s.substr(0,16)=="DISTRIB_CODENAME")
     {
       const int i = s.find_last_of("=");
-      fileio::DeleteFile(filename);
+      fileio::FileIo().DeleteFile(filename);
       return s.substr(i+1,s.size()-(i+1));
     }
   }
@@ -254,7 +254,7 @@ std::string ribi::c2h::Version::GetUbuntuVersionCodename() noexcept
 
 std::string ribi::c2h::Version::GetVirtualBoxVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary file
   {
     const std::string cmd
@@ -268,7 +268,7 @@ std::string ribi::c2h::Version::GetVirtualBoxVersion() noexcept
     std::string version;
     f >> version;
     //Delete temporary file
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     return version;
   }
   return "unknown";
@@ -276,7 +276,7 @@ std::string ribi::c2h::Version::GetVirtualBoxVersion() noexcept
 
 std::string ribi::c2h::Version::GetWineVersion() noexcept
 {
-  const std::string filename { fileio::GetTempFileName() };
+  const std::string filename { fileio::FileIo().GetTempFileName() };
   //Save info to temporary file
   {
     const std::string cmd
@@ -293,7 +293,7 @@ std::string ribi::c2h::Version::GetWineVersion() noexcept
     //Remove 'wine-' prefix
     version = version.substr(5,version.size() - 5);
     //Delete temporary file
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     return version;
   }
   return "unknown";

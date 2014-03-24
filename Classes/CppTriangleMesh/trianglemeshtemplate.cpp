@@ -36,7 +36,7 @@ ribi::trim::Template::Template(
   TRACE("Load the points and faces created by Triangle");
   {
     const std::vector<std::string> v {
-      ribi::fileio::FileToVector(
+      ribi::fileio::FileIo().FileToVector(
         filename_node
       )
     };
@@ -75,7 +75,7 @@ ribi::trim::Template::Template(
   TRACE("Load and translate faces");
   {
     const std::vector<std::string> v {
-      ribi::fileio::FileToVector(filename_ele)
+      ribi::fileio::FileIo().FileToVector(filename_ele)
     };
     const int sz = v.size();
     const int percent = sz / 100 ? sz / 100: 1;

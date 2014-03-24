@@ -109,7 +109,7 @@ void ribi::TriangleFile::ExecuteTriangle(
   const double area,
   const bool verbose) const noexcept
 {
-  const std::string filename { fileio::GetTempFileName(".poly") };
+  const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
   node_filename = "";
   ele_filename = "";
   poly_filename = "";
@@ -118,15 +118,15 @@ void ribi::TriangleFile::ExecuteTriangle(
     std::ofstream f(filename.c_str());
     f << this->ToStr();
   }
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
   const std::string exe_filename { "triangle.exe" };
-  if (!fileio::IsRegularFile(exe_filename))
+  if (!fileio::FileIo().IsRegularFile(exe_filename))
   {
     QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
     file.copy(exe_filename.c_str());
   }
-  assert(fileio::IsRegularFile(exe_filename));
+  assert(fileio::FileIo().IsRegularFile(exe_filename));
 
   std::stringstream s;
   s
@@ -141,18 +141,18 @@ void ribi::TriangleFile::ExecuteTriangle(
   const bool error = std::system(s.str().c_str());
   if (error)
   {
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     throw std::runtime_error(s.str().c_str());
   }
 
-  const std::string filename_base { fileio::GetFileBasename(filename) };
+  const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
   node_filename = filename_base + ".1.node";
   ele_filename = filename_base + ".1.ele";
   poly_filename = filename_base + ".1.poly";
-  assert(fileio::IsRegularFile(node_filename));
-  assert(fileio::IsRegularFile(ele_filename));
-  assert(fileio::IsRegularFile(poly_filename));
-  fileio::DeleteFile(filename);
+  assert(fileio::FileIo().IsRegularFile(node_filename));
+  assert(fileio::FileIo().IsRegularFile(ele_filename));
+  assert(fileio::FileIo().IsRegularFile(poly_filename));
+  fileio::FileIo().DeleteFile(filename);
 }
 
 const std::string ribi::TriangleFile::GetVersion() noexcept
@@ -192,9 +192,9 @@ void ribi::TriangleFile::Test() noexcept
   std::string filename_ele;
   std::string filename_poly;
   f.ExecuteTriangle(filename_node,filename_ele,filename_poly);
-  assert(fileio::IsRegularFile(filename_node));
-  assert(fileio::IsRegularFile(filename_ele));
-  assert(fileio::IsRegularFile(filename_poly));
+  assert(fileio::FileIo().IsRegularFile(filename_node));
+  assert(fileio::FileIo().IsRegularFile(filename_ele));
+  assert(fileio::FileIo().IsRegularFile(filename_poly));
   TRACE("Finished ribi::TriangleFile::Test successfully");
 }
 #endif

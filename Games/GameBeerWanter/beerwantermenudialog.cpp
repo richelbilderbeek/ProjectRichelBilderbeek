@@ -51,10 +51,10 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
   //Display a beer
   if (argc == 2 && (argv[1] == "-s" || argv[1] == "--show"))
   {
-    const std::string filename { fileio::GetTempFileName(".png") };
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
     QFile qfile(BeerWanterMainDialog::GetResourceFilename().c_str());
     qfile.copy(filename.c_str());
-    assert(fileio::IsRegularFile(filename)
+    assert(fileio::FileIo().IsRegularFile(filename)
       && "BeerWanter resource must exist");
 
     const int n_cols = 78;
@@ -65,7 +65,7 @@ int ribi::BeerWanterMenuDialog::ExecuteSpecific(const std::vector<std::string>& 
       )
     };
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     std::cout << (*canvas) << std::endl;
     return 0;
   }
@@ -171,12 +171,12 @@ void ribi::BeerWanterMenuDialog::Test() noexcept
   }
   //Resources
   {
-    const std::string filename { fileio::GetTempFileName(".png") };
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
     QFile qfile(BeerWanterMainDialog::GetResourceFilename().c_str());
     qfile.copy(filename.c_str());
-    assert(fileio::IsRegularFile(filename)
+    assert(fileio::FileIo().IsRegularFile(filename)
       && "BeerWanter resource must exist");
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   TRACE("Finished ribi::BeerWanterMenuDialog::Test successfully");
 }

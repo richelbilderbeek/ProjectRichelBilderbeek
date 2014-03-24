@@ -146,10 +146,10 @@ void ribi::TestMultiCanvasMenuDialog::Test() noexcept
   }
   boost::shared_ptr<Canvas> image_canvas;
   {
-    const std::string filename { fileio::GetTempFileName() };
+    const std::string filename { fileio::FileIo().GetTempFileName() };
     QFile file(":/ToolTestMultiCanvas/images/R.png");
     file.copy(filename.c_str());
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
     image_canvas.reset(
       new ImageCanvas(
         filename,

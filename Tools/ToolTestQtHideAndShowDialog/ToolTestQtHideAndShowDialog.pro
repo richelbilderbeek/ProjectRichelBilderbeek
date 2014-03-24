@@ -2,16 +2,8 @@ include(../../DesktopApplication.pri)
 
 include(../../Libraries/GeneralConsole.pri)
 include(../../Libraries/GeneralDesktop.pri)
+include(../../Libraries/Boost.pri)
 
-INCLUDEPATH += \
-    ../../Classes/CppQtHideAndShowDialog
+include(ToolTestQtHideAndShowDialogDesktop.pri)
 
-SOURCES += \
-    qtmain.cpp \
-    qttesthideandshowmaindialog.cpp
-
-HEADERS += \
-    qttesthideandshowmaindialog.h
-
-FORMS += \
-    qttesthideandshowmaindialog.ui
+SOURCES += qtmain.cpp

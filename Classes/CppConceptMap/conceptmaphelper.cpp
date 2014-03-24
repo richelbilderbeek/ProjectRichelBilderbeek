@@ -57,7 +57,7 @@ std::vector<std::string> ribi::cmap::GetRegexMatches(
 
 std::vector<std::string> ribi::cmap::SafeFileToVector(const std::string& filename) noexcept
 {
-  std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   if (!v.empty() && v.back().empty()) v.pop_back();
   return v;
 }

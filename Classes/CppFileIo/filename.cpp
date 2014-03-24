@@ -48,6 +48,7 @@ void ribi::fileio::CopyFile(
 {
   CopyFile(fileNameFrom.Get(),fileNameTo.Get(),copy_mode);
 }
+
 void ribi::fileio::DeleteFile(const Filename& filename) { DeleteFile(filename.Get()); }
 bool ribi::fileio::FilesAreIdentical(const Filename& filename_a,const Filename& filename_b)
 {

@@ -21,11 +21,11 @@ ribi::Chess::QtResources::QtResources()
   std::for_each(v.begin(),v.end(),
     [](const std::string& s)
     {
-      if (!fileio::IsRegularFile(s))
+      if (!fileio::FileIo().IsRegularFile(s))
       {
         QFile f( (":/images/" + s).c_str() );
         f.copy(s.c_str());
-        if (!fileio::IsRegularFile(s))
+        if (!fileio::FileIo().IsRegularFile(s))
         {
           const std::string error = "File not found: " + s;
           std::cerr << error << '\n';
@@ -33,7 +33,7 @@ ribi::Chess::QtResources::QtResources()
           std::cout << error << '\n';
         }
       }
-      assert(fileio::IsRegularFile(s));
+      assert(fileio::FileIo().IsRegularFile(s));
     }
   );
 

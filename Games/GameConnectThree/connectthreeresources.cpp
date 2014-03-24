@@ -91,12 +91,12 @@ void ribi::con3::ConnectThreeResources::Create() const
 
 void ribi::con3::ConnectThreeResources::CreateFile(const std::string& s)
 {
-  if (!fileio::IsRegularFile(s))
+  if (!fileio::FileIo().IsRegularFile(s))
   {
     const std::string filename = ":/images/" + s;
     QFile f(filename.c_str());
     f.copy(s.c_str());
-    if (!fileio::IsRegularFile(s))
+    if (!fileio::FileIo().IsRegularFile(s))
     {
       const std::string error = "ConnectThreeResources::CreateFile: file not found: '" + s
         + "\', please add the file to a resource file, or correct the filename";
@@ -104,6 +104,6 @@ void ribi::con3::ConnectThreeResources::CreateFile(const std::string& s)
       throw std::runtime_error(error);
     }
   }
-  if (!fileio::IsRegularFile(s)) { TRACE(s); }
-  assert(fileio::IsRegularFile(s));
+  if (!fileio::FileIo().IsRegularFile(s)) { TRACE(s); }
+  assert(fileio::FileIo().IsRegularFile(s));
 }

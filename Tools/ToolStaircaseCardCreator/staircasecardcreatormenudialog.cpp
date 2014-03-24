@@ -55,7 +55,7 @@ ribi::About ribi::scc::MenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory()
   };
-  a.AddLibrary("FileIo version: " + fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
   return a;
 }

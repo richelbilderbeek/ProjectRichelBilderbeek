@@ -140,7 +140,7 @@ std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
 
 std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 {
-  assert(fileio::IsRegularFile(filename.c_str()));
+  assert(fileio::FileIo().IsRegularFile(filename.c_str()));
   std::string s;
   std::ifstream in(filename.c_str());
   while (!in.eof())
@@ -479,7 +479,7 @@ void ribi::pvdb::File::Test() noexcept
     {
       //Testing filenames start at 1
       const std::string filename = boost::lexical_cast<std::string>(i) + ".cmp";
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         //Copy the file from Qt resources to local file
         {
@@ -488,7 +488,7 @@ void ribi::pvdb::File::Test() noexcept
           qtfile.copy(filename.c_str());
           qtfile.close();
         }
-        if (!fileio::IsRegularFile(filename))
+        if (!fileio::FileIo().IsRegularFile(filename))
         {
           //TRACE("First filename not found: ");
           //TRACE(filename);
@@ -519,11 +519,11 @@ void ribi::pvdb::File::Test() noexcept
         assert(file.size() > 0);
         file.close();
 
-        assert(fileio::IsRegularFile(filename));
+        assert(fileio::FileIo().IsRegularFile(filename));
         ribi::pvdb::File::Load(filename);
         std::remove(filename.c_str());
 
-        assert(!fileio::IsRegularFile(filename));
+        assert(!fileio::FileIo().IsRegularFile(filename));
       }
     }
   }

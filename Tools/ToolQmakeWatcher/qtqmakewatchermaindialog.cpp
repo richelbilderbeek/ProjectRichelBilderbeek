@@ -93,7 +93,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   //Display Makefile
   {
     ui->edit_makefile->clear();
-    const std::vector<std::string> v(ribi::fileio::FileToVector("Makefile"));
+    const std::vector<std::string> v(ribi::fileio::FileIo().FileToVector("Makefile"));
     for(const std::string& s: v)
     {
       ui->edit_makefile->appendPlainText(QString(s.c_str()));
@@ -102,7 +102,7 @@ void ribi::QtQmakeWatcherMainDialog::OnQmake() noexcept
   //Display diff
   {
     ui->edit_diff->clear();
-    const std::vector<std::string> v(ribi::fileio::FileToVector("tmp.txt"));
+    const std::vector<std::string> v(ribi::fileio::FileIo().FileToVector("tmp.txt"));
     for(const std::string& s: v)
     {
       std::string t = s;

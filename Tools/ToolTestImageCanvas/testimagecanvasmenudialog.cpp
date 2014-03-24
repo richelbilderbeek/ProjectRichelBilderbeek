@@ -29,7 +29,7 @@ int ribi::TestImageCanvasMenuDialog::ExecuteSpecific(const std::vector<std::stri
   }
   {
     const std::string s { argv[1] };
-    if (!fileio::IsRegularFile(s))
+    if (!fileio::FileIo().IsRegularFile(s))
     {
       std::cout
         << "Error: '" << s << "' is not found.\n"
@@ -144,19 +144,19 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::TooTestImageCanvasMenuDialog::Test");
   {
-    const std::string temp_filename { fileio::GetTempFileName() };
+    const std::string temp_filename { fileio::FileIo().GetTempFileName() };
     {
       const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
       QFile qfile(resource_filename.c_str());
       qfile.copy(temp_filename.c_str());
-      if (!fileio::IsRegularFile(temp_filename))
+      if (!fileio::FileIo().IsRegularFile(temp_filename))
       {
         TRACE("ERROR");
         TRACE(resource_filename);
         TRACE("Resource filename must exist");
       }
     }
-    assert(fileio::IsRegularFile(temp_filename));
+    assert(fileio::FileIo().IsRegularFile(temp_filename));
     for (int i=0; i!=4; ++i)
     {
       const CanvasColorSystem color_system
@@ -171,7 +171,7 @@ void ribi::TestImageCanvasMenuDialog::Test() noexcept
       TRACE(s.str());
       assert(!s.str().empty());
     }
-    fileio::DeleteFile(temp_filename);
+    fileio::FileIo().DeleteFile(temp_filename);
   }
   TRACE("Finished ribi::TooTestImageCanvasMenuDialog::Test successfully");
 }

@@ -42,7 +42,7 @@ ribi::QtTestChessViewResourcesDialog::QtTestChessViewResourcesDialog(QWidget *pa
     for (std::size_t i = 0; i!=j; ++i)
     {
       QLabel * const label = new QLabel;
-      assert(fileio::IsRegularFile(v[i]));
+      assert(fileio::FileIo().IsRegularFile(v[i]));
       label->setPixmap(QPixmap(v[i].c_str()));
       ui->gridLayout->addWidget(label,i%12,i/12);
     }

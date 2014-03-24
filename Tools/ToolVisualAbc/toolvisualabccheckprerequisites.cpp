@@ -18,8 +18,8 @@ ribi::CheckPrerequisites::CheckPrerequisites()
 
 void ribi::CheckPrerequisites::CheckAbc2midi()
 {
-  const std::string s { fileio::GetTempFileName() };
-  assert(!fileio::IsRegularFile(s));
+  const std::string s { fileio::FileIo().GetTempFileName() };
+  assert(!fileio::FileIo().IsRegularFile(s));
   const std::string cmd {
     "abc2midi > " + s
   };
@@ -31,14 +31,14 @@ void ribi::CheckPrerequisites::CheckAbc2midi()
       "\'abc2midi\' not not present. "
       "Type \'sudo apt-get install abcmidi\' to install");
   }
-  fileio::DeleteFile(s);
-  assert(!fileio::IsRegularFile(s));
+  fileio::FileIo().DeleteFile(s);
+  assert(!fileio::FileIo().IsRegularFile(s));
 }
 
 void ribi::CheckPrerequisites::CheckAbcm2ps()
 {
-  const std::string s { fileio::GetTempFileName() };
-  assert(!fileio::IsRegularFile(s));
+  const std::string s { fileio::FileIo().GetTempFileName() };
+  assert(!fileio::FileIo().IsRegularFile(s));
   const std::string cmd {
     "abcm2ps > " + s
   };
@@ -51,14 +51,14 @@ void ribi::CheckPrerequisites::CheckAbcm2ps()
       "Type \'sudo apt-get install abcm2ps\' to install");
   }
 
-  fileio::DeleteFile(s);
-  assert(!fileio::IsRegularFile(s));
+  fileio::FileIo().DeleteFile(s);
+  assert(!fileio::FileIo().IsRegularFile(s));
 }
 
 void ribi::CheckPrerequisites::CheckConvert()
 {
-  const std::string s { fileio::GetTempFileName() };
-  assert(!fileio::IsRegularFile(s));
+  const std::string s { fileio::FileIo().GetTempFileName() };
+  assert(!fileio::FileIo().IsRegularFile(s));
   const std::string cmd {
     "convert --help > " + s
   };
@@ -71,27 +71,27 @@ void ribi::CheckPrerequisites::CheckConvert()
       "\'convert\' not not present. "
       "Type \'sudo apt-get install imagemagick\' to install");
   }
-  fileio::DeleteFile(s);
-  assert(!fileio::IsRegularFile(s));
+  fileio::FileIo().DeleteFile(s);
+  assert(!fileio::FileIo().IsRegularFile(s));
 }
 
 void ribi::CheckPrerequisites::CheckPlaysound()
 {
-  const std::string s { fileio::GetTempFileName() };
-  assert(!fileio::IsRegularFile(s));
+  const std::string s { fileio::FileIo().GetTempFileName() };
+  assert(!fileio::FileIo().IsRegularFile(s));
   const std::string cmd {
     "playsound --version > " + s
   };
   const int error
     = std::system(cmd.c_str());
-  if (error || !fileio::IsRegularFile(s))
+  if (error || !fileio::FileIo().IsRegularFile(s))
   {
     assert(error);
     throw std::runtime_error(
       "\'playsound\' not not present. "
       "Type \'sudo apt-get install libsdl-sound1.2\' to install");
   }
-  fileio::DeleteFile(s);
+  fileio::FileIo().DeleteFile(s);
 
-  assert(!fileio::IsRegularFile(s));
+  assert(!fileio::FileIo().IsRegularFile(s));
 }
