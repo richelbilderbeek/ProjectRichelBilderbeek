@@ -7,8 +7,7 @@
 bool ribi::cmap::CommandDeleteFocusNode::CanDoCommandSpecific(const Widget * const widget) const noexcept
 {
   assert(widget);
-  return widget->GetConceptMap().get()
-    && !widget->GetFocus().empty();
+  return widget->GetConceptMap().get() && widget->GetFocus();
 }
 
 void ribi::cmap::CommandDeleteFocusNode::DoCommandSpecific(Widget * const widget) noexcept
@@ -20,11 +19,8 @@ void ribi::cmap::CommandDeleteFocusNode::DoCommandSpecific(Widget * const widget
 
   m_widget = widget;
   m_old_focus = m_widget->GetFocus();
-  for (const auto node: m_old_focus)
-  {
-    assert(node);
-    m_widget->DeleteNode(node);
-  }
+  assert(m_old_focus);
+  m_widget->DeleteNode(m_old_focus);
   assert(m_widget);
 }
 
@@ -33,12 +29,9 @@ void ribi::cmap::CommandDeleteFocusNode::Undo() noexcept
   assert(m_widget);
   assert(m_widget->GetConceptMap().get());
 
-  for (const auto node: m_old_focus)
-  {
-    m_widget->AddNode(node);
-  }
+  m_widget->AddNode(m_old_focus);
 
   m_widget = nullptr;
-  m_old_focus.clear();
+  m_old_focus = nullptr;
 
 }

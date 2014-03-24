@@ -1,3 +1,5 @@
+#ifdef SUPPORT_NONSENSE
+
 #include "conceptmapcommandaddfocusrandom.h"
 
 #include "conceptmapcommandsetfocusrandom.h"
@@ -67,3 +69,5 @@ void ribi::cmap::CommandAddFocusRandom::Undo() noexcept
   assert(m_widget);
 
 }
+
+#endif //#ifdef SUPPORT_NONSENSE

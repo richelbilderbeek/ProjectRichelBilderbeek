@@ -18,34 +18,28 @@ bool ribi::cmap::CommandSetFocusRandom::CanDoCommandSpecific(const Widget * cons
 
 void ribi::cmap::CommandSetFocusRandom::DoCommandSpecific(Widget * const widget) noexcept
 {
-  assert(widget);
+  assert( widget);
+  assert(!m_widget);
 
   //Transfer focus to this Node
   m_widget = widget;
   m_old_focus = widget->GetFocus();
-  assert(std::count(m_old_focus.begin(),m_old_focus.end(),nullptr) == 0);
-  m_added_focus = widget->GetRandomNodes();
-  m_widget->SetFocus(m_added_focus);
-  //m_widget->m_signal_set_focus_node();
+  const auto new_focus(widget->GetRandomNode());
+  m_widget->SetFocus(new_focus);
+  m_widget->m_signal_set_focus(new_focus);
   //m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);
-  assert(widget);
+  assert(  widget);
 }
 
 void ribi::cmap::CommandSetFocusRandom::Undo() noexcept
 {
   assert(m_widget);
-
   //Lose focus to this Node
-  assert(std::count(m_old_focus.begin(),m_old_focus.end(),nullptr) == 0);
   m_widget->SetFocus(m_old_focus);
-
-  m_widget->m_signal_set_selected_nodes(m_widget->m_focus);
-
-  m_added_focus.clear();
-  m_old_focus.clear();
-
-  assert(m_widget);
-
+  m_widget->m_signal_set_focus(m_widget->m_focus);
+  m_old_focus = nullptr;
+  m_widget = nullptr;
+  assert(!m_widget);
 }

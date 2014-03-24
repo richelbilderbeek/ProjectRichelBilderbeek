@@ -22,13 +22,12 @@ struct CommandDeleteFocusNode : public Command
   ~CommandDeleteFocusNode() noexcept {}
 
   bool CanDoCommandSpecific(const Widget * const widget) const noexcept;
-  int CountDeleted() const noexcept { return static_cast<int>(m_old_focus.size()); }
   void DoCommandSpecific(Widget * const widget) noexcept;
-  std::string ToStr() const noexcept { return "delete nodes in focus"; }
+  std::string ToStr() const noexcept { return "delete node in focus"; }
   void Undo() noexcept;
 
   private:
-  std::vector<boost::shared_ptr<Node>> m_old_focus;
+  boost::shared_ptr<Node> m_old_focus;
   Widget * m_widget;
 };
 

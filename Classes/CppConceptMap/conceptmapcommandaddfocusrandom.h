@@ -1,6 +1,8 @@
 #ifndef CONCEPTMAPCOMMANDADDFOCUSRANDOM_H
 #define CONCEPTMAPCOMMANDADDFOCUSRANDOM_H
 
+#ifdef SUPPORT_NONSENSE
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -33,5 +35,7 @@ struct CommandAddFocusRandom : public Command
 
 } //~namespace cmap
 } //~namespace ribi
+
+#endif //#ifdef SUPPORT_NONSENSE
 
 #endif // CONCEPTMAPCOMMANDADDFOCUSRANDOM_H

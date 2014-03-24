@@ -24,11 +24,8 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
     widget->FindNodeAt(m_x,m_y)
   };
 
-
-  widget->m_focus.clear();
-  widget->m_focus.push_back(node);
-
-  widget->m_signal_set_selected_nodes(widget->GetFocus());
+  widget->m_focus = node;
+  widget->m_signal_set_focus(node);
 
   assert(m_widget);
   assert(widget);
@@ -37,12 +34,12 @@ void ribi::cmap::CommandSetFocusWithCoordinat::DoCommandSpecific(Widget * const 
 void ribi::cmap::CommandSetFocusWithCoordinat::Undo() noexcept
 {
   assert(m_widget);
-  assert(!m_widget->m_focus.empty());
+  assert(!m_widget->m_focus);
 
   //Lose focus to this Node
   m_widget->SetFocus(m_old_focus);
 
-  m_old_focus.clear();
+  m_old_focus = nullptr;
   m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);

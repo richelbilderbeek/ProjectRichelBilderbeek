@@ -8552,6 +8552,34 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
   );
 
   m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFoundFixed",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFoundFixed.htm\">ToolOpenFoamErrorOpenCellsFoundFixed</a>",
+        "  shows the solution of the <a href=\"ToolOpenFoam.htm\">OpenFOAM</a>",
+        "  error <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The error was caused by not putting the internal faces first in the file 'boundary'.",
+        "</p>",
+        "<p>",
+        "  I posted this solution at <a href=\"http://www.cfd-online.com/Forums/openfoam-meshing-technical/131611-checkmesh-states-faces-do-not-form-cell-mesh-appears-correct.html#post480639\">cfd-online.com its OpenFOAM forum</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Of the mesh I used, I made some pictures. The top-left image shows the point indices, ",
+        "  the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFoundFixed.png\" alt=\"ToolOpenFoamErrorOpenCellsFoundFixed.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
     { "ToolOpenFoamExample21",
       {
         "<p>",

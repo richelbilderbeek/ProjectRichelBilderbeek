@@ -4,18 +4,18 @@ FoamFile
 	class	labelList;
 	note	"nPoints: 8 nCells: 2 nFaces: 9";
 	location	"constant/polyMesh";
-	object	owner;
+	object	neighbour;
 }
 
 9
 (
 1
-0
-1
-0
-0
-1
-0
-1
-0
+-1
+-1
+-1
+-1
+-1
+-1
+-1
+-1
 )

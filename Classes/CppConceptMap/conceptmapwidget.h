@@ -82,11 +82,15 @@ struct Widget
 
   ///Emitted when a Node loses focus
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_lose_focus_nodes;
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus;
 
   ///Emitted when multiple Nodes are selected
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_selected_nodes;
+
+  ///Emitted when a Node receives focus
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus;
 
   private:
 
@@ -147,11 +151,15 @@ struct Widget
   ///argument, return 1 to all the nodes, except when there is no node
   ///left (as all are excluded) or the concept map does not have any nodes
   std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
+  boost::shared_ptr<Node> GetRandomNode(boost::shared_ptr<const Node> node_to_exclude = nullptr) noexcept;
 
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
-  ///Set the nodes to the only nodes in focus
+  ///Set the node to the only node in focus
+  void SetFocus(const boost::shared_ptr<Node>& node ) noexcept;
+
+  ///Set the nodes to the only nodes selected
   void SetSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;
 
   #ifndef NDEBUG

@@ -30,11 +30,13 @@ int main(int, char* argv[])
   try
   {
     const double pi { boost::math::constants::pi<double>() };
-    const bool show_mesh { false };
+    const bool show_mesh { true };
     ribi::TestTriangleMeshMainDialog(
       {
-        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.25,1.0)
-        //ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
+        //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.5) //? cube
+        //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,1.0) //1 prism
+        //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,2.0) //3 prisms
       },
       show_mesh,
       2,

@@ -27,7 +27,7 @@ ribi::cmap::Widget::Widget(const boost::shared_ptr<ConceptMap> conceptmap)
     m_signal_concept_map_changed{},
     m_signal_delete_edge{},
     m_signal_delete_node{},
-    m_signal_lose_focus_nodes{},
+    m_signal_lose_focus{},
     m_signal_set_selected_nodes{},
     m_conceptmap(conceptmap),
     m_focus{},
@@ -53,7 +53,7 @@ ribi::cmap::Widget::Widget(const Widget& other)
     m_signal_concept_map_changed{},
     m_signal_delete_edge{},
     m_signal_delete_node{},
-    m_signal_lose_focus_nodes{},
+    m_signal_lose_focus{},
     m_signal_set_selected_nodes{},
     m_conceptmap(ConceptMapFactory::DeepCopy(other.m_conceptmap)),
     m_focus{other.m_focus},
@@ -302,9 +302,18 @@ std::vector<boost::shared_ptr<ribi::cmap::Node>> ribi::cmap::Widget::GetRandomNo
   return focus_nodes;
 }
 
+boost::shared_ptr<ribi::cmap::Node> ribi::cmap::Widget::GetRandomNode(
+  boost::shared_ptr<const Node> node_to_exclude) noexcept
+{
+  const auto v(GetRandomNodes( {node_to_exclude} ));
+  boost::shared_ptr<Node> p;
+  if (!v.empty()) p = v[0];
+  return p;
+}
+
 std::string ribi::cmap::Widget::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::cmap::Widget::GetVersionHistory() noexcept
@@ -312,7 +321,7 @@ std::vector<std::string> ribi::cmap::Widget::GetVersionHistory() noexcept
   return {
     "2013-12-xx: Version 1.0: initial version",
     "2013-12-23: Version 1.1: started versioning",
-    "2013-12-23: Version 1.2: started versioning"
+    "2014-03-24: Version 1.2: distinguished correctly between focus and selected"
   };
 }
 

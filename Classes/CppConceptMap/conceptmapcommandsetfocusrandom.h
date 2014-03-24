@@ -16,7 +16,7 @@ namespace cmap {
 ///- SetFocus does not care if there currently is something in focus
 struct CommandSetFocusRandom : public Command
 {
-  CommandSetFocusRandom() : m_added_focus{}, m_old_focus{}, m_widget{} {}
+  CommandSetFocusRandom() : m_old_focus{}, m_widget{} {}
   CommandSetFocusRandom(const CommandSetFocusRandom&) = delete;
   CommandSetFocusRandom& operator=(const CommandSetFocusRandom&) = delete;
   ~CommandSetFocusRandom() noexcept {}
@@ -27,8 +27,7 @@ struct CommandSetFocusRandom : public Command
   void Undo() noexcept;
 
   private:
-  std::vector<boost::shared_ptr<Node>> m_added_focus;
-  std::vector<boost::shared_ptr<Node>> m_old_focus;
+  boost::shared_ptr<Node> m_old_focus;
   Widget * m_widget;
 };
 

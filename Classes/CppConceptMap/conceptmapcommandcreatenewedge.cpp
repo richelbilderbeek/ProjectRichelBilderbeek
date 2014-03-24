@@ -10,7 +10,8 @@ bool ribi::cmap::CommandCreateNewEdge::CanDoCommandSpecific(const Widget * const
 {
   assert(widget);
   return widget->GetConceptMap().get()
-   && widget->GetFocus().size() == 2;
+   && widget->GetFocus()
+   && widget->GetSelected().size() == 1;
 }
 
 void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) noexcept
@@ -22,7 +23,8 @@ void ribi::cmap::CommandCreateNewEdge::DoCommandSpecific(Widget * const widget) 
   assert(CanDoCommand(widget));
 
   m_widget = widget;
-  m_nodes = m_widget->GetFocus();
+  m_nodes.push_back(m_widget->GetFocus());
+  m_nodes.push_back(m_widget->GetSelected()[0]);
   assert(m_nodes.size() == 2);
   assert(m_nodes[0]);
   assert(m_nodes[1]);

@@ -14,42 +14,42 @@ FoamFile
   {
     type zeroGradient;
     nFaces 1;
-    startFace 0;
+    startFace 1;
   }
 
   bottom
   {
     type zeroGradient;
     nFaces 2;
-    startFace 1;
+    startFace 2;
   }
 
   front
   {
     type zeroGradient;
     nFaces 1;
-    startFace 3;
+    startFace 4;
   }
 
   left
   {
     type zeroGradient;
     nFaces 1;
-    startFace 4;
+    startFace 5;
   }
 
   right
   {
     type zeroGradient;
     nFaces 1;
-    startFace 5;
+    startFace 6;
   }
 
   top
   {
     type zeroGradient;
     nFaces 2;
-    startFace 6;
+    startFace 7;
   }
 
 )

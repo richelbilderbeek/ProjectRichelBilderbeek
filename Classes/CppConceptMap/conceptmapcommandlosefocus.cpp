@@ -17,24 +17,34 @@ void ribi::cmap::CommandLoseFocus::DoCommandSpecific(Widget * const widget) noex
 
   //Transfer focus to this command
   m_widget = widget;
-  m_old_focus = widget->m_focus;
 
-  m_widget->m_signal_lose_focus_nodes(m_old_focus);
-  m_widget->m_focus.clear();
+  assert(!m_old_focus);
+  assert(widget->m_focus);
+
+  std::swap(m_old_focus,widget->m_focus);
+  m_widget->m_signal_lose_focus(m_old_focus);
 
   assert(m_widget);
+  assert( m_old_focus);
+  assert(!widget->m_focus);
 }
 
 void ribi::cmap::CommandLoseFocus::Undo() noexcept
 {
-  assert(m_widget);
+  assert( m_widget);
+  assert( m_old_focus);
+  assert(!m_widget->m_focus);
 
   //Transfer focus to this command
-  m_widget->m_focus = m_old_focus;
-  m_old_focus.clear();
+  std::swap(m_old_focus,m_widget->m_focus);
   m_widget->m_signal_concept_map_changed();
+
+  assert(!m_old_focus);
+  assert( m_widget->m_focus);
+
   m_widget = nullptr;
 
 
   assert(!m_widget);
+  assert(!m_old_focus);
 }
