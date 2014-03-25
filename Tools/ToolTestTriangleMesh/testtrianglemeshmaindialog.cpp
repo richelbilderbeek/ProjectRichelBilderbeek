@@ -38,8 +38,9 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
   const bool show_mesh,
   const int n_layers,
-  const ::ribi::trim::CreateVerticalFacesStrategy strategy
-  )
+  const ::ribi::trim::CreateVerticalFacesStrategy strategy,
+  const std::string& renumberMesh_command
+)
 {
   PROFILE_FUNC();
 
@@ -219,7 +220,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetControlDict().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetControlDict().c_str());
     ribi::foam::ControlDictFile file;
     file.SetAdjustTimeStep(false);
     file.SetApplication("sonicFoam");
@@ -241,19 +242,19 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetFvSchemes().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetFvSchemes().c_str());
     ribi::foam::FvSchemesFile file;
     f << file;
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetFvSolution().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetFvSolution().c_str());
     ribi::foam::FvSolutionFile file;
     f << file;
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetPressureField().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetPressureField().c_str());
     ribi::foam::PressureFile file;
     file.SetBoundaryField(
       "  top\n"
@@ -292,7 +293,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetTemperatureField().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetTemperatureField().c_str());
     ribi::foam::TemperatureFile file;
     file.SetBoundaryField(
       "top\n"
@@ -326,7 +327,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   }
 
   {
-    std::ofstream f(ribi::foam::Filenames().GetThermophysicalProperties().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetThermophysicalProperties().c_str());
     ribi::foam::ThermophysicalPropertiesFile file;
     file.SetMixture("air 1 28.9 717 0 1.458e-6 110.4");
     file.SetThermoType("ePsiThermo<pureMixture<sutherlandTransport<specieThermo<eConstThermo<perfectGas>>>>>");
@@ -369,13 +370,14 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       "  type zeroGradient;\n"
       "}\n"
     );
-    std::ofstream f(ribi::foam::Filenames().GetVelocityField().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetVelocityField().c_str());
     f << file;
   }
 
   std::clog << std::endl;
   std::cout << std::endl;
 
+  std::system(renumberMesh_command.c_str());
 
   if (show_mesh)
   {

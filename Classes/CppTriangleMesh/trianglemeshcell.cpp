@@ -117,8 +117,8 @@ void ribi::trim::Cell::Test() noexcept
       std::back_inserter(faces)
     );
     std::sort(faces.begin(),faces.end());
-
     TRACE(faces.size());
+    assert(std::is_sorted(faces.begin(),faces.end()));
     assert(
       (
            (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() == 10)
@@ -127,10 +127,27 @@ void ribi::trim::Cell::Test() noexcept
       && "One or two faces are in both Cells, and must be made unique"
     );
     assert(std::count(std::begin(faces),std::end(faces),nullptr) == 0);
-    assert(std::unique(faces.begin(),faces.end()) != faces.end() && "Two faces must be present twice");
+    assert(std::is_sorted(faces.begin(),faces.end()));
     faces.erase(std::unique(std::begin(faces),std::end(faces)),faces.end());
+    assert(std::is_sorted(faces.begin(),faces.end()));
     faces.erase(std::remove(std::begin(faces),std::end(faces),nullptr),faces.end()); //OBLIGATORY! std::unique creates nullptrs!
-    TRACE(faces.size());
+    assert(std::is_sorted(faces.begin(),faces.end()));
+    if (!
+      (
+        (
+             (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() ==  9)
+          || (strategy == CreateVerticalFacesStrategy::two_faces_per_square && faces.size() == 14)
+        )
+        && "One or two faces were in both Cells, and are now present only once"
+      )
+    )
+    {
+      TRACE("ERROR");
+      TRACE(faces.size());
+      TRACE(CreateVerticalFacesStrategies().ToStr(strategy));
+      TRACE("BREAK");
+    }
+
     assert(
       (
            (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() ==  9)

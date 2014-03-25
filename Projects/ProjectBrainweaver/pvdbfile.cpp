@@ -206,8 +206,8 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string 
       TRACE(s);
       TRACE("Sometimes, this happens at the first startup and ");
     }
-    //assert(!v.empty()); //TODO RJCB: put back in
-    //assert(v.size() == 1); //TODO RJCB: put back in
+    assert(!v.empty() && "Ignore and restart"); //TODO RJCB: fix this startup error
+    assert(v.size() == 1 && "Ignore and restart"); //TODO RJCB: fix this startup error
     f->m_question = ribi::xml::StripXmlTag(v[0]);
   }
   //m_student_name

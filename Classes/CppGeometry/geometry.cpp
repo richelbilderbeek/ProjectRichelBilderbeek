@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Geometry, class with geometry functions
+Copyright (C) 2014-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppGeometry.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -207,7 +227,7 @@ double ribi::Geometry::GetDistance(const double dx, const double dy) const noexc
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
@@ -215,6 +235,7 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
   return {
     "2014-02-25: version 1.0: initial version",
     "2014-03-11: version 1.1: removed use of custom coordinat classes, use Boost.Geometry instead"
+    "2014-03-25: version 1.2: fixed bug in IsConvex"
   };
 }
 
@@ -381,7 +402,11 @@ bool ribi::Geometry::IsConvex(boost::geometry::model::polygon<boost::geometry::m
   boost::geometry::correct(polygon);
   boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> hull;
   boost::geometry::convex_hull(polygon, hull);
-  return boost::geometry::area(hull) == boost::geometry::area(polygon);
+  //const bool prev_answer = boost::geometry::area(hull) == boost::geometry::area(polygon);
+  const bool new_answer = boost::geometry::equals(polygon,hull);
+  //TRACE(prev_answer);
+  //assert(prev_answer == new_answer);
+  return new_answer;
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
@@ -886,6 +911,186 @@ void ribi::Geometry::Test() noexcept
       boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
       boost::geometry::append(polygon, points);
       assert(!g.IsConvex(polygon));
+    }
+  }
+  if (verbose) TRACE("Some shape, from error");
+  {
+    {
+      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+        {17.4971,33.0765},
+        {9.28854,29.5636},
+        {9.28854,40.6764},
+        {17.4971,44.4009}
+      };
+
+      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      boost::geometry::append(polygon, points);
+      assert(g.IsConvex(polygon));
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
+  {
+    {
+      /*
+                  |####/
+        3---2     |###/#
+           /      +##+##
+          /       |#/###
+         /        |/####
+        1---0   --+--+--
+                 /|
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,0.0,0.0},
+        {0.0,0.0,0.0},
+        {1.0,0.0,1.0},
+        {0.0,0.0,1.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    //Convex shape, 3D, points in Y=0 plane
+    {
+      /*
+
+        2---3 Z=1.0
+        |
+        |
+        |
+        1---0 Z=0.0
+
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,0.0,0.0},
+        {0.0,0.0,0.0},
+        {0.0,0.0,1.0},
+        {1.0,0.0,1.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in X=Y plane");
+  {
+    {
+      /*
+                  |    |/     _-
+                  |  _-2    _-
+        3---2     |_- /   _-
+           /      3  /  _-
+          /       | / _0
+         /        |/_-
+        1---0   --1-----
+                 /|
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,1.0,0.0},
+        {0.0,0.0,0.0},
+        {1.0,1.0,1.0},
+        {0.0,0.0,1.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    //Convex shape, 3D, points in X=Y plane
+    {
+      /*
+
+                  |    |/     _-
+                  |  _-3    _-
+        2---3     |_- /   _-
+        |         2  /  _-
+        |         | / _0
+        |         |/_-
+        1---0   --1-----
+                 /|
+
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,1.0,0.0},
+        {0.0,0.0,0.0},
+        {0.0,0.0,1.0},
+        {1.0,1.0,1.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, not at origin");
+  {
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,4.0,0.0},
+        {1.0,1.0,0.0},
+        {2.0,4.0,1.0},
+        {1.0,1.0,1.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,2.0,0.0},
+        {1.0,1.0,0.0},
+        {1.0,1.0,1.0},
+        {2.0,2.0,1.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, above Z=0");
+  {
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,4.0,1.0},
+        {1.0,1.0,1.0},
+        {2.0,4.0,2.0},
+        {1.0,1.0,2.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,2.0,1.0},
+        {1.0,1.0,1.0},
+        {1.0,1.0,2.0},
+        {2.0,2.0,2.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, from error");
+  {
+    {
+      /*
+
+        3---2 Z=6.0
+           /
+          /
+         /
+        1---0 Z=5.0
+
+      */
+      const std::vector<Coordinat3D> points {
+        {2.35114,3.23607,5.0},
+        {1.17557,2.35781,5.0},
+        {2.35114,3.23607,6.0},
+        {1.17557,2.35781,6.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    {
+      /*
+
+        2---3 Z=6.0
+        |
+        |
+        |
+        1---0 Z=5.0
+
+      */
+      const std::vector<Coordinat3D> points {
+        {2.35114,3.23607,5.0},
+        {1.17557,2.35781,5.0},
+        {1.17557,2.35781,6.0},
+        {2.35114,3.23607,6.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
   }
   if (verbose) TRACE("IsClockwise in three dimensions, points in XY plane");

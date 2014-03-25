@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #ifndef CONCEPTMAPWIDGET_H
 #define CONCEPTMAPWIDGET_H
 
@@ -11,6 +31,9 @@
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
 #include <boost/shared_ptr.hpp>
 #include <boost/signals2.hpp>
+
+#include <QPoint>
+
 #include "conceptmapfwd.h"
 #include "conceptmapfactory.h"
 
@@ -59,6 +82,8 @@ struct Widget
   ///Obtain the version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
+  void MouseMoveEvent(const QPointF& mouse_pos) noexcept;
+
   void Undo() noexcept;
 
   ///Emitted when an Edge is added
@@ -84,13 +109,17 @@ struct Widget
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_lose_focus;
 
-  ///Emitted when multiple Nodes are selected
+  ///Emitted when one or more Nodes lose to be selected
   ///This has to be handled by QtConceptMapWidget
-  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_selected_nodes;
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_lose_selected;
 
   ///Emitted when a Node receives focus
   ///This has to be handled by QtConceptMapWidget
   boost::signals2::signal<void(boost::shared_ptr<Node>)> m_signal_set_focus;
+
+  ///Emitted when multiple Nodes are selected
+  ///This has to be handled by QtConceptMapWidget
+  boost::signals2::signal<void(std::vector<boost::shared_ptr<Node>>)> m_signal_set_selected;
 
   private:
 
@@ -105,6 +134,8 @@ struct Widget
 
   const int m_font_height;
   const int m_font_width;
+
+  QPointF m_mouse_pos;
 
   ///The elements selected
   ///- a true Node
@@ -145,19 +176,21 @@ struct Widget
   boost::shared_ptr<      Node> FindNodeAt(const double x, const double y)       noexcept;
   boost::shared_ptr<const Node> FindNodeAt(const double x, const double y) const noexcept;
 
+  ///Lose the current focus, assumes something has focus
+  void LoseFocus() noexcept;
 
   ///Used by CommandAddFocusRandom and CommandSetFocusRandom
   ///Of all the concept maps its nodes, except for the uses supplied as the
   ///argument, return 1 to all the nodes, except when there is no node
   ///left (as all are excluded) or the concept map does not have any nodes
   std::vector<boost::shared_ptr<Node>> GetRandomNodes(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
-  boost::shared_ptr<Node> GetRandomNode(boost::shared_ptr<const Node> node_to_exclude = nullptr) noexcept;
+  boost::shared_ptr<Node> GetRandomNode(std::vector<boost::shared_ptr<const Node>> nodes_to_exclude = {}) noexcept;
 
   ///Start, reset or delete a/the concept map
   void SetConceptMap(const boost::shared_ptr<ConceptMap> conceptmap) noexcept;
 
   ///Set the node to the only node in focus
-  void SetFocus(const boost::shared_ptr<Node>& node ) noexcept;
+  void SetFocus(const boost::shared_ptr<Node>& node) noexcept;
 
   ///Set the nodes to the only nodes selected
   void SetSelected(const std::vector<boost::shared_ptr<Node>>& nodes) noexcept;

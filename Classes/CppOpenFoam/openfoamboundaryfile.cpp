@@ -15,7 +15,7 @@
 
 #include <QFile>
 
-#include "filename.h"
+
 #include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamboundaryindex.h"
@@ -95,7 +95,7 @@ ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(std::istream& is)
 ribi::foam::BoundaryFile ribi::foam::BoundaryFile::Parse(const std::string& filename)
 {
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   const ribi::foam::BoundaryFile file { Parse(f) };

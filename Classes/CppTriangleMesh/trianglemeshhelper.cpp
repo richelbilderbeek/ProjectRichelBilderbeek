@@ -719,6 +719,13 @@ void ribi::trim::Helper::Test() noexcept
   //IsClockwiseHorizontal 2
   //IsClockwiseVertical
   //SetWindingHorizontal
+/*
+(2.35114,3.23607,5)
+(1.17557,2.35781,5)
+(2.35114,3.23607,6)
+(1.17557,2.35781,6)
+*/
+
   //
   TRACE("Finished ribi::trim::Helper::Point::Test successfully");
 }
@@ -811,3 +818,4 @@ bool ribi::trim::Less(
   return ribi::trim::operator <(lhs,rhs);
   //return lhs < rhs;
 }
+

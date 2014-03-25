@@ -76,8 +76,13 @@ struct QtConceptMapWidget : public ribi::QtKeyboardFriendlyGraphicsView
   ///Called when Widget emits m_signal_lose_focus_node
   ///Which is emitted when a Node loses focus
   ///A Node has no idea of losing focus
-  void OnLoseFocusNode(const boost::shared_ptr<Node> node) noexcept;
-  void OnLoseFocusNodes(const std::vector<boost::shared_ptr<Node>> node) noexcept;
+  void OnLoseFocus(const boost::shared_ptr<Node> node) noexcept;
+
+  ///Called when Widget emits m_signal_lose_selected
+  ///Which is emitted when a Node loses being selected
+  ///A Node has no idea of being selected
+  //void OnLoseSelected(const boost::shared_ptr<Node> node) noexcept;
+  void OnLoseSelected(const std::vector<boost::shared_ptr<Node>> node) noexcept;
 
   ///Called when Widget emits m_signal_set_focus_node
   ///Which is emitted when Nodes are given focus.

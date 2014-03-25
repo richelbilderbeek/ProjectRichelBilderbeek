@@ -18,7 +18,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "trace.h"
 #pragma GCC diagnostic pop

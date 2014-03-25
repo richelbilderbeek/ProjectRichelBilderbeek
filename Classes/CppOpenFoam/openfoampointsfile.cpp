@@ -16,7 +16,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "openfoampointsfileitem.h"
 #include "trace.h"
@@ -50,7 +50,7 @@ ribi::foam::PointsFile ribi::foam::PointsFile::Parse(std::istream& is)
 ribi::foam::PointsFile ribi::foam::PointsFile::Parse(const std::string& filename)
 {
   const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   ribi::foam::PointsFile file { Parse(f) };

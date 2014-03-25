@@ -8,7 +8,7 @@
 #include "fileio.h"
 #include "xml.h"
 
-const std::vector<ribi::fileio::Filename> ribi::foam::Filenames::GetAll() const noexcept
+const std::vector<std::string> ribi::foam::Filenames::GetAll() const noexcept
 {
   return {
     this->GetBoundary(),
@@ -20,18 +20,18 @@ const std::vector<ribi::fileio::Filename> ribi::foam::Filenames::GetAll() const 
   };
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetAlphat() const noexcept
+std::string ribi::foam::Filenames::GetAlphat() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
     + fileio::FileIo().GetPathSeperator()
     + "alphat"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetBoundary() const noexcept
+std::string ribi::foam::Filenames::GetBoundary() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
@@ -40,9 +40,9 @@ ribi::fileio::Filename ribi::foam::Filenames::GetBoundary() const noexcept
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetFaces() const noexcept
+std::string ribi::foam::Filenames::GetFaces() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
@@ -51,9 +51,9 @@ ribi::fileio::Filename ribi::foam::Filenames::GetFaces() const noexcept
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetNeighbour() const noexcept
+std::string ribi::foam::Filenames::GetNeighbour() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
@@ -62,41 +62,41 @@ ribi::fileio::Filename ribi::foam::Filenames::GetNeighbour() const noexcept
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetCase() const noexcept
+std::string ribi::foam::Filenames::GetCase() const noexcept
 {
-  return ribi::fileio::Filename("case.foam");
+  return std::string("case.foam");
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetControlDict() const noexcept
+std::string ribi::foam::Filenames::GetControlDict() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "system"
     + fileio::FileIo().GetPathSeperator()
     + "controlDict"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetFvSchemes() const noexcept
+std::string ribi::foam::Filenames::GetFvSchemes() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "system"
     + fileio::FileIo().GetPathSeperator()
     + "fvSchemes"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetFvSolution() const noexcept
+std::string ribi::foam::Filenames::GetFvSolution() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "system"
     + fileio::FileIo().GetPathSeperator()
     + "fvSolution"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetOwner() const noexcept
+std::string ribi::foam::Filenames::GetOwner() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
@@ -105,9 +105,9 @@ ribi::fileio::Filename ribi::foam::Filenames::GetOwner() const noexcept
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetPoints() const noexcept
+std::string ribi::foam::Filenames::GetPoints() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "polyMesh"
@@ -116,54 +116,54 @@ ribi::fileio::Filename ribi::foam::Filenames::GetPoints() const noexcept
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetPressureField() const noexcept
+std::string ribi::foam::Filenames::GetPressureField() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
     + fileio::FileIo().GetPathSeperator()
     + "p"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetTemperatureField() const noexcept
+std::string ribi::foam::Filenames::GetTemperatureField() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
     + fileio::FileIo().GetPathSeperator()
     + "T"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetThermophysicalProperties() const noexcept
+std::string ribi::foam::Filenames::GetThermophysicalProperties() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "thermophysicalProperties"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetTransportProperties() const noexcept
+std::string ribi::foam::Filenames::GetTransportProperties() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "transportProperties"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetTurbulenceProperties() const noexcept
+std::string ribi::foam::Filenames::GetTurbulenceProperties() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "constant"
     + fileio::FileIo().GetPathSeperator()
     + "turbulenceProperties"
   );
 }
 
-ribi::fileio::Filename ribi::foam::Filenames::GetVelocityField() const noexcept
+std::string ribi::foam::Filenames::GetVelocityField() const noexcept
 {
-  return ribi::fileio::Filename(
+  return std::string(
       "0"
     + fileio::FileIo().GetPathSeperator()
     + "U"

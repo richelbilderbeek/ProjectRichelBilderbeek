@@ -187,12 +187,12 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
   }
   {
 
-    std::ofstream f(ribi::foam::Filenames().GetPoints().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetPoints().c_str());
     f << CreateOpenFoamHeader("vectorField","points","constant/polyMesh");
     f << CreateOpenFoamNodes();
   }
   {
-    std::ofstream fp(ribi::foam::Filenames().GetFaces().Get().c_str());
+    std::ofstream fp(ribi::foam::Filenames().GetFaces().c_str());
 
     fp << CreateOpenFoamHeader("faceList","faces","constant/polyMesh");
     fp << CreateOpenFoamFaces();
@@ -201,8 +201,8 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     const int n_cells = static_cast<int>(m_cells.size());
     if (verbose) std::cout << "\tGenerating cells (" << n_cells << ")\n";
 
-    std::ofstream fo(ribi::foam::Filenames().GetOwner().Get().c_str());
-    std::ofstream fn(ribi::foam::Filenames().GetNeighbour().Get().c_str());
+    std::ofstream fo(ribi::foam::Filenames().GetOwner().c_str());
+    std::ofstream fn(ribi::foam::Filenames().GetNeighbour().c_str());
 
     std::stringstream fs;
     fs
@@ -231,11 +231,11 @@ ribi::trim::TriangleMeshBuilder::TriangleMeshBuilder(
     fn << out_neighbour;
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetBoundary().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetBoundary().c_str());
     f << CreateBoundary(boundary_to_patch_field_type_function);
   }
   {
-    std::ofstream f(ribi::foam::Filenames().GetCase().Get().c_str());
+    std::ofstream f(ribi::foam::Filenames().GetCase().c_str());
     //Need nothing to stream
   }
 

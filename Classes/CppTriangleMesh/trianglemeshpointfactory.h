@@ -20,7 +20,7 @@ namespace trim {
 
 struct PointFactory
 {
-  typedef boost::geometry::model::d2::point_xy<double> ConstCoordinat2D;
+  typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
   PointFactory();
@@ -38,7 +38,7 @@ struct PointFactory
   ///ConstCoordinat2D
   ///Create a Point with an undetermined Z coordinat
   boost::shared_ptr<Point> Create(
-    const boost::shared_ptr<const ConstCoordinat2D> coordinat
+    const boost::shared_ptr<const Coordinat2D> coordinat
   ) const noexcept;
 
   boost::shared_ptr<Point> CreateFrom3D(

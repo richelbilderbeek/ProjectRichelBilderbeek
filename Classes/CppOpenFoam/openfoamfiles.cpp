@@ -13,7 +13,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamboundaryfile.h"
 #include "openfoamfacesfile.h"
 #include "openfoamneighbourfile.h"
@@ -307,27 +307,27 @@ boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
 
   assert(ribi::fileio::FileIo().IsFolder(folder_name));
 
-  const ribi::fileio::Filename filename(
+  const std::string filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
-    + CreateFilenames()->GetBoundary().Get()
+    + CreateFilenames()->GetBoundary()
   );
   #ifndef NDEBUG
-  if (!fileio::FileIo().IsRegularFile(filename.Get()))
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
 
-  assert(fileio::FileIo().IsRegularFile(filename.Get()));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
-  std::ifstream is(filename.Get().c_str());
+  std::ifstream is(filename.c_str());
 
   try
   {
 
     const boost::shared_ptr<ribi::foam::BoundaryFile> p {
-      new ribi::foam::BoundaryFile(filename.Get())
+      new ribi::foam::BoundaryFile(filename)
     };
 
     assert(p);
@@ -481,13 +481,13 @@ boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
 {
   std::cout << (__func__) << std::endl;
   assert(ribi::fileio::FileIo().IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
+  const std::string filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
-    + CreateFilenames()->GetFaces().Get()
+    + CreateFilenames()->GetFaces()
   );
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   boost::shared_ptr<ribi::foam::FacesFile> p {
-    new ribi::foam::FacesFile(filename.Get())
+    new ribi::foam::FacesFile(filename)
   };
   assert(p);
   return p;
@@ -523,13 +523,13 @@ boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeighbour(
 {
   std::cout << (__func__) << std::endl;
   assert(ribi::fileio::FileIo().IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
+  const std::string filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
-    + CreateFilenames()->GetNeighbour().Get()
+    + CreateFilenames()->GetNeighbour()
   );
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   boost::shared_ptr<ribi::foam::NeighbourFile> p {
-    new ribi::foam::NeighbourFile(filename.Get())
+    new ribi::foam::NeighbourFile(filename)
   };
   assert(p);
   return p;
@@ -540,15 +540,15 @@ boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
 {
   std::cout << (__func__) << std::endl;
   assert(ribi::fileio::FileIo().IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
+  const std::string filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
-    + CreateFilenames()->GetOwner().Get()
+    + CreateFilenames()->GetOwner()
   );
 
   const boost::shared_ptr<ribi::foam::OwnerFile> p {
-    new ribi::foam::OwnerFile(filename.Get())
+    new ribi::foam::OwnerFile(filename)
   };
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   //const boost::shared_ptr<ribi::foam::OwnerFile> p {
   //  new ribi::foam::OwnerFile(is)
   //};
@@ -561,13 +561,13 @@ boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
 {
   std::cout << (__func__) << std::endl;
   assert(ribi::fileio::FileIo().IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
+  const std::string filename(
     (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
-    + CreateFilenames()->GetPoints().Get()
+    + CreateFilenames()->GetPoints()
   );
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   boost::shared_ptr<ribi::foam::PointsFile> p {
-    new ribi::foam::PointsFile(filename.Get())
+    new ribi::foam::PointsFile(filename)
   };
   assert(p);
   return p;
