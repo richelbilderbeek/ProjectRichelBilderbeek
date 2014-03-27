@@ -44,6 +44,7 @@ struct Geometry
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Polygon;
+  typedef boost::geometry::model::box<Coordinat2D> Rect;
 
   Geometry();
 
@@ -85,6 +86,14 @@ struct Geometry
 
   std::vector<Coordinat2D> Coordinats2DToBoostGeometryPointsXy(
     const std::vector<Coordinat2D>& v
+  ) const noexcept;
+
+  //Rect CreateRect(const std::vector<Coordinat2D>& rect) const noexcept;
+  Rect CreateRect(
+    const double left,
+    const double top,
+    const double right,
+    const double bottom
   ) const noexcept;
 
   ///Functor for X-Y-Z ordering

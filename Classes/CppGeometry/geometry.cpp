@@ -421,8 +421,45 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
 {
   assert(points.size() >= 3);
   assert(IsPlane(points));
+
+  #ifndef NDEBUG
+  {
+    std::stringstream s;
+    s << "{";
+    for (auto point3d: points)
+    {
+      s << ToStr(point3d) << ",";
+    }
+    std::string po_str(s.str());
+    po_str[po_str.size() - 1] = '}';
+    TRACE(po_str);
+  }
+
+  #endif
+
+
   Plane plane(points[0],points[1],points[2]);
-  const auto coordinats2d(plane.CalcProjection(points));
+
+  try { TRACE(plane.ToFunctionX()); } catch (std::exception&) {}
+  try { TRACE(plane.ToFunctionY()); } catch (std::exception&) {}
+  try { TRACE(plane.ToFunctionZ()); } catch (std::exception&) {}
+
+  const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
+    plane.CalcProjection(points)
+  );
+
+  {
+    std::stringstream s;
+    s << "{";
+    for (auto coordinat2d: coordinats2d)
+    {
+      s << Geometry().ToStr(coordinat2d) << ",";
+    }
+    std::string co_str(s.str());
+    co_str[co_str.size() - 1] = '}';
+    TRACE(co_str);
+  }
+
   return IsConvex(coordinats2d);
 }
 
@@ -1306,6 +1343,94 @@ void ribi::Geometry::Test() noexcept
         assert(!g.IsClockwise(coordinats,above));
         assert(!g.IsClockwise(coordinats,below));
       }
+    }
+  }
+  if (verbose) TRACE("GetLineLineIntersections");
+  {
+    typedef boost::geometry::model::d2::point_xy<double> Point;
+    typedef boost::geometry::model::linestring<Point> Line;
+    typedef boost::geometry::model::box<Point> Rect;
+    //Assume line segment (0,0)-(2,2) intersects line segment (2,0)-(0,2) at point (1,1)
+    {
+      const Line line1 = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line2 = CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      assert( GetLineLineIntersections(line1,line2).size() == 1);
+      assert( fuzzy_equal_to()(GetLineLineIntersections(line1,line2)[0].x(),1.0) );
+      assert( fuzzy_equal_to()(GetLineLineIntersections(line1,line2)[0].y(),1.0) );
+    }
+    //Lines are finite, however, as the line segment
+    //(0,0)-(0.2,0.2) does not intersect line segment (2,0)-(0,2) at point (1,1)
+    {
+      const Line line1 = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(0.2,0.2) } ));
+      const Line line2 = CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      assert( GetLineLineIntersections(line1,line2).size() == 0);
+    }
+    //Assume line segment (0,0)-(2,2) intersects with rectangle (1,0)-(3,9) at point (1,1)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 1);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+    }
+    //Assume line segment (0,0)-(2,2) intersects with rectangle (0,1)-(3,9) at point (1,1)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 1);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+    }
+    //Assume line segment (0,0)-(2,2) intersects with rectangle (1,1)-(3,3) at point (1,1) once
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 1);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+    }
+
+    //Assume line segment (0,0)-(4,4) intersects with rectangle (1,0)-(3,9) at points (1,1) and (3,3)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 2);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+      assert( fuzzy_equal_to()(v[1].x(),3.0) );
+      assert( fuzzy_equal_to()(v[1].y(),3.0) );
+    }
+    //Assume line segment (0,0)-(4,4) intersects with rectangle (0,1)-(3,9) at points (1,1) and (3,3)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 2);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+      assert( fuzzy_equal_to()(v[1].x(),3.0) );
+      assert( fuzzy_equal_to()(v[1].y(),3.0) );
+    }
+    //Assume line segment (0,0)-(4,4) intersects with rectangle (1,1)-(3,3) at points (1,1) and (3,3)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 2);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+      assert( fuzzy_equal_to()(v[1].x(),3.0) );
+      assert( fuzzy_equal_to()(v[1].y(),3.0) );
     }
   }
   TRACE("Finished ribi::Geometry::Test successfully");

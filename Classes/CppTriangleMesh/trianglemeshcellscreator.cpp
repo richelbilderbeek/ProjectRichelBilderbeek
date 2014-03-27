@@ -56,7 +56,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   };
 
   //ver_faces usused: cause of issue 168?
-  const std::vector<boost::shared_ptr<Face>> ver_faces(
+  std::vector<boost::shared_ptr<Face>> ver_faces(
     CreateVerticalFaces(t,all_points,n_layers,strategy)
   );
   assert(!ver_faces.empty()); //168 : perhaps ver_faces is removed by compiler?
@@ -95,7 +95,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
         assert(these_ver_faces[0]);
         assert(these_ver_faces[1]);
         assert(these_ver_faces[2]);
-        const boost::shared_ptr<Cell> cell {
+        const boost::shared_ptr<Cell> cell(
           CellFactory().Create(
             {
               hor_faces[bottom_face_index],
@@ -106,7 +106,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
             },
             strategy
           )
-        };
+        );
         assert(hor_faces[bottom_face_index]);
         assert(hor_faces[top_face_index]);
         assert(Helper().IsHorizontal(*hor_faces[bottom_face_index]));
@@ -152,7 +152,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   }
 
   CheckCells(cells);
-
+  ver_faces.clear();
   return cells;
 }
 

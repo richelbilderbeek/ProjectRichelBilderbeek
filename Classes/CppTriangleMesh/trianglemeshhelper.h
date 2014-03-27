@@ -195,7 +195,9 @@ struct Helper
   ) const noexcept;
   #endif
 
+  std::string ToStr(const std::vector<boost::shared_ptr<const Point>>& p) const noexcept;
   std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
+
 
   private:
   #ifdef USE_TRIANGLEMESHEDGE
