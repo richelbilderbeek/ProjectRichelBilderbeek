@@ -16,7 +16,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -50,7 +50,7 @@ void ribi::foam::RasPropertiesFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const RasPropertiesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const RasPropertiesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

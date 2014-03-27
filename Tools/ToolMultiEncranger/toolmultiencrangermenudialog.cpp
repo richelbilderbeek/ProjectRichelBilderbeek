@@ -42,7 +42,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
       source_filename = argv[i + 1];
     }
   }
-  if (!fileio::IsRegularFile(source_filename))
+  if (!fileio::FileIo().IsRegularFile(source_filename))
   {
     std::cout << "Please supply an existing source filename\n";
     return 1;
@@ -111,7 +111,7 @@ int ribi::ToolMultiEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::s
   }
 
   const Encranger e(key);
-  std::vector<std::string> v { fileio::FileToVector(source_filename) };
+  std::vector<std::string> v { fileio::FileIo().FileToVector(source_filename) };
   if (do_encrypt)
   {
     for(std::string& s: v) { s = e.Encrypt(s); }

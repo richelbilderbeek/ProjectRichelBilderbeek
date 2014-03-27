@@ -335,19 +335,19 @@ void ribi::ImageCanvas::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ImageCanvas::Test");
-  const std::string temp_filename { fileio::GetTempFileName() };
+  const std::string temp_filename { fileio::FileIo().GetTempFileName() };
   {
     const std::string resource_filename { ":/CppImageCanvas/images/R.png" };
     QFile qfile(resource_filename.c_str());
     qfile.copy(temp_filename.c_str());
-    if (!fileio::IsRegularFile(temp_filename))
+    if (!fileio::FileIo().IsRegularFile(temp_filename))
     {
       TRACE("ERROR");
       TRACE(resource_filename);
       TRACE("Resource filename must exist");
     }
   }
-  assert(fileio::IsRegularFile(temp_filename));
+  assert(fileio::FileIo().IsRegularFile(temp_filename));
   const int n
     = static_cast<int>(CanvasColorSystems::GetAll().size())
     * static_cast<int>(CanvasCoordinatSystems::GetAll().size());
@@ -365,7 +365,7 @@ void ribi::ImageCanvas::Test() noexcept
     assert(!s.str().empty());
     //TRACE(c);
   }
-  fileio::DeleteFile(temp_filename);
+  fileio::FileIo().DeleteFile(temp_filename);
   TRACE("Finished ribi::ImageCanvas::Test successfully");
 }
 #endif

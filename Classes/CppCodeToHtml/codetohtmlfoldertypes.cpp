@@ -34,10 +34,10 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 
 ribi::c2h::FolderType ribi::c2h::FolderTypes::DeduceFolderType(const std::string& folder_name)
 {
-  assert(fileio::IsFolder(folder_name));
+  assert(fileio::FileIo().IsFolder(folder_name));
 
   const std::vector<std::string> files {
-    fileio::GetFilesInFolder(folder_name)
+    fileio::FileIo().GetFilesInFolder(folder_name)
   };
 
   //Search for pro or cppfiles

@@ -168,7 +168,7 @@ ribi::About ribi::QtRichelBilderbeekMenuDialog::GetAbout() noexcept
   //a.AddLibrary("QtSprites version: " + QtSprites::GetVersion());
   a.AddLibrary("QtStdVectorFunctionModel version: " + QtStdVectorFunctionModel::GetVersion());
   a.AddLibrary("QtStdVectorStringModel version: " + QtStdVectorStringModel::GetVersion());
-  a.AddLibrary("QtTicTacToeWidget version: " + QtTicTacToeWidget::GetVersion());
+  a.AddLibrary("QtTicTacToeWidget version: " + tictactoe::QtTicTacToeWidget::GetVersion());
   a.AddLibrary("QtToggleButtonWidget version: " + QtToggleButtonWidget::GetVersion());
   a.AddLibrary("QtUblasMatrixDoubleModel version: " + QtUblasMatrixDoubleModel::GetVersion());
   a.AddLibrary("QtUblasVectorDoubleModel version: " + QtUblasVectorDoubleModel::GetVersion());

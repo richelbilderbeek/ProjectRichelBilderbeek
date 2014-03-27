@@ -15,9 +15,9 @@ struct AlphatFile
 {
   explicit AlphatFile(
     const Header header = GetDefaultHeader()
-  );
+  ) noexcept;
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   void SetBoundaryField(const std::string& boundary_field) noexcept { m_boundary_field = boundary_field; }
@@ -37,10 +37,10 @@ struct AlphatFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const AlphatFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const AlphatFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const AlphatFile& f);
+std::ostream& operator<<(std::ostream& os, const AlphatFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

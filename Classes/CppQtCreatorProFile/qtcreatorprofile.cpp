@@ -69,15 +69,15 @@ ribi::QtCreatorProFile::QtCreatorProFile(const std::string& filename)
   #endif
 
   #ifndef NDEBUG
-  if (!ribi::fileio::IsRegularFile(filename))
+  if (!ribi::fileio::FileIo().IsRegularFile(filename))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
-  assert(ribi::fileio::IsRegularFile(filename));
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
 
-  std::vector<std::string> v = ribi::fileio::FileToVector(filename);
+  std::vector<std::string> v = ribi::fileio::FileIo().FileToVector(filename);
   RemoveComments(v);
   DoReplacements(v);
   std::stringstream data;
@@ -295,7 +295,7 @@ void ribi::QtCreatorProFile::Test() noexcept
   }
   TRACE("Starting QtCreatorProFile::Test");
   {
-    const std::string mypath { fileio::GetTempFileName() };
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "SOURCES += qtmain.cpp";
@@ -304,10 +304,10 @@ void ribi::QtCreatorProFile::Test() noexcept
     const QtCreatorProFile p(mypath);
     assert(p.GetSources().size() == 1);
     assert(p.GetSources().count("qtmain.cpp"));
-    fileio::DeleteFile(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
   {
-    const std::string mypath { fileio::GetTempFileName() };
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "include(something.pri)";
@@ -317,10 +317,10 @@ void ribi::QtCreatorProFile::Test() noexcept
     assert(p.GetPriFiles().size() == 1);
     TRACE(*p.GetPriFiles().begin());
     assert(p.GetPriFiles().count("something.pri"));
-    fileio::DeleteFile(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
   {
-    const std::string mypath { fileio::GetTempFileName() };
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "include (something.pri)";
@@ -330,10 +330,10 @@ void ribi::QtCreatorProFile::Test() noexcept
     assert(p.GetPriFiles().size() == 1);
     TRACE(*p.GetPriFiles().begin());
     assert(p.GetPriFiles().count("something.pri"));
-    fileio::DeleteFile(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
   {
-    const std::string mypath { fileio::GetTempFileName() };
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "HEADERS += header.h #Must remove this comment";
@@ -342,10 +342,10 @@ void ribi::QtCreatorProFile::Test() noexcept
     const QtCreatorProFile p(mypath);
     assert(p.GetHeaders().size() == 1);
     assert(p.GetHeaders().count("header.h"));
-    fileio::DeleteFile(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
   {
-    const std::string mypath { fileio::GetTempFileName() };
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f << "#-------------------------------------------------\n"
@@ -395,12 +395,12 @@ void ribi::QtCreatorProFile::Test() noexcept
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
-    fileio::DeleteFile(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
   //TRACE("Test QtCreatorProFile::Merge");
   {
-    const std::string mypath1 { fileio::GetTempFileName() };
-    const std::string mypath2 { fileio::GetTempFileName() };
+    const std::string mypath1 { fileio::FileIo().GetTempFileName() };
+    const std::string mypath2 { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath1);
       f << "#-------------------------------------------------\n"
@@ -442,13 +442,13 @@ void ribi::QtCreatorProFile::Test() noexcept
     //Check the project file
     const boost::shared_ptr<const QtCreatorProFile> p1(new QtCreatorProFile(mypath1));
     const boost::shared_ptr<const QtCreatorProFile> p2(new QtCreatorProFile(mypath2));
-    fileio::DeleteFile(mypath1.c_str());
-    fileio::DeleteFile(mypath2.c_str());
+    fileio::FileIo().DeleteFile(mypath1.c_str());
+    fileio::FileIo().DeleteFile(mypath2.c_str());
   }
   //Test conditionals
   {
     //Create a project file
-    const std::string mypath { fileio::GetTempFileName() };
+    const std::string mypath { fileio::FileIo().GetTempFileName() };
     {
       std::ofstream f(mypath);
       f
@@ -486,7 +486,7 @@ void ribi::QtCreatorProFile::Test() noexcept
       QtCreatorProFile q(mypath);
       assert(p == q);
     }
-    fileio::DeleteFile(mypath.c_str());
+    fileio::FileIo().DeleteFile(mypath.c_str());
   }
   TRACE("Finished QtCreatorProFile::Test successfully");
 }

@@ -65,7 +65,7 @@ int ribi::QtAsciiArterMainDialog::GetWidth() const noexcept
 
 void ribi::QtAsciiArterMainDialog::OnAnyChange()
 {
-  if (!fileio::IsRegularFile(GetFilename()))
+  if (!fileio::FileIo().IsRegularFile(GetFilename()))
   {
     m_dialog.reset(nullptr);
     return;
@@ -85,7 +85,7 @@ void ribi::QtAsciiArterMainDialog::on_button_load_clicked()
 {
   const std::string filename = QFileDialog::getOpenFileName().toStdString();
 
-  if (!fileio::IsRegularFile(filename))
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     m_filename = "";
     return;
@@ -108,8 +108,8 @@ void ribi::QtAsciiArterMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::QtAsciiArterMainDialog::Test");
-  const std::string tmp_filename { fileio::GetTempFileName() };
-  assert(!fileio::IsRegularFile(tmp_filename));
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
+  assert(!fileio::FileIo().IsRegularFile(tmp_filename));
   //Load image from resources, save to file
   {
     QPixmap p(":/ToolImageAsciiArter/images/R.png");
@@ -117,7 +117,7 @@ void ribi::QtAsciiArterMainDialog::Test() noexcept
     assert(p.height() > 0);
     p.save(tmp_filename.c_str());
   }
-  assert(fileio::IsRegularFile(tmp_filename));
+  assert(fileio::FileIo().IsRegularFile(tmp_filename));
   boost::scoped_ptr<AsciiArterMainDialog> dialog(
     new AsciiArterMainDialog(tmp_filename,40)
   );
@@ -126,8 +126,8 @@ void ribi::QtAsciiArterMainDialog::Test() noexcept
     dialog->GetAsciiArt()
   };
   assert(!v.empty());
-  fileio::DeleteFile(tmp_filename);
-  assert(!fileio::IsRegularFile(tmp_filename));
+  fileio::FileIo().DeleteFile(tmp_filename);
+  assert(!fileio::FileIo().IsRegularFile(tmp_filename));
   TRACE("Finished ribi::QtAsciiArterMainDialog::Test successfully");
 }
 #endif

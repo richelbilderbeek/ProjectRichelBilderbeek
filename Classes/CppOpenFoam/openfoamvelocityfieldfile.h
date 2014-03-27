@@ -38,10 +38,10 @@ struct VelocityFieldFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f);
+std::ostream& operator<<(std::ostream& os, const VelocityFieldFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

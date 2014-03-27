@@ -37,7 +37,7 @@ const boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::CreateFromX
 #endif
 
 boost::shared_ptr<ribi::trim::Point> ribi::trim::PointFactory::Create(
-  const boost::shared_ptr<const ConstCoordinat2D> coordinat
+  const boost::shared_ptr<const Coordinat2D> coordinat
 ) const noexcept
 {
   PROFILE_FUNC();
@@ -65,10 +65,10 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
   //2:  1 -0 1
   //7:  1 -0 0
   //3: -1  0 1
-  const boost::shared_ptr<ConstCoordinat2D> co_a { new ConstCoordinat2D(-1.0, 0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_b { new ConstCoordinat2D( 1.0,-0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_c { new ConstCoordinat2D( 1.0,-0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_d { new ConstCoordinat2D(-1.0, 0.0) };
+  const boost::shared_ptr<Coordinat2D> co_a { new Coordinat2D(-1.0, 0.0) };
+  const boost::shared_ptr<Coordinat2D> co_b { new Coordinat2D( 1.0,-0.0) };
+  const boost::shared_ptr<Coordinat2D> co_c { new Coordinat2D( 1.0,-0.0) };
+  const boost::shared_ptr<Coordinat2D> co_d { new Coordinat2D(-1.0, 0.0) };
   const auto a(PointFactory().Create(co_a));
   const auto b(PointFactory().Create(co_b));
   const auto c(PointFactory().Create(co_c));
@@ -87,12 +87,12 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
 
 std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::PointFactory::CreateTestPrism() const noexcept
 {
-  const boost::shared_ptr<ConstCoordinat2D> co_a { new ConstCoordinat2D(0.0,0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_b { new ConstCoordinat2D(1.0,0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_c { new ConstCoordinat2D(0.0,1.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_d { new ConstCoordinat2D(0.0,0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_e { new ConstCoordinat2D(1.0,0.0) };
-  const boost::shared_ptr<ConstCoordinat2D> co_f { new ConstCoordinat2D(0.0,1.0) };
+  const boost::shared_ptr<Coordinat2D> co_a { new Coordinat2D(0.0,0.0) };
+  const boost::shared_ptr<Coordinat2D> co_b { new Coordinat2D(1.0,0.0) };
+  const boost::shared_ptr<Coordinat2D> co_c { new Coordinat2D(0.0,1.0) };
+  const boost::shared_ptr<Coordinat2D> co_d { new Coordinat2D(0.0,0.0) };
+  const boost::shared_ptr<Coordinat2D> co_e { new Coordinat2D(1.0,0.0) };
+  const boost::shared_ptr<Coordinat2D> co_f { new Coordinat2D(0.0,1.0) };
 
   const auto a(PointFactory().Create(co_a));
   const auto b(PointFactory().Create(co_b));
@@ -161,17 +161,17 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
     Y
 
   */
-  const boost::shared_ptr<ConstCoordinat2D> co_a {
-    new ConstCoordinat2D(1.0,1.0)
+  const boost::shared_ptr<Coordinat2D> co_a {
+    new Coordinat2D(1.0,1.0)
   };
-  boost::shared_ptr<ConstCoordinat2D> co_b {
-    new ConstCoordinat2D(2.0,1.0)
+  boost::shared_ptr<Coordinat2D> co_b {
+    new Coordinat2D(2.0,1.0)
   };
-  boost::shared_ptr<ConstCoordinat2D> co_c {
-    new ConstCoordinat2D(2.0,2.0)
+  boost::shared_ptr<Coordinat2D> co_c {
+    new Coordinat2D(2.0,2.0)
   };
-  boost::shared_ptr<ConstCoordinat2D> co_d {
-    new ConstCoordinat2D(1.0,2.0)
+  boost::shared_ptr<Coordinat2D> co_d {
+    new Coordinat2D(1.0,2.0)
   };
 
   if (winding == Winding::counter_clockwise)
@@ -249,14 +249,14 @@ std::vector<boost::shared_ptr<ribi::trim::Point>>
 
   */
 
-  const boost::shared_ptr<ConstCoordinat2D> co_a {
-    new ConstCoordinat2D(1.0,1.0)
+  const boost::shared_ptr<Coordinat2D> co_a {
+    new Coordinat2D(1.0,1.0)
   };
-  boost::shared_ptr<ConstCoordinat2D> co_b {
-    new ConstCoordinat2D(2.0,2.0)
+  boost::shared_ptr<Coordinat2D> co_b {
+    new Coordinat2D(2.0,2.0)
   };
-  boost::shared_ptr<ConstCoordinat2D> co_c {
-    new ConstCoordinat2D(1.0,2.0)
+  boost::shared_ptr<Coordinat2D> co_c {
+    new Coordinat2D(1.0,2.0)
   };
 
   if (winding == Winding::counter_clockwise) { std::swap(co_b,co_c); }

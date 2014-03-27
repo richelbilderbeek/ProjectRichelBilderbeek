@@ -164,21 +164,21 @@ void ribi::DotMatrixMenuDialog::Test() noexcept
   //Command line tests
   {
     DotMatrixMenuDialog d;
-    const std::string filename { fileio::GetTempFileName(".png") };
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
     d.Execute( { "DotMatrix", "-t", "\"Hello world\"" } );
     d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-s", "0" } );
 
-    assert(!fileio::IsRegularFile(filename));
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( { "DotMatrix", "-t", "\"Hello world\"", "-f", filename } );
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
 
-    assert(!fileio::IsRegularFile(filename));
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( { "DotMatrix", "--text", "\"Hello world\"", "-f", filename, "--spacing", "1" } );
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   TRACE("Finished ribi::ToolDotMatrixMenuDialog::Test successfully");
 }

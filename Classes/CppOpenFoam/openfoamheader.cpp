@@ -42,15 +42,15 @@ void ribi::foam::Header::CleanFile(
   const std::string& filename) noexcept
 {
   #ifndef NDEBUG
-  if(!fileio::IsRegularFile(filename))
+  if(!fileio::FileIo().IsRegularFile(filename))
   {
     TRACE("ERROR");
   }
   #endif
 
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   //v is dirty
-  const std::vector<std::string> v { fileio::FileToVector(filename) };
+  const std::vector<std::string> v { fileio::FileIo().FileToVector(filename) };
   //w will be clean
   std::vector<std::string> w;
   std::transform(v.begin(),v.end(),std::back_inserter(w),
@@ -63,8 +63,8 @@ void ribi::foam::Header::CleanFile(
     }
   );
   //w is clean
-  assert(fileio::IsRegularFile(filename));
-  fileio::VectorToFile(w,filename,fileio::CopyMode::allow_overwrite);
+  assert(fileio::FileIo().IsRegularFile(filename));
+  fileio::FileIo().VectorToFile(w,filename,fileio::CopyMode::allow_overwrite);
 }
 
 
@@ -92,7 +92,7 @@ void ribi::foam::Header::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs)
+bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs) noexcept
 {
   if (lhs.GetClass() != rhs.GetClass())
   {
@@ -125,12 +125,12 @@ bool ribi::foam::operator==(const ribi::foam::Header& lhs, const ribi::foam::Hea
   return true;
 }
 
-bool ribi::foam::operator!=(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs)
+bool ribi::foam::operator!=(const ribi::foam::Header& lhs, const ribi::foam::Header& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const Header& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const Header& f) noexcept
 {
   os
     << "FoamFile" << '\n'

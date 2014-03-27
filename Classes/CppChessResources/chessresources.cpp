@@ -62,8 +62,8 @@ std::string ribi::Chess::Resources::Find(
   filename+=".png";
 
   assert(!filename.empty() && "Assume there is a graphic for the piece");
-  if (!ribi::fileio::IsRegularFile(filename)) { TRACE(filename); }
-  assert(ribi::fileio::IsRegularFile(filename));
+  if (!ribi::fileio::FileIo().IsRegularFile(filename)) { TRACE(filename); }
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
   return filename;
 }
 
@@ -93,8 +93,8 @@ std::string ribi::Chess::Resources::Find(
   filename+=".png";
 
   assert(!filename.empty() && "Assume there is a graphic for the piece");
-  if (!ribi::fileio::IsRegularFile(filename)) { TRACE(filename); }
-  assert(ribi::fileio::IsRegularFile(filename));
+  if (!ribi::fileio::FileIo().IsRegularFile(filename)) { TRACE(filename); }
+  assert(ribi::fileio::FileIo().IsRegularFile(filename));
   return filename;
 }
 
@@ -217,11 +217,11 @@ void ribi::Chess::Resources::Test() noexcept
       const std::vector<std::string> filenames = GetFilenames();
       for (const std::string& s: filenames)
       {
-        if (!ribi::fileio::IsRegularFile(s))
+        if (!ribi::fileio::FileIo().IsRegularFile(s))
         {
           TRACE(s);
         }
-        assert(ribi::fileio::IsRegularFile(s));
+        assert(ribi::fileio::FileIo().IsRegularFile(s));
       }
     }
   #ifdef MXE_SUPPORTS_THREADS

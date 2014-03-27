@@ -31,6 +31,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/checked_delete.hpp>
 #include <boost/scoped_ptr.hpp>
 #include <boost/signals2.hpp>
+#include <boost/geometry/geometries/box.hpp>
+#include <boost/geometry/geometries/point_xy.hpp>
 #include "rectangle.h"
 #pragma GCC diagnostic pop
 
@@ -39,6 +41,9 @@ namespace ribi {
 ///GUI indepedent widget class, modeled after the Qt and Wt architure
 struct Widget
 {
+  typedef boost::geometry::model::d2::point_xy<double> Point;
+  typedef boost::geometry::model::box<Point> Rect;
+
   const Rect& GetGeometry() const noexcept { return m_geometry; }
   Rect& GetGeometry() noexcept { return m_geometry; }
 

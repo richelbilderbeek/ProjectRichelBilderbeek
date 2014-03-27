@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+ConceptMap, concept map classes
+Copyright (C) 2013-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -100,11 +120,14 @@ ribi::cmap::ConceptMap::ConceptMap(
 void ribi::cmap::ConceptMap::AddEdge(const boost::shared_ptr<Edge> edge)
 {
   assert(edge);
-  #ifdef TODO_RJCB
+  #define TODO_RICHEL
+  #ifdef  TODO_RICHEL
   if (std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 0)
   {
     TRACE("ERROR");
   }
+  assert(HasNode(edge->GetFrom()));
+  assert(HasNode(edge->GetTo()));
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetFrom()) == 1
     && "First enter the node this edge originates from"); //TODO RJCB
   assert(std::count(m_nodes.begin(),m_nodes.end(),edge->GetTo()) == 1
@@ -398,6 +421,11 @@ std::vector<std::string> ribi::cmap::ConceptMap::GetVersionHistory() noexcept
     "2013-12-23: Version 1.1: started versioning",
     "2014-02-08: Version 1.2: support an empty concept map"
   };
+}
+
+bool ribi::cmap::ConceptMap::HasNode(const boost::shared_ptr<const Node>& node) const noexcept
+{
+  return std::count(m_nodes.begin(),m_nodes.end(),node);
 }
 
 bool ribi::cmap::ConceptMap::HasSameContent(

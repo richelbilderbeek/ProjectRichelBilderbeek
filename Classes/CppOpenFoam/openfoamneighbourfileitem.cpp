@@ -40,19 +40,19 @@ void ribi::foam::NeighbourFileItem::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs)
+bool ribi::foam::operator==(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs) noexcept
 {
   return
        lhs.GetCellIndex() == rhs.GetCellIndex()
   ;
 }
 
-bool ribi::foam::operator!=(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs)
+bool ribi::foam::operator!=(const NeighbourFileItem& lhs, const NeighbourFileItem& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFileItem& item)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const NeighbourFileItem& item) noexcept
 {
   os << item.GetCellIndex();
   return os;

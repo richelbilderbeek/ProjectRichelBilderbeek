@@ -8539,13 +8539,112 @@ std::map<std::string,std::vector<std::string> > ribi::c2h::Info::CreatePageInfo(
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
-        "  The image shows the points and faces of the pseudo-corrected mesh, put in fodler 1.",
+        "  The image shows the points and faces of the pseudo-corrected mesh, put in folder 1.",
         "  The top-left image shows the point indices, the others the face indices. Of the bottom right two folded faces,",
         "  I number the indices of the face its vertices.",
         "</p>",
         "<p>&nbsp;</p>",
         "<p>",
         "  <img src=\"ToolOpenFoamErrorOpenCellsFoundCorrected.png\" alt=\"ToolOpenFoamErrorOpenCellsFoundCorrected.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamErrorOpenCellsFoundFixed",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamErrorOpenCellsFoundFixed.htm\">ToolOpenFoamErrorOpenCellsFoundFixed</a>",
+        "  shows the solution of the <a href=\"ToolOpenFoam.htm\">OpenFOAM</a>",
+        "  error <a href=\"ToolOpenFoamErrorOpenCellsFound.htm\">ToolOpenFoamErrorOpenCellsFound</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The error was caused by not putting the internal faces first in the file 'boundary'.",
+        "</p>",
+        "<p>",
+        "  I posted this solution at <a href=\"http://www.cfd-online.com/Forums/openfoam-meshing-technical/131611-checkmesh-states-faces-do-not-form-cell-mesh-appears-correct.html#post480639\">cfd-online.com its OpenFOAM forum</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  Of the mesh I used, I made some pictures. The top-left image shows the point indices, ",
+        "  the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamErrorOpenCellsFoundFixed.png\" alt=\"ToolOpenFoamErrorOpenCellsFoundFixed.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamExample21",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample21.htm\">OpenFOAM example 21</a> is an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> <a href=\"CppExample.htm\">example</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This <a href=\"CppExample.htm\">example</a> shows how to to use 'swiftSnap' to assign",
+        "  boundary regions in <a href=\"ToolBlender.htm\">Blender</a>.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamExample21_blender_with_regions.png\" alt=\"ToolOpenFoamExample21_blender_with_regions.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamExample23",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample23.htm\">OpenFOAM example 23: use blockMesh to create a cube</a> is an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> <a href=\"CppExample.htm\">example</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This <a href=\"CppExample.htm\">example</a> shows how to to use 'blockMesh' to create",
+        "  a cube.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The image shows the points and faces of the resulting mesh.",
+        "  The top-left image shows the point indices, the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamExample23.png\" alt=\"ToolOpenFoamExample23.png\"/>",
+        "</p>"
+      }
+    }
+  );
+
+  m.push_back(
+    { "ToolOpenFoamExample24",
+      {
+        "<p>",
+        "  <a href=\"ToolOpenFoamExample24.htm\">OpenFOAM example 24: use blockMesh to create a two-prism cube</a> is an",
+        "  <a href=\"ToolOpenFoam.htm\">OpenFOAM</a> <a href=\"CppExample.htm\">example</a>",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  This <a href=\"CppExample.htm\">example</a> shows how to to use 'blockMesh' to create",
+        "  a cube consisting out of two prisms.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  The image shows the points and faces of the resulting mesh.",
+        "  The top-left image shows the point indices, the others the face indices.",
+        "</p>",
+        "<p>&nbsp;</p>",
+        "<p>",
+        "  <img src=\"ToolOpenFoamExample24.png\" alt=\"ToolOpenFoamExample24.png\"/>",
         "</p>"
       }
     }

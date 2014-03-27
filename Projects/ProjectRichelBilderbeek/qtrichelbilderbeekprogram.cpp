@@ -307,7 +307,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::thorVeen: break;
     case ProgramType::thresholdFilterer: p = new QtThresholdFiltererMenuDialog; break;
     case ProgramType::thresholdFiltererVcl: break;
-    case ProgramType::ticTacToe: p = new QtTicTacToeMenuDialog; break;
+    case ProgramType::ticTacToe: p = new tictactoe::QtTicTacToeMenuDialog; break;
     case ProgramType::ticTacToeLearner: break;
     case ProgramType::ticTacToeValuer: break;
     case ProgramType::timePoll: break;
@@ -347,28 +347,28 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtPlaceholder
     label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameConsole()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameConsole()))
   {
     const QPixmap pixmap(p->GetFilenameConsole().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameDesktop()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameDesktop()))
   {
     const QPixmap pixmap(p->GetFilenameDesktop().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameDesktopWindowsOnly()))
   {
     const QPixmap pixmap(p->GetFilenameDesktopWindowsOnly().c_str());
     QLabel * const label = new QLabel;
     label->setPixmap(pixmap);
     layout->addWidget(label);
   }
-  if (fileio::IsRegularFile(p->GetFilenameWeb()))
+  if (fileio::FileIo().IsRegularFile(p->GetFilenameWeb()))
   {
     const QPixmap pixmap(p->GetFilenameWeb().c_str());
     QLabel * const label = new QLabel;

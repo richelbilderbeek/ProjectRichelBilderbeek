@@ -13,7 +13,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamboundaryfile.h"
 #include "openfoamfacesfile.h"
 #include "openfoamneighbourfile.h"
@@ -34,7 +34,7 @@ ribi::foam::Files::Files(const std::string& folder_name)
   #ifndef NDEBUG
   Test();
   #endif
-  assert(ribi::fileio::IsFolder(folder_name));
+  assert(ribi::fileio::FileIo().IsFolder(folder_name));
   assert(m_boundary);
   assert(m_faces);
   assert(m_neighbour);
@@ -300,34 +300,34 @@ void ribi::foam::Files::CheckMe() const
   TRACE("CheckMe finished successfully");
 }
 
-const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
+boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateBoundary(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
 
-  assert(ribi::fileio::IsFolder(folder_name));
+  assert(ribi::fileio::FileIo().IsFolder(folder_name));
 
-  const ribi::fileio::Filename filename(
-    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
-    + CreateFilenames()->GetBoundary().Get()
+  const std::string filename(
+    (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
+    + CreateFilenames()->GetBoundary()
   );
   #ifndef NDEBUG
-  if (!fileio::IsRegularFile(filename))
+  if (!fileio::FileIo().IsRegularFile(filename))
   {
     TRACE(filename);
     TRACE("BREAK");
   }
   #endif
 
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
-  std::ifstream is(filename.Get().c_str());
+  std::ifstream is(filename.c_str());
 
   try
   {
 
     const boost::shared_ptr<ribi::foam::BoundaryFile> p {
-      new ribi::foam::BoundaryFile(filename.Get())
+      new ribi::foam::BoundaryFile(filename)
     };
 
     assert(p);
@@ -348,12 +348,12 @@ void ribi::foam::Files::CreateCopy(
   const std::string copy_folder_name) noexcept
 {
   #ifndef NDEBUG
-  if (fileio::IsFolder(copy_folder_name))
+  if (fileio::FileIo().IsFolder(copy_folder_name))
   {
     TRACE(copy_folder_name);
   }
   #endif
-  assert(!fileio::IsFolder(copy_folder_name)
+  assert(!fileio::FileIo().IsFolder(copy_folder_name)
     && "Cannot make a copy in an existing folder");
 
   CreateFolders(copy_folder_name);
@@ -361,9 +361,9 @@ void ribi::foam::Files::CreateCopy(
   {
     const std::string destination_path {
         copy_folder_name
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + BoundaryFile::GetDefaultHeader().GetLocation()
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + BoundaryFile::GetDefaultHeader().GetObject()
     };
     std::ofstream f(destination_path.c_str());
@@ -373,9 +373,9 @@ void ribi::foam::Files::CreateCopy(
   {
     const std::string destination_path {
         copy_folder_name
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + FacesFile::GetDefaultHeader().GetLocation()
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + FacesFile::GetDefaultHeader().GetObject()
     };
     std::ofstream f(destination_path.c_str());
@@ -385,9 +385,9 @@ void ribi::foam::Files::CreateCopy(
   {
     const std::string destination_path {
         copy_folder_name
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + NeighbourFile::GetDefaultHeader().GetLocation()
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + NeighbourFile::GetDefaultHeader().GetObject()
     };
     std::ofstream f(destination_path.c_str());
@@ -397,9 +397,9 @@ void ribi::foam::Files::CreateCopy(
   {
     const std::string destination_path {
         copy_folder_name
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + OwnerFile::GetDefaultHeader().GetLocation()
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + OwnerFile::GetDefaultHeader().GetObject()
     };
     std::ofstream f(destination_path.c_str());
@@ -409,9 +409,9 @@ void ribi::foam::Files::CreateCopy(
   {
     const std::string destination_path {
         copy_folder_name
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + PointsFile::GetDefaultHeader().GetLocation()
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + PointsFile::GetDefaultHeader().GetObject()
     };
     std::ofstream f(destination_path.c_str());
@@ -431,7 +431,7 @@ void ribi::foam::Files::CreateCopy(
   }
 }
 
-const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefaultBoundary() noexcept
+boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefaultBoundary() noexcept
 {
   const boost::shared_ptr<BoundaryFile> p {
     new BoundaryFile
@@ -440,7 +440,7 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Files::CreateDefau
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateDefaultFaces() noexcept
+boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateDefaultFaces() noexcept
 {
   const boost::shared_ptr<FacesFile> p {
     new FacesFile
@@ -449,7 +449,7 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateDefaultF
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateDefaultNeighbour() noexcept
+boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateDefaultNeighbour() noexcept
 {
   const boost::shared_ptr<NeighbourFile> p {
     new NeighbourFile
@@ -458,7 +458,7 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateDefa
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateDefaultOwner() noexcept
+boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateDefaultOwner() noexcept
 {
   const boost::shared_ptr<OwnerFile> p {
     new OwnerFile
@@ -467,7 +467,7 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateDefaultO
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefaultPoints() noexcept
+boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefaultPoints() noexcept
 {
   const boost::shared_ptr<PointsFile> p {
     new PointsFile
@@ -476,24 +476,24 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreateDefault
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
+boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Files::CreateFaces(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
-  assert(ribi::fileio::IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
-    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
-    + CreateFilenames()->GetFaces().Get()
+  assert(ribi::fileio::FileIo().IsFolder(folder_name));
+  const std::string filename(
+    (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
+    + CreateFilenames()->GetFaces()
   );
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   boost::shared_ptr<ribi::foam::FacesFile> p {
-    new ribi::foam::FacesFile(filename.Get())
+    new ribi::foam::FacesFile(filename)
   };
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::Filenames> ribi::foam::Files::CreateFilenames() noexcept
+boost::shared_ptr<ribi::foam::Filenames> ribi::foam::Files::CreateFilenames() noexcept
 {
   const boost::shared_ptr<ribi::foam::Filenames> p {
     new Filenames
@@ -505,50 +505,50 @@ const boost::shared_ptr<ribi::foam::Filenames> ribi::foam::Files::CreateFilename
 void ribi::foam::Files::CreateFolders(const std::string& folder_name)
 {
   {
-    const std::string s { fileio::GetPathSeperator() };
+    const std::string s { fileio::FileIo().GetPathSeperator() };
     const std::string f { folder_name + s + "constant" };
-    if (!fileio::IsFolder(f)) { fileio::CreateFolder(f); }
-    assert(fileio::IsFolder(f));
+    if (!fileio::FileIo().IsFolder(f)) { fileio::FileIo().CreateFolder(f); }
+    assert(fileio::FileIo().IsFolder(f));
   }
   {
-    const std::string s { fileio::GetPathSeperator() };
+    const std::string s { fileio::FileIo().GetPathSeperator() };
     const std::string f { folder_name + s + "constant" + s + "polyMesh" };
-    if (!fileio::IsFolder(f)) { fileio::CreateFolder(f); }
-    assert(fileio::IsFolder(f));
+    if (!fileio::FileIo().IsFolder(f)) { fileio::FileIo().CreateFolder(f); }
+    assert(fileio::FileIo().IsFolder(f));
   }
 }
 
-const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeighbour(
+boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Files::CreateNeighbour(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
-  assert(ribi::fileio::IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
-    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
-    + CreateFilenames()->GetNeighbour().Get()
+  assert(ribi::fileio::FileIo().IsFolder(folder_name));
+  const std::string filename(
+    (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
+    + CreateFilenames()->GetNeighbour()
   );
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   boost::shared_ptr<ribi::foam::NeighbourFile> p {
-    new ribi::foam::NeighbourFile(filename.Get())
+    new ribi::foam::NeighbourFile(filename)
   };
   assert(p);
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
+boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
-  assert(ribi::fileio::IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
-    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
-    + CreateFilenames()->GetOwner().Get()
+  assert(ribi::fileio::FileIo().IsFolder(folder_name));
+  const std::string filename(
+    (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
+    + CreateFilenames()->GetOwner()
   );
 
   const boost::shared_ptr<ribi::foam::OwnerFile> p {
-    new ribi::foam::OwnerFile(filename.Get())
+    new ribi::foam::OwnerFile(filename)
   };
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   //const boost::shared_ptr<ribi::foam::OwnerFile> p {
   //  new ribi::foam::OwnerFile(is)
   //};
@@ -556,24 +556,24 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Files::CreateOwner(
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
+boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Files::CreatePoints(
   const std::string& folder_name)
 {
   std::cout << (__func__) << std::endl;
-  assert(ribi::fileio::IsFolder(folder_name));
-  const ribi::fileio::Filename filename(
-    (folder_name.empty() ? folder_name : folder_name + fileio::GetPathSeperator())
-    + CreateFilenames()->GetPoints().Get()
+  assert(ribi::fileio::FileIo().IsFolder(folder_name));
+  const std::string filename(
+    (folder_name.empty() ? folder_name : folder_name + fileio::FileIo().GetPathSeperator())
+    + CreateFilenames()->GetPoints()
   );
-  //std::ifstream is(filename.Get().c_str());
+  //std::ifstream is(filename.c_str());
   boost::shared_ptr<ribi::foam::PointsFile> p {
-    new ribi::foam::PointsFile(filename.Get())
+    new ribi::foam::PointsFile(filename)
   };
   assert(p);
   return p;
 }
 
-const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::CreateTestFiles() noexcept
+std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::CreateTestFiles() noexcept
 {
   std::vector<boost::shared_ptr<ribi::foam::Files>> v;
   //Empty
@@ -587,14 +587,14 @@ const std::vector<boost::shared_ptr<ribi::foam::Files>> ribi::foam::Files::Creat
   //Complex from resources
   for (int i=0; i!=5; ++i)
   {
-    const std::string folder_name = ribi::fileio::GetTempFolderName();
+    const std::string folder_name = ribi::fileio::FileIo().GetTempFolderName();
     CreateTestFiles(folder_name,i);
     const boost::shared_ptr<Files> files {
       new Files(folder_name)
     };
     assert(files);
     v.push_back(files);
-    ribi::fileio::DeleteFolder(folder_name);
+    ribi::fileio::FileIo().DeleteFolder(folder_name);
   }
   return v;
 }
@@ -632,16 +632,16 @@ void ribi::foam::Files::CreateTestFiles(const std::string& folder_name, const in
     const std::string resources_path { ":/CppOpenFoam/files/" + filename };
     const std::string destination_path {
       folder_name
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + "constant"
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + "polyMesh"
-      + fileio::GetPathSeperator()
+      + fileio::FileIo().GetPathSeperator()
       + filename_base
     };
     QFile f(resources_path.c_str());
     f.copy(destination_path.c_str());
-    assert(fileio::IsRegularFile(destination_path));
+    assert(fileio::FileIo().IsRegularFile(destination_path));
   }
 }
 
@@ -758,23 +758,23 @@ void ribi::foam::Files::Test() noexcept
   //CreateCopy
   for (int test_index=0; test_index!=5; ++test_index)
   {
-    const std::string temp_folder_source = ribi::fileio::GetTempFolderName();
+    const std::string temp_folder_source = ribi::fileio::FileIo().GetTempFolderName();
     {
-      assert(!ribi::fileio::IsFolder(temp_folder_source));
+      assert(!ribi::fileio::FileIo().IsFolder(temp_folder_source));
       CreateTestFiles(temp_folder_source,test_index);
     }
     const Files source(temp_folder_source);
-    const std::string temp_folder_target = ribi::fileio::GetTempFolderName();
+    const std::string temp_folder_target = ribi::fileio::FileIo().GetTempFolderName();
     Files::CreateCopy(source,temp_folder_target);
     const Files target(temp_folder_target);
     assert(source == target);
-    ribi::fileio::DeleteFolder(temp_folder_source);
-    ribi::fileio::DeleteFolder(temp_folder_target);
+    ribi::fileio::FileIo().DeleteFolder(temp_folder_source);
+    ribi::fileio::FileIo().DeleteFolder(temp_folder_target);
   }
   //Swap faces
   {
-    const std::string temp_folder = ribi::fileio::GetTempFolderName();
-    assert(!ribi::fileio::IsFolder(temp_folder));
+    const std::string temp_folder = ribi::fileio::FileIo().GetTempFolderName();
+    assert(!ribi::fileio::FileIo().IsFolder(temp_folder));
     CreateTestFiles(temp_folder,3); //3 = 2x2x2 cubes
     const Files f(temp_folder);
     assert(f == f);
@@ -789,15 +789,15 @@ void ribi::foam::Files::Test() noexcept
     assert(f != g);
     g.Swap(i,j);
     assert(f == g);
-    ribi::fileio::DeleteFolder(temp_folder);
-    assert(!ribi::fileio::IsFolder(temp_folder));
+    ribi::fileio::FileIo().DeleteFolder(temp_folder);
+    assert(!ribi::fileio::FileIo().IsFolder(temp_folder));
 
   }
   TRACE("Finished ribi::foam::Files::Test successfully");
 }
 #endif
 
-bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs)
+bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs) noexcept
 {
   //Split function for ease in debugging
   if (*lhs.GetBoundary()!= *rhs.GetBoundary())
@@ -838,12 +838,12 @@ bool ribi::foam::operator==(const ribi::foam::Files& lhs, const ribi::foam::File
   return true;
 }
 
-bool ribi::foam::operator!=(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs)
+bool ribi::foam::operator!=(const ribi::foam::Files& lhs, const ribi::foam::Files& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const Files& files)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const Files& files) noexcept
 {
   os
     << (*files.GetBoundary()) << '\n'

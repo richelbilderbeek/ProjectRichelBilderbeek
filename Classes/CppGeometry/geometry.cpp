@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Geometry, class with geometry functions
+Copyright (C) 2014-2014 Richel Bilderbeek
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppGeometry.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -7,7 +27,9 @@
 #include <cmath>
 
 #include <boost/math/constants/constants.hpp>
-
+#ifndef WIN32
+#include <boost/geometry/geometries/linestring.hpp>
+#endif
 #include "plane.h"
 #include "trace.h"
 
@@ -22,7 +44,7 @@ ribi::Geometry::Geometry()
 
 boost::geometry::model::d2::point_xy<double> ribi::Geometry::CalcCenter(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
 {
-  typedef boost::geometry::model::d2::point_xy<double> T;
+  typedef Coordinat2D T;
   T sum(0.0,0.0);
   for (const auto& point: points)
   {
@@ -128,7 +150,7 @@ boost::geometry::model::d2::point_xy<double> ribi::Geometry::Coordinat2DToBoostG
   const Coordinat2D& c
 ) const noexcept
 {
-  return boost::geometry::model::d2::point_xy<double>(
+  return Coordinat2D(
     c.GetX(),c.GetY()
   );
 }
@@ -139,7 +161,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordi
   const std::vector<Coordinat2D>& v
 ) const noexcept
 {
-  std::vector<boost::geometry::model::d2::point_xy<double>> w;
+  std::vector<Coordinat2D> w;
   for (auto c: v) { w.push_back(Coordinat2DToBoostGeometryPointXy(c)); }
   return w;
 }
@@ -207,7 +229,7 @@ double ribi::Geometry::GetDistance(const double dx, const double dy) const noexc
 
 std::string ribi::Geometry::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
@@ -215,6 +237,7 @@ std::vector<std::string> ribi::Geometry::GetVersionHistory() const noexcept
   return {
     "2014-02-25: version 1.0: initial version",
     "2014-03-11: version 1.1: removed use of custom coordinat classes, use Boost.Geometry instead"
+    "2014-03-25: version 1.2: fixed bug in IsConvex"
   };
 }
 
@@ -262,7 +285,7 @@ bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const C
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    const std::vector<boost::geometry::model::d2::point_xy<double>> v(
+    const std::vector<Coordinat2D> v(
       Plane().CalcProjection(
         {
           points[0].ToBoostGeometryPoint(),
@@ -365,7 +388,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const boost::geometry::model::d2::point_xy<double>& coordinat)
+    [this,center](const Coordinat2D& coordinat)
     {
       return GetAngle(
         coordinat.x() - center.x(),
@@ -376,18 +399,23 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
   return IsClockwise(angles);
 }
 
-bool ribi::Geometry::IsConvex(boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon) const noexcept
+bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 {
   boost::geometry::correct(polygon);
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> hull;
+  Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
-  return boost::geometry::area(hull) == boost::geometry::area(polygon);
+  const bool is_convex = boost::geometry::equals(polygon,hull);
+  return is_convex;
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
 {
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
-  for (auto point: points) { boost::geometry::append(polygon,point); };
+  Polygon polygon;
+  for (auto point: points)
+  {
+    //TRACE(ToStr(point));
+    boost::geometry::append(polygon,point);
+  };
   return IsConvex(polygon);
 }
 
@@ -395,8 +423,45 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
 {
   assert(points.size() >= 3);
   assert(IsPlane(points));
+
+  #ifndef NDEBUG
+  {
+    std::stringstream s;
+    s << "{";
+    for (auto point3d: points)
+    {
+      s << ToStr(point3d) << ",";
+    }
+    std::string po_str(s.str());
+    po_str[po_str.size() - 1] = '}';
+    TRACE(po_str);
+  }
+
+  #endif
+
+
   Plane plane(points[0],points[1],points[2]);
-  const auto coordinats2d(plane.CalcProjection(points));
+
+  try { TRACE(plane.ToFunctionX()); } catch (std::exception&) {}
+  try { TRACE(plane.ToFunctionY()); } catch (std::exception&) {}
+  try { TRACE(plane.ToFunctionZ()); } catch (std::exception&) {}
+
+  const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
+    plane.CalcProjection(points)
+  );
+
+  {
+    std::stringstream s;
+    s << "{";
+    for (auto coordinat2d: coordinats2d)
+    {
+      s << Geometry().ToStr(coordinat2d) << ",";
+    }
+    std::string co_str(s.str());
+    co_str[co_str.size() - 1] = '}';
+    TRACE(co_str);
+  }
+
   return IsConvex(coordinats2d);
 }
 
@@ -498,7 +563,7 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geome
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const boost::geometry::model::d2::point_xy<double>& coordinat)
+    [this,center](const Coordinat2D& coordinat)
     {
       return GetAngle(
         coordinat.x() - center.x(),
@@ -861,7 +926,7 @@ void ribi::Geometry::Test() noexcept
 
     //Convex shape
     {
-      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+      const std::vector<Coordinat2D> points {
         { 2.0, 2.0}, //A
         {12.0, 2.0}, //B
         { 9.0, 5.0}, //C
@@ -869,13 +934,13 @@ void ribi::Geometry::Test() noexcept
         { 2.0, 3.0}  //E
       };
 
-      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      Polygon polygon;
       boost::geometry::append(polygon, points);
       assert(g.IsConvex(polygon));
     }
     //Concave shape
     {
-      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+      const std::vector<Coordinat2D> points {
         { 2.0, 2.0}, //A
         {12.0, 2.0}, //B
         { 9.0, 5.0}, //C
@@ -883,11 +948,242 @@ void ribi::Geometry::Test() noexcept
         { 5.0, 5.0}  //E
       };
 
-      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      Polygon polygon;
       boost::geometry::append(polygon, points);
       assert(!g.IsConvex(polygon));
     }
   }
+  if (verbose) TRACE("Convex shape, 2D, from error #1");
+  {
+
+    /*
+
+       __--3
+     2-
+     |
+     |
+     |
+     |  __-0
+     1--
+
+
+    */
+    {
+      const std::vector<Coordinat2D> points {
+        {17.4971,33.0765},
+        {9.28854,29.5636},
+        {9.28854,40.6764},
+        {17.4971,44.4009}
+      };
+
+      Polygon polygon;
+      boost::geometry::append(polygon, points);
+      assert(g.IsConvex(polygon));
+    }
+  }
+  if (verbose) TRACE("Convex shape, 2D, from error #2");
+  {
+    //From 3D points:
+    /*
+
+
+
+    // (2.35114,3.23607,5) (index: 644)'
+    // (1.17557,2.35781,5) (index: 658)'
+    // (2.35114,3.23607,6) (index: 668)'
+    // (1.17557,2.35781,6) (index: 682)'
+    */
+    /*
+
+       __--2
+     3-   /
+         /
+        /
+       /
+      / __-0
+     1--
+
+    */
+    {
+      const std::vector<Coordinat2D> points {
+        {17.497 ,33.0765},
+        { 9.2885,29.5636},
+        {17.497 ,44.4009},
+        { 9.2885,40.6764}
+      };
+
+      Polygon polygon;
+      boost::geometry::append(polygon, points);
+      assert(!g.IsConvex(polygon));
+    }
+  }
+
+  if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
+  {
+    {
+      /*
+                  |####/
+        3---2     |###/#
+           /      +##+##
+          /       |#/###
+         /        |/####
+        1---0   --+--+--
+                 /|
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,0.0,0.0},
+        {0.0,0.0,0.0},
+        {1.0,0.0,1.0},
+        {0.0,0.0,1.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    //Convex shape, 3D, points in Y=0 plane
+    {
+      /*
+
+        2---3 Z=1.0
+        |
+        |
+        |
+        1---0 Z=0.0
+
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,0.0,0.0},
+        {0.0,0.0,0.0},
+        {0.0,0.0,1.0},
+        {1.0,0.0,1.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in X=Y plane");
+  {
+    {
+      /*
+                  |    |/     _-
+                  |  _-2    _-
+        3---2     |_- /   _-
+           /      3  /  _-
+          /       | / _0
+         /        |/_-
+        1---0   --1-----
+                 /|
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,1.0,0.0},
+        {0.0,0.0,0.0},
+        {1.0,1.0,1.0},
+        {0.0,0.0,1.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    //Convex shape, 3D, points in X=Y plane
+    {
+      /*
+
+                  |    |/     _-
+                  |  _-3    _-
+        2---3     |_- /   _-
+        |         2  /  _-
+        |         | / _0
+        |         |/_-
+        1---0   --1-----
+                 /|
+
+      */
+      const std::vector<Coordinat3D> points {
+        {1.0,1.0,0.0},
+        {0.0,0.0,0.0},
+        {0.0,0.0,1.0},
+        {1.0,1.0,1.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, not at origin");
+  {
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,4.0,0.0},
+        {1.0,1.0,0.0},
+        {2.0,4.0,1.0},
+        {1.0,1.0,1.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,2.0,0.0},
+        {1.0,1.0,0.0},
+        {1.0,1.0,1.0},
+        {2.0,2.0,1.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, points in 2X=Y plane, above Z=0");
+  {
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,4.0,1.0},
+        {1.0,1.0,1.0},
+        {2.0,4.0,2.0},
+        {1.0,1.0,2.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    {
+      const std::vector<Coordinat3D> points {
+        {2.0,2.0,1.0},
+        {1.0,1.0,1.0},
+        {1.0,1.0,2.0},
+        {2.0,2.0,2.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+  if (verbose) TRACE("Convex shape, 3D, from error");
+  {
+    {
+      /*
+
+        3---2 Z=6.0
+           /
+          /
+         /
+        1---0 Z=5.0
+
+      */
+      const std::vector<Coordinat3D> points {
+        {2.35114,3.23607,5.0},
+        {1.17557,2.35781,5.0},
+        {2.35114,3.23607,6.0},
+        {1.17557,2.35781,6.0}
+      };
+      assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
+    }
+    {
+      /*
+
+        2---3 Z=6.0
+        |
+        |
+        |
+        1---0 Z=5.0
+
+      */
+      const std::vector<Coordinat3D> points {
+        {2.35114,3.23607,5.0},
+        {1.17557,2.35781,5.0},
+        {1.17557,2.35781,6.0},
+        {2.35114,3.23607,6.0}
+      };
+      assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
+    }
+  }
+
   if (verbose) TRACE("IsClockwise in three dimensions, points in XY plane");
   {
     /*
@@ -1051,6 +1347,96 @@ void ribi::Geometry::Test() noexcept
       }
     }
   }
+  if (verbose) TRACE("GetLineLineIntersections");
+  #ifdef TODO_RICHEL
+  {
+    typedef boost::geometry::model::d2::point_xy<double> Point;
+    typedef boost::geometry::model::linestring<Point> Line;
+    typedef boost::geometry::model::box<Point> Rect;
+    //Assume line segment (0,0)-(2,2) intersects line segment (2,0)-(0,2) at point (1,1)
+    {
+      const Line line1 = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Line line2 = CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      assert( GetLineLineIntersections(line1,line2).size() == 1);
+      assert( fuzzy_equal_to()(GetLineLineIntersections(line1,line2)[0].x(),1.0) );
+      assert( fuzzy_equal_to()(GetLineLineIntersections(line1,line2)[0].y(),1.0) );
+    }
+    //Lines are finite, however, as the line segment
+    //(0,0)-(0.2,0.2) does not intersect line segment (2,0)-(0,2) at point (1,1)
+    {
+      const Line line1 = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(0.2,0.2) } ));
+      const Line line2 = CreateLine( std::vector<Point>( { Point(2.0,0.0), Point(0.0,2.0) } ));
+      assert( GetLineLineIntersections(line1,line2).size() == 0);
+    }
+    //Assume line segment (0,0)-(2,2) intersects with rectangle (1,0)-(3,9) at point (1,1)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 1);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+    }
+    //Assume line segment (0,0)-(2,2) intersects with rectangle (0,1)-(3,9) at point (1,1)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 1);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+    }
+    //Assume line segment (0,0)-(2,2) intersects with rectangle (1,1)-(3,3) at point (1,1) once
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(2.0,2.0) } ));
+      const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 1);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+    }
+
+    //Assume line segment (0,0)-(4,4) intersects with rectangle (1,0)-(3,9) at points (1,1) and (3,3)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Rect rect(Point(1.0,0.0), Point(3.0,3.9));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 2);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+      assert( fuzzy_equal_to()(v[1].x(),3.0) );
+      assert( fuzzy_equal_to()(v[1].y(),3.0) );
+    }
+    //Assume line segment (0,0)-(4,4) intersects with rectangle (0,1)-(3,9) at points (1,1) and (3,3)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Rect rect(Point(0.0,1.0), Point(3.0,9.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 2);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+      assert( fuzzy_equal_to()(v[1].x(),3.0) );
+      assert( fuzzy_equal_to()(v[1].y(),3.0) );
+    }
+    //Assume line segment (0,0)-(4,4) intersects with rectangle (1,1)-(3,3) at points (1,1) and (3,3)
+    {
+      const Line line = CreateLine( std::vector<Point>( { Point(0.0,0.0), Point(4.0,4.0) } ));
+      const Rect rect(Point(1.0,1.0), Point(3.0,3.0));
+      GetLineRectIntersections(line,rect);
+      const std::vector<Point> v = GetLineRectIntersections(line,rect);
+      assert(v.size() == 2);
+      assert( fuzzy_equal_to()(v[0].x(),1.0) );
+      assert( fuzzy_equal_to()(v[0].y(),1.0) );
+      assert( fuzzy_equal_to()(v[1].x(),3.0) );
+      assert( fuzzy_equal_to()(v[1].y(),3.0) );
+    }
+  }
+  #endif //#ifdef TODO_RICHEL
   TRACE("Finished ribi::Geometry::Test successfully");
 }
 #endif

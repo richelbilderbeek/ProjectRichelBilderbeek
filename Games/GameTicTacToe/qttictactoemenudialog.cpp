@@ -56,7 +56,9 @@ ribi::tictactoe::QtTicTacToeMenuDialog::~QtTicTacToeMenuDialog() noexcept
 
 void ribi::tictactoe::QtTicTacToeMenuDialog::on_button_start_clicked()
 {
-  QtTicTacToeGameDialog d;
+  const boost::shared_ptr<Ai> player1;
+  const boost::shared_ptr<Ai> player2;
+  QtTicTacToeGameDialog d(player1,player2);
   this->ShowChild(&d);
 }
 
@@ -83,7 +85,9 @@ void ribi::tictactoe::QtTicTacToeMenuDialog::Test() noexcept
   }
   TRACE("Starting ribi::tictactoe::QtTicTacToeMenuDialog::Test");
   {
-    QtTicTacToeGameDialog d;
+    const boost::shared_ptr<Ai> player1;
+    const boost::shared_ptr<Ai> player2;
+    QtTicTacToeGameDialog d(player1,player2);
     assert(!d.GetVersion().empty());
   }
   {

@@ -16,7 +16,7 @@ struct ControlDictFile
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   void SetAdjustTimeStep(const bool adjust_time_step) noexcept { m_adjust_time_step = adjust_time_step; }
@@ -62,10 +62,10 @@ struct ControlDictFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const ControlDictFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const ControlDictFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const ControlDictFile& f);
+std::ostream& operator<<(std::ostream& os, const ControlDictFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

@@ -47,8 +47,8 @@ ribi::QrcFile::QrcFile(const std::string& filename)
 {
   #ifndef NDEBUG
   Test();
-  if(!ribi::fileio::IsRegularFile(filename)) TRACE(filename);
-  assert(ribi::fileio::IsRegularFile(filename)
+  if(!ribi::fileio::FileIo().IsRegularFile(filename)) TRACE(filename);
+  assert(ribi::fileio::FileIo().IsRegularFile(filename)
     && "QrcFile::QrcFile error: .qrc file must exist");
   #endif
 

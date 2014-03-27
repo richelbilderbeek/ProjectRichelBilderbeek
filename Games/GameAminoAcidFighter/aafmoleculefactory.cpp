@@ -56,11 +56,13 @@ boost::shared_ptr<ribi::aaf::Molecule> ribi::aaf::MoleculeFactory::CreateGlycine
   coordinats.push_back(Coordinat(0.5 * pi * radian,1.0 * bond_length));
   coordinats.push_back(Coordinat(1.0 * pi * radian,1.0 * bond_length));
   coordinats.push_back(Coordinat(1.5 * pi * radian,1.0 * bond_length));
+  #ifndef TODO_RJCB
   coordinats.push_back(coordinats[2] + Coordinat(( 1.0 / 6.0) * pi * radian,1.0 * bond_length));
   coordinats.push_back(coordinats[2] + Coordinat(( 5.0 / 6.0) * pi * radian,1.0 * bond_length));
   coordinats.push_back(coordinats[4] + Coordinat(( 7.0 / 6.0) * pi * radian,1.0 * bond_length));
   coordinats.push_back(coordinats[4] + Coordinat((11.0 / 6.0) * pi * radian,1.0 * bond_length));
   coordinats.push_back(coordinats[6] + Coordinat(0.5 * pi * radian,1.0 * bond_length));
+  #endif
   assert(n_atoms == static_cast<int>(coordinats.size()));
 
   std::vector<Atom> atoms;
@@ -126,7 +128,6 @@ boost::shared_ptr<ribi::aaf::Molecule> ribi::aaf::MoleculeFactory::CreateGlycine
   boost::add_edge(vertices[4],vertices[7],bonds[0],g);
   boost::add_edge(vertices[4],vertices[8],bonds[0],g);
   boost::add_edge(vertices[6],vertices[9],bonds[0],g);
-
   const boost::shared_ptr<Molecule> m {
     new Molecule(g)
   };

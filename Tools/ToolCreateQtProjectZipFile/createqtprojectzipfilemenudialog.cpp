@@ -49,7 +49,7 @@ int ribi::CreateQtProjectZipFile::MenuDialog::ExecuteSpecific(const std::vector<
     return 1;
   }
   const std::string folder { argv[2] };
-  if (!fileio::IsFolder(folder))
+  if (!fileio::FileIo().IsFolder(folder))
   {
     std::cout
       << "Invalid folder '" << folder << "'\n"

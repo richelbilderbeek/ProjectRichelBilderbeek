@@ -16,7 +16,7 @@ struct ThermophysicalPropertiesFile
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   void SetMixture(const std::string& mixture) noexcept { m_mixture = mixture; }
@@ -34,10 +34,10 @@ struct ThermophysicalPropertiesFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const ThermophysicalPropertiesFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const ThermophysicalPropertiesFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const ThermophysicalPropertiesFile& f);
+std::ostream& operator<<(std::ostream& os, const ThermophysicalPropertiesFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

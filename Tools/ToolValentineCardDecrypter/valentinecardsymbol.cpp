@@ -128,7 +128,7 @@ void ribi::ValentineCardSymbol::Test() noexcept
   {
     assert(ValentineCardSymbol(i).CalcValue() == i);
     assert(ValentineCardSymbol(i).ToImage());
-    const std::string filename = fileio::GetTempFileName(
+    const std::string filename = fileio::FileIo().GetTempFileName(
       boost::lexical_cast<std::string>(i) + ".png");
     ValentineCardSymbol(i).ToImage()->save(filename.c_str());
   }

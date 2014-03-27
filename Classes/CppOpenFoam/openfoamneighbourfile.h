@@ -29,9 +29,9 @@ struct NeighbourFile
   ///Or: find the first CellIndex that does not exist anymore
   //const CellIndex CountNumberOfCells() const noexcept;
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
-  const std::vector<NeighbourFileItem> GetItems() const noexcept { return m_items; }
+  const std::vector<NeighbourFileItem>& GetItems() const noexcept { return m_items; }
 
   ///Assumes CanGetItem == true
   const NeighbourFileItem& GetItem(const FaceIndex& face_index) const noexcept;
@@ -48,20 +48,20 @@ struct NeighbourFile
   ///The items 'neighbour' contains
   std::vector<NeighbourFileItem> m_items;
 
-  static const NeighbourFile Parse(std::istream& is);
-  static const NeighbourFile Parse(const std::string& filename);
+  static NeighbourFile Parse(std::istream& is);
+  static NeighbourFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const NeighbourFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const NeighbourFile& f) noexcept;
   friend std::istream& operator>>(std::istream& is, NeighbourFile& f);
 };
 
-bool operator==(const NeighbourFile& lhs,const NeighbourFile& rhs);
-bool operator!=(const NeighbourFile& lhs,const NeighbourFile& rhs);
-std::ostream& operator<<(std::ostream& os, const NeighbourFile& f);
+bool operator==(const NeighbourFile& lhs,const NeighbourFile& rhs) noexcept;
+bool operator!=(const NeighbourFile& lhs,const NeighbourFile& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const NeighbourFile& f) noexcept;
 std::istream& operator>>(std::istream& is, NeighbourFile& f);
 
 } //~namespace foam

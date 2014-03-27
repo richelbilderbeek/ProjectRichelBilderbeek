@@ -16,7 +16,7 @@ struct TurbulencePropertiesFile
     const Header header = GetDefaultHeader()
   );
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
 
   void SetSimulationType(const std::string& simulation_type) noexcept { m_simulation_type = simulation_type; }
@@ -32,10 +32,10 @@ struct TurbulencePropertiesFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const TurbulencePropertiesFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const TurbulencePropertiesFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const TurbulencePropertiesFile& f);
+std::ostream& operator<<(std::ostream& os, const TurbulencePropertiesFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

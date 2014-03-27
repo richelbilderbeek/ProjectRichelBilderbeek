@@ -16,7 +16,7 @@
 #include <QFile>
 
 #include "fileio.h"
-#include "filename.h"
+
 #include "openfoamheader.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -33,7 +33,7 @@ ribi::foam::TurbulencePropertiesFile::TurbulencePropertiesFile(
   #endif
 }
 
-const ribi::foam::Header ribi::foam::TurbulencePropertiesFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::TurbulencePropertiesFile::GetDefaultHeader() noexcept
 {
   return Header("dictionary","constant","","turbulenceProperties");
 }
@@ -51,7 +51,7 @@ void ribi::foam::TurbulencePropertiesFile::Test() noexcept
 }
 #endif
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const TurbulencePropertiesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const TurbulencePropertiesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

@@ -141,20 +141,20 @@ void ribi::ValentineCardDecrypterMenuDialog::Test() noexcept
   d.Execute( {"ValentineCardDecrypter"} );
   d.Execute( {"ValentineCardDecrypter", "--text", "Hello world"} );
   {
-    const std::string filename { fileio::GetTempFileName(".png") };
-    assert(!fileio::IsRegularFile(filename));
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( {"ValentineCardDecrypter", "-t", "Test", "-f", filename} );
-    assert(fileio::IsRegularFile(filename));
-    fileio::DeleteFile(filename);
-    assert(!fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
+    fileio::FileIo().DeleteFile(filename);
+    assert(!fileio::FileIo().IsRegularFile(filename));
   }
   {
-    const std::string filename { fileio::GetTempFileName(".png") };
-    assert(!fileio::IsRegularFile(filename));
+    const std::string filename { fileio::FileIo().GetTempFileName(".png") };
+    assert(!fileio::FileIo().IsRegularFile(filename));
     d.Execute( {"ValentineCardDecrypter", "--file", filename} );
-    assert(fileio::IsRegularFile(filename));
-    fileio::DeleteFile(filename);
-    assert(!fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
+    fileio::FileIo().DeleteFile(filename);
+    assert(!fileio::FileIo().IsRegularFile(filename));
   }
   TRACE("Finished ribi::ValentineCardDecrypterMenuDialog::Test successfully");
 }

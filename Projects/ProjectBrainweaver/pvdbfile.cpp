@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+Brainweaver, tool to create and assess concept maps
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/ProjectBrainweaver.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -140,7 +160,7 @@ std::string ribi::pvdb::File::ConvertFrom_0_3(const std::string& s)
 
 std::string ribi::pvdb::File::FileToStr(const std::string& filename)
 {
-  assert(fileio::IsRegularFile(filename.c_str()));
+  assert(fileio::FileIo().IsRegularFile(filename.c_str()));
   std::string s;
   std::ifstream in(filename.c_str());
   while (!in.eof())
@@ -206,8 +226,8 @@ boost::shared_ptr<ribi::pvdb::File> ribi::pvdb::File::FromXml(const std::string 
       TRACE(s);
       TRACE("Sometimes, this happens at the first startup and ");
     }
-    //assert(!v.empty()); //TODO RJCB: put back in
-    //assert(v.size() == 1); //TODO RJCB: put back in
+    assert(!v.empty() && "Ignore and restart"); //TODO RJCB: fix this startup error
+    assert(v.size() == 1 && "Ignore and restart"); //TODO RJCB: fix this startup error
     f->m_question = ribi::xml::StripXmlTag(v[0]);
   }
   //m_student_name
@@ -479,7 +499,7 @@ void ribi::pvdb::File::Test() noexcept
     {
       //Testing filenames start at 1
       const std::string filename = boost::lexical_cast<std::string>(i) + ".cmp";
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         //Copy the file from Qt resources to local file
         {
@@ -488,7 +508,7 @@ void ribi::pvdb::File::Test() noexcept
           qtfile.copy(filename.c_str());
           qtfile.close();
         }
-        if (!fileio::IsRegularFile(filename))
+        if (!fileio::FileIo().IsRegularFile(filename))
         {
           //TRACE("First filename not found: ");
           //TRACE(filename);
@@ -519,11 +539,11 @@ void ribi::pvdb::File::Test() noexcept
         assert(file.size() > 0);
         file.close();
 
-        assert(fileio::IsRegularFile(filename));
+        assert(fileio::FileIo().IsRegularFile(filename));
         ribi::pvdb::File::Load(filename);
         std::remove(filename.c_str());
 
-        assert(!fileio::IsRegularFile(filename));
+        assert(!fileio::FileIo().IsRegularFile(filename));
       }
     }
   }

@@ -12,7 +12,6 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
 namespace xml {
 
 std::string GetVersion() noexcept;

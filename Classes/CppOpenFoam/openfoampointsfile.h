@@ -20,7 +20,7 @@ struct PointsFile
     const Header header = GetDefaultHeader(),
     const std::vector<PointsFileItem>& items = {});
 
-  static const Header GetDefaultHeader() noexcept;
+  static Header GetDefaultHeader() noexcept;
   const Header& GetHeader() const noexcept { return m_header; }
   const std::vector<PointsFileItem>& GetItems() const noexcept { return m_items; }
 
@@ -32,20 +32,20 @@ struct PointsFile
   ///The items faces contains
   std::vector<PointsFileItem> m_items;
 
-  static const PointsFile Parse(std::istream& is);
-  static const PointsFile Parse(const std::string& filename);
+  static PointsFile Parse(std::istream& is);
+  static PointsFile Parse(const std::string& filename);
 
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const PointsFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const PointsFile& f) noexcept;
   friend std::istream& operator>>(std::istream& is, PointsFile& f);
 };
 
-bool operator==(const PointsFile& lhs,const PointsFile& rhs);
-bool operator!=(const PointsFile& lhs,const PointsFile& rhs);
-std::ostream& operator<<(std::ostream& os, const PointsFile& f);
+bool operator==(const PointsFile& lhs,const PointsFile& rhs) noexcept;
+bool operator!=(const PointsFile& lhs,const PointsFile& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const PointsFile& f) noexcept;
 std::istream& operator>>(std::istream& is, PointsFile& f);
 
 } //~namespace foam

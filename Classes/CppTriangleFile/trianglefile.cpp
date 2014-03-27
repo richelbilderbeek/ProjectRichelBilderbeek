@@ -35,7 +35,7 @@ int ribi::TriangleFile::CountVertices() const noexcept
   return sum;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHeart(const double scale) noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 1.0 * scale}, //0
@@ -52,7 +52,7 @@ const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<doubl
   return v;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHouse(const double scale) noexcept
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeHouse(const double scale) noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 2.0 * scale}, //0
@@ -66,7 +66,7 @@ const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<doubl
   return v;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapePolygon(
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapePolygon(
   const int n,
   const double rotation,
   const double scale
@@ -89,7 +89,7 @@ const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<doubl
   return v;
 }
 
-const boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeTriangle(const double scale) noexcept
+boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> ribi::TriangleFile::CreateShapeTriangle(const double scale) noexcept
 {
   const std::vector<boost::geometry::model::d2::point_xy<double>> points {
     { 0.0 * scale, 0.0 * scale}, //0
@@ -109,7 +109,7 @@ void ribi::TriangleFile::ExecuteTriangle(
   const double area,
   const bool verbose) const noexcept
 {
-  const std::string filename { fileio::GetTempFileName(".poly") };
+  const std::string filename { fileio::FileIo().GetTempFileName(".poly") };
   node_filename = "";
   ele_filename = "";
   poly_filename = "";
@@ -118,15 +118,15 @@ void ribi::TriangleFile::ExecuteTriangle(
     std::ofstream f(filename.c_str());
     f << this->ToStr();
   }
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
 
   const std::string exe_filename { "triangle.exe" };
-  if (!fileio::IsRegularFile(exe_filename))
+  if (!fileio::FileIo().IsRegularFile(exe_filename))
   {
     QFile file( (":/trianglefile/files/" + exe_filename).c_str() );
     file.copy(exe_filename.c_str());
   }
-  assert(fileio::IsRegularFile(exe_filename));
+  assert(fileio::FileIo().IsRegularFile(exe_filename));
 
   std::stringstream s;
   s
@@ -141,26 +141,26 @@ void ribi::TriangleFile::ExecuteTriangle(
   const bool error = std::system(s.str().c_str());
   if (error)
   {
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
     throw std::runtime_error(s.str().c_str());
   }
 
-  const std::string filename_base { fileio::GetFileBasename(filename) };
+  const std::string filename_base(fileio::FileIo().GetFileBasename(filename));
   node_filename = filename_base + ".1.node";
   ele_filename = filename_base + ".1.ele";
   poly_filename = filename_base + ".1.poly";
-  assert(fileio::IsRegularFile(node_filename));
-  assert(fileio::IsRegularFile(ele_filename));
-  assert(fileio::IsRegularFile(poly_filename));
-  fileio::DeleteFile(filename);
+  assert(fileio::FileIo().IsRegularFile(node_filename));
+  assert(fileio::FileIo().IsRegularFile(ele_filename));
+  assert(fileio::FileIo().IsRegularFile(poly_filename));
+  fileio::FileIo().DeleteFile(filename);
 }
 
-const std::string ribi::TriangleFile::GetVersion() noexcept
+std::string ribi::TriangleFile::GetVersion() noexcept
 {
   return "1.0";
 }
 
-const std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
+std::vector<std::string> ribi::TriangleFile::GetVersionHistory() noexcept
 {
   return {
     "2014-02-07: Version 1.0: initial version"
@@ -192,14 +192,14 @@ void ribi::TriangleFile::Test() noexcept
   std::string filename_ele;
   std::string filename_poly;
   f.ExecuteTriangle(filename_node,filename_ele,filename_poly);
-  assert(fileio::IsRegularFile(filename_node));
-  assert(fileio::IsRegularFile(filename_ele));
-  assert(fileio::IsRegularFile(filename_poly));
+  assert(fileio::FileIo().IsRegularFile(filename_node));
+  assert(fileio::FileIo().IsRegularFile(filename_ele));
+  assert(fileio::FileIo().IsRegularFile(filename_poly));
   TRACE("Finished ribi::TriangleFile::Test successfully");
 }
 #endif
 
-const std::string ribi::TriangleFile::ToStr() const noexcept
+std::string ribi::TriangleFile::ToStr() const noexcept
 {
   std::stringstream s;
   s << std::setprecision(6) << std::fixed;

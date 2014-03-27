@@ -36,7 +36,7 @@ ribi::trim::Template::Template(
   TRACE("Load the points and faces created by Triangle");
   {
     const std::vector<std::string> v {
-      ribi::fileio::FileToVector(
+      ribi::fileio::FileIo().FileToVector(
         filename_node
       )
     };
@@ -75,7 +75,7 @@ ribi::trim::Template::Template(
   TRACE("Load and translate faces");
   {
     const std::vector<std::string> v {
-      ribi::fileio::FileToVector(filename_ele)
+      ribi::fileio::FileIo().FileToVector(filename_ele)
     };
     const int sz = v.size();
     const int percent = sz / 100 ? sz / 100: 1;
@@ -125,6 +125,8 @@ ribi::trim::Template::Template(
         std::reverse(face_points.begin(),face_points.end());
       }
       assert(Helper().IsClockwiseHorizontal(face_points));
+      if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
+      assert(Helper().IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(

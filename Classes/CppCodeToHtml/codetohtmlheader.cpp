@@ -45,7 +45,7 @@ std::string ribi::c2h::Header::CreateFilename(
   else
   {
     assert(!filename_original.empty());
-    return ribi::fileio::GetFileBasename(filename_original) + ".htm";
+    return ribi::fileio::FileIo().GetFileBasename(filename_original) + ".htm";
   }
 }
 
@@ -67,7 +67,7 @@ std::string ribi::c2h::Header::CreateTitle(
   else
   {
     assert(!filename.empty());
-    std::string s = ribi::fileio::GetFileBasename(filename);
+    std::string s = ribi::fileio::FileIo().GetFileBasename(filename);
     int chars_to_strip = 0;
     if (s.size() > 3 && s.substr(0,3) == "Cpp") chars_to_strip = 3;
     else if (s.size() > 4 && s.substr(0,4) == "Song") chars_to_strip = 4;

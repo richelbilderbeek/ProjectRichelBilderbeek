@@ -21,7 +21,8 @@ struct TestTriangleMeshMainDialog
     const std::vector<boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>>>& shapes,
     const bool show_mesh,
     const int n_layers,
-    const ::ribi::trim::CreateVerticalFacesStrategy strategy
+    const ::ribi::trim::CreateVerticalFacesStrategy strategy,
+    const std::string& renumberMesh_command
   );
 };
 

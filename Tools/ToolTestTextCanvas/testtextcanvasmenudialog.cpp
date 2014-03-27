@@ -33,7 +33,7 @@ int ribi::TestTextCanvasMenuDialog::ExecuteSpecific(const std::vector<std::strin
     {
       const int x = -maxx + (std::rand() % (2 * maxx));
       const int y = -maxy + (std::rand() % (2 * maxy));
-      const std::string s = fileio::GetTempFileName();
+      const std::string s = fileio::FileIo().GetTempFileName();
       c.PutText(x,y,s);
     }
     std::cout << c;

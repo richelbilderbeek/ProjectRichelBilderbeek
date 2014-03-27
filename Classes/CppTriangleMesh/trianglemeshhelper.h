@@ -178,6 +178,9 @@ struct Helper
 
   bool IsVertical(const Face& face) noexcept;
 
+  ///Order the points so that these are convex
+  void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+
   std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
     PointsToCoordinats3D(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
   ) const noexcept;
@@ -192,7 +195,9 @@ struct Helper
   ) const noexcept;
   #endif
 
+  std::string ToStr(const std::vector<boost::shared_ptr<const Point>>& p) const noexcept;
   std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
+
 
   private:
   #ifdef USE_TRIANGLEMESHEDGE

@@ -45,17 +45,17 @@ ribi::TestMultipleChoiceQuestionMenuDialog::TestMultipleChoiceQuestionMenuDialog
   for(const std::string& filename: files)
   {
 
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       QFile f( (":/images/" + filename).c_str() );
         f.copy(filename.c_str());
     }
-    if (!fileio::IsRegularFile(filename))
+    if (!fileio::FileIo().IsRegularFile(filename))
     {
       const std::string s = "TestMultipleChoiceQuestionMenuDialog: file not found: " + filename;
       throw std::logic_error(s.c_str());
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
   }
 }
 

@@ -28,10 +28,10 @@ struct RasPropertiesFile
   static void Test() noexcept;
   #endif
 
-  friend std::ostream& operator<<(std::ostream& os, const RasPropertiesFile& f);
+  friend std::ostream& operator<<(std::ostream& os, const RasPropertiesFile& f) noexcept;
 };
 
-std::ostream& operator<<(std::ostream& os, const RasPropertiesFile& f);
+std::ostream& operator<<(std::ostream& os, const RasPropertiesFile& f) noexcept;
 
 } //~namespace foam
 } //~namespace ribi

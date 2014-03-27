@@ -50,7 +50,7 @@ ribi::Exercise::Exercise(const std::string& filename)
     throw std::logic_error("File does not exist");
   }
   const std::vector<std::string> v {
-    ribi::fileio::FileToVector(filename)
+    ribi::fileio::FileIo().FileToVector(filename)
   };
   m_questions.reserve(v.size());
   for(const std::string& s: v)

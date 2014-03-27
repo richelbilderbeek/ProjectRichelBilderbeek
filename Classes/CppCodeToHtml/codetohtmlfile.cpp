@@ -64,7 +64,7 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
   const FileType file_type
   ) noexcept
 {
-  assert(fileio::IsRegularFile(m_filename));
+  assert(fileio::FileIo().IsRegularFile(m_filename));
 
   std::vector<std::string> v;
   if (m_filename == "Licence.txt" || m_filename == "License.txt") return v;
@@ -103,9 +103,9 @@ std::vector<std::string> ribi::c2h::File::CreateHtml(
 
   //Add the HTMLified content
   {
-    assert(fileio::IsRegularFile(m_filename));
+    assert(fileio::FileIo().IsRegularFile(m_filename));
     const std::vector<std::string> w {
-      Replacer::ToHtml(fileio::FileToVector(m_filename),file_type)
+      Replacer::ToHtml(fileio::FileIo().FileToVector(m_filename),file_type)
     };
     std::transform(w.begin(),w.end(),std::back_inserter(v),
       [](const std::string& s)

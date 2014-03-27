@@ -1,4 +1,0 @@
-The solution to fix this problem:
-
-renumberMesh
-zipUpMesh

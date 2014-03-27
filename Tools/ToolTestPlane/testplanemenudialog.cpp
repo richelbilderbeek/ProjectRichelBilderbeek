@@ -144,7 +144,7 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestPlane.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("FileIo version: " + fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Plane version: "
     + Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),

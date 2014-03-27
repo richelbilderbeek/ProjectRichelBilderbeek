@@ -58,7 +58,7 @@ std::vector<std::string> ribi::AsciiArterMainDialog::GetAsciiArt() const noexcep
 
 const boost::shared_ptr<ribi::ImageCanvas> ribi::AsciiArterMainDialog::GetImageCanvas() const noexcept
 {
-  if (!fileio::IsRegularFile(m_filename))
+  if (!fileio::FileIo().IsRegularFile(m_filename))
   {
     const std::string s = "AsciiArterMainDialog: file '"+ m_filename + "' not found";
     throw std::logic_error(s.c_str());
@@ -83,13 +83,13 @@ void ribi::AsciiArterMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::AsciiArterMainDialog::Test()");
-  const std::string temp_filename = fileio::GetTempFileName();
-  assert(!fileio::IsRegularFile(temp_filename));
+  const std::string temp_filename = fileio::FileIo().GetTempFileName();
+  assert(!fileio::FileIo().IsRegularFile(temp_filename));
   {
     QFile qfile(":/ToolAsciiArter/images/R.png");
     qfile.copy(temp_filename.c_str());
   }
-  assert(fileio::IsRegularFile(temp_filename)
+  assert(fileio::FileIo().IsRegularFile(temp_filename)
     && "Resource file must exist");
 
   const AsciiArterMainDialog d(temp_filename,20);
@@ -99,8 +99,8 @@ void ribi::AsciiArterMainDialog::Test() noexcept
   assert(!s.str().empty());
   //TRACE(d);
 
-  fileio::DeleteFile(temp_filename);
-  assert(!fileio::IsRegularFile(temp_filename));
+  fileio::FileIo().DeleteFile(temp_filename);
+  assert(!fileio::FileIo().IsRegularFile(temp_filename));
   TRACE("Finished ribi::AsciiArterMainDialog::Test()");
 }
 #endif

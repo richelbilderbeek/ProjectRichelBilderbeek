@@ -48,7 +48,7 @@ ribi::QtOpenQuestionDialog::QtOpenQuestionDialog(
   };
   assert(question);
 
-  if (fileio::IsRegularFile(question->GetFilename().c_str()))
+  if (fileio::FileIo().IsRegularFile(question->GetFilename().c_str()))
   {
     ui->image->setPixmap(QPixmap(question->GetFilename().c_str()));
   }

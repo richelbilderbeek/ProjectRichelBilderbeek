@@ -197,7 +197,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "testtwodigitnewickmenudialog.h"
 #include "textcanvas.h"
 #include "thresholdfilterermenudialog.h"
-#include "tictactoe.h"
+#include "tictactoeboard.h"
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
@@ -322,7 +322,7 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("Encranger (class) version: " + Encranger::GetVersion());
   a.AddLibrary("Encranger (tool) version: " + ToolEncrangerMenuDialog().GetVersion());
   a.AddLibrary("Exercise version: " + Exercise::GetVersion());
-  a.AddLibrary("FileIo version: " + fileio::GetVersion());
+  a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Fuzzy_equal_to version: " + fuzzy_equal_to::GetVersion());
   a.AddLibrary("GaborFilter version: " + GaborFilter::GetVersion());
   a.AddLibrary("GaborFilterWidget version: " + GaborFilterWidget::GetVersion());
@@ -423,8 +423,8 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("TestToggleButton version: " + TestToggleButtonMenuDialog().GetVersion());
   a.AddLibrary("TestTriangleMesh version: " + TestTriangleMeshMenuDialog().GetVersion());
   a.AddLibrary("TextCanvas version: " + TextCanvas::GetVersion());
-  a.AddLibrary("TicTacToe (game) version: " + TicTacToeMenuDialog().GetVersion());
-  a.AddLibrary("TicTacToe version: " + TicTacToe::GetVersion());
+  a.AddLibrary("TicTacToe (game) version: " + tictactoe::TicTacToeMenuDialog().GetVersion());
+  a.AddLibrary("TicTacToe version: " + tictactoe::Board::GetVersion());
   a.AddLibrary("ToggleButton version: " + ToggleButton::GetVersion());
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());
@@ -2740,7 +2740,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
-      case ProgramType::ticTacToe: p.reset(new TicTacToeMenuDialog); break;
+      case ProgramType::ticTacToe: p.reset(new tictactoe::TicTacToeMenuDialog); break;
       case ProgramType::ticTacToeLearner:
       {
         const std::string version = "x.x";

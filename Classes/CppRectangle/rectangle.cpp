@@ -18,6 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppRectangle.htm
 //---------------------------------------------------------------------------
+#ifdef REALLY_USE_RECTANGLE
+
 #include "rectangle.h"
 
 #include <iostream>
@@ -104,3 +106,5 @@ bool ribi::operator!=(const Rect& lhs, const Rect& rhs) noexcept
   return !(lhs==rhs);
 }
 
+
+#endif //#ifdef REALLY_USE_RECTANGLE

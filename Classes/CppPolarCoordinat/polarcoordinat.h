@@ -135,11 +135,9 @@ PolarCoordinat<Angle,Length> operator+(
   const PolarCoordinat<Angle,Length>& b
   )
 {
-  //const PolarCoordinat::Coordinat coordinat {
-  const auto coordinat(ToCoordinat(a) + ToCoordinat(b));
   return PolarCoordinat<Angle,Length>(
-    coordinat.GetX(),
-    coordinat.GetY()
+    boost::geometry::get<0>(ToCoordinat(a)) + boost::geometry::get<0>(ToCoordinat(b)),
+    boost::geometry::get<1>(ToCoordinat(a)) + boost::geometry::get<1>(ToCoordinat(b))
   );
 }
 

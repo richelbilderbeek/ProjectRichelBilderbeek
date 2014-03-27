@@ -14,7 +14,7 @@
 
 #include <QFile>
 
-#include "filename.h"
+
 #include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamfacesfileitem.h"
@@ -41,7 +41,7 @@ bool ribi::foam::FacesFile::CanGetItem(const ribi::foam::FaceIndex& face_index) 
   return face_index.Get() < static_cast<int>(m_items.size());
 }
 
-const ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::FacesFile::GetDefaultHeader() noexcept
 {
   return Header("faceList","constant/polyMesh","","faces");
 }
@@ -53,12 +53,12 @@ const ribi::foam::FacesFileItem& ribi::foam::FacesFile::GetItem(const ribi::foam
 }
 
 
-const ribi::foam::FaceIndex ribi::foam::FacesFile::GetMaxFaceIndex() const noexcept
+ribi::foam::FaceIndex ribi::foam::FacesFile::GetMaxFaceIndex() const noexcept
 {
   return FaceIndex(static_cast<int>(m_items.size()));
 }
 
-const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
+ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
 {
   FacesFile b;
   is >> b;
@@ -66,15 +66,15 @@ const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::FacesFile ribi::foam::FacesFile::Parse(const std::string& filename)
+ribi::foam::FacesFile ribi::foam::FacesFile::Parse(const std::string& filename)
 {
-  const std::string tmp_filename { fileio::GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   const FacesFile file { Parse(f) };
   f.close();
-  fileio::DeleteFile(tmp_filename);
+  fileio::FileIo().DeleteFile(tmp_filename);
   return file;
 }
 
@@ -160,12 +160,12 @@ void ribi::foam::FacesFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         TRACE("ERROR");
         TRACE(filename);
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       FacesFile b(filename);
       if (b.GetItems().empty())
       {
@@ -179,7 +179,7 @@ void ribi::foam::FacesFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const FacesFile& lhs,const FacesFile& rhs)
+bool ribi::foam::operator==(const FacesFile& lhs,const FacesFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -194,7 +194,7 @@ bool ribi::foam::operator==(const FacesFile& lhs,const FacesFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const FacesFile& lhs,const FacesFile& rhs)
+bool ribi::foam::operator!=(const FacesFile& lhs,const FacesFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -278,7 +278,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, FacesFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const FacesFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

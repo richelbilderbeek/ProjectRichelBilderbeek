@@ -83,7 +83,7 @@ ribi::DrawCanvas::DrawCanvas(const std::string& filename)
     m_color_system{},
     m_coordinat_system{}
 {
-  assert(fileio::IsRegularFile(filename));
+  assert(fileio::FileIo().IsRegularFile(filename));
   std::string s;
   {
     std::ifstream f(filename.c_str());
@@ -654,7 +654,7 @@ void ribi::DrawCanvas::Test() noexcept
     assert( old_canvas !=  canvas);
     assert(*old_canvas == *canvas);
 
-    const std::string temp_filename { fileio::GetTempFileName() };
+    const std::string temp_filename { fileio::FileIo().GetTempFileName() };
     canvas->Save(temp_filename);
     canvas->Clear();
 

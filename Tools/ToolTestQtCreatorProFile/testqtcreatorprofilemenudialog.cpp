@@ -55,7 +55,7 @@ int ribi::TestQtCreatorProFileMenuDialog::ExecuteSpecific(const std::vector<std:
     {
       std::cout << "Please specify a filename ending on .pro.\n";
     }
-    else if (!fileio::IsRegularFile(filename))
+    else if (!fileio::FileIo().IsRegularFile(filename))
     {
       std::cout << "Please specify a Qt Creator (.pro) project filename that exists.\n";
     }
@@ -142,19 +142,19 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
     s
       << "SOURCES += qtmain.cpp" << '\n'
     ;
-    const std::string filename = fileio::GetTempFileName(".pro");
+    const std::string filename = fileio::FileIo().GetTempFileName(".pro");
     {
       std::ofstream f(filename.c_str());
       f << s.str();
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
     const boost::shared_ptr<const QtCreatorProFile> p(
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
     TRACE(*p);
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   {
     std::stringstream s;
@@ -183,19 +183,19 @@ void ribi::TestQtCreatorProFileMenuDialog::Test() noexcept
       << "" << '\n'
       << "SOURCES += qtmain.cpp" << '\n'
     ;
-    const std::string filename = fileio::GetTempFileName(".pro");
+    const std::string filename = fileio::FileIo().GetTempFileName(".pro");
     {
       std::ofstream f(filename.c_str());
       f << s.str();
     }
-    assert(fileio::IsRegularFile(filename));
+    assert(fileio::FileIo().IsRegularFile(filename));
     const boost::shared_ptr<const QtCreatorProFile> p(
       new QtCreatorProFile(filename)
     );
     assert(p->GetSources().size() == 1);
     TRACE(*p);
 
-    fileio::DeleteFile(filename);
+    fileio::FileIo().DeleteFile(filename);
   }
   TRACE("Finished ribi::TestQtCreatorProFileMenuDialog::Test successfully");
 }

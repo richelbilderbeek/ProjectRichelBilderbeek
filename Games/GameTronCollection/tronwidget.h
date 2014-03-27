@@ -21,7 +21,7 @@ struct Widget
   );
 };
 
-// ~namespace tron
-// ~namespace ribi
+} // ~namespace tron
+} // ~namespace ribi
 
 #endif // TRONWIDGET_H

@@ -52,7 +52,7 @@ void ribi::foam::PointsFileItem::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const PointsFileItem& lhs, const PointsFileItem& rhs)
+bool ribi::foam::operator==(const PointsFileItem& lhs, const PointsFileItem& rhs) noexcept
 {
   const double abs_tolerance = 0.001;
   #ifdef USE_CUSTOM_RIBI_COORDINAT3D
@@ -71,12 +71,12 @@ bool ribi::foam::operator==(const PointsFileItem& lhs, const PointsFileItem& rhs
   #endif
 }
 
-bool ribi::foam::operator!=(const PointsFileItem& lhs, const PointsFileItem& rhs)
+bool ribi::foam::operator!=(const PointsFileItem& lhs, const PointsFileItem& rhs) noexcept
 {
   return !(lhs == rhs);
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& item)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const PointsFileItem& item) noexcept
 {
   #ifdef USE_CUSTOM_RIBI_COORDINAT3D
   os

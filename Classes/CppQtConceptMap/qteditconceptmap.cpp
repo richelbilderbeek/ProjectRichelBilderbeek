@@ -1,3 +1,23 @@
+//---------------------------------------------------------------------------
+/*
+QtConceptMap, Qt classes for display and interaction with ConceptMap
+Copyright (C) 2013-2014 The Brainweaver Team
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.If not, see <http://www.gnu.org/licenses/>.
+*/
+//---------------------------------------------------------------------------
+//From http://www.richelbilderbeek.nl/CppQtConceptMap.htm
+//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -639,9 +659,11 @@ void ribi::cmap::QtEditConceptMap::OnToolsClicked()
   {
     const QPointF cursor_pos_approx(
       m_tools->GetBuddyItem()->pos().x(),
-      m_tools->GetBuddyItem()->pos().y() - 32.0);
+      m_tools->GetBuddyItem()->pos().y() - 32.0 //TODO_COEN: the QGraphicsItem needs to emit that it is clicked, with itself as the argument, so that the QtTool knows the height the of the square to be above
+    );
     m_arrow = new QtNewArrow(
-      m_tools->GetBuddyItem(),cursor_pos_approx);
+      m_tools->GetBuddyItem(),cursor_pos_approx
+    );
     assert(!m_arrow->scene());
     this->scene()->addItem(m_arrow);
     m_arrow->update();

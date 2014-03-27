@@ -24,10 +24,10 @@ struct BoundaryFileItem
   int GetNfaces() const noexcept { return m_n_faces; }
 
   ///Obtain the first Face its index
-  const FaceIndex GetStartFace() const noexcept { return m_start_face; }
+  FaceIndex GetStartFace() const noexcept { return m_start_face; }
 
   ///Obtain the last+1 Face index
-  const FaceIndex GetEndFace() const noexcept;
+  FaceIndex GetEndFace() const noexcept;
 
   PatchFieldType GetType() const noexcept { return m_type; }
 
@@ -46,9 +46,9 @@ struct BoundaryFileItem
   friend std::istream& operator>>(std::istream& is, BoundaryFileItem& f);
 };
 
-bool operator==(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs);
-bool operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs);
-std::ostream& operator<<(std::ostream& os, const BoundaryFileItem& f);
+bool operator==(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs) noexcept;
+bool operator!=(const BoundaryFileItem& lhs, const BoundaryFileItem& rhs) noexcept;
+std::ostream& operator<<(std::ostream& os, const BoundaryFileItem& f) noexcept;
 std::istream& operator>>(std::istream& is, BoundaryFileItem& f);
 
 } //~namespace foam

@@ -29,19 +29,34 @@ int main(int, char* argv[])
 
   try
   {
-    const double tau { boost::math::constants::two_pi<double>() };
+    const double pi { boost::math::constants::pi<double>() };
     const bool show_mesh { true };
+    const std::string renumberMesh_command(
+      std::string(
+        R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
+      + R"("WM_COMPILER=mingw-w32" "WM_PRECISION_OPTION=DP" "WM_MPLIB=""")"
+        // Changing to drive D is important...
+      + " && D: "
+        // ...although this also indicates the drive
+      + " && cd " + ribi::fileio::FileIo().GetPath(argv[0])
+      + " && cd .. && dir && renumberMesh"
+    );
     ribi::TestTriangleMeshMainDialog(
       {
-        ribi::TriangleFile::CreateShapePolygon(4,tau * 0.0 / 6.0,1.0)
-        //ribi::TriangleFile::CreateShapePolygon(3,tau * 0.0 / 6.0,2.0)
+        //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
+        ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,0.5), //? cube
+        //ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,1.0) //1 prism
+        ribi::TriangleFile::CreateShapePolygon(3,pi * 0.0 / 6.0,2.0), //3 prisms
+        ribi::TriangleFile::CreateShapePolygon(5,pi * 0.0 / 6.0,4.0)
       },
       show_mesh,
-      2,
-      strategy
+      10,
+      strategy,
+      renumberMesh_command
     );
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
+    //checkMesh
     {
       std::stringstream cmd;
       cmd
@@ -50,15 +65,12 @@ int main(int, char* argv[])
         // Changing to drive D is important...
         << " && D: "
         // ...although this also indicates the drive
-        //<< R"( && cd D:\Projects\Test\ToolOpenFoamErrorOpenCellsFoundCorrected)"
-        // ...although this also indicates the drive
-        << " && cd " << ribi::fileio::GetPath(argv[0])
+        << " && cd " << ribi::fileio::FileIo().GetPath(argv[0])
         << " && cd .. && dir && checkMesh"
       ;
       TRACE(cmd.str());
       std::system(cmd.str().c_str());
     }
-
     return 0;
   }
   catch (std::exception& e)

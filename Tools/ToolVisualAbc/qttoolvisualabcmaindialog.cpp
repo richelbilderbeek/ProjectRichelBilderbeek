@@ -59,13 +59,13 @@ ribi::QtVisualAbcMainDialog::~QtVisualAbcMainDialog() noexcept
 void ribi::QtVisualAbcMainDialog::on_button_convert_clicked()
 {
   VisualAbcMainDialog::ConvertToPng(ui->edit_text->toPlainText().toStdString());
-  if (ribi::fileio::IsRegularFile(VisualAbcMainDialog::m_png_filename))
+  if (ribi::fileio::FileIo().IsRegularFile(VisualAbcMainDialog::m_png_filename))
   {
     ui->label_sheet->setPixmap(QPixmap(VisualAbcMainDialog::m_png_filename.c_str()));
   }
   else
   {
-    assert(ribi::fileio::IsRegularFile(VisualAbcMainDialog::m_pngs_filename));
+    assert(ribi::fileio::FileIo().IsRegularFile(VisualAbcMainDialog::m_pngs_filename));
     ui->label_sheet->setPixmap(QPixmap(VisualAbcMainDialog::m_pngs_filename.c_str()));
   }
 }

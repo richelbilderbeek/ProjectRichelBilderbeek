@@ -53,9 +53,9 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
 {
   assert(IsTidyInstalled());
 
-  const std::string temp_filename { fileio::GetTempFileName(".htm") };
-  const std::string temp_filename_tidy { fileio::GetTempFileName("_tidy.txt") };
-  assert(!ribi::fileio::IsRegularFile(temp_filename));
+  const std::string temp_filename { fileio::FileIo().GetTempFileName(".htm") };
+  const std::string temp_filename_tidy { fileio::FileIo().GetTempFileName("_tidy.txt") };
+  assert(!ribi::fileio::FileIo().IsRegularFile(temp_filename));
   //Write HTML to file
   {
     std::ofstream f(temp_filename.c_str());
@@ -63,7 +63,7 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
   }
   //Start tidy, creates output file
   {
-    assert(ribi::fileio::IsRegularFile(temp_filename));
+    assert(ribi::fileio::FileIo().IsRegularFile(temp_filename));
     const std::string command = "tidy -q -e -f " + temp_filename_tidy + " " + temp_filename;
     const int error = std::system(command.c_str());
     /*
@@ -86,7 +86,7 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
     */
     if (error) return false;
   }
-  const auto v = ribi::fileio::FileToVector(temp_filename_tidy);
+  const auto v = ribi::fileio::FileIo().FileToVector(temp_filename_tidy);
 
 
   if (v.size() > 1)
@@ -96,8 +96,8 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
     TRACE(temp_filename_tidy);
     return false;
   }
-  fileio::DeleteFile(temp_filename.c_str());
-  fileio::DeleteFile(temp_filename_tidy.c_str());
+  fileio::FileIo().DeleteFile(temp_filename.c_str());
+  fileio::FileIo().DeleteFile(temp_filename_tidy.c_str());
   return true;
 }
 #endif
@@ -105,19 +105,19 @@ bool ribi::c2h::IsCleanHtml(const std::vector<std::string>& html)
 #ifndef _WIN32
 bool ribi::c2h::IsTidyInstalled()
 {
-  const std::string temp_filename_tidy { fileio::GetTempFileName() };
+  const std::string temp_filename_tidy { fileio::FileIo().GetTempFileName() };
 
-  assert(!ribi::fileio::IsRegularFile(temp_filename_tidy));
+  assert(!ribi::fileio::FileIo().IsRegularFile(temp_filename_tidy));
 
   //'2>' denotes -AFAIK- 'Write to file only, no screen output'
   const std::string command = "tidy -v 2> ./" + temp_filename_tidy;
   const int error = std::system(command.c_str());
   //assert(ok == 0 && "While I know I have tidy installed");
   //assert(IsRegularFile(temp_filename_tidy) && "While I know I have tidy installed");
-  if (!ribi::fileio::IsRegularFile(temp_filename_tidy)) return false;
+  if (!ribi::fileio::FileIo().IsRegularFile(temp_filename_tidy)) return false;
 
-  fileio::DeleteFile(temp_filename_tidy.c_str());
-  assert(!ribi::fileio::IsRegularFile(temp_filename_tidy));
+  fileio::FileIo().DeleteFile(temp_filename_tidy.c_str());
+  assert(!ribi::fileio::FileIo().IsRegularFile(temp_filename_tidy));
 
   return !error;
 }
@@ -176,7 +176,7 @@ std::vector<std::string> ribi::c2h::GetSortedFilesInFolder(const std::string& fo
 {
   std::vector<std::string> files {
     FilterFiles(
-      ribi::fileio::GetFilesInFolder(folder)
+      ribi::fileio::FileIo().GetFilesInFolder(folder)
     )
   };
   files = SortFiles(files);
@@ -189,7 +189,7 @@ std::vector<std::string> ribi::c2h::FilterFiles(const std::vector<std::string>& 
   std::copy_if(files.begin(), files.end(),std::back_inserter(v),
     [](const std::string& file)
     {
-      const std::string ext = ribi::fileio::GetExtension(file);
+      const std::string ext = ribi::fileio::FileIo().GetExtension(file);
       return
            ext == ".c"
         || ext == ".cpp"
@@ -210,10 +210,10 @@ std::vector<std::string> ribi::c2h::SortFiles(std::vector<std::string> files)
   std::sort(files.begin(), files.end(),
     [](const std::string& lhs,const std::string& rhs)
     {
-      const std::string lhs_base = ribi::fileio::GetFileBasename(lhs);
-      const std::string rhs_base = ribi::fileio::GetFileBasename(rhs);
-      const std::string lhs_ext = ribi::fileio::GetExtension(lhs);
-      const std::string rhs_ext = ribi::fileio::GetExtension(rhs);
+      const std::string lhs_base = ribi::fileio::FileIo().GetFileBasename(lhs);
+      const std::string rhs_base = ribi::fileio::FileIo().GetFileBasename(rhs);
+      const std::string lhs_ext = ribi::fileio::FileIo().GetExtension(lhs);
+      const std::string rhs_ext = ribi::fileio::FileIo().GetExtension(rhs);
       static std::string pro(".pro");
       static std::string pri(".pri");
       static std::string sh(".sh");

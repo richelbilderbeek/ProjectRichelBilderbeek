@@ -15,7 +15,7 @@
 
 #include <QFile>
 
-#include "filename.h"
+
 #include "fileio.h"
 #include "openfoamheader.h"
 #include "openfoamfaceindex.h"
@@ -35,7 +35,7 @@ ribi::foam::OwnerFile::OwnerFile(
   #endif
 }
 
-const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const noexcept
+ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const noexcept
 {
   assert( (!m_items.empty() || m_items.empty())
     && "If an OwnerFile is empty, there is 1 cell, otherwise 1+max_value_found");
@@ -54,7 +54,7 @@ const ribi::foam::CellIndex ribi::foam::OwnerFile::CountNumberOfCells() const no
   return ++i;
 }
 
-const ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept
+ribi::foam::Header ribi::foam::OwnerFile::GetDefaultHeader() noexcept
 {
   return Header("labelList","constant/polyMesh","","owner");
 }
@@ -67,7 +67,7 @@ const ribi::foam::OwnerFileItem& ribi::foam::OwnerFile::GetItem(
   return m_items[i];
 }
 
-const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
+ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
 {
   OwnerFile b;
   is >> b;
@@ -75,15 +75,15 @@ const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(std::istream& is)
   return b;
 }
 
-const ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(const std::string& filename)
+ribi::foam::OwnerFile ribi::foam::OwnerFile::Parse(const std::string& filename)
 {
-  const std::string tmp_filename { fileio::GetTempFileName() };
-  fileio::CopyFile(filename,tmp_filename);
+  const std::string tmp_filename { fileio::FileIo().GetTempFileName() };
+  fileio::FileIo().CopyFile(filename,tmp_filename);
   Header::CleanFile(tmp_filename);
   std::ifstream f(tmp_filename.c_str());
   const OwnerFile file { Parse(f) };
   f.close();
-  fileio::DeleteFile(tmp_filename);
+  fileio::FileIo().DeleteFile(tmp_filename);
   return file;
 }
 
@@ -190,12 +190,12 @@ void ribi::foam::OwnerFile::Test() noexcept
       f.copy(filename.c_str());
     }
     {
-      if (!fileio::IsRegularFile(filename))
+      if (!fileio::FileIo().IsRegularFile(filename))
       {
         TRACE("ERROR");
         TRACE(filename);
       }
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       OwnerFile b(filename);
       if (b.GetItems().empty())
       {
@@ -208,7 +208,7 @@ void ribi::foam::OwnerFile::Test() noexcept
 }
 #endif
 
-bool ribi::foam::operator==(const OwnerFile& lhs,const OwnerFile& rhs)
+bool ribi::foam::operator==(const OwnerFile& lhs,const OwnerFile& rhs) noexcept
 {
   if (lhs.GetHeader() != rhs.GetHeader())
   {
@@ -223,7 +223,7 @@ bool ribi::foam::operator==(const OwnerFile& lhs,const OwnerFile& rhs)
   return std::equal(lhs_items.begin(),lhs_items.end(),rhs_items.begin());
 }
 
-bool ribi::foam::operator!=(const OwnerFile& lhs,const OwnerFile& rhs)
+bool ribi::foam::operator!=(const OwnerFile& lhs,const OwnerFile& rhs) noexcept
 {
   return !(lhs == rhs);
 }
@@ -307,7 +307,7 @@ std::istream& ribi::foam::operator>>(std::istream& is, OwnerFile& f)
   return is;
 }
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const OwnerFile& f)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const OwnerFile& f) noexcept
 {
   os
     << f.GetHeader() << '\n'

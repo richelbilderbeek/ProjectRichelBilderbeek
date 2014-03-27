@@ -58,7 +58,7 @@ int ribi::TestQrcFileMenuDialog::ExecuteSpecific(const std::vector<std::string>&
     {
       std::cout << "Please specify a filename ending on .qrc.\n";
     }
-    else if (!fileio::IsRegularFile(filename))
+    else if (!fileio::FileIo().IsRegularFile(filename))
     {
       std::cout << "Please specify a Qt Creator Resource (.qrc) filename that exists.\n";
     }
@@ -139,7 +139,7 @@ void ribi::TestQrcFileMenuDialog::Test() noexcept
     if (is_tested) return;
     is_tested = true;
   }
-  assert(fileio::IsRegularFile("../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc"));
+  assert(fileio::FileIo().IsRegularFile("../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc"));
   {
     QrcFile f("../../Tools/ToolTestQrcFile/ToolTestQrcFile.qrc");
     assert(f.GetFiles().count("R.png"));

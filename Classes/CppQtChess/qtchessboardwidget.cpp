@@ -138,7 +138,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
         Chess::SquareSelector::m_selected_color,
         true);
       TRACE(filename);
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -161,7 +161,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
           const std::string filename = Chess::Resources::Find(
             widget->GetBoard()->GetPiece(move->To()),
             Chess::SquareSelector::m_moves_color);
-          assert(fileio::IsRegularFile(filename));
+          assert(fileio::FileIo().IsRegularFile(filename));
           const QPixmap p(filename.c_str());
           painter.drawPixmap(x_co,y_co,square_w,square_h,p);
         }
@@ -174,7 +174,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
             = Chess::Resources::Find(
               square,
               Chess::SquareSelector::m_moves_color);
-          assert(fileio::IsRegularFile(filename));
+          assert(fileio::FileIo().IsRegularFile(filename));
           const QPixmap p(filename.c_str());
           painter.drawPixmap(x_co,y_co,square_w,square_h,p);
         }
@@ -192,7 +192,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
       const std::string filename = Chess::Resources::Find(widget->GetBoard()->GetPiece(cursor),
         Chess::SquareSelector::m_cursor_color,
         selected && *selected == *cursor );
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }
@@ -202,7 +202,7 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
         = Chess::Resources::Find(
           cursor,
           Chess::SquareSelector::m_cursor_color);
-      assert(fileio::IsRegularFile(filename));
+      assert(fileio::FileIo().IsRegularFile(filename));
       const QPixmap p(filename.c_str());
       painter.drawPixmap(x_co,y_co,square_w,square_h,p);
     }

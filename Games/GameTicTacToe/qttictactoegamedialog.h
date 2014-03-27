@@ -27,6 +27,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "qthideandshowdialog.h"
+#include "tictactoefwd.h"
 #pragma GCC diagnostic pop
 
 namespace Ui {
@@ -36,14 +37,16 @@ namespace Ui {
 namespace ribi {
 namespace tictactoe {
 
-struct QtTicTacToeWidget;
-
 class QtTicTacToeGameDialog : public QtHideAndShowDialog
 {
   Q_OBJECT
 
 public:
-  explicit QtTicTacToeGameDialog(QWidget *parent = 0);
+  explicit QtTicTacToeGameDialog(
+    const boost::shared_ptr<Ai>& player1,
+    const boost::shared_ptr<Ai>& player2,
+    QWidget *parent = 0
+  );
   QtTicTacToeGameDialog(const QtTicTacToeGameDialog&) = delete;
   QtTicTacToeGameDialog& operator=(const QtTicTacToeGameDialog&) = delete;
   ~QtTicTacToeGameDialog() noexcept;

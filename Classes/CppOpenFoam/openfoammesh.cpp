@@ -314,7 +314,7 @@ double ribi::foam::Mesh::CalcSimilaritySlow(
 }
 */
 
-const std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::CreateBoundaries(
+std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::CreateBoundaries(
   const Files& files,
   const std::vector<boost::shared_ptr<Face>>& all_faces
   )
@@ -353,7 +353,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Boundary> > ribi::foam::Mesh::Cr
   return boundaries;
 }
 
-const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBoundary() const noexcept
+boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBoundary() const noexcept
 {
   std::vector<BoundaryFileItem> items;
 
@@ -422,7 +422,7 @@ const boost::shared_ptr<ribi::foam::BoundaryFile> ribi::foam::Mesh::CreateBounda
   return f;
 }
 
-const std::vector<boost::shared_ptr<ribi::foam::Cell> > ribi::foam::Mesh::CreateEmptyCells(
+std::vector<boost::shared_ptr<ribi::foam::Cell> > ribi::foam::Mesh::CreateEmptyCells(
   const Files& files)
 {
   std::vector<boost::shared_ptr<ribi::foam::Cell> > cells;
@@ -440,7 +440,7 @@ const std::vector<boost::shared_ptr<ribi::foam::Cell> > ribi::foam::Mesh::Create
   return cells;
 }
 
-const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Mesh::CreateFaces() const noexcept
+boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Mesh::CreateFaces() const noexcept
 {
   std::vector<FacesFileItem> items;
 
@@ -486,7 +486,7 @@ const boost::shared_ptr<ribi::foam::FacesFile> ribi::foam::Mesh::CreateFaces() c
   return f;
 }
 
-const std::vector<boost::shared_ptr<ribi::foam::Face>> ribi::foam::Mesh::CreateFacesWithPoints(
+std::vector<boost::shared_ptr<ribi::foam::Face>> ribi::foam::Mesh::CreateFacesWithPoints(
   const Files& files,
   const std::vector<boost::shared_ptr<Coordinat3D>>& all_points)
 {
@@ -552,7 +552,7 @@ ribi::foam::Files ribi::foam::Mesh::CreateFiles() const noexcept
   return f;
 }
 
-const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Mesh::CreateNeighbour() const noexcept
+boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Mesh::CreateNeighbour() const noexcept
 {
   std::vector<NeighbourFileItem> v;
   for (boost::shared_ptr<Face> face: m_faces)
@@ -589,7 +589,7 @@ const boost::shared_ptr<ribi::foam::NeighbourFile> ribi::foam::Mesh::CreateNeigh
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Mesh::CreateOwner() const noexcept
+boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Mesh::CreateOwner() const noexcept
 {
   std::vector<OwnerFileItem> items;
 
@@ -622,7 +622,7 @@ const boost::shared_ptr<ribi::foam::OwnerFile> ribi::foam::Mesh::CreateOwner() c
   return p;
 }
 
-const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Mesh::CreatePoints() const noexcept
+boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Mesh::CreatePoints() const noexcept
 {
   std::vector<PointsFileItem> items;
   std::transform(
@@ -646,7 +646,7 @@ const boost::shared_ptr<ribi::foam::PointsFile> ribi::foam::Mesh::CreatePoints()
   return p;
 }
 
-const std::vector<boost::shared_ptr<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>>
+std::vector<boost::shared_ptr<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>>
   ribi::foam::Mesh::CreatePoints(const Files& files)
 {
   std::vector<boost::shared_ptr<Coordinat3D>> v;
@@ -972,7 +972,7 @@ void ribi::foam::Mesh::Test() noexcept
 #endif
 
 
-std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Mesh& mesh)
+std::ostream& ribi::foam::operator<<(std::ostream& os, const ribi::foam::Mesh& mesh) noexcept
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 

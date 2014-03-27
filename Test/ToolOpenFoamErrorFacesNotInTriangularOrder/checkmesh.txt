@@ -1,0 +1,88 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+/*   Windows 32 and 64 bit porting by blueCAPE: http://www.bluecape.com.pt   *\
+|  Based on Windows porting (2.0.x v4) by Symscape: http://www.symscape.com   |
+\*---------------------------------------------------------------------------*/
+Build  : 2.1-88b2f2ae3a0b
+Exec   : checkMesh
+Date   : Mar 25 2014
+Time   : 08:08:26
+Host   : "AIRBEAR-W7-I5"
+PID    : 1408
+Case   : D:/Projects/Tools/build-ToolTestTriangleMeshConsole-Desktop_Qt_5_1_1_Mi
+nGW_32bit-Debug
+nProcs : 1
+SigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMas
+ter
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Time = 0
+
+Mesh stats
+    points:           8
+    internal points:  0
+    faces:            12
+    internal faces:   3
+    cells:            3
+    boundary patches: 5
+    point zones:      0
+    face zones:       0
+    cell zones:       0
+
+Overall number of cells of each type:
+    hexahedra:     0
+    prisms:        3
+    wedges:        0
+    pyramids:      0
+    tet wedges:    0
+    tetrahedra:    0
+    polyhedra:     0
+
+Checking topology...
+    Boundary definition OK.
+    Cell to face addressing OK.
+    Point usage OK.
+ ***Faces not in upper triangular order.
+  <<Writing 1 unordered faces to set upperTriangularFace
+    Face vertices OK.
+    Number of regions: 1 (OK).
+
+Checking patch topology for multiply connected surfaces ...
+    Patch               Faces    Points   Surface topology
+    top                 3        4        ok (non-closed singly connected)
+    right               1        4        ok (non-closed singly connected)
+    left                1        4        ok (non-closed singly connected)
+    front               1        4        ok (non-closed singly connected)
+    bottom              3        4        ok (non-closed singly connected)
+
+Checking geometry...
+    Overall domain bounding box (-1.73205 -2 0) (1.73205 1 1)
+    Mesh (non-empty, non-wedge) directions (1 1 1)
+    Mesh (non-empty) directions (1 1 1)
+    Boundary openness (0 0 -2.13663e-017) OK.
+    Max cell openness = 3.70074e-017 OK.
+    Max aspect ratio = 3.4641 OK.
+    Minimum face area = 1.73205. Maximum face area = 3.4641.  Face area magnitud
+es OK.
+    Min volume = 1.73205. Max volume = 1.73205.  Total volume = 5.19615.  Cell v
+olumes OK.
+    Mesh non-orthogonality Max: 8.27764e-006 average: 6.77662e-006
+    Non-orthogonality check OK.
+    Face pyramids OK.
+    Max skewness = 0.666667 OK.
+    Coupled point location match (average 0) OK.
+
+Failed 1 mesh checks.
+
+End
