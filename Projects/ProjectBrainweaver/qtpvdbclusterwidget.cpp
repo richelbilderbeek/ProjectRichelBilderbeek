@@ -75,6 +75,9 @@ ribi::pvdb::QtPvdbClusterWidget::QtPvdbClusterWidget(
     SIGNAL(itemChanged(QTreeWidgetItem*,int)),
     this,
     SLOT(RemoveEmptyItem(QTreeWidgetItem*,int)));
+
+  // Allow word-wrapping
+  this->setWordWrap(true);
 }
 
 void ribi::pvdb::QtPvdbClusterWidget::Add(const std::string& text)
