@@ -42,7 +42,7 @@ ribi::Geometry::Geometry()
 
 boost::geometry::model::d2::point_xy<double> ribi::Geometry::CalcCenter(const std::vector<boost::geometry::model::d2::point_xy<double>>& points) const noexcept
 {
-  typedef boost::geometry::model::d2::point_xy<double> T;
+  typedef Coordinat2D T;
   T sum(0.0,0.0);
   for (const auto& point: points)
   {
@@ -148,7 +148,7 @@ boost::geometry::model::d2::point_xy<double> ribi::Geometry::Coordinat2DToBoostG
   const Coordinat2D& c
 ) const noexcept
 {
-  return boost::geometry::model::d2::point_xy<double>(
+  return Coordinat2D(
     c.GetX(),c.GetY()
   );
 }
@@ -159,7 +159,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordi
   const std::vector<Coordinat2D>& v
 ) const noexcept
 {
-  std::vector<boost::geometry::model::d2::point_xy<double>> w;
+  std::vector<Coordinat2D> w;
   for (auto c: v) { w.push_back(Coordinat2DToBoostGeometryPointXy(c)); }
   return w;
 }
@@ -283,7 +283,7 @@ bool ribi::Geometry::IsClockwise(const std::vector<Coordinat3D>& points, const C
   {
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
-    const std::vector<boost::geometry::model::d2::point_xy<double>> v(
+    const std::vector<Coordinat2D> v(
       Plane().CalcProjection(
         {
           points[0].ToBoostGeometryPoint(),
@@ -386,7 +386,7 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const boost::geometry::model::d2::point_xy<double>& coordinat)
+    [this,center](const Coordinat2D& coordinat)
     {
       return GetAngle(
         coordinat.x() - center.x(),
@@ -397,22 +397,23 @@ bool ribi::Geometry::IsClockwiseHorizontal(const std::vector<boost::geometry::mo
   return IsClockwise(angles);
 }
 
-bool ribi::Geometry::IsConvex(boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon) const noexcept
+bool ribi::Geometry::IsConvex(Polygon polygon) const noexcept
 {
   boost::geometry::correct(polygon);
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> hull;
+  Polygon hull;
   boost::geometry::convex_hull(polygon, hull);
-  //const bool prev_answer = boost::geometry::area(hull) == boost::geometry::area(polygon);
-  const bool new_answer = boost::geometry::equals(polygon,hull);
-  //TRACE(prev_answer);
-  //assert(prev_answer == new_answer);
-  return new_answer;
+  const bool is_convex = boost::geometry::equals(polygon,hull);
+  return is_convex;
 }
 
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noexcept
 {
-  boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
-  for (auto point: points) { boost::geometry::append(polygon,point); };
+  Polygon polygon;
+  for (auto point: points)
+  {
+    //TRACE(ToStr(point));
+    boost::geometry::append(polygon,point);
+  };
   return IsConvex(polygon);
 }
 
@@ -523,7 +524,7 @@ bool ribi::Geometry::IsCounterClockwiseHorizontal(const std::vector<boost::geome
   angles.reserve(points.size());
   std::transform(points.begin(),points.end(),
     std::back_inserter(angles),
-    [this,center](const boost::geometry::model::d2::point_xy<double>& coordinat)
+    [this,center](const Coordinat2D& coordinat)
     {
       return GetAngle(
         coordinat.x() - center.x(),
@@ -886,7 +887,7 @@ void ribi::Geometry::Test() noexcept
 
     //Convex shape
     {
-      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+      const std::vector<Coordinat2D> points {
         { 2.0, 2.0}, //A
         {12.0, 2.0}, //B
         { 9.0, 5.0}, //C
@@ -894,13 +895,13 @@ void ribi::Geometry::Test() noexcept
         { 2.0, 3.0}  //E
       };
 
-      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      Polygon polygon;
       boost::geometry::append(polygon, points);
       assert(g.IsConvex(polygon));
     }
     //Concave shape
     {
-      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+      const std::vector<Coordinat2D> points {
         { 2.0, 2.0}, //A
         {12.0, 2.0}, //B
         { 9.0, 5.0}, //C
@@ -908,26 +909,76 @@ void ribi::Geometry::Test() noexcept
         { 5.0, 5.0}  //E
       };
 
-      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      Polygon polygon;
       boost::geometry::append(polygon, points);
       assert(!g.IsConvex(polygon));
     }
   }
-  if (verbose) TRACE("Some shape, from error");
+  if (verbose) TRACE("Convex shape, 2D, from error #1");
   {
+
+    /*
+
+       __--3
+     2-
+     |
+     |
+     |
+     |  __-0
+     1--
+
+
+    */
     {
-      const std::vector<boost::geometry::model::d2::point_xy<double>> points {
+      const std::vector<Coordinat2D> points {
         {17.4971,33.0765},
         {9.28854,29.5636},
         {9.28854,40.6764},
         {17.4971,44.4009}
       };
 
-      boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> polygon;
+      Polygon polygon;
       boost::geometry::append(polygon, points);
       assert(g.IsConvex(polygon));
     }
   }
+  if (verbose) TRACE("Convex shape, 2D, from error #2");
+  {
+    //From 3D points:
+    /*
+
+
+
+    // (2.35114,3.23607,5) (index: 644)'
+    // (1.17557,2.35781,5) (index: 658)'
+    // (2.35114,3.23607,6) (index: 668)'
+    // (1.17557,2.35781,6) (index: 682)'
+    */
+    /*
+
+       __--2
+     3-   /
+         /
+        /
+       /
+      / __-0
+     1--
+
+    */
+    {
+      const std::vector<Coordinat2D> points {
+        {17.497 ,33.0765},
+        { 9.2885,29.5636},
+        {17.497 ,44.4009},
+        { 9.2885,40.6764}
+      };
+
+      Polygon polygon;
+      boost::geometry::append(polygon, points);
+      assert(!g.IsConvex(polygon));
+    }
+  }
+
   if (verbose) TRACE("Convex shape, 3D, points in Y=0 plane");
   {
     {
@@ -1093,6 +1144,7 @@ void ribi::Geometry::Test() noexcept
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
   }
+
   if (verbose) TRACE("IsClockwise in three dimensions, points in XY plane");
   {
     /*

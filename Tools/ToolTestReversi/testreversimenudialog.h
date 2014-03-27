@@ -22,11 +22,11 @@ struct TestReversiMenuDialog : public MenuDialog
   ~TestReversiMenuDialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept;
 
-  const About GetAbout() const noexcept;
-  const Help GetHelp() const noexcept;
-  const boost::shared_ptr<const Program> GetProgram() const noexcept;
-  const std::string GetVersion() const noexcept;
-  const std::vector<std::string> GetVersionHistory() const noexcept;
+  About GetAbout() const noexcept;
+  Help GetHelp() const noexcept;
+  boost::shared_ptr<const Program> GetProgram() const noexcept;
+  std::string GetVersion() const noexcept;
+  std::vector<std::string> GetVersionHistory() const noexcept;
 
   private:
 

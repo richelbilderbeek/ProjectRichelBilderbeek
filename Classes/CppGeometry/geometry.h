@@ -38,10 +38,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+///Goemetry functions, working with Boost.Geometry
 struct Geometry
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Polygon;
 
   Geometry();
 

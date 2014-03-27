@@ -125,6 +125,8 @@ ribi::trim::Template::Template(
         std::reverse(face_points.begin(),face_points.end());
       }
       assert(Helper().IsClockwiseHorizontal(face_points));
+      if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
+      assert(Helper().IsConvex(face_points) && "FaceFacory only accepts convex ordered points");
 
       const boost::shared_ptr<Face> face {
         FaceFactory().Create(

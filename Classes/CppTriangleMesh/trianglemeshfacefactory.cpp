@@ -67,12 +67,21 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
 
   assert(Helper().IsPlane(points));
 
+  if (!Helper().IsConvex(points))
+  {
+    TRACE("ERROR");
+  }
+  assert(Helper().IsConvex(points)
+    && "FaceFactory must be called by a sorted and convex collection of points"
+    //&& "That way, the incorrect caller can be found"
+    //Just use Helper().MakeConvex
+  );
 
-
+  /*
   if (!Helper().IsConvex(points))
   {
     #ifndef NDEBUG
-    for (auto p: points) TRACE(*p);
+    //for (auto p: points) TRACE(*p);
     #endif
     std::sort(points.begin(),points.end());
     while (std::next_permutation(points.begin(),points.end()))
@@ -85,15 +94,17 @@ boost::shared_ptr<ribi::trim::Face> ribi::trim::FaceFactory::Create(
     }
   }
 
+
   #ifndef NDEBUG
   if(!Helper().IsConvex(points))
   {
-    TRACE("ERROR");
-    for (auto p: points) TRACE(*p);
-    TRACE("BREAK");
+    TRACE("ERROR: NOT CONVEX");
+    //for (auto p: points) TRACE(*p);
+    //TRACE("BREAK");
   }
   #endif
   assert(Helper().IsConvex(points));
+  */
 
   const boost::shared_ptr<Face> face(
     new Face(
@@ -315,21 +326,19 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::FaceFactory::Create
   const std::vector<boost::shared_ptr<Point>> points {
     PointFactory().CreateTestPrism()
   };
-        std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[1], points[2] };
-        std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
-  const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[3], points[4] };
-  const std::vector<boost::shared_ptr<Point>> points_b      { points[1], points[2], points[4], points[5] };
-  const std::vector<boost::shared_ptr<Point>> points_c      { points[2], points[0], points[5], points[3] };
+  const std::vector<boost::shared_ptr<Point>> points_bottom { points[0], points[2], points[1] };
+  const std::vector<boost::shared_ptr<Point>> points_top    { points[3], points[4], points[5] };
+  const std::vector<boost::shared_ptr<Point>> points_a      { points[0], points[1], points[4], points[3] };
+  const std::vector<boost::shared_ptr<Point>> points_b      { points[1], points[2], points[5], points[4] };
+  const std::vector<boost::shared_ptr<Point>> points_c      { points[2], points[0], points[3], points[5] };
 
-  if (!Helper().IsClockwiseHorizontal(points_bottom))
-  {
-    std::reverse(points_bottom.begin(),points_bottom.end());
-  }
-  if (!Helper().IsClockwiseHorizontal(points_top))
-  {
-    std::reverse(points_top.begin(),points_top.end());
-  }
-
+  assert(!Helper().IsClockwiseHorizontal(points_bottom) && "Clockwise from the inside");
+  assert(Helper().IsClockwiseHorizontal(points_top));
+  assert(Helper().IsConvex(points_bottom));
+  assert(Helper().IsConvex(points_top));
+  assert(Helper().IsConvex(points_a));
+  assert(Helper().IsConvex(points_b));
+  assert(Helper().IsConvex(points_c));
   const auto bottom(FaceFactory().Create(points_bottom,FaceOrientation::horizontal));
   const auto top(FaceFactory().Create(points_top,FaceOrientation::horizontal));
   const auto a(FaceFactory().Create(points_a,FaceOrientation::vertical));
@@ -470,7 +479,7 @@ void ribi::trim::FaceFactory::Test() noexcept
     assert(points.size() == 4);
     assert(!Helper().IsConvex(points));
   }
-  if (verbose) TRACE("IsConvex, from bug");
+  if (verbose) TRACE("IsConvex, issue 168");
   {
     typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
     boost::shared_ptr<Coordinat2D> c_0(new Coordinat2D(2.35114,3.23607));
@@ -485,10 +494,61 @@ void ribi::trim::FaceFactory::Test() noexcept
     p1->SetZ(5 * boost::units::si::meter); //Add no comma on purpose
     p2->SetZ(6 * boost::units::si::meter); //Add no comma on purpose
     p3->SetZ(6 * boost::units::si::meter); //Add no comma on purpose
-    const std::vector<boost::shared_ptr<Point>> points { p0, p1, p2, p3 };
+    std::vector<boost::shared_ptr<Point>> points { p0, p1, p2, p3 };
     assert(points.size() == 4);
     assert(!Helper().IsConvex(points) && "This a Z shape and thus not convex");
+    Helper().MakeConvex(points);
+    assert(Helper().IsConvex(points) && "FaceFactory only accepts convex points");
+    const auto face(
+      FaceFactory().Create(points,FaceOrientation::vertical)
+    );
+    assert(face && "But when creating a Face, the points are ordered");
+    assert(face->GetIndex() > 0);
+    //Shuffle these more often:
+    //For every order, it must be possibleto be made convex
+    for (int i=0; i!=256; ++i)
+    {
+      std::random_shuffle(points.begin(),points.end());
+      Helper().MakeConvex(points);
+      assert(Helper().IsConvex(points));
+    }
   }
+
+  if (verbose) TRACE("IsConvex, issue 168");
+  {
+    typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
+    boost::shared_ptr<Coordinat2D> c_0(new Coordinat2D(1.17557,2.35781));
+    boost::shared_ptr<Coordinat2D> c_1(new Coordinat2D(2.35114,3.23607));
+    boost::shared_ptr<Coordinat2D> c_2(new Coordinat2D(1.17557,2.35781));
+    boost::shared_ptr<Coordinat2D> c_3(new Coordinat2D(2.35114,3.23607));
+    boost::shared_ptr<Point> p0(PointFactory().Create(c_0));
+    boost::shared_ptr<Point> p1(PointFactory().Create(c_1));
+    boost::shared_ptr<Point> p2(PointFactory().Create(c_2));
+    boost::shared_ptr<Point> p3(PointFactory().Create(c_3));
+    p0->SetZ(5 * boost::units::si::meter); //Add no comma on purpose
+    p1->SetZ(6 * boost::units::si::meter); //Add no comma on purpose
+    p2->SetZ(6 * boost::units::si::meter); //Add no comma on purpose
+    p3->SetZ(5 * boost::units::si::meter); //Add no comma on purpose
+    std::vector<boost::shared_ptr<Point>> points { p0, p1, p2, p3 };
+    assert(points.size() == 4);
+    assert(!Helper().IsConvex(points) && "This a Z shape and thus not convex");
+    Helper().MakeConvex(points);
+    assert(Helper().IsConvex(points) && "FaceFactory only accepts convex points");
+    const auto face(
+      FaceFactory().Create(points,FaceOrientation::vertical)
+    );
+    assert(face && "But when creating a Face, the points are ordered");
+    assert(face->GetIndex() > 0);
+    //Shuffle these more often:
+    //For every order, it must be possibleto be made convex
+    for (int i=0; i!=256; ++i)
+    {
+      std::random_shuffle(points.begin(),points.end());
+      Helper().MakeConvex(points);
+      assert(Helper().IsConvex(points));
+    }
+  }
+  assert("issue 168");
   //Bug found
   #ifdef USE_TRIANGLEMESHEDGE
   for (auto strategy: CreateVerticalFacesStrategies().GetAll())

@@ -66,12 +66,13 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   //Read data from Triangle.exe output
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
-    const boost::shared_ptr<const ribi::trim::Template> t {
+    const boost::shared_ptr<const ribi::trim::Template> t(
       new ribi::trim::Template(
         filename_node,
         filename_ele
       )
-    };
+    );
+    assert(t);
 
     //Create cells from this template
     {
@@ -87,8 +88,11 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
           strategy
         )
       );
-
+      assert(c);
       cells = c->GetCells();
+      #ifndef NDEBUG
+      for (auto cell:cells) { assert(cell); }
+      #endif
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;

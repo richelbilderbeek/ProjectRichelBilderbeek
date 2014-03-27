@@ -509,6 +509,50 @@ bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
   return answer_1;
 }
 
+void ribi::trim::Helper::MakeConvex(
+  std::vector<boost::shared_ptr<ribi::trim::Point>>& v
+) const noexcept
+{
+  #ifndef NDEBUG
+  assert(!v.empty());
+  for (auto p: v) { assert(p); }
+  #endif
+  if (Helper().IsConvex(v)) return;
+  std::sort(v.begin(),v.end());
+
+  #ifndef NDEBUG
+  for (auto p: v) { assert(p); }
+  #endif
+
+  while (std::next_permutation(v.begin(),v.end()))
+  {
+    #ifndef NDEBUG
+    for (auto p: v) { assert(p); }
+    #endif
+    if (Helper().IsConvex(v))
+    {
+      break;
+    }
+  }
+
+  while (!Helper().IsConvex(v))
+  {
+    TRACE("SHUFFLE, SHOULD NOT GET HERE, HAS NEVER SUCCEEDED");
+    std::random_shuffle(v.begin(),v.end());
+    for (auto p: v) { TRACE(p); TRACE(*p); }
+  }
+
+  #ifndef NDEBUG
+  if(!Helper().IsConvex(v))
+  {
+    //TRACE("MakeConvex failed, try again");
+    //Helper().MakeConvex(v); //Recurse
+    assert(!Helper().IsConvex(v) && "Should still not work");
+  }
+  #endif
+  assert(Helper().IsConvex(v));
+}
+
 std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
   ribi::trim::Helper::PointsToCoordinats3D(
     const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points

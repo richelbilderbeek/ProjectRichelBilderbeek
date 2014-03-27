@@ -6,7 +6,7 @@
 
 #include <boost/numeric/conversion/cast.hpp>
 
-#include "reversi.h"
+#include "reversiboard.h"
 #include "fileio.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
