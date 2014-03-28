@@ -4,9 +4,10 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
-//#include "chessboard.h"
 #include "chessfwd.h"
 #include "widget.h"
 #pragma GCC diagnostic pop
@@ -72,6 +73,9 @@ struct ChessWidget : public ribi::Widget
   void OnChanged() const;
 
   friend void boost::checked_delete<>(ChessWidget* x);
+  friend class boost::detail::sp_ms_deleter<      ChessWidget>;
+  friend class boost::detail::sp_ms_deleter<const ChessWidget>;
+
 };
 
 } //~namespace Chess

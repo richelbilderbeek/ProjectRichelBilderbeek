@@ -181,6 +181,9 @@ struct Helper
   ///Order the points so that these are convex
   void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
 
+  std::function<bool(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs)>
+    OrderByX() const noexcept;
+
   std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
     PointsToCoordinats3D(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
   ) const noexcept;

@@ -1,13 +1,13 @@
 include(../../Tools/ToolGrayCoder/ToolGrayCoderConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolGrayCoder/qttoolgraycodermaindialog.cpp \
-    ../../Tools/ToolGrayCoder/qttoolgraycodermenudialog.cpp
+    ../../Tools/ToolGrayCoder/qtgraycodermaindialog.cpp \
+    ../../Tools/ToolGrayCoder/qtgraycodermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolGrayCoder/qttoolgraycodermaindialog.h \
-    ../../Tools/ToolGrayCoder/qttoolgraycodermenudialog.h
+    ../../Tools/ToolGrayCoder/qtgraycodermaindialog.h \
+    ../../Tools/ToolGrayCoder/qtgraycodermenudialog.h
 
 FORMS += \
-    ../../Tools/ToolGrayCoder/qttoolgraycodermaindialog.ui \
-    ../../Tools/ToolGrayCoder/qttoolgraycodermenudialog.ui
+    ../../Tools/ToolGrayCoder/qtgraycodermaindialog.ui \
+    ../../Tools/ToolGrayCoder/qtgraycodermenudialog.ui

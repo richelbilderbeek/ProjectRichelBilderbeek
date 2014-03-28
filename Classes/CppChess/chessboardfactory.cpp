@@ -4,12 +4,18 @@
 #include <cassert>
 #include <numeric>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
 #include "chessboard.h"
 #include "chesspiecefactory.h"
+#pragma GCC diagnostic pop
 
 boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::Create(const Chess::Board::Pieces& pieces)
 {
-  boost::shared_ptr<Chess::Board> p(new Chess::Board(pieces));
+  const boost::shared_ptr<Chess::Board> p
+    = boost::make_shared<Chess::Board>(pieces);
   assert(p);
   return p;
 }

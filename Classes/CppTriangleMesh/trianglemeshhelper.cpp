@@ -8,8 +8,8 @@
 #include <sstream>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/math/constants/constants.hpp>
-
 #include "Shiny.h"
 
 #include "geometry.h"
@@ -541,9 +541,11 @@ void ribi::trim::Helper::MakeConvex(
 ) const noexcept
 {
   #ifndef NDEBUG
-  const bool verbose = false;
+  const bool verbose = true;
+  if (verbose) { TRACE_FUNC(); }
   for (auto p: v) { assert(p); }
   assert(!v.empty());
+
   #endif
 
   if (Helper().IsConvex(v)) return;
@@ -553,7 +555,7 @@ void ribi::trim::Helper::MakeConvex(
   cnt = 0;
   #endif
 
-  std::sort(v.begin(),v.end());
+  std::sort(v.begin(),v.end(),Helper().OrderByX());
 
   while (1)
   {
@@ -561,7 +563,7 @@ void ribi::trim::Helper::MakeConvex(
     {
       break;
     }
-    std::next_permutation(v.begin(),v.end());
+    std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
 
     #ifndef NDEBUG
     if (verbose)
@@ -580,7 +582,7 @@ void ribi::trim::Helper::MakeConvex(
   {
     TRACE("ERROR");
     for (auto p: v) { TRACE(p); TRACE(*p); }
-    std::random_shuffle(v.begin(),v.end());
+    assert(!"Should not get here");
   }
 
   #ifndef NDEBUG
@@ -592,6 +594,31 @@ void ribi::trim::Helper::MakeConvex(
   }
   #endif
   assert(Helper().IsConvex(v));
+}
+
+std::function<
+    bool(
+      const boost::shared_ptr<const ribi::trim::Point>& lhs,
+      const boost::shared_ptr<const ribi::trim::Point>& rhs
+    )
+  >
+  ribi::trim::Helper::OrderByX() const noexcept
+{
+  return [](const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs)
+  {
+    using boost::geometry::get;
+    assert(lhs);
+    assert(rhs);
+    assert(lhs->GetCoordinat());
+    assert(rhs->GetCoordinat());
+    if (get<0>(*lhs->GetCoordinat()) < get<0>(*rhs->GetCoordinat())) return true;
+    if (get<0>(*lhs->GetCoordinat()) > get<0>(*rhs->GetCoordinat())) return false;
+    if (get<1>(*lhs->GetCoordinat()) < get<1>(*rhs->GetCoordinat())) return true;
+    if (get<1>(*lhs->GetCoordinat()) > get<1>(*rhs->GetCoordinat())) return false;
+    assert(lhs->CanGetZ());
+    assert(rhs->CanGetZ());
+    return lhs->GetZ() < rhs->GetZ();
+  };
 }
 
 std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
@@ -811,17 +838,20 @@ void ribi::trim::Helper::Test() noexcept
 
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(0.0,2.0,1.0));
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(0.0,2.0,1.0);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(0.0,2.0,2.0));
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(0.0,2.0,2.0);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(1.0,1.0,2.0));
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(1.0,1.0,2.0);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }
@@ -848,7 +878,8 @@ void ribi::trim::Helper::Test() noexcept
   {
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(2.23114,3.23607,6));
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(2.23114,3.23607,6);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }

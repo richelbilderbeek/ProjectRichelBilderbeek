@@ -2,10 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolTestSimpleLinearRegression
 
 SOURCES += \
-    ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.cpp
+    ../../Tools/ToolTestSimpleLinearRegression/testsimplelinearregressionmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestSimpleLinearRegression/tooltestsimplelinearregressionmenudialog.h
+    ../../Tools/ToolTestSimpleLinearRegression/testsimplelinearregressionmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolTestSimpleLinearRegression/Licence.txt

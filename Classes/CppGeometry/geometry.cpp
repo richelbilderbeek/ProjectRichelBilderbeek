@@ -167,6 +167,20 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordi
 }
 */
 
+ribi::Geometry::Rect ribi::Geometry::CreateRect(
+  const double left,
+  const double top,
+  const double width,
+  const double height
+) const noexcept
+{
+  boost::geometry::model::box<Coordinat2D> rect(
+    Coordinat2D(left        , top         ),
+    Coordinat2D(left + width, top + height)
+  );
+  return rect;
+}
+
 double ribi::Geometry::Fmod(const double x, const double mod) const noexcept
 {
   #ifndef NDEBUG

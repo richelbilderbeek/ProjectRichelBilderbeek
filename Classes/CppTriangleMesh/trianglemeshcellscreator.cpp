@@ -2,6 +2,11 @@
 
 #include <cassert>
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
+
 #include "Shiny.h"
 
 #include "geometry.h"
@@ -16,6 +21,7 @@
 #include "trianglemeshtemplate.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::trim::CellsCreator::CellsCreator(
   const boost::shared_ptr<const Template> t,
@@ -48,14 +54,19 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 ) noexcept
 {
   PROFILE_FUNC();
+  const bool verbose = true;
+
+  if (verbose) { TRACE("Create points"); }
   const std::vector<boost::shared_ptr<Point>> all_points {
     CreatePoints(t,n_layers,layer_height)
   };
 
+  if (verbose) { TRACE("Create horizontal faces"); }
   const std::vector<boost::shared_ptr<Face>> hor_faces {
     CreateHorizontalFaces(t,all_points,n_layers)
   };
 
+  if (verbose) { TRACE("Create vertical faces"); }
   //ver_faces usused: cause of issue 168?
   std::vector<boost::shared_ptr<Face>> ver_faces(
     CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy)
@@ -69,6 +80,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
   const int n_hor_faces_per_layer = static_cast<int>(t->GetFaces().size());
   const int n_cells_per_layer = n_hor_faces_per_layer;
 
+  if (verbose) { TRACE("Creating cells"); }
   std::vector<boost::shared_ptr<Cell>> cells;
   for (int layer=0; layer!=n_layers-1; ++layer) //-1 because there are no points above the top layer
   {
@@ -228,7 +240,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::Cre
 )
 {
   PROFILE_FUNC();
-  std::vector<boost::shared_ptr<Point> > v;
+  std::vector<boost::shared_ptr<Point>> v;
 
   TRACE(n_layers);
 
@@ -236,11 +248,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point> > ribi::trim::CellsCreator::Cre
   {
     for (const boost::shared_ptr<const Point> point: t->GetPoints())
     {
-      const boost::shared_ptr<Point> new_point {
-        PointFactory().Create(
-          point->GetCoordinat()
-        )
-      };
+      const auto new_point(PointFactory().Create(point->GetCoordinat()));
       new_point->SetZ(static_cast<double>(i) * layer_height );
       v.push_back(new_point);
     }
@@ -260,8 +268,10 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
 {
   PROFILE_FUNC();
   #ifndef NDEBUG
-  const bool verbose = false;
+  const bool verbose = true;
+  if (verbose) { TRACE("Get edges"); }
   #endif
+
 
   const std::vector<std::pair<int,int>> edges {
     t->GetEdges()
@@ -281,8 +291,16 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   assert(n_layers > 0);
   if (n_layers < 2) { TRACE("WARNING: NEED AT LEAST TWO HORIZONTAL PLANES TO CREATE CELLS"); }
 
+  #ifndef NDEBUG
+  if (verbose) { TRACE("Start building layers"); }
+  #endif
+
   for (int layer=0; layer!=n_layers-1; ++layer) //-1 because there are no points above the top layer
   {
+    #ifndef NDEBUG
+    if (verbose) { TRACE(layer); }
+    #endif
+
     const int points_offset = n_points_per_layer * layer;
     const auto z_here( static_cast<double>(layer + 0) * layer_height);
     const auto z_above(static_cast<double>(layer + 1) * layer_height);
@@ -375,9 +393,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         if (!Helper().IsConvex(face_points_2))
         {
           TRACE("ERROR");
-          //for (auto point:face_points_2) { TRACE(Geometry().ToStr(*point->GetCoordinat())); }
           for (auto point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
-          //TRACE(Helper().ToStr(AddConst(face_points_2)));
         }
         #endif
 
@@ -415,7 +431,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   };
   for (auto p: b->GetPoints()) { points.push_back(p); }
 
-  std::sort(points.begin(),points.end());
+  std::sort(points.begin(),points.end(),Helper().OrderByX());
   assert(std::unique(points.begin(),points.end()) == points.end());
   assert(std::count(points.begin(),points.end(),nullptr) == 0);
 
@@ -456,17 +472,21 @@ bool ribi::trim::CellsCreator::IsSubset(
 ) noexcept
 {
   PROFILE_FUNC();
-  std::sort(v.begin(),v.end());
-  std::sort(w.begin(),w.end());
-  assert(std::is_sorted(v.begin(),v.end()));
-  assert(std::is_sorted(w.begin(),w.end()));
+  std::sort(v.begin(),v.end(),Helper().OrderByX());
+  std::sort(w.begin(),w.end(),Helper().OrderByX());
+  assert(std::is_sorted(v.begin(),v.end(),Helper().OrderByX()));
+  assert(std::is_sorted(w.begin(),w.end(),Helper().OrderByX()));
   assert(std::unique(v.begin(),v.end()) == v.end());
   assert(std::unique(w.begin(),w.end()) == w.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
   assert(std::count(w.begin(),w.end(),nullptr) == 0);
   std::vector<boost::shared_ptr<Point>> x;
-  std::set_intersection(v.begin(),v.end(),w.begin(),w.end(),
-    std::back_inserter(x));
+  std::set_intersection(
+    v.begin(),v.end(),
+    w.begin(),w.end(),
+    std::back_inserter(x),
+    Helper().OrderByX()
+  );
   assert(std::count(x.begin(),x.end(),nullptr) == 0);
 
   return x.size() == std::min(v.size(),w.size());
@@ -581,6 +601,56 @@ void ribi::trim::CellsCreator::Test() noexcept
       }
     );
     assert(internal_faces_1 == internal_faces_2);
+  }
+  TRACE("Create Face, from bug");
+  {
+    /*
+    (1.17557,2.35781,5.0)
+    (2.35114,3.23607,5.0)
+    (1.17557,2.35781,6.0)
+    (2.35114,3.23607,6.0)
+    */
+    //Ordering cannot be known for sure to be convex from these indices
+    std::vector<boost::shared_ptr<Point>> face_points {
+      boost::make_shared<Point>(1.17557,2.35781),
+      boost::make_shared<Point>(2.35114,3.23607),
+      boost::make_shared<Point>(1.17557,2.35781),
+      boost::make_shared<Point>(2.35114,3.23607)
+    };
+    face_points[0]->SetZ(5.0 * boost::units::si::meter);
+    face_points[1]->SetZ(5.0 * boost::units::si::meter);
+    face_points[2]->SetZ(6.0 * boost::units::si::meter);
+    face_points[3]->SetZ(6.0 * boost::units::si::meter);
+    #ifndef NDEBUG
+    if (!Helper().IsConvex(face_points))
+    {
+      TRACE("NOT CONVEX");
+      for (auto p: face_points) { assert(p); TRACE(*p); }
+    }
+    #endif
+
+    //Order face_points
+    if (!Helper().IsConvex(face_points)) { Helper().MakeConvex(face_points); }
+
+    #ifndef NDEBUG
+    if (!Helper().IsConvex(face_points))
+    {
+      TRACE("ERROR");
+      for (auto p: face_points) { TRACE(*p); }
+      TRACE("BREAK");
+    }
+    #endif
+
+    assert(Helper().IsConvex(face_points));
+
+    //Cannot order face winding yet, need Cells for this
+    const boost::shared_ptr<Face> face {
+      FaceFactory().Create(
+        face_points,
+        FaceOrientation::vertical
+      )
+    };
+    assert(1==2 && "Test should fail");
   }
   TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }

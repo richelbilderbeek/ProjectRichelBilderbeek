@@ -4,16 +4,16 @@ INCLUDEPATH += \
     ../../Tools/ToolEncranger
 
 SOURCES += \
-    ../../Tools/ToolEncranger/qttoolencrangermaindialog.cpp \
-    ../../Tools/ToolEncranger/qttoolencrangermenudialog.cpp
+    ../../Tools/ToolEncranger/qtencrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/qtencrangermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolEncranger/qttoolencrangermaindialog.h \
-    ../../Tools/ToolEncranger/qttoolencrangermenudialog.h
+    ../../Tools/ToolEncranger/qtencrangermaindialog.h \
+    ../../Tools/ToolEncranger/qtencrangermenudialog.h
 
 FORMS    += \
-    ../../Tools/ToolEncranger/qttoolencrangermaindialog.ui \
-    ../../Tools/ToolEncranger/qttoolencrangermenudialog.ui
+    ../../Tools/ToolEncranger/qtencrangermaindialog.ui \
+    ../../Tools/ToolEncranger/qtencrangermenudialog.ui
 
 RESOURCES += \
     ../../Tools/ToolEncranger/ToolEncranger.qrc

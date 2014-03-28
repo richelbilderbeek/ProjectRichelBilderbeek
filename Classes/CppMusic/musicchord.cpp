@@ -59,22 +59,14 @@ std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateCh
 
   return
   {
-    boost::make_shared(new ChordAug(root)),
-    boost::make_shared(new ChordDim(root)),
-    boost::make_shared(new ChordMajor(root)),
-    boost::make_shared(new ChordMinor(root)),
-    boost::make_shared(new Chord6(root)),
-    boost::make_shared(new ChordMinor6(root)),
-    boost::make_shared(new Chord7(root)),
-    boost::make_shared(new ChordMinor7(root))
-    //boost::shared_ptr<Chord>(new ChordAug(root)),
-    //boost::shared_ptr<Chord>(new ChordDim(root)),
-    //boost::shared_ptr<Chord>(new ChordMajor(root)),
-    //boost::shared_ptr<Chord>(new ChordMinor(root)),
-    //boost::shared_ptr<Chord>(new Chord6(root)),
-    //boost::shared_ptr<Chord>(new ChordMinor6(root)),
-    //boost::shared_ptr<Chord>(new Chord7(root)),
-    //boost::shared_ptr<Chord>(new ChordMinor7(root))
+    boost::make_shared<ChordAug   >(root),
+    boost::make_shared<ChordDim   >(root),
+    boost::make_shared<ChordMajor >(root),
+    boost::make_shared<ChordMinor >(root),
+    boost::make_shared<Chord6     >(root),
+    boost::make_shared<ChordMinor6>(root),
+    boost::make_shared<Chord7     >(root),
+    boost::make_shared<ChordMinor7>(root)
   };
 }
 

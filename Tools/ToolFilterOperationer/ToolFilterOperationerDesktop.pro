@@ -11,3 +11,4 @@ include(../../Tools/ToolFilterOperationer/ToolFilterOperationerDesktop.pri)
 
 SOURCES += qtmain.cpp
 
+

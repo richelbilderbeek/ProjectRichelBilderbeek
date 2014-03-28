@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 
 #include "chesscolor.h"
 #include "chessmove.h"
@@ -328,6 +329,7 @@ bool ribi::Chess::PieceKing::CanDoMove(const boost::shared_ptr<const Chess::Move
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKing::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceKing(*this));
+  assert(p);
   return p;
 }
 
@@ -411,6 +413,7 @@ bool ribi::Chess::PieceKnight::CanDoMove(const boost::shared_ptr<const Chess::Mo
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKnight::Clone() const
 {
   const boost::shared_ptr<Piece> p(new PieceKnight(*this));
+  assert(p);
   return p;
 }
 

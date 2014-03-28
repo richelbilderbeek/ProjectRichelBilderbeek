@@ -46,12 +46,12 @@ ribi::LedWidget::LedWidget(
   #ifndef NDEBUG
   Test();
   #endif
-  this->SetGeometry(Rect(x,y,width,height));
+  this->SetGeometry(x,y,width,height);
 }
 
 std::string ribi::LedWidget::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::LedWidget::GetVersionHistory() noexcept
@@ -60,7 +60,8 @@ std::vector<std::string> ribi::LedWidget::GetVersionHistory() noexcept
     "2011-07-03: version 1.0: initial version",
     "2011-08-17: Version 1.1: emit a signal when the color is changed",
     "2011-08-20: Version 1.2: added operator<<",
-    "2011-09-08: Version 1.3: removed redundant signals"
+    "2011-09-08: Version 1.3: removed redundant signals",
+    "2014-03-28: Version 1.4: replaced custom Rect class by Boost.Geometry"
   };
 }
 
@@ -145,7 +146,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const LedWidget& widget) noexce
 {
   os
     << "<LedWidget>"
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << *widget.m_led
     << "</LedWidget>";
   return os;

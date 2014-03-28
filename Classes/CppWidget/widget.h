@@ -58,7 +58,7 @@ struct Widget
   double GetWidth() const noexcept;
 
   ///Is the coordinat within the widget its rectangle?
-  bool IsIn(const double x, const double y);
+  bool IsIn(const double x, const double y) const noexcept;
 
   ///SetGeometry resizes the Widget and emits an OnResize signal
   void SetGeometry(const Rect& geometry) noexcept;
@@ -69,8 +69,10 @@ struct Widget
 
   protected:
   virtual ~Widget() noexcept {}
-  friend void boost::checked_delete<>(Widget*);
+  friend void boost::checked_delete<>(      Widget*);
   friend void boost::checked_delete<>(const Widget*);
+  friend class boost::detail::sp_ms_deleter<      Widget>;
+  friend class boost::detail::sp_ms_deleter<const Widget>;
 
   private:
   Rect m_geometry;

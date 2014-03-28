@@ -24,9 +24,35 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "widget.h"
 
+#include "geometry.h"
 #include <boost/geometry/algorithms/equals.hpp>
 
 #pragma GCC diagnostic pop
+
+double ribi::Widget::GetBottom() const noexcept
+{
+  return Geometry().GetBottom(m_geometry);
+}
+
+double ribi::Widget::GetHeight() const noexcept
+{
+  return Geometry().GetHeight(m_geometry);
+}
+
+double ribi::Widget::GetLeft() const noexcept
+{
+  return Geometry().GetLeft(m_geometry);
+}
+
+double ribi::Widget::GetRight() const noexcept
+{
+  return Geometry().GetRight(m_geometry);
+}
+
+double ribi::Widget::GetTop() const noexcept
+{
+  return Geometry().GetTop(m_geometry);
+}
 
 std::string ribi::Widget::GetVersion() noexcept
 {
@@ -42,9 +68,25 @@ std::vector<std::string> ribi::Widget::GetVersionHistory() noexcept
   };
 }
 
+double ribi::Widget::GetWidth() const noexcept
+{
+  return Geometry().GetWidth(m_geometry);
+}
+
+bool ribi::Widget::IsIn(const double x, const double y) const noexcept
+{
+  assert(!"TODO");
+  return false;
+  //return boost::geometry::within(m_geometry,Point(x,y));
+}
+
+void ribi::Widget::SetGeometry(const double left, const double top, const double width, const double height) noexcept
+{
+  SetGeometry(CreateRect(left,top,width,height));
+}
+
 void ribi::Widget::SetGeometry(const Rect& geometry) noexcept
 {
-  //if (geometry != m_geometry)
   if (!boost::geometry::equals(m_geometry,geometry))
   {
     m_geometry = geometry;

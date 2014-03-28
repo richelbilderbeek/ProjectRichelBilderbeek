@@ -2,6 +2,11 @@
 
 #include <cassert>
 
+
+
+
+#include <boost/make_shared.hpp>
+
 #include "Shiny.h"
 
 #include "geometry.h"

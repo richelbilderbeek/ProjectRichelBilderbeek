@@ -4,13 +4,13 @@ RESOURCES += \
     ../../Tools/ToolSimplifyNewick/ToolSimplifyNewick.qrc
 
 FORMS += \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.ui \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.ui
+    ../../Tools/ToolSimplifyNewick/qtsimplifynewickmaindialog.ui \
+    ../../Tools/ToolSimplifyNewick/qtsimplifynewickmenudialog.ui
 
 SOURCES += \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.cpp \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.cpp
+    ../../Tools/ToolSimplifyNewick/qtsimplifynewickmaindialog.cpp \
+    ../../Tools/ToolSimplifyNewick/qtsimplifynewickmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmenudialog.h \
-    ../../Tools/ToolSimplifyNewick/qttoolsimplifynewickmaindialog.h
+    ../../Tools/ToolSimplifyNewick/qtsimplifynewickmaindialog.h \
+    ../../Tools/ToolSimplifyNewick/qtsimplifynewickmenudialog.h

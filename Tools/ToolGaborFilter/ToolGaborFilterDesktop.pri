@@ -1,16 +1,16 @@
 include(../../Tools/ToolGaborFilter/ToolGaborFilterConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.cpp \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.cpp
+    ../../Tools/ToolGaborFilter/qtgaborfiltermaindialog.cpp \
+    ../../Tools/ToolGaborFilter/qtgaborfiltermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.h \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.h
+    ../../Tools/ToolGaborFilter/qtgaborfiltermaindialog.h \
+    ../../Tools/ToolGaborFilter/qtgaborfiltermenudialog.h
 
 FORMS += \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermenudialog.ui \
-    ../../Tools/ToolGaborFilter/qttoolgaborfiltermaindialog.ui
+    ../../Tools/ToolGaborFilter/qtgaborfiltermaindialog.ui \
+    ../../Tools/ToolGaborFilter/qtgaborfiltermenudialog.ui
 
 RESOURCES += \
     ../../Tools/ToolGaborFilter/ToolGaborFilter.qrc

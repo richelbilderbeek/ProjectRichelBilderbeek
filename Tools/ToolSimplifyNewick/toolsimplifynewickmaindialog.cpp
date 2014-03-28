@@ -18,7 +18,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/ToolSimplifyNewick.htm
 //---------------------------------------------------------------------------
-#include "toolsimplifynewickmaindialog.h"
+#include "simplifynewickmaindialog.h"
 
 #include <iostream>
 
