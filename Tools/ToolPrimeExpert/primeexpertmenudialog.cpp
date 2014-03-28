@@ -1,4 +1,4 @@
-#include "toolprimeexpertmenudialog.h"
+#include "primeexpertmenudialog.h"
 
 #include <cassert>
 #include <iostream>

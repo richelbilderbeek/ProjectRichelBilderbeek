@@ -52,7 +52,7 @@ struct QtShinyButtonWidget : public QWidget
     const double color,
     const double gradient,
     const std::string& text = "",
-    const Rect rect = Rect(80,20),
+    const Widget::Rect rect = Widget::CreateRect(0,0,80,20),
     QWidget *parent = 0);
 
   static void DrawShinyButton(
@@ -66,41 +66,26 @@ struct QtShinyButtonWidget : public QWidget
     QPainter& painter,
     const ShinyButtonWidget * const widget);
 
-  ///Obtain a read-only pointer to the ShinyButton
-  const ShinyButtonWidget * GetWidget() const { return m_widget.get(); }
-
-  ///Obtain a read-and-write pointer to the ShinyButton
-  ShinyButtonWidget * GetWidget() { return m_widget.get(); }
+  const ShinyButtonWidget * GetWidget() const noexcept { return m_widget.get(); }
+        ShinyButtonWidget * GetWidget()       noexcept { return m_widget.get(); }
 
   ///Signal that is emitted when a QtShinyButtonWidget is toggled
   mutable boost::signals2::signal<void ()> m_signal_changed;
 
-  ///Obtain the QtShinyButtonWidget its version
   static std::string GetVersion() noexcept;
-
-  ///Obtain the QtShinyButtonWidget its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   protected:
-  ///Respond to mouse clicks
   void mousePressEvent(QMouseEvent *);
-
-  ///Paint the QtShinyButtonWidget
   void paintEvent(QPaintEvent *);
-
-  ///Resize the QtShinyButtonWidget
   void resizeEvent(QResizeEvent *);
 
   private:
-
-  ///The ShinyButton
   boost::scoped_ptr<ShinyButtonWidget> m_widget;
 
   ///Repaint the QtShinyButtonWidget
   void DoRepaint();
 
-  ///Respond to mouse click
-  //void OnClicked(const Wt::WMouseEvent& e);
 };
 
 } //~namespace ribi

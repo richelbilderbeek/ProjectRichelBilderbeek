@@ -3,11 +3,11 @@ INCLUDEPATH += \
 
 SOURCES += \
     ../../Tools/ToolPrimeExpert/primeexpert.cpp \
-    ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.cpp
+    ../../Tools/ToolPrimeExpert/primeexpertmenudialog.cpp
 
 HEADERS += \
     ../../Tools/ToolPrimeExpert/primeexpert.h \
-    ../../Tools/ToolPrimeExpert/toolprimeexpertmenudialog.h
+    ../../Tools/ToolPrimeExpert/primeexpertmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolPrimeExpert/Licence.txt

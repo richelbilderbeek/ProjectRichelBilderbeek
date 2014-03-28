@@ -1,17 +1,17 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttoolprimeexpertmenudialog.h"
+#include "qtprimeexpertmenudialog.h"
 
 #include <QDesktopWidget>
 #include <QKeyEvent>
 
-#include "toolprimeexpertmenudialog.h"
+#include "primeexpertmenudialog.h"
 #include "qtaboutdialog.h"
-#include "qttoolprimeexpertmaindialog.h"
+#include "qtprimeexpertmaindialog.h"
 #include "qthideandshowdialog.h"
 #include "trace.h"
-#include "ui_qttoolprimeexpertmenudialog.h"
+#include "ui_qtprimeexpertmenudialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtToolPrimeExpertMenuDialog::QtToolPrimeExpertMenuDialog(QWidget *parent) :

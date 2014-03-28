@@ -1,0 +1,870 @@
+Dr. Memory version 1.6.1 build 2 built on Dec 14 2013 12:27:10
+Dr. Memory results for pid 4028: "ToolDrMemoryExample4.exe"
+Application cmdline: "ToolDrMemoryExample4.exe"
+Recorded 99 suppression(s) from default C:\Program Files\DrMemory\bin\suppress-default.txt
+
+Error #1: UNINITIALIZED READ: reading 0x754c51ac-0x754c51ae 2 byte(s)
+# 0 KERNELBASE.dll!OpenRegKey                                                 +0x178    (0x7548cfb3 <KERNELBASE.dll+0xcfb3>)
+# 1 KERNELBASE.dll!CreateThreadpool                                           +0x27     (0x754957f2 <KERNELBASE.dll+0x157f2>)
+# 2 Qt5Cored.dll!(anonymous namespace)::Q_QGS_systemLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale_win.cpp:138]
+# 3 Qt5Cored.dll!(anonymous namespace)::Q_QGS_systemLocalePrivate::innerFunction() [tools/qlocale_win.cpp:138]
+# 4 Qt5Cored.dll!QGlobalStatic<>::operator()()                                 [../../include/QtCore/../../src/corelib/global/qglobalstatic.h:123]
+# 5 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:660]
+# 6 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:589]
+# 7 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 8 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+# 9 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!QGlobalStatic<>::operator*()                                  [../../include/QtCore/../../src/corelib/global/qglobalstatic.h:125]
+Note: @0:00:04.738 in thread 4936
+Note: instruction: data16 cmp    0x0c(%esi) %ax
+
+Error #2: UNINITIALIZED READ: reading 0x754c51ae-0x754c51b0 2 byte(s)
+# 0 KERNELBASE.dll!GetNamedLocaleHashNode                                     +0x15     (0x7548cdc7 <KERNELBASE.dll+0xcdc7>)
+# 1 KERNELBASE.dll!OpenRegKey                                                 +0x18b    (0x7548cfc7 <KERNELBASE.dll+0xcfc7>)
+# 2 KERNELBASE.dll!CreateThreadpool                                           +0x27     (0x754957f2 <KERNELBASE.dll+0x157f2>)
+# 3 Qt5Cored.dll!(anonymous namespace)::Q_QGS_systemLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale_win.cpp:138]
+# 4 Qt5Cored.dll!(anonymous namespace)::Q_QGS_systemLocalePrivate::innerFunction() [tools/qlocale_win.cpp:138]
+# 5 Qt5Cored.dll!QGlobalStatic<>::operator()()                                 [../../include/QtCore/../../src/corelib/global/qglobalstatic.h:123]
+# 6 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:660]
+# 7 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:589]
+# 8 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 9 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+Note: @0:00:04.757 in thread 4936
+Note: instruction: data16 cmp    (%edi) $0x0000
+
+Error #3: UNINITIALIZED READ: reading 0x754c5774-0x754c5778 4 byte(s)
+# 0 KERNELBASE.dll!InterlockedCompareExchange                                 +0xc      (0x754869de <KERNELBASE.dll+0x69de>)
+# 1 KERNELBASE.dll!InternalLcidToName                                         +0x108    (0x75487009 <KERNELBASE.dll+0x7009>)
+# 2 KERNELBASE.dll!GetUserDefaultLCID                                         +0x4      (0x75488df7 <KERNELBASE.dll+0x8df7>)
+# 3 Qt5Cored.dll!QSystemLocalePrivate::update()                                [tools/qlocale_win.cpp:584]
+# 4 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:736]
+# 5 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:589]
+# 6 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 7 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+# 8 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+# 9 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+#10 Qt5Cored.dll!QGlobalStatic<>::operator*()                                  [../../include/QtCore/../../src/corelib/global/qglobalstatic.h:125]
+#11 Qt5Cored.dll!QLocale::QLocale()                                            [tools/qlocale.cpp:778]
+Note: @0:00:04.813 in thread 4936
+Note: instruction: lock cmpxchg %edx (%ecx) %eax -> (%ecx) %eax
+
+Error #4: UNINITIALIZED READ: reading register ax
+# 0 KERNELBASE.dll!GetUserInfo                                                +0x3f     (0x7548dc54 <KERNELBASE.dll+0xdc54>)
+# 1 KERNELBASE.dll!SetProcessShutdownParameters                               +0x131    (0x75495f9b <KERNELBASE.dll+0x15f9b>)
+# 2 KERNELBASE.dll!GetLocaleInfoW                                             +0x3a     (0x7549512a <KERNELBASE.dll+0x1512a>)
+# 3 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo()                         [tools/qlocale_win.cpp:149]
+# 4 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo_qchar()                   [tools/qlocale_win.cpp:172]
+# 5 Qt5Cored.dll!QSystemLocalePrivate::decimalPoint()                          [tools/qlocale_win.cpp:226]
+# 6 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:663]
+# 7 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:607]
+# 8 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 9 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+Note: @0:00:04.909 in thread 4936
+Note: instruction: data16 cmp    %ax %cx
+
+Error #5: UNINITIALIZED READ: reading register ax
+# 0 KERNELBASE.dll!GetUserInfo                                                +0x3f     (0x7548dc54 <KERNELBASE.dll+0xdc54>)
+# 1 KERNELBASE.dll!SetProcessShutdownParameters                               +0xb4     (0x75495f1e <KERNELBASE.dll+0x15f1e>)
+# 2 KERNELBASE.dll!GetLocaleInfoW                                             +0x3a     (0x7549512a <KERNELBASE.dll+0x1512a>)
+# 3 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo()                         [tools/qlocale_win.cpp:149]
+# 4 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo_qchar()                   [tools/qlocale_win.cpp:172]
+# 5 Qt5Cored.dll!QSystemLocalePrivate::groupSeparator()                        [tools/qlocale_win.cpp:231]
+# 6 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:665]
+# 7 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:611]
+# 8 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 9 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+Note: @0:00:04.946 in thread 4936
+Note: instruction: data16 cmp    %ax %cx
+
+Error #6: UNINITIALIZED READ: reading register ax
+# 0 KERNELBASE.dll!GetUserInfo                                                +0x3f     (0x7548dc54 <KERNELBASE.dll+0xdc54>)
+# 1 KERNELBASE.dll!SetStdHandle                                               +0xbe     (0x75495c95 <KERNELBASE.dll+0x15c95>)
+# 2 KERNELBASE.dll!GetLocaleInfoW                                             +0x3a     (0x7549512a <KERNELBASE.dll+0x1512a>)
+# 3 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo()                         [tools/qlocale_win.cpp:149]
+# 4 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo_qchar()                   [tools/qlocale_win.cpp:172]
+# 5 Qt5Cored.dll!QSystemLocalePrivate::zeroDigit()                             [tools/qlocale_win.cpp:220]
+# 6 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:705]
+# 7 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:615]
+# 8 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 9 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+Note: @0:00:04.975 in thread 4936
+Note: instruction: data16 cmp    %ax %cx
+
+Error #7: UNINITIALIZED READ: reading register ax
+# 0 KERNELBASE.dll!GetUserInfo                                                +0x3f     (0x7548dc54 <KERNELBASE.dll+0xdc54>)
+# 1 KERNELBASE.dll!GetLocaleInfoW                                             +0xe1     (0x754951d1 <KERNELBASE.dll+0x151d1>)
+# 2 KERNELBASE.dll!GetLocaleInfoW                                             +0x3a     (0x7549512a <KERNELBASE.dll+0x1512a>)
+# 3 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo()                         [tools/qlocale_win.cpp:149]
+# 4 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo_qchar()                   [tools/qlocale_win.cpp:172]
+# 5 Qt5Cored.dll!QSystemLocalePrivate::negativeSign()                          [tools/qlocale_win.cpp:236]
+# 6 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:667]
+# 7 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:619]
+# 8 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 9 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+Note: @0:00:05.004 in thread 4936
+Note: instruction: data16 cmp    %ax %cx
+
+Error #8: UNINITIALIZED READ: reading register ax
+# 0 KERNELBASE.dll!GetUserInfo                                                +0x3f     (0x7548dc54 <KERNELBASE.dll+0xdc54>)
+# 1 KERNELBASE.dll!SetProcessShutdownParameters                               +0x322    (0x7549618c <KERNELBASE.dll+0x1618c>)
+# 2 KERNELBASE.dll!GetLocaleInfoW                                             +0x3a     (0x7549512a <KERNELBASE.dll+0x1512a>)
+# 3 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo()                         [tools/qlocale_win.cpp:149]
+# 4 Qt5Cored.dll!QSystemLocalePrivate::getLocaleInfo_qchar()                   [tools/qlocale_win.cpp:172]
+# 5 Qt5Cored.dll!QSystemLocalePrivate::positiveSign()                          [tools/qlocale_win.cpp:241]
+# 6 Qt5Cored.dll!QSystemLocale::query()                                        [tools/qlocale_win.cpp:669]
+# 7 Qt5Cored.dll!QLocalePrivate::updateSystemPrivate()                         [tools/qlocale.cpp:623]
+# 8 Qt5Cored.dll!systemData()                                                  [tools/qlocale.cpp:634]
+# 9 Qt5Cored.dll!defaultData()                                                 [tools/qlocale.cpp:645]
+#10 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction()::Holder::Holder() [tools/qlocale.cpp:698]
+#11 Qt5Cored.dll!(anonymous namespace)::Q_QGS_defaultLocalePrivate::innerFunction() [tools/qlocale.cpp:698]
+Note: @0:00:05.033 in thread 4936
+Note: instruction: data16 cmp    %ax %cx
+
+Error #9: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.780 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #10: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.800 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #11: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.818 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #12: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:10.852 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #13: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:10.870 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #14: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.889 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #15: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.907 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #16: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.925 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #17: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:10.943 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #18: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:10.961 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #19: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:10.989 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #20: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.007 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #21: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.026 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #22: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.044 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #23: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.062 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #24: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.078 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #25: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.095 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #26: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.113 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #27: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.131 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #28: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:963]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.149 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #29: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.387 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #30: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.405 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #31: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.423 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #32: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.441 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #33: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:922]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.459 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #34: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.474 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #35: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.492 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #36: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.510 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #37: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.528 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #38: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:926]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.546 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #39: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.561 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #40: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.579 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #41: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.597 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #42: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.615 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #43: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:929]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.633 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #44: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:233]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.648 in thread 4936
+Note: instruction: cmp    %eax 0xfffffff4(%ebp)
+
+Error #45: UNINITIALIZED READ: reading register edx
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:252]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.666 in thread 4936
+Note: instruction: data16 mov    %ax -> 0x04(%edx)
+
+Error #46: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!QtFontStyle::pixelSize()                       [text/qfontdatabase.cpp:253]
+# 1 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:79]
+# 2 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 3 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 4 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 5 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 6 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 7 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 8 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 9 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+#10 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#11 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+Note: @0:00:11.684 in thread 4936
+Note: instruction: mov    $0x00000000 -> (%eax)
+
+Error #47: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:80]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.702 in thread 4936
+Note: instruction: mov    (%eax) -> %eax
+
+Error #48: UNINITIALIZED READ: reading register eax
+# 0 Qt5Guid.dll!qt_registerFont()                              [text/qfontdatabase_qpa.cpp:85]
+# 1 Qt5Guid.dll!QPlatformFontDatabase::registerFont()          [text/qplatformfontdatabase.cpp:132]
+# 2 qwindowsd.dll!addFontToDatabase()                          [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:932]
+# 3 qwindowsd.dll!storeFont()@16                               [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:952]
+# 4 GDI32.dll!CreateICA                                       +0xf6     (0x75bbcdf8 <GDI32.dll+0xcdf8>)
+# 5 GDI32.dll!EnumFontFamiliesExW                             +0x2f     (0x75bbcec4 <GDI32.dll+0xcec4>)
+# 6 qwindowsd.dll!QWindowsFontDatabase::populate()             [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:996]
+# 7 qwindowsd.dll!QWindowsFontDatabase::populateFontDatabase() [Q:\qt5_workdir\w\s\qtbase\src\plugins\platforms\windows/qwindowsfontdatabase.cpp:967]
+# 8 Qt5Guid.dll!initializeDb()                                 [text/qfontdatabase_qpa.cpp:145]
+# 9 Qt5Guid.dll!QFontDatabase::findFont()                      [text/qfontdatabase_qpa.cpp:287]
+#10 Qt5Guid.dll!QFontDatabase::load()                          [text/qfontdatabase_qpa.cpp:424]
+#11 Qt5Guid.dll!QFontPrivate::engineForScript()                [text/qfont.cpp:218]
+Note: @0:00:11.720 in thread 4936
+Note: instruction: mov    %edx -> (%eax)
+
+Error #49: UNADDRESSABLE ACCESS: reading 0x12bb58a0-0x12bb58a8 8 byte(s) within 0x12bb58a0-0x12bb58b0
+# 0 Qt5Guid.dll!qt_blend_argb32_on_argb32_avx()          [c:/mingw48/mingw32/lib/gcc/i686-w64-mingw32/4.8.0/include/emmintrin.h:682]
+# 1 Qt5Guid.dll!QRasterPaintEnginePrivate::drawImage()   [painting/qpaintengine_raster.cpp:1051]
+# 2 Qt5Guid.dll!QRasterPaintEngine::drawImage()          [painting/qpaintengine_raster.cpp:2446]
+# 3 Qt5Guid.dll!QPainter::drawImage()                    [painting/qpainter.cpp:5474]
+# 4 Qt5Widgetsd.dll!QPainter::drawImage()                [../../include/QtGui/../../src/gui/painting/qpainter.h:847]
+# 5 Qt5Widgetsd.dll!QWindowsVistaAnimation::paint()      [styles/qwindowsvistastyle.cpp:271]
+# 6 Qt5Widgetsd.dll!QWindowsVistaStyle::drawControl()    [styles/qwindowsvistastyle.cpp:940]
+# 7 Qt5Widgetsd.dll!QCommonStyle::drawControl()          [styles/qcommonstyle.cpp:1187]
+# 8 Qt5Widgetsd.dll!QWindowsStyle::drawControl()         [styles/qwindowsstyle.cpp:1824]
+# 9 Qt5Widgetsd.dll!QWindowsXPStyle::drawControl()       [styles/qwindowsxpstyle.cpp:2504]
+#10 Qt5Widgetsd.dll!QWindowsVistaStyle::drawControl()    [styles/qwindowsvistastyle.cpp:1537]
+#11 Qt5Widgetsd.dll!QStylePainter::drawControl()         [../../include/QtWidgets/../../src/widgets/styles/qstylepainter.h:86]
+Note: @0:00:15.368 in thread 4936
+Note: next higher malloc: 0x12bb58a8-0x12bb73f8
+Note: prev lower malloc:  0x12bb5820-0x12bb5888
+Note: instruction: vmovdqa (%eax) -> %xmm0
+
+Error #50: UNADDRESSABLE ACCESS: reading 0x12bcbfe0-0x12bcbfe8 8 byte(s) within 0x12bcbfe0-0x12bcbff0
+# 0 Qt5Guid.dll!qt_blend_argb32_on_argb32_avx()                            [c:/mingw48/mingw32/lib/gcc/i686-w64-mingw32/4.8.0/include/emmintrin.h:682]
+# 1 Qt5Guid.dll!QRasterPaintEnginePrivate::drawImage()                     [painting/qpaintengine_raster.cpp:1051]
+# 2 Qt5Guid.dll!QRasterPaintEngine::drawImage()                            [painting/qpaintengine_raster.cpp:2446]
+# 3 Qt5Guid.dll!QRasterPaintEngine::drawPixmap()                           [painting/qpaintengine_raster.cpp:2096]
+# 4 Qt5Guid.dll!QPainter::drawPixmap()                                     [painting/qpainter.cpp:5195]
+# 5 Qt5Widgetsd.dll!QPainter::drawPixmap()                                 [../../include/QtGui/../../src/gui/painting/qpainter.h:781]
+# 6 Qt5Widgetsd.dll!QWindowsXPStylePrivate::drawBackgroundThruNativeBuffer() [styles/qwindowsxpstyle.cpp:1055]
+# 7 Qt5Widgetsd.dll!QWindowsXPStylePrivate::drawBackground()               [styles/qwindowsxpstyle.cpp:721]
+# 8 Qt5Widgetsd.dll!QWindowsVistaStyle::drawControl()                      [styles/qwindowsvistastyle.cpp:1041]
+# 9 Qt5Widgetsd.dll!QWindowsVistaStyle::drawControl()                      [styles/qwindowsvistastyle.cpp:938]
+#10 Qt5Widgetsd.dll!QCommonStyle::drawControl()                            [styles/qcommonstyle.cpp:1187]
+#11 Qt5Widgetsd.dll!QWindowsStyle::drawControl()                           [styles/qwindowsstyle.cpp:1824]
+Note: @0:00:16.375 in thread 4936
+Note: next higher malloc: 0x12bcbfe8-0x12bcdb38
+Note: prev lower malloc:  0x12bcbf60-0x12bcbfc8
+Note: instruction: vmovdqa (%eax) -> %xmm0
+
+Error #51: UNADDRESSABLE ACCESS: reading 0x12bab110-0x12bab118 8 byte(s) within 0x12bab110-0x12bab120
+# 0 Qt5Guid.dll!qt_blend_argb32_on_argb32_avx()                            [c:/mingw48/mingw32/lib/gcc/i686-w64-mingw32/4.8.0/include/emmintrin.h:682]
+# 1 Qt5Guid.dll!QRasterPaintEnginePrivate::drawImage()                     [painting/qpaintengine_raster.cpp:1051]
+# 2 Qt5Guid.dll!QRasterPaintEngine::drawImage()                            [painting/qpaintengine_raster.cpp:2446]
+# 3 Qt5Guid.dll!QRasterPaintEngine::drawPixmap()                           [painting/qpaintengine_raster.cpp:2096]
+# 4 Qt5Guid.dll!QPainter::drawPixmap()                                     [painting/qpainter.cpp:5195]
+# 5 Qt5Widgetsd.dll!QPainter::drawPixmap()                                 [../../include/QtGui/../../src/gui/painting/qpainter.h:781]
+# 6 Qt5Widgetsd.dll!QWindowsXPStylePrivate::drawBackgroundThruNativeBuffer() [styles/qwindowsxpstyle.cpp:1055]
+# 7 Qt5Widgetsd.dll!QWindowsXPStylePrivate::drawBackground()               [styles/qwindowsxpstyle.cpp:721]
+# 8 Qt5Widgetsd.dll!QWindowsVistaStyle::drawControl()                      [styles/qwindowsvistastyle.cpp:1018]
+# 9 Qt5Widgetsd.dll!QWindowsVistaStyle::drawControl()                      [styles/qwindowsvistastyle.cpp:949]
+#10 Qt5Widgetsd.dll!QCommonStyle::drawControl()                            [styles/qcommonstyle.cpp:1187]
+#11 Qt5Widgetsd.dll!QWindowsStyle::drawControl()                           [styles/qwindowsstyle.cpp:1824]
+Note: @0:00:17.271 in thread 4936
+Note: next higher malloc: 0x12bab118-0x12bacc68
+Note: prev lower malloc:  0x12bab090-0x12bab0f8
+Note: instruction: vmovdqa (%eax) -> %xmm0
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+	Error #   9:    173
+	Error #  10:    173
+	Error #  11:    173
+	Error #  12:    173
+	Error #  13:    173
+	Error #  14:    171
+	Error #  15:    171
+	Error #  16:    171
+	Error #  17:    171
+	Error #  18:    171
+	Error #  19:    153
+	Error #  20:    153
+	Error #  21:    153
+	Error #  22:    153
+	Error #  23:    153
+	Error #  24:    152
+	Error #  25:    152
+	Error #  26:    152
+	Error #  27:    152
+	Error #  28:    152
+
+SUPPRESSIONS USED:
+
+ERRORS FOUND:
+      3 unique,     3 total unaddressable access(es)
+     48 unique,  3273 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total warning(s)
+      0 unique,     0 total,      0 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+     29 potential error(s) (suspected false positives)
+         (details: C:\Users\rbilderbeek\AppData\Roaming\Dr. Memory\DrMemory-ToolDrMemoryExample4.exe.4028.000\potential_errors.txt)
+    264 potential leak(s) (suspected false positives)
+         (details: C:\Users\rbilderbeek\AppData\Roaming\Dr. Memory\DrMemory-ToolDrMemoryExample4.exe.4028.000\potential_errors.txt)
+     14 unique,    16 total,  13824 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\rbilderbeek\AppData\Roaming\Dr. Memory\DrMemory-ToolDrMemoryExample4.exe.4028.000\results.txt

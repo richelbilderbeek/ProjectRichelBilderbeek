@@ -18,8 +18,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 //---------------------------------------------------------------------------
 //From http://www.richelbilderbeek.nl/CppAbout.htm
 //---------------------------------------------------------------------------
-#ifndef ABOUT_H
-#define ABOUT_H
+#ifndef RIBI_ABOUT_H
+#define RIBI_ABOUT_H
 
 #include <iosfwd>
 #include <string>
@@ -38,7 +38,8 @@ struct About
     const std::string years,
     const std::string url,
     const std::string version,
-    const std::vector<std::string>& version_history) noexcept;
+    const std::vector<std::string>& version_history
+  ) noexcept;
 
   ///Add a library name and version
   void AddLibrary(const std::string& s) noexcept;
@@ -132,4 +133,4 @@ std::ostream& operator<<(std::ostream& os,const About& a) noexcept;
 
 } //~namespace ribi
 
-#endif // ABOUT_H
+#endif // RIBI_ABOUT_H

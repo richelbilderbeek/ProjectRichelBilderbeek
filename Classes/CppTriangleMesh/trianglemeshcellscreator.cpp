@@ -4,6 +4,7 @@
 
 #include "Shiny.h"
 
+#include "geometry.h"
 #include "trianglemeshcell.h"
 #include "trianglemeshcellfactory.h"
 #include "trianglemeshcellscreatorfactory.h"
@@ -57,7 +58,7 @@ std::vector<boost::shared_ptr<ribi::trim::Cell>> ribi::trim::CellsCreator::Creat
 
   //ver_faces usused: cause of issue 168?
   std::vector<boost::shared_ptr<Face>> ver_faces(
-    CreateVerticalFaces(t,all_points,n_layers,strategy)
+    CreateVerticalFaces(t,all_points,n_layers,layer_height,strategy)
   );
   assert(!ver_faces.empty()); //168 : perhaps ver_faces is removed by compiler?
   assert(ver_faces.size() > hor_faces.size()); //168 : perhaps ver_faces is removed by compiler?
@@ -168,8 +169,10 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   assert(!all_points.empty());
 
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());
+  #ifndef NDEBUG
   const int n_faces_per_layer = static_cast<int>(t->GetFaces().size());
   assert(n_layers > 0);
+  #endif
   if (n_layers < 2) { TRACE("WARNING: NEED AT LEAST TWO HORIZONTAL PLANES TO CREATE CELLS"); }
   v.reserve(n_layers * n_points_per_layer);
 
@@ -178,8 +181,10 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
     const int point_offset = n_points_per_layer * layer;
     for (const std::vector<int>& face_point_indices: t->GetFacePointIndices())
     {
+      #ifndef NDEBUG
       const int face_index = static_cast<int>(v.size());
       assert(face_point_indices.size() == 3); //Triangulation
+      #endif
       std::vector<boost::shared_ptr<Point>> face_points;
       for (int point_index: face_point_indices)
       {
@@ -249,16 +254,22 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   const boost::shared_ptr<const Template> t,
   const std::vector<boost::shared_ptr<Point>>& all_points,
   const int n_layers,
+  const boost::units::quantity<boost::units::si::length> layer_height,
   const CreateVerticalFacesStrategy strategy
 ) noexcept
 {
   PROFILE_FUNC();
+  #ifndef NDEBUG
+  const bool verbose = false;
+  #endif
+
   const std::vector<std::pair<int,int>> edges {
     t->GetEdges()
   };
   assert(!edges.empty());
   const int n_edges = static_cast<int>(edges.size());
   const int n_points_per_layer = static_cast<int>(t->GetPoints().size());
+  assert(n_points_per_layer > 0);
   const int n_ver_faces { strategy == CreateVerticalFacesStrategy::one_face_per_square
     ? 1 * n_edges
     : 2 * n_edges //For every horizontal edge, two triangles are used instead
@@ -273,6 +284,8 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
   for (int layer=0; layer!=n_layers-1; ++layer) //-1 because there are no points above the top layer
   {
     const int points_offset = n_points_per_layer * layer;
+    const auto z_here( static_cast<double>(layer + 0) * layer_height);
+    const auto z_above(static_cast<double>(layer + 1) * layer_height);
     for (const std::pair<int,int>& edge: edges)
     {
       assert(edge.first < edge.second);
@@ -290,9 +303,12 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           all_points[points_offset + edge.first  + n_points_per_layer],
           all_points[points_offset + edge.second + n_points_per_layer]
         };
-
+        face_points[0]->SetZ(z_here);
+        face_points[1]->SetZ(z_here);
+        face_points[2]->SetZ(z_above);
+        face_points[3]->SetZ(z_above);
         #ifndef NDEBUG
-        if (!Helper().IsConvex(face_points))
+        if (verbose && !Helper().IsConvex(face_points))
         {
           TRACE("NOT CONVEX");
           for (auto p: face_points) { assert(p); TRACE(*p); }
@@ -329,6 +345,11 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
           all_points[points_offset + edge.second],
           all_points[points_offset + edge.first + n_points_per_layer]
         };
+
+        face_points_1[0]->SetZ(z_here);
+        face_points_1[1]->SetZ(z_here);
+        face_points_1[2]->SetZ(z_above);
+
         assert(Helper().IsConvex(face_points_1)
           && "FaceFactory expects convex ordered points");
 
@@ -344,9 +365,21 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         std::vector<boost::shared_ptr<Point>> face_points_2 {
           all_points[points_offset + edge.second],
           all_points[points_offset + edge.second + n_points_per_layer],
-          all_points[points_offset + edge.first + n_points_per_layer]
+          all_points[points_offset + edge.first  + n_points_per_layer]
         };
-        if (!Helper().IsConvex(face_points_2)) { Helper().MakeConvex(face_points_2); }
+        face_points_2[0]->SetZ(z_here );
+        face_points_2[1]->SetZ(z_above);
+        face_points_2[2]->SetZ(z_above);
+
+        #ifndef NDEBUG
+        if (!Helper().IsConvex(face_points_2))
+        {
+          TRACE("ERROR");
+          //for (auto point:face_points_2) { TRACE(Geometry().ToStr(*point->GetCoordinat())); }
+          for (auto point:face_points_2) { TRACE(Geometry().ToStr(point->GetCoordinat3D())); }
+          //TRACE(Helper().ToStr(AddConst(face_points_2)));
+        }
+        #endif
 
         assert(Helper().IsConvex(face_points_2)
           && "FaceFactory expects convex ordered points");

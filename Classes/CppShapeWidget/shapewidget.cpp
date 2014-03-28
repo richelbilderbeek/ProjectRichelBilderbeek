@@ -26,28 +26,29 @@ ribi::ShapeWidget::ShapeWidget(
   const unsigned char blue)
   : m_shape(new Shape(n_corners,rotation,red,green,blue))
 {
-  this->SetGeometry(Rect(x,y,width,height));
+  SetGeometry(x,y,width,height);
 }
 
 ribi::ShapeWidget * ribi::ShapeWidget::Clone() const noexcept
 {
   ShapeWidget * const w = new ShapeWidget(
-    this->GetShape()->GetNumberOfCorners(),
-    this->GetShape()->GetRotation(),
-    this->GetGeometry().GetX(),
-    this->GetGeometry().GetY(),
-    this->GetGeometry().GetWidth(),
-    this->GetGeometry().GetHeight(),
-    this->GetShape()->GetRed(),
-    this->GetShape()->GetGreen(),
-    this->GetShape()->GetBlue());
+    GetShape()->GetNumberOfCorners(),
+    GetShape()->GetRotation(),
+    GetLeft(),
+    GetTop(),
+    GetWidth(),
+    GetHeight(),
+    GetShape()->GetRed(),
+    GetShape()->GetGreen(),
+    GetShape()->GetBlue()
+  );
   assert(*w == *this);
   return w;
 }
 
 std::string ribi::ShapeWidget::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::ShapeWidget::GetVersionHistory() noexcept
@@ -55,13 +56,16 @@ std::vector<std::string> ribi::ShapeWidget::GetVersionHistory() noexcept
   return {
     "2011-07-13: Version 1.0: initial version",
     "2011-07-18: Version 1.1: removed useless methods",
-    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget"
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget",
+    "2014-03-28: version 2.1: replaced Rect by Boost.Geometry its box class"
   };
 }
 
 bool ribi::operator==(const ShapeWidget& lhs,const ShapeWidget& rhs) noexcept
 {
-  return  lhs.GetGeometry() ==  rhs.GetGeometry()
-    &&   *lhs.GetShape()    == *rhs.GetShape();
+  return
+    //lhs.GetGeometry() ==  rhs.GetGeometry()
+    //&&
+    *lhs.GetShape()    == *rhs.GetShape();
 }
 

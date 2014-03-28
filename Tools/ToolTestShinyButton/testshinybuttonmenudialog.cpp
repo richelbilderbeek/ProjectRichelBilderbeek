@@ -54,9 +54,9 @@ ribi::About ribi::TestShinyButtonMenuDialog::GetAbout() const noexcept
     "2011-2014",
     "http://www.richelbilderbeek.nl/ToolTestShinyButton.htm",
     GetVersion(),
-    GetVersionHistory());
+    GetVersionHistory()
+  );
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("ShinyButton version: " + ShinyButton::GetVersion());
   a.AddLibrary("ShinyButtonWidget version: " + ShinyButtonWidget::GetVersion());
   a.AddLibrary("Trace version: " + Trace::GetVersion());

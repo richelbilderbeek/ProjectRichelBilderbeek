@@ -1,0 +1,24 @@
+Dr. Memory version 1.6.1 build 2 built on Dec 14 2013 12:27:10
+Dr. Memory results for pid 5228: "ToolDrMemoryExample1.exe"
+Application cmdline: "ToolDrMemoryExample1.exe"
+Recorded 99 suppression(s) from default C:\Program Files\DrMemory\bin\suppress-default.txt
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+
+SUPPRESSIONS USED:
+
+NO ERRORS FOUND:
+      0 unique,     0 total unaddressable access(es)
+      0 unique,     0 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total warning(s)
+      0 unique,     0 total,      0 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      5 unique,     5 total,    381 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\rbilderbeek\AppData\Roaming\Dr. Memory\DrMemory-ToolDrMemoryExample1.exe.5228.000\results.txt

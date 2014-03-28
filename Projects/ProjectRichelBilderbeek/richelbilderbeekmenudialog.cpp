@@ -381,7 +381,6 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("RandomCode version: " + RandomCode::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("RegexTester version: " + RegexTesterMenuDialog().GetVersion());
   a.AddLibrary("Reversi (game) version: " + reversi::MenuDialog().GetVersion());
   a.AddLibrary("reversi::Board version: " + reversi::Board::GetVersion());

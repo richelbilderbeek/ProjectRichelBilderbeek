@@ -2,6 +2,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include "musicchord.h"
 #include <set>
+#include <boost/make_shared.hpp>
 #pragma GCC diagnostic pop
 
 ribi::Music::Chord::Chord(
@@ -55,16 +56,25 @@ std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateAl
 
 std::vector<boost::shared_ptr<ribi::Music::Chord> > ribi::Music::Chord::CreateChords(const Note root) noexcept
 {
+
   return
   {
-    boost::shared_ptr<Chord>(new ChordAug(root)),
-    boost::shared_ptr<Chord>(new ChordDim(root)),
-    boost::shared_ptr<Chord>(new ChordMajor(root)),
-    boost::shared_ptr<Chord>(new ChordMinor(root)),
-    boost::shared_ptr<Chord>(new Chord6(root)),
-    boost::shared_ptr<Chord>(new ChordMinor6(root)),
-    boost::shared_ptr<Chord>(new Chord7(root)),
-    boost::shared_ptr<Chord>(new ChordMinor7(root))
+    boost::make_shared(new ChordAug(root)),
+    boost::make_shared(new ChordDim(root)),
+    boost::make_shared(new ChordMajor(root)),
+    boost::make_shared(new ChordMinor(root)),
+    boost::make_shared(new Chord6(root)),
+    boost::make_shared(new ChordMinor6(root)),
+    boost::make_shared(new Chord7(root)),
+    boost::make_shared(new ChordMinor7(root))
+    //boost::shared_ptr<Chord>(new ChordAug(root)),
+    //boost::shared_ptr<Chord>(new ChordDim(root)),
+    //boost::shared_ptr<Chord>(new ChordMajor(root)),
+    //boost::shared_ptr<Chord>(new ChordMinor(root)),
+    //boost::shared_ptr<Chord>(new Chord6(root)),
+    //boost::shared_ptr<Chord>(new ChordMinor6(root)),
+    //boost::shared_ptr<Chord>(new Chord7(root)),
+    //boost::shared_ptr<Chord>(new ChordMinor7(root))
   };
 }
 

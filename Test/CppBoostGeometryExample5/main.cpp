@@ -39,6 +39,62 @@ boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>
 }
 
 template <class T>
+T GetLeft(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) noexcept
+{
+  using boost::geometry::get;
+  using boost::geometry::min_corner;
+  using boost::geometry::max_corner;
+  const auto left (get<min_corner,0>(r));
+  #ifndef NDEBUG
+  const auto right(get<max_corner,0>(r));
+  assert(left <= right);
+  #endif
+  return left;
+}
+
+template <class T>
+T GetTop(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) noexcept
+{
+  using boost::geometry::get;
+  using boost::geometry::min_corner;
+  using boost::geometry::max_corner;
+  const auto top   (get<min_corner,1>(r));
+  #ifndef NDEBUG
+  const auto bottom(get<max_corner,1>(r));
+  assert(top <= bottom);
+  #endif
+  return top;
+}
+
+template <class T>
+T GetRight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) noexcept
+{
+  using boost::geometry::get;
+  using boost::geometry::min_corner;
+  using boost::geometry::max_corner;
+  const auto right(get<max_corner,0>(r));
+  #ifndef NDEBUG
+  const auto left (get<min_corner,0>(r));
+  assert(left <= right);
+  #endif
+  return right;
+}
+
+template <class T>
+T GetBottom(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) noexcept
+{
+  using boost::geometry::get;
+  using boost::geometry::min_corner;
+  using boost::geometry::max_corner;
+  const auto bottom(get<max_corner,1>(r));
+  #ifndef NDEBUG
+  const auto top   (get<min_corner,1>(r));
+  assert(top <= bottom);
+  #endif
+  return bottom;
+}
+
+template <class T>
 T GetHeight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) noexcept
 {
   using boost::geometry::get;
@@ -75,11 +131,16 @@ int main()
   {
     typedef boost::geometry::model::d2::point_xy<int> Coordinat2D;
     typedef boost::geometry::model::box<Coordinat2D> Rect;
-    const Rect r(CreateRect(10,10,14,15));
-    assert(GetWidth(r) == 4);
-    assert(GetHeight(r) == 5);
-    assert(GetArea(r) == 20);
+    const Rect r(CreateRect(1,2,3,5));
+    assert(GetLeft(r) == 1);
+    assert(GetTop(r) == 2);
+    assert(GetRight(r) == 3);
+    assert(GetBottom(r) == 5);
+    assert(GetWidth(r) == 2);
+    assert(GetHeight(r) == 3);
+    assert(GetArea(r) == 6);
   }
+  #ifdef KNOW_HOW_TO_GET_THIS_TO_WORK
   {
     using boost::units::si::meter;
     typedef boost::units::quantity<boost::units::si::length> Length;
@@ -87,15 +148,15 @@ int main()
     typedef boost::geometry::model::box<Coordinat2D> Rect;
     const Rect r(
       CreateRect(
-        10.0 * meter,
-        10.0 * meter,
-        14.0 * meter,
-        15.0 * meter
+        1.0 * meter,
+        2.0 * meter,
+        3.0 * meter,
+        5.0 * meter
       )
     );
-    assert(GetWidth(r) == 4.0 * meter);
-    assert(GetHeight(r) == 5.0 * meter);
-    assert(GetArea(r) == 20.0 * meter * meter);
+    assert(GetWidth(r) == 2.0 * meter);
+    assert(GetHeight(r) == 3.0 * meter);
+    assert(GetArea(r) == 6.0 * meter * meter);
   }
-  assert(1==2);
+  #endif
 }

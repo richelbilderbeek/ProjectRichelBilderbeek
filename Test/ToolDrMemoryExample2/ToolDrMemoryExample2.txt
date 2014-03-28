@@ -1,0 +1,30 @@
+Dr. Memory version 1.6.1 build 2 built on Dec 14 2013 12:27:10
+Dr. Memory results for pid 2712: "ToolDrMemoryExample2.exe"
+Application cmdline: "ToolDrMemoryExample2.exe"
+Recorded 99 suppression(s) from default C:\Program Files\DrMemory\bin\suppress-default.txt
+
+Error #1: LEAK 4 direct bytes 0x02060240-0x02060244 + 0 indirect bytes
+# 0 replace_malloc                    [d:\drmemory_package\common\alloc_replace.c:2292]
+# 1 libstdc++-6.dll!?                +0x0      (0x6fcadd97 <libstdc++-6.dll+0x6dd97>)
+# 2 __tmainCRTStartup       
+# 3 KERNEL32.dll!BaseThreadInitThunk +0x11     (0x760bed5c <KERNEL32.dll+0x4ed5c>)
+
+===========================================================================
+FINAL SUMMARY:
+
+DUPLICATE ERROR COUNTS:
+
+SUPPRESSIONS USED:
+
+ERRORS FOUND:
+      0 unique,     0 total unaddressable access(es)
+      0 unique,     0 total uninitialized access(es)
+      0 unique,     0 total invalid heap argument(s)
+      0 unique,     0 total GDI usage error(s)
+      0 unique,     0 total warning(s)
+      1 unique,     1 total,      4 byte(s) of leak(s)
+      0 unique,     0 total,      0 byte(s) of possible leak(s)
+ERRORS IGNORED:
+      2 unique,     2 total,     33 byte(s) of still-reachable allocation(s)
+         (re-run with "-show_reachable" for details)
+Details: C:\Users\rbilderbeek\AppData\Roaming\Dr. Memory\DrMemory-ToolDrMemoryExample2.exe.2712.000\results.txt

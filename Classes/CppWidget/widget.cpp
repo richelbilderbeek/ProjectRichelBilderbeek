@@ -21,25 +21,31 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-but-set-parameter"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include "widget.h"
+
+#include <boost/geometry/algorithms/equals.hpp>
+
 #pragma GCC diagnostic pop
 
 std::string ribi::Widget::GetVersion() noexcept
 {
-  return "1.1";
+  return "2.0";
 }
 
 std::vector<std::string> ribi::Widget::GetVersionHistory() noexcept
 {
   return {
     "2011-07-03: version 1.0: initial version",
-    "2011-08-07: version 1.1: added signal that is emitted when geometry changes"
+    "2011-08-07: version 1.1: added signal that is emitted when geometry changes",
+    "2014-03-28: version 2.0: replace Rect by Boost.Geometry its box class"
   };
 }
 
 void ribi::Widget::SetGeometry(const Rect& geometry) noexcept
 {
-  if (geometry != m_geometry)
+  //if (geometry != m_geometry)
+  if (!boost::geometry::equals(m_geometry,geometry))
   {
     m_geometry = geometry;
     m_signal_geometry_changed();

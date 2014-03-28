@@ -1,10 +1,7 @@
 include(../../DesktopApplication.pri)
 include(../../Libraries/Boost.pri)
 
-#General, console
 include(../../Libraries/GeneralConsole.pri)
-
-#General, desktop
 include(../../Libraries/GeneralDesktop.pri)
 
 #Specific, console

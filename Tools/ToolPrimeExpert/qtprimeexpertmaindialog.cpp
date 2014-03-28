@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "qttoolprimeexpertmaindialog.h"
+#include "qtprimeexpertmaindialog.h"
 
 #include <boost/lexical_cast.hpp>
 #include <boost/timer.hpp>
@@ -30,7 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "qtaboutdialog.h"
 #include "primeexpert.h"
 #include "trace.h"
-#include "ui_qttoolprimeexpertmaindialog.h"
+#include "ui_qtprimeexpertmaindialog.h"
 #pragma GCC diagnostic pop
 
 ribi::QtToolPrimeExpertMainDialog::QtToolPrimeExpertMainDialog(QWidget *parent)

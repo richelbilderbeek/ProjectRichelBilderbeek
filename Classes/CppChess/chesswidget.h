@@ -12,9 +12,6 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
-
-struct Rect;
-
 namespace Chess {
 
 ///Chess::ChessWidget is a Widget to interact with a Chess class:

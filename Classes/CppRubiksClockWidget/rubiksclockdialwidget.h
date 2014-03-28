@@ -50,16 +50,10 @@ struct ClockDialWidget : public ::ribi::Widget
     const unsigned char green,
     const unsigned char blue);
 
-  ///Obtain a read-and-write pointert to the RubiksClockDial
-  ClockDial * GetRubiksClockDial() { return m_dial.get(); }
+        ClockDial * GetRubiksClockDial()       noexcept { return m_dial.get(); }
+  const ClockDial * GetRubiksClockDial() const noexcept { return m_dial.get(); }
 
-  ///Obtain a read-only pointert to the RubiksClockDial
-  const ClockDial * GetRubiksClockDial() const { return m_dial.get(); }
-
-  ///Obtain this class its version
   static std::string GetVersion() noexcept;
-
-  ///Obtain this class its version history
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   ///Is the dial clicked?

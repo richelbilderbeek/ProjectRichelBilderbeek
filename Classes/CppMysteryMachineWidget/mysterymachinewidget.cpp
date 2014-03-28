@@ -67,7 +67,7 @@ void ribi::MysteryMachineWidget::Click(const int x, const int y) noexcept
     m_machine->GetDialFront()->Click(x,y);
     m_signal_changed();
   }
-  if (m_machine->GetToggleButton()->GetGeometry().IsIn(x,y))
+  if (m_machine->GetToggleButton()->IsIn(x,y))
   {
     m_machine->GetToggleButton()->Click(x,y);
     m_signal_changed();
@@ -151,38 +151,42 @@ void ribi::MysteryMachineWidget::PressKey(const MysteryMachineKey key) noexcept
 
 void ribi::MysteryMachineWidget::OnResize() noexcept
 {
-  const double w = boost::numeric_cast<double>(GetGeometry().GetWidth());
-  const double h = boost::numeric_cast<double>(GetGeometry().GetHeight());
+  const double w = boost::numeric_cast<double>(GetWidth());
+  const double h = boost::numeric_cast<double>(GetHeight());
   const double s = std::min(w/4.0,h/8.0);
   const double w8 = w / 8.0;
 
-  m_machine->GetDialBack()->SetGeometry(Rect((w8 * 1.0) - (s * 0.5),0,s,s));
-  m_machine->GetDialFront()->SetGeometry(Rect((w8 * 7.0) - (s * 0.5),h-s,s,s));
-  m_machine->GetToggleButton()->SetGeometry(Rect(
+  m_machine->GetDialBack()->SetGeometry((w8 * 1.0) - (s * 0.5),0,s,s);
+  m_machine->GetDialFront()->SetGeometry((w8 * 7.0) - (s * 0.5),h-s,s,s);
+  m_machine->GetToggleButton()->SetGeometry(
     (w8 * 4.0) + (s * 0.5),
     (h * 0.5) - (s * 0.5),
-    s,s));
+    s,s
+  );
 
 
 
-  m_machine->GetLedBack1()->SetGeometry(Rect((w8 * 3.0) - (s * 0.5),0,s,s));
-  m_machine->GetLedBack2()->SetGeometry(Rect((w8 * 5.0) - (s * 0.5),0,s,s));
-  m_machine->GetLedBack3()->SetGeometry(Rect((w8 * 7.0) - (s * 0.5),0,s,s));
+  m_machine->GetLedBack1()->SetGeometry((w8 * 3.0) - (s * 0.5),0,s,s);
+  m_machine->GetLedBack2()->SetGeometry((w8 * 5.0) - (s * 0.5),0,s,s);
+  m_machine->GetLedBack3()->SetGeometry((w8 * 7.0) - (s * 0.5),0,s,s);
 
-  m_machine->GetLedFront1()->SetGeometry(Rect((w8 * 1.0) - (s * 0.5),h-s,s,s));
-  m_machine->GetLedFront2()->SetGeometry(Rect((w8 * 3.0) - (s * 0.5),h-s,s,s));
-  m_machine->GetLedFront3()->SetGeometry(Rect((w8 * 5.0) - (s * 0.5),h-s,s,s));
+  m_machine->GetLedFront1()->SetGeometry((w8 * 1.0) - (s * 0.5),h-s,s,s);
+  m_machine->GetLedFront2()->SetGeometry((w8 * 3.0) - (s * 0.5),h-s,s,s);
+  m_machine->GetLedFront3()->SetGeometry((w8 * 5.0) - (s * 0.5),h-s,s,s);
 
-  m_machine->GetLedTopFront()->SetGeometry(Rect(
+  m_machine->GetLedTopFront()->SetGeometry(
     (w8 * 5.0) - (s * 0.5),
     (((h - (s * 0.5)) + (h * 0.5)) * 0.5) - (s * 0.5),
-    s,s));
-  m_machine->GetLedTopMiddle()->SetGeometry(Rect((w8 * 4.0) - (s * 0.5),
+    s,s
+  );
+  m_machine->GetLedTopMiddle()->SetGeometry((w8 * 4.0) - (s * 0.5),
     (h * 0.5) - (s * 0.5),
-    s,s));
-  m_machine->GetLedTopBack()->SetGeometry(Rect((w8 * 3.0) - (s * 0.5),
+    s,s
+  );
+  m_machine->GetLedTopBack()->SetGeometry((w8 * 3.0) - (s * 0.5),
     (((s * 0.5) + (h * 0.5)) * 0.5) - (s * 0.5),
-    s,s));
+    s,s
+  );
   //m_signal_mysterymachine_changed();
 }
 
@@ -210,9 +214,9 @@ std::ostream& ribi::operator<<(std::ostream& os, const MysteryMachineWidget& wid
 {
   os
     << "<MysteryMachineWidget>"
-    << "<geometry>"
-    << widget.GetGeometry()
-    << "</geometry>"
+    //<< "<geometry>"
+    //<< widget.GetGeometry()
+    //<< "</geometry>"
     << "<machine>"
     << *widget.m_machine
     << "</machine>"

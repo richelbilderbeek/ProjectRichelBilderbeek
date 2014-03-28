@@ -1,8 +1,7 @@
-QT       += core
-QT       -= gui
-CONFIG   += console
-CONFIG   -= app_bundle
-TEMPLATE = app
+include(../../WebApplication.pri)
+include(../../Libraries/BoostAll.pri)
+include(../../Libraries/Wt.pri)
+
 
 include(../../Tools/ToolHometrainer/ToolHometrainerWebsite.pri)
 
@@ -29,49 +28,3 @@ include(../../Classes/CppWtQuestionDialog/CppWtQuestionDialog.pri)
 include(../../Classes/CppWtSelectFileDialog/CppWtSelectFileDialog.pri)
 
 SOURCES += wtmain.cpp
-
-
-#
-#
-# Type of compile
-#
-#
-
-CONFIG(release, debug|release) {
-  DEFINES += NDEBUG NTRACE_BILDERBIKKEL
-}
-
-QMAKE_CXXFLAGS += -std=c++11 -Wall -Wextra -Weffc++
-
-unix {
-  QMAKE_CXXFLAGS += -Werror
-}
-
-#
-#
-# Boost
-#
-#
-
-win32 {
-  INCLUDEPATH += \
-    ../../Libraries/boost_1_54_0
-}
-
-LIBS += \
-  -lboost_date_time \
-  -lboost_filesystem \
-  -lboost_program_options \
-  -lboost_regex \
-  -lboost_signals \
-  -lboost_system
-
-#
-#
-# Wt
-#
-#
-
-LIBS += \
-  -lwt \
-  -lwthttp
