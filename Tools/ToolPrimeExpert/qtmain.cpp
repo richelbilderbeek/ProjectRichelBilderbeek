@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <QApplication>
-#include "qttoolprimeexpertmenudialog.h"
+#include "qtprimeexpertmenudialog.h"
 #pragma GCC diagnostic pop
 
 int main(int argc, char *argv[])

@@ -167,6 +167,20 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordi
 }
 */
 
+ribi::Geometry::Rect ribi::Geometry::CreateRect(
+  const double left,
+  const double top,
+  const double width,
+  const double height
+) const noexcept
+{
+  boost::geometry::model::box<Coordinat2D> rect(
+    Coordinat2D(left        , top         ),
+    Coordinat2D(left + width, top + height)
+  );
+  return rect;
+}
+
 double ribi::Geometry::Fmod(const double x, const double mod) const noexcept
 {
   #ifndef NDEBUG
@@ -321,14 +335,14 @@ bool ribi::Geometry::IsClockwise(
     const auto normal(CalcNormal(a,b,c));
     const auto direction(CalcDotProduct(normal,a - observer));
     const bool is_clockwise { direction > 0.0 };
-    #ifndef NDEBUG
-    if (!is_clockwise)
-    {
-      TRACE(Geometry().ToStr(a));
-      TRACE(Geometry().ToStr(b));
-      TRACE(Geometry().ToStr(c));
-    }
-    #endif
+    //#ifndef NDEBUG
+    //if (!is_clockwise)
+    //{
+    //  TRACE(Geometry().ToStr(a));
+    //  TRACE(Geometry().ToStr(b));
+    //  TRACE(Geometry().ToStr(c));
+    //}
+    //#endif
     return is_clockwise;
   }
   else
@@ -422,9 +436,19 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat2D>& points) const noex
 bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noexcept
 {
   assert(points.size() >= 3);
+  if (points.size() == 3)
+  {
+    //Three different points are always convex
+    assert(!boost::geometry::equals(points[0],points[1]));
+    assert(!boost::geometry::equals(points[0],points[2]));
+    assert(!boost::geometry::equals(points[1],points[2]));
+    return true;
+  }
   assert(IsPlane(points));
 
   #ifndef NDEBUG
+  const bool verbose = false;
+  if (verbose)
   {
     std::stringstream s;
     s << "{";
@@ -442,14 +466,21 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
 
   Plane plane(points[0],points[1],points[2]);
 
-  try { TRACE(plane.ToFunctionX()); } catch (std::exception&) {}
-  try { TRACE(plane.ToFunctionY()); } catch (std::exception&) {}
-  try { TRACE(plane.ToFunctionZ()); } catch (std::exception&) {}
+  #ifndef NDEBUG
+  if (verbose)
+  {
+    try { TRACE(plane.ToFunctionX()); } catch (std::exception&) {}
+    try { TRACE(plane.ToFunctionY()); } catch (std::exception&) {}
+    try { TRACE(plane.ToFunctionZ()); } catch (std::exception&) {}
+  }
+  #endif
 
   const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
     plane.CalcProjection(points)
   );
 
+  #ifndef NDEBUG
+  if (verbose)
   {
     std::stringstream s;
     s << "{";
@@ -461,6 +492,7 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
     co_str[co_str.size() - 1] = '}';
     TRACE(co_str);
   }
+  #endif
 
   return IsConvex(coordinats2d);
 }

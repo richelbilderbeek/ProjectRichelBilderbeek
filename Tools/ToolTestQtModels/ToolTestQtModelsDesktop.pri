@@ -1,14 +1,14 @@
 include(../../Tools/ToolTestQtModels/ToolTestQtModelsConsole.pri)
 
 HEADERS += \
-    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.h \
-    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.h
+    ../../Tools/ToolTestQtModels/qttestqtmodelsmaindialog.h \
+    ../../Tools/ToolTestQtModels/qttestqtmodelsmenudialog.h
 
 SOURCES += \
-    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.cpp \
-    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.cpp
+    ../../Tools/ToolTestQtModels/qttestqtmodelsmaindialog.cpp \
+    ../../Tools/ToolTestQtModels/qttestqtmodelsmenudialog.cpp
 
 FORMS += \
-    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmenudialog.ui \
-    ../../Tools/ToolTestQtModels/qttooltestqtmodelsmaindialog.ui
+    ../../Tools/ToolTestQtModels/qttestqtmodelsmaindialog.ui \
+    ../../Tools/ToolTestQtModels/qttestqtmodelsmenudialog.ui
 

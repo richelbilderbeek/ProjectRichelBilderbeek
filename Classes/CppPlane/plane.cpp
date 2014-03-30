@@ -26,6 +26,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include <cassert>
 
+#include <boost/make_shared.hpp>
+
 #include "geometry.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -135,7 +137,10 @@ boost::shared_ptr<ribi::PlaneX> ribi::Plane::CreatePlaneX(
 {
   try
   {
-    const boost::shared_ptr<PlaneX> p(new PlaneX(p1,p2,p3));
+    const boost::shared_ptr<PlaneX> p(
+      boost::make_shared<PlaneX>(p1,p2,p3)
+    );
+    assert(p);
     return p;
   }
   catch (std::exception&)
@@ -152,7 +157,9 @@ boost::shared_ptr<ribi::PlaneY> ribi::Plane::CreatePlaneY(
 {
   try
   {
-    const boost::shared_ptr<PlaneY> p(new PlaneY(p1,p2,p3));
+    const boost::shared_ptr<PlaneY> p
+      = boost::make_shared<PlaneY>(p1,p2,p3);
+    assert(p);
     return p;
   }
   catch (std::exception&)
@@ -169,7 +176,9 @@ boost::shared_ptr<ribi::PlaneZ> ribi::Plane::CreatePlaneZ(
 {
   try
   {
-    const boost::shared_ptr<PlaneZ> p(new PlaneZ(p1,p2,p3));
+    const boost::shared_ptr<PlaneZ> p
+      = boost::make_shared<PlaneZ>(p1,p2,p3);
+    assert(p);
     return p;
   }
   catch (std::exception&)

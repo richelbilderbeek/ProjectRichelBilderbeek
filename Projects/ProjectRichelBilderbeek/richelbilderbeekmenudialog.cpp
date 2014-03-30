@@ -201,19 +201,19 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "tictactoemenudialog.h"
 #include "togglebutton.h"
 #include "togglebuttonwidget.h"
-#include "toolencrangermenudialog.h"
-#include "toolgaborfiltermenudialog.h"
-#include "toolgraycodermenudialog.h"
-#include "toolmultiencrangermenudialog.h"
-#include "toolprimeexpertmenudialog.h"
-#include "toolsimplifynewickmenudialog.h"
+#include "encrangermenudialog.h"
+#include "gaborfiltermenudialog.h"
+#include "graycodermenudialog.h"
+#include "multiencrangermenudialog.h"
+#include "primeexpertmenudialog.h"
+#include "simplifynewickmenudialog.h"
 #include "surfaceplottermenudialog.h"
-#include "tooltestapproximatormenudialog.h"
-#include "tooltestapproximatormenudialog.h"
-#include "tooltestmultiapproximatormenudialog.h"
-#include "tooltestqtmodelsmenudialog.h"
-#include "tooltestsimplelinearregressionmenudialog.h"
-#include "toolvisualabcmenudialog.h"
+#include "testapproximatormenudialog.h"
+#include "testapproximatormenudialog.h"
+#include "testmultiapproximatormenudialog.h"
+#include "testqtmodelsmenudialog.h"
+#include "testsimplelinearregressionmenudialog.h"
+#include "visualabcmenudialog.h"
 #include "trace.h"
 #include "tronmenudialog.h"
 #include "twodigitnewick.h"
@@ -381,7 +381,6 @@ ribi::About ribi::ProjectRichelBilderbeekMenuDialog::GetAboutStatic() noexcept
   a.AddLibrary("QuestionDialog version: " + QuestionDialog::GetVersion());
   a.AddLibrary("Rainbow version: " + Rainbow::GetVersion());
   a.AddLibrary("RandomCode version: " + RandomCode::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("RegexTester version: " + RegexTesterMenuDialog().GetVersion());
   a.AddLibrary("Reversi (game) version: " + reversi::MenuDialog().GetVersion());
   a.AddLibrary("reversi::Board version: " + reversi::Board::GetVersion());

@@ -6,8 +6,8 @@ SOURCES += \
     ../../Tools/ToolEncranger/toolencrangermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolEncranger/toolencrangermaindialog.h \
-    ../../Tools/ToolEncranger/toolencrangermenudialog.h
+    ../../Tools/ToolEncranger/encrangermaindialog.h \
+    ../../Tools/ToolEncranger/encrangermenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolEncranger/Licence.txt

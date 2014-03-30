@@ -6,8 +6,8 @@ SOURCES += \
     ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmaindialog.h \
-    ../../Tools/ToolSimplifyNewick/toolsimplifynewickmenudialog.h
+    ../../Tools/ToolSimplifyNewick/simplifynewickmaindialog.h \
+    ../../Tools/ToolSimplifyNewick/simplifynewickmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolSimplifyNewick/Licence.txt

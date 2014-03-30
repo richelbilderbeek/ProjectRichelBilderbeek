@@ -75,7 +75,7 @@ void ribi::ruco::QtRubiksClockMainDialog::resizeEvent(QResizeEvent *)
 {
   //const QRectF r(ui->widget_hold_clock->geometry().adjusted(0.0,0.0,-16.0,-16.0));
   const QRectF r(ui->clock->geometry());
-  ui->clock->GetWidget()->SetGeometry(Rect(r.x(),r.y(),r.width(),r.height()));
+  ui->clock->GetWidget()->SetGeometry(r.x(),r.y(),r.width(),r.height());
 }
 
 #ifndef NDEBUG

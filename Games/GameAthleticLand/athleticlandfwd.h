@@ -4,9 +4,6 @@
 struct QPixmap;
 
 namespace ribi {
-
-struct Rect;
-
 namespace athl {
 
 struct CollisionBehaviour;

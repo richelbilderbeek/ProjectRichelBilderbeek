@@ -4,7 +4,7 @@
 #include "athleticlandplayer.h"
 #include "rectangle.h"
 
-/*
+#ifdef TODO_RICHEL
 void ribi::athl::LethalCollision::OnCollision(Player& p)
 {
   p.Die();
@@ -118,4 +118,4 @@ bool ribi::athl::DoCollide(const Rect& a, const Rect& b)
 
 }
 
-*/
+#endif

@@ -22,6 +22,7 @@
 #include "openfoamfilenames.h"
 #include "openfoampointindex.h"
 #include "php.h"
+#include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
@@ -557,7 +558,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
     }
   }
 
-  std::sort(v.begin(),v.end());
+  std::sort(v.begin(),v.end(),Helper().OrderByX());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);

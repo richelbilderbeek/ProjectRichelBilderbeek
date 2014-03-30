@@ -220,9 +220,9 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
 
   if (!Helper().IsCounterClockwise(m_points,observer->CalculateCenter()))
   {
-    std::sort(m_points.begin(),m_points.end()); //For std::next_permutation
+    std::sort(m_points.begin(),m_points.end(),Helper().OrderByX()); //For std::next_permutation
     //Must be ordered counter-clockwise (although the documentation says otherwise?)
-    while (std::next_permutation(m_points.begin(),m_points.end()))
+    while (std::next_permutation(m_points.begin(),m_points.end(),Helper().OrderByX()))
     {
       assert(std::count(m_points.begin(),m_points.end(),nullptr) == 0);
       if (

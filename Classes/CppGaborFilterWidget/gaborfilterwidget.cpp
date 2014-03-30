@@ -39,7 +39,7 @@ ribi::GaborFilterWidget::GaborFilterWidget(
   const double sigma)
   : m_filter(new GaborFilter(angle,frequency,sigma))
 {
-  this->SetGeometry(Rect(x,y,width,height));
+  this->SetGeometry(x,y,width,height);
 }
 
 std::string ribi::GaborFilterWidget::GetVersion() noexcept
@@ -58,7 +58,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const GaborFilterWidget& widget
 {
   os
     << "<GaborFilterWidget>"
-    << widget.GetGeometry()
+    //<< widget.GetGeometry()
     << *widget.m_filter
     << "</GaborFilterWidget>";
   return os;

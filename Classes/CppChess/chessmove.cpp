@@ -118,7 +118,6 @@ boost::shared_ptr<ribi::Chess::Square> ribi::Chess::Move::ParseFrom(const std::s
   if (v.size() == 2)
   {
     square = SquareFactory::Create(v[0]);
-    //square.reset(new Square(v[0]));
   }
   return square;
 }

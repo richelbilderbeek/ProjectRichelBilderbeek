@@ -4,14 +4,14 @@ RESOURCES += \
     ../../Tools/ToolTestMultiApproximator/ToolTestMultiApproximator.qrc
 
 FORMS += \
-    ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.ui \
-    ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormaindialog.ui
+    ../../Tools/ToolTestMultiApproximator/qttestmultiapproximatormaindialog.ui \
+    ../../Tools/ToolTestMultiApproximator/qttestmultiapproximatormenudialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.cpp \
-    ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormaindialog.cpp
+    ../../Tools/ToolTestMultiApproximator/qttestmultiapproximatormaindialog.cpp \
+    ../../Tools/ToolTestMultiApproximator/qttestmultiapproximatormenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormenudialog.h \
-    ../../Tools/ToolTestMultiApproximator/qttooltestmultiapproximatormaindialog.h
+    ../../Tools/ToolTestMultiApproximator/qttestmultiapproximatormaindialog.h \
+    ../../Tools/ToolTestMultiApproximator/qttestmultiapproximatormenudialog.h
 

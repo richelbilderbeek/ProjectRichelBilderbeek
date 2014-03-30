@@ -2,10 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolGaborFilter
 
 SOURCES += \
-    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.cpp
+    ../../Tools/ToolGaborFilter/gaborfiltermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolGaborFilter/toolgaborfiltermenudialog.h
+    ../../Tools/ToolGaborFilter/gaborfiltermenudialog.h
 
 
 OTHER_FILES += \

@@ -51,7 +51,7 @@ struct LedWidget;
 ///user interface of the display of a MysteryMachine
 struct MysteryMachineWidget : public Widget
 {
-  explicit MysteryMachineWidget(const Rect& geometry = Rect(0,0,200,400)) noexcept;
+  explicit MysteryMachineWidget(const Rect& geometry = CreateRect(0,0,200,400)) noexcept;
 
   ///Respond to the user clicking on the MysteryMachineWidget
   void Click(const int x, const int y) noexcept;
@@ -59,10 +59,7 @@ struct MysteryMachineWidget : public Widget
   const boost::shared_ptr<const MysteryMachine> GetMachine() const noexcept { return m_machine; }
   const boost::shared_ptr<      MysteryMachine> GetMachine()       noexcept { return m_machine; }
 
-  ///Obtain the version of this class
   static std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
   static std::vector<std::string> GetVersionHistory() noexcept;
 
   void PressKey(const MysteryMachineKey key) noexcept;
@@ -76,6 +73,13 @@ struct MysteryMachineWidget : public Widget
   friend void boost::checked_delete<>(MysteryMachineWidget*);
 
   boost::shared_ptr<MysteryMachine> m_machine;
+
+  static Rect CreateRect(
+    const double left,
+    const double top,
+    const double width,
+    const double height
+  ) noexcept;
 
   ///Respond to a change in geometry
   void OnResize() noexcept;

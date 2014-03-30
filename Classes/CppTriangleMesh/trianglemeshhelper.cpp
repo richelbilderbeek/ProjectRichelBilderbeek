@@ -8,8 +8,8 @@
 #include <sstream>
 
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/math/constants/constants.hpp>
-
 #include "Shiny.h"
 
 #include "geometry.h"
@@ -351,6 +351,8 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
 {
   #ifndef NDEBUG
+  const bool verbose = false;
+  if (verbose)
   {
     std::stringstream s;
     s << "{";
@@ -363,7 +365,6 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim
     po_str[po_str.size() - 1] = '}';
     TRACE(po_str);
   }
-
   #endif
 
   const auto const_points(AddConst(points));
@@ -528,8 +529,10 @@ bool ribi::trim::Helper::IsPlaneConst(
 bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
 {
   const bool answer_1 = face.GetOrientation() == FaceOrientation::vertical;
+  #ifndef NDEBUG
   const bool answer_2 = !IsHorizontal(face);
   assert(answer_1 == answer_2);
+  #endif
   return answer_1;
 }
 
@@ -538,16 +541,21 @@ void ribi::trim::Helper::MakeConvex(
 ) const noexcept
 {
   #ifndef NDEBUG
+  const bool verbose = true;
+  if (verbose) { TRACE_FUNC(); }
   for (auto p: v) { assert(p); }
   assert(!v.empty());
+
   #endif
 
   if (Helper().IsConvex(v)) return;
 
+  #ifndef NDEBUG
   static int cnt = 0;
   cnt = 0;
+  #endif
 
-  std::sort(v.begin(),v.end());
+  std::sort(v.begin(),v.end(),Helper().OrderByX());
 
   while (1)
   {
@@ -555,9 +563,10 @@ void ribi::trim::Helper::MakeConvex(
     {
       break;
     }
-    std::next_permutation(v.begin(),v.end());
+    std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
 
     #ifndef NDEBUG
+    if (verbose)
     {
       TRACE(ToStr(AddConst(v)));
       ++cnt;
@@ -571,9 +580,9 @@ void ribi::trim::Helper::MakeConvex(
 
   while (!Helper().IsConvex(v))
   {
-    TRACE("SHUFFLE, SHOULD NOT GET HERE, HAS NEVER SUCCEEDED");
+    TRACE("ERROR");
     for (auto p: v) { TRACE(p); TRACE(*p); }
-    std::random_shuffle(v.begin(),v.end());
+    assert(!"Should not get here");
   }
 
   #ifndef NDEBUG
@@ -585,6 +594,31 @@ void ribi::trim::Helper::MakeConvex(
   }
   #endif
   assert(Helper().IsConvex(v));
+}
+
+std::function<
+    bool(
+      const boost::shared_ptr<const ribi::trim::Point>& lhs,
+      const boost::shared_ptr<const ribi::trim::Point>& rhs
+    )
+  >
+  ribi::trim::Helper::OrderByX() const noexcept
+{
+  return [](const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs)
+  {
+    using boost::geometry::get;
+    assert(lhs);
+    assert(rhs);
+    assert(lhs->GetCoordinat());
+    assert(rhs->GetCoordinat());
+    if (get<0>(*lhs->GetCoordinat()) < get<0>(*rhs->GetCoordinat())) return true;
+    if (get<0>(*lhs->GetCoordinat()) > get<0>(*rhs->GetCoordinat())) return false;
+    if (get<1>(*lhs->GetCoordinat()) < get<1>(*rhs->GetCoordinat())) return true;
+    if (get<1>(*lhs->GetCoordinat()) > get<1>(*rhs->GetCoordinat())) return false;
+    assert(lhs->CanGetZ());
+    assert(rhs->CanGetZ());
+    return lhs->GetZ() < rhs->GetZ();
+  };
 }
 
 std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
@@ -799,12 +833,53 @@ void ribi::trim::Helper::Test() noexcept
   //IsClockwiseHorizontal 1
   //IsClockwiseHorizontal 2
   //IsClockwiseVertical
+  if (verbose) { TRACE("IsConvex, from error"); }
+  {
+
+    std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(0.0,2.0,1.0);
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(0.0,2.0,2.0);
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    {
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(1.0,1.0,2.0);
+      assert(coordinat);
+      coordinats3d.push_back(coordinat);
+    }
+    std::vector<boost::shared_ptr<Point>> points;
+    for (auto coordinat: coordinats3d)
+    {
+      boost::shared_ptr<const Coordinat2D> coordinat2d(
+        new Coordinat2D(
+          boost::geometry::get<0>(*coordinat),
+          boost::geometry::get<1>(*coordinat)
+        )
+      );
+      const auto point(PointFactory().Create(coordinat2d));
+      assert(point);
+      point->SetZ(boost::geometry::get<2>(*coordinat) * boost::units::si::meter);
+      points.push_back(point);
+    }
+    assert(points.size() == coordinats3d.size());
+    assert(h.IsConvex(points));
+  }
+
   //SetWindingHorizontal
   if (verbose) { TRACE("MakeConvex"); }
   {
     std::vector<boost::shared_ptr<const Coordinat3D>> coordinats3d;
     {
-      const boost::shared_ptr<const Coordinat3D> coordinat(new Coordinat3D(2.23114,3.23607,6));
+      const auto coordinat
+        = boost::make_shared<Coordinat3D>(2.23114,3.23607,6);
       assert(coordinat);
       coordinats3d.push_back(coordinat);
     }

@@ -72,7 +72,6 @@ ribi::About ribi::SimMysteryMachineMenuDialog::GetAbout() const noexcept
   a.AddLibrary("ToggleButtonWidget version: " + ToggleButtonWidget::GetVersion());
   a.AddLibrary("MysteryMachine version: " + MysteryMachine::GetVersion());
   a.AddLibrary("MysteryMachineWidget version: " + MysteryMachineWidget::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("Widget version: " + Widget::GetVersion());
   return a;
 }

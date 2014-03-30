@@ -2,10 +2,10 @@ INCLUDEPATH += \
     ../../Tools/ToolTestQtModels
 
 SOURCES += \
-    ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.cpp
+    ../../Tools/ToolTestQtModels/testqtmodelsmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestQtModels/tooltestqtmodelsmenudialog.h
+    ../../Tools/ToolTestQtModels/testqtmodelsmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolTestQtModels/Licence.txt

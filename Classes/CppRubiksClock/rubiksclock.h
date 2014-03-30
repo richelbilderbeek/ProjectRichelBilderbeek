@@ -32,13 +32,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include <boost/signals2.hpp>
 #include "rubiksclockfwd.h"
 #include "rubiksclockside.h"
+#include "widget.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
 namespace ruco {
 
 ///Clock is a Rubik's Clock
-struct Clock
+struct Clock : public Widget
 {
   Clock() noexcept;
 

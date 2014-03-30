@@ -355,7 +355,7 @@ std::vector<std::string> XmlToPretty(const std::string& s) noexcept;
 /// const std::function<const boost::shared_ptr<std::string>(const std::string&)> str_to_ptr_function {
 ///   [](const std::string& s)
 ///   {
-///     return boost::shared_ptr<std::string>(new std::string(s));
+///     return boost::make_shared<std::string>(s);
 ///   }
 /// };
 ///

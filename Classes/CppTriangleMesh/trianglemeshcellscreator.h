@@ -80,6 +80,7 @@ struct CellsCreator
     const boost::shared_ptr<const Template> t,
     const std::vector<boost::shared_ptr<Point>>& points,
     const int n_layers,
+    const boost::units::quantity<boost::units::si::length> layer_height,
     const CreateVerticalFacesStrategy strategy
   ) noexcept;
 

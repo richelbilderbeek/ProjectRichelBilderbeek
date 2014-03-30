@@ -44,25 +44,35 @@ struct Widget
   typedef boost::geometry::model::d2::point_xy<double> Point;
   typedef boost::geometry::model::box<Point> Rect;
 
+  static Rect CreateRect(const double left, const double top, const double width, const double height) noexcept;
+
+  double GetBottom() const noexcept;
   const Rect& GetGeometry() const noexcept { return m_geometry; }
   Rect& GetGeometry() noexcept { return m_geometry; }
+  double GetHeight() const noexcept;
+  double GetLeft() const noexcept;
+  double GetRight() const noexcept;
+  double GetTop() const noexcept;
+  static std::string GetVersion() noexcept;
+  static std::vector<std::string> GetVersionHistory() noexcept;
+  double GetWidth() const noexcept;
+
+  ///Is the coordinat within the widget its rectangle?
+  bool IsIn(const double x, const double y) const noexcept;
 
   ///SetGeometry resizes the Widget and emits an OnResize signal
   void SetGeometry(const Rect& geometry) noexcept;
-
-  ///Obtain the version of this class
-  static std::string GetVersion() noexcept;
-
-  ///Obtain the version history of this class
-  static std::vector<std::string> GetVersionHistory() noexcept;
+  void SetGeometry(const double left, const double top, const double width, const double height) noexcept;
 
   ///Respond to a change in size
   mutable boost::signals2::signal<void ()> m_signal_geometry_changed;
 
   protected:
   virtual ~Widget() noexcept {}
-  friend void boost::checked_delete<>(Widget*);
+  friend void boost::checked_delete<>(      Widget*);
   friend void boost::checked_delete<>(const Widget*);
+  friend class boost::detail::sp_ms_deleter<      Widget>;
+  friend class boost::detail::sp_ms_deleter<const Widget>;
 
   private:
   Rect m_geometry;

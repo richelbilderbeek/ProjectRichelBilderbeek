@@ -52,7 +52,7 @@ void ribi::ToggleButtonWidget::Click(const int, const int)
 
 std::string ribi::ToggleButtonWidget::GetVersion() noexcept
 {
-  return "1.3";
+  return "1.4";
 }
 
 std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
@@ -61,7 +61,8 @@ std::vector<std::string> ribi::ToggleButtonWidget::GetVersionHistory() noexcept
     "2011-07-03: version 1.0: initial version",
     "2011-08-20: Version 1.1: added operator<<",
     "2011-08-31: Version 1.2: added setting the color of a ToggleButton",
-    "2014-01-21: Version 1.3: added ToDrawCanvas"
+    "2014-01-21: Version 1.3: added ToDrawCanvas",
+    "2014-03-28: Version 1.4: replaced custom Rect class by Boost.Geometry"
   };
 }
 
@@ -181,7 +182,7 @@ std::ostream& ribi::operator<<(std::ostream& os, const ToggleButtonWidget& butto
   os
     << "<ToggleButtonWidget>"
     << *button.m_button
-    << button.GetGeometry()
+    //<< button.GetGeometry()
     << "</ToggleButtonWidget>";
   return os;
 }

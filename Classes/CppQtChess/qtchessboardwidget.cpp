@@ -54,7 +54,7 @@ ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(QWidget *parent)
   : QWidget(parent),
     m_signal_changed{},
     m_resources(new Chess::QtResources),
-    m_widget(new BoardWidget(BoardFactory::Create(),Rect(0,0,400,400)))
+    m_widget(new BoardWidget(BoardFactory::Create(),Widget::CreateRect(0,0,400,400)))
 {
   #ifndef NDEBUG
   Test();
@@ -81,7 +81,7 @@ ribi::Chess::QtChessBoardWidget::QtChessBoardWidget(
     m_signal_changed{},
     m_resources(new Chess::QtResources),
     m_widget(new Chess::BoardWidget(
-      BoardFactory::Create(),Rect(0,0,width,height)))
+      BoardFactory::Create(),Widget::CreateRect(0,0,width,height)))
 {
   assert(m_widget);
 
@@ -108,14 +108,14 @@ void ribi::Chess::QtChessBoardWidget::DrawChessBoard(
   QPainter& painter,
   const Chess::BoardWidget * const widget)
 {
-  const int w = widget->GetGeometry().GetWidth();
-  const int h = widget->GetGeometry().GetHeight();
+  const int w = widget->GetWidth();
+  const int h = widget->GetHeight();
 
   //Draw the plain chessboard
   DrawChessBoard(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
+    widget->GetLeft(),
+    widget->GetTop(),
     w,
     h,
     widget->GetBoard().get());
@@ -280,7 +280,7 @@ void ribi::Chess::QtChessBoardWidget::paintEvent(QPaintEvent *)
 
 void ribi::Chess::QtChessBoardWidget::resizeEvent(QResizeEvent *)
 {
-  m_widget->SetGeometry(Rect(0,0,width(),height()));
+  m_widget->SetGeometry(0,0,width(),height());
 }
 
 

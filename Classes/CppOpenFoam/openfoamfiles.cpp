@@ -10,6 +10,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
+
 #include <QFile>
 
 #include "fileio.h"
@@ -71,11 +73,11 @@ ribi::foam::Files::Files(
 }
 
 ribi::foam::Files::Files(const Files& other)
-  : m_boundary(boost::shared_ptr<BoundaryFile>(new BoundaryFile(*other.m_boundary))),
-    m_faces(boost::shared_ptr<FacesFile>(new FacesFile(*other.m_faces))),
-    m_neighbour(boost::shared_ptr<NeighbourFile>(new NeighbourFile(*other.m_neighbour))),
-    m_owner(boost::shared_ptr<OwnerFile>(new OwnerFile(*other.m_owner))),
-    m_points(boost::shared_ptr<PointsFile>(new PointsFile(*other.m_points)))
+  : m_boundary(boost::make_shared<BoundaryFile>(*other.m_boundary)),
+    m_faces(boost::make_shared<FacesFile>(*other.m_faces)),
+    m_neighbour(boost::make_shared<NeighbourFile>(*other.m_neighbour)),
+    m_owner(boost::make_shared<OwnerFile>(*other.m_owner)),
+    m_points(boost::make_shared<PointsFile>(*other.m_points))
 {
 
   #ifndef NDEBUG

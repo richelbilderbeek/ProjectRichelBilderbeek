@@ -8,6 +8,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/lexical_cast.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trace.h"
 #pragma GCC diagnostic pop
@@ -231,9 +232,14 @@ void ribi::xml::Test() noexcept
       typedef boost::shared_ptr<const std::string> ValueType;
       const TagType tag_name { "integers again" };
       std::map<KeyType,ValueType> m;
-      m.insert( std::make_pair(1,boost::shared_ptr<const std::string>(new std::string("one" )) ));
-      m.insert( std::make_pair(4,boost::shared_ptr<const std::string>(new std::string("four")) ));
-      m.insert( std::make_pair(9,boost::shared_ptr<const std::string>(new std::string("nine")) ));
+      m.insert(
+        std::make_pair(
+          1,
+          boost::make_shared<const std::string>("one" )
+        )
+      );
+      m.insert( std::make_pair(4,boost::make_shared<const std::string>("four")) );
+      m.insert( std::make_pair(9,boost::make_shared<const std::string>("nine")) );
 
       //Convert map to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
@@ -277,7 +283,7 @@ void ribi::xml::Test() noexcept
       const std::function<ValueType(const std::string&)>& str_to_value_function {
         [](const std::string& s)
         {
-          return boost::shared_ptr<const std::string>(new std::string(s));
+          return boost::make_shared<const std::string>(s);
         }
       };
       const std::pair<std::string,std::map<KeyType,ValueType>> p {
@@ -362,7 +368,7 @@ void ribi::xml::Test() noexcept
       typedef std::string TagType;
       typedef boost::shared_ptr<const std::string> ContentType;
       const TagType     tag_name { "name" };
-      const ContentType content  { boost::shared_ptr<const std::string>(new std::string("Kitty")) };
+      const ContentType content  { boost::make_shared<const std::string>("Kitty") };
 
       //Convert tag and content to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
@@ -382,7 +388,7 @@ void ribi::xml::Test() noexcept
         [](const std::string& s) { return s; }
       };
       const std::function<ContentType(const std::string&)> str_to_content_function {
-        [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
+        [](const std::string& s) { return boost::make_shared<const std::string>(s); }
       };
 
       //Check both conversion functions
@@ -410,7 +416,7 @@ void ribi::xml::Test() noexcept
       typedef int TagType;
       typedef boost::shared_ptr<const std::string> ContentType;
       const TagType     tag_name { 123 };
-      const ContentType content  { boost::shared_ptr<const std::string>(new std::string("one-two-three")) };
+      const ContentType content  { boost::make_shared<const std::string>("one-two-three") };
 
       //Convert tag and content to XML
       const std::function<std::string(const TagType&)> tag_to_str_function {
@@ -438,7 +444,7 @@ void ribi::xml::Test() noexcept
         }
       };
       const std::function<ContentType(const std::string&)> str_to_content_function {
-        [](const std::string& s) { return boost::shared_ptr<const std::string>(new std::string(s)); }
+        [](const std::string& s) { return boost::make_shared<const std::string>(s); }
       };
 
       //Check both conversion functions
