@@ -59,9 +59,9 @@ ribi::QtLedWidget::QtLedWidget(
       &ribi::QtLedWidget::OnResize,
       this));
 
-  this->GetWidget()->SetGeometry(Rect(0,0,100,100));
-  this->GetWidget()->GetLed()->SetColor(255,124,0);
-  this->GetWidget()->GetLed()->SetIntensity(0.99);
+  GetWidget()->SetGeometry(0,0,100,100);
+  GetWidget()->GetLed()->SetColor(255,124,0);
+  GetWidget()->GetLed()->SetIntensity(0.99);
 }
 
 ///Draw a Led from a Led
@@ -168,16 +168,17 @@ void ribi::QtLedWidget::DrawLed(
 {
   DrawLed(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetLed());
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
+    widget->GetLed()
+  );
 }
 
 std::string ribi::QtLedWidget::GetVersion() noexcept
 {
-  return "1.4";
+  return "1.5";
 }
 
 std::vector<std::string> ribi::QtLedWidget::GetVersionHistory() noexcept
@@ -187,17 +188,19 @@ std::vector<std::string> ribi::QtLedWidget::GetVersionHistory() noexcept
     "2011-04-11: Version 1.1: added About information",
     "2011-09-08: Version 1.2: removed redundant signals",
     "2012-07-07: Version 1.3: added resizeEvent",
-    "2012-08-26: Version 1.4: fixed bug in resizeEvent"
+    "2012-08-26: Version 1.4: fixed bug in resizeEvent",
+    "2014-03-28: Version 1.5: replaced custom Rect class by Boost.Geometry"
   };
 }
 
 void ribi::QtLedWidget::OnResize()
 {
   this->setGeometry(
-    this->GetWidget()->GetGeometry().GetX(),
-    this->GetWidget()->GetGeometry().GetY(),
-    this->GetWidget()->GetGeometry().GetWidth(),
-    this->GetWidget()->GetGeometry().GetHeight());
+    this->GetWidget()->GetLeft(),
+    this->GetWidget()->GetTop(),
+    this->GetWidget()->GetWidth(),
+    this->GetWidget()->GetHeight()
+  );
   this->repaint();
 }
 
@@ -210,12 +213,10 @@ void ribi::QtLedWidget::paintEvent(QPaintEvent *)
 void ribi::QtLedWidget::resizeEvent(QResizeEvent * )
 {
   m_widget->SetGeometry(
-    Rect(
-      0, //this->geometry().left(),
-      0, //this->geometry().top(),
-      this->geometry().width(),
-      this->geometry().height()
-    )
+    0, //this->geometry().left(),
+    0, //this->geometry().top(),
+    this->geometry().width(),
+    this->geometry().height()
   );
 }
 

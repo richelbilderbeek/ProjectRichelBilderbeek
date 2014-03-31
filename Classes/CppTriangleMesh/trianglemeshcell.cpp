@@ -116,9 +116,9 @@ void ribi::trim::Cell::Test() noexcept
     std::copy(std::begin(other_faces),std::end(other_faces),
       std::back_inserter(faces)
     );
-    std::sort(faces.begin(),faces.end());
+    std::sort(faces.begin(),faces.end(),Helper().OrderByIndex());
     TRACE(faces.size());
-    assert(std::is_sorted(faces.begin(),faces.end()));
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     assert(
       (
            (strategy == CreateVerticalFacesStrategy::one_face_per_square  && faces.size() == 10)
@@ -127,11 +127,11 @@ void ribi::trim::Cell::Test() noexcept
       && "One or two faces are in both Cells, and must be made unique"
     );
     assert(std::count(std::begin(faces),std::end(faces),nullptr) == 0);
-    assert(std::is_sorted(faces.begin(),faces.end()));
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     faces.erase(std::unique(std::begin(faces),std::end(faces)),faces.end());
-    assert(std::is_sorted(faces.begin(),faces.end()));
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     faces.erase(std::remove(std::begin(faces),std::end(faces),nullptr),faces.end()); //OBLIGATORY! std::unique creates nullptrs!
-    assert(std::is_sorted(faces.begin(),faces.end()));
+    assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
     if (!
       (
         (

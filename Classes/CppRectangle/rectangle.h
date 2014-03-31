@@ -21,6 +21,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #ifndef RECTANGLE_H
 #define RECTANGLE_H
 
+#ifdef REALLY_USE_RECTANGLE
+//Use, for example, this code instead:
+//
+//#include <boost/geometry/geometries/box.hpp>
+//#include <boost/geometry/geometries/point_xy.hpp>
+//
+//  typedef boost::geometry::model::d2::point_xy<double> Point;
+//  typedef boost::geometry::model::box<Point> Rect;
+
+
 #include <string>
 #include <vector>
 
@@ -152,3 +162,5 @@ bool operator!=(const Rect& lhs, const Rect& rhs) noexcept;
 } //~namespace ribi
 
 #endif // RECTANGLE_H
+
+#endif //#ifdef REALLY_USE_RECTANGLE

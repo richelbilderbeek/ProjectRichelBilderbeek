@@ -30,6 +30,7 @@
 #include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
+#include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshtemplate.h"
 #pragma GCC diagnostic pop
@@ -66,12 +67,13 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   //Read data from Triangle.exe output
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
-    const boost::shared_ptr<const ribi::trim::Template> t {
+    const boost::shared_ptr<const ribi::trim::Template> t(
       new ribi::trim::Template(
         filename_node,
         filename_ele
       )
-    };
+    );
+    assert(t);
 
     //Create cells from this template
     {
@@ -87,8 +89,11 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
           strategy
         )
       );
-
+      assert(c);
       cells = c->GetCells();
+      #ifndef NDEBUG
+      for (auto cell:cells) { assert(cell); }
+      #endif
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
@@ -122,7 +127,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       );
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       std::clog << "Number of strong faces: " << faces.size() << std::endl;
-      std::sort(faces.begin(),faces.end());
+      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);

@@ -24,6 +24,7 @@ struct Face
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
+  typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
@@ -122,6 +123,12 @@ struct Face
 bool operator==(const Face& lhs, const Face& rhs) noexcept;
 bool operator!=(const Face& lhs, const Face& rhs) noexcept;
 std::ostream& operator<<(std::ostream& os, const Face& f);
+
+bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<      Face>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Face>& lhs, const boost::shared_ptr<const Face>& rhs) = delete;
+
 
 } //~namespace trim
 } //~namespace ribi

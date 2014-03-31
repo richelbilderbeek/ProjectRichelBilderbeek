@@ -44,7 +44,8 @@ struct Formula
     :                             m_sign_a(sign_a), m_a(a),
       m_operation_b(operation_b), m_sign_b(sign_b), m_b(b),
       m_operation_c(operation_c), m_sign_c(sign_c), m_c(c),
-      m_operation_d(operation_d), m_sign_d(sign_d), m_d(d)
+      m_operation_d(operation_d), m_sign_d(sign_d), m_d(d),
+      m_value{}
   {
     m_value = (m_sign_a % 2 ? m_a : -m_a);
     switch (m_operation_b % 4)

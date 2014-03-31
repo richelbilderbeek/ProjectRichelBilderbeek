@@ -4,16 +4,16 @@ RESOURCES += \
     ../../Tools/ToolTestApproximator/ToolTestApproximator.qrc
 
 FORMS += \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.ui \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.ui \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatormenudialog.ui
+    ../../Tools/ToolTestApproximator/qttestapproximatormenudialog.ui \
+    ../../Tools/ToolTestApproximator/qttestapproximatorxymaindialog.ui \
+    ../../Tools/ToolTestApproximator/qttestapproximatorxyzmaindialog.ui
 
 SOURCES += \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.cpp \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.cpp \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatormenudialog.cpp
+    ../../Tools/ToolTestApproximator/qttestapproximatormenudialog.cpp \
+    ../../Tools/ToolTestApproximator/qttestapproximatorxymaindialog.cpp \
+    ../../Tools/ToolTestApproximator/qttestapproximatorxyzmaindialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatorxyzmaindialog.h \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatorxymaindialog.h \
-    ../../Tools/ToolTestApproximator/qttooltestapproximatormenudialog.h
+    ../../Tools/ToolTestApproximator/qttestapproximatormenudialog.h \
+    ../../Tools/ToolTestApproximator/qttestapproximatorxymaindialog.h \
+    ../../Tools/ToolTestApproximator/qttestapproximatorxyzmaindialog.h

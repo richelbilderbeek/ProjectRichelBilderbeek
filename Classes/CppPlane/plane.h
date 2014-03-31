@@ -73,16 +73,7 @@ struct Plane
     const Coordinat3D& p1, //= Coordinat3D(0.0,0.0,0.0),
     const Coordinat3D& p2, //= Coordinat3D(0.0,1.0,0.0),
     const Coordinat3D& p3  //= Coordinat3D(1.0,0.0,0.0)
-  ) noexcept
-  : m_plane_x(CreatePlaneX(p1,p2,p3)),
-    m_plane_y(CreatePlaneY(p1,p2,p3)),
-    m_plane_z(CreatePlaneZ(p1,p2,p3)),
-    m_points( {p1,p2,p3} )
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
+  ) noexcept;
 
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a Plane

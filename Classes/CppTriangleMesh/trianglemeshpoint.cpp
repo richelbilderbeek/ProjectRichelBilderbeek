@@ -51,11 +51,11 @@ ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcep
   assert(!std::isnan(boost::geometry::get<0>(*GetCoordinat())));
   assert(!std::isnan(boost::geometry::get<1>(*GetCoordinat())));
   assert(!CanGetZ() || !std::isnan(GetZ().value()));
-  return {
+  return Geometry().CreatePoint(
     boost::geometry::get<0>(*GetCoordinat()),
     boost::geometry::get<1>(*GetCoordinat()),
     CanGetZ() ? GetZ().value() : 0.0
-  };
+  );
 }
 
 bool ribi::trim::Point::CanGetZ() const noexcept
@@ -77,7 +77,12 @@ const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ()
 
 void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::length> z) const noexcept
 {
-  assert(!m_z&& "m_z can be set exactly once");
+  if (m_z)
+  {
+    assert(*m_z == z);
+    return;
+  }
+  //assert(!m_z&& "m_z can be set exactly once");
   boost::shared_ptr<boost::units::quantity<boost::units::si::length>> p {
     new boost::units::quantity<boost::units::si::length>(z)
   };

@@ -27,6 +27,7 @@ struct Helper
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
+  typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
   Helper();
 
@@ -50,6 +51,8 @@ struct Helper
   #ifdef USE_TRIANGLEMESHEDGE
   Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
   #endif
+
+  FaceSet CreateEmptyFaceSet() const noexcept;
 
   Coordinat3dSet ExtractCoordinats(const Face& face);
   std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<const Point>>& points);
@@ -178,6 +181,15 @@ struct Helper
 
   bool IsVertical(const Face& face) noexcept;
 
+  ///Order the points so that these are convex
+  void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+
+  std::function<bool(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)>
+    OrderByIndex() const noexcept;
+
+  std::function<bool(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs)>
+    OrderByX() const noexcept;
+
   std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>
     PointsToCoordinats3D(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
   ) const noexcept;
@@ -192,7 +204,9 @@ struct Helper
   ) const noexcept;
   #endif
 
+  std::string ToStr(const std::vector<boost::shared_ptr<const Point>>& p) const noexcept;
   std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
+
 
   private:
   #ifdef USE_TRIANGLEMESHEDGE

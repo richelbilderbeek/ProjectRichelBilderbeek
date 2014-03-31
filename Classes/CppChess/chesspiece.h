@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 
 #include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "chesscolor.h"
@@ -116,7 +117,9 @@ struct PieceBishop : public Piece
   private:
   PieceBishop(
     const Color color,
-    const boost::shared_ptr<const Square> square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
   PieceBishop(const PieceBishop&) = delete;
   PieceBishop& operator=(const PieceBishop&) = delete;
 
@@ -127,6 +130,15 @@ struct PieceBishop : public Piece
 
   friend void boost::checked_delete<>(PieceBishop *);
   friend struct PieceFactory;
+
+  //Cannot get these to compile
+  //friend boost::shared_ptr<      PieceBishop> boost::make_shared<      PieceBishop>(const Color color,const boost::shared_ptr<const Square> square);
+  //friend boost::shared_ptr<const PieceBishop> boost::make_shared<const PieceBishop>(const Color color,const boost::shared_ptr<const Square> square);
+
+  //Keep these for possible `reference
+  //friend class boost::detail::sp_ms_deleter<PieceBishop>;
+  //friend class boost::detail::sp_ms_deleter<const PieceBishop>;
+
 };
 
 struct PieceKing : public Piece
@@ -155,7 +167,9 @@ struct PieceKing : public Piece
   private:
   PieceKing(
     const Color color,
-    const boost::shared_ptr<const Square> square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
   boost::shared_ptr<Piece> Clone() const;
@@ -196,7 +210,9 @@ struct PieceKnight : public Piece
   private:
   PieceKnight(
     const Color color,
-    const boost::shared_ptr<const Square> square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
   boost::shared_ptr<Piece> Clone() const;
@@ -228,7 +244,9 @@ struct PiecePawn : public Piece
   private:
   PiecePawn(
     const Color color,
-    const boost::shared_ptr<const Square> square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
   boost::shared_ptr<Piece> Clone() const;
@@ -262,7 +280,9 @@ struct PieceQueen : public Piece
 
   PieceQueen(
     const Color color,
-    const boost::shared_ptr<const Square> square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
   boost::shared_ptr<Piece> Clone() const;
@@ -295,7 +315,9 @@ struct PieceRook : public Piece
   private:
   PieceRook(
     const Color color,
-    const boost::shared_ptr<const Square> square);
+    const boost::shared_ptr<const Square> square,
+    const PieceFactory& lock
+  );
 
   ///Clone this Piece
   boost::shared_ptr<Piece> Clone() const;

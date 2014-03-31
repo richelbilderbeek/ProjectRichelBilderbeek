@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "chessfwd.h"
+#include "chessplayer.h"
 
 namespace ribi {
 namespace Chess {

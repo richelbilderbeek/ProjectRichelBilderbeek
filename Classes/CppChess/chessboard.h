@@ -9,11 +9,13 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/logic/tribool.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
 #include "chesscolor.h"
 #include "chessmove.h"
+#include "chesscastling.h"
 //#include "chesspiece.h"
 #pragma GCC diagnostic pop
 
@@ -142,8 +144,15 @@ struct Board
 
   //friend bool operator==(const Board& lhs, const Board& rhs);
   friend class BoardFactory;
+  //friend class boost::shared_ptr<Board>;
+  friend boost::shared_ptr<Board> boost::make_shared<Board>(const Pieces&);
+
+  friend void boost::checked_delete<>(      Board *);
+  friend void boost::checked_delete<>(const Board *);
+  friend class boost::detail::sp_ms_deleter<Board>;
+  friend class boost::detail::sp_ms_deleter<const Board>;
+
   friend std::ostream& operator<<(std::ostream& os, const Board& board);
-  friend void boost::checked_delete<>(Board *);
 };
 
 bool AreEqual(const Board::ConstPieces& lhs,const Board::ConstPieces& rhs);

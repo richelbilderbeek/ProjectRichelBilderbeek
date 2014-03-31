@@ -24,9 +24,10 @@ boost::shared_ptr<ribi::trim::CellsCreator> ribi::trim::CellsCreatorFactory::Cre
   const CreateVerticalFacesStrategy strategy
 ) const noexcept
 {
-  const boost::shared_ptr<CellsCreator> creator {
+  assert(t);
+  const boost::shared_ptr<CellsCreator> creator(
     new CellsCreator(t,n_layers,layer_height,strategy,*this)
-  };
+  );
   assert(creator);
   return creator;
 }

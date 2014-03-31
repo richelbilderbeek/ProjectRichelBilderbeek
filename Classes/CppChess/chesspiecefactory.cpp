@@ -4,22 +4,24 @@
 
 #include <stdexcept>
 
+#include <boost/make_shared.hpp>
+
 #include "chessmove.h"
 #include "chessmovefactory.h"
 #include "chesspiece.h"
 #include "chesssquarefactory.h"
 #pragma GCC diagnostic pop
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   const char namechar,
   const Color color,
-  const boost::shared_ptr<const Square> square) noexcept
+  const boost::shared_ptr<const Square> square) const noexcept
 {
   assert(square);
   boost::shared_ptr<Piece> p;
   switch(namechar)
   {
-    case 'B': p.reset(new Chess::PieceBishop(color,square)); break;
+    case 'B': return CreateBishop(color,square);
     case 'K': p.reset(new Chess::PieceKing(color,square)); break;
     case 'N': p.reset(new Chess::PieceKnight(color,square)); break;
     case 'Q': p.reset(new Chess::PieceQueen(color,square)); break;
@@ -31,10 +33,11 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   return p;
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   const char namechar,
   const Color color,
-  const std::string& square_str)
+  const std::string& square_str
+) const noexcept
 {
   const boost::shared_ptr<const Square> square {
     SquareFactory::Create(square_str)
@@ -44,9 +47,26 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   return Create(namechar,color,square);
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::string& s)
+boost::shared_ptr<ribi::Chess::PieceBishop> ribi::Chess::PieceFactory::CreateBishop(
+  const Color color,
+  const boost::shared_ptr<const Square> square
+) const noexcept
 {
-  if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory::CreateFromMove exception: move must not be empty");
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PieceBishop> p(
+    new PieceBishop(color,square)
+  );
+  assert(p);
+  return p;
+}
+
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
+  const Color color,
+  const std::string& s
+) const noexcept
+{
+  if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory().CreateFromMove exception: move must not be empty");
   const boost::shared_ptr<Move> move {
     MoveFactory::Create(s)
   };
@@ -59,11 +79,11 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFro
   const char c = s[0];
   switch(c)
   {
-    case 'B': piece.reset(new Chess::PieceBishop(Chess::Color::indeterminate,square)); break;
-    case 'K': piece.reset(new Chess::PieceKing(Chess::Color::indeterminate,square)); break;
-    case 'N': piece.reset(new Chess::PieceKnight(Chess::Color::indeterminate,square)); break;
-    case 'Q': piece.reset(new Chess::PieceQueen(Chess::Color::indeterminate,square)); break;
-    case 'R': piece.reset(new Chess::PieceRook(Chess::Color::indeterminate,square)); break;
+    case 'B': piece.reset(new Chess::PieceBishop(color,square)); break;
+    case 'K': piece.reset(new Chess::PieceKing(color,square)); break;
+    case 'N': piece.reset(new Chess::PieceKnight(color,square)); break;
+    case 'Q': piece.reset(new Chess::PieceQueen(color,square)); break;
+    case 'R': piece.reset(new Chess::PieceRook(color,square)); break;
     case 'a':
     case 'b':
     case 'c':
@@ -72,14 +92,15 @@ const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFro
     case 'f':
     case 'g':
     case 'h':
-      piece.reset(new Chess::PiecePawn(Chess::Color::indeterminate,square)); break;
+      piece.reset(new Chess::PiecePawn(color,square)); break;
   }
   return piece;
 }
 
-boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromotion(const std::string& s)
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromotion(const std::string& s
+) const noexcept
 {
-  if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory::CreateFromPromotion exception: move must not be empty");
+  if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory().CreateFromPromotion exception: move must not be empty");
 
   boost::shared_ptr<Chess::Piece> p;
 
@@ -96,18 +117,19 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromo
   return p;
 }
 
-const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::DeepCopy(
-  const boost::shared_ptr<const Piece> s) noexcept
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::DeepCopy(
+  const boost::shared_ptr<const Piece> original_piece
+) const noexcept
 {
-  const boost::shared_ptr<ribi::Chess::Piece> t {
-    PieceFactory::Create(
-      s->GetNameChar(),
-      s->GetColor(),
-      s->GetSquare()
+  const auto cloned_piece(
+    PieceFactory().Create(
+      original_piece->GetNameChar(),
+      original_piece->GetColor(),
+      original_piece->GetSquare()
     )
-  };
-  assert(t);
-  assert(*s == *t && "Must be a copy");
-  assert(s != t && "Must be a deep copy");
-  return t;
+  );
+  assert(cloned_piece);
+  assert(*original_piece == *cloned_piece && "Must be a copy");
+  assert(original_piece != cloned_piece && "Must be a deep copy");
+  return cloned_piece;
 }

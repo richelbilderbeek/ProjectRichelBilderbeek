@@ -99,7 +99,6 @@ ribi::About ribi::ruco::MenuDialog::GetAbout() const noexcept
   a.AddLibrary("Dial version: " + Dial::GetVersion());
   a.AddLibrary("DialWidget version: " + ::ribi::DialWidget::GetVersion());
   a.AddLibrary("DrawCanvas version: " + DrawCanvas::GetVersion());
-  a.AddLibrary("Rectangle version: " + Rect::GetVersion());
   a.AddLibrary("RubiksClock version: " + ruco::Clock::GetVersion());
   a.AddLibrary("RubiksClockDial version: " + ruco::ClockDial::GetVersion());
   a.AddLibrary("RubiksClockDialWidget version: " + ruco::ClockDialWidget::GetVersion());

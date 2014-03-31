@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "toolencrangermenudialog.h"
+#include "encrangermenudialog.h"
 
 #include <cassert>
 #include <iostream>
@@ -29,7 +29,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "loopreader.h"
 #include "encranger.h"
-#include "toolencrangermaindialog.h"
+#include "encrangermaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 

@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#include <cassert>
 #include <functional>
 #include <string>
 #include <tuple>
@@ -38,10 +39,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 namespace ribi {
 
+///Goemetry functions, working with Boost.Geometry
 struct Geometry
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef boost::geometry::model::polygon<boost::geometry::model::d2::point_xy<double>> Polygon;
+  typedef boost::geometry::model::box<Coordinat2D> Rect;
 
   Geometry();
 
@@ -83,6 +87,19 @@ struct Geometry
 
   std::vector<Coordinat2D> Coordinats2DToBoostGeometryPointsXy(
     const std::vector<Coordinat2D>& v
+  ) const noexcept;
+
+  Coordinat3D CreatePoint(
+    const double x,
+    const double y,
+    const double z
+  ) const noexcept;
+
+  Rect CreateRect(
+    const double left,
+    const double top,
+    const double width,
+    const double height
   ) const noexcept;
 
   ///Functor for X-Y-Z ordering
@@ -131,12 +148,92 @@ struct Geometry
 
   double GetAngle(const Coordinat2D& p) const noexcept;
 
+  template <class T>
+  T GetBottom(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
+  {
+    using boost::geometry::get;
+    using boost::geometry::min_corner;
+    using boost::geometry::max_corner;
+    const auto bottom(get<max_corner,1>(r));
+    #ifndef NDEBUG
+    const auto top   (get<min_corner,1>(r));
+    assert(top <= bottom);
+    #endif
+    return bottom;
+  }
+
   //From www.richelbilderbeek.nl/CppGetDistance.htm
   double GetDistance(const double dx, const double dy) const noexcept;
+
+  template <class T>
+  T GetHeight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
+  {
+    using boost::geometry::get;
+    using boost::geometry::min_corner;
+    using boost::geometry::max_corner;
+    const auto top   (get<min_corner,1>(r));
+    const auto bottom(get<max_corner,1>(r));
+    assert(top <= bottom);
+    return bottom - top;
+  }
+
+
+  template <class T>
+  T GetLeft(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
+  {
+    using boost::geometry::get;
+    using boost::geometry::min_corner;
+    using boost::geometry::max_corner;
+    const auto left (get<min_corner,0>(r));
+    #ifndef NDEBUG
+    const auto right(get<max_corner,0>(r));
+    assert(left <= right);
+    #endif
+    return left;
+  }
+
+  template <class T>
+  T GetRight(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
+  {
+    using boost::geometry::get;
+    using boost::geometry::min_corner;
+    using boost::geometry::max_corner;
+    const auto right(get<max_corner,0>(r));
+    #ifndef NDEBUG
+    const auto left (get<min_corner,0>(r));
+    assert(left <= right);
+    #endif
+    return right;
+  }
+
+  template <class T>
+  T GetTop(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
+  {
+    using boost::geometry::get;
+    using boost::geometry::min_corner;
+    using boost::geometry::max_corner;
+    const auto top   (get<min_corner,1>(r));
+    #ifndef NDEBUG
+    const auto bottom(get<max_corner,1>(r));
+    assert(top <= bottom);
+    #endif
+    return top;
+  }
 
   std::string GetVersion() const noexcept;
   std::vector<std::string> GetVersionHistory() const noexcept;
 
+  template <class T>
+  T GetWidth(const boost::geometry::model::box<boost::geometry::model::d2::point_xy<T>>& r) const noexcept
+  {
+    using boost::geometry::get;
+    using boost::geometry::min_corner;
+    using boost::geometry::max_corner;
+    const auto left (get<min_corner,0>(r));
+    const auto right(get<max_corner,0>(r));
+    assert(left <= right);
+    return right - left;
+  }
   ///Are two angles ordered clockwise
   ///12 o'clock is 0.0 * pi
   /// 3 o'clock is 0.5 * pi

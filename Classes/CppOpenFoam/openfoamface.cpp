@@ -10,13 +10,17 @@
 ribi::foam::Face::Face(
   const boost::shared_ptr<Cell> neighbour,
   const boost::shared_ptr<Cell> owner,
-  const std::vector<boost::shared_ptr<Coordinat3D> >& points
+  const std::vector<boost::shared_ptr<Coordinat3D>>& points
 )
   : m_neighbour(neighbour),
     m_owner(owner),
     m_points(points)
 {
-
+  #ifndef NDEBUG
+  assert(!m_neighbour);
+  assert(!m_owner);
+  for (auto p: m_points) { assert(p); }
+  #endif
 }
 
 void ribi::foam::Face::AssignNeighbour(const boost::shared_ptr<ribi::foam::Cell> neighbour) noexcept
@@ -69,12 +73,19 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::foa
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
 
-  Coordinat3D d;
+  Coordinat3D d(0.0,0.0,0.0);
   for (boost::shared_ptr<const Coordinat3D> c: face.GetPoints())
   {
-    d += *c;
+    assert(c);
+    d.set<0>(d.get<0>() + c->get<0>());
+    d.set<1>(d.get<1>() + c->get<1>());
+    d.set<2>(d.get<2>() + c->get<2>());
+    //d += (*c);
   }
-  d /= static_cast<double>(face.GetPoints().size());
+  //d /= static_cast<double>(face.GetPoints().size());
+  d.set<0>(d.get<0>() / static_cast<double>(face.GetPoints().size()));
+  d.set<1>(d.get<1>() / static_cast<double>(face.GetPoints().size()));
+  d.set<2>(d.get<2>() / static_cast<double>(face.GetPoints().size()));
   return d;
 }
 

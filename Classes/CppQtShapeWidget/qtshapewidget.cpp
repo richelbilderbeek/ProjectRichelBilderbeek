@@ -68,11 +68,12 @@ void ribi::QtShapeWidget::DrawShape(
 {
   DrawShape(
     painter,
-    widget->GetGeometry().GetX(),
-    widget->GetGeometry().GetY(),
-    widget->GetGeometry().GetWidth(),
-    widget->GetGeometry().GetHeight(),
-    widget->GetShape());
+    widget->GetLeft(),
+    widget->GetTop(),
+    widget->GetWidth(),
+    widget->GetHeight(),
+    widget->GetShape()
+  );
 }
 
 void ribi::QtShapeWidget::DrawShape(
@@ -135,15 +136,16 @@ void ribi::QtShapeWidget::DrawShape(
 
 std::string ribi::QtShapeWidget::GetVersion() noexcept
 {
-  return "2.0";
+  return "2.1";
 }
 
 std::vector<std::string> ribi::QtShapeWidget::GetVersionHistory() noexcept
 {
-  std::vector<std::string> v;
-  v.push_back("2011-07-13: Version 1.0: initial version");
-  v.push_back("2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget");
-  return v;
+  return {
+    "2011-07-13: Version 1.0: initial version",
+    "2011-08-08: Version 2.0: conformized architecture to MysteryMachineWidget",
+    "2014-03-28: Version 2.1: replaced custom Rect class by Boost.Geometry"
+  };
 }
 
 void ribi::QtShapeWidget::paintEvent(QPaintEvent *)
@@ -152,6 +154,7 @@ void ribi::QtShapeWidget::paintEvent(QPaintEvent *)
   DrawShape(
     painter,
     0,0,width(),height(),
-    this->m_widget->GetShape());
+    this->m_widget->GetShape()
+  );
 }
 

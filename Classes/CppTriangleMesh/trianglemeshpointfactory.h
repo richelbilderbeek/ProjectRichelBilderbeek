@@ -41,9 +41,9 @@ struct PointFactory
     const boost::shared_ptr<const Coordinat2D> coordinat
   ) const noexcept;
 
-  boost::shared_ptr<Point> CreateFrom3D(
-    const boost::shared_ptr<const Coordinat3D> coordinat
-  ) const noexcept;
+  //boost::shared_ptr<Point> CreateFrom3D(
+  //  const boost::shared_ptr<const Coordinat3D> coordinat
+  //) const noexcept;
 
 
   //Create points that should fail to construct a Face from

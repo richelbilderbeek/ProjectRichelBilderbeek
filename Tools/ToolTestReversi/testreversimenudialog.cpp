@@ -10,7 +10,7 @@
 
 #include <boost/lexical_cast.hpp>
 
-#include "reversi.h"
+#include "reversiboard.h"
 #include "testreversimaindialog.h"
 #include "fileio.h"
 #include "trace.h"
@@ -36,7 +36,7 @@ int ribi::TestReversiMenuDialog::ExecuteSpecific(const std::vector<std::string>&
   return 0;
 }
 
-const ribi::About ribi::TestReversiMenuDialog::GetAbout() const noexcept
+ribi::About ribi::TestReversiMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -47,30 +47,31 @@ const ribi::About ribi::TestReversiMenuDialog::GetAbout() const noexcept
     "http://www.richelbilderbeek.nl/ToolTestReversi.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Reversi version: " + Reversi::GetVersion());
+  a.AddLibrary("reversi::Board version: " + reversi::Board::GetVersion());
   return a;
 }
 
-const boost::shared_ptr<const ribi::Program> ribi::TestReversiMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::TestReversiMenuDialog::GetProgram() const noexcept
 {
   const boost::shared_ptr<const ribi::Program> p(new ProgramTestReversi);
   assert(p);
   return p;
 }
 
-const std::string ribi::TestReversiMenuDialog::GetVersion() const noexcept
+std::string ribi::TestReversiMenuDialog::GetVersion() const noexcept
 {
-  return "5.2";
+  return "1.1";
 }
 
-const std::vector<std::string> ribi::TestReversiMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::TestReversiMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    //"2006-12-13: Version 1.0: initial C++ Builder version, called 'TestReversi'",
+    "2006-12-13: Version 1.0: initial C++ Builder version, called 'TestReversi'",
+    "2013-xx-xx: Version 1.1: start of port to Qt Creator",
   };
 }
 
-const ribi::Help ribi::TestReversiMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::TestReversiMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     "TestReversi",

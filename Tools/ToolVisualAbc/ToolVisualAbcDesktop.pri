@@ -1,19 +1,19 @@
 include(../../Tools/ToolVisualAbc/ToolVisualAbcConsole.pri)
 
 FORMS += \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcmenudialog.ui \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcmaindialog.ui \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcchordsdialog.ui
+    ../../Tools/ToolVisualAbc/qtvisualabcchordsdialog.ui \
+    ../../Tools/ToolVisualAbc/qtvisualabcmaindialog.ui \
+    ../../Tools/ToolVisualAbc/qtvisualabcmenudialog.ui
 
 RESOURCES += \
     ../../Tools/ToolVisualAbc/ToolVisualAbc.qrc
 
 SOURCES += \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcmenudialog.cpp \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcmaindialog.cpp \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcchordsdialog.cpp
+    ../../Tools/ToolVisualAbc/qtvisualabcchordsdialog.cpp \
+    ../../Tools/ToolVisualAbc/qtvisualabcmaindialog.cpp \
+    ../../Tools/ToolVisualAbc/qtvisualabcmenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcmenudialog.h \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcmaindialog.h \
-    ../../Tools/ToolVisualAbc/qttoolvisualabcchordsdialog.h
+    ../../Tools/ToolVisualAbc/qtvisualabcchordsdialog.h \
+    ../../Tools/ToolVisualAbc/qtvisualabcmaindialog.h \
+    ../../Tools/ToolVisualAbc/qtvisualabcmenudialog.h

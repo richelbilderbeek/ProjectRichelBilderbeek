@@ -12,6 +12,7 @@
 #include "chesssquare.h"
 #include "chesssquarefactory.h"
 #include "chesssquareselector.h"
+#include "geometry.h"
 #include "trace.h"
 
 ribi::Chess::ChessWidget::ChessWidget(const Rect& geometry)
@@ -43,8 +44,8 @@ void ribi::Chess::ChessWidget::ClickPixel(const int x,const int y)
   {
     const boost::shared_ptr<Square> square {
       SquareFactory::Create(
-        File(8 * x / this->GetGeometry().GetWidth()),
-        Rank(8 * y / this->GetGeometry().GetHeight())
+        File(8 * x / Geometry().GetWidth( GetGeometry())),
+        Rank(8 * y / Geometry().GetHeight(GetGeometry()))
       )
     };
     assert(square);
@@ -101,7 +102,7 @@ void ribi::Chess::ChessWidget::Test() noexcept
     {
       {
         boost::shared_ptr<Widget > w(new Widget);
-        w->SetGeometry(Rect(0,0,100,100));
+        w->SetGeometry(Geometry().CreateRect(0.0,0.0,100.0,100.0));
       }
       //Nothing to test
     }

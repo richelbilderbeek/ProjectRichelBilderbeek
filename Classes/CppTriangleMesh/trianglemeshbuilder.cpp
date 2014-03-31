@@ -22,6 +22,7 @@
 #include "openfoamfilenames.h"
 #include "openfoampointindex.h"
 #include "php.h"
+#include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
 #include "trace.h"
@@ -525,12 +526,12 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::TriangleMeshBuilder
   std::vector<boost::shared_ptr<Face>> v;
   for (const boost::shared_ptr<Cell>& cell: cells)
   {
-    const std::vector<boost::shared_ptr<Face>> w { cell->GetFaces() };
+    const auto w(cell->GetFaces());
     std::copy(w.begin(),w.end(),std::back_inserter(v));
   }
   TRACE("n_face, non-unique:");
   TRACE(v.size());
-  std::sort(v.begin(),v.end());
+  std::sort(v.begin(),v.end(),Helper().OrderByIndex());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);
@@ -557,7 +558,7 @@ std::vector<boost::shared_ptr<ribi::trim::Point>> ribi::trim::TriangleMeshBuilde
     }
   }
 
-  std::sort(v.begin(),v.end());
+  std::sort(v.begin(),v.end(),Helper().OrderByX());
   const auto new_end = std::unique(v.begin(),v.end());
   v.erase(new_end,v.end());
   assert(std::count(v.begin(),v.end(),nullptr) == 0);

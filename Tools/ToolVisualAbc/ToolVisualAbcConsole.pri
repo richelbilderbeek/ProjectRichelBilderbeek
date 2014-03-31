@@ -2,16 +2,16 @@ INCLUDEPATH += \
     ../../Tools/ToolVisualAbc
 
 SOURCES += \
-    ../../Tools/ToolVisualAbc/toolvisualabcmenudialog.cpp \
-    ../../Tools/ToolVisualAbc/toolvisualabcmaindialog.cpp \
-    ../../Tools/ToolVisualAbc/toolvisualabcchords.cpp \
-    ../../Tools/ToolVisualAbc/toolvisualabccheckprerequisites.cpp
+    ../../Tools/ToolVisualAbc/visualabccheckprerequisites.cpp \
+    ../../Tools/ToolVisualAbc/visualabcmenudialog.cpp \
+    ../../Tools/ToolVisualAbc/visualabcmaindialog.cpp \
+    ../../Tools/ToolVisualAbc/visualabcchords.cpp
 
 HEADERS += \
-    ../../Tools/ToolVisualAbc/toolvisualabcmenudialog.h \
-    ../../Tools/ToolVisualAbc/toolvisualabcmaindialog.h \
-    ../../Tools/ToolVisualAbc/toolvisualabcchords.h \
-    ../../Tools/ToolVisualAbc/toolvisualabccheckprerequisites.h
+    ../../Tools/ToolVisualAbc/visualabccheckprerequisites.h \
+    ../../Tools/ToolVisualAbc/visualabcchords.h \
+    ../../Tools/ToolVisualAbc/visualabcmaindialog.h \
+    ../../Tools/ToolVisualAbc/visualabcmenudialog.h
 
 OTHER_FILES += \
     ../../Tools/ToolVisualAbc/Licence.txt

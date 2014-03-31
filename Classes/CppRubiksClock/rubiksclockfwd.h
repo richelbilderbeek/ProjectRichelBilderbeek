@@ -4,7 +4,6 @@
 namespace ribi {
 
 struct DrawCanvas;
-struct Rect;
 struct TextCanvas;
 struct TextCanvas;
 struct ToggleButton;

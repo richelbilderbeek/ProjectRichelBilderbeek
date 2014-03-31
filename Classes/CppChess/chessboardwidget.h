@@ -7,6 +7,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
+#include "chessplayer.h"
 #include "chesswidget.h"
 #pragma GCC diagnostic pop
 
@@ -56,6 +57,8 @@ struct BoardWidget : public Chess::ChessWidget
   Player m_player;
 
   friend void boost::checked_delete<>(BoardWidget* x);
+  friend class boost::detail::sp_ms_deleter<      BoardWidget>;
+  friend class boost::detail::sp_ms_deleter<const BoardWidget>;
 };
 
 } //~namespace Chess

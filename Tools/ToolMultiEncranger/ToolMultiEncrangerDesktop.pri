@@ -1,16 +1,16 @@
 include(../../Tools/ToolMultiEncranger/ToolMultiEncrangerConsole.pri)
 
 SOURCES += \
-    ../../Tools/ToolMultiEncranger/qttoolmultiencrangermaindialog.cpp \
-    ../../Tools/ToolMultiEncranger/qttoolmultiencrangermenudialog.cpp
+    ../../Tools/ToolMultiEncranger/qtmultiencrangermaindialog.cpp \
+    ../../Tools/ToolMultiEncranger/qtmultiencrangermenudialog.cpp
 
 HEADERS += \
-    ../../Tools/ToolMultiEncranger/qttoolmultiencrangermaindialog.h \
-    ../../Tools/ToolMultiEncranger/qttoolmultiencrangermenudialog.h
+    ../../Tools/ToolMultiEncranger/qtmultiencrangermaindialog.h \
+    ../../Tools/ToolMultiEncranger/qtmultiencrangermenudialog.h
 
 FORMS    += \
-    ../../Tools/ToolMultiEncranger/qttoolmultiencrangermaindialog.ui \
-    ../../Tools/ToolMultiEncranger/qttoolmultiencrangermenudialog.ui
+    ../../Tools/ToolMultiEncranger/qtmultiencrangermaindialog.ui \
+    ../../Tools/ToolMultiEncranger/qtmultiencrangermenudialog.ui
 
 RESOURCES += \
     ../../Tools/ToolMultiEncranger/ToolMultiEncranger.qrc

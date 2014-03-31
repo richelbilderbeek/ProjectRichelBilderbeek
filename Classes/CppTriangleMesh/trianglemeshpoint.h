@@ -13,7 +13,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/length.hpp>
-//
+#include <boost/make_shared.hpp>
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
 
@@ -52,7 +52,10 @@ struct Point
   Point(const Point&) = delete;
   Point& operator=(const Point&) = delete;
   ~Point() noexcept {}
-  friend void boost::checked_delete<>(Point* x);
+  friend void boost::checked_delete<>(      Point* x);
+  friend void boost::checked_delete<>(const Point* x);
+  friend class boost::detail::sp_ms_deleter<      Point>;
+  friend class boost::detail::sp_ms_deleter<const Point>;
 
   friend class PointFactory;
   Point(
@@ -103,6 +106,12 @@ struct Point
 
 bool operator==(const Point& lhs, const Point& rhs);
 bool operator!=(const Point& lhs, const Point& rhs);
+
+bool operator<(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<      Point>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Point>& lhs, const boost::shared_ptr<      Point>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Point>& lhs, const boost::shared_ptr<const Point>& rhs) = delete;
+
 std::ostream& operator<<(std::ostream& os, const Point& n);
 
 } //~namespace trim

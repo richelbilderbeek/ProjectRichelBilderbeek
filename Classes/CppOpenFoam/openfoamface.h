@@ -48,7 +48,6 @@ struct Face
 
         std::vector<boost::shared_ptr<const Coordinat3D> > GetPoints() const noexcept;
   const std::vector<boost::shared_ptr<      Coordinat3D> >&GetPoints()       noexcept { return m_points; }
-
   private:
   ///If this Face has no Neighbour, this is nullptr
   boost::shared_ptr<Cell> m_neighbour;
@@ -57,7 +56,7 @@ struct Face
   boost::shared_ptr<Cell> m_owner;
 
   ///The points/vertices/coordinats this face consists of
-  const std::vector<boost::shared_ptr<Coordinat3D> > m_points;
+  const std::vector<boost::shared_ptr<Coordinat3D>> m_points;
 
   friend std::ostream& operator<<(std::ostream& os, const Face& face) noexcept;
 };

@@ -6,12 +6,13 @@
 #include <boost/math/constants/constants.hpp>
 
 #include "Shiny.h"
-#include "testtrianglemeshmaindialog.h"
 
 #include "fileio.h"
-#include "trianglefile.h"
-#include "trace.h"
+#include "geometry.h"
 #include "plane.h"
+#include "testtrianglemeshmaindialog.h"
+#include "trace.h"
+#include "trianglefile.h"
 #pragma GCC diagnostic pop
 
 
@@ -20,7 +21,11 @@ int main(int, char* argv[])
 
   START_TRACE();
   PROFILE_FUNC();
-  ribi::Plane( {0.0,0.0,0.0},{0.0,1.0,0.0},{1.0,0.0,0.0} );
+  ribi::Plane(
+    ribi::Geometry().CreatePoint(0.0,0.0,0.0),
+    ribi::Geometry().CreatePoint(0.0,1.0,0.0),
+    ribi::Geometry().CreatePoint(1.0,0.0,0.0)
+  );
 
   const ::ribi::trim::CreateVerticalFacesStrategy strategy {
     ::ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
@@ -30,7 +35,7 @@ int main(int, char* argv[])
   try
   {
     const double pi { boost::math::constants::pi<double>() };
-    const bool show_mesh { true };
+    const bool show_mesh { false };
     const std::string renumberMesh_command(
       std::string(
         R"(C:\cfd\blueCFD-SingleCore-2.1\OpenFOAM-2.1\etc\batchrc.bat )")
