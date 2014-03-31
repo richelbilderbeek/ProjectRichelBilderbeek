@@ -13,33 +13,24 @@ Fork the GitHub of richelbilderbeek in your own GitHub at the GitHub website.
 
 Clone your fork:
 
-<code>
+```
 git clone https://github.com/your_name/ProjectRichelBilderbeek.git
-</code>
+```
 
 Assign the name 'upstream' to the integration GitHub:
 
-<code>
+```
+cd ProjectRichelBilderbeek
 git remote add upstream https://github.com/richelbilderbeek/ProjectRichelBilderbeek.git
-</code>
+```
 
 ##Adding changes
 
-<code>
-git add .
-</code>
-
-<code>
-git add --all
-</code>
-
-<code>
+```
+git add --all :/
 git commit -m "your description of the commit here"
-</code>
-
-<code>
 git push origin develop
-</code>
+```
 
 If you want the commit to be added to the intergration GitHub, submit a Pull Request from your own GitHub's page
 
@@ -47,12 +38,12 @@ If you want the commit to be added to the intergration GitHub, submit a Pull Req
 
 To pull your own code:
 
-<code>
+```
 git pull origin develop
-</code>
+```
 
 To update with the integration GitHub:
 
-<code>
+```
 git pull upstream develop
-</code>
+```
