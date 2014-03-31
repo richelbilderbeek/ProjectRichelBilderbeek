@@ -404,6 +404,7 @@ void ribi::PlaneZ::Test() noexcept
 
 std::string ribi::PlaneZ::ToFunction() const
 {
+  assert(m_coefficients.size() == 4);
   const double a = m_coefficients[0];
   const double b = m_coefficients[1];
   const double c = m_coefficients[2];
@@ -412,9 +413,10 @@ std::string ribi::PlaneZ::ToFunction() const
   // z = -A/C.x - B/C.y + D/C
   std::stringstream s;
   s
-    << "z=(" << (-a/c) << "*x" << ")"
+    << "z=("  << (-a/c) << "*x" << ")"
     << " + (" << (-b/c) << "*y" << ")"
-    << " + " << (d/c) << "";
-  return s.str();
+    << " + "  << ( d/c);
+  const std::string t = s.str();
+  return t;
 }
 

@@ -548,10 +548,10 @@ void ribi::trim::Helper::MakeConvex(
 {
   #ifndef NDEBUG
   const bool verbose = true;
-  if (verbose) { TRACE_FUNC(); }
+  //if (verbose) { TRACE_FUNC(); }
   for (auto p: v) { assert(p); }
   assert(!v.empty());
-
+  assert(v.size() == 4);
   #endif
 
   if (Helper().IsConvex(v)) return;
@@ -559,6 +559,9 @@ void ribi::trim::Helper::MakeConvex(
   #ifndef NDEBUG
   static int cnt = 0;
   cnt = 0;
+
+  static int call_cnt = -1;
+  ++call_cnt;
   #endif
 
   std::sort(v.begin(),v.end(),Helper().OrderByX());
@@ -574,7 +577,9 @@ void ribi::trim::Helper::MakeConvex(
     #ifndef NDEBUG
     if (verbose)
     {
+      #ifndef FIX_ISSUE_168
       TRACE(ToStr(AddConst(v)));
+      #endif //#ifndef FIX_ISSUE_168
       ++cnt;
       //assert(cnt != (4 * 3 * 2 * 1) + 2);
       if (cnt == 26) break;
@@ -588,7 +593,26 @@ void ribi::trim::Helper::MakeConvex(
   if(!Helper().IsConvex(v))
   {
     TRACE("ERROR");
+    TRACE(call_cnt);
+    TRACE("TRY AGAIN");
+    std::sort(v.begin(),v.end(),Helper().OrderByX());
+    for (int i=0; i!=26; ++i)
+    {
+      std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
+      std::stringstream s;
+      assert(v.size() == 4);
+      s << Helper().IsConvex(v) << ": "
+        << Geometry().ToStr(v[0]->GetCoordinat3D()) << "->"<< v[0]->GetIndex() << ","
+        << Geometry().ToStr(v[1]->GetCoordinat3D()) << "->"<< v[1]->GetIndex() << ","
+        << Geometry().ToStr(v[2]->GetCoordinat3D()) << "->"<< v[2]->GetIndex() << ","
+        << Geometry().ToStr(v[3]->GetCoordinat3D()) << "->"<< v[3]->GetIndex()
+      ;
+      TRACE(s.str());
+    }
+    //assert(!"BREAK");
+
     for (auto p: v) { TRACE(p); TRACE(*p); }
+
     #ifdef FIX_ISSUE_168
     return; //TODO: FIX THIS BUG
     #endif //ifdef FIX_ISSUE_168
@@ -991,13 +1015,16 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& rhs
 ) noexcept
 {
-  typedef std::remove_const<std::remove_reference<decltype(lhs)>::type>::type R_t;
   using boost::geometry::get;
-  return R_t(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> result(
     get<0>(lhs) + get<0>(rhs),
     get<1>(lhs) + get<1>(rhs),
     get<2>(lhs) + get<2>(rhs)
   );
+  assert(std::abs(get<0>(result) - (get<0>(lhs) + get<0>(rhs))) < 0.001);
+  assert(std::abs(get<1>(result) - (get<1>(lhs) + get<1>(rhs))) < 0.001);
+  assert(std::abs(get<2>(result) - (get<2>(lhs) + get<2>(rhs))) < 0.001);
+  return result;
 }
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& ribi::trim::operator+=(
@@ -1023,13 +1050,16 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
   const double factor
 ) noexcept
 {
-  typedef std::remove_const<std::remove_reference<decltype(p)>::type>::type R_t;
   using boost::geometry::get;
-  return R_t(
+  const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> result(
     get<0>(p) / factor,
     get<1>(p) / factor,
     get<2>(p) / factor
   );
+  assert(std::abs(get<0>(result) - (get<0>(p) / factor)) < 0.001);
+  assert(std::abs(get<1>(result) - (get<1>(p) / factor)) < 0.001);
+  assert(std::abs(get<2>(result) - (get<2>(p) / factor)) < 0.001);
+  return result;
 }
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Add(

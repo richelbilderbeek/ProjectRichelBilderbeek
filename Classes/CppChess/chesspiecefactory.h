@@ -5,6 +5,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #include <boost/shared_ptr.hpp>
 #include "chessfwd.h"
+#include "chesscolor.h"
 #pragma GCC diagnostic pop
 
 namespace ribi {
@@ -33,7 +34,10 @@ struct PieceFactory
   ) const noexcept;
 
 
-  boost::shared_ptr<Piece> CreateFromMove(const std::string& s) const noexcept;
+  boost::shared_ptr<Piece> CreateFromMove(
+    const Color color,
+    const std::string& s
+  ) const noexcept;
 
   boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s) const noexcept;
 

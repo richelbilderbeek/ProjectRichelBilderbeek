@@ -109,17 +109,17 @@ void ribi::Chess::PieceBishop::Test() noexcept
             }
             {
               boost::shared_ptr<Piece> p
-                = PieceFactory().CreateFromMove(Chess::Color::indeterminate,Move::ParseFrom(s));
+                = PieceFactory().CreateFromMove(Chess::Color::indeterminate,s);
               assert(p->CanDoMove(move));
             }
             {
               boost::shared_ptr<Piece> p
-                = PieceFactory().CreateFromMove(Chess::Color::white,Move::ParseFrom(s));
+                = PieceFactory().CreateFromMove(Chess::Color::white,s);
               assert(p->CanDoMove(move));
             }
             {
               boost::shared_ptr<Piece> p
-                PieceFactory().CreateFromMove(Chess::Color::black,Move::ParseFrom(s)));
+                = PieceFactory().CreateFromMove(Chess::Color::black,s);
               assert(p->CanDoMove(move));
             }
           }

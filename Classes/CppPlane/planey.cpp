@@ -420,15 +420,18 @@ std::string ribi::PlaneY::ToFunction() const
 {
   try
   {
-    std::string s = m_plane_z.ToFunction();
+    const std::string a = m_plane_z.ToFunction();
     // 'z=(2*x) + (3*y) + 5'
     //          =>
     // 'y=(2*x) + (3*z) + 5'
-    assert(!s.empty());
-    s = boost::algorithm::replace_all_copy(s,"*x","*x");
-    s = boost::algorithm::replace_all_copy(s,"*y","*z");
-    s = boost::algorithm::replace_all_copy(s,"z=","y=");
-    return s;
+    assert(!a.empty());
+    const std::string b = a; //boost::algorithm::replace_all_copy(a,"*x","*x");
+    assert(!b.empty());
+    const std::string c = boost::algorithm::replace_all_copy(b,"*y","*z");
+    assert(!c.empty());
+    const std::string d = boost::algorithm::replace_all_copy(c,"z=","y=");
+    assert(!d.empty());
+    return d;
   }
   catch (std::logic_error&)
   {

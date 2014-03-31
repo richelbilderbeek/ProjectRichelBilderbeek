@@ -328,8 +328,10 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         #ifndef NDEBUG
         if (verbose && !Helper().IsConvex(face_points))
         {
+          #ifndef FIX_ISSUE_168
           TRACE("NOT CONVEX");
           for (auto p: face_points) { assert(p); TRACE(*p); }
+          #endif //#ifndef FIX_ISSUE_168
         }
         #endif
 
@@ -339,13 +341,16 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
         #ifndef NDEBUG
         if (!Helper().IsConvex(face_points))
         {
-          TRACE("ERROR");
+          #ifndef FIX_ISSUE_168
+          TRACE("NOT CONVEX");
           for (auto p: face_points) { TRACE(*p); }
-          TRACE("BREAK");
+          #endif //#ifndef FIX_ISSUE_168
         }
         #endif
 
+        #ifndef FIX_ISSUE_168
         assert(Helper().IsConvex(face_points));
+        #endif //#ifndef FIX_ISSUE_168
 
         //Cannot order face winding yet, need Cells for this
         const boost::shared_ptr<Face> face {

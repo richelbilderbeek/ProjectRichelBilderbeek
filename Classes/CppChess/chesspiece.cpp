@@ -105,7 +105,9 @@ std::string ribi::Chess::Piece::ToStr() const noexcept
 
 ribi::Chess::PieceBishop::PieceBishop(
   const Color color,
-  const boost::shared_ptr<const Square> square)
+  const boost::shared_ptr<const Square> square,
+  const PieceFactory&
+)
   : Piece(color,square)
 {
   //assert(GetColor() != Color::indeterminate);
@@ -282,7 +284,9 @@ bool PieceEmpty::CanDoMove(const boost::shared_ptr<const Chess::Move> move) cons
 
 ribi::Chess::PieceKing::PieceKing(
   const Color color,
-  const boost::shared_ptr<const Square> square)
+  const boost::shared_ptr<const Square> square,
+  const PieceFactory&
+)
   : Piece(color,square),
     m_has_moved{false}
 
@@ -370,7 +374,9 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKing::GetMo
 
 ribi::Chess::PieceKnight::PieceKnight(
   const Chess::Color color,
-  const boost::shared_ptr<const Square> square)
+  const boost::shared_ptr<const Square> square,
+  const PieceFactory&
+)
   : Piece(color,square)
 {
   //assert(GetColor() != Color::indeterminate);
@@ -457,7 +463,9 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceKnight::Get
 
 ribi::Chess::PiecePawn::PiecePawn(
   const Color color,
-  const boost::shared_ptr<const Square> square)
+  const boost::shared_ptr<const Square> square,
+  const PieceFactory&
+)
   : Piece(color,square)
 {
   //assert(GetColor() != Color::indeterminate);
@@ -622,7 +630,9 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PiecePawn::GetMo
 
 ribi::Chess::PieceQueen::PieceQueen(
   const Color color,
-  const boost::shared_ptr<const Square> square)
+  const boost::shared_ptr<const Square> square,
+  const PieceFactory&
+)
   : Piece(color,square)
 {
   //assert(GetColor() != Color::indeterminate);
@@ -795,7 +805,9 @@ std::vector<boost::shared_ptr<ribi::Chess::Move> > ribi::Chess::PieceQueen::GetM
 
 ribi::Chess::PieceRook::PieceRook(
   const Color color,
-  const boost::shared_ptr<const Square> square)
+  const boost::shared_ptr<const Square> square,
+  const PieceFactory&
+)
   : Piece(color,square),
     m_has_moved{false}
 {

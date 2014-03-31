@@ -51,11 +51,11 @@ ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcep
   assert(!std::isnan(boost::geometry::get<0>(*GetCoordinat())));
   assert(!std::isnan(boost::geometry::get<1>(*GetCoordinat())));
   assert(!CanGetZ() || !std::isnan(GetZ().value()));
-  return {
+  return Geometry().CreatePoint(
     boost::geometry::get<0>(*GetCoordinat()),
     boost::geometry::get<1>(*GetCoordinat()),
     CanGetZ() ? GetZ().value() : 0.0
-  };
+  );
 }
 
 bool ribi::trim::Point::CanGetZ() const noexcept

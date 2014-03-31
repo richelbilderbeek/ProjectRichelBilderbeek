@@ -180,7 +180,7 @@ bool ribi::Chess::Move::ParseIsPromotion(const std::string& s)
 const boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::Move::ParsePiece(const std::string& s)
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::Move::ParsePiece exception: move must not be empty");
-  const boost::shared_ptr<Chess::Piece> p = PieceFactory().CreateFromMove(s);
+  const boost::shared_ptr<Chess::Piece> p = PieceFactory().CreateFromMove(Color::indeterminate,s);
   assert(p);
   return p;
 }

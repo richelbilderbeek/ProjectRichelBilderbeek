@@ -7,6 +7,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "chessfwd.h"
+#include "chessplayer.h"
 #include "chesswidget.h"
 #pragma GCC diagnostic pop
 

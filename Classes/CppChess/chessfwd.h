@@ -19,6 +19,7 @@ struct Move;
 struct MoveFactory;
 struct Piece;
 struct PieceBishop;
+struct PieceFactory;
 struct PieceKing;
 struct PieceKnight;
 struct PiecePawn;

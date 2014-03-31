@@ -89,7 +89,12 @@ struct Geometry
     const std::vector<Coordinat2D>& v
   ) const noexcept;
 
-  //Rect CreateRect(const std::vector<Coordinat2D>& rect) const noexcept;
+  Coordinat3D CreatePoint(
+    const double x,
+    const double y,
+    const double z
+  ) const noexcept;
+
   Rect CreateRect(
     const double left,
     const double top,

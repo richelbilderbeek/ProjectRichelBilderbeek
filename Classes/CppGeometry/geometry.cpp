@@ -167,6 +167,16 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordi
 }
 */
 
+ribi::Geometry::Coordinat3D ribi::Geometry::CreatePoint(
+  const double x,
+  const double y,
+  const double z
+) const noexcept
+{
+  const auto c(Coordinat3D(x,y,z));
+  return c;
+}
+
 ribi::Geometry::Rect ribi::Geometry::CreateRect(
   const double left,
   const double top,
@@ -1063,10 +1073,10 @@ void ribi::Geometry::Test() noexcept
                  /|
       */
       const std::vector<Coordinat3D> points {
-        {1.0,0.0,0.0},
-        {0.0,0.0,0.0},
-        {1.0,0.0,1.0},
-        {0.0,0.0,1.0}
+        g.CreatePoint(1.0,0.0,0.0),
+        g.CreatePoint(0.0,0.0,0.0),
+        g.CreatePoint(1.0,0.0,1.0),
+        g.CreatePoint(0.0,0.0,1.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
@@ -1082,10 +1092,10 @@ void ribi::Geometry::Test() noexcept
 
       */
       const std::vector<Coordinat3D> points {
-        {1.0,0.0,0.0},
-        {0.0,0.0,0.0},
-        {0.0,0.0,1.0},
-        {1.0,0.0,1.0}
+        g.CreatePoint(1.0,0.0,0.0),
+        g.CreatePoint(0.0,0.0,0.0),
+        g.CreatePoint(0.0,0.0,1.0),
+        g.CreatePoint(1.0,0.0,1.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -1104,10 +1114,10 @@ void ribi::Geometry::Test() noexcept
                  /|
       */
       const std::vector<Coordinat3D> points {
-        {1.0,1.0,0.0},
-        {0.0,0.0,0.0},
-        {1.0,1.0,1.0},
-        {0.0,0.0,1.0}
+        g.CreatePoint(1.0,1.0,0.0),
+        g.CreatePoint(0.0,0.0,0.0),
+        g.CreatePoint(1.0,1.0,1.0),
+        g.CreatePoint(0.0,0.0,1.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
@@ -1126,10 +1136,10 @@ void ribi::Geometry::Test() noexcept
 
       */
       const std::vector<Coordinat3D> points {
-        {1.0,1.0,0.0},
-        {0.0,0.0,0.0},
-        {0.0,0.0,1.0},
-        {1.0,1.0,1.0}
+        g.CreatePoint(1.0,1.0,0.0),
+        g.CreatePoint(0.0,0.0,0.0),
+        g.CreatePoint(0.0,0.0,1.0),
+        g.CreatePoint(1.0,1.0,1.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -1138,19 +1148,19 @@ void ribi::Geometry::Test() noexcept
   {
     {
       const std::vector<Coordinat3D> points {
-        {2.0,4.0,0.0},
-        {1.0,1.0,0.0},
-        {2.0,4.0,1.0},
-        {1.0,1.0,1.0}
+        g.CreatePoint(2.0,4.0,0.0),
+        g.CreatePoint(1.0,1.0,0.0),
+        g.CreatePoint(2.0,4.0,1.0),
+        g.CreatePoint(1.0,1.0,1.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
     {
       const std::vector<Coordinat3D> points {
-        {2.0,2.0,0.0},
-        {1.0,1.0,0.0},
-        {1.0,1.0,1.0},
-        {2.0,2.0,1.0}
+        g.CreatePoint(2.0,2.0,0.0),
+        g.CreatePoint(1.0,1.0,0.0),
+        g.CreatePoint(1.0,1.0,1.0),
+        g.CreatePoint(2.0,2.0,1.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -1159,19 +1169,19 @@ void ribi::Geometry::Test() noexcept
   {
     {
       const std::vector<Coordinat3D> points {
-        {2.0,4.0,1.0},
-        {1.0,1.0,1.0},
-        {2.0,4.0,2.0},
-        {1.0,1.0,2.0}
+        g.CreatePoint(2.0,4.0,1.0),
+        g.CreatePoint(1.0,1.0,1.0),
+        g.CreatePoint(2.0,4.0,2.0),
+        g.CreatePoint(1.0,1.0,2.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
     {
       const std::vector<Coordinat3D> points {
-        {2.0,2.0,1.0},
-        {1.0,1.0,1.0},
-        {1.0,1.0,2.0},
-        {2.0,2.0,2.0}
+        g.CreatePoint(2.0,2.0,1.0),
+        g.CreatePoint(1.0,1.0,1.0),
+        g.CreatePoint(1.0,1.0,2.0),
+        g.CreatePoint(2.0,2.0,2.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }
@@ -1189,10 +1199,10 @@ void ribi::Geometry::Test() noexcept
 
       */
       const std::vector<Coordinat3D> points {
-        {2.35114,3.23607,5.0},
-        {1.17557,2.35781,5.0},
-        {2.35114,3.23607,6.0},
-        {1.17557,2.35781,6.0}
+        g.CreatePoint(2.35114,3.23607,5.0),
+        g.CreatePoint(1.17557,2.35781,5.0),
+        g.CreatePoint(2.35114,3.23607,6.0),
+        g.CreatePoint(1.17557,2.35781,6.0)
       };
       assert(!g.IsConvex(points) && "This is an hourglass shape, so it is not convex");
     }
@@ -1207,10 +1217,10 @@ void ribi::Geometry::Test() noexcept
 
       */
       const std::vector<Coordinat3D> points {
-        {2.35114,3.23607,5.0},
-        {1.17557,2.35781,5.0},
-        {1.17557,2.35781,6.0},
-        {2.35114,3.23607,6.0}
+        g.CreatePoint(2.35114,3.23607,5.0),
+        g.CreatePoint(1.17557,2.35781,5.0),
+        g.CreatePoint(1.17557,2.35781,6.0),
+        g.CreatePoint(2.35114,3.23607,6.0)
       };
       assert(g.IsConvex(points) && "This is a corrected hourglass shape, so it is convex");
     }

@@ -52,13 +52,18 @@ boost::shared_ptr<ribi::Chess::PieceBishop> ribi::Chess::PieceFactory::CreateBis
   const boost::shared_ptr<const Square> square
 ) const noexcept
 {
-  const boost::shared_ptr<PieceBishop> p
-    = boost::make_shared<PieceBishop>(color,square);
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PieceBishop> p(
+    new PieceBishop(color,square)
+  );
   assert(p);
   return p;
 }
 
-boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(const std::string& s
+boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
+  const Color color,
+  const std::string& s
 ) const noexcept
 {
   if (s.empty()) throw std::logic_error("ribi::Chess::PieceFactory().CreateFromMove exception: move must not be empty");
@@ -74,11 +79,11 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
   const char c = s[0];
   switch(c)
   {
-    case 'B': piece.reset(new Chess::PieceBishop(Chess::Color::indeterminate,square)); break;
-    case 'K': piece.reset(new Chess::PieceKing(Chess::Color::indeterminate,square)); break;
-    case 'N': piece.reset(new Chess::PieceKnight(Chess::Color::indeterminate,square)); break;
-    case 'Q': piece.reset(new Chess::PieceQueen(Chess::Color::indeterminate,square)); break;
-    case 'R': piece.reset(new Chess::PieceRook(Chess::Color::indeterminate,square)); break;
+    case 'B': piece.reset(new Chess::PieceBishop(color,square)); break;
+    case 'K': piece.reset(new Chess::PieceKing(color,square)); break;
+    case 'N': piece.reset(new Chess::PieceKnight(color,square)); break;
+    case 'Q': piece.reset(new Chess::PieceQueen(color,square)); break;
+    case 'R': piece.reset(new Chess::PieceRook(color,square)); break;
     case 'a':
     case 'b':
     case 'c':
@@ -87,7 +92,7 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
     case 'f':
     case 'g':
     case 'h':
-      piece.reset(new Chess::PiecePawn(Chess::Color::indeterminate,square)); break;
+      piece.reset(new Chess::PiecePawn(color,square)); break;
   }
   return piece;
 }

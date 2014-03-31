@@ -35,7 +35,6 @@ Libraries/.directory
 Libraries/Arduino/
 Libraries/avr-libc-user-manual-1.8.0
 Libraries/bigint-2010.04.30/
-Libraries/boost_1_53_0/
 Libraries/boost_*
 Libraries/bot.sh
 Libraries/bullet-2.81-rev2613/
@@ -63,6 +62,7 @@ Libraries/Qwt/
 Libraries/qwt-6.0.1/
 Libraries/qwt-6.1/
 Libraries/qwt-6.1.0/
+Libraries/qwt-*
 Libraries/qwt-6.1.0.zip
 Libraries/swiftSnap/
 Libraries/tesseract-3.00/
@@ -87,7 +87,6 @@ Projects/RichelbilderbeekNl/*.exe
 Projects/RichelbilderbeekNl/*.wav
 Projects/RichelbilderbeekNl/*.ppt
 Projects/RichelbilderbeekNl/*.doc
-Projects/RichelbilderbeekNl/*.jpg
 Projects/RichelbilderbeekNl/*.JPG
 Projects/RichelbilderbeekNl/*.pdf
 Projects/RichelbilderbeekNl/*.odt
