@@ -15,6 +15,7 @@
 #include "chessfwd.h"
 #include "chesscolor.h"
 #include "chessmove.h"
+#include "chesscastling.h"
 //#include "chesspiece.h"
 #pragma GCC diagnostic pop
 

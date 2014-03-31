@@ -29,6 +29,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #pragma GCC diagnostic pop
 
+ribi::Widget::Rect ribi::Widget::CreateRect(
+  const double left, const double top, const double width, const double height) noexcept
+{
+  return Geometry().CreateRect(left,top,width,height);
+}
+
 double ribi::Widget::GetBottom() const noexcept
 {
   return Geometry().GetBottom(m_geometry);
@@ -75,9 +81,7 @@ double ribi::Widget::GetWidth() const noexcept
 
 bool ribi::Widget::IsIn(const double x, const double y) const noexcept
 {
-  assert(!"TODO");
-  return false;
-  //return boost::geometry::within(m_geometry,Point(x,y));
+  return boost::geometry::within(Point(x,y),m_geometry);
 }
 
 void ribi::Widget::SetGeometry(const double left, const double top, const double width, const double height) noexcept

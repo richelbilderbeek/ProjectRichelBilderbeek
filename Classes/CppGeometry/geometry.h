@@ -93,8 +93,8 @@ struct Geometry
   Rect CreateRect(
     const double left,
     const double top,
-    const double right,
-    const double bottom
+    const double width,
+    const double height
   ) const noexcept;
 
   ///Functor for X-Y-Z ordering

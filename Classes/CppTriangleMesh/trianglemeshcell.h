@@ -47,7 +47,8 @@ struct Cell
   Cell(
     const std::vector<boost::shared_ptr<Face>>& faces,
     const int index,
-    const CellFactory& lock);
+    const CellFactory& lock
+  );
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -57,6 +58,11 @@ struct Cell
 bool operator==(const Cell& lhs, const Cell& rhs) noexcept;
 bool operator!=(const Cell& lhs, const Cell& rhs) noexcept;
 std::ostream& operator<<(std::ostream& os, const Cell& cell) noexcept;
+
+bool operator<(const boost::shared_ptr<const Cell>& lhs, const boost::shared_ptr<      Cell>& rhs) = delete;
+bool operator<(const boost::shared_ptr<const Cell>& lhs, const boost::shared_ptr<const Cell>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr<      Cell>& rhs) = delete;
+bool operator<(const boost::shared_ptr<      Cell>& lhs, const boost::shared_ptr<const Cell>& rhs) = delete;
 
 } //~namespace trim
 } //~namespace ribi

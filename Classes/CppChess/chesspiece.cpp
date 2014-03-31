@@ -13,6 +13,7 @@
 #include "chessmove.h"
 #include "chessmovefactory.h"
 #include "chessmoves.h"
+#include "chesspiecefactory.h"
 #include "chesssquarefactory.h"
 #include "chessrank.h"
 #include "chesssquare.h"
@@ -146,12 +147,10 @@ bool ribi::Chess::PieceBishop::CanDoMove(const boost::shared_ptr<const Chess::Mo
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceBishop::Clone() const
 {
-  const Color color = this->GetColor();
-  assert(this->GetSquare());
-  const boost::shared_ptr<Square> square = SquareFactory::DeepCopy(this->GetSquare());
-  assert(square);
-  const boost::shared_ptr<Piece> p(new PieceBishop(color,square));
+  const auto p = PieceFactory().Create(GetNameChar(),GetColor(),GetSquare());
   assert(p);
+  assert(*p       == *this && "Must be a copy");
+  assert( p.get() !=  this && "Must be a deep copy");
   return p;
 }
 
@@ -328,8 +327,11 @@ bool ribi::Chess::PieceKing::CanDoMove(const boost::shared_ptr<const Chess::Move
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKing::Clone() const
 {
-  const boost::shared_ptr<Piece> p(new PieceKing(*this));
+  //const boost::shared_ptr<Piece> p(new PieceKing(*this));
+  const auto p = PieceFactory().Create(GetNameChar(),GetColor(),GetSquare());
   assert(p);
+  assert(*p == *this && "Must be a copy");
+  assert( p.get() !=  this && "Must be a deep copy");
   return p;
 }
 
@@ -412,8 +414,11 @@ bool ribi::Chess::PieceKnight::CanDoMove(const boost::shared_ptr<const Chess::Mo
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceKnight::Clone() const
 {
-  const boost::shared_ptr<Piece> p(new PieceKnight(*this));
+  //const boost::shared_ptr<Piece> p(new PieceKnight(*this));
+  const auto p = PieceFactory().Create(GetNameChar(),GetColor(),GetSquare());
   assert(p);
+  assert(*p == *this && "Must be a copy");
+  assert( p.get() !=  this && "Must be a deep copy");
   return p;
 }
 
@@ -556,7 +561,11 @@ bool ribi::Chess::PiecePawn::CanDoMove(const boost::shared_ptr<const Chess::Move
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PiecePawn::Clone() const
 {
-  const boost::shared_ptr<Piece> p(new PiecePawn(*this));
+  //const boost::shared_ptr<Piece> p(new PiecePawn(*this));
+  const auto p = PieceFactory().Create(GetNameChar(),GetColor(),GetSquare());
+  assert(p);
+  assert(*p == *this && "Must be a copy");
+  assert( p.get() !=  this && "Must be a deep copy");
   return p;
 }
 
@@ -655,7 +664,11 @@ bool ribi::Chess::PieceQueen::CanDoMove(const boost::shared_ptr<const Chess::Mov
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceQueen::Clone() const
 {
-  const boost::shared_ptr<Piece> p(new PieceQueen(*this));
+  //const boost::shared_ptr<Piece> p(new PieceQueen(*this));
+  const auto p = PieceFactory().Create(GetNameChar(),GetColor(),GetSquare());
+  assert(p);
+  assert(*p == *this && "Must be a copy");
+  assert( p.get() !=  this && "Must be a deep copy");
   return p;
 }
 
@@ -827,7 +840,11 @@ bool ribi::Chess::PieceRook::CanDoMove(const boost::shared_ptr<const Chess::Move
 
 boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceRook::Clone() const
 {
-  const boost::shared_ptr<Piece> p(new PieceRook(*this));
+  //const boost::shared_ptr<Piece> p(new PieceRook(*this));
+  const auto p = PieceFactory().Create(GetNameChar(),GetColor(),GetSquare());
+  assert(p);
+  assert(*p == *this && "Must be a copy");
+  assert( p.get() !=  this && "Must be a deep copy");
   return p;
 }
 

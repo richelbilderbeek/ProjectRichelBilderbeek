@@ -30,6 +30,7 @@
 #include "trianglemeshcellscreatorfactory.h"
 #include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
+#include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshtemplate.h"
 #pragma GCC diagnostic pop
@@ -126,7 +127,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       );
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       std::clog << "Number of strong faces: " << faces.size() << std::endl;
-      std::sort(faces.begin(),faces.end());
+      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);

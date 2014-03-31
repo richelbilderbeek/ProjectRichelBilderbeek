@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 
 #include <boost/checked_delete.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
 #include "chesscolor.h"
@@ -127,6 +128,14 @@ struct PieceBishop : public Piece
 
   friend void boost::checked_delete<>(PieceBishop *);
   friend struct PieceFactory;
+  friend boost::shared_ptr<      PieceBishop> boost::make_shared<      PieceBishop>(const Color color,const boost::shared_ptr<const Square> square);
+  friend boost::shared_ptr<const PieceBishop> boost::make_shared<const PieceBishop>(const Color color,const boost::shared_ptr<const Square> square);
+
+
+  //friend boost::shared_ptr<PieceBishop> boost::make_shared<PieceBishop>(const PieceBishop&);
+  //friend class boost::detail::sp_ms_deleter<PieceBishop>;
+  //friend class boost::detail::sp_ms_deleter<const PieceBishop>;
+
 };
 
 struct PieceKing : public Piece

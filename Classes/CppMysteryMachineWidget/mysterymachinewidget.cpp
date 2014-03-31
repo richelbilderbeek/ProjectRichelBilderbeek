@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "dial.h"
 #include "dialwidget.h"
+#include "geometry.h"
 #include "led.h"
 #include "ledwidget.h"
 #include "mysterymachine.h"
@@ -72,6 +73,16 @@ void ribi::MysteryMachineWidget::Click(const int x, const int y) noexcept
     m_machine->GetToggleButton()->Click(x,y);
     m_signal_changed();
   }
+}
+
+ribi::Widget::Rect ribi::MysteryMachineWidget::CreateRect(
+  const double left,
+  const double top,
+  const double width,
+  const double height
+) noexcept
+{
+  return Geometry().CreateRect(left,top,width,height);
 }
 
 std::string ribi::MysteryMachineWidget::GetVersion() noexcept

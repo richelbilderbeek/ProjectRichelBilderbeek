@@ -165,6 +165,12 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
 }
 #endif
 
+ribi::trim::Helper::FaceSet ribi::trim::Helper::CreateEmptyFaceSet() const noexcept
+{
+  ribi::trim::Helper::FaceSet s(OrderByIndex());
+  return s;
+}
+
 std::set<
   boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>,
   std::function<
@@ -578,22 +584,40 @@ void ribi::trim::Helper::MakeConvex(
 
   if (Helper().IsConvex(v)) return;
 
-  while (!Helper().IsConvex(v))
-  {
-    TRACE("ERROR");
-    for (auto p: v) { TRACE(p); TRACE(*p); }
-    assert(!"Should not get here");
-  }
-
   #ifndef NDEBUG
   if(!Helper().IsConvex(v))
   {
-    //TRACE("MakeConvex failed, try again");
-    //Helper().MakeConvex(v); //Recurse
-    assert(!Helper().IsConvex(v) && "Should still not work");
+    TRACE("ERROR");
+    for (auto p: v) { TRACE(p); TRACE(*p); }
+    #ifdef FIX_ISSUE_168
+    return; //TODO: FIX THIS BUG
+    #endif //ifdef FIX_ISSUE_168
+    assert(!"Should not get here");
   }
   #endif
+
+  #ifdef FIX_ISSUE_168
+  return; //TODO: FIX THIS BUG
+  #endif //#ifdef FIX_ISSUE_168
   assert(Helper().IsConvex(v));
+}
+
+std::function<
+    bool(
+      const boost::shared_ptr<const ribi::trim::Face>& lhs,
+      const boost::shared_ptr<const ribi::trim::Face>& rhs
+    )
+  >
+  ribi::trim::Helper::OrderByIndex() const noexcept
+{
+  return [](const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)
+  {
+    using boost::geometry::get;
+    assert(lhs);
+    assert(rhs);
+    return lhs->GetIndex() < rhs->GetIndex();
+  };
+
 }
 
 std::function<

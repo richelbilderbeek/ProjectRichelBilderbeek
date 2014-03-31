@@ -439,10 +439,9 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   std::vector<boost::weak_ptr<Face>> weak_candidates;
   for (auto p: a->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
   for (auto p: b->GetPoints()) { for (auto q: p->GetConnected()) { weak_candidates.push_back(q); } }
-
   std::vector<boost::shared_ptr<Face>> candidates;
   for (auto p: weak_candidates) { const auto q = p.lock(); if (q) candidates.push_back(q); }
-  std::sort(candidates.begin(),candidates.end());
+  std::sort(candidates.begin(),candidates.end(),Helper().OrderByIndex());
   candidates.erase(std::unique(candidates.begin(),candidates.end()),candidates.end());
   assert(std::count(candidates.begin(),candidates.end(),nullptr) == 0);
 
@@ -452,7 +451,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::FindK
   {
     if (IsSubset(c->GetPoints(),points)) { faces.push_back(c); }
   }
-  assert(std::is_sorted(faces.begin(),faces.end()));
+  assert(std::is_sorted(faces.begin(),faces.end(),Helper().OrderByIndex()));
   assert(std::unique(faces.begin(),faces.end()) == faces.end());
   assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
 
@@ -586,21 +585,37 @@ void ribi::trim::CellsCreator::Test() noexcept
              && n_faces_with_neighbour == 2)
       );
     }
-    std::set<boost::shared_ptr<Face>> internal_faces_1;
-    std::copy_if(faces_1.begin(),faces_1.end(),std::inserter(internal_faces_1,internal_faces_1.begin()),
+    TRACE("Creating internal faces 1");
+    Face::FaceSet internal_faces_1 = Helper().CreateEmptyFaceSet();
+    TRACE("Creating internal faces 1, std::copy_if");
+    //std::set<boost::shared_ptr<Face>> internal_faces_1;
+    std::copy_if(
+      faces_1.begin(),faces_1.end(),
+      std::inserter(internal_faces_1,internal_faces_1.begin()),
       [](const boost::shared_ptr<Face> face)
       {
-        return face->GetNeighbour().get();
+        assert(face);
+        const bool do_copy = face->GetNeighbour().get();
+        return do_copy;
       }
     );
-    std::set<boost::shared_ptr<Face>> internal_faces_2;
+
+    TRACE("Creating internal faces 2");
+    Face::FaceSet internal_faces_2 = Helper().CreateEmptyFaceSet();
     std::copy_if(faces_2.begin(),faces_2.end(),std::inserter(internal_faces_2,internal_faces_2.begin()),
       [](const boost::shared_ptr<Face> face)
       {
         return face->GetNeighbour().get();
       }
     );
-    assert(internal_faces_1 == internal_faces_2);
+    TRACE("Creating internal faces 1");
+    assert(
+      std::equal(
+        internal_faces_1.begin(),internal_faces_1.end(),
+        internal_faces_2.begin(),
+        [](boost::shared_ptr<Face> lhs, boost::shared_ptr<Face> rhs) { return *lhs == *rhs; }
+      )
+    );
   }
   TRACE("Create Face, from bug");
   {
@@ -611,11 +626,12 @@ void ribi::trim::CellsCreator::Test() noexcept
     (2.35114,3.23607,6.0)
     */
     //Ordering cannot be known for sure to be convex from these indices
+    typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
     std::vector<boost::shared_ptr<Point>> face_points {
-      boost::make_shared<Point>(1.17557,2.35781),
-      boost::make_shared<Point>(2.35114,3.23607),
-      boost::make_shared<Point>(1.17557,2.35781),
-      boost::make_shared<Point>(2.35114,3.23607)
+      PointFactory().Create(boost::make_shared<Coordinat2D>(1.17557,2.35781)),
+      PointFactory().Create(boost::make_shared<Coordinat2D>(2.35114,3.23607)),
+      PointFactory().Create(boost::make_shared<Coordinat2D>(1.17557,2.35781)),
+      PointFactory().Create(boost::make_shared<Coordinat2D>(2.35114,3.23607))
     };
     face_points[0]->SetZ(5.0 * boost::units::si::meter);
     face_points[1]->SetZ(5.0 * boost::units::si::meter);
@@ -650,7 +666,7 @@ void ribi::trim::CellsCreator::Test() noexcept
         FaceOrientation::vertical
       )
     };
-    assert(1==2 && "Test should fail");
+    //assert(1==2 && "Test should fail");
   }
   TRACE("Finished ribi::trim::CellsCreator::Test successfully");
 }

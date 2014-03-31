@@ -12,21 +12,32 @@ namespace Chess {
 
 struct PieceFactory
 {
-  static const boost::shared_ptr<Piece> Create(
+  PieceFactory() {}
+
+  boost::shared_ptr<Piece> Create(
     const char namechar,
     const Color color,
-    const boost::shared_ptr<const Square> square) noexcept;
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
 
-  static const boost::shared_ptr<Piece> Create(
+  //For convenience
+  boost::shared_ptr<Piece> Create(
     const char namechar,
     const Color color,
-    const std::string& square);
+    const std::string& square
+  ) const noexcept;
 
-  static const boost::shared_ptr<Piece> CreateFromMove(const std::string& s);
+  boost::shared_ptr<PieceBishop> CreateBishop(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
 
-  static boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s);
 
-  static const boost::shared_ptr<Piece> DeepCopy(const boost::shared_ptr<const Piece> piece) noexcept;
+  boost::shared_ptr<Piece> CreateFromMove(const std::string& s) const noexcept;
+
+  boost::shared_ptr<Piece> CreateFromPromotion(const std::string& s) const noexcept;
+
+  boost::shared_ptr<Piece> DeepCopy(const boost::shared_ptr<const Piece> piece) const noexcept;
 };
 
 } //~namespace Chess

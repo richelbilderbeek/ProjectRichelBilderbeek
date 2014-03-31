@@ -691,7 +691,7 @@ ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File(i),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('.',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('.',color,s);
           assert(p);
           v.insert(p);
         }
@@ -702,56 +702,56 @@ ribi::Chess::Board::Pieces ribi::Chess::Board::GetInitialSetup()
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("a"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('R',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('R',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("b"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('N',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('N',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("c"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('B',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('B',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("d"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('Q',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('Q',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("e"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('K',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('K',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("f"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('B',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('B',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("g"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('N',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('N',color,s);
           assert(p);
           v.insert(p);
         }
         {
           const boost::shared_ptr<Square> s(SquareFactory::Create(Chess::File("h"),rank));
           assert(s);
-          const boost::shared_ptr<Piece> p = PieceFactory::Create('R',color,s);
+          const boost::shared_ptr<Piece> p = PieceFactory().Create('R',color,s);
           assert(p);
           v.insert(p);
         }

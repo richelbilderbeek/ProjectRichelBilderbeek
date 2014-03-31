@@ -1,3 +1,5 @@
+DEFINES += FIX_ISSUE_168
+
 include(../../ConsoleApplication.pri) #Or use the code below
 # QT += core
 # QT += gui
