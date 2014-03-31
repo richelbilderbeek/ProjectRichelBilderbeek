@@ -20,6 +20,7 @@ git clone https://github.com/your_name/ProjectRichelBilderbeek.git
 Assign the name 'upstream' to the integration GitHub:
 
 <code>
+cd ProjectRichelBilderbeek
 git remote add upstream https://github.com/richelbilderbeek/ProjectRichelBilderbeek.git
 </code>
 
