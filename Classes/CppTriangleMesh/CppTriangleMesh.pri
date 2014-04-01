@@ -18,8 +18,6 @@ SOURCES += \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshpointfactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshedge.cpp \
-    ../../Classes/CppTriangleMesh/trianglemeshedgefactory.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshwinding.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshwindings.cpp \
     ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.cpp \
@@ -39,8 +37,6 @@ HEADERS  += \
     ../../Classes/CppTriangleMesh/trianglemeshbuilder.h \
     ../../Classes/CppTriangleMesh/trianglemeshpointfactory.h \
     ../../Classes/CppTriangleMesh/trianglemeshcellscreatorfactory.h \
-    ../../Classes/CppTriangleMesh/trianglemeshedge.h \
-    ../../Classes/CppTriangleMesh/trianglemeshedgefactory.h \
     ../../Classes/CppTriangleMesh/trianglemeshwinding.h \
     ../../Classes/CppTriangleMesh/trianglemeshwindings.h \
     ../../Classes/CppTriangleMesh/trianglemeshcreateverticalfacesstrategy.h \

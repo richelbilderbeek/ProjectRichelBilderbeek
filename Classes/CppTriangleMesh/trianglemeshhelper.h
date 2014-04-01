@@ -100,7 +100,7 @@ struct Helper
   ) const noexcept;
 
   bool IsConvex(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points) const noexcept;
-  bool IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept;
+  bool IsConvex(const std::vector<boost::shared_ptr<      ribi::trim::Point>>& points) const noexcept;
 
   bool IsCounterClockwise(
     const std::vector<boost::shared_ptr<const Point>>& points,

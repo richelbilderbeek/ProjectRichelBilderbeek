@@ -7,6 +7,7 @@
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include "trianglemeshfwd.h"
 #pragma GCC diagnostic pop
@@ -44,6 +45,7 @@ struct Template
     std::vector<std::vector<int>> face_point_indices,
     std::vector<boost::shared_ptr<Point>> points
   );
+  ~Template() noexcept {}
 
   ///ints are m_points indices
   std::vector<std::pair<int,int>> m_edges;
@@ -64,6 +66,11 @@ struct Template
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      Template* x);
+  friend void boost::checked_delete<>(const Template* x);
+  friend class boost::detail::sp_ms_deleter<      Template>;
+  friend class boost::detail::sp_ms_deleter<const Template>;
 };
 
 } //~namespace trim

@@ -200,7 +200,10 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<const ribi
 
 bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept
 {
+  if (points.size() == 3) return true;
+
   #ifndef NDEBUG
+  assert(points.size() == 4);
   const bool verbose = false;
   if (verbose)
   {
@@ -219,11 +222,27 @@ bool ribi::trim::Helper::IsConvex(const std::vector<boost::shared_ptr<ribi::trim
 
   const auto const_points(AddConst(points));
 
+  assert(points.size() == const_points.size());
+  assert(boost::geometry::get<0>(*points[0]->GetCoordinat()) == boost::geometry::get<0>(*const_points[0]->GetCoordinat()));
+  assert(boost::geometry::get<1>(*points[0]->GetCoordinat()) == boost::geometry::get<1>(*const_points[0]->GetCoordinat()));
+  assert(points[0]->GetZ() == const_points[0]->GetZ());
+  assert(boost::geometry::get<0>(*points[1]->GetCoordinat()) == boost::geometry::get<0>(*const_points[1]->GetCoordinat()));
+  assert(boost::geometry::get<1>(*points[1]->GetCoordinat()) == boost::geometry::get<1>(*const_points[1]->GetCoordinat()));
+  assert(points[1]->GetZ() == const_points[1]->GetZ());
+  assert(boost::geometry::get<0>(*points[2]->GetCoordinat()) == boost::geometry::get<0>(*const_points[2]->GetCoordinat()));
+  assert(boost::geometry::get<1>(*points[2]->GetCoordinat()) == boost::geometry::get<1>(*const_points[2]->GetCoordinat()));
+  assert(points[2]->GetZ() == const_points[2]->GetZ());
+  assert(boost::geometry::get<0>(*points[3]->GetCoordinat()) == boost::geometry::get<0>(*const_points[3]->GetCoordinat()));
+  assert(boost::geometry::get<1>(*points[3]->GetCoordinat()) == boost::geometry::get<1>(*const_points[3]->GetCoordinat()));
+  assert(points[3]->GetZ() == const_points[3]->GetZ());
+
   #ifndef NDEBUG
   for (auto point: const_points) { assert(point); }
   #endif
 
   const auto coordinats(PointsToCoordinats3D(const_points));
+
+  assert(const_points.size() == coordinats.size());
 
   return Geometry().IsConvex(coordinats);
 }
@@ -329,7 +348,6 @@ void ribi::trim::Helper::MakeConvex(
 {
   #ifndef NDEBUG
   const bool verbose = true;
-  //if (verbose) { TRACE_FUNC(); }
   for (auto p: v) { assert(p); }
   assert(!v.empty());
   assert(v.size() == 4);
@@ -353,9 +371,15 @@ void ribi::trim::Helper::MakeConvex(
     {
       break;
     }
+    #ifndef NDEBUG
+    const std::vector<boost::shared_ptr<ribi::trim::Point>> before(v);
+    #endif
+
     std::next_permutation(v.begin(),v.end(),Helper().OrderByX());
 
     #ifndef NDEBUG
+    const std::vector<boost::shared_ptr<ribi::trim::Point>> after(v);
+    assert(before != after);
     if (verbose)
     {
       #ifndef FIX_ISSUE_168
@@ -395,8 +419,9 @@ void ribi::trim::Helper::MakeConvex(
     for (auto p: v) { TRACE(p); TRACE(*p); }
 
     #ifdef FIX_ISSUE_168
-    std::exit(0);
-    return; //TODO: FIX THIS BUG
+    assert(Helper().IsConvex(v));
+    //std::exit(0);
+    //return; //TODO: FIX THIS BUG
     #endif //ifdef FIX_ISSUE_168
     assert(!"Should not get here");
   }

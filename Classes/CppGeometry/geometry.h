@@ -81,6 +81,8 @@ struct Geometry
     const Coordinat3D& p3
   ) const noexcept;
 
+  std::vector<Coordinat2D> CalcProjection(const std::vector<Coordinat3D>& v) const;
+
   Coordinat2D Coordinat2DToBoostGeometryPointXy(
     const Coordinat2D& c
   ) const noexcept;

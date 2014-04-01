@@ -22,11 +22,11 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::Create(
   switch(namechar)
   {
     case 'B': return CreateBishop(color,square);
-    case 'K': p.reset(new Chess::PieceKing(color,square)); break;
-    case 'N': p.reset(new Chess::PieceKnight(color,square)); break;
-    case 'Q': p.reset(new Chess::PieceQueen(color,square)); break;
-    case 'R': p.reset(new Chess::PieceRook(color,square)); break;
-    case '.': p.reset(new Chess::PiecePawn(color,square)); break;
+    case 'K': return CreateKing(color,square);
+    case 'N': return CreateKnight(color,square);
+    case 'Q': return CreateQueen(color,square);
+    case 'R': return CreateRook(color,square);
+    case '.': return CreatePawn(color,square);
     default: assert(!"Should not get here");
   }
   assert(p);
@@ -55,7 +55,7 @@ boost::shared_ptr<ribi::Chess::PieceBishop> ribi::Chess::PieceFactory::CreateBis
   //Cannot use boost::make_shared here, because I fail at making
   //boost::make_shared a friend
   const boost::shared_ptr<PieceBishop> p(
-    new PieceBishop(color,square)
+    new PieceBishop(color,square,*this)
   );
   assert(p);
   return p;
@@ -79,11 +79,11 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
   const char c = s[0];
   switch(c)
   {
-    case 'B': piece.reset(new Chess::PieceBishop(color,square)); break;
-    case 'K': piece.reset(new Chess::PieceKing(color,square)); break;
-    case 'N': piece.reset(new Chess::PieceKnight(color,square)); break;
-    case 'Q': piece.reset(new Chess::PieceQueen(color,square)); break;
-    case 'R': piece.reset(new Chess::PieceRook(color,square)); break;
+    case 'B': return CreateBishop(color,square);
+    case 'K': return CreateKing(color,square);
+    case 'N': return CreateKnight(color,square);
+    case 'Q': return CreateQueen(color,square);
+    case 'R': return CreateRook(color,square);
     case 'a':
     case 'b':
     case 'c':
@@ -92,7 +92,7 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromMove(
     case 'f':
     case 'g':
     case 'h':
-      piece.reset(new Chess::PiecePawn(color,square)); break;
+      return CreatePawn(color,square);
   }
   return piece;
 }
@@ -107,12 +107,82 @@ boost::shared_ptr<ribi::Chess::Piece> ribi::Chess::PieceFactory::CreateFromPromo
   const char c = s[s.size() - 1];
   switch(c)
   {
-    case 'B': p.reset(new Chess::PieceBishop(Chess::Color::indeterminate,boost::shared_ptr<Square>())); break;
-    case 'K': p.reset(new Chess::PieceKing(Chess::Color::indeterminate,boost::shared_ptr<Square>())); break;
-    case 'N': p.reset(new Chess::PieceKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>())); break;
-    case 'Q': p.reset(new Chess::PieceQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>())); break;
-    case 'R': p.reset(new Chess::PieceRook(Chess::Color::indeterminate,boost::shared_ptr<Square>())); break;
+    case 'B': return CreateBishop(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+    case 'K': return CreateKing(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+    case 'N': return CreateKnight(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+    case 'Q': return CreateQueen(Chess::Color::indeterminate,boost::shared_ptr<Square>());
+    case 'R': return CreateRook(Chess::Color::indeterminate,boost::shared_ptr<Square>());
   }
+  assert(p);
+  return p;
+}
+
+boost::shared_ptr<ribi::Chess::PieceKing> ribi::Chess::PieceFactory::CreateKing(
+  const Color color,
+  const boost::shared_ptr<const Square> square
+) const noexcept
+{
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PieceKing> p(
+    new PieceKing(color,square,*this)
+  );
+  assert(p);
+  return p;
+}
+
+boost::shared_ptr<ribi::Chess::PieceKnight> ribi::Chess::PieceFactory::CreateKnight(
+  const Color color,
+  const boost::shared_ptr<const Square> square
+) const noexcept
+{
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PieceKnight> p(
+    new PieceKnight(color,square,*this)
+  );
+  assert(p);
+  return p;
+}
+
+boost::shared_ptr<ribi::Chess::PiecePawn> ribi::Chess::PieceFactory::CreatePawn(
+  const Color color,
+  const boost::shared_ptr<const Square> square
+) const noexcept
+{
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PiecePawn> p(
+    new PiecePawn(color,square,*this)
+  );
+  assert(p);
+  return p;
+}
+
+boost::shared_ptr<ribi::Chess::PieceQueen> ribi::Chess::PieceFactory::CreateQueen(
+  const Color color,
+  const boost::shared_ptr<const Square> square
+) const noexcept
+{
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PieceQueen> p(
+    new PieceQueen(color,square,*this)
+  );
+  assert(p);
+  return p;
+}
+
+boost::shared_ptr<ribi::Chess::PieceRook> ribi::Chess::PieceFactory::CreateRook(
+  const Color color,
+  const boost::shared_ptr<const Square> square
+) const noexcept
+{
+  //Cannot use boost::make_shared here, because I fail at making
+  //boost::make_shared a friend
+  const boost::shared_ptr<PieceRook> p(
+    new PieceRook(color,square,*this)
+  );
   assert(p);
   return p;
 }

@@ -34,8 +34,8 @@ ribi::trim::Face::Face(
   : m_belongs_to{},
     m_coordinats{},
     m_index{index},
-    m_orientation(any_orientation),
-    m_points(any_points),
+    m_orientation{any_orientation},
+    m_points{any_points},
     m_type{}
 {
   #ifndef NDEBUG
@@ -99,11 +99,6 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
       {
         assert(point);
         return init + point->GetCoordinat3D();
-        //return init + Geometry().CreatePoint(
-        //  get<0>(*point->GetCoordinat()),
-        //  get<1>(*point->GetCoordinat()),
-        //  point->GetZ().value()
-        //);
       }
     )
   );

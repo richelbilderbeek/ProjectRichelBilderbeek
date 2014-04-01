@@ -18,14 +18,18 @@
 
 int main(int, char* argv[])
 {
-
   START_TRACE();
   PROFILE_FUNC();
-  ribi::Plane(
-    ribi::Geometry().CreatePoint(0.0,0.0,0.0),
-    ribi::Geometry().CreatePoint(0.0,1.0,0.0),
-    ribi::Geometry().CreatePoint(1.0,0.0,0.0)
-  );
+  {
+    const std::unique_ptr<ribi::Plane> plane(
+      new ribi::Plane(
+        ribi::Geometry().CreatePoint(0.0,0.0,0.0),
+        ribi::Geometry().CreatePoint(0.0,1.0,0.0),
+        ribi::Geometry().CreatePoint(1.0,0.0,0.0)
+      )
+    );
+    assert(plane);
+  }
 
   const ::ribi::trim::CreateVerticalFacesStrategy strategy {
     ::ribi::trim::CreateVerticalFacesStrategy::one_face_per_square
@@ -46,7 +50,7 @@ int main(int, char* argv[])
       + " && cd " + ribi::fileio::FileIo().GetPath(argv[0])
       + " && cd .. && dir && renumberMesh"
     );
-    ribi::TestTriangleMeshMainDialog(
+    ribi::TestTriangleMeshMainDialog d(
       {
         //ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,1.0) //1 cube
         ribi::TriangleFile::CreateShapePolygon(4,pi * 0.125,0.5), //? cube
@@ -59,6 +63,7 @@ int main(int, char* argv[])
       strategy,
       renumberMesh_command
     );
+    std::cout << d.GetTicks() << std::endl;
     PROFILER_UPDATE();
     PROFILER_OUTPUT("shiny_output.txt");
     //checkMesh

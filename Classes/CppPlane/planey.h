@@ -92,10 +92,12 @@ struct PlaneY
   std::string ToFunction() const;
 
   private:
-  ///A PlaneY is actually a PlaneZ used with its coordinats rotated from (X,Y,Z) to (Z,Y,Y)
-  const PlaneZ m_plane_z;
+  ~PlaneY() noexcept {}
 
-  static PlaneZ Create(
+  ///A PlaneY is actually a PlaneZ used with its coordinats rotated from (X,Y,Z) to (Z,Y,Y)
+  const std::unique_ptr<PlaneZ> m_plane_z;
+
+  static std::unique_ptr<PlaneZ> Create(
     const Coordinat3D& p1,
     const Coordinat3D& p2,
     const Coordinat3D& p3
@@ -116,6 +118,13 @@ struct PlaneY
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      PlaneY*);
+  friend void boost::checked_delete<>(const PlaneY*);
+  friend struct std::default_delete<      PlaneY>;
+  friend struct std::default_delete<const PlaneY>;
+  friend class boost::detail::sp_ms_deleter<      PlaneY>;
+  friend class boost::detail::sp_ms_deleter<const PlaneY>;
 };
 
 } //~namespace ribi

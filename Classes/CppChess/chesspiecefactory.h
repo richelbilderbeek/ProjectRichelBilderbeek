@@ -33,6 +33,30 @@ struct PieceFactory
     const boost::shared_ptr<const Square> square
   ) const noexcept;
 
+  boost::shared_ptr<PieceKing> CreateKing(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PieceKnight> CreateKnight(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PiecePawn> CreatePawn(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PieceQueen> CreateQueen(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
+
+  boost::shared_ptr<PieceRook> CreateRook(
+    const Color color,
+    const boost::shared_ptr<const Square> square
+  ) const noexcept;
 
   boost::shared_ptr<Piece> CreateFromMove(
     const Color color,

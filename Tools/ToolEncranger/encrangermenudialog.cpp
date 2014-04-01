@@ -133,8 +133,8 @@ ribi::Help ribi::ToolEncrangerMenuDialog::GetHelp() const noexcept
       Help::Option('s',"silent","silence output, used for debugging")
     },
     {
-      "Encranger -c 123 --text \"Hello World\"",
-      "Encranger -c 123 --cipher \"bc30h3g8h287g\""
+      "Encranger -k 123 --text \"Hello World\"",
+      "Encranger -k 123 --cipher \"bc30h3g8h287g\""
     }
   );
 }
@@ -178,8 +178,8 @@ void ribi::ToolEncrangerMenuDialog::Test() noexcept
   TRACE("Starting ribi::ToolEncrangerMenuDialog::Test");
   {
     ToolEncrangerMenuDialog d;
-    d.Execute( {"Encranger", "-c", "123", "--text", "Hello World", "-s" } );
-    d.Execute( {"Encranger", "-c", "123", "--cipher", "bc30h3g8h287g", "--silent" } );
+    d.Execute( {"Encranger", "-k", "123", "--text", "Hello World", "-s" } );
+    d.Execute( {"Encranger", "-k", "123", "--cipher", "bc30h3g8h287g", "--silent" } );
   }
   TRACE("Finished ribi::ToolEncrangerMenuDialog::Test successfully");
 }

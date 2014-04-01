@@ -2,17 +2,15 @@
 
 #include <cassert>
 
-
-
-
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Weffc++"
+#pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/make_shared.hpp>
 
 #include "Shiny.h"
 
 #include "geometry.h"
 #include "trianglemeshcreateverticalfacesstrategies.h"
-//#include "trianglemeshedge.h"
-#include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
 #include "trianglemeshfacefactory.h"
 #include "trianglemeshhelper.h"
@@ -21,6 +19,7 @@
 #include "trianglemeshwinding.h"
 #include "trianglemeshwindings.h"
 #include "trace.h"
+#pragma GCC diagnostic pop
 
 ribi::trim::FaceFactory::FaceFactory()
 {

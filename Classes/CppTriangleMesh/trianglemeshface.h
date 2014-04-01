@@ -24,7 +24,7 @@ struct Face
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
-  typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
+  //typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
   Face(const Face&) = delete;
   Face& operator=(const Face&) = delete;
@@ -52,14 +52,12 @@ struct Face
 
   FaceOrientation GetOrientation() const noexcept { return m_orientation; }
 
-  ///nullptr if no owner, a Volume:m_cellindex type
+  ///nullptr if no owner, a Volume::m_cellindex type
   boost::shared_ptr<const Cell> GetOwner() const noexcept;
 
   boost::shared_ptr<const Point> GetPoint(const int index) const noexcept;
 
   const std::vector<boost::shared_ptr<Point>>& GetPoints() const noexcept { return m_points; }
-
-  //void ReversePoints() noexcept;
 
   void SetBoundaryType(const std::string type) const noexcept { m_type = type; }
 

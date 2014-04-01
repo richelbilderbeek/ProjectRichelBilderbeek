@@ -42,7 +42,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneY::CalcProj
   for(auto& i: v) { i = Rotate(i); }
   try
   {
-    return m_plane_z.CalcProjection(v);
+    return m_plane_z->CalcProjection(v);
   }
   catch (std::logic_error&)
   {
@@ -54,7 +54,7 @@ double ribi::PlaneY::CalcY(const double x, const double z) const
 {
   try
   {
-    return m_plane_z.CalcZ(x,z);
+    return m_plane_z->CalcZ(x,z);
   }
   catch (std::logic_error&)
   {
@@ -62,18 +62,22 @@ double ribi::PlaneY::CalcY(const double x, const double z) const
   }
 }
 
-ribi::PlaneZ ribi::PlaneY::Create(
+std::unique_ptr<ribi::PlaneZ> ribi::PlaneY::Create(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
 ) noexcept
 {
-  return PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3));
+  std::unique_ptr<PlaneZ> p(
+    new PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3))
+  );
+  assert(p);
+  return p;
 }
 
 const std::vector<double> ribi::PlaneY::GetCoefficients() const noexcept
 {
-  const auto v(m_plane_z.GetCoefficients());
+  const auto v(m_plane_z->GetCoefficients());
   assert(v.size() == 4);
   return { v[1],v[2],v[0],v[3] };
 }
@@ -97,14 +101,15 @@ std::vector<std::string>
 
 std::string ribi::PlaneY::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::PlaneY::GetVersionHistory() const noexcept
 {
   return {
     "2014-03-10: version 1.0: initial version, split off from PlaneX",
-    "2014-03-13: version 1.1: bug fixed"
+    "2014-03-13: version 1.1: bug fixed",
+    "2014-04-01: version 1.2: use of std::unique_ptr"
   };
 }
 
@@ -420,7 +425,15 @@ std::string ribi::PlaneY::ToFunction() const
 {
   try
   {
-    const std::string a = m_plane_z.ToFunction();
+    std::string a = m_plane_z->ToFunction();
+    assert(!a.empty());
+    boost::algorithm::replace_all(a,"*y","*z");
+    assert(!a.empty());
+    boost::algorithm::replace_all(a,"z=","y=");
+    assert(!a.empty());
+    return a;
+    /*
+    const std::string a = m_plane_z->ToFunction();
     // 'z=(2*x) + (3*y) + 5'
     //          =>
     // 'y=(2*x) + (3*z) + 5'
@@ -432,10 +445,13 @@ std::string ribi::PlaneY::ToFunction() const
     const std::string d = boost::algorithm::replace_all_copy(c,"z=","y=");
     assert(!d.empty());
     return d;
+    */
   }
   catch (std::logic_error&)
   {
-    throw std::logic_error("ribi::PlaneY::ToFunction: cannot calculate X of a horizontal plane");
+    const std::string error
+      = "ribi::PlaneY::ToFunction: cannot calculate X of a horizontal plane";
+    throw std::logic_error(error.c_str());
   }
 }
 

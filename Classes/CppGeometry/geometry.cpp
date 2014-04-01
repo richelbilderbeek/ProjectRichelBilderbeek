@@ -145,27 +145,29 @@ std::vector<double> ribi::Geometry::CalcPlane(
 
 }
 
-/*
-boost::geometry::model::d2::point_xy<double> ribi::Geometry::Coordinat2DToBoostGeometryPointXy(
-  const Coordinat2D& c
-) const noexcept
-{
-  return Coordinat2D(
-    c.GetX(),c.GetY()
-  );
-}
-*/
 
-/*
-std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::Coordinats2DToBoostGeometryPointsXy(
-  const std::vector<Coordinat2D>& v
-) const noexcept
+std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcProjection(
+  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& v) const
 {
-  std::vector<Coordinat2D> w;
-  for (auto c: v) { w.push_back(Coordinat2DToBoostGeometryPointXy(c)); }
-  return w;
+  assert(points.size() >= 3);
+  assert(IsPlane(points));
+  const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
+  assert(plane);
+
+  #ifndef NDEBUG
+  if (verbose)
+  {
+    try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
+    try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
+    try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
+  }
+  #endif
+
+  const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
+    plane->CalcProjection(points)
+  );
+  return coordinats2d;
 }
-*/
 
 ribi::Geometry::Coordinat3D ribi::Geometry::CreatePoint(
   const double x,
@@ -366,8 +368,10 @@ bool ribi::Geometry::IsClockwise(
     }
     #endif
     assert(Geometry().IsPlane(points));
+    const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
+    assert(plane);
     const auto v(
-      Plane(points[0],points[1],points[2]).CalcProjection(
+      plane->CalcProjection(
         {
           points[0],
           points[1],
@@ -473,20 +477,20 @@ bool ribi::Geometry::IsConvex(const std::vector<Coordinat3D>& points) const noex
 
   #endif
 
-
-  Plane plane(points[0],points[1],points[2]);
+  const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
+  assert(plane);
 
   #ifndef NDEBUG
   if (verbose)
   {
-    try { TRACE(plane.ToFunctionX()); } catch (std::exception&) {}
-    try { TRACE(plane.ToFunctionY()); } catch (std::exception&) {}
-    try { TRACE(plane.ToFunctionZ()); } catch (std::exception&) {}
+    try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}
+    try { TRACE(plane->ToFunctionY()); } catch (std::exception&) {}
+    try { TRACE(plane->ToFunctionZ()); } catch (std::exception&) {}
   }
   #endif
 
   const std::vector<boost::geometry::model::d2::point_xy<double>> coordinats2d(
-    plane.CalcProjection(points)
+    plane->CalcProjection(points)
   );
 
   #ifndef NDEBUG
@@ -544,8 +548,10 @@ bool ribi::Geometry::IsCounterClockwise(
     assert(n_points == 4);
     //See if the points in the projection are in the same direction
     assert(Geometry().IsPlane(points));
+    const std::unique_ptr<Plane> plane(new Plane(points[0],points[1],points[2]));
+    assert(plane);
     const auto v(
-      Plane(points[0],points[1],points[2]).CalcProjection(
+      plane->CalcProjection(
         {
           points[0],
           points[1],
@@ -642,8 +648,9 @@ bool ribi::Geometry::IsPlane(const std::vector<ribi::Geometry::Coordinat3D>& v) 
   }
   #endif
   assert(v.size() == 4);
-  Plane plane(v[0],v[1],v[2]);
-  return plane.IsInPlane(v[3]);
+  const std::unique_ptr<Plane> plane(new Plane(v[0],v[1],v[2]));
+  assert(plane);
+  return plane->IsInPlane(v[3]);
 }
 
 std::function<bool(const ribi::Geometry::Coordinat3D& lhs, const ribi::Geometry::Coordinat3D& rhs)>

@@ -34,6 +34,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "beerwantermenudialog.h"
 #include "binarynewickvector.h"
 #include "boenkenmenudialog.h"
+#include "caesarciphermenudialog.h"
 #include "canvas.h"
 #include "chessbitboard.h"
 #include "chessboard.h"
@@ -636,6 +637,7 @@ const std::vector<boost::shared_ptr<ribi::MenuDialog>> ribi::ProjectRichelBilder
         );
       }
       break;
+      case ProgramType::caesarCipher: p.reset(new CaesarCipherMenuDialog); break;
       case ProgramType::chrisWiley:
       {
         const std::string version = "x.x";

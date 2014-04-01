@@ -235,7 +235,7 @@ std::vector<double> ribi::Plane::GetCoefficientsZ() const
 
 std::string ribi::Plane::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
@@ -243,7 +243,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
   return {
     "2014-03-07: version 1.0: initial version",
     "2014-03-10: version 1.1: allow vertical planes",
-    "2014-03-13: version 1.2: bug fixed"
+    "2014-03-13: version 1.2: bug fixed",
+    "2014-04-01: version 1.3: use of std::unique_ptr"
   };
 }
 
@@ -463,7 +464,9 @@ std::string ribi::Plane::ToFunctionZ() const
   }
   try
   {
-     return m_plane_z->ToFunction();
+    const std::string s = m_plane_z->ToFunction();
+    assert(!s.empty());
+    return s;
   }
   catch (std::logic_error&)
   {

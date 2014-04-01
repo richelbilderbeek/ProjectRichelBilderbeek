@@ -34,6 +34,8 @@ ribi::trim::CellsCreator::CellsCreator(
 {
   #ifndef NDEBUG
   Test();
+  assert(n_layers >= 2);
+  assert(strategy == m_strategy);
   #endif
 }
 
@@ -315,6 +317,10 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
       if (strategy == CreateVerticalFacesStrategy::one_face_per_square)
       {
         //Ordering cannot be known for sure to be convex from these indices
+        assert(all_points[points_offset + edge.first]);
+        assert(all_points[points_offset + edge.second]);
+        assert(all_points[points_offset + edge.first  + n_points_per_layer]);
+        assert(all_points[points_offset + edge.second + n_points_per_layer]);
         std::vector<boost::shared_ptr<Point>> face_points {
           all_points[points_offset + edge.first],
           all_points[points_offset + edge.second],
@@ -359,16 +365,19 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
             FaceOrientation::vertical
           )
         };
+        assert(face);
         v.push_back(face);
       }
       else
       {
+        assert(all_points[points_offset + edge.first]);
+        assert(all_points[points_offset + edge.second]);
+        assert(all_points[points_offset + edge.first + n_points_per_layer]);
         const std::vector<boost::shared_ptr<Point>> face_points_1 {
           all_points[points_offset + edge.first],
           all_points[points_offset + edge.second],
           all_points[points_offset + edge.first + n_points_per_layer]
         };
-
         face_points_1[0]->SetZ(z_here);
         face_points_1[1]->SetZ(z_here);
         face_points_1[2]->SetZ(z_above);
@@ -383,8 +392,13 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
             FaceOrientation::vertical
           )
         };
+        assert(face_1);
         v.push_back(face_1);
 
+
+        assert(all_points[points_offset + edge.second]);
+        assert(all_points[points_offset + edge.second + n_points_per_layer]);
+        assert(all_points[points_offset + edge.first  + n_points_per_layer]);
         std::vector<boost::shared_ptr<Point>> face_points_2 {
           all_points[points_offset + edge.second],
           all_points[points_offset + edge.second + n_points_per_layer],
@@ -411,6 +425,7 @@ std::vector<boost::shared_ptr<ribi::trim::Face>> ribi::trim::CellsCreator::Creat
             FaceOrientation::vertical
           )
         };
+        assert(face_2);
         v.push_back(face_2);
       }
     }
@@ -591,7 +606,7 @@ void ribi::trim::CellsCreator::Test() noexcept
       );
     }
     TRACE("Creating internal faces 1");
-    Face::FaceSet internal_faces_1 = Helper().CreateEmptyFaceSet();
+    Helper::FaceSet internal_faces_1 = Helper().CreateEmptyFaceSet();
     TRACE("Creating internal faces 1, std::copy_if");
     //std::set<boost::shared_ptr<Face>> internal_faces_1;
     std::copy_if(
@@ -606,7 +621,7 @@ void ribi::trim::CellsCreator::Test() noexcept
     );
 
     TRACE("Creating internal faces 2");
-    Face::FaceSet internal_faces_2 = Helper().CreateEmptyFaceSet();
+    Helper::FaceSet internal_faces_2 = Helper().CreateEmptyFaceSet();
     std::copy_if(faces_2.begin(),faces_2.end(),std::inserter(internal_faces_2,internal_faces_2.begin()),
       [](const boost::shared_ptr<Face> face)
       {

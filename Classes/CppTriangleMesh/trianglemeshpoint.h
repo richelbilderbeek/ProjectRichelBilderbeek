@@ -25,13 +25,14 @@ struct Point
 {
   typedef boost::geometry::model::d2::point_xy<double> Coordinat2D;
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
+  typedef std::set<boost::weak_ptr<Face>,std::function<bool(boost::weak_ptr<const Face>,boost::weak_ptr<const Face>)>> WeakFaceSet;
 
   const boost::shared_ptr<const Coordinat2D> GetCoordinat() const noexcept { return m_coordinat; }
   Coordinat3D GetCoordinat3D() const noexcept;
 
   bool CanGetZ() const noexcept;
 
-  const std::set<boost::weak_ptr<Face>>& GetConnected() const noexcept { return m_connected; }
+  const WeakFaceSet& GetConnected() const noexcept { return m_connected; }
 
   int GetIndex() const noexcept { return m_index; }
 
@@ -64,7 +65,7 @@ struct Point
   /// m_connected must be mutable, because of the interdependent creation of
   /// Point and Face: a Point needs to know the Face it is connected to,
   /// a Face consists of Point objects
-  std::set<boost::weak_ptr<Face>> m_connected;
+  WeakFaceSet m_connected;
 
   const boost::shared_ptr<const Coordinat2D> m_coordinat;
 
@@ -75,7 +76,16 @@ struct Point
 
   friend class FaceFactory;
   ///Points are connected to Faces in the Faces' construction
-  void AddConnected(const boost::weak_ptr<Face> face);
+  void AddConnected(const boost::weak_ptr<Face>& face);
+
+
+  std::function<
+    bool(
+      const boost::weak_ptr<const ribi::trim::Face>& lhs,
+      const boost::weak_ptr<const ribi::trim::Face>& rhs
+    )
+  >
+  OrderByIndex() const noexcept;
 
   friend class TriangleMeshBuilder;
   ///Determined in the end

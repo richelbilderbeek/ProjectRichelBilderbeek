@@ -34,6 +34,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::boenkenVcl,"boenkenVcl"));
   m.insert(Pair(ProgramType::brainweaver,"brainweaver"));
   m.insert(Pair(ProgramType::bristol,"bristol"));
+  m.insert(Pair(ProgramType::caesarCipher,"caesarCipher"));
   m.insert(Pair(ProgramType::chrisWiley,"chrisWiley"));
   m.insert(Pair(ProgramType::codeToHtml,"codeToHtml"));
   m.insert(Pair(ProgramType::connectThree,"connectThree"));
@@ -207,6 +208,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateEnumNameMa
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"ubuntuOneWatcher"));
   m.insert(Pair(ProgramType::valentineCardDecrypter,"valentineCardDecrypter"));
   m.insert(Pair(ProgramType::vanDenBogaart,"vanDenBogaart"));
+  m.insert(Pair(ProgramType::vigenereCipher,"vigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"virtualBastard"));
   m.insert(Pair(ProgramType::visualAbc,"visualAbc"));
   m.insert(Pair(ProgramType::xeNonZero,"xeNonZero"));
@@ -248,6 +250,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::boenkenVcl,"Boenken (VCL)"));
   m.insert(Pair(ProgramType::brainweaver,"Brainweaver"));
   m.insert(Pair(ProgramType::bristol,"Bristol"));
+  m.insert(Pair(ProgramType::caesarCipher,"CaesarCipher"));
   m.insert(Pair(ProgramType::chrisWiley,"Chris Wiley"));
   m.insert(Pair(ProgramType::codeToHtml,"CodeToHtml"));
   m.insert(Pair(ProgramType::connectThree,"ConnectThree"));
@@ -421,6 +424,7 @@ boost::bimap<ribi::ProgramType,std::string> ribi::ProgramTypes::CreateScreenName
   m.insert(Pair(ProgramType::ubuntuOneWatcher,"UbuntuOne Watcher"));
   m.insert(Pair(ProgramType::valentineCardDecrypter,"ValentineCardDecrypter"));
   m.insert(Pair(ProgramType::vanDenBogaart,"Van Den Bogaart"));
+  m.insert(Pair(ProgramType::vigenereCipher,"VigenereCipher"));
   m.insert(Pair(ProgramType::virtualBastard,"Virtual Bastard"));
   m.insert(Pair(ProgramType::visualAbc,"Visual ABC"));
   m.insert(Pair(ProgramType::xeNonZero,"XeNonZero"));

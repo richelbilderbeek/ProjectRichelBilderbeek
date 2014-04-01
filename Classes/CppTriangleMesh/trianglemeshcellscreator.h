@@ -6,9 +6,11 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/si/length.hpp>
+
 #include "trianglemeshfwd.h"
 #include "trianglemeshcreateverticalfacesstrategy.h"
 #pragma GCC diagnostic pop
@@ -46,7 +48,7 @@ struct CellsCreator
     const CreateVerticalFacesStrategy strategy,
     const CellsCreatorFactory& lock //to force creation by CellsCreatorFactory
   );
-
+  ~CellsCreator() noexcept {}
 
   std::vector<boost::shared_ptr<Cell>> m_cells;
 
@@ -96,6 +98,11 @@ struct CellsCreator
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      CellsCreator* x);
+  friend void boost::checked_delete<>(const CellsCreator* x);
+  friend class boost::detail::sp_ms_deleter<      CellsCreator>;
+  friend class boost::detail::sp_ms_deleter<const CellsCreator>;
 };
 
 } //~namespace trim

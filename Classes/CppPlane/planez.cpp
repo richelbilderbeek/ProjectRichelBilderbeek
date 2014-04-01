@@ -104,7 +104,7 @@ double ribi::PlaneZ::CalcZ(const double x, const double y) const
 
 std::string ribi::PlaneZ::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
@@ -112,7 +112,8 @@ std::vector<std::string> ribi::PlaneZ::GetVersionHistory() const noexcept
   return {
     "2014-03-10: version 1.0: initial version, split off from Plane",
     "2014-03-10: version 1.1: bug fixed, only occurred at debugging",
-    "2014-03-13: version 1.2: bug fixed"
+    "2014-03-13: version 1.2: bug fixed",
+    "2014-04-01: version 1.3: use of std::unique_ptr"
   };
 }
 
@@ -410,13 +411,22 @@ std::string ribi::PlaneZ::ToFunction() const
   const double c = m_coefficients[2];
   const double d = m_coefficients[3];
   if (c == 0.0) throw std::logic_error("ribi::PlaneZ::CalcZ: cannot calculate Z of a vertical plane");
-  // z = -A/C.x - B/C.y + D/C
-  std::stringstream s;
-  s
-    << "z=("  << (-a/c) << "*x" << ")"
-    << " + (" << (-b/c) << "*y" << ")"
-    << " + "  << ( d/c);
-  const std::string t = s.str();
-  return t;
+  try
+  {
+    std::stringstream s;
+    s
+      << "z=("  << (-a/c) << "*x" << ")"
+      << " + (" << (-b/c) << "*y" << ")"
+      << " + "  << ( d/c);
+    const std::string t = s.str();
+    assert(!t.empty());
+    assert(t.size() <= t.max_size());
+    return t;
+  }
+  catch (std::exception&)
+  {
+    assert(!"Should not get here");
+    throw;
+  }
 }
 
