@@ -2,8 +2,8 @@ INCLUDEPATH += \
     ../../Tools/ToolEncranger
 
 SOURCES += \
-    ../../Tools/ToolEncranger/toolencrangermaindialog.cpp \
-    ../../Tools/ToolEncranger/toolencrangermenudialog.cpp
+    ../../Tools/ToolEncranger/encrangermaindialog.cpp \
+    ../../Tools/ToolEncranger/encrangermenudialog.cpp
 
 HEADERS += \
     ../../Tools/ToolEncranger/encrangermaindialog.h \

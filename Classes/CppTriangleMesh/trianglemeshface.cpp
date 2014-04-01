@@ -41,6 +41,10 @@ ribi::trim::Face::Face(
   #ifndef NDEBUG
   Test();
   PROFILE_FUNC();
+  assert(m_points == any_points);
+  assert(!m_points.empty());
+  assert(  m_points[0].use_count() >= 2);
+  assert(any_points[0].use_count() >= 2);
   assert(Helper().IsPlane(m_points));
   if (!Helper().IsConvex(m_points))
   {

@@ -22,10 +22,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 #include "trace.h"
 
-ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog()
-  : m_encranger(new Encranger(0)), // 0 == m_key
+ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog(const int key) noexcept
+  : m_encranger(new Encranger(key)),
     m_encrypted_text{},
-    m_key(0),
+    m_key(key),
     m_plain_text{}
 {
   #ifndef NDEBUG
@@ -33,27 +33,27 @@ ribi::ToolEncrangerMainDialog::ToolEncrangerMainDialog()
   #endif
 }
 
-void ribi::ToolEncrangerMainDialog::Deencrypt()
+void ribi::ToolEncrangerMainDialog::Deencrypt() noexcept
 {
   m_plain_text = m_encranger->Deencrypt(m_encrypted_text);
 }
 
-void ribi::ToolEncrangerMainDialog::Encrypt()
+void ribi::ToolEncrangerMainDialog::Encrypt() noexcept
 {
   m_encrypted_text = m_encranger->Encrypt(m_plain_text);
 }
 
-void ribi::ToolEncrangerMainDialog::SetEncryptedText(const std::string& s)
+void ribi::ToolEncrangerMainDialog::SetEncryptedText(const std::string& s) noexcept
 {
   m_encrypted_text = s;
 }
 
-void ribi::ToolEncrangerMainDialog::SetKey(const int i)
+void ribi::ToolEncrangerMainDialog::SetKey(const int i) noexcept
 {
   m_encranger.reset(new Encranger(i));
 }
 
-void ribi::ToolEncrangerMainDialog::SetPlainText(const std::string& s)
+void ribi::ToolEncrangerMainDialog::SetPlainText(const std::string& s) noexcept
 {
   m_plain_text = s;
 }
@@ -67,6 +67,18 @@ void ribi::ToolEncrangerMainDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolEncrangerMainDialog::Test");
+  {
+    ToolEncrangerMainDialog d;
+    const std::string s = "Hello World";
+    d.SetKey(123);
+    d.SetPlainText(s);
+    d.Encrypt();
+    const std::string encrypted = d.GetEncryptedText();
+    d.SetEncryptedText(encrypted);
+    d.Deencrypt();
+    const std::string deencrypted = d.GetPlainText();
+    assert(s == deencrypted);
+  }
   TRACE("Finished ribi::ToolEncrangerMainDialog::Test successfully");
 }
 #endif

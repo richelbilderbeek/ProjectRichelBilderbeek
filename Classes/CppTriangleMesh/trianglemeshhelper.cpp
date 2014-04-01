@@ -29,21 +29,6 @@ ribi::trim::Helper::Helper::Helper()
   #endif
 }
 
-#ifdef USE_TRIANGLEMESHEDGE
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Helper::CalcCenter(
-  const std::vector<boost::shared_ptr<Edge>>& edges
-) const noexcept
-{
-  std::vector<boost::shared_ptr<Point>> points;
-  for (const auto edge: edges)
-  {
-    points.push_back(edge->GetFrom());
-    points.push_back(edge->GetTo());
-  }
-  return CalcCenter(points);
-}
-#endif
-
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Helper::CalcCenter(
   const std::vector<boost::shared_ptr<Point>>& points
 ) const noexcept
@@ -65,25 +50,6 @@ boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::tri
   const double n { static_cast<double>(points.size()) };
   return sum / n;
 }
-
-#ifdef USE_TRIANGLEMESHEDGE
-boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Helper::CalcNormal(
-  const std::vector<boost::shared_ptr<Edge>>& edges
-) const noexcept
-{
-  using boost::geometry::get;
-  assert(edges.size() == 3);
-  assert(edges[0]->GetTo() == edges[1]->GetFrom());
-  assert(edges[1]->GetTo() == edges[2]->GetFrom());
-  assert(edges[2]->GetTo() == edges[0]->GetFrom());
-
-  return Geometry().CalcNormal(
-    edges[0]->GetFrom()->GetCoordinat3D(),
-    edges[1]->GetFrom()->GetCoordinat3D(),
-    edges[2]->GetFrom()->GetCoordinat3D()
-  );
-}
-#endif
 
 ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
   const std::vector<boost::shared_ptr<const Point>>& points
@@ -114,56 +80,6 @@ ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
   if (!a &&  b) return Winding::counter_clockwise;
   return Winding::indeterminate;
 }
-
-#ifdef USE_TRIANGLEMESHEDGE
-ribi::trim::Winding ribi::trim::Helper::CalcWindingHorizontal(
-  const std::vector<boost::shared_ptr<const Edge>>& edges
-) const noexcept
-{
-  using boost::geometry::get;
-
-  //Are Edges nicely ordered
-  // 0: A->B (edge[0] has A at its m_points[0] and has B at its m_points[1])
-  // 1: B->C (edge[1] has B at its m_points[0] and has C at its m_points[1])
-  // 2: C->A (edge[2] has C at its m_points[0] and has A at its m_points[1])
-  const int n_edges { static_cast<int>(edges.size()) };
-
-  //Check for indeterminate ordering
-  for (int i=0; i!=n_edges; ++i)
-  {
-    const int j { (i + 1) % n_edges };
-    assert(i < static_cast<int>(edges.size()));
-    assert(j < static_cast<int>(edges.size()));
-    if (edges[i]->GetTo() != edges[j]->GetFrom())
-    {
-      return Winding::indeterminate;
-    }
-  }
-  //Extract the points
-  std::vector<Coordinat3D> coordinats;
-  for (const auto edge: edges) { coordinats.push_back(edge->GetFrom()->GetCoordinat3D()); }
-  assert(coordinats.size() == edges.size());
-
-  const bool a { Geometry().IsClockwiseHorizontal(coordinats) };
-  const bool b { Geometry().IsCounterClockwiseHorizontal(coordinats) };
-  if ( a && !b)
-  {
-    if (!IsClockwise(edges,Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())))
-    {
-      TRACE("ERROR");
-    }
-    assert(IsClockwise(edges,Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
-    return Winding::clockwise;
-  }
-  if (!a &&  b)
-  {
-    assert(!IsClockwise(edges,Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
-    return Winding::counter_clockwise;
-  }
-  assert(!IsClockwise(edges,Coordinat3D(0.0,0.0,std::numeric_limits<double>::max())));
-  return Winding::indeterminate;
-}
-#endif
 
 ribi::trim::Helper::FaceSet ribi::trim::Helper::CreateEmptyFaceSet() const noexcept
 {
@@ -222,53 +138,6 @@ double ribi::trim::Helper::GetAngle(const boost::shared_ptr<const Point> point) 
   );
 }
 
-#ifdef USE_TRIANGLEMESHEDGE
-bool ribi::trim::Helper::IsClockwise(
-  const std::vector<boost::shared_ptr<const Edge>>& edges,
-  const Coordinat3D& observer
-) const noexcept
-{
-  return IsClockwiseConst(edges,observer);
-}
-
-bool ribi::trim::Helper::IsClockwise(
-  const std::vector<boost::shared_ptr<Edge>>& edges,
-  const Coordinat3D& observer
-) const noexcept
-{
-  #ifndef NDEBUG
-  if (!IsDirected(edges))
-  {
-    TRACE("ERROR");
-  }
-  #endif
-  assert(IsDirected(edges));
-  return IsClockwiseConst(AddConst(edges),observer);
-}
-
-bool ribi::trim::Helper::IsClockwiseConst(
-  const std::vector<boost::shared_ptr<const Edge>>& edges,
-  const Coordinat3D& observer
-) const noexcept
-{
-  assert(IsDirected(edges));
-
-  std::vector<Coordinat3D> coordinats;
-  for (const auto edge: edges)
-  {
-    assert(edge);
-    coordinats.push_back(edge->GetFrom()->GetCoordinat3D());
-    //coordinats.push_back(edge->GetTo()->GetCoordinat3D());
-  }
-  //std::sort(coordinats.begin(),coordinats.end(),Geometry().OrderByX());
-  //coordinats.erase(
-  //  std::unique(coordinats.begin(),coordinats.end(),Geometry().Equals()),
-  //  coordinats.end()
-  //);
-  return Geometry().IsClockwise(coordinats,observer);
-}
-#endif
-
 bool ribi::trim::Helper::IsClockwise(
   const std::vector<boost::shared_ptr<const Point>>& points,
   const Coordinat3D& observer) const noexcept
@@ -283,31 +152,6 @@ bool ribi::trim::Helper::IsClockwise(
   assert(Geometry().IsPlane(coordinats));
   return Geometry().IsClockwise(coordinats,observer);
 }
-
-#ifdef USE_TRIANGLEMESHEDGE
-bool ribi::trim::Helper::IsClockwiseHorizontal(
-  const boost::shared_ptr<const Edge> edge,
-  const Coordinat3D& observer
-  ) const noexcept
-{
-  using boost::geometry::get;
-  const auto observer_x(boost::geometry::get<0>(observer));
-  const auto observer_y(boost::geometry::get<1>(observer));
-  const auto is_clockwise(
-    Geometry().IsClockwise(
-      Geometry().GetAngle(
-        get<0>(*edge->GetFrom()->GetCoordinat()) - observer_x,
-        get<1>(*edge->GetFrom()->GetCoordinat()) - observer_y
-      ),
-      Geometry().GetAngle(
-        get<0>(*edge->GetTo()->GetCoordinat()) - observer_x,
-        get<1>(*edge->GetTo()->GetCoordinat()) - observer_y
-      )
-    )
-  );
-  return is_clockwise;
-}
-#endif
 
 bool ribi::trim::Helper::IsClockwiseHorizontal(
   const std::vector<boost::shared_ptr<Point>>& points
@@ -400,27 +244,6 @@ bool ribi::trim::Helper::IsCounterClockwise(
   return Geometry().IsCounterClockwise(PointsToCoordinats3D(AddConst(points)),observer);
 }
 
-#ifdef USE_TRIANGLEMESHEDGE
-bool ribi::trim::Helper::IsDirected(
-  const std::vector<boost::shared_ptr<Edge>>& edges
-) const noexcept
-{
-  return IsDirectedConst(AddConst(edges));
-}
-
-bool ribi::trim::Helper::IsDirectedConst(
-  const std::vector<boost::shared_ptr<const Edge>>& edges
-) const noexcept
-{
-  const int n_edges { static_cast<int>(edges.size()) };
-  for (int i=0; i!=n_edges; ++i)
-  {
-    if (edges[i]->GetTo() != edges[(i+1) % n_edges]->GetFrom()) return false;
-  }
-  return true;
-}
-#endif
-
 bool ribi::trim::Helper::IsHorizontal(const ribi::trim::Face& face) noexcept
 {
   using boost::geometry::get;
@@ -489,48 +312,6 @@ bool ribi::trim::Helper::IsPlane(
 {
   return Geometry().IsPlane(PointsToCoordinats3D(AddConst(points)));
 }
-
-#ifdef USE_TRIANGLEMESHEDGE
-bool ribi::trim::Helper::IsPlane(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept
-{
-  return IsPlaneConst(edges);
-}
-
-bool ribi::trim::Helper::IsPlane(const std::vector<boost::shared_ptr<Edge>>& edges) const noexcept
-{
-  return IsPlaneConst(AddConst(edges));
-}
-
-bool ribi::trim::Helper::IsPlaneConst(
-  const std::vector<boost::shared_ptr<const ribi::trim::Edge>>& edges
-) const noexcept
-{
-  std::vector<Coordinat3D> coordinats;
-  for (auto edge: edges)
-  {
-    assert(edge);
-    assert(edge->GetFrom());
-    assert(edge->GetFrom()->CanGetZ());
-    assert(edge->GetTo());
-    assert(edge->GetTo()->CanGetZ());
-    coordinats.push_back(edge->GetFrom()->GetCoordinat3D());
-    coordinats.push_back(edge->GetTo()->GetCoordinat3D());
-  }
-  std::sort(
-    coordinats.begin(),
-    coordinats.end(),
-    Geometry().OrderByZ()
-  );
-  coordinats.erase(
-    std::unique(
-      coordinats.begin(),
-      coordinats.end(),
-      Geometry().Equals()
-    ),coordinats.end()
-  );
-  return Geometry().IsPlane(coordinats);
-}
-#endif
 
 bool ribi::trim::Helper::IsVertical(const ribi::trim::Face& face) noexcept
 {
@@ -614,6 +395,7 @@ void ribi::trim::Helper::MakeConvex(
     for (auto p: v) { TRACE(p); TRACE(*p); }
 
     #ifdef FIX_ISSUE_168
+    std::exit(0);
     return; //TODO: FIX THIS BUG
     #endif //ifdef FIX_ISSUE_168
     assert(!"Should not get here");
@@ -684,91 +466,6 @@ std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesia
   }
   return v;
 }
-
-#ifdef USE_TRIANGLEMESHEDGE
-void ribi::trim::Helper::SetWindingHorizontal(
-  std::vector<boost::shared_ptr<Edge>>& edges,
-  const Winding winding
-) const noexcept
-{
-  assert(CalcWindingHorizontal(AddConst(edges)) != winding);
-  switch(winding)
-  {
-    case Winding::indeterminate:
-    {
-      edges[1]->Reverse();
-    }
-    break;
-    case Winding::clockwise:
-    {
-      assert(edges.size() == 3 && "Otherwise I am not sure this will work");
-      const Coordinat3D center { CalcCenter(edges) };
-      const int n_edges { static_cast<int>(edges.size()) };
-      for (int i=0; i!=n_edges; ++i)
-      {
-        //Fix winding
-        if (!IsClockwiseHorizontal(edges[i],center)) { edges[i]->Reverse(); }
-        assert(IsClockwiseHorizontal(edges[i],center));
-        //Fix ordering of elements
-        if (edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo()) continue;
-        //Try to swap the next element's order
-        assert(i + 1 < n_edges);
-        if (edges[i+1]->GetFrom() != edges[i]->GetTo()) { edges[i+1]->Reverse(); }
-        if (edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo()) continue;
-        //Swap the next and its next elements
-        assert(i + 2 < n_edges);
-        if (edges[i+1]->GetFrom() != edges[i]->GetTo()) { std::swap(edges[i+1],edges[i+2]); }
-        if (edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo()) continue;
-        //Try to swap the next element's order
-        if (edges[i+1]->GetFrom() != edges[i]->GetTo()) { edges[i+1]->Reverse(); }
-        assert(edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo());
-      }
-    }
-    break;
-    case Winding::counter_clockwise:
-    {
-      assert(edges.size() == 3 && "Otherwise I am not sure this will work");
-      const Coordinat3D center { CalcCenter(edges) };
-      const int n_edges { static_cast<int>(edges.size()) };
-      for (int i=0; i!=n_edges; ++i)
-      {
-        //Fix winding
-        if (IsClockwiseHorizontal(edges[i],center)) { edges[i]->Reverse(); }
-        assert(!IsClockwiseHorizontal(edges[i],center));
-        //Fix ordering of elements
-        if (edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo()) continue;
-        //Try to swap the next element's order
-        assert(i + 1 < n_edges);
-        if (edges[i+1]->GetFrom() != edges[i]->GetTo()) { edges[i+1]->Reverse(); }
-        if (edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo()) continue;
-        //Swap the next and its next elements
-        assert(i + 2 < n_edges);
-        if (edges[i+1]->GetFrom() != edges[i]->GetTo()) { std::swap(edges[i+1],edges[i+2]); }
-        if (edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo()) continue;
-        //Try to swap the next element's order
-        if (edges[i+1]->GetFrom() != edges[i]->GetTo()) { edges[i+1]->Reverse(); }
-        assert(edges[(i+1) % n_edges]->GetFrom() == edges[i]->GetTo());
-      }
-    }
-    break;
-    case Winding::n_types:
-      assert(!"Should never get here");
-      throw std::logic_error("ribi::trim::Helper::SetWindingHorizontal: unknown Winding");
-  }
-  assert(CalcWindingHorizontal(AddConst(edges)) == winding);
-}
-#endif
-
-/*
-void ribi::trim::Helper::Sort(std::vector<ribi::trim::Helper::Coordinat3D>& coordinats) const noexcept
-{
-  std::sort(
-    coordinats.begin(),
-    coordinats.end(),
-    Geometry().OrderByZ()
-  );
-}
-*/
 
 #ifndef NDEBUG
 void ribi::trim::Helper::Test() noexcept

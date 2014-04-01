@@ -45,6 +45,15 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
     std::cout << GetHelp() << '\n';
     return 1;
   }
+  bool is_silent = false;
+  for (int i=0; i!=argc; ++i)
+  {
+    if (argv[i] == "-s" || argv[i] == "--silence")
+    {
+      is_silent = true;
+    }
+  }
+
   //Determine key, if supplied as an argument
   int key = 0;
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
@@ -74,7 +83,7 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
       d.SetKey(key);
       d.SetPlainText(plaintext);
       d.Encrypt();
-      std::cout << d.GetEncryptedText() << '\n';
+      if (!is_silent) { std::cout << d.GetEncryptedText() << '\n'; }
       return 0;
     }
   }
@@ -88,7 +97,7 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
       d.SetKey(key);
       d.SetEncryptedText(ciphertext);
       d.Deencrypt();
-      std::cout << d.GetPlainText() << '\n';
+      if (!is_silent) { std::cout << d.GetPlainText() << '\n'; }
       return 0;
     }
   }
@@ -120,7 +129,8 @@ ribi::Help ribi::ToolEncrangerMenuDialog::GetHelp() const noexcept
     {
       Help::Option('c',"cipher","the ciphertext, will be decrypted"),
       Help::Option('k',"key","the encryption key, a number, zero by default"),
-      Help::Option('t',"text","the plaintext, will be encrypted")
+      Help::Option('t',"text","the plaintext, will be encrypted"),
+      Help::Option('s',"silent","silence output, used for debugging")
     },
     {
       "Encranger -c 123 --text \"Hello World\"",
@@ -139,7 +149,7 @@ boost::shared_ptr<const ribi::Program> ribi::ToolEncrangerMenuDialog::GetProgram
 
 std::string ribi::ToolEncrangerMenuDialog::GetVersion() const noexcept
 {
-  return "2.6";
+  return "2.7";
 }
 
 std::vector<std::string> ribi::ToolEncrangerMenuDialog::GetVersionHistory() const noexcept
@@ -153,6 +163,7 @@ std::vector<std::string> ribi::ToolEncrangerMenuDialog::GetVersionHistory() cons
     "2011-08-31: Version 2.4: added arrows and Welcome image",
     "2013-09-27: Version 2.5: conformized for ProjectRichelBilderbeek",
     "2013-11-01: Version 2.6: improved console version",
+    "2014-04-01: Version 2.7: added silent mode"
   };
 }
 
@@ -165,6 +176,11 @@ void ribi::ToolEncrangerMenuDialog::Test() noexcept
     is_tested = true;
   }
   TRACE("Starting ribi::ToolEncrangerMenuDialog::Test");
+  {
+    ToolEncrangerMenuDialog d;
+    d.Execute( {"Encranger", "-c", "123", "--text", "Hello World", "-s" } );
+    d.Execute( {"Encranger", "-c", "123", "--cipher", "bc30h3g8h287g", "--silent" } );
+  }
   TRACE("Finished ribi::ToolEncrangerMenuDialog::Test successfully");
 }
 #endif

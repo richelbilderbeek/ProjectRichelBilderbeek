@@ -31,9 +31,9 @@ namespace ribi {
 
 struct ToolEncrangerMainDialog
 {
-  ToolEncrangerMainDialog();
-  void Deencrypt();
-  void Encrypt();
+  ToolEncrangerMainDialog(const int key = 0) noexcept;
+  void Deencrypt() noexcept;
+  void Encrypt() noexcept;
 
   const std::string& GetEncryptedText() const noexcept { return m_encrypted_text; }
 
@@ -41,9 +41,9 @@ struct ToolEncrangerMainDialog
 
   const std::string& GetPlainText() const noexcept { return m_plain_text; }
 
-  void SetEncryptedText(const std::string& s);
-  void SetKey(const int i);
-  void SetPlainText(const std::string& s);
+  void SetEncryptedText(const std::string& s) noexcept;
+  void SetKey(const int i) noexcept;
+  void SetPlainText(const std::string& s) noexcept;
 
   private:
   boost::scoped_ptr<Encranger> m_encranger;

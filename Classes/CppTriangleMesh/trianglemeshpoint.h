@@ -31,9 +31,6 @@ struct Point
 
   bool CanGetZ() const noexcept;
 
-  #ifdef USE_TRIANGLEMESHEDGE
-  const std::set<boost::weak_ptr<Edge>>& GetBelongsTo() const noexcept { return m_belongs_to; }
-  #endif
   const std::set<boost::weak_ptr<Face>>& GetConnected() const noexcept { return m_connected; }
 
   int GetIndex() const noexcept { return m_index; }
@@ -64,13 +61,6 @@ struct Point
     const PointFactory& lock
   );
 
-  /// m_belongs_to must be mutable, because of the interdependent creation of
-  /// Point and Edge: a Point needs to know the Edge it belongs to,
-  /// an Edge consists of Point objects
-  #ifdef USE_TRIANGLEMESHEDGE
-  std::set<boost::weak_ptr<Edge>> m_belongs_to;
-  #endif
-
   /// m_connected must be mutable, because of the interdependent creation of
   /// Point and Face: a Point needs to know the Face it is connected to,
   /// a Face consists of Point objects
@@ -82,12 +72,6 @@ struct Point
   mutable int m_index;
 
   mutable boost::shared_ptr<boost::units::quantity<boost::units::si::length>> m_z;
-
-  #ifdef USE_TRIANGLEMESHEDGE
-  friend class EdgeFactory;
-  ///Points are connected to Edge in the Edge's construction
-  void AddBelongsTo(const boost::weak_ptr<Edge> edge);
-  #endif
 
   friend class FaceFactory;
   ///Points are connected to Faces in the Faces' construction
