@@ -59,11 +59,6 @@ struct Command
   virtual void DoCommandSpecific(Widget * const widget) noexcept = 0;
 };
 
-
-
-
-
-
 } //~namespace cmap
 } //~namespace ribi
 

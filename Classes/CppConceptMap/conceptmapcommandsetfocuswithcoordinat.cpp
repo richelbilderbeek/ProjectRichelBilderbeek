@@ -66,7 +66,7 @@ void ribi::cmap::CommandSetFocusWithCoordinat::Undo() noexcept
     m_widget->LoseFocus();
   }
 
-  m_old_focus = nullptr;
+  m_old_focus = boost::shared_ptr<Node>();
   m_widget->m_signal_concept_map_changed();
 
   assert(m_widget);

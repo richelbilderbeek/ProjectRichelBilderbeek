@@ -365,7 +365,7 @@ void ribi::cmap::Widget::LoseFocus() noexcept
 {
   assert(m_focus);
 
-  m_focus = nullptr;
+  m_focus = boost::shared_ptr<Node>() ;
 
   assert(!m_focus);
 }
