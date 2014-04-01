@@ -27,29 +27,18 @@ struct Helper
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
   typedef std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> Coordinat3dSet;
+  typedef std::set<boost::shared_ptr<Face>,std::function<bool(boost::shared_ptr<const Face>,boost::shared_ptr<const Face>)>> FaceSet;
 
   Helper();
 
-  ///Calculate the point in the center of the collection of edges
-  #ifdef USE_TRIANGLEMESHEDGE
-  Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Edge>>& edges) const noexcept;
-  #endif
-
   Coordinat3D CalcCenter(const std::vector<boost::shared_ptr<Point>>& points) const noexcept;
-
-  #ifdef USE_TRIANGLEMESHEDGE
-  Coordinat3D CalcNormal(
-    const std::vector<boost::shared_ptr<Edge>>& edges
-  ) const noexcept;
-  #endif
 
   ///Find out the Winding of the edges
   ///knowing that all edges are in the same XY plane
   ///when viewed from above (at an infinite Z coordinat)
   Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Point>>& points) const noexcept;
-  #ifdef USE_TRIANGLEMESHEDGE
-  Winding CalcWindingHorizontal(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
-  #endif
+
+  FaceSet CreateEmptyFaceSet() const noexcept;
 
   Coordinat3dSet ExtractCoordinats(const Face& face);
   std::set<Coordinat3D,std::function<bool(Coordinat3D,Coordinat3D)>> ExtractCoordinats(const std::vector<boost::shared_ptr<const Point>>& points);
@@ -94,36 +83,10 @@ struct Helper
   */
   double GetAngle(const boost::shared_ptr<const Point> point) const noexcept;
 
-  ///Are the points ordered clockwise when seen from the observer
-  #ifdef USE_TRIANGLEMESHEDGE
-  bool IsClockwise(
-    const std::vector<boost::shared_ptr<const Edge>>& edges,
-    const Coordinat3D& center
-  ) const noexcept;
-  bool IsClockwise(
-    const std::vector<boost::shared_ptr<Edge>>& edges,
-    const Coordinat3D& center
-  ) const noexcept;
-  bool IsClockwiseConst(
-    const std::vector<boost::shared_ptr<const Edge>>& edges,
-    const Coordinat3D& center
-  ) const noexcept;
-  #endif
-
   bool IsClockwise(
     const std::vector<boost::shared_ptr<const Point>>& points,
     const Coordinat3D& observer
   ) const noexcept;
-
-  ///Are the points ordered clockwise in the XY plane seen from above
-  /// (e.g. from coordinat {0,0,1} )
-  #ifdef USE_TRIANGLEMESHEDGE
-  bool IsClockwiseHorizontal(
-    const boost::shared_ptr<const Edge> edge,
-    const Coordinat3D& observer
-  ) const noexcept;
-  #endif
-
 
   ///Are the points ordered clockwise in the XY plane seen from above
   /// (e.g. from coordinat {0,0,1} )
@@ -137,7 +100,7 @@ struct Helper
   ) const noexcept;
 
   bool IsConvex(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points) const noexcept;
-  bool IsConvex(const std::vector<boost::shared_ptr<ribi::trim::Point>>& points) const noexcept;
+  bool IsConvex(const std::vector<boost::shared_ptr<      ribi::trim::Point>>& points) const noexcept;
 
   bool IsCounterClockwise(
     const std::vector<boost::shared_ptr<const Point>>& points,
@@ -147,19 +110,6 @@ struct Helper
     const std::vector<boost::shared_ptr<Point>>& points,
     const Coordinat3D& observer
   ) const noexcept;
-
-  ///Do the Edges go from A->B->C
-  #ifdef USE_TRIANGLEMESHEDGE
-  bool IsDirected(
-    const std::vector<boost::shared_ptr<const Edge>>& edges
-  ) const noexcept { return IsDirectedConst(edges); }
-  bool IsDirected(
-    const std::vector<boost::shared_ptr<Edge>>& edges
-  ) const noexcept;
-  bool IsDirectedConst(
-    const std::vector<boost::shared_ptr<const Edge>>& edges
-  ) const noexcept;
-  #endif
 
   bool IsHorizontal(const Face& face) noexcept;
 
@@ -171,15 +121,13 @@ struct Helper
     const std::vector<boost::shared_ptr<Point>>& points
   ) const noexcept;
 
-  #ifdef USE_TRIANGLEMESHEDGE
-  bool IsPlane(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
-  bool IsPlane(const std::vector<boost::shared_ptr<      Edge>>& edges) const noexcept;
-  #endif
-
   bool IsVertical(const Face& face) noexcept;
 
   ///Order the points so that these are convex
   void MakeConvex(std::vector<boost::shared_ptr<Point>>& points) const noexcept;
+
+  std::function<bool(const boost::shared_ptr<const Face>& lhs, const boost::shared_ptr<const Face>& rhs)>
+    OrderByIndex() const noexcept;
 
   std::function<bool(const boost::shared_ptr<const Point>& lhs, const boost::shared_ptr<const Point>& rhs)>
     OrderByX() const noexcept;
@@ -188,25 +136,11 @@ struct Helper
     PointsToCoordinats3D(const std::vector<boost::shared_ptr<const ribi::trim::Point>>& points
   ) const noexcept;
 
-  ///Set the edges to get a certain Winding,
-  ///knowing that all edges are in the same XY plane
-  ///when viewed from above (at an infinite Z coordinat)
-  #ifdef USE_TRIANGLEMESHEDGE
-  void SetWindingHorizontal(
-    std::vector<boost::shared_ptr<Edge>>& edges,
-    const Winding winding
-  ) const noexcept;
-  #endif
-
   std::string ToStr(const std::vector<boost::shared_ptr<const Point>>& p) const noexcept;
   std::string ToXml(const boost::geometry::model::d2::point_xy<double>& p) const noexcept;
 
 
   private:
-  #ifdef USE_TRIANGLEMESHEDGE
-  bool IsPlaneConst(const std::vector<boost::shared_ptr<const Edge>>& edges) const noexcept;
-  #endif
-
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

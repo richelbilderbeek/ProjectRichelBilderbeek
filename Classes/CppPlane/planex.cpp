@@ -38,11 +38,12 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneX::CalcProj
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
 ) const
 {
+  assert(m_plane_z);
   auto v(points);
   for(auto& i: v) { i = Rotate(i); }
   try
   {
-    return m_plane_z.CalcProjection(v);
+    return m_plane_z->CalcProjection(v);
   }
   catch (std::logic_error&)
   {
@@ -52,9 +53,10 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::PlaneX::CalcProj
 
 double ribi::PlaneX::CalcX(const double y, const double z) const
 {
+  assert(m_plane_z);
   try
   {
-    return m_plane_z.CalcZ(y,z);
+    return m_plane_z->CalcZ(y,z);
   }
   catch (std::logic_error&)
   {
@@ -62,32 +64,37 @@ double ribi::PlaneX::CalcX(const double y, const double z) const
   }
 }
 
-ribi::PlaneZ ribi::PlaneX::Create(
+std::unique_ptr<ribi::PlaneZ> ribi::PlaneX::Create(
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p1,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p2,
   const boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>& p3
 ) noexcept
 {
-  return PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3));
+  std::unique_ptr<PlaneZ> p(
+    new PlaneZ(Rotate(p1), Rotate(p2), Rotate(p3))
+  );
+  assert(p);
+  return p;
 }
 
 const std::vector<double> ribi::PlaneX::GetCoefficients() const noexcept
 {
-  const auto v(m_plane_z.GetCoefficients());
+  const auto v(m_plane_z->GetCoefficients());
   assert(v.size() == 4);
   return { v[2],v[0],v[1],v[3] };
 }
 
 std::string ribi::PlaneX::GetVersion() const noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::PlaneX::GetVersionHistory() const noexcept
 {
   return {
     "2014-03-10: version 1.0: initial version, split off from PlaneZ",
-    "2014-03-13: version 1.1: bug fixed"
+    "2014-03-13: version 1.1: bug fixed",
+    "2014-04-01: version 1.2: use of std::unique_ptr"
   };
 }
 
@@ -409,7 +416,7 @@ std::string ribi::PlaneX::ToFunction() const
 {
   try
   {
-    std::string s = m_plane_z.ToFunction();
+    std::string s = m_plane_z->ToFunction();
     // 'z=(2*x) + (3*y) + 5'
     //          =>
     // 'x=(2*y) + (3*z) + 5'

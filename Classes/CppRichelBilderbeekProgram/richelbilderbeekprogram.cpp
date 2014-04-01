@@ -49,6 +49,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::boenkenVcl: p.reset(new ProgramBoenkenVcl); break;
     case ProgramType::brainweaver: p.reset(new ProgramBrainweaver); break;
     case ProgramType::bristol: p.reset(new ProgramBristol); break;
+    case ProgramType::caesarCipher: p.reset(new ProgramCaesarCipher); break;
     case ProgramType::chrisWiley: p.reset(new ProgramChrisWiley); break;
     case ProgramType::codeToHtml: p.reset(new ProgramCodeToHtml); break;
     case ProgramType::connectThree: p.reset(new ProgramConnectThree); break;
@@ -222,6 +223,7 @@ boost::shared_ptr<ribi::Program> ribi::Program::CreateProgram(const ProgramType 
     case ProgramType::ubuntuOneWatcher: p.reset(new ProgramUbuntuOneWatcher); break;
     case ProgramType::valentineCardDecrypter: p.reset(new ProgramValentineCardDecrypter); break;
     case ProgramType::vanDenBogaart: p.reset(new ProgramVanDenBogaart); break;
+    case ProgramType::vigenereCipher: p.reset(new ProgramVigenereCipher); break;
     case ProgramType::virtualBastard: p.reset(new ProgramVirtualBastard); break;
     case ProgramType::visualAbc: p.reset(new ProgramVisualAbc); break;
     case ProgramType::xeNonZero: p.reset(new ProgramXeNonZero); break;

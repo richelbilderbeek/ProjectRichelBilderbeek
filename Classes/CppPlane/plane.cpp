@@ -32,6 +32,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #include "trace.h"
 #pragma GCC diagnostic pop
 
+ribi::Plane::Plane(
+  const Coordinat3D& p1, //= Coordinat3D(0.0,0.0,0.0),
+  const Coordinat3D& p2, //= Coordinat3D(0.0,1.0,0.0),
+  const Coordinat3D& p3  //= Coordinat3D(1.0,0.0,0.0)
+) noexcept
+: m_plane_x(CreatePlaneX(p1,p2,p3)),
+  m_plane_y(CreatePlaneY(p1,p2,p3)),
+  m_plane_z(CreatePlaneZ(p1,p2,p3)),
+  m_points( {p1,p2,p3} )
+{
+  #ifndef NDEBUG
+  Test();
+  assert(Geometry().IsEqual(m_points[0],p1));
+  assert(Geometry().IsEqual(m_points[1],p2));
+  assert(Geometry().IsEqual(m_points[2],p3));
+  #endif
+}
+
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Plane::CalcProjection(
   const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points
 ) const
@@ -217,7 +235,7 @@ std::vector<double> ribi::Plane::GetCoefficientsZ() const
 
 std::string ribi::Plane::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.3";
 }
 
 std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
@@ -225,7 +243,8 @@ std::vector<std::string> ribi::Plane::GetVersionHistory() const noexcept
   return {
     "2014-03-07: version 1.0: initial version",
     "2014-03-10: version 1.1: allow vertical planes",
-    "2014-03-13: version 1.2: bug fixed"
+    "2014-03-13: version 1.2: bug fixed",
+    "2014-04-01: version 1.3: use of std::unique_ptr"
   };
 }
 
@@ -282,6 +301,25 @@ void ribi::Plane::Test() noexcept
     const Point3D p1(2.0, 2.0,3.0);
     const Point3D p2(2.0, 6.0,9.0);
     const Point3D p3(2.0,11.0,9.0);
+    const Plane p(p1,p2,p3);
+    assert(!p.ToFunctionX().empty());
+    try { p.ToFunctionY(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
+    try { p.ToFunctionZ(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
+    assert(
+      !p.CalcProjection(
+        {
+          Point3D(0.0,0.0,1.0),
+          Point3D(1.0,0.0,0.0),
+          Point3D(1.0,1.0,0.0)
+        }
+      ).empty()
+    );
+  }
+  if (verbose) TRACE("Plane X = 123");
+  {
+    const Point3D p1(123.0, 2.0,3.0);
+    const Point3D p2(123.0, 6.0,9.0);
+    const Point3D p3(123.0,11.0,9.0);
     const Plane p(p1,p2,p3);
     assert(!p.ToFunctionX().empty());
     try { p.ToFunctionY(); assert(!"Should not get here"); } catch (std::logic_error&) { /* OK */ }
@@ -391,7 +429,9 @@ std::string ribi::Plane::ToFunctionX() const
   }
   try
   {
-     return m_plane_x->ToFunction();
+    const std::string s = m_plane_x->ToFunction();
+    assert(!s.empty());
+    return s;
   }
   catch (std::logic_error&)
   {
@@ -407,7 +447,9 @@ std::string ribi::Plane::ToFunctionY() const
   }
   try
   {
-     return m_plane_y->ToFunction();
+    const std::string s = m_plane_y->ToFunction();
+    assert(!s.empty());
+    return s;
   }
   catch (std::logic_error&)
   {
@@ -422,7 +464,9 @@ std::string ribi::Plane::ToFunctionZ() const
   }
   try
   {
-     return m_plane_z->ToFunction();
+    const std::string s = m_plane_z->ToFunction();
+    assert(!s.empty());
+    return s;
   }
   catch (std::logic_error&)
   {

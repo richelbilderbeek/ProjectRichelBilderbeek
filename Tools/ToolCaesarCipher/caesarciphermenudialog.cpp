@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 /*
-Encranger, encryption tool
-Copyright (C) 2009-2014 Richel Bilderbeek
+CaesarCipher, Caesar cipher tool
+Copyright (C) 2014-2014 Richel Bilderbeek
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -16,24 +16,24 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 //---------------------------------------------------------------------------
-//From http://www.richelbilderbeek.nl/ToolEncranger.htm
+//From http://www.richelbilderbeek.nl/ToolCaesarCipher.htm
 //---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "encrangermenudialog.h"
+#include "caesarciphermenudialog.h"
 
 #include <cassert>
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 
 #include "loopreader.h"
-#include "encranger.h"
-#include "encrangermaindialog.h"
+#include "caesarcipher.h"
+#include "caesarciphermaindialog.h"
 #include "trace.h"
 #pragma GCC diagnostic pop
 
-int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::CaesarCipherMenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   #ifndef NDEBUG
   Test();
@@ -45,6 +45,15 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
     std::cout << GetHelp() << '\n';
     return 1;
   }
+  bool is_silent = false;
+  for (int i=0; i!=argc; ++i)
+  {
+    if (argv[i] == "-s" || argv[i] == "--silence")
+    {
+      is_silent = true;
+    }
+  }
+
   //Determine key, if supplied as an argument
   int key = 0;
   for (int i=0; i!=argc-1; ++i) //-1 because the next argument will be used
@@ -70,11 +79,11 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
     if (argv[i] == "-t" || argv[i] == "--text")
     {
       const std::string plaintext = argv[i + 1];
-      ToolEncrangerMainDialog d;
+      CaesarCipherMainDialog d;
       d.SetKey(key);
       d.SetPlainText(plaintext);
       d.Encrypt();
-      std::cout << d.GetEncryptedText() << '\n';
+      if (!is_silent) { std::cout << d.GetEncryptedText() << '\n'; }
       return 0;
     }
   }
@@ -84,11 +93,11 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
     if (argv[i] == "-c" || argv[i] == "--cipher")
     {
       const std::string ciphertext = argv[i + 1];
-      ToolEncrangerMainDialog d;
+      CaesarCipherMainDialog d;
       d.SetKey(key);
       d.SetEncryptedText(ciphertext);
       d.Deencrypt();
-      std::cout << d.GetPlainText() << '\n';
+      if (!is_silent) { std::cout << d.GetPlainText() << '\n'; }
       return 0;
     }
   }
@@ -96,23 +105,23 @@ int ribi::ToolEncrangerMenuDialog::ExecuteSpecific(const std::vector<std::string
   return 1;
 }
 
-ribi::About ribi::ToolEncrangerMenuDialog::GetAbout() const noexcept
+ribi::About ribi::CaesarCipherMenuDialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
-    "ToolEncranger",
-    "tool to test the Encranger class",
-    "the 1th of November 2013",
-    "2009-2014",
-    "http://www.richelbilderbeek.nl/ToolEncranger.htm",
+    "CaesarCipher",
+    "Caesar cipher tool",
+    "the 1st of April 2014",
+    "2014-2014",
+    "http://www.richelbilderbeek.nl/ToolCaesarCipher.htm",
     GetVersion(),
     GetVersionHistory());
-  a.AddLibrary("Encranger version: " + Encranger::GetVersion());
+  a.AddLibrary("CaesarCipher version: " + CaesarCipher::GetVersion());
   a.AddLibrary("LoopReader version: " + LoopReader<int>::GetVersion());
   return a;
 }
 
-ribi::Help ribi::ToolEncrangerMenuDialog::GetHelp() const noexcept
+ribi::Help ribi::CaesarCipherMenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
     this->GetAbout().GetFileTitle(),
@@ -120,51 +129,52 @@ ribi::Help ribi::ToolEncrangerMenuDialog::GetHelp() const noexcept
     {
       Help::Option('c',"cipher","the ciphertext, will be decrypted"),
       Help::Option('k',"key","the encryption key, a number, zero by default"),
-      Help::Option('t',"text","the plaintext, will be encrypted")
+      Help::Option('t',"text","the plaintext, will be encrypted"),
+      Help::Option('s',"silent","silence output, used for debugging")
     },
     {
-      "Encranger -c 123 --text \"Hello World\"",
-      "Encranger -c 123 --cipher \"bc30h3g8h287g\""
+      "CaesarCipher -k 123 --text \"HELLOWORLD\"",
+      "CaesarCipher -k 123 --cipher \"HELLOWORLD\""
     }
   );
 }
 
-boost::shared_ptr<const ribi::Program> ribi::ToolEncrangerMenuDialog::GetProgram() const noexcept
+boost::shared_ptr<const ribi::Program> ribi::CaesarCipherMenuDialog::GetProgram() const noexcept
 {
-  const boost::shared_ptr<const ribi::Program> p(new ProgramEncranger);
+  const boost::shared_ptr<const ribi::Program> p(new ProgramCaesarCipher);
   assert(p);
   return p;
 
 }
 
-std::string ribi::ToolEncrangerMenuDialog::GetVersion() const noexcept
+std::string ribi::CaesarCipherMenuDialog::GetVersion() const noexcept
 {
-  return "2.6";
+  return "1.0";
 }
 
-std::vector<std::string> ribi::ToolEncrangerMenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::CaesarCipherMenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2009-08-22: Version 1.0: initial version (then called 'Encranger') programmed in C++ Builder",
-    "2011-03-06: Version 2.0: port to Qt Creator, renamed application to ToolEncranger",
-    "2011-03-22: Version 2.1: seperated GUI from logic, added website version",
-    "2011-04-25: Version 2.2: removed website version\'s Close button",
-    "2011-06-22: Version 2.3: improved website version",
-    "2011-08-31: Version 2.4: added arrows and Welcome image",
-    "2013-09-27: Version 2.5: conformized for ProjectRichelBilderbeek",
-    "2013-11-01: Version 2.6: improved console version",
+    "2014-04-01: Version 1.0: initial version, copied from CaesarCipher"
   };
 }
 
 #ifndef NDEBUG
-void ribi::ToolEncrangerMenuDialog::Test() noexcept
+void ribi::CaesarCipherMenuDialog::Test() noexcept
 {
   {
     static bool is_tested = false;
     if (is_tested) return;
     is_tested = true;
   }
-  TRACE("Starting ribi::ToolEncrangerMenuDialog::Test");
-  TRACE("Finished ribi::ToolEncrangerMenuDialog::Test successfully");
+  TRACE("Starting ribi::ToolCaesarCipherMenuDialog::Test");
+  {
+    CaesarCipherMenuDialog d;
+    d.Execute( {"CaesarCipher", "-k", "0", "--text", "HELLOWORLD", "-s" } );
+    d.Execute( {"CaesarCipher", "-k", "1", "--text", "HELLOWORLD", "-s" } );
+    d.Execute( {"CaesarCipher", "-k", "2", "--text", "HELLOWORLD", "-s" } );
+    d.Execute( {"CaesarCipher", "-k", "123", "--cipher", "HELLOWORLD", "-s" } );
+  }
+  TRACE("Finished ribi::ToolCaesarCipherMenuDialog::Test successfully");
 }
 #endif

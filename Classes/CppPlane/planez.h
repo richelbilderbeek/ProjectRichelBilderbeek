@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
 #ifndef _WIN32
 #include <boost/geometry/geometries/polygon.hpp>
 #endif
@@ -100,6 +101,8 @@ struct PlaneZ
   std::string ToFunction() const;
 
   private:
+  ~PlaneZ() noexcept {}
+
   //m_coefficients.size == 4
   const std::vector<double> m_coefficients;
 
@@ -112,6 +115,13 @@ struct PlaneZ
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      PlaneZ*);
+  friend void boost::checked_delete<>(const PlaneZ*);
+  friend struct std::default_delete<      PlaneZ>;
+  friend struct std::default_delete<const PlaneZ>;
+  friend class boost::detail::sp_ms_deleter<      PlaneZ>;
+  friend class boost::detail::sp_ms_deleter<const PlaneZ>;
 };
 
 } //~namespace ribi

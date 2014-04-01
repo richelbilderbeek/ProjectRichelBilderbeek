@@ -14,11 +14,7 @@ ribi::trim::Point::Point(
   const int index,
   const PointFactory&
 )
-  :
-    #ifdef USE_TRIANGLEMESHEDGE
-    m_belongs_to{},
-    #endif
-    m_connected{},
+  : m_connected{OrderByIndex()},
     m_coordinat(coordinat),
     m_index{index},
     m_z{}
@@ -34,16 +30,17 @@ ribi::trim::Point::Point(
   assert(!std::isnan(get<1>(*m_coordinat)));
 }
 
-#ifdef USE_TRIANGLEMESHEDGE
-void ribi::trim::Point::AddBelongsTo(const boost::weak_ptr<Edge> edge)
+void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face>& face)
 {
-  m_belongs_to.insert(edge);
-}
-#endif
-
-void ribi::trim::Point::AddConnected(const boost::weak_ptr<Face> face)
-{
+  assert(face.lock().get() != nullptr);
+  #ifndef NDEBUG
+  const auto prev_sz = m_connected.size();
+  #endif
   m_connected.insert(face);
+  #ifndef NDEBUG
+  const auto new_sz = m_connected.size();
+  assert(new_sz == prev_sz + 1);
+  #endif
 }
 
 ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcept
@@ -51,11 +48,11 @@ ribi::trim::Point::Coordinat3D ribi::trim::Point::GetCoordinat3D() const noexcep
   assert(!std::isnan(boost::geometry::get<0>(*GetCoordinat())));
   assert(!std::isnan(boost::geometry::get<1>(*GetCoordinat())));
   assert(!CanGetZ() || !std::isnan(GetZ().value()));
-  return {
+  return Geometry().CreatePoint(
     boost::geometry::get<0>(*GetCoordinat()),
     boost::geometry::get<1>(*GetCoordinat()),
     CanGetZ() ? GetZ().value() : 0.0
-  };
+  );
 }
 
 bool ribi::trim::Point::CanGetZ() const noexcept
@@ -73,6 +70,24 @@ const boost::units::quantity<boost::units::si::length> ribi::trim::Point::GetZ()
   }
   assert(CanGetZ());
   return *m_z;
+}
+
+
+std::function<
+    bool(
+      const boost::weak_ptr<const ribi::trim::Face>& lhs,
+      const boost::weak_ptr<const ribi::trim::Face>& rhs
+    )
+  >
+  ribi::trim::Point::OrderByIndex() const noexcept
+{
+  return [](const boost::weak_ptr<const Face>& lhs, const boost::weak_ptr<const Face>& rhs)
+  {
+    assert(lhs.lock());
+    assert(rhs.lock());
+    assert(lhs.lock()->GetIndex() != rhs.lock()->GetIndex());
+    return lhs.lock()->GetIndex() < rhs.lock()->GetIndex();
+  };
 }
 
 void ribi::trim::Point::SetZ(const boost::units::quantity<boost::units::si::length> z) const noexcept

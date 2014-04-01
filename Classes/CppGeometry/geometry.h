@@ -81,6 +81,8 @@ struct Geometry
     const Coordinat3D& p3
   ) const noexcept;
 
+  std::vector<Coordinat2D> CalcProjection(const std::vector<Coordinat3D>& v) const;
+
   Coordinat2D Coordinat2DToBoostGeometryPointXy(
     const Coordinat2D& c
   ) const noexcept;
@@ -89,12 +91,17 @@ struct Geometry
     const std::vector<Coordinat2D>& v
   ) const noexcept;
 
-  //Rect CreateRect(const std::vector<Coordinat2D>& rect) const noexcept;
+  Coordinat3D CreatePoint(
+    const double x,
+    const double y,
+    const double z
+  ) const noexcept;
+
   Rect CreateRect(
     const double left,
     const double top,
-    const double right,
-    const double bottom
+    const double width,
+    const double height
   ) const noexcept;
 
   ///Functor for X-Y-Z ordering

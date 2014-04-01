@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>R.png</file>
+        <file>ToolVigenereCipherArrowDown16x16.png</file>
+        <file>ToolVigenereCipherArrowDown34x34.png</file>
+        <file>ToolVigenereCipherArrowUp16x16.png</file>
+        <file>ToolVigenereCipherArrowUp34x34.png</file>
+    </qresource>
+</RCC>

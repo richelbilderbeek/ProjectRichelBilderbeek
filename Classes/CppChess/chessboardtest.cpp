@@ -238,9 +238,9 @@ void ribi::Chess::Board::Test() noexcept
         FTRACE("Test a Pawn on the board at e2");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::Create('.',Color::white,"e2"),
-          PieceFactory::Create('.',Color::white,"d3"),
-          PieceFactory::Create('.',Color::black,"f3")
+          PieceFactory().Create('.',Color::white,"e2"),
+          PieceFactory().Create('.',Color::white,"d3"),
+          PieceFactory().Create('.',Color::black,"f3")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert( b->CanDoMove(MoveFactory::Create("e2 e3"),Player::white));
@@ -253,8 +253,8 @@ void ribi::Chess::Board::Test() noexcept
         FTRACE("Test a Pawn on the board at e2, blocked by an opponent");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::Create('.',Color::white,"e2"),
-          PieceFactory::Create('.',Color::black,"e3")
+          PieceFactory().Create('.',Color::white,"e2"),
+          PieceFactory().Create('.',Color::black,"e3")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert(!b->CanDoMove(MoveFactory::Create("e2 e3"),Player::white));
@@ -265,8 +265,8 @@ void ribi::Chess::Board::Test() noexcept
         FTRACE("Test a Pawn on the board at h4, blocked by an opponent");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::Create('.',Color::white,"h4"),
-          PieceFactory::Create('.',Color::black,"h5")
+          PieceFactory().Create('.',Color::white,"h4"),
+          PieceFactory().Create('.',Color::black,"h5")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert(!b->CanDoMove(MoveFactory::Create("h4 h5"),Player::white));
@@ -276,9 +276,9 @@ void ribi::Chess::Board::Test() noexcept
         FTRACE("Test a Knight on the board at d4");
         const ribi::Chess::Board::Pieces v =
         {
-          PieceFactory::Create('N',Color::white,"d4"),
-          PieceFactory::Create('.',Color::white,"c6"),
-          PieceFactory::Create('.',Color::black,"e6")
+          PieceFactory().Create('N',Color::white,"d4"),
+          PieceFactory().Create('.',Color::white,"c6"),
+          PieceFactory().Create('.',Color::black,"e6")
         };
         boost::shared_ptr<Board> b(BoardFactory::Create(v));
         assert( b->CanDoMove(MoveFactory::Create("Nd4 b5"),Player::white));
@@ -403,7 +403,7 @@ void ribi::Chess::Board::Test() noexcept
         const Pieces pieces
           =
           {
-            PieceFactory::Create('K',Color::white,"b2")
+            PieceFactory().Create('K',Color::white,"b2")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
         assert( b->EmptyBetween(SquareFactory::Create("a1"),SquareFactory::Create("c1")));
@@ -430,38 +430,38 @@ void ribi::Chess::Board::Test() noexcept
           =
           {
 
-            PieceFactory::Create('R',Color::white,"a1"),
-            PieceFactory::Create('N',Color::white,"c3"),
-            PieceFactory::Create('B',Color::white,"c1"),
-            PieceFactory::Create('Q',Color::white,"d1"),
-            PieceFactory::Create('K',Color::white,"e1"),
-            PieceFactory::Create('B',Color::white,"b5"),
-            PieceFactory::Create('N',Color::white,"g1"),
-            PieceFactory::Create('R',Color::white,"h1"),
-            PieceFactory::Create('.',Color::white,"a2"),
-            PieceFactory::Create('.',Color::white,"b2"),
-            PieceFactory::Create('.',Color::white,"c2"),
-            PieceFactory::Create('.',Color::white,"d2"),
-            PieceFactory::Create('.',Color::white,"e4"),
-            PieceFactory::Create('.',Color::white,"f2"),
-            PieceFactory::Create('.',Color::white,"g2"),
-            PieceFactory::Create('.',Color::white,"h2"),
-            PieceFactory::Create('R',Color::black,"a8"),
-            PieceFactory::Create('N',Color::black,"b8"),
-            PieceFactory::Create('B',Color::black,"c8"),
-            PieceFactory::Create('Q',Color::black,"d8"),
-            PieceFactory::Create('K',Color::black,"e8"),
-            PieceFactory::Create('B',Color::black,"f8"),
-            PieceFactory::Create('N',Color::black,"g8"),
-            PieceFactory::Create('R',Color::black,"h8"),
-            PieceFactory::Create('.',Color::black,"a7"),
-            PieceFactory::Create('.',Color::black,"b7"),
-            PieceFactory::Create('.',Color::black,"c5"),
-            PieceFactory::Create('.',Color::black,"d6"),
-            PieceFactory::Create('.',Color::black,"e7"),
-            PieceFactory::Create('.',Color::black,"f7"),
-            PieceFactory::Create('.',Color::black,"g7"),
-            PieceFactory::Create('.',Color::black,"h7")
+            PieceFactory().Create('R',Color::white,"a1"),
+            PieceFactory().Create('N',Color::white,"c3"),
+            PieceFactory().Create('B',Color::white,"c1"),
+            PieceFactory().Create('Q',Color::white,"d1"),
+            PieceFactory().Create('K',Color::white,"e1"),
+            PieceFactory().Create('B',Color::white,"b5"),
+            PieceFactory().Create('N',Color::white,"g1"),
+            PieceFactory().Create('R',Color::white,"h1"),
+            PieceFactory().Create('.',Color::white,"a2"),
+            PieceFactory().Create('.',Color::white,"b2"),
+            PieceFactory().Create('.',Color::white,"c2"),
+            PieceFactory().Create('.',Color::white,"d2"),
+            PieceFactory().Create('.',Color::white,"e4"),
+            PieceFactory().Create('.',Color::white,"f2"),
+            PieceFactory().Create('.',Color::white,"g2"),
+            PieceFactory().Create('.',Color::white,"h2"),
+            PieceFactory().Create('R',Color::black,"a8"),
+            PieceFactory().Create('N',Color::black,"b8"),
+            PieceFactory().Create('B',Color::black,"c8"),
+            PieceFactory().Create('Q',Color::black,"d8"),
+            PieceFactory().Create('K',Color::black,"e8"),
+            PieceFactory().Create('B',Color::black,"f8"),
+            PieceFactory().Create('N',Color::black,"g8"),
+            PieceFactory().Create('R',Color::black,"h8"),
+            PieceFactory().Create('.',Color::black,"a7"),
+            PieceFactory().Create('.',Color::black,"b7"),
+            PieceFactory().Create('.',Color::black,"c5"),
+            PieceFactory().Create('.',Color::black,"d6"),
+            PieceFactory().Create('.',Color::black,"e7"),
+            PieceFactory().Create('.',Color::black,"f7"),
+            PieceFactory().Create('.',Color::black,"g7"),
+            PieceFactory().Create('.',Color::black,"h7")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
         assert( b->EmptyBetween(SquareFactory::Create("b5"),SquareFactory::Create("e8")));
@@ -475,10 +475,10 @@ void ribi::Chess::Board::Test() noexcept
         const Pieces pieces
           =
           {
-            PieceFactory::Create('K',Color::white,"a1"),
-            PieceFactory::Create('K',Color::black,"h8"),
-            PieceFactory::Create('R',Color::white,"a8"),
-            PieceFactory::Create('R',Color::black,"h1")
+            PieceFactory().Create('K',Color::white,"a1"),
+            PieceFactory().Create('K',Color::black,"h8"),
+            PieceFactory().Create('R',Color::white,"a8"),
+            PieceFactory().Create('R',Color::black,"h1")
           };
         boost::shared_ptr<Chess::Board> b(BoardFactory::Create(pieces));
         assert(b->IsCheck(Player::white));

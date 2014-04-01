@@ -9,12 +9,6 @@ struct Cell;
 struct CellFactory;
 struct CellsCreator;
 struct CellsCreatorFactory;
-
-#ifdef USE_TRIANGLEMESHEDGE
-struct Edge;
-struct EdgeFactory;
-#endif
-
 struct Face;
 struct FaceFactory;
 struct Point;

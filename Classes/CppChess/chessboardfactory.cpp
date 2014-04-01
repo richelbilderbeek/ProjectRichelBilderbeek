@@ -29,7 +29,7 @@ boost::shared_ptr<ribi::Chess::Board> ribi::Chess::BoardFactory::DeepCopy(const 
     [](const Chess::Board::ConstPiecePtr& piece)
     {
       assert(piece);
-      Chess::Board::PiecePtr p = PieceFactory::DeepCopy(piece);
+      Chess::Board::PiecePtr p = PieceFactory().DeepCopy(piece);
       assert(p);
       return p;
     }

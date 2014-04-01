@@ -48,13 +48,6 @@ namespace ribi {
 struct Plane
 {
   typedef boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> Coordinat3D;
-  ///Construct a Plane from its coefficients
-  /*
-  explicit Plane(
-    const std::vector<double>& coefficients_z = {0.0,0.0,0.0,0.0}
-  ) noexcept : m_plane_z(CreatePlaneZ(coefficients_z)) { }
-  */
-
   ///Construct a Plane from three points
   /*
 
@@ -73,16 +66,7 @@ struct Plane
     const Coordinat3D& p1, //= Coordinat3D(0.0,0.0,0.0),
     const Coordinat3D& p2, //= Coordinat3D(0.0,1.0,0.0),
     const Coordinat3D& p3  //= Coordinat3D(1.0,0.0,0.0)
-  ) noexcept
-  : m_plane_x(CreatePlaneX(p1,p2,p3)),
-    m_plane_y(CreatePlaneY(p1,p2,p3)),
-    m_plane_z(CreatePlaneZ(p1,p2,p3)),
-    m_points( {p1,p2,p3} )
-  {
-    #ifndef NDEBUG
-    Test();
-    #endif
-  }
+  ) noexcept;
 
   ///Get the 2D projection of these 3D points,
   ///Assumes these are in a Plane
@@ -138,6 +122,8 @@ struct Plane
   std::string ToFunctionZ() const;
 
   private:
+  ~Plane() noexcept {}
+
   ///A non-horizontal plane; a plane that can be expressed as 'X(Y,Z) = A*Y + B*Z + C'
   const boost::shared_ptr<const PlaneX> m_plane_x;
 
@@ -182,6 +168,13 @@ struct Plane
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      Plane*);
+  friend void boost::checked_delete<>(const Plane*);
+  friend struct std::default_delete<      Plane>;
+  friend struct std::default_delete<const Plane>;
+  friend class boost::detail::sp_ms_deleter<      Plane>;
+  friend class boost::detail::sp_ms_deleter<const Plane>;
 };
 
 } //~namespace ribi

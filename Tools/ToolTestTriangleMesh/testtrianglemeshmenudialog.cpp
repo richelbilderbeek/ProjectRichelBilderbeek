@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <iostream>
+#include <memory>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -41,13 +42,15 @@ ribi::About ribi::TestTriangleMeshMenuDialog::GetAbout() const noexcept
     GetVersionHistory());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
-  a.AddLibrary("Plane version: "
-    + Plane(
+  const std::unique_ptr<Plane> plane(
+    new Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),
       Plane::Coordinat3D(1.0,0.0,0.0),
       Plane::Coordinat3D(0.0,1.0,0.0)
-    ).GetVersion()
+    )
   );
+  assert(plane);
+  a.AddLibrary("Plane version: " + plane->GetVersion());
   return a;
 }
 

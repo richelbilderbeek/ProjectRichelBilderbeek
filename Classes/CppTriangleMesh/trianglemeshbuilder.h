@@ -1,11 +1,14 @@
 #ifndef TRIANGLEMESHBUILDER_H
 #define TRIANGLEMESHBUILDER_H
 
+#include <string>
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include <string>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
+
 #include "openfoamfwd.h"
 #include "openfoampatchfieldtype.h"
 #include "trianglemeshfwd.h"
@@ -29,7 +32,11 @@ struct TriangleMeshBuilder
     const CreateVerticalFacesStrategy strategy
   );
 
+  int CountCells() const noexcept { return static_cast<int>(m_cells.size()); }
+  int CountFaces() const noexcept { return static_cast<int>(m_faces.size()); }
+
   private:
+  ~TriangleMeshBuilder() noexcept {}
   std::vector<boost::shared_ptr<Cell>> m_cells;
   std::vector<boost::shared_ptr<Face>> m_faces;
   const std::vector<boost::shared_ptr<Point>> m_points;
@@ -90,6 +97,11 @@ struct TriangleMeshBuilder
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif
+
+  friend void boost::checked_delete<>(      TriangleMeshBuilder* x);
+  friend void boost::checked_delete<>(const TriangleMeshBuilder* x);
+  friend class boost::detail::sp_ms_deleter<      TriangleMeshBuilder>;
+  friend class boost::detail::sp_ms_deleter<const TriangleMeshBuilder>;
 };
 
 } //~namespace trim

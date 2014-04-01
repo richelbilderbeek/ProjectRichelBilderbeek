@@ -24,6 +24,12 @@ struct TestTriangleMeshMainDialog
     const ::ribi::trim::CreateVerticalFacesStrategy strategy,
     const std::string& renumberMesh_command
   );
+  int GetTicks() const noexcept { return m_ticks; }
+
+  private:
+
+  //Something to store
+  int m_ticks;
 };
 
 } //~namespace ribi

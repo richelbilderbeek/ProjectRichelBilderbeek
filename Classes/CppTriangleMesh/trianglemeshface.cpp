@@ -34,20 +34,28 @@ ribi::trim::Face::Face(
   : m_belongs_to{},
     m_coordinats{},
     m_index{index},
-    m_orientation(any_orientation),
-    m_points(any_points),
+    m_orientation{any_orientation},
+    m_points{any_points},
     m_type{}
 {
   #ifndef NDEBUG
   Test();
   PROFILE_FUNC();
+  assert(m_points == any_points);
+  assert(!m_points.empty());
+  assert(  m_points[0].use_count() >= 2);
+  assert(any_points[0].use_count() >= 2);
   assert(Helper().IsPlane(m_points));
   if (!Helper().IsConvex(m_points))
   {
     TRACE("ERROR");
     for (auto point: m_points) TRACE(point->ToStr());
   }
+
+  #ifndef FIX_ISSUE_168
   assert(Helper().IsConvex(m_points));
+  #endif //#ifndef FIX_ISSUE_168
+
   if (m_orientation == FaceOrientation::horizontal)
   {
     const int n_points = static_cast<int>(m_points.size());
@@ -82,21 +90,22 @@ void ribi::trim::Face::AddBelongsTo(boost::weak_ptr<const Cell> cell) const
 
 boost::geometry::model::point<double,3,boost::geometry::cs::cartesian> ribi::trim::Face::CalcCenter() const noexcept
 {
+  assert(!m_points.empty());
   using boost::geometry::get;
-  const auto sum(
+  const Coordinat3D sum(
     std::accumulate(m_points.begin(),m_points.end(),
-      Coordinat3D(),
+      Geometry().CreatePoint(0.0,0.0,0.0),
       [](const Coordinat3D& init, const boost::shared_ptr<const Point>& point)
       {
-        return init + Coordinat3D(
-          get<0>(*point->GetCoordinat()),
-          get<1>(*point->GetCoordinat()),
-          point->GetZ().value()
-        );
+        assert(point);
+        return init + point->GetCoordinat3D();
       }
     )
   );
-  return sum / static_cast<double>(m_points.size());
+  const Coordinat3D center(
+    sum / static_cast<double>(m_points.size())
+  );
+  return center;
 }
 
 int ribi::trim::Face::CalcPriority() const noexcept
@@ -207,7 +216,10 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     && "A Face its winding can only be set if it belongs to a cell"
   );
   assert(Helper().IsPlane(m_points));
+
+  #ifndef FIX_ISSUE_168
   assert(Helper().IsConvex(m_points));
+  #endif //#ifndef FIX_ISSUE_168
 
 
   const boost::shared_ptr<const Cell> observer(
@@ -244,9 +256,14 @@ void ribi::trim::Face::SetCorrectWinding() noexcept
     TRACE(Geometry().ToStr(observer->CalculateCenter()));
   }
   #endif
+
+  #ifndef FIX_ISSUE_168
   assert(Helper().IsCounterClockwise(m_points,observer->CalculateCenter()));
+  #endif //#ifndef FIX_ISSUE_168
   assert(Helper().IsPlane(m_points));
+  #ifndef FIX_ISSUE_168
   assert(Helper().IsConvex(m_points));
+  #endif //#ifndef FIX_ISSUE_168
 }
 
 #ifndef NDEBUG

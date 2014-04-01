@@ -11,4 +11,3 @@ int main()
   std::cout << "Release mode\n";
   #endif
 }
-

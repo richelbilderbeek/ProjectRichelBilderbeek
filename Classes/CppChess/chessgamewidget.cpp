@@ -143,7 +143,6 @@ void ribi::Chess::GameWidget::Test() noexcept
   #endif
     {
       {
-        //const boost::shared_ptr<Chess::Game> game(new Chess::Game());
         const boost::shared_ptr<Chess::Game> game
           = boost::make_shared<Chess::Game>();
         const boost::shared_ptr<Chess::ChessWidget> w(
@@ -152,7 +151,8 @@ void ribi::Chess::GameWidget::Test() noexcept
         w->ClickPixel(1000,1000);
       }
       {
-        const boost::shared_ptr<Chess::Game> game(new Chess::Game());
+        const boost::shared_ptr<Chess::Game> game
+          = boost::make_shared<Chess::Game>();
         const boost::shared_ptr<Chess::GameWidget> widget(
           new Chess::GameWidget(game,Geometry().CreateRect(0,0,100,100)));
         assert(widget->GetSelector()->GetCursor()->GetFile() == Chess::File("a"));

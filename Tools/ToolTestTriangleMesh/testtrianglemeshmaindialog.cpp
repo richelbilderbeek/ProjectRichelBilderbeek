@@ -8,6 +8,7 @@
 
 #include <boost/geometry.hpp>
 #include <boost/geometry/geometries/point_xy.hpp>
+#include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 #include <boost/units/systems/si.hpp>
 
@@ -28,8 +29,8 @@
 #include "trianglemeshcell.h"
 #include "trianglemeshcellscreator.h"
 #include "trianglemeshcellscreatorfactory.h"
-#include "trianglemeshedgefactory.h"
 #include "trianglemeshface.h"
+#include "trianglemeshhelper.h"
 #include "trianglemeshpoint.h"
 #include "trianglemeshtemplate.h"
 #pragma GCC diagnostic pop
@@ -40,7 +41,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   const int n_layers,
   const ::ribi::trim::CreateVerticalFacesStrategy strategy,
   const std::string& renumberMesh_command
-)
+) : m_ticks(0)
 {
   PROFILE_FUNC();
 
@@ -66,11 +67,12 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
   //Read data from Triangle.exe output
   std::vector<boost::shared_ptr<ribi::trim::Cell>> cells;
   {
-    const boost::shared_ptr<const ribi::trim::Template> t(
-      new ribi::trim::Template(
+    const boost::shared_ptr<const ribi::trim::Template> t
+      = boost::make_shared<ribi::trim::Template>(
+      //new ribi::trim::Template(
         filename_node,
         filename_ele
-      )
+      //)
     );
     assert(t);
 
@@ -80,7 +82,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
         1.0 * boost::units::si::meter
       );
 
-      const auto c(
+      const boost::shared_ptr<ribi::trim::CellsCreator> c(
         ribi::trim::CellsCreatorFactory().Create(
           t,
           n_layers,
@@ -93,6 +95,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       #ifndef NDEBUG
       for (auto cell:cells) { assert(cell); }
       #endif
+      m_ticks += static_cast<int>(cells.size());
     }
     //Remove some random cells
     std::clog << "Number of cells before sculpting: " << cells.size() << std::endl;
@@ -126,7 +129,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       );
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
       std::clog << "Number of strong faces: " << faces.size() << std::endl;
-      std::sort(faces.begin(),faces.end());
+      std::sort(faces.begin(),faces.end(),ribi::trim::Helper().OrderByIndex());
       const auto new_end = std::unique(faces.begin(),faces.end());
       faces.erase(new_end,faces.end());
       assert(std::count(faces.begin(),faces.end(),nullptr) == 0);
@@ -191,6 +194,7 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
       }
       std::clog << "internal faces: " << n_internal << std::endl;
       std::clog << "external faces: " << n_external << std::endl;
+      m_ticks += n_external;
     }
 
     PROFILER_UPDATE();
@@ -214,13 +218,19 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     };
 
     //Build the OpenFOAM files
-    const ribi::trim::TriangleMeshBuilder builder(
-      cells,
-      filename_result_mesh,
-      boundary_to_patch_field_type_function,
-      strategy
+    const boost::shared_ptr<ribi::trim::TriangleMeshBuilder> builder(
+      new ribi::trim::TriangleMeshBuilder(
+        cells,
+        filename_result_mesh,
+        boundary_to_patch_field_type_function,
+        strategy
+      )
     );
-    TRACE_FUNC();
+    assert(builder);
+    TRACE(builder->CountCells());
+    TRACE(builder->CountFaces());
+    m_ticks += builder->CountCells();
+    m_ticks += builder->CountFaces();
   }
 
   {
@@ -392,5 +402,4 @@ ribi::TestTriangleMeshMainDialog::TestTriangleMeshMainDialog(
     const int error = std::system(s.str().c_str());
     if (error) std::cout << "WARNING: cannot display mesh" << '\n';
   }
-
 }

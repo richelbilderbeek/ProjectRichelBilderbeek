@@ -50,7 +50,6 @@ const std::vector<int> ribi::Encranger::CreateTestKeys() noexcept
     v.push_back(i);
     i *= 2;
   }
-  //TRACE(v.size());
   return v;
 }
 
@@ -120,7 +119,7 @@ const std::vector<int> ribi::Encranger::CreateTable(const int key, const unsigne
   assert(sz!=0);
 
   std::vector<int> v(sz);
-  std::for_each(v.begin(), v.end(), Increase() );
+  std::iota(v.begin(),v.end(),0);
 
   //The key is the seed
   std::srand(key);
@@ -239,14 +238,15 @@ const std::vector<char> ribi::Encranger::CreateCharacters() noexcept
 
 std::string ribi::Encranger::GetVersion() noexcept
 {
-  return "1.1";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::Encranger::GetVersionHistory() noexcept
 {
   return {
     "2010-01-05: version 1.0: initial version",
-    "2011-01-12: version 1.1: added version info"
+    "2011-01-12: version 1.1: added version info",
+    "2014-04-01: version 1.2: replaced use of custom Increase class by std::iota",
   };
 }
 
@@ -263,7 +263,8 @@ void ribi::Encranger::Test() noexcept
   {
     const std::size_t sz { 5 };
     std::vector<int> v(sz);
-    std::for_each(v.begin(), v.end(), Increase() );
+    //std::for_each(v.begin(), v.end(), Increase() );
+    std::iota(v.begin(),v.end(),0);
     for (std::size_t i=0; i!=sz; ++i) { assert( v[i] == static_cast<int>(i) ); }
   }
   {
@@ -291,4 +292,3 @@ void ribi::Encranger::Test() noexcept
   TRACE("Finished ribi::Encranger::Test successfully");
 }
 #endif
-

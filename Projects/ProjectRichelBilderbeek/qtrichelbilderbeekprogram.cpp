@@ -35,6 +35,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qtathleticlandmenudialog.h"
 #include "qtbeerwantermenudialog.h"
 #include "qtboenkenmenudialog.h"
+#include "qtcaesarciphermenudialog.h"
 #include "qtcodetohtmlmenudialog.h"
 #include "qtconnectthreemenudialog.h"
 #include "qtcreateglossarymenudialog.h"
@@ -116,6 +117,7 @@ along with this program.If not, see <http://www.gnu.org/licenses/>.
 #include "qttestqtmodelsmenudialog.h"
 #include "qttestsimplelinearregressionmenudialog.h"
 #include "qttronmenudialog.h"
+#include "qtvigenereciphermenudialog.h"
 #include "richelbilderbeekprogram.h"
 
 #pragma GCC diagnostic pop
@@ -138,6 +140,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::boenkenVcl: break;
     case ProgramType::brainweaver: p = new pvdb::QtPvdbMenuDialog; break;
     case ProgramType::bristol: break;
+    case ProgramType::caesarCipher: p = new QtCaesarCipherMenuDialog; break;
     case ProgramType::chrisWiley: break;
     case ProgramType::codeToHtml: p = new c2h::QtCodeToHtmlMenuDialog; break;
     case ProgramType::connectThree: p = new con3::QtConnectThreeMenuDialog; break;
@@ -316,6 +319,7 @@ ribi::QtHideAndShowDialog * ribi::QtRichelBilderbeekProgram::CreateQtMenuDialog(
     case ProgramType::ubuntuOneWatcher: break;
     case ProgramType::valentineCardDecrypter: p = new QtValentineCardDecrypterMenuDialog; break;
     case ProgramType::vanDenBogaart: break;
+    case ProgramType::vigenereCipher: p = new QtVigenereCipherMenuDialog; break;
     case ProgramType::virtualBastard: break;
     case ProgramType::visualAbc: break;
     case ProgramType::xeNonZero: break;
