@@ -55,7 +55,10 @@ ribi::QtVigenereCipherMainDialog::~QtVigenereCipherMainDialog() noexcept
 void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
 {
   const std::string key = ui->box_key->text().toStdString();
-  m_dialog->SetPlainText(ui->edit_plaintext->text().toStdString());
+  for (auto c:key) { if (c < 'A' || c > 'Z') return; }
+  const std::string text = ui->edit_plaintext->text().toStdString();
+  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+  m_dialog->SetPlainText(text);
   m_dialog->SetKey(key);
   m_dialog->Encrypt();
   ui->edit_encrypted_text->setText(m_dialog->GetEncryptedText().c_str());
@@ -64,7 +67,10 @@ void ribi::QtVigenereCipherMainDialog::on_button_encrypt_clicked() noexcept
 void ribi::QtVigenereCipherMainDialog::on_button_deencrypt_clicked() noexcept
 {
   const std::string key = ui->box_key->text().toStdString();
-  m_dialog->SetEncryptedText(ui->edit_encrypted_text->text().toStdString());
+  for (auto c:key) { if (c < 'A' || c > 'Z') return; }
+  const std::string text = ui->edit_encrypted_text->text().toStdString();
+  for (auto c:text) { if (c < 'A' || c > 'Z') return; }
+  m_dialog->SetEncryptedText(text);
   m_dialog->SetKey(key);
   m_dialog->Deencrypt();
   ui->edit_plaintext->setText(m_dialog->GetPlainText().c_str());

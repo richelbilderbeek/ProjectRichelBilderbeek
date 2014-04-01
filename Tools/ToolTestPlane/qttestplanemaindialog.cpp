@@ -66,16 +66,19 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
   s << "Point 3: " << Geometry().ToStr(p3) << '\n';
 
 
-  const ribi::Plane plane(p1,p2,p3);
+  const boost::shared_ptr<ribi::Plane> plane(
+    new Plane(p1,p2,p3)
+  );
+  assert(plane);
 
   try
   {
-    s << "Function (X): " << plane.ToFunctionX() << '\n'
+    s << "Function (X): " << plane->ToFunctionX() << '\n'
       << "Coefficients (X): " << '\n'
-      << " - A: " << plane.GetCoefficientsX()[0] << '\n'
-      << " - B: " << plane.GetCoefficientsX()[1] << '\n'
-      << " - C: " << plane.GetCoefficientsX()[2] << '\n'
-      << " - D: " << plane.GetCoefficientsX()[3] << '\n'
+      << " - A: " << plane->GetCoefficientsX()[0] << '\n'
+      << " - B: " << plane->GetCoefficientsX()[1] << '\n'
+      << " - C: " << plane->GetCoefficientsX()[2] << '\n'
+      << " - D: " << plane->GetCoefficientsX()[3] << '\n'
     ;
   }
   catch (std::exception& e)
@@ -85,12 +88,12 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    s << "Function (Y): " << plane.ToFunctionY() << '\n'
+    s << "Function (Y): " << plane->ToFunctionY() << '\n'
       << "Coefficients (Y): " << '\n'
-      << " - A: " << plane.GetCoefficientsY()[0] << '\n'
-      << " - B: " << plane.GetCoefficientsY()[1] << '\n'
-      << " - C: " << plane.GetCoefficientsY()[2] << '\n'
-      << " - D: " << plane.GetCoefficientsY()[3] << '\n'
+      << " - A: " << plane->GetCoefficientsY()[0] << '\n'
+      << " - B: " << plane->GetCoefficientsY()[1] << '\n'
+      << " - C: " << plane->GetCoefficientsY()[2] << '\n'
+      << " - D: " << plane->GetCoefficientsY()[3] << '\n'
     ;
   }
   catch (std::exception& e)
@@ -100,12 +103,12 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    s << "Function (Z): " << plane.ToFunctionZ() << '\n'
+    s << "Function (Z): " << plane->ToFunctionZ() << '\n'
       << "Coefficients (Z): " << '\n'
-      << " - A: " << plane.GetCoefficientsZ()[0] << '\n'
-      << " - B: " << plane.GetCoefficientsZ()[1] << '\n'
-      << " - C: " << plane.GetCoefficientsZ()[2] << '\n'
-      << " - D: " << plane.GetCoefficientsZ()[3] << '\n'
+      << " - A: " << plane->GetCoefficientsZ()[0] << '\n'
+      << " - B: " << plane->GetCoefficientsZ()[1] << '\n'
+      << " - C: " << plane->GetCoefficientsZ()[2] << '\n'
+      << " - D: " << plane->GetCoefficientsZ()[3] << '\n'
     ;
   }
   catch (std::exception& e)
@@ -120,7 +123,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    const double x_on_plane = plane.CalcX(y,z);
+    const double x_on_plane = plane->CalcX(y,z);
     s << "X(Y,Z) = X(" << y << "," << z << ") = " << x_on_plane << '\n';
   }
   catch (std::logic_error& e)
@@ -130,7 +133,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    const double y_on_plane = plane.CalcY(x,z);
+    const double y_on_plane = plane->CalcY(x,z);
     s << "Y(X,Z) = Y(" << x << "," << z << ") = " << y_on_plane << '\n';
   }
   catch (std::logic_error& e)
@@ -140,7 +143,7 @@ void ribi::QtTestPlaneMainDialog::OnAnyChange()
 
   try
   {
-    const double z_on_plane = plane.CalcZ(x,y);
+    const double z_on_plane = plane->CalcZ(x,y);
     s << "Z(X,Y) = Z(" << x << "," << y << ") = " << z_on_plane << '\n';
   }
   catch (std::logic_error& e)

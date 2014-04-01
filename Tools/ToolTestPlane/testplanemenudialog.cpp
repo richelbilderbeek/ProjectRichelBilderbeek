@@ -81,15 +81,15 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     s << "Point 3: " << Geometry().ToStr(p3) << '\n';
 
-    const ribi::Plane plane(p1,p2,p3);
+    const boost::shared_ptr<ribi::Plane> plane(new ribi::Plane(p1,p2,p3));
     try
     {
-      s << "Function (X): " << plane.ToFunctionX() << '\n'
+      s << "Function (X): " << plane->ToFunctionX() << '\n'
         << "Coefficients (X): " << '\n'
-        << " - A: " << plane.GetCoefficientsX()[0] << '\n'
-        << " - B: " << plane.GetCoefficientsX()[1] << '\n'
-        << " - C: " << plane.GetCoefficientsX()[2] << '\n'
-        << " - D: " << plane.GetCoefficientsX()[3] << '\n'
+        << " - A: " << plane->GetCoefficientsX()[0] << '\n'
+        << " - B: " << plane->GetCoefficientsX()[1] << '\n'
+        << " - C: " << plane->GetCoefficientsX()[2] << '\n'
+        << " - D: " << plane->GetCoefficientsX()[3] << '\n'
       ;
     }
     catch (std::logic_error& e)
@@ -99,12 +99,12 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     try
     {
-      s << "Function (Y): " << plane.ToFunctionY() << '\n'
+      s << "Function (Y): " << plane->ToFunctionY() << '\n'
         << "Coefficients (Y): " << '\n'
-        << " - A: " << plane.GetCoefficientsY()[0] << '\n'
-        << " - B: " << plane.GetCoefficientsY()[1] << '\n'
-        << " - C: " << plane.GetCoefficientsY()[2] << '\n'
-        << " - D: " << plane.GetCoefficientsY()[3] << '\n'
+        << " - A: " << plane->GetCoefficientsY()[0] << '\n'
+        << " - B: " << plane->GetCoefficientsY()[1] << '\n'
+        << " - C: " << plane->GetCoefficientsY()[2] << '\n'
+        << " - D: " << plane->GetCoefficientsY()[3] << '\n'
       ;
     }
     catch (std::logic_error& e)
@@ -114,12 +114,12 @@ int ribi::TestPlaneMenuDialog::ExecuteSpecific(const std::vector<std::string>& a
 
     try
     {
-      s << "Function (Z): " << plane.ToFunctionZ() << '\n'
+      s << "Function (Z): " << plane->ToFunctionZ() << '\n'
         << "Coefficients (Z): " << '\n'
-        << " - A: " << plane.GetCoefficientsZ()[0] << '\n'
-        << " - B: " << plane.GetCoefficientsZ()[1] << '\n'
-        << " - C: " << plane.GetCoefficientsZ()[2] << '\n'
-        << " - D: " << plane.GetCoefficientsZ()[3] << '\n'
+        << " - A: " << plane->GetCoefficientsZ()[0] << '\n'
+        << " - B: " << plane->GetCoefficientsZ()[1] << '\n'
+        << " - C: " << plane->GetCoefficientsZ()[2] << '\n'
+        << " - D: " << plane->GetCoefficientsZ()[3] << '\n'
       ;
     }
     catch (std::logic_error& e)
@@ -145,12 +145,15 @@ ribi::About ribi::TestPlaneMenuDialog::GetAbout() const noexcept
     GetVersion(),
     GetVersionHistory());
   a.AddLibrary("FileIo version: " + fileio::FileIo().GetVersion());
-  a.AddLibrary("Plane version: "
-    + Plane(
+  const boost::shared_ptr<Plane> plane(
+    new Plane(
       Plane::Coordinat3D(0.0,0.0,0.0),
       Plane::Coordinat3D(1.0,0.0,0.0),
       Plane::Coordinat3D(0.0,1.0,0.0)
-    ).GetVersion()
+    )
+  );
+  a.AddLibrary("Plane version: "
+    + plane->GetVersion()
   );
   a.AddLibrary("Geometry version: " + Geometry().GetVersion());
   a.AddLibrary("Warp's FunctionParser version: 4.4.3");
