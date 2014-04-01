@@ -147,7 +147,7 @@ std::vector<double> ribi::Geometry::CalcPlane(
 
 
 std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcProjection(
-  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& v) const
+  const std::vector<boost::geometry::model::point<double,3,boost::geometry::cs::cartesian>>& points) const
 {
   assert(points.size() >= 3);
   assert(IsPlane(points));
@@ -155,6 +155,7 @@ std::vector<boost::geometry::model::d2::point_xy<double>> ribi::Geometry::CalcPr
   assert(plane);
 
   #ifndef NDEBUG
+  const bool verbose = false;
   if (verbose)
   {
     try { TRACE(plane->ToFunctionX()); } catch (std::exception&) {}

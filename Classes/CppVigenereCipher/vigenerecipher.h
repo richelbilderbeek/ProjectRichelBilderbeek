@@ -30,7 +30,7 @@ namespace ribi {
 struct VigenereCipher
 {
   VigenereCipher(const std::string& s);
-  std::string Encrypt(std::string s) const noexcept;
+  std::string Encrypt(std::string s) const;
   std::string Deencrypt(std::string s) const noexcept;
 
   static std::string GetVersion() noexcept;

@@ -37,10 +37,24 @@ ribi::VigenereCipher::VigenereCipher(const std::string& s)
   #ifndef NDEBUG
   Test();
   #endif
+  for (const auto c:s)
+  {
+    if (c < 'A' || c > 'Z')
+    {
+      throw std::logic_error("Vigenere cipher key may have uppercase characters only");
+    }
+  }
 }
 
-std::string ribi::VigenereCipher::Encrypt(std::string s) const noexcept
+std::string ribi::VigenereCipher::Encrypt(std::string s) const
 {
+  for (const auto c:s)
+  {
+    if (c < 'A' || c > 'Z')
+    {
+      throw std::logic_error("Vigenere plain text may have uppercase characters only");
+    }
+  }
 
   const int sz = static_cast<int>(s.size());
   for (int i=0; i!=sz; ++i)
@@ -61,6 +75,14 @@ std::string ribi::VigenereCipher::Encrypt(std::string s) const noexcept
 
 std::string ribi::VigenereCipher::Deencrypt(std::string s) const noexcept
 {
+  for (const auto c:s)
+  {
+    if (c < 'A' || c > 'Z')
+    {
+      throw std::logic_error("Vigenere cipher text may have uppercase characters only");
+    }
+  }
+
   const int sz = static_cast<int>(s.size());
   for (int i=0; i!=sz; ++i)
   {
