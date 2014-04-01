@@ -64,6 +64,9 @@ ribi::cmap::QtConceptMapWidget::QtConceptMapWidget(
   //Without this line, mouseMoveEvent won't be called
   this->setMouseTracking(true);
 
+  m_widget->m_signal_set_focus.connect(
+    boost::bind(&ribi::cmap::QtConceptMapWidget::OnSetFocusNode,this,boost::lambda::_1)
+  );
   m_widget->m_signal_concept_map_changed.connect(
     boost::bind(&ribi::cmap::QtConceptMapWidget::OnConceptMapChanged,this)
   );
@@ -408,6 +411,8 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     assert(c->GetQtNodes().empty() && "After undoing the creation of a new node, the QtConceptMap must be empty again");
   }
   //SetFocusRandom: that a 'set random focus' results in something getting a focus
+
+  #define TODO_ISSUE_167
   #ifdef TODO_ISSUE_167
   {
     const int concept_map_index = 17;
@@ -432,7 +437,7 @@ void ribi::cmap::QtConceptMapWidget::Test() noexcept
     w->DoCommand(cmd);
     assert(dynamic_cast<QtNode*>(w->scene()->focusItem()));
   }
-  #endif
+  #endif //focusWidget
   //DeleteNode: Test deletion of node from concept map
   {
     const boost::shared_ptr<ConceptMap> m { ConceptMapFactory::Create() };

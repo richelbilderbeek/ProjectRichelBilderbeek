@@ -52,6 +52,6 @@ void ribi::cmap::CommandDeleteFocusNode::Undo() noexcept
   m_widget->AddNode(m_old_focus);
 
   m_widget = nullptr;
-  m_old_focus = nullptr;
+  m_old_focus = boost::shared_ptr<Node>();
 
 }

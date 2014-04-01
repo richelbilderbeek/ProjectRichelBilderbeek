@@ -12,7 +12,6 @@
 #include <QIcon>
 #include <QVBoxLayout>
 
-//#define TODO_COEN
 #ifdef TODO_COEN
 #include <pvdbfile.h>
 #include <pvdbfilefactory.h>

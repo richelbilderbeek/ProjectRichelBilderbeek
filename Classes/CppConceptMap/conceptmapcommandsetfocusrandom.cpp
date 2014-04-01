@@ -73,7 +73,7 @@ void ribi::cmap::CommandSetFocusRandom::Undo() noexcept
     m_widget->LoseFocus();
   }
   m_widget->m_signal_set_focus(m_widget->m_focus);
-  m_old_focus = nullptr;
+  m_old_focus = boost::shared_ptr<Node>();
   m_widget = nullptr;
   assert(!m_widget);
 }
