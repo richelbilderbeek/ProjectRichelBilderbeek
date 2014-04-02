@@ -95,11 +95,7 @@ Questions and feature requests can be done by creating a new issue or sending an
 
 ## Git policy
 
-I follow the branching policy from [this article](http://nvie.com/posts/a-successful-git-branching-model), using only
-three types: master, develop and feature branches.
-* After every push to the master branch, ProjectRichelBilderbeek* must all compile
-* Only the develop branch pushes to master
-* The feature branch branches and merges with the develop branch
+See [the Git workflow ](git_workflow.md).
 
 ## External links
 
