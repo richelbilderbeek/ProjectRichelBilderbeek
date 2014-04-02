@@ -1,6 +1,13 @@
 #git workflow
 
-This GitHub uses a [forking workflow](https://www.atlassian.com/git/workflows#!workflow-forking), where richelbilderbeek h is GitHub is used for intergration of the forks.
+
+This GitHub uses a [forking workflow](https://www.atlassian.com/git/workflows#!workflow-forking), where richelbilderbeek is GitHub is used for intergration of the forks.
+
+The branching policy from [this article](http://nvie.com/posts/a-successful-git-branching-model) is followed, using only
+three types: master, develop and feature branches.
+* After every push to the master branch, ProjectRichelBilderbeek* must all compile
+* Only the develop branch pushes to master
+* The feature branch branches and merges with the develop branch
 
 The workflow has multiple phases:
 - Setting up
