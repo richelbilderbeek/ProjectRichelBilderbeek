@@ -12,6 +12,14 @@ ProjectRichelBilderbeek consists of:
 * C++ Builder Windows-only code, to be ported to cross-platform Qt Creator code
 * The core of Richel Bilderbeek's HTML website
 
+## The ProjectRichelBilderbeek galleries
+
+For an overview of all games, projects and tools in ProjectRichelBilderbeek, visit the gallery pages:
+* [Classes gallery](http://www.richelbilderbeek.nl/CppClassGallery.htm)
+* [Games gallery](http://www.richelbilderbeek.nl/GameGallery.htm)
+* [Projects gallery](http://www.richelbilderbeek.nl/ProjectGallery.htm)
+* [Tools gallery](http://www.richelbilderbeek.nl/ToolGallery.htm)
+
 ## I want to collaborate!
 
 ProjectRichelBilderbeek encourages collaboration, and already has had contributions from many people, 
